@@ -8,8 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddApprenticeDetailsViaSelectJourneyPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
-        private By AddToAnExistingCohortRadio => By.Id("confirm-ExistingCohort");
-        private By CreateANewCohort => By.Id("confirm-NewCohort");
+        private By AddToAnExistingCohortRadio => By.XPath("//label[contains(text(),'Add to an existing cohort')]");
+        private By CreateANewCohort => By.XPath("//label[contains(text(),'Create a new cohort')]");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         public ProviderAddApprenticeDetailsViaSelectJourneyPage(ScenarioContext context) : base(context)  { }
@@ -27,5 +27,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderChooseAnEmployerNonLevyPage(context);
         }
+
+        public bool IsCreateANewCohortOptionDisplayed() => pageInteractionHelper.IsElementDisplayed(CreateANewCohort);
+
+        public bool IsAddToAnExistingCohortOptionDisplayed() => pageInteractionHelper.IsElementDisplayed(AddToAnExistingCohortRadio);
+
     }
 }
