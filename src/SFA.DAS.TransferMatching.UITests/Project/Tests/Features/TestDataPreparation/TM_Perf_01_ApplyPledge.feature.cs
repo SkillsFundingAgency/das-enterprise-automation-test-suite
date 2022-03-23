@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TM_25_SenderCanViewTransferAllowance")]
-    public partial class TM_25_SenderCanViewTransferAllowanceFeature
+    [NUnit.Framework.DescriptionAttribute("TM_Perf_01_RecieverApplyAPledgeMultipleTimes")]
+    public partial class TM_Perf_01_RecieverApplyAPledgeMultipleTimesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "TM_25_SenderCanViewTransferAllowance.feature"
+#line 1 "TM_Perf_01_ApplyPledge.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_25_SenderCanViewTransferAllowance", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "TM_Perf_01_RecieverApplyAPledgeMultipleTimes", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_25_Sender can view transfer allowance info on transfer pledge page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfermatching")]
-        public void TM_25_SenderCanViewTransferAllowanceInfoOnTransferPledgePage()
+        [NUnit.Framework.DescriptionAttribute("TM_Perf_01 Reciever Apply For A Pledge Multiple Times")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        public void TM_Perf_01RecieverApplyForAPledgeMultipleTimes()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "transfermatching"};
+                    "perftest",
+                    "donottakescreenshot"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_25_Sender can view transfer allowance info on transfer pledge page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_Perf_01 Reciever Apply For A Pledge Multiple Times", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -95,10 +95,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 7
- testRunner.Then("Then the levy employer can view transfer allowance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an employer can apply for \'GX7WBW\' pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
