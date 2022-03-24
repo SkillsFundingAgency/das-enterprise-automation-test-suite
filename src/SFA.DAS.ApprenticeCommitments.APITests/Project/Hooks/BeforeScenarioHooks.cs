@@ -5,7 +5,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeCommitments.APITests.Project
+namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 {
     [Binding]
     public class BeforeScenarioHooks

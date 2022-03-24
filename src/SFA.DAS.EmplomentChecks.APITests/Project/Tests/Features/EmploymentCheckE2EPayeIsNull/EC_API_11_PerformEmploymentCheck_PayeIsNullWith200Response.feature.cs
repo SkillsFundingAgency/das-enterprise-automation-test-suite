@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2ENinoIsNull
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentCheckE2EPayeIsNull
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,25 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2ENinoIsNull")]
-    public partial class EmploymentCheckE2ENinoIsNullFeature
+    [NUnit.Framework.DescriptionAttribute("EmploymentCheckE2EPayeIsNull_2")]
+    public partial class EmploymentCheckE2EPayeIsNull_2Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EC_API_03_PerformEmploymentCheck_NinoIsNull.feature"
+#line 1 "EC_API_11_PerformEmploymentCheck_PayeIsNullWith200Response.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2ENinoIsNull", "EmploymentCheckE2ENinoIsNull", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EPayeIsNull", "EmploymentCheckE2EPayeIsNull_2", "Description: In this test, Accounts api, returns a 200 response code but there is" +
+                    " No paye scheme returned. Employment check is completed after enrichment.\r\n\t\t\t C" +
+                    "ompletion status for the check is set to 2 [Completed] and ErrorType as NinoNotF" +
+                    "ound", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +76,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_003_PerformEmploymentCheck_NinoIsNull(string testCaseId, string minDate, string maxDate, string status, string errorType, string[] exampleTags)
+        public virtual void EC_API_011_PerformEmploymentCheck_PayeIsNullWith200Response(string testCaseId, string minDate, string maxDate, string status, string errorType, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,8 +93,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("MaxDate", maxDate);
             argumentsOfScenario.Add("Status", status);
             argumentsOfScenario.Add("ErrorType", errorType);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_003_PerformEmploymentCheck_NinoIsNull", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_011_PerformEmploymentCheck_PayeIsNullWith200Response", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -101,25 +104,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 10
  testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 11
  testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 12
  testRunner.And("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
- testRunner.And("Nino is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("Paye/Scheme is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 14
  testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 15
  testRunner.And(string.Format("employment check record status is \'{0}\'", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 16
  testRunner.And(string.Format("business outcome for the check is set to \'{0}\'", errorType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -127,14 +130,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EC_API_003_PerformEmploymentCheck_NinoIsNull: 3")]
+        [NUnit.Framework.DescriptionAttribute("EC_API_011_PerformEmploymentCheck_PayeIsNullWith200Response: 11")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
-        public void EC_API_003_PerformEmploymentCheck_NinoIsNull_3()
+        public void EC_API_011_PerformEmploymentCheck_PayeIsNullWith200Response_11()
         {
-#line 6
-this.EC_API_003_PerformEmploymentCheck_NinoIsNull("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", "NinoNotFound", ((string[])(null)));
+#line 9
+this.EC_API_011_PerformEmploymentCheck_PayeIsNullWith200Response("11", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", "PAYENotFound", ((string[])(null)));
 #line hidden
         }
     }

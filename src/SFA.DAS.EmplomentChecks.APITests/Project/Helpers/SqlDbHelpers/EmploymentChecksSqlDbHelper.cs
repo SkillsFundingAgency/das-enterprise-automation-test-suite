@@ -63,6 +63,14 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(query, _dbConfig.EmploymentCheckDbConnectionString);
         }
 
+        internal string getErrorTypeFromEmploymentCheckTable()
+        {
+            string query = $"select ErrorType from [Business].[EmploymentCheck] where Id = {employmentCheckId}";
+
+            return GetDataAsString(query);
+            
+        }
+
         internal int getCountFromDataCollectionResponse(long uln)
         {
             string query = $" SELECT COUNT(*) FROM [Cache].[DataCollectionsResponse] " +

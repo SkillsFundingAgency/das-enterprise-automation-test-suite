@@ -1,15 +1,16 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.TransferMatching.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -17,13 +18,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
     public class TransferMatchingSteps
     {
         private readonly ScenarioContext _context;
-        private readonly AccountSignOutHelper _accountSignOutHelper;
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
+        private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
+        private readonly AccountSignOutHelper _accountSignOutHelper;
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
@@ -31,11 +33,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
-            _tabHelper = context.Get<TabHelper>();
-            _objectContext = context.Get<ObjectContext>();
-            _accountSignOutHelper = new AccountSignOutHelper(context);
             _isAnonymousPledge = false;
             _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(context);
+            _transferMatchingStepsHelper = new SubmitApplicationHelper();
+            _objectContext = context.Get<ObjectContext>();
+            _accountSignOutHelper = new AccountSignOutHelper(context);
+            _tabHelper = context.Get<TabHelper>();
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -110,8 +113,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
         {
             UpdateOrganisationName(_receiver);
+            
             SignOut();
-            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+
+            LoginAsReceiver(_context.Get<NonLevyUser>());
+
             OpenPledgeApplication("AWAITING APPROVAL").WithdrawBeforeApproval().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN");
 
         }
@@ -201,13 +207,51 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can bulk reject application")]
         public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
 
+        [Then(@"Then the levy employer can view transfer allowance")]
+        public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
+
+        public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
+        {
+            SignOutAndGoToTransferMacthingApplyUrl();
+
+            UpdateOrganisationName(_sender);
+
+            var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
+
+            var _receiver = receiver.OrganisationName;
+
+            UpdateOrganisationName(_receiver);
+
+            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(receiver.Username, receiver.Password);
+
+            return _receiver;
+        }
+
+
+        [Then(@"the levy employer can filter pledges")]
+        public void ThenTheLevyEmployerCanFilterPledges()
+        {
+            NavigateToTransferMatchingPage().GoToFindABusinessPage().GoToOpportunitiesPage().SelectAndApplyFilters();
+        }
+
+        public void SignOutAndGoToTransferMacthingApplyUrl()
+        {
+            SignOut();
+
+            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
+        }
+
+        public void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
+
+        public void SignOut() => _accountSignOutHelper.SignOut();
+
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
             UpdateOrganisationName(_sender);
 
             SignOut();
 
-            LoginAsReceiver(_context.Get<NonLevyUser>(), false);
+            LoginAsReceiver(_context.Get<NonLevyUser>());
 
             return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
@@ -259,47 +303,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
 
-        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage()
-        {
-            return NavigateToTransferMatchingPage()
-                .GotoCreateTransfersPledgePage()
-                .StartCreatePledge()
-                .GoToPledgeAmountAndOptionPage()
-                .CaptureAvailablePledgeAmount();
-        }
+        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() => 
+            NavigateToTransferMatchingPage()
+            .GotoCreateTransfersPledgePage()
+            .StartCreatePledge()
+            .GoToPledgeAmountAndOptionPage()
+            .CaptureAvailablePledgeAmount();
 
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
 
         private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
 
-        private void GoToTransferMacthingApplyUrl()
-        {
-            SignOut();
-
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
-        }
-
-        private void SignOut() => _accountSignOutHelper.SignOut();
-
-        private ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
-
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            GoToApprenticeshipTrainingPage(page)
-                .EnterAppTrainingDetailsAndContinue()
-                .VerifyStatusIsComplete()
-                .GoToYourBusinessDetailsPage()
-                .EnterBusinessDetailsAndContinue()
-                .VerifyStatusIsComplete()
-                .GoToAboutYourApprenticeshipPage()
-                .EnterMoreDetailsAndContinue()
-                .VerifyStatusIsComplete()
-                .GoToContactDetailsPage()
-                .EnterContactDetailsAndContinue()
-                .VerifyStatusIsComplete()
-                .SubmitApplication()
-                .ContinueToMyAccount();
-
+            _transferMatchingStepsHelper.SubmitApplication(page);
+            
             return OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
@@ -307,40 +325,23 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
         {
-            GoToTransferMatchingAndSignIn(user);
+            _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
 
-            return GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
+            return _transferMatchingStepsHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
         private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
         {
-            GoToTransferMatchingAndSignIn(user);
+            _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
 
             return SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
-        private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
-
-        private void GoToTransferMatchingAndSignIn(EasAccountUser user)
-        {
-            GoToTransferMacthingApplyUrl();
-
-            UpdateOrganisationName(_sender);
-
-            var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
-
-            _receiver = user.OrganisationName;
-
-            UpdateOrganisationName(_receiver);
-
-            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(user.Username, user.Password);
-        }
-
         private SignInPage ApplyForTransferFunds()
         {
-            GoToTransferMacthingApplyUrl();
+            SignOutAndGoToTransferMacthingApplyUrl();
 
-            return new TransferFundDetailsPage(_context).ApplyForTransferFunds();
+            return new TransferFundDetailsPage(_context, false).ApplyForTransferFunds();
         }
 
         private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
@@ -362,11 +363,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
-        private void LoginAsReceiver(EasAccountUser login, bool isLevy)
+        private void LoginAsReceiver(EasAccountUser login)
         {
             _receiver = login.OrganisationName;
 
-            _loginFromCreateAcccountPageHelper.Login(login, true);
+            _loginFromCreateAcccountPageHelper.Login(login, false);
         }
 
         private void LoginAsSender(EasAccountUser login)

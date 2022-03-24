@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ConfirmYourTrainingProviderPage : ConfirmYourDetailsPage
+    public class ConfirmYourTrainingProviderPage : ConfirmYourDetailsBasePage
     {
         protected override string PageTitle => "Confirm your training provider";
         protected override By ContinueButton => By.CssSelector("#employer-provider-confirm");
@@ -20,6 +20,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 () => VerifyPage(ProviderHelpSectionLink),
                 () => VerifyPage(ProviderHelpSectionText)
             });
+        }
+
+        public new ConfirmYourTrainingProviderPage ClickOnConfirmButton()
+        {
+            base.ClickOnConfirmButton();
+            return this;
+        }
+
+        public new ConfirmYourTrainingProviderPage VerifyErrorSummaryBoxAndErrorFieldText()
+        {
+            base.VerifyErrorSummaryBoxAndErrorFieldText();
+            return this;
         }
     }
 }
