@@ -227,6 +227,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return _receiver;
         }
 
+
+        [Then(@"the levy employer can filter pledges")]
+        public void ThenTheLevyEmployerCanFilterPledges()
+        {
+            NavigateToTransferMatchingPage().GoToFindABusinessPage().GoToOpportunitiesPage().SelectAndApplyFilters();
+        }
+
         public void SignOutAndGoToTransferMacthingApplyUrl()
         {
             SignOut();
@@ -237,7 +244,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
 
         public void SignOut() => _accountSignOutHelper.SignOut();
-
 
         private ApplicationsDetailsPage OpenApprovedPledgeApplication()
         {
