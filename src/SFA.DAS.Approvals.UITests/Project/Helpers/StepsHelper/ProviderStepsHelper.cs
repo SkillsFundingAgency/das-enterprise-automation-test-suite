@@ -196,7 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef = 0)
         {
             return
-                GoToProviderHomePage(true)
+                GoToProviderHomePage()
                 .GotoSelectJourneyPage()
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()
@@ -207,7 +207,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(List<ApprenticeDetailsV2> apprenticeDetails)
         {
             return
-                GoToProviderHomePage(false)
+                GoToProviderHomePage()
                 .GotoSelectJourneyPage()
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()
@@ -218,7 +218,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference)
         {
             return
-                GoToProviderHomePage(false)
+                GoToProviderHomePage()
                 .GotoSelectJourneyPage()
                 .SelectBulkUploadV2()
                 .ContinueToUploadCsvFilePage()

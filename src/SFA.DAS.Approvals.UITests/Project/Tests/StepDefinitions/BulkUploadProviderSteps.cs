@@ -238,7 +238,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
             var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
-            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.UpdateCohortReference(cohortReference);
         }
 
         [Given(@"the provider has a cohort which is with transfer-sender")]
@@ -246,7 +246,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithTransferSender(Convert.ToInt32(_providerConfig.Ukprn));
 
-            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.UpdateCohortReference(cohortReference);
         }
 
         [When(@"Provider add an apprentice uses details from below to create bulkupload")]

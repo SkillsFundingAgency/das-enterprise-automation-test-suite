@@ -77,9 +77,6 @@
     <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts.feature.cs">
       <DependentUpon>AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts.feature</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\BulkUpload\AP_BU_08_DoNotAllowBulkUploadOnTransferSenderCohorts.feature.cs">
-      <DependentUpon>AP_BU_08_DoNotAllowBulkUploadOnTransferSenderCohorts.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -91,14 +88,6 @@
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\BulkUpload\AP_BU_08_DoNotAllowBulkUploadOnTransferSenderCohorts.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataFiles\" />
   </ItemGroup>
 
 </Project>
