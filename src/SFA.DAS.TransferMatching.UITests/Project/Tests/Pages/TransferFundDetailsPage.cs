@@ -13,7 +13,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#apply-application-continue");
 
-        public TransferFundDetailsPage(ScenarioContext context, bool isAnonymousPledge = false) : base(context)
+        public TransferFundDetailsPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader, $"Transfer fund details for");
+
+        public TransferFundDetailsPage(ScenarioContext context, bool isAnonymousPledge) : base(context)
         {
             var pledgeid = GetPledgeId();
 
@@ -39,11 +41,23 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public SignInPage ApplyForTransferFunds()
         {
+            SelectYesAndContinue();
+
+            return new SignInPage(context);
+        }
+
+        public CreateATransfersApplicationPage ApplyForTransferFundsAfterLogin()
+        {
+            SelectYesAndContinue();
+
+            return new CreateATransfersApplicationPage(context);
+        }
+
+        private void SelectYesAndContinue()
+        {
             SelectRadioOptionByText("Yes, apply for transfer funds");
 
             Continue();
-
-            return new SignInPage(context);
         }
     }
 }
