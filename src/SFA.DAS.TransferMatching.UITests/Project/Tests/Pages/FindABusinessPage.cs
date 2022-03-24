@@ -9,7 +9,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public FindABusinessPage(ScenarioContext context) : base(context) { }
 
-        public By StartNowSelector => By.XPath("/html/body/div[3]/main/div/div/a");
+        public By StartNowSelector => By.LinkText("Start now");
 
         public Searchfundingopportunitiespage GoToOpportunitiesPage()
         {
