@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By UploadFileButton => By.Id("submit-upload-apprentices");
         private List<ApprenticeDetails> ApprenticeList;
         private List<ApprenticeDetailsV2> ApprenticeListV2;
-        private string fileLocation;
+        internal string fileLocation;
 
         protected override string PageTitle => "Upload a CSV file";
         private readonly BulkUploadDataHelper _bulkUploadDataHelper;

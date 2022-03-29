@@ -342,12 +342,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 if (item.ProviderRef != "valid") { result.ProviderRef = item.ProviderRef; }
 
                 ApprenticeList.Add(result);
-                
+
                 //upload
                 if (i == 1) // first time start from provider home page 
                     _providerStepsHelper.UploadApprenticeRecordToValidate(ApprenticeList);
-                else // next time onwards just go back and upload file               
-                    new ProviderBulkUploadCsvFilePage(_context).CreateACsvFile(ApprenticeList).UploadFile();
+                else // next time onwards upload directly from the error page              
+                    new ProviderFileUploadValidationErrorsPage(_context).CreateACsvFile(ApprenticeList).UploadFile();
 
                 new ProviderFileUploadValidationErrorsPage(_context)
                     .VerifyErrorMessage(item.ErrorMessage);
