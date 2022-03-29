@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND IsDeleted = 0
                                   And WithParty = 1
                                   AND ChangeOfPartyRequestId is null
-                                  Order by CreatedOn ASC";
+                                  Order by CreatedOn DESC";
 
             return Convert.ToString(GetDataAsObject(query)).Trim();
         }
@@ -88,7 +88,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND IsDeleted = 0
                                   And WithParty = 2
                                   AND ChangeOfPartyRequestId is not null
-                                  Order by CreatedOn ASC";
+                                  Order by CreatedOn DESC";
 
             return Convert.ToString(GetDataAsObject(query)).Trim();
         }
@@ -103,7 +103,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND ChangeOfPartyRequestId is null
                                   AND TransferSenderId is not null
                                   AND TransferApprovalStatus is not null
-                                  Order by CreatedOn ASC";
+                                  Order by CreatedOn DESC";
 
             return Convert.ToString(GetDataAsObject(query)).Trim();
         }

@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
 
                 var cohortDetails = flatennedList[counter].CohortDetails;
-                var expectedEmployerName = flatennedList[counter].EmployerName;
+                var expectedEmployerName = flatennedList[counter].EmployerName.Replace("  ", " ");
                 var expectedCohortRef = (cohortDetails.CohortRef == null || cohortDetails.CohortRef == "") ? actualCohortRef : cohortDetails.CohortRef;
                 var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();             
 

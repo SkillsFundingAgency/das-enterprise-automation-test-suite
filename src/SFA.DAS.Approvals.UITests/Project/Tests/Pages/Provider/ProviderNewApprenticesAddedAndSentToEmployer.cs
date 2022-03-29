@@ -42,12 +42,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             foreach (var row in rows)
             {
-                var actualEmployerName = row.FindElement(EmployerName).Text;
+                var actualEmployerName = row.FindElement(EmployerName).Text.Replace("  ", " ");
                 var actualCohortRef = row.FindElement(Cohort).Text;
                 var actualNoOfApprentices = row.FindElement(NumberOfApprentices).Text;
 
                 var cohortDetails = flatennedList[counter].CohortDetails;
-                var expectedEmployerName = flatennedList[counter].EmployerName;
+                var expectedEmployerName = flatennedList[counter].EmployerName.Replace("  ", " ");
                 var expectedCohortRef = (cohortDetails.CohortRef == null || cohortDetails.CohortRef == "") ? actualCohortRef : cohortDetails.CohortRef;
                 var expectedNoOfApprentices = cohortDetails.NumberOfApprentices.ToString();
 

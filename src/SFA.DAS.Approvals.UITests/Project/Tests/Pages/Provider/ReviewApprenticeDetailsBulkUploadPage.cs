@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -125,15 +126,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var agrreementId = employerNameAndAgreementId.FindElement(EmployerAgreementId);
             if (agrreementId.Text != $"Agreement ID: {expectedEmployerDetails.AgreementId}")
             {
-                throw new System.Exception($"AgreementId match not found : {expectedEmployerDetails.AgreementId}");
+                throw new Exception($"AgreementId match not found : {expectedEmployerDetails.AgreementId}");
             }
         }
 
         private void VerifyEmployerName(FileUploadReviewEmployerDetails expectedEmployerDetails, IWebElement employerNameAndAgreementId)
         {
-            if (!employerNameAndAgreementId.Text.Contains(expectedEmployerDetails.EmployerName))
+            if (!employerNameAndAgreementId.Text.Contains(expectedEmployerDetails.EmployerName.Replace("  ", " ")))
             {
-                throw new System.Exception($"Employer name match not found : {expectedEmployerDetails.EmployerName}");
+                throw new Exception($"Employer name match not found : {expectedEmployerDetails.EmployerName}");
             }
         }
 

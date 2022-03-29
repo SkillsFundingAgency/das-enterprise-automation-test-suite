@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "valid",
-                            "You must enter a valid Cohort Ref"});
+                            "Enter a valid Cohort Ref"});
                 table1.AddRow(new string[] {
                             "ULN < 10",
                             "valid",
@@ -359,8 +359,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "valid",
-                            "You must enter a valid Cohort Ref\nEnter a 10-digit unique learner number\nEnter a " +
-                                "valid email address\nEnter an end date that is after the start date"});
+                            "Enter a valid Cohort Ref\nEnter a 10-digit unique learner number\nEnter a valid ema" +
+                                "il address\nEnter an end date that is after the start date"});
                 table1.AddRow(new string[] {
                             "GivenNameEmpty",
                             "valid",
