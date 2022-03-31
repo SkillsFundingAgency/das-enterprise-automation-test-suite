@@ -210,6 +210,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"Then the levy employer can view transfer allowance")]
         public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
 
+        [Then(@"the levy employer can view pleged amount")]
+        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
+
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -267,6 +270,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
 
+        private TransferPledgePage VerifyPlegdeAmount() => GoToTransferPledgePageAsSender().VerifyPledgeAmount();
         private ClosePledgePage ClosePledge() => GoToTransferPledgePageAsSender().ClosePledge();
 
         private TransferPledgePage BulkReject() => GoToTransferPledgePageAsSender().SelectBulkReject().CancelBulkReject().SelectBulkReject().BulkReject();

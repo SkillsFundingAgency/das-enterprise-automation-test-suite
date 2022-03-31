@@ -16,8 +16,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By ClosePLedgeSelector => By.Id("close-pledge-button");
         private By RejectContinueSelector => By.CssSelector("#applications-action");
         private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
+        private By PledgedFunds => By.LinkText("Pledged funds for 2021/22");
+        private By RemainingFunds => By.LinkText("Remaining funds for 2021/22");
         public TransferPledgePage(ScenarioContext context) : base(context) { }
 
+        public TransferPledgePage VerifyPledgeAmount()
+        {
+            pageInteractionHelper.IsElementDisplayed(PledgedFunds);
+            pageInteractionHelper.IsElementDisplayed(RemainingFunds);
+            return new TransferPledgePage(context);
+        }
         public ClosePledgePage ClosePledge()
         {
             formCompletionHelper.Click(ClosePLedgeSelector);
