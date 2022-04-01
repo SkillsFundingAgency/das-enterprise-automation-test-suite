@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToString(TryGetDataAsObject(query, title));
         }
 
-        public int? GetProvidersDraftAndReadyForReviewCohortsCount(int ukprn)
+        public int? GetProvidersDraftAndReadyForReviewCohortsCount(string ukprn)
         {
             string query = $@"SELECT Count(Reference)
                                 FROM [Commitment] AS [cmt]
