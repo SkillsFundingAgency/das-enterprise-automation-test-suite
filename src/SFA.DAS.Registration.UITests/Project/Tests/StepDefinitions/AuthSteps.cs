@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             if (login)
             {
-                webDriver.Navigate().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+                _context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
                 new EmployerPortalLoginHelper(_context).Login(_context.GetUser<AuthTestUser>(), true);
             }
@@ -74,9 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         continue; 
                     }
 
-                    webDriver.Navigate().GoToUrl(url);
-
-                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context).ScenarioTitle();
+                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context, url).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context, url).ScenarioTitle();
                 }
                 catch (Exception ex)
                 {
