@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -20,7 +19,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
         protected string PageNotFoundPageTitle => "Page not found";
         protected string AccessDeniedPageTitle => "Access denied";
 
-        public UnauthorisedAccessBasePage(ScenarioContext context) : base(context) => VerifyPage(() => context.Get<PageInteractionHelper>().FindElement(PageHeader), ExpectedPageTitles);
+        public UnauthorisedAccessBasePage(ScenarioContext context, string url) : base(context) 
+        {
+            void action() => tabHelper.GoToUrl(url);
+
+            action();
+
+            VerifyPage(() => pageInteractionHelper.FindElement(PageHeader), ExpectedPageTitles, action);
+        }
 
         public string ScenarioTitle() => PageTitle;
     }
