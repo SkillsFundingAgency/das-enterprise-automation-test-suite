@@ -147,6 +147,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheViewerCannotCreatePledge()
         { NavigateToTransferMatchingPage().CanCreateTransferPledge(); }
 
+
+        [Given(@"the levy employer can create pledge using default criteria")]
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
@@ -180,6 +182,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can sort the pledges")]
         public void TheLevyEmployerCanSortThePledges() => SortApplications();
 
+        [When(@"the levy employer is viewing pledges from verification page")]
         [Then(@"the levy employer can view pledges from verification page")]
         public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().ConfirmActiveStatus().VerifyPledge();
 
