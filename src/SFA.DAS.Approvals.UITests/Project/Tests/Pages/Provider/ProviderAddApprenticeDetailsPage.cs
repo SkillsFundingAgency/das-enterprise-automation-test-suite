@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        private void EnterApprenticeMandatoryValidDetails()
+        private new void EnterApprenticeMandatoryValidDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
