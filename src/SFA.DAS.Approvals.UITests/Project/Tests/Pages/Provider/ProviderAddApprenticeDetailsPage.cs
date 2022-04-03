@@ -23,8 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterDob();
 
             formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
-            
-            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
 
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
