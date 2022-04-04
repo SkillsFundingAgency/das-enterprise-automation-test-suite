@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -17,6 +19,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             Continue();
             return new ProviderAddApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage SelectAStandardForEditApprenticeDetailsPath()
+        {
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
+            Continue();
+            return new ProviderEditApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
+        {
+            var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
+            Assert.False(options.All(x => x.Contains("(Framework)")));
+            Continue();
+            return new ProviderEditApprenticeDetailsPage(context);
         }
     }
 }

@@ -26,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         protected readonly ApprovalsConfig _approvalsConfig;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
+        private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -251,7 +252,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        if (shouldCheckCoursesAreStandards) providerEditApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
+                        if (shouldCheckCoursesAreStandards)
+                            providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
                         providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
@@ -270,8 +272,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
-                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i)
-                                         .EditAllApprenticeDetails();
+            {
+                _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i).ClickEditCourseLink().SelectAStandardForEditApprenticeDetailsPath();
+                providerApproveApprenticeDetailsPage = _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse();
+            }
 
             return providerApproveApprenticeDetailsPage;
         }
