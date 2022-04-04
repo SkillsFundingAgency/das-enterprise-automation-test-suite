@@ -9,6 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
 
         protected override List<string> ExpectedPageTitles => new List<string> { SignInPageTitle, PageNotFoundPageTitle };
 
-        public UnauthorisedUserWithoutLoginPage(ScenarioContext context) : base(context) { }
+        public UnauthorisedUserWithoutLoginPage(ScenarioContext context, string url) : base(context, url) { }
     }
 }
