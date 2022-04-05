@@ -22,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ProviderLoginUser _providerLoginUser;
         private ApprovalsProviderHomePage _providerHomePage;
 
+
         public ProviderPermissionsSteps(ScenarioContext context)
         {
             _context = context;
@@ -30,6 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _employerLoginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerLoginUser = new ProviderLoginUser { UserId = _providerPermissionConfig.UserId, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
         }
    
         [Given(@"Employer grant create cohort permission to a provider")]
@@ -57,8 +59,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can Create Cohort")]
         public void ThenProviderCanCreateCohort()
         {
-            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage
-                = _providerStepsHelper.NavigateToAddApprenticeDetailsPage();
+            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage = 
+               _providerStepsHelper
+               .GoToProviderHomePage(_providerLoginUser)
+               .GotoSelectJourneyPage()
+               .SelectAddManually();
+
+            //ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage
+            //    = _providerStepsHelper.NavigateToAddApprenticeDetailsPage();
 
             Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
             Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can create a new cohort");
@@ -69,8 +77,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider cannot Create Cohort")]
         public void ThenProviderCannotCreateCohort()
         {
-            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage
-               = _providerStepsHelper.NavigateToAddApprenticeDetailsPage();
+            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage =
+                  _providerStepsHelper
+                  .GoToProviderHomePage(_providerLoginUser)
+                  .GotoSelectJourneyPage()
+                  .SelectAddManually();
 
             Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
             Assert.IsFalse(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can not create a new cohort");

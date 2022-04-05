@@ -128,20 +128,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
-        /*
-        public void SetCohortReferenceList(string cohortReference)
-        {
-            var list = _objectContext.GetCohortReferenceList();
-
-            if (list == null)
-            {
-                list = new System.Collections.Generic.List<string>();
-            }
-            list.Add(cohortReference);
-
-            _objectContext.SetCohortReferenceList(list);
-        }*/
-
         public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
 
         public void UpdateNewCohortReference()
