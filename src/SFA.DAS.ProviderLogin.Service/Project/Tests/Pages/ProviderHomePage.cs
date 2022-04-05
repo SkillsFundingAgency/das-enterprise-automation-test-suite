@@ -27,6 +27,5 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
         
-        public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(AddNewApprenticesLink);
     }
 }

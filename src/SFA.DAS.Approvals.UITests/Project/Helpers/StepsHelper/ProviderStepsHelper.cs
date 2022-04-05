@@ -373,5 +373,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
         }
+
+        public ProviderAddApprenticeDetailsViaSelectJourneyPage NavigateToAddApprenticeDetailsPage()
+        {
+            return GoToProviderHomePage()
+                    .GotoSelectJourneyPage()
+                    .SelectAddManually();                    
+        }
     }
 }

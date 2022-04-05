@@ -57,49 +57,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can Create Cohort")]
         public void ThenProviderCanCreateCohort()
         {
-            var linkDisplayed = CreateCohortPermissionLinkIsDisplayed();
+            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage
+                = _providerStepsHelper.NavigateToAddApprenticeDetailsPage();
 
-            if (linkDisplayed)
-            {
-                Assert.IsTrue(CanChooseAnEmployer(), "Create Cohort link is not visible");
-            }
-            else
-            {
-                Assert.IsTrue(linkDisplayed, "Create Cohort link is not visible");
-            }
+            Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
+            Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can create a new cohort");
 
-            _providerHomePage.SignsOut();
+            _providerStepsHelper.GoToProviderHomePage(_providerLoginUser, false).SignsOut();
         }
 
         [Then(@"Provider cannot Create Cohort")]
         public void ThenProviderCannotCreateCohort()
         {
-            var linkDisplayed = CreateCohortPermissionLinkIsDisplayed();
+            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage
+               = _providerStepsHelper.NavigateToAddApprenticeDetailsPage();
 
-            if (linkDisplayed)
-            {
-                Assert.IsFalse(linkDisplayed, "Create Cohort link is visible");
-            }
-            else
-            {
-                Assert.IsFalse(linkDisplayed, "Create Cohort link is visible");
-            }
+            Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
+            Assert.IsFalse(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can not create a new cohort");
         }
 
-        private bool CanChooseAnEmployer()
-        {
-            return _providerHomePage
-                        .GotoSelectJourneyPage()
-                        .SelectAddManually()
-                        .SelectOptionCreateNewCohort()
-                        .CanChooseAnEmployer();
-        }
-
-        private bool CreateCohortPermissionLinkIsDisplayed()
-        {
-            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_providerLoginUser);
-
-            return _providerHomePage.CreateCohortPermissionLinkIsDisplayed();
-        }
     }
 }
