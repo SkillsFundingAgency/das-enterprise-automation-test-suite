@@ -32,10 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             List<ApprenticeDetails> ApprenticeList = new List<ApprenticeDetails>();
             
-            for (int i = 0; i < numberOfApprentices; i++)
-            {
-                ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
-            }
+            for (int i = 0; i < numberOfApprentices; i++) ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
             
             _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
             formCompletionHelper.EnterText(ChooseFileButton, fileLocation);           

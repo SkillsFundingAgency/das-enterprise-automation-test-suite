@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By ChooseFileButton => By.Id("attachment");
         private By UploadFileButton => By.Id("submit-upload-apprentices");
-        private readonly string fileLocation;
+        protected readonly string CsvFileLocation;
 
         protected override string PageTitle => "Upload a CSV file";
 
@@ -26,14 +26,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadCsvFilePage(ScenarioContext context) : base(context)
         {
-            fileLocation = GetFileLocation();
-                     
+            CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
+
             _bulkUploadDataHelper = new BulkUploadDataHelper();
 
             _bulkUploadV2ValidationDataHelper = new BulkUploadV2ValidationDataHelper();
         }
-
-        private string GetFileLocation() => Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)
         {
@@ -56,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.Replace("BulkuploadApprentices", apprenticeList);
 
-            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, fileLocation);
+            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
@@ -70,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.Replace("BulkuploadApprentices", apprenticeListV2);
 
-            _bulkUploadV2ValidationDataHelper.CreateBulkUploadFileToValidate(apprenticeListV2, fileLocation);
+            _bulkUploadV2ValidationDataHelper.CreateBulkUploadFileToValidate(apprenticeListV2, CsvFileLocation);
 
             return this;
         }
@@ -84,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.Replace("BulkuploadApprentices", apprenticeList);
 
-            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, fileLocation);
+            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, CsvFileLocation);
             
             return this;
         }
@@ -104,7 +102,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadCsvFilePage UploadFile()
         {
-            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
+            formCompletionHelper.EnterText(ChooseFileButton, CsvFileLocation);
             formCompletionHelper.ClickElement(UploadFileButton);
             return this;
         }      
