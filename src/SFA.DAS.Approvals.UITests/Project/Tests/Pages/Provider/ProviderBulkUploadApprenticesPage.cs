@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderBulkUploadApprenticesPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "Bulk upload apprentices";
+        protected override string PageTitle => "Upload a CSV file";
         private By ChooseFileButton => By.Id("files-upload");
         private By UploadFileButton => By.Id("submit-upload-apprentices");
         private By TableCells => By.ClassName("govuk-table__row");
