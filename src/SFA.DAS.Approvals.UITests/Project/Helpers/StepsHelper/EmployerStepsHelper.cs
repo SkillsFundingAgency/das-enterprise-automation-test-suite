@@ -36,18 +36,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
         }
 
-        public void Approve(string cohortRef = null) => EmployerReviewCohort(cohortRef).EmployerDoesSecondApproval();
+        public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
 
         public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
 
         public void ApproveMultipleCohorts()
         {
-            List<string> cohortList =_objectContext.GetCohortReferenceList();
-            foreach (var cohort in cohortList)
+            foreach (var cohort in _objectContext.GetCohortReferenceList())
             {
-                Approve(cohort);
-            }
+                _objectContext.UpdateCohortReference(cohort);
 
+                Approve();
+            }
         }
 
         public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
@@ -57,6 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {
             GotoEmployerHomePage(openInNewTab);
+
             return new ApprenticesHomePage(_context);
         }
 
@@ -83,12 +84,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
-        internal ApproveApprenticeDetailsPage EmployerReviewCohort(string cohortRef = null)
+        internal ApproveApprenticeDetailsPage EmployerReviewCohort()
         {
             var employerReviewYourCohortPage = GoToEmployerApprenticesHomePage()
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
-                .SelectViewCurrentCohortDetails(cohortRef);
+                .SelectViewCurrentCohortDetails();
 
             _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage));
 
@@ -98,7 +99,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void EmployerCreateCohortAndSendsToProvider()
         {
             var cohortSentYourTrainingProviderPage = EmployerCreateCohort();
+
             var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+
             SetCohortReference(cohortReference);
         }
 
@@ -262,8 +265,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         protected virtual AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
-            
-
             return addAnApprenitcePage.StartNowToAddTrainingProvider();
         }
 

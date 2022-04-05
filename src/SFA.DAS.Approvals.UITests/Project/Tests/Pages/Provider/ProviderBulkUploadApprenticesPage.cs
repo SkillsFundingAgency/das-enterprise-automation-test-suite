@@ -29,6 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             objectContext.SetNoOfApprentices(numberOfApprentices);
 
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
+
             List<ApprenticeDetails> ApprenticeList = new List<ApprenticeDetails>();
             
             for (int i = 0; i < numberOfApprentices; i++)

@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Provider approves the cohorts and send them to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.When("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer approves multiple cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
  testRunner.Then("New apprentice records become available in Manage Apprentice section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
