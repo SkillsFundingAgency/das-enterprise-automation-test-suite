@@ -10,14 +10,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         {
             using (StreamWriter sw = File.CreateText(fileLocation))
             {
-                sw.WriteLine("CohortRef,ULN,FamilyName,GivenNames,DateOfBirth,StdCode,StartDate,EndDate,TotalPrice,EPAOrgID,ProviderRef,EmailAddress,AgreementId");
+                sw.WriteLine("CohortRef,AgreementID,ULN,FamilyName,GivenNames,DateOfBirth,EmailAddress,StdCode,StartDate,EndDate,TotalPrice,EPAOrgID,ProviderRef");
                 foreach (var apprentice in apprenticeDetailsList)
                 {
-                    sw.WriteLine($"{apprentice.CohortRef},{apprentice.ULN},{apprentice.FamilyName}," +
-                        $"{apprentice.GivenNames},{apprentice.DateOfBirth},{apprentice.StdCode}," +
-                        $"{apprentice.StartDate},{apprentice.EndDate}," +
-                        $"{apprentice.TotalPrice},{apprentice.EPAOrgID},{apprentice.ProviderRef}," +
-                        $"{apprentice.EmailAddress},{apprentice.AgreementId}");
+                    sw.WriteLine($"{apprentice.CohortRef},{apprentice.AgreementId},{apprentice.ULN},{apprentice.FamilyName}," +
+                        $"{apprentice.GivenNames},{apprentice.DateOfBirth},{apprentice.EmailAddress},{apprentice.StdCode}," +
+                        $"{apprentice.StartDate},{apprentice.EndDate},{apprentice.TotalPrice},{apprentice.EPAOrgID},{apprentice.ProviderRef}");
                 }
             }
         }

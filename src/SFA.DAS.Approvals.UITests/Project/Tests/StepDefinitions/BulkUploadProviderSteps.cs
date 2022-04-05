@@ -217,7 +217,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Transfer Sender Cohorts error message is displayed")]
         public void ThenTransferSenderCohortsErrorMessageIsDisplayed()
         {
-            string errorMessage = "You cannot add apprentices via file on behalf of non-levy employers yet.\r\nYou cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
+            string errorMessage = "You cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
             new ProviderFileUploadValidationErrorsPage(_context)
                  .VerifyErrorMessage(errorMessage);
         }
