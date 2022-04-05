@@ -94,12 +94,29 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool CanTakeFullScreenShot() => (frameworkConfig.CanTakeFullScreenShot && TakeFullScreenShot);
 
-        private bool VerifyPage(Func<bool> func) { var result = func(); TakeScreenShot(); return result; }
+        private bool VerifyPage(Func<bool> func)
+        {
+            int counter = _screenShotTitleGenerator.count;
+            try
+            {
+                var result = func(); TakeScreenShot(); return result;
+            }
+            catch (Exception ex)
+            {
+                if (tags.Contains("authtests") && counter == _screenShotTitleGenerator.count) TakeScreenShot();
+                
+                throw ex;
+            }
+        }
 
         private void TakeScreenShot()
         {
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}", CanTakeFullScreenShot());
+            {
+                string counter = _screenShotTitleGenerator.GetNextCount();
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
+            }
+                
         }
     }
 }
