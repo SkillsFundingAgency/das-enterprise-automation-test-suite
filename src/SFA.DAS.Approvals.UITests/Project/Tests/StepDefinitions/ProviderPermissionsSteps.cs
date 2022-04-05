@@ -65,9 +65,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .GotoSelectJourneyPage()
                .SelectAddManually();
 
-            //ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage
-            //    = _providerStepsHelper.NavigateToAddApprenticeDetailsPage();
-
             Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
             Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can create a new cohort");
 

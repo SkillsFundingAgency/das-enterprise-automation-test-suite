@@ -242,3 +242,5 @@ SFA.DAS.Learners/Tools/PhantomJS/tools/phantomjs/ChangeLog
 
 /src/SFA.DAS.Approvals.UITests/Properties/launchSettings.json
 *.orig
+/src/SFA.DAS.Approvals.UITests/BulkUpload_1.csv
+/src/SFA.DAS.Approvals.UITests/BulkUpload_5.csv
