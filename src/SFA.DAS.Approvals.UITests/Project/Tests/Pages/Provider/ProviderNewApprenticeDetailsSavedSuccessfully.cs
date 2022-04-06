@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;

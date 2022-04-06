@@ -29,4 +29,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
         public string EmailAddress { get; set; }
         public string AgreementId { get; set; }
     }
+
+    public class MapApprenticeDetails : ApprenticeDetails
+    {
+        public string Category { get; set; }
+
+        public string ErrorMessage { get; set; }
+    }
 }

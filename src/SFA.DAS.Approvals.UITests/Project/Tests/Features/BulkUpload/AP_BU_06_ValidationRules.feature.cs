@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Category",
                             "CohortRef",
-                            "AgreementID",
+                            "AgreementId",
                             "ULN",
                             "FamilyName",
                             "GivenNames",

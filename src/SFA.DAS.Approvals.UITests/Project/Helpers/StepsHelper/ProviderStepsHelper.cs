@@ -200,7 +200,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return
                 GoToProviderHomePage()
                 .GotoSelectJourneyPage()
-                .SelectBulkUploadV2()
+                .SelectBulkUpload()
                 .ContinueToUploadCsvFilePage()
                 .CreateACsvFile(numberOfApprenticesPerCohort, numberOfApprenticesWithoutCohortRef)
                 .UploadFile();
@@ -211,7 +211,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return
                 GoToProviderHomePage()
                 .GotoSelectJourneyPage()
-                .SelectBulkUploadV2()
+                .SelectBulkUpload()
                 .ContinueToUploadCsvFilePage()
                 .CreateACsvFile(apprenticeDetails)
                 .UploadFile();
@@ -222,9 +222,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return
                 GoToProviderHomePage()
                 .GotoSelectJourneyPage()
-                .SelectBulkUploadV2()
+                .SelectBulkUpload()
                 .ContinueToUploadCsvFilePage()
-                .CreateACsvFileWithCohortReference(cohortReference)
+                .CreateACsvFileWithCohortReference(cohortReference, 1)
                 .UploadFile();
         }
 

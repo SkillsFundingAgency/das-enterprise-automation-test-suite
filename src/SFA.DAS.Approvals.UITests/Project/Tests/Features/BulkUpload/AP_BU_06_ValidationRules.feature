@@ -7,7 +7,7 @@ Scenario: AP_BU_06_Validation Rules
 	Given the Employer logins using existing Levy Account
 	And the Employer create a cohort and send to provider to add apprentices
 	When Provider add an apprentice uses details from below to create bulkupload 
- | Category					| CohortRef	| AgreementID	| ULN		| FamilyName | GivenNames | DateOfBirth | EmailAddress	| StdCode | StartDate	| EndDate	| TotalPrice | EPAOrgID | ProviderRef			| ErrorMessage |
+ | Category					| CohortRef	| AgreementId	| ULN		| FamilyName | GivenNames | DateOfBirth | EmailAddress	| StdCode | StartDate	| EndDate	| TotalPrice | EPAOrgID | ProviderRef			| ErrorMessage |
  | CohortRef length > 20	| ABC999	| valid			| valid		| valid		 | valid	  | valid		| valid			| valid	  | valid		| valid		|valid		 | valid	| valid					| Enter a valid Cohort Ref	|
  | ULN < 10				    | valid		| valid			| 171649120 | valid      | valid      | valid       | valid			| valid   | valid		| valid		| valid      | valid    | valid					| Enter a 10-digit unique learner number |
  | ULN-9999999999			| valid		| valid			| 9999999999| valid      | valid      | valid       | valid			| valid   | valid		| valid		| valid      | valid    | valid					| The unique learner number of 9999999999 isn't valid |

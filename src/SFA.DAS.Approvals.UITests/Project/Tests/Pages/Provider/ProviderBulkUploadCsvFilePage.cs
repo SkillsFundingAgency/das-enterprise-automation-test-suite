@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _bulkUploadDataHelper = new CreateCsvFileHelper();
         }
 
-        public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)
+        public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef)
         {
            var listOfCohortReference = GetCohortReferences();
 
@@ -38,9 +38,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             foreach (var cohortRef in listOfCohortReference)
             {
-                for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++)
+                for (var i = 1; i <= numberOfApprenticesPerCohort; i++)
                 {
-                    apprenticeList.Add(SetApprenticeDetails(counter * 17, cohortRef));
+                    apprenticeList.Add(SetApprenticeDetails(i * 17, cohortRef));
                 }
             }
 
@@ -58,24 +58,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(List<ApprenticeDetails> apprenticeDetails)
         {
-            var apprenticeListV2 = new List<ApprenticeDetails>();
+            var apprenticeList = new List<ApprenticeDetails>();
 
             foreach (var apprenticeDetail in apprenticeDetails) 
-                apprenticeListV2.Add(apprenticeDetail);
+                apprenticeList.Add(apprenticeDetail);
 
-            objectContext.SetBulkuploadApprentices(apprenticeListV2);
+            objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeListV2, CsvFileLocation);
+            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
 
-        public ProviderBulkUploadCsvFilePage CreateACsvFileWithCohortReference(string cohortReference, int numberOfApprenticesPerCohort = 1)
+        public ProviderBulkUploadCsvFilePage CreateACsvFileWithCohortReference(string cohortReference, int numberOfApprenticesPerCohort)
         {
             var apprenticeList = new List<ApprenticeDetails>();
 
-            for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++) 
-                apprenticeList.Add(SetApprenticeDetails(counter * 17, cohortReference));
+            for (var i = 1; i <= numberOfApprenticesPerCohort; i++) 
+                apprenticeList.Add(SetApprenticeDetails(i * 17, cohortReference));
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 

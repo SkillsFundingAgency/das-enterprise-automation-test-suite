@@ -1,7 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Text.RegularExpressions;
+﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -15,18 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By FileUploadErrorMessage => By.XPath("(//td[@class='govuk-table__cell'])[4]");
 
         public ProviderFileUploadValidationErrorsPage(ScenarioContext context) : base(context) { }
-        
-        public ProviderFileUploadValidationErrorsPage VerifyErrorMessage(string errorMessage)    
-        {
-            string featureFileErrorMessage = Regex.Replace(errorMessage, @"\s+", String.Empty);
 
-            string fileUploadErrorMessage = Regex.Replace(pageInteractionHelper.GetText(FileUploadErrorMessage), @"\s+", String.Empty);
-
-            int index = featureFileErrorMessage.Length < 80 ? featureFileErrorMessage.Length : 80;
-
-            Assert.IsTrue(fileUploadErrorMessage.Contains(featureFileErrorMessage.Substring(0,index)));
-
-            return new ProviderFileUploadValidationErrorsPage(context);
-        }
+        public string GetErrorMessage() => pageInteractionHelper.GetText(FileUploadErrorMessage)?.RemoveSpace();
     }
 }

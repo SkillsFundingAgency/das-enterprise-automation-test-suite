@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -61,10 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderUploadAmendedFilePage(context);
         }
 
-        public void CancelUpload()
-        {
-            formCompletionHelper.Click(CancelUploadLink);
-        }
+        public void CancelUpload() => formCompletionHelper.Click(CancelUploadLink);
 
         private void VerifyCohortDetails(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
         {
@@ -82,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 var expectedCohortDetails = cohortDetails[counter];
                 if (apC.Text != expectedCohortDetails.NumberOfApprenticeshipAndTotalCost)
                 {
-                    throw new System.Exception($"Apprenticeship count and total match not found : {expectedCohortDetails.NumberOfApprenticeshipsText}");
+                    throw new Exception($"Apprenticeship count and total match not found : {expectedCohortDetails.NumberOfApprenticeshipsText}");
                 }
                 counter++;
             }
@@ -98,7 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 string expectedCohortDetails = cohortDetails[counter].CohortRef == "" ? "This will be created when you save or send to employers" : cohortDetails[counter].CohortRef;
                 if (cR.Text != $"Cohort: {expectedCohortDetails}")
                 {
-                    throw new System.Exception($"CohortRef match not found : {expectedCohortDetails}");
+                    throw new Exception($"CohortRef match not found : {expectedCohortDetails}");
                 }
                 counter++;
             }

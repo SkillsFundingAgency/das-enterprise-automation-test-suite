@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -67,7 +66,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"Provider uploads another file")]
         [When(@"Provider uploads another file")]
-        public void ProviderUploadsAnotherFile() => new ProviderBulkUploadCsvFilePage(_context).CreateACsvFile().UploadFile();
+        public void ProviderUploadsAnotherFile() => new ProviderBulkUploadCsvFilePage(_context).CreateACsvFile(1, 0).UploadFile();
 
         [Given(@"Provider selects to save all but don't send to employer")]
         [When(@"Provider selects to save all but don't send to employer")]
@@ -150,7 +149,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _objectContext.UpdateCohortReference(cohortReference);
         }
-
 
         [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
         public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());

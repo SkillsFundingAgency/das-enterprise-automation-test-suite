@@ -1,9 +1,11 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -45,9 +47,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider add an apprentice uses details from below to create bulkupload")]
-        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table) => ValidateApprenticeRecord(table.CreateDynamicSet());
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table) => ValidateApprenticeRecord(table.CreateSet<MapApprenticeDetails>());
 
-        public void ValidateApprenticeRecord(IEnumerable<dynamic> apprenticeRecords)
+        public void ValidateApprenticeRecord(IEnumerable<MapApprenticeDetails> apprenticeRecords)
         {
             var apprenticeCourseDataHelper = _context.Get<ApprenticeCourseDataHelper>();
 
@@ -81,22 +83,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     AgreementId = agreementId
                 };
 
-                static bool IsNotValid(dynamic x) => ToString(x) != "valid";
+                static bool IsNotValid(string x) => x != "valid";
 
-                static string ToString(dynamic x) => $"{x}";
-
-                if (IsNotValid(item.CohortRef)) result.CohortRef = ToString(item.CohortRef);
-                if (IsNotValid(item.AgreementID)) result.AgreementId = ToString(item.AgreementID);
-                if (IsNotValid(item.ULN)) result.ULN = ToString(item.ULN);
-                if (IsNotValid(item.FamilyName)) result.FamilyName = ToString(item.FamilyName);
-                if (IsNotValid(item.GivenNames)) result.GivenNames = ToString(item.GivenNames);
-                if (IsNotValid(item.DateOfBirth)) result.DateOfBirth = ToString(item.DateOfBirth);
-                if (IsNotValid(item.EmailAddress)) result.EmailAddress = ToString(item.EmailAddress);
-                if (IsNotValid(item.StdCode)) result.StdCode = ToString(item.StdCode);
-                if (IsNotValid(item.StartDate)) result.StartDate = ToString(item.StartDate);
-                if (IsNotValid(item.EndDate)) result.EndDate = ToString(item.EndDate);
-                if (IsNotValid(item.TotalPrice)) result.TotalPrice = ToString(item.TotalPrice);
-                if (IsNotValid(item.ProviderRef)) result.ProviderRef = ToString(item.ProviderRef);
+                if (IsNotValid(item.CohortRef)) result.CohortRef = item.CohortRef;
+                if (IsNotValid(item.AgreementId)) result.AgreementId = item.AgreementId;
+                if (IsNotValid(item.ULN)) result.ULN = item.ULN;
+                if (IsNotValid(item.FamilyName)) result.FamilyName = item.FamilyName;
+                if (IsNotValid(item.GivenNames)) result.GivenNames = item.GivenNames;
+                if (IsNotValid(item.DateOfBirth)) result.DateOfBirth = item.DateOfBirth;
+                if (IsNotValid(item.EmailAddress)) result.EmailAddress = item.EmailAddress;
+                if (IsNotValid(item.StdCode)) result.StdCode = item.StdCode;
+                if (IsNotValid(item.StartDate)) result.StartDate = item.StartDate;
+                if (IsNotValid(item.EndDate)) result.EndDate = item.EndDate;
+                if (IsNotValid(item.TotalPrice)) result.TotalPrice = item.TotalPrice;
+                if (IsNotValid(item.ProviderRef)) result.ProviderRef = item.ProviderRef;
 
                 ApprenticeList.Add(result);
 
@@ -106,11 +106,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 else // next time onwards upload directly from the error page              
                     new ProviderFileUploadValidationErrorsPage(_context).CreateACsvFile(ApprenticeList).UploadFile();
 
-                VerifyErrorMessage(item.ErrorMessage);
+                VerifyErrorMessage(item.ErrorMessage, item.Category);
             }
         }
 
-        private ProviderFileUploadValidationErrorsPage VerifyErrorMessage(string errorMessage) => new ProviderFileUploadValidationErrorsPage(_context).VerifyErrorMessage(errorMessage);
+        private ProviderFileUploadValidationErrorsPage VerifyErrorMessage(string expectedMessage, string title = null)
+        {
+            expectedMessage = expectedMessage.RemoveSpace();
 
+            string actualMessage = new ProviderFileUploadValidationErrorsPage(_context).GetErrorMessage();
+
+            int index = expectedMessage.Length < 80 ? expectedMessage.Length : 80;
+
+            StringAssert.Contains(expectedMessage.Substring(0, index), actualMessage, string.IsNullOrEmpty(title) ? string.Empty : $"Scenario : {title}");
+
+            return new ProviderFileUploadValidationErrorsPage(_context);
+        }
     }
 }
