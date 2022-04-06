@@ -81,20 +81,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     AgreementId = agreementId
                 };
 
-                static bool IsNotValid(string x) => x != "valid";
+                static bool IsNotValid(dynamic x) => ToString(x) != "valid";
 
-                if (IsNotValid(item.CohortRef)) result.CohortRef = item.CohortRef;
-                if (IsNotValid(item.AgreementID)) result.AgreementId = item.AgreementID;
-                if (IsNotValid(item.ULN)) result.ULN = item.ULN;
-                if (IsNotValid(item.FamilyName)) result.FamilyName = item.FamilyName;
-                if (IsNotValid(item.GivenNames)) result.GivenNames = item.GivenNames;
-                if (IsNotValid(item.DateOfBirth)) result.DateOfBirth = item.DateOfBirth;
-                if (IsNotValid(item.EmailAddress)) result.EmailAddress = item.EmailAddress;
-                if (IsNotValid(item.StdCode)) result.StdCode = item.StdCode;
-                if (IsNotValid(item.StartDate)) result.StartDate = item.StartDate;
-                if (IsNotValid(item.EndDate)) result.EndDate = item.EndDate;
-                if (IsNotValid(item.TotalPrice)) result.TotalPrice = item.TotalPrice;
-                if (IsNotValid(item.ProviderRef)) result.ProviderRef = item.ProviderRef;
+                static string ToString(dynamic x) => $"{x}";
+
+                if (IsNotValid(item.CohortRef)) result.CohortRef = ToString(item.CohortRef);
+                if (IsNotValid(item.AgreementID)) result.AgreementId = ToString(item.AgreementID);
+                if (IsNotValid(item.ULN)) result.ULN = ToString(item.ULN);
+                if (IsNotValid(item.FamilyName)) result.FamilyName = ToString(item.FamilyName);
+                if (IsNotValid(item.GivenNames)) result.GivenNames = ToString(item.GivenNames);
+                if (IsNotValid(item.DateOfBirth)) result.DateOfBirth = ToString(item.DateOfBirth);
+                if (IsNotValid(item.EmailAddress)) result.EmailAddress = ToString(item.EmailAddress);
+                if (IsNotValid(item.StdCode)) result.StdCode = ToString(item.StdCode);
+                if (IsNotValid(item.StartDate)) result.StartDate = ToString(item.StartDate);
+                if (IsNotValid(item.EndDate)) result.EndDate = ToString(item.EndDate);
+                if (IsNotValid(item.TotalPrice)) result.TotalPrice = ToString(item.TotalPrice);
+                if (IsNotValid(item.ProviderRef)) result.ProviderRef = ToString(item.ProviderRef);
 
                 ApprenticeList.Add(result);
 
