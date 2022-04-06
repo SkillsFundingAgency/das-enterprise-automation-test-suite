@@ -16,109 +16,76 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By ChooseFileButton => By.Id("attachment");
         private By UploadFileButton => By.Id("submit-upload-apprentices");
-        private List<ApprenticeDetails> ApprenticeList;
-        private List<ApprenticeDetailsV2> ApprenticeListV2;
-        internal string fileLocation;
+        protected readonly string CsvFileLocation;
 
         protected override string PageTitle => "Upload a CSV file";
+
         private readonly BulkUploadDataHelper _bulkUploadDataHelper;
+
         private readonly BulkUploadV2ValidationDataHelper _bulkUploadV2ValidationDataHelper;
 
         public ProviderBulkUploadCsvFilePage(ScenarioContext context) : base(context)
         {
-            SetFileLocation();
-           
-            ApprenticeList = new List<ApprenticeDetails>();
-            ApprenticeListV2 = new List<ApprenticeDetailsV2>();
+            CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
+
             _bulkUploadDataHelper = new BulkUploadDataHelper();
+
             _bulkUploadV2ValidationDataHelper = new BulkUploadV2ValidationDataHelper();
-        }
-
-        private void SetFileLocation()
-        {
-            var testTitle = context.ScenarioInfo.Title.Substring(0, 8);
-            string fileName = "BulkUpload.csv";
-            switch (testTitle)
-            {
-                case "AP_BU_01":
-                    fileName = "BulkUpload_1.csv";
-                    break;
-                case "AP_BU_02":
-                    fileName = "BulkUpload_2.csv";
-                    break;
-                case "AP_BU_03":
-                    fileName = "BulkUpload_3.csv";
-                    break;
-                case "AP_BU_04":
-                    fileName = "BulkUpload_4.csv";
-                    break;
-                case "AP_BU_05":
-                    fileName = "BulkUpload_5.csv";
-                    break;
-                case "AP_BU_06":
-                    fileName = "BulkUpload_6.csv";
-                    break;
-                case "AP_BU_07":
-                    fileName = "BulkUpload_7.csv";
-                    break;
-                case "AP_BU_08":
-                    fileName = "BulkUpload_8.csv";
-                    break;
-                case "AP_BU_09":
-                    fileName = "BulkUpload_9.csv";
-                    break;
-            }
-
-            fileLocation = Path.GetFullPath(@"..\..\..\") + fileName;
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)
         {
            var listOfCohortReference = GetCohortReferences();
+
+            var apprenticeList = new List<ApprenticeDetails>();
+
             foreach (var cohortRef in listOfCohortReference)
             {
                 for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++)
                 {
-                    ApprenticeList.Add(SetApprenticeDetails(counter * 17, cohortRef));
+                    apprenticeList.Add(SetApprenticeDetails(counter * 17, cohortRef));
                 }
             }
 
             for (int i = 0; i < numberOfApprenticesWithoutCohortRef; i++)
             {
-                ApprenticeList.Add(SetApprenticeDetails(i+1 * 17, ""));
+                apprenticeList.Add(SetApprenticeDetails(i + 1 * 17, ""));
             }
 
-            objectContext.Replace("BulkuploadApprentices", ApprenticeList);
-            _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+            objectContext.Replace("BulkuploadApprentices", apprenticeList);
+
+            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, CsvFileLocation);
+
             return this;
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(List<ApprenticeDetailsV2> apprenticeDetails)
-        {            
-            foreach (var apprenticeDetail in apprenticeDetails)
-            {
-                ApprenticeListV2.Add(apprenticeDetail);
-            }         
+        {
+            var apprenticeListV2 = new List<ApprenticeDetailsV2>();
 
-            objectContext.Replace("BulkuploadApprentices", ApprenticeListV2);
-            _bulkUploadV2ValidationDataHelper.CreateBulkUploadFileToValidate(ApprenticeListV2, fileLocation);
+            foreach (var apprenticeDetail in apprenticeDetails) 
+                apprenticeListV2.Add(apprenticeDetail);
+
+            objectContext.Replace("BulkuploadApprentices", apprenticeListV2);
+
+            _bulkUploadV2ValidationDataHelper.CreateBulkUploadFileToValidate(apprenticeListV2, CsvFileLocation);
+
             return this;
         }
-
 
         public ProviderBulkUploadCsvFilePage CreateACsvFileWithCohortReference(string cohortReference, int numberOfApprenticesPerCohort = 1)
-        {          
-            for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++)
-            {
-                ApprenticeList.Add(SetApprenticeDetails(counter * 17, cohortReference));
-            }
+        {
+            var apprenticeList = new List<ApprenticeDetails>();
 
-            objectContext.Replace("BulkuploadApprentices", ApprenticeList);
-            _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+            for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++) 
+                apprenticeList.Add(SetApprenticeDetails(counter * 17, cohortReference));
+
+            objectContext.Replace("BulkuploadApprentices", apprenticeList);
+
+            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, CsvFileLocation);
+            
             return this;
         }
-
-
 
         private List<string> GetCohortReferences()
         {
@@ -135,7 +102,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadCsvFilePage UploadFile()
         {
-            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
+            formCompletionHelper.EnterText(ChooseFileButton, CsvFileLocation);
             formCompletionHelper.ClickElement(UploadFileButton);
             return this;
         }      
@@ -174,7 +141,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 AgreementId = agreementId
             };
         }
-
-
     }
 }

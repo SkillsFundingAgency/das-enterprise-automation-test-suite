@@ -30,7 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
  
-
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
         {
@@ -117,10 +116,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"employer can change provider again")]
-        public void ThenEmployerCanChangeProviderAgain()
-        {
-            new EmployerStepsHelper(_context).StartChangeofNewTrainingProvider();        
-        }
+        public void ThenEmployerCanChangeProviderAgain() => new EmployerStepsHelper(_context).StartChangeofNewTrainingProvider();
 
         [When(@"new provider approves the changes")]
         public void WhenNewProviderApprovesTheChanges()
@@ -153,7 +149,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"a banner is displayed for employer with a link to ""(.*)"" cohort")]
         public void ThenABannerIsDisplayedForEmployerWithALinkToCohort(string status)
         {
-            bool editable = status == "editable" ? true : false;
+            bool editable = status == "editable";
 
             var employerApprenticeDetailsPage = new EmployerStepsHelper(_context).ViewCurrentApprenticeDetails(true);
 

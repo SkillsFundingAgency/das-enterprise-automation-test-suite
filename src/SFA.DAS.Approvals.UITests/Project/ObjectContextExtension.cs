@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -27,7 +28,10 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string EIApprenticeDetailList = "eiapprenticedetaillist";
         private const string UpdateDynamicPauseGlobalRule = "updatedynamicpauseglobalrule";
         private const string CohortReferenceList = "cohortreferencelist";
+        private const string BulkuploadApprentices = "bulkuploadapprentices";
         #endregion
+
+        internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<ApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
 
         internal static void SetUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
             objectContext.Set(UpdateDynamicPauseGlobalRule, true);
@@ -41,20 +45,16 @@ namespace SFA.DAS.Approvals.UITests.Project
         public static void SetApprenticeTotalCost(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeTotalCost, value);
 
         public static void SetCohortReference(this ObjectContext objectContext, string value) => objectContext.Set(CohortReference, value);
-        
-        public static void SetCohortReferenceList(this ObjectContext objectContext, List<string> value) => objectContext.Replace(CohortReferenceList, value);
 
         public static void SetCohortReferenceList(this ObjectContext objectContext, string cohortReference)
         {
             var list = objectContext.GetCohortReferenceList();
 
-            if (list == null)
-            {
-                list = new List<string>();
-            }
+            if (list == null) list = new List<string>();
+
             list.Add(cohortReference);
 
-            objectContext.SetCohortReferenceList(list);
+            objectContext.Replace(CohortReferenceList, list);
         }
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);

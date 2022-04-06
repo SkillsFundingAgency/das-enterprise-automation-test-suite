@@ -163,10 +163,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer1 logins using existing Levy Account")]
-        public void ThenEmployer1LogIns()
-        {
-            _multipleAccountsLoginHelper.Login(_employerWithMultipleAccountsUser, true);
-        }
+        public void ThenEmployer1LogIns() => _multipleAccountsLoginHelper.Login(_employerWithMultipleAccountsUser, true);
 
         [Given(@"the Employer2 logins")]
         public void ThenEmployer2LogIns()
@@ -188,8 +185,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer approves the cohorts")]
         public void ThenTheEmployerApprovesTheCohorts() => _employerStepsHelper.Approve();
 
-        [When(@"the Employer approves the cohorts")]
-        public void WhenTheEmployerApprovesTheCohorts() => _employerStepsHelper.ApproveMultipleCohorts();
+        [When(@"the Employer approves multiple cohorts")]
+        public void WhenTheEmployerApprovesMultipleCohorts() => _employerStepsHelper.ApproveMultipleCohorts();
 
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)

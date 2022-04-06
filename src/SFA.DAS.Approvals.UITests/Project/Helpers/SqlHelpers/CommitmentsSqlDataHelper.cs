@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 And cmt.WithParty = 2
                                 AND cmt.ChangeOfPartyRequestId is null";
 
-            return Convert.ToInt32(GetDataAsObject(query));
+            return Convert.ToInt32(base.GetDataAsObject(query));
         }
 
         public string GetOldestEditableCohortReference(int ukprn, int EmployerAccountId)
@@ -62,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND ChangeOfPartyRequestId is null
                                   Order by CreatedOn ASC";
 
-            return Convert.ToString(GetDataAsObject(query)).Trim();
+            return GetDataAsObject(query);
         }
 
         public string GetProviderCohortWhichIsWithEmployer(int ukprn, int EmployerAccountId)
@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND ChangeOfPartyRequestId is null
                                   Order by CreatedOn DESC";
 
-            return Convert.ToString(GetDataAsObject(query)).Trim();
+            return GetDataAsObject(query);
         }
 
         public string GetProviderCohortWithChangeOfParty(int ukprn, int EmployerAccountId)
@@ -90,7 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND ChangeOfPartyRequestId is not null
                                   Order by CreatedOn DESC";
 
-            return Convert.ToString(GetDataAsObject(query)).Trim();
+            return GetDataAsObject(query);
         }
 
         public string GetProviderCohortWithTransferSender(int ukprn)
@@ -105,8 +105,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND TransferApprovalStatus is not null
                                   Order by CreatedOn DESC";
 
-            return Convert.ToString(GetDataAsObject(query)).Trim();
+            return GetDataAsObject(query);
         }
 
+        private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
     }
 }

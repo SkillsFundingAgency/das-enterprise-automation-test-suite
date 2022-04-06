@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void UploadFile()
         {
-            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
+            formCompletionHelper.EnterText(ChooseFileButton, CsvFileLocation);
             formCompletionHelper.ClickElement(UploadFileButton);
         }
     }
