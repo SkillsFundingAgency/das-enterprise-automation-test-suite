@@ -10,9 +10,9 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using NUnit.Framework;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using System.Collections.Generic;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -203,7 +203,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .UploadFile();
         }
 
-        public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(List<ApprenticeDetailsV2> apprenticeDetails)
+        public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(List<ApprenticeDetails> apprenticeDetails)
         {
             return
                 GoToProviderHomePage()

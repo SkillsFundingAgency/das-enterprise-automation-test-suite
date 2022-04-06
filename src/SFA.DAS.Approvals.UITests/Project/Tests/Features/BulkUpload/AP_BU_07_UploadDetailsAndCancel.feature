@@ -15,4 +15,3 @@ Scenario:  AP_BU_07_Upload Details then Cancel
 	And Provider selects to Cancel bulk upload
 	And Provider says Yes on Confirm cancel confirmation page
 	And Upload cancelled confirmation page is displayed
-

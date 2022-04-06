@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -20,17 +21,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string PageTitle => "Upload a CSV file";
 
-        private readonly BulkUploadDataHelper _bulkUploadDataHelper;
-
-        private readonly BulkUploadV2ValidationDataHelper _bulkUploadV2ValidationDataHelper;
+        private readonly CreateCsvFileHelper _bulkUploadDataHelper;
 
         public ProviderBulkUploadCsvFilePage(ScenarioContext context) : base(context)
         {
             CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
 
-            _bulkUploadDataHelper = new BulkUploadDataHelper();
-
-            _bulkUploadV2ValidationDataHelper = new BulkUploadV2ValidationDataHelper();
+            _bulkUploadDataHelper = new CreateCsvFileHelper();
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort = 1, int numberOfApprenticesWithoutCohortRef = 0)
@@ -52,23 +49,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 apprenticeList.Add(SetApprenticeDetails(i + 1 * 17, ""));
             }
 
-            objectContext.Replace("BulkuploadApprentices", apprenticeList);
+            objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, CsvFileLocation);
+            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
 
-        public ProviderBulkUploadCsvFilePage CreateACsvFile(List<ApprenticeDetailsV2> apprenticeDetails)
+        public ProviderBulkUploadCsvFilePage CreateACsvFile(List<ApprenticeDetails> apprenticeDetails)
         {
-            var apprenticeListV2 = new List<ApprenticeDetailsV2>();
+            var apprenticeListV2 = new List<ApprenticeDetails>();
 
             foreach (var apprenticeDetail in apprenticeDetails) 
                 apprenticeListV2.Add(apprenticeDetail);
 
-            objectContext.Replace("BulkuploadApprentices", apprenticeListV2);
+            objectContext.SetBulkuploadApprentices(apprenticeListV2);
 
-            _bulkUploadV2ValidationDataHelper.CreateBulkUploadFileToValidate(apprenticeListV2, CsvFileLocation);
+            _bulkUploadDataHelper.CreateCsvFile(apprenticeListV2, CsvFileLocation);
 
             return this;
         }
@@ -80,9 +77,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             for (var counter = 1; counter <= numberOfApprenticesPerCohort; counter++) 
                 apprenticeList.Add(SetApprenticeDetails(counter * 17, cohortReference));
 
-            objectContext.Replace("BulkuploadApprentices", apprenticeList);
+            objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateBulkUploadFile(apprenticeList, CsvFileLocation);
+            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
             
             return this;
         }
@@ -110,8 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private ApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
-            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
-            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+
             string agreementId;
             
             if (cohortRef == "" || cohortRef == null)
@@ -126,18 +122,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
             
 
-            return new ApprenticeDetails(courseCode)
+            return new ApprenticeDetails(courseCode, datahelper.ApprenticeDob, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
             {
                 CohortRef = cohortRef,
                 ULN = datahelper.Uln(),
                 FamilyName = datahelper.ApprenticeLastname,
                 GivenNames = datahelper.ApprenticeFirstname,
-                DateOfBirth = dateOfBirth,
-                StartDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseStartDate),
-                EndDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseEndDate),
                 TotalPrice = datahelper.TrainingPrice,
                 ProviderRef = datahelper.EmployerReference,
-                EmailAddress = emailAddress,
+                EmailAddress = datahelper.ApprenticeEmail,
                 AgreementId = agreementId
             };
         }

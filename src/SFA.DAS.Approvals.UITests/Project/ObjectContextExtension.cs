@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
@@ -32,6 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         #endregion
 
         internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<ApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
+
+        internal static List<ApprenticeDetails> GetBulkuploadApprentices(this ObjectContext objectContext) => objectContext.Get<List<ApprenticeDetails>>(BulkuploadApprentices);
 
         internal static void SetUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
             objectContext.Set(UpdateDynamicPauseGlobalRule, true);

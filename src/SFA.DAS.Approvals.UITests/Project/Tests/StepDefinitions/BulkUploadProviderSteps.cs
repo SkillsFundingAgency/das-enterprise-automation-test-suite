@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -7,15 +7,12 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -28,10 +25,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         protected readonly ProviderConfig _providerConfig;
         protected readonly ApprovalsConfig approvalsConfig;
-        protected readonly PageInteractionHelper pageInteractionHelper;        
+        protected readonly PageInteractionHelper pageInteractionHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        private List<ApprenticeDetailsV2> ApprenticeList;        
-        private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
         #endregion
 
         public BulkUploadProviderSteps(ScenarioContext context)
@@ -41,141 +36,78 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();            
-            _apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());            
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
         }
 
         [When(@"Provider add (.*) apprentice details using bulkupload and sends to employer for approval")]
-        public void WhenProviderAddApprenticeDetailsUsingV2BulkUploadAndSendsToEmployerForApproval(int numberOfApprentices)
-        {
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
-        }
+        public void ProviderAddApprenticeDetailsUsingBulkUploadAndSend(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
 
         [When(@"Provider add (.*) apprentice details using bulkupload")]
-        public void WhenProviderAddApprenticeDetailsUsingV2BulkUpload(int numberOfApprentices)
-        {
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
-        }
+        public void ProviderAddApprenticeDetailsUsingV2BulkUpload(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort")]
-        public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohort(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
-        {
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
-        }
+        public void ProviderUsesBulkUpload(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
 
         [Given(@"Correct Information is displayed on review apprentices details page")]
         [When(@"Correct Information is displayed on review apprentices details page")]
         [Then(@"Correct Information is displayed on review apprentices details page")]
-        public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage()
-        {
-            var apprenticeList = GetBulkuploadData();
-
-            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .VerifyCorrectInformationIsDisplayed(apprenticeList);
-        }
+        public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
         [Then(@"Provider approves the cohorts and send them to employer to approve")]
-        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
-        {
-            var apprenticeList = GetBulkuploadData();
-
+        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove() =>
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                 .SelectToApproveAllAndSendToEmployer()
-                .VerifyCorrectInformationIsDisplayed(apprenticeList);
-        }
+                .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
 
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
-        public void UserSelectsToUploadAnAmendedFile()
-        {
-            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .SelectToUploadAnAmendedFile();
-        }
+        public void UserSelectsToUploadAnAmendedFile() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).SelectToUploadAnAmendedFile();
 
         [Given(@"Provider uploads another file")]
         [When(@"Provider uploads another file")]
-        public void ProviderUploadsAnotherFile()
-        {
-            new ProviderBulkUploadCsvFilePage(_context)
-                .CreateACsvFile()
-                .UploadFile(); ;
-        }
+        public void ProviderUploadsAnotherFile() => new ProviderBulkUploadCsvFilePage(_context).CreateACsvFile().UploadFile();
 
         [Given(@"Provider selects to save all but don't send to employer")]
         [When(@"Provider selects to save all but don't send to employer")]
-        public void ProviderSelectsToSaveAllButDontSendToEmployer()
-        {
-            var apprenticeList = GetBulkuploadData();
-
+        public void ProviderSelectsToSaveAllButDontSendToEmployer() =>
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                      .SelectsToSaveAllButDontSendToEmployer()
-                     .VerifyCorrectInformationIsDisplayed(apprenticeList);
-
-
-
-        }
+                     .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
         [Given(@"User selects to upload an amended file through link")]
         [When(@"User selects to upload an amended file through link")]
-        public void UserSelectsToUploadAnAmendedFileThroughLink()
-        {
-            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .SelectToUploadAnAmendedFileThroughLink();
-        }
+        public void UserSelectsToUploadAnAmendedFileThroughLink() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).SelectToUploadAnAmendedFileThroughLink();
 
         [Given(@"Provider selects No on confirmation for upload an amended file")]
         [When(@"Provider selects No on confirmation for upload an amended file")]
-        public void ProviderSelectsNoOnConfirmationForUploadAmendedFile()
-        {
-            new ProviderUploadAmendedFilePage(_context)
-                .SelectNoAndContinue();
-        }
+        public void ProviderSelectsNoOnConfirmationForUploadAmendedFile() => new ProviderUploadAmendedFilePage(_context).SelectNoAndContinue();
 
         [Given(@"Provider selects Yes on confirmation for upload an amended file")]
         [When(@"Provider selects Yes on confirmation for upload an amended file")]
-        public void ProviderSelectsYesOnConfirmationForUploadAmendedFile()
-        {
-            new ProviderUploadAmendedFilePage(_context)
-                .SelectYesAndContinue();
-        }
+        public void ProviderSelectsYesOnConfirmationForUploadAmendedFile() => new ProviderUploadAmendedFilePage(_context).SelectYesAndContinue();
 
         [Given(@"Provider selects to Cancel bulk upload")]
         [When(@"Provider selects to Cancel bulk upload")]
-        public void ProviderSelectsToCancelBulkUpload()
-        {
-            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                 .CancelUpload();
-        }
+        public void ProviderSelectsToCancelBulkUpload() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).CancelUpload();
 
         [Given(@"Provider says No on Confirm cancel confirmation page")]
         [When(@"Provider says No on Confirm cancel confirmation page")]
-        public void ProviderSelectsNoOnConfirmCancelConfirmationPage()
-        {
-            new ProviderFileDiscadPage(_context)
-                 .SelectNoAndContinue();
-        }
+        public void ProviderSelectsNoOnConfirmCancelConfirmationPage() => new ProviderFileDiscadPage(_context).SelectNoAndContinue();
 
         [Given(@"Provider says Yes on Confirm cancel confirmation page")]
         [When(@"Provider says Yes on Confirm cancel confirmation page")]
-        public void ProviderSelectsYesOnConfirmCancelConfirmationPage()
-        {
-            new ProviderFileDiscadPage(_context)
-                 .SelectYesAndContinue();
-        }
+        public void ProviderSelectsYesOnConfirmCancelConfirmationPage() => new ProviderFileDiscadPage(_context).SelectYesAndContinue();
 
         [Given(@"Upload cancelled confirmation page is displayed")]
         [When(@"Upload cancelled confirmation page is displayed")]
-        public void UploadCancelled()
-        {
-            new ProviderFileDiscadSuccessPage(_context);
-        }
+        public void UploadCancelled() => new ProviderFileDiscadSuccessPage(_context);
 
         [Then(@"New apprentice records become available in Manage Apprentice section")]
         public void ThenNewApprenticeRecordsBecomeAvailableInManageApprenticeSection()
         {
-            var apprenticeList = _objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
+            var apprenticeList = _objectContext.GetBulkuploadApprentices();
             string expectedStatus1 = "LIVE";
             string expectedStatus2 = "WAITING TO START";
 
@@ -184,8 +116,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             foreach (var apprentice in apprenticeList)
             {
                 var actualStatus = providerManageYourApprenticesPage.SearchForApprenntice(apprentice.ULN).GetStatus(apprentice.ULN);
-                Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper()|| actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
-            }            
+                Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper() || actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
+            }
 
         }
         [Given(@"the provider has a cohort which is with employer")]
@@ -199,43 +131,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetCohortReference(cohortReference);
         }
 
-        [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
-        public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort()
-        {
-            var cohortReference = _objectContext.GetCohortReference();
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(cohortReference);
-        }
-
-        [Then(@"Non Editable Cohorts error message is displayed")]
-        public void ThenNonEditableCohortsErrorMessageIsDisplayed()
-        {
-            string errorMessage = "You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
-            new ProviderFileUploadValidationErrorsPage(_context)
-                 .VerifyErrorMessage(errorMessage);
-        }
-
-        [Then(@"Transfer Sender Cohorts error message is displayed")]
-        public void ThenTransferSenderCohortsErrorMessageIsDisplayed()
-        {
-            string errorMessage = "You cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.";
-            new ProviderFileUploadValidationErrorsPage(_context)
-                 .VerifyErrorMessage(errorMessage);
-        }
-
-        [Then(@"an error message is displayed")]
-        public void ThenAnErrorMessageIsDisplayed()
-        {
-            string errorMessage = "You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.";
-            new ProviderFileUploadValidationErrorsPage(_context)
-                            .VerifyErrorMessage(errorMessage);
-        }
-
         [Given(@"the provider has a cohort as a result of change of party")]
         public void GivenTheProviderHasACohortAsAResultOfChangeOfParty()
         {
             var employerUser = _context.GetUser<LevyUser>();
             var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
             int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+
             var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
             _objectContext.UpdateCohortReference(cohortReference);
@@ -249,35 +151,37 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateCohortReference(cohortReference);
         }
 
-        [When(@"Provider add an apprentice uses details from below to create bulkupload")]
-        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table)
-        {
-            var apprenticeRecords = table.CreateSet<MapApprenticeData>();
 
-            ValidateApprenticeRecord(apprenticeRecords);
-        }
+        [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
+        public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {
-            var apprenticeList = _objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
+            var apprenticeList = _objectContext.GetBulkuploadApprentices();
+
             var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
-            var result = new List<FileUploadReviewEmployerDetails>();
             
+            var result = new List<FileUploadReviewEmployerDetails>();
+
             foreach (var employer in groupedByEmployers)
             {
-                var employerDetail = new FileUploadReviewEmployerDetails();
-                employerDetail.EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key);
-                employerDetail.AgreementId = employer.Key;
-
-                employerDetail.CohortDetails = new List<FileUploadReviewCohortDetail>();
+                var employerDetail = new FileUploadReviewEmployerDetails
+                {
+                    EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
+                    AgreementId = employer.Key,
+                    CohortDetails = new List<FileUploadReviewCohortDetail>()
+                };
 
                 var cohortGroups = employer.GroupBy(x => x.CohortRef);
+
                 foreach (var cohortGroup in cohortGroups)
                 {
-                    var cohortDetail = new FileUploadReviewCohortDetail();
-                    cohortDetail.CohortRef = cohortGroup.Key;
-                    cohortDetail.NumberOfApprentices = cohortGroup.Count();
-                    cohortDetail.TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice));
+                    var cohortDetail = new FileUploadReviewCohortDetail
+                    {
+                        CohortRef = cohortGroup.Key,
+                        NumberOfApprentices = cohortGroup.Count(),
+                        TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice))
+                    };
                     employerDetail.CohortDetails.Add(cohortDetail);
                 }
 
@@ -286,112 +190,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             return result;
         }
-
-        public void ValidateApprenticeRecord(IEnumerable<MapApprenticeData> apprenticeRecords)
-        {
-            var cohortRef = _objectContext.GetCohortReference();
-            var courseCode = 17;
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), _objectContext, _context.Get<CommitmentsSqlDataHelper>());
-            DateTime dateOfBirth = Convert.ToDateTime($"{ datahelper.DateOfBirthYear}-{ datahelper.DateOfBirthMonth}-{datahelper.DateOfBirthDay}");
-            string emailAddress = $"{ datahelper.ApprenticeFirstname}.{ datahelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();            
-
-            int i = 0;
-            foreach (var item in apprenticeRecords)
-            {
-                i++;
-                ApprenticeList = new List<ApprenticeDetailsV2>();
-
-                var result = new ApprenticeDetailsV2(courseCode.ToString())
-                {
-                    CohortRef = cohortRef,
-                    ULN = datahelper.Uln(),
-                    FamilyName = datahelper.ApprenticeLastname,
-                    GivenNames = datahelper.ApprenticeFirstname,
-                    DateOfBirth = dateOfBirth.ToString("yyyy-MM-dd"),
-                    StartDate = _apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
-                    EndDate = _apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM"),
-                    TotalPrice = datahelper.TrainingPrice,
-                    ProviderRef = datahelper.EmployerReference,
-                    EmailAddress = emailAddress,
-                    AgreementId = agreementId
-                };
-
-                if (item.CohortRef != "valid") { result.CohortRef = item.CohortRef; }
-
-                if (item.AgreementID != "valid") { result.AgreementId = item.AgreementID; }
-
-                if (item.ULN != "valid") { result.ULN = item.ULN; }
-
-                if (item.FamilyName != "valid") { result.FamilyName = item.FamilyName; }
-
-                if (item.GivenNames != "valid") { result.GivenNames = item.GivenNames; }
-
-                if (item.DateOfBirth != "valid") { result.DateOfBirth = item.DateOfBirth; }
-
-                if (item.EmailAddress != "valid") { result.EmailAddress = item.EmailAddress; }
-
-                if (item.StdCode != "valid") { result.StdCode = item.StdCode; }
-
-                if (item.StartDate != "valid") { result.StartDate = item.StartDate; }
-
-                if (item.EndDate != "valid") { result.EndDate = item.EndDate; }
-
-                if (item.TotalPrice != "valid") { result.TotalPrice = item.TotalPrice; }
-
-                if (item.ProviderRef != "valid") { result.ProviderRef = item.ProviderRef; }
-
-                ApprenticeList.Add(result);
-
-                //upload
-                if (i == 1) // first time start from provider home page 
-                    _providerStepsHelper.UploadApprenticeRecordToValidate(ApprenticeList);
-                else // next time onwards upload directly from the error page              
-                    new ProviderFileUploadValidationErrorsPage(_context).CreateACsvFile(ApprenticeList).UploadFile();
-
-                new ProviderFileUploadValidationErrorsPage(_context)
-                    .VerifyErrorMessage(item.ErrorMessage);
-            }
-        }
     }
-
-    #region Helper Classes
-
-    public class FileUploadReviewEmployerDetails
-    {
-        public string EmployerName { get; set; }
-        public string AgreementId { get; set; }
-        public string CohortRef { get; set; }
-        public List<FileUploadReviewCohortDetail> CohortDetails { get; set; }
-    }
-
-    public class FileUploadReviewCohortDetail
-    {
-        public const string EmptyCohortRefText = "This will be created when you save or send to employers";
-        public string CohortRef { get; set; }
-        public int NumberOfApprentices { get; set; }
-        public int TotalCost { get; set; }
-
-        public string CohortRefText => CohortRef ?? EmptyCohortRefText;
-
-        public string NumberOfApprenticeshipsText
-        {
-            get
-            {
-                var text = NumberOfApprentices + " " + "apprentice";
-                if (NumberOfApprentices > 1)
-                {
-                    text += "s";
-                }
-
-                return text;
-            }
-        }
-
-        public string NumberOfApprenticeshipAndTotalCost =>
-             $"{NumberOfApprenticeshipsText}, total cost: £{TotalCost:n0}";
-
-    }   
-
-    #endregion
 }
