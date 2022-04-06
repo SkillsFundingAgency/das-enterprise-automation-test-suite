@@ -16,8 +16,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By ClosePLedgeSelector => By.Id("close-pledge-button");
         private By RejectContinueSelector => By.CssSelector("#applications-action");
         private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
-        private By PledgedFunds => By.LinkText("Pledged funds for 2021/22");
-        private By RemainingFunds => By.LinkText("Remaining funds for 2021/22");
+        private By PledgedFunds => By.LinkText("Pledged funds for 2022/23");
+        private By RemainingFunds => By.LinkText("Remaining funds for 2022/23");
+        private By EstimatedCost => By.LinkText("Estimated cost 2022/23");
+        private By Applicant => By.LinkText("Applicant");
+        private By TypicalDuration => By.LinkText("Typical duration");
+        private By Criteria => By.LinkText("Criteria");
+        private By Status => By.LinkText("Status");
+
         public TransferPledgePage(ScenarioContext context) : base(context) { }
 
         public TransferPledgePage VerifyPledgeAmount()
@@ -46,11 +52,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public TransferPledgePage SortByApplicant()
         {
-            formCompletionHelper.ClickLinkByText("Applicant");
-            formCompletionHelper.ClickLinkByText("Estimated cost 2021/22");
-            formCompletionHelper.ClickLinkByText("Typical duration");
-            formCompletionHelper.ClickLinkByText("Criteria");
-            formCompletionHelper.ClickLinkByText("Status");
+            formCompletionHelper.ClickElement(Applicant);
+            formCompletionHelper.ClickElement(EstimatedCost);
+            formCompletionHelper.ClickElement(TypicalDuration);
+            formCompletionHelper.ClickElement(Criteria);
+            formCompletionHelper.ClickElement(Status);
             return new TransferPledgePage(context);
         }
 
