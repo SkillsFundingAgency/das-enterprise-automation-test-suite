@@ -9,6 +9,10 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using NUnit.Framework;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using System.Collections.Generic;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -18,9 +22,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-
+        protected readonly PageInteractionHelper _pageInteractionHelper;
+        protected readonly ApprovalsConfig _approvalsConfig;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
+        private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -28,6 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
@@ -71,7 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void Login(ProviderLoginUser login = null, bool newTab = true)
         {
-            _approvalsProviderHomePage =  login != null
+            _approvalsProviderHomePage = login != null
                 ? GoToProviderHomePage(login, newTab)
                 : NavigateToProviderHomePage();
         }
@@ -115,7 +123,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
         {
-            return ProviderMakeReservation(login, false).GoToAddApprenticeDetailsPage();
+            return ProviderMakeReservation(login, false).GoToSelectStandardPage().SelectAStandard();
         }
 
         public ApprovalsProviderHomePage ProviderMakeReservationThenGotoHomePage(ProviderLoginUser login = null)
@@ -141,7 +149,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void BulkUploadApprenticeDetails(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApproveAndSendToEmployerForApproval();
 
         public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
-        
+
 
         public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
@@ -157,7 +165,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .ClickSaveAndContinueButton()
                     .ConfirmReserveFunding()
                     .VerifySucessMessage()
-                    .GoToAddApprenticeDetailsPage()
+                    .GoToSelectStandardPage()
+                    .SelectAStandard()
                     .SubmitValidApprenticeDetails();
             }
 
@@ -171,7 +180,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             for (int i = 0; i < numberOfApprentices; i++)
             {
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
-                        .SubmitValidApprenticeDetails();
+                    .SelectAStandard()
+                    .SubmitValidApprenticeDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
@@ -183,6 +193,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectBulkUploadApprentices()
                 .UploadFileAndConfirmSuccessful(numberOfApprentices)
                 .SubmitApprove();
+        }
+
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef = 0)
+        {
+            return
+                GoToProviderHomePage()
+                .GotoSelectJourneyPage()
+                .SelectBulkUpload()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFile(numberOfApprenticesPerCohort, numberOfApprenticesWithoutCohortRef)
+                .UploadFile();
+        }
+
+        public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(List<ApprenticeDetails> apprenticeDetails)
+        {
+            return
+                GoToProviderHomePage()
+                .GotoSelectJourneyPage()
+                .SelectBulkUpload()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFile(apprenticeDetails)
+                .UploadFile();
+        }
+
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference)
+        {
+            return
+                GoToProviderHomePage()
+                .GotoSelectJourneyPage()
+                .SelectBulkUpload()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFileWithCohortReference(cohortReference, 1)
+                .UploadFile();
         }
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
@@ -209,7 +252,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        if (shouldCheckCoursesAreStandards) providerEditApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
+                        if (shouldCheckCoursesAreStandards)
+                            providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
                         providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
@@ -228,8 +272,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
-                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i)
-                                         .EditAllApprenticeDetails();
+            {
+                _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i).ClickEditCourseLink().SelectAStandardForEditApprenticeDetailsPath();
+                providerApproveApprenticeDetailsPage = _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse();
+            }
 
             return providerApproveApprenticeDetailsPage;
         }
@@ -258,7 +304,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public void Approve() => EditApprentice().SubmitApprove();
-        
+
         public void ViewApprentices()
         {
             ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new ProvideViewApprenticesDetailsPage(_context);
@@ -313,9 +359,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .VerifyChangeOfEmployerHasBeenRequested();
         }
 
+        private void ValidateStatusOnManageYourApprenticesPage(ProviderManageYourApprenticesPage providerManageYourApprenticesPage, string keyword, string expectedStatus)
+        {
+            var actualStatus = providerManageYourApprenticesPage.SearchForApprenntice(keyword).GetStatus(keyword);
+            Assert.AreEqual(actualStatus.ToUpper(), expectedStatus.ToUpper(), "Validate status on Manage Your Apprentices page");
+        }
+
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => SelectViewCurrentApprenticeDetails(GoToProviderHomePage());
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(ApprovalsProviderHomePage page) => 
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(ApprovalsProviderHomePage page) =>
             page.GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
         private ProviderEditApprenticePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
@@ -324,7 +376,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return GoToProviderHomePage(false)
                     .GotoSelectJourneyPage()
+                    .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
         }
+
     }
 }

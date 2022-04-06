@@ -20,7 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderPermissionsConfig _providerPermissionConfig;
         private ProviderLoginUser _providerLoginUser;
-        private ApprovalsProviderHomePage _providerHomePage;
 
         public ProviderPermissionsSteps(ScenarioContext context)
         {
@@ -30,6 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _employerLoginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerLoginUser = new ProviderLoginUser { UserId = _providerPermissionConfig.UserId, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
         }
    
         [Given(@"Employer grant create cohort permission to a provider")]
@@ -57,42 +57,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can Create Cohort")]
         public void ThenProviderCanCreateCohort()
         {
-            var linkDisplayed = CreateCohortPermissionLinkIsDisplayed();
+            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage = 
+               _providerStepsHelper
+               .GoToProviderHomePage(_providerLoginUser)
+               .GotoSelectJourneyPage()
+               .SelectAddManually();
 
-            if (linkDisplayed)
-            {
-                Assert.IsTrue(CanChooseAnEmployer(), "Create Cohort link is not visible");
-            }
-            else
-            {
-                Assert.IsTrue(linkDisplayed, "Create Cohort link is not visible");
-            }
+            Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
+            Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can create a new cohort");
 
-            _providerHomePage.SignsOut();
+            _providerStepsHelper.GoToProviderHomePage(_providerLoginUser, false).SignsOut();
         }
 
         [Then(@"Provider cannot Create Cohort")]
         public void ThenProviderCannotCreateCohort()
         {
-            var linkDisplayed = CreateCohortPermissionLinkIsDisplayed();
+            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage =
+                  _providerStepsHelper
+                  .GoToProviderHomePage(_providerLoginUser)
+                  .GotoSelectJourneyPage()
+                  .SelectAddManually();
 
-            if (linkDisplayed)
-            {
-                Assert.IsFalse(linkDisplayed, "Create Cohort link is visible");
-            }
-            else
-            {
-                Assert.IsFalse(linkDisplayed, "Create Cohort link is visible");
-            }
+            Assert.IsTrue(providerAddApprenticeDetailsViaSelectJourneyPage.IsAddToAnExistingCohortOptionDisplayed(), "Validate Provider can add apprentice to existing cohorts");
+            Assert.IsFalse(providerAddApprenticeDetailsViaSelectJourneyPage.IsCreateANewCohortOptionDisplayed(), "Validate Provider can not create a new cohort");
         }
 
-        private bool CanChooseAnEmployer() => _providerHomePage.GotoSelectJourneyPage().SelectOptionCreateNewCohort().CanChooseAnEmployer();
-
-        private bool CreateCohortPermissionLinkIsDisplayed()
-        {
-            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_providerLoginUser);
-
-            return _providerHomePage.CreateCohortPermissionLinkIsDisplayed();
-        }
     }
 }
