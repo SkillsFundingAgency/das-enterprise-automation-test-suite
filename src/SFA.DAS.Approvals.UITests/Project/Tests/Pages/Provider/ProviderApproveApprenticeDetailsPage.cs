@@ -42,14 +42,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderChooseAReservationPage(context);
         }
 
-        internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
+        internal SelectStandardPage SelectAddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeButton);
             if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
             {
                 formCompletionHelper.ClickElement(PireanPreprodButton);
             }
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new SelectStandardPage(context);
         }
 
         public List<IWebElement> ApprenticeUlns()

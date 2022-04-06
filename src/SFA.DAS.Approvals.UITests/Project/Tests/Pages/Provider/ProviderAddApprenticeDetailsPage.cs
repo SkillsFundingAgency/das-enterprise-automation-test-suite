@@ -23,8 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterDob();
 
             formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
-            
-            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
 
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
@@ -46,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        private void EnterApprenticeMandatoryValidDetails()
+        private new void EnterApprenticeMandatoryValidDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
