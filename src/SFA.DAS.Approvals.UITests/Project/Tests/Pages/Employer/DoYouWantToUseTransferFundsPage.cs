@@ -17,5 +17,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Continue();
             return new AddTrainingProviderDetailsPage(context);
         }
+
+        public AddTrainingProviderDetailsPage SelectNoIDontWantToUseTransferFunds()
+        {
+            formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, $"No, I don't want to use transfer funds");
+            Continue();
+            return new AddTrainingProviderDetailsPage(context);
+        }
     }
 }

@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Compile>
   </ItemGroup>
 
   <ItemGroup>
