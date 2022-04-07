@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToString(TryGetDataAsObject(query, title));
         }
 
-        public int? GetProvidersDraftAndReadyForReviewCohortsCount(int ukprn)
+        public int? GetProvidersDraftAndReadyForReviewCohortsCount(string ukprn)
         {
             string query = $@"SELECT Count(Reference)
                                 FROM [Commitment] AS [cmt]
@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 And cmt.WithParty = 2
                                 AND cmt.ChangeOfPartyRequestId is null";
 
-            return Convert.ToInt32(GetDataAsObject(query));
+            return Convert.ToInt32(base.GetDataAsObject(query));
         }
 
         public string GetOldestEditableCohortReference(int ukprn, int EmployerAccountId)
@@ -62,7 +62,52 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                   AND ChangeOfPartyRequestId is null
                                   Order by CreatedOn ASC";
 
-            return Convert.ToString(GetDataAsObject(query)).Trim();
+            return GetDataAsObject(query);
         }
+
+        public string GetProviderCohortWhichIsWithEmployer(int ukprn, int EmployerAccountId)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  And EmployerAccountId = {EmployerAccountId}
+                                  AND IsDeleted = 0
+                                  And WithParty = 1
+                                  AND ChangeOfPartyRequestId is null
+                                  Order by CreatedOn DESC";
+
+            return GetDataAsObject(query);
+        }
+
+        public string GetProviderCohortWithChangeOfParty(int ukprn, int EmployerAccountId)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}
+                                  And EmployerAccountId = {EmployerAccountId}
+                                  AND IsDeleted = 0
+                                  And WithParty = 2
+                                  AND ChangeOfPartyRequestId is not null
+                                  Order by CreatedOn DESC";
+
+            return GetDataAsObject(query);
+        }
+
+        public string GetProviderCohortWithTransferSender(int ukprn)
+        {
+            string query = $@"SELECT top (1) Reference
+                                  FROM [dbo].[Commitment]
+                                  Where ProviderId = {ukprn}                                  
+                                  AND IsDeleted = 0
+                                  And WithParty = 4
+                                  AND ChangeOfPartyRequestId is null
+                                  AND TransferSenderId is not null
+                                  AND TransferApprovalStatus is not null
+                                  Order by CreatedOn DESC";
+
+            return GetDataAsObject(query);
+        }
+
+        private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
     }
 }
