@@ -74,14 +74,14 @@ namespace SFA.DAS.CollectingStandards.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cs_Test Demo")]
+        [NUnit.Framework.DescriptionAttribute("CS_Test Demo")]
         [NUnit.Framework.CategoryAttribute("CollectingStandards01")]
-        public void Cs_TestDemo()
+        public void CS_TestDemo()
         {
             string[] tagsOfScenario = new string[] {
                     "CollectingStandards01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cs_Test Demo", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CS_Test Demo", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
