@@ -4,20 +4,21 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Edge;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class WebDriverSetupHelper
+    public class WebDriverSetupHelper : WebdriverAddCapabilities
     {
         private IWebDriver WebDriver;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly FrameworkConfig _frameworkConfig;
 
-        public WebDriverSetupHelper(ScenarioContext context)
+        public WebDriverSetupHelper(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -36,6 +37,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
                 case bool _ when browser.IsChrome():
                     WebDriver = ChromeDriver(new List<string>());
+                    break;
+
+                case bool _ when browser.IsEdge():
+                    WebDriver = EdgeDriver();
                     break;
 
                 case bool _ when browser.IsIe():
@@ -84,13 +89,26 @@ namespace SFA.DAS.UI.Framework.TestSupport
             WebDriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
         }
 
+        private EdgeDriver EdgeDriver()
+        {
+            var edgedriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
+
+            AddEdgeCapabilities(edgedriver);
+
+            return edgedriver;
+        }
+
         private ChromeDriver ChromeDriver(List<string> arguments)
         {
             arguments.Add("no-sandbox");
+            
             arguments.Add("ignore-certificate-errors");
-            return new ChromeDriver(_objectContext.GetChromeDriverLocation(),
-                                                 AddArguments(arguments),
-                                                 TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+            
+            var chromedriver =  new ChromeDriver(_objectContext.GetChromeDriverLocation(),AddArguments(arguments),TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+            
+            AddChromeCapabilities(chromedriver);
+
+            return chromedriver;
         }
 
         private ChromeOptions AddArguments(List<string> arguments)

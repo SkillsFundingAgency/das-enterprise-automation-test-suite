@@ -11,13 +11,15 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public readonly static bool IsVstsExecution;
 
-        public readonly static string ChromeWebDriver;
-
-        public readonly static string GeckoWebDriver;
-
-        public readonly static string IEWebDriver;
-
         internal readonly static string EnvironmentName;
+
+        private readonly static string ChromeWebDriver;
+
+        private readonly static string GeckoWebDriver;
+
+        private readonly static string IEWebDriver;
+
+        private readonly static string EdgeWebDriver;
 
         private readonly static string ProjectName;
 
@@ -25,13 +27,16 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             _hostingConfig = InitializeHostingConfig();
             IsVstsExecution = TestsExecutionInVsts();
-            ChromeWebDriver = GetHostingConfigSection("ChromeWebDriver");
-            GeckoWebDriver = GetHostingConfigSection("GeckoWebDriver");
-            IEWebDriver = GetHostingConfigSection("IEWebDriver");
+            ChromeWebDriver = GetHostingConfigSection("CHROMEWEBDRIVER");
+            GeckoWebDriver = GetHostingConfigSection("GECKOWEBDRIVER");
+            IEWebDriver = GetHostingConfigSection("IEWEBDRIVER");
+            EdgeWebDriver = GetHostingConfigSection("EDGEWEBDRIVER");
             EnvironmentName = GetEnvironmentName();
             ProjectName = GetProjectName();
             _config = InitializeConfig();
         }
+
+        public static (string chromeWebDriver, string geckoWebDriver, string iEWebDriver, string edgeWebDriver) GetDriverLocation() => (ChromeWebDriver, GeckoWebDriver, IEWebDriver, EdgeWebDriver);
 
         internal static IConfigurationRoot GetConfig() => _config;
 

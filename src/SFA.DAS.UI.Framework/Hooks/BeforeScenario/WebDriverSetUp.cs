@@ -11,15 +11,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            objectContext.SetFireFoxDriverLocation(FindDriverServiceLocation(FirefoxDriverServiceName));
+            SetFireFoxDriverLocation(false);
             
-            objectContext.SetChromeDriverLocation(FindDriverServiceLocation(ChromeDriverServiceName));
+            SetChromeDriverLocation(false);
             
-            objectContext.SetIeDriverLocation(FindDriverServiceLocation(InternetExplorerDriverServiceName));
+            SetIeDriverLocation(false);
 
-            var webDriver = webDriverSetupHelper.SetupWebDriver();
+            SetEdgeDriverLocation(false);
 
-            if (!IsCloudExecution()) AddCapabilities(webDriver);
+            webDriverSetupHelper.SetupWebDriver();
         }
     }
 }
