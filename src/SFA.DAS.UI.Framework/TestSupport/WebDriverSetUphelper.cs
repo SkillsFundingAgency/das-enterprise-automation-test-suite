@@ -32,7 +32,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             switch (true)
             {
                 case bool _ when browser.IsFirefox():
-                    WebDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
+                    WebDriver = FirefoxDriver();
                     break;
 
                 case bool _ when browser.IsChrome():
@@ -87,6 +87,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
             chromeOptions.Proxy = proxy;
 
             WebDriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
+        }
+
+        private FirefoxDriver FirefoxDriver()
+        {
+            var firefoxDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
+
+            AddEdgeCapabilities(firefoxDriver);
+
+            return firefoxDriver;
         }
 
         private EdgeDriver EdgeDriver()

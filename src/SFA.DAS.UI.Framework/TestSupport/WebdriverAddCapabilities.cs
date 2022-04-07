@@ -22,6 +22,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected void AddEdgeCapabilities(IWebDriver webDriver) => AddBrowserCapabilities(GetCapabilities(webDriver));
 
+        protected void AddFireFoxCapabilities(IWebDriver webDriver) => AddBrowserCapabilities(GetCapabilities(webDriver));
+
         private void AddBrowserCapabilities(ICapabilities cap)
         {
             objectContext.SetBrowserName(cap["browserName"]);
