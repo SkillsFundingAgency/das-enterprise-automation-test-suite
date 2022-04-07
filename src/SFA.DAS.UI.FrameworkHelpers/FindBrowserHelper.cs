@@ -8,11 +8,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static bool IsZap(this string browser) => browser.CompareToIgnoreCase("zapProxyChrome");
 
-        public static bool IsEdge(this string browser) => browser.CompareToIgnoreCase("edge") || browser.CompareToIgnoreCase("microsoftedge") || browser.CompareToIgnoreCase("local");
+        public static bool IsEdge(this string browser) => browser.CompareToIgnoreCase("edge") || browser.CompareToIgnoreCase("microsoftedge") ;
 
         public static bool IsIe(this string browser) => browser.CompareToIgnoreCase("ie") || browser.CompareToIgnoreCase("internetexplorer");
 
-        public static bool IsFirefox(this string browser) => browser.CompareToIgnoreCase("firefox") || browser.CompareToIgnoreCase("mozillafirefox");
+        public static bool IsFirefox(this string browser) => browser.CompareToIgnoreCase("firefox") || browser.CompareToIgnoreCase("mozillafirefox") || browser.CompareToIgnoreCase("local");
 
         public static bool IsChrome(this string browser) => browser.CompareToIgnoreCase("chrome") || browser.CompareToIgnoreCase("googlechrome") ;
 
