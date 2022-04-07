@@ -12,10 +12,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static bool IsIe(this string browser) => browser.CompareToIgnoreCase("ie") || browser.CompareToIgnoreCase("internetexplorer");
 
-        public static bool IsFirefox(this string browser) => browser.CompareToIgnoreCase("firefox") || browser.CompareToIgnoreCase("mozillafirefox") || browser.CompareToIgnoreCase("local");
+        public static bool IsFirefox(this string browser) => browser.CompareToIgnoreCase("firefox") || browser.CompareToIgnoreCase("mozillafirefox") ;
 
         public static bool IsChrome(this string browser) => browser.CompareToIgnoreCase("chrome") || browser.CompareToIgnoreCase("googlechrome") ;
 
-        public static bool IsChromeHeadless(this string browser) => browser.CompareToIgnoreCase("chromeheadless") || browser.CompareToIgnoreCase("headlessbrowser") || browser.CompareToIgnoreCase("headless");
+        public static bool IsChromeHeadless(this string browser) => browser.CompareToIgnoreCase("chromeheadless") || browser.CompareToIgnoreCase("headlessbrowser") || browser.CompareToIgnoreCase("headless") || browser.CompareToIgnoreCase("local");
     }
 }

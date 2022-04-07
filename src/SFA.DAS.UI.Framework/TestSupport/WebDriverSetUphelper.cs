@@ -13,7 +13,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class WebDriverSetupHelper : WebdriverAddCapabilities
     {
-        private IWebDriver WebDriver;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly FrameworkConfig _frameworkConfig;
@@ -27,43 +26,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public IWebDriver SetupWebDriver()
         {
-            var browser = _objectContext.GetBrowser();
-
-            switch (true)
-            {
-                case bool _ when browser.IsFirefox():
-                    WebDriver = FirefoxDriver();
-                    break;
-
-                case bool _ when browser.IsChrome():
-                    WebDriver = ChromeDriver(new List<string>());
-                    break;
-
-                case bool _ when browser.IsEdge():
-                    WebDriver = EdgeDriver();
-                    break;
-
-                case bool _ when browser.IsIe():
-                    WebDriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
-                    break;
-
-                case bool _ when browser.IsZap():
-                    InitialiseZapProxyChrome();
-                    break;
-
-                case bool _ when browser.IsChromeHeadless():
-                    WebDriver = ChromeDriver(new List<string>() { "--headless" });
-                    break;
-
-                case bool _ when browser.IsCloudExecution():
-                    _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
-                    break;
-
-                default:
-                    throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified");
-            }
-
+            var WebDriver = GetWebDriver(_objectContext.GetBrowser());
             WebDriver.Manage().Window.Maximize();
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
             WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
@@ -74,7 +37,29 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return WebDriver;
         }
 
-        private void InitialiseZapProxyChrome()
+        private IWebDriver GetWebDriver(string browser)
+        {
+            return true switch
+            {
+                _ when browser.IsFirefox() => FirefoxDriver(),
+                _ when browser.IsChrome() => ChromeDriver(new List<string>()),
+                _ when browser.IsEdge() => EdgeDriver(),
+                _ when browser.IsIe() => InternetExplorerDriver(),
+                _ when browser.IsZap() => InitialiseZapProxyChrome(),
+                _ when browser.IsChromeHeadless() => ChromeDriver(new List<string>() { "--headless" }),
+                _ when browser.IsCloudExecution() => SetUpBrowserStack(),
+                _ => throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified")
+            };
+        }
+
+        private IWebDriver SetUpBrowserStack()
+        {
+            _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+            
+            return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
+        }
+
+        private ChromeDriver InitialiseZapProxyChrome()
         {
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();
@@ -86,25 +71,38 @@ namespace SFA.DAS.UI.Framework.TestSupport
             };
             chromeOptions.Proxy = proxy;
 
-            WebDriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
+            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
+
+            AddChromeCapabilities(webdriver);
+
+            return webdriver;
+        }
+
+        private InternetExplorerDriver InternetExplorerDriver()
+        {
+            var webdriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
+
+            AddIeCapabilities(webdriver);
+
+            return webdriver;
         }
 
         private FirefoxDriver FirefoxDriver()
         {
-            var firefoxDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
+            var webdriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
 
-            AddEdgeCapabilities(firefoxDriver);
+            AddFireFoxCapabilities(webdriver);
 
-            return firefoxDriver;
+            return webdriver;
         }
 
         private EdgeDriver EdgeDriver()
         {
-            var edgedriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
+            var webdriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
 
-            AddEdgeCapabilities(edgedriver);
+            AddEdgeCapabilities(webdriver);
 
-            return edgedriver;
+            return webdriver;
         }
 
         private ChromeDriver ChromeDriver(List<string> arguments)
@@ -112,12 +110,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
             arguments.Add("no-sandbox");
             
             arguments.Add("ignore-certificate-errors");
-            
-            var chromedriver =  new ChromeDriver(_objectContext.GetChromeDriverLocation(),AddArguments(arguments),TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
-            
-            AddChromeCapabilities(chromedriver);
 
-            return chromedriver;
+            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+            
+            AddChromeCapabilities(webdriver);
+
+            return webdriver;
         }
 
         private ChromeOptions AddArguments(List<string> arguments)
