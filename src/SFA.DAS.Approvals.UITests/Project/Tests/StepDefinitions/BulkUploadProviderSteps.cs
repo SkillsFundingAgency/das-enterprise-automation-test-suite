@@ -54,31 +54,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
         [Then(@"Provider approves the cohorts and send them to employer to approve")]
-        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove() =>
-            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .SelectToApproveAllAndSendToEmployer()
-                .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
-
-        [Then(@"Correct Information is displayed on review apprentices details pageV(.*)")]
-        public void ThenCorrectInformationIsDisplayedOnReviewApprenticesDetailsPageV(int p0)
+        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
         {
-            var apprenticeList = GetBulkuploadDataV2();
-
-            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .VerifyCorrectInformationIsDisplayed(apprenticeList);
-        }
-
-        [Then(@"Provider approves the cohorts and send them to employer to approveV(.*)")]
-        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApproveV(int p0)
-        {
-            var apprenticeList = GetBulkuploadDataV2();
+            var apprenticeList = GetBulkuploadData();
 
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                 .SelectToApproveAllAndSendToEmployer()
                 .VerifyCorrectInformationIsDisplayed(apprenticeList);
-        }
-
-
+        }        
 
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
@@ -90,10 +73,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"Provider selects to save all but don't send to employer")]
         [When(@"Provider selects to save all but don't send to employer")]
-        public void ProviderSelectsToSaveAllButDontSendToEmployer() =>
+        public void ProviderSelectsToSaveAllButDontSendToEmployer()
+        {
+            var apprenticeList = GetBulkuploadData();
+
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                      .SelectsToSaveAllButDontSendToEmployer()
-                     .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
+                     .VerifyCorrectInformationIsDisplayed(apprenticeList);
+        }
 
         [Given(@"User selects to upload an amended file through link")]
         [When(@"User selects to upload an amended file through link")]
@@ -174,44 +161,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
-        {
-            var apprenticeList = _objectContext.GetBulkuploadApprentices();
-
-            var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
-            
-            var result = new List<FileUploadReviewEmployerDetails>();
-
-            foreach (var employer in groupedByEmployers)
-            {
-                var employerDetail = new FileUploadReviewEmployerDetails
-                {
-                    EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
-                    AgreementId = employer.Key,
-                    CohortDetails = new List<FileUploadReviewCohortDetail>()
-                };
-
-                var cohortGroups = employer.GroupBy(x => x.CohortRef);
-
-                foreach (var cohortGroup in cohortGroups)
-                {
-                    var cohortDetail = new FileUploadReviewCohortDetail
-                    {
-                        CohortRef = cohortGroup.Key,
-                        NumberOfApprentices = cohortGroup.Count(),
-                        TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice))
-                    };
-                    employerDetail.CohortDetails.Add(cohortDetail);
-                }
-
-                result.Add(employerDetail);
-            }
-
-            return result;
-        }
-
-        public List<FileUploadReviewEmployerDetails> GetBulkuploadDataV2()
-        {
-            //var apprenticeList = _objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
+        {            
             var apprenticeList = _objectContext.GetBulkuploadApprentices();
             var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
             var result = new List<FileUploadReviewEmployerDetails>();
