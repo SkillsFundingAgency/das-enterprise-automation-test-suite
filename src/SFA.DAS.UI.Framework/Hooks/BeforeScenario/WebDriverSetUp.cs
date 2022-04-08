@@ -11,13 +11,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            SetFireFoxDriverLocation(false);
-            
-            SetChromeDriverLocation(false);
-            
-            SetIeDriverLocation(false);
-
-            SetEdgeDriverLocation(false);
+            SetDriverLocation(false);
 
             webDriverSetupHelper.SetupWebDriver();
         }

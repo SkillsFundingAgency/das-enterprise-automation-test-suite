@@ -19,10 +19,10 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 _browser = objectContext.GetBrowser();
 
-                if (IsUnsupportedChromeDriverVersion()) {SetChromeDriverLocation(true); RestartWebDriver();}
-                else if (IsUnsupportedFirefoxDriverVersion()) {SetFireFoxDriverLocation(true); RestartWebDriver();}
-                else if (IsUnsupportedIeDriverVersion()){SetIeDriverLocation(true); RestartWebDriver();}
-                else if (IsUnsupportedEdgeDriverVersion()){SetEdgeDriverLocation(true); RestartWebDriver();}
+                if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(true); RestartWebDriver(); }
+                else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
+                else if (IsUnsupportedIeDriverVersion()) { SetIeDriverLocation(true); RestartWebDriver(); }
+                else if (IsUnsupportedEdgeDriverVersion()) { SetEdgeDriverLocation(true); RestartWebDriver(); }
             }
         }
 

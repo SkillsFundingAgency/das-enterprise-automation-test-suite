@@ -33,15 +33,28 @@ namespace SFA.DAS.UI.Framework.TestSupport
             frameworkConfig = context.Get<FrameworkConfig>();
         }
 
-        protected void SetFireFoxDriverLocation(bool isLocal) => objectContext.SetFireFoxDriverLocation(isLocal ? FindLocalDriverServiceLocation(FirefoxDriverServiceName) : FindDriverServiceLocation(FirefoxDriverServiceName));
+        protected void SetDriverLocation(bool isLocal)
+        {
+            SetFireFoxDriverLocation(isLocal);
 
-        protected void SetChromeDriverLocation(bool isLocal) => objectContext.SetChromeDriverLocation(isLocal ? FindLocalDriverServiceLocation(ChromeDriverServiceName) : FindDriverServiceLocation(ChromeDriverServiceName));
+            SetChromeDriverLocation(isLocal);
 
-        protected void SetIeDriverLocation(bool isLocal) => objectContext.SetIeDriverLocation(isLocal ? FindLocalDriverServiceLocation(IEDriverServiceName) : FindDriverServiceLocation(IEDriverServiceName));
+            SetIeDriverLocation(isLocal);
 
-        protected void SetEdgeDriverLocation(bool isLocal) => objectContext.SetEdgeDriverLocation(isLocal ? FindLocalDriverServiceLocation(EdgeDriverServiceName) : FindDriverServiceLocation(EdgeDriverServiceName));
+            SetEdgeDriverLocation(isLocal);
+        }
+
+        protected void SetFireFoxDriverLocation(bool isLocal) => objectContext.SetFireFoxDriverLocation(GetDriverLocation(isLocal, FirefoxDriverServiceName));
+
+        protected void SetChromeDriverLocation(bool isLocal) => objectContext.SetChromeDriverLocation(GetDriverLocation(isLocal, ChromeDriverServiceName));
+
+        protected void SetIeDriverLocation(bool isLocal) => objectContext.SetIeDriverLocation(GetDriverLocation(isLocal, IEDriverServiceName));
+
+        protected void SetEdgeDriverLocation(bool isLocal) => objectContext.SetEdgeDriverLocation(GetDriverLocation(isLocal, EdgeDriverServiceName));
 
         protected bool IsCloudExecution() => objectContext.GetBrowser().IsCloudExecution();
+
+        private string GetDriverLocation(bool isLocal, string executableName) => isLocal ? FindLocalDriverServiceLocation(executableName) : FindDriverServiceLocation(executableName);
 
         private string FindDriverServiceLocation(string executableName) => frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
 
