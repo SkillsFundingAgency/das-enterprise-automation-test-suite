@@ -26,7 +26,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
         }
 
-        private bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && objectContext.GetChromedriverVersion().StartsWith("100.0");
+        private bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && false; //objectContext.GetChromedriverVersion().StartsWith("100.0"); A temp fix whenever we have chromedriver issue.
 
         private bool IsUnsupportedFirefoxDriverVersion() => _browser.IsFirefox() && false;
 
