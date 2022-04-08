@@ -88,6 +88,8 @@ namespace SFA.DAS.FrameworkHelpers
 
         protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
 
+        protected List<object[]> GetListOfDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString);
+
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) 

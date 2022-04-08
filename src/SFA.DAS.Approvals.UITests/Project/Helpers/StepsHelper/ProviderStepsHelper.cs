@@ -378,7 +378,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .GotoSelectJourneyPage()
                     .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
-        }
+        }     
 
     }
 }
