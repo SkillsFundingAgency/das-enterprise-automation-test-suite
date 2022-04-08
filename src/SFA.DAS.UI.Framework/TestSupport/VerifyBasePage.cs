@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             _directory = objectContext.GetDirectory();
 
-            if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
+            if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
         }
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)

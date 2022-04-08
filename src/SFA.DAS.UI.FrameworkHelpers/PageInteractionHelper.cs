@@ -255,8 +255,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
-        public string GetUrl() => _webDriver.Url;
-
         private Func<bool> Func(By locator)
         {
             return () =>

@@ -49,7 +49,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected static string EnvironmentName => EnvironmentConfig.EnvironmentName;
 
-        protected string GetUrl() => pageInteractionHelper.GetUrl();
+        protected string GetUrl() => tabHelper.GetUrl();
 
         protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);
 

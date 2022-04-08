@@ -11,6 +11,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private IWebDriver _webDriver;
 
         public TabHelper(IWebDriver webDriver) => _webDriver = webDriver;
+        
+        public string GetUrl() => _webDriver.Url;
 
         public void OpenInNewTab(Action action)
         {
