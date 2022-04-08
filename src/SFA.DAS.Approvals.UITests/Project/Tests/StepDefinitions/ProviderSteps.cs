@@ -58,7 +58,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the provider adds Ulns confirms courses are standards and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsConfirmsCoursesAreStandardsAndApprovesTheCohortsAndSendsToEmployer() => _providerStepsHelper.EditApprentice(true).SubmitApprove();
+        
+        [When(@"the provider adds Ulns")]
+        public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice(true);
 
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoA_ExistingCohort(int numberOfApprentices)
+        {
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, 0);
+        }
 
         [Then(@"Provider is able to view the cohort with employer")]
         public void ThenProviderIsAbleToViewTheCohortWithEmployer()

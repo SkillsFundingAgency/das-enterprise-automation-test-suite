@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
@@ -31,6 +32,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 ORDER BY app.CreatedOn DESC";
 
             return Convert.ToString(TryGetDataAsObject(query, title));
+        }
+
+        public List<object[]> GetExistingApprentices(string cohortRef)
+        {
+            string query = $@"SELECT * FROM Apprenticeship app
+                                INNER JOIN Commitment cmt
+                                ON cmt.id = app.CommitmentId
+                                WHERE cmt.reference = '{cohortRef}'                                
+                                ORDER BY app.CreatedOn DESC";
+
+            return GetListOfDataAsObject(query);
         }
 
         public int? GetProvidersDraftAndReadyForReviewCohortsCount(string ukprn)

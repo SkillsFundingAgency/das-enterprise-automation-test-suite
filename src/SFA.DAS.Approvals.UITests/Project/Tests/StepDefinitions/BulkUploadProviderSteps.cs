@@ -59,6 +59,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectToApproveAllAndSendToEmployer()
                 .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
+        [Then(@"Correct Information is displayed on review apprentices details pageV(.*)")]
+        public void ThenCorrectInformationIsDisplayedOnReviewApprenticesDetailsPageV(int p0)
+        {
+            var apprenticeList = GetBulkuploadDataV2();
+
+            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
+                .VerifyCorrectInformationIsDisplayed(apprenticeList);
+        }
+
+        [Then(@"Provider approves the cohorts and send them to employer to approveV(.*)")]
+        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApproveV(int p0)
+        {
+            var apprenticeList = GetBulkuploadDataV2();
+
+            new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
+                .SelectToApproveAllAndSendToEmployer()
+                .VerifyCorrectInformationIsDisplayed(apprenticeList);
+        }
+
+
 
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
@@ -187,6 +207,75 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
 
             return result;
+        }
+
+        public List<FileUploadReviewEmployerDetails> GetBulkuploadDataV2()
+        {
+            //var apprenticeList = _objectContext.Get<List<ApprenticeDetails>>("BulkuploadApprentices");
+            var apprenticeList = _objectContext.GetBulkuploadApprentices();
+            var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
+            var result = new List<FileUploadReviewEmployerDetails>();
+
+            foreach (var employer in groupedByEmployers)
+            {
+                var employerDetail = new FileUploadReviewEmployerDetails();
+                employerDetail.EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key);
+                employerDetail.AgreementId = employer.Key;
+
+                employerDetail.CohortDetails = new List<FileUploadReviewCohortDetail>();
+
+                var cohortGroups = employer.GroupBy(x => x.CohortRef);
+
+                var cohortDetails = new List<FileUploadReviewCohortDetail>();
+
+                foreach (var cohortGroup in cohortGroups)
+                {
+                    var cohortDetail = new FileUploadReviewCohortDetail();
+                    cohortDetail.CohortRef = cohortGroup.Key;
+                    cohortDetail.NumberOfApprentices = cohortGroup.Count();
+                    cohortDetail.TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice));
+                    cohortDetails.Add(cohortDetail);
+
+                    if (!string.IsNullOrWhiteSpace(cohortGroup.Key))
+                    {
+                        var existingApprentices = _commitmentsSqlDataHelper.GetExistingApprentices(cohortGroup.Key);
+
+                        var totalCost = GetTotalCostForExistingApprentices(existingApprentices);
+
+                        var existingCohortDetails = new FileUploadReviewCohortDetail
+                        {
+                            CohortRef = cohortGroup.Key,
+                            NumberOfApprentices = existingApprentices.Count(),
+                            TotalCost = totalCost
+                        };
+                        cohortDetails.Add(existingCohortDetails);
+                    }
+                }
+
+                employerDetail.CohortDetails.AddRange(cohortDetails.GroupBy(x => x.CohortRef).Select(
+                      m =>
+                      new FileUploadReviewCohortDetail
+                      {
+                          CohortRef = m.Key,
+                          NumberOfApprentices = m.Sum(x => x.NumberOfApprentices),
+                          TotalCost = m.Sum(x => x.TotalCost)
+                      }).ToList());
+
+                result.Add(employerDetail);
+
+            }
+
+            return result;
+        }
+
+        private static int GetTotalCostForExistingApprentices(List<object[]> getExistingApprentices)
+        {
+            decimal cost = 0;
+            foreach (var item in getExistingApprentices)
+            {
+                cost += (decimal)item[12];
+            }
+            return (int)cost;
         }
     }
 }
