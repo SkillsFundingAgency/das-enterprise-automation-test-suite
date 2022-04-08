@@ -24,7 +24,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
         {
             return Policy
-                 .Handle<Exception>((x) => x.Message.Contains("verification failed"))
+                 .Handle<Exception>((x) => x.Message.Contains("verification failed") || x.Message.Contains("target frame detached"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      Logging.Report(retryCount, exception, _title, retryAction);
