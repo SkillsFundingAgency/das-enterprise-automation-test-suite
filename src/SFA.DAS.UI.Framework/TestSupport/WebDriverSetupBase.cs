@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -51,8 +50,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void SetIeDriverLocation(bool isLocal) => objectContext.SetIeDriverLocation(GetDriverLocation(isLocal, IEDriverServiceName));
 
         protected void SetEdgeDriverLocation(bool isLocal) => objectContext.SetEdgeDriverLocation(GetDriverLocation(isLocal, EdgeDriverServiceName));
-
-        protected bool IsCloudExecution() => objectContext.GetBrowser().IsCloudExecution();
 
         private string GetDriverLocation(bool isLocal, string executableName) => isLocal ? FindLocalDriverServiceLocation(executableName) : FindDriverServiceLocation(executableName);
 

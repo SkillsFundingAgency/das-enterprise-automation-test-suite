@@ -13,12 +13,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         public UnsupportedWebDriverVersionSetup(ScenarioContext context) : base(context) { }
 
         [BeforeScenario(Order = 5)]
-        public void SetupWebDriver()
+        public void SetupUnsupportedWebDriver()
         {
-            if (!IsCloudExecution() && frameworkConfig.IsVstsExecution )
-            {
-                _browser = objectContext.GetBrowser();
+            _browser = objectContext.GetBrowser();
 
+            if (!_browser.IsCloudExecution() && frameworkConfig.IsVstsExecution)
+            {
                 if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(true); RestartWebDriver(); }
                 else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
                 else if (IsUnsupportedIeDriverVersion()) { SetIeDriverLocation(true); RestartWebDriver(); }
