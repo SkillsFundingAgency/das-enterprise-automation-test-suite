@@ -20,6 +20,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public string GetUrl() => InvokeAction(() => _webDriver.Url);
+
         public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
 
         public T InvokeAction<T>(Func<T> func, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(func, retryAction);

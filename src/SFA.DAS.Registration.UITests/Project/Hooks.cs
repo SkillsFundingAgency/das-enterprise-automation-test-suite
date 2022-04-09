@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
@@ -7,6 +6,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -18,7 +18,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
         private readonly DbConfig _dbConfig;
-        private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
         private PregSqlDataHelper _pregSqlDataHelper;
@@ -26,7 +25,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             _dbConfig = context.Get<DbConfig>();
             _objectContext = context.Get<ObjectContext>();
@@ -34,7 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [BeforeScenario(Order = 21)]
-        public void Navigate() => _webDriver.Navigate().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+        public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
