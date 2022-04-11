@@ -175,12 +175,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsElementDisplayedAfterPageLoad(By locator)
         {
-            _webDriverWaitHelper.WaitForPageToLoad();
+            WaitForPageToLoad();
 
             return IsElementDisplayed(locator);
         }
-
-            
 
         public bool IsElementDisplayed(By locator)
         {
