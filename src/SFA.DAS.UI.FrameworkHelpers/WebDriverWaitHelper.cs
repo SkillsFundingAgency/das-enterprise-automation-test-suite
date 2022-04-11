@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using SeleniumExtras.WaitHelpers;
+using OpenQA.Selenium.Support.UI;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -9,8 +10,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private readonly IWebDriver _webDriver;
         private readonly JavaScriptHelper _javaScriptHelper;
         private readonly TimeOutConfig _timeOutConfig;
-        private readonly OpenQA.Selenium.Support.UI.WebDriverWait _implicitWait;
-        private readonly OpenQA.Selenium.Support.UI.WebDriverWait _pagenavigationWait;
+        private readonly WebDriverWait _implicitWait;
+        private readonly WebDriverWait _pagenavigationWait;
+        private readonly WebDriverWait _isDocumentReadyWait;
 
         public WebDriverWaitHelper(IWebDriver webDriver, JavaScriptHelper javaScriptHelper, TimeOutConfig timeOutConfig)
         {
@@ -19,6 +21,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _timeOutConfig = timeOutConfig;
             _implicitWait = WebDriverWait(timeOutConfig.ImplicitWait);
             _pagenavigationWait = WebDriverWait(timeOutConfig.PageNavigation);
+            _isDocumentReadyWait = WebDriverWait(timeOutConfig.PageNavigation);
         }
 
         internal bool WaitUntil(Func<bool> condition)
@@ -42,7 +45,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
 
-        internal void WaitForPageToLoad() => _pagenavigationWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
+        internal void WaitForPageToLoad()
+        {
+            _isDocumentReadyWait.IgnoreExceptionTypes(typeof(WebDriverException));
+
+            _isDocumentReadyWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
+        }
 
         internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
 
@@ -52,6 +60,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
 
-        private OpenQA.Selenium.Support.UI.WebDriverWait WebDriverWait(int timespan) => new OpenQA.Selenium.Support.UI.WebDriverWait(_webDriver, TimeSpan.FromSeconds(timespan));
+        private WebDriverWait WebDriverWait(int timespan) => new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timespan));
     }
 }
