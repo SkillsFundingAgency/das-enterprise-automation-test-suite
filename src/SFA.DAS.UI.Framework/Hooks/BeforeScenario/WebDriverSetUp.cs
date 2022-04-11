@@ -11,15 +11,9 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            objectContext.SetFireFoxDriverLocation(FindDriverServiceLocation(FirefoxDriverServiceName));
-            
-            objectContext.SetChromeDriverLocation(FindDriverServiceLocation(ChromeDriverServiceName));
-            
-            objectContext.SetIeDriverLocation(FindDriverServiceLocation(InternetExplorerDriverServiceName));
+            SetDriverLocation(false);
 
-            var webDriver = webDriverSetupHelper.SetupWebDriver();
-
-            if (!IsCloudExecution()) AddCapabilities(webDriver);
+            webDriverSetupHelper.SetupWebDriver();
         }
     }
 }
