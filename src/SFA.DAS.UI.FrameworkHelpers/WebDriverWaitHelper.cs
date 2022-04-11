@@ -12,16 +12,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private readonly TimeOutConfig _timeOutConfig;
         private readonly WebDriverWait _implicitWait;
         private readonly WebDriverWait _pagenavigationWait;
-        private readonly WebDriverWait _isDocumentReadyWait;
-
+        
         public WebDriverWaitHelper(IWebDriver webDriver, JavaScriptHelper javaScriptHelper, TimeOutConfig timeOutConfig)
         {
             _webDriver = webDriver;
             _javaScriptHelper = javaScriptHelper;
             _timeOutConfig = timeOutConfig;
             _implicitWait = WebDriverWait(timeOutConfig.ImplicitWait);
-            _pagenavigationWait = WebDriverWait(timeOutConfig.PageNavigation);
-            _isDocumentReadyWait = WebDriverWait(timeOutConfig.PageNavigation);
+            _pagenavigationWait = WebDriverWait(timeOutConfig.PageLoad);
         }
 
         internal bool WaitUntil(Func<bool> condition)
@@ -47,13 +45,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForPageToLoad()
         {
-            _isDocumentReadyWait.IgnoreExceptionTypes(typeof(WebDriverException));
+            var isDocumentReadyWait = WebDriverWait(_timeOutConfig.PageLoad);
 
-            _isDocumentReadyWait.PollingInterval = TimeSpan.FromMilliseconds(1000);
+            isDocumentReadyWait.IgnoreExceptionTypes(typeof(WebDriverException));
 
-            _isDocumentReadyWait.Message = "Exception occured when waiting for 'document.readyState' to be 'complete'";
+            isDocumentReadyWait.PollingInterval = TimeSpan.FromMilliseconds(1000);
 
-            _isDocumentReadyWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
+            isDocumentReadyWait.Message = "Exception occured when waiting for 'document.readyState' to be 'complete'";
+
+            isDocumentReadyWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
         }
 
         internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));

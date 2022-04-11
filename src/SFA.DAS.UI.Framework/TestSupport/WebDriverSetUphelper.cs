@@ -27,10 +27,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public IWebDriver SetupWebDriver()
         {
             var WebDriver = GetWebDriver(_objectContext.GetBrowser());
+
             WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
-            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.ImplicitWait);
+            WebDriver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageLoad);
             WebDriver.Manage().Cookies.DeleteAllCookies();
+
+            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
 
             _context.SetWebDriver(WebDriver);
 
