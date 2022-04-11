@@ -64,6 +64,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
 
-        private WebDriverWait WebDriverWait(int timespan) => new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timespan));
+        private WebDriverWait WebDriverWait(int timespan) => new WebDriverWait(new SystemClock(), _webDriver, TimeSpan.FromSeconds(timespan), TimeSpan.FromMilliseconds(1000));
     }
 }
