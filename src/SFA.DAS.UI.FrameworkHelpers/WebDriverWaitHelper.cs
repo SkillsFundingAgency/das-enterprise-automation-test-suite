@@ -49,6 +49,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             _isDocumentReadyWait.IgnoreExceptionTypes(typeof(WebDriverException));
 
+            _isDocumentReadyWait.PollingInterval = TimeSpan.FromMilliseconds(1000);
+
+            _isDocumentReadyWait.Message = "Exception occured when waiting for 'document.readyState' to be 'complete'";
+
             _isDocumentReadyWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
         }
 
