@@ -11,7 +11,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private IWebDriver _webDriver;
 
         public TabHelper(IWebDriver webDriver) => _webDriver = webDriver;
-
+        
         public void OpenInNewTab(Action action)
         {
             var existingTabs = ExistingTabs();

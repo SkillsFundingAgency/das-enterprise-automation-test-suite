@@ -1,6 +1,5 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FindEPAO.UITests.Project
@@ -8,11 +7,11 @@ namespace SFA.DAS.FindEPAO.UITests.Project
     [Binding]
     public class Hooks
     {
-        private readonly IWebDriver _webDriver;
+        private readonly ScenarioContext _context;
 
-        public Hooks(ScenarioContext context) => _webDriver = context.GetWebDriver();
+        public Hooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 21)]
-        public void NavigateToFindEPAOHomepage() => _webDriver.Navigate().GoToUrl(UrlConfig.FindEPAO_BaseUrl);
+        public void NavigateToFindEPAOHomepage() => _context.Get<TabHelper>().GoToUrl(UrlConfig.FindEPAO_BaseUrl);
     }
 }
