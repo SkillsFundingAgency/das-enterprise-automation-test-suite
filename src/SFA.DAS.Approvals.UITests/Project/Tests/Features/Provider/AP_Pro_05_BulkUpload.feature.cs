@@ -100,10 +100,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.And("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 8
- testRunner.When("Provider add 2 apprentice details using bulk upload and sends to employer for app" +
-                        "roval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 9
  testRunner.Then("Provider is able to view the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
