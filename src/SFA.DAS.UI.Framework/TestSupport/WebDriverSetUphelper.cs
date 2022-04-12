@@ -4,20 +4,20 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Edge;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class WebDriverSetupHelper
+    public class WebDriverSetupHelper : WebdriverAddCapabilities
     {
-        private IWebDriver WebDriver;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly FrameworkConfig _frameworkConfig;
 
-        public WebDriverSetupHelper(ScenarioContext context)
+        public WebDriverSetupHelper(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -26,50 +26,43 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public IWebDriver SetupWebDriver()
         {
-            var browser = _objectContext.GetBrowser();
-
-            switch (true)
-            {
-                case bool _ when browser.IsFirefox():
-                    WebDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
-                    break;
-
-                case bool _ when browser.IsChrome():
-                    WebDriver = ChromeDriver(new List<string>());
-                    break;
-
-                case bool _ when browser.IsIe():
-                    WebDriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
-                    break;
-
-                case bool _ when browser.IsZap():
-                    InitialiseZapProxyChrome();
-                    break;
-
-                case bool _ when browser.IsChromeHeadless():
-                    WebDriver = ChromeDriver(new List<string>() { "--headless" });
-                    break;
-
-                case bool _ when browser.IsCloudExecution():
-                    _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
-                    break;
-
-                default:
-                    throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified");
-            }
+            var WebDriver = GetWebDriver(_objectContext.GetBrowser());
 
             WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
-            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.ImplicitWait);
+            WebDriver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageLoad);
             WebDriver.Manage().Cookies.DeleteAllCookies();
+
+            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
 
             _context.SetWebDriver(WebDriver);
 
             return WebDriver;
         }
 
-        private void InitialiseZapProxyChrome()
+        private IWebDriver GetWebDriver(string browser)
+        {
+            return true switch
+            {
+                _ when browser.IsFirefox() => FirefoxDriver(),
+                _ when browser.IsChrome() => ChromeDriver(new List<string>()),
+                _ when browser.IsEdge() => EdgeDriver(),
+                _ when browser.IsIe() => InternetExplorerDriver(),
+                _ when browser.IsZap() => InitialiseZapProxyChrome(),
+                _ when browser.IsChromeHeadless() => ChromeDriver(new List<string>() { "--headless" }),
+                _ when browser.IsCloudExecution() => SetUpBrowserStack(),
+                _ => throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified")
+            };
+        }
+
+        private IWebDriver SetUpBrowserStack()
+        {
+            _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+            
+            return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
+        }
+
+        private ChromeDriver InitialiseZapProxyChrome()
         {
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();
@@ -81,16 +74,51 @@ namespace SFA.DAS.UI.Framework.TestSupport
             };
             chromeOptions.Proxy = proxy;
 
-            WebDriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
+            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
+
+            AddChromeCapabilities(webdriver);
+
+            return webdriver;
+        }
+
+        private InternetExplorerDriver InternetExplorerDriver()
+        {
+            var webdriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
+
+            AddIeCapabilities(webdriver);
+
+            return webdriver;
+        }
+
+        private FirefoxDriver FirefoxDriver()
+        {
+            var webdriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
+
+            AddFireFoxCapabilities(webdriver);
+
+            return webdriver;
+        }
+
+        private EdgeDriver EdgeDriver()
+        {
+            var webdriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
+
+            AddEdgeCapabilities(webdriver);
+
+            return webdriver;
         }
 
         private ChromeDriver ChromeDriver(List<string> arguments)
         {
             arguments.Add("no-sandbox");
+            
             arguments.Add("ignore-certificate-errors");
-            return new ChromeDriver(_objectContext.GetChromeDriverLocation(),
-                                                 AddArguments(arguments),
-                                                 TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+
+            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+            
+            AddChromeCapabilities(webdriver);
+
+            return webdriver;
         }
 
         private ChromeOptions AddArguments(List<string> arguments)
