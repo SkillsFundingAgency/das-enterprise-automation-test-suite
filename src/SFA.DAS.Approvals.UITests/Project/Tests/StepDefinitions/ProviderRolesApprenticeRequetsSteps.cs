@@ -100,12 +100,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot bulk upload apprentices via csv file")]
         public void ThenTheUserCannotBulkUploadApprenticesViaCsvFile()
         {
-            //new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
-            //                                            .SelectViewCurrentCohortDetails()
-            //                                            .SelectBulkUploadApprenticesGoesToAccessDenied()
-            //                                            .GoBackToTheServiceHomePage();
-
-
             _providerStepsHelper.NavigateToProviderHomePage()
                 .GotoSelectJourneyPageGoesToAccessDenied();
                 

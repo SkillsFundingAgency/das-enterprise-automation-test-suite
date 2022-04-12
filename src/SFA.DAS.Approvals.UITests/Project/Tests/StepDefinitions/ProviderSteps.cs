@@ -88,9 +88,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to delete the cohort before approval")]
         public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => _providerStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
 
-        [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
-        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
-
        [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
 
