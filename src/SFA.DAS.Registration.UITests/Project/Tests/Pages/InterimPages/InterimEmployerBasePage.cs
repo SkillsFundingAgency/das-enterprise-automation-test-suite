@@ -48,8 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public YourAccountsPage GoToYourAccountsPage()
         {
-            NavigateToSettings();
-            formCompletionHelper.ClickElement(YourAccountsLink);
+            NavigateToSettings(YourAccountsLink);
             return new YourAccountsPage(context);
         }
 
@@ -61,29 +60,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public RenameAccountPage GoToRenameAccountPage()
         {
-            NavigateToSettings();
-            formCompletionHelper.ClickElement(RenameAccountLink);
+            NavigateToSettings(RenameAccountLink);
             return new RenameAccountPage(context);
         }
 
         public ChangeYourPasswordPage GoToChangeYourPasswordPage()
         {
-            NavigateToSettings();
-            formCompletionHelper.ClickElement(ChangePasswordLink);
+            NavigateToSettings(ChangePasswordLink);
             return new ChangeYourPasswordPage(context);
         }
 
         public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
         {
-            NavigateToSettings();
-            formCompletionHelper.ClickElement(ChangeEmailAddressLink);
+            NavigateToSettings(ChangeEmailAddressLink);
             return new ChangeYourEmailAddressPage(context);
         }
 
         public NotificationSettingsPage GoToNotificationSettingsPage()
         {
-            NavigateToSettings();
-            formCompletionHelper.ClickElement(NotificationSettingsLink);
+            NavigateToSettings(NotificationSettingsLink);
             return new NotificationSettingsPage(context);
         }
 
@@ -97,6 +92,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public PAYESchemesPage GotoPAYESchemesPage() => new PAYESchemesPage(context, true);
 
-        private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));
+        private void NavigateToSettings(By by) => formCompletionHelper.RetryClickOnException(() => { formCompletionHelper.ClickElement(SettingsLink); return pageInteractionHelper.FindElement(by); });
     }
 }

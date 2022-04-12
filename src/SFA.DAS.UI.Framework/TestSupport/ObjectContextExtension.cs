@@ -10,7 +10,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string BrowserNameKey = "browsername";
         private const string BrowserVersionKey = "browserVersion";
         private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
-        private const string WebDriverUrl = "webdriverurl";
         private const string CurrentApplicationName = "currentapplicationname";
         private const string ChromedriverVersion = "chromedriverVersion";
         private static readonly List<string> AuthUrls = new List<string>();
