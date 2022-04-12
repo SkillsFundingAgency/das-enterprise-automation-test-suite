@@ -39,7 +39,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 var elementDisplayed = pageInteractionHelper.IsElementDisplayed(NoSearchResults);
                 if (elementDisplayed)
                 {
-                    throw new Exception("No Nationwide Vacancies found");
+                    throw new Exception("Element verification failed: No Nationwide Vacancies found");
                 }
                 return elementDisplayed;
             }, () => formCompletionHelper.Click(NationwideVacancies));

@@ -75,10 +75,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void VerifyApprenticeExists()
         {
-            pageInteractionHelper.Verify(() =>
+            pageInteractionHelper.InvokeAction(() => 
             {
-                return pageInteractionHelper.FindElements(ViewApprenticeFullName(editedApprenticeDataHelper.ApprenticeEditedFullName)).Any();
-            }, () => SearchForApprentice(editedApprenticeDataHelper.ApprenticeEditedFullName));
+                var name = editedApprenticeDataHelper.ApprenticeEditedFullName;
+
+                SearchForApprentice(name);
+
+                pageInteractionHelper.FindElement(ViewApprenticeFullName(name));
+            });
         }
 
         public ManageYourApprenticesPage Filter(string filterText)

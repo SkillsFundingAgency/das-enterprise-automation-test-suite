@@ -50,10 +50,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(frameworkConfig);
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
-            
-            var driverLocationConfig = new DriverLocationConfig { ChromeWebDriver = Configurator.ChromeWebDriver, GeckoWebDriver = Configurator.GeckoWebDriver, IEWebDriver = Configurator.IEWebDriver };
 
-            _context.Set(driverLocationConfig);
+            _context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
 
             if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
         }

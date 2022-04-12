@@ -20,6 +20,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public string GetUrl() { WaitForPageToLoad(); return _webDriver.Url; }
+
         public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
 
         public T InvokeAction<T>(Func<T> func, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(func, retryAction);
@@ -88,7 +90,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPageAfterRefresh(By locator)
         {
-            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+            void beforeAction() => WaitForPageToLoad();
 
             void retryAction() => _webDriver.Navigate().Refresh();
 
@@ -99,7 +101,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private bool VerifyPage(Func<bool> func, Action retryAction = null)
         {
-            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+            void beforeAction() => WaitForPageToLoad();
 
             return _retryHelper.RetryOnException(func, beforeAction, retryAction);
         }
@@ -173,12 +175,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsElementDisplayedAfterPageLoad(By locator)
         {
-            _webDriverWaitHelper.WaitForPageToLoad();
+            WaitForPageToLoad();
 
             return IsElementDisplayed(locator);
         }
-
-            
 
         public bool IsElementDisplayed(By locator)
         {
@@ -255,8 +255,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
-        public string GetUrl() => _webDriver.Url;
-
         private Func<bool> Func(By locator)
         {
             return () =>
@@ -268,6 +266,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
+        private void WaitForPageToLoad() => _webDriverWaitHelper.WaitForPageToLoad();
 
         private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
         {
