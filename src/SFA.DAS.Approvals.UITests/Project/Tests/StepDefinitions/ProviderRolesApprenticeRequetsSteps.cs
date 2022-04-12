@@ -101,8 +101,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCannotBulkUploadApprenticesViaCsvFile()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                .GotoSelectJourneyPageGoesToAccessDenied();
-                
+                .GotoSelectJourneyPageGoesToAccessDenied()
+                .GoBackToTheServiceHomePage();
         }
 
 
