@@ -218,12 +218,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             return result;
         }
 
-        private static int GetTotalCostForExistingApprentices(List<object[]> getExistingApprentices)
+        private static int GetTotalCostForExistingApprentices(List<decimal> getExistingApprentices)
         {
             decimal cost = 0;
             foreach (var item in getExistingApprentices)
             {
-                cost += (decimal)item[0];
+                cost += item;
             }
             return (int)cost;
         }
