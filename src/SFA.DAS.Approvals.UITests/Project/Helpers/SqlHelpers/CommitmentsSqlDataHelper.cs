@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public List<object[]> GetExistingApprentices(string cohortRef)
         {
-            string query = $@"SELECT * FROM Apprenticeship app
+            string query = $@"SELECT app.cost FROM Apprenticeship app
                                 INNER JOIN Commitment cmt
                                 ON cmt.id = app.CommitmentId
                                 WHERE cmt.reference = '{cohortRef}'                                

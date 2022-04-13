@@ -223,7 +223,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             decimal cost = 0;
             foreach (var item in getExistingApprentices)
             {
-                cost += (decimal)item[12];
+                cost += (decimal)item[0];
             }
             return (int)cost;
         }
