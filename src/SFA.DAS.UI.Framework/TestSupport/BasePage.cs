@@ -20,7 +20,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected readonly FrameworkConfig frameworkConfig;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
+        protected string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading";
+        protected virtual By PageHeader => By.CssSelector(PageHeaderSelector);
         protected virtual By PageCaptionXl => By.CssSelector(".govuk-caption-xl");
         protected virtual By ContinueButton => By.CssSelector(".govuk-button");
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");

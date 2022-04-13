@@ -16,6 +16,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
+        protected override By PageHeader => By.CssSelector($"{PageHeaderSelector}, .govuk-label--xl");
+
+        private By CancelLink => By.LinkText("Cancel");
+
         public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
             isRaaV2Employer = tags.Contains("raa-v2e");
@@ -23,7 +27,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
             rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
 
-            if (verifypage) { VerifyPage(); }
+            if (verifypage) VerifyPage();
         }
 
         protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);
@@ -33,5 +37,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             base.SelectRadioOptionByForAttribute(value);
             return this;
         }
+
+        public void EmployerCancelAdvert() => formCompletionHelper.Click(CancelLink);
     }
 }

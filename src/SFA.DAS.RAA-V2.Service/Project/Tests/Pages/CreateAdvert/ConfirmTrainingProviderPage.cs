@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class ConfirmTrainingProviderPage : RAAV2CSSBasePage
     {
@@ -15,6 +15,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             Continue();
             return new SubmitNoOfPositionsPage(context);
+        }
+
+        public SummaryOfTheApprenticeshipPage ConfirmProviderAndContinueToSummaryPage()
+        {
+            Continue();
+            return new SummaryOfTheApprenticeshipPage(context);
         }
     }
 }

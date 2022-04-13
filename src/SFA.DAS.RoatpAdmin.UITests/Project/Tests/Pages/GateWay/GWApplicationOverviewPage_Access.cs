@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
     public partial class GWApplicationOverviewPage : RoatpGateWayBasePage
     {
-        private void NavigateToTask(string sectionName, string taskName, int index = 0) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index));
+        private void NavigateToTask(string sectionName, string taskName, int index = 0) => NavigateToTask(sectionName, taskName, index, null);
 
         #region Section-1 Organisation Checks
 

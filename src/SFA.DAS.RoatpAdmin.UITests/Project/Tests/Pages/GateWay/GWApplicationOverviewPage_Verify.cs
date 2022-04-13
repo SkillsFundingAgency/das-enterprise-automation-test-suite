@@ -77,7 +77,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         private GWApplicationOverviewPage VerifySections(string sectionName, string taskName, string status, int index = 0)
         {
-            VerifyElement(GetTaskStatusElement(sectionName, taskName, index), status, (null));
+            VerifySectionTaskStatus(sectionName, taskName, status, index, null);
             return new GWApplicationOverviewPage(context);
         }
     }

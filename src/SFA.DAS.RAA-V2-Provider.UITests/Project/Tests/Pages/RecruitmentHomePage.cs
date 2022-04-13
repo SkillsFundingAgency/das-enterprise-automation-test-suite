@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public GetStartedWithRecruitmentAPIsPage NavigateToRecruitmentAPIs()
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
+            if (pageInteractionHelper.IsElementDisplayedAfterPageLoad(PireanPreprodButton))
             {
                 formCompletionHelper.ClickElement(PireanPreprodButton);
             }

@@ -2,7 +2,7 @@
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class ConfirmApprenticeshipTrainingPage : RAAV2CSSBasePage
     {
@@ -12,6 +12,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmApprenticeshipTrainingPage(ScenarioContext context, Action retryAction) : base(context, false) => VerifyPage(retryAction);
 
+        public EnterTheNameOfTheTrainingProviderPage ConfirmTrainingproviderAndContinue()
+        {
+            Continue();
+            return new EnterTheNameOfTheTrainingProviderPage(context);
+        }
+
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
         {
             Continue();
@@ -20,7 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public SubmitNoOfPositionsPage ConfirmAndNavigateToNoOfPositionsPage()
         {
-            Continue(); 
+            Continue();
             return new SubmitNoOfPositionsPage(context);
         }
     }

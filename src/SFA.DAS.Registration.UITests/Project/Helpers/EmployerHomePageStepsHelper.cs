@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -20,6 +21,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _tabHelper = _context.Get<TabHelper>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
+
+        public HomePage Login(EasAccountUser loginUser) => _loginHelper.Login(loginUser, true);
 
         public HomePage GotoEmployerHomePage(bool openInNewTab = true)
         {
