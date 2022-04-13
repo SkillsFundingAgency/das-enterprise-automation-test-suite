@@ -34,12 +34,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(AddOrganisationButton);
         }
 
-        public HomePage VerifyOrganisationDetails() => InvokeAction(() =>
+        public void VerifyOrganisationDetails() 
         {
             VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation);
-            
+
             VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower());
-        });
+        }
 
         public HomePage VerifyDetails() => VerifyUserDetails("Contact Type", dataHelper.Type);
 
