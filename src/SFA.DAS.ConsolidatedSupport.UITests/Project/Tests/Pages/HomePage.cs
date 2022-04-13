@@ -8,6 +8,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
     public class HomePage : ConsolidatedSupportBasePage
     {
         protected override By PageHeader => By.CssSelector("#main_navigation");
+
         protected override string PageTitle { get; }
 
         private By BrandingHeader => By.CssSelector("#branding_header");
@@ -21,8 +22,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private By TicketTable => By.CssSelector("[data-test-id='table_container'] table");
 
         private By HomeButton => By.CssSelector("#main_navigation [data-original-title='Home']");
-
-        private By AdminButton => By.CssSelector("#main_navigation [data-original-title='Admin']");
 
         public HomePage(ScenarioContext context, bool navigateTo) : base(context)
         {
@@ -51,12 +50,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             });
 
             return new TicketPage(context);
-        }
-
-        public AdminPage NavigateToAdminPage()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdminButton));
-            return new AdminPage(context);
         }
 
         protected HomePage NavigateToHomePage() => new HomePage(context, true);
