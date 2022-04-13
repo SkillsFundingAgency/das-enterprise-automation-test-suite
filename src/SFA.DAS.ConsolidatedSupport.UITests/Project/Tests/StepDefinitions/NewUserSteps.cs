@@ -7,30 +7,28 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 {
+    [Binding]
     public class NewUserSteps
     {
         private readonly ScenarioContext _context;
-        private readonly RestApiHelper _restApiHelper;
-        private readonly ConsolidateSupportDataHelper _dataHelper;
-        private readonly ConsolidatedSupportConfig _config;
         private readonly ObjectContext _objectContext;
-        private UserPage _userPage;
-
+        
         public NewUserSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
-            _dataHelper = context.Get<ConsolidateSupportDataHelper>();
-            _restApiHelper = new RestApiHelper(_config, _dataHelper);
         }
 
         [Given(@"a new user without contact and organisation details is created")]
         public void GivenANewUserWithoutContactAndOrganisationDetailsIsCreated()
         {
+            var _config = _context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
+
+            var _dataHelper = _context.Get<ConsolidateSupportDataHelper>();
+
             new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
 
-            var user = _restApiHelper.CreateUser().Result;
+            var user = new RestApiHelper(_config, _dataHelper).CreateUser().Result;
 
             _objectContext.SetUserId($"{user.Id}");
 
@@ -48,7 +46,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         [Then(@"the user organisation details can be updated on Zendesk portal")]
         public void ThenTheUserOrganisationDetailsCanBeUpdatedOnZendeskPortal()
         {
-            _userPage = new UserPage(_context);
+            var _userPage = new UserPage(_context);
 
             _userPage.CreateOrganisation();
 
@@ -58,6 +56,5 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
             new OrgPage(_context, true).EnterDetails().VerifyDetails();
         }
-
     }
 }
