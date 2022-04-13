@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class Steps
+    public class ExistingUserSteps
     {
         private readonly ScenarioContext _context;
         private readonly RestApiHelper _restApiHelper;
@@ -18,7 +18,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         private HomePage _homePage;
         private TicketPage _ticketpage;
 
-        public Steps(ScenarioContext context)
+        public ExistingUserSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
