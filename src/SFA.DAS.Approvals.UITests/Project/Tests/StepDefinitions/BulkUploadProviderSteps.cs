@@ -54,11 +54,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
         [Then(@"Provider approves the cohorts and send them to employer to approve")]
-        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove() =>
+        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
+        {
+            var apprenticeList = GetBulkuploadData();
+
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                 .SelectToApproveAllAndSendToEmployer()
-                .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
-
+                .VerifyCorrectInformationIsDisplayed(apprenticeList);
+        }        
 
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
@@ -70,10 +73,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"Provider selects to save all but don't send to employer")]
         [When(@"Provider selects to save all but don't send to employer")]
-        public void ProviderSelectsToSaveAllButDontSendToEmployer() =>
+        public void ProviderSelectsToSaveAllButDontSendToEmployer()
+        {
+            var apprenticeList = GetBulkuploadData();
+
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                      .SelectsToSaveAllButDontSendToEmployer()
-                     .VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
+                     .VerifyCorrectInformationIsDisplayed(apprenticeList);
+        }
 
         [Given(@"User selects to upload an amended file through link")]
         [When(@"User selects to upload an amended file through link")]
@@ -154,39 +161,71 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
-        {
+        {            
             var apprenticeList = _objectContext.GetBulkuploadApprentices();
-
             var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
-            
             var result = new List<FileUploadReviewEmployerDetails>();
 
             foreach (var employer in groupedByEmployers)
             {
-                var employerDetail = new FileUploadReviewEmployerDetails
-                {
-                    EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
-                    AgreementId = employer.Key,
-                    CohortDetails = new List<FileUploadReviewCohortDetail>()
-                };
+                var employerDetail = new FileUploadReviewEmployerDetails();
+                employerDetail.EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key);
+                employerDetail.AgreementId = employer.Key;
+
+                employerDetail.CohortDetails = new List<FileUploadReviewCohortDetail>();
 
                 var cohortGroups = employer.GroupBy(x => x.CohortRef);
 
+                var cohortDetails = new List<FileUploadReviewCohortDetail>();
+
                 foreach (var cohortGroup in cohortGroups)
                 {
-                    var cohortDetail = new FileUploadReviewCohortDetail
+                    var cohortDetail = new FileUploadReviewCohortDetail();
+                    cohortDetail.CohortRef = cohortGroup.Key;
+                    cohortDetail.NumberOfApprentices = cohortGroup.Count();
+                    cohortDetail.TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice));
+                    cohortDetails.Add(cohortDetail);
+
+                    if (!string.IsNullOrWhiteSpace(cohortGroup.Key))
                     {
-                        CohortRef = cohortGroup.Key,
-                        NumberOfApprentices = cohortGroup.Count(),
-                        TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice))
-                    };
-                    employerDetail.CohortDetails.Add(cohortDetail);
+                        var existingApprentices = _commitmentsSqlDataHelper.GetExistingApprentices(cohortGroup.Key);
+
+                        var totalCost = GetTotalCostForExistingApprentices(existingApprentices);
+
+                        var existingCohortDetails = new FileUploadReviewCohortDetail
+                        {
+                            CohortRef = cohortGroup.Key,
+                            NumberOfApprentices = existingApprentices.Count(),
+                            TotalCost = totalCost
+                        };
+                        cohortDetails.Add(existingCohortDetails);
+                    }
                 }
 
+                employerDetail.CohortDetails.AddRange(cohortDetails.GroupBy(x => x.CohortRef).Select(
+                      m =>
+                      new FileUploadReviewCohortDetail
+                      {
+                          CohortRef = m.Key,
+                          NumberOfApprentices = m.Sum(x => x.NumberOfApprentices),
+                          TotalCost = m.Sum(x => x.TotalCost)
+                      }).ToList());
+
                 result.Add(employerDetail);
+
             }
 
             return result;
+        }
+
+        private static int GetTotalCostForExistingApprentices(List<decimal> getExistingApprentices)
+        {
+            decimal cost = 0;
+            foreach (var item in getExistingApprentices)
+            {
+                cost += item;
+            }
+            return (int)cost;
         }
     }
 }

@@ -11,7 +11,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) TransferslevyFunds()
         {
-            (string duration, string year) = GetPreviousTaxYearEnd(DateTime.Now.Date);
+            var today = DateTime.Now.Date;
+            (string duration, int year) = GetTransfersPreviousTaxYearEnd(today);
 
             var table = GetTableHeader();
             table.AddRow(duration, "10", "72000", "99000", $"{year}-01-15");
@@ -20,22 +21,27 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             return (EnglishFraction, EnglishFractioncalculatedAt, table);
         }
 
-        public static (string, string) GetPreviousTaxYearEnd(DateTime dateTime)
+        public static (string, int) GetTransfersPreviousTaxYearEnd(DateTime dateTime) => GetPreviousTaxYearEnd(dateTime, 20);
+
+        public static (string, int) GetPreviousTaxYearEnd(DateTime dateTime) => GetPreviousTaxYearEnd(dateTime, 5);
+
+        private static (string, int) GetPreviousTaxYearEnd(DateTime dateTime, int taxYearEndDay)
         {
             int currentYear = dateTime.Year;
             int previous2Year = currentYear - 2;
             int previousYear = currentYear - 1;
             int nextYear = currentYear + 1;
+            int taxYearStartMonth = 4;
 
-            if ((dateTime >= new DateTime(currentYear, 4, 6).Date) && (dateTime <= new DateTime(nextYear, 4, 5).Date))
+            if ((dateTime >= new DateTime(currentYear, taxYearStartMonth, taxYearEndDay + 1).Date) && (dateTime <= new DateTime(nextYear, taxYearStartMonth, taxYearEndDay).Date))
             {
                 string duration = $"{TrimYear(previousYear)}-{TrimYear(currentYear)}";
-                return (duration, currentYear.ToString());
+                return (duration, currentYear);
             }
             else
             {
                 string duration = $"{TrimYear(previous2Year)}-{TrimYear(previousYear)}";
-                return (duration, previousYear.ToString());
+                return (duration, previousYear);
             }
         }
 
