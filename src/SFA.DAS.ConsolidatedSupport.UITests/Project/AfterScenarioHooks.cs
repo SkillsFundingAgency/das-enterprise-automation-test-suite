@@ -22,25 +22,24 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         [AfterScenario(Order = 18)]
         public void DeleteEntities()
         {
-            AdminPage NavigateToAdminPage() => new HomePage(_context, true).NavigateToAdminPage();
+
+            OrganisationListPage GoToOrganisationListPage() => new OrganisationListPage(_context);
 
             _tryCatch.AfterScenarioException(() => 
             {
-                if (_objectContext.IsUserCreated()) NavigateToAdminPage().NavigateToUserPage().DeleteUser();
-                
+                if (_objectContext.IsUserCreated()) new UserPage(_context).DeleteUser();
+
                 if (!(_objectContext.IsOrgCreated())) return;
 
-                var adminPage = NavigateToAdminPage();
+                var OrgListPage = GoToOrganisationListPage();
 
-                var orgCount = adminPage.NoOfOrganisation();
+                var orgCount = OrgListPage.NoOfOrganisation();
 
                 for (int i = 0; i < orgCount; i++)
                 {
-                    var orgpage = adminPage.NavigateToOrgPage();
+                    OrgListPage.NavigateToOrgPage(i).DeleteOrg();
 
-                    orgpage.DeleteOrg();
-
-                    adminPage = NavigateToAdminPage();
+                    OrgListPage = GoToOrganisationListPage();
                 }
             });
         }

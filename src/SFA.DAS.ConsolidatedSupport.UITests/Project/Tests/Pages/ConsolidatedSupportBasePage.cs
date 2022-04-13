@@ -32,8 +32,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             });
         }
 
-        protected void InvokeAction(Action action) => pageInteractionHelper.InvokeAction(action);
-
-        protected T InvokeAction<T>(Func<T> func) => pageInteractionHelper.InvokeAction(func);  
+        private void InvokeAction(Action action) => pageInteractionHelper.InvokeAction(action);
     }
 }

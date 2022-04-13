@@ -1,13 +1,19 @@
-﻿using System;
+﻿using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 {
     public class ConsolidateSupportDataHelper
     {
+        private readonly string _suffix;
+
         public ConsolidateSupportDataHelper()
         {
-            Subject = $"Zendesk UI Testing {Guid.NewGuid()}";
-            CommentBody = $"Created on {DateTime.Now}";
+            _suffix = DateTime.Now.ToSeconds();
+
+            Subject = $"Zendesk UI Testing Can Be Deleted {Guid.NewGuid()}_{_suffix}";
+            
+            CommentBody = $"Can Be Deleted, created on {_suffix}";
         }
 
         public string SubmitAsNewComments => "Comment - Submit as New";
@@ -32,7 +38,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
         public string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
 
-        public string NewOrgName => "TestOrgJackReacher";
+        public string NewOrgNameWithOutSuffix => $"TestOrgJackReacher";
+
+        public string NewOrgName => $"{NewOrgNameWithOutSuffix}{_suffix}";
 
         public string NewOrgDomain => "TestOrgJackReacher.com";
 
