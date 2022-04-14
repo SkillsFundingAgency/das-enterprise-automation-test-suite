@@ -33,8 +33,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             DeleteOrgPage OpenTicket() { formCompletionHelper.ClickElement(Tickets); return new DeleteOrgPage(context); }
 
-            if (i != 0) SearchOrganisation();
-            
+            if (i != 0) SearchOrganisation(); else Search();
+
             return OpenTicket();
         }
 
@@ -42,9 +42,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(SearchOrganisationInput, dataHelper.NewOrgNameWithOutSuffix);
 
-            formCompletionHelper.SendKeys(SearchOrganisationInput, Keys.Enter);
+            Search();
 
             VerifyPage(ResultCount, "result");
         }
+
+        private void Search() => formCompletionHelper.SendKeys(SearchOrganisationInput, Keys.Enter);
     }
 }
