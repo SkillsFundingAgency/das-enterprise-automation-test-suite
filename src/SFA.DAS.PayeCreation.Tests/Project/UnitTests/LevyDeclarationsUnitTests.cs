@@ -14,15 +14,30 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
         [TestCase(2022, 04, 05, "20-21", "2021")]
         [TestCase(2022, 04, 06, "21-22", "2022")]
         [TestCase(2022, 04, 24, "21-22", "2022")]
+        [TestCase(2023, 04, 05, "21-22", "2022")]
+        [TestCase(2023, 04, 06, "22-23", "2023")]
         public void GetPreviousTaxYearEnd(int year, int month, int date, string expectedduraration, string expectedyear)
         {
-            (string actualduration, string actualyear) = LevyDeclarationDataHelper.GetPreviousTaxYearEnd(new DateTime(year, month, date));
+            (string actualduration, int actualyear) = LevyDeclarationDataHelper.GetPreviousTaxYearEnd(new DateTime(year, month, date));
 
-            Assert.Multiple(() => 
-            {
-                StringAssert.AreEqualIgnoringCase(expectedduraration, actualduration);
-                StringAssert.AreEqualIgnoringCase(expectedyear, actualyear);
-            });
+            AssertPreviousTaxYearEnd(expectedduraration, actualduration, expectedyear, actualyear);
+        }
+
+        [TestCase(2020, 04, 24, "19-20", "2020")]
+        [TestCase(2021, 04, 24, "20-21", "2021")]
+        [TestCase(2022, 04, 05, "20-21", "2021")]
+        [TestCase(2022, 04, 06, "20-21", "2021")]
+        [TestCase(2022, 04, 19, "20-21", "2021")]
+        [TestCase(2022, 04, 20, "20-21", "2021")]
+        [TestCase(2022, 04, 21, "21-22", "2022")]
+        [TestCase(2022, 04, 24, "21-22", "2022")]
+        [TestCase(2023, 04, 20, "21-22", "2022")]
+        [TestCase(2023, 04, 21, "22-23", "2023")]
+        public void GetTransfersPreviousTaxYearEnd(int year, int month, int date, string expectedduraration, string expectedyear)
+        {
+            (string actualduration, int actualyear) = LevyDeclarationDataHelper.GetTransfersPreviousTaxYearEnd(new DateTime(year, month, date));
+
+            AssertPreviousTaxYearEnd(expectedduraration, actualduration, expectedyear, actualyear);
         }
 
         [TestCase(2018, 12, 24, "18-19")]
@@ -96,7 +111,7 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
             string levyperyear = (noOfmonths * levypermonth).ToString();
             List<List<string>> expected = new List<List<string>>()
             {
-                new List<string>() { "19-20", "10", (levypermonth * 1).ToString(), levyperyear, "2020-01-15" },
+                new List<string>() { "21-22", "12", (levypermonth * 1).ToString(), levyperyear, "2022-03-15" },
             };
 
             var (_, _, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(noOfmonths.ToString(), levypermonth.ToString());
@@ -105,6 +120,15 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
             {
                 CollectionAssert.AreEqual(expected[i], levyDeclarations.Rows[i].Values);
             }
+        }
+
+        private void AssertPreviousTaxYearEnd(string expectedduraration, string actualduration, string expectedyear, int actualyear)
+        {
+            Assert.Multiple(() =>
+            {
+                StringAssert.AreEqualIgnoringCase(expectedduraration, actualduration);
+                StringAssert.AreEqualIgnoringCase(expectedyear, $"{actualyear}");
+            });
         }
     }
 }

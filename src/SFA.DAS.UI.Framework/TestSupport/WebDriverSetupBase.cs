@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
+﻿using SFA.DAS.ConfigurationBuilder;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -21,13 +18,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected readonly FrameworkConfig frameworkConfig;
 
-        private readonly DriverLocationConfig _driverLocationConfig;
-
-        protected const string ChromeDriverServiceName = "chromedriver.exe";
-
-        protected const string FirefoxDriverServiceName = "geckodriver.exe";
-
-        protected const string InternetExplorerDriverServiceName = "IEDriverServer.exe";
+        private const string ChromeDriverServiceName = "chromedriver.exe";
+        private const string FirefoxDriverServiceName = "geckodriver.exe";
+        private const string IEDriverServiceName = "iedriverserver.exe";
+        private const string EdgeDriverServiceName = "msedgedriver.exe";
 
         public WebDriverSetupBase(ScenarioContext context)
         {
@@ -36,38 +30,48 @@ namespace SFA.DAS.UI.Framework.TestSupport
             objectContext = context.Get<ObjectContext>();
             webDriverSetupHelper = new WebDriverSetupHelper(context);
             frameworkConfig = context.Get<FrameworkConfig>();
-            _driverLocationConfig = context.Get<DriverLocationConfig>();
         }
 
-        protected void AddCapabilities(IWebDriver webDriver)
+        protected void SetDriverLocation(bool isLocal)
         {
-            var cap = (webDriver as WebDriver).Capabilities;
+            SetFireFoxDriverLocation(isLocal);
 
-            objectContext.SetBrowserName(cap["browserName"]);
+            SetChromeDriverLocation(isLocal);
 
-            objectContext.SetBrowserVersion(cap["browserVersion"]);
+            SetIeDriverLocation(isLocal);
 
-            foreach (var item in cap["chrome"] as Dictionary<string, object>) objectContext.Replace(item.Key, item.Value);
+            SetEdgeDriverLocation(isLocal);
         }
 
-        protected bool IsCloudExecution() => objectContext.GetBrowser().IsCloudExecution();
+        protected void SetFireFoxDriverLocation(bool isLocal) => objectContext.SetFireFoxDriverLocation(GetDriverLocation(isLocal, FirefoxDriverServiceName));
 
-        protected string FindDriverServiceLocation(string executableName) => frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
+        protected void SetChromeDriverLocation(bool isLocal) => objectContext.SetChromeDriverLocation(GetDriverLocation(isLocal, ChromeDriverServiceName));
 
-        protected string FindLocalDriverServiceLocation(string executableName)
+        protected void SetIeDriverLocation(bool isLocal) => objectContext.SetIeDriverLocation(GetDriverLocation(isLocal, IEDriverServiceName));
+
+        protected void SetEdgeDriverLocation(bool isLocal) => objectContext.SetEdgeDriverLocation(GetDriverLocation(isLocal, EdgeDriverServiceName));
+
+        private string GetDriverLocation(bool isLocal, string executableName) => isLocal ? FindLocalDriverServiceLocation(executableName) : FindDriverServiceLocation(executableName);
+
+        private string FindDriverServiceLocation(string executableName) => frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
+
+        private string FindLocalDriverServiceLocation(string executableName)
         {
             FileInfo[] file = Directory.GetParent(Directory.GetParent(DriverPath).FullName).GetFiles(executableName, SearchOption.AllDirectories);
 
             return file.Length != 0 ? file.Last().DirectoryName : DriverPath;
         }
 
-        protected string FindVstsDriverServiceLocation(string executableName)
+        private string FindVstsDriverServiceLocation(string executableName)
         {
+            var (chromeWebDriver, geckoWebDriver, iEWebDriver, edgeWebDriver) = context.Get<DriverLocationConfig>().DriverLocation;
+
             return true switch
             {
-                bool _ when executableName == FirefoxDriverServiceName => _driverLocationConfig.GeckoWebDriver,
-                bool _ when executableName == InternetExplorerDriverServiceName => _driverLocationConfig.IEWebDriver,
-                _ => _driverLocationConfig.ChromeWebDriver,
+                bool _ when executableName == FirefoxDriverServiceName => geckoWebDriver,
+                bool _ when executableName == IEDriverServiceName => iEWebDriver,
+                bool _ when executableName == EdgeDriverServiceName => edgeWebDriver,
+                _ => chromeWebDriver,
             };
         }
     }
