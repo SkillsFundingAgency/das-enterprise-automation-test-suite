@@ -1,14 +1,13 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class ApprenticeshipTrainingPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "What training will the apprentice take?";
-        private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
+        protected override string PageTitle => isRaaV2Employer ? "What training course will the apprentice take?" : "What training will the apprentice take?";
 
-        private By CancelLink => By.LinkText("Cancel");
+        private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
@@ -32,7 +31,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public EmployerVacancySearchResultPage CancelVacancy()
         {
-            formCompletionHelper.Click(CancelLink);
+            EmployerCancelAdvert();
             return new EmployerVacancySearchResultPage(context);
         }
     }

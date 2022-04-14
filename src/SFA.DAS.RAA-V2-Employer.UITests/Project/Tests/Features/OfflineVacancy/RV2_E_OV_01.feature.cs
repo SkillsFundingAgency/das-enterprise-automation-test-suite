@@ -74,23 +74,25 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.OfflineVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01 - Creates offline vacancy with disability confidence and Reviewer app" +
-            "roves")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01 - Creates offline advert with disability confidence and Reviewer appr" +
+            "oves")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("offlinevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_E_OV_01_CreatesOfflineVacancyWithDisabilityConfidenceAndReviewerApproves()
+        [NUnit.Framework.CategoryAttribute("newraa-v2")]
+        public void RV2_E_OV_01_CreatesOfflineAdvertWithDisabilityConfidenceAndReviewerApproves()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
                     "offlinevacancy",
-                    "regression"};
+                    "regression",
+                    "newraa-v2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_OV_01 - Creates offline vacancy with disability confidence and Reviewer app" +
-                    "roves", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_OV_01 - Creates offline advert with disability confidence and Reviewer appr" +
+                    "oves", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,10 +102,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the Employer creates an offline vacancy with disability confidence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 9
+ testRunner.Given("the Employer creates an offline advert with disability confidence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
  testRunner.Then("the Reviewer verifies disability confident and approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

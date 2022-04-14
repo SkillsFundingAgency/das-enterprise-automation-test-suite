@@ -82,7 +82,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private static List<string> ListOfCompanyTypeOrganisation() => new List<string>()
         {
             "BOOTS UK LIMITED",
-            "TESCO PLC",
             "ODEON CINEMAS LIMITED",
             "VUE ENTERTAINMENT LIMITED",
             "NEXT PLC",

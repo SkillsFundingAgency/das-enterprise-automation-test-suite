@@ -1,15 +1,12 @@
-﻿using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using EmployerStepsHelper = SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers.EmployerStepsHelper;
 using ProviderStepsHelper = SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers.ProviderStepsHelper;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Approvals.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using NUnit.Framework;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
@@ -18,6 +15,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private EasAccountUser _loginUser;
@@ -29,6 +27,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(_context);
         }
 
         [Given(@"the Employer grants permission to the provider to create advert with review option")]
@@ -36,7 +35,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             _loginUser = _context.GetUser<RAAV2EmployerProviderPermissionUser>();
 
-            var homePage = _employerStepsHelper.GoToHomePage(_loginUser);
+            var homePage = _rAAV2EmployerLoginHelper.GoToHomePage(_loginUser);
 
             _employerPermissionsStepsHelper.SetAgreementId(homePage, _loginUser.OrganisationName);
 
