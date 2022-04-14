@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +26,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
 
-        private By CommentEditorSelector => By.CssSelector(".comment_input .content .editor.zendesk-editor--rich-text-comment");
+        private By CommentEditorSelector => By.CssSelector("[data-test-id='standalone-rich-text-ckeditor']");
 
         private By CommentsSections => By.CssSelector(".zd-comment");
 
@@ -43,17 +42,17 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By TicketDropdownItem => By.CssSelector("li");
 
-        private By TicketPublicReply => By.CssSelector(".track-id-publicComment");
+        private By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
 
-        private By TicketInternalNote => By.CssSelector(".track-id-privateComment");
+        private By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
 
         public TicketPage(ScenarioContext context) : base(context, false)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(),
-                () => VerifyPage(TicketOrganisationName, dataHelper.OrganisationName),
-                () => VerifyPage(TicketOrganisationUserName, dataHelper.OrganisationUserName)
+                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
+                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)
             });
         }
 
@@ -120,7 +119,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             
             return incidentNumber;
         }
-
 
         public HomePage SubmitAsOpen() => SubmitStatus("Internal note", dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
 
