@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
@@ -57,62 +58,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _ticketpage.VerifyTicketStatus(status);
         }
 
-        [When(@"the ticket is submit as New")]
-        public void WhenTheTicketIsSubmitAsNew()
-        {
-            _homePage = _ticketpage.SubmitAsNew();
-
-            VerifySubmittedComments(_dataHelper.SubmitAsNewComments);
-        }
-
-        [When(@"the ticket is submit as open")]
-        public void WhenTheTicketIsSubmitAsOpen()
-        {
-            _homePage = _ticketpage.SubmitAsOpen();
-
-            VerifySubmittedComments(_dataHelper.SubmitAsOpenComments);
-        }
-
-        [When(@"the ticket is submit as On-Hold")]
-        public void WhenTheTicketIsSubmitAsOn_Hold()
-        {
-            _ticketpage.SelectOptions("Contact Reason", "Data Lock");
-            _ticketpage.SelectOptions("Issue Type", "Query");
-            _ticketpage.SelectOptions("Apply macro", "Escalate to Tier 3");
-
-            _ticketpage.VerifyDraftComments("Resolver group to assign to");
-
-            _ticketpage.SelectOptions("Service Offering", "AS Payments");
-            _ticketpage.SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
-
-            _homePage = _ticketpage.SubmitAsOnHold();
-
-            VerifySubmittedComments(_dataHelper.SubmitAsOnHoldComments);
-        }
-
-        [When(@"the ticket is submit as Pending")]
-        public void WhenTheTicketIsSubmitAsPending()
-        {
-            _homePage = _ticketpage.SubmitAsPending();
-
-            VerifySubmittedComments(_dataHelper.SubmitAsPendingComments);
-        }
-
-        [When(@"the ticket is submit as Solved")]
-        public void WhenTheTicketIsSubmitAsSolved()
-        {
-            _homePage = _ticketpage.SubmitAsSolved();
-
-            VerifySubmittedComments(_dataHelper.SubmitAsSolvedComments);
-        }
+        [When(@"the ticket is submit as (New|Open|On-Hold|Pending|Solved)")]
+        public void WhenTheTicketIsSubmitAs(string status) => SubmitAs(status);
 
         [Then(@"a service now incident number is populated")]
-        public void ThenAServiceNowIncidentNumberIsPopulated()
-        {
-            var serviceNowIncidentNumber = _ticketpage.GetServiceNowTicket();
-
-            StringAssert.StartsWith("INC", serviceNowIncidentNumber);
-        }
+        public void ThenAServiceNowIncidentNumberIsPopulated() => StringAssert.StartsWith("INC", _ticketpage.GetServiceNowTicket());
 
         private void VerifySubmittedComments(string comments)
         {
@@ -120,5 +70,28 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
             _ticketpage.VerifySubmittedComments(comments.Trim());
         }
+
+        private void SubmitAs(string status)
+        {
+            switch (true)
+            {
+                case bool _ when status.IsNew(): SubmitAs((x) => x.SubmitAsNew()); break;
+                case bool _ when status.IsOpen(): SubmitAs((x) => x.SubmitAsOpen()); break;
+                case bool _ when status.IsOnHold(): SubmitAs((x) => x.SubmitAsOnHold()); break;
+                case bool _ when status.IsPending(): SubmitAs((x) => x.SubmitAsPending()); break;
+                case bool _ when status.IsSolved(): SubmitAs((x) => x.SubmitAsSolved()); break;
+                default: break;
+            }
+        }
+
+        private void SubmitAs(Func<TicketPage, (HomePage, string)> func)
+        {
+            (HomePage homePage, string comments) = func(_ticketpage);
+
+            _homePage = homePage;
+
+            VerifySubmittedComments(comments);
+        }
+
     }
 }
