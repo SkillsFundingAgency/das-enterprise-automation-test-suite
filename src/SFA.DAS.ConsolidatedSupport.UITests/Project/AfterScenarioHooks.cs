@@ -37,7 +37,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 
                 for (int i = 0; i < orgCount; i++)
                 {
-                    OrgListPage.NavigateToOrgPage(i).DeleteOrg();
+                    OrgListPage.NavigateToOrgPage().DeleteOrg();
 
                     OrgListPage = GoToOrganisationListPage();
                 }

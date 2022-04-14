@@ -29,13 +29,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return pageInteractionHelper.FindElements(Tickets).ToList().Count;
         }
 
-        public DeleteOrgPage NavigateToOrgPage(int i)
+        public DeleteOrgPage NavigateToOrgPage()
         {
-            DeleteOrgPage OpenTicket() { formCompletionHelper.ClickElement(Tickets); return new DeleteOrgPage(context); }
-
-            if (i != 0) SearchOrganisation(); else Search();
-
-            return OpenTicket();
+            formCompletionHelper.ClickElement(() => { Search(); return pageInteractionHelper.FindElement(Tickets); }); 
+            
+            return new DeleteOrgPage(context);
         }
 
         private void SearchOrganisation()
@@ -47,6 +45,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             VerifyPage(ResultCount, "result");
         }
 
-        private void Search() => formCompletionHelper.SendKeys(SearchOrganisationInput, Keys.Enter);
+        private void Search() { formCompletionHelper.ClickElement(SearchOrganisationInput); formCompletionHelper.SendKeys(SearchOrganisationInput, Keys.Enter); }
     }
 }

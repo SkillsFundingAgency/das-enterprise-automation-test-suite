@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -34,9 +35,20 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(AddOrganisationButton);
         }
 
-        public void VerifyOrganisationDetails() 
+        public void VerifyOrganisationDetails()
         {
-            VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation);
+            for (int i = 0; i < 20; i++)
+            {
+                try
+                {
+                    VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation);
+                    break;
+                }
+                catch (System.Exception)
+                {
+                    Thread.Sleep(5000);
+                }
+            }
 
             VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower());
         }
