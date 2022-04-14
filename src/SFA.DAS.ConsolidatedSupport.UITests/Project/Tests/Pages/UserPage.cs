@@ -37,7 +37,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public void VerifyOrganisationDetails()
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 5; i++)
             {
                 try
                 {
