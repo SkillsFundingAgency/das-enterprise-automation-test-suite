@@ -50,7 +50,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
-                () => VerifyPage(),
+                () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
                 () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
                 () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)
             });
@@ -108,6 +108,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }
 
+                SubmitComments(dataHelper.InternalNote, dataHelper.SubmitAsWaitingForIncNum);
+
                 Thread.Sleep(5000);
 
                 CloseAllTickets();
@@ -120,15 +122,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return incidentNumber;
         }
 
-        public HomePage SubmitAsOpen() => SubmitStatus("Internal note", dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
+        public HomePage SubmitAsOpen() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
 
-        public HomePage SubmitAsNew() => SubmitStatus("Internal note", dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
+        public HomePage SubmitAsNew() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
 
-        public HomePage SubmitAsPending() => SubmitStatus("Public reply", dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
+        public HomePage SubmitAsPending() => SubmitStatus(dataHelper.PublicReply, dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
 
-        public HomePage SubmitAsOnHold() => SubmitStatus("Internal note", dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+        public HomePage SubmitAsOnHold() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
 
-        public HomePage SubmitAsSolved() => SubmitStatus("Internal note", dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+        public HomePage SubmitAsSolved() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
 
         private HomePage SubmitStatus(string commentsarea, string comments, string attribute, string text)
         {
