@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,8 +111,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         }
 
         private void NavigateTo() { if (PageType == PageTypeEnum.User) NavigateToUser(); else NavigateToOrganisation(); }
-
-        private void NavigateTo(string url) => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, url);
 
         private new HomePage CloseAllTickets()
         {

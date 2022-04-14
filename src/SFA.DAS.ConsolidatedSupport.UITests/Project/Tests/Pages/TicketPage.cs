@@ -156,6 +156,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private void SubmitComments(string commentsarea, string comments)
         {
             formCompletionHelper.ClickElement(() => CommentsSection(commentsarea));
+            
+            formCompletionHelper.ClickElement(() => CommentEditor());
 
             formCompletionHelper.EnterText(CommentEditor(), comments);
         }

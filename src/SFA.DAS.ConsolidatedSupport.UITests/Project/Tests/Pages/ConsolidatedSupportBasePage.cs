@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
             dataHelper = context.Get<ConsolidateSupportDataHelper>();
         }
+
+        protected void NavigateTo(string url) => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, url);
 
         protected void CloseAllTickets()
         {

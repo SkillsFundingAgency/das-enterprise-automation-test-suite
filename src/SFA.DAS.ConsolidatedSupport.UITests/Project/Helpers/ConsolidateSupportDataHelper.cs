@@ -7,24 +7,28 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
     {
         private readonly string _suffix;
 
+        private static readonly string CanBeDeleted = "Can Be Deleted";
+
         public ConsolidateSupportDataHelper()
         {
             _suffix = DateTime.Now.ToSeconds();
 
-            Subject = $"Zendesk UI Testing Can Be Deleted {Guid.NewGuid()}_{_suffix}";
+            Subject = $"Zendesk UI Testing {CanBeDeleted} {Guid.NewGuid()}_{_suffix}";
             
-            CommentBody = $"Can Be Deleted, created on {_suffix}";
+            CommentBody = $"{CanBeDeleted} created on {_suffix}";
         }
+        
+        private static readonly string Comment = $" {CanBeDeleted}, Comment - Submit as";
 
-        public string SubmitAsNewComments => "Comment - Submit as New";
+        public string SubmitAsNewComments => $"{Comment} New";
 
-        public string SubmitAsOpenComments => "Comment - Submit as Open";
+        public string SubmitAsOpenComments => $"{Comment} Open";
 
-        public string SubmitAsPendingComments => "Comment - Submit as Pending";
+        public string SubmitAsPendingComments => $"{Comment} Pending";
 
-        public string SubmitAsOnHoldComments => "Comment - Submit as On-Hold";
+        public string SubmitAsOnHoldComments => $"{Comment} On-Hold";
 
-        public string SubmitAsSolvedComments => "Comment - Submit as Solved";
+        public string SubmitAsSolvedComments => $"{Comment} Solved";
 
         public string Subject { get; }
 

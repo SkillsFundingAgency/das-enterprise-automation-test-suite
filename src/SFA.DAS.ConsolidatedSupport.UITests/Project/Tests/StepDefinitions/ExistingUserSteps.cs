@@ -38,9 +38,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the user emails the helpdesk")]
-        public async void GivenTheUserEmailsTheHelpdesk()
+        public void GivenTheUserEmailsTheHelpdesk()
         {
-            var ticket = await _restApiHelper.CreateTicket();
+            var ticket = _restApiHelper.CreateTicket().Result;
 
             _objectContext.SetTicketId($"{ticket.Id}");
 
@@ -118,7 +118,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         {
             _ticketpage = _homePage.SearchTicket();
 
-            _ticketpage.VerifySubmittedComments(comments);
+            _ticketpage.VerifySubmittedComments(comments.Trim());
         }
     }
 }
