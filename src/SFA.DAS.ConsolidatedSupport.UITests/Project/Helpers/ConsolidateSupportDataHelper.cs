@@ -20,50 +20,56 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         
         private static readonly string Comment = $" {CanBeDeleted}, Comment - Submit as";
 
-        public string SubmitAsNewComments => $"{Comment} New";
+        internal string InternalNote => "Internal note";
 
-        public string SubmitAsOpenComments => $"{Comment} Open";
+        internal string PublicReply => "Public reply";
 
-        public string SubmitAsPendingComments => $"{Comment} Pending";
+        internal string SubmitAsWaitingForIncNum => $"{Comment} waiting for service incident number";
 
-        public string SubmitAsOnHoldComments => $"{Comment} On-Hold";
+        internal string SubmitAsNewComments => $"{Comment} New";
 
-        public string SubmitAsSolvedComments => $"{Comment} Solved";
+        internal string SubmitAsOpenComments => $"{Comment} Open";
 
-        public string Subject { get; }
+        internal string SubmitAsPendingComments => $"{Comment} Pending";
 
-        public string CommentBody { get; }
+        internal string SubmitAsOnHoldComments => $"{Comment} On-Hold";
 
-        public string OrganisationName { get; set; }
+        internal string SubmitAsSolvedComments => $"{Comment} Solved";
 
-        public string OrganisationUserName { get; set; }
+        internal string Subject { get; }
 
-        public string NewUserFullName => "JackReacher";
+        internal string CommentBody { get; }
 
-        public string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
+        internal string OrganisationName { get; set; }
 
-        public string NewOrgNameWithOutSuffix => $"TestOrgJackReacher";
+        internal string OrganisationUserName { get; set; }
 
-        public string NewOrgName => $"{NewOrgNameWithOutSuffix}{_suffix}";
+        internal string NewUserFullName => "JackReacher";
 
-        public string NewOrgDomain => "TestOrgJackReacher.com";
+        internal string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
 
-        public string Type => "Employer";
+        internal string NewOrgNameWithOutSuffix => $"TestOrgJackReacher";
 
-        public string Status => "Active";
+        internal string NewOrgName => $"{NewOrgNameWithOutSuffix}{_suffix}";
 
-        public string AccountManagerStatus => "National Account Managed";
+        internal string NewOrgDomain => "TestOrgJackReacher.com";
 
-        public string AddressLine1 => "Cheylesmore House";
+        internal string Type => "Employer";
 
-        public string AddressLine2 => "5";
+        internal string Status => "Active";
 
-        public string AddressLine3 => "Quinton Road";
+        internal string AccountManagerStatus => "National Account Managed";
 
-        public string City => "Coventry";
+        internal string AddressLine1 => "Cheylesmore House";
 
-        public string County => "West Midlands";
+        internal string AddressLine2 => "5";
 
-        public string Postcode => "CV1 2WT";
+        internal string AddressLine3 => "Quinton Road";
+
+        internal string City => "Coventry";
+
+        internal string County => "West Midlands";
+
+        internal string Postcode => "CV1 2WT";
     }
 }

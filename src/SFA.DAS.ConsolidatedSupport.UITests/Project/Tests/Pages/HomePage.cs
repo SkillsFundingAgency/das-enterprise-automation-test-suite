@@ -10,6 +10,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector("#main_navigation");
 
         protected override string PageTitle { get; }
+        private By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
+
+        private By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
 
         private By BrandingHeader => By.CssSelector("#branding_header");
 
@@ -38,7 +41,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public TicketPage SearchTicket()
         {
-            NavigateTo($"agent/tickets/{objectContext.GetTicketId()}");
+            pageInteractionHelper.InvokeAction(() =>
+            {
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchIcon));
+                formCompletionHelper.EnterText(SearchInput, objectContext.GetTicketId());
+                formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
+            });
 
             return new TicketPage(context);
         }
