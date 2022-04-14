@@ -2,7 +2,6 @@
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
