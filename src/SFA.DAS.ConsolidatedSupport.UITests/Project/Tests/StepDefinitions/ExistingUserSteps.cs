@@ -80,7 +80,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
                 case bool _ when status.IsOnHold(): SubmitAs((x) => x.SubmitAsOnHold()); break;
                 case bool _ when status.IsPending(): SubmitAs((x) => x.SubmitAsPending()); break;
                 case bool _ when status.IsSolved(): SubmitAs((x) => x.SubmitAsSolved()); break;
-                default: break;
             }
         }
 
@@ -92,6 +91,5 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
             VerifySubmittedComments(comments);
         }
-
     }
 }
