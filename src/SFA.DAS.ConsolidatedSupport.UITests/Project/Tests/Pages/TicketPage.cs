@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -122,17 +123,29 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return incidentNumber;
         }
 
-        public HomePage SubmitAsOpen() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
+        public (HomePage, string) SubmitAsNew() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
 
-        public HomePage SubmitAsNew() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
+        public (HomePage, string) SubmitAsOpen() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
 
-        public HomePage SubmitAsPending() => SubmitStatus(dataHelper.PublicReply, dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
+        public (HomePage, string) SubmitAsPending() => SubmitStatus(dataHelper.PublicReply, dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
 
-        public HomePage SubmitAsOnHold() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+        public (HomePage, string) SubmitAsOnHold()
+        {
+            SelectOptions("Contact Reason", "Data Lock");
+            SelectOptions("Issue Type", "Query");
+            SelectOptions("Apply macro", "Escalate to Tier 3");
 
-        public HomePage SubmitAsSolved() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+            VerifyDraftComments("Resolver group to assign to");
 
-        private HomePage SubmitStatus(string commentsarea, string comments, string attribute, string text)
+            SelectOptions("Service Offering", "AS Payments");
+            SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
+
+            return SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+        }
+
+        public (HomePage, string) SubmitAsSolved() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+
+        private (HomePage, string) SubmitStatus(string commentsarea, string comments, string attribute, string text)
         {
             SubmitComments(commentsarea, comments);
 
@@ -152,7 +165,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 return null;
             });
 
-            return NavigateToHomePage();
+            return (NavigateToHomePage(), comments);
         }
 
         private void SubmitComments(string commentsarea, string comments)
@@ -168,15 +181,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private IWebElement CommentEditor() => pageInteractionHelper.FindElements(CommentEditorSelector).First(x => x.Enabled && x.Displayed);
 
-        private string GetTicketStatusClassName(string expectedstatus)
+        private string GetTicketStatusClassName(string status)
         {
             return true switch
             {
-                bool _ when expectedstatus.CompareToIgnoreCase("New") => ".new",
-                bool _ when expectedstatus.CompareToIgnoreCase("Open") => ".open",
-                bool _ when expectedstatus.CompareToIgnoreCase("On-Hold") => ".hold",
-                bool _ when expectedstatus.CompareToIgnoreCase("Pending") => ".pending",
-                bool _ when expectedstatus.CompareToIgnoreCase("Solved") => ".solved",
+                bool _ when status.IsNew() => ".new",
+                bool _ when status.IsOpen() => ".open",
+                bool _ when status.IsOnHold() => ".hold",
+                bool _ when status.IsPending() => ".pending",
+                bool _ when status.IsSolved() => ".solved",
                 _ => string.Empty,
             };
         }
