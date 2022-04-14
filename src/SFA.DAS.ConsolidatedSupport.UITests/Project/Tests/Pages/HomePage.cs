@@ -13,10 +13,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By BrandingHeader => By.CssSelector("#branding_header");
 
-        private By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
-
-        private By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
-
         private By Indicators => By.CssSelector(".indicators");
 
         private By TicketTable => By.CssSelector("[data-test-id='table_container'] table");
@@ -42,12 +38,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public TicketPage SearchTicket()
         {
-            pageInteractionHelper.InvokeAction(() =>
-            {
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchIcon));
-                formCompletionHelper.EnterText(SearchInput, objectContext.GetTicketId());
-                formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
-            });
+            NavigateTo($"agent/tickets/{objectContext.GetTicketId()}");
 
             return new TicketPage(context);
         }
