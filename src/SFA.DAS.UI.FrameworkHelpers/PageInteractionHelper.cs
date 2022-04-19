@@ -173,12 +173,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
+        public bool IsElementDisplayedAfterPageLoad(By locator)
+        {
+            WaitForPageToLoad();
+
+            return IsElementDisplayed(locator);
+        }
+
         public bool IsElementDisplayed(By locator)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
-                return VerifyPage(locator);
+                return _webDriver.FindElement(locator).Displayed;
             }
             catch (Exception)
             {
