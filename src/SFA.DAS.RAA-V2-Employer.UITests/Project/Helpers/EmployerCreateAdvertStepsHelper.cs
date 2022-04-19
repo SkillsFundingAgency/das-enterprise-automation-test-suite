@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             createAdvertPage = SkillsAndQualifications(createAdvertPage);
 
-            createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
+            createAdvertPage = AboutTheEmployer(createAdvertPage, string.Empty, true);
 
             CheckAndSubmitAdvert(createAdvertPage);
         }
@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage = SkillsAndQualifications(createAdvertPage);
 
-            createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
+            createAdvertPage = AboutTheEmployer(createAdvertPage, string.Empty, true);
 
             CheckAndSubmitAdvert(createAdvertPage);
         }
@@ -80,7 +80,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private ManageRecruitPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage Abouttheemployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
             createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
