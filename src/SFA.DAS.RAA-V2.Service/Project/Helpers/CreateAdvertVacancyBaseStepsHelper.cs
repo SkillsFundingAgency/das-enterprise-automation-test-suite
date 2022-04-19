@@ -6,8 +6,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
     public abstract class CreateAdvertVacancyBaseStepsHelper
     {
-        private readonly ScenarioContext _context;
-
         protected static string NotStarted => "NOT STARTED";
 
         protected static string Completed => "COMPLETED";
@@ -16,12 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public bool optionalFields;
 
-
-        public CreateAdvertVacancyBaseStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            optionalFields = false;
-        }
+        public CreateAdvertVacancyBaseStepsHelper() => optionalFields = false;
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy();
 

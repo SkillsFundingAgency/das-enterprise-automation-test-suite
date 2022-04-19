@@ -11,7 +11,20 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         public ProviderNewSteps(ScenarioContext context) => _providerStepsHelper = new ProviderCreateVacancyStepsHelper(context);
 
         [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
-        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateVacancyViaViewAllVacancy("anonymous", true, false, true);
+        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateAnonymousVacancy();
+
+        [Given(@"the Provider creates a vacancy by using a registered name")]
+        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => CreateANewVacancy();
+
+        [Given(@"the Provider creates a vacancy by entering all the Optional fields")]
+        public void GivenTheProviderCreatesAVacancyByEnteringAllTheOptionalFields()
+        {
+            _providerStepsHelper.optionalFields = true;
+
+            CreateANewVacancy();
+        }
+
+        private void CreateANewVacancy() => _providerStepsHelper.CreateANewVacancy(string.Empty);
     }
 
 
@@ -29,14 +42,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider creates an Offline vacancy")]
         public void WhenTheProviderCreatesAnOfflineVacancy() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, false);
 
-        [Given(@"the Provider creates a vacancy by using a registered name")]
-        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true);
-
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
-        [Given(@"the Provider creates a vacancy by entering all the Optional fields")]
-        public void GivenTheProviderCreatesAVacancyByEnteringAllTheOptionalFields() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true, true);
+
         
         [Then(@"Provider can make the application unsuccessful")]
         public void ThenProviderCanMakeTheApplicationUnsuccessful() => _providerStepsHelper.ApplicantUnsucessful();

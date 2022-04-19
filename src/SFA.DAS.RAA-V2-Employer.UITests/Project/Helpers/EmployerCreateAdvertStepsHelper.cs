@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
 
-        public EmployerCreateAdvertStepsHelper(ScenarioContext context) : base(context)
+        public EmployerCreateAdvertStepsHelper(ScenarioContext context) : base()
         {
             _context = context;
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);

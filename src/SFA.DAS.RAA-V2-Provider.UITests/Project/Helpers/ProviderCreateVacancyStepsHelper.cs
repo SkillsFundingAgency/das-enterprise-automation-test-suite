@@ -13,14 +13,15 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private bool _isMultiOrg;
 
-        public ProviderCreateVacancyStepsHelper(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ProviderCreateVacancyStepsHelper(ScenarioContext context) : base() => _context = context;
 
-        internal void CreateVacancyViaViewAllVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA)
+        public void CreateAnonymousVacancy() => CreateANewVacancy("anonymous");
+
+        public void CreateANewVacancy(string employername) => CreateANewVacancy(employername, true, true);
+
+        private void CreateANewVacancy(string employername, bool isEmployerAddress, bool isApplicationMethodFAA)
         {
-            CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+            CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Abouttheemployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA)
