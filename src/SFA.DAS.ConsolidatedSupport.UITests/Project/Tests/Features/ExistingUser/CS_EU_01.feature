@@ -8,7 +8,7 @@ Scenario: CS_EU_01_Existing User Ticket is resolved
 	Then a New status ticket is displayed
 	When the ticket is submit as New
 	Then a New status ticket is displayed
-	When the ticket is submit as open
+	When the ticket is submit as Open
 	Then a Open status ticket is displayed
 	When the ticket is submit as On-Hold
 	Then a On-Hold status ticket is displayed
