@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
 
-        private By CommentEditorSelector => By.CssSelector(".comment_input .content .editor.zendesk-editor--rich-text-comment");
+        private By CommentEditorSelector => By.CssSelector("[data-test-id='standalone-rich-text-ckeditor']");
 
         private By CommentsSections => By.CssSelector(".zd-comment");
 
@@ -43,17 +43,17 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By TicketDropdownItem => By.CssSelector("li");
 
-        private By TicketPublicReply => By.CssSelector(".track-id-publicComment");
+        private By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
 
-        private By TicketInternalNote => By.CssSelector(".track-id-privateComment");
+        private By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
 
         public TicketPage(ScenarioContext context) : base(context, false)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
-                () => VerifyPage(),
-                () => VerifyPage(TicketOrganisationName, dataHelper.OrganisationName),
-                () => VerifyPage(TicketOrganisationUserName, dataHelper.OrganisationUserName)
+                () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
+                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
+                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)
             });
         }
 
@@ -109,6 +109,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }
 
+                SubmitComments(dataHelper.InternalNote, dataHelper.SubmitAsWaitingForIncNum);
+
                 Thread.Sleep(5000);
 
                 CloseAllTickets();
@@ -121,18 +123,29 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return incidentNumber;
         }
 
+        public (HomePage, string) SubmitAsNew() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
 
-        public HomePage SubmitAsOpen() => SubmitStatus("Internal note", dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
+        public (HomePage, string) SubmitAsOpen() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
 
-        public HomePage SubmitAsNew() => SubmitStatus("Internal note", dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
+        public (HomePage, string) SubmitAsPending() => SubmitStatus(dataHelper.PublicReply, dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
 
-        public HomePage SubmitAsPending() => SubmitStatus("Public reply", dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
+        public (HomePage, string) SubmitAsOnHold()
+        {
+            SelectOptions("Contact Reason", "Data Lock");
+            SelectOptions("Issue Type", "Query");
+            SelectOptions("Apply macro", "Escalate to Tier 3");
 
-        public HomePage SubmitAsOnHold() => SubmitStatus("Internal note", dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+            VerifyDraftComments("Resolver group to assign to");
 
-        public HomePage SubmitAsSolved() => SubmitStatus("Internal note", dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+            SelectOptions("Service Offering", "AS Payments");
+            SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
 
-        private HomePage SubmitStatus(string commentsarea, string comments, string attribute, string text)
+            return SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+        }
+
+        public (HomePage, string) SubmitAsSolved() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+
+        private (HomePage, string) SubmitStatus(string commentsarea, string comments, string attribute, string text)
         {
             SubmitComments(commentsarea, comments);
 
@@ -152,12 +165,14 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 return null;
             });
 
-            return NavigateToHomePage();
+            return (NavigateToHomePage(), comments);
         }
 
         private void SubmitComments(string commentsarea, string comments)
         {
             formCompletionHelper.ClickElement(() => CommentsSection(commentsarea));
+            
+            formCompletionHelper.ClickElement(() => CommentEditor());
 
             formCompletionHelper.EnterText(CommentEditor(), comments);
         }
@@ -166,15 +181,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private IWebElement CommentEditor() => pageInteractionHelper.FindElements(CommentEditorSelector).First(x => x.Enabled && x.Displayed);
 
-        private string GetTicketStatusClassName(string expectedstatus)
+        private string GetTicketStatusClassName(string status)
         {
             return true switch
             {
-                bool _ when expectedstatus.CompareToIgnoreCase("New") => ".new",
-                bool _ when expectedstatus.CompareToIgnoreCase("Open") => ".open",
-                bool _ when expectedstatus.CompareToIgnoreCase("On-Hold") => ".hold",
-                bool _ when expectedstatus.CompareToIgnoreCase("Pending") => ".pending",
-                bool _ when expectedstatus.CompareToIgnoreCase("Solved") => ".solved",
+                bool _ when status.IsNew() => ".new",
+                bool _ when status.IsOpen() => ".open",
+                bool _ when status.IsOnHold() => ".hold",
+                bool _ when status.IsPending() => ".pending",
+                bool _ when status.IsSolved() => ".solved",
                 _ => string.Empty,
             };
         }

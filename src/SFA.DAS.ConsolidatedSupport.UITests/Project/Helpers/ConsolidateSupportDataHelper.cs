@@ -1,57 +1,75 @@
-﻿using System;
+﻿using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 {
     public class ConsolidateSupportDataHelper
     {
+        private readonly string _suffix;
+
+        private static readonly string CanBeDeleted = "Can Be Deleted";
+
         public ConsolidateSupportDataHelper()
         {
-            Subject = $"Zendesk UI Testing {Guid.NewGuid()}";
-            CommentBody = $"Created on {DateTime.Now}";
+            _suffix = DateTime.Now.ToSeconds();
+
+            Subject = $"Zendesk UI Testing {CanBeDeleted} {Guid.NewGuid()}_{_suffix}";
+            
+            CommentBody = $"{CanBeDeleted} created on {_suffix}";
         }
+        
+        private static readonly string Comment = $" {CanBeDeleted}, Comment - Submit as";
 
-        public string SubmitAsNewComments => "Comment - Submit as New";
+        internal string InternalNote => "Internal note";
 
-        public string SubmitAsOpenComments => "Comment - Submit as Open";
+        internal string PublicReply => "Public reply";
 
-        public string SubmitAsPendingComments => "Comment - Submit as Pending";
+        internal string SubmitAsWaitingForIncNum => $"{Comment} waiting for service incident number";
 
-        public string SubmitAsOnHoldComments => "Comment - Submit as On-Hold";
+        internal string SubmitAsNewComments => $"{Comment} New";
 
-        public string SubmitAsSolvedComments => "Comment - Submit as Solved";
+        internal string SubmitAsOpenComments => $"{Comment} Open";
 
-        public string Subject { get; }
+        internal string SubmitAsPendingComments => $"{Comment} Pending";
 
-        public string CommentBody { get; }
+        internal string SubmitAsOnHoldComments => $"{Comment} On-Hold";
 
-        public string OrganisationName { get; set; }
+        internal string SubmitAsSolvedComments => $"{Comment} Solved";
 
-        public string OrganisationUserName { get; set; }
+        internal string Subject { get; }
 
-        public string NewUserFullName => "JackReacher";
+        internal string CommentBody { get; }
 
-        public string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
+        internal string OrganisationName { get; set; }
 
-        public string NewOrgName => "TestOrgJackReacher";
+        internal string OrganisationUserName { get; set; }
 
-        public string NewOrgDomain => "TestOrgJackReacher.com";
+        internal string NewUserFullName => "JackReacher";
 
-        public string Type => "Employer";
+        internal string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
 
-        public string Status => "Active";
+        internal string NewOrgNameWithOutSuffix => $"TestOrgJackReacher";
 
-        public string AccountManagerStatus => "National Account Managed";
+        internal string NewOrgName => $"{NewOrgNameWithOutSuffix}{_suffix}";
 
-        public string AddressLine1 => "Cheylesmore House";
+        internal string NewOrgDomain => "TestOrgJackReacher.com";
 
-        public string AddressLine2 => "5";
+        internal string Type => "Employer";
 
-        public string AddressLine3 => "Quinton Road";
+        internal string Status => "Active";
 
-        public string City => "Coventry";
+        internal string AccountManagerStatus => "National Account Managed";
 
-        public string County => "West Midlands";
+        internal string AddressLine1 => "Cheylesmore House";
 
-        public string Postcode => "CV1 2WT";
+        internal string AddressLine2 => "5";
+
+        internal string AddressLine3 => "Quinton Road";
+
+        internal string City => "Coventry";
+
+        internal string County => "West Midlands";
+
+        internal string Postcode => "CV1 2WT";
     }
 }
