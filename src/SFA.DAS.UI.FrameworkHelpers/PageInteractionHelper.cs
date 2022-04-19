@@ -180,12 +180,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return IsElementDisplayed(locator);
         }
 
-        public bool IsElementDisplayed(By locator)
+        public bool IsElementDisplayed(By locator) => IsElementDisplayed(() => _webDriver.FindElement(locator).Displayed);
+
+        public bool IsElementDisplayed(Func<bool> func)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
-                return _webDriver.FindElement(locator).Displayed;
+                return func();
             }
             catch (Exception)
             {
