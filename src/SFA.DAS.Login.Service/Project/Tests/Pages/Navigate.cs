@@ -24,7 +24,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         {
             if (navigate)
             {
-                if (pageInteractionHelper.IsElementDisplayedAfterPageLoad(MoreLink))
+                if (pageInteractionHelper.IsElementDisplayed(MoreLink))
                     formCompletionHelper.Click(MoreLink);
 
                 var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
