@@ -47,13 +47,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal VacancyReferencePage CreateVacancyViaViewAllVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
-        {
-            var employernamePage = SelectOrganisation(CreateVacancyViaViewAllVacancy(), employername);
-
-            return PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence, isApplicationMethodFAA, optionalFields);
-        }
-
         private VacancyReferencePage PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
         {
             var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
@@ -63,7 +56,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private SelectEmployersPage CreateVacancy(bool newTab) => GoToRecruitmentHomePage(newTab).CreateVacancy();
 
-        private SelectEmployersPage CreateVacancyViaViewAllVacancy() => GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy();
         public APIListPage NavigateToAPIListPage() => GoToRecruitmentHomePage(false).NavigateToRecruitmentAPIs().ClickAPIKeysHereLink();
         public KeyforAPIPage RenewRecruitmentAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPILink());
         public KeyforAPIPage RenewRecruitmentAPISandboxKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPISandBoxLink());

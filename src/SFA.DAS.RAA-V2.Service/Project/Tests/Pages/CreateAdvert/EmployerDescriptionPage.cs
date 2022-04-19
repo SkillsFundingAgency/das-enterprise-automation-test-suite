@@ -13,6 +13,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private By EmployerWebsiteUrl => By.CssSelector("#EmployerWebsiteUrl");
 
+        private By IsDisabilityConfident => By.CssSelector("#IsDisabilityConfident");
+
         public EmployerDescriptionPage(ScenarioContext context) : base(context) { }
         
         public VacancyPreviewPart2Page EnterEmployerDescription()
@@ -26,7 +28,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
-            if (optionalFields) formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
+            if (optionalFields)
+            {
+                formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
+                if (!isRaaV2Employer) formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
+            }
             Continue();
             return new ContactDetailsPage(context);
         }

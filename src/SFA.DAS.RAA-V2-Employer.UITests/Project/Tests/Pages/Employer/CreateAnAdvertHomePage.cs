@@ -21,10 +21,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
 
-        public CreateAnApprenticeshipAdvertPage GoToCreateAnApprenticeshipAdvertPage()
+        public CreateAnApprenticeshipAdvertOrVacancyPage GoToCreateAnApprenticeshipAdvertPage()
         {
             formCompletionHelper.Click(StartNow);
-            return new CreateAnApprenticeshipAdvertPage(context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
     }  
 }

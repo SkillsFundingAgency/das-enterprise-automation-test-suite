@@ -17,10 +17,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new VacancyPreviewPart2Page(context);
         }
 
+        public FutureProspectsPage ConfirmQualificationsAndGoToFutureProspectsPage()
+        {
+            SaveAndContinue();
+            return new FutureProspectsPage(context);
+        }
+
         public ThingsToConsiderPage ConfirmQualificationsAndContinue()
         {
-            formCompletionHelper.ClickLinkByText("Save and continue");
+            SaveAndContinue();
             return new ThingsToConsiderPage(context);
         }
+
+        private void SaveAndContinue() => formCompletionHelper.ClickLinkByText("Save and continue");
     }
 }

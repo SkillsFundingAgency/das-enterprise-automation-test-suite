@@ -4,6 +4,19 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
+    public class ProviderNewSteps
+    {
+        private readonly ProviderCreateVacancyStepsHelper _providerStepsHelper;
+
+        public ProviderNewSteps(ScenarioContext context) => _providerStepsHelper = new ProviderCreateVacancyStepsHelper(context);
+
+        [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
+        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateVacancyViaViewAllVacancy("anonymous", true, false, true);
+    }
+
+
+
+    [Binding]
     public class ProviderSteps
     {
         private readonly ProviderStepsHelper _providerStepsHelper;
@@ -34,8 +47,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can view the refered vacancy")]
         public void ThenProviderCanViewTheReferedVacancy() => _providerStepsHelper.ViewReferVacancy();
 
-        [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
-        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateVacancyViaViewAllVacancy("anonymous", true, false, true);
+        //[Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
+        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() { }
 
         [Given(@"the Provider renews the employer recruitment API key")]
         public void GivenTheProviderRenewsTheEmployerRecruitmentAPIKey() => _providerStepsHelper.RenewRecruitmentAPIKey();

@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ThingsToConsiderPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "What else would you like the applicant to consider? (optional)";
+        protected override string PageTitle => isRaaV2Employer ? "What else would you like the applicant to consider? (optional)" : "What else do you want the applicant to consider? (optional)";
 
         private By ThingsToConsider => By.CssSelector("#ThingsToConsider");
 
@@ -18,11 +18,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new VacancyPreviewPart2Page(context);
         }
 
-        public CreateAnApprenticeshipAdvertPage EnterThingsToConsiderAndReturnToCreateAdvert(bool optionalFields)
+        public CreateAnApprenticeshipAdvertOrVacancyPage EnterThingsToConsiderAndReturnToCreateAdvert(bool optionalFields)
         {
             if (optionalFields) formCompletionHelper.EnterText(ThingsToConsider, rAAV2DataHelper.OptionalMessage);
             Continue();
-            return new CreateAnApprenticeshipAdvertPage(context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
     }
 }

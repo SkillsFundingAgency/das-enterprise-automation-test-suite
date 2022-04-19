@@ -106,7 +106,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new VacancyPreviewPart2WithErrorsPage(context);
         }
 
-        private By ContactDetails() => objectContext.IsRAAV2Employer() ? EmployerContactDetails : ProviderContactDetails;
+        private By ContactDetails() => isRaaV2Employer ? EmployerContactDetails : ProviderContactDetails;
 
         public ApplicationProcessPage UpdateApplicationProcess()
         {

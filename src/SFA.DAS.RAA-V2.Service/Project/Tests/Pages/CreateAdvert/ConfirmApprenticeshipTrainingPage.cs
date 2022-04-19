@@ -29,5 +29,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             Continue();
             return new SubmitNoOfPositionsPage(context);
         }
+
+        public SummaryOfTheApprenticeshipPage ConfirmTrainingAndContinueToSummaryPage()
+        {
+            Continue();
+            return new SummaryOfTheApprenticeshipPage(context);
+        }
     }
 }
