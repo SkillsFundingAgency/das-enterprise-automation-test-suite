@@ -14,19 +14,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
-        public VacancyTitlePage SelectEmployer(string empName)
-        {
-            if (string.IsNullOrEmpty(empName))
-                formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
-            else
-                SelectRadioOptionByText(empName);
-
-            Continue();
-
-            return new VacancyTitlePage(context);
-        }
-
-        public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer_Provider()
+        public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer()
         {
             int noOfLegalEntity = default;
 

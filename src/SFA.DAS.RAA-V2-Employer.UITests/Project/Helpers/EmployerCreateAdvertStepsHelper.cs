@@ -63,15 +63,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
 
-        internal void CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
+        internal VacancyReferencePage CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
 
-        internal void CreateANewAdvert(string employername) => CreateANewAdvert(employername, true);
+        internal VacancyReferencePage CreateANewAdvert(string employername) => CreateANewAdvert(employername, true);
 
-        internal void CreateANewAdvert(string employername, bool isEmployerAddress) => CreateANewAdvert(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages);
+        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress) => CreateANewAdvert(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages);
 
-        internal void CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, disabilityConfidence, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+        internal VacancyReferencePage CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, disabilityConfidence, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
 
-        internal void CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true);
+        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true);
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
         

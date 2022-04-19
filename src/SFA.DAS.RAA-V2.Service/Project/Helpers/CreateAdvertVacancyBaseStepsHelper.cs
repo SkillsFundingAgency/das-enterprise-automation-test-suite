@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
@@ -33,7 +32,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             checkYourAnswersPage.SubmitAdvert().SetVacancyReference();
 
 
-        protected void CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA)
+        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA)
         {
             var createAdvertPage = CreateAnApprenticeshipAdvertOrVacancy();
 
@@ -63,7 +62,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 
-            //CheckAndSubmitAdvert(createAdvertPage);
+            return CheckAndSubmitAdvert(createAdvertPage);
         }
     }
 }

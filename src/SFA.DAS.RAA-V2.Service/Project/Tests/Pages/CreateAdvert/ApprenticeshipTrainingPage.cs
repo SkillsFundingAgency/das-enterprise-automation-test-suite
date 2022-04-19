@@ -28,11 +28,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueButton));
         }
-
-        public EmployerVacancySearchResultPage CancelVacancy()
-        {
-            EmployerCancelAdvert();
-            return new EmployerVacancySearchResultPage(context);
-        }
     }
 }

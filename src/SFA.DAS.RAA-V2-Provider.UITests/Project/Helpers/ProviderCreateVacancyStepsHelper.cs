@@ -13,15 +13,35 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private bool _isMultiOrg;
 
-        public ProviderCreateVacancyStepsHelper(ScenarioContext context) : base() => _context = context;
+        private readonly bool _newTab;
 
-        public void CreateAnonymousVacancy() => CreateANewVacancy("anonymous");
+        public ProviderCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
 
-        public void CreateANewVacancy(string employername) => CreateANewVacancy(employername, true, true);
-
-        private void CreateANewVacancy(string employername, bool isEmployerAddress, bool isApplicationMethodFAA)
+        public ProviderCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : base()
         {
-            CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+            _context = context;
+            _newTab = newTab;
+        }
+
+        public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername) => CreateANewVacancy(employername);
+
+        public VacancyReferencePage CreateANewVacancyForRandomEmployer() => CreateANewVacancy(true);
+
+        public VacancyReferencePage CreateAnonymousVacancy() => CreateANewVacancy(RAAV2Const.Anonymous);
+
+        public VacancyReferencePage CreateOfflineVacancy() => CreateANewVacancy(false);
+
+        public VacancyReferencePage CreateVacancyForWageType(string wageType) => CreateANewAdvertOrVacancy(string.Empty, true, wageType, true);
+
+        private VacancyReferencePage CreateANewVacancy(string employername) => CreateANewVacancy(employername, true);
+
+        private VacancyReferencePage CreateANewVacancy(bool isApplicationMethodFAA) => CreateANewVacancy(string.Empty, isApplicationMethodFAA);
+
+        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, true, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+
+        private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
+        {
+            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Abouttheemployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA)
@@ -66,7 +86,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()
         {
-            (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) = GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy().StartNow().SelectEmployer_Provider();
+            (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) = 
+                new RecruitmentProviderHomePageStepsHelper(_context)
+                .GoToRecruitmentProviderHomePage(_newTab)
+                .GoToViewAllVacancyPage()
+                .CreateVacancy()
+                .StartNow()
+                .SelectEmployer();
 
             _isMultiOrg = isMultiOrg;
 
@@ -75,12 +101,5 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
             _isMultiOrg ? advertTitlePage.EnterAdvertTitleMultiOrg().SelectOrganisationMultiOrg() : advertTitlePage.EnterVacancyTitle();
-
-        private RecruitmentHomePage GoToRecruitmentHomePage(bool newTab)
-        {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(newTab);
-
-            return new RecruitmentHomePage(_context, true);
-        }
     }
 }
