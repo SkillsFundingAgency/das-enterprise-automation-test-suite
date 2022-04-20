@@ -24,6 +24,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private RecruitmentDynamicHomePage _dynamicHomePage;
         private WhatDoYouWantToCallThisAdvertPage _whatDoYouWantToCallThisAdvertPage;
+        private DeleteVacancyQuestionPage _deleteVacancyQuestionPage;
+        private EmployerVacancySearchResultPage _employerVacancySearchResultPage;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -49,7 +51,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void WhenEmployerCancelsAfterSavingTheTitleOfTheVacancy() => _vacanciesPage = _employerStepsHelper.CancelVacancy();
 
         [Then(@"the Employer can cancel deleting the draft vacancy")]
-        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _vacancyPreviewPart2Page = _vacanciesPage.GoToVacancyPreviewPart2Page().DeleteVacancy().NoDeleteVacancy();
+        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _employerStepsHelper.NoDeleteDraftVacancy(_deleteVacancyQuestionPage);
 
         //[Given(@"the Employer creates an offline vacancy with disability confidence")]
         public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);
@@ -91,7 +93,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(_vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
 
         [Then(@"the Employer is able to delete the draft vacancy")]
-        public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page);
+        public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.CompleteDeleteOfDraftVacancy();
 
         [Then(@"submission errors displayed for not completing the mandatory information")]
         public void ThenSubmissionErrorsDisplayedForNotCompletingTheMandatoryInformation()

@@ -29,6 +29,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer creates Draft advert")]
         public void TheEmployerCreatesDraftAdvert() => ReturnToApplications(_employerCreateVacancyStepsHelper.CreateDraftAdvert());
 
+        [When(@"the Employer completes the Draft advert to cancel deleting the draft")]
+        public void TheEmployerCreatesCompleteDraftAdvert() => _employerCreateVacancyStepsHelper.CompleteDraftAdvert(GoToYourAdvertFromDraftAdverts());
+
         [Given(@"the Employer can create an advert by entering all the Optional fields")]
         public void TheEmployerCanCreateAnAdvertByEnteringAllTheOptionalFields()
         {

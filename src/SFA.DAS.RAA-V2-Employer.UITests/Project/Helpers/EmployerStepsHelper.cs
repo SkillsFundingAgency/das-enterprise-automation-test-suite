@@ -30,6 +30,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
 
         internal EmployerVacancySearchResultPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+        
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy()
+        {
+            new VacancyPreviewPart2Page(_context).DeleteVacancy().YesDeleteVacancy();
+            return new EmployerVacancySearchResultPage(_context);
+        }
+        public VacancyPreviewPart2Page NoDeleteDraftVacancy(DeleteVacancyQuestionPage deletepreviewPage) => deletepreviewPage.NoDeleteVacancy();
 
         internal EmployerVacancySearchResultPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
 
