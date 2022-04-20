@@ -8,6 +8,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
     {
         public ProviderCreateVacancySqlDbHelper(DbConfig config) : base(config.AccountsDbConnectionString) { }
 
-        public int GetNoOfLegalEntity(string hashedid) => Convert.ToInt32(GetDataAsObject($"SELECT count(*) FROM employer_account.AccountLegalEntity al JOIN employer_account.Account a ON a.id = al.AccountId WHERE a.HashedId = '{hashedid}'"));
+        public int GetNoOfLegalEntity(string hashedid) => Convert.ToInt32(GetDataAsObject($"SELECT count(*) FROM employer_account.AccountLegalEntity al JOIN employer_account.Account a ON a.id = al.AccountId WHERE al.Deleted IS NULL AND a.HashedId = '{hashedid}'"));
     }
 }
