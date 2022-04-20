@@ -24,11 +24,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             var hashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RadioItem($"[value='{hashedid[0]}']")));
+            (string hashedidvalue, int noOfLegalEntity) = ((string)hashedid[0], (int)hashedid[1]);
 
-            int noOfLegalEntity = (int)hashedid[1];
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RadioItem($"[value='{hashedidvalue}']")));
 
-            objectContext.SetDebugInformation($"Selected employer with hashed id {hashedid} who has {noOfLegalEntity} legal entities");
+            objectContext.SetDebugInformation($"Selected employer with hashed id {hashedidvalue} who has {noOfLegalEntity} legal entities");
 
             Continue();
 
