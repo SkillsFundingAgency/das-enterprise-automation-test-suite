@@ -3,6 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
@@ -18,16 +19,20 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         {
             int noOfLegalEntity = default;
 
+            string hashedid = string.Empty;
+
             formCompletionHelper.ClickElement(() =>
             {
                 var element = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioItems));
                 
-                var hashedid = element.FindElement(By.CssSelector("input")).GetAttribute("value");
+                hashedid = element.FindElement(By.CssSelector("input")).GetAttribute("value");
 
                 noOfLegalEntity = context.Get<ProviderCreateVacancySqlDbHelper>().GetNoOfLegalEntity(hashedid);
 
                 return element.FindElement(RadioLabels);
             });
+
+            objectContext.SetDebugInformation($"Selected employer with hashed id {hashedid} who has {noOfLegalEntity} legal entities");
 
             Continue();
 
