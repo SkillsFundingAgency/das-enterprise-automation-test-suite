@@ -21,7 +21,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             return (EnglishFraction, EnglishFractioncalculatedAt, table);
         }
 
-        public static (string, int) GetTransfersPreviousTaxYearEnd(DateTime dateTime) => GetPreviousTaxYearEnd(dateTime, 20);
+        public static (string, int) GetTransfersPreviousTaxYearEnd(DateTime dateTime) => GetPreviousTaxYearEnd(dateTime, 19);
 
         public static (string, int) GetPreviousTaxYearEnd(DateTime dateTime) => GetPreviousTaxYearEnd(dateTime, 5);
 

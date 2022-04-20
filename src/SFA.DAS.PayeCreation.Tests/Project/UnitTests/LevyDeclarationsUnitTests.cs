@@ -28,10 +28,10 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
         [TestCase(2022, 04, 05, "20-21", "2021")]
         [TestCase(2022, 04, 06, "20-21", "2021")]
         [TestCase(2022, 04, 19, "20-21", "2021")]
-        [TestCase(2022, 04, 20, "20-21", "2021")]
+        [TestCase(2022, 04, 20, "21-22", "2022")]
         [TestCase(2022, 04, 21, "21-22", "2022")]
         [TestCase(2022, 04, 24, "21-22", "2022")]
-        [TestCase(2023, 04, 20, "21-22", "2022")]
+        [TestCase(2023, 04, 20, "22-23", "2023")]
         [TestCase(2023, 04, 21, "22-23", "2023")]
         public void GetTransfersPreviousTaxYearEnd(int year, int month, int date, string expectedduraration, string expectedyear)
         {
