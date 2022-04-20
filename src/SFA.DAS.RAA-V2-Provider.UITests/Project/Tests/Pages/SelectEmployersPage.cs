@@ -28,6 +28,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RadioItem($"[value='{hashedidvalue}']")));
 
+            if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
+
             objectContext.SetDebugInformation($"Selected employer with hashed id {hashedidvalue} who has {noOfLegalEntity} legal entities");
 
             Continue();
