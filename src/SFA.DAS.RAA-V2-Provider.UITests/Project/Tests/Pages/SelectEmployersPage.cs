@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport;
+using System.Linq;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
@@ -11,26 +12,21 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Which employer is this vacancy for?";
 
-        private By RadioItems => By.CssSelector(".govuk-radios__item");
+        private By RadioItem(string value) => By.CssSelector($".govuk-radios__item input{value}");
 
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
         public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer()
         {
-            int noOfLegalEntity = default;
+            var employers = pageInteractionHelper.FindElements(RadioItem(string.Empty)).ToList().Select(x => x.GetAttribute("value")).ToList();
 
-            string hashedid = string.Empty;
+            var validemployers = context.Get<ProviderCreateVacancySqlDbHelper>().GetValidHashedId(employers);
 
-            formCompletionHelper.ClickElement(() =>
-            {
-                var element = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioItems));
-                
-                hashedid = element.FindElement(By.CssSelector("input")).GetAttribute("value");
+            var hashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
 
-                noOfLegalEntity = context.Get<ProviderCreateVacancySqlDbHelper>().GetNoOfLegalEntity(hashedid);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RadioItem($"[value='{hashedid[0]}']")));
 
-                return element.FindElement(RadioLabels);
-            });
+            int noOfLegalEntity = (int)hashedid[1];
 
             objectContext.SetDebugInformation($"Selected employer with hashed id {hashedid} who has {noOfLegalEntity} legal entities");
 
