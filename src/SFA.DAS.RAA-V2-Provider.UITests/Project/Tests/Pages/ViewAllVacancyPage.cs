@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
 
-        public ViewAllVacancyPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ViewAllVacancyPage(ScenarioContext context) : base(context) { }
 
         public SelectEmployersPage CreateVacancy()
         {

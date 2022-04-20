@@ -90,6 +90,8 @@ namespace SFA.DAS.FrameworkHelpers
 
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
+        protected List<object[]> GetListOfDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString);
+
         protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) 
             => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
 

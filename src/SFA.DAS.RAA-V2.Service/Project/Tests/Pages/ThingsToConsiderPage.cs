@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ThingsToConsiderPage : RAAV2CSSBasePage
@@ -17,6 +16,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(ThingsToConsider, rAAV2DataHelper.OptionalMessage);
             Continue();
             return new VacancyPreviewPart2Page(context);
+        }
+
+        public CreateAnApprenticeshipAdvertPage EnterThingsToConsiderAndReturnToCreateAdvert(bool optionalFields)
+        {
+            if (optionalFields) formCompletionHelper.EnterText(ThingsToConsider, rAAV2DataHelper.OptionalMessage);
+            Continue();
+            return new CreateAnApprenticeshipAdvertPage(context);
         }
     }
 }
