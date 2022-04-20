@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
 
-            objectContext.SetDebugInformation($"Selected employer with hashed id {hashedidvalue} who has {noOfLegalEntity} legal entities");
+            objectContext.SetDebugInformation($"Selected employer with hashed id '{hashedidvalue}' who has {noOfLegalEntity} legal entities with provider permission");
 
             Continue();
 
