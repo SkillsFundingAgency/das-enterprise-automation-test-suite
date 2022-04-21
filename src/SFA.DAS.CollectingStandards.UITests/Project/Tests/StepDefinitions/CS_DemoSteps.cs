@@ -37,6 +37,5 @@ namespace SFA.DAS.CollectingStandards.UITests.Project.Tests.StepDefinitions
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(false);
 
         }
-        private void GoToProviderHomePage() => _tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
     }
 }
