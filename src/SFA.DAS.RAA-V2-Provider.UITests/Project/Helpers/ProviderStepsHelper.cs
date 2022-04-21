@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         public ProviderVacancySearchResultPage SearchVacancy() => GoToRecruitmentHomePage().SearchVacancy();
 
-        internal void ViewReferVacancy() => GoToRecruitmentHomePage().SearchReferVacancy();
+        internal void ViewReferVacancy() => GoToRecruitmentHomePage().SearchReferAdvertTitle();
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
 

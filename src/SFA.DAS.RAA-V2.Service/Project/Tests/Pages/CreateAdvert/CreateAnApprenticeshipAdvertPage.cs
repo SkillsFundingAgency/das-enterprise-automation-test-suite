@@ -42,9 +42,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public WhatDoYouWantToCallThisAdvertPage AdvertTitle()
         {
-            NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_1);
+            NavigateToAdvertTitle();
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
+        
+        public void NavigateToAdvertTitle() => NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_1);
 
         public SelectOrganisationPage EnterAdvertOrganisaition()
         {

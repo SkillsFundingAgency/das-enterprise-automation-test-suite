@@ -40,6 +40,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         public ProviderVacancySearchResultPage SearchVacancy() => _searchVacancyPageHelper.SearchProviderVacancy();
 
-        public ReferVacancyPage SearchReferVacancy() => _searchVacancyPageHelper.SearchReferVacancy();
+        public ReferVacancyPage SearchReferAdvertTitle()
+        {
+            var vacancyPage = _searchVacancyPageHelper.SearchReferVacancy();
+
+            vacancyPage.NavigateToAdvertTitle();
+
+            return new ReferVacancyPage(context);
+        }
     }
 }
