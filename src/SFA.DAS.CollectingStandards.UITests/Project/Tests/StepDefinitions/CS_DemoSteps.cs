@@ -10,7 +10,7 @@ namespace SFA.DAS.CollectingStandards.UITests.Project.Tests.StepDefinitions
 
         public CS_DemoSteps(ScenarioContext context) => _context = context;
     
-        [Given(@"the provider logs in")]
-        public void GivenTheProviderLandOnProviderPortalPage() => new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(false);
+        [Given(@"the provider logs into employer portal")]
+        public void GivenTheProviderLogsIntoEmployerPortal() => new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(false);
     }
 }
