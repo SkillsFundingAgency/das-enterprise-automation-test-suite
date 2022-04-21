@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -10,6 +11,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
         public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
+
+        public CreateAnApprenticeshipAdvertPage CreateAnApprenticeshipAdvertPage()
+        {
+            DraftVacancy();
+            return new CreateAnApprenticeshipAdvertPage(context);
+        }
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {

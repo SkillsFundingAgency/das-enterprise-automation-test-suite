@@ -16,5 +16,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.Click(Preview);
             return new VacancyPreviewPart2Page(context);
         }
+
+        public ThingsToConsiderPage ConfirmQualificationsAndContinue()
+        {
+            formCompletionHelper.ClickLinkByText("Save and continue");
+            return new ThingsToConsiderPage(context);
+        }
     }
 }

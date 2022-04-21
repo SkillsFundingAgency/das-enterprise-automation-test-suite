@@ -6,17 +6,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderP
 {
     public class AedProviderHomePage : ProviderHomePage
     {
-        public AedProviderHomePage(ScenarioContext context) : base(context) => VerifyPage();
+        protected By FindingEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
 
-        private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+        public AedProviderHomePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public FindEmployersThatNeedATrainingProviderPage FindEmployersThatNeedATrainingProvider()
         {
             formCompletionHelper.ClickElement(FindingEmployersThatNeedATrainingProviderLink);
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
-            {
-                formCompletionHelper.ClickElement(PireanPreprodButton);
-            }
+            
+            ClickIfPirenIsDisplayed();
+            
             return new FindEmployersThatNeedATrainingProviderPage(context);
         }
     }

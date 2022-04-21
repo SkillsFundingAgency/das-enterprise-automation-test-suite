@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project
@@ -17,7 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project
         {
             _context.Set(new CampaignsDataHelper());
 
-            _context.GetWebDriver().Navigate().GoToUrl(UrlConfig.CA_BaseUrl);
+            _context.Get<TabHelper>().GoToUrl(UrlConfig.CA_BaseUrl);
         }
     }
 }

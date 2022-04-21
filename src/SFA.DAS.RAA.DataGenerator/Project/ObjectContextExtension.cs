@@ -6,6 +6,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
     {
         #region Constants
         private const string EmployerName = "employername";
+        private const string EmployerNameAsShownInTheAdvert = "employernameasshownintheadvert";
         private const string VacancyReference = "vacancyreference";
         private const string VacancyTitle = "vacancytitle";
         private const string VacancyType = "vacancytype";
@@ -52,6 +53,8 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         public static string GetVacancyTitle(this ObjectContext objectContext) => objectContext.KeyExists<bool>(VacancyTitle) ? objectContext.Get(VacancyTitle) : string.Empty;
         public static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Set(EmployerName, value);
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerName);
+        public static void SetEmployerNameAsShownInTheAdvert(this ObjectContext objectContext, string value) => objectContext.Set(EmployerNameAsShownInTheAdvert, value);
+        public static string GetEmployerNameAsShownInTheAdvert(this ObjectContext objectContext) => objectContext.Get(EmployerNameAsShownInTheAdvert);
         public static void SetVacancyShortDescription(this ObjectContext objectContext, string value) => objectContext.Set(VacancyShortDesc, value);
         public static string GetVacancyShortDescription(this ObjectContext objectContext) => objectContext.Get(VacancyShortDesc);
     }
