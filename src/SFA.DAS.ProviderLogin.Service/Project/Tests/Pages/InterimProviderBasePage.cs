@@ -10,7 +10,9 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         #region Helpers and Context
         protected readonly string ukprn;
         #endregion
-        
+
+        private By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+
         protected By NotificationSettingsLink => By.LinkText("Notification settings");
         protected By OrganisationsAndAgreementsLink => By.LinkText("Organisations and agreements");
         private By SignOutLink => By.LinkText("Sign out");
@@ -23,5 +25,11 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         }
 
         public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
+
+        protected void ClickIfPirenIsDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
+                formCompletionHelper.ClickElement(PireanPreprod);
+        }
     }
 }

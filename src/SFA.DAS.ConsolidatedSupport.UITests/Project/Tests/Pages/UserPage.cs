@@ -1,29 +1,16 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
-using System.Linq;
+﻿using OpenQA.Selenium;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class UserPage : UserOrgPage
+    public class UserPage : UserOrgBasePage
     {
         protected override By PageHeader => By.CssSelector("[data-test-id='tabs-nav-item-users']");
 
         protected override string PageTitle => dataHelper.NewUserFullName;
 
         private By AllRecordsFields => By.CssSelector(".property_box > .ember-view .property");
-
-        private By CustomerRecordFields => By.CssSelector(".customer_record > .ember-view.property");
-        
-        private By UserLabel => By.CssSelector(".custom-field-label");
-
-        private By SelectElement => By.CssSelector("div.select");
-
-        private By SearchInputElement => By.CssSelector(".zd-searchmenu-base");
-
-        private By TextAreaInputElement => By.CssSelector("input.textarea");
 
         private By OrganisationTab => By.CssSelector("[data-test-id='tabs-nav-item-organizations']");
 
@@ -33,17 +20,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By AddOrganisationButton => By.CssSelector("[data-test-id='organization-add-modal-submit-button']");
 
-        public UserPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage(() =>
-            {
-                NavigateToUser();
+        protected override PageTypeEnum PageType => PageTypeEnum.User;
 
-                return pageInteractionHelper.FindElements(PageHeader);
-
-            }, PageTitle);
-        }
-
+        public UserPage(ScenarioContext context) : base(context, true) { }
+        
         public void CreateOrganisation()
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(OrganisationTab), false);
@@ -55,68 +35,36 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(AddOrganisationButton);
         }
 
-        public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation), true);
-    
-        public HomePage VerifyOrganisationDomain() => InvokeAction(() => VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower()), true);
-
-        public HomePage VerifyUserDetails(string question, string answer, bool IsOrganisation = false)
+        public void VerifyOrganisationDetails()
         {
-            return InvokeAction(() =>
+            for (int i = 0; i < 5; i++)
             {
-                foreach (var element in FindElements(question)) 
-                    if (FindlabelElements(element, question)) 
-                        StringAssert.Contains(answer, element.Text, $"Question {question} is not updated");
-            }, IsOrganisation);
-        }
-
-        public HomePage SelectOptions(string question, string answer, bool IsOrganisation = false)
-        {
-            return InvokeAction(() =>
-            {
-                foreach (var element in FindElements(question))
+                try
                 {
-                    if (FindlabelElements(element, question))
-                    {
-                        formCompletionHelper.ClickElement(element.FindElement(SelectElement));
-
-                        element.FindElement(SearchInputElement).SendKeys(answer);
-
-                        element.FindElement(SearchInputElement).SendKeys(Keys.Tab);
-                    }
+                    VerifyElement(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation);
+                    break;
                 }
-            }, IsOrganisation);
-        }
-
-        public HomePage EnterText(string question, string answer, bool IsOrganisation = false)
-        {
-            return InvokeAction(() => 
-            {
-                foreach (var element in FindElements(question))
+                catch (System.Exception)
                 {
-                    if (FindlabelElements(element, question))
-                    {
-                        formCompletionHelper.ClickElement(element.FindElement(TextAreaInputElement));
-
-                        formCompletionHelper.EnterText(element.FindElement(TextAreaInputElement), answer);
-
-                        element.FindElement(TextAreaInputElement).SendKeys(Keys.Tab);
-                    }
+                    Thread.Sleep(5000);
                 }
-            }, IsOrganisation);
+            }
+
+            VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower());
         }
 
-        private List<IWebElement> FindElements(string question)
+        public HomePage VerifyDetails() => VerifyUserDetails("Contact Type", dataHelper.Type);
+
+        public UserPage EnterDetails()
         {
-            VerifyElement(() => pageInteractionHelper.FindElements(CustomerRecordFields), question);
+            SelectOptions("Contact Type", dataHelper.Type);
+            EnterText("Address Line 1", dataHelper.AddressLine1);
+            EnterText("Address Line 2", dataHelper.AddressLine2);
+            EnterText("Address Line 3", dataHelper.AddressLine3);
+            EnterText("City", dataHelper.City);
+            EnterText("Postcode", dataHelper.Postcode);
 
-            return pageInteractionHelper.FindElements(CustomerRecordFields).Where(x => x.Text.ContainsCompareCaseInsensitive(question)).ToList();
-        }
-
-        private bool FindlabelElements(IWebElement element, string question)
-        {
-            var labelElements = element.FindElements(UserLabel).ToList();
-
-            return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question));
+            return this;
         }
     }
 }
