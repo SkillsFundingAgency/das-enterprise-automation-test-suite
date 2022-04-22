@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
 {
@@ -66,7 +67,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         private string YourOnline_01 => "Web address";
         #endregion
 
+
+
         #endregion
+        
+        private By ClickReturnToApplicationOverview => By.XPath("//a[@class='govuk-button']");
 
         public AS_ApplyToStandardPage(ScenarioContext context) : base(context) { }
 
@@ -78,7 +83,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         public AS_ApplicationOverviewPage ReturnToApplicationOverview()
         {
-            formCompletionHelper.ClickLinkByText("Return to application overview");
+            formCompletionHelper.Click(ClickReturnToApplicationOverview);
             return new AS_ApplicationOverviewPage(context);
         }
     }
