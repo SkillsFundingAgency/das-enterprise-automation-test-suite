@@ -7,15 +7,6 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class CheckPageInteractionHelper : PageInteractionHelper
-    {
-        public CheckPageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, CheckPageRetryHelper retryHelper) 
-            : base(webDriver, webDriverWaitHelper, retryHelper)
-        {
-
-        }
-    }
-
     public class PageInteractionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
