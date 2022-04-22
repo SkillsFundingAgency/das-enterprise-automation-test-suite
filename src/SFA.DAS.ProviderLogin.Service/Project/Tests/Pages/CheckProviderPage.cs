@@ -1,12 +1,15 @@
 ﻿using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
 {
     public abstract class CheckProviderPage : CheckPage
     {
-        public CheckProviderPage(ScenarioContext context) : base(context) { }
+        private readonly CheckPageInteractionHelper checkPageInteractionHelper;
 
-        public override bool IsPageDisplayed() => pageInteractionHelper.IsElementDisplayed(() => VerifyPage(Identifier));
+        public CheckProviderPage(ScenarioContext context) : base(context) => checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
+
+        public override bool IsPageDisplayed() => checkPageInteractionHelper.IsElementDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier));
     }
 }

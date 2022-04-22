@@ -7,6 +7,15 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
+    public class CheckPageInteractionHelper : PageInteractionHelper
+    {
+        public CheckPageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, CheckPageRetryHelper retryHelper) 
+            : base(webDriver, webDriverWaitHelper, retryHelper)
+        {
+
+        }
+    }
+
     public class PageInteractionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
@@ -147,12 +156,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
         {
-            _retryHelper.RetryOnWebDriverException(() => 
+            _retryHelper.RetryOnWebDriverException(() =>
             {
                 var selected = GetElementByAttribute(RadioButtonInputCssSelector, AttributeHelper.Value, text)?.Selected ?? false;
 
                 if (isSelected != selected) throw new WebDriverException($"Radio option '{text}' selection verification failed: Expected: {isSelected} Found: {selected}");
-            });  
+            });
         }
 
         public bool IsElementPresent(By locator)
@@ -224,7 +233,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
         public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Value);
-        
+
         public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetAttribute(AttributeHelper.DataCount));
 
         public string GetText(IWebElement webElement) => webElement.Text;
