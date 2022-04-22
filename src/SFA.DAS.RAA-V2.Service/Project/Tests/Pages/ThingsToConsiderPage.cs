@@ -11,11 +11,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ThingsToConsiderPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page EnterThingsToConsider()
+        public PreviewYouAdvertOrVacancyPage EnterThingsToConsider()
         {
             formCompletionHelper.EnterText(ThingsToConsider, rAAV2DataHelper.OptionalMessage);
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage EnterThingsToConsiderAndReturnToCreateAdvert(bool optionalFields)

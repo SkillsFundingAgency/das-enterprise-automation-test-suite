@@ -5,10 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacancyPreviewPart2Page : RAAV2CSSBasePage
+    public class PreviewYouAdvertOrVacancyPage : RAAV2CSSBasePage
     {
-        //protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
-        protected override string PageTitle => "Preview your advert";
+        protected override string PageTitle => isRaaV2Employer ? "Preview your advert" : "Preview your vacancy";
 
         protected override bool TakeFullScreenShot => false;
 
@@ -27,7 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
         private By ApplicationWebAddress => By.Id("ApplicationUrl");
 
-        public VacancyPreviewPart2Page(ScenarioContext context) : base(context) { }
+        public PreviewYouAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {

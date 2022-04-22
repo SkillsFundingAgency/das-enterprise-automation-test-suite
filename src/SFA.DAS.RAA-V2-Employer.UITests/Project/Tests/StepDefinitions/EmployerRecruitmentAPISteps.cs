@@ -5,26 +5,26 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class RecruitmentAPISteps
+    public class EmployerRecruitmentAPISteps
     {
         private readonly ScenarioContext _context;
-        private APIListPage _aPIListPage;
+        private APIListPage _apiListPage;
         private KeyforAPIPage _keyforAPIPage;
 
-        public RecruitmentAPISteps(ScenarioContext context) => _context = context;
+        public EmployerRecruitmentAPISteps(ScenarioContext context) => _context = context;
 
         [Given(@"the employer selects the Recruitment API list page")]
-        public void GivenTheEmployerSelectsTheRecruitmentAPIListPage() => _aPIListPage = new YourApprenticeshipAdvertsHomePage(_context).ClickRecruitmentAPILink().ClickAPIKeysHereLink();
+        public void GivenTheEmployerSelectsTheRecruitmentAPIListPage() => _apiListPage = new YourApprenticeshipAdvertsHomePage(_context).ClickRecruitmentAPILink().ClickAPIKeysHereLink();
 
         [When(@"the employer selects Recruitment API from the list")]
         
-        public void WhenTheEmployerSelectsRecruitmentAPIFromTheList() => _keyforAPIPage = _aPIListPage.ClickViewRecruitmentAPILink();
+        public void WhenTheEmployerSelectsRecruitmentAPIFromTheList() => _keyforAPIPage = _apiListPage.ClickViewRecruitmentAPILink();
 
         [When(@"the employer selects Recruitment Sandbox API from the list")]
-        public void WhenTheEmployerSelectsRecruitmentSandboxAPIFromTheList() => _keyforAPIPage = _aPIListPage.ClickViewRecruitmentAPISandBoxLink();
+        public void WhenTheEmployerSelectsRecruitmentSandboxAPIFromTheList() => _keyforAPIPage = _apiListPage.ClickViewRecruitmentAPISandBoxLink();
 
         [When(@"the employer selects Display API from the list")]
-        public void WhenTheEmployerSelectsDisplayAPIFromTheList() => _keyforAPIPage = _aPIListPage.ClickViewDisplayAPILink();
+        public void WhenTheEmployerSelectsDisplayAPIFromTheList() => _keyforAPIPage = _apiListPage.ClickViewDisplayAPILink();
 
         [Then(@"the employer can renew the API key")]
         public void ThenTheEmployerCanRenewTheAPIKey() => _keyforAPIPage = _keyforAPIPage.ClickRenewKeyLink().RenewAPIKey().VerifyApikeyRenewed();

@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public CheckYourAnswersPage SelectApplicationMethod_Provider(bool isFAA) { SelectApplicationMethod(isFAA); return new CheckYourAnswersPage(context); }
 
-        public VacancyPreviewPart2Page ApplicationMethod(bool isFAA) { { if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal(); } return SaveAndContinue(); }
+        public PreviewYouAdvertOrVacancyPage ApplicationMethod(bool isFAA) { { if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal(); } return SaveAndContinue(); }
 
         private void ApplicationMethodFAA() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(Yes));
 
@@ -31,10 +31,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(ApplicationInstructions, rAAV2DataHelper.OptionalMessage);
 
         }
-        private VacancyPreviewPart2Page SaveAndContinue()
+        private PreviewYouAdvertOrVacancyPage SaveAndContinue()
         {
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
 
         private void SelectApplicationMethod(bool isFAA)

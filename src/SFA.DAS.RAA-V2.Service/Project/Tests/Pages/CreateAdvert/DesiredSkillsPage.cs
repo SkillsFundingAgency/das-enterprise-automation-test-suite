@@ -15,13 +15,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public DesiredSkillsPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page SelectSkill()
+        public PreviewYouAdvertOrVacancyPage SelectSkill()
         {
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
 
             formCompletionHelper.Click(SaveAndContinue);
 
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
 
         public QualificationsPage SelectSkillAndGoToQualificationsPage()

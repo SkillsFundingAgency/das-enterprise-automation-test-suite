@@ -12,11 +12,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         
         public ShortDescriptionPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page EnterBriefOverview()
+        public PreviewYouAdvertOrVacancyPage EnterBriefOverview()
         {
             formCompletionHelper.EnterText(ShortDescription, rAAV2DataHelper.VacancyBriefOverview);
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
     }
 }

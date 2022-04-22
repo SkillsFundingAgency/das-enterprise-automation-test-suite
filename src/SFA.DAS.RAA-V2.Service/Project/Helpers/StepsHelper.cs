@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         public void ApplicantUnsucessful(ManageRecruitPage manageVacancyPage)
             => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
 
-        public VacancyPreviewPart2Page PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
+        public PreviewYouAdvertOrVacancyPage PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
             var locationPage = ChooseEmployerNameForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername);
             return FillApprenticeshipDetails(locationPage, isEmployerAddress, disabilityConfidence);
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             ;
         }
 
-        private VacancyPreviewPart2Page FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
+        private PreviewYouAdvertOrVacancyPage FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
             locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates(disabilityConfidence)
             .EnterDuration().SelectNationalMinimumWage().PreviewVacancy();
     }

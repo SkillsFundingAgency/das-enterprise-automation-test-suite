@@ -13,10 +13,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public CheckYourAnswersPage(ScenarioContext context) : base(context)  { }
 
-        public VacancyPreviewPart2Page PreviewAdvert()
+        public PreviewYouAdvertOrVacancyPage PreviewAdvert()
         {
             formCompletionHelper.ClickLinkByText("Preview advert before submitting");
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage BackToTaskList()

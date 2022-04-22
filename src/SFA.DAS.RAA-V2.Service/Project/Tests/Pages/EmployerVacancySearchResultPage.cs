@@ -24,10 +24,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ApprenticeshipTrainingPage(context);
         }
 
-        public VacancyPreviewPart2Page GoToVacancyPreviewPart2Page()
+        public PreviewYouAdvertOrVacancyPage GoToVacancyPreviewPart2Page()
         {
             DraftVacancy();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
     }
 }

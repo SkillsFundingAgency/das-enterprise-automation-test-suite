@@ -2,48 +2,43 @@
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
-using System;
 using TechTalk.SpecFlow;
 using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
+    public class EmployerCreateDraftAdvertStepsHelper : EmployerCreateAdvertStepsHelper
+    {
+        public EmployerCreateDraftAdvertStepsHelper(ScenarioContext context) : base(context)
+        {
+
+        }
+
+        internal VacancyReferencePage SubmitDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage));
+
+        internal PreviewYouAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            CompleteAboutTheEmployer(createAdvertPage).CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
+
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new PreviewYouAdvertOrVacancyPage(context).DeleteVacancy().YesDeleteVacancy();
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
+
+        internal YourApprenticeshipAdvertsHomePage CancelAdvert() { EnterAdvertTitle(CreateAnApprenticeshipAdvertOrVacancy()).EmployerCancelAdvert(); return new YourApprenticeshipAdvertsHomePage(context); }
+    }
+
+
+
     public class EmployerCreateAdvertStepsHelper : CreateAdvertVacancyBaseStepsHelper
     {
-        private readonly ScenarioContext _context;
+        protected readonly ScenarioContext context;
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
 
         public EmployerCreateAdvertStepsHelper(ScenarioContext context) : base()
         {
-            _context = context;
+            this.context = context;
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
-
-        internal void SubmitDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
-        {
-            createAdvertPage = SkillsAndQualifications(createAdvertPage);
-
-            createAdvertPage = AboutTheEmployer(createAdvertPage, string.Empty, true);
-
-            CheckAndSubmitAdvert(createAdvertPage);
-        }
-
-        internal void CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
-        {
-            createAdvertPage = SkillsAndQualifications(createAdvertPage);
-
-            createAdvertPage = AboutTheEmployer(createAdvertPage, string.Empty, true);
-
-            CompleteDraftAdvertBeforeReturningToApplications(createAdvertPage);
-        }
-
-        private VacancyPreviewPart2Page CompleteDraftAdvertBeforeReturningToApplications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => AttemptDeletingDraftAdvertBeforeReturningToCreateAdvertPage(createAdvertPage.CheckYourAnswers());
-
-        private VacancyPreviewPart2Page AttemptDeletingDraftAdvertBeforeReturningToCreateAdvertPage(CheckYourAnswersPage checkYourAnswersPage) =>
-            checkYourAnswersPage.PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
-
-        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
-        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateCompleteDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
         {
@@ -54,19 +49,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             createAdvertPage = CreateDraftAdvert(createAdvertPage, true);
 
-            createAdvertPage = SkillsAndQualifications(createAdvertPage);
-
-            createAdvertPage = AboutTheEmployer(createAdvertPage, string.Empty, true);
-
+            createAdvertPage = CompleteAboutTheEmployer(createAdvertPage);
 
             CheckAndSubmitAdvert(createAdvertPage);
         }
     
         internal CreateAnApprenticeshipAdvertOrVacancyPage AddAnAdvert()
         {
-            new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
+            new RecruitmentDynamicHomePage(context, true).ContinueToCreateAdvert();
 
-            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().GoToCreateAnApprenticeshipAdvertPage();
+            return new DoYouNeedToCreateAnAdvertPage(context).ClickYesRadioButtonTakesToRecruitment().GoToCreateAnApprenticeshipAdvertPage();
         }
 
         internal void CreateOfflineVacancy()
@@ -75,8 +67,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
-
-        internal YourApprenticeshipAdvertsHomePage CancelAdvert() { EnterAdvertTitle(CreateAnApprenticeshipAdvertOrVacancy()).EmployerCancelAdvert(); return new YourApprenticeshipAdvertsHomePage(_context); }
 
         internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(_rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
 
@@ -122,6 +112,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
 
+        protected CreateAnApprenticeshipAdvertOrVacancyPage CompleteAboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            AboutTheEmployer(SkillsAndQualifications(createAdvertPage), string.Empty, true);
+
         private CreateAnApprenticeshipAdvertOrVacancyPage FirstAdvertSummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             AdvertSummary(createAdvertPage.AdvertTitle().EnterVacancyTitleForTheFirstAdvert().SelectYes());
 
@@ -133,7 +126,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterShortDescription()
                 .EnterAllDescription();
 
-        private SelectOrganisationPage EnterAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage
+        protected SelectOrganisationPage EnterAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage
                 .AdvertTitle()
                 .EnterAdvertTitleMultiOrg();
     }

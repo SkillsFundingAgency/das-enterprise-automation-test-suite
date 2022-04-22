@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacancyCompletedAllSectionsPage : VacancyPreviewPart2Page
+    public class VacancyCompletedAllSectionsPage : PreviewYouAdvertOrVacancyPage
     {
         protected override string PageTitle => "You have completed all required sections";
 

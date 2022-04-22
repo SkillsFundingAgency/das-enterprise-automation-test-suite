@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
@@ -9,11 +8,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
     {
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
         private readonly StepsHelper _stepsHelper;
-        private readonly ScenarioContext _context;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
-            _context = context;
             _stepsHelper = new StepsHelper(context);
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
         }
@@ -25,15 +22,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchYourAdverts();
         }
 
-        internal EmployerVacancySearchResultPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
-        
-        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy()
-        {
-            new VacancyPreviewPart2Page(_context).DeleteVacancy().YesDeleteVacancy();
-            return new EmployerVacancySearchResultPage(_context);
-        }
-        public VacancyPreviewPart2Page NoDeleteDraftVacancy(DeleteVacancyQuestionPage deletepreviewPage) => deletepreviewPage.NoDeleteVacancy();
-
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
         internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseAdvert().YesCloseThisVacancy();
@@ -44,13 +32,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
-        internal VacancyPreviewPart2Page PreviewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence)
-        {
-            var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisation();
-
-            return _stepsHelper.PreviewVacancyForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername, isEmployerAddress, disabilityConfidence);
-        }
-
         private ManageRecruitPage SearchVacancyByVacancyReferenceInNewTab()
         {
             _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
@@ -59,11 +40,5 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         private ManageRecruitPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
-
-        private ApprenticeshipTrainingPage EnterVacancyTitle() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage().CreateAnAdvert().CreateNewAdvert().EnterVacancyTitle();
-
-        private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositionsAndNavigateToSelectOrganisationPage().SelectOrganisation();
-
-        private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseFoundATrainingProvider().ConfirmTrainingProviderAndContinue();
     }
 }

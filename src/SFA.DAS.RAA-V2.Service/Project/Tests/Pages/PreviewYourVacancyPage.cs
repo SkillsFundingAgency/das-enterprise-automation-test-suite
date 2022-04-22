@@ -12,10 +12,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         
         public PreviewYourVacancyPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page PreviewVacancy()
+        public PreviewYouAdvertOrVacancyPage PreviewVacancy()
         {
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
     }
 }

@@ -47,13 +47,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ApplicationProcessPage(context);
         }
 
-        public VacancyPreviewPart2Page EnterContactDetails()
+        public PreviewYouAdvertOrVacancyPage EnterContactDetails()
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
             formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
 
         private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;

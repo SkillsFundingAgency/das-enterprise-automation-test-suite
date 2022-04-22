@@ -11,10 +11,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmQualificationsPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page ConfirmQualifications()
+        public PreviewYouAdvertOrVacancyPage ConfirmQualifications()
         {
             formCompletionHelper.Click(Preview);
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYouAdvertOrVacancyPage(context);
         }
 
         public FutureProspectsPage ConfirmQualificationsAndGoToFutureProspectsPage()
