@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using System;
 
 namespace SFA.DAS.UI.Framework
 {
@@ -26,12 +27,16 @@ namespace SFA.DAS.UI.Framework
         public static string FindEPAO_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-find-epao.apprenticeships.education.gov.uk/";
 
         public static string EI_VRFUrl => "https://dfeuat.achieveservice.com/forms";
+
+        public static string ConsolidatedSupport_WebUrl => $"{ConsolidatedSupport_BaseUrl}/agent";
+        public static Uri ConsolidatedSupport_ApiBaseUrl => new Uri(new Uri(ConsolidatedSupport_BaseUrl), "api/v2");
         public static string ConsolidatedSupport_BaseUrl => true switch
         {
             bool _ when EnvironmentConfig.IsTestEnvironment => "https://esfa1567428279.zendesk.com",
             bool _ when EnvironmentConfig.IsPPEnvironment => "https://esfa-preprod.zendesk.com",
             _ => "",
         };
+
         public static string RoatpApply_InvitationUrl => $"https://{EnvironmentConfig.EnvironmentName}-aslogin.apprenticeships.education.gov.uk/Invitations/CreatePassword/";
 
         public static string Apprentice_InvitationUrl(string registrationId) => $"https://{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/?Register={registrationId}";
