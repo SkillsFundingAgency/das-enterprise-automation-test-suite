@@ -2,6 +2,7 @@
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
+using System;
 using TechTalk.SpecFlow;
 using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
@@ -27,7 +28,22 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             CheckAndSubmitAdvert(createAdvertPage);
         }
 
-        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
+        internal void CompleteDraftAdvert(CreateAnApprenticeshipAdvertPage createAdvertPage)
+        {
+            createAdvertPage = SkillsAndQualifications(createAdvertPage);
+
+            createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
+
+            CompleteDraftAdvertBeforeReturningToApplications(createAdvertPage);
+        }
+
+        private VacancyPreviewPart2Page CompleteDraftAdvertBeforeReturningToApplications(CreateAnApprenticeshipAdvertPage createAdvertPage) => AttemptDeletingDraftAdvertBeforeReturningToCreateAdvertPage(createAdvertPage.CheckYourAnswers());
+
+        private VacancyPreviewPart2Page AttemptDeletingDraftAdvertBeforeReturningToCreateAdvertPage(CheckYourAnswersPage checkYourAnswersPage) =>
+            checkYourAnswersPage.PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
+
+        internal CreateAnApprenticeshipAdvertPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshiAdvert(), false);
+        internal CreateAnApprenticeshipAdvertPage CreateCompleteDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshiAdvert(), false);
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
         {
@@ -40,7 +56,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             createAdvertPage = SkillsAndQualifications(createAdvertPage);
 
-            createAdvertPage = AboutTheEmployer(createAdvertPage, string.Empty, true);
+            createAdvertPage = Abouttheemployer(createAdvertPage, string.Empty, true);
+
 
             CheckAndSubmitAdvert(createAdvertPage);
         }

@@ -24,6 +24,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         internal EmployerVacancySearchResultPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+        
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy()
+        {
+            new VacancyPreviewPart2Page(_context).DeleteVacancy().YesDeleteVacancy();
+            return new EmployerVacancySearchResultPage(_context);
+        }
+        public VacancyPreviewPart2Page NoDeleteDraftVacancy(DeleteVacancyQuestionPage deletepreviewPage) => deletepreviewPage.NoDeleteVacancy();
 
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 

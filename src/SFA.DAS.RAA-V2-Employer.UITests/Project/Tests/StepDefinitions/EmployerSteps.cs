@@ -22,6 +22,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private RecruitmentDynamicHomePage _dynamicHomePage;
+        private WhatDoYouWantToCallThisAdvertPage _whatDoYouWantToCallThisAdvertPage;
+        private DeleteVacancyQuestionPage _deleteVacancyQuestionPage;
+        private EmployerVacancySearchResultPage _employerVacancySearchResultPage;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -41,7 +44,31 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerSavesTheVacancyAsADraft() => _vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
 
         [Then(@"the Employer can cancel deleting the draft vacancy")]
-        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _vacancyPreviewPart2Page = _vacanciesPage.GoToVacancyPreviewPart2Page().DeleteVacancy().NoDeleteVacancy();
+
+        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _employerStepsHelper.NoDeleteDraftVacancy(_deleteVacancyQuestionPage);
+
+        //[Given(@"the Employer creates an offline vacancy with disability confidence")]
+        public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);
+
+        //[Given(@"the Employer clones and creates a vacancy")]
+        public void GivenTheEmployerClonesAndCreatesAVacancy() => _employerStepsHelper.CloneAVacancy();
+
+        //[Given(@"the Employer can create a vacancy by entering all the Optional fields")]
+        public void GivenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
+
+        //[Given(@"the Employer creates a vacancy by selecting different work location")]
+        public void GivenTheEmployerCreatesAVacancyBySelectingDifferentWorkLocation() => _employerStepsHelper.CreateANewVacancy("legal-entity-name", false);
+
+        //[Given(@"the Employer creates an anonymous vacancy")]
+        public void GivenTheEmployerCreatesAnAnonymousVacancy() => _employerStepsHelper.CreateANewVacancy("anonymous", true);
+
+        //[Given(@"the Employer creates a vacancy by using a trading name")]
+        public void GivenTheEmployerCreatesAVacancyByUsingATradingName() => _employerStepsHelper.CreateANewVacancy("existing-trading-name", true);
+
+        //[Given(@"the Employer creates a vacancy by using a registered name")]
+        public void GivenTheEmployerCreatesAVacancyByUsingARegisteredName() => _employerStepsHelper.CreateANewVacancy("legal-entity-name", true);
+
+
         [Then(@"Employer can make the application successful")]
         public void ThenEmployerCanMakeTheApplicationSuccessful() => _employerStepsHelper.ApplicantSucessful();
 
@@ -55,7 +82,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanEditTheVacancy() => _employerStepsHelper.EditVacancyDates();
 
         [Then(@"the Employer is able to delete the draft vacancy")]
-        public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page);
+        public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.CompleteDeleteOfDraftVacancy();
 
         [Then(@"submission errors displayed for not completing the mandatory information")]
         public void ThenSubmissionErrorsDisplayedForNotCompletingTheMandatoryInformation()
