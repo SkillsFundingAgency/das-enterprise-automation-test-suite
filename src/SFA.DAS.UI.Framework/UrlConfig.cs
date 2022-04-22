@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework
 
         public static string EI_VRFUrl => "https://dfeuat.achieveservice.com/forms";
 
-        public static string ConsolidatedSupport_WebUrl => $"{ConsolidatedSupport_BaseUrl}/agent";
+        public static string ConsolidatedSupport_WebBaseUrl => $"{ConsolidatedSupport_BaseUrl}/agent";
         public static Uri ConsolidatedSupport_ApiBaseUrl => new Uri(new Uri(ConsolidatedSupport_BaseUrl), "api/v2");
         public static string ConsolidatedSupport_BaseUrl => true switch
         {
