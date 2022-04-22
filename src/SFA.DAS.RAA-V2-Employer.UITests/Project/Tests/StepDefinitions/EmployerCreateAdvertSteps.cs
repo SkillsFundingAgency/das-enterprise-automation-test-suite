@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         private YourApprenticeshipAdvertsHomePage _yourApprenticeshipAdvertsHomePage;
 
-        private CreateAnApprenticeshipAdvertPage _createAnApprenticeshipAdvertPage;
+        private CreateAnApprenticeshipAdvertOrVacancyPage _createAnApprenticeshipAdvertPage;
 
         public EmployerCreateAdvertSteps(ScenarioContext context)
         {
@@ -76,15 +76,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer creates an advert by using a trading name")]
         public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.ExistingTradingName);
 
-        private void CreateDraftAdvert(CreateAnApprenticeshipAdvertPage page, bool createFirstDraftAdvert)
+        private void CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage page, bool createFirstDraftAdvert)
         {
             page = _employerCreateVacancyStepsHelper.CreateDraftAdvert(page, createFirstDraftAdvert);
 
             ReturnToApplications(page);
         }
 
-        private void ReturnToApplications(CreateAnApprenticeshipAdvertPage page) { page.ReturnToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
+        private void ReturnToApplications(CreateAnApprenticeshipAdvertOrVacancyPage page) { page.ReturnToApplications(); _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context); }
 
-        private CreateAnApprenticeshipAdvertPage GoToYourAdvertFromDraftAdverts() => _yourApprenticeshipAdvertsHomePage.GoToYourAdvertFromDraftAdverts().CreateAnApprenticeshipAdvertPage();
+        private CreateAnApprenticeshipAdvertOrVacancyPage GoToYourAdvertFromDraftAdverts() => _yourApprenticeshipAdvertsHomePage.GoToYourAdvertFromDraftAdverts().CreateAnApprenticeshipAdvertPage();
     }
 }

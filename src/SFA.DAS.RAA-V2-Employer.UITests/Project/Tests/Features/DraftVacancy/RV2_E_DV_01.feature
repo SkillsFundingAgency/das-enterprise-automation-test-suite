@@ -2,8 +2,7 @@
 
 @raa-v2	
 @raa-v2e
-@regression	
-@newraa-v2
+@regression
 Scenario: RV2_E_DV_01 - Employer cancels creating an advert
 When Employer cancels after saving the title of the advert
 Then the advert is saved as a draft

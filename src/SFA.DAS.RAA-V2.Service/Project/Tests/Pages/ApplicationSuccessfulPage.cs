@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ApplicationSuccessfulPage : RAAV2CSSBasePage
     {
-        protected override By PageHeader => By.CssSelector(".info-summary");
+        protected override By PageHeader => By.CssSelector(".das-notification");
 
         protected override string PageTitle => "application has been marked as successful";
 

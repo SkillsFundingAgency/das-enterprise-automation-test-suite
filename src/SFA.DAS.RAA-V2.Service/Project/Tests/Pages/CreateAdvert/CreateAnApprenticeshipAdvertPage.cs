@@ -4,15 +4,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public partial class CreateAnApprenticeshipAdvertPage : RAAV2CSSBasePage
+    public partial class CreateAnApprenticeshipAdvertOrVacancyPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Create an apprenticeship advert";
+        protected override string PageTitle => isRaaV2Employer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy";
 
         protected override By TaskName => By.CssSelector(".das-task-list__item .govuk-link");
 
         private By ReturnToApplicationsSelector => By.LinkText("Return to your applications");
 
-        public CreateAnApprenticeshipAdvertPage(ScenarioContext context) : base(context) { }
+        public CreateAnApprenticeshipAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
 
         public void ReturnToApplications() => formCompletionHelper.ClickElement(ReturnToApplicationsSelector);
     
@@ -42,40 +42,42 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public WhatDoYouWantToCallThisAdvertPage AdvertTitle()
         {
-            NavigateToTask(Advertsummary, Advertsummary_1);
+            NavigateToAdvertTitle();
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
+        
+        public void NavigateToAdvertTitle() => NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_1);
 
         public SelectOrganisationPage EnterAdvertOrganisaition()
         {
-            NavigateToTask(Advertsummary, Advertsummary_2);
+            NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_2);
             return new SelectOrganisationPage(context);
         }
         public ApprenticeshipTrainingPage EnterAdvertTrainingCourse()
         {
-            NavigateToTask(Advertsummary, Advertsummary_3);
+            NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_3);
             return new ApprenticeshipTrainingPage(context);
         }
 
         public WhatDoYouWantToCallThisAdvertPage EnterAdvertTrainingProvider()
         {
-            NavigateToTask(Advertsummary, Advertsummary_4);
+            NavigateToTask(AdvertOrVacancysummary, Advertsummary_4);
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
 
         public WhatDoYouWantToCallThisAdvertPage EnterAdvertSummary()
         {
-            NavigateToTask(Advertsummary, Advertsummary_5);
+            NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_5);
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
 
         public WhatDoYouWantToCallThisAdvertPage EnterAdvertAbout()
         {
-            NavigateToTask(Advertsummary, Advertsummary_6);
+            NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_6);
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
 
-        public void VerifyAdvertSummarySectionStatus(string status) => VerifySectionStatus(Advertsummary, status);
+        public void VerifyAdvertSummarySectionStatus(string status) => VerifySectionStatus(AdvertOrVacancysummary, status);
 
         public void VerifyEmploymentDetailsSectionStatus(string status) => VerifySectionStatus(Employmentdetails, status);
 

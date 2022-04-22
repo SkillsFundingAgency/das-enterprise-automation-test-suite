@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -15,7 +16,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ApplicationProcessPage(ScenarioContext context) : base(context) { }
 
-        public CreateAnApprenticeshipAdvertPage SelectApplicationMethod(bool isFAA) { { if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal(); } return SaveAndContinueToCreateAdvert(); }
+        public CreateAnApprenticeshipAdvertOrVacancyPage SelectApplicationMethod_Employer(bool isFAA) { SelectApplicationMethod(isFAA); return new CreateAnApprenticeshipAdvertOrVacancyPage(context); }
+
+        public CheckYourAnswersPage SelectApplicationMethod_Provider(bool isFAA) { SelectApplicationMethod(isFAA); return new CheckYourAnswersPage(context); }
 
         public VacancyPreviewPart2Page ApplicationMethod(bool isFAA) { { if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal(); } return SaveAndContinue(); }
 
@@ -28,17 +31,17 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.EnterText(ApplicationInstructions, rAAV2DataHelper.OptionalMessage);
 
         }
-
         private VacancyPreviewPart2Page SaveAndContinue()
         {
             Continue();
             return new VacancyPreviewPart2Page(context);
         }
 
-        private CreateAnApprenticeshipAdvertPage SaveAndContinueToCreateAdvert()
+        private void SelectApplicationMethod(bool isFAA)
         {
+            if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal();
+
             Continue();
-            return new CreateAnApprenticeshipAdvertPage(context);
         }
     }
 }

@@ -8,17 +8,31 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
+    public class CheckPageRetryHelper : RetryHelper
+    {
+        public CheckPageRetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo) : base(webDriver, scenarioInfo, Logging.CheckPageTimeout())
+        {
+
+        }
+    }
+
+
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
         private readonly string _title;
         private readonly TimeSpan[] TimeOut;
 
-        public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo)
+        public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo) : this(webDriver, scenarioInfo, Logging.DefaultTimeout())
+        {
+
+        }
+
+        internal RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, TimeSpan[] timeSpans)
         {
             _webDriver = webDriver;
             _title = scenarioInfo.Title;
-            TimeOut = Logging.DefaultTimeout();
+            TimeOut = timeSpans;
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
