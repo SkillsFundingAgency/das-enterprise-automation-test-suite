@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
-    public class CreateAVacancyPage : RAAV2CSSBasePage
+    public class CreateAVacancyPage : Raav2BasePage
     {
         protected override string PageTitle => "Create a vacancy";
 

@@ -17,10 +17,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal VacancyReferencePage SubmitDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage));
 
-        internal PreviewYouAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+        internal PreviewYourAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             CompleteAboutTheEmployer(createAdvertPage).CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
 
-        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new PreviewYouAdvertOrVacancyPage(context).DeleteVacancy().YesDeleteVacancy();
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new PreviewYourAdvertOrVacancyPage(context).DeleteVacancy().YesDeleteVacancy();
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
 

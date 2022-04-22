@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class CloseVacancyPage : RAAV2CSSBasePage
+    public class CloseVacancyPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "Are you sure you want to close this advert on Find an apprenticeship?" : "Are you sure you want to close this vacancy on Find an apprenticeship?";
 

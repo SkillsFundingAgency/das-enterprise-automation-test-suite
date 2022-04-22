@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class FutureProspectsPage : RAAV2CSSBasePage
+    public class FutureProspectsPage : Raav2BasePage
     {
         protected override string PageTitle => "What is the expected career progression after this apprenticeship?";
 

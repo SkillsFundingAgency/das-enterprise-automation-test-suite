@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class VacancyDatesBasePage : RAAV2CSSBasePage
+    public abstract class VacancyDatesBasePage : Raav2BasePage
     {
         public VacancyDatesBasePage(ScenarioContext context) : base(context) { }
 

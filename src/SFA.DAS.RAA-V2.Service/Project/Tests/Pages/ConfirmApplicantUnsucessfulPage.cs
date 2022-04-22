@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ConfirmApplicantUnsucessfulPage : RAAV2CSSBasePage
+    public class ConfirmApplicantUnsucessfulPage : Raav2BasePage
     {
         protected override string PageTitle => "Are you sure you want to tell this applicant that they have not been accepted?";
 

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ContactDetailsPage : RAAV2CSSBasePage
+    public class ContactDetailsPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
@@ -47,13 +47,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ApplicationProcessPage(context);
         }
 
-        public PreviewYouAdvertOrVacancyPage EnterContactDetails()
+        public PreviewYourAdvertOrVacancyPage EnterContactDetails()
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
             formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
             Continue();
-            return new PreviewYouAdvertOrVacancyPage(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;

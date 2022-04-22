@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class DescriptionPage : RAAV2CSSBasePage
+    public class DescriptionPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "About the apprenticeship" : "Tasks and training details";
 
@@ -14,13 +14,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public DescriptionPage(ScenarioContext context) : base(context) { }
 
-        public PreviewYouAdvertOrVacancyPage EnterDescription()
+        public PreviewYourAdvertOrVacancyPage EnterDescription()
         {
             javaScriptHelper.SwitchFrameAndEnterText(VacancyDescription, IframeBody, rAAV2DataHelper.VacancyShortDescription);
             javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAAV2DataHelper.TrainingDetails);
             javaScriptHelper.SwitchFrameAndEnterText(OutcomeDescription, IframeBody, rAAV2DataHelper.VacancyOutcome);
             Continue();
-            return new PreviewYouAdvertOrVacancyPage(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage EnterTasksAndTrainingDetails()

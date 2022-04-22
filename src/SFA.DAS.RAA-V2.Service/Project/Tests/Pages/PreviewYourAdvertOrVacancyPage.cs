@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class PreviewYouAdvertOrVacancyPage : RAAV2CSSBasePage
+    public class PreviewYourAdvertOrVacancyPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "Preview your advert" : "Preview your vacancy";
 
@@ -26,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
         private By ApplicationWebAddress => By.Id("ApplicationUrl");
 
-        public PreviewYouAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
+        public PreviewYourAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {

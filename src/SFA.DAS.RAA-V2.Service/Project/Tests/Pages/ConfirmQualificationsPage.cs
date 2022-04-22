@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ConfirmQualificationsPage : RAAV2CSSBasePage
+    public class ConfirmQualificationsPage : Raav2BasePage
     {
         protected override string PageTitle => "Qualifications";
 
@@ -11,10 +11,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmQualificationsPage(ScenarioContext context) : base(context) { }
 
-        public PreviewYouAdvertOrVacancyPage ConfirmQualifications()
+        public PreviewYourAdvertOrVacancyPage ConfirmQualifications()
         {
             formCompletionHelper.Click(Preview);
-            return new PreviewYouAdvertOrVacancyPage(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public FutureProspectsPage ConfirmQualificationsAndGoToFutureProspectsPage()

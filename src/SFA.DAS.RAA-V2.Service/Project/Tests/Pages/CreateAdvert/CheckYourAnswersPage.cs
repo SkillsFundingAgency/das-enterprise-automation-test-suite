@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class CheckYourAnswersPage : RAAV2CSSBasePage
+    public class CheckYourAnswersPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "Check your answers" : "Check your answers before submitting your vacancy";
 
@@ -13,10 +13,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public CheckYourAnswersPage(ScenarioContext context) : base(context)  { }
 
-        public PreviewYouAdvertOrVacancyPage PreviewAdvert()
+        public PreviewYourAdvertOrVacancyPage PreviewAdvert()
         {
             formCompletionHelper.ClickLinkByText("Preview advert before submitting");
-            return new PreviewYouAdvertOrVacancyPage(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage BackToTaskList()

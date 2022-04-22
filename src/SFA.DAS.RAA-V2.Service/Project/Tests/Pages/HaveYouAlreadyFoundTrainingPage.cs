@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class HaveYouAlreadyFoundTrainingPage : RAAV2CSSBasePage
+    public class HaveYouAlreadyFoundTrainingPage : Raav2BasePage
     {
         protected override string PageTitle => "Have you already found apprenticeship training?";
 

@@ -28,10 +28,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }
 
-        public PreviewYouAdvertOrVacancyPage ReviewYourVacancy()
+        public PreviewYourAdvertOrVacancyPage ReviewYourVacancy()
         {
             formCompletionHelper.ClickLinkByText("Review your advert");
-            return new PreviewYouAdvertOrVacancyPage(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public RecruitmentDynamicHomePage ConfirmVacancyTitleAndStatus(string status)

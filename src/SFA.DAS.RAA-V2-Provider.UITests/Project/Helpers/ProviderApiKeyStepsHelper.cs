@@ -7,16 +7,16 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
     {
         public ProviderApiKeyStepsHelper(ScenarioContext context) : base(context) { }
 
-        public KeyforAPIPage RenewRecruitmentAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPILink());
+        public KeyforApiPage RenewRecruitmentAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPILink());
 
-        public KeyforAPIPage RenewRecruitmentAPISandboxKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPISandBoxLink());
+        public KeyforApiPage RenewRecruitmentAPISandboxKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewRecruitmentAPISandBoxLink());
 
-        public KeyforAPIPage RenewDisplayAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewDisplayAPILink());
+        public KeyforApiPage RenewDisplayAPIKey() => RenewAPIKey(NavigateToAPIListPage().ClickViewDisplayAPILink());
 
-        public KeyforAPIPage DoesNotRenewDisplayAPIKey() => NavigateToAPIListPage().ClickViewDisplayAPILink().ClickRenewKeyLink().DoNotRenewApiKey();
+        public KeyforApiPage DoesNotRenewDisplayAPIKey() => NavigateToAPIListPage().ClickViewDisplayAPILink().ClickRenewKeyLink().DoNotRenewApiKey();
 
-        private KeyforAPIPage RenewAPIKey(KeyforAPIPage page) => page.ClickRenewKeyLink().RenewAPIKey().VerifyApikeyRenewed();
+        private KeyforApiPage RenewAPIKey(KeyforApiPage page) => page.ClickRenewKeyLink().RenewAPIKey().VerifyApikeyRenewed();
 
-        private APIListPage NavigateToAPIListPage() => GoToRecruitmentHomePage(false).NavigateToRecruitmentAPIs().ClickAPIKeysHereLink();
+        private ApiListPage NavigateToAPIListPage() => GoToRecruitmentHomePage(false).NavigateToRecruitmentAPIs().ClickAPIKeysHereLink();
     }
 }

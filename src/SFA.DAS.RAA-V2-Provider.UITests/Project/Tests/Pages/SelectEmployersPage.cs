@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
-    public class SelectEmployersPage : RAAV2CSSBasePage
+    public class SelectEmployersPage : Raav2BasePage
     {
         protected override string PageTitle => "Which employer is this vacancy for?";
 

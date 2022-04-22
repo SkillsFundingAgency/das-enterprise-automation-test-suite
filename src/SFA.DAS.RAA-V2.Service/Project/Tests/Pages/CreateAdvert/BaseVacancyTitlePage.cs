@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public abstract class BaseVacancyTitlePage : RAAV2CSSBasePage
+    public abstract class BaseVacancyTitlePage : Raav2BasePage
     {
         private By Title => By.CssSelector("#Title");
 

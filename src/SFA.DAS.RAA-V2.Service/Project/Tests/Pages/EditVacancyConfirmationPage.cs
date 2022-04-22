@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class EditVacancyConfirmationPage : RAAV2CSSBasePage
+    public class EditVacancyConfirmationPage : Raav2BasePage
     {
         protected override string PageTitle => $"The vacancy '{rAAV2DataHelper.VacancyTitle}' has been updated.";
 

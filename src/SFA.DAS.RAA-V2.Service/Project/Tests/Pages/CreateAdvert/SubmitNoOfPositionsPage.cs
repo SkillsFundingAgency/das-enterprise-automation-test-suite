@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class SubmitNoOfPositionsPage : RAAV2CSSBasePage
+    public class SubmitNoOfPositionsPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "How many positions are there for this apprenticeship?" : "How many positions are available?";
 

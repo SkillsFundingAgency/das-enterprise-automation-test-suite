@@ -8,8 +8,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     public class EmployerRecruitmentAPISteps
     {
         private readonly ScenarioContext _context;
-        private APIListPage _apiListPage;
-        private KeyforAPIPage _keyforAPIPage;
+        private ApiListPage _apiListPage;
+        private KeyforApiPage _keyforAPIPage;
 
         public EmployerRecruitmentAPISteps(ScenarioContext context) => _context = context;
 

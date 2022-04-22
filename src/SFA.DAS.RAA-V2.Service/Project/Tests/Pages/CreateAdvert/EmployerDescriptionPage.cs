@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class EmployerDescriptionPage : RAAV2CSSBasePage
+    public class EmployerDescriptionPage : Raav2BasePage
     {
         protected override string PageTitle => $"Information about {objectContext.GetEmployerName()}";
 
@@ -17,12 +17,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public EmployerDescriptionPage(ScenarioContext context) : base(context) { }
         
-        public PreviewYouAdvertOrVacancyPage EnterEmployerDescription()
+        public PreviewYourAdvertOrVacancyPage EnterEmployerDescription()
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
             Continue();
-            return new PreviewYouAdvertOrVacancyPage(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)

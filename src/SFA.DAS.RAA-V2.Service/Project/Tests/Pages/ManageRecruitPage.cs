@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageRecruitPage : RAAV2CSSBasePage
+    public class ManageRecruitPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "Manage advert" : "Manage vacancy";
 

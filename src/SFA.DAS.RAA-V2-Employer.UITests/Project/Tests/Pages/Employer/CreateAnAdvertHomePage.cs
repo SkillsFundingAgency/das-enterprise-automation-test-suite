@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class CreateAnAdvertHomePage : RAAV2CSSBasePage
+    public class CreateAnAdvertHomePage : Raav2BasePage
     {
         protected override string PageTitle => "Create an advert";
 

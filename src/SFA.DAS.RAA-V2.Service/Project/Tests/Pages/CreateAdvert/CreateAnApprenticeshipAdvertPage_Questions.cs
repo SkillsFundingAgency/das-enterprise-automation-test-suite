@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public partial class CreateAnApprenticeshipAdvertOrVacancyPage : RAAV2CSSBasePage
+    public partial class CreateAnApprenticeshipAdvertOrVacancyPage : Raav2BasePage
     {
         #region Questions
         private string AdvertOrVacancysummary => isRaaV2Employer ? "1. Advert summary" : "1. Vacancy summary";
