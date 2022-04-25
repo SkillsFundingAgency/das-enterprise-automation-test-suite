@@ -20,7 +20,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             dataHelper = context.Get<ConsolidateSupportDataHelper>();
         }
 
-        protected void NavigateTo(string url) => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_WebBaseUrl, $"users/{objectContext.GetUserId()}/{url}");
+        protected void NavigateTo(string url) => tabHelper.GoToUrl($"{UrlConfig.ConsolidatedSupport_WebBaseUrl}/users/{objectContext.GetUserId()}/{url}");
 
         protected void CloseAllTickets()
         {
