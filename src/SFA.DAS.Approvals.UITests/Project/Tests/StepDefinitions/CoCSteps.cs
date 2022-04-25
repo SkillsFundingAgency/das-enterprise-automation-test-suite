@@ -129,17 +129,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-            void provideraction()
-            {
-                  SelectViewCurrentApprenticeDetails()
-                  .ClickEditApprenticeDetailsLink()
-                  .EditCostCourseAndReference()
-                  .AcceptChangesAndSubmit();
-            };
-
             Assert.Multiple(() =>
             {
-                var proex = Assert.Throws(typeof(NoSuchElementException), () => provideraction(), "Provider can edit cost and course after ILR match");
+                var proex = Assert.Throws(typeof(NoSuchElementException), () => ProviderEditsCostAndCourse(), "Provider can edit cost and course after ILR match");
                 Assert.That(proex.Message.Contains("no such element: Unable to locate element:"), "Provider can edit cost and course after ILR match");
             });
         }
@@ -162,7 +154,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void SetHasHadDataLockSuccessTrue() => _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
         
         [When(@"the provider edits Name Dob and Reference")]
-        public void WhenTheProviderEditsDobAndReference()
+        public void ProviderEditsDobAndReference()
         {
                 SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()

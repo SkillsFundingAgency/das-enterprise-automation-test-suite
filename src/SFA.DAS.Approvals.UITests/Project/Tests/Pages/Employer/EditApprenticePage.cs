@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticePage : EditApprentice
+    public class EditApprenticePage : EditApprenticeDetailsBasePage
     {
         protected override string PageTitle => "Edit apprentice details";
 
@@ -22,6 +22,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
+        public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
+        {
+            EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
+            return new ApproveApprenticeDetailsPage(context);
+        }
+
         public ConfirmChangesPage EditCourseAndDate()
         {
             EditCourse();
@@ -29,6 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             AddValidEndDate();
             Update();
             return ConfirmChangesPage();
+        }
+
+        protected override void EditCourse()
+        {
+            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
+            SelectCourse();
         }
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
@@ -49,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected override void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
+        protected virtual void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseOption, apprenticeCourseDataHelper.OtherCourseLarsCode);
 
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {

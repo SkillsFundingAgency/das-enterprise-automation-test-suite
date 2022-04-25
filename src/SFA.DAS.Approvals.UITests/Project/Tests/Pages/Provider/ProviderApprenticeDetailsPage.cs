@@ -32,10 +32,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderReviewChangesPage(context);
         }
 
-        public ProviderEditApprenticePage ClickEditApprenticeDetailsLink()
+        public ProviderEditApprenticeCoursePage ClickEditApprenticeDetailsLink()
         {
             EditApprentice();
-            return new ProviderEditApprenticePage(context);
+            return new ProviderEditApprenticeCoursePage(context);
         }
 
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()

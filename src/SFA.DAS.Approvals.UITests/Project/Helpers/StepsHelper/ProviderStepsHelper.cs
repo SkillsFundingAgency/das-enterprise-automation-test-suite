@@ -370,7 +370,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(ApprovalsProviderHomePage page) =>
             page.GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
-        private ProviderEditApprenticePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
+        private ProviderEditApprenticeCoursePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
 
         public ProviderChooseACohortPage NavigateToChooseACohortPage()
         {

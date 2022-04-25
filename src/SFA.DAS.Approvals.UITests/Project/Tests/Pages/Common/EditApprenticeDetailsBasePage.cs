@@ -3,19 +3,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class EditApprentice : EditApprenticePreApproval
+    public abstract class EditApprenticeDetailsBasePage : EditApprentinceNameDobAndReferenceBasePage
     {
         private By TrainingCost => By.CssSelector("#Cost, #cost");
 
-        private By TrainingCourseContainer => By.CssSelector("#trainingCourse");
+        protected By TrainingCourseContainer => By.CssSelector("#trainingCourse");
 
         private By EmailField => By.CssSelector("#Email,#email");
 
         private By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
 
-        protected EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
-
-        protected abstract void SelectCourse();
+        protected EditApprenticeDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        
+        protected abstract void EditCourse();
 
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
 
@@ -23,16 +23,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public void EditCostCourseAndReference(string reference)
         {
-            EditCourse()
-            .EditCost()
-            .EditApprenticeNameDobAndReference(reference);
-        }
+            EditCourse();
 
-        protected EditApprentice EditCourse()
-        {
-            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
-            SelectCourse();
-            return this;
+            EditCost();
+            
+            EditApprenticeNameDobAndReference(reference);
         }
 
         protected void EditEmail()
@@ -45,10 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private string GetApprenticeEmail() => apprenticeDataHelper.ApprenticeEmail;
 
-        private EditApprentice EditCost()
-        {
-            formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingPrice);
-            return this;
-        }
+        private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingPrice);
     }
 }
