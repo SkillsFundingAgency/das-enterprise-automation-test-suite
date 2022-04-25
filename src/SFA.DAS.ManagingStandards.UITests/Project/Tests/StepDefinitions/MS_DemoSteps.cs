@@ -1,14 +1,14 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 
-namespace SFA.DAS.CollectingStandards.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class CS_DemoSteps
+    public class MS_DemoSteps
     {
         private readonly ScenarioContext _context;
 
-        public CS_DemoSteps(ScenarioContext context) => _context = context;
+        public MS_DemoSteps(ScenarioContext context) => _context = context;
     
         [Given(@"the provider logs into employer portal")]
         public void GivenTheProviderLogsIntoEmployerPortal() => new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(false);
