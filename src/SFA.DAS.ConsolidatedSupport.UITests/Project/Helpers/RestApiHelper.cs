@@ -66,7 +66,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         {
             var httpClient = new HttpClient
             {
-                BaseAddress = new Uri(new Uri(UrlConfig.ConsolidatedSupport_BaseUrl), "api/v2")
+                BaseAddress = UrlConfig.ConsolidatedSupport_ApiBaseUrl
             };
 
             httpClient.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
