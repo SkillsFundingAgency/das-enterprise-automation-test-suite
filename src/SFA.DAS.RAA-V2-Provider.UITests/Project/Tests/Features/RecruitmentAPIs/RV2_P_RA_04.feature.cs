@@ -76,14 +76,14 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.RecruitmentAPIs
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_P_RA_04 - Provider does not renew api key")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2e")]
+        [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("recruitmentapikey")]
         public void RV2_P_RA_04_ProviderDoesNotRenewApiKey()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
-                    "raa-v2e",
+                    "raa-v2p",
                     "regression",
                     "recruitmentapikey"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

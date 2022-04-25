@@ -1,7 +1,7 @@
 ﻿Feature: RV2_P_RA_01
 
 @raa-v2
-@raa-v2e
+@raa-v2p
 @regression
 @recruitmentapikey
 Scenario: RV2_P_RA_01 - Provider Renew Employer Recruitment API Key

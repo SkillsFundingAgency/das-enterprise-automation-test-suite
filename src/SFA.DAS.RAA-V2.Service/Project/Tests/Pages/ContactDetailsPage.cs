@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ContactDetailsPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Add contact information";
+        protected override string PageTitle => $"Contact details for {objectContext.GetEmployerName()} (optional)";
 
         protected By EmployerContactName => By.CssSelector("#EmployerContactName");
         protected By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
@@ -18,6 +18,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected By ProviderContactPhone => By.CssSelector("#ProviderContactPhone");
 
         public ContactDetailsPage(ScenarioContext context) : base(context) { }
+
+        public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
+        {
+            if (optionalFields)
+            {
+                formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
+                formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
+                formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+            }
+            Continue();
+            return new ApplicationProcessPage(context);
+        }
 
         public VacancyPreviewPart2Page EnterContactDetails()
         {

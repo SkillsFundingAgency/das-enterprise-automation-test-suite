@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         #region Section9
 
-        private void NavigateToTask(string sectionName, string taskName, int index = 0) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), () => formCompletionHelper.ClickLinkByText("Application overview"));
+        private void NavigateToTask(string sectionName, string taskName, int index = 0) => NavigateToTask(sectionName, taskName, index, () => formCompletionHelper.ClickLinkByText("Application overview"));
 
         public ChangeUkprnPage Access_ChangeUkprn()
         {

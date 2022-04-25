@@ -43,7 +43,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void VerifyEmployerDetails()
         {
-            var empName = objectContext.GetEmployerName();
+            var empName = objectContext.GetEmployerNameAsShownInTheAdvert();
             VerifyElement(EmployerName, empName);
             VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }

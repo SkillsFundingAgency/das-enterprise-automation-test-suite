@@ -104,7 +104,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private ApplicationOverviewPage VerifySections(string sectionName, string taskName, string status, int index = 0)
         {
-            VerifyElement(GetTaskStatusElement(sectionName, taskName, index), status, () => formCompletionHelper.ClickLinkByText("Application overview"));
+            VerifySectionTaskStatus(sectionName, taskName, status, index, () => formCompletionHelper.ClickLinkByText("Application overview"));
             return new ApplicationOverviewPage(context);
         }
     }

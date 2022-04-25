@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         #endregion
         private By SearchInput => By.CssSelector("#search-input");
 
-        private By SearchButton => By.CssSelector("#search-submit-button");
+        private By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
         private By Manage => By.CssSelector("table tbody tr .govuk-link");
 

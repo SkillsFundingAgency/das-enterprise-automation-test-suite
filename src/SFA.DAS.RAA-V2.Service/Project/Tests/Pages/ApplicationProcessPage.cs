@@ -15,26 +15,30 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ApplicationProcessPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page ApplicationMethod(bool isFAA) => isFAA ? ApplicationMethodFAA() : ApplicationMethodExternal();
+        public CreateAnApprenticeshipAdvertPage SelectApplicationMethod(bool isFAA) { { if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal(); } return SaveAndContinueToCreateAdvert(); }
 
-        private VacancyPreviewPart2Page ApplicationMethodFAA()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(Yes));
-            return SaveAndContinue();
-        }
+        public VacancyPreviewPart2Page ApplicationMethod(bool isFAA) { { if (isFAA) ApplicationMethodFAA(); else ApplicationMethodExternal(); } return SaveAndContinue(); }
 
-        private VacancyPreviewPart2Page ApplicationMethodExternal()
+        private void ApplicationMethodFAA() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(Yes));
+
+        private void ApplicationMethodExternal()
         {
             SelectRadioOptionByForAttribute("application-method-external");
             formCompletionHelper.EnterText(ApplicationUrl, rAAV2DataHelper.EmployerWebsiteUrl);
             formCompletionHelper.EnterText(ApplicationInstructions, rAAV2DataHelper.OptionalMessage);
-            return SaveAndContinue();
+
         }
 
         private VacancyPreviewPart2Page SaveAndContinue()
         {
             Continue();
             return new VacancyPreviewPart2Page(context);
+        }
+
+        private CreateAnApprenticeshipAdvertPage SaveAndContinueToCreateAdvert()
+        {
+            Continue();
+            return new CreateAnApprenticeshipAdvertPage(context);
         }
     }
 }

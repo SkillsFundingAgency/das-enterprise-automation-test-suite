@@ -6,7 +6,9 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
     public abstract class SignInBasePage : IdamsLoginBasePage
     {
         protected override By PageHeader => By.CssSelector(".pageTitle");
-
+        
+        protected override bool TakeFullScreenShot => false;
+        
         protected override string PageTitle => "Sign in";
 
         #region Locators

@@ -8,7 +8,7 @@ using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public abstract class VerifyBasePage : BasePage
+    public abstract class VerifyBasePage : InterimBasePage
     {
         #region Helpers and Context
         private readonly IWebDriver _webDriver;
@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             _directory = objectContext.GetDirectory();
 
-            if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
+            if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
         }
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
@@ -85,8 +85,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected bool VerifyElement(By locator, string text, Action retryAction) => pageInteractionHelper.VerifyPage(locator, text, retryAction);
 
         protected bool VerifyElement(Func<List<IWebElement>> func, string expected) => pageInteractionHelper.VerifyPage(func, expected);
-
-        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
 
         protected bool VerifyElement(By locator) => pageInteractionHelper.VerifyPage(locator);
 

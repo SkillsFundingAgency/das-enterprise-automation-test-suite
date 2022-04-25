@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -20,20 +20,14 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             dataHelper = context.Get<ConsolidateSupportDataHelper>();
         }
 
+        protected void NavigateTo(string url) => tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, url);
+
         protected void CloseAllTickets()
         {
-            InvokeAction(() =>
+            pageInteractionHelper.InvokeAction(() => 
             {
-                var elements = pageInteractionHelper.FindElements(CloseButton).ToList();
-                foreach (var element in elements)
-                {
-                    element.Click();
-                }
+                foreach (var element in pageInteractionHelper.FindElements(CloseButton).ToList()) element.Click();
             });
         }
-
-        protected void InvokeAction(Action action) => pageInteractionHelper.InvokeAction(action);
-
-        protected T InvokeAction<T>(Func<T> func) => pageInteractionHelper.InvokeAction(func);  
     }
 }

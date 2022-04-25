@@ -2,7 +2,7 @@
 {
     public class TimeOutConfig
     {
-        public int PageNavigation { get; set; }
+        public int PageLoad { get; set; }
 
         public int ImplicitWait { get; set; }
 

@@ -3,7 +3,6 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -21,7 +20,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private By TRows => By.CssSelector("tr");
         private By THeader => By.CssSelector("th");
         private By TData => By.CssSelector("td");
-
 
         public RecruitmentDynamicHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
