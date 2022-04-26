@@ -2,9 +2,9 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport;
 using System.Linq;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {

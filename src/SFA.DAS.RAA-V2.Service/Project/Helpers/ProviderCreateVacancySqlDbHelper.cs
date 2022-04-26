@@ -3,7 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
+namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
     public class RAAV2ProviderPermissionsSqlDbHelper : SqlDbHelper
     {
