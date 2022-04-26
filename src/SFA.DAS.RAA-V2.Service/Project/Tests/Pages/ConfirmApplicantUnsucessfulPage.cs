@@ -1,24 +1,15 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ConfirmApplicantUnsucessfulPage : Raav2BasePage
+    public class ConfirmApplicantUnsucessfulPage : ConfirmApplicantStatusBasePage
     {
-        protected override string PageTitle => "Are you sure you want to tell this applicant that they have not been accepted?";
+        public ConfirmApplicantUnsucessfulPage(ScenarioContext context) : base(context, "have not been accepted?") { }
 
-        protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
-
-        public ConfirmApplicantUnsucessfulPage(ScenarioContext context) : base(context) { }
-
-        public ApplicationUnsuccessfulPage NotifyApplicant()
+        public new ApplicationUnsuccessfulPage NotifyApplicant()
         {
-            SelectRadioOptionByForAttribute("notify-candidate-yes");
-            Continue();
+            base.NotifyApplicant();
             return new ApplicationUnsuccessfulPage(context);
         }
-    }
-
-    
+    }    
 }
