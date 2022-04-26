@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class SelectOrganisationPage : RAAV2CSSBasePage
+    public class SelectOrganisationPage : Raav2BasePage
     {
-        protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "Which organisation is this vacancy for?";
+        protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "Which organisation do you want to create a vacancy for?";
 
         public SelectOrganisationPage(ScenarioContext context) : base(context) { }
 

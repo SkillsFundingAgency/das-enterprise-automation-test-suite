@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class EditVacancyPage : RAAV2CSSBasePage
+    public class EditVacancyPage : Raav2BasePage
     {
         protected override string PageTitle => "You can edit the following information:";
 

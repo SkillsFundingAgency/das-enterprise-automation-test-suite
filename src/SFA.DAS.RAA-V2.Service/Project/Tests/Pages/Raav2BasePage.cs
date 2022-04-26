@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class RAAV2CSSBasePage : VerifyBasePage
+    public abstract class Raav2BasePage : VerifyBasePage
     {
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;
@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By CancelLink => By.LinkText("Cancel");
 
-        public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
+        public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
             isRaaV2Employer = tags.Contains("raa-v2e");
             vacancyReferenceHelper = context.GetValue<VacancyReferenceHelper>();
@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);
 
-        protected new RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)
+        protected new Raav2BasePage SelectRadioOptionByForAttribute(string value)
         {
             base.SelectRadioOptionByForAttribute(value);
             return this;
