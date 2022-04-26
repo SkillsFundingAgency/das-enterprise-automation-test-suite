@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class AreYouSureBasePage : RAAV2CSSBasePage
+    public abstract class AreYouSureBasePage : Raav2BasePage
     {
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 

@@ -14,11 +14,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private readonly string _title;
         private readonly TimeSpan[] TimeOut;
 
-        public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo)
+        public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo) : this(webDriver, scenarioInfo, Logging.DefaultTimeout())
+        {
+
+        }
+
+        internal RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, TimeSpan[] timeSpans)
         {
             _webDriver = webDriver;
             _title = scenarioInfo.Title;
-            TimeOut = Logging.DefaultTimeout();
+            TimeOut = timeSpans;
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)

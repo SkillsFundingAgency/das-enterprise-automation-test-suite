@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class SummaryOfTheApprenticeshipPage : RAAV2CSSBasePage
+    public class SummaryOfTheApprenticeshipPage : Raav2BasePage
     {
         protected override string PageTitle => "Summary of the apprenticeship";
 

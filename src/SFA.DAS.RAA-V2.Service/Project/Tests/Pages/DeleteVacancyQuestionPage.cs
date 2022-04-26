@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class DeleteVacancyQuestionPage : RAAV2CSSBasePage
+    public class DeleteVacancyQuestionPage : Raav2BasePage
     {
         protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
 
@@ -23,11 +23,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new EmployerVacancySearchResultPage(context);
         }
 
-        public VacancyPreviewPart2Page NoDeleteVacancy()
+        public PreviewYourAdvertOrVacancyPage NoDeleteVacancy()
         {
             SelectRadioOptionByForAttribute("delete-no");
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
     }
 }

@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class WageTypePage : RAAV2CSSBasePage
+    public class WageTypePage : Raav2BasePage
     {
-        protected override string PageTitle => isRaaV2Employer ? "How much will the apprentice be paid?" : "How much would you like to pay the apprentice?";
+        protected override string PageTitle => "How much will the apprentice be paid?";
 
         private By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
 

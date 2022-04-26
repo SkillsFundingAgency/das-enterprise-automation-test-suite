@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class KeyforAPIPage : RAAV2CSSBasePage
+    public class KeyforApiPage : Raav2BasePage
     {
         protected override string PageTitle => "Key for API";
 
@@ -14,9 +14,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly By DoYouNeedANewKeyDropDown = By.CssSelector(".govuk-details__summary-text");
         #endregion
 
-        public KeyforAPIPage(ScenarioContext context) : base(context) { }
+        public KeyforApiPage(ScenarioContext context) : base(context) { }
 
-        public KeyforAPIPage VerifyApikeyRenewed() { VerifyPanelTitle("Key renewed"); return this; }
+        public KeyforApiPage VerifyApikeyRenewed() { VerifyPanelTitle("Key renewed"); return this; }
 
         public AreYouSureYouWantToRenewThisAPIKeyPage ClickRenewKeyLink()
         {

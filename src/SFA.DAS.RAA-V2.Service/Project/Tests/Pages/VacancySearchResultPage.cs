@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class VacancySearchResultPage : RAAV2CSSBasePage
+    public abstract class VacancySearchResultPage : Raav2BasePage
     {
         protected By Filter => By.CssSelector("#Filter");
 

@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Login.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
 {
-    public class CheckProviderIndexPage : CheckPage
+    public class CheckProviderIndexPage : CheckProviderPage
     {
         protected override string PageTitle { get; }
 
