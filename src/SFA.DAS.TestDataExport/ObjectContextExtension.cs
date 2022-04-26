@@ -10,25 +10,43 @@ namespace SFA.DAS.TestDataExport
         #region Constants
         private const string AfterStepInformations = "afterstepinformations";
         private const string AfterScenarioExceptions = "afterscenarioexceptions";
+        private const string DebugInformations = "testdebuginformations";
         #endregion
-
-        public static void SetAfterScenarioException(this ObjectContext objectContext, Exception value) => objectContext.GetAfterScenarioExceptions().Add(value);
-
-        public static FrameworkList<Exception> GetAfterScenarioExceptions(this ObjectContext objectContext) => objectContext.Get<FrameworkList<Exception>>(AfterScenarioExceptions);
-
-        internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
         internal static void SetTestDataList(this ObjectContext objectContext)
         {
+            objectContext.SetDebugInformations();
             objectContext.SetAfterStepInformations();
             objectContext.SetAfterScenarioExceptions();
             objectContext.SetAfterScenarioTestDataTearDown();
         }
 
-        private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
+        #region AfterStepInformations
 
         private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
+        internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
+
+        private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
+        #endregion
+
+        #region AfterScenarioExceptions
+
         private static void SetAfterScenarioExceptions(this ObjectContext objectContext) => objectContext.Set(AfterScenarioExceptions, new FrameworkList<Exception>() { null });
+
+        public static void SetAfterScenarioException(this ObjectContext objectContext, Exception value) => objectContext.GetAfterScenarioExceptions().Add(value);
+
+        public static FrameworkList<Exception> GetAfterScenarioExceptions(this ObjectContext objectContext) => objectContext.Get<FrameworkList<Exception>>(AfterScenarioExceptions);
+        #endregion
+
+        #region DebugInformations
+
+        private static void SetDebugInformations(this ObjectContext objectContext) => objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
+
+        public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> DebugInformation: {value}");
+        
+        private static FrameworkList<string> GetDebugInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(DebugInformations);
+        #endregion
+
     }
 }

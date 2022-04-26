@@ -4,7 +4,7 @@ using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageCloseVacancyPage : RAAV2CSSBasePage
+    public class ManageCloseVacancyPage : Raav2BasePage
     {
         protected override string PageTitle => $"Vacancy VAC{objectContext.GetVacancyReference()} - '{rAAV2DataHelper.VacancyTitle}' has been closed.";
 

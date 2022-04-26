@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class PreviewYourVacancyPage : RAAV2CSSBasePage
+    public class PreviewYourVacancyPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "Preview your advert" : "Preview your vacancy";
 
@@ -12,10 +12,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         
         public PreviewYourVacancyPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page PreviewVacancy()
+        public PreviewYourAdvertOrVacancyPage PreviewVacancy()
         {
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
     }
 }

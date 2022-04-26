@@ -147,12 +147,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
         {
-            _retryHelper.RetryOnWebDriverException(() => 
+            _retryHelper.RetryOnWebDriverException(() =>
             {
                 var selected = GetElementByAttribute(RadioButtonInputCssSelector, AttributeHelper.Value, text)?.Selected ?? false;
 
                 if (isSelected != selected) throw new WebDriverException($"Radio option '{text}' selection verification failed: Expected: {isSelected} Found: {selected}");
-            });  
+            });
         }
 
         public bool IsElementPresent(By locator)
@@ -180,12 +180,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return IsElementDisplayed(locator);
         }
 
-        public bool IsElementDisplayed(By locator)
+        public bool IsElementDisplayed(By locator) => IsElementDisplayed(() => _webDriver.FindElement(locator).Displayed);
+
+        public bool IsElementDisplayed(Func<bool> func)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
-                return _webDriver.FindElement(locator).Displayed;
+                return func();
             }
             catch (Exception)
             {
@@ -222,7 +224,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
         public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Value);
-        
+
         public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetAttribute(AttributeHelper.DataCount));
 
         public string GetText(IWebElement webElement) => webElement.Text;

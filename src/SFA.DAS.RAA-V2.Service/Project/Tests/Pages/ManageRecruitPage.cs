@@ -3,11 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageRecruitPage : RAAV2CSSBasePage
+    public class ManageRecruitPage : Raav2BasePage
     {
         protected override string PageTitle => isRaaV2Employer ? "Manage advert" : "Manage vacancy";
 
-        private By Applicant => By.CssSelector(".responsive a");
+        private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
 
         public ManageRecruitPage(ScenarioContext context) : base(context) { }
 

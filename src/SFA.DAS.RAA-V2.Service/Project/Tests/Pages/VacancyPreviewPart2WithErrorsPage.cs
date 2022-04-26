@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacancyPreviewPart2WithErrorsPage : VacancyPreviewPart2Page
+    public class VacancyPreviewPart2WithErrorsPage : PreviewYourAdvertOrVacancyPage
     {
         protected override string PageTitle => "There is a problem";
 

@@ -7,7 +7,7 @@ using SFA.DAS.RAA_V2.Service.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class EmployerNameBasePage : RAAV2CSSBasePage
+    public abstract class EmployerNameBasePage : Raav2BasePage
     {
         private string _employerName;
 
