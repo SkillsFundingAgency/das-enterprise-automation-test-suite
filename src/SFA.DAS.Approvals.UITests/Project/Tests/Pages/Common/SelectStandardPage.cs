@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
         {
-            AssertOnlyStandardCoursesAreSelectable();
+            AssertStandardAndFrameworkCoursesAreSelectable();
             Continue();
             return GoToProviderEditApprenticeDetailsPage();
         }

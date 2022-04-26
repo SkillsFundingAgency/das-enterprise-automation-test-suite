@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -77,6 +78,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
         }
 
-        protected void AssertOnlyStandardCoursesAreSelectable() => Assert.True(formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer).All(x => !x.Contains("(Framework)")));
+        protected void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.False(GetAllTrainingCourses().All(x => x.Contains("(Framework)")));
+
+        protected void AssertOnlyStandardCoursesAreSelectable() => Assert.True(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")));
+
+        private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
     }
 }
