@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -86,8 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-                SelectViewCurrentApprenticeDetails()
-                .ClickEditApprenticeDetailsLink()
+                ProviderEditApprentice()
                 .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
         }
@@ -110,18 +107,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-            void employeraction()
-            {
-                _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-                 .EditCostCourseAndReference()
-                 .AcceptChangesAndSubmit();
-            }
-
-            Assert.Multiple(() =>
-            {
-                var empex = Assert.Throws(typeof(NoSuchElementException), () => employeraction(), "Employer can edit cost and course after ILR match");
-                Assert.That(empex.Message.Contains("no such element: Unable to locate element:"), "Employer can edit cost and course after ILR match");
-            });
+            _employerStepsHelper
+                .EditApprenticeDetailsPagePostApproval()
+                 .VerifyCourseAndCostAreReadOnly();
         }
 
         [Then(@"provider cannot make changes to cost and course after ILR match")]
@@ -129,38 +117,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-            Assert.Multiple(() =>
-            {
-                var proex = Assert.Throws(typeof(NoSuchElementException), () => ProviderEditsCostAndCourse(), "Provider can edit cost and course after ILR match");
-                Assert.That(proex.Message.Contains("no such element: Unable to locate element:"), "Provider can edit cost and course after ILR match");
-            });
+            ProviderEditApprentice().VerifyCourseAndCostAreReadOnly();
         }
 
-        private void EmployerEditsCostAndCourse()
-        {
-            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-                    .EditCostCourseAndReference()
-                    .AcceptChangesAndSubmit();
-        }
-
-        private void ProviderEditsCostAndCourse()
-        {
-                SelectViewCurrentApprenticeDetails()
-                 .ClickEditApprenticeDetailsLink()
-                 .EditCostCourseAndReference()
-                 .AcceptChangesAndSubmit();
-        }
-
-        private void SetHasHadDataLockSuccessTrue() => _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
-        
         [When(@"the provider edits Name Dob and Reference")]
-        public void ProviderEditsDobAndReference()
-        {
-                SelectViewCurrentApprenticeDetails()
-                .ClickEditApprenticeDetailsLink()
-                .EditApprenticeNameDobAndReference()
-                .AcceptChangesAndSubmit();
-        }
+        public void ProviderEditsDobAndReference() => ProviderEditApprentice().EditApprenticeNameDobAndReference().AcceptChangesAndSubmit();
 
         [When(@"the employer accepts these changes")]
         public void WhenTheEmployerAcceptsTheseChanges()
@@ -206,7 +167,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.Approve();
         }
 
+        private void EmployerEditsCostAndCourse()
+        {
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+                    .EditCostCourseAndReference()
+                    .AcceptChangesAndSubmit();
+        }
+
+        private void ProviderEditsCostAndCourse() => ProviderEditApprentice().EditCostCourseAndReference().AcceptChangesAndSubmit();
+
+        private void SetHasHadDataLockSuccessTrue() => _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
+
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
                 _providerStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+
+        private ProviderEditApprenticeCoursePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().EditApprentice();
     }
 }

@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -13,10 +15,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
 
-        protected EditApprenticeDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
-        
-        protected abstract void EditCourse();
+        private By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
 
+        private By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
+
+        protected EditApprenticeDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+
+        public void VerifyCourseAndCostAreReadOnly()
+        {
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(ReadOnlyTrainingCost),
+                () => VerifyPage(ReadOnlyTrainingCourse, apprenticeDataHelper.TrainingPrice)
+            });
+        }
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
 
         public string GetSelectedCourse() => formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
@@ -30,6 +42,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             EditApprenticeNameDobAndReference(reference);
         }
 
+        protected abstract void EditCourse();
+
         protected void EditEmail()
         {
             AddValidEmail();
@@ -40,6 +54,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private string GetApprenticeEmail() => apprenticeDataHelper.ApprenticeEmail;
 
-        private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingPrice);
+        private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingCost);
     }
 }

@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Edit apprentice details";
 
-        private By TrainingCourseEditLink => By.Name("ChangeCourse");
+        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
 
         public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context)  { }
 

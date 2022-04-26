@@ -32,15 +32,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderReviewChangesPage(context);
         }
 
-        public ProviderEditApprenticeCoursePage ClickEditApprenticeDetailsLink()
+        public ProviderEditApprenticeCoursePage EditApprentice()
         {
-            EditApprentice();
+            ClickEditApprenticeDetailsLink();
             return new ProviderEditApprenticeCoursePage(context);
         }
 
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
         {
-            EditApprentice();
+            ClickEditApprenticeDetailsLink();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -107,6 +107,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
 
-        private void EditApprentice() => formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+        private void ClickEditApprenticeDetailsLink() => formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
     }
 }
