@@ -9,7 +9,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
-
         protected By EmployerContactName => By.CssSelector("#EmployerContactName");
         protected By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
         protected By EmployerContactPhone => By.CssSelector("#EmployerContactPhone");
@@ -29,31 +28,27 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             }
             else { SelectRadioOptionByForAttribute("contact-details-no"); }
 
-
-            Continue();
-            return new ApplicationProcessPage(context);
+            return GoToApplicationProcessPage();
         }
 
         public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
         {
-            if (optionalFields)
-            {
-                formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
-                formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
-                formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
-            }
+            if (optionalFields) EnterContactDetails();
 
-            Continue();
-            return new ApplicationProcessPage(context);
+            return GoToApplicationProcessPage();
         }
 
-        public PreviewYourAdvertOrVacancyPage EnterContactDetails()
+        private void EnterContactDetails()
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
             formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+        }
+
+        private ApplicationProcessPage GoToApplicationProcessPage()
+        {
             Continue();
-            return new PreviewYourAdvertOrVacancyPage(context);
+            return new ApplicationProcessPage(context);
         }
 
         private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;
