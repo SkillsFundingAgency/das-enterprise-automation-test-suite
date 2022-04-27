@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(ReadOnlyTrainingCost),
-                () => VerifyPage(ReadOnlyTrainingCourse, apprenticeDataHelper.TrainingPrice)
+                () => VerifyPage(ReadOnlyTrainingCourse)
             });
         }
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
