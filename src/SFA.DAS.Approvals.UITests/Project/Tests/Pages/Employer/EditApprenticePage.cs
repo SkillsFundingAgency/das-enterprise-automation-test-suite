@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             AddValidEndDate();
             
-            formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
             return new AfterEditApproveApprenticeDetailsPage(context);

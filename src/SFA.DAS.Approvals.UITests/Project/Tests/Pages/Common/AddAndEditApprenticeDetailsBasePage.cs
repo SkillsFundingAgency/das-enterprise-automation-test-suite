@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected void EnterTrainingCostAndEmpReference()
         {
-            formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
         }
 

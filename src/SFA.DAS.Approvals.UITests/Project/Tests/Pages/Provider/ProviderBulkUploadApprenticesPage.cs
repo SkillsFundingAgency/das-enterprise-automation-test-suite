@@ -58,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 ULN = apprenticeDataHelper.Uln(),
                 FamilyName = apprenticeDataHelper.ApprenticeLastname,
                 GivenNames = apprenticeDataHelper.ApprenticeFirstname,
-                TotalPrice = apprenticeDataHelper.TrainingPrice,
+                TotalPrice = apprenticeDataHelper.TrainingCost,
                 ProviderRef = apprenticeDataHelper.EmployerReference,
                 EmailAddress = emailAddress,
                 AgreementId = agreementId
