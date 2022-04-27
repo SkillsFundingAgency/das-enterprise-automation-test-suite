@@ -59,7 +59,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             foreach (var url in authurls)
             {
-                int x = _context.Get<ScreenShotTitleGenerator>().count + 1;
+                int x = _context.Get<ScreenShotTitleGenerator>().GetNextCounter();
 
                 string result = "Pass";
 
