@@ -7,13 +7,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public abstract class ProviderFeedbackBasePage : VerifyBasePage
+    public abstract class ProvideFeedbackBasePage : VerifyBasePage
     {
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
         protected By Labels => By.CssSelector(".multiple-choice label");
 
-        protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
+        protected ProvideFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
             if (verifypage) VerifyPage();
         }

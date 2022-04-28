@@ -7,13 +7,13 @@ namespace SFA.DAS.ProviderFeedback.UITests
     public class ProviderFeedbackSteps
     {
         private readonly ScenarioContext _context;
-        private ProviderFeedbackHomePage _providerFeedbackHomePage;
-        private ProviderFeedbackCheckYourAnswersPage _providerFeedbackCheckYourAnswers;
+        private ProvideFeedbackHomePage _providerFeedbackHomePage;
+        private ProvideFeedbackCheckYourAnswersPage _providerFeedbackCheckYourAnswers;
 
         public ProviderFeedbackSteps(ScenarioContext context) => _context = context;
 
         [Given(@"the user on the homepage")]
-        public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProviderFeedbackHomePage(_context);
+        public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProvideFeedbackHomePage(_context);
 
         [When(@"the user skips the question and selects a rating")]
         public void WhenTheUserSkipsTheQuestionAndSelectsARating()
@@ -46,6 +46,6 @@ namespace SFA.DAS.ProviderFeedback.UITests
         }
 
         [Then(@"the user can not resubmit the feedback")]
-        public void ThenTheUserCanNotResubmitTheFeedback() => new ProviderFeedbackAlreadySubmittedPage(_context);
+        public void ThenTheUserCanNotResubmitTheFeedback() => new ProvideFeedbackAlreadySubmittedPage(_context);
     }
 }

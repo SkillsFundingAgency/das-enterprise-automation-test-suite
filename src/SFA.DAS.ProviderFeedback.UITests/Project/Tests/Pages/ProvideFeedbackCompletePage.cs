@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public class ProviderFeedbackCompletePage : ProviderFeedbackBasePage
+    public class ProvideFeedbackCompletePage : ProvideFeedbackBasePage
     {
         protected override string PageTitle => "Feedback complete";
         protected override By PageHeader => By.ClassName("govuk-box-highlight");
@@ -11,7 +11,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By HaveConcerns => By.CssSelector("details summary");
 
-        public ProviderFeedbackCompletePage(ScenarioContext context) : base(context) { }
+        public ProvideFeedbackCompletePage(ScenarioContext context) : base(context) { }
 
         public void CanComplaint()
         {

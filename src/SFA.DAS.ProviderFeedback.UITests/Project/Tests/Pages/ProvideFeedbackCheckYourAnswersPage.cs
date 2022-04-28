@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public class ProviderFeedbackCheckYourAnswersPage : ProviderFeedbackBasePage
+    public class ProvideFeedbackCheckYourAnswersPage : ProvideFeedbackBasePage
     {
         protected override string PageTitle => "Check your answers";
 
@@ -15,30 +15,30 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By SubmitAnswers => By.CssSelector("button[type='submit']");
 
-        public ProviderFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { } 
+        public ProvideFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { } 
 
-        public ProviderFeedbackStrengthsPage ChangeQuestionOne()
+        public ProvideFeedbackStrengthsPage ChangeQuestionOne()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionOneLink));
-            return new ProviderFeedbackStrengthsPage(context);
+            return new ProvideFeedbackStrengthsPage(context);
         }
 
-        public ProviderFeedbackImprovePage ChangeQuestionTwo()
+        public ProvideFeedbackImprovePage ChangeQuestionTwo()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionTwoLink));
-            return new ProviderFeedbackImprovePage(context);
+            return new ProvideFeedbackImprovePage(context);
         }
 
-        public ProviderFeedbackOverallRatingPage ChangeQuestionThree()
+        public ProvideFeedbackOverallRatingPage ChangeQuestionThree()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionThreeLink));
-            return new ProviderFeedbackOverallRatingPage(context);
+            return new ProvideFeedbackOverallRatingPage(context);
         }
 
-        public ProviderFeedbackCompletePage SubmitAnswersNow()
+        public ProvideFeedbackCompletePage SubmitAnswersNow()
         {
             formCompletionHelper.ClickElement(SubmitAnswers);
-            return new ProviderFeedbackCompletePage(context);
+            return new ProvideFeedbackCompletePage(context);
         }
     }
 }

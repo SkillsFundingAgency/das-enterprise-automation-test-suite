@@ -1,0 +1,32 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
+{
+    public class ProvideFeedbackImprovePage: ProvideFeedbackBasePage
+    {
+        protected override string PageTitle => "improve";
+
+        protected override By ContinueButton => By.Id("q2-continue");
+
+        public ProvideFeedbackImprovePage(ScenarioContext context) : base(context) { }
+
+        public ProvideFeedbackOverallRatingPage ContinueToOverallRating()
+        {
+            SelectOptionAndContinue();
+            return new ProvideFeedbackOverallRatingPage(context);
+        }
+
+        public ProvideFeedbackOverallRatingPage SkipQuestion2()
+        {
+            formCompletionHelper.ClickLinkByText("Skip this question");
+            return new ProvideFeedbackOverallRatingPage(context);
+        }
+
+        public ProvideFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
+        {
+            SelectOptionAndContinue();
+            return new ProvideFeedbackCheckYourAnswersPage(context);
+        }
+    }
+}
