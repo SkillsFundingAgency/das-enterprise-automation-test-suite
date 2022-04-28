@@ -78,7 +78,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         [Scope(Tag = "makeorganisationlive")]
         public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId));
 
-        [AfterScenario(Order = 34)]
+        [AfterScenario(Order = 18)]
         [Scope(Tag = "cancelstandard")]
         public void CancelStandard() => _tryCatch.AfterScenarioException(() => new CancelStandardStepsHelper(_context).CancelYourStandard());
     }
