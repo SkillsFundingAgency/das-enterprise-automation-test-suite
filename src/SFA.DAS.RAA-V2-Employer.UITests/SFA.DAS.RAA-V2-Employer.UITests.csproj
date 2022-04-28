@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\TestDataPreparation\RV2_E_DHLV_01.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -18,7 +22,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="99.0.4844.5100" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="101.0.4951.4100" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
   </ItemGroup>
@@ -52,6 +56,19 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\TestDataPreparation\RV2_E_CreateFirstAdvert.feature.cs">
+      <DependentUpon>RV2_E_CreateFirstAdvert.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\TestDataPreparation\RV2_E_CreateFirstAdvert.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
   
 </Project>
