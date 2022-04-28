@@ -4,10 +4,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class ScreenShotTitleGenerator
     {
-        public int count;
+        private int _count;
 
-        public ScreenShotTitleGenerator(int start) => count = start;
+        public ScreenShotTitleGenerator(int start) => _count = start;
 
-        public string GetNextCount() => $"{++count:D2}_{DateTime.Now:fffff}";
+        public int GetCounter() => _count;
+
+        public int GetNextCounter() => _count + 1;
+
+        public string GetTitle() => $"{++_count:D2}_{DateTime.Now:fffff}";
     }
 }
