@@ -18,6 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 {
     public class EPAOBaseSteps
     {
+        protected readonly ScenarioContext context;
         protected readonly ObjectContext objectContext;
         protected readonly TabHelper tabHelper;
 
@@ -62,6 +63,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         protected EPAOBaseSteps(ScenarioContext context)
         {
+            this.context = context;
             objectContext = context.Get<ObjectContext>();
             tabHelper = context.Get<TabHelper>();
 
