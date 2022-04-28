@@ -20,7 +20,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 4)]
         public void SetUpUIFrameworkHelpers()
         {
-            _helpersSetup.SetupUIFrameworkHelpers();
+            _helpersSetup.SetupUIFrameworkHelpers(false);
 
             _context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
         }

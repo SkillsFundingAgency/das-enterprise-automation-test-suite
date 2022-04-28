@@ -40,7 +40,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var webdriver = _webDriverSetupHelper.SetupWebDriver();
 
-            _frameworkHelpersSetup.SetupUIFrameworkHelpers();
+            _frameworkHelpersSetup.SetupUIFrameworkHelpers(true);
 
             return webdriver;
         }
