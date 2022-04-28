@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ContactDetailsPage : RAAV2CSSBasePage
+    public class ContactDetailsPage : Raav2BasePage
     {
-        protected override string PageTitle => $"Contact details for {objectContext.GetEmployerName()} (optional)";
+        protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
         protected By EmployerContactName => By.CssSelector("#EmployerContactName");
         protected By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
@@ -19,30 +19,40 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ContactDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
+        public ApplicationProcessPage EnterProviderContactDetails(bool optionalFields)
         {
             if (optionalFields)
             {
-                formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
-                formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
-                formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+                SelectRadioOptionByForAttribute("contact-details-yes");
+                EnterContactDetails();
             }
-            Continue();
-            return new ApplicationProcessPage(context);
+            else { SelectRadioOptionByForAttribute("contact-details-no"); }
+
+            return GoToApplicationProcessPage();
         }
 
-        public VacancyPreviewPart2Page EnterContactDetails()
+        public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
+        {
+            if (optionalFields) EnterContactDetails();
+
+            return GoToApplicationProcessPage();
+        }
+
+        private void EnterContactDetails()
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
             formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
-            Continue();
-            return new VacancyPreviewPart2Page(context);
         }
 
-        private By ContactName() => objectContext.IsRAAV2Employer() ? EmployerContactName : ProviderContactName;
-        private By ContactEmail() => objectContext.IsRAAV2Employer() ? EmployerContactEmail : ProviderContactEmail;
-        private By ContactPhone() => objectContext.IsRAAV2Employer() ? EmployerContactPhone : ProviderContactPhone;
+        private ApplicationProcessPage GoToApplicationProcessPage()
+        {
+            Continue();
+            return new ApplicationProcessPage(context);
+        }
 
+        private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;
+        private By ContactEmail() => isRaaV2Employer ? EmployerContactEmail : ProviderContactEmail;
+        private By ContactPhone() => isRaaV2Employer ? EmployerContactPhone : ProviderContactPhone;
     }
 }

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ShortDescriptionPage : RAAV2CSSBasePage
+    public class ShortDescriptionPage : Raav2BasePage
     {
         protected override string PageTitle => "Short description of the apprenticeship";
         
@@ -12,11 +12,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         
         public ShortDescriptionPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page EnterBriefOverview()
+        public PreviewYourAdvertOrVacancyPage EnterBriefOverview()
         {
             formCompletionHelper.EnterText(ShortDescription, rAAV2DataHelper.VacancyBriefOverview);
             Continue();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
     }
 }

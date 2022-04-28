@@ -50,10 +50,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new ProviderVacancySearchResultPage(_context);
         }
 
-        public ReferVacancyPage SearchReferVacancy()
+        public CreateAnApprenticeshipAdvertOrVacancyPage SearchReferVacancy()
         {
             SearchVacancy();
-            return new ReferVacancyPage(_context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
         }
 
         public EmployerVacancySearchResultPage SearchEmployerVacancy()

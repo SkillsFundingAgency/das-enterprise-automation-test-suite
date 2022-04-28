@@ -3,8 +3,7 @@
 @raa-v2
 @raa-v2e
 @clonevacancy
-@regression		
-@newraa-v2
+@regression
 Scenario: RV2_E_CL_03 - Clone, Approve and Close an advert
 	Given the Employer clones and creates an advert
 	And the Reviewer Approves the vacancy

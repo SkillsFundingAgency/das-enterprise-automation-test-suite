@@ -10,21 +10,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 
         public ProviderSteps(ScenarioContext context) => _providerStepsHelper = new ProviderStepsHelper(context);
 
-        [When(@"Provider selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
-        public void WhenProviderSelectsInTheFirstPartOfTheJourney(string wageType) => _providerStepsHelper.CreateANewVacancy(wageType);
-
-        [When(@"the Provider creates an Offline vacancy")]
-        public void WhenTheProviderCreatesAnOfflineVacancy() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, false);
-
-        [Given(@"the Provider creates a vacancy by using a registered name")]
-        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true);
-
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
-        [Given(@"the Provider creates a vacancy by entering all the Optional fields")]
-        public void GivenTheProviderCreatesAVacancyByEnteringAllTheOptionalFields() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true, true);
-        
         [Then(@"Provider can make the application unsuccessful")]
         public void ThenProviderCanMakeTheApplicationUnsuccessful() => _providerStepsHelper.ApplicantUnsucessful();
 
@@ -34,19 +22,5 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can view the refered vacancy")]
         public void ThenProviderCanViewTheReferedVacancy() => _providerStepsHelper.ViewReferVacancy();
 
-        [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
-        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateVacancyViaViewAllVacancy("anonymous", true, false, true);
-
-        [Given(@"the Provider renews the employer recruitment API key")]
-        public void GivenTheProviderRenewsTheEmployerRecruitmentAPIKey() => _providerStepsHelper.RenewRecruitmentAPIKey();
-
-        [Given(@"the Provider renews the employer recruitment API sandbox key")]
-        public void GivenTheProviderRenewsTheEmployerRecruitmentAPISandboxKey() => _providerStepsHelper.RenewRecruitmentAPISandboxKey();
-
-        [Given(@"the Provider renews the employer display API key")]
-        public void GivenTheProviderRenewsTheEmployerDisplayAPIKey() => _providerStepsHelper.RenewDisplayAPIKey();
-
-        [Then(@"the provider does not renews the api key")]
-        public void ThenTheProviderDoesNotRenewsTheApiKey() => _providerStepsHelper.DoesNotRenewDisplayAPIKey();
     }
 }

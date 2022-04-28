@@ -92,9 +92,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return CloseAllTickets();
         }
 
-        protected void NavigateToUser() => NavigateTo($"agent/users/{objectContext.GetUserId()}/tickets");
+        protected void NavigateToUser() => NavigateTo($"tickets");
 
-        protected void NavigateToOrganisation() => NavigateTo($"agent/users/{objectContext.GetUserId()}/organization/tickets");
+        protected void NavigateToOrganisation() => NavigateTo($"organization/tickets");
 
         protected List<IWebElement> FindElements(string question)
         {

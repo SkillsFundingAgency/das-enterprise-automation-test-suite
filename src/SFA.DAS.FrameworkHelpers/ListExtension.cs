@@ -18,7 +18,7 @@ namespace SFA.DAS.FrameworkHelpers
             return listarray.Select(x => x[index]).ToList();
         }
 
-        public static string ToString(this List<string> list, string separator) => string.Join(separator, list);
+        public static string ToString(this IEnumerable<string> list, string separator) => string.Join(separator, list);
 
         public static string ExceptionToString(this List<Exception> list) => string.Join(Environment.NewLine, list.Select(x => x.Message).ToList());
     }

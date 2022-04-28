@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class APIListPage : RAAV2CSSBasePage
+    public class ApiListPage : Raav2BasePage
     {
         protected override string PageTitle => "API list";
 
@@ -18,22 +18,22 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly By DisplayAPIGetKeyLink = By.CssSelector("#get-key-for-VacanciesOuterApi");
         #endregion
 
-        public APIListPage(ScenarioContext context) : base(context) { }
+        public ApiListPage(ScenarioContext context) : base(context) { }
 
-        public KeyforAPIPage ClickViewRecruitmentAPILink() => GoToKeyforAPIPage(RecruitmentAPIViewKeyLink, RecruitmentAPIGetLink);
+        public KeyforApiPage ClickViewRecruitmentAPILink() => GoToKeyforAPIPage(RecruitmentAPIViewKeyLink, RecruitmentAPIGetLink);
        
-        public KeyforAPIPage ClickViewRecruitmentAPISandBoxLink() => GoToKeyforAPIPage(RecruitmentAPISandBoxViewKeyLink, RecruitmentAPISandBoxGetKeyLink);
+        public KeyforApiPage ClickViewRecruitmentAPISandBoxLink() => GoToKeyforAPIPage(RecruitmentAPISandBoxViewKeyLink, RecruitmentAPISandBoxGetKeyLink);
        
-        public KeyforAPIPage ClickViewDisplayAPILink() => GoToKeyforAPIPage(DisplayAPIViewKeyLink, DisplayAPIGetKeyLink);
+        public KeyforApiPage ClickViewDisplayAPILink() => GoToKeyforAPIPage(DisplayAPIViewKeyLink, DisplayAPIGetKeyLink);
 
-        private KeyforAPIPage GoToKeyforAPIPage(By view, By get)
+        private KeyforApiPage GoToKeyforAPIPage(By view, By get)
         {
             formCompletionHelper.Click(view);
             if (pageInteractionHelper.IsElementDisplayed(get))
             {
                 formCompletionHelper.ClickElement(get);
             }
-            return new KeyforAPIPage(context);
+            return new KeyforApiPage(context);
         }
     }
 }

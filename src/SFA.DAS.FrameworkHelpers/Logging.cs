@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
 
-
 namespace SFA.DAS.FrameworkHelpers
 {
     public static class Logging
@@ -15,10 +14,12 @@ namespace SFA.DAS.FrameworkHelpers
                 $"Retry Action : {retryAction == null}");
         }
 
-        public static TimeSpan[] LongerTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(13) };
+        internal static TimeSpan[] LongerTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(13) };
 
         public static TimeSpan[] DefaultTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
-        public static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
+        public static TimeSpan[] CheckPageTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1) };
+
+        internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
     }
 }

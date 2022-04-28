@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageApplicantPage : RAAV2CSSBasePage
+    public class ManageApplicantPage : Raav2BasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 

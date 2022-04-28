@@ -81,7 +81,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.E2EJourney
         [NUnit.Framework.CategoryAttribute("v2_e2e")]
         [NUnit.Framework.CategoryAttribute("v2e_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("newraa-v2")]
         public void RV2_E_E2E_02_CreateAnAdvertWithTradingNameApproveApplyAndMakeApplicationUnsuccessful()
         {
             string[] tagsOfScenario = new string[] {
@@ -89,12 +88,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.E2EJourney
                     "raa-v2e",
                     "v2_e2e",
                     "v2e_e2e",
-                    "regression",
-                    "newraa-v2"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_E2E_02 - Create an advert with trading name, Approve, Apply and make Applic" +
                     "ation Unsuccessful", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,19 +102,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.Given("the Employer creates an advert by using a trading name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.When("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 12
  testRunner.Then("Employer can make the application unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 13
  testRunner.And("the status of the Application is shown as \'unsuccessful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

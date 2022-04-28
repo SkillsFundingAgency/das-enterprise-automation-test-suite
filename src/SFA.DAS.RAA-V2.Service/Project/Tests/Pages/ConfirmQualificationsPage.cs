@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ConfirmQualificationsPage : RAAV2CSSBasePage
+    public class ConfirmQualificationsPage : Raav2BasePage
     {
         protected override string PageTitle => "Qualifications";
 
@@ -11,16 +11,24 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmQualificationsPage(ScenarioContext context) : base(context) { }
 
-        public VacancyPreviewPart2Page ConfirmQualifications()
+        public PreviewYourAdvertOrVacancyPage ConfirmQualifications()
         {
             formCompletionHelper.Click(Preview);
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
+        }
+
+        public FutureProspectsPage ConfirmQualificationsAndGoToFutureProspectsPage()
+        {
+            SaveAndContinue();
+            return new FutureProspectsPage(context);
         }
 
         public ThingsToConsiderPage ConfirmQualificationsAndContinue()
         {
-            formCompletionHelper.ClickLinkByText("Save and continue");
+            SaveAndContinue();
             return new ThingsToConsiderPage(context);
         }
+
+        private void SaveAndContinue() => formCompletionHelper.ClickLinkByText("Save and continue");
     }
 }

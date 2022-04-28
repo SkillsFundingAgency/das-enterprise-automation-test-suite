@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ApprenticeshipTrainingPage : RAAV2CSSBasePage
+    public class ApprenticeshipTrainingPage : Raav2BasePage
     {
-        protected override string PageTitle => isRaaV2Employer ? "What training course will the apprentice take?" : "What training will the apprentice take?";
+        protected override string PageTitle => "What training course will the apprentice take?";
 
         private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
@@ -27,12 +27,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             formCompletionHelper.Click(PageHeader);
 
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueButton));
-        }
-
-        public EmployerVacancySearchResultPage CancelVacancy()
-        {
-            EmployerCancelAdvert();
-            return new EmployerVacancySearchResultPage(context);
         }
     }
 }

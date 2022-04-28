@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class AreYouSureYouWantToRenewThisAPIKeyPage : RAAV2CSSBasePage
+    public class AreYouSureYouWantToRenewThisAPIKeyPage : Raav2BasePage
     {
         protected override string PageTitle => "Are you sure you want to renew this API key?";
 
@@ -18,15 +18,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : base(context) { }
 
-        public KeyforAPIPage RenewAPIKey() => GoToKeyforAPIPage(SelectYesRadioButton);
+        public KeyforApiPage RenewAPIKey() => GoToKeyforAPIPage(SelectYesRadioButton);
         
-        public KeyforAPIPage DoNotRenewApiKey() => GoToKeyforAPIPage(SelectNoRadioButton);
+        public KeyforApiPage DoNotRenewApiKey() => GoToKeyforAPIPage(SelectNoRadioButton);
         
-        private KeyforAPIPage GoToKeyforAPIPage(By by)
+        private KeyforApiPage GoToKeyforAPIPage(By by)
         {
             formCompletionHelper.SelectRadioOptionByLocator(by);
             Continue();
-            return new KeyforAPIPage(context);
+            return new KeyforApiPage(context);
         }
     }
 }

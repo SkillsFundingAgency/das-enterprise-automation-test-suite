@@ -7,6 +7,7 @@ using NUnit.Framework;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
+using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
@@ -51,7 +52,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider submits a vacancy to the employer for review")]
         public void WhenTheProviderSubmitsAVacancyToTheEmployerForReview()
         {
-            var vacancyReferencePage = _providerStepsHelper.CreateANewVacancy(_loginUser.OrganisationName, true, false, true, false, true);
+            var vacancyReferencePage = new ProviderCreateVacancyStepsHelper(_context, true).CreateANewVacancyForSpecificEmployer(_loginUser.OrganisationName);
 
             ConfirmationMessage(vacancyReferencePage, "Vacancy submitted to employer");
         }
