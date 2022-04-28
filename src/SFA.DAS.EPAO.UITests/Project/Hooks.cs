@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
@@ -76,5 +77,9 @@ namespace SFA.DAS.EPAO.UITests.Project
         [AfterScenario(Order = 34)]
         [Scope(Tag = "makeorganisationlive")]
         public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId));
+
+        [AfterScenario(Order = 34)]
+        [Scope(Tag = "cancelstandard")]
+        public void CancelStandard() => _tryCatch.AfterScenarioException(() => new CancelStandardStepsHelper(_context).CancelYourStandard());
     }
 }
