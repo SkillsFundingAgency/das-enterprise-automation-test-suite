@@ -10,13 +10,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
 
         public ApplyStepsHelper(ScenarioContext context)
         {
            _objectContext = context.Get<ObjectContext>();
            _context = context;
-           _ePAOHomePageHelper = new EPAOHomePageHelper(context);
         }
 
         public AP_ApplicationOverviewPage CompletePreambleJourney(AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage, string orgName)
@@ -107,6 +105,28 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ConfirmAndApplyWithVersion()
                 .GoToApplyToStandard();
 
+            applyToStandard = ApplyToStandard(applyToStandard);
+
+            return applyToStandard.ReturnToApplicationOverview().Submit();
+        }
+
+        public void ApplyStageTwoStandard()
+        {
+              AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new AS_ApplyForAStandardPage(_context);
+
+                var applyToStandard =_aS_ApplyForAStandardPage.Start()
+                .EnterStandardToCancelName()
+                .Apply()
+                .ConfirmAndApply()
+                .GoToApplyToStandard();
+
+              applyToStandard = ApplyToStandard(applyToStandard);
+
+            applyToStandard.ReturnToApplicationOverview();
+        }
+
+        private AS_ApplyToStandardPage ApplyToStandard(AS_ApplyToStandardPage applyToStandard)
+        {
             applyToStandard = applyToStandard.AccessYourPolicies_01()
                 .EnterRegNumber()
                 .UploadAuditPolicy()
@@ -145,69 +165,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .EnterCollationOutcome()
                 .EnterAssessmentResutls()
                 .EnterWebAddress();
-
-            return applyToStandard.ReturnToApplicationOverview().Submit();
-        }
-             
-        public void CancelStageTwoStandard()
-        {
-              AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new AS_ApplyForAStandardPage(_context);
-
-                var CancelStandard =_aS_ApplyForAStandardPage.Start()
-                .EnterStandardToCancelName()
-                .Apply()
-                .ConfirmAndApply()
-                .GoToApplyToStandard();
-
-              CancelStandard = CancelStandard.AccessYourPolicies_01()
-                .EnterRegNumber()
-                .UploadAuditPolicy()
-                .UploadPublicLiabilityInsurance()
-                .UploadProfessionalIndemnityInsurance()
-                .UploadEmployersLiabilityInsurance()
-                .UploadSafeguardingPolicy()
-                .UploadPreventAgendaPolicy()
-                .UploadConflictOfinterestPolicy()
-                .UploadMonitoringProcedure()
-                .UploadModerationProcesses()
-                .UploadComplaintsPolicy()
-                .UploadFairAccess()
-                .UploadConsistencyAssurance()
-                .EnterImproveTheQuality()
-                .EnterEngagement()
-                .EnterMembershipDetails()
-                .EnterHowManyAssessors()
-                .EnterHowManyEndPointAssessment()
-                .EnterVolume()
-                .EnterHowRecruitAndTrainAssessors()
-                .EnterExperience()
-                .EnterOccupationalExpertise()
-                .EnterDeliverEndPoint()
-                .EnterIntendToOutsource()
-                .EnterEngageWithEmployers()
-                .EnterManageAnyPotentialConflict()
-                .ChooseLocation()
-                .EnterDayToStart()
-                .EnterAssessmentPlan()
-                .EnterReviewAndMaintainPlan()
-                .EnterSecureITInfrastructurePlan()
-                .EnterAssessmentAdministration()
-                .EnterAssessmentProduct()
-                .EnterAssessmentContent()
-                .EnterCollationOutcome()
-                .EnterAssessmentResutls()
-                .EnterWebAddress();
-            
-            CancelStandard.ReturnToApplicationOverview();
-        }
-
-        public void ClickCancelYourStandardLink()
-        {
-            AP_ApplicationOverviewPage _aP_ApplicationOverviewPage = new AP_ApplicationOverviewPage(_context);
-
-            _aP_ApplicationOverviewPage.ClickToCancelYourStandardApplication()
-                .SelectYesToCancelStandardApplication()
-                .ClickApplyForAStandardLink();                
+            return applyToStandard;
         }
     }
 }

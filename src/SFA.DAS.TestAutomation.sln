@@ -117,6 +117,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Approvals.ServiceBu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmplomentChecks.APITests", "SFA.DAS.EmplomentChecks.APITests\SFA.DAS.EmplomentChecks.APITests.csproj", "{62266CB9-9153-42CE-8AC3-BBD45C40CEDF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ManagingStandards.UITests", "SFA.DAS.ManagingStandards.UITests\SFA.DAS.ManagingStandards.UITests.csproj", "{88E9F296-F18F-466D-BD50-02C9C9518ED6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TestDataCreation.Tests", "SFA.DAS.TestDataCreation.Tests\SFA.DAS.TestDataCreation.Tests.csproj", "{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}"
 EndProject
 Global
@@ -402,6 +404,12 @@ Global
 		{62266CB9-9153-42CE-8AC3-BBD45C40CEDF}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{62266CB9-9153-42CE-8AC3-BBD45C40CEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62266CB9-9153-42CE-8AC3-BBD45C40CEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E9F296-F18F-466D-BD50-02C9C9518ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E9F296-F18F-466D-BD50-02C9C9518ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E9F296-F18F-466D-BD50-02C9C9518ED6}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E9F296-F18F-466D-BD50-02C9C9518ED6}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{88E9F296-F18F-466D-BD50-02C9C9518ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E9F296-F18F-466D-BD50-02C9C9518ED6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Development|Any CPU.ActiveCfg = Debug|Any CPU

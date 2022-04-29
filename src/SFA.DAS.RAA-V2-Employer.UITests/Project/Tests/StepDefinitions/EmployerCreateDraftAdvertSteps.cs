@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer creates first Draft advert")]
-        public void TheEmployerCreatesFirstDraftAdvert() => ReturnToApplications(_stepsHelper.CreateDraftAdvert(new CreateAnApprenticeshipAdvertOrVacancyPage(_context), true));
+        public void TheEmployerCreatesFirstDraftAdvert() => ReturnToApplications(_stepsHelper.CreateFirstDraftAdvert(new CreateAnApprenticeshipAdvertOrVacancyPage(_context)));
 
         [Then(@"the Employer is able to delete the draft vacancy")]
         public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _stepsHelper.CompleteDeleteOfDraftVacancy();
