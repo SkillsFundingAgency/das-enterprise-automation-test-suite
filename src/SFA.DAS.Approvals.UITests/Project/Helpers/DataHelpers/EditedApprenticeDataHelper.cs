@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             ProviderRefernce = RandomDataGenerator.GenerateRandomAlphanumericString(10);
-            TrainingPrice = "2" + RandomDataGenerator.GenerateRandomNumber(3);
+            TrainingCost = "2" + RandomDataGenerator.GenerateRandomNumber(3);
         }
 
         public int DateOfBirthDay { get; }
@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string ProviderRefernce { get; }
 
-        public string TrainingPrice { get; }
+        public string TrainingCost { get; }
 
         public string ApprenticeEditedFullName => $"{ApprenticeEditedFirstname} {ApprenticeEditedLastname}";
 

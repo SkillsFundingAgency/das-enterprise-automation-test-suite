@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             var randomcourseHelper = new RandomCourseDataHelper();
             var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.WaitingToStart);
 
-            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.Course}");
+            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
             //Assert
             Assert.IsTrue(apprentice.CourseStartDate > DateTime.Now.Date && (apprentice.CourseStartDate.Month != DateTime.Now.Month ? true : apprentice.CourseStartDate.Year != DateTime.Now.Year) && apprentice.CourseStartDate < AcademicYearDatesHelper.GetNextAcademicYearStartDate());
@@ -65,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             var randomcourseHelper = new RandomCourseDataHelper();
             var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.Live);
 
-            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.Course}");
+            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
             //Assert
             Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2020, 8, 1).Date);
