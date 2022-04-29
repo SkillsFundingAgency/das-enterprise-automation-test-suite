@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
+namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AP_04_StageTwoCancelStandard")]
-    public partial class EPAO_AP_04_StageTwoCancelStandardFeature
+    [NUnit.Framework.DescriptionAttribute("MS_Testing_Demo_Feature")]
+    [NUnit.Framework.CategoryAttribute("managingstandards")]
+    public partial class MS_Testing_Demo_FeatureFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "managingstandards"};
         
-#line 1 "EPAO_AP_04_StageTwoCancelStandard.feature"
+#line 1 "Test_Demo.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Apply", "EPAO_AP_04_StageTwoCancelStandard", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "MS_Testing_Demo_Feature", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +76,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AP_04_StageTwo_CancelStandard")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoapply")]
-        [NUnit.Framework.CategoryAttribute("epaostagetwostdcancellation")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("cancelstandard")]
-        public void EPAO_AP_04_StageTwo_CancelStandard()
+        [NUnit.Framework.DescriptionAttribute("MS_Test Demo")]
+        [NUnit.Framework.CategoryAttribute("managingstandards01")]
+        public void MS_TestDemo()
         {
             string[] tagsOfScenario = new string[] {
-                    "epao",
-                    "epaoapply",
-                    "epaostagetwostdcancellation",
-                    "regression",
-                    "cancelstandard"};
+                    "managingstandards01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_04_StageTwo_CancelStandard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_Test Demo", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,14 +94,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
- testRunner.Given("Stage one approved EPAO logs in to apply for a first standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 10
- testRunner.When("Starts the journey to apply for the first standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
- testRunner.Then("EPAO cancels the standard using cancel link as incorrect standard selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Given("the provider logs into employer portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

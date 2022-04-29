@@ -23,7 +23,7 @@ namespace SFA.DAS.Login.Service
 
             if (notNullUsers.Count == 0) return;
 
-            var legalentities = GetAccountLegalEntities(context, notNullUsers.Select(x => x.Username).ToList());
+            var legalentities = context.GetAccountLegalEntities(notNullUsers.Select(x => x.Username).ToList());
 
             for (int i = 0; i < notNullUsers.Count; i++)
             {
@@ -35,7 +35,7 @@ namespace SFA.DAS.Login.Service
 
         public static T GetUser<T>(this ScenarioContext context) => context.Get<T>(Key<T>());
 
-        private static List<List<string>> GetAccountLegalEntities(ScenarioContext context, List<string> username)
+        public static List<List<string>> GetAccountLegalEntities(this ScenarioContext context, List<string> username)
         {
             var legalEntities = new LegalEntitiesSqlDataHelper(context.Get<DbConfig>()).GetAccountLegalEntities(username);
 
