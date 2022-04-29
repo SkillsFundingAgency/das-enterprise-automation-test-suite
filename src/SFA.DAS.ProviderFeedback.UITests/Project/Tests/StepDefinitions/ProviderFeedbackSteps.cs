@@ -3,6 +3,7 @@ using SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.ProviderFeedback.UITests
 {
@@ -25,7 +26,6 @@ namespace SFA.DAS.ProviderFeedback.UITests
         {
             Login(_context.GetUser<FeedbackUser>());
         }
-
 
         [Given(@"the user on the homepage")]
         public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProvideFeedbackHomePage(_context);

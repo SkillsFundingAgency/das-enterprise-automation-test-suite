@@ -43,7 +43,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
 
             _objectContext.SetUniqueSurveyCode(_uniqueSurveyCode);
 
-            _tabHelper.GoToUrl(UrlConfig.ProviderFeedback_BaseUrl, _uniqueSurveyCode);
         }
 
         [AfterScenario(Order = 34)]
