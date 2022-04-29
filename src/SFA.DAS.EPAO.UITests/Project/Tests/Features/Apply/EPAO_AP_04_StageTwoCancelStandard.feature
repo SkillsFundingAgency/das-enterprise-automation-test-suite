@@ -4,6 +4,7 @@
 @epaoapply
 @epaostagetwostdcancellation
 @regression
+@cancelstandard
 Scenario: EPAO_AP_04_StageTwo_CancelStandard
 	Given Stage one approved EPAO logs in to apply for a first standard
 	When  Starts the journey to apply for the first standard

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.TestDataPreparation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AP_04_StageTwoCancelStandard")]
-    public partial class EPAO_AP_04_StageTwoCancelStandardFeature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_CreateFirstAdvert")]
+    public partial class RV2_E_CreateFirstAdvertFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPAO_AP_04_StageTwoCancelStandard.feature"
+#line 1 "RV2_E_CreateFirstAdvert.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/Apply", "EPAO_AP_04_StageTwoCancelStandard", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RV2_E_CreateFirstAdvert", "\tAs a Levy Employer, Create First Advert", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,24 +73,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AP_04_StageTwo_CancelStandard")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoapply")]
-        [NUnit.Framework.CategoryAttribute("epaostagetwostdcancellation")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("cancelstandard")]
-        public void EPAO_AP_04_StageTwo_CancelStandard()
+        public virtual void RV2_E_CreateFirstAdvertPerfTestDataPreparation(string employeremail, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "epao",
-                    "epaoapply",
-                    "epaostagetwostdcancellation",
-                    "regression",
-                    "cancelstandard"};
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_04_StageTwo_CancelStandard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+            argumentsOfScenario.Add("employeremail", employeremail);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CreateFirstAdvert Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,17 +89,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
- testRunner.Given("Stage one approved EPAO logs in to apply for a first standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 10
- testRunner.When("Starts the journey to apply for the first standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
- testRunner.Then("EPAO cancels the standard using cancel link as incorrect standard selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Given(string.Format("the Employer creates first draft advert using \'{0}\'", employeremail), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CreateFirstAdvert Perf test data preparation: To Be declared")]
+        public void RV2_E_CreateFirstAdvertPerfTestDataPreparation_ToBeDeclared()
+        {
+#line 5
+this.RV2_E_CreateFirstAdvertPerfTestDataPreparation("To Be declared", ((string[])(null)));
+#line hidden
         }
     }
 }
