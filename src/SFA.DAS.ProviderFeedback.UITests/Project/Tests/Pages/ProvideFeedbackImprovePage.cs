@@ -8,12 +8,16 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         protected override string PageTitle => "improve";
 
         protected override By ContinueButton => By.Id("q2-continue");
+        private By Option1 => By.Id("col1-2");
+        private By Option2 => By.Id("col1-3");
 
         public ProvideFeedbackImprovePage(ScenarioContext context) : base(context) { }
 
         public ProvideFeedbackOverallRatingPage ContinueToOverallRating()
         {
-            SelectOptionAndContinue();
+            formCompletionHelper.SelectCheckbox(Option1);
+            formCompletionHelper.SelectCheckbox(Option2);
+            formCompletionHelper.ClickElement(ContinueButton);
             return new ProvideFeedbackOverallRatingPage(context);
         }
 

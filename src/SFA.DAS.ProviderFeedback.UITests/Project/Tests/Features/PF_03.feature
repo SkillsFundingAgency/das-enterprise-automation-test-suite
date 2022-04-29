@@ -4,4 +4,5 @@
 @regression
 @providerfeedback03
 Scenario: Provide Feedback
-	When the Employer logins into Employer Portal
+	Given the Employer logins into Employer Portal
+	And completes the feedback journey for a training provider

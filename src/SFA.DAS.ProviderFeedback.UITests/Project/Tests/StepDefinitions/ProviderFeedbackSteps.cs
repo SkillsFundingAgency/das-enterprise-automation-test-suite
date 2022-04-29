@@ -21,11 +21,27 @@ namespace SFA.DAS.ProviderFeedback.UITests
             _context = context;
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
         }
-        [When(@"the Employer logins into Employer Portal")]
+
+        [Given(@"the Employer logins into Employer Portal")]
         public void WhenTheEmployerLoginsIntoEmployerPortal()
         {
             Login(_context.GetUser<FeedbackUser>());
         }
+
+        [Given(@"completes the feedback journey for a training provider")]
+        public void GivenCompletesTheFeedbackJourneyForATrainingProvider()
+        {
+            new EmployerDashboardPage(_context)
+               .ClickFeedbackLink()
+               .SelectTrainingProvider()
+               .ConfirmTrainingProvider()
+               .StartNow()
+               .SelectOptionsForDoingWell()
+               .ContinueToOverallRating()
+               .SelectGoodAndContinue()
+               .SubmitAnswersNow();
+        }
+
 
         [Given(@"the user on the homepage")]
         public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProvideFeedbackHomePage(_context);
@@ -64,5 +80,6 @@ namespace SFA.DAS.ProviderFeedback.UITests
         public void ThenTheUserCanNotResubmitTheFeedback() => new ProvideFeedbackAlreadySubmittedPage(_context);
 
         private void Login(EasAccountUser loginUser) => _employerPortalLoginHelper.Login(loginUser, true);
+
     }
 }

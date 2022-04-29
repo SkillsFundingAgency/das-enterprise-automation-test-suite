@@ -6,7 +6,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     public class ProvideFeedbackCompletePage : ProvideFeedbackBasePage
     {
         protected override string PageTitle => "Feedback complete";
-        protected override By PageHeader => By.ClassName("govuk-box-highlight");
+        protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
 
         private By HaveConcerns => By.CssSelector("details summary");

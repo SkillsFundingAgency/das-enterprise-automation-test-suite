@@ -13,7 +13,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By ChangeQuestionThreeLink => By.CssSelector("a[href*='question-three']");
 
-        private By SubmitAnswers => By.CssSelector("button[type='submit']");
+        private By SubmitAnswers => By.XPath("//button[@class='govuk-button']");
 
         public ProvideFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { } 
 
