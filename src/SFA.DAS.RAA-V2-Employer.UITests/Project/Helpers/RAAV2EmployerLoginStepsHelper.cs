@@ -3,6 +3,7 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
@@ -22,13 +23,24 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal HomePage GoToHomePage(EasAccountUser loginUser) => _homePageStepsHelper.Login(loginUser);
 
-        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
+        internal CreateAnAdvertHomePage GoToCreateAnAdvertHomePage(RAAV2EmployerUser user)
         {
-            GoToHomePage(_context.GetUser<RAAV2EmployerUser>());
+            GoToHomePage(user);
+
+            new InterimCreateAnAdvertHomePage(_context);
+
+            return new CreateAnAdvertHomePage(_context);
+        }
+
+        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage(RAAV2EmployerUser user)
+        {
+            GoToHomePage(user);
 
             return NavigateToRecruitmentHomePage();
         }
 
+        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(_context.GetUser<RAAV2EmployerUser>());
+        
         internal YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new YourApprenticeshipAdvertsHomePage(_context, true);
     }
 }
