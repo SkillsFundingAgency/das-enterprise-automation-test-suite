@@ -76,11 +76,13 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PF_01 User Submit All Information and user Cannot Resubmit Feedback Once Submitte" +
             "d")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("providerfeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void PF_01UserSubmitAllInformationAndUserCannotResubmitFeedbackOnceSubmitted()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "providerfeedback",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

@@ -75,11 +75,13 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PF_02 User Submit Mandatory Information")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("providerfeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void PF_02UserSubmitMandatoryInformation()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "providerfeedback",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
