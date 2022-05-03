@@ -42,6 +42,18 @@ namespace SFA.DAS.ProviderFeedback.UITests
                .SubmitAnswersNow();
         }
 
+        [Given(@"completes the feedback journey for a training provider via survey code")]
+        public void GivenCompletesTheFeedbackJourneyForATrainingProviderViaSurveyCode()
+        {
+            new EmployerDashboardPage(_context)
+                .OpenFeedbackLinkWithSurveyCode()
+                .StartNow()
+               .SelectOptionsForDoingWell()
+               .ContinueToOverallRating()
+               .SelectGoodAndContinue()
+               .SubmitAnswersNow();
+        }
+
 
         [Given(@"the user on the homepage")]
         public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProvideFeedbackHomePage(_context);

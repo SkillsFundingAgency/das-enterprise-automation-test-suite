@@ -1,5 +1,5 @@
 ﻿Feature: PF_02
-
+@ignore
 @providerfeedback
 @regression
 Scenario: PF_02 User Submit Mandatory Information

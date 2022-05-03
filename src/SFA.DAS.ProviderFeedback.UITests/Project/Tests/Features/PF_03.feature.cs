@@ -74,18 +74,18 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provide Feedback")]
+        [NUnit.Framework.DescriptionAttribute("Provide Feedback via Adhoc Journey")]
         [NUnit.Framework.CategoryAttribute("providerfeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("providerfeedback03")]
-        public void ProvideFeedback()
+        public void ProvideFeedbackViaAdhocJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "providerfeedback",
                     "regression",
                     "providerfeedback03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide Feedback", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide Feedback via Adhoc Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -101,6 +101,39 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  testRunner.And("completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Provide Feedback via Email link")]
+        [NUnit.Framework.CategoryAttribute("providerfeedback")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("providerfeedback03")]
+        public void ProvideFeedbackViaEmailLink()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "providerfeedback",
+                    "regression",
+                    "providerfeedback03"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide Feedback via Email link", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 14
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 15
+ testRunner.Given("the Employer logins into Employer Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 16
+ testRunner.And("completes the feedback journey for a training provider via survey code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

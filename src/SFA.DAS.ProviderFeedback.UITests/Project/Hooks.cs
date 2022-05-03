@@ -3,6 +3,7 @@ using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project
@@ -17,6 +18,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
         private string _uniqueSurveyCode;
+        private readonly string[] _tags;
 
         public Hooks(ScenarioContext context)
         {
@@ -24,6 +26,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             _dbConfig = context.Get<DbConfig>();
+            _tags = context.ScenarioInfo.Tags;
         }
 
         [BeforeScenario(Order = 21)]
@@ -43,6 +46,13 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
 
             _objectContext.SetUniqueSurveyCode(_uniqueSurveyCode);
 
+        }
+
+        [BeforeScenario(Order = 23)]
+        public void ClearDownDataForAdhocJourney()
+        {
+            if (_tags.Contains("providerfeedback03"))
+                _providerFeedbackSqlHelper.ClearDownDataForAdhocJourney();
         }
 
         [AfterScenario(Order = 34)]
