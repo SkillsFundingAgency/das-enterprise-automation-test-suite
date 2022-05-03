@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using SFA.DAS.TestDataExport;
 using System.Linq;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
@@ -16,9 +17,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
-        public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer()
+        public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer(string empHashedid)
         {
-            var employers = pageInteractionHelper.FindElements(RadioItem(string.Empty)).ToList().Select(x => x.GetAttribute("value")).ToList();
+            List<string> employers = GetEmployers(empHashedid);
 
             var validemployers = context.Get<ProviderCreateVacancySqlDbHelper>().GetValidHashedId(employers);
 
@@ -35,6 +36,15 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             Continue();
 
             return (new CreateAnApprenticeshipAdvertOrVacancyPage(context), noOfLegalEntity > 1);
+        }
+
+        private List<string> GetEmployers(string empHashedid)
+        {
+            return string.IsNullOrEmpty(empHashedid) ? 
+
+                pageInteractionHelper.FindElements(RadioItem(string.Empty)).ToList().Select(x => x.GetAttribute("value")).ToList() :
+                
+                new List<string>() { (empHashedid) };
         }
     }
 }

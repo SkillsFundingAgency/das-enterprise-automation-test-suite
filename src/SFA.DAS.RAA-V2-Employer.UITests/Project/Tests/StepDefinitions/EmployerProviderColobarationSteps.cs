@@ -8,6 +8,8 @@ using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
 using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
@@ -15,6 +17,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     public class EmployerProviderColobarationSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
@@ -25,6 +28,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public EmployerProviderColobarationSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
@@ -52,7 +56,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider submits a vacancy to the employer for review")]
         public void WhenTheProviderSubmitsAVacancyToTheEmployerForReview()
         {
-            var vacancyReferencePage = new ProviderCreateVacancyStepsHelper(_context, true).CreateANewVacancyForSpecificEmployer(_loginUser.OrganisationName);
+            var vacancyReferencePage = new ProviderCreateVacancyStepsHelper(_context, true).CreateANewVacancyForSpecificEmployer(_loginUser.OrganisationName, _objectContext.GetHashedAccountId());
 
             ConfirmationMessage(vacancyReferencePage, "Vacancy submitted to employer");
         }
