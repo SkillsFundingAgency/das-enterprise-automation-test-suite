@@ -12,7 +12,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
     public class Hooks
     {
         private readonly DbConfig _dbConfig;
-        private ProviderFeedbackSqlHelper _providerFeedbackSqlHelper;
+        private ProvideFeedbackSqlHelper _providerFeedbackSqlHelper;
         private readonly ScenarioContext _context;
         private TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
@@ -32,7 +32,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         [BeforeScenario(Order = 21)]
         public void SetUpHelpers()
         {
-            _providerFeedbackSqlHelper = new ProviderFeedbackSqlHelper(_dbConfig);
+            _providerFeedbackSqlHelper = new ProvideFeedbackSqlHelper(_dbConfig);
 
             _context.Set(_providerFeedbackSqlHelper);
         }

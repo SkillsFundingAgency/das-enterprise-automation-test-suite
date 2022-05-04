@@ -10,7 +10,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Select a training provider";
 
-        private By SelectLink => By.XPath("//*[@id='main-content']/table/tbody/tr/td[4]/a");
+        private By SelectLink => By.CssSelector("a[href*='/YGLK6W/providers/10000528']");
 
         public SelectTrainingProviderPage(ScenarioContext context) : base(context) { }
 

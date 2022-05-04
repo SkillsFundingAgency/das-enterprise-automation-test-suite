@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Helpers
 {
-    public static class FetchProviderFeedbackDataHelper
+    public static class FetchProvideFeedbackDataHelper
     {
         private static readonly object _object = new object();
 

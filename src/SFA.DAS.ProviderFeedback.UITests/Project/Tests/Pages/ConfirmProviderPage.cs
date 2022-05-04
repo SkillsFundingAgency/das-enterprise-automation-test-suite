@@ -11,7 +11,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Confirm training provider";
 
-        private By ClickonContinue => By.XPath("//*[@id='main-content']/div/div/form/button");
+        private By ClickonContinue => By.XPath("//button[@class='govuk-button']");
 
         private By Yes => By.Id("correctprovider-yes");
 

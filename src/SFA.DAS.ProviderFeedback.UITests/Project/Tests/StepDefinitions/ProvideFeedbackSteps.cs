@@ -8,7 +8,7 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 namespace SFA.DAS.ProviderFeedback.UITests
 {
     [Binding]
-    public class ProviderFeedbackSteps
+    public class ProvideFeedbackSteps
     {
         private readonly ScenarioContext _context;
         private ProvideFeedbackHomePage _providerFeedbackHomePage;
@@ -16,7 +16,7 @@ namespace SFA.DAS.ProviderFeedback.UITests
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
 
-        public ProviderFeedbackSteps(ScenarioContext context)
+        public ProvideFeedbackSteps(ScenarioContext context)
         {
             _context = context;
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
