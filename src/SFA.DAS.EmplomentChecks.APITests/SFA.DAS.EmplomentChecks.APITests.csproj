@@ -17,8 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="FluentAssertions" Version="6.6.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
@@ -27,6 +29,9 @@
 
   <ItemGroup>
     <None Update="appsettings.Environment.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Project\Tests\Payload\EC_API_103.json">
@@ -44,6 +49,10 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\OutputInterface_ResultIsRegisteredWithEmployerIncentives\" />
   </ItemGroup>
 
 </Project>
