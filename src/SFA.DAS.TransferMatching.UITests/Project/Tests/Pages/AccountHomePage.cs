@@ -10,7 +10,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         
         public AccountHomePage(ScenarioContext context) : base(context) { }
 
-        private By TaskSelector => By.XPath("//a[text()='View']");
+        private By TaskSelector => By.Id("#application-approval-task");
 
         public MyTransferPledgesPage ClickTask()
         {
