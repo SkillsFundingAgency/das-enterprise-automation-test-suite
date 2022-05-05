@@ -44,7 +44,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCreatesAnAnonymousAdvert() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.Anonymous);
 
         [Given(@"the Employer creates an advert by using a registered name")]
-        public void TheEmployerCreatesAnanAdvertByUsingARegisteredName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.LegalEntityName);
+        public void TheEmployerCreatesAnanAdvertByUsingARegisteredName() => _employerCreateVacancyStepsHelper.CreateANewAdvert();
 
         [Given(@"the Employer creates an advert by using a trading name")]
         public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.ExistingTradingName);
