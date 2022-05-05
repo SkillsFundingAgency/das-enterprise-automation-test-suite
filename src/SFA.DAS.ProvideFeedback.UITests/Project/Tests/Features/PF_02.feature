@@ -1,6 +1,6 @@
 ﻿Feature: PF_02
 @ignore
-@providerfeedback
+@providefeedback
 @regression
 Scenario: PF_02 User Submit Mandatory Information
 	Given the user on the homepage

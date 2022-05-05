@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.ProviderFeedback.UITests.Project.Helpers
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers
 {
     public static class FetchProvideFeedbackDataHelper
     {

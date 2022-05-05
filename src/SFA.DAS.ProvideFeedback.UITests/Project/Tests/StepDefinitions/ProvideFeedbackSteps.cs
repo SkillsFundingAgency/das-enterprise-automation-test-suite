@@ -1,11 +1,11 @@
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages;
+using SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ProviderFeedback.UITests
+namespace SFA.DAS.ProvideFeedback.UITests
 {
     [Binding]
     public class ProvideFeedbackSteps

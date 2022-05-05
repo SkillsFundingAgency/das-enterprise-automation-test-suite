@@ -1,6 +1,6 @@
 ﻿Feature: PF_01
 @ignore
-@providerfeedback
+@providefeedback
 @regression
 Scenario: PF_01 User Submit All Information and user Cannot Resubmit Feedback Once Submitted
 	Given the user on the homepage

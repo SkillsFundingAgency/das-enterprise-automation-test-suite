@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 
-namespace SFA.DAS.ProviderFeedback.UITests.Project
+namespace SFA.DAS.ProvideFeedback.UITests.Project
 {
     public static class ObjectContextExtension
     {

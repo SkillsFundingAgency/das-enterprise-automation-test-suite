@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<RootNamespace>SFA.DAS.ProviderFeedback.UITests</RootNamespace>
+		<RootNamespace>SFA.DAS.ProvideFeedback.UITests</RootNamespace>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
@@ -46,7 +46,7 @@
 	  <None Update="appsettings.Project.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.ProviderFeedback.UITests.json">
+	  <None Update="SFA.DAS.ProvideFeedback.UITests.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
