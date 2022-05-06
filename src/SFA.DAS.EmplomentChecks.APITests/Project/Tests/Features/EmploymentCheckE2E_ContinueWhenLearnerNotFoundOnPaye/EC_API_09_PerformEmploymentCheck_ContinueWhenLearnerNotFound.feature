@@ -8,7 +8,7 @@ Scenario: EC_API_009_PerformEmploymentCheck_ContinueWhenLearnerNotFound
 	When multiple paye schemes are found on account
 	And an employment check request is created for each unique Nino and paye scheme combination
 	And Learner is found to be '<Employed>' on one of the paye schemes
-	Then contnue with the remaining paye schemes for the check
+	Then continue with the remaining paye schemes for the check
 
 Examples:
 	| TestCaseId | MinDate             | MaxDate             | Employed |

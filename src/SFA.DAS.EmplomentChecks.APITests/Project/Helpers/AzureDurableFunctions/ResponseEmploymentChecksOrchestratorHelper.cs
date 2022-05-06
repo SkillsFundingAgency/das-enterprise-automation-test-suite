@@ -5,18 +5,18 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunction
 {
     public class ResponseEmploymentChecksOrchestratorHelper
     {
-        private readonly EmploymentCheckOutputInterfaceHelper _checkOutputInterfaceHelper;
+        private readonly EmploymentCheckOrchestrationHelper _checkOrchestrationHelper;
 
         public ResponseEmploymentChecksOrchestratorHelper(ScenarioContext context)
         {
-            _checkOutputInterfaceHelper = context.Get<EmploymentCheckOutputInterfaceHelper>();
+            _checkOrchestrationHelper = context.Get<EmploymentCheckOrchestrationHelper>();
         }
 
         public async Task Run(bool continueOnFailure = false)
         {
-            await _checkOutputInterfaceHelper.StartResponseEmploymentChecksOrchestrator();
-            if (continueOnFailure) await _checkOutputInterfaceHelper.WaitUntilStopped();
-            else await _checkOutputInterfaceHelper.WaitUntilComplete();
+            await _checkOrchestrationHelper.StartResponseEmploymentChecksOrchestrator();
+            if (continueOnFailure) await _checkOrchestrationHelper.WaitUntilStopped();
+            else await _checkOrchestrationHelper.WaitUntilComplete();
         }
     }
 }

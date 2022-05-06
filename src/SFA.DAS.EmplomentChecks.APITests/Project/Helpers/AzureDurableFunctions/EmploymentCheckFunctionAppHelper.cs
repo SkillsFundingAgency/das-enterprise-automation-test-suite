@@ -21,10 +21,12 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunction
             HttpClient = new HttpClient();
         }
 
-        protected async Task StartOrchestrator(string path)
+        protected async Task StartOrchestrator(string path, bool ignoreFailure = false)
         {
             var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?code={AuthenticationCode}");
 
+            if (ignoreFailure) return;
+            
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Unsuccessful request - {response.StatusCode}");

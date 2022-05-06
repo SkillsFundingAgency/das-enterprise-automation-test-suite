@@ -5,7 +5,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers
 {
     public class Helper
     {
-        public EmploymentCheckOutputInterfaceHelper EmploymentCheckOutputInterfaceHelper => _context.Get<EmploymentCheckOutputInterfaceHelper>();
+        public EmploymentCheckOrchestrationHelper EmploymentCheckOrchestrationHelper => _context.Get<EmploymentCheckOrchestrationHelper>();
         private readonly ScenarioContext _context;
 
         public Helper(ScenarioContext context)

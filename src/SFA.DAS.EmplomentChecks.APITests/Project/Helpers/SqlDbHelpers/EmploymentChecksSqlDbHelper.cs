@@ -46,7 +46,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             await SqlDatabaseConnectionHelper.Insert(record, _dbConfig.EmploymentCheckDbConnectionString);
         }
 
-        internal void InsertEmploymentCheckRecordwithNino(long uln, string nino, long accountId, string checkType)
+        internal void InsertEmploymentCheckRecordWithNino(long uln, string nino, long accountId, string checkType)
         {
             var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -120,7 +120,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return null;
         }
 
-        internal int? getEmploymentCheckStatusWithCorrelationId()
+        internal int? GetEmploymentCheckStatusWithCorrelationId()
         {
             int count = 0;
             int i;

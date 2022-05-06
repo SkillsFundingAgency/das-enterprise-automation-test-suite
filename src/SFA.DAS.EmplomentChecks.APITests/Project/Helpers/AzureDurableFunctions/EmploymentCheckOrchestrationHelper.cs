@@ -3,15 +3,20 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions
 {
-    public class EmploymentCheckOutputInterfaceHelper : EmploymentCheckFunctionAppHelper
+    public class EmploymentCheckOrchestrationHelper : EmploymentCheckFunctionAppHelper
     {
-        public EmploymentCheckOutputInterfaceHelper(EmploymentCheckProcessConfig config) : base(config)
+        public EmploymentCheckOrchestrationHelper(EmploymentCheckProcessConfig config) : base(config)
         {
         }
 
         public async Task StartResponseEmploymentChecksOrchestrator()
         {
             await StartOrchestrator("api/orchestrators/ResponseOrchestrator");
+        }
+        
+        public async Task StartEmploymentChecksOrchestrator()
+        {
+            await StartOrchestrator("api/orchestrators/EmploymentChecksOrchestrator", true);
         }
 
         public async Task WaitUntilComplete(TimeSpan? timeout = null)
