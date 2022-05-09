@@ -22,6 +22,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers
         public string StartDateAsString { get; set; }
         public string EndDateAsString { get; set; }
         public int Cost { get; set; }
+        public bool? MadeRedundant { get; set; }
+        public string CompletionDateAsString { get; set; }
+        public string StopDateAsString { get; set; }
+        public string PauseDateAsString { get; set; }
+        public bool? TrainingCourseVersionConfirmed { get; set; }
+        public string TrainingCourseVersion { get; set; }
+        public string TrainingCourseOption { get; set; }
 
         public DateTime? StartDate { get
             {
@@ -42,6 +49,30 @@ namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers
             get
             {
                 return GetDate(DateOfBirthAsString);
+            }
+        }
+
+        public DateTime? CompletionDate
+        {
+            get
+            {
+                return GetDate(CompletionDateAsString);
+            }
+        }
+
+        public DateTime? PauseDate
+        {
+            get
+            {
+                return GetDate(PauseDateAsString);
+            }
+        }
+
+        public DateTime? StopDate
+        {
+            get
+            {
+                return GetDate(StopDateAsString);
             }
         }
 

@@ -83,7 +83,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers
 							)
 							ORDER BY FromDate
 						 )
-				END AS 'Cost'
+				END AS 'Cost',
+                a.MadeRedundant,
+				a.CompletionDate,
+				a.StopDate,
+				a.PauseDate,
+				a.TrainingCourseVersionConfirmed,
+				a.TrainingCourseVersion,
+				a.TrainingCourseOption
 				 from Commitment c
 			inner join Apprenticeship a on a.CommitmentId = c.Id
 			inner join AccountLegalEntities ale on ale.Id = c.AccountLegalEntityId
@@ -113,8 +120,24 @@ namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers
 				ConfirmationStatusDescription = result[14],
 				StartDateAsString = result[15],
 				EndDateAsString = result[16],
-				Cost = int.Parse(result[17])
+				Cost = int.Parse(result[17]),
+				MadeRedundant = GetBoolValue(result[18]),
+				CompletionDateAsString = result[19],
+				StopDateAsString = result[20],
+				PauseDateAsString = result[21],
+				TrainingCourseVersionConfirmed = GetBoolValue(result[22]),
+				TrainingCourseVersion = result[23],
+				TrainingCourseOption = result[24]
 			};
 		}
+
+        private bool? GetBoolValue(string v)
+        {
+			if (string.IsNullOrWhiteSpace(v))
+				return null;
+
+			bool.TryParse(v, out bool result);
+			return result;
+        }
     }
 }

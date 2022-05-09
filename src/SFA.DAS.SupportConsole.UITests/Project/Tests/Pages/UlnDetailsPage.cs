@@ -49,6 +49,27 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             VerifyHeaderAndValue("AS training start date", ToGdsFormatWithoutDay(apprenticeDetails.StartDate));
             VerifyHeaderAndValue("AS training end date", ToGdsFormatWithoutDay(apprenticeDetails.EndDate));
             VerifyHeaderAndValue("Current training cost", ToGdsCurrencyFormat(apprenticeDetails.Cost));
+            if (apprenticeDetails.PaymentStatus == 3 && apprenticeDetails.MadeRedundant.HasValue)
+            {
+                VerifyHeaderAndValue("Made redundant",  apprenticeDetails.MadeRedundant.Value ? "Yes" : "No");
+            }
+            if (apprenticeDetails.PaymentStatus == 4)
+            {
+                VerifyHeaderAndValue("Completion payment month", ToGdsFormatWithoutDay(apprenticeDetails.CompletionDate));
+            }
+            if (apprenticeDetails.PaymentStatus == 3)
+            {
+                VerifyHeaderAndValue("Stopped date", ToGdsFormatWithoutDay(apprenticeDetails.StopDate));
+            }
+            if (apprenticeDetails.PaymentStatus == 2)
+            {
+                VerifyHeaderAndValue("Paused date", ToGdsFormatWithoutDay(apprenticeDetails.PauseDate));
+            }
+            if (apprenticeDetails.TrainingCourseVersionConfirmed.HasValue && apprenticeDetails.TrainingCourseVersionConfirmed.Value)
+            {
+                VerifyHeaderAndValue("Version", apprenticeDetails.TrainingCourseVersion);
+            }
+            VerifyHeaderAndValue("Option", string.IsNullOrWhiteSpace(apprenticeDetails.TrainingCourseOption) ? "To be confirmed" : apprenticeDetails.TrainingCourseOption);
         }
 
         private string GetPaymentStatusText(int paymentStatus, DateTime? startDate)
