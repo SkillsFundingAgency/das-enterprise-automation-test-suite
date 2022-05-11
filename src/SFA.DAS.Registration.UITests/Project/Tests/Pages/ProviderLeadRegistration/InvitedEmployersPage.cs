@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 {
     public class InvitedEmployersPage : ProviderLeadRegistrationBasePage
     {
-        protected override string PageTitle => "Invited employers";
+        protected override string PageTitle => "Manage employer invitations page";
 
         public InvitedEmployersPage(ScenarioContext context) : base(context) { }
 
