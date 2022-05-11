@@ -35,7 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             GoToProviderHomePage();
 
-            new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount().LoginToPireanPreprod();
+            new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount();
 
             new StartSettingUpEmployerPage(_context).Start()
                 .EnterRegistrationDetailsAndContinue()
@@ -81,7 +81,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ConfirmYesTrainingProviderPermissions();
         }
 
-        [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement accepted)""")]
+        [Then(@"the invited employer status in ""(Account creation not started|Account started|PAYE scheme added|Legal agreement accepted)""")]
         public void ThenTheInvitedEmployerStatusIn(string status)
         {
             GoToProviderHomePage();

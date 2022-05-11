@@ -10,6 +10,9 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         private By MoreLink => By.LinkText("More");
 
+        protected By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+
+
         protected abstract string Linktext { get; }
 
         protected Navigate(ScenarioContext context, bool navigate) : this(context, navigate, string.Empty) { }

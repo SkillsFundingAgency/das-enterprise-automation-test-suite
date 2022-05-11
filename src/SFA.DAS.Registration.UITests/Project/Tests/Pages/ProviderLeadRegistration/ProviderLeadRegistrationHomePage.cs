@@ -12,15 +12,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) {  }
 
-        public IdamsPage SetupEmployerAccount()
+        public void SetupEmployerAccount()
         {
             formCompletionHelper.ClickElement(ManageEmployerInvitations);
-            return new IdamsPage(context);
+            formCompletionHelper.ClickElement(PireanPreprod);
+            formCompletionHelper.ClickElement(InviteEmployers);
+         
         }
 
         public InvitedEmployersPage ViewInvitedEmployers()
         {
-            formCompletionHelper.ClickElement(InvitedEmployers);
+            formCompletionHelper.ClickElement(ManageEmployerInvitations);
+
             return new InvitedEmployersPage(context);
         }
     }
