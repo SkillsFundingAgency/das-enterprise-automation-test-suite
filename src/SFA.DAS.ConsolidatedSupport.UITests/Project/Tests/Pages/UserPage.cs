@@ -46,7 +46,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 }
                 catch (System.Exception)
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(10000);
                 }
             }
 
