@@ -35,9 +35,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             GoToProviderHomePage();
 
-            new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount();
-
-            new StartSettingUpEmployerPage(_context).Start()
+            new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount()
+                .Start()
                 .EnterRegistrationDetailsAndContinue()
                 .ChangeDetails()
                 .VerifyDetails()

@@ -1,5 +1,4 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.ProviderLogin.Service.Pages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
@@ -12,12 +11,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) {  }
 
-        public void SetupEmployerAccount()
+        public StartSettingUpEmployerPage SetupEmployerAccount()
         {
             formCompletionHelper.ClickElement(ManageEmployerInvitations);
-            formCompletionHelper.ClickElement(PireanPreprod);
+
+            ClickIfPirenIsDisplayed();
+
             formCompletionHelper.ClickElement(InviteEmployers);
-         
+            return new StartSettingUpEmployerPage(context);
         }
 
         public InvitedEmployersPage ViewInvitedEmployers()
