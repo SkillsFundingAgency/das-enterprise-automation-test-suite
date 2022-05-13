@@ -3,7 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
+namespace SFA.DAS.TestDataExport.StepDefinitions
 {
     [Binding]
     public class VerifyDbConnectionSteps
