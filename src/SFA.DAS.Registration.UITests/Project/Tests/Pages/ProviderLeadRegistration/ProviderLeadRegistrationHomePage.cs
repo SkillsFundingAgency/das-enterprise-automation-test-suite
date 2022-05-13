@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public IdamsPage SetupEmployerAccount()
         {
-            formCompletionHelper.ClickElement(SetupEmployer);
+            formCompletionHelper.ClickElement(ManageEmployerInvitations);
             return new IdamsPage(context);
         }
 
