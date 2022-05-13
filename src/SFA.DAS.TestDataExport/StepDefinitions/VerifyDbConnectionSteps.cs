@@ -10,14 +10,20 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
     {
         private readonly DbConfig _dbConfig;
 
-        public VerifyDbConnectionSteps(ScenarioContext context) => _dbConfig = context.Get<DbConfig>();
+        private readonly ObjectContext _objectContext;
+
+        public VerifyDbConnectionSteps(ScenarioContext context)
+        {
+            _dbConfig = context.Get<DbConfig>();
+
+            _objectContext = context.Get<ObjectContext>();
+        }
         
         [Then(@"the db connection are verified")]
         public void ThenTheDbConnectionAreVerified()
         {
                 AssertDbConnection(new EasAccDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new ApprenticeCommitmentLoginDbSqlDataHelper(_dbConfig));
-            AssertDbConnection(new EmploymentCheckDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new CrsDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
@@ -37,8 +43,27 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
                 AssertDbConnection(new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig));
                 AssertDbConnection(new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig));
                 AssertDbConnection(new TestDataCleanUpRsvrSqlDataHelper(_dbConfig));
+
+            AssertDbConnection(new EmploymentCheckDbSqlDataHelper(_dbConfig));
         }
 
-        private void AssertDbConnection(ProjectSqlDbHelper helper) => StringAssert.StartsWith("das-", helper.GetTableCatalog());
+        private void AssertDbConnection(ProjectSqlDbHelper helper)
+        {
+            string caller = helper.GetCaller();
+
+            string message = $"trying to connect to {caller}";
+
+            TestContext.Progress.WriteLine(message);
+
+            _objectContext.SetDebugInformation(message);
+
+            string catalog = helper.GetTableCatalog();
+
+            StringAssert.StartsWith("das-", catalog);
+
+            message = $"'{caller}' connected sucessfully to '{catalog}'";
+
+            _objectContext.SetDebugInformation(message);
+        }
     }
 }
