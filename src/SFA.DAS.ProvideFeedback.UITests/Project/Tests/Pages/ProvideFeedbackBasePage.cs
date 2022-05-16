@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages
 {
     public abstract class ProvideFeedbackBasePage : VerifyBasePage
     {

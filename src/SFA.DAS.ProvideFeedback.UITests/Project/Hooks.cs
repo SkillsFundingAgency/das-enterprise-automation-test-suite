@@ -1,12 +1,12 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
+using SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderFeedback.UITests.Project
+namespace SFA.DAS.ProvideFeedback.UITests.Project
 {
     [Binding]
     public class Hooks

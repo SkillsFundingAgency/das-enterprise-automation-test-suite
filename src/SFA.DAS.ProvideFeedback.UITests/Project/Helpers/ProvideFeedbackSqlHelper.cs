@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.ProviderFeedback.UITests.Project.Helpers
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers
 {
     public class ProvideFeedbackSqlHelper : SqlDbHelper
     {
