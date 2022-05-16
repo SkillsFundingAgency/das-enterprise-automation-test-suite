@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataExport.StepDefinitions
@@ -12,6 +15,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
         private readonly ObjectContext _objectContext;
 
+        private List<Exception> _exception;
+
         public VerifyDbConnectionSteps(ScenarioContext context)
         {
             _dbConfig = context.Get<DbConfig>();
@@ -22,6 +27,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
         [Then(@"the db connection are verified")]
         public void ThenTheDbConnectionAreVerified()
         {
+            _exception = new List<Exception>();
+
             AssertDbConnection(new AssessorDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new LoginDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new QnaDbSqlDataHelper(_dbConfig));
@@ -47,6 +54,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
 
+            if (_exception.Any()) throw new Exception(string.Join(Environment.NewLine, _exception.Select(x => x?.Message)));
+
         }
 
         private void AssertDbConnection(ProjectSqlDbHelper helper)
@@ -59,11 +68,21 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
             _objectContext.SetDebugInformation(message);
 
-            string catalog = helper.GetTableCatalog();
+            try
+            {
+                string catalog = helper.GetTableCatalog();
 
-            StringAssert.StartsWith("das-", catalog);
+                StringAssert.StartsWith("das-", catalog);
 
-            message = $"'{caller}' connected sucessfully to '{catalog}'";
+                message = $"'{caller}' connected sucessfully to '{catalog}'";
+
+            }
+            catch (Exception ex)
+            {
+                message = $"'{caller}' could not be connected.";
+
+                _exception.Add(new Exception($"{message}{Environment.NewLine}{ex.Message}"));
+            }
 
             _objectContext.SetDebugInformation(message);
         }
