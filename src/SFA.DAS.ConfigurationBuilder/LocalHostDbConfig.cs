@@ -6,7 +6,14 @@ namespace SFA.DAS.ConfigurationBuilder
     {
         private readonly DbDevConfig _dbDevConfig;
 
-        public LocalHostDbConfig(DbDevConfig dbDevConfig) => _dbDevConfig = dbDevConfig;
+        private readonly bool _useUsercreds;
+
+        public LocalHostDbConfig(DbDevConfig dbDevConfig, bool useUsercreds)
+        {
+            _useUsercreds = useUsercreds;
+            
+            _dbDevConfig = dbDevConfig;
+        }
 
         internal DbConfig GetLocalHostDbConfig()
         {
@@ -37,6 +44,11 @@ namespace SFA.DAS.ConfigurationBuilder
             };
         }
 
-        private string GetConnectionString(string dbName) => Regex.Replace($"Server={_dbDevConfig.Server};Initial Catalog={dbName};{_dbDevConfig.ConnectionDetails};", "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
+        private string GetConnectionString(string dbName)
+        {
+           var x = _useUsercreds ? $"Server={_dbDevConfig.Server};Database={dbName};{_dbDevConfig.ConnectionDetails};" : $"Server={_dbDevConfig.Server};Initial Catalog={dbName};{_dbDevConfig.ConnectionDetails};";
+
+            return Regex.Replace(x, "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
+        }
     }
 }

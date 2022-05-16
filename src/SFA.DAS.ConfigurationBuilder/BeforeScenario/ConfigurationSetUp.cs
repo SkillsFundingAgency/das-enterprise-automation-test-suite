@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
@@ -26,7 +27,18 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
             var dbConfig = _configSection.GetConfigSection<DbConfig>();
 
-            if (!Configurator.IsVstsExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>()).GetLocalHostDbConfig();
+            if (!Configurator.IsVstsExecution)
+            {
+                var dbDevConfig = _configSection.GetConfigSection<DbDevConfig>();
+
+                if (_context.ScenarioInfo.Tags.Contains("verifydbconnections")) 
+                
+                    dbConfig = new LocalHostDbConfig(dbDevConfig, true).GetLocalHostDbConfig();
+                
+                else
+
+                    dbConfig = new LocalHostDbConfig(dbDevConfig, false).GetLocalHostDbConfig();
+            }
 
             _context.Set(dbConfig);
         }
