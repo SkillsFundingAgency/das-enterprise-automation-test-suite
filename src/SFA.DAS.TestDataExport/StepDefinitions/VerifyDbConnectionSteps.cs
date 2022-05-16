@@ -22,7 +22,6 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
         [Then(@"the db connection are verified")]
         public void ThenTheDbConnectionAreVerified()
         {
-            AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new AssessorDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new LoginDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new QnaDbSqlDataHelper(_dbConfig));
@@ -30,15 +29,15 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             AssertDbConnection(new RoatpDbSqlDataHelper(_dbConfig));
 
             AssertDbConnection(new TestDataCleanupAComtSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanupComtSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig));
-                AssertDbConnection(new TestDataCleanUpRsvrSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanupComtSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpRsvrSqlDataHelper(_dbConfig));
 
             AssertDbConnection(new EmploymentCheckDbSqlDataHelper(_dbConfig));
 
@@ -46,6 +45,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             AssertDbConnection(new ApprenticeCommitmentLoginDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new CrsDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
+
         }
 
         private void AssertDbConnection(ProjectSqlDbHelper helper)
