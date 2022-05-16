@@ -22,10 +22,6 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
         [Then(@"the db connection are verified")]
         public void ThenTheDbConnectionAreVerified()
         {
-                AssertDbConnection(new EasAccDbSqlDataHelper(_dbConfig));
-            AssertDbConnection(new ApprenticeCommitmentLoginDbSqlDataHelper(_dbConfig));
-            AssertDbConnection(new CrsDbSqlDataHelper(_dbConfig));
-            AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new AssessorDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new LoginDbSqlDataHelper(_dbConfig));
@@ -45,6 +41,11 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
                 AssertDbConnection(new TestDataCleanUpRsvrSqlDataHelper(_dbConfig));
 
             AssertDbConnection(new EmploymentCheckDbSqlDataHelper(_dbConfig));
+
+            AssertDbConnection(new EasAccDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new ApprenticeCommitmentLoginDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new CrsDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
         }
 
         private void AssertDbConnection(ProjectSqlDbHelper helper)
