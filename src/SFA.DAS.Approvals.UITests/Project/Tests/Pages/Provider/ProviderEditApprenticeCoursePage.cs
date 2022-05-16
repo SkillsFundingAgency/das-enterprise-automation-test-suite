@@ -4,14 +4,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderEditApprenticePage : EditApprentice
+    public class ProviderEditApprenticeCoursePage : EditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Edit apprentice";
+        protected override string PageTitle => "Edit apprentice details";
 
-        private By CourseOption => By.CssSelector("#trainingCourse");
-        private By FirstOption => By.CssSelector("#trainingCourse__option--0");
-        
-        public ProviderEditApprenticePage(ScenarioContext context) : base(context)  { }
+        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
+
+        public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context)  { }
+
+        public SelectStandardPage ClickEditCourseLink()
+        {
+            formCompletionHelper.Click(TrainingCourseEditLink);
+            return new SelectStandardPage(context);
+        }
 
         public ProviderConfirmChangesPage AddValidEmailAndContinue()
         {
@@ -31,11 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return ProviderConfirmChangesPage();
         }
 
-        protected override void SelectCourse()
-        {
-            var course = (editedApprenticeCourseDataHelper.EditedCourse == "91") ? "Software Tester" : "Able Seafarer";
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(CourseOption, course); return pageInteractionHelper.FindElement(FirstOption); });
-        }
+        protected override void EditCourse() => ClickEditCourseLink().SelectAStandardForEditApprenticeDetailsPath();
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(context);
     }

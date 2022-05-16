@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 {
     public class StartSettingUpEmployerPage : ProviderLeadRegistrationBasePage
     {
-        protected override string PageTitle => "Start setting up an account for an employer";
+        protected override string PageTitle => "Invite employers to create an account";
 
         protected override By ContinueButton => By.CssSelector(".govuk-button--start");
 

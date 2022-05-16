@@ -214,12 +214,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void EmployerAddsAnpprenticeOfSpecifiedAgeCategorywithStartDateAsMentioned(string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear) =>
             EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, eIStartmonth, eIStartyear);
 
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date in previous month")]
-        public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDate(string eIAgeCategoryAsOfAug2020)
-        {
-            var startdate = DateTime.Now.AddMonths(-1);
-            EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, startdate.Month, startdate.Year);
-        }
 
         [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date more than 3 month in past")]
         public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDateMoreThanMonthInPast(string eIAgeCategoryAsOfAug2020)

@@ -13,6 +13,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private bool _isMultiOrg;
 
+        private string _hashedid;
+
         private readonly bool _newTab;
 
         public ProviderCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
@@ -21,9 +23,15 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         {
             _context = context;
             _newTab = newTab;
+            _hashedid = string.Empty;
         }
 
-        public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername) => CreateANewVacancy(employername);
+        public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername, string hashedid)
+        {
+            _hashedid = hashedid; 
+
+            return CreateANewVacancy(employername);
+        }
 
         public VacancyReferencePage CreateANewVacancyForRandomEmployer() => CreateANewVacancy(true);
 
@@ -92,7 +100,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .GoToViewAllVacancyPage()
                 .CreateVacancy()
                 .StartNow()
-                .SelectEmployer();
+                .SelectEmployer(_hashedid);
 
             _isMultiOrg = isMultiOrg;
 

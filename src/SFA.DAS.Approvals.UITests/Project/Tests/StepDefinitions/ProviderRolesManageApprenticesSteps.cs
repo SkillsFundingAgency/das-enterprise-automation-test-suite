@@ -178,7 +178,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             UpdateApprenticeName("LiveApprentice");
 
-            SelectViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();                                                  
+            SelectViewCurrentApprenticeDetails().EditApprentice();                                                  
         }
 
         [Then(@"the user can take action on details of ILR mismatch page by selecting any radio buttons on the page")]

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class EditAppretinceNameDobAndReference : ApprovalsBasePage
+    public abstract class EditApprentinceNameDobAndReferenceBasePage : ApprovalsBasePage
     {
         #region Helpers and Context
         #endregion
@@ -20,11 +20,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
 
-        protected EditAppretinceNameDobAndReference(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        protected EditApprentinceNameDobAndReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public void EditApprenticeNameDobAndReference(string reference) => EditNameDobAndReference(reference).Update();
 
-        private EditAppretinceNameDobAndReference EditNameDobAndReference(string reference)
+        private EditApprentinceNameDobAndReferenceBasePage EditNameDobAndReference(string reference)
         {
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
             formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());

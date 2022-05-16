@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     DateOfBirth = datahelper.ApprenticeDob.ToString("yyyy-MM-dd"),
                     StartDate = apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
                     EndDate = apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM"),
-                    TotalPrice = datahelper.TrainingPrice,
+                    TotalPrice = datahelper.TrainingCost,
                     ProviderRef = datahelper.EmployerReference,
                     EmailAddress = datahelper.ApprenticeEmail,
                     AgreementId = agreementId

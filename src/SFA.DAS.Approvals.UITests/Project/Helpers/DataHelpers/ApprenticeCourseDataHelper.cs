@@ -33,21 +33,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _nextAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
             _courseDetails = randomCourseHelper.RandomCourse();
-            Course = _courseDetails.Course.larsCode;
-            _otherCourseDetails = randomCourseHelper.RandomCourse(Course);
-            OtherCourse = _otherCourseDetails.Course.larsCode;
+            CourseLarsCode = _courseDetails.Course.larsCode;
+            _otherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
+            OtherCourseLarsCode = _otherCourseDetails.Course.larsCode;
         }
 
         public int RandomCourse(List<string> availablecourses)
         {
             var random = new Random().Next(1, availablecourses.Count);
-            Course = availablecourses[random];
+            CourseLarsCode = availablecourses[random];
             return random;
         }
 
-        public string Course { get; private set; }
+        public string CourseLarsCode { get; private set; }
 
-        public string OtherCourse { get; private set; }
+        public string OtherCourseLarsCode { get; private set; }
 
         public int CourseDurationInMonths => _courseDetails.Course.proposedTypicalDuration;
 

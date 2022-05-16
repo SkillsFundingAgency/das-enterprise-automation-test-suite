@@ -18,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly PublicSectorReportingDataHelper publicSectorReportingDataHelper;
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
-        protected readonly EditedApprenticeCourseDataHelper editedApprenticeCourseDataHelper; 
         protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
         protected readonly RegistrationDataHelper registrationDataHelper; 
         #endregion
@@ -34,7 +33,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
             editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();
             apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
-            editedApprenticeCourseDataHelper = context.GetValue<EditedApprenticeCourseDataHelper>();
             if (verifypage) VerifyPage();
         }
 
