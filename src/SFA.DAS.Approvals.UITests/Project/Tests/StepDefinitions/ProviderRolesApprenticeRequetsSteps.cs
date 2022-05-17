@@ -100,10 +100,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot bulk upload apprentices via csv file")]
         public void ThenTheUserCannotBulkUploadApprenticesViaCsvFile()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
-                                                        .SelectViewCurrentCohortDetails()
-                                                        .SelectBulkUploadApprenticesGoesToAccessDenied()
-                                                        .GoBackToTheServiceHomePage();
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GotoSelectJourneyPageGoesToAccessDenied()
+                .GoBackToTheServiceHomePage();
         }
 
 
@@ -136,9 +135,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can bulk upload apprentices")]
         public void ThenTheUserCanBulkUploadApprentices()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
-                                                        .SelectViewCurrentCohortDetails()
-                                                        .SelectBulkUploadApprentices();
+            _providerStepsHelper.NavigateToProviderHomePage()
+                 .GotoSelectJourneyPage()
+                 .SelectBulkUpload()
+                 .ContinueToUploadCsvFilePage();
         }
 
         [Then(@"the user can edit an existing apprenticeship record by selecting edit apprentice link selecting with employers or drafts boxes")]
