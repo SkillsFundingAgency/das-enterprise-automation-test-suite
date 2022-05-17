@@ -51,7 +51,7 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project
         [BeforeScenario(Order = 23)]
         public void ClearDownDataForAdhocJourney()
         {
-            if (_tags.Contains("providerfeedback03"))
+            if (_tags.Contains("providefeedback03"))
                 _providerFeedbackSqlHelper.ClearDownDataForAdhocJourney();
         }
 

@@ -25,7 +25,7 @@ namespace SFA.DAS.ProvideFeedback.UITests
         [Given(@"the Employer logins into Employer Portal")]
         public void WhenTheEmployerLoginsIntoEmployerPortal()
         {
-            Login(_context.GetUser<FeedbackUser>());
+            Login(_context.GetUser<ProvideFeedbackUser>());
         }
 
         [Given(@"completes the feedback journey for a training provider")]

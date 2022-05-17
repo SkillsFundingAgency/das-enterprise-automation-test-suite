@@ -28,7 +28,7 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project
 
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
-                _configSection.GetConfigSection<FeedbackUser>(),
+                _configSection.GetConfigSection<ProvideFeedbackUser>(),
             });
         }
     }
