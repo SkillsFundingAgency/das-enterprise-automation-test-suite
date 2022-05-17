@@ -13,7 +13,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
         public string GetTableCatalog() => GetDataAsString("select top 1 TABLE_CATALOG from INFORMATION_SCHEMA.TABLES");
 
-        public string GetCaller() => GetType().Name;
+        public (string, string) GetCaller() => (GetType().Name, connectionString);
 
         protected string GetSql(string filename) { _sqlFileName = filename; return FileHelper.GetSql(_sqlFileName); }
 

@@ -65,7 +65,30 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
         private void AssertDbConnection(ProjectSqlDbHelper helper)
         {
-            string caller = helper.GetCaller();
+            (string caller, string connectionString) = helper.GetCaller();
+
+            string message = string.Empty; 
+            string failuremessage = string.Empty;
+
+            var list = connectionString.Split(";");
+
+            if (connectionString.Contains("User ID="))
+            {
+                var user = list.Single(x => x.StartsWith("User ID=")).Remove(0, 8);
+                var password = list.Single(x => x.StartsWith("Password=")).Remove(0, 9).Substring(0,3);
+                var dbName = list.Single(x => x.StartsWith("Database=")).Remove(0, 9);
+
+                var creds = $"'{user},{password}'";
+
+                message = $"{creds} connected sucessfully to '{dbName}'";
+                failuremessage = $"FAILED - {creds} could not be connected to '{dbName}'";
+            }
+            else
+            {
+                var dbName = list.Single(x => x.StartsWith("Initial Catalog="));
+                message = $"AAD user connected sucessfully to '{dbName}'";
+                failuremessage = $"FAILED - AAD user could not be connected to '{dbName}'";
+            }
 
             try
             {
@@ -73,12 +96,12 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
                 StringAssert.StartsWith("das-", catalog);
 
-                _objectContext.SetDebugInformation($"'{caller}' connected sucessfully to '{catalog}'");
+                _objectContext.SetDebugInformation(message);
 
             }
             catch (Exception)
             {
-                _exception.Add($"FAILED - '{caller}' could not be connected");
+                _exception.Add(failuremessage);
             }
         }
     }
