@@ -30,6 +30,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _bulkUploadDataHelper = new CreateCsvFileHelper();
         }
 
+        public ProviderBulkUploadCsvFilePage CreateACsvFileForLegalEntity(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef, string email, string name)
+        {
+            var listOfCohortReference = GetCohortReferences();
+
+            var apprenticeList = new List<ApprenticeDetails>();
+
+            foreach (var cohortRef in listOfCohortReference)
+            {
+                for (var i = 1; i <= numberOfApprenticesPerCohort; i++)
+                {
+                    apprenticeList.Add(SetApprenticeDetailsForLegalEntity(i * 17, cohortRef, email, name));
+                }
+            }
+
+            for (int i = 0; i < numberOfApprenticesWithoutCohortRef; i++)
+            {
+                apprenticeList.Add(SetApprenticeDetailsForLegalEntity(i + 1 * 17, "", email, name));
+            }
+
+            objectContext.SetBulkuploadApprentices(apprenticeList);
+
+            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+
+            return this;
+        }
+
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef)
         {
            var listOfCohortReference = GetCohortReferences();
@@ -109,20 +135,61 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
-            
+            var sqlHelper = context.Get<AgreementIdSqlHelper>();
+
             if (cohortRef == "" || cohortRef == null)
             {
-                var employerUser = context.GetUser<LevyUser>();
+                var employerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
                 var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
-                agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+                agreementId = sqlHelper.GetAgreementId(employerUser.Username, employerName).Trim();
             }
             else 
             {
-                agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+                agreementId = sqlHelper.GetAgreementIdByCohortRef(cohortRef).Trim();
             }
-            
 
-            return new ApprenticeDetails(courseCode, datahelper.ApprenticeDob, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
+            var isNonLevy =sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
+            var startDate = apprenticeCourseDataHelper.CourseStartDate;
+            var endDate = apprenticeCourseDataHelper.CourseEndDate;
+
+            if (isNonLevy)
+            {
+                startDate = DateTime.UtcNow;
+                endDate = DateTime.UtcNow.AddYears(1);
+            }
+
+            return new ApprenticeDetails(courseCode, datahelper.ApprenticeDob, startDate, endDate)
+            {
+                CohortRef = cohortRef,
+                ULN = datahelper.Uln(),
+                FamilyName = datahelper.ApprenticeLastname,
+                GivenNames = datahelper.ApprenticeFirstname,
+                TotalPrice = datahelper.TrainingCost,
+                ProviderRef = datahelper.EmployerReference,
+                EmailAddress = datahelper.ApprenticeEmail,
+                AgreementId = agreementId
+            };
+        }
+
+        private ApprenticeDetails SetApprenticeDetailsForLegalEntity(int courseCode, string cohortRef, string email, string name)
+        {
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
+
+            string agreementId;
+            var sqlHelper = context.Get<AgreementIdSqlHelper>();
+            agreementId = sqlHelper.GetAgreementId(email, name).Trim();
+
+            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
+            var startDate = apprenticeCourseDataHelper.CourseStartDate;
+            var endDate = apprenticeCourseDataHelper.CourseEndDate;
+
+            if (isNonLevy)
+            {
+                startDate = DateTime.UtcNow;
+                endDate = DateTime.UtcNow.AddYears(1);
+            }
+
+            return new ApprenticeDetails(courseCode, datahelper.ApprenticeDob, startDate, endDate)
             {
                 CohortRef = cohortRef,
                 ULN = datahelper.Uln(),

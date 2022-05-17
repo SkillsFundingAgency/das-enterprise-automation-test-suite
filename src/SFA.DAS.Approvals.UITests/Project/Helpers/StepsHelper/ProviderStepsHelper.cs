@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -187,11 +188,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
-        public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices)
+        public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices, bool isNonLevy = false)
         {
             return CurrentCohortDetails()
                 .SelectBulkUploadApprentices()
-                .UploadFileAndConfirmSuccessful(numberOfApprentices)
+                .UploadFileAndConfirmSuccessful(numberOfApprentices, isNonLevy)
                 .SubmitApprove();
         }
 
@@ -203,6 +204,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectBulkUpload()
                 .ContinueToUploadCsvFilePage()
                 .CreateACsvFile(numberOfApprenticesPerCohort, numberOfApprenticesWithoutCohortRef)
+                .UploadFile();
+        }
+
+        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2ForLegalEntity(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef, string email, string name)
+        {
+            return
+                GoToProviderHomePage()
+                .GotoSelectJourneyPage()
+                .SelectBulkUpload()
+                .ContinueToUploadCsvFilePage()
+                .CreateACsvFileForLegalEntity(numberOfApprenticesPerCohort, numberOfApprenticesWithoutCohortRef, email, name)
                 .UploadFile();
         }
 

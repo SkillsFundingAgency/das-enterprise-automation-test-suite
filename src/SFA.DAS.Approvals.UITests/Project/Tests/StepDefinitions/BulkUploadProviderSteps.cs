@@ -48,6 +48,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort")]
         public void ProviderUsesBulkUpload(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
 
+
+        [Given(@"Provider uses BulkUpload to add (.*) apprentice details for a non-levy employer into a non-existing cohort")]
+        public void GivenProviderUsesBulkUploadToAddApprenticeDetailsForANon_LevyEmployerIntoANon_ExistingCohort(int p0)
+        {
+            var employerUser = _context.GetUser<Login.Service.Project.Helpers.NonLevyUser>();
+            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, p0, employerUser.Username, employerName);
+        }
+
         [Given(@"Correct Information is displayed on review apprentices details page")]
         [When(@"Correct Information is displayed on review apprentices details page")]
         [Then(@"Correct Information is displayed on review apprentices details page")]

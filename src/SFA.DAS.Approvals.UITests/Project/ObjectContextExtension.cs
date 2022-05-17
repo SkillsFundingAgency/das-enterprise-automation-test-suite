@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -52,7 +53,15 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var list = objectContext.GetCohortReferenceList();
 
-            if (list == null) list = new List<string>();
+            if (list == null) 
+            { 
+                list = new List<string>(); 
+            }
+
+            if (list.Any(x => x == cohortReference))
+            {
+                return;
+            }
 
             list.Add(cohortReference);
 
@@ -60,6 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         }
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
+        internal static void ReplaceCohortReference(this ObjectContext objectContext, string value) => objectContext.Replace(CohortReference, value);
 
         internal static void SetApprenticeId(this ObjectContext objectContext, int value) => objectContext.Set(ApprenticeId, value);
 

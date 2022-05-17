@@ -71,7 +71,9 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class TransferMatchingUser : MultipleEasAccountUser { }
 
-    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser { }
+    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser {
+        public string ThirdOrganisationName => LegalEntities?.ElementAtOrDefault(2);
+    }
 
     #endregion
 

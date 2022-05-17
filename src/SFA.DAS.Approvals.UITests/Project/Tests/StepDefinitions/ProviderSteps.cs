@@ -99,7 +99,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
         public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
 
-       [Given(@"the Provider has some apprentices in ready to review and draft status")]
+        [When(@"Provider add (.*) apprentice details using bulk upload and sends to non-levy employer for approval")]
+        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToNonLevyEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
+
+        [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
 
         [Given(@"the Provider navigates to Choose a cohort page via the Home page")]

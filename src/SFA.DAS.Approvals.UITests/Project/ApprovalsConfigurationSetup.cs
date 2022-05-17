@@ -27,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.SetProviderPermissionConfig(_configSection.GetConfigSection<ProviderPermissionsConfig>());
 
             _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
+            var users = _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>();
 
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {

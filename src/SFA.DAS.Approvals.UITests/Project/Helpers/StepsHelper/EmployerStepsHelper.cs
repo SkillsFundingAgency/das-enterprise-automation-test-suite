@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             foreach (var cohort in _objectContext.GetCohortReferenceList())
             {
-                _objectContext.UpdateCohortReference(cohort);
+                _objectContext.ReplaceCohortReference(cohort);
 
                 Approve();
             }
