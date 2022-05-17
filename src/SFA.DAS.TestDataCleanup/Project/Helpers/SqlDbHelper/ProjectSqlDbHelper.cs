@@ -9,6 +9,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
     {
         protected string _user, _userEmail, _accountId, _sqlFileName;
 
+        public virtual bool ExcludeEnvironments => false;
+
         protected ProjectSqlDbHelper(string connectionString) : base(connectionString) { }
 
         public string GetTableCatalog() => GetDataAsString("select top 1 TABLE_CATALOG from INFORMATION_SCHEMA.TABLES");

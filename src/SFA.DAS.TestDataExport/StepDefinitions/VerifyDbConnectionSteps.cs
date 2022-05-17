@@ -17,6 +17,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
         private List<string> _exception;
 
+        private List<string> _excludedEnvironments;
+
         public VerifyDbConnectionSteps(ScenarioContext context)
         {
             _dbConfig = context.Get<DbConfig>();
@@ -28,6 +30,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
         public void ThenTheDbConnectionAreVerified()
         {
             _exception = new List<string>();
+
+            _excludedEnvironments = new List<string>();
 
             AssertDbConnection(new AssessorDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new LoginDbSqlDataHelper(_dbConfig));
@@ -54,13 +58,17 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
 
+            if (_excludedEnvironments.Any())
+            {
+                _excludedEnvironments.ForEach(x => SetDebugInformation(x));
+            }
+
             if (_exception.Any())
             {
-                _exception.ForEach(x => _objectContext.SetDebugInformation(x));
+                _exception.ForEach(x => SetDebugInformation(x));
 
                 throw new Exception(string.Join(Environment.NewLine, _exception.Select(x => x)));
             }
-
         }
 
         private void AssertDbConnection(ProjectSqlDbHelper helper)
@@ -69,6 +77,7 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
             string message = string.Empty; 
             string failuremessage = string.Empty;
+            string dbName = string.Empty;
 
             var list = connectionString.Split(";");
 
@@ -76,7 +85,7 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             {
                 var user = list.Single(x => x.StartsWith("User ID=")).Remove(0, 8);
                 var password = list.Single(x => x.StartsWith("Password=")).Remove(0, 9).Substring(0,3);
-                var dbName = list.Single(x => x.StartsWith("Database=")).Remove(0, 9);
+                dbName = list.Single(x => x.StartsWith("Database=")).Remove(0, 9);
 
                 var creds = $"'{user},{password}'";
 
@@ -85,9 +94,15 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             }
             else
             {
-                var dbName = list.Single(x => x.StartsWith("Initial Catalog="));
+                dbName = list.Single(x => x.StartsWith("Initial Catalog="));
                 message = $"AAD user connected sucessfully to '{dbName}'";
                 failuremessage = $"FAILED - AAD user could not be connected to '{dbName}'";
+            }
+
+            if (helper.ExcludeEnvironments)
+            {
+                _excludedEnvironments.Add($"EXCLUDED -'{dbName}', does not exist");
+                return;
             }
 
             try
@@ -96,7 +111,7 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
                 StringAssert.StartsWith("das-", catalog);
 
-                _objectContext.SetDebugInformation(message);
+                SetDebugInformation(message);
 
             }
             catch (Exception)
@@ -104,5 +119,7 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
                 _exception.Add(failuremessage);
             }
         }
+
+        private void SetDebugInformation(string message) => _objectContext.SetDebugInformation(message);
     }
 }
