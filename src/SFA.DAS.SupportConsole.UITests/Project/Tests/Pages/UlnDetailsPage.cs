@@ -69,7 +69,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             {
                 VerifyHeaderAndValue("Version", apprenticeDetails.TrainingCourseVersion);
             }
-            VerifyHeaderAndValue("Option", string.IsNullOrWhiteSpace(apprenticeDetails.TrainingCourseOption) ? "To be confirmed" : apprenticeDetails.TrainingCourseOption);
+            if (!string.IsNullOrWhiteSpace(apprenticeDetails.TrainingCourseOption))
+            {
+                VerifyHeaderAndValue("Option", string.IsNullOrWhiteSpace(apprenticeDetails.TrainingCourseOption) ? "To be confirmed" : apprenticeDetails.TrainingCourseOption);
+            }
         }
 
         private string GetPaymentStatusText(int paymentStatus, DateTime? startDate)
