@@ -27,18 +27,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
             var dbConfig = _configSection.GetConfigSection<DbConfig>();
 
-            if (!Configurator.IsVstsExecution)
-            {
-                var dbDevConfig = _configSection.GetConfigSection<DbDevConfig>();
-
-                if (_context.ScenarioInfo.Tags.Contains("verifydbconnections")) 
-                
-                    dbConfig = new LocalHostDbConfig(dbDevConfig, true).GetLocalHostDbConfig();
-                
-                else
-
-                    dbConfig = new LocalHostDbConfig(dbDevConfig, false).GetLocalHostDbConfig();
-            }
+            if (!Configurator.IsVstsExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>(), _context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
 
             _context.Set(dbConfig);
         }

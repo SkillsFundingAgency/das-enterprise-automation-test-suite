@@ -75,11 +75,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.TestDataPreparation
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify connection to all dbs from a pipeline")]
-        [NUnit.Framework.CategoryAttribute("verifydbconnections")]
+        [NUnit.Framework.CategoryAttribute("usesqllogin")]
         public void VerifyConnectionToAllDbsFromAPipeline()
         {
             string[] tagsOfScenario = new string[] {
-                    "verifydbconnections"};
+                    "usesqllogin"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify connection to all dbs from a pipeline", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
