@@ -21,8 +21,7 @@ resources:
     endpoint: SkillsFundingAgency
 
 pool:
-  name: DAS - Continuous Integration Agents
-  demands: LATEST_DOTNET_VERSION -equals 3.1
+  name: DAS - Continuous Integration Beta
 
 steps:
 - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks
