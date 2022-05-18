@@ -49,6 +49,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ProviderUsesBulkUpload(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
 
 
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort for all employers")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohortForAllEmployers(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
+        {
+            var employerUser = _context.GetUser<EmployerWithMultipleAccountsUser>();
+            var firstOrganisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            var secondOrganisationName = employerUser.SecondOrganisationName.Substring(0, 3) + "%";
+            var thirdOrganisationName = employerUser.ThirdOrganisationName.Substring(0, 3) + "%";
+
+            _providerStepsHelper.NavigateToUploadCsvFilePage()
+                .CreateApprenticeshipsForAlreadyCreatedCohorts(numberOfApprentices)
+                .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, firstOrganisationName)
+                .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, secondOrganisationName)
+                .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, thirdOrganisationName)
+                .WriteApprenticeshipRecordsToCsvFile()
+                .UploadFile();
+        }
+
         [Given(@"Provider uses BulkUpload to add (.*) apprentice details for a non-levy employer into a non-existing cohort")]
         public void GivenProviderUsesBulkUploadToAddApprenticeDetailsForANon_LevyEmployerIntoANon_ExistingCohort(int p0)
         {

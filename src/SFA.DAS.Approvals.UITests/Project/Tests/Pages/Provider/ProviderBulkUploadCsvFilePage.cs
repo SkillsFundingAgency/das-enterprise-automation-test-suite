@@ -18,6 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ChooseFileButton => By.Id("attachment");
         private By UploadFileButton => By.Id("submit-upload-apprentices");
         protected readonly string CsvFileLocation;
+        private List<ApprenticeDetails> _apprenticeList;
 
         protected override string PageTitle => "Upload a CSV file";
 
@@ -28,6 +29,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
 
             _bulkUploadDataHelper = new CreateCsvFileHelper();
+            _apprenticeList = new List<ApprenticeDetails>();
+        }
+
+        public ProviderBulkUploadCsvFilePage CreateApprenticeshipsForAlreadyCreatedCohorts(int numberOfApprenticesPerCohort)
+        {
+            var listOfCohortReference = GetCohortReferences();
+
+            foreach (var cohortRef in listOfCohortReference)
+            {
+                for (var i = 1; i <= numberOfApprenticesPerCohort; i++)
+                {
+                    _apprenticeList.Add(SetApprenticeDetailsForLegalEntity(i * 17, cohortRef, string.Empty, string.Empty));
+                }
+            }
+
+            return this;
+         }
+
+
+        public ProviderBulkUploadCsvFilePage CreateApprenticeshipsForEmptyCohorts(int numberOfApprenticesWithoutCohortRef, string email, string name)
+        {
+            for (int i = 0; i < numberOfApprenticesWithoutCohortRef; i++)
+            {
+                _apprenticeList.Add(SetApprenticeDetailsForLegalEntity(i + 1 * 17, "", email, name));
+            }
+
+            return this;
+        }
+
+        public ProviderBulkUploadCsvFilePage WriteApprenticeshipRecordsToCsvFile()
+        {
+            objectContext.SetBulkuploadApprentices(_apprenticeList);
+            _bulkUploadDataHelper.CreateCsvFile(_apprenticeList, CsvFileLocation);
+            return this;
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFileForLegalEntity(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef, string email, string name)
@@ -177,7 +212,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             string agreementId;
             var sqlHelper = context.Get<AgreementIdSqlHelper>();
-            agreementId = sqlHelper.GetAgreementId(email, name).Trim();
+            if (cohortRef == "" || cohortRef == null)
+            {
+                agreementId = sqlHelper.GetAgreementId(email, name).Trim();
+            }
+            else
+            {
+                agreementId = sqlHelper.GetAgreementIdByCohortRef(cohortRef).Trim();
+            }
+
 
             var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
             var startDate = apprenticeCourseDataHelper.CourseStartDate;
