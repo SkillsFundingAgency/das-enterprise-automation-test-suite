@@ -46,7 +46,9 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private string GetConnectionString(string dbName)
         {
-           var x = _useSqlLogin ? $"Server={_dbDevConfig.Server};Database={dbName};{_dbDevConfig.ConnectionDetails};" : $"Server={_dbDevConfig.Server};Initial Catalog={dbName};{_dbDevConfig.ConnectionDetails};";
+            string GetDbName() => _useSqlLogin ? "Database" : "Initial Catalog";
+
+            var x = $"Server={_dbDevConfig.Server};{GetDbName()}={dbName};{_dbDevConfig.ConnectionDetails};";
 
             return Regex.Replace(x, "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
         }
