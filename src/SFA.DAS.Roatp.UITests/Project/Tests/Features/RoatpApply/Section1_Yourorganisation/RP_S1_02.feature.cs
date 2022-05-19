@@ -35,7 +35,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/RoatpApply/Section1_Yourorganisation", "RP_S1_02", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/RoatpApply/Section1_Yourorganisation", "RP_S1_02", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

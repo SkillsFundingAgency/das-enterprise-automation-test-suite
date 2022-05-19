@@ -5,13 +5,7 @@
     <RootNamespace>SFA.DAS.Roatp.UITests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
+	
   <ItemGroup>
     <Content Include="..\Sample.pdf" Link="Sample.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -54,6 +48,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="SFA.DAS.Roatp.UITests.runtimeconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
