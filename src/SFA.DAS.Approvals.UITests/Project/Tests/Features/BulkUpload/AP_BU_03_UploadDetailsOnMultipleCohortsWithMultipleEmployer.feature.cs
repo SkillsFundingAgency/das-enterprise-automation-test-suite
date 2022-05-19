@@ -102,6 +102,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the Employer creates 2 cohorts and sends them to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 9
+ testRunner.And("the Employer2 logins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.And("the Employer2 creates 2 cohorts and sends them to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 11
  testRunner.And("the Employer3 logins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
