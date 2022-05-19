@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using TechTalk.SpecFlow;
 
@@ -12,10 +13,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectStandardPage(ScenarioContext context) : base(context) { }
 
-        public ProviderAddApprenticeDetailsPage SelectAStandard()
+        public AddApprenticeDetailsPage EmployerSelectsAStandard()
         {
-            SelectStandard(apprenticeCourseDataHelper.CourseLarsCode);
-            Continue();
+            SelectStandardAndContinue();
+            return new AddApprenticeDetailsPage(context);
+        }
+
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
+        {
+            SelectStandardAndContinue();
             return new ProviderAddApprenticeDetailsPage(context);
         }
 
@@ -34,5 +40,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
+
+        private void SelectStandardAndContinue()
+        {
+            SelectStandard(apprenticeCourseDataHelper.CourseLarsCode);
+            Continue();
+        }
     }
 }

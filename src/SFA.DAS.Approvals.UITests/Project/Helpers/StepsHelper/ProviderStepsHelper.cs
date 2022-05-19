@@ -123,7 +123,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
         {
-            return ProviderMakeReservation(login, false).GoToSelectStandardPage().SelectAStandard();
+            return ProviderMakeReservation(login, false).GoToSelectStandardPage().ProviderSelectsAStandard();
         }
 
         public ApprovalsProviderHomePage ProviderMakeReservationThenGotoHomePage(ProviderLoginUser login = null)
@@ -166,7 +166,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .ConfirmReserveFunding()
                     .VerifySucessMessage()
                     .GoToSelectStandardPage()
-                    .SelectAStandard()
+                    .ProviderSelectsAStandard()
                     .SubmitValidApprenticeDetails();
             }
 
@@ -180,7 +180,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             for (int i = 0; i < numberOfApprentices; i++)
             {
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
-                    .SelectAStandard()
+                    .ProviderSelectsAStandard()
                     .SubmitValidApprenticeDetails();
             }
 

@@ -10,7 +10,6 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -118,7 +117,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices, bool isTransferReceiverEmployer = false)
         {
             var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
-                  .EmployerAddsApprentices().SubmitValidApprenticeDetails(false);
+                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 

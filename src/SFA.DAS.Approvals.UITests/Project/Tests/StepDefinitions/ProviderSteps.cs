@@ -131,7 +131,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 _providerStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
             }
 
-            providerApproveApprenticeDetailsPage.SelectAddAnApprentice().SelectAStandard().SubmitValidApprenticeDetails().SubmitApprove();
+            providerApproveApprenticeDetailsPage.SelectAddAnApprentice().ProviderSelectsAStandard().SubmitValidApprenticeDetails().SubmitApprove();
         }
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
