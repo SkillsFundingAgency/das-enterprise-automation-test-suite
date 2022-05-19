@@ -5,6 +5,7 @@
 @eie2ejourney
 @deleteincentiveapplication
 @vrfservice
+@ignoreinpp
 Scenario: EI_E2E_02_ExistingLevyAcApplyWithVRFAndAmendVRF
 	Given the Employer logins using existing EI Levy Account
 	When the Employer Initiates EI Application journey for Single entity account
