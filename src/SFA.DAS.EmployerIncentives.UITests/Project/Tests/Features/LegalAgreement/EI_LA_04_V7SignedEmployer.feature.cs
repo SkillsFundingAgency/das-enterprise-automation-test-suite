@@ -79,16 +79,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.LegalAgreeme
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         public void EI_LA_04_V7SignedEmployer_V7SignedEmployerAttemptsToApplyForCommitmentsStartingOCT2021OrOver()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "deleteincentiveapplication"};
+                    "deleteincentiveapplication",
+                    "ignoreinpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_04_V7SignedEmployer_V7 Signed Employer attempts to apply for Commitments st" +
                     "arting OCT2021 or over", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,13 +100,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the Employer logins using existing Version7AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("the Employer is able to submit the EI Application without submitting bank details" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -117,15 +119,17 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         public void EI_LA_04_V7SignedEmployer_V7EntersAnInvalidEmploymentStartDate()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "deleteincentiveapplication"};
+                    "deleteincentiveapplication",
+                    "ignoreinpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_04_V7SignedEmployer_V7 Enters An Invalid Employment Start Date", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 14
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -135,13 +139,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 17
  testRunner.Given("the Employer logins using existing Version7AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 18
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 19
  testRunner.Then("the Employer has to cancel the application when an invalid employment start date " +
                         "is entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -154,15 +158,17 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         public void EI_LA_04_V7SignedEmployer_V7EntersAValidAndAnInvalidEmploymentStartDate()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "deleteincentiveapplication"};
+                    "deleteincentiveapplication",
+                    "ignoreinpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_LA_04_V7SignedEmployer_V7 Enters A Valid and An Invalid Employment Start Date", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -172,13 +178,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 26
  testRunner.Given("the Employer logins using existing Version7AgreementUser Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 27
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 28
  testRunner.Then("the Employer has to continue the application when a valid and an invalid employme" +
                         "nt start date is entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

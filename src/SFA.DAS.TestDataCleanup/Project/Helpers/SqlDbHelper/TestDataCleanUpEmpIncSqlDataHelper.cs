@@ -5,6 +5,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
     public class TestDataCleanUpEmpIncSqlDataHelper : ProjectSqlDbHelper
     {
+        public override bool ExcludeEnvironments => EnvironmentConfig.IsDemoEnvironment;
+
         public TestDataCleanUpEmpIncSqlDataHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
 
         public (List<string>, List<string>) CleanUpEmpIncTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
