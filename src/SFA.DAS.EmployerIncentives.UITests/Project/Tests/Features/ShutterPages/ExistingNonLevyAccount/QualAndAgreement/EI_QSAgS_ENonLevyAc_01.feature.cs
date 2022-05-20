@@ -78,15 +78,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
             "h unsigned V4 Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         public void EI_QSAgS_ENonLevyAc_01_ValidateShutterPageForAnExistingNonLevyAccountWithUnsignedV4Agreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives"};
+                    "employerincentives",
+                    "ignoreinpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSAgS_ENonLevyAc_01_Validate Shutter page for an Existing Non Levy account wit" +
                     "h unsigned V4 Agreement", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,39 +98,39 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the Employer logins using existing Unsigned NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
                         "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 10
  testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
                         "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
  testRunner.When("the Employer navigates back to Qualification page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("Employer agreement shutter page is displayed for selecting Yes option in the Qual" +
                         "ification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 13
  testRunner.And("Employer Home page is displayed on clicking on Return to Account home link on Emp" +
                         "loyer agreement shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
  testRunner.When("the Employer navigates back to Qualification page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("Employer agreement shutter page is displayed for selecting Yes option in the Qual" +
                         "ification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("Your Agreements page is displayed on clicking on View agreement button on Employe" +
                         "r agreement shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
