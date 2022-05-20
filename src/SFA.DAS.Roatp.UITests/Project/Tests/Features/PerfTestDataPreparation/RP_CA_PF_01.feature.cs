@@ -35,7 +35,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/PerfTestDataPreparation", "RP_CA_PF_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/PerfTestDataPreparation", "RP_CA_PF_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,13 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PerfTestDataPreparation
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_CA_PF_01_Create_Account_TestData")]
-        [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        [NUnit.Framework.CategoryAttribute("perftestroatpapplycreateaccount")]
-        [NUnit.Framework.TestCaseAttribute("sudhakar.chinoor", "+test", null)]
-        public void RP_CA_PF_01_Create_Account_TestData(string givenName, string familyName, string[] exampleTags)
+        public virtual void RP_CA_PF_01_Create_Account_TestData(string givenName, string familyName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "roatpapplycreateaccount",
@@ -118,6 +112,18 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RP_CA_PF_01_Create_Account_TestData: sudhakar.chinoor")]
+        [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("perftestroatpapplycreateaccount")]
+        public void RP_CA_PF_01_Create_Account_TestData_Sudhakar_Chinoor()
+        {
+#line 6
+this.RP_CA_PF_01_Create_Account_TestData("sudhakar.chinoor", "+test", ((string[])(null)));
+#line hidden
         }
     }
 }
