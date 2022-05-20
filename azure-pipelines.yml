@@ -54,7 +54,7 @@ steps:
     publishWebProjects: false
     zipAfterPublish: false
     projects: 'src/**/*Tests.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build -f netcoreapp3.1'
+    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
 - task: CopyFiles@2
   displayName: 'Copy Check-TestResults.ps1 to: $(build.artifactstagingdirectory)'
