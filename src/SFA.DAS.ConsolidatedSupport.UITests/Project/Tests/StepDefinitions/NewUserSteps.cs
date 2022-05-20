@@ -40,21 +40,23 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         [Then(@"the user contact details can be updated on the Zendesk portal")]
         public void ThenTheUserContactDetailsCanBeUpdatedOnTheZendeskPortal()
         {
-            new UserPage(_context).EnterDetails().VerifyDetails();
+            GoToUserPage().EnterDetails().VerifyDetails();
         }
 
         [Then(@"the user organisation details can be updated on Zendesk portal")]
         public void ThenTheUserOrganisationDetailsCanBeUpdatedOnZendeskPortal()
         {
-            var _userPage = new UserPage(_context);
-
-            _userPage.CreateOrganisation();
+            GoToUserPage().CreateOrganisation();
 
             _objectContext.SetOrgCreated();
 
-            _userPage.VerifyOrganisationDetails();
+            new OrganisationListPage(_context).VerifyOrganisationDetails();
+
+            GoToUserPage().VerifyOrganisationDetails();
 
             new OrgPage(_context, true).EnterDetails().VerifyDetails();
         }
+
+        private UserPage GoToUserPage() => new UserPage(_context);
     }
 }
