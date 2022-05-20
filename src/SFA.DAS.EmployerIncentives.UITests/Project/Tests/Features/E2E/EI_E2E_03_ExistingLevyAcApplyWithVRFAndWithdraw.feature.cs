@@ -80,6 +80,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.CategoryAttribute("eie2ejourney")]
         [NUnit.Framework.CategoryAttribute("deleteincentiveapplication")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         public void EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,10 +88,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E
                     "employerincentives",
                     "eie2ejourney",
                     "deleteincentiveapplication",
-                    "vrfservice"};
+                    "vrfservice",
+                    "ignoreinpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,13 +102,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("the Employer logins using existing EI Levy Account to withdraw application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("the Employer submits an EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("the Employer can withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
