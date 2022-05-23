@@ -92,6 +92,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public PAYESchemesPage GotoPAYESchemesPage() => new PAYESchemesPage(context, true);
 
-        private void NavigateToSettings(By by) => formCompletionHelper.RetryClickOnException(() => { formCompletionHelper.ClickElement(SettingsLink); return pageInteractionHelper.FindElement(by); });
+        private void NavigateToSettings(By by) => RetryClickOnException(SettingsLink, () => pageInteractionHelper.FindElement(by));
     }
 }

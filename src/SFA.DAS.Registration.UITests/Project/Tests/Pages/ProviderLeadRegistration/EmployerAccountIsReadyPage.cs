@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 {
     public class EmployerAccountIsReadyPage : ProviderLeadRegistrationBasePage
     {
-        protected override string PageTitle => "The employer account is ready for them to complete";
+        protected override string PageTitle => "Invitation sent to employer";
 
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
 

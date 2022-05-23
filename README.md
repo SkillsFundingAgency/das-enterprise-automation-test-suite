@@ -222,6 +222,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
 2. Framework tags (these reserved tags are used to drive the framework)
  	- ```@ignoreintest, @ignoreintest2, @ignoreinpp, @ignoreindemo ```(to ignore test excution in azure devops)
+ 	- ```@usesqllogin ```(to use sql login creds during local execution)
 	- ```@donotexecuteinparallel``` (to excluded a feature from running in parallel with any other feature) 
 	```text 
 	#the tag has to be mentioned at the feature level ex:
