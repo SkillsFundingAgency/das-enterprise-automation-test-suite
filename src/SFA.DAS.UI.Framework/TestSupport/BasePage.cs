@@ -61,11 +61,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void SelectCheckBoxByText(string value) => formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
         protected void NavigateBack() => formCompletionHelper.Click(BackLink);
-        
-        protected void AcceptCookies()
+
+        protected void AcceptCookies() => ClickIfDisplayed(AcceptCookieButton);
+
+        protected void ClickIfDisplayed(By by)
         {
-            if (pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
-                formCompletionHelper.Click(AcceptCookieButton);
+            if (pageInteractionHelper.IsElementDisplayed(by)) 
+                formCompletionHelper.ClickElement(by);
         }
     }
 }
