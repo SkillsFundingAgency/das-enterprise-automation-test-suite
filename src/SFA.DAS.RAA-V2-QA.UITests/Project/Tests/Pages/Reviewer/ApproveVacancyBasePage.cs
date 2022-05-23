@@ -22,32 +22,26 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         
         public QAReviewsPage Approve()
         {
-            var errors = ErrorsCheckboxElements();
+            var errors = pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
 
-            foreach (var error in errors)
-            {
-                formCompletionHelper.UnSelectCheckbox(error);
-            }
+            foreach (var error in errors) formCompletionHelper.UnSelectCheckbox(error);
 
-            formCompletionHelper.Click(SubmitButton);
+            Submit();
 
             return new QAReviewsPage(context);
         }
 
-        public void Refer()
+        public void ReferTitle()
         {
-            var errors = ErrorsCheckboxElements();
+            formCompletionHelper.SelectCheckbox(pageInteractionHelper.FindElement(TitleFieldIdentifiers));
 
-            if (errors.Count == 0)
-            {
-                formCompletionHelper.SelectCheckbox(pageInteractionHelper.FindElement(TitleFieldIdentifiers));
-            }
+            formCompletionHelper.EnterText(ReviewerComment, "Refered - Title requires edit");
 
-            formCompletionHelper.EnterText(ReviewerComment, "Refered");
-            formCompletionHelper.Click(SubmitButton);
+            Submit();
+
             formCompletionHelper.Click(VacancyQALink);
         }
 
-        private List<IWebElement> ErrorsCheckboxElements() => pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
+        private void Submit() => formCompletionHelper.Click(SubmitButton);
     }
 }

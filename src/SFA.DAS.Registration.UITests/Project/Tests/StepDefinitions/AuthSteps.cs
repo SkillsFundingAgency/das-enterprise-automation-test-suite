@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             if (login)
             {
-                webDriver.Navigate().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+                _context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
                 new EmployerPortalLoginHelper(_context).Login(_context.GetUser<AuthTestUser>(), true);
             }
@@ -59,7 +59,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             foreach (var url in authurls)
             {
-                int x = _context.Get<ScreenShotTitleGenerator>().count + 1;
+                int x = _context.Get<ScreenShotTitleGenerator>().GetNextCounter();
 
                 string result = "Pass";
 
@@ -74,9 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         continue; 
                     }
 
-                    webDriver.Navigate().GoToUrl(url);
-
-                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context).ScenarioTitle();
+                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context, url).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context, url).ScenarioTitle();
                 }
                 catch (Exception ex)
                 {
@@ -120,17 +118,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/organisations/search",
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/summary",
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/settings/notifications",
-                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/accounts",
-                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changepassword?clientId=easacc{EnvName}" +
-                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Fpassword%2Fchange",
-                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changeemail?clientId=easacc{EnvName}" +
-                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk%2F%2Fservice%2Femail%2Fchange"
+                $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/accounts"
             };
 
         private List<string> ExcludeUrlContainsForLogedInUser() =>
             new List<string>
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/organisations/search/results?searchTerm=",
+                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changepassword?clientId=easacc{EnvName}" +
+                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk",
+                $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changeemail?clientId=easacc{EnvName}" +
+                $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk"
             };
 
         private bool UrlException(string url) => (ExcludeUrlContains().Any(x => url.ContainsCompareCaseInsensitive(x)) || ExcludeUrlEquals().Any(x => x.CompareToIgnoreCase(url)));

@@ -2,7 +2,7 @@
 
 @raa-v2	
 @raa-v2e
-@regression	
-Scenario: RV2_E_DV_01 - Employer cancels creating Vacancy
-When Employer cancels after saving the title of the Vacancy
-Then the vacancy is saved as a draft
+@regression
+Scenario: RV2_E_DV_01 - Employer cancels creating an advert
+When Employer cancels after saving the title of the advert
+Then the advert is saved as a draft

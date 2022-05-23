@@ -2,39 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderEditApprenticeDetailsPage : ApprovalsBasePage
+    public class ProviderEditApprenticeDetailsPage : ProviderEditApprenticeCoursePage
     {
-        protected override string PageTitle => "Edit apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        private By FirstNameField => By.Id("FirstName");
-        private By LastNameField => By.Id("LastName");
-        private By DateOfBirthDay => By.Id("BirthDay");
-        private By DateOfBirthMonth => By.Id("BirthMonth");
-        private By DateOfBirthYear => By.Id("BirthYear");
         private By Uln => By.Id("Uln");
-        private By TrainingCourseContainer => By.Id("CourseCode");
-        private By StartDateMonth => By.Id("StartMonth");
-        private By StartDateYear => By.Id("StartYear");
-        private By EndDateMonth => By.Id("EndMonth");
-        private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By SaveButton => By.CssSelector("#addApprenticeship > button");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
+        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
             EnterUln();
-            
+
             formCompletionHelper.ClickElement(SaveButton);
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
@@ -42,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetails()
+        public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
             formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
@@ -50,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
             EnterUln();
-            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
+
             formCompletionHelper.ClickElement(StartDateMonth);
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
@@ -62,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
             formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
-            formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveButton);
@@ -80,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(StartDateYear, now.Year);
             formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
-            formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
             formCompletionHelper.ClickElement(SaveButton);
@@ -91,13 +79,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.ClickElement(DeleteButton);
             return new ProviderConfirmApprenticeDeletionPage(context);
-        }
-
-        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
-        {
-            var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
-            Assert.False(options.All(x => x.Contains("(Framework)")));
-            return this;
         }
 
         public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)

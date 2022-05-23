@@ -4,7 +4,7 @@ using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class VerifyDetailsBasePage : RAAV2CSSBasePage
+    public abstract class VerifyDetailsBasePage : Raav2BasePage
     {
         protected virtual By EmployerName { get; }
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     
         protected void VerifyEmployerName()
         {
-            var empName = objectContext.GetEmployerName();
+            var empName = objectContext.GetEmployerNameAsShownInTheAdvert();
             VerifyElement(EmployerName, empName);
             VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }

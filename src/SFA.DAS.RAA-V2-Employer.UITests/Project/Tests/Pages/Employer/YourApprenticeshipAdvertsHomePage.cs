@@ -15,12 +15,26 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
-        private readonly By CreateAnAdvertButton = By.LinkText("Create an advert");
+        private By CreateAnAdvertButton => By.LinkText("Create an advert");
         private By SettingsLink => By.LinkText("Settings");
         private By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
-        private By RecruitmentAPIsLink = By.LinkText("Recruitment APIs");
+        private By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
 
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
+
+
+        public EmployerVacancySearchResultPage GoToYourAdvertFromDraftAdverts()
+        {
+            formCompletionHelper.ClickLinkByText("Draft adverts");
+            return new EmployerVacancySearchResultPage(context);
+        }
+
+        public CreateAnAdvertHomePage CreateAnApprenticeshipAdvert()
+        {
+            AcceptCookies();
+            formCompletionHelper.Click(CreateAnAdvertButton);
+            return new CreateAnAdvertHomePage(context);
+        }
 
         public CreateAnAdvertPage CreateAnAdvert()
         {
@@ -49,6 +63,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             base.AcceptCookies();
             return this;
         }
+
         public GetStartedWithRecruitmentAPIsPage ClickRecruitmentAPILink()
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);

@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
    public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-l");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");
         protected override string PageTitle => "Set permissions";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         protected By ApprenticeAllowRadioOption => By.Id("operation-0-yes");

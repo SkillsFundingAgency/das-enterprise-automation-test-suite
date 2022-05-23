@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using System;
@@ -8,13 +7,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerSteps
+    public class EmployerSteps 
     {
         #region context&Helpers
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
@@ -26,7 +24,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _dataHelper = context.Get<ApprenticeDataHelper>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -99,6 +96,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
         {
             int totalApprentices = _approveApprenticeDetailsPage.TotalNoOfApprentices();
+
             for (int i = 0; i < totalApprentices - 1; i++)
             {
                 _approveApprenticeDetailsPage = _approveApprenticeDetailsPage.SelectEditApprentice(0)
@@ -128,8 +126,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();        
 
+        [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
+        [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices(int numberOfCohorts) => _employerStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts);
+
+        [Given(@"the Employer2 creates (\d) cohorts and sends them to provider to add apprentices")]
+        public void Employer2AddsApprenticesToCurrentCohort(int numberOfCohorts) => _employerStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts, true);
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
         public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
@@ -143,6 +147,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer approves the cohorts")]
         public void ThenTheEmployerApprovesTheCohorts() => _employerStepsHelper.Approve();
+
+        [When(@"the Employer approves multiple cohorts")]
+        public void WhenTheEmployerApprovesMultipleCohorts() => _employerStepsHelper.ApproveMultipleCohorts();
 
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
@@ -207,12 +214,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void EmployerAddsAnpprenticeOfSpecifiedAgeCategorywithStartDateAsMentioned(string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear) =>
             EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, eIStartmonth, eIStartyear);
 
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date in previous month")]
-        public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDate(string eIAgeCategoryAsOfAug2020)
-        {
-            var startdate = DateTime.Now.AddMonths(-1);
-            EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, startdate.Month, startdate.Year);
-        }
 
         [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date more than 3 month in past")]
         public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDateMoreThanMonthInPast(string eIAgeCategoryAsOfAug2020)
@@ -222,6 +223,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();     
     }
 }

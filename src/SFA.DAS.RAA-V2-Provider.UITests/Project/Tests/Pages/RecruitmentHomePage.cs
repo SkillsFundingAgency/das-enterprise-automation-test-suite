@@ -16,12 +16,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper;
         #endregion
 
-        private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
-
         private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
         private By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
-        private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
-
 
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 
@@ -31,28 +27,26 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             return new ViewAllVacancyPage(context);
         }
 
-        public SelectEmployersPage CreateVacancy()
-        {
-            formCompletionHelper.Click(CreateVacancyLink);
-            return new SelectEmployersPage(context);
-        }
-
         public GetStartedWithRecruitmentAPIsPage NavigateToRecruitmentAPIs()
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
-            {
-                formCompletionHelper.ClickElement(PireanPreprodButton);
-            }
+            
+            ClickIfPirenIsDisplayed();
+            
             return new GetStartedWithRecruitmentAPIsPage(context);
         }
-
-        public ManageRecruitPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
 
         public ManageRecruitPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
 
         public ProviderVacancySearchResultPage SearchVacancy() => _searchVacancyPageHelper.SearchProviderVacancy();
 
-        public ReferVacancyPage SearchReferVacancy() => _searchVacancyPageHelper.SearchReferVacancy();
+        public ReferVacancyPage SearchReferAdvertTitle()
+        {
+            var vacancyPage = _searchVacancyPageHelper.SearchReferVacancy();
+
+            vacancyPage.NavigateToAdvertTitle();
+
+            return new ReferVacancyPage(context);
+        }
     }
 }

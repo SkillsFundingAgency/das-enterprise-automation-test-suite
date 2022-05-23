@@ -20,9 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProvideViewApprenticesDetailsPage(context);
         }
 
-        internal List<IWebElement> GetAllEditBoxes()
-        {
-            return pageInteractionHelper.FindElements(InputBox);
-        }
+        internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
     }
 }

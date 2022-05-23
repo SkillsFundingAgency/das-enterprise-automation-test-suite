@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_003_PerformEmploymentCheck_NinoIsNull(string testCaseId, string minDate, string maxDate, string status, string[] exampleTags)
+        public virtual void EC_API_003_PerformEmploymentCheck_NinoIsNull(string testCaseId, string minDate, string maxDate, string status, string errorType, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -89,6 +89,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
             argumentsOfScenario.Add("Status", status);
+            argumentsOfScenario.Add("ErrorType", errorType);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_003_PerformEmploymentCheck_NinoIsNull", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -118,6 +119,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And(string.Format("employment check record status is \'{0}\'", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 13
+ testRunner.And(string.Format("business outcome for the check is set to \'{0}\'", errorType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -130,7 +134,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void EC_API_003_PerformEmploymentCheck_NinoIsNull_3()
         {
 #line 6
-this.EC_API_003_PerformEmploymentCheck_NinoIsNull("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", ((string[])(null)));
+this.EC_API_003_PerformEmploymentCheck_NinoIsNull("3", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", "NinoNotFound", ((string[])(null)));
 #line hidden
         }
     }

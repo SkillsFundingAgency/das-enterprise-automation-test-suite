@@ -2,8 +2,8 @@
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -22,17 +22,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private By THeader => By.CssSelector("th");
         private By TData => By.CssSelector("td");
 
-
         public RecruitmentDynamicHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }
 
-        public VacancyPreviewPart2Page ReviewYourVacancy()
+        public PreviewYourAdvertOrVacancyPage ReviewYourVacancy()
         {
             formCompletionHelper.ClickLinkByText("Review your advert");
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public RecruitmentDynamicHomePage ConfirmVacancyTitleAndStatus(string status)
@@ -42,10 +41,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public VacancyPreviewPart2Page ContinueCreatingYourAdvert()
+        public ApprenticeshipTrainingPage ContinueCreatingYourAdvert()
         {
             formCompletionHelper.ClickLinkByText("Continue creating your advert");
-            return new VacancyPreviewPart2Page(context);
+            return new ApprenticeshipTrainingPage(context);
         }
 
         public YourApprenticeshipAdvertsHomePage GoToVacancyDashboard()

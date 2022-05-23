@@ -20,6 +20,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public string GetUrl() { WaitForPageToLoad(); return _webDriver.Url; }
+
         public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
 
         public T InvokeAction<T>(Func<T> func, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(func, retryAction);
@@ -88,7 +90,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPageAfterRefresh(By locator)
         {
-            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+            void beforeAction() => WaitForPageToLoad();
 
             void retryAction() => _webDriver.Navigate().Refresh();
 
@@ -99,7 +101,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private bool VerifyPage(Func<bool> func, Action retryAction = null)
         {
-            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+            void beforeAction() => WaitForPageToLoad();
 
             return _retryHelper.RetryOnException(func, beforeAction, retryAction);
         }
@@ -145,12 +147,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
         {
-            _retryHelper.RetryOnWebDriverException(() => 
+            _retryHelper.RetryOnWebDriverException(() =>
             {
                 var selected = GetElementByAttribute(RadioButtonInputCssSelector, AttributeHelper.Value, text)?.Selected ?? false;
 
                 if (isSelected != selected) throw new WebDriverException($"Radio option '{text}' selection verification failed: Expected: {isSelected} Found: {selected}");
-            });  
+            });
         }
 
         public bool IsElementPresent(By locator)
@@ -173,19 +175,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsElementDisplayedAfterPageLoad(By locator)
         {
-            _webDriverWaitHelper.WaitForPageToLoad();
+            WaitForPageToLoad();
 
             return IsElementDisplayed(locator);
         }
 
-            
+        public bool IsElementDisplayed(By locator) => IsElementDisplayed(() => _webDriver.FindElement(locator).Displayed);
 
-        public bool IsElementDisplayed(By locator)
+        public bool IsElementDisplayed(Func<bool> func)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
-                return _webDriver.FindElement(locator).Displayed;
+                return func();
             }
             catch (Exception)
             {
@@ -222,7 +224,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
         public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Value);
-        
+
         public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetAttribute(AttributeHelper.DataCount));
 
         public string GetText(IWebElement webElement) => webElement.Text;
@@ -255,8 +257,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
-        public string GetUrl() => _webDriver.Url;
-
         private Func<bool> Func(By locator)
         {
             return () =>
@@ -268,6 +268,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
+        private void WaitForPageToLoad() => _webDriverWaitHelper.WaitForPageToLoad();
 
         private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
         {

@@ -7,26 +7,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class AgreementIdSqlHelper : SqlDbHelper
     {
-        public AgreementIdSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
-    
-        public string GetAgreementId(string email, string name)
-        {
-            string sqlQueryFromFile = FileHelper.GetSql("GetAgreementId");
+        private readonly DbConfig _dbConfig;
 
-            Dictionary<string, string> sqlParameters = new Dictionary<string, string> { { "@email", email }, { "@name", name } };
+        public AgreementIdSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
-            var (data, _) = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryFromFile, connectionString, sqlParameters);
+        public string GetAgreementId(string email, string name) => ReadDataFromDataBase(FileHelper.GetSql("GetAgreementId"), connectionString, new Dictionary<string, string> { { "@email", email }, { "@name", name } });
 
-            if (data.Count == 0)
-                return null;
-            else
-                return data[0][0].ToString();
-        }
+        public string GetAgreementIdByCohortRef(string cohortRef) => ReadDataFromDataBase($"Select PublicHashedId from [AccountLegalEntities] ALE Inner Join Commitment C on C.AccountLegalEntityId = ALE.Id Where C.Reference = '{cohortRef}'", _dbConfig.CommitmentsDbConnectionString, null);
+
+        public string GetEmployerNameByAgreementId(string agreementId) => ReadDataFromDataBase($"Select Ac.Name from AccountLegalEntities ale inner join Accounts Ac on ale.AccountId = ac.Id where ale.PublicHashedId = '{agreementId}'", _dbConfig.CommitmentsDbConnectionString, null);
 
         public int GetEmployerAccountId(string email, string organisationName)
         {
-            string query = @$"SELECT TOP 1 acc.Id
-                                FROM[employer_account].[Membership] msp
+            string query = @$"SELECT TOP 1 acc.Id FROM[employer_account].[Membership] msp 
                                 INNER JOIN[employer_account].[User] usr
                                 ON msp.UserId = usr.Id
                                 INNER JOIN[employer_account].[Account] acc
@@ -35,6 +28,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND Name Like '{organisationName}%'";
 
             return Convert.ToInt32(GetDataAsObject(query));
+        }
+
+        private string ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
+        {
+            var (data, _) = SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString, parameters);
+
+            if (data.Count == 0)
+                return null;
+            else
+                return data[0][0].ToString();
         }
     }
 }

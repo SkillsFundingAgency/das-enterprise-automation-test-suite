@@ -18,7 +18,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         }
 
         [BeforeScenario(Order = 21)]
-        public void Navigate() => _tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl, "/agent");
+        public void Navigate() => _tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_WebBaseUrl);
 
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new ConsolidateSupportDataHelper());

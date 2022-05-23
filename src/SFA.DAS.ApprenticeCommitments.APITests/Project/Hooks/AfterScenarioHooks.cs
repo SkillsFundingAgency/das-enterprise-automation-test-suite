@@ -1,0 +1,41 @@
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.ConfigurationBuilder;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
+{
+    [Binding, Scope(Tag = "deleteuser")]
+    public class AfterScenarioHooks
+    {
+        protected readonly ObjectContext _objectContext;
+        protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
+        protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+
+        public AfterScenarioHooks(ScenarioContext context)
+        {
+            _objectContext = context.Get<ObjectContext>();
+            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+            _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+        }
+
+        [AfterScenario(Order = 33)]
+        public void ClearDownUserData()
+        {
+            var email = _objectContext.GetApprenticeEmail();
+            var apprenticeshipid = _objectContext.GetCommitmentsApprenticeshipId();
+
+            //acomt db
+            _aComtSqlDbHelper.DeleteApprentice(email);
+
+            //alogin db
+            _aLoginSqlDbHelper.DeleteUser(email);
+            _aLoginSqlDbHelper.DeleteResetPasswordRequests(email);
+            _aLoginSqlDbHelper.DeleteUserLogs(email);
+
+            //Commitments db
+            _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(long.Parse(apprenticeshipid));
+        }
+    }
+}

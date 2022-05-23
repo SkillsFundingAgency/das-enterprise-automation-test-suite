@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -11,16 +12,22 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 
+        public CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertPage()
+        {
+            DraftVacancy();
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
+        }
+
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
             DraftVacancy();
             return new ApprenticeshipTrainingPage(context);
         }
 
-        public VacancyPreviewPart2Page GoToVacancyPreviewPart2Page()
+        public PreviewYourAdvertOrVacancyPage GoToVacancyPreviewPart2Page()
         {
             DraftVacancy();
-            return new VacancyPreviewPart2Page(context);
+            return new PreviewYourAdvertOrVacancyPage(context);
         }
     }
 }

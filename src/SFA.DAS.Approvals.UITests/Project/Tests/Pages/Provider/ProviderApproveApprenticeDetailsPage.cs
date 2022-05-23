@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly string _pageTitle;
         #endregion
 
-        private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+        private By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
         private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private new By EditApprenticeLink => By.ClassName("edit-apprentice");
@@ -42,29 +42,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderChooseAReservationPage(context);
         }
 
-        internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
+        internal SelectStandardPage SelectAddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
-            {
-                formCompletionHelper.ClickElement(PireanPreprodButton);
-            }
-            return new ProviderAddApprenticeDetailsPage(context);
+
+            ClickIfPirenIsDisplayed();
+            
+            return new SelectStandardPage(context);
         }
 
-        public List<IWebElement> ApprenticeUlns()
-        {
-            return base.pageInteractionHelper.FindElements(ApprenticeUlnField);
-        }
+        public List<IWebElement> ApprenticeUlns() => pageInteractionHelper.FindElements(ApprenticeUlnField);
 
         public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
-            IList<IWebElement> editApprenticeLinks = base.pageInteractionHelper.FindElements(EditApprenticeLink);
+            IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
+            
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
-            {
-                formCompletionHelper.ClickElement(PireanPreprodButton);
-            }
+            
+            ClickIfPirenIsDisplayed();
+            
             return new ProviderEditApprenticeDetailsPage(context);
         }
 
@@ -164,8 +160,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
         }
 
-        
-       
-
+        private void ClickIfPirenIsDisplayed()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
+                formCompletionHelper.ClickElement(PireanPreprod);
+        }
     }
 }

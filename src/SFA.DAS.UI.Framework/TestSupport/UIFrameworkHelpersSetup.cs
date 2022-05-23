@@ -10,9 +10,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
         
         public UIFrameworkHelpersSetup(ScenarioContext context) => _context = context;
 
-        public void SetupUIFrameworkHelpers()
+        public void SetupUIFrameworkHelpers(bool restart)
+        {
+            SetupUIFrameworkHelpers();
+
+            _context.Replace(new ScreenShotTitleGenerator(restart ? _context.Get<ScreenShotTitleGenerator>().GetCounter() : 0));
+        }
+
+        private void SetupUIFrameworkHelpers()
         {
             var webDriver = _context.GetWebDriver();
+
+            var scenarioInfo = _context.ScenarioInfo;
 
             var iFrameHelper = new IFrameHelper(webDriver);
             _context.Replace(iFrameHelper);
@@ -24,7 +33,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
 
-            var retryHelper = new RetryHelper(webDriver, _context.ScenarioInfo);
+            var retryHelper = new RetryHelper(webDriver, scenarioInfo);
 
             var pageInteractionHelper = new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(pageInteractionHelper);
@@ -32,11 +41,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(formCompletionHelper);
 
+            _context.Replace(new CheckPageInteractionHelper(webDriver, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo)));
+
             _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
 
             _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
-
-            _context.Replace(new ScreenShotTitleGenerator(0));
         }
     }
 }

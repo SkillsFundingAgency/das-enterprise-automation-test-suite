@@ -29,10 +29,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderOrganisationsAndAgreementsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsViaSelectJourneyPage GotoSelectJourneyPage()
+        public ProviderAddApprenticeDetailsPage GotoSelectJourneyPage()
         {
             formCompletionHelper.ClickElement(AddNewApprenticesLink);
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
+        }
+
+        public ProviderAccessDeniedPage GotoSelectJourneyPageGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()

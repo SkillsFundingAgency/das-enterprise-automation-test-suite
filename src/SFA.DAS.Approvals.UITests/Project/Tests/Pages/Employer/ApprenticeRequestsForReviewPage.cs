@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
+
             return new ApproveApprenticeDetailsPage(context);
         }
     }

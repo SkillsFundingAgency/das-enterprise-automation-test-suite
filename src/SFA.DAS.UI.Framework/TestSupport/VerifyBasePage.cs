@@ -8,10 +8,9 @@ using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public abstract class VerifyBasePage : BasePage
+    public abstract class VerifyBasePage : InterimBasePage
     {
         #region Helpers and Context
-        private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
         private readonly string _directory;
         private bool _takescreenshot;
@@ -24,11 +23,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;
-            _webDriver = context.GetWebDriver();
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             _directory = objectContext.GetDirectory();
 
-            if (CanCaptureUrl()) objectContext.SetAuthUrl(_webDriver.Url);
+            if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
         }
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
@@ -86,8 +84,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyElement(Func<List<IWebElement>> func, string expected) => pageInteractionHelper.VerifyPage(func, expected);
 
-        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
-
         protected bool VerifyElement(By locator) => pageInteractionHelper.VerifyPage(locator);
 
         #endregion
@@ -96,12 +92,31 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool CanTakeFullScreenShot() => (frameworkConfig.CanTakeFullScreenShot && TakeFullScreenShot);
 
-        private bool VerifyPage(Func<bool> func) { var result = func(); TakeScreenShot(); return result; }
+        private bool VerifyPage(Func<bool> func)
+        {
+            int GetCounter() => _screenShotTitleGenerator.GetCounter();
+
+            int counter = GetCounter();
+            try
+            {
+                var result = func(); TakeScreenShot(); return result;
+            }
+            catch (Exception ex)
+            {
+                if (tags.Contains("authtests") && counter == GetCounter()) TakeScreenShot();
+                
+                throw ex;
+            }
+        }
 
         private void TakeScreenShot()
         {
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{_screenShotTitleGenerator.GetNextCount()}{(CaptureUrl ? string.Empty : $"_{PageTitle}_AuthStep")}", CanTakeFullScreenShot());
+            {
+                string counter = _screenShotTitleGenerator.GetTitle();
+                ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
+            }
+                
         }
     }
 }

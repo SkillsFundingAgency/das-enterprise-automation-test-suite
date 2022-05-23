@@ -2,6 +2,7 @@
 
 @regression
 @employerincentives
+@ignoreinpp
 Scenario: EI_QSAgS_ENonLevyAc_01_Validate Shutter page for an Existing Non Levy account with unsigned V4 Agreement
 	Given the Employer logins using existing Unsigned NonLevy Account
 	When the Employer Initiates EI Application journey for Single entity account

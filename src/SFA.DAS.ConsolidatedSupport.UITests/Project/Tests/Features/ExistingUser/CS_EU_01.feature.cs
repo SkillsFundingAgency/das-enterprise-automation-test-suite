@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("a New status ticket is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.When("the ticket is submit as open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the ticket is submit as Open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
  testRunner.Then("a Open status ticket is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -18,25 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By UploadFileButton => By.Id("submit-upload-apprentices");
         private By TableCells => By.ClassName("govuk-table__row");
 
-        #region Helpers and Context
-        private readonly BulkUploadDataHelper _bulkUploadDataHelper;
-        #endregion
-
-        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) => _bulkUploadDataHelper = new BulkUploadDataHelper();
+        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) { }
 
         public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {
             objectContext.SetNoOfApprentices(numberOfApprentices);
 
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
+
             List<ApprenticeDetails> ApprenticeList = new List<ApprenticeDetails>();
             
-            for (int i = 0; i < numberOfApprentices; i++)
-            {
-                ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
-            }
-            
-            _bulkUploadDataHelper.CreateBulkUploadFile(ApprenticeList, fileLocation);
+            for (int i = 0; i < numberOfApprentices; i++) ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
+
+            new CreateCsvFileHelper().CreateCsvFile(ApprenticeList, fileLocation);
+
             formCompletionHelper.EnterText(ChooseFileButton, fileLocation);           
             formCompletionHelper.ClickElement(UploadFileButton);
 
@@ -57,16 +52,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
             string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             
-            return new ApprenticeDetails(courseCode)
+            return new ApprenticeDetails(courseCode, dateOfBirth, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
             {
                 CohortRef = objectContext.GetCohortReference(),
                 ULN = apprenticeDataHelper.Uln(),
                 FamilyName = apprenticeDataHelper.ApprenticeLastname,
                 GivenNames = apprenticeDataHelper.ApprenticeFirstname,
-                DateOfBirth = dateOfBirth,
-                StartDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseStartDate),
-                EndDate = Convert.ToDateTime(apprenticeCourseDataHelper.CourseEndDate),
-                TotalPrice = apprenticeDataHelper.TrainingPrice,
+                TotalPrice = apprenticeDataHelper.TrainingCost,
                 ProviderRef = apprenticeDataHelper.EmployerReference,
                 EmailAddress = emailAddress,
                 AgreementId = agreementId

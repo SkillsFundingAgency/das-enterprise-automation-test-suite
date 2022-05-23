@@ -73,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_006_PerformEmploymentCheck_HMRC400BadRequests(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string[] exampleTags)
+        public virtual void EC_API_006_PerformEmploymentCheck_HMRC400BadRequests(string testCaseId, string minDate, string maxDate, string employed, string returnCode, string returnMessage, string status, string errorType, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -91,6 +91,8 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("Employed", employed);
             argumentsOfScenario.Add("ReturnCode", returnCode);
             argumentsOfScenario.Add("ReturnMessage", returnMessage);
+            argumentsOfScenario.Add("Status", status);
+            argumentsOfScenario.Add("ErrorType", errorType);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_006_PerformEmploymentCheck_HMRC400BadRequests", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -115,6 +117,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("employment check database is updated with the result from HMRC \'{0}\', \'{1}\', \'{2}" +
                             "\'", employed, returnCode, returnMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+ testRunner.And(string.Format("employment check record status is \'{0}\'", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And(string.Format("business outcome for the check is set to \'{0}\'", errorType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -127,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void EC_API_006_PerformEmploymentCheck_HMRC400BadRequests_6()
         {
 #line 6
-this.EC_API_006_PerformEmploymentCheck_HMRC400BadRequests("6", "2014-03-06T00:00:00", "2013-03-06T00:00:00", "", "400", "{\"code\":\"BAD_REQUEST\",\"message\":\"From date was after to date\"}", ((string[])(null)));
+this.EC_API_006_PerformEmploymentCheck_HMRC400BadRequests("6", "2014-03-06T00:00:00", "2013-03-06T00:00:00", "", "400", "{\"code\":\"BAD_REQUEST\",\"message\":\"From date was after to date\"}", "2", "HmrcFailure", ((string[])(null)));
 #line hidden
         }
     }

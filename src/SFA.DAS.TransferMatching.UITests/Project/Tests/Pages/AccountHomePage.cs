@@ -9,8 +9,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
        protected override string PageTitle => objectContext.GetOrganisationName();
         
         public AccountHomePage(ScenarioContext context) : base(context) { }
-     
-        private By TaskSelector => By.CssSelector("#tasks > ul > li:nth-child(3) > span > a");
+
+        private By TaskSelector => By.CssSelector("#application-approval-task > a");
 
         public MyTransferPledgesPage ClickTask()
         {

@@ -13,5 +13,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             SelectCheckBoxAndContinue();
             return new ConfirmRolesAndResponsibilitiesPage2of3(context);
         }
+
+        public ConfirmRolesAndResponsibilitiesPage1of3 ConfirmYourRolesWithOutSelectionAndContinue()
+        {
+            ClickContinueAndVerifyErrorSummaryBoxAndErrorFieldText();
+            return this;
+        }
     }
 }

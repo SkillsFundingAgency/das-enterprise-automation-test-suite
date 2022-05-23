@@ -35,7 +35,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EPayeIsNull", "EmploymentCheckE2EPayeIsNull", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmploymentCheckE2EPayeIsNull", "EmploymentCheckE2EPayeIsNull", "Description: In this test, Accounts api, returns a 404 response code. Employment " +
+                    "check is completed after enrichment as there is no PAYE Scheme returned.\r\n\t\t\t Co" +
+                    "mpletion status for the check is set to 2 [Completed] and ErrorType as NinoNotFo" +
+                    "und", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +76,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void EC_API_004_PerformEmploymentCheck_PayeIsNull(string testCaseId, string minDate, string maxDate, string status, string[] exampleTags)
+        public virtual void EC_API_004_PerformEmploymentCheck_PayeIsNull(string testCaseId, string minDate, string maxDate, string status, string errorType, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -89,8 +92,9 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.Features.EmploymentChe
             argumentsOfScenario.Add("MinDate", minDate);
             argumentsOfScenario.Add("MaxDate", maxDate);
             argumentsOfScenario.Add("Status", status);
+            argumentsOfScenario.Add("ErrorType", errorType);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EC_API_004_PerformEmploymentCheck_PayeIsNull", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,23 +104,26 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 10
  testRunner.Given(string.Format("employment check has been requested for an apprentice with \'{0}\', \'{1}\', \'{2}\'", testCaseId, minDate, maxDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 11
  testRunner.When("apprentice employment check is triggered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 12
  testRunner.And("data is enriched with results from DC and Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 13
  testRunner.And("Paye/Scheme is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 14
  testRunner.Then("do not create an Employment Check request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 15
  testRunner.And(string.Format("employment check record status is \'{0}\'", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And(string.Format("business outcome for the check is set to \'{0}\'", errorType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -129,8 +136,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("employmentcheckapi")]
         public void EC_API_004_PerformEmploymentCheck_PayeIsNull_4()
         {
-#line 6
-this.EC_API_004_PerformEmploymentCheck_PayeIsNull("4", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", ((string[])(null)));
+#line 9
+this.EC_API_004_PerformEmploymentCheck_PayeIsNull("4", "2014-03-06T00:00:00", "2014-03-06T00:00:00", "2", "PAYENotFound", ((string[])(null)));
 #line hidden
         }
     }

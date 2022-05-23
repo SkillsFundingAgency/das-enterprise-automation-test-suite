@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
+﻿namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public partial class ApplicationOverviewPage : RoatpApplyBasePage
     {

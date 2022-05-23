@@ -8,34 +8,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EPAOStageTwoCancelStandardSteps : EPAOBaseSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly ApplyStepsHelper _applyStepsHelper;
-
-        protected EPAOStageTwoCancelStandardSteps(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _applyStepsHelper = new ApplyStepsHelper(context);
-        }
+        protected EPAOStageTwoCancelStandardSteps(ScenarioContext context) : base(context) { }
 
         [Given(@"Stage one approved EPAO logs in to apply for a first standard")]
-        public void GivenStageOneApprovedEPAOLogsInToApplyForAFirstStandard()
-        {
-            loggedInHomePage =  ePAOHomePageHelper.StageTwoEPAOStandardCancelUser(_context.GetUser<EPAOStageTwoStandardCancelUser>());
-        }
+        public void GivenStageOneApprovedEPAOLogsInToApplyForAFirstStandard() => 
+            loggedInHomePage = ePAOHomePageHelper.StageTwoEPAOStandardCancelUser(context.GetUser<EPAOStageTwoStandardCancelUser>());
         
+
         [When(@"Starts the journey to apply for the first standard")]
         [Given(@"Starts the journey to apply for the first standard")]
-        public void GivenStartsTheJourneyToApplyForTheFirstStandard()
-        {
-            _applyStepsHelper.CancelStageTwoStandard();
-
-        }
+        public void GivenStartsTheJourneyToApplyForTheFirstStandard() => applyStepsHelper.ApplyStageTwoStandard();
 
         [Then(@"EPAO cancels the standard using cancel link as incorrect standard selected")]
-        public void ThenEPAOCancelsTheStandardUsingCancelLinkAsIncorrectStandardSelected()
-        {
-            _applyStepsHelper.ClickCancelYourStandardLink();
-        }
+        public void ThenEPAOCancelsTheStandardUsingCancelLinkAsIncorrectStandardSelected() => new CancelStandardStepsHelper(context).CancelYourStandard();
 
     }
 }

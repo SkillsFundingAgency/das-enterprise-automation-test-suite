@@ -1,0 +1,157 @@
+﻿using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
+using TechTalk.SpecFlow;
+using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
+
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
+{
+    public class EmployerCreateDraftAdvertStepsHelper : EmployerCreateAdvertStepsHelper
+    {
+        public EmployerCreateDraftAdvertStepsHelper(ScenarioContext context) : base(context)
+        {
+
+        }
+
+        internal VacancyReferencePage SubmitDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage));
+
+        internal PreviewYourAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            CompleteAboutTheEmployer(createAdvertPage).CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
+
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new PreviewYourAdvertOrVacancyPage(context).DeleteVacancy().YesDeleteVacancy();
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
+
+        internal YourApprenticeshipAdvertsHomePage CancelAdvert() { EnterAdvertTitle(CreateAnApprenticeshipAdvertOrVacancy()).EmployerCancelAdvert(); return new YourApprenticeshipAdvertsHomePage(context); }
+    }
+
+    public class EmployerCreateAdvertPrefStepsHelper : EmployerCreateAdvertStepsHelper
+    {
+        public EmployerCreateAdvertPrefStepsHelper(ScenarioContext context) : base(context) { }
+    
+        public CreateAnApprenticeshipAdvertOrVacancyPage GoToCreateAnApprenticeshipAdvertPage(RAAV2EmployerUser rAAV2EmployerUser)
+        {
+            return rAAV2EmployerLoginHelper.GoToCreateAnAdvertHomePage(rAAV2EmployerUser).GoToCreateAnApprenticeshipAdvertPage();
+        }
+    }
+
+
+    public class EmployerCreateAdvertStepsHelper : CreateAdvertVacancyBaseStepsHelper
+    {
+        protected readonly ScenarioContext context;
+
+        protected readonly RAAV2EmployerLoginStepsHelper rAAV2EmployerLoginHelper;
+
+        public EmployerCreateAdvertStepsHelper(ScenarioContext context) : base()
+        {
+            this.context = context;
+
+            rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
+        }
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateFirstDraftAdvert_PrefTest(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        {
+            return FirstAdvertSummary(createAdvertPage);
+        }
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateFirstDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        {
+            return CreateDraftAdvert(createAdvertPage, true);
+        }
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
+        {
+            return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertOrVacancySummary(createAdvertPage), true, false, RAAV2Const.NationalMinWages);
+        }
+
+        internal void CreateFirstAdvertAndSubmit(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        {
+            createAdvertPage = CreateFirstDraftAdvert(createAdvertPage);
+
+            createAdvertPage = CompleteAboutTheEmployer(createAdvertPage);
+
+            CheckAndSubmitAdvert(createAdvertPage);
+        }
+    
+        internal CreateAnApprenticeshipAdvertOrVacancyPage AddAnAdvert()
+        {
+            new RecruitmentDynamicHomePage(context, true).ContinueToCreateAdvert();
+
+            return new DoYouNeedToCreateAnAdvertPage(context).ClickYesRadioButtonTakesToRecruitment().GoToCreateAnApprenticeshipAdvertPage();
+        }
+
+        internal void CreateOfflineVacancy()
+        {
+            CreateANewAdvert(true, false);
+
+            SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
+        }
+
+        internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
+
+        internal VacancyReferencePage CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
+
+        internal VacancyReferencePage CreateANewAdvert(string employername) => CreateANewAdvert(employername, true);
+
+        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress) => CreateANewAdvert(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages);
+
+        internal VacancyReferencePage CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, disabilityConfidence, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+
+        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true);
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy() => GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
+                    AdvertSummary(EnterAdvertTitle(createAdvertPage).SelectOrganisationMultiOrg());
+
+        private ManageRecruitPage SearchVacancyByVacancyReference() => rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
+            createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
+                .SelectApplicationMethod_Employer(isApplicationMethodFAA);
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            createAdvertPage
+                .Skills()
+                .SelectSkillAndGoToQualificationsPage()
+                .EnterQualifications()
+                .ConfirmQualificationsAndContinue()
+                .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType) => 
+            createAdvertPage
+                .ImportantDates()
+                .EnterImportantDates(disabilityConfidence)
+                .EnterDuration()
+                .ChooseWage(wageType)
+                .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
+                .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+
+        protected CreateAnApprenticeshipAdvertOrVacancyPage CompleteAboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            AboutTheEmployer(SkillsAndQualifications(createAdvertPage), string.Empty, true);
+
+        private CreateAnApprenticeshipAdvertOrVacancyPage FirstAdvertSummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            AdvertSummary(createAdvertPage.AdvertTitle().EnterVacancyTitleForTheFirstAdvert().SelectYes());
+
+        protected SelectOrganisationPage EnterAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage
+                .AdvertTitle()
+                .EnterAdvertTitleMultiOrg();
+
+        private CreateAnApprenticeshipAdvertOrVacancyPage AdvertSummary(ApprenticeshipTrainingPage page) =>
+        page.EnterTrainingTitle()
+            .ConfirmTrainingproviderAndContinue()
+            .SelectTrainingProvider()
+            .ConfirmProviderAndContinueToSummaryPage()
+            .EnterShortDescription()
+            .EnterAllDescription();
+
+        private YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => rAAV2EmployerLoginHelper.GoToRecruitmentHomePage();
+    }
+}

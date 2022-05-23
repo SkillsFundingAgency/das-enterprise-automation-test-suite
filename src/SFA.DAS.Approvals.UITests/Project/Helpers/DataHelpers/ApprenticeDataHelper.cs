@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
             DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
-            TrainingPrice = "1" + RandomDataGenerator.GenerateRandomNumber(3);
+            TrainingCost = "1" + RandomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;
@@ -46,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public DateTime ApprenticeDob => new DateTime(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
 
-        public string TrainingPrice { get; set; }
+        public string TrainingCost { get; set; }
 
         public string EmployerReference { get; }
 

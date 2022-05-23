@@ -1,15 +1,15 @@
-﻿using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using EmployerStepsHelper = SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers.EmployerStepsHelper;
 using ProviderStepsHelper = SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers.ProviderStepsHelper;
 using SFA.DAS.Login.Service;
-using SFA.DAS.Approvals.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using NUnit.Framework;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
+using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
@@ -17,7 +17,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     public class EmployerProviderColobarationSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private EasAccountUser _loginUser;
@@ -26,9 +28,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public EmployerProviderColobarationSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(_context);
         }
 
         [Given(@"the Employer grants permission to the provider to create advert with review option")]
@@ -36,7 +40,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             _loginUser = _context.GetUser<RAAV2EmployerProviderPermissionUser>();
 
-            var homePage = _employerStepsHelper.GoToHomePage(_loginUser);
+            var homePage = _rAAV2EmployerLoginHelper.GoToHomePage(_loginUser);
 
             _employerPermissionsStepsHelper.SetAgreementId(homePage, _loginUser.OrganisationName);
 
@@ -52,7 +56,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider submits a vacancy to the employer for review")]
         public void WhenTheProviderSubmitsAVacancyToTheEmployerForReview()
         {
-            var vacancyReferencePage = _providerStepsHelper.CreateANewVacancy(_loginUser.OrganisationName, true, false, true, false, true);
+            var vacancyReferencePage = new ProviderCreateVacancyStepsHelper(_context, true).CreateANewVacancyForSpecificEmployer(_loginUser.OrganisationName, _objectContext.GetHashedAccountId());
 
             ConfirmationMessage(vacancyReferencePage, "Vacancy submitted to employer");
         }

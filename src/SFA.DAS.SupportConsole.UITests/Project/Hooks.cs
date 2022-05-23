@@ -1,6 +1,5 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project
@@ -8,11 +7,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project
     [Binding]
     public class Hooks
     {
-        private readonly IWebDriver _webDriver;
+        private readonly ScenarioContext _context;
 
-        public Hooks(ScenarioContext context) => _webDriver = context.GetWebDriver();
+        public Hooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 21)]
-        public void Navigate() => _webDriver.Navigate().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
+        public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
     }
 }

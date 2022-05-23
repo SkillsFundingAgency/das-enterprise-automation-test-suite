@@ -3,14 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ResubmittedVacancyReferencePage : RAAV2CSSBasePage
+    public class ResubmittedVacancyReferencePage : Raav2BasePage
     {
-        protected override string PageTitle => "Advert resubmitted to ESFA";
-
-        protected By ReturnToDashboard => By.LinkText("Return to dashboard");
+        protected override string PageTitle => "Advert resubmitted for approval";
 
         public ResubmittedVacancyReferencePage(ScenarioContext context) : base(context) { }
-    
-        public void ConfirmVacancyResubmission() => VerifyPanelTitle("Advert resubmitted to ESFA");
     }
 }
