@@ -5,6 +5,7 @@
 @eie2ejourney
 @deleteincentiveapplication
 @vrfservice
+@ignoreinpp
 Scenario: EI_E2E_03_ExistingLevyAcApplyWithVRFAndWithdraw
 	Given the Employer logins using existing EI Levy Account to withdraw application
 	And the Employer submits an EI Application

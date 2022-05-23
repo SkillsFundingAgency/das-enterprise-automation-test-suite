@@ -3,6 +3,7 @@
 @regression
 @employerincentives
 @addlevyfunds
+@ignoreinpp
 Scenario: EI_EC_01_Apply for Incentive for a New Account with start date as more than 3 months in past and verify Earnings
 	Given an Employer creates a Levy Account and Signs the Agreement
 	And the Employer adds an apprentice Aged16to24 as of 01AUG2021 with start date more than 3 month in past
