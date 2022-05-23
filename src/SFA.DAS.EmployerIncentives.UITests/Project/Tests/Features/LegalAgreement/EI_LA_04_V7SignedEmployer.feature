@@ -3,6 +3,7 @@
 @regression
 @employerincentives
 @deleteincentiveapplication
+@ignoreinpp
 Scenario: EI_LA_04_V7SignedEmployer_V7 Signed Employer attempts to apply for Commitments starting OCT2021 or over
 	Given the Employer logins using existing Version7AgreementUser Account
 	When the Employer Initiates EI Application journey for Single entity account
@@ -11,6 +12,7 @@ Scenario: EI_LA_04_V7SignedEmployer_V7 Signed Employer attempts to apply for Com
 @regression
 @employerincentives
 @deleteincentiveapplication
+@ignoreinpp
 Scenario: EI_LA_04_V7SignedEmployer_V7 Enters An Invalid Employment Start Date
 	Given the Employer logins using existing Version7AgreementUser Account
 	When the Employer Initiates EI Application journey for Single entity account
@@ -19,6 +21,7 @@ Scenario: EI_LA_04_V7SignedEmployer_V7 Enters An Invalid Employment Start Date
 @regression
 @employerincentives
 @deleteincentiveapplication
+@ignoreinpp
 Scenario: EI_LA_04_V7SignedEmployer_V7 Enters A Valid and An Invalid Employment Start Date
 	Given the Employer logins using existing Version7AgreementUser Account
 	When the Employer Initiates EI Application journey for Single entity account
