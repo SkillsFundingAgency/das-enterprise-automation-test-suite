@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 var cohort = parent.FindElement(Cohort);
                 var numberOfApprentices = parent.FindElement(NumberOfApprentices);
                 
-                pageInteractionHelper.VerifyText(flattenedRow.EmployerName, pageInteractionHelper.GetText(employerName));
+                pageInteractionHelper.VerifyText(flattenedRow.EmployerName.RemoveSpace(), pageInteractionHelper.GetText(employerName).RemoveSpace());
                 pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.CohortRefText, pageInteractionHelper.GetText(cohort));
                 pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.NumberOfApprentices.ToString(), pageInteractionHelper.GetText(numberOfApprentices));
 
