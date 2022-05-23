@@ -14,15 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
-        private void AddCourse()
-        {
-            var course = apprenticeCourseDataHelper.CourseLarsCode;
-
-            if (objectContext.IsSameApprentice()) course = apprenticeCourseDataHelper.OtherCourseLarsCode;
-            
-            SelectStandard(course);
-        }
-
         public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
         {
             var courseStartDate = SetEIJourneyTestData(apprenticeNo);
@@ -30,8 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
-
-            AddCourse();
 
             ClickStartMonth();
 
