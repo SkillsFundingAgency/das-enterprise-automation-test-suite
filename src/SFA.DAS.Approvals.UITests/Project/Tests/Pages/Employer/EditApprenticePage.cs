@@ -37,11 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected override void EditCourse()
-        {
-            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
-            SelectCourse();
-        }
+        protected override void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
