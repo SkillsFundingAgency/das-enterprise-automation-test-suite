@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public class TestDataCleanUpEasLtmcSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanUpEasLtmcSqlDataHelper : TestDataCleanupSqlDataHelper
     {
         public override string SqlFileName => "EasLtmTestDataCleanUp";
 

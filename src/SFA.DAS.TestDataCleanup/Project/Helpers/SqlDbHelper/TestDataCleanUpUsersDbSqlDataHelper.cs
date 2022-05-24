@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public class TestDataCleanUpUsersDbSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanUpUsersDbSqlDataHelper : TestDataCleanupSqlDataHelper
     {
         public override string SqlFileName => "EasUsersTestDataCleanUp";
 

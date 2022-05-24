@@ -188,7 +188,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             return SetDebugMessage(() => helper.CleanUpUsersDbTestData(email));
         }
 
-        private void SetDetails(ProjectSqlDbHelper helper)
+        private void SetDetails(TestDataCleanupSqlDataHelper helper)
         {
             _dbName = helper.dbName;
 

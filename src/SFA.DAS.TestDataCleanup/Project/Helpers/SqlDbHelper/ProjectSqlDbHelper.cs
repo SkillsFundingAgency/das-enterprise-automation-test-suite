@@ -5,21 +5,11 @@ using System.Linq;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public abstract class ProjectSqlDbHelper : FrameworkHelpers.SqlDbHelper
+    public abstract class TestDataCleanupSqlDataHelper : ProjectSqlDbHelper
     {
-        public readonly string dbName;
-
         public abstract string SqlFileName { get; }
 
-        public virtual bool ExcludeEnvironments => false;
-
-        protected ProjectSqlDbHelper(string connectionString) : base(connectionString) => dbName = GetDbName();
-
-        public string GetTableCatalog() => GetDataAsString("select top 1 TABLE_CATALOG from INFORMATION_SCHEMA.TABLES");
-
-        public string GetCaller() => GetType().Name;
-
-        private string GetSql() { return FileHelper.GetSql(SqlFileName); }
+        public TestDataCleanupSqlDataHelper(string connectionString) : base(connectionString) { }
 
         protected int CleanUpUsingEmail(string email) => TryExecuteSqlCommand(GetSql(), connectionString, new Dictionary<string, string> { { "@email", email } });
 
@@ -37,8 +27,6 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
             return noOfRowsDeleted;
         }
-
-        protected List<string> GetAccountids(string query) => GetMultipleData(query).ListOfArrayToList(0);
 
         protected (List<string>, List<string>) CleanUpTestData(Func<List<string>> getAccountidfunc, Func<List<string>, int> deleteAccountidfunc)
         {
@@ -70,6 +58,23 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
             return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);
         }
+
+        private string GetSql() { return FileHelper.GetSql(SqlFileName); }
+    }
+
+    public abstract class ProjectSqlDbHelper : FrameworkHelpers.SqlDbHelper
+    {
+        public readonly string dbName;
+
+        public virtual bool ExcludeEnvironments => false;
+
+        protected ProjectSqlDbHelper(string connectionString) : base(connectionString) => dbName = GetDbName();
+
+        public string GetTableCatalog() => GetDataAsString("select top 1 TABLE_CATALOG from INFORMATION_SCHEMA.TABLES");
+
+        public string GetCaller() => GetType().Name;
+
+        protected List<string> GetAccountids(string query) => GetMultipleData(query).ListOfArrayToList(0);
 
         protected List<string[]> GetMultipleAccountData(string sqlQuery)
         {

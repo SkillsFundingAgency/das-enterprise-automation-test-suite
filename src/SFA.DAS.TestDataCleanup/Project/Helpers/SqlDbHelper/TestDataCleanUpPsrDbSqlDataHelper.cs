@@ -4,7 +4,7 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public class TestDataCleanUpPsrDbSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanUpPsrDbSqlDataHelper : TestDataCleanupSqlDataHelper
     {
         private readonly DbConfig _dbConfig;
 

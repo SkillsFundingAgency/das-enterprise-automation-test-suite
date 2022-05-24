@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
-    public class TestDataCleanupAComtSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanupAComtSqlDataHelper : TestDataCleanupSqlDataHelper
     {
         private readonly DbConfig _dbConfig;
 
