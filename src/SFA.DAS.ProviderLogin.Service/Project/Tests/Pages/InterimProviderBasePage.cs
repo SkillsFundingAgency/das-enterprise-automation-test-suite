@@ -26,10 +26,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
 
-        protected void ClickIfPirenIsDisplayed()
-        {
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
-                formCompletionHelper.ClickElement(PireanPreprod);
-        }
+        protected void ClickIfPirenIsDisplayed() => ClickIfDisplayed(PireanPreprod);
     }
 }
