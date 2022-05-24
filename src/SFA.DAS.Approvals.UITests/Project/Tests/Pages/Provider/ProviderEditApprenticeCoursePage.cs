@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -8,15 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Edit apprentice details";
 
-        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
-
-        public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context)  { }
-
-        public SelectStandardPage ClickEditCourseLink()
-        {
-            formCompletionHelper.Click(TrainingCourseEditLink);
-            return new SelectStandardPage(context);
-        }
+        public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context) { }
 
         public ProviderConfirmChangesPage AddValidEmailAndContinue()
         {

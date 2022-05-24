@@ -46,13 +46,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
-        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
-        {
-            AssertOnlyStandardCoursesAreSelectable();
-
-            return this;
-        }
-
         private DateTime SetEIJourneyTestData(int apprenticeNo)
         {
             if (objectContext.IsEIJourney())

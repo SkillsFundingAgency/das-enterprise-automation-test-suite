@@ -41,12 +41,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public AddApprenticeDetailsPage NonLevyEmployerAddsApprentices()
+        public SelectStandardPage NonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new SelectStandardPage(context);
         }
+
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();

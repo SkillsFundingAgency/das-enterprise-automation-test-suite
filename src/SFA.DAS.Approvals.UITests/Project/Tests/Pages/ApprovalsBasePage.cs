@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
         protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
-        protected readonly RegistrationDataHelper registrationDataHelper; 
+        protected readonly RegistrationDataHelper registrationDataHelper;
         #endregion
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)

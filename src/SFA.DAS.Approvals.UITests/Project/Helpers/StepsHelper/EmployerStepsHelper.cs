@@ -153,15 +153,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return addAnApprenitcePage.StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
-                .NonLevyEmployerAddsApprentices();
+                .NonLevyEmployerAddsApprentices()
+                .EmployerSelectsAStandard();
         }
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
-                addApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
+                addApprenticeDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
             }
+
             _approveApprenticeDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_approveApprenticeDetailsPage);
             int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_approveApprenticeDetailsPage, count);
@@ -189,7 +191,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
                     _employerReservationStepsHelper
                         .CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
-                        .AddAnotherApprentice();
+                        .AddAnotherApprentice()
+                        .EmployerSelectsAStandard();
                 }
             }
             return new ApproveApprenticeDetailsPage(_context);

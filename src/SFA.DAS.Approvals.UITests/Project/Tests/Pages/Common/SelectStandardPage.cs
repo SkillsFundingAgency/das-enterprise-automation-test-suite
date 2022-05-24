@@ -1,6 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -10,6 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected override string PageTitle => "Select standard";
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+
+        private By TrainingCourseContainer => By.Id("CourseCode");
 
         public SelectStandardPage(ScenarioContext context) : base(context) { }
 
@@ -39,6 +44,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return GoToProviderEditApprenticeDetailsPage();
         }
 
+        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
+
         private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
 
         private void SelectStandardAndContinue()
@@ -46,5 +53,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             SelectStandard(apprenticeCourseDataHelper.CourseLarsCode);
             Continue();
         }
+
+        private void SelectStandard(string courseLarsCode) => formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, courseLarsCode);
+
+        private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.False(GetAllTrainingCourses().All(x => x.Contains("(Framework)")));
+
+        private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
+        {
+            Assert.True(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")));
+            Continue();
+            return new AddApprenticeDetailsPage(context);
+        }
+
+        private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
     }
 }

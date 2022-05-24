@@ -19,6 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
+        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
+
         protected EditApprenticeDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public void VerifyCourseAndCostAreReadOnly()
@@ -40,6 +42,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             EditCost();
             
             EditApprenticeNameDobAndReference(reference);
+        }
+
+        public SelectStandardPage ClickEditCourseLink()
+        {
+            formCompletionHelper.Click(TrainingCourseEditLink);
+            return new SelectStandardPage(context);
         }
 
         protected abstract void EditCourse();
