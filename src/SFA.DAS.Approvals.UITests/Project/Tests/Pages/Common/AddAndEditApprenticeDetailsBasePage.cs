@@ -21,7 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By DeliveryModelSection => By.XPath("//legend[contains(text(),'Delivery model')]");
-        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
         private By DeliveryModelRadioLabel => RadioLabels;
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context) { }
@@ -71,12 +70,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
-        }
-
-        public SelectStandardPage ClickEditCourseLink()
-        {
-            formCompletionHelper.Click(TrainingCourseEditLink);
-            return new SelectStandardPage(context);
         }
     }
 }

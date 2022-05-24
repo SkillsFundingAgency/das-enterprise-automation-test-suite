@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -22,6 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly RegistrationDataHelper registrationDataHelper;
         #endregion
 
+        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
+
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
             registrationDataHelper = context.Get<RegistrationDataHelper>();
@@ -34,6 +38,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();
             apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
             if (verifypage) VerifyPage();
+        }
+
+        public SelectStandardPage ClickEditCourseLink()
+        {
+            formCompletionHelper.Click(TrainingCourseEditLink);
+            return new SelectStandardPage(context);
         }
 
         protected bool IsSelectStandardWithMultipleOptions() => tags.Contains("selectstandardwithmultipleoptions");
