@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
 
         protected TestdataCleanupWithAccountIdStepsHelper GetCleanUpHelper(int greaterThan, int lessThan)
         {
-            var easAccountIds = new EasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
+            var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
 
             var easAccountsNotToDelete = easAccountIds.ListOfArrayToList(0);
 

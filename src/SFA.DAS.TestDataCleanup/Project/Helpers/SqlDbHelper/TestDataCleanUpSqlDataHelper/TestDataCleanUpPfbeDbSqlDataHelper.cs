@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanUpPfbeDbSqlDataHelper : TestDataCleanupSqlDataHelper
+    public class TestDataCleanUpPfbeDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
         public override string SqlFileName => "EasPfbeTestDataCleanUp";
 
@@ -14,10 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
             return CleanUpTestData(() => GetPfbeAccountids(greaterThan, lessThan, easaccountids), (x) => CleanUpPfbeTestData(x));
         }
 
-        internal int CleanUpPfbeTestData(List<string> accountIdToDelete)
-        {
-            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id int)");
-        }
+        internal int CleanUpPfbeTestData(List<string> accountIdToDelete) => CleanUpUsingAccountIds(accountIdToDelete);
 
         private List<string> GetPfbeAccountids(int greaterThan, int lessThan, List<string> easaccountids)
         {

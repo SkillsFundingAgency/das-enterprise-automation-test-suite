@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanUpEmpFinSqlDataHelper : TestDataCleanupSqlDataHelper
+    public class TestDataCleanUpEmpFinSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
         public override string SqlFileName => "EasFinTestDataCleanUp";
 

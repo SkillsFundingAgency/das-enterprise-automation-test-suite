@@ -1,6 +1,8 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.BaseSqlDbHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +22,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
 
         public (List<string>, List<string>) CleanUpAllDbTestData(string email)
         {
-            var easAccDbSqlDataHelper = new EasAccDbSqlDataHelper(_dbConfig);
+            var easAccDbSqlDataHelper = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig);
 
             SetDetails(easAccDbSqlDataHelper);
 
@@ -73,7 +75,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
                 + CleanUpComtTestData(accountidsTodelete);
         }
 
-        private int CleanUpEasDbTestData(EasAccDbSqlDataHelper helper, string email)
+        private int CleanUpEasDbTestData(TestDataCleanUpEasAccDbSqlDataHelper helper, string email)
         {
             SetDetails(helper);
 
@@ -188,7 +190,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers
             return SetDebugMessage(() => helper.CleanUpUsersDbTestData(email));
         }
 
-        private void SetDetails(TestDataCleanupSqlDataHelper helper)
+        private void SetDetails(TestDataCleanUpSqlDataHelper helper)
         {
             _dbName = helper.dbName;
 

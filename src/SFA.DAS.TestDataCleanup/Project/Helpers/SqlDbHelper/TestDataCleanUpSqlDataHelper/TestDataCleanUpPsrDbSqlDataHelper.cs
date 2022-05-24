@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanUpPsrDbSqlDataHelper : TestDataCleanupSqlDataHelper
+    public class TestDataCleanUpPsrDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
         private readonly DbConfig _dbConfig;
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
         internal int CleanUpPsrTestData(List<string> accountIdToDelete)
         {
-            var easaccounthashedids = new EasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
+            var easaccounthashedids = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
 
             if (easaccounthashedids.IsNoDataFound()) return 0;
 

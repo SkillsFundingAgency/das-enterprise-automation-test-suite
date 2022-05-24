@@ -2,9 +2,9 @@
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanupAComtSqlDataHelper : TestDataCleanupSqlDataHelper
+    public class TestDataCleanupAComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
         private readonly DbConfig _dbConfig;
 

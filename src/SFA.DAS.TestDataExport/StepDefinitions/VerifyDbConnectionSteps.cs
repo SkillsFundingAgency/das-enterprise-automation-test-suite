@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.BaseSqlDbHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,8 +50,8 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
 
             AssertDbConnection(new EmploymentCheckDbSqlDataHelper(_dbConfig));
 
-            AssertDbConnection(new EasAccDbSqlDataHelper(_dbConfig));
-            AssertDbConnection(new ApprenticeCommitmentLoginDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new ACommitmentLoginDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new CrsDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new TestDataCleanUpUsersDbSqlDataHelper(_dbConfig));

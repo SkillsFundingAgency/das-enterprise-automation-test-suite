@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanupComtSqlDataHelper : TestDataCleanupSqlDataHelper
+    public class TestDataCleanupComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
         public override string SqlFileName => "EasComtTestDataCleanUp";
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
         }
 
         internal int CleanUpComtTestData(List<string> accountIdToDelete) => CleanUpUsingAccountIds(accountIdToDelete);
-        
+
         private List<string> GetComtAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
             return GetAccountids($"select id from dbo.Accounts where id > {greaterThan} and id < {lessThan} and id not in ({string.Join(",", easaccountidsnottodelete)}) order by id desc");
