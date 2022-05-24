@@ -186,6 +186,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
         public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
 
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details for levy account into existing cohort and (.*) apprentice details into a non-existing cohort")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeForLevyAccountDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohort(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
+        {
+            var employerUser = _context.GetUser<Login.Service.Project.Helpers.LevyUser>();
+            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(numberOfApprentices, numberOfApprenticesWithoutCohortRef, employerUser.Username, employerName);
+        }
+
+
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {            
             var apprenticeList = _objectContext.GetBulkuploadApprentices();
