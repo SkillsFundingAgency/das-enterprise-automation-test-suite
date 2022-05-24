@@ -44,7 +44,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
                 int x = usersdeleted.Where(a => a.Contains("total rows deleted")).ToList().Count;
 
                 _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_testdatadeleted",
-                    $"{x} account{(x == 1 ? string.Empty : "s")} deleted {Environment.NewLine}{string.Join(Environment.NewLine, usersdeleted)}");
+                    $"{x} email account{(x == 1 ? string.Empty : "s")} deleted {Environment.NewLine}{string.Join(Environment.NewLine, usersdeleted)}");
             }
             
             if (userswithconstraints.Count > 0) throw new Exception($"{Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");

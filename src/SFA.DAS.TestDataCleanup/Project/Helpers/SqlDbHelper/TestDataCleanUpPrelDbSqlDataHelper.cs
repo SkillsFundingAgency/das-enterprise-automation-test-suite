@@ -5,6 +5,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
     public class TestDataCleanUpPrelDbSqlDataHelper : ProjectSqlDbHelper
     {
+        public override string SqlFileName => "EasPrelTestDataCleanUp";
+
         public TestDataCleanUpPrelDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PermissionsDbConnectionString) { }
 
         public (List<string>, List<string>) CleanUpPrelTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
@@ -12,10 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
             return CleanUpTestData(() => GetPrelAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpPrelTestData(x));
         }
 
-        internal int CleanUpPrelTestData(List<string> accountIdToDelete)
-        {
-            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasPrelTestDataCleanUp");
-        }
+        internal int CleanUpPrelTestData(List<string> accountIdToDelete) => CleanUpUsingAccountIds(accountIdToDelete);
 
         private List<string> GetPrelAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {

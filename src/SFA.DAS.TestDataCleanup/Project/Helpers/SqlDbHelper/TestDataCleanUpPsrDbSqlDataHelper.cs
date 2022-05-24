@@ -8,15 +8,17 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
+        public override string SqlFileName => "EasPsrTestDataCleanUp";
+
         public TestDataCleanUpPsrDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PublicSectorReportingConnectionString) => _dbConfig = dbConfig;
 
         internal int CleanUpPsrTestData(List<string> accountIdToDelete)
         {
             var easaccounthashedids = new EasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
 
-            if (IsNoDataFound(easaccounthashedids)) return 0;
+            if (easaccounthashedids.IsNoDataFound()) return 0;
 
-            return CleanUpTestData(easaccounthashedids.ListOfArrayToList(0), (x) => $"Insert into #accounthashedids values ('{x}')", "create table #accounthashedids (id nvarchar(255))", "EasPsrTestDataCleanUp");
+            return CleanUpTestData(easaccounthashedids.ListOfArrayToList(0), (x) => $"Insert into #accounthashedids values ('{x}')", "create table #accounthashedids (id nvarchar(255))");
         }
     }
 }

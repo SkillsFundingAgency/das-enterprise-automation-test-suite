@@ -7,27 +7,31 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
     public abstract class ProjectSqlDbHelper : FrameworkHelpers.SqlDbHelper
     {
-        protected string _user, _userEmail, _accountId, _sqlFileName;
+        public readonly string dbName;
+
+        public abstract string SqlFileName { get; }
 
         public virtual bool ExcludeEnvironments => false;
 
-        protected ProjectSqlDbHelper(string connectionString) : base(connectionString) { }
+        protected ProjectSqlDbHelper(string connectionString) : base(connectionString) => dbName = GetDbName();
 
         public string GetTableCatalog() => GetDataAsString("select top 1 TABLE_CATALOG from INFORMATION_SCHEMA.TABLES");
 
         public string GetCaller() => GetType().Name;
 
-        protected string GetSql(string filename) { _sqlFileName = filename; return FileHelper.GetSql(_sqlFileName); }
+        private string GetSql() { return FileHelper.GetSql(SqlFileName); }
 
-        protected Dictionary<string, string> GetEmail() => new Dictionary<string, string> { { "@email", _userEmail } };
+        protected int CleanUpUsingEmail(string email) => TryExecuteSqlCommand(GetSql(), connectionString, new Dictionary<string, string> { { "@email", email } });
 
-        protected Dictionary<string, string> GetAccountId() => new Dictionary<string, string> { { "@accountid", _accountId } };
+        protected int CleanUpUsingAccountIds(List<string> accountIdToDelete) => CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)");
 
-        protected int CleanUpTestData(List<string> accountIdToDelete, Func<string, string> insertQueryFunc, string createQuery, string sqlfilename)
+        protected int CleanUpTestData(List<string> accountIdToDelete, Func<string, string> insertQueryFunc, string createQuery)
         {
+            if (ExcludeEnvironments) return 0;
+
             var insertquery = accountIdToDelete.Select(x => insertQueryFunc(x)).ToList();
 
-            var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + GetSql(sqlfilename);
+            var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + GetSql();
 
             var noOfRowsDeleted = TryExecuteSqlCommand(sqlQuery, connectionString) - accountIdToDelete.Count;
 
@@ -42,24 +46,26 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 
             List<string> accountIdNotDeleted = new List<string>();
 
+            if (ExcludeEnvironments) return (accountIdToDelete, accountIdNotDeleted);
+
             try
             {
                 accountIdToDelete = getAccountidfunc.Invoke();
 
-                if (IsNoDataFound(accountIdToDelete)) return (new List<string>(), new List<string>());
+                if (accountIdToDelete.IsNoDataFound()) return (new List<string>(), new List<string>());
 
                 deleteAccountidfunc(accountIdToDelete);
 
             }
             catch (Exception ex)
             {
-                accountIdNotDeleted.Add($"({_sqlFileName}){Environment.NewLine}{ex.Message}");
+                accountIdNotDeleted.Add($"({SqlFileName}){Environment.NewLine}{ex.Message}");
             }
             finally
             {
                 var accountIdNotDeletedindb = getAccountidfunc.Invoke();
 
-                if (!IsNoDataFound(accountIdNotDeletedindb)) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
+                if (!accountIdNotDeletedindb.IsNoDataFound()) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
             }
 
             return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);
@@ -69,9 +75,18 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
         {
             var id = GetMultipleData(sqlQuery);
 
-            if (IsNoDataFound(id)) id[0][0] = "0";
+            if (id.IsNoDataFound()) id[0][0] = "0";
 
             return id;
+        }
+
+        private string GetDbName()
+        {
+            var list = connectionString.Split(";");
+
+            var dbName = list.Any(x => x.StartsWith("Database")) ? list.SingleOrDefault(x => x.StartsWith("Database")) : list.SingleOrDefault(x => x.StartsWith("Initial Catalog"));
+
+            return dbName.Split("=")[1];
         }
     }
 }

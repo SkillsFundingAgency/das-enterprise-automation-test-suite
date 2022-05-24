@@ -52,7 +52,7 @@ namespace SFA.DAS.TestDataExport.StepDefinitions
             AssertDbConnection(new ApprenticeCommitmentLoginDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new CrsDbSqlDataHelper(_dbConfig));
             AssertDbConnection(new TprDbSqlDataHelper(_dbConfig));
-            AssertDbConnection(new UsersDbSqlDataHelper(_dbConfig));
+            AssertDbConnection(new TestDataCleanUpUsersDbSqlDataHelper(_dbConfig));
 
             if (_exception.Any())
             {

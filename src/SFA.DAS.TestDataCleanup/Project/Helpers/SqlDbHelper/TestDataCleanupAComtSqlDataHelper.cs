@@ -8,15 +8,17 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
+        public override string SqlFileName => "EasAComtTestDataCleanUp";
+
         public TestDataCleanupAComtSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) => _dbConfig = dbConfig;
 
         internal int CleanUpAComtTestData(List<string> accountIdToDelete)
         {
-            var apprenticeIds = new EasComtDbSqlDataHelper(_dbConfig).GetApprenticeIds(accountIdToDelete);
+            var apprenticeIds = new TestDataCleanupComtSqlDataHelper(_dbConfig).GetApprenticeIds(accountIdToDelete);
 
-            if (IsNoDataFound(apprenticeIds)) return 0;
+            if (apprenticeIds.IsNoDataFound()) return 0;
 
-            return CleanUpTestData(apprenticeIds.ListOfArrayToList(0), (x) => $"Insert into #commitmentsapprenticeshipid values ({x})", "create table #commitmentsapprenticeshipid (id bigint)", "EasAComtTestDataCleanUp");
+            return CleanUpTestData(apprenticeIds.ListOfArrayToList(0), (x) => $"Insert into #commitmentsapprenticeshipid values ({x})", "create table #commitmentsapprenticeshipid (id bigint)");
         }
     }
 }

@@ -5,6 +5,8 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
 {
     public class TestDataCleanUpEmpIncSqlDataHelper : ProjectSqlDbHelper
     {
+        public override string SqlFileName => "EmpIncTestDataCleanUp";
+
         public override bool ExcludeEnvironments => EnvironmentConfig.IsDemoEnvironment;
 
         public TestDataCleanUpEmpIncSqlDataHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
@@ -14,10 +16,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
             return CleanUpTestData(() => GetEmpIncAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpEmpIncTestData(x));
         }
 
-        internal int CleanUpEmpIncTestData(List<string> accountIdToDelete)
-        {
-            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EmpIncTestDataCleanUp");
-        }
+        internal int CleanUpEmpIncTestData(List<string> accountIdToDelete) => CleanUpUsingAccountIds(accountIdToDelete);
 
         private List<string> GetEmpIncAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
