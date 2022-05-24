@@ -13,5 +13,7 @@ namespace SFA.DAS.ConfigurationBuilder
         public static bool IsTest2Environment => EnvironmentName.CompareToIgnoreCase("test2");
 
         public static bool IsPPEnvironment => EnvironmentName.CompareToIgnoreCase("pp");
+
+        public static bool IsDemoEnvironment => EnvironmentName.CompareToIgnoreCase("demo");
     }
 }
