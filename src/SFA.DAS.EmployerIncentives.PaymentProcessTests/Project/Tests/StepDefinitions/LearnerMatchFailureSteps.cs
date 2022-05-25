@@ -66,11 +66,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [When(@"an exception occurs for a learner")]
         public async Task WhenAnExceptionOccursForALearner()
         {
-            var apprenticeship = TestData.IncentiveApplication.Apprenticeships.Single(a =>
-                (a.UKPRN == TestData.UKPRN && a.ULN == TestData.ULN));
-
             // invalidate data to cause an error
-            await Helper.LearnerMatchApiHelper.SetupResponse(apprenticeship.ULN, apprenticeship.UKPRN.Value,
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN,
                 "{\"bad\": \"json\"}");
 
             await Helper.LearnerMatchOrchestratorHelper.Run(true);
@@ -87,7 +84,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public void ThenTheLearnerMatchProcessShouldContinueForAllRemainingLearners()
         {
             var learners = Helper.EISqlHelper.GetAllFromDatabase<Learner>()
-                .Where(x => x.ULN != TestData.ULN && x.Ukprn != TestData.UKPRN);
+                .Where(learner => (learner.ULN == TestData.IncentiveApplication.Apprenticeships[1].ULN &&
+                                   learner.Ukprn == TestData.IncentiveApplication.Apprenticeships[1].UKPRN) ||
+                                  (learner.ULN == TestData.IncentiveApplication.Apprenticeships[2].ULN &&
+                                   learner.Ukprn == TestData.IncentiveApplication.Apprenticeships[2].UKPRN));
 
             foreach (var learner in learners)
             {
