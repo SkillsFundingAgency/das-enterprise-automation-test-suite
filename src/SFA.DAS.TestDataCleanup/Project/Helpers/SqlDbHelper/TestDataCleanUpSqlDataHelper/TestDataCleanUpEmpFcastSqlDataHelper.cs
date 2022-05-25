@@ -1,10 +1,12 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanUpEmpFcastSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanUpEmpFcastSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
+        public override string SqlFileName => "EasFcastTestDataCleanUp";
+
         public TestDataCleanUpEmpFcastSqlDataHelper(DbConfig dbConfig) : base(dbConfig.FcastDbConnectionString) { }
 
         public (List<string>, List<string>) CleanUpEmpFcastTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
@@ -12,10 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
             return CleanUpTestData(() => GetEmpFcastAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpEmpFcastTestData(x));
         }
 
-        internal int CleanUpEmpFcastTestData(List<string> accountIdToDelete)
-        {
-            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasFcastTestDataCleanUp");
-        }
+        internal int CleanUpEmpFcastTestData(List<string> accountIdToDelete) => CleanUpUsingAccountIds(accountIdToDelete);
 
         private List<string> GetEmpFcastAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
