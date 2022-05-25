@@ -1,5 +1,4 @@
-﻿using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
 {
@@ -7,7 +6,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
     {
         public TestdataCleanupStepsHelper(ScenarioContext context) : base(context) { }
 
-        public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new TestDataCleanUpAllDbSqlDataHelper(_dbConfig).CleanUpAllDbTestData(email));
+        public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_dbConfig).CleanUpAllDbTestData(email));
 
         public void CleanUpComtTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData());
 
