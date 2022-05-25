@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
-using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 using SFA.DAS.ConfigurationBuilder;
 using System.Linq;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
 namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions
 {
