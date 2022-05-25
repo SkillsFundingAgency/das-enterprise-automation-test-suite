@@ -100,17 +100,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Given("Provider uses BulkUpload to add 2 apprentice details for a non-levy employer into" +
-                        " a non-existing cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("Provider uses BulkUpload to add 2 apprentice details for a non-levy employer into" +
+                        " a non-existing cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.And("Correct Information is displayed on review apprentices details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.Then("Provider approves the cohorts and send them to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Provider approves the cohorts and send them to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.When("the Employer approves multiple cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Employer approves multiple cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.Then("New apprentice records become available in Manage Apprentice section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -79,8 +79,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Correct Information is displayed on review apprentices details page")]
         public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
+        [When(@"Provider approves the cohorts and send them to employer to approve")]
         [Then(@"Provider approves the cohorts and send them to employer to approve")]
-        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
+        public void WhenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
         {
             var apprenticeList = GetBulkuploadData();
 
