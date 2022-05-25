@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
 
         protected TestdataCleanupWithAccountIdStepsHelper GetCleanUpHelper(int greaterThan, int lessThan)
         {
-            var easAccountIds = new EasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
+            var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
 
             var easAccountsNotToDelete = easAccountIds.ListOfArrayToList(0);
 
@@ -44,7 +44,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
                 int x = usersdeleted.Where(a => a.Contains("total rows deleted")).ToList().Count;
 
                 _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_testdatadeleted",
-                    $"{x} account{(x == 1 ? string.Empty : "s")} deleted {Environment.NewLine}{string.Join(Environment.NewLine, usersdeleted)}");
+                    $"{x} email account{(x == 1 ? string.Empty : "s")} deleted {Environment.NewLine}{string.Join(Environment.NewLine, usersdeleted)}");
             }
             
             if (userswithconstraints.Count > 0) throw new Exception($"{Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");
