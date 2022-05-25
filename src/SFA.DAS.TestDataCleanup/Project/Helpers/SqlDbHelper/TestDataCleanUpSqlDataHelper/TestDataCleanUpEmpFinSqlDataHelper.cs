@@ -1,10 +1,12 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using System.Collections.Generic;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanUpEmpFinSqlDataHelper : ProjectSqlDbHelper
+    public class TestDataCleanUpEmpFinSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
     {
+        public override string SqlFileName => "EasFinTestDataCleanUp";
+
         public TestDataCleanUpEmpFinSqlDataHelper(DbConfig dbConfig) : base(dbConfig.FinanceDbConnectionString) { }
 
         public (List<string>, List<string>) CleanUpEmpFinTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
@@ -12,10 +14,7 @@ namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper
             return CleanUpTestData(() => GetEmpFinAccountids(greaterThan, lessThan, easaccountidsnottodelete), (x) => CleanUpEmpFinTestData(x));
         }
 
-        internal int CleanUpEmpFinTestData(List<string> accountIdToDelete)
-        {
-            return CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)", "EasFinTestDataCleanUp");
-        }
+        internal int CleanUpEmpFinTestData(List<string> accountIdToDelete) => CleanUpUsingAccountIds(accountIdToDelete);
 
         private List<string> GetEmpFinAccountids(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
         {
