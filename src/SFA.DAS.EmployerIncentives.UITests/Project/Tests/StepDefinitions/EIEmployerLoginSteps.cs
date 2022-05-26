@@ -22,6 +22,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
         }
 
+        [Given(@"the Employer logins using existing ei no application user")]
+        public void GivenTheEmployerLoginsUsingExistingEiNoApplicationUser() => Login(_context.GetUser<EINoApplicationUser>());
+
+
         [Given(@"the Employer logins using existing Unsigned NonLevy Account")]
         public void GivenTheEmployerLoginsUsingExistingUnsignedNonLevyAccount() => LoginAndDeleteIncentiveApplication(_context.GetUser<EINonLevyUnsignedUser>());
 

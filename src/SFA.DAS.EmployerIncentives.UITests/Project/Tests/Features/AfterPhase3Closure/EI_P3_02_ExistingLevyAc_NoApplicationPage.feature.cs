@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.AfterPhase3C
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_P3_01_NewLevyAc_NoApplicationPage")]
-    public partial class EI_P3_01_NewLevyAc_NoApplicationPageFeature
+    [NUnit.Framework.DescriptionAttribute("EI_P3_02_ExistingLevyAc_NoApplicationPage")]
+    public partial class EI_P3_02_ExistingLevyAc_NoApplicationPageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EI_E2E_01_NewLevyAcApplyWithVRFAndAmendVRF.feature"
+#line 1 "EI_P3_02_ExistingLevyAc_NoApplicationPage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/AfterPhase3Closure", "EI_P3_01_NewLevyAc_NoApplicationPage", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/AfterPhase3Closure", "EI_P3_02_ExistingLevyAc_NoApplicationPage", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.AfterPhase3C
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_P3_01_NewLevyAc_NoApplicationPage")]
+        [NUnit.Framework.DescriptionAttribute("EI_P3_02_ExistingLevyAc_NoApplicationPage")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public void EI_P3_01_NewLevyAc_NoApplicationPage()
+        public void EI_P3_02_ExistingLevyAc_NoApplicationPage()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "addlevyfunds",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_P3_01_NewLevyAc_NoApplicationPage", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_P3_02_ExistingLevyAc_NoApplicationPage", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,10 +94,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.Given("the Employer logins using existing ei no application user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.Then("View EI applications shutter page is diplayed to the Employer when navigating to " +
                         "View EI applications page with no applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

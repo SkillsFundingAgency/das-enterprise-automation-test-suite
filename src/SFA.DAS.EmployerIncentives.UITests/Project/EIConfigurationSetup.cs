@@ -29,6 +29,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<EILevyUser>(),
+                _configSection.GetConfigSection<EINoApplicationUser>(),
                 _configSection.GetConfigSection<EIWithdrawLevyUser>(),
                 _configSection.GetConfigSection<EIMultipleAccountUser>(),
                 _configSection.GetConfigSection<Version4AgreementUser>(),
