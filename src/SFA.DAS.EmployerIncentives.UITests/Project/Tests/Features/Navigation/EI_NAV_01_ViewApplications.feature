@@ -2,6 +2,7 @@
 
 @regression
 @employerincentives
+@ignoreinpp
 Scenario: EI_NAV_01_ViewApplications
 	Given the Employer logins using existing multiple account user
 	Then the Employer is able to view EI applications

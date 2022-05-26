@@ -77,14 +77,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.Navigation
         [NUnit.Framework.DescriptionAttribute("EI_NAV_01_ViewApplications")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
         public void EI_NAV_01_ViewApplications()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives"};
+                    "employerincentives",
+                    "ignoreinpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_NAV_01_ViewApplications", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,16 +96,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the Employer logins using existing multiple account user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.Then("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 8
+#line 9
  testRunner.When("the Employer switches to an account without apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("View EI applications shutter page is diplayed to the Employer when navigating to " +
                         "View EI applications page with no applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
