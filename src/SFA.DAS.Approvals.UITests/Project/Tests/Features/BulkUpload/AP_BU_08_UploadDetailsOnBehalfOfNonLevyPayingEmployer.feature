@@ -1,6 +1,6 @@
 ﻿@approvals
 Feature: AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployer
-	Simple calculator for adding two numbers
+
 
 @regression
 @newBUJourney
