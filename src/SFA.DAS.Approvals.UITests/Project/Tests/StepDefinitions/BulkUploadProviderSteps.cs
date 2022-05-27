@@ -67,11 +67,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider uses BulkUpload to add (.*) apprentice details for a non-levy employer into a non-existing cohort")]
-        public void GivenProviderUsesBulkUploadToAddApprenticeDetailsForANon_LevyEmployerIntoANon_ExistingCohort(int p0)
+        public void GivenProviderUsesBulkUploadToAddApprenticeDetailsForANon_LevyEmployerIntoANon_ExistingCohort(int numberOfApprentices)
         {
             var employerUser = _context.GetUser<Login.Service.Project.Helpers.NonLevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, p0, employerUser.Username, employerName);
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
         }
 
         [Given(@"Correct Information is displayed on review apprentices details page")]
