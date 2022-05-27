@@ -1,10 +1,10 @@
 ﻿@approvals
-Feature: AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployer
+Feature: AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployer
 
 
 @regression
 @newBUJourney
-Scenario: AP_BU_08_Upload Details On Behalf Of NonLevy Paying Employer
+Scenario: AP_BU_08_Upload Details On Behalf Of NonLevy Employer
 	Given the Employer logins using existing NonLevy Account
 	And Provider uses BulkUpload to add 2 apprentice details for a non-levy employer into a non-existing cohort
 	And Correct Information is displayed on review apprentices details page

@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployer")]
+    [NUnit.Framework.DescriptionAttribute("AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployer")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployerFeature
+    public partial class AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployer.feature"
+#line 1 "AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployer", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkUpload", "AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployer", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,16 +76,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.BulkUpload
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_BU_08_Upload Details On Behalf Of NonLevy Paying Employer")]
+        [NUnit.Framework.DescriptionAttribute("AP_BU_08_Upload Details On Behalf Of NonLevy Employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("newBUJourney")]
-        public void AP_BU_08_UploadDetailsOnBehalfOfNonLevyPayingEmployer()
+        public void AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "newBUJourney"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_08_Upload Details On Behalf Of NonLevy Paying Employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_BU_08_Upload Details On Behalf Of NonLevy Employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
