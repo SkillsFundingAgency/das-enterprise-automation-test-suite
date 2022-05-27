@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -41,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
             Continue();
-            return GoToEmployerEditApprenticeDetailsPage();
+            return new EditApprenticePage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
@@ -53,9 +54,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
-        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
+        public EditApprenticePage EmployerSelectsAnotherCourse()
+        {
+            var selectedCourse = formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
+            formCompletionHelper.SelectFromDropDownByText(TrainingCourseContainer, GetAnyStandardCourse(selectedCourse));
+            Continue();
+            return new EditApprenticePage(context);
+        }
 
-        private EditApprenticePage GoToEmployerEditApprenticeDetailsPage() => new EditApprenticePage(context);
+        private string GetAnyStandardCourse(string selectedCourseName)
+        {
+            var availableCourses = new List<string> { "Abattoir worker, Level: 2", "Actuary, Level: 7", "Software tester, Level: 4" };
+            availableCourses = availableCourses.Where(x => !x.ContainsCompareCaseInsensitive(selectedCourseName) && x.Contains("Level")).ToList();
+            return RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
+        }
+
+        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
 
         private void SelectStandardAndContinue()
         {
