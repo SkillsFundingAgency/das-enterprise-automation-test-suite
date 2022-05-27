@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    public class AgreementIdSqlHelper : SqlDbHelper
+    public class AccountsDbSqlHelper : SqlDbHelper
     {
         private readonly DbConfig _dbConfig;
 
-        public AgreementIdSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
+        public AccountsDbSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
         public string GetAgreementId(string email, string name) => ReadDataFromDataBase(FileHelper.GetSql("GetAgreementId"), connectionString, new Dictionary<string, string> { { "@email", email }, { "@name", name } });
 

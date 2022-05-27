@@ -28,8 +28,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
-        private ViewApplicationsPage _viewApplicationsPage;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly EISqlHelper _eISqlHelper;
         private string _email;
@@ -43,13 +41,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, _multipleAccountUser);
             _eINavigationHelper = new EINavigationHelper(_context);
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _eISqlHelper = _context.Get<EISqlHelper>();
         }
 
         [Then(@"the Employer can withdraw the application")]
-        public void ThenTheEmployerCanWithdrawTheApplication() => _viewApplicationsPage = _viewApplicationsPage.CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
+        public void ThenTheEmployerCanWithdrawTheApplication() => new HomePageFinancesSection_EI(_context)
+            .NavigateToEIHubPage().NavigateToEIViewApplicationsPage().CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
 
         [Given(@"the Employer submits an EI Application")]
         public void GivenTheEmployerSubmitsAnEIApplication()
@@ -213,7 +211,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         private ViewApplicationsPage SubmitAndViewApplication()
         {
-            return _viewApplicationsPage = SubmitEiApplicationPastDeclarationPage()
+            return SubmitEiApplicationPastDeclarationPage()
                 .ChooseYesAndContinueInWeNeedYourOrgBankDetailsPage()
                 .ContinueToVRFIntroductionTab1Page()
                 .ContinueToVRFOrgDetailsTab2Page()

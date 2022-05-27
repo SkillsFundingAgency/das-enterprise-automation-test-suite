@@ -50,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             
             return new ApprenticeDetails(courseCode, dateOfBirth, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
             {

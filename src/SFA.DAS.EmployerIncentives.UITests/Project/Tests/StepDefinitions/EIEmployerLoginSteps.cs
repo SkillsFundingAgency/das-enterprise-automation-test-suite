@@ -34,7 +34,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void TheEmployerLoginsUsingExistingEILevyAccount() => LoginAndDeleteIncentiveApplication(_context.GetUser<EILevyUser>());
 
         [Given(@"the Employer logins using existing EI Levy Account to withdraw application")]
-        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToWithdrawApplication() => LoginAndDeleteIncentiveApplication(_context.GetUser<EIWithdrawLevyUser>());
+        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToWithdrawApplication() => Login(_context.GetUser<EIWithdrawLevyUser>());
 
         [Given(@"the Employer logins using existing Version4AgreementUser Account")]
         public void GivenTheEmployerLoginsUsingExistingVersion4AgreementUserAccount() => Login(_context.GetUser<Version4AgreementUser>());

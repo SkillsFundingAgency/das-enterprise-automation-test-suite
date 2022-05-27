@@ -9,13 +9,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.UITests.Project
 {
     [Binding]
-    public class Hooks
+    public class BeforeScenarioHooks
     {
         private readonly ScenarioContext _context;
         private readonly DbConfig _dbConfig;
         private readonly TabHelper _tabHelper;
 
-        public Hooks(ScenarioContext context)
+        public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _dbConfig = context.Get<DbConfig>();
@@ -36,7 +36,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers() => _context.Set(new EISqlHelper(_dbConfig));
+        public void SetUpHelpers()
+        {
+            _context.Set(new EISqlHelper(_dbConfig));
+
+            _context.Set(new EIAddApplicationSqlHelper(_dbConfig));
+        }
 
         [BeforeScenario(Order = 44)]
         public void ResetPeriodEndInProgress() => _context.Get<EISqlHelper>().ResetPeriodEndInProgress();

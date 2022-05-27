@@ -131,7 +131,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<LevyUser>();
             var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            int employerAccountId = _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
             var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWhichIsWithEmployer(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
             _objectContext.SetCohortReference(cohortReference);
@@ -142,7 +142,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<LevyUser>();
             var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            int employerAccountId = _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
 
             var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
@@ -169,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             foreach (var employer in groupedByEmployers)
             {
                 var employerDetail = new FileUploadReviewEmployerDetails();
-                employerDetail.EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key);
+                employerDetail.EmployerName = _context.Get<AccountsDbSqlHelper>().GetEmployerNameByAgreementId(employer.Key);
                 employerDetail.AgreementId = employer.Key;
 
                 employerDetail.CohortDetails = new List<FileUploadReviewCohortDetail>();

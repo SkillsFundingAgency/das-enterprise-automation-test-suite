@@ -6,6 +6,33 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
+    public class EIAddApplicationSqlHelper : SqlDbHelper
+    {
+        public EIAddApplicationSqlHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
+
+        public void AddIncentiveApplication(AddApplicationData data)
+        {
+            var query = $@"EXEC [support].[CreateRetrospectiveApplication]   
+                        @accountId = {data.AccountId},    
+                        @accountLegalEntityId = {data.AccountLegalEntityId},    
+                        @submittedByEmail = '{data.SubmittedByEmail}',    
+                        @submittedByName = '{data.SubmittedByName}',    
+                        @apprenticeshipId = {data.ApprenticeshipId},    
+                        @firstName = '{data.FirstName}',    
+                        @LastName = '{data.LastName}',    
+                        @dateOfBirth = '{data.Dob}',    
+                        @uln = {data.Uln},    
+                        @plannedStartDate = '{data.StartDate}',    
+                        @apprenticeshipEmployerTypeOnApproval = 1,    
+                        @ukprn = {data.Ukprn},    
+                        @courseName = '{data.TrainingName}',    
+                        @phase = 'Phase3'";
+
+            ExecuteSqlCommand(query);
+        }
+    }
+
+
     public class EISqlHelper : SqlDbHelper
     {
         int actualAmount, expectedAmount, actualPeriodNumber, expectedPeriodNumber, actualPaymentYear, expectedPaymentYear, startMonth, startYear;

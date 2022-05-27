@@ -114,11 +114,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             {
                 var employerUser = context.GetUser<LevyUser>();
                 var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
-                agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+                agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
             }
             else 
             {
-                agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+                agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
             }
             
 
