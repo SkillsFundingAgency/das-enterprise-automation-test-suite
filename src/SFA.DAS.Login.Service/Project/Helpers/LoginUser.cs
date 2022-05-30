@@ -35,10 +35,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class NonLevyUser : EasAccountUser { }
 
-    public class EINonLevyUnsignedUser : EasAccountUser { }
-
-    public class EILevyUser : EasAccountUser { }
-
     public class EINoApplicationUser : EasAccountUser { }
 
     public class EIAmendVrfUser : EasAccountUser { }
@@ -51,14 +47,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class ViewOnlyUser : EasAccountUser { }
 
-    public class Version4AgreementUser : EasAccountUser { }
-
-    public class Version5AgreementUser : EasAccountUser { }
-
-    public class Version6AgreementUser : EasAccountUser { }
-
-    public class Version7AgreementUser : EasAccountUser { }
-
     public class ASListedLevyUser : EasAccountUser { }
 
     #endregion
@@ -68,8 +56,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public string SecondOrganisationName => LegalEntities?.ElementAtOrDefault(1);
     }
-
-    public class EIMultipleAccountUser : MultipleEasAccountUser { }
 
     public class TransfersUser : MultipleEasAccountUser { }
 

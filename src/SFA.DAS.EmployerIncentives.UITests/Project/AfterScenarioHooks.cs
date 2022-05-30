@@ -31,7 +31,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
                 var accountLegalEntityId = _context.Get<RegistrationSqlDataHelper>().GetAccountLegalEntityId(accountId, orgName);
 
-                var aData = _context.Get<CommitmentsSqlDataHelper>().GetDataFromComtDb(accountId);
+                var (apprenticeshipid, dob, fname, lname, startDate, trainningName, uln, ukprn) = _context.Get<CommitmentsSqlDataHelper>().GetDataFromComtDb(accountId);
 
                 var data = new AddApplicationData 
                 { 
@@ -39,17 +39,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                     AccountLegalEntityId = accountLegalEntityId,
                     SubmittedByEmail = _objectContext.GetRegisteredEmail(),
                     SubmittedByName = orgName,
-                    ApprenticeshipId = aData.apprenticeshipid,
-                    Dob = aData.dob,
-                    FirstName = aData.fname,
-                    LastName = aData.lname,
-                    StartDate = aData.startDate,
-                    TrainingName = aData.trainningName,
-                    Ukprn = aData.ukprn,
-                    Uln = aData.uln
+                    ApprenticeshipId = apprenticeshipid,
+                    Dob = dob,
+                    FirstName = fname,
+                    LastName = lname,
+                    StartDate = startDate,
+                    TrainingName = trainningName,
+                    Ukprn = ukprn,
+                    Uln = uln
                 };
 
-                _context.Get<EIAddApplicationSqlHelper>().AddIncentiveApplication(data);
+                _context.Get<EISqlHelper>().AddIncentiveApplication(data);
             }
         }
     }

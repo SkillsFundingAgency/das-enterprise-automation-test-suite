@@ -39,8 +39,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         public void SetUpHelpers()
         {
             _context.Set(new EISqlHelper(_dbConfig));
-
-            _context.Set(new EIAddApplicationSqlHelper(_dbConfig));
         }
 
         [BeforeScenario(Order = 44)]
