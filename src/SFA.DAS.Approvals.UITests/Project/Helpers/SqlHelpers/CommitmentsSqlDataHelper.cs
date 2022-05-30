@@ -35,6 +35,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToString(TryGetDataAsObject(query, title));
         }
 
+        public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
+        {
+            string query = $@"SELECT Reference FROM Commitment cmt
+                                INNER JOIN Apprenticeship app
+                                ON cmt.id = app.CommitmentId
+                                WHERE app.ULN = '{ULN}'
+                                AND app.ContinuationOfId is null
+                                ORDER BY app.CreatedOn DESC";
+
+            return Convert.ToString(TryGetDataAsObject(query, title));
+        }
+
         public List<decimal> GetExistingApprentices(string cohortRef)
         {
             string query = $@"SELECT app.cost FROM Apprenticeship app
