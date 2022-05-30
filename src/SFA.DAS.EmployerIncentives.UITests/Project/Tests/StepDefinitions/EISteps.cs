@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
-using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -13,15 +12,27 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public EISteps(ScenarioContext context) => _context = context;
 
         [Then(@"View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications")]
-        public void ThenViewEIApplicationsShutterPageIsDiplayedToTheEmployerWhenNavigatingToViewEIApplicationsPageWithNoApplications() 
-            => NavigateToEIHubPage().NavigateToEIViewApplicationsShutterPage();
+        public void ThenShutterPageIsDiplayed() => NavigateToEIHubPage().NavigateToEIViewApplicationsShutterPage();
 
         [Then(@"the Employer can withdraw the application")]
-        public void ThenTheEmployerCanWithdrawTheApplication() 
-            => NavigateToEIHubPage().NavigateToEIViewApplicationsPage().CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
+        public void ThenTheEmployerCanWithdrawTheApplication() => NavigateToEIHubPage().NavigateToEIViewApplicationsPage().CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
 
         [Then(@"the Employer can add organisation and finance details")]
-        public void ThenTheEmployerCanAddOrganisationAndFinanceDetails() => AddYourOrgBankDetails(NavigateToEIHubPage().AddOrgAndFinDetails()).ReturnToApplicationClosedPage();
+        public void ThenTheEmployerCanAddOrganisationAndFinanceDetails()
+        {
+            var email = GetEmail();
+
+            NavigateToEIHubPage()
+                .AddOrgAndFinDetails()
+                .ContinueToVRFIntroductionTab1Page()
+                .ContinueToVRFOrgDetailsTab2Page()
+                .SubmitOrgDetails()
+                .SubmitAddressDetails(email)
+                .SubmitBankDetails()
+                .SubmitSubmitterDetails(email)
+                .AcknowledgeSummaryDetails()
+                .ReturnToApplicationClosedPage();
+        }
 
         [Then(@"the Employer is able to Amend bank details")]
         public void ThenTheEmployerIsAbleToAmendBankDetails()
@@ -38,19 +49,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .SubmitSubmitterDetails(email)
                 .AcknowledgeSummaryDetails()
                 .ReturnToEIHubPage();
-        }
-
-        private VRFReceivedDetailsConfirmPage AddYourOrgBankDetails(AddYourOrgBankDetailsPage page)
-        {
-            var email = GetEmail();
-
-            return page.ContinueToVRFIntroductionTab1Page()
-                .ContinueToVRFOrgDetailsTab2Page()
-                .SubmitOrgDetails()
-                .SubmitAddressDetails(email)
-                .SubmitBankDetails()
-                .SubmitSubmitterDetails(email)
-                .AcknowledgeSummaryDetails();
         }
 
         private string GetEmail() => _context.Get<LoginCredentialsHelper>().GetLoginCredentials().Username;

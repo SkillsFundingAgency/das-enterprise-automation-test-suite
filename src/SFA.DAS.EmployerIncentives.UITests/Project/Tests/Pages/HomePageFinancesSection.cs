@@ -10,22 +10,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
 
-        public EIAccessDeniedPage AccessEIHubLinkRedirectsToAccessDeniedPage()
-        {
-            ClickEIHubLink();
-            return new EIAccessDeniedPage(context);
-        }
-
         public EIHubPage NavigateToEIHubPage()
         {
             ClickEIHubLink();
             return new EIHubPage(context);
-        }
-
-        public ChooseOrganisationPage NavigateToChooseOrgPage()
-        {
-            ClickEIHubLink();
-            return new ChooseOrganisationPage(context);
         }
 
         private void ClickEIHubLink() => formCompletionHelper.Click(EIHubLink);

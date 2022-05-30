@@ -12,34 +12,26 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
     public class BeforeScenarioHooks
     {
         private readonly ScenarioContext _context;
-        private readonly DbConfig _dbConfig;
-        private readonly TabHelper _tabHelper;
 
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _dbConfig = context.Get<DbConfig>();
-            _tabHelper = context.Get<TabHelper>();
-        }
+        public BeforeScenarioHooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 41)]
         public void LoginToVRFService()
         {
+            var tabHelper = _context.Get<TabHelper>();
+
             _context.Set(new EIDataHelper());
 
             if (_context.ScenarioInfo.Tags.Contains("vrfservice"))
             {
-                _tabHelper.GoToUrl(UrlConfig.EI_VRFUrl);
+                tabHelper.GoToUrl(UrlConfig.EI_VRFUrl);
                 new VRFLoginPage(_context).SignIntoVRF();
-                _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+                tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
         }
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers()
-        {
-            _context.Set(new EISqlHelper(_dbConfig));
-        }
+        public void SetUpHelpers() => _context.Set(new EISqlHelper(_context.Get<DbConfig>()));
 
         [BeforeScenario(Order = 44)]
         public void ResetPeriodEndInProgress() => _context.Get<EISqlHelper>().ResetPeriodEndInProgress();
