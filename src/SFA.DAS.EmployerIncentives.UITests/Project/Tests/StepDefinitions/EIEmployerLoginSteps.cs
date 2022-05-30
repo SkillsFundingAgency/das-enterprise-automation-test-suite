@@ -22,9 +22,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
         }
 
+        [Given(@"the Employer logins using existing EI Levy Account to amend vrf")]
+        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToAmendVrf() => Login(_context.GetUser<EIAmendVrfUser>());
+
+        [Given(@"the Employer logins using existing EI Levy Account to add vrf")]
+        public void GivenTheEmployerLoginsUsingExistingEILevyAccountToAddVrf() => ResetVrfDetails();
+    
         [Given(@"the Employer logins using existing ei no application user")]
         public void GivenTheEmployerLoginsUsingExistingEiNoApplicationUser() => Login(_context.GetUser<EINoApplicationUser>());
-
 
         [Given(@"the Employer logins using existing Unsigned NonLevy Account")]
         public void GivenTheEmployerLoginsUsingExistingUnsignedNonLevyAccount() => LoginAndDeleteIncentiveApplication(_context.GetUser<EINonLevyUnsignedUser>());
@@ -55,9 +60,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             var homePage = Login(user);
 
             if (_context.ScenarioInfo.Tags.Contains("deleteincentiveapplication"))
-                _context.Get<EISqlHelper>().DeleteIncentiveApplication(_context.Get<ObjectContext>().GetDBAccountId());
+                _context.Get<EISqlHelper>().DeleteIncentiveApplication(GetDBAccountId());
 
             return homePage;
         }
+
+        private HomePage ResetVrfDetails()
+        {
+            var homePage =  Login(_context.GetUser<EIAddVrfUser>());
+
+            _context.Get<EISqlHelper>().ResetVrfDetails(GetDBAccountId());
+
+            return homePage;
+        }
+
+        private string GetDBAccountId() => _context.Get<ObjectContext>().GetDBAccountId();
     }
 }

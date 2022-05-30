@@ -31,6 +31,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                 _configSection.GetConfigSection<EILevyUser>(),
                 _configSection.GetConfigSection<EINoApplicationUser>(),
                 _configSection.GetConfigSection<EIWithdrawLevyUser>(),
+                _configSection.GetConfigSection<EIAddVrfUser>(),
+                _configSection.GetConfigSection<EIAmendVrfUser>(),
                 _configSection.GetConfigSection<EIMultipleAccountUser>(),
                 _configSection.GetConfigSection<Version4AgreementUser>(),
                 _configSection.GetConfigSection<Version5AgreementUser>(),

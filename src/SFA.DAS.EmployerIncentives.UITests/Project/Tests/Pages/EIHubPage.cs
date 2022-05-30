@@ -27,6 +27,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new ViewApplicationsShutterPage(context);
         }
 
+        public AddYourOrgBankDetailsPage AddOrgAndFinDetails()
+        {
+            formCompletionHelper.ClickLinkByText("Add organisation and finance details");
+            return new AddYourOrgBankDetailsPage(context);
+        }
+
         public ChangeBankDetailsPage NavigateToChangeBankDetailsPage()
         {
             formCompletionHelper.ClickLinkByText("Change organisation and finance details");

@@ -40,7 +40,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public EISqlHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
 
-        public void UpdateVrf(string accountId) => ExecuteSqlCommand($"update [dbo].[Accounts] set VRFVendorid= NULL , VRFCaseID= NULL, VRFCaseStatus=NULL, VrfCaseStatusLastUpdatedDateTime= NULL where id = {accountId}");
+        public void ResetVrfDetails(string accountId) => ExecuteSqlCommand($"update [dbo].[Accounts] set VRFVendorid= NULL , VRFCaseID= NULL, VRFCaseStatus=NULL, VrfCaseStatusLastUpdatedDateTime= NULL where id = {accountId}");
 
         public void DeleteIncentiveApplication(string accountId)
         {

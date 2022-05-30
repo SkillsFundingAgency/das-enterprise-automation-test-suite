@@ -41,6 +41,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EINoApplicationUser : EasAccountUser { }
 
+    public class EIAmendVrfUser : EasAccountUser { }
+
+    public class EIAddVrfUser : EasAccountUser { }
+
     public class EIWithdrawLevyUser : EasAccountUser { }
 
     public class TransactorUser : EasAccountUser { }

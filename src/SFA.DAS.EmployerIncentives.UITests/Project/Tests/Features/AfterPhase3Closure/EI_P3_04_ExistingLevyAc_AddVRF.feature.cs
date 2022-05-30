@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.AfterPhase3C
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_P3_03_ExistingLevyWithdrawApplication")]
-    public partial class EI_P3_03_ExistingLevyWithdrawApplicationFeature
+    [NUnit.Framework.DescriptionAttribute("EI_P3_04_ExistingLevyAc_AddVRF")]
+    public partial class EI_P3_04_ExistingLevyAc_AddVRFFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EI_P3_03_ExistingLevyWithdrawApplication.feature"
+#line 1 "EI_P3_04_ExistingLevyAc_AddVRF.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/AfterPhase3Closure", "EI_P3_03_ExistingLevyWithdrawApplication", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/AfterPhase3Closure", "EI_P3_04_ExistingLevyAc_AddVRF", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.AfterPhase3C
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_P3_03_ExistingLevyWithdrawApplication")]
+        [NUnit.Framework.DescriptionAttribute("EI_P3_04_ExistingLevyAc_AddVRF")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        [NUnit.Framework.CategoryAttribute("addincentiveapplication")]
-        public void EI_P3_03_ExistingLevyWithdrawApplication()
+        [NUnit.Framework.CategoryAttribute("vrfservice")]
+        public void EI_P3_04_ExistingLevyAc_AddVRF()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "addincentiveapplication"};
+                    "vrfservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_P3_03_ExistingLevyWithdrawApplication", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_P3_04_ExistingLevyAc_AddVRF", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,10 +97,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the Employer logins using existing EI Levy Account to withdraw application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing EI Levy Account to add vrf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the Employer can withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer can add organisation and finance details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

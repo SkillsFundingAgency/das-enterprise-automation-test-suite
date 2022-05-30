@@ -3,6 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
@@ -48,6 +49,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can withdraw the application")]
         public void ThenTheEmployerCanWithdrawTheApplication() => new HomePageFinancesSection_EI(_context)
             .NavigateToEIHubPage().NavigateToEIViewApplicationsPage().CancelAnApplication().SelectApprenticeToCancel().ConfirmCancelApplications().ViewApplications();
+
+        [Then(@"the Employer can add organisation and finance details")]
+        public void ThenTheEmployerCanAddOrganisationAndFinanceDetails() => AddYourOrgBankDetails(new HomePageFinancesSection_EI(_context).NavigateToEIHubPage().AddOrgAndFinDetails()).ReturnToApplicationClosedPage();
 
         [Given(@"the Employer submits an EI Application")]
         public void GivenTheEmployerSubmitsAnEIApplication()
@@ -182,7 +186,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         private WhenDidApprenticeJoinTheOrgPage NavigateToWhenDidApprenticeJoinTheOrgPage()
         {
-            _email = _loginCredentialsHelper.GetLoginCredentials().Username;
+            _email = GetEmail();
 
             _eISqlHelper.SetCaseDetailsToNull(_objectContext.GetDBAccountId());
 
@@ -195,34 +199,38 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to Amend bank details")]
         public void ThenTheEmployerIsAbleToAmendBankDetails()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
+            var email = GetEmail();
 
             _eINavigationHelper.NavigateToEIHubPage()
                 .NavigateToChangeBankDetailsPage()
                 .ContinueToVRFIntroductionTab1Page()
                 .ContinueToVRFOrgDetailsTab2Page()
-                .SubmitOrgDetailsForAmendJourney(_email)
+                .SubmitOrgDetailsForAmendJourney(email)
                 .SelectChangeNonBankingInfoOptionAndContinue()
-                .SubmitNewRemittanceEmail(_email)
-                .SubmitSubmitterDetails(_email)
+                .SubmitNewRemittanceEmail(email)
+                .SubmitSubmitterDetails(email)
                 .AcknowledgeSummaryDetails()
                 .ReturnToEIHubPage();
         }
 
-        private ViewApplicationsPage SubmitAndViewApplication()
+        private ViewApplicationsPage SubmitAndViewApplication() => 
+            AddYourOrgBankDetails(SubmitEiApplicationPastDeclarationPage().ChooseYesAndContinueInWeNeedYourOrgBankDetailsPage())
+            .ReturnToEasApplicationCompletePage()
+            .NavigateToViewApplicationsPage();
+
+        private VRFReceivedDetailsConfirmPage AddYourOrgBankDetails(AddYourOrgBankDetailsPage page)
         {
-            return SubmitEiApplicationPastDeclarationPage()
-                .ChooseYesAndContinueInWeNeedYourOrgBankDetailsPage()
-                .ContinueToVRFIntroductionTab1Page()
+            var email = GetEmail();
+
+            return page.ContinueToVRFIntroductionTab1Page()
                 .ContinueToVRFOrgDetailsTab2Page()
                 .SubmitOrgDetails()
-                .SubmitAddressDetails(_email)
+                .SubmitAddressDetails(email)
                 .SubmitBankDetails()
-                .SubmitSubmitterDetails(_email)
-                .AcknowledgeSummaryDetails()
-                .ReturnToEasApplicationCompletePage()
-                .NavigateToViewApplicationsPage();
+                .SubmitSubmitterDetails(email)
+                .AcknowledgeSummaryDetails();
         }
+
+        private string GetEmail() => _loginCredentialsHelper.GetLoginCredentials().Username;
     }
 }
-
