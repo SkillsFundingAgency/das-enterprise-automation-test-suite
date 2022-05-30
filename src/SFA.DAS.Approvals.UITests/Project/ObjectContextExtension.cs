@@ -53,15 +53,9 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var list = objectContext.GetCohortReferenceList();
 
-            if (list == null) 
-            { 
-                list = new List<string>(); 
-            }
+            if (list == null) list = new List<string>(); 
 
-            if (list.Any(x => x == cohortReference))
-            {
-                return;
-            }
+            if (list.Any(x => x == cohortReference)) return;
 
             list.Add(cohortReference);
 
