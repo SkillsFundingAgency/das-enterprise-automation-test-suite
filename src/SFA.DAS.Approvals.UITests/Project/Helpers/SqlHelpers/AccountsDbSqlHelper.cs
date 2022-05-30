@@ -17,6 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public string GetEmployerNameByAgreementId(string agreementId) => ReadDataFromDataBase($"Select Ac.Name from AccountLegalEntities ale inner join Accounts Ac on ale.AccountId = ac.Id where ale.PublicHashedId = '{agreementId}'", _dbConfig.CommitmentsDbConnectionString, null);
 
+        public string GetIsLevyByAgreementId(string agreementId) => ReadDataFromDataBase($"Select Ac.LevyStatus from AccountLegalEntities ale inner join Accounts Ac on ale.AccountId = ac.Id where ale.PublicHashedId = '{agreementId}'", _dbConfig.CommitmentsDbConnectionString, null);
+
         public int GetEmployerAccountId(string email, string organisationName)
         {
             string query = @$"SELECT TOP 1 acc.Id FROM[employer_account].[Membership] msp 
