@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
       <PackageId>SFA.DAS.UI.FrameworkHelpers</PackageId>
+	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
       <Title>Specflow DotNet Core UI framework helpers</Title>
       <Configurations>Debug;Release;Development</Configurations>
       <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
