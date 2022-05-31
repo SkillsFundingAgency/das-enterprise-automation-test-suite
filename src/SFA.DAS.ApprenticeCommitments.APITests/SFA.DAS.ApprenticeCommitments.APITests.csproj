@@ -27,6 +27,7 @@
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	  <None Update="SFA.DAS.ApprenticeCommitments.APITests.runtimeconfig.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
