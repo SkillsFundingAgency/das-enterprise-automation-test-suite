@@ -185,47 +185,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Apprentice status and details cannot be changed except the planned training finish date")]
         public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
 
-        [When(@"the Employer adds following apprentices")]
-        public void ThenTheEmployerAddsFollowingApprentices(Table table)
-        {
-            _objectContext.SetIsEIJourney();
-            _objectContext.SetEIApprenticeDetailList();
-
-            foreach (var tablerow in table.Rows)
-            {
-                _objectContext.SetEIApprenticeDetail(tablerow[0], tablerow[1], tablerow[2]);
-            }
-
-            TheEmployerApprovesCohortAndSendsToProvider(table.RowCount);
-        }
-
-        [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
-        [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
-        [Then(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
-        public void EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
-        {
-            var table = new Table("Age", "StartMonth", "StartYear");
-
-            for (int i = 0; i < numberOfApprentices; i++)
-            {
-                table.AddRow(eIAgeCategoryAsOfAug2020, eIStartmonth.ToString(), eIStartyear.ToString());
-            }
-
-            ThenTheEmployerAddsFollowingApprentices(table);
-        }
-
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date as Month (.*) and Year (.*)")]
-        public void EmployerAddsAnpprenticeOfSpecifiedAgeCategorywithStartDateAsMentioned(string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear) =>
-            EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, eIStartmonth, eIStartyear);
-
-
-        [Given(@"the Employer adds an apprentice (Aged16to24|AgedAbove25) as of 01AUG2021 with start date more than 3 month in past")]
-        public void GivenTheEmployerAddsAnApprenticeAgedtoAsOfAUGWithStartDateMoreThanMonthInPast(string eIAgeCategoryAsOfAug2020)
-        {
-            var startdate = DateTime.Now.AddMonths(-4);
-            EmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(1, eIAgeCategoryAsOfAug2020, startdate.Month, startdate.Year);
-        }
-
         [Then(@"the user can add an apprentices")]
         public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();     
     }

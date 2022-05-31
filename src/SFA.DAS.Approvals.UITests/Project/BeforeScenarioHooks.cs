@@ -54,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
 
-            _context.Set(new AgreementIdSqlHelper(_dbConfig));
+            _context.Set(new AccountsDbSqlHelper(_dbConfig));
 
             _context.Set(new PublicSectorReportingDataHelper());
 

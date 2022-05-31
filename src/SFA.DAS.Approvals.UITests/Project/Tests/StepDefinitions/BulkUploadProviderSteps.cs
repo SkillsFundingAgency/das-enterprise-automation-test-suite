@@ -194,7 +194,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             {
                 var employerDetail = new FileUploadReviewEmployerDetails
                 {
-                    EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
+                    EmployerName = _context.Get<AccountsDbSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
                     AgreementId = employer.Key,
                     CohortDetails = new List<FileUploadReviewCohortDetail>()
                 };
@@ -260,7 +260,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<LevyUser>();
             var organisationName = GetOrgName(employerUser.OrganisationName);
-            return _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            return _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
         }
 
         private string GetOrgName(string name) => name.Substring(0, 3) + "%";

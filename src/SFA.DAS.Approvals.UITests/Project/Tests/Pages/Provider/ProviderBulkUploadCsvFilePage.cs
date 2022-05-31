@@ -170,7 +170,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
-            var sqlHelper = context.Get<AgreementIdSqlHelper>();
+
+            var sqlHelper = context.Get<AccountsDbSqlHelper>();
 
             if (cohortRef == "" || cohortRef == null)
             {
@@ -211,7 +212,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
-            var sqlHelper = context.Get<AgreementIdSqlHelper>();
+            var sqlHelper = context.Get<AccountsDbSqlHelper>();
             if (cohortRef == "" || cohortRef == null)
             {
                 agreementId = sqlHelper.GetAgreementId(email, name).Trim();
