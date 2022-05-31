@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected ReviewYourCohort(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
-        protected By EditApprenticeLink => By.XPath("//a[contains(text(),'Edit')]");
+        protected By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected List<IWebElement> TotalNoOfEditableApprentices() => pageInteractionHelper.FindElements(EditApprenticeLink);
 
         public int TotalNoOfApprentices() => TotalNoOfEditableApprentices().Count;
