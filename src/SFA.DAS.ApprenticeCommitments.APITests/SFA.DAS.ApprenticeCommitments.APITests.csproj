@@ -30,9 +30,6 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
-	  <None Update="SFA.DAS.ApprenticeCommitments.APITests.runtimeconfig.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

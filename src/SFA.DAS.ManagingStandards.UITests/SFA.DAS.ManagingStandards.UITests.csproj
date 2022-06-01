@@ -43,9 +43,6 @@
 		<None Update="appsettings.Project.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="SFA.DAS.ManagingStandards.UITests.runtimeconfig.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="specflow.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

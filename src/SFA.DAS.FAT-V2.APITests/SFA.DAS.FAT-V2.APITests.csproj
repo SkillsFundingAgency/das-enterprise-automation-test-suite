@@ -33,9 +33,6 @@
 	  <None Update="Project\Tests\Payload\fatv2epaos.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.FAT_V2.APITests.runtimeconfig.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

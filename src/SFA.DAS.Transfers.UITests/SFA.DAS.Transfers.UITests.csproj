@@ -34,9 +34,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="SFA.DAS.Transfers.UITests.runtimeconfig.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="appsettings.Environment.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>

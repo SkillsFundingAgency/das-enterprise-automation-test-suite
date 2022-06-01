@@ -49,9 +49,6 @@
 	  <None Update="appsettings.Project.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.ConsolidatedSupport.UITests.runtimeconfig.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
 
 </Project>
