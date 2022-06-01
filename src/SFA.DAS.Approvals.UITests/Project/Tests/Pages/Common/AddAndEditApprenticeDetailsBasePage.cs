@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -25,8 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By DeliveryModelSection => By.XPath("//legend[contains(text(),'Delivery model')]");
         private By DeliveryModelRadioLabel => RadioLabels;
 
-        private By TrainingCourseContainer => By.Id("CourseCode");
-
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context) { }
 
         protected void EnterTrainingCostAndEmpReference()
@@ -48,8 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(EndDateMonth, dateTime.Month);
             formCompletionHelper.EnterText(EndDateYear, dateTime.Year);
         }
-
-        protected void SelectStandard(string courseLarsCode) => formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, courseLarsCode);
 
         protected void EnterApprenticeName()
         {
@@ -77,11 +71,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
         }
-
-        protected void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.False(GetAllTrainingCourses().All(x => x.Contains("(Framework)")));
-
-        protected void AssertOnlyStandardCoursesAreSelectable() => Assert.True(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")));
-
-        private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
     }
 }
