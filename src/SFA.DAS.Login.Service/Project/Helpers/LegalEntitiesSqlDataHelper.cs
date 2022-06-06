@@ -19,7 +19,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
             {
                 var legalEntitieslist = legalEntities.ListOfArrayToList(0);
 
-                listoflegalEntities.Add(IsNoDataFound(legalEntitieslist) ? new List<string>() : legalEntitieslist);
+                listoflegalEntities.Add(legalEntitieslist.IsNoDataFound() ? new List<string>() : legalEntitieslist);
             }
 
             return listoflegalEntities;

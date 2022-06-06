@@ -2,7 +2,6 @@
 using SFA.DAS.FrameworkHelpers;
 using System;
 
-
 namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers
 {
     public class CommitmentsSqlDataHelper : SqlDbHelper

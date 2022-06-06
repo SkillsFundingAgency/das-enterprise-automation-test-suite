@@ -6,6 +6,10 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static class ListExtension
     {
+        public static bool IsNoDataFound(this List<string[]> x) => IsNoDataFound(x.ListOfArrayToList(0));
+
+        public static bool IsNoDataFound(this List<string> x) => (x.Count == 1 && string.IsNullOrEmpty(x[0]));
+
         public static string RandomOrDefault(this List<string> list)
         {
             var randomnNumber = new Random().Next(0, list.Count);
