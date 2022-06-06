@@ -8,7 +8,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Organisation details";
 
         #region Locators
-        
         protected override By ContinueButton => By.CssSelector(".submitbutton");
         #endregion
 

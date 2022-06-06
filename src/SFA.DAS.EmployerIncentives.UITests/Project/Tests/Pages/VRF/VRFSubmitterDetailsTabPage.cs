@@ -8,7 +8,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Form submitter details";
 
         #region Locators
-        
         private By FirstName => By.CssSelector("#user_firstname");
         private By Surname => By.CssSelector("#user_surname");
         private By Email => By.CssSelector("#user_email_address");

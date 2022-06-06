@@ -14,6 +14,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string GetAccountLegalEntityPublicHashedId(string accountid, string orgname) => GetDataAsString($"select PublicHashedId from [employer_account].[AccountLegalEntity] where AccountId = {accountid} and [Name] = '{orgname}'");
 
+        public string GetAccountLegalEntityId(string accountid, string orgname) => GetDataAsString($"select Id from [employer_account].[AccountLegalEntity] where AccountId = {accountid} and [Name] = '{orgname}'");
+
         public List<(string accountId, string hashedId, string orgName, string publicHashedId)> CollectAccountDetails(string email)
         {
             var id = GetMultipleData($"SELECT id, HashedId, [Name], PublicHashedId FROM [employer_account].[Account] WHERE id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");

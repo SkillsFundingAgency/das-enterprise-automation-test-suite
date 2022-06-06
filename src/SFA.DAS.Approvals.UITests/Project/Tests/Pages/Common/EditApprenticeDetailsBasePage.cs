@@ -31,8 +31,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
 
-        public string GetSelectedCourse() => formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
-
         public void EditCostCourseAndReference(string reference)
         {
             EditCourse();

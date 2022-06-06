@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
@@ -8,16 +7,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"{objectContext.GetOrganisationName()} does not have any hire a new apprentice payment applications";
 
-        #region Locators
-        private By ApplyButton => By.LinkText("Apply");
-        #endregion
-
         public ViewApplicationsShutterPage(ScenarioContext context) : base(context)  { }
-
-        public EIBeforeYouStartPage ClickOnApplyButton()
-        {
-            formCompletionHelper.Click(ApplyButton);
-            return new EIBeforeYouStartPage(context);
-        }
     }
 }

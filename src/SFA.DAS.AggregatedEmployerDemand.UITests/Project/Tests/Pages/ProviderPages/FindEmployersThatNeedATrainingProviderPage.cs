@@ -1,28 +1,27 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
+
+public class FindEmployersThatNeedATrainingProviderPage : AedBasePage
 {
-    public class FindEmployersThatNeedATrainingProviderPage : AedBasePage
+    protected override string PageTitle => "Find employers that need a training provider";
+
+    public FindEmployersThatNeedATrainingProviderPage(ScenarioContext context) : base(context)  { }
+
+    private static By FindEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
+
+    public FindEmployersThatNeedATrainingProviderPage ViewFindEmployersThatNeedATrainingProvider()
     {
-        protected override string PageTitle => "Find employers that need a training provider";
+        formCompletionHelper.ClickElement(FindEmployersThatNeedATrainingProviderLink);
+        return new FindEmployersThatNeedATrainingProviderPage(context);
+    }
 
-        public FindEmployersThatNeedATrainingProviderPage(ScenarioContext context) : base(context)  { }
+    public WhichEmployersAreYouInterestedInPage ViewWhichEmployerNeedsATrainingProvider()
+    {
+        /*Select the First ViewEmployers Link*/
+        formCompletionHelper.ClickLinkByText("View employers");
 
-        private By FindEmployersThatNeedATrainingProviderLink => By.LinkText("Find employers that need a training provider");
-
-        public FindEmployersThatNeedATrainingProviderPage ViewFindEmployersThatNeedATrainingProvider()
-        {
-            formCompletionHelper.ClickElement(FindEmployersThatNeedATrainingProviderLink);
-            return new FindEmployersThatNeedATrainingProviderPage(context);
-        }
-
-        public WhichEmployersAreYouInterestedInPage ViewWhichEmployerNeedsATrainingProvider()
-        {
-            /*Select the First ViewEmployers Link*/
-            formCompletionHelper.ClickLinkByText("View employers");
-
-            return new WhichEmployersAreYouInterestedInPage(context);
-        }
+        return new WhichEmployersAreYouInterestedInPage(context);
     }
 }

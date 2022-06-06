@@ -1,41 +1,37 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
+
+public class GetHelpWithFindingATrainingProviderPage : AedBasePage
 {
-    public class GetHelpWithFindingATrainingProviderPage : AedBasePage
+    protected override string PageTitle => "Get help with finding a training provider";
+
+    #region Locators
+    private By NumberOfApprenticesTextBox => By.CssSelector("#NumberOfApprentices");
+    private By ApprenticeshipLocationTextBox => By.CssSelector("#search-location");
+    private By OrganisationNameTextBox => By.CssSelector("#OrganisationName");
+    private By OrganisationEmailAddressTextBox => By.CssSelector("#ContactEmailAddress");
+    #endregion
+
+    public GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : base(context) { }
+
+    public CheckYourAnswersPage EnterValidDetails(int noOfApprentices)
     {
-        protected override string PageTitle => "Get help with finding a training provider";
+        formCompletionHelper.EnterText(ApprenticeshipLocationTextBox, $"{dataHelper.Location}{Keys.Enter}");
+        formCompletionHelper.EnterText(OrganisationNameTextBox, Helpers.AedDataHelper.OrganisationName);
 
-        #region Locators
-        private By NumberOfApprenticesTextBox => By.CssSelector("#NumberOfApprentices");
-        private By ApprenticeshipLocationTextBox => By.CssSelector("#search-location");
-        private By OrganisationNameTextBox => By.CssSelector("#OrganisationName");
-        private By OrganisationEmailAddressTextBox => By.CssSelector("#ContactEmailAddress");
-        #endregion
-
-        public GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : base(context)  { }
-
-        public CheckYourAnswersPage EnterValidDetails(int noOfApprentices)
+        if (noOfApprentices == 0) formCompletionHelper.SelectRadioOptionByText("No");
+        else
         {
-            formCompletionHelper.EnterText(ApprenticeshipLocationTextBox, $"{dataHelper.Location}{Keys.Enter}");
-            formCompletionHelper.EnterText(OrganisationNameTextBox, dataHelper.OrganisationName);
-
-            if (noOfApprentices == 0)
-            {
-                formCompletionHelper.SelectRadioOptionByText("No");
-            }
-            else
-            {
-                SelectRadioOptionByText("Yes");
-                formCompletionHelper.EnterText(NumberOfApprenticesTextBox, noOfApprentices);
-            }
-
-            formCompletionHelper.EnterText(OrganisationEmailAddressTextBox, dataHelper.RandomEmail);
-
-            Continue();
-
-            return new CheckYourAnswersPage(context);
+            SelectRadioOptionByText("Yes");
+            formCompletionHelper.EnterText(NumberOfApprenticesTextBox, noOfApprentices);
         }
+
+        formCompletionHelper.EnterText(OrganisationEmailAddressTextBox, dataHelper.RandomEmail);
+
+        Continue();
+
+        return new CheckYourAnswersPage(context);
     }
 }
