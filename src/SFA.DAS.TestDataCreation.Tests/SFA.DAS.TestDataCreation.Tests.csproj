@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-	  <RootNamespace>SFA.DAS.TestDataCreation.Tests</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+	<RootNamespace>SFA.DAS.TestDataCreation.Tests</RootNamespace>
+	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -18,7 +19,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
 	</ItemGroup>
 
@@ -30,9 +31,7 @@
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	  <None Update="SFA.DAS.TestDataCreation.Tests.runtimeconfig.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
