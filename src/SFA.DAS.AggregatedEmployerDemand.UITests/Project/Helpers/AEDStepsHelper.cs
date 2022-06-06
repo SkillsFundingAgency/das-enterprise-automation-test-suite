@@ -1,9 +1,4 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.FAT_V2.UITests.Project.Helpers;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
-using SFA.DAS.Mailinator.Service.Project.Helpers;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
 public class AedStepsHelper
 {

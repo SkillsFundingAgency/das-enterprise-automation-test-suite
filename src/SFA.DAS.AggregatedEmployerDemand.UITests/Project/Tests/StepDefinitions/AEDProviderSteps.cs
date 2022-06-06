@@ -1,11 +1,4 @@
-﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class AedProviderSteps
