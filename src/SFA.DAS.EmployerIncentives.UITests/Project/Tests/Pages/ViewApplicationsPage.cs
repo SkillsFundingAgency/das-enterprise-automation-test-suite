@@ -11,13 +11,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public ViewApplicationsPage(ScenarioContext context) : base(context)  { }
 
-        public EIHubPage NavigateToEIHubPage()
-        {
-            ClickBackLink();
-
-            return new EIHubPage(context);
-        }
-
         public WhichApprenticeToCancelPage CancelAnApplication()
         {
             formCompletionHelper.ClickLinkByText(Links, "Cancel an application");

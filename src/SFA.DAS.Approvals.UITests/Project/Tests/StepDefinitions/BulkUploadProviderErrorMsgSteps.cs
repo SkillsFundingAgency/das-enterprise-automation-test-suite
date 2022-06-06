@@ -59,7 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var datahelper = _context.Get<ApprenticeDataHelper>();
 
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+            string agreementId = _context.Get<AccountsDbSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
 
             int i = 0;
 

@@ -101,11 +101,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 var result = func(); TakeScreenShot(); return result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if (tags.Contains("authtests") && counter == GetCounter()) TakeScreenShot();
-                
-                throw ex;
+
+                throw;
             }
         }
 

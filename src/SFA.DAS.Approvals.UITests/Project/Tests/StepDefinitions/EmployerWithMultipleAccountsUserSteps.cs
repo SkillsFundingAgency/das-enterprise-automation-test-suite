@@ -33,5 +33,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.SecondOrganisationName);
             _employerStepsHelper.GoToEmployerApprenticesHomePage();
         }
+
+        [Given(@"the Employer3 logins")]
+        [Then(@"the Employer3 logins")]
+        public void ThenEmployer3LogIns()
+        {
+            _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.ThirdOrganisationName);
+            _employerStepsHelper.GoToEmployerApprenticesHomePage();
+        }
     }
 }

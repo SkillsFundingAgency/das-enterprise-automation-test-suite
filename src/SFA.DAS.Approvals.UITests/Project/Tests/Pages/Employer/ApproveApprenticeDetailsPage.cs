@@ -35,10 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 			return new EditApprenticePage(context);
         }
 
-        public AddApprenticeDetailsPage SelectAddAnApprentice()
+        public SelectStandardPage SelectAddAnotherApprentice()
         {
             AddAnApprentice();
-            return new AddApprenticeDetailsPage(context);
+            return new SelectStandardPage(context);
         }
 
         public ChooseAReservationPage SelectAddAnApprenticeUsingReservation()

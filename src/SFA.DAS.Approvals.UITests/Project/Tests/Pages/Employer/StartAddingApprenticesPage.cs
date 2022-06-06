@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using TechTalk.SpecFlow;
 
@@ -14,11 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public StartAddingApprenticesPage(ScenarioContext context) : base(context)  { }
 
-        public AddApprenticeDetailsPage EmployerAddsApprentices()
+        public SelectStandardPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new SelectStandardPage(context);
         }
 
         public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
@@ -40,12 +41,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public AddApprenticeDetailsPage NonLevyEmployerAddsApprentices()
+        public SelectStandardPage NonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new SelectStandardPage(context);
         }
+
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();

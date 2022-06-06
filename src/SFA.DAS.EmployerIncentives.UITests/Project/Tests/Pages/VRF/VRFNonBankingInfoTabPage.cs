@@ -8,7 +8,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Address details";
 
         #region Locators
-        
         private By AddressLine1 => By.CssSelector("#address1_vr");
         private By Town => By.CssSelector("#town_vr");
         private By Postcode => By.CssSelector("#postcode_vr");

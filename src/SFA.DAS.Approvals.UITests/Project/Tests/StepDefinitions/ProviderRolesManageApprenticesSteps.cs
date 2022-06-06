@@ -161,7 +161,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             .SelectOptionCreateNewCohort()
             .ChooseAnEmployer("Levy")
             .ConfirmEmployer()
-            .SelectAStandard();
+            .ProviderSelectsAStandard();
         }
 
         [Then(@"the user can trigger change of employer journey using change link against the employer field")]
