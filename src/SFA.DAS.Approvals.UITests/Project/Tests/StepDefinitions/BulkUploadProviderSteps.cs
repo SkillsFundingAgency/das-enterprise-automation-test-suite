@@ -48,13 +48,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort")]
         public void ProviderUsesBulkUpload(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
 
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort for all employers")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohortForAllEmployers(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
+        {
+
+            var employerUser = _context.GetUser<EmployerWithMultipleAccountsUser>();
+            var firstOrganisationName = GetOrgName(employerUser.OrganisationName);
+            var secondOrganisationName = GetOrgName(employerUser.SecondOrganisationName);
+            var thirdOrganisationName = GetOrgName(employerUser.ThirdOrganisationName);
+
+            _providerStepsHelper.NavigateToUploadCsvFilePage()
+                .CreateApprenticeshipsForAlreadyCreatedCohorts(numberOfApprentices)
+                .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, firstOrganisationName)
+                .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, secondOrganisationName)
+                .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, thirdOrganisationName)
+                .WriteApprenticeshipRecordsToCsvFile()
+                .UploadFile();
+        }
+
+        [Given(@"Provider uses BulkUpload to add (.*) apprentice details for a non-levy employer into a non-existing cohort")]
+        public void GivenProviderUsesBulkUploadToAddApprenticeDetailsForANon_LevyEmployerIntoANon_ExistingCohort(int numberOfApprentices)
+        {
+            var employerUser = _context.GetUser<NonLevyUser>();
+            var employerName = GetOrgName(employerUser.OrganisationName);
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
+        }
+
         [Given(@"Correct Information is displayed on review apprentices details page")]
         [When(@"Correct Information is displayed on review apprentices details page")]
         [Then(@"Correct Information is displayed on review apprentices details page")]
         public void CorrectInformationIsDisplayedInReviewApprenticeDetailsPage() => new ProviderReviewApprenticeDetailsBulkUploadPage(_context).VerifyCorrectInformationIsDisplayed(GetBulkuploadData());
 
+        [When(@"Provider approves the cohorts and send them to employer to approve")]
         [Then(@"Provider approves the cohorts and send them to employer to approve")]
-        public void ThenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
+        public void WhenProviderApprovesTheCohortsAndSendThemToEmployerToApprove()
         {
             var apprenticeList = GetBulkuploadData();
 
@@ -129,24 +156,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the provider has a cohort which is with employer")]
         public void GivenTheProviderHasACohortWhichIsWithEmployer()
         {
-            var employerUser = _context.GetUser<LevyUser>();
-            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
-            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWhichIsWithEmployer(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
-
-            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetCohortReference(_commitmentsSqlDataHelper.GetProviderCohortWhichIsWithEmployer(Convert.ToInt32(_providerConfig.Ukprn), GetEmployerAccountId()));
         }
 
         [Given(@"the provider has a cohort as a result of change of party")]
         public void GivenTheProviderHasACohortAsAResultOfChangeOfParty()
         {
-            var employerUser = _context.GetUser<LevyUser>();
-            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
-
-            var cohortReference = _commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
-
-            _objectContext.UpdateCohortReference(cohortReference);
+            _objectContext.UpdateCohortReference(_commitmentsSqlDataHelper.GetProviderCohortWithChangeOfParty(Convert.ToInt32(_providerConfig.Ukprn), GetEmployerAccountId()));
         }
 
         [Given(@"the provider has a cohort which is with transfer-sender")]
@@ -160,6 +176,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
         public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
 
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details for levy account into existing cohort and (.*) apprentice details into a non-existing cohort")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeForLevyAccountDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohort(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var employerName = GetOrgName(employerUser.OrganisationName);
+            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(numberOfApprentices, numberOfApprenticesWithoutCohortRef, employerUser.Username, employerName);
+        }
+
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
         {            
             var apprenticeList = _objectContext.GetBulkuploadApprentices();
@@ -168,11 +192,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             foreach (var employer in groupedByEmployers)
             {
-                var employerDetail = new FileUploadReviewEmployerDetails();
-                employerDetail.EmployerName = _context.Get<AgreementIdSqlHelper>().GetEmployerNameByAgreementId(employer.Key);
-                employerDetail.AgreementId = employer.Key;
-
-                employerDetail.CohortDetails = new List<FileUploadReviewCohortDetail>();
+                var employerDetail = new FileUploadReviewEmployerDetails
+                {
+                    EmployerName = _context.Get<AccountsDbSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
+                    AgreementId = employer.Key,
+                    CohortDetails = new List<FileUploadReviewCohortDetail>()
+                };
 
                 var cohortGroups = employer.GroupBy(x => x.CohortRef);
 
@@ -180,10 +205,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
                 foreach (var cohortGroup in cohortGroups)
                 {
-                    var cohortDetail = new FileUploadReviewCohortDetail();
-                    cohortDetail.CohortRef = cohortGroup.Key;
-                    cohortDetail.NumberOfApprentices = cohortGroup.Count();
-                    cohortDetail.TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice));
+                    var cohortDetail = new FileUploadReviewCohortDetail
+                    {
+                        CohortRef = cohortGroup.Key,
+                        NumberOfApprentices = cohortGroup.Count(),
+                        TotalCost = cohortGroup.Sum(x => int.Parse(x.TotalPrice))
+                    };
                     cohortDetails.Add(cohortDetail);
 
                     if (!string.IsNullOrWhiteSpace(cohortGroup.Key))
@@ -227,5 +254,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
             return (int)cost;
         }
+
+
+        private int GetEmployerAccountId()
+        {
+            var employerUser = _context.GetUser<LevyUser>();
+            var organisationName = GetOrgName(employerUser.OrganisationName);
+            return _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+        }
+
+        private string GetOrgName(string name) => name.Substring(0, 3) + "%";
     }
 }

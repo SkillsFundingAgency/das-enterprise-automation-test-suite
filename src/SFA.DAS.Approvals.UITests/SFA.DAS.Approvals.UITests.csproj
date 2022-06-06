@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>SFA.DAS.Approvals.UITests</RootNamespace>
+	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -17,7 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="101.0.4951.4100" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
@@ -35,11 +36,9 @@
     <None Update="Project\Helpers\SqlScripts\GetAgreementId.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SFA.DAS.Approvals.UITests.runtimeconfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.BrowserStack.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

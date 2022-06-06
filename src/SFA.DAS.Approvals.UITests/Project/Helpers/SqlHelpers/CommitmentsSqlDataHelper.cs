@@ -10,6 +10,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
     {
         public CommitmentsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.CommitmentsDbConnectionString) { }
 
+        public (string apprenticeshipid, string dob, string fname, string lname, string startDate, string trainningName, string uln, string ukprn) GetDataFromComtDb(string accountid)
+        {
+            var query = @$"select top 1 a.Id, a.DateOfBirth, a.FirstName, a.LastName, a.StartDate, a.TrainingName, a.ULN, c.ProviderId from dbo.Apprenticeship a
+                            JOIN dbo.Commitment c on a.CommitmentId = c.Id where EmployerAccountId = {accountid}";
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+        }
+
         public void SetHasHadDataLockSuccessTrue(string uln)
         {
             if (uln.Equals(null))
@@ -30,6 +40,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 ON cmt.id = app.CommitmentId
                                 WHERE app.ULN = '{ULN}'
                                 AND app.ContinuationOfId is not null
+                                ORDER BY app.CreatedOn DESC";
+
+            return Convert.ToString(TryGetDataAsObject(query, title));
+        }
+
+        public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
+        {
+            string query = $@"SELECT Reference FROM Commitment cmt
+                                INNER JOIN Apprenticeship app
+                                ON cmt.id = app.CommitmentId
+                                WHERE app.ULN = '{ULN}'
+                                AND app.ContinuationOfId is null
                                 ORDER BY app.CreatedOn DESC";
 
             return Convert.ToString(TryGetDataAsObject(query, title));

@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        protected By EIHubLink => By.LinkText("Your hire a new apprentice payments");
+        
         protected By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
