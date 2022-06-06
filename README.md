@@ -5,8 +5,8 @@
 This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Visual Studio (2019 with V16.11 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
-2. Download appropriate 'Dot Net Core 5.0.403' version matching Visual Studio version. And make sure the sysytem has only one instance of Dotnet core. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
+1. Visual Studio (2022 with V17.2 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
+2. Download appropriate 'Dot Net Core 6.0.300' or [latest 6.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/6.0 "Download .NET 6.0") version matching Visual Studio version (If its not automatically installed as part of VS2022 installation). And make sure the sysytem has only one instance of Dotnet core. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
 3. Browsers (Chrome, Firefox, IE)
 
 ## Set Up (UI):
@@ -27,8 +27,9 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
 	```text
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>SFA.DAS.YourProjectName.UITests</RootNamespace>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	```
@@ -54,27 +55,14 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	</ItemGroup>
 ```
 
-4. Add ```SFA.DAS.YourProjectName.UITests.json```
-
-``` json
-{
-  "runtimeOptions": {
-    "tfm": "netcoreapp3.1",
-    "framework": {
-      "name": "Microsoft.NETCore.App",
-      "version": "3.1.5"
-    }
-  }
-}
-```
-5. Add ```appsettings.Environment.json```
+4. Add ```appsettings.Environment.json```
 ```json
 {
   "local_EnvironmentName": "PP",
   "ProjectName": "YourProjectName"
 }
 ```
-6. Add ```appsettings.Project.BrowserStack.json```
+5. Add ```appsettings.Project.BrowserStack.json```
 ```json
 {
   "BrowserStackSetting": {
@@ -82,7 +70,7 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
   }
 }
 ```
-7. Add ```appsettings.Project.json``` (the project specific config)
+6. Add ```appsettings.Project.json``` (the project specific config)
 ```json
 {
   "YourProjectNameConfig": {
@@ -90,7 +78,7 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
   }
 }
 ```
-8. Add the following mandatory references to the .csproj file 
+7. Add the following mandatory references to the .csproj file 
 ```text
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
@@ -113,8 +101,9 @@ Note: This API framework is built with all standard libraries and ready to write
 	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
 	```text
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>SFA.DAS.YourProjectName.APITests</RootNamespace>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	```
@@ -152,28 +141,14 @@ Note: This API framework is built with all standard libraries and ready to write
   }
 }
 ```
-
-5. Add ```SFA.DAS.YourProjectName.APITests.json```
-
-``` json
-{
-  "runtimeOptions": {
-    "tfm": "netcoreapp3.1",
-    "framework": {
-      "name": "Microsoft.NETCore.App",
-      "version": "3.1.5"
-    }
-  }
-}
-```
-6. Add ```appsettings.Environment.json```
+5. Add ```appsettings.Environment.json```
 ```json
 {
   "local_EnvironmentName": "PP",
   "ProjectName": "YourProjectName"
 }
 ```
-7. Add ```appsettings.Project.BrowserStack.json```
+6. Add ```appsettings.Project.BrowserStack.json```
 ```json
 {
   "BrowserStackSetting": {
@@ -181,7 +156,7 @@ Note: This API framework is built with all standard libraries and ready to write
   }
 }
 ```
-8. Add ```appsettings.Project.json``` (the project specific config)
+7. Add ```appsettings.Project.json``` (the project specific config)
 ```json
 {
   "YourProjectNameConfig": {
@@ -189,7 +164,7 @@ Note: This API framework is built with all standard libraries and ready to write
   }
 }
 ```
-9. Add the following mandatory references to the .csproj file 
+8. Add the following mandatory references to the .csproj file 
 ```text
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.API.Framework\SFA.DAS.API.Framework.csproj" />
