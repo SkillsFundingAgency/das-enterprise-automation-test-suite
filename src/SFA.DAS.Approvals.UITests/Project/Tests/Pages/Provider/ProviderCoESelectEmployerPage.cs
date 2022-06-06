@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             var newEmployerName = newEmployerUser.SecondOrganisationName.Substring(0, 10) + "%";
             
-            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
+            string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
 
             tableRowHelper.SelectRowFromTable("Select", agreementId);
             
