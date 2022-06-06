@@ -35,6 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderAddApprenticeDetailsPage(context);
         }
 
+        public ProviderAccessDeniedPage GotoSelectJourneyPageGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            return new ProviderAccessDeniedPage(context);
+        }
+
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
         {
             formCompletionHelper.ClickElement(GetFundingLink);

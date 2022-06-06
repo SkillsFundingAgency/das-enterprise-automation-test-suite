@@ -7,10 +7,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
     public class VRFOrgDetailsTabPage : VRFBasePage
     {
         protected override string PageTitle => "Provide organisation details";
+
         private readonly EISqlHelper _eISqlHelper;
 
         #region Locators
-        
         private By OrganisationName => By.CssSelector("#supplier_name");
         private By TelephoneNumber => By.CssSelector("#supplier_tel");
         private By VendorNumber => By.CssSelector("#vendor_number");

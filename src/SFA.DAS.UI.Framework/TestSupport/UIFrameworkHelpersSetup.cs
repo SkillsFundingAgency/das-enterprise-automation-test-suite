@@ -10,7 +10,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
         
         public UIFrameworkHelpersSetup(ScenarioContext context) => _context = context;
 
-        public void SetupUIFrameworkHelpers()
+        public void SetupUIFrameworkHelpers(bool restart)
+        {
+            SetupUIFrameworkHelpers();
+
+            _context.Replace(new ScreenShotTitleGenerator(restart ? _context.Get<ScreenShotTitleGenerator>().GetCounter() : 0));
+        }
+
+        private void SetupUIFrameworkHelpers()
         {
             var webDriver = _context.GetWebDriver();
 
@@ -39,8 +46,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
 
             _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
-
-            _context.Replace(new ScreenShotTitleGenerator(0));
         }
     }
 }

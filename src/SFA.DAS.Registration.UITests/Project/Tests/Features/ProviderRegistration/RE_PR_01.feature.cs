@@ -102,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the provider invite an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.Then("the invited employer status in \"Invitation sent\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the invited employer status in \"Account creation not started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
  testRunner.When("the employer sets up the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

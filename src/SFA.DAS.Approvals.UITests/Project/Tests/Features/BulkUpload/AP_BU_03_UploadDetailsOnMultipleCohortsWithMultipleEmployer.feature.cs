@@ -109,13 +109,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer2 creates 2 cohorts and sends them to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.When("Provider uses BulkUpload to add 2 apprentice details into existing cohort and 2 a" +
-                        "pprentice details into a non-existing cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Employer3 logins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("Correct Information is displayed on review apprentices details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer3 creates 2 cohorts and sends them to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
+ testRunner.When("Provider uses BulkUpload to add 2 apprentice details into existing cohort and 2 a" +
+                        "pprentice details into a non-existing cohort for all employers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.And("Correct Information is displayed on review apprentices details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
  testRunner.And("Provider selects to save all but don\'t send to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -59,7 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var datahelper = _context.Get<ApprenticeDataHelper>();
 
-            string agreementId = _context.Get<AgreementIdSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
+            string agreementId = _context.Get<AccountsDbSqlHelper>().GetAgreementIdByCohortRef(cohortRef).Trim();
 
             int i = 0;
 
@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     DateOfBirth = datahelper.ApprenticeDob.ToString("yyyy-MM-dd"),
                     StartDate = apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
                     EndDate = apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM"),
-                    TotalPrice = datahelper.TrainingPrice,
+                    TotalPrice = datahelper.TrainingCost,
                     ProviderRef = datahelper.EmployerReference,
                     EmailAddress = datahelper.ApprenticeEmail,
                     AgreementId = agreementId

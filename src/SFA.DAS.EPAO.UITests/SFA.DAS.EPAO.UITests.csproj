@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>SFA.DAS.EPAO.UITests</RootNamespace>
+	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -12,12 +13,6 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-	
    <ItemGroup>
 	<Content Include="..\Sample.pdf" Link="Sample.pdf">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -29,8 +24,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="99.0.4844.5100" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="101.0.4951.4100" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
   </ItemGroup>
@@ -46,6 +41,7 @@
   <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.BrowserStack.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -62,7 +58,7 @@
     <None Update="Project\Helpers\SqlScripts\GetSingleStandardLearnersData.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SFA.DAS.EPAO.UITests.runtimeconfig.json">
+    <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

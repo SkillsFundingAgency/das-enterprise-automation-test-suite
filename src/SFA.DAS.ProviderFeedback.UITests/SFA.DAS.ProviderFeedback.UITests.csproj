@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>SFA.DAS.ProviderFeedback.UITests</RootNamespace>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
@@ -13,18 +14,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="..\specflow.json" Link="specflow.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="99.0.4844.5100" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="101.0.4951.4100" />
 		<PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
 		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
 	</ItemGroup>
@@ -38,6 +33,7 @@
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	  <None Update="appsettings.Project.BrowserStack.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -45,7 +41,7 @@
 	  <None Update="appsettings.Project.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="SFA.DAS.ProviderFeedback.UITests.json">
+	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

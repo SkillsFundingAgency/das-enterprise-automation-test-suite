@@ -99,7 +99,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
         public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
 
-       [Given(@"the Provider has some apprentices in ready to review and draft status")]
+        [When(@"Provider add (.*) apprentice details using bulk upload and sends to non-levy employer for approval")]
+        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToNonLevyEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
+
+        [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
 
         [Given(@"the Provider navigates to Choose a cohort page via the Home page")]
@@ -123,7 +126,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<LevyUser>();
             var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
-            int employerAccountId = _context.Get<AgreementIdSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            int employerAccountId = _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
             var cohortReference = _commitmentsSqlDataHelper.GetOldestEditableCohortReference(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
             var providerApproveApprenticeDetailsPage = new ProviderChooseACohortPage(_context).SelectCohort(cohortReference);            
@@ -134,7 +137,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 _providerStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
             }
 
-            providerApproveApprenticeDetailsPage.SelectAddAnApprentice().SelectAStandard().SubmitValidApprenticeDetails().SubmitApprove();
+            providerApproveApprenticeDetailsPage.SelectAddAnApprentice().ProviderSelectsAStandard().SubmitValidApprenticeDetails().SubmitApprove();
         }
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);

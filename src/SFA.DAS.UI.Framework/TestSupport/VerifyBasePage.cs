@@ -11,7 +11,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class VerifyBasePage : InterimBasePage
     {
         #region Helpers and Context
-        private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
         private readonly string _directory;
         private bool _takescreenshot;
@@ -24,7 +23,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;
-            _webDriver = context.GetWebDriver();
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             _directory = objectContext.GetDirectory();
 
@@ -96,16 +94,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool VerifyPage(Func<bool> func)
         {
-            int counter = _screenShotTitleGenerator.count;
+            int GetCounter() => _screenShotTitleGenerator.GetCounter();
+
+            int counter = GetCounter();
             try
             {
                 var result = func(); TakeScreenShot(); return result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                if (tags.Contains("authtests") && counter == _screenShotTitleGenerator.count) TakeScreenShot();
-                
-                throw ex;
+                if (tags.Contains("authtests") && counter == GetCounter()) TakeScreenShot();
+
+                throw;
             }
         }
 
@@ -113,8 +113,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
             {
-                string counter = _screenShotTitleGenerator.GetNextCount();
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
+                string counter = _screenShotTitleGenerator.GetTitle();
+                ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
             }
                 
         }

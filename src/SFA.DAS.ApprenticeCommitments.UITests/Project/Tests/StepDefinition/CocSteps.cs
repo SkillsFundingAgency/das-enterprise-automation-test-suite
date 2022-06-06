@@ -21,7 +21,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ApprenticeDataHelper _apprenticeDataHelper;
         private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
-        private readonly EditedApprenticeCourseDataHelper _editedApprenticeCourseDataHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
@@ -38,7 +37,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _providerStepsHelper = new ProviderStepsHelper(context);
             _apprenticeDataHelper = context.Get<ApprenticeDataHelper>();
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
-            _editedApprenticeCourseDataHelper = context.Get<EditedApprenticeCourseDataHelper>();
             _user = _context.GetUser<ASCoCEmployerUser>();
         }
 
@@ -49,13 +47,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _employerPortalLoginHelper.Login(_user, true);
 
             var appDetailPage = _employerStepsHelper.ViewCurrentApprenticeDetails(false);
+            
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
-            var editAppPage = appDetailPage.ClickEditApprenticeDetailsLink();
-            _editedApprenticeCourseDataHelper.SelectAnyStandardCourse(editAppPage.GetSelectedCourse());
+            appDetailPage.ClickEditApprenticeDetailsLink().ClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
 
-            new ApprenticeCommitmentsEditApprenticePage(_context).EditCourseAndDate().AcceptChangesAndSubmit();
             _providerStepsHelper.ApproveChangesAndSubmit();
+            
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 

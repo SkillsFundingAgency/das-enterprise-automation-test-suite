@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             
             string priceEpisodeIdentifier = (DoesRecordExistOnDataLockStatusTable) ? "455-3-1-01-01-2019" : "455-3-1-01-01-2018";
             int month = (DoesRecordExistOnDataLockStatusTable) ? _coursedataHelper.CourseStartDate.Month + 1 : _coursedataHelper.CourseStartDate.Month;
-            string price = (DoesRecordExistOnDataLockStatusTable) ? (Convert.ToInt32(_dataHelper.TrainingPrice) + 500).ToString() : _dataHelper.TrainingPrice;
+            string price = (DoesRecordExistOnDataLockStatusTable) ? (Convert.ToInt32(_dataHelper.TrainingCost) + 500).ToString() : _dataHelper.TrainingCost;
 
             string courseStartDate = Convert.ToString(_coursedataHelper.CourseStartDate.Year) + "-" + Convert.ToString(month) + "-01";
 

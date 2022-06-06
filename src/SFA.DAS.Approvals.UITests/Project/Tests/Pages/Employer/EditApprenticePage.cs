@@ -6,13 +6,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticePage : EditApprentice
+    public class EditApprenticePage : EditApprenticeDetailsBasePage
     {
         protected override string PageTitle => "Edit apprentice details";
 
-        public EditApprenticePage(ScenarioContext context) : base(context)  { }
-
-        protected By CourseOption => By.CssSelector("#trainingCourse");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
@@ -22,14 +19,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
-        public ConfirmChangesPage EditCourseAndDate()
+        public EditApprenticePage(ScenarioContext context) : base(context) { }
+
+        public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
         {
-            EditCourse();
+            EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
+            return new ApproveApprenticeDetailsPage(context);
+        }
+
+        public ConfirmChangesPage EditCourseDates()
+        {
             AddValidStartDate();
             AddValidEndDate();
             Update();
             return ConfirmChangesPage();
         }
+
+        protected override void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
@@ -49,8 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected override void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseOption, editedApprenticeCourseDataHelper.EditedCourse);
-
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
             AddValidEmail();
@@ -61,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             AddValidEndDate();
             
-            formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(EditSaveAndContinueButton);
             return new AfterEditApproveApprenticeDetailsPage(context);
