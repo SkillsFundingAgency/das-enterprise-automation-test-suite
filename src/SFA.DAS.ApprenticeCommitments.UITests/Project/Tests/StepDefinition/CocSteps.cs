@@ -50,8 +50,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
-            new ApprenticeCommitmentsEditApprenticePage(_context, appDetailPage.ClickEditApprenticeDetailsLink().GetSelectedCourse()).EditCourseAndDate().AcceptChangesAndSubmit();
-            
+            appDetailPage.ClickEditApprenticeDetailsLink().ClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
+
             _providerStepsHelper.ApproveChangesAndSubmit();
             
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);

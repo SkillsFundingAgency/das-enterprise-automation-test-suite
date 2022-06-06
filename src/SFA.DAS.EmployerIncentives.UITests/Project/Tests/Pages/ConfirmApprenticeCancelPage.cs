@@ -16,6 +16,5 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             Continue();
             return new ApplicationCancelledPage(context);
         }
-
     }
 }

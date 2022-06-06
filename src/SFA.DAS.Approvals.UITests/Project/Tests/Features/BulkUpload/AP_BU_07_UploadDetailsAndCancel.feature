@@ -4,7 +4,7 @@ Feature: AP_BU_07_UploadDetailsAndCancel
 
 @regression
 @newBUJourney
-Scenario:  AP_BU_07_Upload Details then Cancel
+Scenario: AP_BU_07_Upload Details then Cancel
 	Given the Employer logins using existing Levy Account
 	And the Employer create a cohort and send to provider to add apprentices
 	When Provider add 2 apprentice details using bulkupload 

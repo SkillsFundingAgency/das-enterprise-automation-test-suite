@@ -1,28 +1,21 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class HomePageFinancesSection_EI : HomePage
     {
-        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
+        private By EIHubLink => By.LinkText("Your hire a new apprentice payments");
 
-        public EIAccessDeniedPage AccessEIHubLinkRedirectsToAccessDeniedPage()
-        {
-            formCompletionHelper.Click(EIHubLink);
-            return new EIAccessDeniedPage(context);
-        }
+        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
 
         public EIHubPage NavigateToEIHubPage()
         {
-            formCompletionHelper.Click(EIHubLink);
+            ClickEIHubLink();
             return new EIHubPage(context);
         }
 
-        public ChooseOrganisationPage NavigateToChooseOrgPage()
-        {
-            formCompletionHelper.Click(EIHubLink);
-            return new ChooseOrganisationPage(context);
-        }
+        private void ClickEIHubLink() => formCompletionHelper.Click(EIHubLink);
     }
 }

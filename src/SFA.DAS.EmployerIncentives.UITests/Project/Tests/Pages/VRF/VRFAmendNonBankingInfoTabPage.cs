@@ -7,10 +7,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
     {
         protected override string PageTitle => "New remittance details";
 
-        #region Locators
-        
-        #endregion
-
         public VRFAmendNonBankingInfoTabPage(ScenarioContext context, Action action) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage(action));
 
         public VRFSubmitterDetailsTabPage SubmitNewRemittanceEmail(string email)
