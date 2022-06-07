@@ -20,22 +20,22 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.TestDataPrepara
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_CreateFirstAdvert")]
-    public partial class RV2_E_CreateFirstAdvertFeature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_AdditionalAdvert")]
+    public partial class RV2_E_AdditionalAdvertFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RV2_E_CreateFirstAdvert.feature"
+#line 1 "RV2_E_AdditionalAdvert.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RV2_E_CreateFirstAdvert", "\tAs a Levy Employer, Create First Advert", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RV2_E_AdditionalAdvert", "\tAs a Levy Employer, Create additional Advert", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.TestDataPrepara
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV2_E_CreateFirstAdvertPerfTestDataPreparation(string employeremail, string[] exampleTags)
+        public virtual void RV2_E_AdditionalAdvertAndApprovePerfTestDataPreparation(string employeremail, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "perftest",
@@ -85,7 +85,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.TestDataPrepara
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("employeremail", employeremail);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CreateFirstAdvert Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AdditionalAdvert and Approve Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,20 +97,23 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given(string.Format("the Employer creates first draft advert using \'{0}\'", employeremail), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("the Employer creates additional using \'{0}\'", employeremail), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_CreateFirstAdvert Perf test data preparation: To Be declared")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_AdditionalAdvert and Approve Perf test data preparation: To Be declared")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public void RV2_E_CreateFirstAdvertPerfTestDataPreparation_ToBeDeclared()
+        public void RV2_E_AdditionalAdvertAndApprovePerfTestDataPreparation_ToBeDeclared()
         {
 #line 7
-this.RV2_E_CreateFirstAdvertPerfTestDataPreparation("To Be declared", ((string[])(null)));
+this.RV2_E_AdditionalAdvertAndApprovePerfTestDataPreparation("To Be declared", ((string[])(null)));
 #line hidden
         }
     }

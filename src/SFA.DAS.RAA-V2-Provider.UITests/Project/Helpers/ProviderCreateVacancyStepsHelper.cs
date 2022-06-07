@@ -85,7 +85,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
         {
-            return EnterVacancyTitle(createAdvertPage.AdvertTitle())
+            return EnterVacancyTitle(NavigateToAdvertTitle(createAdvertPage))
                 .EnterTrainingTitle()
                 .ConfirmTrainingAndContinueToSummaryPage()
                 .EnterShortDescription()
