@@ -11,12 +11,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
 
         public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATV2IndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
 
-        public ProviderSummaryPage SelectASpecificProvider(string provider)
-        {
-            new ProviderSearchResultsPage(_context).ClickSpecifiedProvider(provider);
-
-            return new ProviderSummaryPage(_context);
-        }
+        public ProviderSummaryPage SelectAProvider() => new ProviderSearchResultsPage(_context).SelectAProvider();
 
         public ProviderShortlistPage ShortlistATrainingCourseAndNavigateToShortlistPage() => ViewProvidersForThisCourse().ShortlistAProviderFromProviderList().NavigateToProviderShortlistPage();
 

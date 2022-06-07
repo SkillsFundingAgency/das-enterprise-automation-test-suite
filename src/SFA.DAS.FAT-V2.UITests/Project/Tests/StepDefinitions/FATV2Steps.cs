@@ -75,8 +75,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
                 _trainingCourseSearchResultsPage.SelectRelevanceOrderSort();
         }
 
-        [When(@"the User selects (.*) from the list")]
-        public void WhenTheUserSelectsAProviderFromTheList(string provider) => _providerSummaryPage = _fATV2StepsHelper.SelectASpecificProvider(provider);
+        [When(@"the User selects a provider from the list")]
+        public void WhenTheUserSelectsAProviderFromTheList() => _providerSummaryPage = _fATV2StepsHelper.SelectAProvider();
 
         [When(@"enters the location (.*)")]
         public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);

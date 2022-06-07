@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
@@ -13,10 +15,10 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         protected override By PageHeader => By.ClassName("govuk-caption-xl");
 
         #region Locators
-        private By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
-        private By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
-        private By AddToShortlist => By.CssSelector("button[id^='add-to-shortlist-']");
-        private By RemoveLocation => By.LinkText("Clear");
+        private static By ProviderSearchList => By.CssSelector(".das-search-results__link");
+        private static By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
+        private static By AddToShortlist => By.CssSelector("button[id^='add-to-shortlist-']");
+        private static By RemoveLocation => By.LinkText("Clear");
         #endregion
 
         public ProviderSearchResultsPage(ScenarioContext context) : base(context) { }
@@ -54,6 +56,10 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             return new ProviderShortlistPage(context);
         }
 
-        public void ClickSpecifiedProvider(string provider) => formCompletionHelper.Click(SpecifiedProvider(provider));
+        public ProviderSummaryPage SelectAProvider()
+        {
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(ProviderSearchList)));
+            return new ProviderSummaryPage(context);
+        }
     }
 }
