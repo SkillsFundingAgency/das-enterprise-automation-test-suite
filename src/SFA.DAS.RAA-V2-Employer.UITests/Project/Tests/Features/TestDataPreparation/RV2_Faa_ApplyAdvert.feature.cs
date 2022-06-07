@@ -75,12 +75,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.TestDataPrepara
         
         public virtual void RV2_Faa_ApplyAdvertPerfTestDataPreparation(string advertrefnum, string adverttitle, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "perftest",
+                    "donottakescreenshot"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("advertrefnum", advertrefnum);
             argumentsOfScenario.Add("adverttitle", adverttitle);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_Faa_ApplyAdvert Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -90,7 +97,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
  testRunner.Given(string.Format("the Applicant can apply for an advert in FAA using \'{0}\', title as \'{1}\'", advertrefnum, adverttitle), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
@@ -99,9 +106,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_Faa_ApplyAdvert Perf test data preparation: To Be declared")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public void RV2_Faa_ApplyAdvertPerfTestDataPreparation_ToBeDeclared()
         {
-#line 5
+#line 7
 this.RV2_Faa_ApplyAdvertPerfTestDataPreparation("To Be declared", "To Be declared", ((string[])(null)));
 #line hidden
         }

@@ -75,11 +75,18 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.TestDataPrepara
         
         public virtual void RV2_E_ProviderPermissionPerfTestDataPreparation(string employeremail, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "perftest",
+                    "donottakescreenshot"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("employeremail", employeremail);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_ProviderPermission Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -95,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             "To Be declared",
                             "To Be declared"});
-#line 6
+#line 8
  testRunner.Given(string.Format("the Employer \'{0}\' grants permission to a provider", employeremail), ((string)(null)), table1, "Given ");
 #line hidden
             }
@@ -104,9 +111,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_ProviderPermission Perf test data preparation: To Be declared")]
+        [NUnit.Framework.CategoryAttribute("perftest")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public void RV2_E_ProviderPermissionPerfTestDataPreparation_ToBeDeclared()
         {
-#line 5
+#line 7
 this.RV2_E_ProviderPermissionPerfTestDataPreparation("To Be declared", ((string[])(null)));
 #line hidden
         }
