@@ -1,27 +1,26 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper
+public class TestdataCleanupStepsHelper : TestdataCleanupStepsHelperBase
 {
-    public class TestdataCleanupStepsHelper : TestdataCleanupStepsHelperBase
-    {
-        public TestdataCleanupStepsHelper(ScenarioContext context) : base(context) { }
+    public TestdataCleanupStepsHelper(ScenarioContext context) : base(context) { }
 
-        public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_dbConfig).CleanUpAllDbTestData(email));
+    public void CleanUpAllDbTestData(HashSet<string> email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_dbConfig).CleanUpAllDbTestData(email.ToList()));
 
-        public void CleanUpComtTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData());
+    public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_dbConfig).CleanUpAllDbTestData(email));
 
-        public void CleanUpPrelTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpPrelTestData());
+    public void CleanUpComtTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData());
 
-        public void CleanUpPfbeTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpPfbeTestData());
+    public void CleanUpPrelTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpPrelTestData());
 
-        public void CleanUpEmpFcastTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFcastTestData());
+    public void CleanUpPfbeTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpPfbeTestData());
 
-        public void CleanUpEmpFinTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFinTestData());
+    public void CleanUpEmpFcastTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFcastTestData());
 
-        public void CleanUpRsvrTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpRsvrTestData());
+    public void CleanUpEmpFinTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpFinTestData());
 
-        public void CleanUpEmpIncTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpIncTestData());
+    public void CleanUpRsvrTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpRsvrTestData());
 
-        public void CleanUpEasLtmTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEasLtmTestData());
-    }
+    public void CleanUpEmpIncTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEmpIncTestData());
+
+    public void CleanUpEasLtmTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpEasLtmTestData());
 }
