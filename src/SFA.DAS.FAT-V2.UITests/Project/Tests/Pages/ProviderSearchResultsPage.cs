@@ -9,7 +9,7 @@ public class ProviderSearchResultsPage : FATV2BasePage
     protected override By PageHeader => By.ClassName("govuk-caption-xl");
 
     #region Locators
-    private static By ProviderSearchList => By.CssSelector(".das-search-results__link");
+    private static By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
     private static By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
     private static By AddToShortlist => By.CssSelector("button[id^='add-to-shortlist-']");
     private static By RemoveLocation => By.LinkText("Clear");
@@ -50,9 +50,5 @@ public class ProviderSearchResultsPage : FATV2BasePage
         return new ProviderShortlistPage(context);
     }
 
-    public ProviderSummaryPage SelectAProvider()
-    {
-        formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(ProviderSearchList)));
-        return new ProviderSummaryPage(context);
-    }
+    public ProviderSummaryPage ClickSpecifiedProvider(string provider) { formCompletionHelper.Click(SpecifiedProvider(provider)); return new(context); }
 }
