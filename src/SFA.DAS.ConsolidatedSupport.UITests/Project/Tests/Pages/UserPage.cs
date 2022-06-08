@@ -38,7 +38,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             NavigateToOrganisation();
 
-            formCompletionHelper.ClickElement(OrganisationTab);
+            pageInteractionHelper.InvokeAction(() => formCompletionHelper.ClickElement(OrganisationTab));
 
             VerifyElement(OrganisationTab, dataHelper.NewOrgName);
 
