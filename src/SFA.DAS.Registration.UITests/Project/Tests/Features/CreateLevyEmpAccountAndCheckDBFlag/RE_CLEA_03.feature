@@ -1,5 +1,6 @@
 ﻿Feature: RE_CLEA_03
 
+@regression
 @registration
 @addlevyfunds
 @adddynamicfunds
