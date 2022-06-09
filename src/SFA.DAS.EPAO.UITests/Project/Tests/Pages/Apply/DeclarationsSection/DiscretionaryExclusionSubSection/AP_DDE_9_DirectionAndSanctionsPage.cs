@@ -10,6 +10,6 @@ public class AP_DDE_9_DirectionAndSanctionsPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-27_1");
         Continue();
-        return new AP_DDE_10_RepaymentOfPublicMoneyPage(context);
+        return new(context);
     }
 }

@@ -20,7 +20,7 @@ public class AS_WithdrawalRequestOverviewPage : EPAO_BasePage
         VerifyElement(StandardNameVerification, "ST0580 Brewer");
         VerifyElement(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
         formCompletionHelper.Click(StartStandardWithdrawalQuestions);
-        return new AS_WithdrawalRequestQuestionsPage(context);
+        return new(context);
     }
 
     public AS_WithdrawalRequestQuestionsPage ClickGoToRegisterWithdrawalQuestions()
@@ -28,13 +28,13 @@ public class AS_WithdrawalRequestOverviewPage : EPAO_BasePage
         VerifyElement(PageCaptionXl, "Withdrawing from register");
         VerifyElement(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
         formCompletionHelper.Click(StartOrganisationWithdrawalQuestions);
-        return new AS_WithdrawalRequestQuestionsPage(context);
+        return new(context);
     }
 
     public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage ClickSupportingCurrentLearnersFeedback()
     {
         formCompletionHelper.Click(AmmedSupportingCurrentLearnersAnswer);
-        return new AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(context);
+        return new(context);
     }
 
     public void AcceptAndSubmit()

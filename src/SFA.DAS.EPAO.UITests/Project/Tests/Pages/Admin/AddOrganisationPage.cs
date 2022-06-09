@@ -32,7 +32,7 @@ public class AddOrganisationPage : AddOrEditOrganisationPage
         formCompletionHelper.EnterText(TownOrCityField, EPAODataHelper.TownName);
         formCompletionHelper.EnterText(PostCodeField, EPAODataHelper.PostCode);
         Continue();
-        return new OrganisationDetailsPage(context);
+        return new(context);
     }
 }
 

@@ -14,6 +14,6 @@ public class AuditDetailsPage : EPAOAdmin_BasePage
         formCompletionHelper.EnterText(ReasonToDeleteCertificate, "EAPO Entered incorrect details");
         formCompletionHelper.EnterText(IncidentNumberToDeleteCertificate, "INC-014589527");
         Continue();
-        return new CheckYourAnswersBeforeDeletingThisCertificatePage(context);
+        return new(context);
     }
 }

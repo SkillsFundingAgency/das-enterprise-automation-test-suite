@@ -9,6 +9,6 @@ public class AS_WithdrawFromAStandardOrTheRegisterPage : EPAO_BasePage
     public AS_YourWithdrawalRequestsPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
     {
         Continue();
-        return new AS_YourWithdrawalRequestsPage(context);
+        return new(context);
     }
 }

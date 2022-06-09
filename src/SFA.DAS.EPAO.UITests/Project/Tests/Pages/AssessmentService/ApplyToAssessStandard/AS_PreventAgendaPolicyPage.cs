@@ -9,6 +9,6 @@ public class AS_PreventAgendaPolicyPage : AS_EPAOApplyStandardBasePage
     public AS_ConflictOfinterestPolicyPage UploadPreventAgendaPolicy()
     {
         UploadFile();
-        return new AS_ConflictOfinterestPolicyPage(context);
+        return new(context);
     }
 }

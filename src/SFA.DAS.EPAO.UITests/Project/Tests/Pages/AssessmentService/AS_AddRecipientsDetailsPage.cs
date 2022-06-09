@@ -12,6 +12,6 @@ public class AS_AddRecipientsDetailsPage : EPAOAssesment_BasePage
     {
         formCompletionHelper.EnterText(RecipientsNameTextBox, "Tesco");
         Continue();
-        return new AS_ConfirmAddressPage(context);
+        return new(context);
     }
 }

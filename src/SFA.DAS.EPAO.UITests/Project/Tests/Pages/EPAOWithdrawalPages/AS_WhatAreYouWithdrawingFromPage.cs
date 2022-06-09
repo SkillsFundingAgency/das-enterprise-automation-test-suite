@@ -15,13 +15,13 @@ public class AS_WhatAreYouWithdrawingFromPage : EPAO_BasePage
     {
         formCompletionHelper.SelectRadioOptionByLocator(AssessingASpecificStandardRaidoButton);
         Continue();
-        return new AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(context);
+        return new(context);
     }
 
     public AS_CheckWithdrawalRequestPage ClickWithdrawFromRegister()
     {
         formCompletionHelper.SelectRadioOptionByLocator(TheRegisterOfEPAOrganisationsRaidoButton);
         Continue();
-        return new AS_CheckWithdrawalRequestPage(context);
+        return new(context);
     }
 }

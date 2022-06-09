@@ -8,8 +8,8 @@ public class AS_EngagementWithTrailblazersAndEmployersPage : AS_EPAOApplyStandar
 
     public AS_MembershipProfessionalPage EnterEngagement()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_MembershipProfessionalPage(context);
+        return new(context);
     }
 }

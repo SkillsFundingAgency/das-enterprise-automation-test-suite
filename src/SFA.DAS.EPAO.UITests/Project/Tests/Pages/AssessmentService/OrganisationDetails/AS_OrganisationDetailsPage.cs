@@ -9,31 +9,31 @@ public class AS_OrganisationDetailsPage : EPAO_BasePage
     public AS_ChangeContactNamePage ClickContactNameChangeLink()
     {
         ClickLinkByHref("SelectOrChangeContactName");
-        return new AS_ChangeContactNamePage(context);
+        return new(context);
     }
 
     public AS_ChangePhoneNumberPage ClickPhoneNumberChangeLink()
     {
         ClickLinkByHref("ChangePhoneNumber");
-        return new AS_ChangePhoneNumberPage(context);
+        return new(context);
     }
 
     public AS_ChangeAddressPage ClickAddressChangeLink()
     {
         ClickLinkByHref("ChangeAddress");
-        return new AS_ChangeAddressPage(context);
+        return new(context);
     }
 
     public AS_ChangeEmailPage ClickEmailChangeLink()
     {
         ClickLinkByHref("ChangeEmail");
-        return new AS_ChangeEmailPage(context);
+        return new(context);
     }
 
     public AS_ChangeWebsitePage ClickWebsiteChangeLink()
     {
         ClickLinkByHref("ChangeWebsite");
-        return new AS_ChangeWebsitePage(context);
+        return new(context);
     }
 
     private void ClickLinkByHref(string href) => formCompletionHelper.ClickElement(pageInteractionHelper.GetLinkByHref(href));
@@ -48,6 +48,6 @@ public class AS_ChangeOrganisationDetailsPage : EPAO_BasePage
     public AS_OrganisationDetailsPage ClickAccessButton()
     {
         Continue();
-        return new AS_OrganisationDetailsPage(context);
+        return new(context);
     }
 }

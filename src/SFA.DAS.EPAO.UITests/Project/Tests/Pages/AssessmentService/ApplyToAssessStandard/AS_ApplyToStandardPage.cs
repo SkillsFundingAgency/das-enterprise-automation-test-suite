@@ -75,12 +75,12 @@ public class AS_ApplyToStandardPage : EPAO_BasePage
     public AS_InformationCommissionerPage AccessYourPolicies_01()
     {
         formCompletionHelper.ClickLinkByText(YourPolicies_01);
-        return new AS_InformationCommissionerPage(context);
+        return new(context);
     }
 
     public AS_ApplicationOverviewPage ReturnToApplicationOverview()
     {
         formCompletionHelper.Click(ClickReturnToApplicationOverview);
-        return new AS_ApplicationOverviewPage(context);
+        return new(context);
     }
 }

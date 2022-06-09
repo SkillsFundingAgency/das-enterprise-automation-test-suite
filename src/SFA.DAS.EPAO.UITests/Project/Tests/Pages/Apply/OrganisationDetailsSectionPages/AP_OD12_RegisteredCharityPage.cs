@@ -15,6 +15,6 @@ public class AP_OD_12_RegisteredCharityPage : EPAO_BasePage
         SelectRadioOptionByForAttribute("CD-26");
         formCompletionHelper.EnterText(CharityNumberTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(8));
         Continue();
-        return new AP_OD13_RegisterOfRemovedTrusteesPage(context);
+        return new(context);
     }
 }

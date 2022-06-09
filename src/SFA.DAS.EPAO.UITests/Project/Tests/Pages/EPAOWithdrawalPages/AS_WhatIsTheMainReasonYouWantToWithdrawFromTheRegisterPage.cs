@@ -15,6 +15,6 @@ public class AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage : EPAO_B
         formCompletionHelper.SelectRadioOptionByText("Assessment plan has changed");
         formCompletionHelper.EnterText(AssesmentPlanHasChangedTextArea, "Assessment plan has changed");
         Continue();
-        return new AS_WillYouCompleteEPAOForAllRegisteredLearnersPage(context);
+        return new(context);
     }
 }

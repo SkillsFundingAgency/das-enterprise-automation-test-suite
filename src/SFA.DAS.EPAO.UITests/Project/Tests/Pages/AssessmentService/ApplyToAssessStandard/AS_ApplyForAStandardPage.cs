@@ -9,6 +9,6 @@ public class AS_ApplyForAStandardPage : EPAO_BasePage
     public AS_WhatStandardPage Start()
     {
         formCompletionHelper.ClickLinkByText("Start");
-        return new AS_WhatStandardPage(context);
+        return new(context);
     }
 }

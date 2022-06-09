@@ -13,6 +13,6 @@ public class AP_OrganisationDetailsBasePage : EPAOApply_BasePage
     public AP_OD1_TradingNamePage ClickTradingNameLinkInOrganisationDetailsBasePage()
     {
         formCompletionHelper.Click(TradingNameLink);
-        return new AP_OD1_TradingNamePage(context);
+        return new(context);
     }
 }

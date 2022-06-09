@@ -10,13 +10,13 @@ public class AS_WhoWouldYouLikeUsToSendTheCertificateToPage: EPAOAssesment_BaseP
      {
         SelectRadioOptionByText("Apprentice");
          Continue();
-         return new AS_SearchEmployerAddressPage(context);
+         return new(context);
      }
 
      public AS_SearchEmployerOrAddressPage ClickEmployerRadioButton()
      {
         SelectRadioOptionByText("Employer");
         Continue();
-         return new AS_SearchEmployerOrAddressPage(context);
+         return new(context);
      }        
 }

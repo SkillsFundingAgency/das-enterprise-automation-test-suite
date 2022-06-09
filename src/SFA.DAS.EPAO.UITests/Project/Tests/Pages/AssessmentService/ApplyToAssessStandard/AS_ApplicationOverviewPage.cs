@@ -9,12 +9,12 @@ public class AS_ApplicationOverviewPage : EPAO_BasePage
     public AS_ApplyToStandardPage GoToApplyToStandard()
     {
         formCompletionHelper.ClickLinkByText("Go to apply to assess a standard");
-        return new AS_ApplyToStandardPage(context);
+        return new(context);
     }
 
     public AS_ApplicationSubmittedPage Submit()
     {
         Continue();
-        return new AS_ApplicationSubmittedPage(context);
+        return new(context);
     }
 }

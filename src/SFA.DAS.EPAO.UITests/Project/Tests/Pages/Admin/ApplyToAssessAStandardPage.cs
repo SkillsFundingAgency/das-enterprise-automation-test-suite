@@ -10,7 +10,7 @@ public class ApplyToAssessAStandardPage : EPAOAdmin_BasePage
     {
         SelectRadioOptionByText("Yes");
         Continue();
-        return new StandardApplicationOverviewPage(context);
+        return new(context);
     }
 }
 

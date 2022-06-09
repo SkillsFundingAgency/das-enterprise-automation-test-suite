@@ -5,11 +5,11 @@ public class AddContactPage : OrganisationSectionsBasePage
     protected override string PageTitle => "Add a contact";
 
     private static By FirstName => By.CssSelector("#FirstName");
-            
+
     private static By LastName => By.CssSelector("#LastName");
-            
+
     private static By Email => By.CssSelector("#Email");
-            
+
     private static By PhoneNumber => By.CssSelector("#PhoneNumber");
 
     public AddContactPage(ScenarioContext context) : base(context) => VerifyPage();
@@ -21,6 +21,6 @@ public class AddContactPage : OrganisationSectionsBasePage
         formCompletionHelper.EnterText(Email, ePAOAdminDataHelper.Email);
         formCompletionHelper.EnterText(PhoneNumber, ePAOAdminDataHelper.PhoneNumber);
         Continue();
-        return new ContactDetailsPage(context);
+        return new(context);
     }
 }

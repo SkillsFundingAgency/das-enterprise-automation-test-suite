@@ -7,8 +7,8 @@ public class ApplyStepsHelper
 
     public ApplyStepsHelper(ScenarioContext context)
     {
-       _objectContext = context.Get<ObjectContext>();
-       _context = context;
+        _objectContext = context.Get<ObjectContext>();
+        _context = context;
     }
 
     public AP_ApplicationOverviewPage CompletePreambleJourney(AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage, string orgName)
@@ -106,15 +106,15 @@ public class ApplyStepsHelper
 
     public void ApplyStageTwoStandard()
     {
-          AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new AS_ApplyForAStandardPage(_context);
+        AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new(_context);
 
-            var applyToStandard =_aS_ApplyForAStandardPage.Start()
-            .EnterStandardToCancelName()
-            .Apply()
-            .ConfirmAndApply()
-            .GoToApplyToStandard();
+        var applyToStandard = _aS_ApplyForAStandardPage.Start()
+        .EnterStandardToCancelName()
+        .Apply()
+        .ConfirmAndApply()
+        .GoToApplyToStandard();
 
-          applyToStandard = ApplyToStandard(applyToStandard);
+        applyToStandard = ApplyToStandard(applyToStandard);
 
         applyToStandard.ReturnToApplicationOverview();
     }

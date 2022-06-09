@@ -14,13 +14,13 @@ public class AS_LoginPage : EPAO_BasePage
     public AS_LoggedInHomePage SignInWithValidDetails(LoginUser loginUser)
     {
         EnterLoginDetails(loginUser);
-        return new AS_LoggedInHomePage(context);
+        return new(context);
     }
 
     public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(LoginUser loginUser)
     {
         EnterLoginDetails(loginUser);
-        return new AP_PR1_SearchForYourOrganisationPage(context);
+        return new(context);
     }
 
     private void EnterLoginDetails(LoginUser loginUser)

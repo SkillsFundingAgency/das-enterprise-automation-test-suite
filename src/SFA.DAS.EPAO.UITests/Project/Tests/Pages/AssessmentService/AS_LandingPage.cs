@@ -18,24 +18,24 @@ public class AS_LandingPage : EPAO_BasePage
     public AS_LoginPage GoToLoginPage()
     {
         formCompletionHelper.Click(StartNowButton);
-        return new AS_LoginPage(context);
+        return new(context);
     }
 
     public AS_ApplyForAStandardPage AlreadyLoginGoToApplyForAStandardPage()
     {
         formCompletionHelper.Click(StartNowButton);
-        return new AS_ApplyForAStandardPage(context);
+        return new(context);
     }
 
     public AS_CreateAnAccountPage GoToCreateAccountPage()
     {
         formCompletionHelper.Click(CreateAnAccountLink);
-        return new AS_CreateAnAccountPage(context);
+        return new(context);
     }
 
     public AS_LoggedInHomePage AlreadyLoginGoToLoggedInHomePage()
     {
         formCompletionHelper.Click(StartNowButton);
-        return new AS_LoggedInHomePage(context);
+        return new(context);
     }
 }

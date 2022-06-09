@@ -10,7 +10,7 @@ public class AS_EnterYourWebAddressPage : AS_EPAOApplyStandardBasePage
     {
         formCompletionHelper.EnterText(InputText, standardDataHelper.RandomWebsiteAddress);
         Continue();
-        return new AS_ApplyToStandardPage(context);
+        return new(context);
     }
 
 }

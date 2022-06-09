@@ -15,7 +15,7 @@ public class AS_HowWillYouCommunicateMarketExitToCustomersPage : EPAO_BasePage
         formCompletionHelper.Click(SupportInfoTextArea);
         formCompletionHelper.EnterText(SupportInfoTextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(250));
         Continue();
-        return new AS_WhenDoYouWantToWithdrawFromTheStandardPage(context);
+        return new(context);
     }
 
     public AS_WhenDoYouWantToWithdrawFromTheRegisterPage EnterSupportingInformationForRegisterWithdrawal()
@@ -23,6 +23,6 @@ public class AS_HowWillYouCommunicateMarketExitToCustomersPage : EPAO_BasePage
         formCompletionHelper.Click(SupportInfoTextArea);
         formCompletionHelper.EnterText(SupportInfoTextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(250));
         Continue();
-        return new AS_WhenDoYouWantToWithdrawFromTheRegisterPage(context);
+        return new(context);
     }
 }

@@ -11,6 +11,6 @@ public class AS_ChooseDayPage : AS_EPAOApplyStandardBasePage
     public AS_AssessmentPlanPage EnterDayToStart()
     {
         SelectAndContinue("Yes");
-        return new AS_AssessmentPlanPage(context);
+        return new(context);
     }
 }

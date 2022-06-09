@@ -23,6 +23,6 @@ public class AP_OD10_DirectorDetailsPage : EPAO_BasePage
         formCompletionHelper.EnterText(NumberOfSharesTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(3));
         formCompletionHelper.Click(SaveAndAddAnotherLink);
         formCompletionHelper.Click(SaveAndContinueButton);
-        return new AP_OD11_DirectorsDataPage(context);
+        return new(context);
     }
 }

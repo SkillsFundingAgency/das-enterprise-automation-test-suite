@@ -9,13 +9,13 @@ public class FeedbackSentPage : EPAOAdmin_BasePage
     public OrganisationApplicationsPage ReturnToOrganisationApplications()
     {
         ReturnToApplications();
-        return new OrganisationApplicationsPage(context);
+        return new(context);
     }
 
     public StandardApplicationsPage ReturnToStandardApplications()
     {
         ReturnToApplications();
-        return new StandardApplicationsPage(context);
+        return new(context);
     }
 
     private void ReturnToApplications() => formCompletionHelper.ClickLinkByText("Return to applications");

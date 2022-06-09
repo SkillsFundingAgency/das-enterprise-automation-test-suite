@@ -10,13 +10,13 @@ public class AS_WillYouCompleteEPAOForAllRegisteredLearnersPage : EPAO_BasePage
     {
         formCompletionHelper.SelectRadioOptionByText("Yes");
         Continue();
-        return new AS_HowWillYouCommunicateMarketExitToCustomersPage(context);
+        return new(context);
     }
 
     public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage ClickNoAndContinue()
     {
         formCompletionHelper.SelectRadioOptionByText("No");
         Continue();
-        return new AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(context);
+        return new(context);
     }
 }

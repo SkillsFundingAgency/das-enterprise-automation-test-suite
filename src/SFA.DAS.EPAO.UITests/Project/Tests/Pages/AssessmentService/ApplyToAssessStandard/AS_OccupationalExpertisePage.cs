@@ -8,8 +8,8 @@ public class AS_OccupationalExpertisePage : AS_EPAOApplyStandardBasePage
 
     public AS_DeliverEndPointPage EnterOccupationalExpertise()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_DeliverEndPointPage(context);
+        return new(context);
     }
 }

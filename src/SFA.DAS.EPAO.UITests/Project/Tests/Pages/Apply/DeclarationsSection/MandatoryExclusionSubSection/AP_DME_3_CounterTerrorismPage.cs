@@ -10,6 +10,6 @@ public class AP_DME_3_CounterTerrorismPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("M_DEL-11_1");
         Continue();
-        return new AP_DME_4_OtherCriminalConvictionsPage(context);
+        return new(context);
     }
 }

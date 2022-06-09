@@ -19,7 +19,7 @@ public class AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage : EPAO_Ba
         formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
         formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported");
         Continue();
-        return new AS_HowWillYouCommunicateMarketExitToCustomersPage(context);
+        return new(context);
     }
 
     public AS_WithdrawalRequestOverviewPage UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
@@ -27,6 +27,6 @@ public class AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage : EPAO_Ba
         formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
         formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported by another training provider");
         Continue();
-        return new AS_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 }

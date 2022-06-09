@@ -10,6 +10,6 @@ public class AP_OD11_DirectorsDataPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("CD-22_1");
         Continue();
-        return new AP_OD_12_RegisteredCharityPage(context);
+        return new(context);
     }
 }

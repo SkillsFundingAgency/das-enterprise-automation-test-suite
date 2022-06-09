@@ -23,7 +23,7 @@ public class AS_RecordAGradePage : EPAO_BasePage
     public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
     {
         EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.FamilyName, ePAOAdminDataHelper.LearnerUln);
-        return new AS_AssesmentAlreadyRecorded(context);
+        return new(context);
     }
 
     public AS_ConfirmApprenticePage SearchApprentice(bool deleteExistingCertificate, string learnerFamilyName = null, string learnerUln = null)
@@ -33,7 +33,7 @@ public class AS_RecordAGradePage : EPAO_BasePage
 
         EnterApprenticeDetailsAndContinue(learnerFamilyName ?? ePAOAdminDataHelper.FamilyName, learnerUln ?? ePAOAdminDataHelper.LearnerUln);
 
-        return new AS_ConfirmApprenticePage(context);
+        return new(context);
     }
 
     public void EnterApprenticeDetailsAndContinue(string familyName, string uln)
@@ -53,19 +53,11 @@ public class AS_RecordAGradePage : EPAO_BasePage
 
     public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
 
-    private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string learnerUln, bool deleteCertificate)
-    {
-        ePAOAdminDataHelper.FamilyName = apprenticeFamilyName;
-        ePAOAdminDataHelper.LearnerUln = learnerUln;
-
-        return SearchApprentice(deleteCertificate);
-    }
-
     public AS_CannotFindApprenticePage EnterApprenticeDetailsForExistingCertificateAndContinue()
     {
         formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.FamilyName);
         formCompletionHelper.EnterText(ULNTextBox, ePAOAdminDataHelper.LearnerUlnForExistingCertificate);
         Continue();
-        return new AS_CannotFindApprenticePage(context);
+        return new(context);
     }
 }

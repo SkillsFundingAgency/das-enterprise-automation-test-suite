@@ -34,7 +34,7 @@ public class AS_ChangeAddressPage : EPAO_BasePage
         formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
         formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
         Continue();
-        return new AS_ConfirmContactAddressPage(context);
+        return new(context);
     }
 }
 
@@ -52,7 +52,7 @@ public class AS_ConfirmContactAddressPage : EPAO_BasePage
     public AS_ContactAddressUpdatedPage ClickConfirmAddressButtonInConfirmContactAddressPage()
     {
         Continue();
-        return new AS_ContactAddressUpdatedPage(context);
+        return new(context);
     }
 }
 

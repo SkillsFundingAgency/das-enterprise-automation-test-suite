@@ -19,6 +19,6 @@ public abstract class AS_WhenDoYouWantToWithdrawBasePage : EPAO_BasePage
         formCompletionHelper.EnterText(MonthText, date.ToString("MM"));
         formCompletionHelper.EnterText(YearText, date.ToString("yyyy"));
         Continue();
-        return new AS_WithdrawalRequestQuestionsPage(context);
+        return new(context);
     }
 }

@@ -9,7 +9,7 @@ public class AS_FairAccessPage : AS_EPAOApplyStandardBasePage
     public AS_ConsistencyAssurancePage UploadFairAccess()
     {
         UploadFile();
-        return new AS_ConsistencyAssurancePage(context);
+        return new(context);
     }
 
 }

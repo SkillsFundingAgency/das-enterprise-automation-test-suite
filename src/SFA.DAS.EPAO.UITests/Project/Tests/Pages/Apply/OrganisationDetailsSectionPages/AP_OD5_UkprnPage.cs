@@ -15,6 +15,6 @@ public class AP_OD5_UkprnPage : EPAO_BasePage
         SelectRadioOptionByForAttribute("CD-12");
         formCompletionHelper.EnterText(UkprnTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(8));
         Continue();
-        return new AP_OD6_OverallExecutiveMgtPage(context);
+        return new(context);
     }
 }

@@ -10,6 +10,6 @@ public class AP_DDE_5_HmrcChallengesPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-23_1");
         Continue();
-        return new AP_DDE_6_ContractsWithdrawnFromYouPage(context);
+        return new(context);
     }
 }

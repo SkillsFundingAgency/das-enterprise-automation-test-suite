@@ -14,7 +14,7 @@ public class AS_ChangePhoneNumberPage : EPAO_BasePage
     {
         formCompletionHelper.EnterText(PhoneNumberTextBox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(10));
         Continue();
-        return new AS_ConfirmPhoneNumberPage(context);
+        return new(context);
     }
 }
 
@@ -27,7 +27,7 @@ public class AS_ConfirmPhoneNumberPage : EPAO_BasePage
     public AS_ContactPhoneNumberUpdatedPage ClickConfirmButtonInConfirmPhoneNumberPage()
     {
         Continue();
-        return new AS_ContactPhoneNumberUpdatedPage(context);
+        return new(context);
     }
 }
 

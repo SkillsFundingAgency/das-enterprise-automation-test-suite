@@ -17,7 +17,7 @@ public class OrganisationDetailsPage : EPAOAdmin_BasePage
     public EditOrganisationPage EditOrganisation()
     {
         formCompletionHelper.ClickElement(EditOrganisationLink);
-        return new EditOrganisationPage(context);
+        return new(context);
     }
 
     public OrganisationDetailsPage VerifyOrganisationStatus(string status) => VerifyOrganisationDetails("Organisation status", status);
@@ -29,19 +29,19 @@ public class OrganisationDetailsPage : EPAOAdmin_BasePage
     public AddContactPage AddNewContact()
     {
         formCompletionHelper.ClickElement(AddContactLink);
-        return new AddContactPage(context);
+        return new(context);
     }
 
     public ContactDetailsPage SelectContact()
     {
         VerifyElement(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
         formCompletionHelper.ClickLinkByText(ePAOAdminDataHelper.FullName);
-        return new ContactDetailsPage(context);
+        return new(context);
     }
 
     private OrganisationDetailsPage VerifyOrganisationDetails(string headerName, string value)
     {
         pageInteractionHelper.VerifyText(GetData(headerName).Text, value);
-        return new OrganisationDetailsPage(context);
+        return new(context);
     }
 }

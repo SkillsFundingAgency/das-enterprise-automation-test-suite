@@ -10,13 +10,13 @@ public class AS_WhichVersionPage : EPAO_BasePage
     {
         SelectRadioOptionByText("Version 1.0");
         Continue();
-        return new AS_WhichLearningOptionPage(context);
+        return new(context);
     }
 
     public AS_DeclarationPage ClickConfirmInConfirmVersionPageNoOption()
     {
         SelectRadioOptionByText("Version 1.0");
         Continue();
-        return new AS_DeclarationPage(context);
+        return new(context);
     }
 }

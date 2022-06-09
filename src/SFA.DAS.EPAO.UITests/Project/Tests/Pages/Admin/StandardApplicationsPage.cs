@@ -15,6 +15,6 @@ public class StandardApplicationsPage : ApplicationBasePage
     private StandardApplicationOverviewPage GoToStandardApplicationOverviewPage(By by)
     {
         GoToApplicationOverviewPage(by);
-        return new StandardApplicationOverviewPage(context);
+        return new(context);
     }
 }

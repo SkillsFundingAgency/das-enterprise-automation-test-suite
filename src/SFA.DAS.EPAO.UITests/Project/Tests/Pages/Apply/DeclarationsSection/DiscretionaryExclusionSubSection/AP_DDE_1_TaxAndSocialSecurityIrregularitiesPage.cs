@@ -10,6 +10,6 @@ public class AP_DDE_1_TaxAndSocialSecurityIrregularitiesPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("D_DEL-13_1");
         Continue();
-        return new AP_DDE_2_BankruptcyAndInsolvencyPage(context);
+        return new(context);
     }
 }

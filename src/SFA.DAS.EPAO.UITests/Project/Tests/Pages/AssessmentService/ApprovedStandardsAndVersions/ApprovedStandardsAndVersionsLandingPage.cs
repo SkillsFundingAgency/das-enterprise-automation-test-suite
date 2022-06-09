@@ -13,6 +13,6 @@ public class ApprovedStandardsAndVersionsLandingPage : EPAO_BasePage
     public StandardDetailsForAssociateProjectManagerPage ClickOnAssociateProjectManagerLink()
     {
         formCompletionHelper.ClickElement(AssociateProjectManagerLink);
-        return new StandardDetailsForAssociateProjectManagerPage(context);
+        return new(context);
     }
 }

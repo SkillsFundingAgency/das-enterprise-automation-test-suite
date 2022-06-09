@@ -14,7 +14,7 @@ public class AS_ChangeEmailPage : EPAO_BasePage
     {
         formCompletionHelper.EnterText(EmailTextBox, ePAOAssesmentServiceDataHelper.RandomEmail);
         Continue();
-        return new AS_ConfirmEmailAddressPage(context);
+        return new(context);
     }
 }
 
@@ -27,7 +27,7 @@ public class AS_ConfirmEmailAddressPage : EPAO_BasePage
     public AS_EmailAddressUpdatedPage ClickConfirmButtonInConfirmEmailAddressPage()
     {
         Continue();
-        return new AS_EmailAddressUpdatedPage(context);
+        return new(context);
     }
 }
 

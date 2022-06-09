@@ -17,7 +17,7 @@ public class AS_ChangeContactNamePage : EPAO_BasePage
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(radioButtonToClick));
 
         Continue();
-        return new AS_ConfirmContactNamePage(context);
+        return new(context);
     }
 }
 
@@ -30,7 +30,7 @@ public class AS_ConfirmContactNamePage : EPAO_BasePage
     public AS_ContactNameUpdatedPage ClickConfirmButtonInConfirmContactNamePage()
     {
         Continue();
-        return new AS_ContactNameUpdatedPage(context);
+        return new(context);
     }
 }
 

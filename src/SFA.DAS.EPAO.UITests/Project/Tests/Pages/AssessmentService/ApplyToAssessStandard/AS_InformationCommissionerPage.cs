@@ -10,6 +10,6 @@ public class AS_InformationCommissionerPage : AS_EPAOApplyStandardBasePage
     {
         formCompletionHelper.EnterText(InputText, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(8));
         Continue();
-        return new AS_InternalAuditPage(context);
+        return new(context);
     }
 }

@@ -13,7 +13,7 @@ public class EditOrganisationPage : AddOrEditOrganisationPage
     public OrganisationDetailsPage MakeOrgLive()
     {
         formCompletionHelper.ClickElement(MakeLiveButton);
-        return new OrganisationDetailsPage(context);
+        return new(context);
     }
 
     public OrganisationDetailsPage EditDetails()
@@ -21,7 +21,7 @@ public class EditOrganisationPage : AddOrEditOrganisationPage
         formCompletionHelper.EnterText(CompanyNumberField, ePAOAdminDataHelper.CompanyNumber);
         formCompletionHelper.EnterText(CharityNumberField, ePAOAdminDataHelper.CharityNumber);
         Continue();
-        return new OrganisationDetailsPage(context);
+        return new(context);
     }
 
 }

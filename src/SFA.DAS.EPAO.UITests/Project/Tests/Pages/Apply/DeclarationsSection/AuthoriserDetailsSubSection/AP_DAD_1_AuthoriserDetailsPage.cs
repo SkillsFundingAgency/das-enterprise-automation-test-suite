@@ -13,9 +13,9 @@ public class AP_DAD_1_AuthoriserDetailsPage : EPAO_BasePage
 
     public AP_DME_1_CriminalConvictionsPage EnterDetailsAndContinueInAuthoriserDetailsPagePage()
     {
-        formCompletionHelper.EnterText(NameTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomAlphabeticString(20));
-        formCompletionHelper.EnterText(JobTitleTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomAlphabeticString(10));
+        formCompletionHelper.EnterText(NameTextbox, EPAODataHelper.GetRandomAlphabeticString(20));
+        formCompletionHelper.EnterText(JobTitleTextbox, EPAODataHelper.GetRandomAlphabeticString(10));
         Continue();
-        return new AP_DME_1_CriminalConvictionsPage(context);
+        return new(context);
     }
 }

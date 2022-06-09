@@ -12,7 +12,7 @@ public class AS_CheckWithdrawalRequestPage : EPAO_BasePage
 
         Continue();
 
-        return new AS_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 }
 
@@ -27,6 +27,6 @@ public class AS_WhichStandardDoYouWantToWithdrawFromAssessingPage : EPAO_BasePag
     {
         tableRowHelper.SelectRowFromTable("Select", "Brewer (Level 4)");
 
-        return new AS_CheckWithdrawalRequestPage(context);
+        return new(context);
     }
 }

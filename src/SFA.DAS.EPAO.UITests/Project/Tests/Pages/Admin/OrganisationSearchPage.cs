@@ -12,6 +12,6 @@ public class OrganisationSearchPage : EPAOAdmin_BasePage
     {
         formCompletionHelper.EnterText(OrganisationSearchField, objectContext.GetOrganisationIdentifier());
         Continue();
-        return new OrganisationSearchResultsPage(context);
+        return new(context);
     }
 }

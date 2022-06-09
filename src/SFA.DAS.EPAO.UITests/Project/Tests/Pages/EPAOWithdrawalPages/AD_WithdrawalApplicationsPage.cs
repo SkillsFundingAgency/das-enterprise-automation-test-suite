@@ -36,14 +36,14 @@
         {
             formCompletionHelper.ClickElement(NewTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
-            return new AD_WithdrawalRequestOverviewPage(context);
+            return new(context);
         }
 
         public AD_WithdrawalRequestOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(FeedbackTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
-            return new AD_WithdrawalRequestOverviewPage(context);
+            return new(context);
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()

@@ -13,6 +13,6 @@ public class AP_FHABasePage : EPAOApply_BasePage
     public AP_FHA_FinancialHealthPage ClickFHALinkInFHABasePage()
     {
         formCompletionHelper.Click(FHALink);
-        return new AP_FHA_FinancialHealthPage(context);
+        return new(context);
     }
 }

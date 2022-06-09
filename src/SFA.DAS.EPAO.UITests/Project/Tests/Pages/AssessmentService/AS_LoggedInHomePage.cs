@@ -25,25 +25,25 @@ public class AS_LoggedInHomePage : EPAO_BasePage
     public AS_ApplyToAssessStandardPage ApplyToAssessStandard()
     {
         formCompletionHelper.Click(ApplyToAssessStandardLink);
-        return new AS_ApplyToAssessStandardPage(context);
+        return new(context);
     }
 
     public ApprovedStandardsAndVersionsLandingPage ApprovedStandardAndVersions()
     {
         formCompletionHelper.Click(ApprovedStandardsAndVersions);
-        return new ApprovedStandardsAndVersionsLandingPage(context);
+        return new(context);
     }
 
     public AS_RecordAGradePage GoToRecordAGradePage()
     {
         formCompletionHelper.Click(RecordAGradeLink);
-        return new AS_RecordAGradePage(context);
+        return new(context);
     }
 
     public AS_CompletedAssessmentsPage ClickCompletedAssessmentsLink()
     {
         formCompletionHelper.Click(CompletedAssessmentsTopMenuLink);
-        return new AS_CompletedAssessmentsPage(context);
+        return new(context);
     }
 
     public void ClickOrganisationDetailsTopMenuLink()
@@ -54,7 +54,7 @@ public class AS_LoggedInHomePage : EPAO_BasePage
     public AS_UsersPage ClickManageUsersLink()
     {
         formCompletionHelper.Click(ManageUsersLink);
-        return new AS_UsersPage(context);
+        return new(context);
     }
 
     public AS_LoggedInHomePage ClickHomeTopMenuLink()
@@ -68,17 +68,17 @@ public class AS_LoggedInHomePage : EPAO_BasePage
     public AS_SignedOutPage ClickSignOutLink()
     {
         formCompletionHelper.Click(SignOutLink);
-        return new AS_SignedOutPage(context);
+        return new(context);
     }
     public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromAStandardLink()
     {
         formCompletionHelper.Click(WithdrawFromAStandardLink);
-        return new AS_WithdrawFromAStandardOrTheRegisterPage(context);
+        return new(context);
     }
 
     public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromTheRegisterLink()
     {
         formCompletionHelper.Click(WithdrawFromTheRegisterLink);
-        return new AS_WithdrawFromAStandardOrTheRegisterPage(context);
+        return new(context);
     }
 }

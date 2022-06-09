@@ -9,6 +9,6 @@ public class AS_EmployersLiabilityInsurancePage : AS_EPAOApplyStandardBasePage
     public AS_SafeguardingPolicyPage UploadEmployersLiabilityInsurance()
     {
         UploadFile();
-        return new AS_SafeguardingPolicyPage(context);
+        return new(context);
     }
 }

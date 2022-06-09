@@ -14,6 +14,6 @@ public class SearchPage : EPAOAdmin_BasePage
     {
         formCompletionHelper.EnterText(LearnerSearchField, keyword);
         Continue();
-        return new SearchResultsPage(context);
+        return new(context);
     }
 }

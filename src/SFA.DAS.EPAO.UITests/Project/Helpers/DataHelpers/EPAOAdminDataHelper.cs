@@ -49,7 +49,7 @@ public class EPAOAdminDataHelper : EPAODataHelper
 
     public string PhoneNumber => $"0844455{GetRandomNumber(4)}";
 
-    public static DateTime StandardsEffectiveFrom => new DateTime(2015, 08, 01);
+    public static DateTime StandardsEffectiveFrom => new(2015, 08, 01);
 
     public static DateTime OrgStandardsEffectiveFrom => StandardsEffectiveFrom.AddDays(35);
 

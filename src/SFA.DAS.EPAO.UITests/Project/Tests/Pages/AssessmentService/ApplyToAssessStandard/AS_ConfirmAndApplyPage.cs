@@ -18,7 +18,7 @@ public class AS_ConfirmAndApplyPage : EPAO_BasePage
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
         Continue();
-        return new AS_ApplicationOverviewPage(context);
+        return new(context);
     }
 
     public AS_ApplicationOverviewPage ConfirmAndApplyWithVersion()
@@ -26,6 +26,6 @@ public class AS_ConfirmAndApplyPage : EPAO_BasePage
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VersionCheckBox));
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
         Continue();
-        return new AS_ApplicationOverviewPage(context);
+        return new(context);
     }
 }

@@ -8,9 +8,9 @@ public class AS_ManageAnyPotentialConflictPage : AS_EPAOApplyStandardBasePage
 
     public AS_WhereWillYouDeliverEndPointAssessmentsPage EnterManageAnyPotentialConflict()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_WhereWillYouDeliverEndPointAssessmentsPage(context);
+        return new(context);
     }
 
 }

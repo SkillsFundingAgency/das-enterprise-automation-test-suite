@@ -20,71 +20,71 @@ public class AS_CheckAndSubmitAssessmentPage : EPAOAssesment_BasePage
     public AS_AssessmentRecordedPage ClickContinueInCheckAndSubmitAssessmentPage()
     {
         Continue();
-        return new AS_AssessmentRecordedPage(context);
+        return new(context);
     }
 
     public AS_WhatGradePage ClickGradeChangeLink()
     {
         formCompletionHelper.ClickElement(GradeChangeLink);
-        return new AS_WhatGradePage(context);
+        return new(context);
     }
 
     public AS_WhichLearningOptionPage ClickOptionChangeLink()
     {
         formCompletionHelper.ClickElement(OptionChangeLink);
-        return new AS_WhichLearningOptionPage(context);
+        return new(context);
     }
 
     public AS_AchievementDatePage ClickAchievementDateChangeLink()
     {
         formCompletionHelper.ClickElement(AchievementDateChangeLink);
-        return new AS_AchievementDatePage(context);
+        return new(context);
     }
 
     public AS_RecipientNamePage ClickNameChangeLink()
     {
         formCompletionHelper.ClickElement(NameChangeLink);
-        return new AS_RecipientNamePage(context);
+        return new(context);
     }
 
     public AS_WhoWouldYouLikeUsToSendTheCertificateToPage ClickCertificateReceiverLink()
     {
         formCompletionHelper.ClickElement(CertificateReceiverLink);
-        return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(context);
+        return new(context);
     }
     public AS_RecipientNamePage ClickDepartmentChangeLink()
     {
         formCompletionHelper.ClickElement(DepartmentChangeLink);
-        return new AS_RecipientNamePage(context);
+        return new(context);
     }
 
     public AS_AddRecipientsDetailsPage ClickDepartmentChangeLinkForEmployerJourney()
     {
         formCompletionHelper.ClickElement(DepartmentChangeLink);
-        return new AS_AddRecipientsDetailsPage(context);
+        return new(context);
     }
 
     public AS_EditEmployerAddress ClickOrganisationChangeLink()
     {
         formCompletionHelper.ClickElement(OrganisationChangeLink);
-        return new AS_EditEmployerAddress(context);
+        return new(context);
     }
 
     public AS_EditEmployerAddress ClickCertificateAddressChangeLink()
     {
         formCompletionHelper.ClickElement(AddressChangeLink);
-        return new AS_EditEmployerAddress(context);
+        return new(context);
     }
 
     public AS_SearchEmployerAddressPage ClickCertificateAddressChangeLinkvForApprenticeJourney()
     {
         formCompletionHelper.ClickElement(AddressChangeLink);
-        return new AS_SearchEmployerAddressPage(context);
+        return new(context);
     }
 
     public AS_SearchEmployerOrAddressPage ClickCertificateAddressChangeLinkForEmployerJourney()
     {
         formCompletionHelper.ClickElement(AddressChangeLink);
-        return new AS_SearchEmployerOrAddressPage(context);
+        return new(context);
     }
 }

@@ -15,6 +15,6 @@ public class AP_OD7_OfqualRecognitionNumberPage : EPAO_BasePage
         SelectRadioOptionByForAttribute("CD-15");
         formCompletionHelper.EnterText(OfqualRecognitionNumberTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(6));
         Continue();
-        return new AP_OD8_TradingStatusPage(context);
+        return new(context);
     }
 }

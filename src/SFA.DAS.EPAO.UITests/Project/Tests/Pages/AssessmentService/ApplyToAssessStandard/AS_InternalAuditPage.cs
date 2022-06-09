@@ -9,6 +9,6 @@ public class AS_InternalAuditPage : AS_EPAOApplyStandardBasePage
     public AS_PublicLiabilityInsurancePage UploadAuditPolicy()
     {
         UploadFile();
-        return new AS_PublicLiabilityInsurancePage(context);
+        return new(context);
     }
 }

@@ -9,6 +9,6 @@ public class AP_FHA_FinancialHealthPage : EPAOApply_BasePage
     public AP_FHABasePage UploadFileAndContinueInFinancialHealthPage()
     {
         UploadFile();
-        return new AP_FHABasePage(context);
+        return new(context);
     }
 }

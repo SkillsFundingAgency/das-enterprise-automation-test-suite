@@ -10,6 +10,6 @@ public class AP_DME_4_OtherCriminalConvictionsPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("M_DEL-12_1");
         Continue();
-        return new AP_DDE_1_TaxAndSocialSecurityIrregularitiesPage(context);
+        return new(context);
     }
 }

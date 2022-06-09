@@ -15,6 +15,6 @@ public class OrganisationApplicationsPage : ApplicationBasePage
     private OrganisationApplicationOverviewPage GoToOrganisationApplicationOverviewPage(By by)
     {
         GoToApplicationOverviewPage(by);
-        return new OrganisationApplicationOverviewPage(context);
+        return new(context);
     }
 }

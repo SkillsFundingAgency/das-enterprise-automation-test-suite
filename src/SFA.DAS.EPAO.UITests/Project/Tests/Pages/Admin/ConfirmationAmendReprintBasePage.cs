@@ -11,6 +11,6 @@ public abstract class ConfirmationAmendReprintBasePage : EPAOAdmin_BasePage
     public SearchPage ClickSearchAgain()
     {
         formCompletionHelper.Click(SearchAgainLink);
-        return new SearchPage(context);
+        return new(context);
     }
 }

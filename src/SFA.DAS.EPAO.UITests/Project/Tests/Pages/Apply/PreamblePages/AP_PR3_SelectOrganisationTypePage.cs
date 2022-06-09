@@ -14,6 +14,6 @@ public class AP_PR3_SelectOrganisationTypePage : EPAO_BasePage
     {
         formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AwardingOrg));
         Continue();
-        return new AP_PR4_ConfirmOrganisationPage(context);
+        return new(context);
     }
 }

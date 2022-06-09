@@ -50,7 +50,7 @@ public class CertificateAddressPage : EPAOAdmin_BasePage
     {
         EnterText(CertificateReasonForChange, reasonForChange);
         Continue();
-        return new CheckAndSubmitAssessmentDetailsPage(context);
+        return new(context);
     }
 
     private void EnterText(By locator, string text) { if (!(string.IsNullOrEmpty(text))) formCompletionHelper.EnterText(locator, text); }

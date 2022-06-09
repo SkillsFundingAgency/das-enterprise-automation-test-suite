@@ -9,7 +9,6 @@ public class AS_MonitoringProceduresPage : AS_EPAOApplyStandardBasePage
     public AS_ModerationProcessesPage UploadMonitoringProcedure()
     {
         UploadFile();
-        return new AS_ModerationProcessesPage(context);
+        return new(context);
     }
-
 }

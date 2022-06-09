@@ -13,6 +13,6 @@ public class StandardDetailsForAssociateProjectManagerPage : EPAO_BasePage
     public ConfirmOptInForAssociateProjectManagerPage ClickOnAssociateProjectManagerOptInLinkForVersion1_1()
     {
         formCompletionHelper.ClickElement(AssociateProjectManagerOptInLinkForVersion1_1);
-        return new ConfirmOptInForAssociateProjectManagerPage(context);
+        return new(context);
     }
 }

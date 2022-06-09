@@ -14,6 +14,6 @@ public class AS_WhereWillYouDeliverEndPointAssessmentsPage : AS_EPAOApplyStandar
     {
         ClickRandomElement(DeliveryAreas);
         Continue();
-        return new AS_ChooseDayPage(context);
+        return new(context);
     }
 }

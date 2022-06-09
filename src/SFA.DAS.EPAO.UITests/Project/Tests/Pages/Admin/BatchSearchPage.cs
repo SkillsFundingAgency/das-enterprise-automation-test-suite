@@ -14,6 +14,6 @@ public class BatchSearchPage : EPAOAdmin_BasePage
     {
         formCompletionHelper.EnterText(BatchNumber, Helpers.DataHelpers.EPAOAdminDataHelper.BatchSearch);
         Continue();
-        return new BatchSearchResultsPage(context);
+        return new(context);
     }
 }

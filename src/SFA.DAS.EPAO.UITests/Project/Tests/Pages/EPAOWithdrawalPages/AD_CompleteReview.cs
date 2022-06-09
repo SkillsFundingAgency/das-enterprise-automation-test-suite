@@ -12,12 +12,12 @@ public class AD_CompleteReview : EPAO_BasePage
     public AD_YouhaveApprovedThisWithdrawalNotification ClickApproveApplication()
     {
         formCompletionHelper.Click(ApproveApplicationButton);
-        return new AD_YouhaveApprovedThisWithdrawalNotification(context);
+        return new(context);
     }
 
     public AD_FeedbackSent ClickAddFeedback()
     {
         formCompletionHelper.Click(AskForMoreInformationButton);
-        return new AD_FeedbackSent(context);
+        return new(context);
     }
 }

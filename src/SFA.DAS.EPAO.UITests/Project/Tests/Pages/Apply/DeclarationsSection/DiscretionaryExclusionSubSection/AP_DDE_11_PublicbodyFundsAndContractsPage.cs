@@ -10,6 +10,6 @@ public class AP_DDE_11_PublicbodyFundsAndContractsPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-29_1");
         Continue();
-        return new AP_DDE_12_LegalDisputePage(context);
+        return new(context);
     }
 }

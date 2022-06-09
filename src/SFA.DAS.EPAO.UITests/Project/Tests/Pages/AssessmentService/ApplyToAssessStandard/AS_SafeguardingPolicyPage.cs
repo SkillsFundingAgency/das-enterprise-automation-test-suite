@@ -9,6 +9,6 @@ public class AS_SafeguardingPolicyPage : AS_EPAOApplyStandardBasePage
     public AS_PreventAgendaPolicyPage UploadSafeguardingPolicy()
     {
         UploadFile();
-        return new AS_PreventAgendaPolicyPage(context);
+        return new(context);
     }
 }

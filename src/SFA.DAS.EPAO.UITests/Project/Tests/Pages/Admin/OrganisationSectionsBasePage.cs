@@ -9,6 +9,6 @@ public abstract class OrganisationSectionsBasePage : EPAOAdmin_BasePage
     protected OrganisationDetailsPage ReturnToOrganisationDetailsPage(Action action)
     {
         action();
-        return new OrganisationDetailsPage(context);
+        return new(context);
     }
 }

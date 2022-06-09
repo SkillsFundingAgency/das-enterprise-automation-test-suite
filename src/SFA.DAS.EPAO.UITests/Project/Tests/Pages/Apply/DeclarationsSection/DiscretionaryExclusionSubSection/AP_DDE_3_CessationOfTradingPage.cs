@@ -10,6 +10,6 @@ public class AP_DDE_3_CessationOfTradingPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-21_1");
         Continue();
-        return new AP_DDE_4_IncorrectTaxReturnsPage(context);
+        return new(context);
     }
 }

@@ -10,6 +10,6 @@ public class AP_OD2_UseTradingNameOnRegisterPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("CD-01");
         Continue();
-        return new AP_OD3_ContactDetailsPage(context);
+        return new(context);
     }
 }

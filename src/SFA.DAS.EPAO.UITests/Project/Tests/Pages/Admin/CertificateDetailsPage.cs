@@ -17,25 +17,25 @@ public class CertificateDetailsPage : EPAOAdmin_BasePage
     public AreYouSureYouWantToDeletePage ClickDeleteCertificateLink()
     {
         formCompletionHelper.ClickElement(DeleteCertificateLink);
-        return new AreYouSureYouWantToDeletePage(context);
+        return new(context);
     }
 
     public AmendReasonPage ClickAmendCertificateLink()
     {
         formCompletionHelper.ClickElement(AmendCertificateLink);
-        return new AmendReasonPage(context);
+        return new(context);
     }
 
     public ReprintReasonPage ClickReprintCertificateLink()
     {
         formCompletionHelper.ClickElement(ReprintCertificateLink);
-        return new ReprintReasonPage(context);
+        return new(context);
     }
 
     public CertificateDetailsPage ClickShowAllHistory()
     {
         formCompletionHelper.ClickElement(ShowAllHistoryButton);
-        return new CertificateDetailsPage(context);
+        return new(context);
     }
 
     public CertificateDetailsPage VerifyActionHistoryItem(int logIndex, string action)

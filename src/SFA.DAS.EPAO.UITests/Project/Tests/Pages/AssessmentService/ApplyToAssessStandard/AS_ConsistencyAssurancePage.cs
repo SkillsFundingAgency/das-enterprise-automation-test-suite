@@ -9,6 +9,6 @@ public class AS_ConsistencyAssurancePage : AS_EPAOApplyStandardBasePage
     public AS_ImproveTheQualityPage UploadConsistencyAssurance()
     {
         UploadFile();
-        return new AS_ImproveTheQualityPage(context);
+        return new(context);
     }
 }

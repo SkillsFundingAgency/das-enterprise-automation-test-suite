@@ -8,8 +8,8 @@ public class AS_HowManyEndPointAssessmentPage : AS_EPAOApplyStandardBasePage
 
     public AS_VolumeEndPointAssessmentPage EnterHowManyEndPointAssessment()
     {
-        formCompletionHelper.EnterText(InputNumber, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomWholeNumber(1));
+        formCompletionHelper.EnterText(InputNumber, EPAOApplyStandardDataHelper.GenerateRandomWholeNumber(1));
         Continue();
-        return new AS_VolumeEndPointAssessmentPage(context);
+        return new(context);
     }
 }

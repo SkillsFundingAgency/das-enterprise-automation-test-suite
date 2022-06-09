@@ -9,6 +9,6 @@ public class AS_ComplaintsAndAppealsPolicyPage : AS_EPAOApplyStandardBasePage
     public AS_FairAccessPage UploadComplaintsPolicy()
     {
         UploadFile();
-        return new AS_FairAccessPage(context);
+        return new(context);
     }
 }

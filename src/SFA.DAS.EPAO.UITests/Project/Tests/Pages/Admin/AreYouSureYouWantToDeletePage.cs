@@ -12,6 +12,6 @@ public class AreYouSureYouWantToDeletePage : EPAOAdmin_BasePage
     {
         SelectRadioOptionByText("Yes");
         Continue();
-        return new AuditDetailsPage(context);
+        return new(context);
     }
 }

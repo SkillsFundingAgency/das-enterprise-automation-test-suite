@@ -10,6 +10,6 @@ public class AP_DDE_7_ContractsYouHaveWithdrawnFromPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-25_1");
         Continue();
-        return new AP_DDE_8_OrganisationRemovalFromRegistersPage(context);
+        return new(context);
     }
 }

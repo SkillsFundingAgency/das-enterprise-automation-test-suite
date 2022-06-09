@@ -8,9 +8,9 @@ public class AS_SecureITInfrastructurePage : AS_EPAOApplyStandardBasePage
 
     public AS_AssessmentAdministrationPage EnterSecureITInfrastructurePlan()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_AssessmentAdministrationPage(context);
+        return new(context);
     }
 
 }

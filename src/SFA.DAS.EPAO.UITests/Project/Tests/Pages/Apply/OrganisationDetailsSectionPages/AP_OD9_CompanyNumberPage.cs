@@ -15,6 +15,6 @@ public class AP_OD9_CompanyNumberPage : EPAO_BasePage
         SelectRadioOptionByForAttribute("CD-17");
         formCompletionHelper.EnterText(CompanyNumberTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(8));
         Continue();
-        return new AP_OD10_DirectorDetailsPage(context);
+        return new(context);
     }
 }

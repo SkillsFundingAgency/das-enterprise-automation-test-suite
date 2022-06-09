@@ -12,6 +12,6 @@ public class AS_WhichLearningOptionPage : EPAOAssesment_BasePage
     {
         SelectRadioOptionByText(pageInteractionHelper.GetText(RadioLabels));
         Continue();
-        return new AS_DeclarationPage(context);
+        return new(context);
     }
 }

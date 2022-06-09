@@ -9,7 +9,7 @@ public class FinancialAssesmentPage : EPAOAdmin_BasePage
     public FinancialHealthEvaluationPage GoToNewApplicationOverviewPage()
     {
         formCompletionHelper.ClickLinkByText(objectContext.GetApplyOrganisationName());
-        return new FinancialHealthEvaluationPage(context);
+        return new(context);
     }
 
     public new StaffDashboardPage ReturnToDashboard() => base.ReturnToDashboard();
