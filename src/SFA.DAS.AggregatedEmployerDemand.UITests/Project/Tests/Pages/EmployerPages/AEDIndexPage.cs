@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
 public class AedIndexPage : AedBasePage
 {

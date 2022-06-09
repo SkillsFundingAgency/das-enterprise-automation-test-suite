@@ -1,51 +1,47 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
+public class TrainingCourseSummaryPage : FATV2BasePage
 {
-    public class TrainingCourseSummaryPage : FATV2BasePage
+    protected override string PageTitle => objectContext.GetTrainingCourseName();
+
+    #region Locators
+    private static By LocationTextBox => By.Id("search-location");
+    private static By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
+    private static By BackToCourseSearchPage => By.Id("courses-breadcrumb");
+
+    #endregion
+
+    public TrainingCourseSummaryPage(ScenarioContext context) : base(context) { }
+
+    public FATV2IndexPage NavigateBackToHompage()
     {
-        protected override string PageTitle => objectContext.GetTrainingCourseName();
+        NavigateToHomepage();
+        return new FATV2IndexPage(context);
+    }
 
-        #region Locators
-        private By LocationTextBox => By.Id("search-location");
-        private By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
-        private By BackToCourseSearchPage => By.Id("courses-breadcrumb");
+    public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
+    {
+        formCompletionHelper.EnterText(LocationTextBox, location);
+        formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
+        formCompletionHelper.Click(ViewProvidersForThisCourseButton);
+        return new ProviderSearchResultsPage(context);
+    }
 
-        #endregion
+    public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
+    {
+        formCompletionHelper.Click(ViewProvidersForThisCourseButton);
+        return new ProviderSearchResultsPage(context);
+    }
 
-        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) { }
+    public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
+    {
+        NavigateBackToCourseSummary();
+        return new TrainingCourseSearchResultsPage(context);
+    }
 
-        public FATV2IndexPage NavigateBackToHompage()
-        {
-            NavigateToHomepage();
-            return new FATV2IndexPage(context);
-        }
-
-        public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
-        {
-            formCompletionHelper.EnterText(LocationTextBox, location);
-            formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
-            formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-            return new ProviderSearchResultsPage(context);
-        }
-
-        public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
-        {
-            formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-            return new ProviderSearchResultsPage(context);
-        }
-
-        public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
-        {
-            NavigateBackToCourseSummary();
-            return new TrainingCourseSearchResultsPage(context);
-        }
-
-        public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
-        {
-            formCompletionHelper.Click(BackToCourseSearchPage);
-            return new TrainingCourseSearchResultsPage(context);
-        }
+    public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
+    {
+        formCompletionHelper.Click(BackToCourseSearchPage);
+        return new TrainingCourseSearchResultsPage(context);
     }
 }
