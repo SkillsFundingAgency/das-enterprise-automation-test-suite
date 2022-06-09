@@ -8,7 +8,7 @@ public class FATV2StepsHelper
 
     public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATV2IndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
 
-    public ProviderSummaryPage SelectAProvider() => new ProviderSearchResultsPage(_context).SelectAProvider();
+    public ProviderSummaryPage SelectASpecificProvider(string provider) => new ProviderSearchResultsPage(_context).ClickSpecifiedProvider(provider);
 
     public ProviderShortlistPage ShortlistATrainingCourseAndNavigateToShortlistPage() => ViewProvidersForThisCourse().ShortlistAProviderFromProviderList().NavigateToProviderShortlistPage();
 

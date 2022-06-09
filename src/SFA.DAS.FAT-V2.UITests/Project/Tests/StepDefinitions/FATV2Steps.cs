@@ -70,8 +70,8 @@ public class FATV2Steps
             _trainingCourseSearchResultsPage.SelectRelevanceOrderSort();
     }
 
-    [When(@"the User selects a provider from the list")]
-    public void WhenTheUserSelectsAProviderFromTheList() => _providerSummaryPage = _fATV2StepsHelper.SelectAProvider();
+    [When(@"the User selects (.*) from the list")]
+    public void WhenTheUserSelectsAProviderFromTheList(string provider) => _providerSummaryPage = _fATV2StepsHelper.SelectASpecificProvider(provider);
 
     [When(@"enters the location (.*)")]
     public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);
