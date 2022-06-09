@@ -5,7 +5,7 @@ public class AS_UsersPage : EPAO_BasePage
     protected override string PageTitle => "Users";
 
     #region Locators
-    private static By ManageUserNameLink => By.LinkText("Mr Preprod Epao0007");
+    private static By ManageUserNameLink => By.LinkText("Raj EPA7");
     private static By PermissionsEditUserLink => By.LinkText("Liz Kemp");
     private static By InviteNewUSerButton => By.LinkText("Invite new user");
     #endregion
