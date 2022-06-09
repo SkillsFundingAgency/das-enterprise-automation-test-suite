@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task CompleteEmploymentCheck(Guid apprenticeshipIncentiveId, EmploymentCheckType checkType, bool result)
         {
-            var employmentCheck = _sqlHelper.GetAllFromDatabase<EmploymentCheck>()
+            var employmentCheck = _sqlHelper.GetAllFromDatabase<Models.EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == apprenticeshipIncentiveId && x.CheckType == checkType);
 
             var id = employmentCheck.Id;
