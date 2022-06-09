@@ -1,27 +1,23 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
+public class AD_CompleteReview : EPAO_BasePage
 {
-    public class AD_CompleteReview : EPAO_BasePage
+    protected override string PageTitle => "Complete review";
+
+    private static By ApproveApplicationButton => By.CssSelector("button.govuk-button");
+    private static By AskForMoreInformationButton => By.CssSelector("button.govuk-button");
+
+    public AD_CompleteReview(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AD_YouhaveApprovedThisWithdrawalNotification ClickApproveApplication()
     {
-        protected override string PageTitle => "Complete review";
+        formCompletionHelper.Click(ApproveApplicationButton);
+        return new AD_YouhaveApprovedThisWithdrawalNotification(context);
+    }
 
-        private By ApproveApplicationButton => By.CssSelector("button.govuk-button");
-        private By AskForMoreInformationButton => By.CssSelector("button.govuk-button");
-
-        public AD_CompleteReview(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AD_YouhaveApprovedThisWithdrawalNotification ClickApproveApplication()
-        {
-            formCompletionHelper.Click(ApproveApplicationButton);
-            return new AD_YouhaveApprovedThisWithdrawalNotification(context);
-        }
-
-        public AD_FeedbackSent ClickAddFeedback()
-        {
-            formCompletionHelper.Click(AskForMoreInformationButton);
-            return new AD_FeedbackSent(context);
-        }
+    public AD_FeedbackSent ClickAddFeedback()
+    {
+        formCompletionHelper.Click(AskForMoreInformationButton);
+        return new AD_FeedbackSent(context);
     }
 }

@@ -1,11 +1,39 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.TestDataExport.Helper;
-using TechTalk.SpecFlow;
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text.RegularExpressions;
+global using TechTalk.SpecFlow;
+global using OpenQA.Selenium;
+global using NUnit.Framework;
+global using SFA.DAS.ConfigurationBuilder;
+global using SFA.DAS.UI.Framework;
+global using SFA.DAS.UI.FrameworkHelpers;
+global using SFA.DAS.UI.Framework.TestSupport;
+global using SFA.DAS.Login.Service;
+global using SFA.DAS.Login.Service.Project.Helpers;
+global using SFA.DAS.TestDataExport.Helper;
+global using SFA.DAS.FrameworkHelpers;
+global using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+global using SFA.DAS.EPAO.UITests.Project.Helpers;
+global using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+global using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.EPAOStandardCancellationPages;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessmentSection;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.AuthoriserDetailsSubSection;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.DiscretionaryExclusionSubSection;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.ApplicationAccuracySubSection;
+global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.MandatoryExclusionSubSection;
+
 
 namespace SFA.DAS.EPAO.UITests.Project
 {
@@ -52,7 +80,7 @@ namespace SFA.DAS.EPAO.UITests.Project
 
         [BeforeScenario(Order = 33)]
         [Scope(Tag = "deleteorganisationstandards")]
-        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.StandardCode, _ePAOAdminDataHelper.OrganisationEpaoId);
+        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.StandardCode, EPAOAdminDataHelper.OrganisationEpaoId);
 
         [BeforeScenario(Order = 34)]
         [Scope(Tag = "resetapplyuserorganisationid")]
@@ -76,7 +104,7 @@ namespace SFA.DAS.EPAO.UITests.Project
 
         [AfterScenario(Order = 34)]
         [Scope(Tag = "makeorganisationlive")]
-        public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId));
+        public void MakeOrganisationLive() => _tryCatch.AfterScenarioException(() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(EPAOAdminDataHelper.MakeLiveOrganisationEpaoId));
 
         [AfterScenario(Order = 18)]
         [Scope(Tag = "cancelstandard")]

@@ -1,22 +1,18 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
+public class AS_SignedOutPage : EPAO_BasePage
 {
-    public class AS_SignedOutPage : EPAO_BasePage
+    protected override string PageTitle => "You have successfully signed out";
+
+    #region Locators
+    private static By SignBackInLink => By.XPath("//span[text()='sign back in']");
+    #endregion
+
+    public AS_SignedOutPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_LandingPage ClickSignBackInLink()
     {
-        protected override string PageTitle => "You have successfully signed out";
-
-        #region Locators
-        private By SignBackInLink => By.XPath("//span[text()='sign back in']");
-        #endregion
-
-        public AS_SignedOutPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_LandingPage ClickSignBackInLink()
-        {
-            formCompletionHelper.Click(SignBackInLink);
-            return new AS_LandingPage(context);
-        }
+        formCompletionHelper.Click(SignBackInLink);
+        return new AS_LandingPage(context);
     }
 }

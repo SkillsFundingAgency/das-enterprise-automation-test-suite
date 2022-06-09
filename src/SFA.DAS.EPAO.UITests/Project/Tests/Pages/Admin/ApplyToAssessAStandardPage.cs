@@ -1,19 +1,16 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class ApplyToAssessAStandardPage : EPAOAdmin_BasePage
 {
-    public class ApplyToAssessAStandardPage : EPAOAdmin_BasePage
+    protected override string PageTitle => "Apply to assess a standard";
+
+    public ApplyToAssessAStandardPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public StandardApplicationOverviewPage SelectYesAndContinue()
     {
-        protected override string PageTitle => "Apply to assess a standard";
-
-        public ApplyToAssessAStandardPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public StandardApplicationOverviewPage SelectYesAndContinue()
-        {
-            SelectRadioOptionByText("Yes");
-            Continue();
-            return new StandardApplicationOverviewPage(context);
-        }
+        SelectRadioOptionByText("Yes");
+        Continue();
+        return new StandardApplicationOverviewPage(context);
     }
 }
 

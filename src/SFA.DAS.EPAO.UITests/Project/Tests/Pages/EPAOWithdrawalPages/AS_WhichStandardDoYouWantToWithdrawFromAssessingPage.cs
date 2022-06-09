@@ -1,37 +1,32 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
+public class AS_CheckWithdrawalRequestPage : EPAO_BasePage
 {
+    protected override string PageTitle => "Check withdrawal request";
 
-    public class AS_CheckWithdrawalRequestPage: EPAO_BasePage
+    public AS_CheckWithdrawalRequestPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_WithdrawalRequestOverviewPage ContinueWithWithdrawalRequest()
     {
-        protected override string PageTitle => "Check withdrawal request";
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(By.CssSelector("#yes")));
 
-        public AS_CheckWithdrawalRequestPage(ScenarioContext context) : base(context) => VerifyPage();
+        Continue();
 
-        public AS_WithdrawalRequestOverviewPage ContinueWithWithdrawalRequest()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(By.CssSelector("#yes")));
-
-            Continue();
-
-            return new AS_WithdrawalRequestOverviewPage(context);
-        }
+        return new AS_WithdrawalRequestOverviewPage(context);
     }
+}
 
 
-    public class AS_WhichStandardDoYouWantToWithdrawFromAssessingPage : EPAO_BasePage
+public class AS_WhichStandardDoYouWantToWithdrawFromAssessingPage : EPAO_BasePage
+{
+    protected override string PageTitle => "Which standard do you want to withdraw from assessing?";
+
+    public AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_CheckWithdrawalRequestPage ClickASpecificStandardToWithdraw()
     {
-        protected override string PageTitle => "Which standard do you want to withdraw from assessing?";
+        tableRowHelper.SelectRowFromTable("Select", "Brewer (Level 4)");
 
-        public AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_CheckWithdrawalRequestPage ClickASpecificStandardToWithdraw()
-        {
-            tableRowHelper.SelectRowFromTable("Select", "Brewer (Level 4)");
-
-            return new AS_CheckWithdrawalRequestPage(context);
-        }
+        return new AS_CheckWithdrawalRequestPage(context);
     }
 }
