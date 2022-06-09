@@ -1,33 +1,19 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
+public class AS_SearchEmployerAddressPage : EPAOAssesment_BasePage
 {
-    public class AS_SearchEmployerAddressPage : EPAOAssesment_BasePage
+    protected override string PageTitle => "Search for the address that you'd like us to send the certificate to";
+    protected override By PageHeader => By.CssSelector(".js-search-address-heading");
+
+    #region Locators
+    private static By EnterAddressManuallyLink => By.Id("enterAddressManually");
+    #endregion
+
+    public AS_SearchEmployerAddressPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_AddEmployerAddress ClickEnterAddressManuallyLinkInSearchEmployerPage()
     {
-        protected override string PageTitle => "Search for the address that you'd like us to send the certificate to";        
-        protected override By PageHeader => By.CssSelector(".js-search-address-heading");
-        
-
-        #region Locators
-        private By AddressSearchTextBox => By.Id("postcode-search");
-        private By AutoSuggestOptions => By.CssSelector(".ui-menu-item");
-        private By SelectedAddressPanel => By.CssSelector(".js-address-panel");
-        private By EnterAddressManuallyLink => By.Id("enterAddressManually");
-        #endregion
-
-        public AS_SearchEmployerAddressPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_ConfirmAddressPage ClickContinueInSearchEmployerAddressPage()
-        {
-            Continue();
-            return new AS_ConfirmAddressPage(context);
-        }
-
-        public AS_AddEmployerAddress ClickEnterAddressManuallyLinkInSearchEmployerPage()
-        {
-            formCompletionHelper.Click(EnterAddressManuallyLink);
-            return new AS_AddEmployerAddress(context);
-        }
+        formCompletionHelper.Click(EnterAddressManuallyLink);
+        return new AS_AddEmployerAddress(context);
     }
 }

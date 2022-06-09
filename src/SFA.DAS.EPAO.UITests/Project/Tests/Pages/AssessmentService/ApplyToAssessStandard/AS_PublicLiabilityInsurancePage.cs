@@ -1,17 +1,14 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
+public class AS_PublicLiabilityInsurancePage : AS_EPAOApplyStandardBasePage
 {
-    public class AS_PublicLiabilityInsurancePage : AS_EPAOApplyStandardBasePage
+    protected override string PageTitle => "Public liability insurance";
+
+    public AS_PublicLiabilityInsurancePage(ScenarioContext context) : base(context) { }
+
+    public AS_IndemnityInsurancePage UploadPublicLiabilityInsurance()
     {
-        protected override string PageTitle => "Public liability insurance";
-
-        public AS_PublicLiabilityInsurancePage(ScenarioContext context) : base(context) { }
-
-        public AS_IndemnityInsurancePage UploadPublicLiabilityInsurance()
-        {
-            UploadFile();
-            return new AS_IndemnityInsurancePage(context);
-        }
+        UploadFile();
+        return new AS_IndemnityInsurancePage(context);
     }
 }

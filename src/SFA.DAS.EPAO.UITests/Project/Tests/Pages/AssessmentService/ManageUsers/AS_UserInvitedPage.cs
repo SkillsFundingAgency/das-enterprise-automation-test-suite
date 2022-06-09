@@ -1,20 +1,16 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
+class AS_UserInvitedPage : EPAO_BasePage
 {
-    class AS_UserInvitedPage : EPAO_BasePage
+    protected override string PageTitle => "User invited";
+
+    private static By InviteSomeoneElseLink => By.LinkText("Invite someone else");
+
+    public AS_UserInvitedPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_InviteUserPage ClickInviteSomeoneElseLink()
     {
-        protected override string PageTitle => "User invited";
-
-        private By InviteSomeoneElseLink => By.LinkText("Invite someone else");
-
-        public AS_UserInvitedPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_InviteUserPage ClickInviteSomeoneElseLink()
-        {
-            formCompletionHelper.Click(InviteSomeoneElseLink);
-            return new AS_InviteUserPage(context);
-        }
+        formCompletionHelper.Click(InviteSomeoneElseLink);
+        return new AS_InviteUserPage(context);
     }
 }

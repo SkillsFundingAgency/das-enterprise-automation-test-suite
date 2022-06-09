@@ -1,22 +1,18 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
+public class AS_AssessmentRecordedPage : EPAO_BasePage
 {
-    public class AS_AssessmentRecordedPage : EPAO_BasePage
+    protected override string PageTitle => "Assessment recorded";
+
+    #region Locators
+    private static By RecordAnotherGradeLink => By.LinkText("Record another grade");
+    #endregion
+
+    public AS_AssessmentRecordedPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_RecordAGradePage ClickRecordAnotherGradeLink()
     {
-        protected override string PageTitle => "Assessment recorded";
-        
-        #region Locators
-        private By RecordAnotherGradeLink => By.LinkText("Record another grade");
-        #endregion
-
-        public AS_AssessmentRecordedPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_RecordAGradePage ClickRecordAnotherGradeLink()
-        {
-            formCompletionHelper.Click(RecordAnotherGradeLink);
-            return new AS_RecordAGradePage(context);
-        }
+        formCompletionHelper.Click(RecordAnotherGradeLink);
+        return new AS_RecordAGradePage(context);
     }
 }

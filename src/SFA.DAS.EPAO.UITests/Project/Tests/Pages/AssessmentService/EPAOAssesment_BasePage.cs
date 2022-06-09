@@ -1,21 +1,18 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
+public abstract class EPAOAssesment_BasePage : EPAO_BasePage
 {
-    public abstract class EPAOAssesment_BasePage : EPAO_BasePage
+    public EPAOAssesment_BasePage(ScenarioContext context) : base(context) { }
+
+    public AS_CheckAndSubmitAssessmentPage ClickBackLink()
     {
-        public EPAOAssesment_BasePage(ScenarioContext context) : base(context) { }
+        NavigateBack();
+        return new AS_CheckAndSubmitAssessmentPage(context);
+    }
 
-        public AS_CheckAndSubmitAssessmentPage ClickBackLink()
-        {
-            NavigateBack();
-            return new AS_CheckAndSubmitAssessmentPage(context);
-        }
-
-        public AS_CheckAndSubmitAssessmentPage ClickApprenticeBackLink()
-        {
-            NavigateBack();
-            return new AS_CheckAndSubmitAssessmentPage(context);
-        }
+    public AS_CheckAndSubmitAssessmentPage ClickApprenticeBackLink()
+    {
+        NavigateBack();
+        return new AS_CheckAndSubmitAssessmentPage(context);
     }
 }

@@ -1,28 +1,24 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
+internal static class EPAOCAInUseUlns
 {
-    internal static class EPAOCAInUseUlns
+    private static readonly List<string> _ulns = new() { "1" };
+
+    internal static string GetInUseUln() { lock(_ulns) {return _ulns.ToString(","); } }
+
+    internal static void RemoveInUseUln(string uln) => _ulns.Remove(uln);
+
+    internal static bool IsNotInUseUln(string uln)
     {
-        private static readonly List<string> _ulns = new List<string>() { "1" };
-
-        internal static string GetInUseUln() { lock(_ulns) {return _ulns.ToString(","); } }
-
-        internal static void RemoveInUseUln(string uln) => _ulns.Remove(uln);
-
-        internal static bool IsNotInUseUln(string uln)
+        lock (_ulns)
         {
-            lock (_ulns)
+            if (!(_ulns.Contains(uln)))
             {
-                if (!(_ulns.Contains(uln)))
-                {
-                    _ulns.Add(uln);
-                    return true;
-                }
-
-                return false;
+                _ulns.Add(uln);
+                return true;
             }
+
+            return false;
         }
     }
 }

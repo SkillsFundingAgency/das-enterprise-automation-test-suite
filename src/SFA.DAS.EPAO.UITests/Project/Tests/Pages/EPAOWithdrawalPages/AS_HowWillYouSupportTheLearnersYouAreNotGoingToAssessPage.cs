@@ -1,37 +1,32 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
+public class AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage : EPAO_BasePage
 {
-    public class AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage : EPAO_BasePage
+    protected override string PageTitle => "How will you support the learners you are not going to assess?";
+    protected override By PageHeader => By.XPath("//*[@class='govuk-label govuk-label--xl']");
+
+    #region Locators
+    private static By HowWillYouSupportLearnersTextArea => By.Id("WR-03");
+    private By PageTitleLocator => By.XPath($"//label[contains(text(), '{PageTitle}')]");
+    #endregion
+
+    public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_HowWillYouCommunicateMarketExitToCustomersPage EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()
     {
-        protected override string PageTitle => "How will you support the learners you are not going to assess?";
-        protected override By PageHeader => By.XPath("//*[@class='govuk-label govuk-label--xl']");
+        VerifyElement(PageTitleLocator, PageTitle);
 
-        #region Locators
-        private By HowWillYouSupportLearnersTextArea => By.Id("WR-03");
+        formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
+        formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported");
+        Continue();
+        return new AS_HowWillYouCommunicateMarketExitToCustomersPage(context);
+    }
 
-        private By PageTitleLocator => By.XPath($"//label[contains(text(), '{PageTitle}')]");
-        #endregion
-
-        public AS_HowWillYouSupportTheLearnersYouAreNotGoingToAssessPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_HowWillYouCommunicateMarketExitToCustomersPage EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()
-        {
-            VerifyElement(PageTitleLocator, PageTitle);
-
-            formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
-            formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported");
-            Continue();
-            return new AS_HowWillYouCommunicateMarketExitToCustomersPage(context);
-        }
-
-        public AS_WithdrawalRequestOverviewPage UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
-        {
-            formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
-            formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported by another training provider");
-            Continue();
-            return new AS_WithdrawalRequestOverviewPage(context);
-        }
+    public AS_WithdrawalRequestOverviewPage UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
+    {
+        formCompletionHelper.Click(HowWillYouSupportLearnersTextArea);
+        formCompletionHelper.EnterText(HowWillYouSupportLearnersTextArea, "Learners will be supported by another training provider");
+        Continue();
+        return new AS_WithdrawalRequestOverviewPage(context);
     }
 }

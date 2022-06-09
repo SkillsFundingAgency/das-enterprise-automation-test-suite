@@ -1,24 +1,20 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
+public class AP_OD5_UkprnPage : EPAO_BasePage
 {
-    public class AP_OD5_UkprnPage : EPAO_BasePage
+    protected override string PageTitle => "Do you have a UK provider registration number (UKPRN)?";
+
+    #region Locators
+    private static By UkprnTextbox => By.Id("CD-12.1");
+    #endregion
+
+    public AP_OD5_UkprnPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AP_OD6_OverallExecutiveMgtPage EnterUkprnAndContinueInDoYouHaveAUkprnPage()
     {
-        protected override string PageTitle => "Do you have a UK provider registration number (UKPRN)?";
-        
-        #region Locators
-        private By UkprnTextbox => By.Id("CD-12.1");
-        #endregion
-
-        public AP_OD5_UkprnPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AP_OD6_OverallExecutiveMgtPage EnterUkprnAndContinueInDoYouHaveAUkprnPage()
-        {
-            SelectRadioOptionByForAttribute("CD-12");
-            formCompletionHelper.EnterText(UkprnTextbox, ePAOApplyDataHelper.GetRandomNumber(8));
-            Continue();
-            return new AP_OD6_OverallExecutiveMgtPage(context);
-        }
+        SelectRadioOptionByForAttribute("CD-12");
+        formCompletionHelper.EnterText(UkprnTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomNumber(8));
+        Continue();
+        return new AP_OD6_OverallExecutiveMgtPage(context);
     }
 }
