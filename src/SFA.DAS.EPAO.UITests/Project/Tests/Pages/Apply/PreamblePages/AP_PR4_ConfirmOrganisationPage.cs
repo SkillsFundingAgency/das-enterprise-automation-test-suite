@@ -9,6 +9,6 @@ public class AP_PR4_ConfirmOrganisationPage : EPAO_BasePage
     public AP_PR5_DeclarationPage ClickConfirmAndApplyButtonInConfirmOrgPage()
     {
         Continue();
-        return new AP_PR5_DeclarationPage(context);
+        return new(context);
     }
 }

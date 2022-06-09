@@ -11,6 +11,6 @@ public class CheckYourAnswersBeforeDeletingThisCertificatePage : EPAOAdmin_BaseP
     public YouHaveSuccessfullyDeletedPage ClickDeleteCertificateButton()
     {
         formCompletionHelper.ClickElement(DeleteCertificate);
-        return new YouHaveSuccessfullyDeletedPage(context);
+        return new(context);
     }
 }

@@ -10,6 +10,6 @@ public class AP_DME_1_CriminalConvictionsPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("M_DEL-09_1");
         Continue();
-        return new AP_DME_2_FinancialConvictionsPage(context);
+        return new(context);
     }
 }

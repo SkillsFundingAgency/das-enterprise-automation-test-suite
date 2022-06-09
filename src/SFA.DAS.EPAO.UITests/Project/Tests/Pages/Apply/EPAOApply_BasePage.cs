@@ -7,6 +7,6 @@ public abstract class EPAOApply_BasePage : EPAO_BasePage
     public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
     {
         Continue();
-        return new AP_ApplicationOverviewPage(context);
+        return new(context);
     }
 }

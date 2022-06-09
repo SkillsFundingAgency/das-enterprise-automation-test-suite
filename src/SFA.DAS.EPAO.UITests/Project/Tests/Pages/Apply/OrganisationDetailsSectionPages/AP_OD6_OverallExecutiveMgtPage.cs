@@ -17,6 +17,6 @@ public class AP_OD6_OverallExecutiveMgtPage : EPAO_BasePage
         SelectRadioOptionByForAttribute("CD-14");
         formCompletionHelper.EnterText(PostitionDetailsTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomAlphabeticString(50));
         Continue();
-        return new AP_OD7_OfqualRecognitionNumberPage(context);
+        return new(context);
     }
 }

@@ -9,6 +9,6 @@ public class AS_ModerationProcessesPage : AS_EPAOApplyStandardBasePage
     public AS_ComplaintsAndAppealsPolicyPage UploadModerationProcesses()
     {
         UploadFile();
-        return new AS_ComplaintsAndAppealsPolicyPage(context);
+        return new(context);
     }
 }

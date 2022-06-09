@@ -90,7 +90,7 @@ public class AssessmentServiceStepsHelper
             .ClickViewOrganisationDetailsLink();
     }
 
-    public static string InviteAUser(AS_LoggedInHomePage _loggedInHomePage) => _loggedInHomePage.ClickManageUsersLink().ClickInviteNewUserButton().EnterUserDetailsAndSendInvite(); 
+    public static string InviteAUser(AS_LoggedInHomePage _loggedInHomePage) => _loggedInHomePage.ClickManageUsersLink().ClickInviteNewUserButton().EnterUserDetailsAndSendInvite();
 
     public void DeleteCertificate(StaffDashboardPage staffDashboardPage)
     {
@@ -114,7 +114,7 @@ public class AssessmentServiceStepsHelper
         new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
         if (route == "employer") return SelectGradeEmployerRoute(grade);
-        
+
         else return SelectGradeApprenticeRoute(grade);
     }
 
@@ -145,7 +145,7 @@ public class AssessmentServiceStepsHelper
             .ClickContinueInConfirmEmployerAddressPage();
         }
         else if (grade == "PassWithExcellence") PassWithExcellence();
-        
+
         return new AS_CheckAndSubmitAssessmentPage(_context);
     }
 
@@ -173,5 +173,5 @@ public class AssessmentServiceStepsHelper
 
             else return confirmApprenticePage.GoToDeclarationPage(learnerCriteria.HasMultiStandards);
         }
-    }       
+    }
 }

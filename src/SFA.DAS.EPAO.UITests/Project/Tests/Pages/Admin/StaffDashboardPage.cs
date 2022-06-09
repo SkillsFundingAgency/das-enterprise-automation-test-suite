@@ -31,72 +31,72 @@ public class StaffDashboardPage : EPAOAdmin_BasePage
     public SearchPage Search()
     {
         formCompletionHelper.ClickElement(SearchLink);
-        return new SearchPage(context);
+        return new(context);
     }
 
     public OrganisationSearchPage SearchEPAO()
     {
         formCompletionHelper.ClickElement(Register);
-        return new OrganisationSearchPage(context);
+        return new(context);
     }
 
     public AddOrganisationPage AddOrganisation()
     {
         formCompletionHelper.ClickElement(AddOrganisationLink);
-        return new AddOrganisationPage(context);
+        return new(context);
     }
 
     public BatchSearchPage SearchEPAOBatch()
     {
         formCompletionHelper.ClickElement(BatchSearch);
-        return new BatchSearchPage(context);
+        return new(context);
     }
 
     public OrganisationApplicationsPage GoToNewOrganisationApplications()
     {
         formCompletionHelper.ClickElement(NewOrganisationApplication);
-        return new OrganisationApplicationsPage(context);
+        return new(context);
     }
 
     public OrganisationApplicationsPage GoToInProgressOrganisationApplication()
     {
         formCompletionHelper.ClickElement(InProgressOrganisationApplication);
-        return new OrganisationApplicationsPage(context);
+        return new(context);
     }
 
     public OrganisationApplicationsPage GoToApprovedOrganisationApplication()
     {
         formCompletionHelper.ClickElement(ApprovedOrganisationApplication);
-        return new OrganisationApplicationsPage(context);
+        return new(context);
     }
 
     public FinancialAssesmentPage GoToNewFinancialAssesmentPage()
     {
         formCompletionHelper.ClickElement(NewFinancialHeathAssesment);
-        return new FinancialAssesmentPage(context);
+        return new(context);
     }
 
     public StandardApplicationsPage GoToNewStandardApplications()
     {
         formCompletionHelper.ClickElement(NewStandardApplication);
-        return new StandardApplicationsPage(context);
+        return new(context);
     }
 
     public StandardApplicationsPage GoToInProgressStandardApplication()
     {
         formCompletionHelper.ClickElement(InProgressStandardApplication);
-        return new StandardApplicationsPage(context);
+        return new(context);
     }
 
     public AD_WithdrawalApplicationsPage GoToNewWithdrawalApplications()
     {
         formCompletionHelper.ClickElement(NewWithdrawalApplications);
-        return new AD_WithdrawalApplicationsPage(context);
+        return new(context);
     }
 
     public AD_WithdrawalApplicationsPage GoToFeedbackWithdrawalApplications()
     {
         formCompletionHelper.ClickElement(FeedbackWithdrawalApplications);
-        return new AD_WithdrawalApplicationsPage(context);
+        return new(context);
     }
 }

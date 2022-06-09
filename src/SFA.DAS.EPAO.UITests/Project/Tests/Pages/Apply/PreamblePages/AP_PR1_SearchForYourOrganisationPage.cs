@@ -14,13 +14,13 @@ public class AP_PR1_SearchForYourOrganisationPage : EPAO_BasePage
     {
         formCompletionHelper.EnterText(SearchTextBox, objectContext.GetApplyOrganisationName());
         Continue();
-        return new AP_PR2_SearchResultsForPage(context);
+        return new(context);
     }
 
     public AP_PR2_SearchResultsForPage EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(string searchTerm)
     {
         formCompletionHelper.EnterText(SearchTextBox, searchTerm);
         Continue();
-        return new AP_PR2_SearchResultsForPage(context);
+        return new(context);
     }
 }

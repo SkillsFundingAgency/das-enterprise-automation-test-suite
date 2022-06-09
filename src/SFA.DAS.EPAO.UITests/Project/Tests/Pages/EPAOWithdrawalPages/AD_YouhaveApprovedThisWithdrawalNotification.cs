@@ -19,6 +19,6 @@ public class AD_YouhaveApprovedThisWithdrawalNotification : EPAO_BasePage
     public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplications()
     {
         formCompletionHelper.ClickElement(ReturnToApprovedWithdrawals);
-        return new AD_WithdrawalApplicationsPage(context);
+        return new(context);
     }
 }

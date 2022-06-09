@@ -14,6 +14,6 @@ public class AD_CheckTheWithdrawDatePage : EPAO_BasePage
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(YesInput));
         Continue();
-        return new AD_CompleteReview(context);
+        return new(context);
     }
 }

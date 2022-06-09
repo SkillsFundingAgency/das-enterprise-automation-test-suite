@@ -11,6 +11,6 @@ public class SearchResultsPage : EPAOAdmin_BasePage
     public CertificateDetailsPage SelectACertificate()
     {
         formCompletionHelper.ClickElement(ViewLearner);
-        return new CertificateDetailsPage(context);
+        return new(context);
     }
 }

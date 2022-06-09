@@ -19,14 +19,14 @@ public class AS_AddEmployerAddress : EPAO_BasePage
     public AS_ConfirmAddressPage EnterEmployerAddressAndContinue()
     {
         EnterAddressAndContinue();
-        return new AS_ConfirmAddressPage(context);
+        return new(context);
     }
 
     public AS_AddRecipientsDetailsPage EnterEmployerNameAndAddressAndContinue()
     {
         EnterText(EmployerNameTextBox, "Nasdaq");
         EnterAddressAndContinue();
-        return new AS_AddRecipientsDetailsPage(context);
+        return new(context);
     }
 
     private void EnterAddressAndContinue()

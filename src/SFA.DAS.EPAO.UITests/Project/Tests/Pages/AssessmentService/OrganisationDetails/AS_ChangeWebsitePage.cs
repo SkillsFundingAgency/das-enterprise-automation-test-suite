@@ -14,7 +14,7 @@ public class AS_ChangeWebsitePage : EPAO_BasePage
     {
         formCompletionHelper.EnterText(WebsiteAddressTextBox, ePAOAssesmentServiceDataHelper.RandomWebsiteAddress);
         Continue();
-        return new AS_ConfirmWebsiteAddressPage(context);
+        return new(context);
     }
 }
 
@@ -27,7 +27,7 @@ public class AS_ConfirmWebsiteAddressPage : EPAO_BasePage
     public AS_WebsiteAddressUpdatedPage ClickConfirmButtonInConfirmWebsiteAddressPage()
     {
         Continue();
-        return new AS_WebsiteAddressUpdatedPage(context);
+        return new(context);
     }
 }
 

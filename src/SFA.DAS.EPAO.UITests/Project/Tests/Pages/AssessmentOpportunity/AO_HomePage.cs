@@ -29,7 +29,7 @@ public class AO_HomePage : EPAO_BasePage
     public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()
     {
         formCompletionHelper.Click(AbattoirWorkerApprovedStandardLink);
-        return new AO_ApprovedStandardDetailsPage(context);
+        return new(context);
     }
 
     public AO_HomePage ClickInDevelopmentTab()
@@ -41,7 +41,7 @@ public class AO_HomePage : EPAO_BasePage
     public AO_InDevelopmentStandardDetailsPage ClickOnInDevelopmentStandardLink()
     {
         formCompletionHelper.Click(JourneymanBookbinderInDevelopmentStandardLink);
-        return new AO_InDevelopmentStandardDetailsPage(context);
+        return new(context);
     }
 
     public AO_HomePage ClickInProposedTab()
@@ -53,6 +53,6 @@ public class AO_HomePage : EPAO_BasePage
     public AO_ProposedStandardDetailsPage ClickOnAProposedStandard()
     {
         formCompletionHelper.Click(Nutritionist);
-        return new AO_ProposedStandardDetailsPage(context);
+        return new(context);
     }
 }

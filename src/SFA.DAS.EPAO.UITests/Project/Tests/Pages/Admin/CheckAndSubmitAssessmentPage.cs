@@ -14,19 +14,19 @@ public class CheckAndSubmitAssessmentDetailsPage : EPAOAdmin_BasePage
     public CertificateSendToPage ClickChangeSendToLink()
     {
         formCompletionHelper.ClickElement(SendToChangeLink);
-        return new CertificateSendToPage(context);
+        return new(context);
     }
 
     public ConfirmationAmendPage ClickConfirmAmend()
     {
         Continue();
-        return new ConfirmationAmendPage(context);
+        return new(context);
     }
 
     public ConfirmationReprintPage ClickConfirmReprint()
     {
         Continue();
-        return new ConfirmationReprintPage(context);
+        return new(context);
     }
 
     public void VerifyRecipient(string recipient) => pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Recipient's Name"), recipient);

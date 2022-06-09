@@ -9,6 +9,6 @@ public abstract class AS_ChangeOrgDetailsBasePage : EPAO_BasePage
     public AS_OrganisationDetailsPage ClickViewOrganisationDetailsLink()
     {
         formCompletionHelper.Click(ViewOrganisationDetailsLink);
-        return new AS_OrganisationDetailsPage(context);
+        return new(context);
     }
 }

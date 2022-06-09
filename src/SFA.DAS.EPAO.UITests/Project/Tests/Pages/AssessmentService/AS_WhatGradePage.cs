@@ -30,13 +30,13 @@ public class AS_WhatGradePage : EPAOAssesment_BasePage
     private AS_ApprenticeFailedDatePage SelectGradeAsFail()
     {
         SelectGrade(FailRadioButton);
-        return new AS_ApprenticeFailedDatePage(context);
+        return new(context);
     }
 
     private AS_AchievementDatePage SelectGradeAsPass(By by)
     {
         SelectGrade(by);
-        return new AS_AchievementDatePage(context);
+        return new(context);
     }
 
     private void SelectGrade(By by)

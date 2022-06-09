@@ -12,6 +12,6 @@ public class SignInPage : EsfaSignInPage
     public StaffDashboardPage SignInWithValidDetails()
     {
         SubmitValidLoginDetails(_user.Username, _user.Password);
-        return new StaffDashboardPage(context);
+        return new(context);
     }
 }

@@ -10,6 +10,6 @@ public class AP_DDE_2_BankruptcyAndInsolvencyPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("D_DEL-14_1");
         Continue();
-        return new AP_DDE_3_CessationOfTradingPage(context);
+        return new(context);
     }
 }

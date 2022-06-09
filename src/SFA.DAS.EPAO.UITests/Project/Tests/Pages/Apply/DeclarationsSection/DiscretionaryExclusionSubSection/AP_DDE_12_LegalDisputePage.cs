@@ -10,6 +10,6 @@ public class AP_DDE_12_LegalDisputePage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-30_1");
         Continue();
-        return new AP_DAA_1_FalseDeclarationsPage(context);
+        return new(context);
     }
 }

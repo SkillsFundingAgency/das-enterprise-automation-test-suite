@@ -14,6 +14,6 @@ public class OrganisationSearchResultsPage : EPAOAdmin_BasePage
     {
         var text = pageInteractionHelper.GetText(Id);
         formCompletionHelper.ClickElement(ViewOrg(text));
-        return new OrganisationDetailsPage(context);
+        return new(context);
     }
 }

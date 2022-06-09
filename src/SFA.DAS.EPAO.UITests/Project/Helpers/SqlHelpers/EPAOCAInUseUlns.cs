@@ -4,7 +4,7 @@ internal static class EPAOCAInUseUlns
 {
     private static readonly List<string> _ulns = new() { "1" };
 
-    internal static string GetInUseUln() { lock(_ulns) {return _ulns.ToString(","); } }
+    internal static string GetInUseUln() { lock (_ulns) { return _ulns.ToString(","); } }
 
     internal static void RemoveInUseUln(string uln) => _ulns.Remove(uln);
 

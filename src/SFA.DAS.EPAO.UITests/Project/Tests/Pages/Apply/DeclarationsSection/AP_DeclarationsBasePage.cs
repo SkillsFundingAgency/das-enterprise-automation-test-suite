@@ -13,7 +13,7 @@
         public AP_DAD_1_AuthoriserDetailsPage ClickNameAndJobTitleLinkInDeclarationsBasePage()
         {
             formCompletionHelper.Click(NameAndJobTitleLink);
-            return new AP_DAD_1_AuthoriserDetailsPage(context);
+            return new(context);
         }
     }
 }

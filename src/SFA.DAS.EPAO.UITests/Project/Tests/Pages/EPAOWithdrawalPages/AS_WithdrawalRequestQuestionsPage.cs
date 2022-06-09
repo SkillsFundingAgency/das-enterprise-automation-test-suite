@@ -23,13 +23,13 @@ public class AS_WithdrawalRequestQuestionsPage : EPAO_BasePage
     {
         VerifyElement(StandardNameVerification, "ST0580 Brewer");
         formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
-        return new AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage(context);
+        return new(context);
     }
 
     public AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
     {
         formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
-        return new AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(context);
+        return new(context);
     }
 
     public AS_WithdrawalRequestOverviewPage VerifyAndReturnToApplicationOverviewPage()
@@ -39,7 +39,7 @@ public class AS_WithdrawalRequestQuestionsPage : EPAO_BasePage
         VerifyElement(CommunicatingMarketExitCompletedVerification, CompletedStatus);
         VerifyElement(WithdrawalDateCompletedVerification, CompletedStatus);
         formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-        return new AS_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 
     public AS_WithdrawalRequestOverviewPage VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
@@ -50,6 +50,6 @@ public class AS_WithdrawalRequestQuestionsPage : EPAO_BasePage
         VerifyElement(WithdrawalDateCompletedVerification, CompletedStatus);
         VerifyElement(SupportingLearnersVerification, CompletedStatus);
         formCompletionHelper.Click(ReturnToApplicationOverviewButton);
-        return new AS_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 }

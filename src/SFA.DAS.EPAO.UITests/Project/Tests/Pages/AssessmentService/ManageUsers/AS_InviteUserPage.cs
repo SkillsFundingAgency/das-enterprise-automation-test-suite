@@ -16,10 +16,7 @@ public class AS_InviteUserPage : EPAO_BasePage
     private static By ChangeRecordGradesCheckBox => By.Id("PrivilegesViewModel.PrivilegeViewModels[5].Selected");
     #endregion
 
-    public AS_InviteUserPage(ScenarioContext context) : base(context)
-    {
-        VerifyPage();
-    }
+    public AS_InviteUserPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public string EnterUserDetailsAndSendInvite()
     {

@@ -14,6 +14,6 @@ public abstract class ConfirmReasonBasePage : EPAOAdmin_BasePage
         formCompletionHelper.EnterText(IncidentNumberField, ticketReference);
         SelectCheckBoxByText(reasonForReprint);
         Continue();
-        return new CheckAndSubmitAssessmentDetailsPage(context);
+        return new(context);
     }
 }

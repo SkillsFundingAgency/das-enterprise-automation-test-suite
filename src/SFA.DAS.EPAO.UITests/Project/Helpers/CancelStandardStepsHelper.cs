@@ -8,7 +8,7 @@ public class CancelStandardStepsHelper
 
     public void CancelYourStandard()
     {
-        AP_ApplicationOverviewPage _aP_ApplicationOverviewPage = new AP_ApplicationOverviewPage(_context);
+        AP_ApplicationOverviewPage _aP_ApplicationOverviewPage = new(_context);
 
         _aP_ApplicationOverviewPage.ClickToCancelYourStandardApplication()
             .SelectYesToCancelStandardApplication()

@@ -15,24 +15,24 @@ public class AS_UsersPage : EPAO_BasePage
     public AS_UserDetailsPage ClickManageUserNameLink()
     {
         formCompletionHelper.Click(ManageUserNameLink);
-        return new AS_UserDetailsPage(context);
+        return new(context);
     }
 
     public AS_UserDetailsPage ClickPermissionsEditUserLink()
     {
         formCompletionHelper.Click(PermissionsEditUserLink);
-        return new AS_UserDetailsPage(context);
+        return new(context);
     }
 
     public AS_InviteUserPage ClickInviteNewUserButton()
     {
         formCompletionHelper.Click(InviteNewUSerButton);
-        return new AS_InviteUserPage(context);
+        return new(context);
     }
 
     public AS_UserDetailsPage ClickOnNewlyAddedUserLink(string userEmail)
     {
         formCompletionHelper.Click(By.XPath($"//span[text()='{userEmail}']/..//a"));
-        return new AS_UserDetailsPage(context);
+        return new(context);
     }
 }

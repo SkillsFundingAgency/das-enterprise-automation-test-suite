@@ -20,7 +20,7 @@ public class FinancialHealthEvaluationPage : EPAOAdmin_BasePage
         formCompletionHelper.EnterText(FindInputElement(MonthLabel), duedate.Month.ToString());
         formCompletionHelper.EnterText(FindInputElement(YearLabel), duedate.Year.ToString());
         Continue();
-        return new EvaluationSubmittedPage(context);
+        return new(context);
     }
 
     private IWebElement FindInputElement(By @by) => pageInteractionHelper.FindElement(@by).FindElement(ParentElement).FindElement(InputElement);

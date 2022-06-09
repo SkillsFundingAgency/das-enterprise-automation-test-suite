@@ -11,6 +11,6 @@ class AS_UserInvitedPage : EPAO_BasePage
     public AS_InviteUserPage ClickInviteSomeoneElseLink()
     {
         formCompletionHelper.Click(InviteSomeoneElseLink);
-        return new AS_InviteUserPage(context);
+        return new(context);
     }
 }

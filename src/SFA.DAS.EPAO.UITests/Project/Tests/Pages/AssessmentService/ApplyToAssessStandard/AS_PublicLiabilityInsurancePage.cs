@@ -9,6 +9,6 @@ public class AS_PublicLiabilityInsurancePage : AS_EPAOApplyStandardBasePage
     public AS_IndemnityInsurancePage UploadPublicLiabilityInsurance()
     {
         UploadFile();
-        return new AS_IndemnityInsurancePage(context);
+        return new(context);
     }
 }

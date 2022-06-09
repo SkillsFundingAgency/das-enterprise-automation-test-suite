@@ -14,6 +14,6 @@ public class AS_WhatIsTheMainReasonYouWantToWithdrawStandardPage : EPAO_BasePage
     {
         formCompletionHelper.SelectRadioOptionByLocator(ExternalQualityAssuranceProviderHasChanged);
         Continue();
-        return new AS_WillYouCompleteEPAOForAllRegisteredLearnersPage(context);
+        return new(context);
     }
 }

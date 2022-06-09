@@ -9,6 +9,6 @@ public class AP_PR5_DeclarationPage : EPAO_BasePage
     public AP_ApplicationOverviewPage ClickAcceptAndContinueInDeclarationPage()
     {
         Continue();
-        return new AP_ApplicationOverviewPage(context);
+        return new(context);
     }
 }

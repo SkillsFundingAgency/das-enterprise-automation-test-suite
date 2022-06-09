@@ -8,8 +8,8 @@ public class AS_ImproveTheQualityPage : AS_EPAOApplyStandardBasePage
 
     public AS_EngagementWithTrailblazersAndEmployersPage EnterImproveTheQuality()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_EngagementWithTrailblazersAndEmployersPage(context);
+        return new(context);
     }
 }

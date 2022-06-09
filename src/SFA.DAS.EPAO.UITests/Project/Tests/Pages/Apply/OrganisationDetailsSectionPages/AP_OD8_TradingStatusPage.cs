@@ -10,6 +10,6 @@ public class AP_OD8_TradingStatusPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("CD-16");
         Continue();
-        return new AP_OD9_CompanyNumberPage(context);
+        return new(context);
     }
 }

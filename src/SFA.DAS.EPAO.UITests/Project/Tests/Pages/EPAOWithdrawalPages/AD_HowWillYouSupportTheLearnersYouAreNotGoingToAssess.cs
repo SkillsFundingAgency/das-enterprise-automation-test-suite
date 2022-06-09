@@ -14,6 +14,6 @@ public class AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess : EPAO_BasePa
         formCompletionHelper.Click(FeedbackMessageTextArea);
         formCompletionHelper.EnterText(FeedbackMessageTextArea, EPAODataHelper.GetRandomAlphabeticString(200));
         formCompletionHelper.Click(AddFeedbackButton);
-        return new AD_WithdrawalRequestQuestionsPage(context);
+        return new(context);
     }
 }

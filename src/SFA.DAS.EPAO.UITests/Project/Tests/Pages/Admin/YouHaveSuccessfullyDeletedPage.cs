@@ -11,6 +11,6 @@ public class YouHaveSuccessfullyDeletedPage : EPAOAdmin_BasePage
     public StaffDashboardPage ClickReturnToDashboard()
     {
         formCompletionHelper.ClickElement(ReturnToStaffDashBoard);
-        return new StaffDashboardPage(context);
+        return new(context);
     }
 }

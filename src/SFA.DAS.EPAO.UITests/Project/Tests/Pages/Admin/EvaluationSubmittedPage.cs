@@ -9,7 +9,7 @@ public class EvaluationSubmittedPage : EPAOAdmin_BasePage
     public FinancialAssesmentPage ReturnToAccountHome()
     {
         formCompletionHelper.ClickLinkByText("Return to account home");
-        return new FinancialAssesmentPage(context);
+        return new(context);
     }
 
 }

@@ -13,7 +13,6 @@ public class BatchSearchResultsPage : EPAOAdmin_BasePage
     public BatchSearchResultsPage VerifyingBatchDetails()
     {
         VerifyElement(BatchDetailsHeader, "Batch details");
-        return new BatchSearchResultsPage(context);
+        return new(context);
     }
 }
-

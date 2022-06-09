@@ -10,6 +10,6 @@ public class AS_AssessmentAdministrationPage : AS_EPAOApplyStandardBasePage
     {
         formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_AssessmentProductsAndToolsPage(context);
+        return new(context);
     }
 }

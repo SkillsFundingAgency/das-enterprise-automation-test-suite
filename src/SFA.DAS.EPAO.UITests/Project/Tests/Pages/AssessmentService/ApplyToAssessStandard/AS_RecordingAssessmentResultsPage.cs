@@ -8,8 +8,8 @@ public class AS_RecordingAssessmentResultsPage : AS_EPAOApplyStandardBasePage
 
     public AS_EnterYourWebAddressPage EnterAssessmentResutls()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_EnterYourWebAddressPage(context);
+        return new(context);
     }
 }

@@ -10,6 +10,6 @@ public class AP_DDE_4_IncorrectTaxReturnsPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-22_1");
         Continue();
-        return new AP_DDE_5_HmrcChallengesPage(context);
+        return new(context);
     }
 }

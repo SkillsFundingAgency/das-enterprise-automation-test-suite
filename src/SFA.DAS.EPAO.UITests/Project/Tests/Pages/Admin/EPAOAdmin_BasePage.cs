@@ -15,7 +15,7 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
     public SignedOutPage SignOut()
     {
         formCompletionHelper.ClickElement(SignOutLink);
-        return new SignedOutPage(context);
+        return new(context);
     }
 
     protected IWebElement GetData(string headerName)
@@ -33,7 +33,7 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
     protected StaffDashboardPage ReturnToDashboard()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ReturnToDashboardlink));
-        return new StaffDashboardPage(context);
+        return new(context);
     }
 
 }

@@ -31,12 +31,12 @@ public class EPAOHomePageHelper
 
     public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginGoToApplyForAStandardPage();
 
-  public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
-  {
+    public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
+    {
         OpenAdminBaseUrl(true).ClickStartNowButton();
 
         return new StaffDashboardPage(_context);
-  }
+    }
 
     public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
 

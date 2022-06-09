@@ -10,6 +10,6 @@ public class AS_RemoveUserPage : EPAO_BasePage
     public AS_UserRemovedPage ClickRemoveUserButtonInRemoveUserPage()
     {
         Continue();
-        return new AS_UserRemovedPage(context);
+        return new(context);
     }
 }

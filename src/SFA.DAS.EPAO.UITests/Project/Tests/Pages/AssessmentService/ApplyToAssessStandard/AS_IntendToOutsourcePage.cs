@@ -11,6 +11,6 @@ public class AS_IntendToOutsourcePage : AS_EPAOApplyStandardBasePage
     public AS_EngageWithEmployersPage EnterIntendToOutsource()
     {
         SelectAndContinue("No");
-        return new AS_EngageWithEmployersPage(context);
+        return new(context);
     }
 }

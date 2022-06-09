@@ -10,7 +10,7 @@ public class NewOrgDeclarationsPage : EPAOAdmin_BasePage
     {
         SelectRadioOptionByText("Yes");
         Continue();
-        return new OrganisationApplicationOverviewPage(context);
+        return new(context);
     }
 }
 

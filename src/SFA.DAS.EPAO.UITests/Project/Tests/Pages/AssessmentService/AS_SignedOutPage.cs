@@ -13,6 +13,6 @@ public class AS_SignedOutPage : EPAO_BasePage
     public AS_LandingPage ClickSignBackInLink()
     {
         formCompletionHelper.Click(SignBackInLink);
-        return new AS_LandingPage(context);
+        return new(context);
     }
 }

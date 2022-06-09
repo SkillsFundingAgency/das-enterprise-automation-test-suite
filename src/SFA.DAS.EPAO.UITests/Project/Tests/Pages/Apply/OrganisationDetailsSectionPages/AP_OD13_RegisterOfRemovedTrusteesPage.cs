@@ -10,6 +10,6 @@ public class AP_OD13_RegisterOfRemovedTrusteesPage : EPAOApply_BasePage
     {
         SelectRadioOptionByForAttribute("CD-27_1");
         Continue();
-        return new AP_OrganisationDetailsBasePage(context);
+        return new(context);
     }
 }

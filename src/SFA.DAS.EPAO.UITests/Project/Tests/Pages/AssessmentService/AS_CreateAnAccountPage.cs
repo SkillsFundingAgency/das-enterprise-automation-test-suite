@@ -18,6 +18,6 @@ public class AS_CreateAnAccountPage : EPAO_BasePage
         formCompletionHelper.EnterText(FamilyNameTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomAlphabeticString(10));
         formCompletionHelper.EnterText(EmailAddressTextbox, ePAOAssesmentServiceDataHelper.RandomEmail);
         Continue();
-        return new AS_ConfirmYourIdentityPage(context);
+        return new(context);
     }
 }

@@ -21,7 +21,7 @@ public class AS_EditUserPermissionsPage : EPAO_BasePage
     public AS_UserDetailsPage ClickSaveButton()
     {
         Continue();
-        return new AS_UserDetailsPage(context);
+        return new(context);
     }
 
     public AS_EditUserPermissionsPage UnSelectChangeOrganisationDetailsCheckBox()

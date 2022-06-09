@@ -15,7 +15,7 @@ public class AS_YourWithdrawalRequestsPage : EPAO_BasePage
     public AS_WhatAreYouWithdrawingFromPage ClickStartNewWithdrawalNotification()
     {
         formCompletionHelper.Click(StandardNameVerification);
-        return new AS_WhatAreYouWithdrawingFromPage(context);
+        return new(context);
     }
 
     public void ValidateStatus(string status) => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Status(status)), $"Validate status:[{status}] exists on the page");
@@ -23,13 +23,13 @@ public class AS_YourWithdrawalRequestsPage : EPAO_BasePage
     public AS_WithdrawalRequestOverviewPage ClickOnViewLinkForInProgressApplication()
     {
         tableRowHelper.SelectRowFromTable("View", "In progress");
-        return new AS_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 
     public AS_FeedbackOnYourWithdrawalNotificationStartPage ClickViewOnRegisterWithdrawalWithFeedbackAdded()
     {
         formCompletionHelper.Click(ViewRegisterWithdrawalFeedbackLink);
-        return new AS_FeedbackOnYourWithdrawalNotificationStartPage(context);
+        return new(context);
     }
 
 }

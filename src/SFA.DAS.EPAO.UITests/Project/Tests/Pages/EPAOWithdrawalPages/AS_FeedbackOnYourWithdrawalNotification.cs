@@ -9,6 +9,6 @@ public class AS_FeedbackOnYourWithdrawalNotificationStartPage : EPAO_BasePage
     public AS_WithdrawalRequestOverviewPage ClickContinueButton()
     {
         Continue();
-        return new AS_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 }

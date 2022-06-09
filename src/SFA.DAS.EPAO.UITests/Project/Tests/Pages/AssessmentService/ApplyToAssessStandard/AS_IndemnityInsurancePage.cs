@@ -9,6 +9,6 @@ public class AS_IndemnityInsurancePage : AS_EPAOApplyStandardBasePage
     public AS_EmployersLiabilityInsurancePage UploadProfessionalIndemnityInsurance()
     {
         UploadFile();
-        return new AS_EmployersLiabilityInsurancePage(context);
+        return new(context);
     }
 }

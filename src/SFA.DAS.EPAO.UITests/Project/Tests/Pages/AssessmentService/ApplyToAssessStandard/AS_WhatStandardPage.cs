@@ -16,13 +16,13 @@ public class AS_WhatStandardPage : EPAO_BasePage
     {
         formCompletionHelper.EnterText(StandardName, objectContext.GetApplyStandardName());
         Continue();
-        return new AS_StandardSearchResultsPage(context);
+        return new(context);
     }
 
     public AS_StandardSearchResultsPage EnterStandardToCancelName()
     {
         formCompletionHelper.EnterText(StandardName, "Brewer");
         Continue();
-        return new AS_StandardSearchResultsPage(context);
+        return new(context);
     }
 }

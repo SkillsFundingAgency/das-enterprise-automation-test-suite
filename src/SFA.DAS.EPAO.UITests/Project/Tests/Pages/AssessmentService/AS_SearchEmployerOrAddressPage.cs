@@ -14,6 +14,6 @@ public class AS_SearchEmployerOrAddressPage : EPAOAssesment_BasePage
     public AS_AddEmployerAddress ClickEnterAddressManuallyLinkInSearchEmployerPage()
     {
         formCompletionHelper.Click(EnterAddressManuallyLink);
-        return new AS_AddEmployerAddress(context);
+        return new(context);
     }
 }

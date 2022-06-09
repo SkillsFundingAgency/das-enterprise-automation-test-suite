@@ -8,7 +8,7 @@ public class EPAOWithdrawalHelper
 
     public void StartOfStandardWithdrawalJourney()
     {
-        AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
         aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
                            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                            .ClickStartNewWithdrawalNotification()
@@ -19,7 +19,7 @@ public class EPAOWithdrawalHelper
 
     public void StartOfRegisterWithdrawalJourney()
     {
-        AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
         aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
                            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                            .ClickStartNewWithdrawalNotification()
@@ -29,7 +29,7 @@ public class EPAOWithdrawalHelper
 
     public void StandardApplicationFinalJourney()
     {
-        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
+        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(_context);
         aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
                                   .ClickGoToReasonForWithdrawingQuestionLink()
                                   .ClickExternalQualityAssuranceProviderHasChanged()
@@ -42,7 +42,7 @@ public class EPAOWithdrawalHelper
 
     public void RegisterWithdrawalQuestions()
     {
-        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
+        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(_context);
         aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
             .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
             .ClickAssessmentPlanHasChangedAndEnterOptionalReason()
@@ -132,11 +132,11 @@ public class EPAOWithdrawalHelper
             .VerifyAnApplicationAddedToApprovedTab()
             .VerifyApprovedTabContainsRegisterWithdrawal();
     }
-   
+
 
     public void AmmendWithdrawalApplication()
     {
-        AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
         aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
                            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
                            .ClickViewOnRegisterWithdrawalWithFeedbackAdded()

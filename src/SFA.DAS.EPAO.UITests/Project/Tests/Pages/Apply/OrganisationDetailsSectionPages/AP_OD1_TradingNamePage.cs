@@ -15,6 +15,6 @@ public class AP_OD1_TradingNamePage : EPAO_BasePage
         SelectRadioOptionByForAttribute("CD-30");
         formCompletionHelper.EnterText(TradingNameTextbox, Helpers.DataHelpers.EPAODataHelper.GetRandomAlphabeticString(10));
         Continue();
-        return new AP_OD2_UseTradingNameOnRegisterPage(context);
+        return new(context);
     }
 }

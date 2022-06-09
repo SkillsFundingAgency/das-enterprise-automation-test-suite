@@ -9,6 +9,6 @@ public class AD_FeedbackSent : EPAO_BasePage
     public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplications()
     {
         formCompletionHelper.ClickLinkByText("Return to withdrawal applications");
-        return new AD_WithdrawalApplicationsPage(context);
+        return new(context);
     }
 }

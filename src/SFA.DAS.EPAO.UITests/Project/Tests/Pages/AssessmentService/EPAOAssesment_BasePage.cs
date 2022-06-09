@@ -7,12 +7,12 @@ public abstract class EPAOAssesment_BasePage : EPAO_BasePage
     public AS_CheckAndSubmitAssessmentPage ClickBackLink()
     {
         NavigateBack();
-        return new AS_CheckAndSubmitAssessmentPage(context);
+        return new(context);
     }
 
     public AS_CheckAndSubmitAssessmentPage ClickApprenticeBackLink()
     {
         NavigateBack();
-        return new AS_CheckAndSubmitAssessmentPage(context);
+        return new(context);
     }
 }

@@ -8,8 +8,8 @@ public class AS_ReviewAndMaintainPage : AS_EPAOApplyStandardBasePage
 
     public AS_SecureITInfrastructurePage EnterReviewAndMaintainPlan()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_SecureITInfrastructurePage(context);
+        return new(context);
     }
 }

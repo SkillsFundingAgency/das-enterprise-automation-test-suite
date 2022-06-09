@@ -35,6 +35,6 @@ public class CertificateSendToPage : EPAOAdmin_BasePage
         }
 
         Continue();
-        return new CertificateAddressPage(context, "Add");
+        return new(context, "Add");
     }
 }

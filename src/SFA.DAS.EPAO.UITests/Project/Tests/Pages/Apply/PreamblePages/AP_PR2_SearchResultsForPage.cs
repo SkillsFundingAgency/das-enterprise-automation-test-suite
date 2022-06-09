@@ -15,7 +15,7 @@ public class AP_PR2_SearchResultsForPage : EPAO_BasePage
     public AP_PR3_SelectOrganisationTypePage ClickOrgLinkFromSearchResultsForPage()
     {
         formCompletionHelper.ClickButtonByText(ContinueButton, objectContext.GetApplyOrganisationName());
-        return new AP_PR3_SelectOrganisationTypePage(context);
+        return new(context);
     }
 
     public AP_PR2_SearchResultsForPage VerifyInvalidSearchResultText()

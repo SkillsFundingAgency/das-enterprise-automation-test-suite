@@ -11,13 +11,13 @@ public class AD_WithdrawalRequestOverviewPage : EPAO_BasePage
     public AD_WithdrawalRequestQuestionsPage GoToWithdrawalRequestQuestionsPage()
     {
         formCompletionHelper.ClickLinkByText("Evaluate withdrawal application");
-        return new AD_WithdrawalRequestQuestionsPage(context);
+        return new(context);
     }
 
     public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplicationsPage()
     {
         formCompletionHelper.ClickLinkByText("Return to withdrawal applications");
-        return new AD_WithdrawalApplicationsPage(context);
+        return new(context);
     }
 
     public AD_WithdrawalRequestOverviewPage VerifyAnswerUpdatedTag()
@@ -29,6 +29,6 @@ public class AD_WithdrawalRequestOverviewPage : EPAO_BasePage
     public AD_CheckTheWithdrawDatePage ClickCompleteReview()
     {
         formCompletionHelper.Click(CompleteReviewButton);
-        return new AD_CheckTheWithdrawDatePage(context);
+        return new(context);
     }
 }

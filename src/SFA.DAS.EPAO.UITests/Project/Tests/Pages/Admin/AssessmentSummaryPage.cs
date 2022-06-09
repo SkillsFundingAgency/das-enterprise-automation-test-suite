@@ -9,6 +9,6 @@ public class AssessmentSummaryPage : EPAOAdmin_BasePage
     public FeedbackSentPage ApproveApplication()
     {
         Continue();
-        return new FeedbackSentPage(context);
+        return new(context);
     }
 }

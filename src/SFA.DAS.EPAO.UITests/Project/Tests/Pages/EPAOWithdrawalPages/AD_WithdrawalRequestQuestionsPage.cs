@@ -14,12 +14,12 @@ public class AD_WithdrawalRequestQuestionsPage : EPAO_BasePage
     {
         formCompletionHelper.SelectRadioOptionByText("Yes");
         formCompletionHelper.Click(SaveButton);
-        return new AD_WithdrawalRequestOverviewPage(context);
+        return new(context);
     }
 
     public AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
     {
         formCompletionHelper.Click(AddFeedbackHowWillYouSupportLearnersLink);
-        return new AD_HowWillYouSupportTheLearnersYouAreNotGoingToAssess(context);
+        return new(context);
     }
 }

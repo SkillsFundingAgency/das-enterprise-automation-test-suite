@@ -11,12 +11,12 @@ public class AS_SelectApplicationPage : EPAO_BasePage
     public AS_ApplyForAStandardPage StartApplication()
     {
         formCompletionHelper.ClickElement(StartApplicationLink);
-        return new AS_ApplyForAStandardPage(context);
+        return new(context);
     }
 
     public AS_ApplicationOverviewPage SelectApplication()
     {
         tableRowHelper.SelectRowFromTable("View", objectContext.GetApplyStandardName());
-        return new AS_ApplicationOverviewPage(context);
+        return new(context);
     }
 }

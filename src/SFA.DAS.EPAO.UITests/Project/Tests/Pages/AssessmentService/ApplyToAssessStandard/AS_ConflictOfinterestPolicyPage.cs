@@ -9,6 +9,6 @@ public class AS_ConflictOfinterestPolicyPage : AS_EPAOApplyStandardBasePage
     public AS_MonitoringProceduresPage UploadConflictOfinterestPolicy()
     {
         UploadFile();
-        return new AS_MonitoringProceduresPage(context);
+        return new(context);
     }
 }

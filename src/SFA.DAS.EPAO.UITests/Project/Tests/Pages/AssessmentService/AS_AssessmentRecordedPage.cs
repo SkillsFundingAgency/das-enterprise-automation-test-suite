@@ -13,6 +13,6 @@ public class AS_AssessmentRecordedPage : EPAO_BasePage
     public AS_RecordAGradePage ClickRecordAnotherGradeLink()
     {
         formCompletionHelper.Click(RecordAnotherGradeLink);
-        return new AS_RecordAGradePage(context);
+        return new(context);
     }
 }

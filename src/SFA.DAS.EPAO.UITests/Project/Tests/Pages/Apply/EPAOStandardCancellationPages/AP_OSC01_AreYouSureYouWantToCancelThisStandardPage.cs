@@ -14,6 +14,6 @@ public class AP_OSC01_AreYouSureYouWantToCancelThisStandardPage : EPAO_BasePage
     {
         javaScriptHelper.ClickElement(ClickYesToCancelStandard);
         Continue();
-        return new AP_OSC02_YouHaveCancelledYourApplicationPage(context);
+        return new(context);
     }
 }

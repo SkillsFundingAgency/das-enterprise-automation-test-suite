@@ -8,8 +8,8 @@ public class AS_HowRecruitAndTrainAssessorsPage : AS_EPAOApplyStandardBasePage
 
     public AS_ExperiencePage EnterHowRecruitAndTrainAssessors()
     {
-        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();
-        return new AS_ExperiencePage(context);
+        return new(context);
     }
 }

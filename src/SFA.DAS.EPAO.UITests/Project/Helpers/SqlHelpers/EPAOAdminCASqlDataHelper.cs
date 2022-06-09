@@ -23,9 +23,9 @@ public class EPAOAdminCASqlDataHelper : SqlDbHelper
 
     public List<string> GetCATestData(string email, LearnerCriteria learnerCriteria) => GetTestData(() => GetTestData(email, learnerCriteria));
 
-    private List<string> GetTestData(Func<List<string>> func)
+    private static List<string> GetTestData(Func<List<string>> func)
     {
-        List<string> data = new List<string>();
+        List<string> data = new();
 
         int i = 0;
 
@@ -49,7 +49,7 @@ public class EPAOAdminCASqlDataHelper : SqlDbHelper
     {
         string query = FileHelper.GetSql(GetLearnersDataSqlFileName(learnerCriteria));
 
-        Dictionary<string, string> sqlParameters = new Dictionary<string, string>
+        Dictionary<string, string> sqlParameters = new()
         {
             { "@endPointAssessorEmail", email }
         };
@@ -59,7 +59,7 @@ public class EPAOAdminCASqlDataHelper : SqlDbHelper
         return GetData(query, sqlParameters);
     }
 
-    private string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool versionConfirmed, bool optionSet)
+    private static string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool versionConfirmed, bool optionSet)
     {
         sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Isactivestandard__", isActiveStandard ? $"{1}" : $"{0}");
         sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasVersions__", hasMultipleVersions ? $"{1}" : $"{0}");
@@ -73,5 +73,5 @@ public class EPAOAdminCASqlDataHelper : SqlDbHelper
         return sqlQueryFromFile;
     }
 
-    private string GetLearnersDataSqlFileName(LearnerCriteria learnerCriteria) => learnerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
+    private static string GetLearnersDataSqlFileName(LearnerCriteria learnerCriteria) => learnerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
 }

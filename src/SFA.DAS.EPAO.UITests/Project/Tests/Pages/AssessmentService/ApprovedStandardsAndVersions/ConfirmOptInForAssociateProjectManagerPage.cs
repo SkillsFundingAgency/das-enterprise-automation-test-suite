@@ -9,6 +9,6 @@ public class ConfirmOptInForAssociateProjectManagerPage : EPAO_BasePage
     public OptInConfirmationPage ConfirmOptIn()
     {
         Continue();
-        return new OptInConfirmationPage(context);
+        return new(context);
     }
 }

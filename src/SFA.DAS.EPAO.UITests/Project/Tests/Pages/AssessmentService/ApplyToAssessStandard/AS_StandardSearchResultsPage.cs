@@ -11,6 +11,6 @@ public class AS_StandardSearchResultsPage : EPAO_BasePage
     public AS_ConfirmAndApplyPage Apply()
     {
         tableRowHelper.SelectRowFromTable("Apply for standard", objectContext.GetApplyStandardName());
-        return new AS_ConfirmAndApplyPage(context);
+        return new(context);
     }
 }

@@ -22,7 +22,7 @@ public class AS_UserDetailsPage : EPAO_BasePage
     public AS_EditUserPermissionsPage ClickEditUserPermissionLink()
     {
         formCompletionHelper.Click(EditUserPermissionLink);
-        return new AS_EditUserPermissionsPage(context);
+        return new(context);
     }
 
     public bool IsViewDashboardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ViewDashboardPermission);
@@ -42,6 +42,6 @@ public class AS_UserDetailsPage : EPAO_BasePage
     public AS_RemoveUserPage ClicRemoveThisUserLinkInUserDetailPage()
     {
         formCompletionHelper.Click(RemoveThisUserLink);
-        return new AS_RemoveUserPage(context);
+        return new(context);
     }
 }

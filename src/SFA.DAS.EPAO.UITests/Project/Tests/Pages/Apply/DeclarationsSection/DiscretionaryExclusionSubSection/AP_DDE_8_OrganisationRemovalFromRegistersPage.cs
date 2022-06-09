@@ -10,6 +10,6 @@ public class AP_DDE_8_OrganisationRemovalFromRegistersPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-26_1");
         Continue();
-        return new AP_DDE_9_DirectionAndSanctionsPage(context);
+        return new(context);
     }
 }

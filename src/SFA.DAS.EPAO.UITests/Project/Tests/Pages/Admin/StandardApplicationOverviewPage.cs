@@ -9,18 +9,18 @@ public class StandardApplicationOverviewPage : EPAOAdmin_BasePage
     public ApplyToAssessAStandardPage GoToApplyToAssessAStandardPage()
     {
         formCompletionHelper.ClickLinkByText("Evaluate apply to assess a standard");
-        return new ApplyToAssessAStandardPage(context);
+        return new(context);
     }
 
     public StandardApplicationsPage ReturnToOrganisationApplicationsPage()
     {
         formCompletionHelper.ClickLinkByText("Return to applications");
-        return new StandardApplicationsPage(context);
+        return new(context);
     }
 
     public AssessmentSummaryPage CompleteReview()
     {
         Continue();
-        return new AssessmentSummaryPage(context);
+        return new(context);
     }
 }

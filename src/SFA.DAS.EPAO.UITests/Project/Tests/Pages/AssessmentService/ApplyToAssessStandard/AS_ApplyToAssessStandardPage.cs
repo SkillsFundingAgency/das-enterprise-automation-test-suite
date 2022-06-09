@@ -11,6 +11,6 @@ public class AS_ApplyToAssessStandardPage : EPAO_BasePage
     public AS_SelectApplicationPage SelectApplication()
     {
         formCompletionHelper.ClickElement(StartNow);
-        return new AS_SelectApplicationPage(context);
+        return new(context);
     }
 }

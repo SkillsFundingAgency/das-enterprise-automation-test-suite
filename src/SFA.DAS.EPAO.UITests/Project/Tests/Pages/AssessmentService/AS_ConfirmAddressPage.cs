@@ -8,6 +8,6 @@ public class AS_ConfirmAddressPage : EPAO_BasePage
     public AS_CheckAndSubmitAssessmentPage ClickContinueInConfirmEmployerAddressPage()
     {
         Continue();
-        return new AS_CheckAndSubmitAssessmentPage(context);
+        return new(context);
     }
 }

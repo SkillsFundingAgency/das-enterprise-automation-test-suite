@@ -10,6 +10,6 @@ public class AP_DDE_10_RepaymentOfPublicMoneyPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-28_1");
         Continue();
-        return new AP_DDE_11_PublicbodyFundsAndContractsPage(context);
+        return new(context);
     }
 }

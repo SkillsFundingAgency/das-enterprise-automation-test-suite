@@ -10,6 +10,6 @@ public class AP_DAA_2_AccurateRepresentationPage : EPAO_BasePage
     {
         SelectRadioOptionByForAttribute("A_DEL-29");
         Continue();
-        return new AP_DAA_3_AgreementOnTheRegisterPage(context);
+        return new(context);
     }
 }

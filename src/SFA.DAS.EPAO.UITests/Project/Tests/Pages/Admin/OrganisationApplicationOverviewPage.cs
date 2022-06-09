@@ -9,30 +9,30 @@ public class OrganisationApplicationOverviewPage : EPAOAdmin_BasePage
     public NewOrganisationDetailsPage GoToNewOrganisationDetailsPage()
     {
         formCompletionHelper.ClickLinkByText("Evaluate organisation details");
-        return new NewOrganisationDetailsPage(context);
+        return new(context);
     }
 
     public NewOrgDeclarationsPage GoToNewOrgDeclarationsPage()
     {
         formCompletionHelper.ClickLinkByText("Evaluate declarations");
-        return new NewOrgDeclarationsPage(context);
+        return new(context);
     }
 
     public NewOrgFinancialhealthAssesmentPage GoToFinancialhealthAssesmentPage()
     {
         formCompletionHelper.ClickLinkByText("Evaluate financial health assessment");
-        return new NewOrgFinancialhealthAssesmentPage(context);
+        return new(context);
     }
 
     public OrganisationApplicationsPage ReturnToOrganisationApplicationsPage()
     {
         formCompletionHelper.ClickLinkByText("Return to applications");
-        return new OrganisationApplicationsPage(context);
+        return new(context);
     }
 
     public AssessmentSummaryPage CompleteReview()
     {
         Continue();
-        return new AssessmentSummaryPage(context);
+        return new(context);
     }
 }
