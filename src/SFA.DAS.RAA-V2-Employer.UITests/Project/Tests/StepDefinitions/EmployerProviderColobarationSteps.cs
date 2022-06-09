@@ -101,7 +101,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             var yourAdvert = _employerStepsHelper.YourAdvert();
 
-            yourAdvert.VerifyAdvertStatus("Ready for review");
+            yourAdvert.VerifyAdvertStatus("READY FOR REVIEW");
 
             return yourAdvert.GoToVacancyCompletedPage();
         }

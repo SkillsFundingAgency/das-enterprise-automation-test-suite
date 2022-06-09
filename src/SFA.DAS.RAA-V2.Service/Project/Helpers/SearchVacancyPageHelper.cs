@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         private By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
-        private By Manage => By.CssSelector("table tbody tr .govuk-link");
+        private By Manage => By.CssSelector("[id^='manage']");
 
         public SearchVacancyPageHelper(ScenarioContext context)
         {

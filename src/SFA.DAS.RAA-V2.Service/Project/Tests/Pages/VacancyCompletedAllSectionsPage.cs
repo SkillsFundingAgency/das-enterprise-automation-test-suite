@@ -5,9 +5,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class VacancyCompletedAllSectionsPage : PreviewYourAdvertOrVacancyPage
     {
-        protected override string PageTitle => "You have completed all required sections";
+        protected override string PageTitle => "Check your answers before submitting your advert";
 
-        protected override By PageHeader => By.CssSelector(".info-summary__header-bar");
+        //protected override By PageHeader => By.CssSelector(".info-summary__header-bar");
 
         private By NotificationBanner => By.CssSelector(".govuk-notification-banner__heading");
 
