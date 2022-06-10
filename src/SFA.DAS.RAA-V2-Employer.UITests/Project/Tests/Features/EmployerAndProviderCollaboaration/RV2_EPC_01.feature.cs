@@ -107,7 +107,7 @@ testRunner.When("the Provider submits a vacancy to the employer for review", ((s
 testRunner.And("the Employer rejects the advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
-testRunner.Then("the Provider should see the advert with status: \'Rejected by employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the Provider should see the advert with status: \'REJECTED BY EMPLOYER\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
 testRunner.When("Provider re-submits the advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -119,7 +119,7 @@ testRunner.And("the Employer approves the advert", ((string)(null)), ((TechTalk.
 testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
-testRunner.Then("the Provider should see the advert with status: \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the Provider should see the advert with status: \'LIVE\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -80,7 +80,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"Provider re-submits the advert")]
         public void WhenProviderRe_SubmitsTheAdvert()
         {
-            var page = _resultPage.GoToVacancyCompletedPage();
+            var page = _resultPage.GoToRejectedVacancyCompletedPage();
 
             AssertMessage("has rejected this vacancy for the following reason", page.GetNotificationBanner());
 

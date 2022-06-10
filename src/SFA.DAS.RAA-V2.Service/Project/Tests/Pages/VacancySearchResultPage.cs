@@ -11,6 +11,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected By VacancyStatusSelector => By.CssSelector("[data-label='Status']");
 
         protected By VacancyActionSelector => By.CssSelector("[id^='manage']");
+        protected By RejectedVacancyActionSelector => By.CssSelector("[data-label='Action']");
 
         public VacancySearchResultPage(ScenarioContext context) : base(context) { }
 
@@ -29,6 +30,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public VacancyCompletedAllSectionsPage GoToVacancyCompletedPage()
         {
             formCompletionHelper.ClickElement(VacancyActionSelector);
+
+            return new VacancyCompletedAllSectionsPage(context);
+        }
+        public VacancyCompletedAllSectionsPage GoToRejectedVacancyCompletedPage()
+        {
+            formCompletionHelper.ClickElement(RejectedVacancyActionSelector);
 
             return new VacancyCompletedAllSectionsPage(context);
         }

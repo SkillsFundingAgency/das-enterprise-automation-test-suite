@@ -5,15 +5,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class VacancyCompletedAllSectionsPage : PreviewYourAdvertOrVacancyPage
     {
-        protected override string PageTitle => "Check your answers before submitting your advert";
-
-        //protected override By PageHeader => By.CssSelector(".info-summary__header-bar");
+        protected override string PageTitle => "";
 
         private By NotificationBanner => By.CssSelector(".govuk-notification-banner__heading");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
 
-        private By ResubmitVacancyToEmployerButton => By.CssSelector(".govuk-button[type='submit'][value='Resubmit vacancy to employer']");
+        private By ResubmitVacancyToEmployerButton => By.CssSelector("[data-automation='continue-button']");
 
         private By RejectedReason => By.CssSelector("textarea#RejectedReason");
 
