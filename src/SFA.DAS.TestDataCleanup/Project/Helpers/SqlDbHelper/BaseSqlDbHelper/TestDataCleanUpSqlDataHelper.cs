@@ -1,64 +1,56 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.BaseSqlDbHelper;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.BaseSqlDbHelper
+public abstract class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
 {
-    public abstract class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
+    public abstract string SqlFileName { get; }
+
+    public TestDataCleanUpSqlDataHelper(string connectionString) : base(connectionString) { }
+
+    protected int CleanUpUsingEmail(List<string> emailsToDelete) => CleanUpTestData(emailsToDelete, (x) => $"Insert into #emails values ('{x}')", "create table #emails (email varchar(255))");
+
+    protected int CleanUpUsingAccountIds(List<string> accountIdToDelete) => CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)");
+
+    protected int CleanUpTestData(List<string> listToDelete, Func<string, string> insertQueryFunc, string createQuery)
     {
-        public abstract string SqlFileName { get; }
+        if (ExcludeEnvironments) return 0;
 
-        public TestDataCleanUpSqlDataHelper(string connectionString) : base(connectionString) { }
+        var insertquery = listToDelete.Select(x => insertQueryFunc(x)).ToList();
 
-        protected int CleanUpUsingEmail(string email) => TryExecuteSqlCommand(GetSql(), connectionString, new Dictionary<string, string> { { "@email", email } });
+        var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + FileHelper.GetSql(SqlFileName);
 
-        protected int CleanUpUsingAccountIds(List<string> accountIdToDelete) => CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)");
+        var noOfRowsDeleted = TryExecuteSqlCommand(sqlQuery, connectionString) - listToDelete.Count;
 
-        protected int CleanUpTestData(List<string> accountIdToDelete, Func<string, string> insertQueryFunc, string createQuery)
+        return noOfRowsDeleted;
+    }
+
+    protected (List<string>, List<string>) CleanUpTestData(Func<List<string>> getAccountidfunc, Func<List<string>, int> deleteAccountidfunc)
+    {
+        List<string> accountIdToDelete = new();
+
+        List<string> accountIdNotDeleted = new();
+
+        if (ExcludeEnvironments) return (accountIdToDelete, accountIdNotDeleted);
+
+        try
         {
-            if (ExcludeEnvironments) return 0;
+            accountIdToDelete = getAccountidfunc.Invoke();
 
-            var insertquery = accountIdToDelete.Select(x => insertQueryFunc(x)).ToList();
+            if (accountIdToDelete.IsNoDataFound()) return (new List<string>(), new List<string>());
 
-            var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + GetSql();
+            deleteAccountidfunc(accountIdToDelete);
 
-            var noOfRowsDeleted = TryExecuteSqlCommand(sqlQuery, connectionString) - accountIdToDelete.Count;
+        }
+        catch (Exception ex)
+        {
+            accountIdNotDeleted.Add($"({SqlFileName}){Environment.NewLine}{ex.Message}");
+        }
+        finally
+        {
+            var accountIdNotDeletedindb = getAccountidfunc.Invoke();
 
-            return noOfRowsDeleted;
+            if (!accountIdNotDeletedindb.IsNoDataFound()) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
         }
 
-        protected (List<string>, List<string>) CleanUpTestData(Func<List<string>> getAccountidfunc, Func<List<string>, int> deleteAccountidfunc)
-        {
-            List<string> accountIdToDelete = new List<string>();
-
-            List<string> accountIdNotDeleted = new List<string>();
-
-            if (ExcludeEnvironments) return (accountIdToDelete, accountIdNotDeleted);
-
-            try
-            {
-                accountIdToDelete = getAccountidfunc.Invoke();
-
-                if (accountIdToDelete.IsNoDataFound()) return (new List<string>(), new List<string>());
-
-                deleteAccountidfunc(accountIdToDelete);
-
-            }
-            catch (Exception ex)
-            {
-                accountIdNotDeleted.Add($"({SqlFileName}){Environment.NewLine}{ex.Message}");
-            }
-            finally
-            {
-                var accountIdNotDeletedindb = getAccountidfunc.Invoke();
-
-                if (!accountIdNotDeletedindb.IsNoDataFound()) accountIdNotDeleted.AddRange(accountIdNotDeletedindb);
-            }
-
-            return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);
-        }
-
-        private string GetSql() { return FileHelper.GetSql(SqlFileName); }
+        return (accountIdToDelete.Except(accountIdNotDeleted).ToList(), accountIdNotDeleted);
     }
 }
