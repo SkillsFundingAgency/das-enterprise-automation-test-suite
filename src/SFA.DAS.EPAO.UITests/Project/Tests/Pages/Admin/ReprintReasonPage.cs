@@ -1,11 +1,8 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class ReprintReasonPage : ConfirmReasonBasePage
 {
-    public class ReprintReasonPage : ConfirmReasonBasePage
-    {
-        protected override string PageTitle => "Are you sure this certificate needs reprinting?";
+    protected override string PageTitle => "Are you sure this certificate needs reprinting?";
 
-        public ReprintReasonPage(ScenarioContext context) : base(context) { }
-    }
+    public ReprintReasonPage(ScenarioContext context) : base(context) { }
 }

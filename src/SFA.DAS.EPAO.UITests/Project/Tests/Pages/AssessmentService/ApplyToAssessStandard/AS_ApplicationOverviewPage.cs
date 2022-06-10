@@ -1,23 +1,20 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
+public class AS_ApplicationOverviewPage : EPAO_BasePage
 {
-    public class AS_ApplicationOverviewPage : EPAO_BasePage
+    protected override string PageTitle => "Application overview";
+
+    public AS_ApplicationOverviewPage(ScenarioContext context) : base(context) { }
+
+    public AS_ApplyToStandardPage GoToApplyToStandard()
     {
-        protected override string PageTitle => "Application overview";
+        formCompletionHelper.ClickLinkByText("Go to apply to assess a standard");
+        return new(context);
+    }
 
-        public AS_ApplicationOverviewPage(ScenarioContext context) : base(context) { }
-
-        public AS_ApplyToStandardPage GoToApplyToStandard()
-        {
-            formCompletionHelper.ClickLinkByText("Go to apply to assess a standard");
-            return new AS_ApplyToStandardPage(context);
-        }
-
-        public AS_ApplicationSubmittedPage Submit()
-        {
-            Continue();
-            return new AS_ApplicationSubmittedPage(context);
-        }
+    public AS_ApplicationSubmittedPage Submit()
+    {
+        Continue();
+        return new(context);
     }
 }
