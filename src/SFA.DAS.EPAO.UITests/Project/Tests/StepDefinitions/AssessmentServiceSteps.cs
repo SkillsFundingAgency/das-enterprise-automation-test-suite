@@ -11,24 +11,22 @@ public class AssessmentServiceSteps : EPAOBaseSteps
 
     public AssessmentServiceSteps(ScenarioContext context) : base(context) => _context = context;
 
-    [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|EPAO Withdrawal User) is logged into Assessment Service Application")]
-    [When(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|Standard Withdrawal User) is logged into Assessment Service Application")]
-    public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
+    [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|Manage Org User|EPAO Withdrawal User) is logged into Assessment Service Application")]
+    public void GivenTheUserIsLoggedIn(Func<AS_LoggedInHomePage> userloginFunc) => loggedInHomePage = userloginFunc?.Invoke();
+
+    [StepArgumentTransformation(@"(Assessor User|Delete Assessor User|Standard Apply User|Manage User|Manage Org User|EPAO Withdrawal User)")]
+    public Func<AS_LoggedInHomePage> GetProviderUserRole(string userRole)
     {
-        if (user.Equals("Assessor User"))
-            loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOAssessorUser>());
-
-        else if (user.Equals("Delete Assessor User"))
-            loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAODeleteAssessorUser>());
-
-        else if (user.Equals("Manage User"))
-            loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOManageUser>());
-
-        else if (user.Equals("Standard Apply User"))
-            loggedInHomePage = ePAOHomePageHelper.LoginInAsStandardApplyUser(_context.GetUser<EPAOStandardApplyUser>(), EPAOApplyStandardDataHelper.ApplyStandardCode, EPAOApplyStandardDataHelper.StandardAssessorOrganisationEpaoId);
-
-        else if (user.Equals("EPAO Withdrawal User"))
-            loggedInHomePage = ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>());
+        return true switch
+        {
+            bool _ when (userRole == "Assessor User") => () => ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOAssessorUser>()),
+            bool _ when (userRole == "Delete Assessor User") => () => ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAODeleteAssessorUser>()),
+            bool _ when (userRole == "Manage User") => () => ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOManageUser>()),
+            bool _ when (userRole == "Manage Org User") => () => ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOManageOrgUser>()),
+            bool _ when (userRole == "Standard Apply User") => () => ePAOHomePageHelper.LoginInAsStandardApplyUser(_context.GetUser<EPAOStandardApplyUser>(), EPAOApplyStandardDataHelper.ApplyStandardCode, EPAOApplyStandardDataHelper.StandardAssessorOrganisationEpaoId),
+            bool _ when (userRole == "EPAO Withdrawal User") => () => ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOWithdrawalUser>()),
+            _ => null,
+        };
     }
 
     [When(@"the User certifies an Apprentice as '(pass|fail)' using '(employer|apprentice)' route")]

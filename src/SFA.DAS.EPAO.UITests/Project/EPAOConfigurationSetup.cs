@@ -17,6 +17,7 @@ public class EPAOConfigurationSetup
             configSection.GetConfigSection<EPAOAssessorUser>(),
             configSection.GetConfigSection<EPAODeleteAssessorUser>(),
             configSection.GetConfigSection<EPAOManageUser>(),
+            configSection.GetConfigSection<EPAOManageOrgUser>(),
             configSection.GetConfigSection<EPAOApplyUser>(),
             configSection.GetConfigSection<EPAOE2EApplyUser>(),
             configSection.GetConfigSection<EPAOWithdrawalUser>(),
