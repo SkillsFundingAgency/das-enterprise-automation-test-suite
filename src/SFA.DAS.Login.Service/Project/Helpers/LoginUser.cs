@@ -82,6 +82,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EPAOManageUser : NonAccountUser { }
 
+    public class EPAOManageOrgUser : NonAccountUser { }
+
     public class EPAOApplyUser : NonAccountUser
     {
         public string FullName { get; set; }
