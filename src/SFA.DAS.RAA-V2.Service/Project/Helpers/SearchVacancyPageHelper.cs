@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         private By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
-        private By Manage => By.CssSelector("[id^='manage']");
+        private By Manage => By.CssSelector("[data-label='Action']");
 
         public SearchVacancyPageHelper(ScenarioContext context)
         {
@@ -50,10 +50,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new ProviderVacancySearchResultPage(_context);
         }
 
-        public CreateAnApprenticeshipAdvertOrVacancyPage SearchReferVacancy()
+        public VacancyCompletedAllSectionsPage SearchReferVacancy()
         {
             SearchVacancy();
-            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
+            return new VacancyCompletedAllSectionsPage(_context);
         }
 
         public EmployerVacancySearchResultPage SearchEmployerVacancy()
@@ -70,9 +70,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
             _formCompletionHelper.Click(SearchButton);            
             _pageInteractionHelper.WaitforURLToChange($"searchTerm={vacRef}");
-            
+
             if (navigate)
-            _formCompletionHelper.ClickElement(_pageInteractionHelper.FindElement(Manage));                        
+                _formCompletionHelper.ClickElement(_pageInteractionHelper.FindElement(Manage));
         }
     }
 }

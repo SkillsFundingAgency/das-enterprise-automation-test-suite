@@ -44,8 +44,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         {
             var vacancyPage = _searchVacancyPageHelper.SearchReferVacancy();
 
-            vacancyPage.NavigateToAdvertTitle();
-
             return new ReferVacancyPage(context);
         }
     }
