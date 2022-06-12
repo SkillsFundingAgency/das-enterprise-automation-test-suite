@@ -41,10 +41,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public ApprenticeshipTrainingPage ContinueCreatingYourAdvert()
+        public CreateAnApprenticeshipAdvertOrVacancyPage ContinueCreatingYourAdvert()
         {
             formCompletionHelper.ClickLinkByText("Continue creating your advert");
-            return new ApprenticeshipTrainingPage(context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
         public YourApprenticeshipAdvertsHomePage GoToVacancyDashboard()
