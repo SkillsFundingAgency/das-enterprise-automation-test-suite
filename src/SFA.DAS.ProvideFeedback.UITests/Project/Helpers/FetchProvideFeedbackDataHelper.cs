@@ -1,42 +1,37 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers
+public static class FetchProvideFeedbackDataHelper
 {
-    public static class FetchProvideFeedbackDataHelper
+    private static readonly object _object = new();
+
+    private static readonly List<string> UniqueSurveyCodes = new();
+
+    internal static string UniqueSurveyCode(string connectionString)
     {
-        private static readonly object _object = new object();
-
-        private static readonly List<string> UniqueSurveyCodes = new List<string>(); 
-
-        internal static string UniqueSurveyCode(string connectionString)
+        lock (_object)
         {
-            lock (_object)
+            string exclude = string.Empty;
+
+            if (UniqueSurveyCodes.Any())
             {
-                string exclude = string.Empty;
-
-                if (UniqueSurveyCodes.Any())
+                string usedcodes = string.Empty;
+                foreach (var item in UniqueSurveyCodes)
                 {
-                    string usedcodes = string.Empty;
-                    foreach (var item in UniqueSurveyCodes)
-                    {
-                        usedcodes += $"'{item}',";
-                    }
-                    usedcodes = usedcodes.Trim(',');
-
-                    exclude = $"[UniqueSurveyCode] not in ({usedcodes}) and";
+                    usedcodes += $"'{item}',";
                 }
+                usedcodes = usedcodes.Trim(',');
 
-                var queryToExecute = $"SELECT TOP (1) [UniqueSurveyCode] FROM [dbo].[vw_EmployerSurveyHistoryComplete] where {exclude} CodeBurntDate is null order by LastReminderSentDate desc";
-
-                var code = Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
-
-                UniqueSurveyCodes.Add(code);
-
-                return code;
+                exclude = $"[UniqueSurveyCode] not in ({usedcodes}) and";
             }
+
+            var queryToExecute = $"SELECT TOP (1) [UniqueSurveyCode] FROM [dbo].[vw_EmployerSurveyHistoryComplete] where {exclude} CodeBurntDate is null order by LastReminderSentDate desc";
+
+            var code = Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
+
+            UniqueSurveyCodes.Add(code);
+
+            return code;
         }
     }
 }

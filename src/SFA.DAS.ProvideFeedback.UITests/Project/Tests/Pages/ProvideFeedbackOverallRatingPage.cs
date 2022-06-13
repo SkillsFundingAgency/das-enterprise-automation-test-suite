@@ -1,32 +1,28 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages
+public class ProvideFeedbackOverallRatingPage : ProvideFeedbackBasePage
 {
-    public class ProvideFeedbackOverallRatingPage : ProvideFeedbackBasePage
+    protected override string PageTitle => "Overall rating";
+
+    protected override By ContinueButton => By.Id("q3-continue");
+
+    private static By GoodOption => By.CssSelector("label[for='Good']");
+
+    private static By VeryPoorOption => By.CssSelector("label[for='VeryPoor']");
+
+    public ProvideFeedbackOverallRatingPage(ScenarioContext context) : base(context) { }
+
+    public ProvideFeedbackCheckYourAnswersPage SelectVPoorAndContinue()
     {
-        protected override string PageTitle => "Overall rating";
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VeryPoorOption));
+        Continue();
+        return new ProvideFeedbackCheckYourAnswersPage(context);
+    }
 
-        protected override By ContinueButton => By.Id("q3-continue");
-
-        private By GoodOption => By.CssSelector("label[for='Good']");
-
-        private By VeryPoorOption => By.CssSelector("label[for='VeryPoor']");
-
-        public ProvideFeedbackOverallRatingPage(ScenarioContext context) : base(context) { }
-
-        public ProvideFeedbackCheckYourAnswersPage SelectVPoorAndContinue()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VeryPoorOption));
-            Continue();
-            return new ProvideFeedbackCheckYourAnswersPage(context);
-        }
-
-        public ProvideFeedbackCheckYourAnswersPage SelectGoodAndContinue()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(GoodOption));
-            Continue();
-            return new ProvideFeedbackCheckYourAnswersPage(context);
-        }
+    public ProvideFeedbackCheckYourAnswersPage SelectGoodAndContinue()
+    {
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(GoodOption));
+        Continue();
+        return new ProvideFeedbackCheckYourAnswersPage(context);
     }
 }

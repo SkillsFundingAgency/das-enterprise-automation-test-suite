@@ -1,16 +1,12 @@
-﻿using SFA.DAS.UI.Framework;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages
+public class ProvideFeedbackAlreadySubmittedPage : ProvideFeedbackBasePage
 {
-    public class ProvideFeedbackAlreadySubmittedPage : ProvideFeedbackBasePage
-    {
-        protected override string PageTitle => "Feedback already submitted";
+    protected override string PageTitle => "Feedback already submitted";
 
-        public ProvideFeedbackAlreadySubmittedPage(ScenarioContext context) : base(context, false) 
-        {
-            tabHelper.OpenInNewTab(UrlConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
-            VerifyPage();
-        }
+    public ProvideFeedbackAlreadySubmittedPage(ScenarioContext context) : base(context, false)
+    {
+        tabHelper.OpenInNewTab(UrlConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
+        VerifyPage();
     }
 }

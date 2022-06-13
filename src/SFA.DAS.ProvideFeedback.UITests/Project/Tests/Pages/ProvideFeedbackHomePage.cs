@@ -1,20 +1,16 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages
+public class ProvideFeedbackHomePage : ProvideFeedbackBasePage
 {
-    public class ProvideFeedbackHomePage : ProvideFeedbackBasePage
+    protected override string PageTitle => "Give feedback";
+
+    private static By StartButton => By.Id("service-start");
+
+    public ProvideFeedbackHomePage(ScenarioContext context) : base(context) { }
+
+    public ProvideFeedbackStrengthsPage StartNow()
     {
-        protected override string PageTitle => "Give feedback";
-
-        private By StartButton => By.Id("service-start");
-
-        public ProvideFeedbackHomePage(ScenarioContext context) : base(context) { } 
-
-        public ProvideFeedbackStrengthsPage StartNow()
-        {
-            formCompletionHelper.ClickElement(StartButton);
-            return new ProvideFeedbackStrengthsPage(context);
-        }
+        formCompletionHelper.ClickElement(StartButton);
+        return new ProvideFeedbackStrengthsPage(context);
     }
 }

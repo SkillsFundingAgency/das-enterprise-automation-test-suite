@@ -1,35 +1,27 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages
+public abstract class ProvideFeedbackBasePage : VerifyBasePage
 {
-    public abstract class ProvideFeedbackBasePage : VerifyBasePage
+    protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
+
+    protected static By Labels => By.CssSelector(".multiple-choice label");
+
+    protected ProvideFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
+        if (verifypage) VerifyPage();
+    }
 
-        protected By Labels => By.CssSelector(".multiple-choice label");
+    protected void SelectOptionAndContinue()
+    {
+        List<string> checkboxList = pageInteractionHelper.FindElements(Labels).Select(x => x.Text).Where(y => !string.IsNullOrEmpty(y)).ToList();
 
-        protected ProvideFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
+        for (int i = 0; i <= 2; i++)
         {
-            if (verifypage) VerifyPage();
+            var randomoption = RandomDataGenerator.GetRandomElementFromListOfElements(checkboxList);
+            formCompletionHelper.SelectCheckBoxByText(Labels, randomoption);
+            checkboxList.Remove(randomoption);
         }
 
-        protected void SelectOptionAndContinue()
-        {
-            List<string> checkboxList = pageInteractionHelper.FindElements(Labels).Select(x => x.Text).Where(y => !string.IsNullOrEmpty(y)).ToList();
-
-            for (int i = 0; i <= 2; i++)
-            {
-                var randomoption = RandomDataGenerator.GetRandomElementFromListOfElements(checkboxList);
-                formCompletionHelper.SelectCheckBoxByText(Labels, randomoption);
-                checkboxList.Remove(randomoption);
-            }
-
-            Continue();
-        }
+        Continue();
     }
 }

@@ -1,23 +1,18 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages
+public class ProvideFeedbackCompletePage : ProvideFeedbackBasePage
 {
-    public class ProvideFeedbackCompletePage : ProvideFeedbackBasePage
+    protected override string PageTitle => "Feedback complete";
+    protected override By PageHeader => By.CssSelector(".govuk-panel__title");
+
+    private static By HaveConcerns => By.CssSelector("details summary");
+
+    public ProvideFeedbackCompletePage(ScenarioContext context) : base(context) { }
+
+    public void CanComplaint()
     {
-        protected override string PageTitle => "Feedback complete";
-        protected override By PageHeader => By.CssSelector(".govuk-panel__title");
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HaveConcerns));
 
-
-        private By HaveConcerns => By.CssSelector("details summary");
-
-        public ProvideFeedbackCompletePage(ScenarioContext context) : base(context) { }
-
-        public void CanComplaint()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HaveConcerns));
-
-            formCompletionHelper.ClickLinkByText("make a formal complaint");
-        }
+        formCompletionHelper.ClickLinkByText("make a formal complaint");
     }
 }

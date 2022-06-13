@@ -77,13 +77,13 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("Provide Feedback via Adhoc Journey")]
         [NUnit.Framework.CategoryAttribute("providefeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("providefeedback03")]
+        [NUnit.Framework.CategoryAttribute("cleardownemployerfeedbackresult")]
         public void ProvideFeedbackViaAdhocJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "providefeedback",
                     "regression",
-                    "providefeedback03"};
+                    "cleardownemployerfeedbackresult"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide Feedback via Adhoc Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -110,13 +110,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Provide Feedback via Email link")]
         [NUnit.Framework.CategoryAttribute("providefeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("providefeedback03")]
+        [NUnit.Framework.CategoryAttribute("cleardownemployerfeedbackresult")]
         public void ProvideFeedbackViaEmailLink()
         {
             string[] tagsOfScenario = new string[] {
                     "providefeedback",
                     "regression",
-                    "providefeedback03"};
+                    "cleardownemployerfeedbackresult"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide Feedback via Email link", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 13
