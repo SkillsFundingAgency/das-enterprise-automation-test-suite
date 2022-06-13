@@ -6,7 +6,7 @@ public class ProvideFeedbackAlreadySubmittedPage : ProvideFeedbackBasePage
 
     public ProvideFeedbackAlreadySubmittedPage(ScenarioContext context) : base(context, false)
     {
-        tabHelper.OpenInNewTab(UrlConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
+        OpenFeedbackUsingSurveyCode();
         VerifyPage();
     }
 }

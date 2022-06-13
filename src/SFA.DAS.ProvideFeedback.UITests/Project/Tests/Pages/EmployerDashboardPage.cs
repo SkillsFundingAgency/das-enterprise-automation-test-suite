@@ -3,9 +3,8 @@
 public class EmployerDashboardPage : ProvideFeedbackBasePage
 {
     protected override string PageTitle => "PRO LIMITED";
-    private readonly TabHelper _tabHelper;
 
-    public EmployerDashboardPage(ScenarioContext context) : base(context) { _tabHelper = context.Get<TabHelper>(); }
+    public EmployerDashboardPage(ScenarioContext context) : base(context) { }
 
     public SelectTrainingProviderPage ClickFeedbackLink()
     {
@@ -15,9 +14,8 @@ public class EmployerDashboardPage : ProvideFeedbackBasePage
 
     public ProvideFeedbackHomePage OpenFeedbackLinkWithSurveyCode()
     {
-        GoToUrl("https://pp-feedback.apprenticeships.education.gov.uk/CA517E3B-243C-4ACA-8DBC-5CADAAED4271");
+        OpenFeedbackUsingSurveyCode();
+
         return new ProvideFeedbackHomePage(context);
     }
-
-    protected void GoToUrl(string url) => _tabHelper.GoToUrl(url);
 }

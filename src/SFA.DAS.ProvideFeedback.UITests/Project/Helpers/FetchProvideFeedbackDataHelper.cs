@@ -1,5 +1,4 @@
-﻿using System;
-namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
+﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
 public static class FetchProvideFeedbackDataHelper
 {
@@ -7,7 +6,7 @@ public static class FetchProvideFeedbackDataHelper
 
     private static readonly List<string> UniqueSurveyCodes = new();
 
-    internal static string UniqueSurveyCode(string connectionString)
+    internal static string UniqueSurveyCode(string email, string connectionString)
     {
         lock (_object)
         {
@@ -25,7 +24,7 @@ public static class FetchProvideFeedbackDataHelper
                 exclude = $"[UniqueSurveyCode] not in ({usedcodes}) and";
             }
 
-            var queryToExecute = $"SELECT TOP (1) [UniqueSurveyCode] FROM [dbo].[vw_EmployerSurveyHistoryComplete] where {exclude} CodeBurntDate is null order by LastReminderSentDate desc";
+            var queryToExecute = $"SELECT TOP (1) [UniqueSurveyCode] FROM [dbo].[vw_EmployerSurveyHistoryComplete] where EmailAddress = '{email}' and {exclude} CodeBurntDate is null order by LastReminderSentDate desc";
 
             var code = Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
 

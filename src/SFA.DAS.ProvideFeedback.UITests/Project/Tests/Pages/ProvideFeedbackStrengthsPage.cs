@@ -10,22 +10,10 @@ public class ProvideFeedbackStrengthsPage : ProvideFeedbackBasePage
 
     public ProvideFeedbackStrengthsPage(ScenarioContext context) : base(context) { }
 
-    public ProvideFeedbackImprovePage ContinueToQuestion2()
-    {
-        SelectOptionAndContinue();
-        return new ProvideFeedbackImprovePage(context);
-    }
-
     public ProvideFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
     {
         SelectOptionAndContinue();
         return new ProvideFeedbackCheckYourAnswersPage(context);
-    }
-
-    public ProvideFeedbackImprovePage SkipQuestion1()
-    {
-        formCompletionHelper.ClickLinkByText("Skip this question");
-        return new ProvideFeedbackImprovePage(context);
     }
 
     public ProvideFeedbackImprovePage SelectOptionsForDoingWell()

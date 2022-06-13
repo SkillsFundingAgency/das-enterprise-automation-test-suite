@@ -11,6 +11,8 @@ public abstract class ProvideFeedbackBasePage : VerifyBasePage
         if (verifypage) VerifyPage();
     }
 
+    protected void OpenFeedbackUsingSurveyCode() => tabHelper.GoToUrl(UrlConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
+
     protected void SelectOptionAndContinue()
     {
         List<string> checkboxList = pageInteractionHelper.FindElements(Labels).Select(x => x.Text).Where(y => !string.IsNullOrEmpty(y)).ToList();

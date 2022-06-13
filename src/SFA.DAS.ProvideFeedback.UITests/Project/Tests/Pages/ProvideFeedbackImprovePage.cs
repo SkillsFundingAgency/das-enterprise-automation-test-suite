@@ -18,12 +18,6 @@ public class ProvideFeedbackImprovePage : ProvideFeedbackBasePage
         return new ProvideFeedbackOverallRatingPage(context);
     }
 
-    public ProvideFeedbackOverallRatingPage SkipQuestion2()
-    {
-        formCompletionHelper.ClickLinkByText("Skip this question");
-        return new ProvideFeedbackOverallRatingPage(context);
-    }
-
     public ProvideFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
     {
         SelectOptionAndContinue();
