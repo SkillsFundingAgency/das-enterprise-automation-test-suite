@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 using System.Linq;
 using SFA.DAS.TestDataCleanup;
+using SFA.DAS.TestDataExport.Helper;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
@@ -15,23 +16,22 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
         public TestDataCleanUp(ScenarioContext context) => _context = context;
 
-        //Can test this once all the pipelines have access to all db's
-        //[AfterScenario(Order = 98)]
+        [AfterScenario(Order = 98)]
         public void CleanUpTestData()
         {
             if (_context.TestError == null && _context.ScenarioInfo.Tags.Contains("regression"))
             {
-                var dbNameToTearDown = _context.Get<ObjectContext>().GetDbNameToTearDown();
-
-                if (dbNameToTearDown.Count > 0)
+                _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
                 {
-                    if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails))
+                    var dbNameToTearDown = _context.Get<ObjectContext>().GetDbNameToTearDown();
+
+                    if (dbNameToTearDown.Count > 0)
                     {
-                        foreach (var email in emails) new TestdataCleanupStepsHelper(_context).CleanUpAllDbTestData(email);
+                        if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails)) 
                         
-                        return;
+                            new TestdataCleanupStepsHelper(_context).CleanUpAllDbTestData(emails);
                     }
-                }
+                });
             }
         }
     }

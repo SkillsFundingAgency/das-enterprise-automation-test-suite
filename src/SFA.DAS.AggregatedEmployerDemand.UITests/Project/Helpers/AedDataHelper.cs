@@ -1,31 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
+public record AedDataHelper
 {
-    public class AedDataHelper
-    {
-        public AedDataHelper()
-        {
-            RandomEmail = GetDateTimeValue() + "@mailinator.com";
-            RandomWebsiteAddress = "www.TEST" + GetDateTimeValue() + ".com";
-            TelephoneNumber = $"020{GetRandomNumber(8)}";
-            Location = RandomDataGenerator.GetRandomElementFromListOfElements(ValidLocations);
-        }
+    public string RandomEmail { get; init; } = GetDateTimeValue() + "@mailinator.com";
+    public string RandomWebsiteAddress { get; init; } = "www.TEST" + GetDateTimeValue() + ".com";
+    public string TelephoneNumber { get; init; } = $"020{GetRandomNumber(8)}";
+    public string Location { get; init; } = RandomDataGenerator.GetRandomElementFromListOfElements(ValidLocations);
 
-        public string RandomEmail { get; }
-        public string RandomWebsiteAddress { get; }
-        public string TelephoneNumber { get; }
+    public static string OrganisationName => "Quinton Testing Ltd";
 
-        public string Location { get; }     
+    public static string GetRandomNumber(int length) => RandomDataGenerator.GenerateRandomNumber(length);
 
-        public string OrganisationName => "Quinton Testing Ltd";
+    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
 
-        public string GetRandomNumber(int length) => RandomDataGenerator.GenerateRandomNumber(length);
-
-        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
-
-        private static List<string> ValidLocations => new List<string> { "Crawley, West Sussex", "Bilston, West Midlands", "Coventry, West Midlands", "Canary Wharf, Greater London", "CV1 2WT" };
-    }
+    private static List<string> ValidLocations => new() { "Crawley, West Sussex", "Bilston, West Midlands", "Coventry, West Midlands", "Canary Wharf, Greater London", "CV1 2WT" };
 }

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using FluentAssertions;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentAssertions;
-using SFA.DAS.EmployerIncentives.Messages.Events;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -16,7 +15,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     {
         private DateTime _startDate;
         private string _employmentCheckResult = "employed";
-        private IEnumerable<EmploymentCheck> _employmentChecks;
+        private IEnumerable<Models.EmploymentCheck> _employmentChecks;
         private bool _expectedEmployedAtStartOfApprenticeshipValidationResult;
         private bool _expectedEmployedBeforeSchemeStartedValidationResult;
 
@@ -45,7 +44,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Given(@"an apprenticeship incentive has been submitted less than 6 weeks ago")]
         public async Task GivenAnIncentiveSubmittedLessThan6WeeksAgo()
         {
-            await CreateIncentive(Phase.Phase3, DateTime.Now.AddDays(-41));
+            await CreateIncentive(Phase.Phase3, new DateTime(2022, 3, 31));
         }
 
         [Given(@"an employment check has been requested")]
@@ -55,7 +54,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await WhenAnIlrSubmissionIsReceived();
             await WhenTheLearnerMatchIsRun();
             await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
-            _employmentChecks = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>().Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
+            _employmentChecks = Helper.EISqlHelper.GetAllFromDatabase<Models.EmploymentCheck>().Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
         }
 
         [Given(@"the employment check request has not been superseded")]
@@ -236,10 +235,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenTheEmploymentCheckIsComplete(string statusBeforeScheme, string statusAtStart)
         {
             var employedBeforeSchemeCheck = _employmentChecks.Single(x => x.CheckType == EmploymentCheckType.EmployedBeforeSchemeStarted);
-            await Helper.EIServiceBusHelper.Publish(new EmploymentCheckCompletedEvent { CorrelationId = employedBeforeSchemeCheck.CorrelationId, DateChecked = DateTime.Now, Result = statusBeforeScheme });
+            await Helper.EIServiceBusHelper.Publish(new EmploymentCheck.Types.EmploymentCheckCompletedEvent(employedBeforeSchemeCheck.CorrelationId, IsEmployed(statusBeforeScheme), DateTime.Now, null!));
             var employedAtStartCheck = _employmentChecks.Single(x => x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);
-            await Helper.EIServiceBusHelper.Publish(new EmploymentCheckCompletedEvent { CorrelationId = employedAtStartCheck.CorrelationId, DateChecked = DateTime.Now, Result = statusAtStart });
+            await Helper.EIServiceBusHelper.Publish(new EmploymentCheck.Types.EmploymentCheckCompletedEvent(employedAtStartCheck.CorrelationId, IsEmployed(statusAtStart), DateTime.Now, null!));
         }
+
+        private static bool IsEmployed(string status) => status == "employed";
 
         [When(@"the month end process is initiated")]
         public async Task WhenMonthEndIsRan()
@@ -287,7 +288,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
 
-            var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
+            var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<Models.EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId &&
                              x.CheckType == EmploymentCheckType.EmployedBeforeSchemeStarted);
 
@@ -302,7 +303,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.EISqlHelper.WaitUntilCorrelationIdsSet(TestData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
 
-            var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
+            var employmentCheck = Helper.EISqlHelper.GetAllFromDatabase<Models.EmploymentCheck>()
                 .Single(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId && x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);
 
             employmentCheck.CorrelationId.Should().NotBe(Guid.Empty);
@@ -314,7 +315,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"a new employment check is not requested")]
         public void ThenANewEmploymentCheckIsNotRequested()
         {
-            var employmentCheckCount = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
+            var employmentCheckCount = Helper.EISqlHelper.GetAllFromDatabase<Models.EmploymentCheck>()
                 .Count(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
 
             employmentCheckCount.Should().Be(0);
@@ -337,7 +338,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the result is discarded")]
         public void ThenTheResultIsDiscarded()
         {
-            var employmentChecks = Helper.EISqlHelper.GetAllFromDatabase<EmploymentCheck>()
+            var employmentChecks = Helper.EISqlHelper.GetAllFromDatabase<Models.EmploymentCheck>()
                 .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
 
             employmentChecks[0].Result.Should().BeNull();

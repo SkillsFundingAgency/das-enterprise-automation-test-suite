@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System.Linq;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -9,6 +10,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector("[data-test-id='organization-lists-header']");
 
         protected override string PageTitle => "Organisations";
+
+        private By ClearSearch => By.CssSelector("[data-test-id='organization-lists-search-box'] [data-garden-id='buttons.icon']");
 
         private By SearchOrganisationInput => By.CssSelector("[data-test-id='search-input']");
 
@@ -20,9 +23,28 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public OrganisationListPage(ScenarioContext context) : base(context) { formCompletionHelper.ClickElement(OrganisationButton); VerifyPage(); }
 
+        public void VerifyOrganisationDetails()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                try
+                {
+                    SearchOrganisation(dataHelper.NewOrgName);
+
+                    VerifyResultCount("1 result");
+
+                    break;
+                }
+                catch (System.Exception)
+                {
+                    Thread.Sleep(5000);
+                }
+            }
+        }
+
         public int NoOfOrganisation()
         {
-            SearchOrganisation();
+            SearchOrganisation(dataHelper.NewOrgNameWithOutSuffix);
 
             if (pageInteractionHelper.GetText(ResultCount) == "0 results") return 0;
 
@@ -36,14 +58,18 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return new DeleteOrgPage(context);
         }
 
-        private void SearchOrganisation()
+        private void SearchOrganisation(string searchTerm)
         {
-            formCompletionHelper.EnterText(SearchOrganisationInput, dataHelper.NewOrgNameWithOutSuffix);
+            ClickIfDisplayed(ClearSearch);
+
+            formCompletionHelper.EnterText(SearchOrganisationInput, searchTerm);
 
             Search();
 
-            VerifyPage(ResultCount, "result");
+            VerifyResultCount("result");
         }
+
+        private void VerifyResultCount(string expected) => VerifyPage(ResultCount, expected);
 
         private void Search() { formCompletionHelper.ClickElement(SearchOrganisationInput); formCompletionHelper.SendKeys(SearchOrganisationInput, Keys.Enter); }
     }

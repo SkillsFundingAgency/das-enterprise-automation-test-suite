@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
-using SFA.DAS.EmployerIncentives.Messages.Events;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages;
+using SFA.DAS.EmploymentCheck.Types;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
@@ -9,7 +9,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public static void AddRouting(this RoutingSettings routingSettings)
         {
             routingSettings.RouteToEndpoint(typeof(CreateIncentiveCommand), "SFA.DAS.EmployerIncentives.CreateIncentive");
-            routingSettings.RouteToEndpoint(typeof(EmploymentCheckCompletedEvent), "SFA.DAS.EmployerIncentives.EmpCheckCompleted");
+            routingSettings.RouteToEndpoint(typeof(EmploymentCheckCompletedEvent), QueueNames.PublishEmploymentCheckResult);
         }
     }
 }

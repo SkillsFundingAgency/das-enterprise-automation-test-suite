@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) { }
 
-        public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
+        public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices, bool isNonLevy = false)
         {
             objectContext.SetNoOfApprentices(numberOfApprentices);
 
@@ -44,15 +44,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        private ApprenticeDetails SetApprenticeDetails(int courseCode)
+        private ApprenticeDetails SetApprenticeDetails(int courseCode, bool isNonLevy = false)
         {
             var employerUser = context.GetUser<LevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
-            string agreementId = context.Get<AgreementIdSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+
+            var startDate = apprenticeCourseDataHelper.CourseStartDate;
+            var endDate = apprenticeCourseDataHelper.CourseEndDate;
+            if (isNonLevy)
+            {
+                startDate = DateTime.UtcNow;
+                endDate = DateTime.UtcNow.AddYears(1);
+            }
             
-            return new ApprenticeDetails(courseCode, dateOfBirth, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
+            return new ApprenticeDetails(courseCode, dateOfBirth, startDate, endDate)
             {
                 CohortRef = objectContext.GetCohortReference(),
                 ULN = apprenticeDataHelper.Uln(),

@@ -1,6 +1,4 @@
-﻿DECLARE @emailvar VARCHAR(255); set @emailvar = @email;
-PRINT CONCAT('Email - ', @emailvar);
-select id into #userids from employer_account.[User] where email = @emailvar;
+﻿select id into #userids from employer_account.[User] where email in (select email from #emails);
 select Accountid id into #accountids from employer_account.Membership where UserId in (select id from #userids);
 select id into #accountlegalentityids from employer_account.AccountLegalEntity where AccountId in (select id from #accountids);
 

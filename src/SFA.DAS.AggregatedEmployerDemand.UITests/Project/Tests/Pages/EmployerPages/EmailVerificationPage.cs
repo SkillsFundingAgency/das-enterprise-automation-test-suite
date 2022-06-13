@@ -1,15 +1,10 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages
+public class EmailVerificationPage : AedBasePage
 {
-    public class EmailVerificationPage : AedBasePage
-    {
-        protected override string PageTitle => "Click the link we've sent to";
+    protected override string PageTitle => "Click the link we've sent to";
 
-        protected override bool TakeFullScreenShot => false;
+    protected override bool TakeFullScreenShot => false;
 
-        public EmailVerificationPage(ScenarioContext context) : base(context) { }
-
-    }
+    public EmailVerificationPage(ScenarioContext context) : base(context) { }
 }

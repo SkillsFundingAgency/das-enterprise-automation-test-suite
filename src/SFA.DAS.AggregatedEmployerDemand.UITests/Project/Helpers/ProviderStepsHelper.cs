@@ -1,45 +1,39 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers
+public class ProviderStepsHelper
 {
-    public class ProviderStepsHelper
+    private readonly ScenarioContext _context;
+
+    public ProviderStepsHelper(ScenarioContext context) => _context = context;
+
+    internal AedProviderHomePage GoToProviderHomePagePage(ProviderLoginUser login, bool newTab = true)
     {
-        private readonly ScenarioContext _context;
+        new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(login, newTab);
 
-        public ProviderStepsHelper(ScenarioContext context) => _context = context;
+        return new AedProviderHomePage(_context);
+    }
 
-        internal AedProviderHomePage GoToProviderHomePagePage(ProviderLoginUser login, bool newTab = true)
-        {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(login, newTab);
+    public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
 
-            return new AedProviderHomePage(_context);
-        }
+    public static WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) => 
+        page.ContinueToProviderCheckYourAnswersPage()
+        .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
 
-        public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
+    public static WhichEmployersAreYouInterestedInPage NavigateBacktoWhichEmployersAreYouInterestedInPage(ConfirmProvidersContactDetailsPage page)
+    {
+        return page.ContinueToProviderCheckYourAnswersPage().BackToProvidersContactDetailsPage()
+            .BackToEditProvidersContactDetailsPage()
+            .BackToWhichEmployersAreYouInterestedInPage()
+            .BackToFindEmployersThatNeedATrainingProviderPage()
+            .ViewWhichEmployerNeedsATrainingProvider();
+    }
 
-        public WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) => 
-            page.ContinueToProviderCheckYourAnswersPage()
+    public static WeveSharedYourContactDetailsWithEmployersPage SubmitProviderLocationDetails(ConfirmProvidersContactDetailsPage page)
+    {
+        return page.ContinueToProviderCheckYourAnswersPage()
+            .ChangeProviderLocationDetails()
+            .CheckAndContinueWithfirstEmployerCheckboxAfterChange()
+            .ContinueToProviderCheckYourAnswersPage()
             .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
-
-        public WhichEmployersAreYouInterestedInPage NavigateBacktoWhichEmployersAreYouInterestedInPage(ConfirmProvidersContactDetailsPage page)
-        {
-            return page.ContinueToProviderCheckYourAnswersPage().BackToProvidersContactDetailsPage()
-                .BackToEditProvidersContactDetailsPage()
-                .BackToWhichEmployersAreYouInterestedInPage()
-                .BackToFindEmployersThatNeedATrainingProviderPage()
-                .ViewWhichEmployerNeedsATrainingProvider();
-        }
-
-        public WeveSharedYourContactDetailsWithEmployersPage SubmitProviderLocationDetails(ConfirmProvidersContactDetailsPage page)
-        {
-            return page.ContinueToProviderCheckYourAnswersPage()
-                .ChangeProviderLocationDetails()
-                .CheckAndContinueWithfirstEmployerCheckboxAfterChange()
-                .ContinueToProviderCheckYourAnswersPage()
-                .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
-        }
     }
 }

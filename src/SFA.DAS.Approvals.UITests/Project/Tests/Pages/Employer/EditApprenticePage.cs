@@ -10,9 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Edit apprentice details";
 
-        public EditApprenticePage(ScenarioContext context) : base(context)  { }
-
-        protected By CourseOption => By.CssSelector("#trainingCourse");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
@@ -22,26 +19,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
+        public EditApprenticePage(ScenarioContext context) : base(context) { }
+
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
         {
             EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
             return new ApproveApprenticeDetailsPage(context);
         }
 
-        public ConfirmChangesPage EditCourseAndDate()
+        public ConfirmChangesPage EditCourseDates()
         {
-            EditCourse();
             AddValidStartDate();
             AddValidEndDate();
             Update();
             return ConfirmChangesPage();
         }
 
-        protected override void EditCourse()
-        {
-            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
-            SelectCourse();
-        }
+        protected override void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
@@ -60,8 +54,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
-
-        protected virtual void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseOption, apprenticeCourseDataHelper.OtherCourseLarsCode);
 
         public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
