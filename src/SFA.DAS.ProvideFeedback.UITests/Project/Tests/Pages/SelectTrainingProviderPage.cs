@@ -11,7 +11,6 @@ public class SelectTrainingProviderPage : ProvideFeedbackBasePage
     public ConfirmProviderPage SelectTrainingProvider()
     {
         formCompletionHelper.ClickElement(SelectLink(objectContext.GetProviderUkprn()));
-        return new ConfirmProviderPage(context);
+        return new (context);
     }
-
 }
