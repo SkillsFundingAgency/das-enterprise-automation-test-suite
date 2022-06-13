@@ -4,11 +4,11 @@ public class ProvideFeedbackCheckYourAnswersPage : ProvideFeedbackBasePage
 {
     protected override string PageTitle => "Check your answers";
 
-    private static By ChangeQuestionOneLink => By.CssSelector("a[href*='question-one']");
+    private static By ChangeQuestionOneLink => By.CssSelector("a[href*='question-one?']");
 
-    private static By ChangeQuestionTwoLink => By.CssSelector("a[href*='question-two']");
+    private static By ChangeQuestionTwoLink => By.CssSelector("a[href*='question-two?']");
 
-    private static By ChangeQuestionThreeLink => By.CssSelector("a[href*='question-three']");
+    private static By ChangeQuestionThreeLink => By.CssSelector("a[href*='question-three?']");
 
     private static By SubmitAnswers => By.XPath("//button[@class='govuk-button']");
 
@@ -17,24 +17,24 @@ public class ProvideFeedbackCheckYourAnswersPage : ProvideFeedbackBasePage
     public ProvideFeedbackStrengthsPage ChangeQuestionOne()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionOneLink));
-        return new ProvideFeedbackStrengthsPage(context);
+        return new (context);
     }
 
     public ProvideFeedbackImprovePage ChangeQuestionTwo()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionTwoLink));
-        return new ProvideFeedbackImprovePage(context);
+        return new (context);
     }
 
     public ProvideFeedbackOverallRatingPage ChangeQuestionThree()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionThreeLink));
-        return new ProvideFeedbackOverallRatingPage(context);
+        return new (context);
     }
 
     public ProvideFeedbackCompletePage SubmitAnswersNow()
     {
         formCompletionHelper.ClickElement(SubmitAnswers);
-        return new ProvideFeedbackCompletePage(context);
+        return new (context);
     }
 }

@@ -13,14 +13,16 @@ public abstract class ProvideFeedbackBasePage : VerifyBasePage
 
     protected void OpenFeedbackUsingSurveyCode() => tabHelper.GoToUrl(UrlConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
 
-    protected void SelectOptionAndContinue()
+    protected void SelectOptionAndContinue() => SelectOptionAndContinue(Labels);
+
+    protected void SelectOptionAndContinue(By selector)
     {
-        List<string> checkboxList = pageInteractionHelper.FindElements(Labels).Select(x => x.Text).Where(y => !string.IsNullOrEmpty(y)).ToList();
+        List<string> checkboxList = pageInteractionHelper.FindElements(selector).Select(x => x.Text).Where(y => !string.IsNullOrEmpty(y)).ToList();
 
         for (int i = 0; i <= 2; i++)
         {
             var randomoption = RandomDataGenerator.GetRandomElementFromListOfElements(checkboxList);
-            formCompletionHelper.SelectCheckBoxByText(Labels, randomoption);
+            formCompletionHelper.SelectCheckBoxByText(selector, randomoption);
             checkboxList.Remove(randomoption);
         }
 

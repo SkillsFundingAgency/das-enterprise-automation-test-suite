@@ -11,6 +11,6 @@ public class ProvideFeedbackHomePage : ProvideFeedbackBasePage
     public ProvideFeedbackStrengthsPage StartNow()
     {
         formCompletionHelper.ClickElement(StartButton);
-        return new ProvideFeedbackStrengthsPage(context);
+        return new (context);
     }
 }

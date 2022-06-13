@@ -14,7 +14,7 @@ public class ConfirmProviderPage : ProvideFeedbackBasePage
     {
         formCompletionHelper.SelectRadioOptionByLocator(Yes);
         formCompletionHelper.ClickElement(ClickonContinue);
-        return new ProvideFeedbackHomePage(context);
+        return new (context);
     }
 }
 

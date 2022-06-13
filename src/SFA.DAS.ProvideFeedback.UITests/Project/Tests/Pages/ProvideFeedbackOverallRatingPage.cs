@@ -12,17 +12,15 @@ public class ProvideFeedbackOverallRatingPage : ProvideFeedbackBasePage
 
     public ProvideFeedbackOverallRatingPage(ScenarioContext context) : base(context) { }
 
-    public ProvideFeedbackCheckYourAnswersPage SelectVPoorAndContinue()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VeryPoorOption));
-        Continue();
-        return new ProvideFeedbackCheckYourAnswersPage(context);
-    }
+    public ProvideFeedbackCheckYourAnswersPage SelectVPoorAndContinue() => GoToProvideFeedbackCheckYourAnswersPage(VeryPoorOption);
 
-    public ProvideFeedbackCheckYourAnswersPage SelectGoodAndContinue()
+    public ProvideFeedbackCheckYourAnswersPage SelectGoodAndContinue() => GoToProvideFeedbackCheckYourAnswersPage(GoodOption);
+
+    private ProvideFeedbackCheckYourAnswersPage GoToProvideFeedbackCheckYourAnswersPage(By selector)
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(GoodOption));
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(selector));
         Continue();
-        return new ProvideFeedbackCheckYourAnswersPage(context);
+        return new (context);
+
     }
 }

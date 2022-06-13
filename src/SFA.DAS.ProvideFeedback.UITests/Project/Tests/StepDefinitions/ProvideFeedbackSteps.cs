@@ -30,14 +30,10 @@ public class ProvideFeedbackSteps
     [Given(@"completes the feedback journey for a training provider")]
     public void GivenCompletesTheFeedbackJourneyForATrainingProvider()
     {
-        _providerFeedbackCheckYourAnswers = new EmployerDashboardPage(_context)
+        _providerFeedbackCheckYourAnswers = GoToCheckYourAnswersPage(new EmployerDashboardPage(_context)
            .ClickFeedbackLink()
            .SelectTrainingProvider()
-           .ConfirmTrainingProvider()
-           .StartNow()
-           .SelectOptionsForDoingWell()
-           .ContinueToOverallRating()
-           .SelectGoodAndContinue();
+           .ConfirmTrainingProvider());
 
         _providerFeedbackCheckYourAnswers.SubmitAnswersNow();
     }
@@ -45,12 +41,8 @@ public class ProvideFeedbackSteps
     [Given(@"completes the feedback journey for a training provider via survey code")]
     public void GivenCompletesTheFeedbackJourneyForATrainingProviderViaSurveyCode()
     {
-        _providerFeedbackCheckYourAnswers = new EmployerDashboardPage(_context)
-            .OpenFeedbackLinkWithSurveyCode()
-            .StartNow()
-           .SelectOptionsForDoingWell()
-           .ContinueToOverallRating()
-           .SelectGoodAndContinue();
+        _providerFeedbackCheckYourAnswers = GoToCheckYourAnswersPage(new EmployerDashboardPage(_context)
+            .OpenFeedbackLinkWithSurveyCode());
     }
 
     [Then(@"the user can change the answers and submits")]
@@ -68,4 +60,8 @@ public class ProvideFeedbackSteps
     [Then(@"the user can not resubmit the feedback")]
     public void ThenTheUserCanNotResubmitTheFeedback() => new ProvideFeedbackAlreadySubmittedPage(_context);
 
+    private static ProvideFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage(ProvideFeedbackHomePage page)
+    {
+       return page.StartNow().SelectOptionsForDoingWell().ContinueToOverallRating().SelectVPoorAndContinue();
+    }
 }
