@@ -1,18 +1,15 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.MandatoryExclusionSubSection;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.MandatoryExclusionSubSection
+public class AP_DME_2_FinancialConvictionsPage : EPAO_BasePage
 {
-    public class AP_DME_2_FinancialConvictionsPage : EPAO_BasePage
-    {
-        protected override string PageTitle => "Financial convictions";
-        
-        public AP_DME_2_FinancialConvictionsPage(ScenarioContext context) : base(context) => VerifyPage();
+    protected override string PageTitle => "Financial convictions";
 
-        public AP_DME_3_CounterTerrorismPage SelectNoOptionAndContinueInFinancialConvictionsPage()
-        {
-            SelectRadioOptionByForAttribute("M_DEL-10_1");
-            Continue();
-            return new AP_DME_3_CounterTerrorismPage(context);
-        }
+    public AP_DME_2_FinancialConvictionsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AP_DME_3_CounterTerrorismPage SelectNoOptionAndContinueInFinancialConvictionsPage()
+    {
+        SelectRadioOptionByForAttribute("M_DEL-10_1");
+        Continue();
+        return new(context);
     }
 }

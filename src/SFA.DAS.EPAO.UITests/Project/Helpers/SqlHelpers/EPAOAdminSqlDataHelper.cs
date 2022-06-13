@@ -1,44 +1,39 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using System;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers
+public class EPAOAdminSqlDataHelper : SqlDbHelper
 {
-    public class EPAOAdminSqlDataHelper : SqlDbHelper
-    {
-        public EPAOAdminSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
+    public EPAOAdminSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
 
-        public string GetEPAOId(string email) => GetDataAsString($"SELECT EndPointAssessorOrganisationId from Organisations where id = (select OrganisationId from Contacts where Email = '{email}')");
+    public string GetEPAOId(string email) => GetDataAsString($"SELECT EndPointAssessorOrganisationId from Organisations where id = (select OrganisationId from Contacts where Email = '{email}')");
 
-        public void DeleteOrganisation(string ukprn) => ExecuteSqlCommand($"DELETE FROM Organisations WHERE EndPointAssessorUkprn = '{ukprn}'");
+    public void DeleteOrganisation(string ukprn) => ExecuteSqlCommand($"DELETE FROM Organisations WHERE EndPointAssessorUkprn = '{ukprn}'");
 
-        public void DeleteContact(string email) => ExecuteSqlCommand($"DELETE CONTACTS WHERE EMAIL = '{email}'");
+    public void DeleteContact(string email) => ExecuteSqlCommand($"DELETE CONTACTS WHERE EMAIL = '{email}'");
 
-        public void DeleteOrganisationStandard(string standardcode, string epaoid) => ExecuteSqlCommand(
-            $"DELETE FROM OrganisationStandardDeliveryArea WHERE OrganisationStandardId IN " +
-            $"(select ID FROM OrganisationStandard WHERE StandardCode = '{standardcode}' AND EndPointAssessorOrganisationId = '{epaoid}'); " +
-            $"DELETE FROM OrganisationStandard WHERE StandardCode = '{standardcode}' AND EndPointAssessorOrganisationId = '{epaoid}'");
+    public void DeleteOrganisationStandard(string standardcode, string epaoid) => ExecuteSqlCommand(
+        $"DELETE FROM OrganisationStandardDeliveryArea WHERE OrganisationStandardId IN " +
+        $"(select ID FROM OrganisationStandard WHERE StandardCode = '{standardcode}' AND EndPointAssessorOrganisationId = '{epaoid}'); " +
+        $"DELETE FROM OrganisationStandard WHERE StandardCode = '{standardcode}' AND EndPointAssessorOrganisationId = '{epaoid}'");
 
-        public void DeleteOrganisationStandardDeliveryArea(string emailid) => ExecuteSqlCommand(
-                $"DELETE from OrganisationStandardDeliveryArea where OrganisationStandardId IN " +
-                $"(select id from OrganisationStandard where EndPointAssessorOrganisationId IN " +
-                $"(select EndPointAssessorOrganisationId from Contacts where Email = '{emailid}'))");
+    public void DeleteOrganisationStandardDeliveryArea(string emailid) => ExecuteSqlCommand(
+            $"DELETE from OrganisationStandardDeliveryArea where OrganisationStandardId IN " +
+            $"(select id from OrganisationStandard where EndPointAssessorOrganisationId IN " +
+            $"(select EndPointAssessorOrganisationId from Contacts where Email = '{emailid}'))");
 
-        public void DeleteOrganisationStanard(string emailid) => ExecuteSqlCommand(
-            $"DELETE from OrganisationStandard where EndPointAssessorOrganisationId IN " +
-            $"(select EndPointAssessorOrganisationId from Contacts where Email = '{emailid}')");
+    public void DeleteOrganisationStanard(string emailid) => ExecuteSqlCommand(
+        $"DELETE from OrganisationStandard where EndPointAssessorOrganisationId IN " +
+        $"(select EndPointAssessorOrganisationId from Contacts where Email = '{emailid}')");
 
 
-        public void DeleteEPAOOrganisation(string emailid) => ExecuteSqlCommand(
-            $" DELETE from Organisations where EndPointAssessorOrganisationId IN" +
-                $" (select EndPointAssessorOrganisationId from Contacts where Email = '{emailid}')");
+    public void DeleteEPAOOrganisation(string emailid) => ExecuteSqlCommand(
+        $" DELETE from Organisations where EndPointAssessorOrganisationId IN" +
+            $" (select EndPointAssessorOrganisationId from Contacts where Email = '{emailid}')");
 
-        public void UpdateOrgStatusToNew(string epaoid) => UpdateOrgStatus("New", epaoid);
+    public void UpdateOrgStatusToNew(string epaoid) => UpdateOrgStatus("New", epaoid);
 
-        public void UpdateOrgStatusToLive(string epaoid) => UpdateOrgStatus("Live", epaoid);
+    public void UpdateOrgStatusToLive(string epaoid) => UpdateOrgStatus("Live", epaoid);
 
-        private void UpdateOrgStatus(string status, string epaoid) => ExecuteSqlCommand($"Update Organisations Set Status = '{status}' Where EndPointAssessorOrganisationId = '{epaoid}'");
+    private void UpdateOrgStatus(string status, string epaoid) => ExecuteSqlCommand($"Update Organisations Set Status = '{status}' Where EndPointAssessorOrganisationId = '{epaoid}'");
 
-        public void UpdateCertificateToPrinted(string learnerUln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Printed' WHERE Uln = {learnerUln}");
-    }
+    public void UpdateCertificateToPrinted(string learnerUln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Printed' WHERE Uln = {learnerUln}");
 }

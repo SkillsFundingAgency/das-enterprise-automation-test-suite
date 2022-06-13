@@ -1,77 +1,63 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-using SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
+public class AS_RecordAGradePage : EPAO_BasePage
 {
-    public class AS_RecordAGradePage : EPAO_BasePage
+    protected override string PageTitle => "Record a grade";
+
+    private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
+
+    #region Locators
+    private static By FamilyNameTextBox => By.Name("Surname");
+    private static By ULNTextBox => By.Name("Uln");
+    private static By FamilyNameMissingErrorText => By.LinkText("Enter the apprentice's family name");
+    private static By ULNMissingErrorText => By.LinkText("Enter the apprentice's ULN");
+    private static By InvalidUlnErrorText => By.LinkText("The apprentice's ULN should contain exactly 10 numbers");
+    #endregion
+
+    public AS_RecordAGradePage(ScenarioContext context) : base(context)
     {
-        protected override string PageTitle => "Record a grade";
-        
-        private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
+        _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
+        VerifyPage();
+    }
 
-        #region Locators
-        private By FamilyNameTextBox => By.Name("Surname");
-        private By ULNTextBox => By.Name("Uln");
-        private By PrivatelyFundedCheckBox => By.CssSelector("label");
-        private By FamilyNameMissingErrorText => By.LinkText("Enter the apprentice's family name");
-        private By ULNMissingErrorText => By.LinkText("Enter the apprentice's ULN");
-        private By InvalidUlnErrorText => By.LinkText("The apprentice's ULN should contain exactly 10 numbers");
-        #endregion
+    public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
+    {
+        EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.FamilyName, ePAOAdminDataHelper.LearnerUln);
+        return new(context);
+    }
 
-        public AS_RecordAGradePage(ScenarioContext context) : base(context)
-        {   
-            _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
-            VerifyPage();
-        }
+    public AS_ConfirmApprenticePage SearchApprentice(bool deleteExistingCertificate, string learnerFamilyName = null, string learnerUln = null)
+    {
+        if (deleteExistingCertificate)
+            _ePAOSqlDataHelper.DeleteCertificate(learnerUln ?? ePAOAdminDataHelper.LearnerUln);
 
-        public AS_AssesmentAlreadyRecorded GoToAssesmentAlreadyRecordedPage()
-        {
-            EnterApprenticeDetailsAndContinue(ePAOAdminDataHelper.FamilyName, ePAOAdminDataHelper.LearnerUln);
-            return new AS_AssesmentAlreadyRecorded(context);
-        }
+        EnterApprenticeDetailsAndContinue(learnerFamilyName ?? ePAOAdminDataHelper.FamilyName, learnerUln ?? ePAOAdminDataHelper.LearnerUln);
 
-        public AS_ConfirmApprenticePage SearchApprentice(bool deleteExistingCertificate, string learnerFamilyName = null, string learnerUln = null)
-        {
-            if (deleteExistingCertificate) 
-                _ePAOSqlDataHelper.DeleteCertificate(learnerUln ?? ePAOAdminDataHelper.LearnerUln);
+        return new(context);
+    }
 
-            EnterApprenticeDetailsAndContinue(learnerFamilyName ?? ePAOAdminDataHelper.FamilyName, learnerUln ?? ePAOAdminDataHelper.LearnerUln);
+    public void EnterApprenticeDetailsAndContinue(string familyName, string uln)
+    {
+        formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
+        formCompletionHelper.EnterText(ULNTextBox, uln);
+        Continue();
+    }
 
-            return new AS_ConfirmApprenticePage(context);
-        }
+    public void VerifyErrorMessage(string pageTitle) => VerifyElement(PageHeader, pageTitle);
 
-        public void EnterApprenticeDetailsAndContinue(string familyName, string uln)
-        {
-            formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
-            formCompletionHelper.EnterText(ULNTextBox, uln);
-            Continue();
-        }
+    public bool VerifyFamilyNameMissingErrorText() => pageInteractionHelper.IsElementDisplayed(FamilyNameMissingErrorText);
 
-        public void VerifyErrorMessage(string pageTitle) => VerifyElement(PageHeader, pageTitle);
+    public bool VerifyULNMissingErrorText() => pageInteractionHelper.IsElementDisplayed(ULNMissingErrorText);
 
-        public bool VerifyFamilyNameMissingErrorText() => pageInteractionHelper.IsElementDisplayed(FamilyNameMissingErrorText);
+    public bool VerifyInvalidUlnErrorText() => pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
 
-        public bool VerifyULNMissingErrorText() => pageInteractionHelper.IsElementDisplayed(ULNMissingErrorText);
+    public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
 
-        public bool VerifyInvalidUlnErrorText() => pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
-
-        public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
-
-        private AS_ConfirmApprenticePage SearchApprentice(string apprenticeFamilyName, string learnerUln, bool deleteCertificate)
-        {
-            ePAOAdminDataHelper.FamilyName = apprenticeFamilyName;
-            ePAOAdminDataHelper.LearnerUln = learnerUln;
-
-            return SearchApprentice(deleteCertificate);
-        }
-
-        public AS_CannotFindApprenticePage EnterApprenticeDetailsForExistingCertificateAndContinue()
-        {
-            formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.FamilyName);
-            formCompletionHelper.EnterText(ULNTextBox, ePAOAdminDataHelper.LearnerUlnForExistingCertificate);
-            Continue();
-            return new AS_CannotFindApprenticePage(context);
-        }
+    public AS_CannotFindApprenticePage EnterApprenticeDetailsForExistingCertificateAndContinue()
+    {
+        formCompletionHelper.EnterText(FamilyNameTextBox, ePAOAdminDataHelper.FamilyName);
+        formCompletionHelper.EnterText(ULNTextBox, ePAOAdminDataHelper.LearnerUlnForExistingCertificate);
+        Continue();
+        return new(context);
     }
 }

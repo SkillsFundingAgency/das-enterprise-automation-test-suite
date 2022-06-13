@@ -1,20 +1,16 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class SearchResultsPage : EPAOAdmin_BasePage
 {
-    public class SearchResultsPage : EPAOAdmin_BasePage
+    protected override string PageTitle => "Search results";
+
+    private static By ViewLearner => By.CssSelector(".govuk-link[href*='/select']");
+
+    public SearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public CertificateDetailsPage SelectACertificate()
     {
-        protected override string PageTitle => "Search results";
-
-        private By ViewLearner => By.CssSelector(".govuk-link[href*='/select']");
-
-        public SearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public CertificateDetailsPage SelectACertificate()
-        {
-            formCompletionHelper.ClickElement(ViewLearner);
-            return new CertificateDetailsPage(context);
-        }
+        formCompletionHelper.ClickElement(ViewLearner);
+        return new(context);
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project
+﻿namespace SFA.DAS.EPAO.UITests.Project;
+
+public class EPAOConfig
 {
-    public class EPAOConfig
-    {
-        public static string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
-    }
+    public static string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
 }

@@ -1,19 +1,16 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
+public class AS_ManageAnyPotentialConflictPage : AS_EPAOApplyStandardBasePage
 {
-    public class AS_ManageAnyPotentialConflictPage : AS_EPAOApplyStandardBasePage
+    protected override string PageTitle => "How will you manage any potential conflict of interest, particular to other functions your organisation may have?";
+
+    public AS_ManageAnyPotentialConflictPage(ScenarioContext context) : base(context) { }
+
+    public AS_WhereWillYouDeliverEndPointAssessmentsPage EnterManageAnyPotentialConflict()
     {
-        protected override string PageTitle => "How will you manage any potential conflict of interest, particular to other functions your organisation may have?";
-        
-        public AS_ManageAnyPotentialConflictPage(ScenarioContext context) : base(context) { } 
-
-        public AS_WhereWillYouDeliverEndPointAssessmentsPage EnterManageAnyPotentialConflict()
-        {
-            formCompletionHelper.EnterText(TextArea, standardDataHelper.GenerateRandomAlphanumericString(80));
-            Continue();
-            return new AS_WhereWillYouDeliverEndPointAssessmentsPage(context);
-        }
-
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
     }
+
 }

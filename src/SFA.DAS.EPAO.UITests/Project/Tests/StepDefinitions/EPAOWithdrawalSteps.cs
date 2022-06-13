@@ -1,7 +1,4 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepDefs
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class EPAOWithdrawalSteps : EPAOBaseSteps
@@ -27,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
         public void GivenUserVerifiesViewLinksNavigateToTheAppropriateCorrespondingPage() => _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
 
         [Then(@"the admin user logs in to approve the standard withdrawal application")]
-        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage());    
+        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage());
 
         [Then(@"the admin user logs in to approve the register withdrawal application")]
         public void ThenTheAdminUserLogsInToApproveTheRegisterWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveARegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
@@ -54,7 +51,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions.EPAOWithdrawalStepD
 
         [Then(@"Verify the application is moved to Approved tab")]
         public void VerifyApplicationIsMovedToApprovedTab() => _ePAOWithdrawalHelper.VerifyApplicationIsMovedToApprovedTab();
-        
+
 
         [Then(@"the withdrawal user returns to dashboard")]
         [Then(@"the assessor user returns to dashboard")]
