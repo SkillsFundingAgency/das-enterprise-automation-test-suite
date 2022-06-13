@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             return new GetStartedWithRecruitmentAPIsPage(context);
         }
 
-        public ManageRecruitPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
+        public ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
 
         public ProviderVacancySearchResultPage SearchVacancy() => _searchVacancyPageHelper.SearchProviderVacancy();
 

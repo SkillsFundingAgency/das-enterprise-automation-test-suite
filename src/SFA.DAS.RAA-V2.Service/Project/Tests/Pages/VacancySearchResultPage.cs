@@ -39,5 +39,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             return new VacancyCompletedAllSectionsPage(context);
         }
+        public ManageRecruitPage GoToVacancyManagePage()
+        {
+            formCompletionHelper.ClickElement(VacancyActionSelector);
+
+            return new ManageRecruitPage(context);
+        }
     }
 }

@@ -30,18 +30,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        public ManageRecruitPage SelectLiveVacancy()
+        public ProviderVacancySearchResultPage SelectLiveVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
             _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
-            return new ManageRecruitPage(_context);
+            return new ProviderVacancySearchResultPage(_context);
         }
 
-        public ManageRecruitPage SearchVacancyByVacancyReference()
+        public ProviderVacancySearchResultPage SearchVacancyByVacancyReference()
         {
             SearchVacancy();
-            return new ManageRecruitPage(_context);
+            return new ProviderVacancySearchResultPage(_context);
         }
 
         public ProviderVacancySearchResultPage SearchProviderVacancy()

@@ -9,6 +9,22 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "Vacancies";
 
+        private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
+        private By Manage => By.CssSelector("[data-label='Action']");
+
         public ProviderVacancySearchResultPage(ScenarioContext context) : base(context) { }
+        public ManageApplicantPage NavigateToManageApplicant()
+        {
+            formCompletionHelper.Click(Applicant);
+            return new ManageApplicantPage(context);
+        }
+        public ViewVacancyPage NavigateToViewAdvertPage()
+        {
+            GoToVacancyManagePage();
+            string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
+            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkTest));
+
+            return new ViewVacancyPage(context);
+        }
     }
 }
