@@ -17,6 +17,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public void ApplicantUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        public void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+            => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        public void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+            => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        public void VerifyWageType(EmployerVacancySearchResultPage employerVacancySearchResultPage, string wageType)
+            => employerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
 
         public PreviewYourAdvertOrVacancyPage PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {

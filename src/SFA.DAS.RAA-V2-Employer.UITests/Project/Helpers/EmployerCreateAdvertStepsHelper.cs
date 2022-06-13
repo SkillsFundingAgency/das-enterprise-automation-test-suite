@@ -99,7 +99,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
 
-        internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
+        internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(GoToRecruitmentHomePage().SelectLiveAdvert().GoToVacancyManagePage().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage());
 
         internal VacancyReferencePage CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, true, false, wageType);
 
@@ -118,7 +118,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
                     AdvertSummary(EnterAdvertTitle(createAdvertPage));
 
-        private ManageRecruitPage SearchVacancyByVacancyReference() => rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+        private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
             createAdvertPage

@@ -43,9 +43,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new CreateAnAdvertPage(context);
         }
 
-        public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
+        public EmployerVacancySearchResultPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
 
-        public ManageRecruitPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
+        public EmployerVacancySearchResultPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchEmployerVacancy();
 
         public EmployerVacancySearchResultPage SearchYourAdverts() => _searchVacancyPageHelper.SearchEmployerVacancy();
 

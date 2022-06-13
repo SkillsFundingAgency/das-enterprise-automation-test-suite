@@ -22,9 +22,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchYourAdverts();
         }
 
-        internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
+        internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().GoToVacancyManagePage().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
-        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseAdvert().YesCloseThisVacancy();
+        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().GoToVacancyManagePage().CloseAdvert().YesCloseThisVacancy();
 
         internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
@@ -32,13 +32,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
-        private ManageRecruitPage SearchVacancyByVacancyReferenceInNewTab()
+        private EmployerVacancySearchResultPage SearchVacancyByVacancyReferenceInNewTab()
         {
             _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
 
-            return SearchVacancyByVacancyReference();
+            return SearchEmployerVacancyByVacancyReference();
         }
 
-        private ManageRecruitPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+        private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
     }
 }

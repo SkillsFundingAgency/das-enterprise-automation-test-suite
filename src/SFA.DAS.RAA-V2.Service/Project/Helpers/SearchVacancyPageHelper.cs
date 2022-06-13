@@ -30,12 +30,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        public ProviderVacancySearchResultPage SelectLiveVacancy()
+        public EmployerVacancySearchResultPage SelectLiveVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
             _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
-            return new ProviderVacancySearchResultPage(_context);
+            return new EmployerVacancySearchResultPage(_context);
         }
 
         public ProviderVacancySearchResultPage SearchVacancyByVacancyReference()
@@ -59,6 +59,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         public EmployerVacancySearchResultPage SearchEmployerVacancy()
         {
             SearchEmployerProviderPermissionVacancy();
+            return new EmployerVacancySearchResultPage(_context);
+        }
+        public EmployerVacancySearchResultPage SearchEmployerVacancyByVacancyReference()
+        {
+            SearchVacancy();
             return new EmployerVacancySearchResultPage(_context);
         }
 
