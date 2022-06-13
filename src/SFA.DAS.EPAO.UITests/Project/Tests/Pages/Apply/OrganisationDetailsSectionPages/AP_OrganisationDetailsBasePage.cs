@@ -1,23 +1,18 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
+public class AP_OrganisationDetailsBasePage : EPAOApply_BasePage
 {
-    public class AP_OrganisationDetailsBasePage : EPAOApply_BasePage
+    protected override string PageTitle => "Organisation details";
+
+    #region Locators
+    private static By TradingNameLink => By.LinkText("Trading name");
+    #endregion
+
+    public AP_OrganisationDetailsBasePage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AP_OD1_TradingNamePage ClickTradingNameLinkInOrganisationDetailsBasePage()
     {
-        protected override string PageTitle => "Organisation details";
-        
-        #region Locators
-        private By TradingNameLink => By.LinkText("Trading name");
-        #endregion
-
-        public AP_OrganisationDetailsBasePage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AP_OD1_TradingNamePage ClickTradingNameLinkInOrganisationDetailsBasePage()
-        {
-            formCompletionHelper.Click(TradingNameLink);
-            return new AP_OD1_TradingNamePage(context);
-        }
+        formCompletionHelper.Click(TradingNameLink);
+        return new(context);
     }
 }

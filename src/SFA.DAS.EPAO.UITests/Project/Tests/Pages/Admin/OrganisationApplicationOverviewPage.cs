@@ -1,41 +1,38 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class OrganisationApplicationOverviewPage : EPAOAdmin_BasePage
 {
-    public class OrganisationApplicationOverviewPage : EPAOAdmin_BasePage
+    protected override string PageTitle => "Application overview";
+
+    public OrganisationApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public NewOrganisationDetailsPage GoToNewOrganisationDetailsPage()
     {
-        protected override string PageTitle => "Application overview";
+        formCompletionHelper.ClickLinkByText("Evaluate organisation details");
+        return new(context);
+    }
 
-        public OrganisationApplicationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
+    public NewOrgDeclarationsPage GoToNewOrgDeclarationsPage()
+    {
+        formCompletionHelper.ClickLinkByText("Evaluate declarations");
+        return new(context);
+    }
 
-        public NewOrganisationDetailsPage GoToNewOrganisationDetailsPage()
-        {
-            formCompletionHelper.ClickLinkByText("Evaluate organisation details");
-            return new NewOrganisationDetailsPage(context);
-        }
+    public NewOrgFinancialhealthAssesmentPage GoToFinancialhealthAssesmentPage()
+    {
+        formCompletionHelper.ClickLinkByText("Evaluate financial health assessment");
+        return new(context);
+    }
 
-        public NewOrgDeclarationsPage GoToNewOrgDeclarationsPage()
-        {
-            formCompletionHelper.ClickLinkByText("Evaluate declarations");
-            return new NewOrgDeclarationsPage(context);
-        }
+    public OrganisationApplicationsPage ReturnToOrganisationApplicationsPage()
+    {
+        formCompletionHelper.ClickLinkByText("Return to applications");
+        return new(context);
+    }
 
-        public NewOrgFinancialhealthAssesmentPage GoToFinancialhealthAssesmentPage()
-        {
-            formCompletionHelper.ClickLinkByText("Evaluate financial health assessment");
-            return new NewOrgFinancialhealthAssesmentPage(context);
-        }
-
-        public OrganisationApplicationsPage ReturnToOrganisationApplicationsPage()
-        {
-            formCompletionHelper.ClickLinkByText("Return to applications");
-            return new OrganisationApplicationsPage(context);
-        }
-
-        public AssessmentSummaryPage CompleteReview()
-        {
-            Continue();
-            return new AssessmentSummaryPage(context);
-        }
+    public AssessmentSummaryPage CompleteReview()
+    {
+        Continue();
+        return new(context);
     }
 }

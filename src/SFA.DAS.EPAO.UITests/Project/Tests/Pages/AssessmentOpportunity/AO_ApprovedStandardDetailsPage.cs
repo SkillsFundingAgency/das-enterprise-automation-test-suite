@@ -1,18 +1,14 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
+public class AO_ApprovedStandardDetailsPage : EPAO_BasePage
 {
-    public class AO_ApprovedStandardDetailsPage : EPAO_BasePage
-    {
-        protected override string PageTitle => "Abattoir worker";
+    protected override string PageTitle => "Abattoir worker";
 
-        #region Locators
-        private By ApplyToAssessThisStandardButton => By.CssSelector("#main-content .govuk-button");
-        #endregion
+    #region Locators
+    private static By ApplyToAssessThisStandardButton => By.CssSelector("#main-content .govuk-button");
+    #endregion
 
-        public AO_ApprovedStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+    public AO_ApprovedStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void ClickApplyToThisStandardButton() => tabHelper.OpenInNewTab(() => formCompletionHelper.Click(ApplyToAssessThisStandardButton));
-    }
+    public void ClickApplyToThisStandardButton() => tabHelper.OpenInNewTab(() => formCompletionHelper.Click(ApplyToAssessThisStandardButton));
 }

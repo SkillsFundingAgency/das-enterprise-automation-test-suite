@@ -1,24 +1,20 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class OrganisationApplicationsPage : ApplicationBasePage
 {
-    public class OrganisationApplicationsPage : ApplicationBasePage
+    protected override string PageTitle => "Organisation applications";
+
+    public OrganisationApplicationsPage(ScenarioContext context) : base(context) { }
+
+    public OrganisationApplicationOverviewPage GoToNewOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(NewTab);
+
+    public OrganisationApplicationOverviewPage GoToInProgressOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(InProgressTab);
+
+    public OrganisationApplicationOverviewPage GoToApprovedOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(ApprovedTab);
+
+    private OrganisationApplicationOverviewPage GoToOrganisationApplicationOverviewPage(By by)
     {
-        protected override string PageTitle => "Organisation applications";
-
-        public OrganisationApplicationsPage(ScenarioContext context) : base(context) { }
-
-        public OrganisationApplicationOverviewPage GoToNewOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(NewTab);
-
-        public OrganisationApplicationOverviewPage GoToInProgressOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(InProgressTab);
-
-        public OrganisationApplicationOverviewPage GoToApprovedOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(ApprovedTab);
-
-        private OrganisationApplicationOverviewPage GoToOrganisationApplicationOverviewPage(By by)
-        {
-            GoToApplicationOverviewPage(by);
-            return new OrganisationApplicationOverviewPage(context);
-        }
+        GoToApplicationOverviewPage(by);
+        return new(context);
     }
 }

@@ -1,118 +1,114 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
+[Binding]
+public class AdminSteps : EPAOBaseSteps
 {
-    [Binding]
-    public class AdminSteps : EPAOBaseSteps
+    private ConfirmReasonBasePage confirmReasonBasePage;
+    private ConfirmationAmendReprintBasePage confirmationAmendReprintBasePage;
+
+    public AdminSteps(ScenarioContext context) : base(context) { }
+
+    [Then(@"the admin can add organisation")]
+    public void ThenTheAdminCanAddOrganisation() => AdminStepshelper.AddOrganisation(GoToEpaoAdminHomePage());
+
+    [Then(@"the admin can make organisation to be live")]
+    public void ThenTheAdminCanMakeOrganisationToBeLive()
     {
-        private ConfirmReasonBasePage confirmReasonBasePage;
-        private ConfirmationAmendReprintBasePage confirmationAmendReprintBasePage;
+        var epaoid = EPAOAdminDataHelper.MakeLiveOrganisationEpaoId;
 
-        public AdminSteps(ScenarioContext context) : base(context) { }
+        ePAOAdminSqlDataHelper.UpdateOrgStatusToNew(epaoid);
 
-        [Then(@"the admin can add organisation")]
-        public void ThenTheAdminCanAddOrganisation() => adminStepshelper.AddOrganisation(GoToEpaoAdminHomePage());
+        objectContext.SetOrganisationIdentifier(epaoid);
 
-        [Then(@"the admin can make organisation to be live")]
-        public void ThenTheAdminCanMakeOrganisationToBeLive()
-        {
-            var epaoid = ePAOAdminDataHelper.MakeLiveOrganisationEpaoId;
-
-            ePAOAdminSqlDataHelper.UpdateOrgStatusToNew(epaoid);
-
-            objectContext.SetOrganisationIdentifier(epaoid);
-
-            organisationDetailsPage = adminStepshelper.MakeEPAOOrganisationLive(GoToEpaoAdminHomePage());
-        }
-
-        [Then(@"the admin can edit the organisation")]
-        public void ThenTheAdminCanEditTheOrganisation() => organisationDetailsPage = organisationDetailsPage.EditOrganisation().EditDetails().VerifyOrganisationCharityNumber().VerifyOrganisationCompanyNumber();
-
-        [Then(@"the admin can search using organisation name")]
-        public void ThenTheAdminCanSearchUsingOrganisationName() => SearchEpaoRegister(ePAOAdminDataHelper.OrganisationName);
-
-        [Then(@"the admin can search using organisation epao id")]
-        public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => SearchEpaoRegister(ePAOAdminDataHelper.OrganisationEpaoId);
-
-        [Then(@"the admin can add contact details")]
-        public void ThenTheAdminCanAddContactDetails() => organisationDetailsPage = organisationDetailsPage.AddNewContact().AddContact().ReturnToOrganisationDetailsPage().SelectContact().ReturnToOrganisationDetailsPage();
-
-        [Then(@"the admin can search using organisation ukprn")]
-        public void ThenTheAdminCanSearchUsingOrganisationUkprn() => SearchEpaoRegister(ePAOAdminDataHelper.OrganisationUkprn);
-
-        [Given(@"the (Admin all roles user) is logged into the Admin Service Application")]
-        public void GivenTheAdminIsLoggedIntoTheAdminServiceApplication(string _) => staffDashboardPage = GoToEpaoAdminHomePage();
-
-        [Given(@"the Admin can search using learner uln")]
-        [When(@"the Admin can search using learner uln")]
-        [Then(@"the Admin can search using learner uln")]
-        public void GivenWhenThenTheAdminCanSearchUsingUln() => certificateDetailsPage = adminStepshelper.SearchAssessments(staffDashboardPage, ePAOAdminDataHelper.LearnerUln);
-
-        [When(@"the Admin amends the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
-        public void WhenTheAdminAmendsTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string amendReason) => EnterTicketRefeferenceAndSelectReason(certificateDetailsPage.ClickAmendCertificateLink(), ticketReference, amendReason);
-
-        [When(@"the Admin reprints the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
-        public void WhenTheAdminReprintTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string reprintReason) => EnterTicketRefeferenceAndSelectReason(certificateDetailsPage.ClickReprintCertificateLink(), ticketReference, reprintReason);
-
-        [Then(@"the SendTo can be changed from '(employer|apprentice)' to '(employer|apprentice)'")]
-        public void ThenTheSendToCanBeChangedFrom(string currentSentTo, string newSendTo) => certificateAddressPage = checkAndSubmitAssessmentDetailsPage.ClickChangeSendToLink().ChangeSendToRadioButtonAndContinue(currentSentTo, newSendTo);
-
-        [Then(@"the new address can be entered without employer name or recipient")]
-        public void ThenTheNewAddressCanBeEnteredWithoutEmployerNameOrRecipient() => EnterNewAdddress(string.Empty, string.Empty);
-
-        [Then(@"the new address can be entered with employer name '(.*)' and recipient '(.*)'")]
-        public void ThenThenNewAddressCanBeEnteredWithEmployerNameAndRecipient(string employer, string recipient) => EnterNewAdddress(employer, recipient);
-
-        [Then(@"the recipient's name on the check page is '(.*)'")]
-        public void ThenTheRecipientIsTheNewOneWhichWasEntered(string recipient) => checkAndSubmitAssessmentDetailsPage.VerifyRecipient(recipient);
-
-        [Then(@"the recipient is defaulted to the apprentice name")]
-        public void ThenTheRecipientIsDefaultedToTheApprenticeName() => checkAndSubmitAssessmentDetailsPage.VerifyRecipientIsApprentice();
-
-        [Then(@"the address contains the employer name '(.*)'")]
-        public void ThenTheAddressContainsTheEmployerName(string employer) => checkAndSubmitAssessmentDetailsPage.VerifyEmployer(employer);
-
-        [When(@"the Admin amends the certificate")]
-        public void WhenTheAdminAmendsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickAmendCertificateLink();
-        
-        [When(@"the Admin reprints the certificate")]
-        public void WhenTheAdminReprintsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickReprintCertificateLink();
-
-        [Then(@"the ticket reference '(.*)' and reason for amend '(.*)' can be entered")]
-        public void ThenTheReasonForAmendCanBeEntered(string ticketReference, string reasonForAmend) => checkAndSubmitAssessmentDetailsPage = confirmReasonBasePage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForAmend);
-
-        [Then(@"the ticket reference '(.*)' and reason for reprint '(.*)' can be entered")]
-        public void ThenTheReasonForReprintCanBeEntered(string ticketReference, string reasonForReprint) => checkAndSubmitAssessmentDetailsPage = confirmReasonBasePage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForReprint);
-
-        [Then(@"the amend can be confirmed")]
-        public void ThenTheAmendCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmAmend();
-
-        [Then(@"the reprint can be confirmed")]
-        public void ThenTheReprintCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmReprint();
-
-        [Then(@"the certificate history contains the incident number '(.*)' and amend reason '(.*)'")]
-        public void ThenTheCertificateHistoryContainsTheReasonForAmending(string incidentNumber, string amendReason) 
-            => SelectACertificate().VerifyActionHistoryItem(1, "AmendReason").VerifyIncidentNumber(1, incidentNumber).VerifyFirstReason(1, amendReason);
-
-        [Then(@"the certificate history contains the incident number '(.*)' and reprint reason '(.*)'")]
-        public void ThenTheCertificateHistoryContainsTheReasonForReprinting(string incidentNumber, string reprintReason) 
-            => SelectACertificate().VerifyActionHistoryItem(1, "Reprint").VerifyActionHistoryItem(2, "ReprintReason").VerifyIncidentNumber(2, incidentNumber).VerifyFirstReason(2, reprintReason);
-
-        [Then(@"the admin can search batches")]
-        public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
-
-        private CertificateDetailsPage SelectACertificate() => confirmationAmendReprintBasePage.ClickSearchAgain().SearchFor(ePAOAdminDataHelper.LearnerUln).SelectACertificate();
-
-        private CheckAndSubmitAssessmentDetailsPage EnterNewAdddress(string employer, string recipient) => checkAndSubmitAssessmentDetailsPage = certificateAddressPage.
-                EnterRecipientName(recipient).EnterEmployerName(employer).EnterAddress().
-                EnterReasonForChangeAndContinue((string.IsNullOrEmpty(employer) && string.IsNullOrEmpty(recipient)) ? "Employer Name and Recipient details are not updated" : "Employer Name and Recipient details updated");
-
-        private CheckAndSubmitAssessmentDetailsPage EnterTicketRefeferenceAndSelectReason(ConfirmReasonBasePage page, string ticketReference, string reason) =>
-             checkAndSubmitAssessmentDetailsPage = page.EnterTicketRefeferenceAndSelectReason(ticketReference, reason);
-
-        private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
-
-        private void SearchEpaoRegister(string value) { objectContext.SetOrganisationIdentifier(value); organisationDetailsPage = adminStepshelper.SearchEpaoRegister(GoToEpaoAdminHomePage()); }
+        organisationDetailsPage = AdminStepshelper.MakeEPAOOrganisationLive(GoToEpaoAdminHomePage());
     }
+
+    [Then(@"the admin can edit the organisation")]
+    public void ThenTheAdminCanEditTheOrganisation() => organisationDetailsPage = organisationDetailsPage.EditOrganisation().EditDetails().VerifyOrganisationCharityNumber().VerifyOrganisationCompanyNumber();
+
+    [Then(@"the admin can search using organisation name")]
+    public void ThenTheAdminCanSearchUsingOrganisationName() => SearchEpaoRegister(EPAOAdminDataHelper.OrganisationName);
+
+    [Then(@"the admin can search using organisation epao id")]
+    public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => SearchEpaoRegister(EPAOAdminDataHelper.OrganisationEpaoId);
+
+    [Then(@"the admin can add contact details")]
+    public void ThenTheAdminCanAddContactDetails() => organisationDetailsPage = organisationDetailsPage.AddNewContact().AddContact().ReturnToOrganisationDetailsPage().SelectContact().ReturnToOrganisationDetailsPage();
+
+    [Then(@"the admin can search using organisation ukprn")]
+    public void ThenTheAdminCanSearchUsingOrganisationUkprn() => SearchEpaoRegister(EPAOAdminDataHelper.OrganisationUkprn);
+
+    [Given(@"the (Admin all roles user) is logged into the Admin Service Application")]
+    public void GivenTheAdminIsLoggedIntoTheAdminServiceApplication(string _) => staffDashboardPage = GoToEpaoAdminHomePage();
+
+    [Given(@"the Admin can search using learner uln")]
+    [When(@"the Admin can search using learner uln")]
+    [Then(@"the Admin can search using learner uln")]
+    public void GivenWhenThenTheAdminCanSearchUsingUln() => certificateDetailsPage = AdminStepshelper.SearchAssessments(staffDashboardPage, ePAOAdminDataHelper.LearnerUln);
+
+    [When(@"the Admin amends the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
+    public void WhenTheAdminAmendsTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string amendReason) => EnterTicketRefeferenceAndSelectReason(certificateDetailsPage.ClickAmendCertificateLink(), ticketReference, amendReason);
+
+    [When(@"the Admin reprints the certificate with ticket reference '(.*)' and selects reason '(.*)'")]
+    public void WhenTheAdminReprintTheCertificateAndEnteresAReasonForAmendment(string ticketReference, string reprintReason) => EnterTicketRefeferenceAndSelectReason(certificateDetailsPage.ClickReprintCertificateLink(), ticketReference, reprintReason);
+
+    [Then(@"the SendTo can be changed from '(employer|apprentice)' to '(employer|apprentice)'")]
+    public void ThenTheSendToCanBeChangedFrom(string currentSentTo, string newSendTo) => certificateAddressPage = checkAndSubmitAssessmentDetailsPage.ClickChangeSendToLink().ChangeSendToRadioButtonAndContinue(currentSentTo, newSendTo);
+
+    [Then(@"the new address can be entered without employer name or recipient")]
+    public void ThenTheNewAddressCanBeEnteredWithoutEmployerNameOrRecipient() => EnterNewAdddress(string.Empty, string.Empty);
+
+    [Then(@"the new address can be entered with employer name '(.*)' and recipient '(.*)'")]
+    public void ThenThenNewAddressCanBeEnteredWithEmployerNameAndRecipient(string employer, string recipient) => EnterNewAdddress(employer, recipient);
+
+    [Then(@"the recipient's name on the check page is '(.*)'")]
+    public void ThenTheRecipientIsTheNewOneWhichWasEntered(string recipient) => checkAndSubmitAssessmentDetailsPage.VerifyRecipient(recipient);
+
+    [Then(@"the recipient is defaulted to the apprentice name")]
+    public void ThenTheRecipientIsDefaultedToTheApprenticeName() => checkAndSubmitAssessmentDetailsPage.VerifyRecipientIsApprentice();
+
+    [Then(@"the address contains the employer name '(.*)'")]
+    public void ThenTheAddressContainsTheEmployerName(string employer) => checkAndSubmitAssessmentDetailsPage.VerifyEmployer(employer);
+
+    [When(@"the Admin amends the certificate")]
+    public void WhenTheAdminAmendsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickAmendCertificateLink();
+    
+    [When(@"the Admin reprints the certificate")]
+    public void WhenTheAdminReprintsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickReprintCertificateLink();
+
+    [Then(@"the ticket reference '(.*)' and reason for amend '(.*)' can be entered")]
+    public void ThenTheReasonForAmendCanBeEntered(string ticketReference, string reasonForAmend) => checkAndSubmitAssessmentDetailsPage = confirmReasonBasePage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForAmend);
+
+    [Then(@"the ticket reference '(.*)' and reason for reprint '(.*)' can be entered")]
+    public void ThenTheReasonForReprintCanBeEntered(string ticketReference, string reasonForReprint) => checkAndSubmitAssessmentDetailsPage = confirmReasonBasePage.EnterTicketRefeferenceAndSelectReason(ticketReference, reasonForReprint);
+
+    [Then(@"the amend can be confirmed")]
+    public void ThenTheAmendCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmAmend();
+
+    [Then(@"the reprint can be confirmed")]
+    public void ThenTheReprintCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmReprint();
+
+    [Then(@"the certificate history contains the incident number '(.*)' and amend reason '(.*)'")]
+    public void ThenTheCertificateHistoryContainsTheReasonForAmending(string incidentNumber, string amendReason) 
+        => SelectACertificate().VerifyActionHistoryItem(1, "AmendReason").VerifyIncidentNumber(1, incidentNumber).VerifyFirstReason(1, amendReason);
+
+    [Then(@"the certificate history contains the incident number '(.*)' and reprint reason '(.*)'")]
+    public void ThenTheCertificateHistoryContainsTheReasonForReprinting(string incidentNumber, string reprintReason) 
+        => SelectACertificate().VerifyActionHistoryItem(1, "Reprint").VerifyActionHistoryItem(2, "ReprintReason").VerifyIncidentNumber(2, incidentNumber).VerifyFirstReason(2, reprintReason);
+
+    [Then(@"the admin can search batches")]
+    public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
+
+    private CertificateDetailsPage SelectACertificate() => confirmationAmendReprintBasePage.ClickSearchAgain().SearchFor(ePAOAdminDataHelper.LearnerUln).SelectACertificate();
+
+    private CheckAndSubmitAssessmentDetailsPage EnterNewAdddress(string employer, string recipient) => checkAndSubmitAssessmentDetailsPage = certificateAddressPage.
+            EnterRecipientName(recipient).EnterEmployerName(employer).EnterAddress().
+            EnterReasonForChangeAndContinue((string.IsNullOrEmpty(employer) && string.IsNullOrEmpty(recipient)) ? "Employer Name and Recipient details are not updated" : "Employer Name and Recipient details updated");
+
+    private CheckAndSubmitAssessmentDetailsPage EnterTicketRefeferenceAndSelectReason(ConfirmReasonBasePage page, string ticketReference, string reason) =>
+         checkAndSubmitAssessmentDetailsPage = page.EnterTicketRefeferenceAndSelectReason(ticketReference, reason);
+
+    private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
+
+    private void SearchEpaoRegister(string value) { objectContext.SetOrganisationIdentifier(value); organisationDetailsPage = AdminStepshelper.SearchEpaoRegister(GoToEpaoAdminHomePage()); }
 }

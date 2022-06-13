@@ -1,176 +1,170 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers
+public class EPAOWithdrawalHelper
 {
-    public class EPAOWithdrawalHelper
+    private readonly ScenarioContext _context;
+
+    public EPAOWithdrawalHelper(ScenarioContext context) => _context = context;
+
+    public void StartOfStandardWithdrawalJourney()
     {
-        private readonly ScenarioContext _context;
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
+        aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
+                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+                           .ClickStartNewWithdrawalNotification()
+                           .ClickAssessingASpecificStandard()
+                           .ClickASpecificStandardToWithdraw()
+                           .ContinueWithWithdrawalRequest();
+    }
 
-        public EPAOWithdrawalHelper(ScenarioContext context) => _context = context;
+    public void StartOfRegisterWithdrawalJourney()
+    {
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
+        aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
+                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+                           .ClickStartNewWithdrawalNotification()
+                           .ClickWithdrawFromRegister()
+                           .ContinueWithWithdrawalRequest();
+    }
 
-        public void StartOfStandardWithdrawalJourney()
-        {
-            AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
-            aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
-                               .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                               .ClickStartNewWithdrawalNotification()
-                               .ClickAssessingASpecificStandard()
-                               .ClickASpecificStandardToWithdraw()
-                               .ContinueWithWithdrawalRequest();
-        }
+    public void StandardApplicationFinalJourney()
+    {
+        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(_context);
+        aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
+                                  .ClickGoToReasonForWithdrawingQuestionLink()
+                                  .ClickExternalQualityAssuranceProviderHasChanged()
+                                  .ClickYesAndContinue()
+                                  .EnterSupportingInformationForStandardWithdrawal()
+                                  .EnterDateToWithdraw()
+                                  .VerifyAndReturnToApplicationOverviewPage()
+                                  .AcceptAndSubmit();
+    }
 
-        public void StartOfRegisterWithdrawalJourney()
-        {
-            AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
-            aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                               .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                               .ClickStartNewWithdrawalNotification()
-                               .ClickWithdrawFromRegister()
-                               .ContinueWithWithdrawalRequest();
-        }
+    public void RegisterWithdrawalQuestions()
+    {
+        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(_context);
+        aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
+            .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
+            .ClickAssessmentPlanHasChangedAndEnterOptionalReason()
+            .ClickNoAndContinue()
+            .EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()
+            .EnterSupportingInformationForRegisterWithdrawal()
+            .EnterDateToWithdraw()
+            .VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
+            .AcceptAndSubmitWithHowWillYouSuportQuestion();
+    }
 
-        public void StandardApplicationFinalJourney()
-        {
-            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
-            aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
-                                      .ClickGoToReasonForWithdrawingQuestionLink()
-                                      .ClickExternalQualityAssuranceProviderHasChanged()
-                                      .ClickYesAndContinue()
-                                      .EnterSupportingInformationForStandardWithdrawal()
-                                      .EnterDateToWithdraw()
-                                      .VerifyAndReturnToApplicationOverviewPage()
-                                      .AcceptAndSubmit();
-        }
+    public void VerifyStandardSubmitted() => new AS_WithdrawalApplicationSubmittedPage(_context);
 
-        public void RegisterWithdrawalQuestions()
-        {
-            AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new AS_WithdrawalRequestOverviewPage(_context);
-            aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
-                .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
-                .ClickAssessmentPlanHasChangedAndEnterOptionalReason()
-                .ClickNoAndContinue()
-                .EnterAnswerForHowWillYouSupportLearnerYouAreNotGoingToAssess()
-                .EnterSupportingInformationForRegisterWithdrawal()
-                .EnterDateToWithdraw()
-                .VerifyWithSupportingLearnersQuestionAndReturnToApplicationOverviewPage()
-                .AcceptAndSubmitWithHowWillYouSuportQuestion();
-        }
+    public void VerifyTheInProgressStatus()
+    {
+        new AS_LoggedInHomePage(_context)
+            .ClickWithdrawFromAStandardLink()
+            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+            .ValidateStatus("In progress");
+    }
 
-        public void VerifyStandardSubmitted() => new AS_WithdrawalApplicationSubmittedPage(_context);
+    public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
+    {
+        new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
+    }
 
-        public void VerifyTheInProgressStatus()
-        {
-            new AS_LoggedInHomePage(_context)
-                .ClickWithdrawFromAStandardLink()
-                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                .ValidateStatus("In progress");
-        }
+    public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
+    {
+        return staffDashboardPage
+            .GoToNewWithdrawalApplications()
+            .GoToStandardWithdrawlApplicationOverivewPage()
+            .GoToWithdrawalRequestQuestionsPage()
+            .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
+            .ClickCompleteReview()
+            .ContinueWithWithdrawalRequest()
+            .ClickApproveApplication();
+    }
 
-        public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
-        {
-            new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
-        }
+    public AD_YouhaveApprovedThisWithdrawalNotification ApproveARegisterWithdrawal(StaffDashboardPage staffDashboardPage)
+    {
+        return staffDashboardPage
+            .GoToNewWithdrawalApplications()
+            .StoreCurrentTabValues()
+            .GoToRegisterWithdrawlApplicationOverviewPage()
+            .GoToWithdrawalRequestQuestionsPage()
+            .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
+            .ClickCompleteReview()
+            .ContinueWithWithdrawalRequest()
+            .ClickApproveApplication();
+    }
 
-        public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
-        {
-            return staffDashboardPage
-                .GoToNewWithdrawalApplications()
-                .GoToStandardWithdrawlApplicationOverivewPage()
-                .GoToWithdrawalRequestQuestionsPage()
-                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
-                .ClickCompleteReview()
-                .ContinueWithWithdrawalRequest()
-                .ClickApproveApplication();
-        }
+    public AD_WithdrawalApplicationsPage AddFeedbackToARegisterWithdrawalApplication(StaffDashboardPage staffDashboardPage)
+    {
+        return staffDashboardPage
+            .GoToNewWithdrawalApplications()
+            .StoreCurrentTabValues()
+            .GoToRegisterWithdrawlApplicationOverviewPage()
+            .GoToWithdrawalRequestQuestionsPage()
+            .ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
+            .AddFeedbackMessage()
+            .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
+            .ClickCompleteReview()
+            .ContinueWithWithdrawalRequest()
+            .ClickAddFeedback()
+            .ReturnToWithdrawalApplications();
+    }
+    public void ReturnToWithdrawalApplicationsPage()
+    {
+        new AD_YouhaveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
+    }
 
-        public AD_YouhaveApprovedThisWithdrawalNotification ApproveARegisterWithdrawal(StaffDashboardPage staffDashboardPage)
-        {
-            return staffDashboardPage
-                .GoToNewWithdrawalApplications()
-                .StoreCurrentTabValues()
-                .GoToRegisterWithdrawlApplicationOverviewPage()
-                .GoToWithdrawalRequestQuestionsPage()
-                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
-                .ClickCompleteReview()
-                .ContinueWithWithdrawalRequest()
-                .ClickApproveApplication();
-        }
+    public void VerifyApplicationMovedFromNewToFeedback()
+    {
+        new AD_WithdrawalApplicationsPage(_context)
+            .VerifyAnApplicationHasMovedFromNewTab()
+            .VerifyAnApplicationAddedToFeedbackTab();
+    }
 
-        public AD_WithdrawalApplicationsPage AddFeedbackToARegisterWithdrawalApplication(StaffDashboardPage staffDashboardPage)
-        {
-            return staffDashboardPage
-                .GoToNewWithdrawalApplications()
-                .StoreCurrentTabValues()
-                .GoToRegisterWithdrawlApplicationOverviewPage()
-                .GoToWithdrawalRequestQuestionsPage()
-                .ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
-                .AddFeedbackMessage()
-                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
-                .ClickCompleteReview()
-                .ContinueWithWithdrawalRequest()
-                .ClickAddFeedback()
-                .ReturnToWithdrawalApplications();
-        }
-        public void ReturnToWithdrawalApplicationsPage()
-        {
-            new AD_YouhaveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
-        }
+    public void VerifyApplicationMovedToFeedback()
+    {
+        new AD_WithdrawalApplicationsPage(_context).VerifyAnApplicationAddedToFeedbackTab();
+    }
 
-        public void VerifyApplicationMovedFromNewToFeedback()
-        {
-            new AD_WithdrawalApplicationsPage(_context)
-                .VerifyAnApplicationHasMovedFromNewTab()
-                .VerifyAnApplicationAddedToFeedbackTab();
-        }
+    public void VerifyApplicationIsMovedToApprovedTab()
+    {
+        new AD_WithdrawalApplicationsPage(_context)
+            .VerifyAnApplicationAddedToApprovedTab()
+            .VerifyApprovedTabContainsRegisterWithdrawal();
+    }
 
-        public void VerifyApplicationMovedToFeedback()
-        {
-            new AD_WithdrawalApplicationsPage(_context).VerifyAnApplicationAddedToFeedbackTab();
-        }
 
-        public void VerifyApplicationIsMovedToApprovedTab()
-        {
-            new AD_WithdrawalApplicationsPage(_context)
-                .VerifyAnApplicationAddedToApprovedTab()
-                .VerifyApprovedTabContainsRegisterWithdrawal();
-        }
-       
+    public void AmmendWithdrawalApplication()
+    {
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
+        aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
+                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+                           .ClickViewOnRegisterWithdrawalWithFeedbackAdded()
+                           .ClickContinueButton()
+                           .ClickSupportingCurrentLearnersFeedback()
+                           .UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
+                           .SubmitUpdatedAnswers();
+    }
 
-        public void AmmendWithdrawalApplication()
-        {
-            AS_LoggedInHomePage aS_LoggedInHomePage = new AS_LoggedInHomePage(_context);
-            aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                               .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                               .ClickViewOnRegisterWithdrawalWithFeedbackAdded()
-                               .ClickContinueButton()
-                               .ClickSupportingCurrentLearnersFeedback()
-                               .UpdateAnswerForHowWillYouSupportLearnersYouAreNotGoingToAssess()
-                               .SubmitUpdatedAnswers();
-        }
+    public AD_YouhaveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
+    {
+        return staffDashboardPage
+            .GoToFeedbackWithdrawalApplications()
+            .StoreCurrentTabValues()
+            .GoToAmmendedWithdrawalApplicationOverviewPage()
+            .VerifyAnswerUpdatedTag()
+            .GoToWithdrawalRequestQuestionsPage()
+            .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
+            .ClickCompleteReview()
+            .ContinueWithWithdrawalRequest()
+            .ClickApproveApplication();
+    }
 
-        public AD_YouhaveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
-        {
-            return staffDashboardPage
-                .GoToFeedbackWithdrawalApplications()
-                .StoreCurrentTabValues()
-                .GoToAmmendedWithdrawalApplicationOverviewPage()
-                .VerifyAnswerUpdatedTag()
-                .GoToWithdrawalRequestQuestionsPage()
-                .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
-                .ClickCompleteReview()
-                .ContinueWithWithdrawalRequest()
-                .ClickApproveApplication();
-        }
+    public AD_WithdrawalApplicationsPage VerifyWithdrawalFromRegisterApproved()
+    {
+        var approvedPage = new AD_YouhaveApprovedThisWithdrawalNotification(_context);
 
-        public AD_WithdrawalApplicationsPage VerifyWithdrawalFromRegisterApproved()
-        {
-            var approvedPage = new AD_YouhaveApprovedThisWithdrawalNotification(_context);
-
-            return approvedPage.VerifyRegisterWithdrawalBodyText()
-                .ReturnToWithdrawalApplications();
-        }
+        return approvedPage.VerifyRegisterWithdrawalBodyText()
+            .ReturnToWithdrawalApplications();
     }
 }
