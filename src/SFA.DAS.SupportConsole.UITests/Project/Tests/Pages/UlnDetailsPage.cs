@@ -25,114 +25,57 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.VerifyText(ApprenticeNameSelector, PageTitle);
         }
-
         
 
         public void VerifyUlnDetailsPageHeaders()
         {
-            var apprenticeDetails = _commitmentsSqlDataHelper.GetApprenticeshipDetails(config.Uln, config.CohortRef);
-            // VerifyPage();
-            VerifyHeaderAndValue("Agreement status", GetAgreementStatusText(apprenticeDetails.AgreementStatus));
-            VerifyHeaderAndValue("Payment status",GetPaymentStatusText(apprenticeDetails.PaymentStatus, apprenticeDetails.StartDate), "td strong");
-            VerifyHeaderAndValue("Unique learner number", apprenticeDetails.ULN);
-            VerifyHeaderAndValue("Email address", apprenticeDetails.Email);
-            VerifyHeaderAndValue("Training provider", apprenticeDetails.ProviderName);
-            VerifyHeaderAndValue("Name", $"{apprenticeDetails.FirstName} {apprenticeDetails.LastName}");
-            VerifyHeaderAndValue("Date of birth", ToGdsFormatWithSpaceSeperator(apprenticeDetails.DateOfBirth));
-            VerifyHeaderAndValue("Cohort reference", apprenticeDetails.CohortReference);
-            VerifyHeaderAndValue("Employer reference", apprenticeDetails.EmployerReference);
-            VerifyHeaderAndValue("Legal entity", apprenticeDetails.LegalEntityName);
-            VerifyHeaderAndValue("UKPRN", apprenticeDetails.UKPRN);
-            VerifyHeaderAndValue("Apprenticeship training course", apprenticeDetails.TrainingName);
-            VerifyHeaderAndValue("Apprenticeship code", apprenticeDetails.TrainingCode);
-            VerifyHeaderAndValue("Apprentice confirmation", apprenticeDetails.ConfirmationStatusDescription);
-            VerifyHeaderAndValue("AS training start date", ToGdsFormatWithoutDay(apprenticeDetails.StartDate));
-            VerifyHeaderAndValue("AS training end date", ToGdsFormatWithoutDay(apprenticeDetails.EndDate));
-            VerifyHeaderAndValue("Current training cost", ToGdsCurrencyFormat(apprenticeDetails.Cost));
-            if (apprenticeDetails.PaymentStatus == 3 && apprenticeDetails.MadeRedundant.HasValue)
-            {
-                VerifyHeaderAndValue("Made redundant",  apprenticeDetails.MadeRedundant.Value ? "Yes" : "No");
-            }
-            if (apprenticeDetails.PaymentStatus == 4)
-            {
-                VerifyHeaderAndValue("Completion payment month", ToGdsFormatWithoutDay(apprenticeDetails.CompletionDate));
-            }
-            if (apprenticeDetails.PaymentStatus == 3)
-            {
-                VerifyHeaderAndValue("Stopped date", ToGdsFormatWithoutDay(apprenticeDetails.StopDate));
-            }
-            if (apprenticeDetails.PaymentStatus == 2)
-            {
-                VerifyHeaderAndValue("Paused date", ToGdsFormatWithoutDay(apprenticeDetails.PauseDate));
-            }
-            if (apprenticeDetails.TrainingCourseVersionConfirmed.HasValue && apprenticeDetails.TrainingCourseVersionConfirmed.Value)
-            {
-                VerifyHeaderAndValue("Version", apprenticeDetails.TrainingCourseVersion);
-            }
-            if (!string.IsNullOrWhiteSpace(apprenticeDetails.TrainingCourseOption))
-            {
-                VerifyHeaderAndValue("Option", string.IsNullOrWhiteSpace(apprenticeDetails.TrainingCourseOption) ? "To be confirmed" : apprenticeDetails.TrainingCourseOption);
-            }
+            //VerifyPage();
+            VerifyHeader("Agreement status");
+            VerifyHeader("Payment status", "td strong");
+            VerifyHeaderAndValue("Unique learner number", config.Uln);
+            VerifyHeader("Email address");
+            VerifyHeader("Training provider");
+            VerifyHeaderAndValue("Name", config.UlnName);
+            VerifyHeader("Date of birth");
+            VerifyHeaderAndValue("Cohort reference", config.CohortRef);
+            VerifyHeader("Employer reference");
+            VerifyHeader("Legal entity");
+            VerifyHeader("UKPRN");
+            VerifyHeader("Apprenticeship training course");
+            VerifyHeader("Apprenticeship code");
+            VerifyHeader("Apprentice confirmation");
+            VerifyHeader("AS training start date");
+            VerifyHeader("AS training end date");
+            VerifyHeader("Current training cost");
         }
 
-        private string GetPaymentStatusText(int paymentStatus, DateTime? startDate)
+
+        private void VerifyHeaderAndValue(string headerText, string headerValue)
         {
-            var isStartDateInFuture = startDate.HasValue && startDate.Value > new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
-
-            switch (paymentStatus)
-            {
-                case 0:
-                    return "Approval needed";
-                case 1:
-                    return isStartDateInFuture ? "Waiting to start" : "LIVE";
-                case 2:
-                    return "PAUSED";
-                case 3:
-                    return "STOPPED";
-                case 4:
-                    return "COMPLETED";
-                case 5:
-                    return "DELETED";
-                default:
-                    break;
-            }
-
-            return string.Empty;
+            var headerTextXpathQuery = $"//th[contains(text(),'{headerText}')]";
+            var header = pageInteractionHelper.FindElement(By.XPath(headerTextXpathQuery));
+            var parent = header.FindElement(By.XPath(".."));
+            var value = parent.FindElement(By.CssSelector("td"));
+            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(header), headerText);
+            pageInteractionHelper.VerifyText(headerValue, pageInteractionHelper.GetText(value));
         }
 
-        private void VerifyHeaderAndValue(string headerText, string expectedValueFromDatabase, string valueCssSelector = "td")
+
+        private void VerifyHeader(string headerText, string valueCssSelector = "td")
         {
             var headerTextXpathQuery = $"//th[contains(text(),'{headerText}')]";
             var header = pageInteractionHelper.FindElement(By.XPath(headerTextXpathQuery));
             var parent = header.FindElement(By.XPath(".."));
             var value = parent.FindElement(By.CssSelector(valueCssSelector));
             pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(header), headerText);
-            pageInteractionHelper.VerifyText(expectedValueFromDatabase, pageInteractionHelper.GetText(value));
         }
 
-        private string GetAgreementStatusText(int agreementStatus)
-        {
-            switch (agreementStatus)
-            {
-                case 0:
-                    return "Not agreed";
-                case 1:
-                    return "Employer agreed";
-                case 2:
-                    return "Provider agreed";
-                case 3:
-                    return "Both agreed";
-                default:
-                    break;
-            }
-
-            return string.Empty;
-        }
 
         public string ToGdsFormatWithSpaceSeperator(DateTime? date)
         {
             return date.HasValue ? date.Value.ToString("dd MMMM yyyy") : string.Empty;
         }
+
 
         public string ToGdsFormatWithoutDay(DateTime? date)
         {
