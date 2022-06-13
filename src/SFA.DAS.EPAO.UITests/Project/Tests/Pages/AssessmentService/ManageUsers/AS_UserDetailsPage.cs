@@ -1,51 +1,47 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
+public class AS_UserDetailsPage : EPAO_BasePage
 {
-    public class AS_UserDetailsPage : EPAO_BasePage
+    protected override string PageTitle => "User details";
+    protected override By PageHeader => By.CssSelector(".govuk-caption-xl");
+
+    #region Locators
+    private static By EditUserPermissionLink => By.LinkText("Edit user permissions");
+    private static By ViewDashboardPermission => By.XPath("//li[contains(text(),'View dashboard')]");
+    private static By ChangeOrganisationDetailsPersmission => By.XPath("//li[contains(text(),'Change organisation details')]");
+    private static By PipelinePermission => By.XPath("//li[contains(text(),'Pipeline')]");
+    private static By CompletedAssessmentsPermission => By.XPath("//li[contains(text(),'Completed assessments')]");
+    private static By ApplyForAStandardPermission => By.XPath("//li[contains(text(),'Apply for a Standard')]");
+    private static By ManageUsersPermission => By.XPath("//li[contains(text(),'Manage users')]");
+    private static By RecordGradesPermission => By.XPath("//li[contains(text(),'Record grades and issue certificates')]");
+    private static By RemoveThisUserLink => By.LinkText("Remove this user");
+    #endregion
+
+    public AS_UserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_EditUserPermissionsPage ClickEditUserPermissionLink()
     {
-        protected override string PageTitle => "User details";
-        protected override By PageHeader => By.CssSelector(".govuk-caption-xl");
-        
-        #region Locators
-        private By EditUserPermissionLink => By.LinkText("Edit user permissions");
-        private By ViewDashboardPermission => By.XPath("//li[contains(text(),'View dashboard')]");
-        private By ChangeOrganisationDetailsPersmission => By.XPath("//li[contains(text(),'Change organisation details')]");
-        private By PipelinePermission => By.XPath("//li[contains(text(),'Pipeline')]");
-        private By CompletedAssessmentsPermission => By.XPath("//li[contains(text(),'Completed assessments')]");
-        private By ApplyForAStandardPermission => By.XPath("//li[contains(text(),'Apply for a Standard')]");
-        private By ManageUsersPermission => By.XPath("//li[contains(text(),'Manage users')]");
-        private By RecordGradesPermission => By.XPath("//li[contains(text(),'Record grades and issue certificates')]");
-        private By RemoveThisUserLink => By.LinkText("Remove this user");
-        #endregion
+        formCompletionHelper.Click(EditUserPermissionLink);
+        return new(context);
+    }
 
-        public AS_UserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+    public bool IsViewDashboardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ViewDashboardPermission);
 
-        public AS_EditUserPermissionsPage ClickEditUserPermissionLink()
-        {
-            formCompletionHelper.Click(EditUserPermissionLink);
-            return new AS_EditUserPermissionsPage(context);
-        }
+    public bool IsChangeOrganisationDetailsPersmissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeOrganisationDetailsPersmission);
 
-        public bool IsViewDashboardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ViewDashboardPermission);
+    public bool IsPipelinePermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(PipelinePermission);
 
-        public bool IsChangeOrganisationDetailsPersmissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeOrganisationDetailsPersmission);
+    public bool IsCompletedAssessmentsPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(CompletedAssessmentsPermission);
 
-        public bool IsPipelinePermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(PipelinePermission);
+    public bool IsApplyForAStandardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ApplyForAStandardPermission);
 
-        public bool IsCompletedAssessmentsPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(CompletedAssessmentsPermission);
+    public bool IsManageUsersPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ManageUsersPermission);
 
-        public bool IsApplyForAStandardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ApplyForAStandardPermission);
+    public bool IsRecordGradesPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(RecordGradesPermission);
 
-        public bool IsManageUsersPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ManageUsersPermission);
-
-        public bool IsRecordGradesPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(RecordGradesPermission);
-
-        public AS_RemoveUserPage ClicRemoveThisUserLinkInUserDetailPage()
-        {
-            formCompletionHelper.Click(RemoveThisUserLink);
-            return new AS_RemoveUserPage(context);
-        }
+    public AS_RemoveUserPage ClicRemoveThisUserLinkInUserDetailPage()
+    {
+        formCompletionHelper.Click(RemoveThisUserLink);
+        return new(context);
     }
 }

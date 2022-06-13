@@ -1,21 +1,17 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class OrganisationSearchPage : EPAOAdmin_BasePage
 {
-    public class OrganisationSearchPage : EPAOAdmin_BasePage
+    protected override string PageTitle => "Organisation search";
+
+    private static By OrganisationSearchField => By.Id("SearchString");
+
+    public OrganisationSearchPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public OrganisationSearchResultsPage SearchForAnOrganisation()
     {
-        protected override string PageTitle => "Organisation search";
-
-        private By OrganisationSearchField => By.Id("SearchString");
-
-        public OrganisationSearchPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public OrganisationSearchResultsPage SearchForAnOrganisation()
-        {
-            formCompletionHelper.EnterText(OrganisationSearchField, objectContext.GetOrganisationIdentifier());
-            Continue();
-            return new OrganisationSearchResultsPage(context);
-        }
-    } 
+        formCompletionHelper.EnterText(OrganisationSearchField, objectContext.GetOrganisationIdentifier());
+        Continue();
+        return new(context);
+    }
 }

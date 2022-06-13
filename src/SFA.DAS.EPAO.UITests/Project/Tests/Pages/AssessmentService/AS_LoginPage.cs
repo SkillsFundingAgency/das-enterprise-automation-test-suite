@@ -1,46 +1,35 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
-using SFA.DAS.Login.Service.Project.Helpers;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
+public class AS_LoginPage : EPAO_BasePage
 {
-    public class AS_LoginPage : EPAO_BasePage
+    protected override string PageTitle => "Sign in to Apprenticeship assessment service";
+
+    #region Locators
+    private static By EmailAddressTextBox => By.Id("Username");
+    private static By PasswordTextBox => By.Id("Password");
+    #endregion
+
+    public AS_LoginPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AS_LoggedInHomePage SignInWithValidDetails(LoginUser loginUser)
     {
-        protected override string PageTitle => "Sign in to Apprenticeship assessment service";
+        EnterLoginDetails(loginUser);
+        return new(context);
+    }
 
-        #region Locators
-        private By EmailAddressTextBox => By.Id("Username");
-        private By PasswordTextBox => By.Id("Password");
-        #endregion
+    public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(LoginUser loginUser)
+    {
+        EnterLoginDetails(loginUser);
+        return new(context);
+    }
 
-        public AS_LoginPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AS_LoggedInHomePage SignInWithValidDetails(LoginUser loginUser)
-        {
-            EnterLoginDetails(loginUser);
-            return new AS_LoggedInHomePage(context);
-        }
-
-        public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(LoginUser loginUser)
-        {
-            EnterLoginDetails(loginUser);
-            return new AP_PR1_SearchForYourOrganisationPage(context);
-        }
-
-        private void EnterLoginDetails(LoginUser loginUser)
-        {
-            formCompletionHelper.EnterText(EmailAddressTextBox, loginUser.Username);
-            formCompletionHelper.EnterText(PasswordTextBox, loginUser.Password);
-            Continue();
-            ePAOAdminDataHelper.LoginEmailAddress = loginUser.Username;
-        }
-
-        public AS_ApplyForAStandardPage SignInStandardAsApplyUser(LoginUser loginUser)
-        {
-            EnterLoginDetails(loginUser);
-            return new AS_ApplyForAStandardPage(context);
-        }
+    private void EnterLoginDetails(LoginUser loginUser)
+    {
+        var username = loginUser.Username;
+        formCompletionHelper.EnterText(EmailAddressTextBox, username);
+        formCompletionHelper.EnterText(PasswordTextBox, loginUser.Password);
+        Continue();
+        ePAOAdminDataHelper.LoginEmailAddress = username;
+        objectContext.SetLoggedInUser(username);
     }
 }

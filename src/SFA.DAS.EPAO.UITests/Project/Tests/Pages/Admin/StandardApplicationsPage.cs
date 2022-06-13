@@ -1,24 +1,20 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class StandardApplicationsPage : ApplicationBasePage
 {
-    public class StandardApplicationsPage : ApplicationBasePage
+    protected override string PageTitle => "Standard applications";
+
+    public StandardApplicationsPage(ScenarioContext context) : base(context) { }
+
+    public StandardApplicationOverviewPage GoToNewStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(NewTab);
+
+    public StandardApplicationOverviewPage GoToInProgressStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(InProgressTab);
+
+    public StandardApplicationOverviewPage GoToApprovedStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(ApprovedTab);
+
+    private StandardApplicationOverviewPage GoToStandardApplicationOverviewPage(By by)
     {
-        protected override string PageTitle => "Standard applications";
-
-        public StandardApplicationsPage(ScenarioContext context) : base(context) { }
-
-        public StandardApplicationOverviewPage GoToNewStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(NewTab);
-
-        public StandardApplicationOverviewPage GoToInProgressStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(InProgressTab);
-
-        public StandardApplicationOverviewPage GoToApprovedStandardApplicationOverviewPage() => GoToStandardApplicationOverviewPage(ApprovedTab);
-
-        private StandardApplicationOverviewPage GoToStandardApplicationOverviewPage(By by)
-        {
-            GoToApplicationOverviewPage(by);
-            return new StandardApplicationOverviewPage(context);
-        }
+        GoToApplicationOverviewPage(by);
+        return new(context);
     }
 }

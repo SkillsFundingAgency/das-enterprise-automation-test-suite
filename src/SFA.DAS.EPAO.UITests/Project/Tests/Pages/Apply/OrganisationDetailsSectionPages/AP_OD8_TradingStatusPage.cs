@@ -1,18 +1,15 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
+public class AP_OD8_TradingStatusPage : EPAO_BasePage
 {
-    public class AP_OD8_TradingStatusPage : EPAO_BasePage
+    protected override string PageTitle => "What's your trading status?";
+
+    public AP_OD8_TradingStatusPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AP_OD9_CompanyNumberPage SelectPubliLimitedCompanyOptionAndContinueInTradingStatusPage()
     {
-        protected override string PageTitle => "What's your trading status?";
-
-        public AP_OD8_TradingStatusPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AP_OD9_CompanyNumberPage SelectPubliLimitedCompanyOptionAndContinueInTradingStatusPage()
-        {
-            SelectRadioOptionByForAttribute("CD-16");
-            Continue();
-            return new AP_OD9_CompanyNumberPage(context);
-        }
+        SelectRadioOptionByForAttribute("CD-16");
+        Continue();
+        return new(context);
     }
 }
