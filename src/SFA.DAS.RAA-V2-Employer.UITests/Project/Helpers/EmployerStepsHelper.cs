@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
 
-            return SearchEmployerVacancyByVacancyReference();
+            return SearchVacancyByVacancyReference();
         }
 
         private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
