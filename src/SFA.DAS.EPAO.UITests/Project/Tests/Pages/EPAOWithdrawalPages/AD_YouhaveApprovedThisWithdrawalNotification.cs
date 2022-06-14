@@ -1,32 +1,24 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
+public class AD_YouhaveApprovedThisWithdrawalNotification : EPAO_BasePage
 {
-    public class AD_YouhaveApprovedThisWithdrawalNotification : EPAO_BasePage
+    protected override string PageTitle => "You've approved this withdrawal application";
+
+    private static By ReturnToApprovedWithdrawals => By.CssSelector("a[href='/WithdrawalApplication/WithdrawalApplications#approved']");
+
+    private static By WithdrawlFromRegisterApprovedMessage => By.XPath("//p[contains(text(), \"to withdraw from the register of end-point assessment organisations.\")]");
+
+    public AD_YouhaveApprovedThisWithdrawalNotification(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AD_YouhaveApprovedThisWithdrawalNotification VerifyRegisterWithdrawalBodyText()
     {
-        protected override string PageTitle => "You've approved this withdrawal application";
-       
-        private By ReturnToApprovedWithdrawals => By.CssSelector("a[href='/WithdrawalApplication/WithdrawalApplications#approved']");
+        Assert.IsNotNull(pageInteractionHelper.FindElement(WithdrawlFromRegisterApprovedMessage));
+        return this;
+    }
 
-        private By WithdrawlFromRegisterApprovedMessage => By.XPath("//p[contains(text(), \"to withdraw from the register of end-point assessment organisations.\")]");
-        
-        public AD_YouhaveApprovedThisWithdrawalNotification(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AD_YouhaveApprovedThisWithdrawalNotification VerifyRegisterWithdrawalBodyText()
-        {
-            Assert.IsNotNull(pageInteractionHelper.FindElement(WithdrawlFromRegisterApprovedMessage));
-            return this;
-        }
-
-        public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplications()
-        {
-            formCompletionHelper.ClickElement(ReturnToApprovedWithdrawals);
-            return new AD_WithdrawalApplicationsPage(context);
-        }
+    public AD_WithdrawalApplicationsPage ReturnToWithdrawalApplications()
+    {
+        formCompletionHelper.ClickElement(ReturnToApprovedWithdrawals);
+        return new(context);
     }
 }

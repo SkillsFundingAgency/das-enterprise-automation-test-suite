@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.TestDataCleanup;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
 using TechTalk.SpecFlow;
 
 
@@ -14,7 +16,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By PasswordTextBox => By.Id("Password");
         #endregion
 
-        public EnterYourSecurityCodePage(ScenarioContext context) : base(context) => VerifyPage();
+        public EnterYourSecurityCodePage(ScenarioContext context, string email) : base(context)
+        {
+            VerifyPage();
+
+            objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, email);
+        }
 
         public AddAPAYESchemePage EnterSecurityCodeDetailsDuringAccountCreationJourney()
         {

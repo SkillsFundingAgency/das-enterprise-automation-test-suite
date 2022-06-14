@@ -1,8 +1,4 @@
-﻿using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class AedSteps

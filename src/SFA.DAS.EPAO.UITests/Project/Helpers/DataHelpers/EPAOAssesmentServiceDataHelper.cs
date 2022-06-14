@@ -1,9 +1,6 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
+public class EPAOAssesmentServiceDataHelper : EPAODataHelper
 {
-    public class EPAOAssesmentServiceDataHelper : EPAODataHelper
-    {
-        public EPAOAssesmentServiceDataHelper() : base() { }
-    }
+    public EPAOAssesmentServiceDataHelper() : base() { }
 }

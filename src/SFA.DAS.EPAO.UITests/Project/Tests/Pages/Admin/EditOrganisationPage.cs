@@ -1,31 +1,27 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class EditOrganisationPage : AddOrEditOrganisationPage
 {
-    public class EditOrganisationPage : AddOrEditOrganisationPage
+    protected override string PageTitle => "Edit organisation";
+
+    protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
+    private static By MakeLiveButton => By.CssSelector(".govuk-button[value='MakeLive']");
+
+    public EditOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public OrganisationDetailsPage MakeOrgLive()
     {
-        protected override string PageTitle => "Edit organisation";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        private By MakeLiveButton => By.CssSelector(".govuk-button[value='MakeLive']");
-
-        public EditOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public OrganisationDetailsPage MakeOrgLive()
-        {
-            formCompletionHelper.ClickElement(MakeLiveButton);
-            return new OrganisationDetailsPage(context);
-        }
-
-        public OrganisationDetailsPage EditDetails()
-        {
-            formCompletionHelper.EnterText(CompanyNumberField, ePAOAdminDataHelper.CompanyNumber);
-            formCompletionHelper.EnterText(CharityNumberField, ePAOAdminDataHelper.CharityNumber);
-            Continue();
-            return new OrganisationDetailsPage(context);
-        }
-
+        formCompletionHelper.ClickElement(MakeLiveButton);
+        return new(context);
     }
+
+    public OrganisationDetailsPage EditDetails()
+    {
+        formCompletionHelper.EnterText(CompanyNumberField, ePAOAdminDataHelper.CompanyNumber);
+        formCompletionHelper.EnterText(CharityNumberField, ePAOAdminDataHelper.CharityNumber);
+        Continue();
+        return new(context);
+    }
+
 }

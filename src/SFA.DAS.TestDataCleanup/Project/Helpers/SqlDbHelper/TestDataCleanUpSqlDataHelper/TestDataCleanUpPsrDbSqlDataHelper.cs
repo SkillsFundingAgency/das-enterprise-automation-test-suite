@@ -1,24 +1,19 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using System.Collections.Generic;
-using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper
+public class TestDataCleanUpPsrDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
 {
-    public class TestDataCleanUpPsrDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
+    private readonly DbConfig _dbConfig;
+
+    public override string SqlFileName => "EasPsrTestDataCleanUp";
+
+    public TestDataCleanUpPsrDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PublicSectorReportingConnectionString) => _dbConfig = dbConfig;
+
+    internal int CleanUpPsrTestData(List<string> accountIdToDelete)
     {
-        private readonly DbConfig _dbConfig;
+        var easaccounthashedids = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
 
-        public override string SqlFileName => "EasPsrTestDataCleanUp";
+        if (easaccounthashedids.IsNoDataFound()) return 0;
 
-        public TestDataCleanUpPsrDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PublicSectorReportingConnectionString) => _dbConfig = dbConfig;
-
-        internal int CleanUpPsrTestData(List<string> accountIdToDelete)
-        {
-            var easaccounthashedids = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
-
-            if (easaccounthashedids.IsNoDataFound()) return 0;
-
-            return CleanUpTestData(easaccounthashedids.ListOfArrayToList(0), (x) => $"Insert into #accounthashedids values ('{x}')", "create table #accounthashedids (id nvarchar(255))");
-        }
+        return CleanUpTestData(easaccounthashedids.ListOfArrayToList(0), (x) => $"Insert into #accounthashedids values ('{x}')", "create table #accounthashedids (id nvarchar(255))");
     }
 }

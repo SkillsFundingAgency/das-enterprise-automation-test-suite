@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
-
-public class AedDataHelper
+public record AedDataHelper
 {
-    public AedDataHelper()
-    {
-        RandomEmail = GetDateTimeValue() + "@mailinator.com";
-        RandomWebsiteAddress = "www.TEST" + GetDateTimeValue() + ".com";
-        TelephoneNumber = $"020{GetRandomNumber(8)}";
-        Location = RandomDataGenerator.GetRandomElementFromListOfElements(ValidLocations);
-    }
-
-    public string RandomEmail { get; }
-    public string RandomWebsiteAddress { get; }
-    public string TelephoneNumber { get; }
-    public string Location { get; }     
+    public string RandomEmail { get; init; } = GetDateTimeValue() + "@mailinator.com";
+    public string RandomWebsiteAddress { get; init; } = "www.TEST" + GetDateTimeValue() + ".com";
+    public string TelephoneNumber { get; init; } = $"020{GetRandomNumber(8)}";
+    public string Location { get; init; } = RandomDataGenerator.GetRandomElementFromListOfElements(ValidLocations);
 
     public static string OrganisationName => "Quinton Testing Ltd";
 
