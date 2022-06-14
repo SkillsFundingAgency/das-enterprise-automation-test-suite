@@ -50,8 +50,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\OutputInterface_ResultIsRegisteredWithEmployerIncentives\" />
-  </ItemGroup>
-
 </Project>
