@@ -24,8 +24,21 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Models
 
         public bool? Employed { get; set; }
 
+        public DateTime? MessageSentDate { get; set; }
+
+        public string ErrorType { get; set; }
+
+        public ProcessingCompletionStatus? RequestCompletionStatus { get; set; }
+
         public DateTime? CreatedOn { get; set; }
 
         public DateTime? LastUpdatedOn { get; set; }
+    }
+
+    public enum ProcessingCompletionStatus
+    {
+        Started = 1,
+        Completed = 2,
+        Skipped = 3
     }
 }
