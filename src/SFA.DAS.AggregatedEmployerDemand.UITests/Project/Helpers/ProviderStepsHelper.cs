@@ -1,9 +1,4 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
 public class ProviderStepsHelper
 {

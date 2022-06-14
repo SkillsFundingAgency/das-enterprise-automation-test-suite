@@ -1,34 +1,28 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project;
 
-namespace SFA.DAS.EPAO.UITests.Project
+[Binding]
+public class EPAOConfigurationSetup
 {
-    [Binding]
-    public class EPAOConfigurationSetup
+    private readonly ScenarioContext _context;
+    public EPAOConfigurationSetup(ScenarioContext context) => _context = context;
+
+    [BeforeScenario(Order = 2)]
+    public void SetUpEPAOProjectConfiguration()
     {
-        private readonly ScenarioContext _context;
-        public EPAOConfigurationSetup(ScenarioContext context) => _context = context;
+        var configSection = _context.Get<IConfigSection>();
 
-        [BeforeScenario(Order = 2)]
-        public void SetUpEPAOProjectConfiguration()
+        _context.SetNonEasLoginUser(new List<NonAccountUser>
         {
-            var configSection = _context.Get<IConfigSection>();
-
-            _context.SetNonEasLoginUser(new List<NonAccountUser>
-            {
-                configSection.GetConfigSection<EPAOStandardApplyUser>(),
-                configSection.GetConfigSection<EPAOAssessorUser>(),
-                configSection.GetConfigSection<EPAODeleteAssessorUser>(),
-                configSection.GetConfigSection<EPAOManageUser>(),
-                configSection.GetConfigSection<EPAOApplyUser>(),
-                configSection.GetConfigSection<EPAOE2EApplyUser>(),
-                configSection.GetConfigSection<EPAOWithdrawalUser>(),
-                configSection.GetConfigSection<EPAOAdminUser>(),
-                configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>()
-            });
-        }             
-    }
+            configSection.GetConfigSection<EPAOStandardApplyUser>(),
+            configSection.GetConfigSection<EPAOAssessorUser>(),
+            configSection.GetConfigSection<EPAODeleteAssessorUser>(),
+            configSection.GetConfigSection<EPAOManageUser>(),
+            configSection.GetConfigSection<EPAOManageOrgUser>(),
+            configSection.GetConfigSection<EPAOApplyUser>(),
+            configSection.GetConfigSection<EPAOE2EApplyUser>(),
+            configSection.GetConfigSection<EPAOWithdrawalUser>(),
+            configSection.GetConfigSection<EPAOAdminUser>(),
+            configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>()
+        });
+    }             
 }

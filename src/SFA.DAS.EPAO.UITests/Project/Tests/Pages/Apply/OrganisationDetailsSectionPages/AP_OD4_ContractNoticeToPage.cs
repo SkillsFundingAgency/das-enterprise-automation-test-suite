@@ -1,39 +1,35 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
+public class AP_OD4_ContractNoticeToPage : EPAO_BasePage
 {
-    public class AP_OD4_ContractNoticeToPage : EPAO_BasePage
+    protected override string PageTitle => "Who should we send the contract notice to?";
+
+    #region Locators
+    private static By GivenNameTextbox => By.Id("CD-07");
+    private static By FamilyNameTextbox => By.Id("CD-07_1");
+    private static By EnterTheAddressManuallyLink => By.Id("enterAddressManually");
+    private static By AddressLine1Textbox => By.Id("CD-08_Key_AddressLine1");
+    private static By TownOrCityTextbox => By.Id("CD-08_Key_AddressLine3");
+    private static By CountyTextbox => By.Id("CD-08_Key_AddressLine4");
+    private static By PostCodeTextbox => By.Id("CD-08_Key_Postcode");
+    private static By EmailAddressTextbox => By.Id("CD-10");
+    private static By TelephoneTextbox => By.Id("CD-11");
+    #endregion
+
+    public AP_OD4_ContractNoticeToPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public AP_OD5_UkprnPage EnterContactDetailsAndContinueInContractNoticeToPage()
     {
-        protected override string PageTitle => "Who should we send the contract notice to?";
-
-        #region Locators
-        private By GivenNameTextbox => By.Id("CD-07");
-        private By FamilyNameTextbox => By.Id("CD-07_1");
-        private By EnterTheAddressManuallyLink => By.Id("enterAddressManually");
-        private By AddressLine1Textbox => By.Id("CD-08_Key_AddressLine1");
-        private By TownOrCityTextbox => By.Id("CD-08_Key_AddressLine3");
-        private By CountyTextbox => By.Id("CD-08_Key_AddressLine4");
-        private By PostCodeTextbox => By.Id("CD-08_Key_Postcode");
-        private By EmailAddressTextbox => By.Id("CD-10");
-        private By TelephoneTextbox => By.Id("CD-11");
-        #endregion
-
-        public AP_OD4_ContractNoticeToPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public AP_OD5_UkprnPage EnterContactDetailsAndContinueInContractNoticeToPage()
-        {
-            formCompletionHelper.EnterText(GivenNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(10));
-            formCompletionHelper.EnterText(FamilyNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(10));
-            formCompletionHelper.Click(EnterTheAddressManuallyLink);
-            formCompletionHelper.EnterText(AddressLine1Textbox, ePAOApplyDataHelper.GetRandomNumber(3));
-            formCompletionHelper.EnterText(TownOrCityTextbox, ePAOApplyDataHelper.TownName);
-            formCompletionHelper.EnterText(CountyTextbox, ePAOApplyDataHelper.CountyName);
-            formCompletionHelper.EnterText(PostCodeTextbox, ePAOApplyDataHelper.PostCode);
-            formCompletionHelper.EnterText(EmailAddressTextbox, ePAOApplyDataHelper.RandomEmail);
-            formCompletionHelper.EnterText(TelephoneTextbox, ePAOApplyDataHelper.GetRandomNumber(10));
-            Continue();
-            return new AP_OD5_UkprnPage(context);
-        }
+        formCompletionHelper.EnterText(GivenNameTextbox, EPAODataHelper.GetRandomAlphabeticString(10));
+        formCompletionHelper.EnterText(FamilyNameTextbox, EPAODataHelper.GetRandomAlphabeticString(10));
+        formCompletionHelper.Click(EnterTheAddressManuallyLink);
+        formCompletionHelper.EnterText(AddressLine1Textbox, EPAODataHelper.GetRandomNumber(3));
+        formCompletionHelper.EnterText(TownOrCityTextbox, EPAODataHelper.TownName);
+        formCompletionHelper.EnterText(CountyTextbox, EPAODataHelper.CountyName);
+        formCompletionHelper.EnterText(PostCodeTextbox, EPAODataHelper.PostCode);
+        formCompletionHelper.EnterText(EmailAddressTextbox, ePAOApplyDataHelper.RandomEmail);
+        formCompletionHelper.EnterText(TelephoneTextbox, EPAODataHelper.GetRandomNumber(10));
+        Continue();
+        return new(context);
     }
 }

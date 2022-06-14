@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
 public class WhichEmployersAreYouInterestedInPage : AedBasePage
 {

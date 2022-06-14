@@ -27,12 +27,9 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
                     if (dbNameToTearDown.Count > 0)
                     {
-                        if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails))
-                        {
-                            foreach (var email in emails) new TestdataCleanupStepsHelper(_context).CleanUpAllDbTestData(email);
-
-                            return;
-                        }
+                        if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails)) 
+                        
+                            new TestdataCleanupStepsHelper(_context).CleanUpAllDbTestData(emails);
                     }
                 });
             }

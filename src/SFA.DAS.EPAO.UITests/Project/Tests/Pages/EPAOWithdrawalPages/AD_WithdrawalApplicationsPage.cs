@@ -1,8 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
 {
     public class AD_WithdrawalApplicationsPage : EPAO_BasePage
     {
@@ -12,10 +8,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         private readonly string FeedbackTableSelector = "#feedback-organisation-applications > table:first-of-type";
         private readonly string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
 
-        private By NewTab => By.Id("tab_new");
-        private By InProgressTab => By.Id("tab_in-progress");
-        private By FeedbackTab => By.Id("tab_feedback");
-        private By ApprovedTab => By.Id("tab_approved");
+        private static By NewTab => By.Id("tab_new");
+        private static By InProgressTab => By.Id("tab_in-progress");
+        private static By FeedbackTab => By.Id("tab_feedback");
+        private static By ApprovedTab => By.Id("tab_approved");
 
         public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -40,14 +36,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages
         {
             formCompletionHelper.ClickElement(NewTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
-            return new AD_WithdrawalRequestOverviewPage(context);
+            return new(context);
         }
 
         public AD_WithdrawalRequestOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(FeedbackTab);
             tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
-            return new AD_WithdrawalRequestOverviewPage(context);
+            return new(context);
         }
 
         public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()

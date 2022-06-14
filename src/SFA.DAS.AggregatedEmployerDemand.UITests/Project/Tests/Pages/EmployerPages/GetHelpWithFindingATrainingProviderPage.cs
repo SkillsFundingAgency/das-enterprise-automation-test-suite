@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
 public class GetHelpWithFindingATrainingProviderPage : AedBasePage
 {
@@ -19,7 +16,7 @@ public class GetHelpWithFindingATrainingProviderPage : AedBasePage
     public CheckYourAnswersPage EnterValidDetails(int noOfApprentices)
     {
         formCompletionHelper.EnterText(ApprenticeshipLocationTextBox, $"{dataHelper.Location}{Keys.Enter}");
-        formCompletionHelper.EnterText(OrganisationNameTextBox, Helpers.AedDataHelper.OrganisationName);
+        formCompletionHelper.EnterText(OrganisationNameTextBox, AedDataHelper.OrganisationName);
 
         if (noOfApprentices == 0) formCompletionHelper.SelectRadioOptionByText("No");
         else
