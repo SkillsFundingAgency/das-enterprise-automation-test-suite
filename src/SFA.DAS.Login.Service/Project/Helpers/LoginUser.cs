@@ -21,6 +21,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public List<string> LegalEntities { get; set; }
     }
 
+    public class ProvideFeedbackUser : EasAccountUser { }
     public class AuthTestUser : EasAccountUser { }
 
     public class RAAV2EmployerUser : EasAccountUser { }

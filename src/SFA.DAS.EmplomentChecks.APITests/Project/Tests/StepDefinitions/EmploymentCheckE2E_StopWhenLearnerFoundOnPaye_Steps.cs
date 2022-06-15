@@ -53,21 +53,21 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             Assert.AreEqual(0, count, $"{count} subsequest call to HMRC were made after the apprentice was found employed on one of the paye schemes");
         }
 
-        [Then(@"contnue with the remaining paye schemes for the check")]
-        public void ThenContnueWithTheRemainingPayeSchemesForTheCheck()
+        [Then(@"continue with the remaining paye schemes for the check")]
+        public void ThenContinueWithTheRemainingPayeSchemesForTheCheck()
         {
-            // get the Id for the first Paye Scheme against which the apprentice will be found as not emplyed
-            // 0 parameter rapresents the employmentStatus we want to find
+            // get the Id for the first Paye Scheme against which the apprentice will be found as not employed
+            // 0 parameter represents the employmentStatus we want to find
 
             int requestId = _employmentChecksSqlDbHelper.GetEmploymentCheckCacheRequestId(0);
 
-            // verify that subsequest check for the next paye scheme is not abandoned in [Cache].[EmploymentCheckCacheRequest] table
+            // verify that subsequent check for the next paye scheme is not abandoned in [Cache].[EmploymentCheckCacheRequest] table
 
             var completionStatus = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatuses(requestId);
 
             Assert.AreNotEqual(3, completionStatus[0][0], "Completion Status is set to 3 [Abandoned] which is not expected");
 
-            // verify subsequest calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
+            // verify subsequent calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
 
             int count = _employmentChecksSqlDbHelper.getNumberOfHmrcCallsAfterId(requestId);
 
