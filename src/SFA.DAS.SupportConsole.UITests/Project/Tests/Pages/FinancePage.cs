@@ -1,41 +1,37 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
+public class FinancePage : SupportConsoleBasePage
 {
-    public class FinancePage : SupportConsoleBasePage
+    protected override string PageTitle => "Finance";
+
+    protected override By PageHeader => By.CssSelector(".heading-xlarge");
+
+    private static By TransactionsViewLink => By.LinkText("Transactions");
+
+    private static By CurrentBalance => By.CssSelector(".data__purple-block");
+
+    public FinancePage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public LevyDeclarationsPage ViewLevyDeclarations()
     {
-        protected override string PageTitle => "Finance";
+        var paye = config.PayeScheme.ToCharArray();
 
-        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+        string obscurepaye = string.Empty;
 
-        private By TransactionsViewLink => By.LinkText("Transactions");
-
-        private By CurrentBalance => By.CssSelector(".data__purple-block");
-
-        public FinancePage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public LevyDeclarationsPage ViewLevyDeclarations()
+        for (int i = 0; i < paye.Length; i++)
         {
-            var paye = config.PayeScheme.ToCharArray();
-
-            string obscurepaye = string.Empty;
-            
-            for (int i = 0; i < paye.Length ; i++)
-            {
-                obscurepaye += ((i == 0 || i == paye.Length - 1 || paye[i].ToString() == "/") ? paye[i].ToString() : "*");
-            }
-            
-            tableRowHelper.SelectRowFromTable("view", obscurepaye);
-            
-            return new LevyDeclarationsPage(context);
+            obscurepaye += ((i == 0 || i == paye.Length - 1 || paye[i].ToString() == "/") ? paye[i].ToString() : "*");
         }
 
-        public void ViewTransactions()
-        {
-            formCompletionHelper.Click(TransactionsViewLink);
-            pageInteractionHelper.VerifyText(CurrentBalance, "Current balance");
-        }
+        tableRowHelper.SelectRowFromTable("view", obscurepaye);
 
+        return new (context);
     }
+
+    public void ViewTransactions()
+    {
+        formCompletionHelper.Click(TransactionsViewLink);
+        pageInteractionHelper.VerifyText(CurrentBalance, "Current balance");
+    }
+
 }
