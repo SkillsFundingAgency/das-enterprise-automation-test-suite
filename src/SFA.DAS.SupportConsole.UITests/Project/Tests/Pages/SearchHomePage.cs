@@ -1,56 +1,52 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
+public class SearchHomePage : SupportConsoleBasePage
 {
-    public class SearchHomePage : SupportConsoleBasePage
+    protected override string PageTitle => "Search";
+
+    #region Locators
+    protected override By PageHeader => By.CssSelector(".heading-large");
+    private static By SearchOptionsLabels => By.CssSelector("label");
+    private static By SearchButton => By.Id("searchButton");
+    private static By SearchTextBox => By.Id("search-main");
+    private static By NextPage => By.CssSelector(".page-navigation .next");
+    private static By NoOfPages => By.CssSelector(".page-navigation .next .counter");
+    #endregion
+
+    private static string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
+    private static string UserSearchHint => "Enter name or email address";
+
+    public SearchHomePage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public UserInformationOverviewPage SearchByNameAndView() => SearchAndViewUserInformation(config.Name);
+
+    public UserInformationOverviewPage SearchByEmailAddressAndView() => SearchAndViewUserInformation(config.EmailAddress);
+
+    public AccountOverviewPage SearchByPublicAccountIdAndViewAccount() => SearchAndViewAccount(config.PublicAccountId);
+
+    public AccountOverviewPage SearchByHashedAccountIdAndViewAccount() => SearchAndViewAccount(config.HashedAccountId);
+
+    public AccountOverviewPage SearchByAccountNameAndViewAccount() => SearchAndViewAccount(config.AccountName);
+
+    public AccountOverviewPage SearchByPayeSchemeAndViewAccount() => SearchAndViewAccount(config.PayeScheme);
+
+    private AccountOverviewPage SearchAndViewAccount(string criteria)
     {
-        protected override string PageTitle => "Search";
+        formCompletionHelper.SelectRadioOptionByForAttribute(SearchOptionsLabels, "AccountSearchType");
+        pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", AccountSearchHint);
+        formCompletionHelper.EnterText(SearchTextBox, criteria);
+        formCompletionHelper.Click(SearchButton);
+        tableRowHelper.SelectRowFromTable("view", config.PublicAccountId, NextPage, NoOfPages);
+        return new (context);
+    }
 
-        #region Locators
-        protected override By PageHeader => By.CssSelector(".heading-large");
-        private By SearchOptionsLabels => By.CssSelector("label");
-        private By SearchButton => By.Id("searchButton");
-        private By SearchTextBox => By.Id("search-main");
-        private By NextPage => By.CssSelector(".page-navigation .next");
-        private By NoOfPages => By.CssSelector(".page-navigation .next .counter");
-        #endregion
-
-        private string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
-        private string UserSearchHint => "Enter name or email address";
-
-        public SearchHomePage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public UserInformationOverviewPage SearchByNameAndView() => SearchAndViewUserInformation(config.Name);
-
-        public UserInformationOverviewPage SearchByEmailAddressAndView() => SearchAndViewUserInformation(config.EmailAddress);
-        
-        public AccountOverviewPage SearchByPublicAccountIdAndViewAccount() => SearchAndViewAccount(config.PublicAccountId);
-
-        public AccountOverviewPage SearchByHashedAccountIdAndViewAccount() => SearchAndViewAccount(config.HashedAccountId);
-
-        public AccountOverviewPage SearchByAccountNameAndViewAccount() => SearchAndViewAccount(config.AccountName);
-
-        public AccountOverviewPage SearchByPayeSchemeAndViewAccount() => SearchAndViewAccount(config.PayeScheme);
-
-        private AccountOverviewPage SearchAndViewAccount(string criteria)
-        {
-            formCompletionHelper.SelectRadioOptionByForAttribute(SearchOptionsLabels, "AccountSearchType");
-            pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", AccountSearchHint);
-            formCompletionHelper.EnterText(SearchTextBox, criteria);
-            formCompletionHelper.Click(SearchButton);
-            tableRowHelper.SelectRowFromTable("view", config.PublicAccountId, NextPage, NoOfPages);
-            return new AccountOverviewPage(context);
-        }
-
-        private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
-        {
-            formCompletionHelper.SelectRadioOptionByForAttribute(SearchOptionsLabels, "UserSearchType");
-            pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", UserSearchHint);
-            formCompletionHelper.EnterText(SearchTextBox, criteria);
-            formCompletionHelper.Click(SearchButton);
-            tableRowHelper.SelectRowFromTable("view", config.EmailAddress, NextPage, NoOfPages);
-            return new UserInformationOverviewPage(context);
-        }
+    private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
+    {
+        formCompletionHelper.SelectRadioOptionByForAttribute(SearchOptionsLabels, "UserSearchType");
+        pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", UserSearchHint);
+        formCompletionHelper.EnterText(SearchTextBox, criteria);
+        formCompletionHelper.Click(SearchButton);
+        tableRowHelper.SelectRowFromTable("view", config.EmailAddress, NextPage, NoOfPages);
+        return new (context);
     }
 }
