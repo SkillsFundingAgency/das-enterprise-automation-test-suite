@@ -12,7 +12,8 @@
         public string ApplyDatabaseConnectionString { get; set; }
         public string QnaDatabaseConnectionString { get; set; }
         public string LoginDatabaseConnectionString { get; set; }
-        public string ProviderFeedbackDbConnectionString { get; set; }
+        public string EmployerFeedbackDbConnectionString { get; set; }
+        public string ApprenticeFeedbackDbConnectionString { get; init; }
         public string AssessorDbConnectionString { get; set; }
         public string IncentivesDbConnectionString { get; set; }
         public string ReservationsDbConnectionString { get; set; }

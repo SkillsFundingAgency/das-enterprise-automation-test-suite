@@ -15,6 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
         private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
+        protected By FeedbackLink => By.XPath(".app-navigation__link[href*='feedback']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and support']");
         private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
 

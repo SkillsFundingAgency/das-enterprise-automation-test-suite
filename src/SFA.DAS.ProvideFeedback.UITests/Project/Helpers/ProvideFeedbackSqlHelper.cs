@@ -1,8 +1,8 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
-public class ProvideFeedbackSqlHelper : SqlDbHelper
+public class EmployerFeedbackSqlHelper : SqlDbHelper
 {
-    public ProvideFeedbackSqlHelper(DbConfig config) : base(config.ProviderFeedbackDbConnectionString) { }
+    public EmployerFeedbackSqlHelper(DbConfig config) : base(config.EmployerFeedbackDbConnectionString) { }
 
     public (string uniqueSurveycode, string ukprn) GetTestData(string email)
     {

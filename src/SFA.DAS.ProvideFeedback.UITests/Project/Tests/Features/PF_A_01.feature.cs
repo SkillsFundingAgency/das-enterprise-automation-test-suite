@@ -20,22 +20,22 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PF_01")]
-    public partial class PF_01Feature
+    [NUnit.Framework.DescriptionAttribute("PF_A_01")]
+    public partial class PF_A_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "PF_01.feature"
+#line 1 "PF_A_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "PF_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "PF_A_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,50 +74,19 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PF_01A Employer provides feedback")]
+        [NUnit.Framework.DescriptionAttribute("PF_A_01 Apprenitce provides feedback for a provider")]
         [NUnit.Framework.CategoryAttribute("providefeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void PF_01AEmployerProvidesFeedback()
+        [NUnit.Framework.CategoryAttribute("apprenticefeedback")]
+        public void PF_A_01ApprenitceProvidesFeedbackForAProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "providefeedback",
-                    "regression"};
+                    "regression",
+                    "apprenticefeedback"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_01A Employer provides feedback", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_A_01 Apprenitce provides feedback for a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
- testRunner.Given("the Employer logins into Employer Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 7
- testRunner.And("completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PF_01B Employer Submit All Information and user Cannot Resubmit Feedback Once Sub" +
-            "mitted")]
-        [NUnit.Framework.CategoryAttribute("providefeedback")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public void PF_01BEmployerSubmitAllInformationAndUserCannotResubmitFeedbackOnceSubmitted()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "providefeedback",
-                    "regression"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_01B Employer Submit All Information and user Cannot Resubmit Feedback Once Sub" +
-                    "mitted", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -127,17 +96,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
- testRunner.Given("the Employer logins into Employer Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 13
- testRunner.And("completes the feedback journey for a training provider via survey code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.Then("the user can change the answers and submits", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.And("the user can not resubmit the feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.Given("the apprentice logs into apprentice portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
