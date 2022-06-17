@@ -4,6 +4,8 @@ public class ApprenticeFeedbackHowWouldYouRatePage : ApprenticeFeedbackBasePage
 {
     protected override string PageTitle => "How would you rate";
 
+    private static By RatingRadioItems => By.CssSelector("[id*='overall-rating']");
+
     public ApprenticeFeedbackHowWouldYouRatePage(ScenarioContext context) : base(context)
     {
 
@@ -11,7 +13,7 @@ public class ApprenticeFeedbackHowWouldYouRatePage : ApprenticeFeedbackBasePage
 
     public ApprenticeFeedbackCheckYourAnswersPage ProvideRating()
     {
-        formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioItems)));
+        formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RatingRadioItems)));
 
         return GoToCheckYourAnswersPage();
     }

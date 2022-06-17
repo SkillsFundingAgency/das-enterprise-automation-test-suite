@@ -8,8 +8,6 @@ public class ApprenticeFeedbackCheckYourAnswersPage : ApprenticeFeedbackBasePage
 
     private static By ChangeOverallRatingQuestionLink => By.CssSelector("a[href*='overall-rating']");
 
-    private static By ContactConsent => By.CssSelector("#ContactConsent");
-
     public ApprenticeFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context)
     {
 
@@ -29,8 +27,6 @@ public class ApprenticeFeedbackCheckYourAnswersPage : ApprenticeFeedbackBasePage
 
     public FeedbackCompletePage SubmitAnswers()
     {
-        formCompletionHelper.ClickElement(ContactConsent);
-
         formCompletionHelper.ClickButtonByText(ContinueToSubmitButton, "Submit");
 
         return new(context);

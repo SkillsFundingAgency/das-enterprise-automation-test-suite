@@ -4,6 +4,7 @@ public class ApprenticeFeedbackDoYouThinkPage : ApprenticeFeedbackBasePage
 {
     protected override string PageTitle => "providing the following aspects of your apprenticeship training to a reasonable standard?";
 
+    private static By RadioItems => By.CssSelector(".govuk-radios__item");
 
     public ApprenticeFeedbackDoYouThinkPage(ScenarioContext context) : base(context)
     {
