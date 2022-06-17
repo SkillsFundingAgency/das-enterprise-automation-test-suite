@@ -32,7 +32,7 @@ public class ProvideFeedbackCheckYourAnswersPage : ProvideFeedbackBasePage
         return new (context);
     }
 
-    public ProvideFeedbackCompletePage SubmitAnswersNow()
+    public FeedbackCompletePage SubmitAnswersNow()
     {
         formCompletionHelper.ClickElement(SubmitAnswers);
         return new (context);

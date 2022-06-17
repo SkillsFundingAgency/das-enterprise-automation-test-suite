@@ -1,18 +1,11 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class ProvideFeedbackCompletePage : ProvideFeedbackBasePage
+public class FeedbackCompletePage : ProvideFeedbackBasePage
 {
     protected override string PageTitle => "Feedback complete";
+
     protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
-    private static By HaveConcerns => By.CssSelector("details summary");
+    public FeedbackCompletePage(ScenarioContext context) : base(context) { }
 
-    public ProvideFeedbackCompletePage(ScenarioContext context) : base(context) { }
-
-    public void CanComplaint()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HaveConcerns));
-
-        formCompletionHelper.ClickLinkByText("make a formal complaint");
-    }
 }

@@ -20,11 +20,25 @@ public class ApprenticeFeedbackSteps
     [Given(@"the apprentice logs into apprentice portal")]
     public void GivenTheApprenticeLogsIntoApprenticePortal()
     {
-        var (firstName, lastName) = _setApprenticeDetailsHelper.SetApprenticeDetailsInObjectContext(_context.GetUser<ApprenticeFeedbackUser>());
+        _setApprenticeDetailsHelper.SetApprenticeDetailsInObjectContext(_context.GetUser<ApprenticeFeedbackUser>());
 
-        var apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).GoToApprenticeOverviewPage(false);
+        new SignIntoMyApprenticeshipPage(_context).GoToApprenticeOverviewPage(false);
+    }
 
-        new ApprenticeOverview_FeedbackPage(_context).GiveFeedbackOnYourTrainingProvider();
+    [Given(@"apprentice completes the feedback journey for a training provider")]
+    public void GivenApprenticeCompletesTheFeedbackJourneyForATrainingProvider()
+    {
+        new ApprenticeFeedbackHomePage(_context)
+            .GiveFeedbackOnYourTrainingProvider()
+            .SelectATrainingProvider()
+            .StartNow()
+            .ProvideFeedback()
+            .ProvideRating()
+            .ChangeFeedbackAttribute()
+            .GoToCheckYourAnswersPage()
+            .ChangeOverallRating()
+            .GoToCheckYourAnswersPage()
+            .SubmitAnswers();
     }
 
 }

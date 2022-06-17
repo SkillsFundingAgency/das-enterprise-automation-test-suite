@@ -1,20 +1,13 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class SelectATrainingProviderPage
+
+public class ApprenticeFeedbackHomePage : ApprenticeOverviewPage
 {
-    public SelectATrainingProviderPage(ScenarioContext context)
-    {
+    public ApprenticeFeedbackHomePage(ScenarioContext context) : base(context, false) { }
 
-    }
-}
-
-
-public class ApprenticeOverview_FeedbackPage : ApprenticeOverviewPage
-{
-    public ApprenticeOverview_FeedbackPage(ScenarioContext context) : base(context) { }
-
-    public void GiveFeedbackOnYourTrainingProvider()
+    public SelectATrainingProviderPage GiveFeedbackOnYourTrainingProvider()
     {
         formCompletionHelper.Click(FeedbackLink);
+        return new (context);
     }
 }
