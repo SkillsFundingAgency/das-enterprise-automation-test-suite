@@ -16,14 +16,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             $"DELETE FROM Apprentice WHERE Email = '{email}'" +
             $"DELETE FROM Registration WHERE Email = '{email}'");
 
-        public string GetApprenticeId(string email) => GetDataAsString($"select Id from Apprentice where Email ='{email}'");
-
         public string GetApprenticeshipId(string apprenticeId) => GetDataAsString($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
 
-        public (string firstName, string lastName) GetApprenticeName(string email)
+        public (string apprenticeId, string firstName, string lastName) GetApprenticeDetails(string email)
         {
-            var data = GetData($"select FirstName, LastName from Registration where email = '{email}'");
-            return (data[0], data[1]);
+            var data = GetData($"select  Id, FirstName, LastName from Apprentice where Email = '{email}'");
+            return (data[0], data[1], data[2]);
         }
 
         public void UpdateConfirmBeforeFieldInCommitmentStatementTable(string email)

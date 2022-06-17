@@ -1,22 +1,22 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class HowWouldYouRateTrainingProviderPage : ApprenticeFeedbackBasePage
+public class ApprenticeFeedbackHowWouldYouRatePage : ApprenticeFeedbackBasePage
 {
     protected override string PageTitle => "How would you rate";
 
-    public HowWouldYouRateTrainingProviderPage(ScenarioContext context) : base(context)
+    public ApprenticeFeedbackHowWouldYouRatePage(ScenarioContext context) : base(context)
     {
 
     }
 
-    public CheckYourAnswersTrainingProviderPage ProvideRating()
+    public ApprenticeFeedbackCheckYourAnswersPage ProvideRating()
     {
         formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioItems)));
 
         return GoToCheckYourAnswersPage();
     }
 
-    public CheckYourAnswersTrainingProviderPage GoToCheckYourAnswersPage()
+    public ApprenticeFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage()
     {
         ClickContinueButton();
 

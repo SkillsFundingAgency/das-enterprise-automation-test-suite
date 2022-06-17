@@ -5,7 +5,7 @@ public class ApprenticeFeedbackHomePage : ApprenticeOverviewPage
 {
     public ApprenticeFeedbackHomePage(ScenarioContext context) : base(context, false) { }
 
-    public SelectATrainingProviderPage GiveFeedbackOnYourTrainingProvider()
+    public ApprenticeFeedbackSelectProviderPage GiveFeedbackOnYourTrainingProvider()
     {
         formCompletionHelper.Click(FeedbackLink);
         return new (context);

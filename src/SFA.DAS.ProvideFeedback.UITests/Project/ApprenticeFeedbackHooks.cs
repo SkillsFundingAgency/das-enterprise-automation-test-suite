@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project;
@@ -18,5 +19,9 @@ public class ApprenticeFeedbackHooks : BaseHooks
 
     [BeforeScenario(Order = 32)]
     public void SetUpHelpers() => _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
+
+    [AfterScenario(Order = 33)]
+    public void ClearDownEmployerFeedbackResult() => 
+        _tryCatch.AfterScenarioException(() => new ApprenticeFeedbackSqlHelper(_dbConfig).ClearDownApprenticeFeedbackResult(_objectContext.GetApprenticeId(), _objectContext.GetProviderUkprn()));
 
 }

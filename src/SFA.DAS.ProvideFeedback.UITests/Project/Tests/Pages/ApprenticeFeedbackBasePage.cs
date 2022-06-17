@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public abstract class ApprenticeFeedbackBasePage : ProvideFeedbackBasePage
+public abstract class ApprenticeFeedbackBasePage : EmployerFeedbackBasePage
 {
 
     protected static By RadioItems => By.CssSelector(".govuk-radios__item");

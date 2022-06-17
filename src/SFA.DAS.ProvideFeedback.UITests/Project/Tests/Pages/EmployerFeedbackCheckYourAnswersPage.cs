@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class ProvideFeedbackCheckYourAnswersPage : ProvideFeedbackBasePage
+public class EmployerFeedbackCheckYourAnswersPage : EmployerFeedbackBasePage
 {
     protected override string PageTitle => "Check your answers";
 
@@ -12,21 +12,21 @@ public class ProvideFeedbackCheckYourAnswersPage : ProvideFeedbackBasePage
 
     private static By SubmitAnswers => By.XPath("//button[@class='govuk-button']");
 
-    public ProvideFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { }
+    public EmployerFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { }
 
-    public ProvideFeedbackStrengthsPage ChangeQuestionOne()
+    public EmployerFeedbackStrengthsPage ChangeQuestionOne()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionOneLink));
         return new (context);
     }
 
-    public ProvideFeedbackImprovePage ChangeQuestionTwo()
+    public EmployerFeedbackImprovePage ChangeQuestionTwo()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionTwoLink));
         return new (context);
     }
 
-    public ProvideFeedbackOverallRatingPage ChangeQuestionThree()
+    public EmployerFeedbackOverallRatingPage ChangeQuestionThree()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionThreeLink));
         return new (context);

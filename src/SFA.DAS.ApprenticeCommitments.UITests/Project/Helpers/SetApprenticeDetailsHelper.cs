@@ -33,11 +33,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             var username = user.ApprenticeUsername;
 
-            (string firstName, string lastName) = _aComtSqlDbHelper.GetApprenticeName(username);
+            (string apprenticeId, string firstName, string lastName) = _aComtSqlDbHelper.GetApprenticeDetails(username);
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                 Assert.Fail($"{username} not found in the db");
 
+            _objectContext.SetApprenticeId(apprenticeId);
             _objectContext.SetApprenticeEmail(username);
             _objectContext.SetApprenticePassword(user.ApprenticePassword);
 

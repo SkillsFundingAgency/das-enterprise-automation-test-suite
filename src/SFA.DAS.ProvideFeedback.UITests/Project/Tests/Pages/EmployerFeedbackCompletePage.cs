@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class FeedbackCompletePage : ProvideFeedbackBasePage
+public class FeedbackCompletePage : EmployerFeedbackBasePage
 {
     protected override string PageTitle => "Feedback complete";
 

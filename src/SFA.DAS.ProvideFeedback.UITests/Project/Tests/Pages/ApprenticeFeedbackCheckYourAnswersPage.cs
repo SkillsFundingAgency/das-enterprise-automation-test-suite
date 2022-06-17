@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class CheckYourAnswersTrainingProviderPage : ApprenticeFeedbackBasePage
+public class ApprenticeFeedbackCheckYourAnswersPage : ApprenticeFeedbackBasePage
 {
     protected override string PageTitle => "Check your answers";
 
@@ -10,18 +10,18 @@ public class CheckYourAnswersTrainingProviderPage : ApprenticeFeedbackBasePage
 
     private static By ContactConsent => By.CssSelector("#ContactConsent");
 
-    public CheckYourAnswersTrainingProviderPage(ScenarioContext context) : base(context)
+    public ApprenticeFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context)
     {
 
     }
 
-    public DoYouThinkTrainingProviderPage ChangeFeedbackAttribute()
+    public ApprenticeFeedbackDoYouThinkPage ChangeFeedbackAttribute()
     {
         formCompletionHelper.ClickElement(ChangeFeedbackAttributeQuestionLink);
         return new(context);
     }
 
-    public HowWouldYouRateTrainingProviderPage ChangeOverallRating()
+    public ApprenticeFeedbackHowWouldYouRatePage ChangeOverallRating()
     {
         formCompletionHelper.ClickElement(ChangeOverallRatingQuestionLink);
         return new(context);

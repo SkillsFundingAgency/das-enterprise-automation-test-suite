@@ -1,5 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
+
 public class EmployerFeedbackSqlHelper : SqlDbHelper
 {
     public EmployerFeedbackSqlHelper(DbConfig config) : base(config.EmployerFeedbackDbConnectionString) { }

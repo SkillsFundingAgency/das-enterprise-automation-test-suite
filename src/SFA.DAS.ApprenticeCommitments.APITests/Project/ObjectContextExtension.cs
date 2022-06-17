@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         internal static void SetAccountId(this ObjectContext objectContext, long value) => objectContext.Replace(AccountIdKey, value);
         internal static void SetCommitmentsApprenticeshipId(this ObjectContext objectContext, long value) => objectContext.Replace(CommitmentsApprenticeshipIdKey, value);
-        internal static void SetApprenticeId(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeIdKey, value);
+        public static void SetApprenticeId(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeIdKey, value);
         public static void SetRegistrationId(this ObjectContext objectContext, string value) => objectContext.Replace(RegistrationIdKey, value);
         internal static void SetOrganisationName(this ObjectContext objectContext, string value) => objectContext.Replace(OrganisationNameKey, value);
         public static void SetFirstName(this ObjectContext objectContext, string value) => objectContext.Replace(FirstNameKey, value);
@@ -47,13 +47,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Replace(EmployerNameKey, value);
         public static void SetTrainingStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingStartDateKey, value);
         internal static void SetTrainingEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingEndDateKey, value);
-        public static string GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get(CommitmentsApprenticeshipIdKey);
+        internal static string GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get(CommitmentsApprenticeshipIdKey);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
         public static string GetApprenticePassword(this ObjectContext objectContext) => objectContext.Get(PasswordKey);
         public static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);
         public static string GetLastName(this ObjectContext objectContext) => objectContext.Get(LastNameKey);
         public static DateTime GetDateOfBirth(this ObjectContext objectContext) => objectContext.Get<DateTime>(DateOfBirthKey);
-        internal static string GetApprenticeId(this ObjectContext objectContext) => objectContext.Get(ApprenticeIdKey);
+        public static string GetApprenticeId(this ObjectContext objectContext) => objectContext.Get(ApprenticeIdKey);
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerNameKey);
         public static string GetTrainingName(this ObjectContext objectContext) => objectContext.Get(TrainingNameKey);

@@ -1,16 +1,16 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class DoYouThinkTrainingProviderPage : ApprenticeFeedbackBasePage
+public class ApprenticeFeedbackDoYouThinkPage : ApprenticeFeedbackBasePage
 {
     protected override string PageTitle => "providing the following aspects of your apprenticeship training to a reasonable standard?";
 
 
-    public DoYouThinkTrainingProviderPage(ScenarioContext context) : base(context)
+    public ApprenticeFeedbackDoYouThinkPage(ScenarioContext context) : base(context)
     {
 
     }
 
-    public HowWouldYouRateTrainingProviderPage ProvideFeedback()
+    public ApprenticeFeedbackHowWouldYouRatePage ProvideFeedback()
     {
         var elements = pageInteractionHelper.FindElements(RadioItems);
 
@@ -24,7 +24,7 @@ public class DoYouThinkTrainingProviderPage : ApprenticeFeedbackBasePage
         return new (context);
     }
 
-    public CheckYourAnswersTrainingProviderPage GoToCheckYourAnswersPage()
+    public ApprenticeFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage()
     {
         ClickContinueButton();
 
