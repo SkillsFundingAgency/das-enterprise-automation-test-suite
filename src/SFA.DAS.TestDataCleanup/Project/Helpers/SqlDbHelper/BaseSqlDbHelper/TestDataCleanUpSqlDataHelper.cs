@@ -10,6 +10,13 @@ public abstract class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
 
     protected int CleanUpUsingAccountIds(List<string> accountIdToDelete) => CleanUpTestData(accountIdToDelete, (x) => $"Insert into #accountids values ({x})", "create table #accountids (id bigint)");
 
+    protected int CleanUpUsingCommtApprenticeshipIds(List<string[]> commtApprenticeshipIdsToDelete)
+    {
+        if (commtApprenticeshipIdsToDelete.IsNoDataFound()) return 0;
+
+        return CleanUpTestData(commtApprenticeshipIdsToDelete.ListOfArrayToList(0), (x) => $"Insert into #commitmentsapprenticeshipid values ({x})", "create table #commitmentsapprenticeshipid (id bigint)");
+    }
+
     protected int CleanUpTestData(List<string> listToDelete, Func<string, string> insertQueryFunc, string createQuery)
     {
         if (ExcludeEnvironments) return 0;
