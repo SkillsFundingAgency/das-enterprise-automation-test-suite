@@ -9,7 +9,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string PageTitle => "Your adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-        private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
+        //private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
+        private By Applicant => By.CssSelector("#main-content > div:nth-child(9) > div > table > tbody > tr > td:nth-child(1) > a");
 
         public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 
@@ -32,6 +33,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
         public ManageApplicantPage NavigateToManageApplicant()
         {
+
+            GoToVacancyManagePage();
             formCompletionHelper.Click(Applicant);
             return new ManageApplicantPage(context);
         }

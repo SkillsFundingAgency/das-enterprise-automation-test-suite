@@ -30,12 +30,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        public EmployerVacancySearchResultPage SelectLiveVacancy()
+        public ManageRecruitPage SelectLiveVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
             _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
-            return new EmployerVacancySearchResultPage(_context);
+            return new ManageRecruitPage(_context);
         }
 
         public ProviderVacancySearchResultPage SearchVacancyByVacancyReference()
