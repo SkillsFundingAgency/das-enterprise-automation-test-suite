@@ -8,8 +8,8 @@
 Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
 	Given The User creates NonLevyEmployer account and sign an agreement
 	And the employer reserves funding from the dynamic home page
-	And the user waits for 30 seconds
-	And the employer continue to add advert in the Recruitment 
+	And the employer continue to add advert in the Recruitment
+	And the user waits for 60 seconds
 	When the Employer creates first submitted advert
 	And the Reviewer Approves the vacancy
 	And the Applicant can apply for a Vacancy in FAA

@@ -18,6 +18,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
         private By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
+        protected By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
 
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 
@@ -43,6 +44,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public ReferVacancyPage SearchReferAdvertTitle()
         {
             var vacancyPage = _searchVacancyPageHelper.SearchReferVacancy();
+            GoToReferredVacancyCheckYourAnswersPage();
+
+            return new ReferVacancyPage(context);
+        }
+        public ReferVacancyPage GoToReferredVacancyCheckYourAnswersPage()
+        {
+            formCompletionHelper.ClickElement(ReferredVacancyActionSelector);
 
             return new ReferVacancyPage(context);
         }
