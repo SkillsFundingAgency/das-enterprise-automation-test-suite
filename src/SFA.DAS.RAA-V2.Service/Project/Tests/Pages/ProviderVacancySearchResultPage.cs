@@ -15,6 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ProviderVacancySearchResultPage(ScenarioContext context) : base(context) { }
         public ManageApplicantPage NavigateToManageApplicant()
         {
+            GoToVacancyManagePage();
             formCompletionHelper.Click(Applicant);
             return new ManageApplicantPage(context);
         }
