@@ -19,9 +19,9 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
         stopDate = (status == 3) ? DateTime.Now.ToString("yyyy-MM-dd") : null;
         completionDate = (status == 4) ? DateTime.Now.ToString("yyyy-MM-dd") : null;
 
-        string sqlQueryToSetDataLockSuccessStatus = $@"UPDATE Apprenticeship
-                                                            SET PaymentStatus = {status.ToString()}, StopDate = '{stopDate}', PauseDate = '{pauseDate}', CompletionDate = '{completionDate}'
-                                                            WHERE ULN = '{uln}'";
+        string sqlQueryToSetDataLockSuccessStatus = $"UPDATE Apprenticeship " +
+            $"SET PaymentStatus = {status}, StopDate = '{stopDate}', PauseDate = '{pauseDate}', CompletionDate = '{completionDate}' " +
+            $"WHERE ULN = '{uln}'";
 
         ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
     }

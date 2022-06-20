@@ -18,13 +18,7 @@ public class CommitmentsSteps
     public void WhenTheUserSearchesForAnULN() => _stepsHelper.SearchForUln();
 
     [Then(@"the ULN details are displayed")]
-    public void ThenTheULNDetailsAreDisplayed()
-    {
-        var ulnSearchResultsPage = new UlnSearchResultsPage(_context);
-
-        ulnSearchResultsPage.SelectULN()
-            .VerifyUlnDetailsPageHeaders();
-    }
+    public void ThenTheULNDetailsAreDisplayed() => new UlnSearchResultsPage(_context).SelectULN().VerifyUlnDetailsPageHeaders();
 
     [When(@"the User searches with a invalid ULN")]
     public void WhenTheUserSearchesWithAInvalidULN() => _stepsHelper.SearchWithInvalidUln(false);
@@ -33,11 +27,8 @@ public class CommitmentsSteps
     public void WhenTheUserSearchesWithAInvalidULNHavingSpecialCharacters() => _stepsHelper.SearchWithInvalidUln(true);
 
     [Then(@"appropriate ULN error message is shown to the user")]
-    public void ThenAppropriateUlnErrorMessageIsShownToTheUser()
-    {
-        var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-        Assert.AreEqual(commitmentsSearchPage.GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
-    }
+    public void ThenAppropriateUlnErrorMessageIsShownToTheUser() => 
+        Assert.AreEqual(new CommitmentsSearchPage(_context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
 
     [When(@"the User searches for a Cohort")]
     public void WhenTheUserSearchesForACohort() => _stepsHelper.SearchForCohort();
@@ -65,11 +56,8 @@ public class CommitmentsSteps
     public void WhenTheUserSearchesWithAInvalidCohortRef() => _stepsHelper.SearchWithInvalidCohort(false);
 
     [Then(@"appropriate Cohort error message is shown to the user")]
-    public void ThenAppropriateCohortErrorMessageIsShownToTheUser()
-    {
-        var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-        Assert.AreEqual(commitmentsSearchPage.GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.CohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
-    }
+    public void ThenAppropriateCohortErrorMessageIsShownToTheUser() => 
+        Assert.AreEqual(new CommitmentsSearchPage(_context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.CohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
 
     [When(@"the User searches with a invalid Cohort Ref having special characters")]
     public void WhenTheUserSearchesWithAInvalidCohortRefHavingSpecialCharacters() => _stepsHelper.SearchWithInvalidCohort(true);
@@ -78,9 +66,6 @@ public class CommitmentsSteps
     public void WhenTheUserTriesToViewAnotherEmployerSCohortRef() => _stepsHelper.SearchWithUnauthorisedCohortAccess();
 
     [Then(@"unauthorised Cohort access error message is shown to the user")]
-    public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser()
-    {
-        var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-        Assert.AreEqual(commitmentsSearchPage.GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
-    }
+    public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser() => 
+        Assert.AreEqual(new CommitmentsSearchPage(_context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
 }
