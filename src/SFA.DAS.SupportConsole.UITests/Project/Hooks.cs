@@ -29,4 +29,22 @@ public class Hooks
 
     [BeforeScenario(Order = 21)]
     public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
+
+    [BeforeScenario(Order = 22)]
+    public void SetUpHelpers()
+    {
+        var config = _context.GetSupportConsoleConfig<SupportConsoleConfig>();
+
+        var accsqlHelper = new AccountsSqlDataHelper(_context.Get<DbConfig>());
+
+        var comtsqlHelper = new CommitmentsSqlDataHelper(_context.Get<DbConfig>());
+
+        var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
+
+        _context.ReplaceSupportConsoleConfig(updatedConfig);
+
+        _context.Set(accsqlHelper);
+
+        _context.Set(comtsqlHelper);
+    }
 }
