@@ -4,6 +4,6 @@
 @assessmentservice
 @regression
 Scenario: EPAO_AS_UOD_01 - Update organisation details
-	Given the Manage Org User is logged into Assessment Service Application
+	Given the Manage User is logged into Assessment Service Application
 	When the User navigates to Organisation details page
 	Then the User is able to change the Registered details
