@@ -32,7 +32,7 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
             $"(select Top 1 app.ULN, app.FirstName, app.LastName, c.Reference, a.PublicHashedId from Accounts a " +
             $"JOIN Commitment c on c.EmployerAccountId = a.Id " +
             $"JOIN Apprenticeship app on app.CommitmentId = c.Id " +
-            $"where a.PublicHashedId = '{publicHashedId}' ORDER BY NEWID()) temp" +
+            $"where a.PublicHashedId = '{publicHashedId}' ORDER BY NEWID()) temp " +
             $"UNION " +
             $"Select ULN, FirstName, LastName, Reference, PublicHashedId from " +
             $"(select Top 1 app.ULN, app.FirstName, app.LastName, c.Reference, a.PublicHashedId from Commitment c " +
