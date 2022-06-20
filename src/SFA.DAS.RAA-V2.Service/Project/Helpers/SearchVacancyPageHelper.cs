@@ -75,9 +75,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
             _formCompletionHelper.Click(SearchButton);            
             _pageInteractionHelper.WaitforURLToChange($"searchTerm={vacRef}");
-
-            //if (navigate)
-            //    _formCompletionHelper.ClickElement(_pageInteractionHelper.FindElement(Manage));
         }
     }
 }

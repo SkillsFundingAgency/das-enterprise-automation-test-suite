@@ -51,6 +51,8 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         {
             if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.ReLogin(login);
 
+            if (_loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
+
             if (_loginHelper.IsIndexPageDisplayed()) return _loginHelper.Login(login);
 
             return new ProviderHomePage(_context);
