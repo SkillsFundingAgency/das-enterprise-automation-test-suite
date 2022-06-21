@@ -1,18 +1,18 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class EmployerDashboardPage : ProvideFeedbackBasePage
+public class EmployerDashboardPage : EmployerFeedbackBasePage
 {
     protected override string PageTitle => "PRO LIMITED";
 
     public EmployerDashboardPage(ScenarioContext context) : base(context) { }
 
-    public SelectTrainingProviderPage ClickFeedbackLink()
+    public EmployerFeedbackSelectProviderPage ClickFeedbackLink()
     {
         formCompletionHelper.ClickLinkByText("Feedback on training providers");
         return new (context);
     }
 
-    public ProvideFeedbackHomePage OpenFeedbackLinkWithSurveyCode()
+    public EmployerFeedbackHomePage OpenFeedbackLinkWithSurveyCode()
     {
         OpenFeedbackUsingSurveyCode();
 

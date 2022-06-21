@@ -1,11 +1,9 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
@@ -17,27 +15,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CocSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly ApprenticeDataHelper _apprenticeDataHelper;
         private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ASCoCEmployerUser _user;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
+        private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
 
         public CocSteps(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _apprenticeDataHelper = context.Get<ApprenticeDataHelper>();
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
             _user = _context.GetUser<ASCoCEmployerUser>();
+            _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
         }
 
         [Given(@"a Course date CoC occurs on an apprenticeship on Employer side")]
@@ -60,7 +56,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [When(@"the apprentice logs into the Apprentice portal")]
         public void WhenTheApprenticeLogsIntoTheApprenticePortal()
         {
-            tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
+            tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl);
             _apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
         }
 
@@ -113,21 +109,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         private string SetApprenticeDetails()
         {
-            var username = _user.CocApprenticeUser.ApprenticeUsername;
+            var user = _user.CocApprenticeUser;
 
-            (string firstName, string lastName) = _aComtSqlDbHelper.GetApprenticeName(username);
+            var username = user.ApprenticeUsername;
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
-                Assert.Fail($"{username} not found in the db");
+            var (firstName, lastName) = _setApprenticeDetailsHelper.SetApprenticeDetails(user);
 
-            _apprenticeDataHelper.UpdateCurrentApprenticeName(firstName, lastName);
             _editedApprenticeDataHelper.UpdateCurrentApprenticeName(firstName, lastName);
-
-            _objectContext.UpdateApprenticeEmail(username);
-            _objectContext.UpdateApprenticePassword(_user.CocApprenticeUser.ApprenticePassword);
-
-            _objectContext.SetFirstName(firstName);
-            _objectContext.SetLastName(lastName);
 
             _aComtSqlDbHelper.ConfirmApprenticeship(username);
 
