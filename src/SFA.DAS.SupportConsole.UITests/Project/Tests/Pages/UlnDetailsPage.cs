@@ -4,13 +4,9 @@ public class UlnDetailsPage : SupportConsoleBasePage
 {
     protected override string PageTitle => config.UlnName;
 
-    #region Locators
-    private static By ApprenticeNameSelector => By.CssSelector(".column-three-quarters.column__double-padding-left.column__border-left .grid-row .column-full .heading-large");
-    #endregion
+    protected override By PageHeader => By.CssSelector(".heading-large");
 
-    public UlnDetailsPage(ScenarioContext context) : base(context) => VerifyApprenticeNameHeading();
-
-    private void VerifyApprenticeNameHeading() => pageInteractionHelper.VerifyText(ApprenticeNameSelector, PageTitle);
+    public UlnDetailsPage(ScenarioContext context) : base(context) => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
 
     public void VerifyUlnDetailsPageHeaders()
     {
