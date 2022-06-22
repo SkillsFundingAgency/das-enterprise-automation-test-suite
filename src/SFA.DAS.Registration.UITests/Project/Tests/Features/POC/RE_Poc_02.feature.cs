@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.POC
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_Poc_01")]
-    public partial class RE_Poc_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_Poc_02")]
+    public partial class RE_Poc_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RE_Poc_01.feature"
+#line 1 "RE_Poc_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RE_Poc_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/POC", "RE_Poc_02", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,19 +73,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_Poc_01_UsingDataHelpers(string userdetails, string[] exampleTags)
+        public virtual void RE_Poc_02_UsingExcel(string testcase, string fname, string lname, string email, string password, string confirmpassword, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "regression"};
+                    "regression",
+                    "DataSource:UserDetailsTestData.xls"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("Userdetails", userdetails);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Poc_01_Using data helpers", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+            argumentsOfScenario.Add("testcase", testcase);
+            argumentsOfScenario.Add("fname", fname);
+            argumentsOfScenario.Add("lname", lname);
+            argumentsOfScenario.Add("email", email);
+            argumentsOfScenario.Add("password", password);
+            argumentsOfScenario.Add("confirmpassword", confirmpassword);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Poc_02_Using excel", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -95,30 +101,32 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.When(string.Format("the User initiates Account creation using {0} details", userdetails), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.When(string.Format("the User initiates Account creation using {0}, {1}, {2}, {3}, {4}, {5}", testcase, fname, lname, email, password, confirmpassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_Poc_01_Using data helpers: valid")]
+        [NUnit.Framework.DescriptionAttribute("RE_Poc_02_Using excel: valid")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RE_Poc_01_UsingDataHelpers_Valid()
+        [NUnit.Framework.CategoryAttribute("DataSource:UserDetailsTestData.xls")]
+        public void RE_Poc_02_UsingExcel_ExternalExamples_Valid()
         {
-#line 5
-this.RE_Poc_01_UsingDataHelpers("valid", ((string[])(null)));
+#line 6
+this.RE_Poc_02_UsingExcel("valid", "Valid", "User", "ValidUser", "AccountPassword123", "AccountPassword123", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_Poc_01_Using data helpers: invalid")]
+        [NUnit.Framework.DescriptionAttribute("RE_Poc_02_Using excel: invalid")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RE_Poc_01_UsingDataHelpers_Invalid()
+        [NUnit.Framework.CategoryAttribute("DataSource:UserDetailsTestData.xls")]
+        public void RE_Poc_02_UsingExcel_ExternalExamples_Invalid()
         {
-#line 5
-this.RE_Poc_01_UsingDataHelpers("invalid", ((string[])(null)));
+#line 6
+this.RE_Poc_02_UsingExcel("invalid", "Invalid", "User", "InvalidUser", "AccountPassword123", "NotSamePassword", ((string[])(null)));
 #line hidden
         }
     }
