@@ -9,7 +9,6 @@ Scenario: RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage j
 	Given The User creates NonLevyEmployer account and sign an agreement
 	And the employer reserves funding from the dynamic home page
 	And the employer continue to add advert in the Recruitment 
-	And the user waits for 60 seconds
 	When the Employer creates first Draft advert
 	Then the vacancy details is displayed on the Dynamic home page with Status 'DRAFT'
 	And Employer can continue creating an advert
