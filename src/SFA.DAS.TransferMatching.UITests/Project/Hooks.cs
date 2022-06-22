@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -14,6 +15,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         private readonly DbConfig _dbConfig;
         private readonly TryCatchExceptionHelper _tryCatch;
         private TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
+        private CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -31,6 +33,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project
             _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_dbConfig);
 
             _context.Set(_transferMatchingSqlDataHelper);
+
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_dbConfig);
+
+            _context.Set(_commitmentsSqlDataHelper);
 
             _objectContext.SetPledgeDetailList();
         }
