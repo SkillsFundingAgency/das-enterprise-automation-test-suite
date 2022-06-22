@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.87
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.UI.Framework", "SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj", "{AFFF6638-BD32-41D3-8CB6-9D10139575D5}"
 EndProject
@@ -118,6 +118,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ManagingStandards.UITests", "SFA.DAS.ManagingStandards.UITests\SFA.DAS.ManagingStandards.UITests.csproj", "{88E9F296-F18F-466D-BD50-02C9C9518ED6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProvideFeedback.UITests", "SFA.DAS.ProvideFeedback.UITests\SFA.DAS.ProvideFeedback.UITests.csproj", "{2427AB5D-6615-4A3C-9116-84FE289C6F38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.RAT-Provider.UITests", "SFA.DAS.RAT-Provider.UITests\SFA.DAS.RAT-Provider.UITests.csproj", "{29C3E932-8AB2-4AB2-8587-DAFA39544386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -408,6 +410,12 @@ Global
 		{2427AB5D-6615-4A3C-9116-84FE289C6F38}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{2427AB5D-6615-4A3C-9116-84FE289C6F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2427AB5D-6615-4A3C-9116-84FE289C6F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C3E932-8AB2-4AB2-8587-DAFA39544386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C3E932-8AB2-4AB2-8587-DAFA39544386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C3E932-8AB2-4AB2-8587-DAFA39544386}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C3E932-8AB2-4AB2-8587-DAFA39544386}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{29C3E932-8AB2-4AB2-8587-DAFA39544386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C3E932-8AB2-4AB2-8587-DAFA39544386}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
