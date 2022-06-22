@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         public void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
         public void VerifyWageType(EmployerVacancySearchResultPage employerVacancySearchResultPage, string wageType)
-            => employerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
+            => employerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyEmployerWageType(wageType);
 
         public PreviewYourAdvertOrVacancyPage PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {

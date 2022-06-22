@@ -15,6 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
 
         private By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
+        private By EmployerWageType => By.CssSelector(".govuk-list .govuk-body");
 
         protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 
@@ -38,7 +39,24 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             VerifyElement(WageType, wageAmount);
         }
+        public void VerifyEmployerWageType(string wageType)
+        {
+            string wageAmount;
+            switch (wageType)
+            {
+                case "National Minimum Wage":
+                    wageAmount = rAAV2DataHelper.NationalMinimumWage;
+                    break;
+                case "Fixed Wage Type":
+                    wageAmount = rAAV2DataHelper.FixedWageForApprentices;
+                    break;
+                default:
+                    wageAmount = rAAV2DataHelper.NationalMinimumWageForApprentices;
+                    break;
+            };
 
+            VerifyElement(EmployerWageType, wageAmount);
+        }
         public new ViewVacancyPage VerifyEmployerName()
         {
             base.VerifyEmployerName();
