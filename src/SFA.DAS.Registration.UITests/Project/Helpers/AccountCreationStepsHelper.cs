@@ -34,6 +34,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
 
+        internal void RegisterUserAccount(UserDetails userDetails) =>
+            new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register(userDetails);
+
         internal ConfirmYourIdentityPage RegisterUserAccount() => 
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 

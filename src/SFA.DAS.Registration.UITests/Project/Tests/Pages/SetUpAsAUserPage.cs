@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -39,6 +40,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return GoToConfirmYourIdentityPage(email);
         }
 
+        public void Register(UserDetails userDetails)
+        {
+            EnterFirstName(userDetails.FName)
+                .EnterlastName(userDetails.LName)
+                .EnterEmail(userDetails.Email)
+                .EnterPassword(userDetails.Password)
+                .EnterPasswordConfirm(userDetails.Confirmpassword)
+                .SetMeUp();
+        }
+
+
         public ConfirmYourIdentityPage Register(string email = null)
         {
             email = string.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
@@ -68,35 +80,45 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new TermsAndConditionsPage(context);
         }
 
-        private SetUpAsAUserPage EnterFirstName()
+        private SetUpAsAUserPage EnterFirstName() => EnterFirstName(registrationDataHelper.FirstName);
+
+        private SetUpAsAUserPage EnterFirstName(string fname) 
         {
-            formCompletionHelper.EnterText(FirstNameInput(), registrationDataHelper.FirstName);
+            EnterText(FirstNameInput(), fname);
             return this;
         }
 
-        private SetUpAsAUserPage EnterlastName()
+        private SetUpAsAUserPage EnterlastName() => EnterlastName(registrationDataHelper.LastName);
+
+        private SetUpAsAUserPage EnterlastName(string lName)
         {
-            formCompletionHelper.EnterText(LastNameInput(), registrationDataHelper.LastName);
+            EnterText(LastNameInput(), lName);
             return this;
         }
 
         private SetUpAsAUserPage EnterEmail(string email)
         {
-            formCompletionHelper.EnterText(EmailInput(), email);
+            EnterText(EmailInput(), email);
             return this;
         }
 
-        private SetUpAsAUserPage EnterPassword()
+        private SetUpAsAUserPage EnterPassword() => EnterPassword(_password);
+
+        private SetUpAsAUserPage EnterPassword(string password)
         {
-            formCompletionHelper.EnterText(PasswordInput, _password);
+            EnterText(PasswordInput, password);
             return this;
         }
 
-        private SetUpAsAUserPage EnterPasswordConfirm()
+        private SetUpAsAUserPage EnterPasswordConfirm() => EnterPasswordConfirm(_password);
+
+        private SetUpAsAUserPage EnterPasswordConfirm(string password)
         {
-            formCompletionHelper.EnterText(PasswordConfirmInput, _password);
+            EnterText(PasswordConfirmInput, password);
             return this;
         }
+
+        private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
 
         private void SetMeUp() => formCompletionHelper.ClickElement(SetMeUpButton);
 
