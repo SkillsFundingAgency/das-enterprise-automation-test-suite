@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             GoToVacancyManagePage();
             string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
-            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkTest));
+            formCompletionHelper.ClickLinkByText(linkTest);
 
             return new ViewVacancyPage(context);
         }

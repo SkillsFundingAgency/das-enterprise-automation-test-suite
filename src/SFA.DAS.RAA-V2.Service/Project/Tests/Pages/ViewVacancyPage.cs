@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ViewVacancyPage : VerifyDetailsBasePage
     {
-        protected override By PageHeader => By.CssSelector("#vacancy-header");
+        protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
 
-        private By WageType => By.CssSelector(".govuk-list .govuk-body");
+        private By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
 
         protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 
