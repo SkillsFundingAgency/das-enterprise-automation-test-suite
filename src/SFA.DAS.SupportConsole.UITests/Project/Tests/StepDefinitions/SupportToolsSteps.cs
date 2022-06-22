@@ -11,7 +11,7 @@ public class SupportToolsSteps
     {
         _context = context;
         _stepsHelper = new StepsHelper(context);
-        _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+        _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
     }
 
     [Given(@"the User is logged into Support Tools")]

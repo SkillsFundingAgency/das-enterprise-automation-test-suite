@@ -26,6 +26,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeHomePage(context);
         }
 
+        public ApprenticeOverviewPage GoToApprenticeOverviewPage(bool verifypage)
+        {
+            SignIn();
+            return new ApprenticeOverviewPage(context, verifypage);
+        }
+
         public ApprenticeOverviewPage CocSignInToApprenticePortal()
         {
             SignIn();

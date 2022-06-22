@@ -1,14 +1,15 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
+
 public class TestDataCleanupComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
 {
     public override string SqlFileName => "EasComtTestDataCleanUp";
 
     public TestDataCleanupComtSqlDataHelper(DbConfig dbConfig) : base(dbConfig.CommitmentsDbConnectionString) { }
 
-    internal List<string[]> GetApprenticeIds(List<string> accountIdToDelete)
+    internal List<string[]> GetApprenticeIds(List<string> accountidsTodelete)
     {
-        return GetMultipleData($"select a.id from Apprenticeship a Join Commitment c on c.id = a.CommitmentId and c.EmployerAccountId in ({string.Join(",", accountIdToDelete)})");
+        return GetMultipleData($"select a.id from Apprenticeship a Join Commitment c on c.id = a.CommitmentId and c.EmployerAccountId in ({string.Join(",", accountidsTodelete)})");
     }
 
     public (List<string>, List<string>) CleanUpComtTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)

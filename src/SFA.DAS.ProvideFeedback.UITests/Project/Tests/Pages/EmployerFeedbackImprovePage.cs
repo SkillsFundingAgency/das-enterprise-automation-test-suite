@@ -1,20 +1,20 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class ProvideFeedbackImprovePage : ProvideFeedbackBasePage
+public class EmployerFeedbackImprovePage : EmployerFeedbackBasePage
 {
     protected override string PageTitle => "improve";
 
     protected override By ContinueButton => By.Id("q2-continue");
     private static By Options => By.CssSelector(".govuk-label.govuk-checkboxes__label");
 
-    public ProvideFeedbackImprovePage(ScenarioContext context) : base(context) { }
+    public EmployerFeedbackImprovePage(ScenarioContext context) : base(context) { }
 
-    public ProvideFeedbackOverallRatingPage ContinueToOverallRating()
+    public EmployerFeedbackOverallRatingPage ContinueToOverallRating()
     {
         SelectOptionAndContinue(Options);
         return new (context);
     }
-    public ProvideFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
+    public EmployerFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
     {
         Continue();
         return new (context);

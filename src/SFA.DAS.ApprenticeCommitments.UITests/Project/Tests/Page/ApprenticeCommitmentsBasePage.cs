@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -11,13 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
-        #region Helpers and Context
-        protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
-        
-        protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
-        protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
-        #endregion
-
         protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
         protected By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
@@ -48,10 +38,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
 
             bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
-            
-            loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
-            apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
 
             MultipleVerifyPage(new List<Func<bool>>
             {

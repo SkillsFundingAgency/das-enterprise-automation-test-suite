@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -11,7 +12,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
         protected By ConfirmPassword => By.CssSelector("#ConfirmPassword");
 
-        public CreatePasswordBasePage(ScenarioContext context) : base(context) => validPassword = apprenticeCommitmentsConfig.AC_AccountPassword;
+        public CreatePasswordBasePage(ScenarioContext context) : base(context)
+        {
+            validPassword = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>().AC_AccountPassword; 
+        }
 
         public void EnterMismatchedPasswordsOnCreateLoginDetailsPage(string password)
         {

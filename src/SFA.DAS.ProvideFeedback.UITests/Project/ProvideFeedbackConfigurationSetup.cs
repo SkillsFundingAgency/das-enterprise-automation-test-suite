@@ -1,4 +1,5 @@
 ﻿global using OpenQA.Selenium;
+global using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.Login.Service;
@@ -11,10 +12,10 @@ global using SFA.DAS.TestDataExport.Helper;
 global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
-global using System;
 global using System.Collections.Generic;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using SFA.DAS.ApprenticeCommitments.UITests.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project;
 
@@ -33,11 +34,11 @@ public class ProvideFeedbackConfigurationSetup
     [BeforeScenario(Order = 2)]
     public void SetUpProvideFeedbackConfigConfiguration()
     {
-        _context.SetProvideFeedbackConfig(_configSection.GetConfigSection<ProvideFeedbackConfigurationSetup>());
-
         _context.SetEasLoginUser(new List<EasAccountUser>()
         {
-            _configSection.GetConfigSection<ProvideFeedbackUser>()
+            _configSection.GetConfigSection<EmployerFeedbackUser>()
         });
+
+        _context.SetNonEasLoginUser(_configSection.GetConfigSection<ApprenticeFeedbackUser>());
     }
 }

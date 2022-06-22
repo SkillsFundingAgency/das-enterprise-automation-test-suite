@@ -33,5 +33,10 @@ public class TestdataCleanupWithAccountId
     public void ThenTheTestDataAreCleanedUpInLtmDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEasLtmTestData(greaterThan, lessThan);
 
     [Then(@"the test data are cleaned up in acomt db for accounts (.*)")]
-    public void ThenTheTestDataAreCleanedUpInAcomtDbForAccounts(string accountidsTodelete) => new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(accountidsTodelete.Split(",").ToList());
+    public void ThenTheTestDataAreCleanedUpInAcomtDbForAccounts(string accountidsTodelete) => new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(Split(accountidsTodelete));
+
+    [Then(@"the test data are cleaned up in appfb db for accounts (.*)")]
+    public void ThenTheTestDataAreCleanedUpInappfbDbForAccounts(string accountidsTodelete) => new TestDataCleanupAppfbqlDataHelper(_dbConfig).CleanUpAppfbTestData(Split(accountidsTodelete));
+
+    private static List<string> Split(string accountidsTodelete) => accountidsTodelete.Split(",").ToList();
 }
