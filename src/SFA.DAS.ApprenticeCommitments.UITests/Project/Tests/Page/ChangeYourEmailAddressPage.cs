@@ -23,7 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public WeHaveSentYouAnEmailPage RequestToUpdateEmailAddress()
         {
             var newEmail = $"New_{objectContext.GetApprenticeEmail()}";
-            objectContext.UpdateApprenticeEmail(newEmail);
+            objectContext.SetApprenticeEmail(newEmail);
             formCompletionHelper.EnterText(NewEmailAddress, newEmail);
             formCompletionHelper.EnterText(ConfirmEmailAddress, newEmail);
             Continue();

@@ -10,6 +10,8 @@ public class AllDbTestDataCleanUpHelper
 
     private readonly List<string> userswithconstraints = new();
 
+    private List<string[]> _apprenticeIds;
+
     public AllDbTestDataCleanUpHelper(DbConfig dbConfig) => _dbConfig = dbConfig;
     
     public (List<string>, List<string>) CleanUpAllDbTestData(string email)
@@ -73,17 +75,17 @@ public class AllDbTestDataCleanUpHelper
         }
     }
 
-
     private int CleanUpTestDataUsingAccountId(List<string> accountidsTodelete) 
     {
         return CleanUpRsvrTestData(accountidsTodelete) 
             + CleanUpPrelTestData(accountidsTodelete) 
             + CleanUpPsrTestData(accountidsTodelete) 
             + CleanUpPfbeTestData(accountidsTodelete) 
-            + CleanUpEmpFcastTestData(accountidsTodelete) 
+            + CleanUpEmpFcastTestData(accountidsTodelete)
+            + CleanUpAppfbTestData(accountidsTodelete)
             + CleanUpEmpFinTestData(accountidsTodelete) 
             + CleanUpEmpIncTestData(accountidsTodelete) 
-            + CleanUpAComtTestData(accountidsTodelete) 
+            + CleanUpAComtTestData() 
             + CleanUpEasLtmTestData(accountidsTodelete) 
             + CleanUpComtTestData(accountidsTodelete);
     }
@@ -113,13 +115,24 @@ public class AllDbTestDataCleanUpHelper
         return SetDebugMessage(() => helper.CleanUpEasLtmTestData(accountidsTodelete));
     }
 
-    private int CleanUpAComtTestData(List<string> accountidsTodelete)
+    private int CleanUpAppfbTestData(List<string> accountidsTodelete)
+    {
+        var helper = new TestDataCleanupAppfbqlDataHelper(_dbConfig);
+
+        SetDetails(helper);
+
+        _apprenticeIds = new GetSupportDataHelper(_dbConfig).GetApprenticeIds(accountidsTodelete);
+
+        return SetDebugMessage(() => helper.CleanUpAppfbTestData(_apprenticeIds));
+    }
+
+    private int CleanUpAComtTestData()
     {
         var helper = new TestDataCleanupAComtSqlDataHelper(_dbConfig);
 
         SetDetails(helper);
 
-        return SetDebugMessage(() => helper.CleanUpAComtTestData(accountidsTodelete));
+        return SetDebugMessage(() => helper.CleanUpAComtTestData(_apprenticeIds));
     }
 
     private int CleanUpEmpIncTestData(List<string> accountidsTodelete)

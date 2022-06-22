@@ -1,26 +1,27 @@
 namespace SFA.DAS.ProvideFeedback.UITests;
 
+
 [Binding]
-public class ProvideFeedbackSteps
+public class EmployerFeedbackSteps
 {
     private readonly ScenarioContext _context;
-    private ProvideFeedbackCheckYourAnswersPage _providerFeedbackCheckYourAnswers;
+    private EmployerFeedbackCheckYourAnswersPage _providerFeedbackCheckYourAnswers;
     private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-    private readonly ProvideFeedbackSqlHelper _provideFeedbackSqlHelper;
+    private readonly EmployerFeedbackSqlHelper _provideFeedbackSqlHelper;
     private readonly ObjectContext _objectContext;
 
-    public ProvideFeedbackSteps(ScenarioContext context)
+    public EmployerFeedbackSteps(ScenarioContext context)
     {
         _context = context;
         _objectContext = context.Get<ObjectContext>();
         _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-        _provideFeedbackSqlHelper = context.Get<ProvideFeedbackSqlHelper>();
+        _provideFeedbackSqlHelper = context.Get<EmployerFeedbackSqlHelper>();
     }
 
     [Given(@"the Employer logins into Employer Portal")]
     public void WhenTheEmployerLoginsIntoEmployerPortal()
     {
-        var user = _context.GetUser<ProvideFeedbackUser>();
+        var user = _context.GetUser<EmployerFeedbackUser>();
 
         _employerPortalLoginHelper.Login(user, true);
 
@@ -58,9 +59,9 @@ public class ProvideFeedbackSteps
     }
 
     [Then(@"the user can not resubmit the feedback")]
-    public void ThenTheUserCanNotResubmitTheFeedback() => new ProvideFeedbackAlreadySubmittedPage(_context);
+    public void ThenTheUserCanNotResubmitTheFeedback() => new EmployerFeedbackAlreadySubmittedPage(_context);
      
-    private static ProvideFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage(ProvideFeedbackHomePage page)
+    private static EmployerFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage(EmployerFeedbackHomePage page)
     {
        return page.StartNow().SelectOptionsForDoingWell().ContinueToOverallRating().SelectVPoorAndContinue();
     }

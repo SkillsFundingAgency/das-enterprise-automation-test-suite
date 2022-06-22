@@ -5,7 +5,8 @@ public class CohortDetailsPage : SupportConsoleBasePage
     protected override string PageTitle => "Cohort Details";
 
     #region Locators
-    private static By UlnViewLink => By.XPath("//a[contains(text(),'View')]");
+
+    private static By ColumnIdentifier => By.CssSelector("a[href*='resource?key=CommitmentApprenticeDetail']");
     private static By CohortRefNumber => By.XPath("//td[text()='Cohort reference:']/following-sibling::td");
     #endregion
 
@@ -13,7 +14,7 @@ public class CohortDetailsPage : SupportConsoleBasePage
 
     public void ClickViewUlnLink()
     {
-        formCompletionHelper.Click(UlnViewLink);
+        formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(config.Uln, ColumnIdentifier, tableposition: 1));
         pageInteractionHelper.WaitforURLToChange("CommitmentApprenticeDetail");
     }
 
