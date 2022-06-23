@@ -6,7 +6,7 @@ public class CohortSummaryPage : SupportConsoleBasePage
 
     #region Locators
     private static By CohortRefNumber => By.XPath("//td[text()='Cohort reference']/following-sibling::td");
-    private static By ViewThisCohortButton => By.Id("viewCohort");
+    private static By ViewThisCohortButton => By.CssSelector("#viewCohort");
     #endregion
 
     public CohortSummaryPage(ScenarioContext context) : base(context) => VerifyPage();

@@ -14,7 +14,7 @@ public class AccountOverviewPage : SupportConsoleBasePage
         RefreshPage(); //Doing this to refresh the page as the Header dissappears at times - known issue
 
         MultipleVerifyPage(new List<Func<bool>> {
-            () => VerifyPage(),
+            () => VerifyPage(pageInteractionHelper.RefreshPage),
             () => VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails)
         });
     }

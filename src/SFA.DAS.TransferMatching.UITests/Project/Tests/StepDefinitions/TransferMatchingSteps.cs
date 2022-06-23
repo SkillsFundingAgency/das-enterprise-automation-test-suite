@@ -11,6 +11,8 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -29,7 +31,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
-        
+        private EmployerStepsHelper _employerStepsHelper;
+        private readonly UseTransferFundsPage _useTransferFundsPage;
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
@@ -39,6 +44,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _tabHelper = context.Get<TabHelper>();
+            _employerStepsHelper = new EmployerStepsHelper(context);
+            _useTransferFundsPage = new UseTransferFundsPage(context);
+            _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -215,6 +223,26 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the levy employer can view pleged amount")]
         public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
+
+        [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
+        public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
+        {
+            var apprenticeDetailsApprovedPage = _useTransferFundsPage.ClickOnStartNowButton()
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .EmployerAddsApprentices()
+                .EmployerSelectsAStandard()
+                .SubmitValidApprenticeDetails(false)
+                .EmployerFirstApproveAndNotifyTrainingProvider();
+
+            var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
+
+            string pledgeApplicationId = _commitmentsSqlDataHelper.getPledgeApplicationId(cohortReference);
+
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(pledgeApplicationId));
+
+        }
+
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
