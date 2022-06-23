@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -29,6 +30,8 @@ public class CreateAccountPocSteps
     private void RegisterUserAccount(UserDetails data)
     {
         _accountCreationStepsHelper.RegisterUserAccount(data);
+
+        _context.Get<ObjectContext>().Set($"UserDetails{data.Email}", data);
 
         if (data.Testcase == "valid") new ConfirmYourIdentityPage(_context, data.Email, data.Password);
         else if (data.Testcase == "invalid") new SetUpAsAUserPage(_context);

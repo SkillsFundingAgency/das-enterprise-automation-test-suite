@@ -39,5 +39,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             Password = password;
             Confirmpassword = confirmpassword;
         }
+
+        public override string ToString() => $"Testcase :{Testcase}, FName: '{FName}', LName : '{LName}', Email : '{Email}'" +
+        $", Password : '{Password}', Confirmpassword : '{Confirmpassword}'";
     }
 }
