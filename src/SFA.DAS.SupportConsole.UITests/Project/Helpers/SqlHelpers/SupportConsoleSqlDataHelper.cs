@@ -1,6 +1,6 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 
-public class SupportConsoleSqlDataHelper 
+public class SupportConsoleSqlDataHelper
 {
     private readonly AccountsSqlDataHelper _accountsSqlDataHelper;
     private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;

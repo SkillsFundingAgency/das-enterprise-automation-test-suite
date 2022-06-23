@@ -5,7 +5,7 @@ global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Helpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Models;
-global using SFA.DAS.SupportConsole.UITests.Project.SqlHelpers;
+global using SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
@@ -42,6 +42,8 @@ public class Hooks
         var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
 
         _context.ReplaceSupportConsoleConfig(updatedConfig);
+
+        _context.Get<ObjectContext>().Set("SupportConsoleConfig", updatedConfig);
 
         _context.Set(accsqlHelper);
 
