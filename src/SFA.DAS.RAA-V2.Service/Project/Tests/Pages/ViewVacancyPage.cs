@@ -22,9 +22,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ViewVacancyPage(ScenarioContext context) : base(context) { }
         
-        public void VerifyWageType(string wageType) => VerifyElement(WageType, GetWageAmount(wageType));
+        public void VerifyWageType(string wageType) => VerifyWageAmount(WageType, wageType);
 
-        public void VerifyEmployerWageType(string wageType) => VerifyElement(EmployerWageType, GetWageAmount(wageType));
+        public void VerifyEmployerWageType(string wageType) => VerifyWageAmount(EmployerWageType, wageType);
 
         private string GetWageAmount(string wageType)
         {
@@ -36,11 +36,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             };
         }
 
-        public new ViewVacancyPage VerifyEmployerName()
-        {
-            base.VerifyEmployerName();
-            return this;
-        }
+        private void VerifyWageAmount(By by, string wageType) => VerifyElement(by, GetWageAmount(wageType));
 
         public new ViewVacancyPage VerifyDisabilityConfident()
         {
