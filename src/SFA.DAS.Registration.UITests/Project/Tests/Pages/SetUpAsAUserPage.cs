@@ -4,6 +4,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
+    public class CheckRegistrationPage : RegistrationBasePage
+    {
+        private readonly string _pagetitle;
+
+        public CheckRegistrationPage(ScenarioContext context, string pagetitle): base(context)
+        {
+            _pagetitle = pagetitle;
+            VerifyPage();
+        }
+
+        protected override string PageTitle => _pagetitle;
+    }
+
     public class SetUpAsAUserPage : RegistrationBasePage
     {
         protected override string PageTitle => "Set up as a user";

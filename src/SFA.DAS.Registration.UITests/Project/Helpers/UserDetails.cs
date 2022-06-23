@@ -20,8 +20,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public record UserDetails
     {
 
-        public static UserDetails Valid_User => new("valid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "AccountPassword123");
-        public static UserDetails Invalid_User => new("invalid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "NotSamePassword");
+        public static UserDetails Valid_User => new("valid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "AccountPassword123", "Confirm your identity");
+        public static UserDetails Invalid_User => new("invalid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "NotSamePassword", "Set up as a user");
 
         public string Testcase { get; init; }
         public string FName { get; init; }
@@ -29,18 +29,22 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string Email { get; init; }
         public string Password { get; init; }
         public string Confirmpassword { get; init; }
+        public string Output { get; init; }
 
-        public UserDetails(string testcase, string fName, string lName, string email, string password, string confirmpassword)
+        public UserDetails(string testcase, string fName, string lName, string email, string password, string confirmpassword, string output)
         {
-            Testcase = testcase;
-            FName = fName;
-            LName = lName;
-            Email = $"{RegexHelper.TrimAnySpace(email)}_{DateTime.Now.ToSeconds()}@{new EmailDomainHelper(Array.Empty<string>()).GetEmailDomain()}";
-            Password = password;
-            Confirmpassword = confirmpassword;
+            Testcase = TrimAnySpace(testcase);
+            FName = TrimAnySpace(fName);
+            LName = TrimAnySpace(lName);
+            Email = $"{TrimAnySpace(email)}_POC_{DateTime.Now.ToSeconds()}@{new EmailDomainHelper(Array.Empty<string>()).GetEmailDomain()}";
+            Password = TrimAnySpace(password);
+            Confirmpassword = TrimAnySpace(confirmpassword);
+            Output = TrimAnySpace(output);
         }
 
-        public override string ToString() => $"Testcase :{Testcase}, FName: '{FName}', LName : '{LName}', Email : '{Email}'" +
-        $", Password : '{Password}', Confirmpassword : '{Confirmpassword}'";
+        private string TrimAnySpace(string x) => x.Trim();
+
+        public override string ToString() => $"Testcase :'{Testcase}',FName: '{FName}',LName : '{LName}',Email : '{Email}'" +
+        $",Password : '{Password}',Confirmpassword : '{Confirmpassword}',Output : '{Output}'";
     }
 }
