@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("Learner is found to be \'{0}\' on one of the paye schemes", employed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("contnue with the remaining paye schemes for the check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("continue with the remaining paye schemes for the check", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

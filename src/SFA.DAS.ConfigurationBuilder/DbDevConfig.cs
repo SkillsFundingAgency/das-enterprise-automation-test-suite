@@ -17,7 +17,8 @@
         public string ApplyDatabaseName { get; set; }
         public string QnaDatabaseName { get; set; }
         public string LoginDatabaseName { get; set; }
-        public string ProviderFeedbackDbName { get; set; }
+        public string EmployerFeedbackDbName { get; set; }
+        public string ApprenticeFeedbackDbName { get; init; }
         public string AssessorDbName { get; set; }
         public string EmployerIncentivesDbName { get; set; }
         public string ReservationsDbName { get; set; }

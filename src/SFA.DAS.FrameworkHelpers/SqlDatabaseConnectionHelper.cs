@@ -110,6 +110,12 @@ namespace SFA.DAS.FrameworkHelpers
             return await dbConnection.InsertAsync(entity);
         }
 
+        public static async Task<T> Get<T>(object id, string connectionString) where T : class
+        {
+            await using var dbConnection = GetSqlConnection(connectionString);
+            return await dbConnection.GetAsync<T>(id);
+        }
+
         private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
         { 
             ConnectionString = connectionString, 

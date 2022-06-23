@@ -5,33 +5,31 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal static class InsertTprDataHelper
     {
-        private static readonly object _object = new object();
+        private static readonly object _object = new();
 
         internal static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
         {
+            var datetime = DateTime.Now;
+
+            var queryToExecute = $"DECLARE @tprUniqueId bigint, @vartprid varchar(256), @organisationName varchar(256), @orgSK bigint; " +
+                $"SELECT @tprUniqueId = (MAX([TPRUniqueId]) +1) FROM [Tpr].[Organisation];" +
+                $"SET @vartprid = @tprUniqueId;" +
+                $"SET @organisationName = 'AutomationTestFor{orgType}Aorn' + @vartprid;" +
+                "INSERT INTO [Tpr].[Organisation] ([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
+                $"VALUES (@tprUniqueId, @organisationName, '{aornValue}', '1', '1', 1, '1', '1', '1', GETDATE());" +
+                "SELECT @orgSK = [OrgSK] FROM [Tpr].[Organisation] where [TPRUniqueId] = @tprUniqueId;" +
+                "INSERT INTO [Tpr].[OrganisationAddress] ([OrgSK],[TPRUniqueID],[OrganisationFullAddress],[AddressLine1],[AddressLine2],[AddressLine3],[PostCode],[RecordCreatedDate]) " +
+                "VALUES (@orgSK, @tprUniqueId, @organisationName + 'Address', @tprUniqueId, 'Test Street', 'Coventry', 'CV1 2WT', GETDATE());" +
+                "INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
+                $"VALUES (@orgSK, @tprUniqueId, '{payescheme}', '{datetime.Year}-{datetime.Month}-{datetime.Day}', GETDATE()); " +
+                $"SELECT @organisationName";
+
+
+
             lock (_object)
             {
-                int tprUniqueId = ReadDataFromDataBase("SELECT MAX([TPRUniqueId]) FROM [Tpr].[Organisation]", connectionString) + 1;
-
-                var organisationName = $"AutomationTestFor{orgType}Aorn{tprUniqueId}";
-
-                ExecuteSqlCommand("INSERT INTO[Tpr].[Organisation] ([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
-                $"VALUES ({tprUniqueId}, '{organisationName}', '{aornValue}', '1', '1', 1, '1', '1', '1', '2020-01-01 00:00:00.0000000')", connectionString);
-
-                var orgSK = ReadDataFromDataBase($"SELECT [OrgSK] FROM [Tpr].[Organisation] where [TPRUniqueId] = {tprUniqueId}", connectionString);
-
-                ExecuteSqlCommand("INSERT INTO [Tpr].[OrganisationAddress] ([OrgSK],[TPRUniqueID],[OrganisationFullAddress],[AddressLine1],[AddressLine2],[AddressLine3],[PostCode],[RecordCreatedDate]) " +
-                $"VALUES ({orgSK}, {tprUniqueId}, 'AutomationTestAddress{tprUniqueId}', '{tprUniqueId}', 'Test Street', 'Coventry', 'CV1 2WT', '2020-01-01 00:00:00.0000000')", connectionString);
-
-                ExecuteSqlCommand("INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
-                $"VALUES ({orgSK}, {tprUniqueId}, '{payescheme}', '2020-01-01', '2020-01-01 00:00:00.0000000')", connectionString);
-
-                return organisationName;
+                return Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
             }
         }
-
-        private static int ReadDataFromDataBase(string queryToExecute, string connectionString) => Convert.ToInt32(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
-
-        private static void ExecuteSqlCommand(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString);
     }
 }

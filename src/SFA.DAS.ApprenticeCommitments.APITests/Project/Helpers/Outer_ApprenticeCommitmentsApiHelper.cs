@@ -92,7 +92,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             var regId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
                 
-            var apprenticeId = _aComtSqlDbHelper.GetApprenticeId(email);
+            var apprenticeId = _aComtSqlDbHelper.GetApprenticeDetails(email).apprenticeId;
 
             _objectContext.SetApprenticeId(apprenticeId);
 

@@ -1,18 +1,17 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project
+﻿namespace SFA.DAS.SupportConsole.UITests.Project;
+
+public class SupportConsoleConfig
 {
-    public class SupportConsoleConfig
-    {
-        public string Name { get; set; }
-        public string EmailAddress { get; set; }
-        public string PublicAccountId { get; set; }
-        public string HashedAccountId { get; set; }
-        public string AccountName { get; set; }
-        public string PayeScheme { get; set; }
-        public string CurrentLevyBalance {get;set;}
-        public string AccountDetails { get; set; }
-        public string Uln { get; set; }
-        public string UlnName { get; set; }
-        public string CohortRef { get; set; }
-        public string CohortNotAssociatedToAccount { get; set; }
-    }
+    public string Name { get; init; }
+    public string EmailAddress { get; init; }
+    public string PublicAccountId { get; init; }
+    public string HashedAccountId { get; init; }
+    public string AccountName { get; init; }
+    public string PayeScheme { get; init; }
+    public string CurrentLevyBalance {get;init;}
+    public string AccountDetails { get; init; }
+    public string Uln { get; init; }
+    public string UlnName { get; init; }
+    public string CohortRef { get; init; }
+    public string CohortNotAssociatedToAccount { get; init; }
 }

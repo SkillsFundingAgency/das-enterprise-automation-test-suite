@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
+using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Models;
 using TechTalk.SpecFlow;
@@ -9,9 +11,10 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
     {
         private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
         private readonly SetupScenarioTestData _setupScenarioTestData;
-        private TestData _testData;
-        private ScenarioContext _context;
+        private readonly ScenarioContext _context;
         private string _checkType;
+        private readonly Helper _helper;
+        private TestData _testData;
 
         public EmploymentCheckE2E_ManuallyInsertNino_Steps(ScenarioContext context)
         {
@@ -19,6 +22,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
             _setupScenarioTestData = new SetupScenarioTestData();
             _testData = new TestData();
+            _helper = context.Get<Helper>();
         }
 
         [Given(@"employment check has been requested for an apprentice with '([^']*)' and ULN '([^']*)'")]
@@ -30,18 +34,20 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"a NINO '([^']*)' has been manually inserted")]
-        public void GivenANINOHasBeenManuallyInserted(string Nino)
+        public async Task GivenANINOHasBeenManuallyInserted(string Nino)
         {
             _testData.NationalInsuranceNumber = Nino;
             _checkType = _context.ScenarioInfo.Title.Substring(0, 10);
 
-            _employmentChecksSqlDbHelper.InsertEmploymentCheckRecordwithNino(_testData.ULN, _testData.NationalInsuranceNumber, _testData.AccountId, _checkType);
+            _employmentChecksSqlDbHelper.InsertEmploymentCheckRecordWithNino(_testData.ULN, _testData.NationalInsuranceNumber, _testData.AccountId, _checkType);
+
+            await _helper.EmploymentCheckOrchestrationHelper.StartEmploymentChecksOrchestrator();
         }
 
         [When(@"check is picked up for enrichment process")]
         public void WhenCheckIsPickedUpForEnrichmentProcess()
         {
-            int? checkStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatusWithCorrelationId();
+            int? checkStatus = _employmentChecksSqlDbHelper.GetEmploymentCheckStatusWithCorrelationId();
 
             Assert.AreEqual(1, checkStatus, "EmploymentCheck was not been picked up for enrichment");
         }

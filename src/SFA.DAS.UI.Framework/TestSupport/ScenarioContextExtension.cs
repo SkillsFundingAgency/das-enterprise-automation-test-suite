@@ -22,7 +22,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string PerfTestProviderPermissionsConfigKey = "perftestproviderpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string ChangeOfPartyConfigKey = "changeofpartyconfigkey";
-        private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
         private const string ARProjectConfigKey = "arprojectconfigkey";
         private const string EIProjectConfigKey = "eiprojectconfigkey";
         private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
@@ -39,11 +38,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetTransfersConfig<T>(this ScenarioContext context, T value) => Set(context, value, TransfersProjectConfigKey);
         public static void SetChangeOfPartyConfig<T>(this ScenarioContext context, T value) => Set(context, value, ChangeOfPartyConfigKey);
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value) => Set(context, value, SupportConsoleProjectConfigKey);
+        public static void ReplaceSupportConsoleConfig<T>(this ScenarioContext context, T value) => Replace(context, value, SupportConsoleProjectConfigKey);
         public static void SetConsolidatedSupportConfig<T>(this ScenarioContext context, T value) => Set(context, value, ConsolidatedSupportProjectConfigKey);
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value) => Set(context, value, RAAV1ProjectConfigKey);
         public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value) => Set(context, value, RAAV2QAProjectConfigKey);
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
-        public static void SetProviderFeedbackConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderFeedbackConfigKey);
         public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
         public static void SetEIConfig<T>(this ScenarioContext context, T value) => Set(context, value, EIProjectConfigKey);
         public static void SetApprenticeCommitmentsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprenticeCommitmentsConfigKey);
@@ -67,7 +66,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetFAAConfig<T>(this ScenarioContext context) => Get<T>(context, FAAProjectConfigKey);
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
         public static T GetConsolidatedSupportConfig<T>(this ScenarioContext context) => Get<T>(context, ConsolidatedSupportProjectConfigKey);
-        public static T GetProviderFeedbackConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderFeedbackConfigKey);
         public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
         public static T GetEIConfig<T>(this ScenarioContext context) => Get<T>(context, EIProjectConfigKey);
         public static T GetApprenticeCommitmentsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprenticeCommitmentsConfigKey);
