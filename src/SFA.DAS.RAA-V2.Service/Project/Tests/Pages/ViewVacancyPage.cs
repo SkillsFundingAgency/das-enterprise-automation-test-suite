@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -15,48 +15,27 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
 
         private By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
+
         private By EmployerWageType => By.CssSelector(".govuk-list .govuk-body");
 
         protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 
         public ViewVacancyPage(ScenarioContext context) : base(context) { }
         
-        public void VerifyWageType(string wageType)
-        {
-            string wageAmount;
-            switch (wageType)
-            {
-                case "National Minimum Wage":
-                    wageAmount = rAAV2DataHelper.NationalMinimumWage;
-                    break;
-                case "Fixed Wage Type":
-                    wageAmount = rAAV2DataHelper.FixedWageForApprentices;
-                    break;
-                default:
-                    wageAmount = rAAV2DataHelper.NationalMinimumWageForApprentices;
-                    break;
-            };
+        public void VerifyWageType(string wageType) => VerifyElement(WageType, GetWageAmount(wageType));
 
-            VerifyElement(WageType, wageAmount);
-        }
-        public void VerifyEmployerWageType(string wageType)
-        {
-            string wageAmount;
-            switch (wageType)
-            {
-                case "National Minimum Wage":
-                    wageAmount = rAAV2DataHelper.NationalMinimumWage;
-                    break;
-                case "Fixed Wage Type":
-                    wageAmount = rAAV2DataHelper.FixedWageForApprentices;
-                    break;
-                default:
-                    wageAmount = rAAV2DataHelper.NationalMinimumWageForApprentices;
-                    break;
-            };
+        public void VerifyEmployerWageType(string wageType) => VerifyElement(EmployerWageType, GetWageAmount(wageType));
 
-            VerifyElement(EmployerWageType, wageAmount);
+        private string GetWageAmount(string wageType)
+        {
+            return wageType switch
+            {
+                RAAV2Const.NationalMinWages => rAAV2DataHelper.NationalMinimumWage,
+                RAAV2Const.FixedWageType => rAAV2DataHelper.FixedWageForApprentices,
+                _ => rAAV2DataHelper.NationalMinimumWageForApprentices,
+            };
         }
+
         public new ViewVacancyPage VerifyEmployerName()
         {
             base.VerifyEmployerName();
