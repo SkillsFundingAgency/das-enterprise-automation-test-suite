@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
-        private ManageRecruitPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage().SearchVacancyByVacancyReference();
+        private ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
         private RecruitmentHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(true);
     }

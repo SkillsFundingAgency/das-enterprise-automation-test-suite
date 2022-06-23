@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         private By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
-        private By Manage => By.CssSelector("table tbody tr .govuk-link");
+        private By Manage => By.CssSelector("[data-label='Action']");
 
         public SearchVacancyPageHelper(ScenarioContext context)
         {
@@ -38,10 +38,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new ManageRecruitPage(_context);
         }
 
-        public ManageRecruitPage SearchVacancyByVacancyReference()
+        public ProviderVacancySearchResultPage SearchVacancyByVacancyReference()
         {
             SearchVacancy();
-            return new ManageRecruitPage(_context);
+            return new ProviderVacancySearchResultPage(_context);
         }
 
         public ProviderVacancySearchResultPage SearchProviderVacancy()
@@ -50,15 +50,20 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new ProviderVacancySearchResultPage(_context);
         }
 
-        public CreateAnApprenticeshipAdvertOrVacancyPage SearchReferVacancy()
+        public VacancyCompletedAllSectionsPage SearchReferVacancy()
         {
             SearchVacancy();
-            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
+            return new VacancyCompletedAllSectionsPage(_context);
         }
 
         public EmployerVacancySearchResultPage SearchEmployerVacancy()
         {
             SearchEmployerProviderPermissionVacancy();
+            return new EmployerVacancySearchResultPage(_context);
+        }
+        public EmployerVacancySearchResultPage SearchEmployerVacancyByVacancyReference()
+        {
+            SearchVacancy();
             return new EmployerVacancySearchResultPage(_context);
         }
 
@@ -70,9 +75,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
             _formCompletionHelper.Click(SearchButton);            
             _pageInteractionHelper.WaitforURLToChange($"searchTerm={vacRef}");
-            
-            if (navigate)
-            _formCompletionHelper.ClickElement(_pageInteractionHelper.FindElement(Manage));                        
         }
     }
 }

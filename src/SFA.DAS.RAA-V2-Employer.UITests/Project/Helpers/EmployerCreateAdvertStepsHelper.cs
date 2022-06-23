@@ -118,7 +118,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
                     AdvertSummary(EnterAdvertTitle(createAdvertPage));
 
-        private ManageRecruitPage SearchVacancyByVacancyReference() => rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+        private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
             createAdvertPage
