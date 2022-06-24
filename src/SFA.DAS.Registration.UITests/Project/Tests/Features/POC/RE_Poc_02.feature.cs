@@ -73,7 +73,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.POC
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_Poc_02_UsingExcel(string testcase, string fname, string lname, string email, string password, string confirmpassword, string output, string[] exampleTags)
+        public virtual void RE_Poc_02_UsingExcel(string testcase, string fname, string lname, string email, string password, string confirmpassword, string output, string checkdb, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression",
@@ -91,6 +91,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.POC
             argumentsOfScenario.Add("password", password);
             argumentsOfScenario.Add("confirmpassword", confirmpassword);
             argumentsOfScenario.Add("output", output);
+            argumentsOfScenario.Add("checkdb", checkdb);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Poc_02_Using excel", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -103,7 +104,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.When(string.Format("the User initiates Account creation using {0}, {1}, {2}, {3}, {4}, {5},{6}", testcase, fname, lname, email, password, confirmpassword, output), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("the User initiates Account creation using {0}, {1}, {2}, {3}, {4}, {5},{6},{7}", testcase, fname, lname, email, password, confirmpassword, output, checkdb), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -116,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void RE_Poc_02_UsingExcel_ExternalExamples_Valid()
         {
 #line 6
-this.RE_Poc_02_UsingExcel("valid", "Valid", "User", "ValidUser", "AccountPassword123", "AccountPassword123", "Confirm your identity", ((string[])(null)));
+this.RE_Poc_02_UsingExcel("valid", "Valid", "User", "ValidUser", "AccountPassword123", "AccountPassword123", "Confirm your identity", "True", ((string[])(null)));
 #line hidden
         }
         
@@ -127,7 +128,7 @@ this.RE_Poc_02_UsingExcel("valid", "Valid", "User", "ValidUser", "AccountPasswor
         public void RE_Poc_02_UsingExcel_ExternalExamples_Invalid()
         {
 #line 6
-this.RE_Poc_02_UsingExcel("invalid", "Invalid", "User", "InvalidUser", "AccountPassword123", "NotSamePassword", "Set up as a user", ((string[])(null)));
+this.RE_Poc_02_UsingExcel("invalid", "Invalid", "User", "InvalidUser", "AccountPassword123", "NotSamePassword", "Set up as a user", "False", ((string[])(null)));
 #line hidden
         }
     }

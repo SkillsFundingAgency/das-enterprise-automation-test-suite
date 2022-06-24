@@ -1,6 +1,5 @@
 ﻿using System;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -19,9 +18,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
     public record UserDetails
     {
-
-        public static UserDetails Valid_User => new("valid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "AccountPassword123", "Confirm your identity");
-        public static UserDetails Invalid_User => new("invalid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "NotSamePassword", "Set up as a user");
+        public static UserDetails Valid_User => new("valid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "AccountPassword123", "Confirm your identity", "true");
+        public static UserDetails Invalid_User => new("invalid", "UserFirstName", "UserLastName", "UserEmail", "AccountPassword123", "NotSamePassword", "Set up as a user", "false");
 
         public string Testcase { get; init; }
         public string FName { get; init; }
@@ -30,8 +28,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string Password { get; init; }
         public string Confirmpassword { get; init; }
         public string Output { get; init; }
+        public string CheckDb { get; init; }
 
-        public UserDetails(string testcase, string fName, string lName, string email, string password, string confirmpassword, string output)
+        public UserDetails(string testcase, string fName, string lName, string email, string password, string confirmpassword, string output, string checkDb)
         {
             Testcase = TrimAnySpace(testcase);
             FName = TrimAnySpace(fName);
@@ -40,11 +39,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             Password = TrimAnySpace(password);
             Confirmpassword = TrimAnySpace(confirmpassword);
             Output = TrimAnySpace(output);
+            CheckDb = TrimAnySpace(checkDb);
         }
 
         private string TrimAnySpace(string x) => x.Trim();
 
         public override string ToString() => $"Testcase :'{Testcase}',FName: '{FName}',LName : '{LName}',Email : '{Email}'" +
-        $",Password : '{Password}',Confirmpassword : '{Confirmpassword}',Output : '{Output}'";
+        $",Password : '{Password}',Confirmpassword : '{Confirmpassword}',Output : '{Output}', Checkdb : '{CheckDb}'";
     }
 }

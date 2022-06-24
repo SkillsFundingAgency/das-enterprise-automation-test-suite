@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
+    public class UsersSqlDataHelper : SqlDbHelper
+    {
+        public UsersSqlDataHelper(DbConfig dbConfig) : base(dbConfig.UsersDbConnectionString) { }
+
+        public string GetUserDetails(string email) => GetNullableData($"Select 1 from dbo.[User] where Email = '{email}'");
+    }
+
     public class RegistrationSqlDataHelper : SqlDbHelper
     {
         public RegistrationSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
