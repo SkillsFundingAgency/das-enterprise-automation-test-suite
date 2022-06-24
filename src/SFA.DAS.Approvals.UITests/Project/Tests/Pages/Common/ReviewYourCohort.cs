@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     {
         protected virtual By TotalApprentices => By.CssSelector("table tbody tr");
         protected virtual By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge, .govuk-table__cell > strong");
-        protected static By EditApprenticeLink => By.XPath("//a[text()='View']");
+        protected static By EditApprenticeLink => By.XPath("//a[contains(text(),'Edit')]");
 
         protected ReviewYourCohort(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
