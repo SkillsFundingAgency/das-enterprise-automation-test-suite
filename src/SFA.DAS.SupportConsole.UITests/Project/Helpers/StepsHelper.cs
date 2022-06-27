@@ -56,6 +56,10 @@ public class StepsHelper
 
     public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
 
+    public CohortSummaryPage SearchForCohortWithPendingChanges() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohortWithPendingChanges();
+
+    public CohortSummaryPage SearchForCohortWithTraingProviderHistory() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohortWithTrainingProviderHistory();
+
     void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
     private SearchHomePage LoginToSupportConsole(LoginUser loginUser)

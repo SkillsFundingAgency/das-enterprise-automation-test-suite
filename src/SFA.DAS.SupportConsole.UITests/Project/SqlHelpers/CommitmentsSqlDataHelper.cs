@@ -49,4 +49,53 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
         return resultList;
 
     }
+
+    internal string GetUlnWithPendingChanges(string cohortRef)
+    {
+        string sql = @$"SELECT TOP (1) A.ULN
+                          FROM [dbo].[ApprenticeshipUpdate] AU 
+                          Inner join Apprenticeship A on AU.ApprenticeshipId = A.Id
+                          Inner join Commitment C on C.Id = A.CommitmentId
+                          Where C.Reference = '{cohortRef}'";
+
+        return GetDataAsString(sql);
+    }
+
+    internal string GetUlnWithTrainingProviderHistory(string cohortRef)
+    {
+        string sql = @$"SELECT TOP (1) A.ULN
+                          From Apprenticeship A
+						  Inner Join Commitment C on A.CommitmentId = C.Id
+                          Where C.Reference = '{cohortRef}'
+                          AND ContinuationOfId is not null";
+
+        return GetDataAsString(sql);
+    }
+
+    internal string GetCohortWithPendingChanges(string hashedAccountId)
+    {
+        string sql = @$"SELECT TOP (1) C.Reference
+                          FROM [dbo].[ApprenticeshipUpdate] AU 
+                          Inner join Apprenticeship A on AU.ApprenticeshipId = A.Id
+                          Inner join Commitment C on C.Id = A.CommitmentId
+                          Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
+                          Inner join Accounts AC on AC.Id = ALE.AccountId
+                          Where AC.HashedId ='{hashedAccountId}'";
+
+        return GetDataAsString(sql);
+    }
+
+    internal string GetCohortWithTrainingProviderHistory(string hashedAccountId)
+    {
+        string sql = @$"Select top 1 C.Reference 
+						  From Apprenticeship A
+						  Inner Join Commitment C on A.CommitmentId = C.Id
+						  Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
+                          Inner join Accounts AC on AC.Id = ALE.AccountId
+                          Where AC.HashedId ='{hashedAccountId}'
+						  AND ContinuationOfId is not null
+						  order by 1 desc";
+
+        return GetDataAsString(sql);
+    }
 }

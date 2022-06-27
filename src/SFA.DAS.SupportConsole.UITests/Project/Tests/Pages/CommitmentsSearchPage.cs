@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
+
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
 public class CommitmentsSearchPage : SupportConsoleBasePage
 {
@@ -22,9 +24,16 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     private static By SearchButton => By.Id("searchButton");
     private static By SearchTextBoxHelpText => By.Id("search-main");
     private static By CommitmentsSearchPageErrorText => By.CssSelector(".error-message");
+
+    public CommitmentsSqlDataHelper SqlDataHelper { get; }
     #endregion
 
-    public CommitmentsSearchPage(ScenarioContext context) : base(context) => VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
+    public CommitmentsSearchPage(ScenarioContext context) : base(context) 
+    { 
+        VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
+        SqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+
+    }
 
     private void EnterTextInSearchBox(string searchText) => formCompletionHelper.EnterText(SearchTextBox, searchText);
 
@@ -62,6 +71,26 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
         EnterTextInSearchBox(config.CohortRef);
         ClickSearchButton();
         return new (context);
+    }
+
+    public CohortSummaryPage SearchForCohortWithPendingChanges()
+    {
+        SelectCohortRefSearchTypeRadioButton();
+        var cohortRef = SqlDataHelper.GetCohortWithPendingChanges(config.HashedAccountId);
+        EnterTextInSearchBox(cohortRef);
+        ClickSearchButton();
+        context.Replace("CohortWithPendingChanges", cohortRef);
+        return new(context);
+    }
+
+    public CohortSummaryPage SearchForCohortWithTrainingProviderHistory()
+    {
+        SelectCohortRefSearchTypeRadioButton();
+        var cohortRef = SqlDataHelper.GetCohortWithTrainingProviderHistory(config.HashedAccountId);
+        EnterTextInSearchBox(cohortRef);
+        ClickSearchButton();
+        context.Replace(CommitmentsTrainingProviderHistorySteps.CohortWithTrainingProviderHistory, cohortRef);
+        return new(context);
     }
 
     public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()

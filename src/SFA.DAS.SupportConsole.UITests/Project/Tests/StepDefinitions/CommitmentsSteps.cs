@@ -33,14 +33,6 @@ public class CommitmentsSteps
     [When(@"the User searches for a Cohort")]
     public void WhenTheUserSearchesForACohort() => _stepsHelper.SearchForCohort();
 
-    [When(@"the User clicks on 'View this cohort' button")]
-    public void WhenTheUserClicksOnButton()
-    {
-        var cohortSummaryPage = new CohortSummaryPage(_context);
-        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
-        cohortSummaryPage.ClickViewThisCohortButton();
-    }
-
     [When(@"the user chooses to view Uln of the Cohort")]
     public void WhenTheUserChoosesToViewUlnOfTheCohort()
     {
@@ -68,4 +60,14 @@ public class CommitmentsSteps
     [Then(@"unauthorised Cohort access error message is shown to the user")]
     public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser() => 
         Assert.AreEqual(new CommitmentsSearchPage(_context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
+
+    [When(@"the User clicks on 'View this cohort' button")]
+    public void WhenTheUserClicksOnButton()
+    {
+        var cohortSummaryPage = new CohortSummaryPage(_context);
+        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
+        cohortSummaryPage.ClickViewThisCohortButton();
+    }
+
+    
 }
