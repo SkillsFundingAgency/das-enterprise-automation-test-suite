@@ -10,13 +10,11 @@ public class TestDataCleanUpEasAccDbSqlDataHelper : BaseSqlDbHelper.TestDataClea
 
     internal List<string[]> GetUserEmailList(List<string> userEmail)
     {
-        var userEmailList = GetMultipleData($"select top 100 Email from employer_account.[User] where " +
+        var userEmailList = GetMultipleData($"select top 150 Email from employer_account.[User] where " +
             $"Email like {GetUserEmailListQuery(userEmail)} " +
             $"and Email like '___Test__________________________@%' " +
             $"and Email not like '%perftest.com' " +
             $"and Email not like '%PerfTest%' " +
-            $"and Email not like '%Nov2020%' " +
-            $"and Email not like '%Dec2020%' " +
             $"and Email not like '%Jan2021%' " +
             $"and Email not like '%Feb2021%' " +
             $"and Email not like '%Mar2021%' " +
