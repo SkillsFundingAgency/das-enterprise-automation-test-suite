@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class ViewAllVacancyPage : Raav2BasePage
     {
-        protected override string PageTitle => "Vacancies";
+        protected override string PageTitle => "Your vacancies";
 
         private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
 

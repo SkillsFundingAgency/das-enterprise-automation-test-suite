@@ -16,8 +16,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         protected By OrganisationsAndAgreementsLink => By.LinkText("Organisations and agreements");
         private By SignOutLink => By.LinkText("Sign out");
         protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
-        private By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
-
+        
         public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             ukprn = context.Get<ObjectContext>().GetUkprn();
@@ -26,6 +25,11 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
 
-        protected void ClickIfPirenIsDisplayed() => ClickIfDisplayed(PireanPreprod);
+        protected void ClickIfPirenIsDisplayed()
+        {
+            var checkPage = new CheckProviderPireanPreprodPage(context);
+
+            if (checkPage.IsPageDisplayed()) formCompletionHelper.ClickElement(checkPage.PireanPreprod);
+        }
     }
 }
