@@ -56,7 +56,8 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
                           FROM [dbo].[ApprenticeshipUpdate] AU 
                           Inner join Apprenticeship A on AU.ApprenticeshipId = A.Id
                           Inner join Commitment C on C.Id = A.CommitmentId
-                          Where C.Reference = '{cohortRef}'";
+                          Where C.Reference = '{cohortRef}'
+                          AND AU.Status = 0";
 
         return GetDataAsString(sql);
     }
@@ -80,7 +81,9 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
                           Inner join Commitment C on C.Id = A.CommitmentId
                           Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
                           Inner join Accounts AC on AC.Id = ALE.AccountId
-                          Where AC.HashedId ='{hashedAccountId}'";
+                          Where AC.HashedId ='{hashedAccountId}'
+                          AND AU.Status = 0
+                          Order by C.Id desc";
 
         return GetDataAsString(sql);
     }
@@ -92,9 +95,11 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
 						  Inner Join Commitment C on A.CommitmentId = C.Id
 						  Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
                           Inner join Accounts AC on AC.Id = ALE.AccountId
+                          Inner join ChangeOfPartyRequest Cpr on Cpr.NewApprenticeshipId = A.Id
                           Where AC.HashedId ='{hashedAccountId}'
-						  AND ContinuationOfId is not null
-						  order by 1 desc";
+						  AND A.ContinuationOfId is not null
+                          AND Cpr.ChangeOfPartyType = 1 
+						  Order by C.Id desc";
 
         return GetDataAsString(sql);
     }
