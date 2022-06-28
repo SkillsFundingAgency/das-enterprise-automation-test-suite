@@ -28,7 +28,7 @@ public class AllDbTestDataCleanUpHelper
 
         AddInUseEmails(userEmailList);
 
-        int batchCount = 25;
+        int batchCount = 20;
 
         for (int i = 0; i < userEmailList.Count; i+= batchCount) userEmailListoflist.Add(userEmailList.Skip(i).Take(batchCount).ToList());
 
