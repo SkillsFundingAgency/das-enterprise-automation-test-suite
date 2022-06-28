@@ -25,9 +25,7 @@ public abstract class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
 
         var sqlQuery = $"{createQuery};{insertquery.ToString(";")};" + FileHelper.GetSql(SqlFileName);
 
-        var deletedrows = TryExecuteSqlCommand(sqlQuery, connectionString);
-
-        var noOfRowsDeleted = deletedrows - listToDelete.Count;
+        var noOfRowsDeleted = TryExecuteSqlCommand(sqlQuery, connectionString) - listToDelete.Count;
 
         return noOfRowsDeleted;
     }

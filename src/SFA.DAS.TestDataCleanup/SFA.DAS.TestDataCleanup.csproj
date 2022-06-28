@@ -26,15 +26,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\TestDataCleanup\TestDataCleanup_All_2.feature.cs">
-	    <Visible>true</Visible>
-	    <DependentUpon>TestDataCleanup_All_2.feature</DependentUpon>
-	    <DesignTime>true</DesignTime>
-	    <AutoGen>true</AutoGen>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
