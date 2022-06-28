@@ -18,6 +18,8 @@ public class AllDbTestDataCleanUpHelper
 
     public (List<string>, List<string>) CleanUpAllDbTestData(List<string> email)
     {
+        List<List<string>> userEmailListoflist = new();
+
         (var easAccDbSqlDataHelper, var userEmailListArray) = GetUserEmailList(email);
 
         if (userEmailListArray.IsNoDataFound()) return (usersdeleted, userswithconstraints);
@@ -26,7 +28,11 @@ public class AllDbTestDataCleanUpHelper
 
         AddInUseEmails(userEmailList);
 
-        CleanUpTestData(easAccDbSqlDataHelper, userEmailList);
+        int batchCount = 25;
+
+        for (int i = 0; i < userEmailList.Count; i+= batchCount) userEmailListoflist.Add(userEmailList.Skip(i).Take(batchCount).ToList());
+
+        foreach (var item in userEmailListoflist) CleanUpTestData(easAccDbSqlDataHelper, item);
 
         return (usersdeleted, userswithconstraints);
     }

@@ -32,6 +32,8 @@ namespace SFA.DAS.FrameworkHelpers
                             }
                         }
 
+                        command.CommandTimeout = 90;
+
                         return command.ExecuteNonQuery();
                     }
                 }
