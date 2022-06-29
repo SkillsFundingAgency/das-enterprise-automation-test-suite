@@ -9,12 +9,16 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         protected override string PageTitle => "Vacancies";
 
         private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
+        private By SearchBox => By.CssSelector("div.das-autocomplete-wrap");
 
-        public ViewAllVacancyPage(ScenarioContext context) : base(context) { }
+        public ViewAllVacancyPage(ScenarioContext context) : base(context,false) { }
 
         public CreateAVacancyPage CreateVacancy()
         {
-            formCompletionHelper.Click(CreateVacancyLink);
+            if (pageInteractionHelper.IsElementDisplayed(SearchBox))
+            {
+                formCompletionHelper.Click(CreateVacancyLink);    
+            }
             return new CreateAVacancyPage(context);
         }
     }
