@@ -11,7 +11,7 @@
         private string AdvertOrVacancysummary_5 => "Summary of the apprenticeship";
         private string AdvertOrVacancysummary_6 => isRaaV2Employer ? "About the apprenticeship" : "Tasks and training details";
 
-        private string Employmentdetails => "2. Employment details";
+        private string Employmentdetails => IsTraineeship ? "2. Placement details" : "2. Employment details";
         private string Employmentdetails_1 => isRaaV2Employer ? "Important dates" : "Closing and start dates";
         private string Employmentdetails_2 => "Duration and working hours";
         private string Employmentdetails_3 => "Pay rate";

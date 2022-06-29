@@ -10,6 +10,16 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public DurationPage EnterImportantDates(bool disabilityConfidence)
         {
+            EnterDates(disabilityConfidence);
+            return new DurationPage(context);
+        }
+        public WorkExperienceProvidedPage EnterTraineeshipDates(bool disabilityConfidence)
+        {
+            EnterDates(disabilityConfidence);
+            return new WorkExperienceProvidedPage(context);
+        }
+        private void EnterDates(bool disabilityConfidence)
+        {
             ClosingDate(rAAV2DataHelper.VacancyClosing);
             StartDate(rAAV2DataHelper.VacancyStart);
 
@@ -19,8 +29,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             }
 
             Continue();
-            pageInteractionHelper.WaitforURLToChange("duration");
-            return new DurationPage(context);
+
+            var expectedUrl = IsTraineeship ? "work-experience" : "duration"; 
+            
+            pageInteractionHelper.WaitforURLToChange(expectedUrl);
+            
         }
     }
 }

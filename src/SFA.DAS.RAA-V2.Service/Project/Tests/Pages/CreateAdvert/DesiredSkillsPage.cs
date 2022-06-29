@@ -32,5 +32,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
             return new QualificationsPage(context);
         }
+
+        public FutureProspectsPage SelectSkillsAndGoToFutureProspectsPage()
+        {
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
+
+            formCompletionHelper.Click(SaveAndContinue);
+
+            return new FutureProspectsPage(context);
+        }
     }
 }
