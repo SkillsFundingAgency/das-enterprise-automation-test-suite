@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public partial class CreateAnApprenticeshipAdvertOrVacancyPage : Raav2BasePage
     {
-        protected override string PageTitle => isRaaV2Employer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy";
+        protected override string PageTitle => IsTraineeship ? "Create a traineeship vacancy" :(isRaaV2Employer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy");
 
         protected override By TaskName => By.CssSelector(".das-task-list__item .govuk-link");
 

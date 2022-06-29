@@ -9,19 +9,17 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages;
 public abstract class TraineeshipRecruitBasePage : VerifyBasePage
 {
     #region Helpers and Context
-    protected readonly string ukprn;
-    protected readonly ProviderConfig providerConfig;
-    private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
+    protected readonly string Ukprn;
+    protected readonly ProviderConfig ProviderConfig;
+    private By ViewAllVacancy => By.CssSelector($"a[href='/{Ukprn}/vacancies/?filter=All']");
     #endregion
 
     protected sealed override By ContinueButton => By.CssSelector(".govuk-button--start");
 
     protected TraineeshipRecruitBasePage(ScenarioContext context) : base(context)
     {
-        ukprn = context.Get<ObjectContext>().Get("ukprn");
-        providerConfig = context.GetProviderConfig<ProviderConfig>();
-        //context.TryGetValue(out dataHelper);
-        //VerifyPage();
+        Ukprn = context.Get<ObjectContext>().Get("ukprn");
+        ProviderConfig = context.GetProviderConfig<ProviderConfig>();
     }
     
     public ViewAllVacancyPage GoToViewAllVacancyPage()

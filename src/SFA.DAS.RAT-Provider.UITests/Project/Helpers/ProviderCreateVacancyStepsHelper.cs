@@ -62,6 +62,23 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
                 .BackToTaskList();
         }
 
+        public void CreateTraineeshipVacancy() => CreateNewTraineeshipVacancy();
+
+        public CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
+        {
+            (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) = 
+                new RecruitmentTraineeshipsProviderHomePageStepsHelper(_context)
+                    .GoToTraineeshipRecruitmentProviderHomePage(_newTab)
+                    .GoToViewAllVacancyPage()
+                    .CreateVacancy()
+                    .StartNow()
+                    .SelectEmployer(_hashedid);
+
+            _isMultiOrg = isMultiOrg;
+
+            return createAdvertPage;
+        }
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             createAdvertPage
             .Skills()
