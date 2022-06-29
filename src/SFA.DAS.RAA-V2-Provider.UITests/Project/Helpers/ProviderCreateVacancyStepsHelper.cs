@@ -83,6 +83,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
         }
 
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
+        {
+            throw new System.NotImplementedException();
+        }
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
         {
             return EnterVacancyTitle(NavigateToAdvertTitle(createAdvertPage))
