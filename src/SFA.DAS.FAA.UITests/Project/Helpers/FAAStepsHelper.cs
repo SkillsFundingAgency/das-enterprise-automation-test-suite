@@ -137,6 +137,11 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
 
+        public void ApplyForTraineeship()
+        {
+            ApplyForAVacancy(string.Empty, string.Empty, string.Empty, false);
+        }
+
         public void CheckNationWideVacancies()
         {
             FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new FAA_ApprenticeSearchResultsPage(_context);
