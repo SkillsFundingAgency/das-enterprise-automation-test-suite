@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 
 public class CommitmentsSqlDataHelper : SqlDbHelper
 {
@@ -15,9 +15,9 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
             throw new Exception("Invalid Status!");
 
 
-        pauseDate = (status == 2) ? DateTime.Now.ToString("yyyy-MM-dd") : null;
-        stopDate = (status == 3) ? DateTime.Now.ToString("yyyy-MM-dd") : null;
-        completionDate = (status == 4) ? DateTime.Now.ToString("yyyy-MM-dd") : null;
+        pauseDate = status == 2 ? DateTime.Now.ToString("yyyy-MM-dd") : null;
+        stopDate = status == 3 ? DateTime.Now.ToString("yyyy-MM-dd") : null;
+        completionDate = status == 4 ? DateTime.Now.ToString("yyyy-MM-dd") : null;
 
         string sqlQueryToSetDataLockSuccessStatus = $"UPDATE Apprenticeship " +
             $"SET PaymentStatus = {status}, StopDate = '{stopDate}', PauseDate = '{pauseDate}', CompletionDate = '{completionDate}' " +
@@ -40,7 +40,7 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
             $"JOIN Apprenticeship app on app.CommitmentId = c.Id " +
             $"where a.PublicHashedId != '{publicHashedId}' ORDER BY NEWID()) temp";
 
-        var result =  GetMultipleData(query);
+        var result = GetMultipleData(query);
 
         List<(string, string, string, string, string)> resultList = new();
 
