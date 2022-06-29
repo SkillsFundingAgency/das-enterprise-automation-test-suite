@@ -25,6 +25,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA);
 
+        protected abstract CheckYourAnswersPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername);
+
         protected WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
 
         protected VacancyReferencePage CheckAndSubmitAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
@@ -88,8 +90,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             createTraineeshipPage.VerifySkillsandqualificationsSectionStatus(Completed);
 
             createTraineeshipPage.VerifyAbouttheemployerSectionStatus(NotStarted);
-            createTraineeshipPage = AboutTheEmployer(createTraineeshipPage, employerName, false);
-            return CheckAndSubmitAdvert(createTraineeshipPage);
+            
+            return SubmitAndSetVacancyReference(AboutTheEmployerTraineeship(createTraineeshipPage, employerName));
         }
     }
 }

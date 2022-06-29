@@ -63,6 +63,12 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .BackToTaskList();
         }
 
+        protected override CheckYourAnswersPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+            string employername)
+        {
+            throw new System.NotImplementedException();
+        }
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             createAdvertPage
             .Skills()

@@ -27,14 +27,27 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)
         {
+            EnterDetails(optionalFields);
+            return new ContactDetailsPage(context);
+        }
+
+        public CheckYourAnswersPage EnterEmployerDescriptionAndGoToCheckYourAnswersPage(bool optionalFields)
+        {
+            EnterDetails(optionalFields);
+            return new CheckYourAnswersPage(context);
+        }
+
+        private void EnterDetails(bool optionalFields)
+        {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             if (optionalFields)
             {
                 formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
-                if (!isRaaV2Employer) formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
+                if (!isRaaV2Employer)
+                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
             }
+
             Continue();
-            return new ContactDetailsPage(context);
         }
     }
 }
