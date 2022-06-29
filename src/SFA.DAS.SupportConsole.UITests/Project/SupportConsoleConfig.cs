@@ -14,4 +14,10 @@ public class SupportConsoleConfig
     public string UlnName { get; init; }
     public string CohortRef { get; init; }
     public string CohortNotAssociatedToAccount { get; init; }
+
+    public override string ToString() => $"UserName :{Name}, Account Name : '{AccountName}', EmailAddress : '{EmailAddress}', AccountDetails : '{AccountDetails}'" +
+        $", HashedId : '{HashedAccountId}', PublicHashedId : '{PublicAccountId}'" +
+        $", PayeScheme : '{PayeScheme}', CurrentLevyBalance : '{CurrentLevyBalance}'" +
+        $", Uln : '{Uln}', UlnName : '{UlnName}', CohortRef : '{CohortRef}', CohortNotAssociatedToAccount : '{CohortNotAssociatedToAccount}'";
+
 }
