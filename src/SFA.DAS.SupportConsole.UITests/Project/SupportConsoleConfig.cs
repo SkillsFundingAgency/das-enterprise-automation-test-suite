@@ -37,9 +37,9 @@ public class SupportConsoleConfig
 
     public CohortDetails CohortWithTrainingProviderHistory { get; init; }
 
-    public string Uln => CohortDetails.Uln;
-    public string UlnName => CohortDetails.UlnName;
-    public string CohortRef => CohortDetails.CohortRef;
+    public string Uln => CohortDetails?.Uln;
+    public string UlnName => CohortDetails?.UlnName;
+    public string CohortRef => CohortDetails?.CohortRef;
 
     public override string ToString() => $"UserName :{Name}, Account Name : '{AccountName}', EmailAddress : '{EmailAddress}', AccountDetails : '{AccountDetails}'" +
         $", HashedId : '{HashedAccountId}', PublicHashedId : '{PublicAccountId}'" +
