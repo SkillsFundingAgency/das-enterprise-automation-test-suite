@@ -15,9 +15,9 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Step_Definitions
 
         [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
         public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateANewVacancyForRandomEmployer();
-        [Given(@"the Provider creates a vacancy by using a registered name")]
+        [Given(@"the Provider creates traineeship vacancy through View all your traineeship vacancies page")]
         public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => CreateANewVacancy();
 
-        private void CreateANewVacancy() => _providerStepsHelper.CreateANewVacancyForRandomEmployer();
+        private void CreateANewVacancy() => _providerStepsHelper.CreateANewTraineeshipVacancy();
     }
 }

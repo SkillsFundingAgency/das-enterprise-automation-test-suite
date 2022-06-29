@@ -1,3 +1,4 @@
+using System.Threading;
 using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service;
@@ -24,6 +25,8 @@ public abstract class TraineeshipRecruitBasePage : VerifyBasePage
     
     public ViewAllVacancyPage GoToViewAllVacancyPage()
     {
+        Thread.Sleep(3000);
+        
         if (pageInteractionHelper.IsElementDisplayed(ViewAllVacancy))
         {
             formCompletionHelper.Click(ViewAllVacancy);    
