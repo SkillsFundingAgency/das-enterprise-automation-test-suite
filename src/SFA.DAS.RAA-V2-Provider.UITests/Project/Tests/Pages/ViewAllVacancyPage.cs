@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using OpenQA.Selenium;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -15,6 +16,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         public CreateAVacancyPage CreateVacancy()
         {
+            //Waiting for traineeship page to appear from login
+            Thread.Sleep(3000);
+            
             if (pageInteractionHelper.IsElementDisplayed(SearchBox))
             {
                 formCompletionHelper.Click(CreateVacancyLink);    
