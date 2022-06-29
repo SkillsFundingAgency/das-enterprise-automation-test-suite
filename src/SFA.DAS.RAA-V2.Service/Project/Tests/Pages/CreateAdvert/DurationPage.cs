@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DurationPage : Raav2BasePage
     {
-        protected override string PageTitle => "Duration and working hours";
+        protected override string PageTitle => IsTraineeship ? "Duration and weekly hours" : "Duration and working hours";
 
         private By Duration => By.Id("Duration");
 
