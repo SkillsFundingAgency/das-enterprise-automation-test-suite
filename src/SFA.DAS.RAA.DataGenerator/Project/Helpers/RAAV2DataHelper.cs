@@ -18,6 +18,7 @@ namespace SFA.DAS.RAA.DataGenerator
             ContactName = RandomAlphabeticString(5);
             Email = $"{ContactName}@lorem.com";
             VacancyShortDescription = RandomAlphabeticString(15);
+            WorkExperience = RandomAlphabeticString(15);
             VacancyOutcome = RandomAlphabeticString(22);
             VacancyBriefOverview = RandomAlphabeticString(50);
             TrainingDetails = RandomAlphabeticString(28);
@@ -31,8 +32,10 @@ namespace SFA.DAS.RAA.DataGenerator
         }
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
+        public string TraineeshipVacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} traineeship";
 
         public string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
+        public string SectorName => "Care services";
 
         public string EmployerAddress => AvailableAddress.RandomOrDefault();
 
@@ -53,12 +56,14 @@ namespace SFA.DAS.RAA.DataGenerator
         public string Email { get; }
 
         public string VacancyShortDescription { get; }
+        public string WorkExperience { get; }
 
         public string VacancyOutcome { get; }
 
         public string TrainingDetails { get; }
 
         public string Duration => "52";
+        public string TraineeshipDuration => "12";
 
         public string WorkkingWeek { get; }
 
