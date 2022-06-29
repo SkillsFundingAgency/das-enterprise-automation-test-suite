@@ -24,8 +24,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project;
 public class Hooks
 {
     private readonly ScenarioContext _context;
+    private readonly string[] _tags;
 
-    public Hooks(ScenarioContext context) => _context = context;
+    public Hooks(ScenarioContext context)
+    {
+        _context = context;
+        _tags = _context.ScenarioInfo.Tags;
+    }
+    
 
     [BeforeScenario(Order = 21)]
     public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
@@ -40,6 +46,27 @@ public class Hooks
         var comtsqlHelper = new CommitmentsSqlDataHelper(_context.Get<DbConfig>());
 
         var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
+
+        switch (true)
+        {
+            case bool _ when _tags.Contains("pendingchanges"):
+                {
+                    var ls = comtsqlHelper.GetApprenticeshipWithPendingChanges(updatedConfig.HashedAccountId);
+                    updatedConfig.CohortRef = ls[0];
+                    updatedConfig.Uln = ls[1];
+                    break;
+                } 
+            case bool _ when _tags.Contains("changeofprovider"):
+                {
+                    var ls = comtsqlHelper.GetApprenticeshipWithTrainingProviderHistory(updatedConfig.HashedAccountId);
+                    updatedConfig.CohortRef = ls[0];
+                    updatedConfig.Uln = ls[1];
+                    break;
+                    
+                } 
+            default: break;
+        };
+        
 
         _context.ReplaceSupportConsoleConfig(updatedConfig);
 

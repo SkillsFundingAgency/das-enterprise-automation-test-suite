@@ -50,32 +50,9 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
 
     }
 
-    internal string GetUlnWithPendingChanges(string cohortRef)
+    internal List<string> GetApprenticeshipWithPendingChanges(string hashedAccountId)
     {
-        string sql = @$"SELECT TOP (1) A.ULN
-                          FROM [dbo].[ApprenticeshipUpdate] AU 
-                          Inner join Apprenticeship A on AU.ApprenticeshipId = A.Id
-                          Inner join Commitment C on C.Id = A.CommitmentId
-                          Where C.Reference = '{cohortRef}'
-                          AND AU.Status = 0";
-
-        return GetDataAsString(sql);
-    }
-
-    internal string GetUlnWithTrainingProviderHistory(string cohortRef)
-    {
-        string sql = @$"SELECT TOP (1) A.ULN
-                          From Apprenticeship A
-						  Inner Join Commitment C on A.CommitmentId = C.Id
-                          Where C.Reference = '{cohortRef}'
-                          AND ContinuationOfId is not null";
-
-        return GetDataAsString(sql);
-    }
-
-    internal string GetCohortWithPendingChanges(string hashedAccountId)
-    {
-        string sql = @$"SELECT TOP (1) C.Reference
+        string sql = @$"SELECT TOP (1) C.Reference, A.ULN
                           FROM [dbo].[ApprenticeshipUpdate] AU 
                           Inner join Apprenticeship A on AU.ApprenticeshipId = A.Id
                           Inner join Commitment C on C.Id = A.CommitmentId
@@ -85,12 +62,19 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
                           AND AU.Status = 0
                           Order by C.Id desc";
 
-        return GetDataAsString(sql);
+        var result = GetData(sql);
+
+        List<string> resultList = new();
+
+        foreach (var item in result) resultList.Add((item));
+
+        return resultList;
+
     }
 
-    internal string GetCohortWithTrainingProviderHistory(string hashedAccountId)
+    internal List<string> GetApprenticeshipWithTrainingProviderHistory(string hashedAccountId)
     {
-        string sql = @$"Select top 1 C.Reference 
+        string sql = @$"Select top 1 C.Reference, A.ULN
 						  From Apprenticeship A
 						  Inner Join Commitment C on A.CommitmentId = C.Id
 						  Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
@@ -101,6 +85,13 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
                           AND Cpr.ChangeOfPartyType = 1 
 						  Order by C.Id desc";
 
-        return GetDataAsString(sql);
+        var result = GetData(sql);
+
+        List<string> resultList = new();
+
+        foreach (var item in result) resultList.Add((item));
+
+        return resultList;
+
     }
 }

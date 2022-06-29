@@ -25,16 +25,14 @@ public class CohortDetailsPage : SupportConsoleBasePage
 
     public string GetCohortRefNumber() => pageInteractionHelper.GetText(CohortRefNumber);
 
-    public void ClickViewUlnLinkWithPendingChanges(string cohortRef)
+    public void ClickViewUlnLinkWithPendingChanges(string uln)
     {
-        var uln = commitmentSqlDataBaseHelper.GetUlnWithPendingChanges(cohortRef);
         formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(uln, ColumnIdentifier, tableposition: 1));
         pageInteractionHelper.WaitforURLToChange("CommitmentApprenticeDetail");
     }
 
-    public void ClickViewUlnLinkWithTrainingProviderHistory(string cohortRef)
+    public void ClickViewUlnLinkWithTrainingProviderHistory(string uln)
     {
-        var uln = commitmentSqlDataBaseHelper.GetUlnWithTrainingProviderHistory(cohortRef);
         formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(uln, ColumnIdentifier, tableposition: 1));
         pageInteractionHelper.WaitforURLToChange("CommitmentApprenticeDetail");
     }

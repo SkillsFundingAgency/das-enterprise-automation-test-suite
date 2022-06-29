@@ -23,8 +23,7 @@ public class CommitmentsPendingChangingSteps
     public void WhenTheUserClicksOnButtonWithPendingChanges()
     {
         var cohortSummaryPage = new CohortSummaryPage(_context);
-        var cohortRef = _context.Get<string>("CohortWithPendingChanges");
-        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), cohortRef, "Cohort reference mismatch in CohortSummaryPage");
+        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
         cohortSummaryPage.ClickViewThisCohortButton();
     }
 
@@ -36,9 +35,8 @@ public class CommitmentsPendingChangingSteps
     public void WhenTheUserChoosesToViewUlnOfTheCohortWithPendingChanges()
     {
         var cohortDetailsPage = new CohortDetailsPage(_context);
-        var cohortRef = _context.Get<string>("CohortWithPendingChanges");
-        Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), cohortRef, "Cohort reference mismatch in CohortDetailsPage");
-        cohortDetailsPage.ClickViewUlnLinkWithPendingChanges(cohortRef);
+        Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortDetailsPage");
+        cohortDetailsPage.ClickViewUlnLinkWithPendingChanges(_config.Uln);
     }
 
     [Then(@"the pending changes are displayed")]

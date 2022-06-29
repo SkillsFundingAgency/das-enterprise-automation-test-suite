@@ -76,20 +76,16 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     public CohortSummaryPage SearchForCohortWithPendingChanges()
     {
         SelectCohortRefSearchTypeRadioButton();
-        var cohortRef = SqlDataHelper.GetCohortWithPendingChanges(config.HashedAccountId);
-        EnterTextInSearchBox(cohortRef);
+        EnterTextInSearchBox(config.CohortRef);
         ClickSearchButton();
-        context.Replace("CohortWithPendingChanges", cohortRef);
         return new(context);
     }
 
     public CohortSummaryPage SearchForCohortWithTrainingProviderHistory()
     {
         SelectCohortRefSearchTypeRadioButton();
-        var cohortRef = SqlDataHelper.GetCohortWithTrainingProviderHistory(config.HashedAccountId);
-        EnterTextInSearchBox(cohortRef);
+        EnterTextInSearchBox(config.CohortRef);
         ClickSearchButton();
-        context.Replace(CommitmentsTrainingProviderHistorySteps.CohortWithTrainingProviderHistory, cohortRef);
         return new(context);
     }
 

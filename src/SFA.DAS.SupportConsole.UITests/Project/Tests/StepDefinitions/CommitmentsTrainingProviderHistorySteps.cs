@@ -6,11 +6,13 @@ public class CommitmentsTrainingProviderHistorySteps
     public const string CohortWithTrainingProviderHistory = "CohortWithTrainingProviderHistory";
     private readonly ScenarioContext _context;
     private readonly StepsHelper _stepsHelper;
+    private readonly SupportConsoleConfig _config;
 
     public CommitmentsTrainingProviderHistorySteps(ScenarioContext context)
     {
         _context = context;
         _stepsHelper = new StepsHelper(context);
+        _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
     }
 
     [When(@"the User searches for a Cohort with Training provider history")]
@@ -20,8 +22,7 @@ public class CommitmentsTrainingProviderHistorySteps
     public void WhenTheUserClicksOnButtonWithTrainingProviderHistory()
     {
         var cohortSummaryPage = new CohortSummaryPage(_context);
-        var cohortRef = _context.Get<string>(CohortWithTrainingProviderHistory);
-        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), cohortRef, "Cohort reference mismatch in CohortSummaryPage");
+        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
         cohortSummaryPage.ClickViewThisCohortButton();
     }
 
@@ -33,9 +34,8 @@ public class CommitmentsTrainingProviderHistorySteps
     public void WhenTheUserChoosesToViewUlnOfTheCohortWithTrainingProviderHistory()
     {
         var cohortDetailsPage = new CohortDetailsPage(_context);
-        var cohortRef = _context.Get<string>(CohortWithTrainingProviderHistory);
-        Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), cohortRef, "Cohort reference mismatch in CohortDetailsPage");
-        cohortDetailsPage.ClickViewUlnLinkWithTrainingProviderHistory(cohortRef);
+        Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortDetailsPage");
+        cohortDetailsPage.ClickViewUlnLinkWithTrainingProviderHistory(_config.Uln);
     }
 
     [Then(@"the Training provider history is displayed")]

@@ -10,8 +10,8 @@ public class SupportConsoleConfig
     public string PayeScheme { get; init; }
     public string CurrentLevyBalance {get;init;}
     public string AccountDetails { get; init; }
-    public string Uln { get; init; }
+    public string Uln { get; set; }
     public string UlnName { get; init; }
-    public string CohortRef { get; init; }
+    public string CohortRef { get; set; }
     public string CohortNotAssociatedToAccount { get; init; }
 }
