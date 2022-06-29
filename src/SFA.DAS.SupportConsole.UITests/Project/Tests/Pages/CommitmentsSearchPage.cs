@@ -1,6 +1,4 @@
-﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
-
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
 public class CommitmentsSearchPage : SupportConsoleBasePage
 {
@@ -28,11 +26,10 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     public CommitmentsSqlDataHelper SqlDataHelper { get; }
     #endregion
 
-    public CommitmentsSearchPage(ScenarioContext context) : base(context) 
-    { 
+    public CommitmentsSearchPage(ScenarioContext context) : base(context)
+    {
         VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
         SqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
-
     }
 
     private void EnterTextInSearchBox(string searchText) => formCompletionHelper.EnterText(SearchTextBox, searchText);
@@ -48,46 +45,20 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     public UlnSearchResultsPage SearchForULN()
     {
         SelectUlnSearchTypeRadioButton();
-        EnterTextInSearchBox(config.Uln);
-        ClickSearchButton();
-        return new (context);
-    }
-
-    public void SearchWithInvalidULN()
-    {
-        EnterTextInSearchBox(InvalidUln);
-        ClickSearchButton();
-    }
-
-    public void SearchWithInvalidULNWithSpecialChars()
-    {
-        EnterTextInSearchBox(InvalidUlnWithSpecialChars);
-        ClickSearchButton();
-    }
-
-    public CohortSummaryPage SearchForCohort()
-    {
-        SelectCohortRefSearchTypeRadioButton();
-        EnterTextInSearchBox(config.CohortRef);
-        ClickSearchButton();
-        return new (context);
-    }
-
-    public CohortSummaryPage SearchForCohortWithPendingChanges()
-    {
-        SelectCohortRefSearchTypeRadioButton();
-        EnterTextInSearchBox(config.CohortRef);
-        ClickSearchButton();
+        Search(config.Uln);
         return new(context);
     }
 
-    public CohortSummaryPage SearchForCohortWithTrainingProviderHistory()
-    {
-        SelectCohortRefSearchTypeRadioButton();
-        EnterTextInSearchBox(config.CohortRef);
-        ClickSearchButton();
-        return new(context);
-    }
+    public void SearchWithInvalidULN() => Search(InvalidUln);
+
+    public void SearchWithInvalidULNWithSpecialChars() => Search(InvalidUlnWithSpecialChars);
+
+
+    public CohortSummaryPage SearchForCohort() => SearchCohort(config.CohortRef);
+    
+    public CohortSummaryPage SearchForCohortWithPendingChanges() => SearchCohort(config.CohortWithPendingChanges.CohortRef);
+
+    public CohortSummaryPage SearchForCohortWithTrainingProviderHistory() => SearchCohort(config.CohortWithTrainingProviderHistory.CohortRef);
 
     public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
     {
@@ -95,25 +66,22 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
         return this;
     }
 
-    public void SearchWithInvalidCohort()
-    {
-        EnterTextInSearchBox(InvalidCohort);
-        ClickSearchButton();
-    }
+    public void SearchWithInvalidCohort() => Search(InvalidCohort);
 
-    public void SearchWithUnauthorisedCohortAccess()
-    {
-        EnterTextInSearchBox(config.CohortNotAssociatedToAccount);
-        ClickSearchButton();
-    }
+    public void SearchWithUnauthorisedCohortAccess() => Search(config.CohortNotAssociatedToAccount.CohortRef);
 
-    public void SearchWithInvalidCohortWithSpecialChars()
-    {
-        EnterTextInSearchBox(InvalidCohortWithSpecialChars);
-        ClickSearchButton();
-    }
+    public void SearchWithInvalidCohortWithSpecialChars() => Search(InvalidCohortWithSpecialChars);
 
     public string GetCommitmentsSearchPageErrorText() => pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
 
     public string GetSearchTextBoxHelpText() => pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
+
+    private CohortSummaryPage SearchCohort(string text)
+    {
+        SelectCohortRefSearchTypeRadioButton();
+        Search(text);
+        return new(context);
+    }
+
+    private void Search(string text) { EnterTextInSearchBox(text); ClickSearchButton(); }
 }

@@ -2,7 +2,6 @@
 
 @supportconsole
 @approvalssupportconsole
-@pendingchanges
 Scenario: SC_Ap_Coh_04 - View Cohort details with pending changes
 	Given the Tier 1 User is logged into Support Console
 	And the User is on the Account details page

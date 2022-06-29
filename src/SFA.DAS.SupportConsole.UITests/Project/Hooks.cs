@@ -47,27 +47,6 @@ public class Hooks
 
         var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
 
-        switch (true)
-        {
-            case bool _ when _tags.Contains("pendingchanges"):
-                {
-                    var ls = comtsqlHelper.GetApprenticeshipWithPendingChanges(updatedConfig.HashedAccountId);
-                    updatedConfig.CohortRef = ls[0];
-                    updatedConfig.Uln = ls[1];
-                    break;
-                } 
-            case bool _ when _tags.Contains("changeofprovider"):
-                {
-                    var ls = comtsqlHelper.GetApprenticeshipWithTrainingProviderHistory(updatedConfig.HashedAccountId);
-                    updatedConfig.CohortRef = ls[0];
-                    updatedConfig.Uln = ls[1];
-                    break;
-                    
-                } 
-            default: break;
-        };
-        
-
         _context.ReplaceSupportConsoleConfig(updatedConfig);
 
         _context.Get<ObjectContext>().Set("SupportConsoleConfig", updatedConfig);

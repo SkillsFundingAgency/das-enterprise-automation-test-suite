@@ -26,72 +26,60 @@ public class CommitmentsSqlDataHelper : SqlDbHelper
         ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
     }
 
-    public List<(string uln, string fname, string lname, string cohortRef, string publichashedId)> GetCommtDetails(string publicHashedId)
+    public List<(string uln, string fname, string lname, string cohortRef)> GetCommtDetails(string publicHashedId)
     {
-        var query = $"Select ULN, FirstName, LastName, Reference, PublicHashedId from  " +
-            $"(select Top 1 app.ULN, app.FirstName, app.LastName, c.Reference, a.PublicHashedId from Accounts a " +
-            $"JOIN Commitment c on c.EmployerAccountId = a.Id " +
-            $"JOIN Apprenticeship app on app.CommitmentId = c.Id " +
-            $"where a.PublicHashedId = '{publicHashedId}' ORDER BY NEWID()) temp " +
-            $"UNION " +
-            $"Select ULN, FirstName, LastName, Reference, PublicHashedId from " +
-            $"(select Top 1 app.ULN, app.FirstName, app.LastName, c.Reference, a.PublicHashedId from Commitment c " +
-            $"join Accounts a on c.EmployerAccountId = a.Id " +
-            $"JOIN Apprenticeship app on app.CommitmentId = c.Id " +
-            $"where a.PublicHashedId != '{publicHashedId}' ORDER BY NEWID()) temp";
+        var query = $"Select ULN, FirstName, LastName, Reference from ({GetCohortDetails(publicHashedId)}) temp" +
+            $"UNION" +
+            $"Select ULN, FirstName, LastName, Referenc from ({GetCohortNotAssociatedToAccount(publicHashedId)}) temp" +
+            $"UNION" +
+            $"Select ULN, FirstName, LastName, Reference from ({GetCohortDetailsWithPendingChanges(publicHashedId)}) temp" +
+            $"UNION" +
+            $"Select ULN, FirstName, LastName, Reference from ({GetCohortDetailsWithTrainingProviderHistory(publicHashedId)}) temp" ;
 
         var result = GetMultipleData(query);
 
-        List<(string, string, string, string, string)> resultList = new();
+        List<(string, string, string, string)> resultList = new();
 
-        foreach (var item in result) resultList.Add((item[0], item[1], item[2], item[3], item[4]));
+        foreach (var item in result) resultList.Add((item[0], item[1], item[2], item[3]));
 
         return resultList;
 
     }
 
-    internal List<string> GetApprenticeshipWithPendingChanges(string hashedAccountId)
+    private static string GetCohortDetails(string publicHashedId)
     {
-        string sql = @$"SELECT TOP (1) C.Reference, A.ULN
-                          FROM [dbo].[ApprenticeshipUpdate] AU 
+        return $@"select Top 1 app.ULN, app.FirstName, app.LastName, c.Reference from Accounts a JOIN Commitment c on c.EmployerAccountId = a.Id JOIN Apprenticeship app on app.CommitmentId = c.Id where a.PublicHashedId = '{publicHashedId}' ORDER BY NEWID()";
+    }
+
+    private static string GetCohortNotAssociatedToAccount(string publicHashedId)
+    {
+        return $@"select Top 1 app.ULN, app.FirstName, app.LastName, c.Reference from Commitment c join Accounts a on c.EmployerAccountId = a.Id JOIN Apprenticeship app on app.CommitmentId = c.Id where a.PublicHashedId != '{publicHashedId}' ORDER BY NEWID()";
+    }
+
+    private static string GetCohortDetailsWithPendingChanges(string publicHashedId)
+    {
+        return @$"SELECT TOP (1) A.ULN, A.FirstName, A.LastName, C.Reference
+                          FROM[dbo].[ApprenticeshipUpdate] AU
                           Inner join Apprenticeship A on AU.ApprenticeshipId = A.Id
                           Inner join Commitment C on C.Id = A.CommitmentId
-                          Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
+                          Inner join AccountLegalEntities ALE on ALE.Id = C.AccountLegalEntityId
                           Inner join Accounts AC on AC.Id = ALE.AccountId
-                          Where AC.HashedId ='{hashedAccountId}'
+                          Where AC.PublicHashedId = '{publicHashedId}'
                           AND AU.Status = 0
                           Order by C.Id desc";
-
-        var result = GetData(sql);
-
-        List<string> resultList = new();
-
-        foreach (var item in result) resultList.Add((item));
-
-        return resultList;
-
     }
 
-    internal List<string> GetApprenticeshipWithTrainingProviderHistory(string hashedAccountId)
+    private static string GetCohortDetailsWithTrainingProviderHistory(string publicHashedId)
     {
-        string sql = @$"Select top 1 C.Reference, A.ULN
+        return @$"Select top 1 A.ULN, A.FirstName, A.LastName, C.Reference
 						  From Apprenticeship A
 						  Inner Join Commitment C on A.CommitmentId = C.Id
 						  Inner join AccountLegalEntities  ALE on ALE.Id = C.AccountLegalEntityId
                           Inner join Accounts AC on AC.Id = ALE.AccountId
                           Inner join ChangeOfPartyRequest Cpr on Cpr.NewApprenticeshipId = A.Id
-                          Where AC.HashedId ='{hashedAccountId}'
+                          Where AC.PublicHashedId ='{publicHashedId}'
 						  AND A.ContinuationOfId is not null
                           AND Cpr.ChangeOfPartyType = 1 
 						  Order by C.Id desc";
-
-        var result = GetData(sql);
-
-        List<string> resultList = new();
-
-        foreach (var item in result) resultList.Add((item));
-
-        return resultList;
-
     }
 }

@@ -77,16 +77,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.Cohort
         [NUnit.Framework.DescriptionAttribute("SC_Ap_Coh_04 - View Cohort details with pending changes")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        [NUnit.Framework.CategoryAttribute("pendingchanges")]
         public void SC_Ap_Coh_04_ViewCohortDetailsWithPendingChanges()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
-                    "approvalssupportconsole",
-                    "pendingchanges"};
+                    "approvalssupportconsole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ap_Coh_04 - View Cohort details with pending changes", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,25 +94,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the Tier 1 User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("the User searches for a Cohort with pending changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.And("the User clicks on \'View this cohort\' button with pending changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("the user chooses to view Uln of the Cohort with pending changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.And("the ULN details page is displayed with pending changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 12
  testRunner.Then("the pending changes are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
