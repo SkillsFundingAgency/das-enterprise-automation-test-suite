@@ -18,7 +18,7 @@
         private string Employmentdetails_4 => "Number of positions";
         private string Employmentdetails_5 => "Address";
 
-        private string Skillsandqualifications => "3. Skills and qualifications";
+        private string Skillsandqualifications => IsTraineeship ? "3. Requirements and Prospects" : "3. Skills and qualifications";
         private string Skillsandqualifications_1 => "Skills";
         private string Skillsandqualifications_2 => "Qualifications";
         private string Skillsandqualifications_3 => "Other things to consider";
