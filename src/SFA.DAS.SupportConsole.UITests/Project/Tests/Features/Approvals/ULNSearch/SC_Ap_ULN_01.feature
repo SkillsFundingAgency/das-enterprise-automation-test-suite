@@ -1,6 +1,5 @@
 ﻿Feature: SC_Ap_ULN_01
 
-@awaiting-fix
 @supportconsole
 @approvalssupportconsole
 Scenario: SC_Ap_ULN_01 - View ULN details

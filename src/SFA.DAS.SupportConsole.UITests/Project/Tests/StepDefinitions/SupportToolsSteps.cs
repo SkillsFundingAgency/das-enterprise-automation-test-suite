@@ -52,32 +52,22 @@ public class SupportToolsSteps
         }
     }
 
-
     [When(@"User selects all records and click on Pause Apprenticeship button")]
-    public void WhenUserSelectsAllRecordsAndClickOnPauseApprenticeshipButton()
-    {
-        UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
-                .ClickSubmitButton()
-                .SelectAllRecords()
-                .ClickPauseButton();
-    }
+    public void WhenUserSelectsAllRecordsAndClickOnPauseApprenticeshipButton() => SelectAllRecords().ClickPauseButton();
 
     [When(@"User selects all records and click on Resume Apprenticeship button")]
-    public void WhenUserSelectsAllRecordsAndClickOnResumeApprenticeshipButton()
-    {
-        UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
-                 .ClickSubmitButton()
-                 .SelectAllRecords()
-                 .ClickResumeButton();
-    }
+    public void WhenUserSelectsAllRecordsAndClickOnResumeApprenticeshipButton() => SelectAllRecords().ClickResumeButton();
 
     [When(@"User selects all records and click on Stop Apprenticeship button")]
-    public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton()
+    public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton() => SelectAllRecords().ClickStopButton();
+    
+    private SearchForApprenticeshipPage SelectAllRecords()
     {
-        UpdateStatusInDb(new SearchForApprenticeshipPage(_context, false).GetULNsFromApprenticeshipTable())
-                .ClickSubmitButton()
-                .SelectAllRecords()
-                .ClickStopButton();
+        var page = new SearchForApprenticeshipPage(_context, false);
+        
+        UpdateStatusInDb(page.GetULNsFromApprenticeshipTable());
+        
+        return page.ClickSubmitButton().SelectAllRecords();
     }
 
     [Then(@"User should be able to stop all the records")]
@@ -115,7 +105,7 @@ public class SupportToolsSteps
         ValidateResumeSuccessful(ststusList);
     }
 
-    private SearchForApprenticeshipPage UpdateStatusInDb(List<IWebElement> UlnList)
+    private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
         int i = 0;
         foreach (var uln in UlnList)
@@ -131,8 +121,6 @@ public class SupportToolsSteps
 
             i++;
         }
-
-        return new SearchForApprenticeshipPage(_context, false);
     }
 
     private void ValidatePausedSuccessful(List<IWebElement> StatusList)

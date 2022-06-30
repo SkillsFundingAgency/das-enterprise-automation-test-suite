@@ -1,6 +1,6 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project.SqlHelpers;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 
-public class SupportConsoleSqlDataHelper 
+public class SupportConsoleSqlDataHelper
 {
     private readonly AccountsSqlDataHelper _accountsSqlDataHelper;
     private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
@@ -19,10 +19,6 @@ public class SupportConsoleSqlDataHelper
 
         var comtData = _commitmentsSqlDataHelper.GetCommtDetails(publicAccountId);
 
-        var (uln, fname, lname, cohortRef, publichashedId) = comtData.Single(x => x.publichashedId == publicAccountId);
-
-        var cohortNotAssociated = comtData.Single(x => x.publichashedId != publicAccountId);
-
         var result = new SupportConsoleConfig
         {
             Name = $"{fName} {lName}",
@@ -33,12 +29,13 @@ public class SupportConsoleSqlDataHelper
             PayeScheme = payeref,
             CurrentLevyBalance = supportConsoleConfig.CurrentLevyBalance,
             AccountDetails = $"Account ID {publicAccountId}, created {createdDate:dd/MM/yyyy}",
-            Uln = uln,
-            UlnName = $"{fname} {lname}",
-            CohortRef = cohortRef,
-            CohortNotAssociatedToAccount = cohortNotAssociated.cohortRef
+            CohortDetails = new CohortDetails(comtData[0]),
+            CohortNotAssociatedToAccount = new CohortDetails(comtData[1]),
+            CohortWithPendingChanges = new CohortDetails(comtData[2]),  
+            CohortWithTrainingProviderHistory = new CohortDetails(comtData[3]),
         };
 
         return result;
     }
+
 }
