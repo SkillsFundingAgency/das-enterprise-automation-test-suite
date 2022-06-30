@@ -1,6 +1,5 @@
 ﻿Feature: SC_Ap_Coh_02
 
-@awaiting-fix
 @supportconsole
 @approvalssupportconsole
 Scenario: SC_Ap_Coh_02 - Invalid Cohort search
