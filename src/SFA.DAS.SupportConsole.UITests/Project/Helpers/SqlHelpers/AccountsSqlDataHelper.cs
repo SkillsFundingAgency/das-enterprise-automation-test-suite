@@ -10,7 +10,8 @@ public class AccountsSqlDataHelper : SqlDbHelper
             $"JOIN employer_account.Membership m ON m.AccountId = a.id " +
             $"JOIN employer_account.[User] u ON u.id = m.UserId " +
             $"JOIN employer_account.AccountHistory ah ON a.Id = ah.AccountId " +
-            $"where a.PublicHashedId = '{publicHashedId}' Order by NEWID()";
+            $"where a.PublicHashedId = '{publicHashedId}' and ah.RemovedDate is null " +
+            "Order by NEWID()";
 
         var result = GetData(query);
 
