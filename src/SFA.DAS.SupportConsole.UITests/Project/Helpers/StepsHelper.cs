@@ -54,7 +54,7 @@ public class StepsHelper
         commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
     }
 
-    public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
+    public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
 
     public CohortSummaryPage SearchForCohortWithPendingChanges() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohortWithPendingChanges();
 

@@ -6,17 +6,13 @@ public class UlnDetailsPageWithPendingChanges : SupportConsoleBasePage
 
     protected override By PageHeader => By.CssSelector(".heading-large");
 
+    private static By PendingChangesTab => By.CssSelector("a[href='#tab-pending-changes']");
+
+    private static By PendingChangesTable => By.CssSelector("#tab-pending-changes table tbody tr");
+
     public UlnDetailsPageWithPendingChanges(ScenarioContext context) : base(context) { }
 
-    internal void ClickPendingChangesTab()
-    {
-        var pendingChangesLink = pageInteractionHelper.FindElement(By.CssSelector("a[href='#tab-pending-changes']"));
-        pendingChangesLink.Click();
-    }
+    internal void ClickPendingChangesTab() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PendingChangesTab));
 
-    internal void PendingChangesAreDisplayed()
-    {
-        var rows = pageInteractionHelper.FindElements(By.CssSelector("#tab-pending-changes table tbody tr"));
-        Assert.IsTrue(rows.Count > 0);
-    }
+    internal void PendingChangesAreDisplayed() => Assert.IsTrue(pageInteractionHelper.FindElements(PendingChangesTable).Count > 0);
 }

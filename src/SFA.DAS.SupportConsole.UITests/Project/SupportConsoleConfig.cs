@@ -37,7 +37,6 @@ public class SupportConsoleConfig
 
     public CohortDetails CohortWithTrainingProviderHistory { get; init; }
 
-    public string Uln => CohortDetails?.Uln;
     public string UlnName => CohortDetails?.UlnName;
     public string CohortRef => CohortDetails?.CohortRef;
 

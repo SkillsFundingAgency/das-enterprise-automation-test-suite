@@ -8,13 +8,13 @@ public class UlnDetailsPage : SupportConsoleBasePage
 
     public UlnDetailsPage(ScenarioContext context) : base(context) => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
 
-    public void VerifyUlnDetailsPageHeaders()
+    public void VerifyUlnDetailsPageHeaders(CohortDetails cohortDetails)
     {
         MultipleVerifyPage(new List<Func<bool>>
         {
-            () => {VerifyHeaderAndValue("Unique learner number", config.Uln); return true;},
-            () => {VerifyHeaderAndValue("Name", config.UlnName); return true;},
-            () => {VerifyHeaderAndValue("Cohort reference", config.CohortRef); return true;}
+            () => {VerifyHeaderAndValue("Unique learner number", cohortDetails.Uln); return true;},
+            () => {VerifyHeaderAndValue("Name", cohortDetails.UlnName); return true;},
+            () => {VerifyHeaderAndValue("Cohort reference", cohortDetails.CohortRef); return true;}
         });
     }
 

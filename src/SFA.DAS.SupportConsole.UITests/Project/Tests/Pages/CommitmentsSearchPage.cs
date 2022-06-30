@@ -45,7 +45,7 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     public UlnSearchResultsPage SearchForULN()
     {
         SelectUlnSearchTypeRadioButton();
-        Search(config.Uln);
+        Search(config.CohortDetails.Uln);
         return new(context);
     }
 
@@ -54,7 +54,7 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     public void SearchWithInvalidULNWithSpecialChars() => Search(InvalidUlnWithSpecialChars);
 
 
-    public CohortSummaryPage SearchForCohort() => SearchCohort(config.CohortRef);
+    public CohortSummaryPage SearchForCohort() => SearchCohort(config.CohortDetails.CohortRef);
     
     public CohortSummaryPage SearchForCohortWithPendingChanges() => SearchCohort(config.CohortWithPendingChanges.CohortRef);
 
@@ -76,7 +76,7 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
 
     public string GetSearchTextBoxHelpText() => pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
 
-    private CohortSummaryPage SearchCohort(string text)
+    public CohortSummaryPage SearchCohort(string text)
     {
         SelectCohortRefSearchTypeRadioButton();
         Search(text);

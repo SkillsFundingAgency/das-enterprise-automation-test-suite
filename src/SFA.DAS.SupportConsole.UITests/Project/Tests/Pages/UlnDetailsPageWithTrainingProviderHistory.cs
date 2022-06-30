@@ -6,17 +6,13 @@ public class UlnDetailsPageWithTrainingProviderHistory : SupportConsoleBasePage
 
     protected override By PageHeader => By.CssSelector(".heading-large");
 
+    private static By ProviderHistoryTab => By.CssSelector("a[href='#tab-provider-history']");
+
+    private static By ProviderHistoryTable => By.CssSelector("#tab-provider-history table");
+
     public UlnDetailsPageWithTrainingProviderHistory(ScenarioContext context) : base(context) { }
 
-    internal void ClickPTrainingProviderHistoryTab()
-    {
-        var pendingChangesLink = pageInteractionHelper.FindElement(By.CssSelector("a[href='#tab-provider-history']"));
-        pendingChangesLink.Click();
-    }
+    internal void ClickTrainingProviderHistoryTab() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ProviderHistoryTab));
 
-    internal void TrainingProviderHistoryIsDisplayed()
-    {
-        var tables = pageInteractionHelper.FindElements(By.CssSelector("#tab-provider-history table"));
-        Assert.IsTrue(tables.Count > 0);
-    }
+    internal void TrainingProviderHistoryIsDisplayed() => Assert.IsTrue(pageInteractionHelper.FindElements(ProviderHistoryTable).Count > 0);
 }
