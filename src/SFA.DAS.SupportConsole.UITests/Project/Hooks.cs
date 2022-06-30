@@ -24,14 +24,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project;
 public class Hooks
 {
     private readonly ScenarioContext _context;
-    private readonly string[] _tags;
 
-    public Hooks(ScenarioContext context)
-    {
-        _context = context;
-        _tags = _context.ScenarioInfo.Tags;
-    }
-    
+    public Hooks(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 21)]
     public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);

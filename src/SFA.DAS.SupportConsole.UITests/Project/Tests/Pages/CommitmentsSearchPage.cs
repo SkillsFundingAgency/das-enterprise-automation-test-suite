@@ -42,23 +42,16 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
 
     private void ClickSearchButton() => formCompletionHelper.Click(SearchButton);
 
-    public UlnSearchResultsPage SearchForULN()
+    public UlnSearchResultsPage SearchForULN(string uln)
     {
         SelectUlnSearchTypeRadioButton();
-        Search(config.CohortDetails.Uln);
+        Search(uln);
         return new(context);
     }
 
     public void SearchWithInvalidULN() => Search(InvalidUln);
 
     public void SearchWithInvalidULNWithSpecialChars() => Search(InvalidUlnWithSpecialChars);
-
-
-    public CohortSummaryPage SearchForCohort() => SearchCohort(config.CohortDetails.CohortRef);
-    
-    public CohortSummaryPage SearchForCohortWithPendingChanges() => SearchCohort(config.CohortWithPendingChanges.CohortRef);
-
-    public CohortSummaryPage SearchForCohortWithTrainingProviderHistory() => SearchCohort(config.CohortWithTrainingProviderHistory.CohortRef);
 
     public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
     {

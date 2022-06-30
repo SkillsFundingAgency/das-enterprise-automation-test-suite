@@ -2,13 +2,20 @@
 
 public class UlnDetailsPage : SupportConsoleBasePage
 {
-    protected override string PageTitle => config.UlnName;
+    protected override string PageTitle => cohortDetails.UlnName;
 
     protected override By PageHeader => By.CssSelector(".heading-large");
 
-    public UlnDetailsPage(ScenarioContext context) : base(context) => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
+    private readonly CohortDetails cohortDetails;
 
-    public void VerifyUlnDetailsPageHeaders(CohortDetails cohortDetails)
+    public UlnDetailsPage(ScenarioContext context, CohortDetails cohortDetails) : base(context)
+    {
+        this.cohortDetails = cohortDetails;
+
+        VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
+    }
+
+    public void VerifyUlnDetailsPageHeaders()
     {
         MultipleVerifyPage(new List<Func<bool>>
         {
@@ -17,6 +24,10 @@ public class UlnDetailsPage : SupportConsoleBasePage
             () => {VerifyHeaderAndValue("Cohort reference", cohortDetails.CohortRef); return true;}
         });
     }
+
+    protected void ClickTab(By by) => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
+
+    protected void IsTabDisplayed(By by) => Assert.IsTrue(pageInteractionHelper.FindElements(by).Count > 0);
 
     private void VerifyHeaderAndValue(string headerText, string headerValue)
     {

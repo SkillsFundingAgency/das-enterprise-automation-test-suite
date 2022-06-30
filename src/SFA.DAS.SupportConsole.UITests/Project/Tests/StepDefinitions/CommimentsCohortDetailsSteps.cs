@@ -15,5 +15,5 @@ public class CommimentsCohortDetailsSteps : CommitmentsCohortDetailsBaseSteps
     public void WhenTheUserChoosesToViewUlnOfTheCohort() => ViewCohortUln();
 
     [Then(@"the ULN details page is displayed")]
-    public void ThenTheULNDetailsPageIsDisplayed() => new UlnDetailsPage(_context).VerifyUlnDetailsPageHeaders(cohortDetails);
+    public void ThenTheULNDetailsPageIsDisplayed() => new UlnDetailsPage(_context, cohortDetails).VerifyUlnDetailsPageHeaders();
 }

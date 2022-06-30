@@ -1,18 +1,14 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
-public class UlnDetailsPageWithTrainingProviderHistory : SupportConsoleBasePage
+public class UlnDetailsPageWithTrainingProviderHistory : UlnDetailsPage
 {
-    protected override string PageTitle => config.UlnName;
-
-    protected override By PageHeader => By.CssSelector(".heading-large");
-
     private static By ProviderHistoryTab => By.CssSelector("a[href='#tab-provider-history']");
 
     private static By ProviderHistoryTable => By.CssSelector("#tab-provider-history table");
 
-    public UlnDetailsPageWithTrainingProviderHistory(ScenarioContext context) : base(context) { }
+    public UlnDetailsPageWithTrainingProviderHistory(ScenarioContext context, CohortDetails cohortDetails) : base(context, cohortDetails) { }
 
-    internal void ClickTrainingProviderHistoryTab() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ProviderHistoryTab));
+    internal void ClickTrainingProviderHistoryTab() => ClickTab(ProviderHistoryTab);
 
-    internal void TrainingProviderHistoryIsDisplayed() => Assert.IsTrue(pageInteractionHelper.FindElements(ProviderHistoryTable).Count > 0);
+    internal void TrainingProviderHistoryIsDisplayed() => IsTabDisplayed(ProviderHistoryTable);
 }

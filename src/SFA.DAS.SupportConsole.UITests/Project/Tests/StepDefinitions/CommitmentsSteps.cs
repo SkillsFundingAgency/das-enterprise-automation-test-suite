@@ -16,10 +16,10 @@ public class CommitmentsSteps
     }
 
     [When(@"the User searches for an ULN")]
-    public void WhenTheUserSearchesForAnULN() => _stepsHelper.SearchForUln();
+    public void WhenTheUserSearchesForAnULN() => _stepsHelper.SearchForUln(_config.CohortDetails.Uln);
 
     [Then(@"the ULN details are displayed")]
-    public void ThenTheULNDetailsAreDisplayed() => new UlnSearchResultsPage(_context).SelectULN().VerifyUlnDetailsPageHeaders(_config.CohortDetails);
+    public void ThenTheULNDetailsAreDisplayed() => new UlnSearchResultsPage(_context).SelectULN(_config.CohortDetails).VerifyUlnDetailsPageHeaders();
 
     [When(@"the User searches with a invalid ULN")]
     public void WhenTheUserSearchesWithAInvalidULN() => _stepsHelper.SearchWithInvalidUln(false);

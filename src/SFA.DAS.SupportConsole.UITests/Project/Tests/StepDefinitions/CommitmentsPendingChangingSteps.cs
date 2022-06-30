@@ -12,12 +12,14 @@ public class CommitmentsPendingChangingSteps : CommitmentsCohortDetailsBaseSteps
     public void WhenTheUserClicksOnButtonWithPendingChanges() => ViewThisCohort();
 
     [When(@"the ULN details page is displayed with pending changes")]
-    public void ThenTheULNDetailsPageIsDisplayedWithPendingChanges() => new UlnDetailsPageWithPendingChanges(_context).ClickPendingChangesTab();
+    public void ThenTheULNDetailsPageIsDisplayedWithPendingChanges() => GetUlnDetailsPage().ClickPendingChangesTab();
 
     [When(@"the user chooses to view Uln of the Cohort with pending changes")]
     public void WhenTheUserChoosesToViewUlnOfTheCohortWithPendingChanges() => ViewCohortUln();
     
     [Then(@"the pending changes are displayed")]
-    public void ThePendingUpdateChangesAreDisplayed() => new UlnDetailsPageWithPendingChanges(_context).PendingChangesAreDisplayed();
+    public void ThePendingUpdateChangesAreDisplayed() => GetUlnDetailsPage().PendingChangesAreDisplayed();
+
+    private UlnDetailsPageWithPendingChanges GetUlnDetailsPage() => new (_context, cohortDetails);
 }
 

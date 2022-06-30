@@ -19,7 +19,7 @@ public class StepsHelper
 
     public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
-    public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
+    public UlnSearchResultsPage SearchForUln(string uln) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN(uln);
 
     public void SearchWithInvalidUln(bool WithSpecialChars)
     {
@@ -55,10 +55,6 @@ public class StepsHelper
     }
 
     public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
-
-    public CohortSummaryPage SearchForCohortWithPendingChanges() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohortWithPendingChanges();
-
-    public CohortSummaryPage SearchForCohortWithTraingProviderHistory() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohortWithTrainingProviderHistory();
 
     void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
