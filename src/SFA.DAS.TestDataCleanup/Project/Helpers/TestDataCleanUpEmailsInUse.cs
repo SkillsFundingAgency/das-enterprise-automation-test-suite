@@ -4,7 +4,9 @@ internal static class TestDataCleanUpEmailsInUse
 {
     private static readonly List<string> _emails = new() 
     { 
-      "'first111@test.com'", 
+      "'first111@test.com'",
+      "'HJ_PPTest1368_06Sep2021@mailinator.com'",
+      "'HJ_TestLMAPI@mailinator.com'",
       "'HJDemoTestPP@mailinator.com'",
       "'EiDfeLogin@gmail.com'",
       "'SreeLevyUser@mailinator.com'",
@@ -15,6 +17,7 @@ internal static class TestDataCleanUpEmailsInUse
       "'EIViewOnlyUser@mailinator.com'",
       "'EIV4SignedUser@mailinator.com'",
       "'EIV5SignedUser@mailinator.com'",
+      "'LE_Test_101_21Jun2021_08433101677@dasautomation.com'",
       "'LE_Test_101_10Dec2020_20093533414@mailinator.com'",
       "'LE_Test_101_01Dec2020_14273181086@mailinator.com'",
       "'LE_Test_101_01Dec2020_14231043754@mailinator.com'",

@@ -31,14 +31,10 @@ public abstract class TestdataCleanupStepsHelperBase
 
     private void TestCleanUpReport(List<string> usersdeleted, List<string> userswithconstraints)
     {
-        if (usersdeleted.Count > 0)
-        {
-            int x = usersdeleted.Where(a => a.Contains("total rows deleted")).ToList().Count;
-
-            _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_testdatadeleted",
-                $"{x} email account{(x == 1 ? string.Empty : "s")} deleted {Environment.NewLine}{string.Join(Environment.NewLine, usersdeleted)}");
-        }
+        if (usersdeleted.Count > 0) 
+            _objectContext.Set($"{NextNumberGenerator.GetNextCount()}_testdatadeleted", $"{string.Join(Environment.NewLine, usersdeleted)}");
         
-        if (userswithconstraints.Count > 0) throw new Exception($"{Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");
+        if (userswithconstraints.Count > 0) 
+            throw new Exception($"{Environment.NewLine}{string.Join(Environment.NewLine, userswithconstraints)}");
     }
 }
