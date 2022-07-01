@@ -47,7 +47,7 @@ public class SupportToolsSteps
                    .ClickSubmitButton();
 
             var actualRecord = new SearchForApprenticeshipPage(_context, false).GetNumberOfRecordsFound();
-            Assert.GreaterOrEqual(actualRecord, item.TotalRecords, $"Validate number of expected recordson row: {row}");
+            Assert.GreaterOrEqual(actualRecord, item.TotalRecords, $"Validate number of expected records on row: {row}{item}");
             row++;
         }
     }
