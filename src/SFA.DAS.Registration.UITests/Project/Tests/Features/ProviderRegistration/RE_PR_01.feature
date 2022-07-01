@@ -8,7 +8,7 @@ Scenario: RE_PR_01 Provider Lead Registration
 	Given the provider invite an employer
 	Then the invited employer status in "Account creation not started"
 	When the employer sets up the user
-	Then the invited employer status in "Account started"
+	Then the invited employer status in "Account creation started"
 	When the employer adds PAYE from Account Home Page
 	Then the invited employer status in "PAYE scheme added"
 	When the employer signs the agreement
