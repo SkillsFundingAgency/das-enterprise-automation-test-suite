@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SFA.DAS.FrameworkHelpers
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class AornDataHelper
     {

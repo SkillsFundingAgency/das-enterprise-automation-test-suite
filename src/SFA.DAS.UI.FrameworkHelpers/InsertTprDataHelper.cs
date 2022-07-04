@@ -1,10 +1,14 @@
-﻿using System;
+﻿using SFA.DAS.FrameworkHelpers;
+using System;
 
-namespace SFA.DAS.FrameworkHelpers
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class InsertTprDataHelper
     {
         private static readonly object _object = new();
+
+        public static string InsertSingleOrgTprData(string connectionString, string aornValue, string payescheme) 
+            => InsertTprData(connectionString, aornValue, payescheme, "SingleOrg");
 
         public static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
         {
@@ -22,8 +26,6 @@ namespace SFA.DAS.FrameworkHelpers
                 "INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
                 $"VALUES (@orgSK, @tprUniqueId, '{payescheme}', '{datetime.Year}-{datetime.Month}-{datetime.Day}', GETDATE()); " +
                 $"SELECT @organisationName";
-
-
 
             lock (_object)
             {
