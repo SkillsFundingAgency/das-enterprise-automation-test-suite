@@ -1,13 +1,12 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System;
+﻿using System;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.FrameworkHelpers
 {
-    internal static class InsertTprDataHelper
+    public static class InsertTprDataHelper
     {
         private static readonly object _object = new();
 
-        internal static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
+        public static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
         {
             var datetime = DateTime.Now;
 

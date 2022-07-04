@@ -1,17 +1,19 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
+        private readonly AornDataHelper aornDataHelper;
+
         public RegistrationDataHelper(string[] tags, string emailaddress, string password)
         {
+            aornDataHelper = new();
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
-            AornNumber = $"A{GetDateTimeValue()}";
+            AornNumber = aornDataHelper.AornNumber;
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
@@ -48,12 +50,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Name => CharityTypeOrg2.Name;
         public string CharityTypeOrg2Address => CharityTypeOrg2.Address;
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
-        public string InvalidAornNumber => $"A{GetDateTimeValue()}";
 
         private CharityTypeOrg CharityTypeOrg1 { get; }
         private CharityTypeOrg CharityTypeOrg2 { get; }
         private string RandomAlphaNumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => RandomDataGenerator.GenerateRandomNumber(length);
-        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
     }
 }

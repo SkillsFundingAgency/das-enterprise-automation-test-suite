@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
@@ -469,7 +470,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private void EnterInvalidAornAndPaye() =>
-            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
+            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(AornDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
         private SearchForYourOrganisationPage CreateAnUserAcountAndAddPaye()
         {
