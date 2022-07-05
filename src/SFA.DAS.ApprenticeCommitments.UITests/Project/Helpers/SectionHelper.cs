@@ -11,5 +11,7 @@
         internal static string Section4 => "How your apprenticeship will be delivered";
 
         internal static string Section5 => "Roles and responsibilities";
+
+        internal static string Section6 => "Confirm your apprenticeship";
     }
 }
