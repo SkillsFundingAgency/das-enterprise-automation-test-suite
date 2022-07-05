@@ -76,13 +76,15 @@ namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PC_03_AddAornNonLevyPaye")]
         [NUnit.Framework.CategoryAttribute("payecreation")]
+        [NUnit.Framework.CategoryAttribute("aornpayecreation")]
         public void PC_03_AddAornNonLevyPaye()
         {
             string[] tagsOfScenario = new string[] {
-                    "payecreation"};
+                    "payecreation",
+                    "aornpayecreation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_03_AddAornNonLevyPaye", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -92,7 +94,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("I add aorn non levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
