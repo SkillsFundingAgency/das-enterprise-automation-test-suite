@@ -15,7 +15,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             var datetime = DateTime.Now;
 
             var queryToExecute = $"DECLARE @tprUniqueId bigint, @vartprid varchar(256), @organisationName varchar(256), @orgSK bigint; " +
-                $"SELECT @tprUniqueId = (MAX([TPRUniqueId]) +1) FROM [Tpr].[Organisation];" +
+                $"SELECT @tprUniqueId = (MAX([TPRUniqueId]) +1) FROM [Tpr].[Organisation]; if (@tprUniqueId is null) set @tprUniqueId = 1" +
                 $"SET @vartprid = @tprUniqueId;" +
                 $"SET @organisationName = 'AutomationTestFor{orgType}Aorn' + @vartprid;" +
                 "INSERT INTO [Tpr].[Organisation] ([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
