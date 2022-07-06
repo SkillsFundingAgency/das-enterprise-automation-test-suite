@@ -1,18 +1,21 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using System;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.UI.FrameworkHelpers
 {
-    internal static class InsertTprDataHelper
+    public static class InsertTprDataHelper
     {
         private static readonly object _object = new();
 
-        internal static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
+        public static string InsertSingleOrgTprData(string connectionString, string aornValue, string payescheme) 
+            => InsertTprData(connectionString, aornValue, payescheme, "SingleOrg");
+
+        public static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
         {
             var datetime = DateTime.Now;
 
             var queryToExecute = $"DECLARE @tprUniqueId bigint, @vartprid varchar(256), @organisationName varchar(256), @orgSK bigint; " +
-                $"SELECT @tprUniqueId = (MAX([TPRUniqueId]) +1) FROM [Tpr].[Organisation];" +
+                $"SELECT @tprUniqueId = (MAX([TPRUniqueId]) +1) FROM [Tpr].[Organisation]; if (@tprUniqueId is null) set @tprUniqueId = 1" +
                 $"SET @vartprid = @tprUniqueId;" +
                 $"SET @organisationName = 'AutomationTestFor{orgType}Aorn' + @vartprid;" +
                 "INSERT INTO [Tpr].[Organisation] ([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
@@ -23,8 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 "INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
                 $"VALUES (@orgSK, @tprUniqueId, '{payescheme}', '{datetime.Year}-{datetime.Month}-{datetime.Day}', GETDATE()); " +
                 $"SELECT @organisationName";
-
-
 
             lock (_object)
             {

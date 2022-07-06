@@ -17,11 +17,15 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
                 Duration = payeConfig.Duration,
                 LevyPerMonth = payeConfig.LevyPerMonth,
                 NoOfLevy = payeConfig.NoOfLevy,
-                NoOfNonLevy = payeConfig.NoOfNonLevy
+                NoOfNonLevy = payeConfig.NoOfNonLevy,
+                NoOfAornNonLevy = payeConfig.NoOfAornNonLevy
             };
 
             _payeCreationStepshelper = new PayeCreationStepshelper(context, payeDetails);
         }
+
+        [Given(@"I add aorn non levy declarations")]
+        public void GivenIAddAornNonLevyDeclarations() => _payeCreationStepshelper.AddAornNonLevyPaye();
 
         [Given(@"I add non levy declarations")]
         public void GivenIAddNonLevyDeclarations() => _payeCreationStepshelper.AddNonLevyPaye();

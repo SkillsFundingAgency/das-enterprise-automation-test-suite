@@ -5,10 +5,11 @@ using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using NUnit.Framework;
 using System.Linq;
 using SFA.DAS.PayeCreation.Tests.Project;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 {
-
     public class PayeDetails : PayeCreationConfig
     {
         public string EmpRef { get; set; }
@@ -19,10 +20,12 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly PayeDetails _payeDetails;
+        private readonly DbConfig _dbConfig;
 
         public PayeCreationStepshelper(ScenarioContext context, PayeDetails payeDetails)
         {
             _context = context;
+            _dbConfig = context.Get<DbConfig>();
             _objectContext = context.Get<ObjectContext>();
             _payeDetails = payeDetails;
         }
@@ -30,6 +33,20 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         public void AddLevyPaye() => AddPaye(_payeDetails.NoOfLevy, true);
 
         public void AddNonLevyPaye() => AddPaye(_payeDetails.NoOfNonLevy, false);
+
+        public void AddAornNonLevyPaye()
+        {
+            AddPaye(_payeDetails.NoOfAornNonLevy, false);
+
+            foreach (var gatewaycred in _objectContext.GetGatewayCreds().ToList())
+            {
+                var aornNumber = new AornDataHelper().AornNumber;
+
+                InsertTprDataHelper.InsertSingleOrgTprData(_dbConfig.TPRDbConnectionString, aornNumber, gatewaycred.Paye);
+                
+                _objectContext.UpdateAornNumber(aornNumber, gatewaycred.Index);
+            }
+        }
 
         private void AddPaye(string noofpayefromconfig, bool isLevy)
         {
