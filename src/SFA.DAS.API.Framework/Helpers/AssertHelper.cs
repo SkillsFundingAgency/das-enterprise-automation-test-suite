@@ -40,12 +40,15 @@ namespace SFA.DAS.API.Framework.Helpers
         {
             return $"REQUEST DETAILS: {Environment.NewLine}" +
                    $"Method: {response.Request.Method}{Environment.NewLine}" +
-                   $"URI: {GetUri(response.ResponseUri.AbsoluteUri)}{Environment.NewLine}" +
-                   $"Body: {Environment.NewLine} {GetRequestBody(response)}";
+                   $"URI: {GetUri(response.ResponseUri?.AbsoluteUri)}{Environment.NewLine}" +
+                   $"Body: {Environment.NewLine} {GetRequestBody(response)}" +
+                   $"Exception : {response.ErrorException?.Message}";
         }
 
         private static string GetUri(string absoluteUri) 
         {
+            if (string.IsNullOrEmpty(absoluteUri)) return "Null";
+
             if (absoluteUri.ContainsCompareCaseInsensitive("code="))
             {
                 var index = absoluteUri.IndexOf("=");
