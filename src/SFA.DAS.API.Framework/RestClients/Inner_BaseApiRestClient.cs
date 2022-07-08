@@ -6,7 +6,7 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 
     protected abstract string Inner_ApiBaseUrl { get; }
 
-    public Inner_BaseApiRestClient(Inner_ApiAuthTokenConfig config)
+    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiAuthTokenConfig config) : base(objectContext)
     {
         _config = config;
 

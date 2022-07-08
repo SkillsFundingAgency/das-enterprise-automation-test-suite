@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SFA.DAS.API.Framework.RestClients;
+﻿namespace SFA.DAS.API.Framework.RestClients;
 
 public abstract class Outer_BaseApiRestClient : BaseApiRestClient
 {
@@ -12,9 +10,9 @@ public abstract class Outer_BaseApiRestClient : BaseApiRestClient
 
     protected virtual string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
 
-    public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config) : this(config.Apim_SubscriptionKey) { }
+    public Outer_BaseApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : this(objectContext, config.Apim_SubscriptionKey) { }
 
-    public Outer_BaseApiRestClient(string authKey)
+    public Outer_BaseApiRestClient(ObjectContext objectContext, string authKey) : base(objectContext)
     {
         _authKey = authKey;
 

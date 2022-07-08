@@ -5,24 +5,17 @@ public class Outer_HealthApiRestClient
 {
     private readonly string _baseUrl;
 
-    public Outer_HealthApiRestClient(string baseurl) => _baseUrl = baseurl;
+    private readonly ObjectContext _objectContext;
+
+    public Outer_HealthApiRestClient(ObjectContext objectContext, string baseurl) 
+    {
+        _objectContext = objectContext;
+        _baseUrl = baseurl;
+    }
 
     public IRestResponse Ping(HttpStatusCode expectedResponse) => Execute($"/ping", expectedResponse);
 
     public IRestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
 
-    private IRestResponse Execute(string resource, HttpStatusCode expectedResponse)
-    {
-        var restResponse = new RestClient(_baseUrl)
-            .Execute(
-            new RestRequest
-            {
-                Method = Method.GET,
-                Resource = resource
-            });
-
-        AssertHelper.AssertResponse(expectedResponse, restResponse);
-
-        return restResponse;
-    }
+    private IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => new AssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, new RestClient(_baseUrl), new RestRequest { Method = Method.GET, Resource = resource });
 }

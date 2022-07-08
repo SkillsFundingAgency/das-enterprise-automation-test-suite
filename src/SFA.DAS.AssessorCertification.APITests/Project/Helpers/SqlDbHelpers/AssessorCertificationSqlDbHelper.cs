@@ -19,13 +19,13 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
 
         public void UpdateCertificateReferenceDeleteCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012128' WHERE Uln = {uln}");
 
-        public string GetEPAreferenceAfterAPI(string uln) => GetDataAsString($"SELECT CertificateReference FROM [Certificates] WHERE Uln = {uln}");
+        public string GetEPAreferenceAfterAPI(string uln) => GetNullableData($"SELECT CertificateReference FROM [Certificates] WHERE Uln = {uln}");
 
-        public string GetCertificateStatus(string uln) => GetDataAsString($"SELECT Status FROM [Certificates] WHERE Uln = {uln}");
+        public string GetCertificateStatus(string uln) => GetNullableData($"SELECT Status FROM [Certificates] WHERE Uln = {uln}");
 
-        public string GetCertificateLogAction(string uln) => GetDataAsString($"SELECT Action from CertificateLogs c1 WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE uln = {uln}) and EventTime = (select max(EventTime) from CertificateLogs c2 where c1.CertificateId = c2.CertificateId)");
+        public string GetCertificateLogAction(string uln) => GetNullableData($"SELECT Action from CertificateLogs c1 WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE uln = {uln}) and EventTime = (select max(EventTime) from CertificateLogs c2 where c1.CertificateId = c2.CertificateId)");
 
-        public string GetLearnerUln(string uln) => GetDataAsString($"SELECT Uln FROM [Ilrs] WHERE Uln = {uln}");
+        public string GetLearnerUln(string uln) => GetNullableData($"SELECT Uln FROM [Ilrs] WHERE Uln = {uln}");
     }
 }
 

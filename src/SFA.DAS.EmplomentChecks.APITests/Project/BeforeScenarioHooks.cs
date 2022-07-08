@@ -26,7 +26,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            _context.SetRestClient(new Outer_EmploymentCheckApiClient(_context.GetOuter_ApiAuthTokenConfig()));
+            _context.SetRestClient(new Outer_EmploymentCheckApiClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
 
             _context.Set(new EmploymentCheckOrchestrationHelper(_config));
             _context.Set(new Helper(_context));

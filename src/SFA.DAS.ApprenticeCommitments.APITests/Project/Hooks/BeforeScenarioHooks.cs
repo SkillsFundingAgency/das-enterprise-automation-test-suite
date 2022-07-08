@@ -36,7 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 
             _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
 
-            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_context.GetInner_CommitmentsApiAuthTokenConfig()));
+            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_objectContext, _context.GetInner_CommitmentsApiAuthTokenConfig()));
         }
     }
 }
