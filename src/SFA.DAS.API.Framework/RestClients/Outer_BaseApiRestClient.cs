@@ -1,47 +1,44 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework.Configs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace SFA.DAS.API.Framework.RestClients
+namespace SFA.DAS.API.Framework.RestClients;
+
+public abstract class Outer_BaseApiRestClient : BaseApiRestClient
 {
-    public abstract class Outer_BaseApiRestClient : BaseApiRestClient
+    protected readonly string _authKey;
+
+    protected abstract string ApiName { get; }
+
+    protected virtual string ApiAuthKey => _authKey;
+
+    protected virtual string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
+
+    public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config) : this(config.Apim_SubscriptionKey) { }
+
+    public Outer_BaseApiRestClient(string authKey)
     {
-        protected readonly string _authKey;
+        _authKey = authKey;
 
-        protected abstract string ApiName { get; }
+        CreateOuterApiRestClient();
+    }
 
-        protected virtual string ApiAuthKey => _authKey;
+    protected override void AddResource(string resource) => restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 
-        protected virtual string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
+    protected override void AddAuthHeaders()
+    {
+        Addheaders(
+            new Dictionary<string, string>
+            {
+                { "X-Version", "1" },
+                { "Ocp-Apim-Subscription-Key", ApiAuthKey}
+            });
+    }
 
-        public Outer_BaseApiRestClient(Outer_ApiAuthTokenConfig config) : this(config.Apim_SubscriptionKey) { }
+    private void CreateOuterApiRestClient()
+    {
+        restClient = new RestClient(ApiBaseUrl);
 
-        public Outer_BaseApiRestClient(string authKey)
-        {
-            _authKey = authKey;
+        restRequest = new RestRequest();
 
-            CreateOuterApiRestClient();
-        }
-
-        protected override void AddResource(string resource) => restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
-
-        protected override void AddAuthHeaders()
-        {
-            Addheaders(
-                new Dictionary<string, string>
-                {
-                    { "X-Version", "1" },
-                    { "Ocp-Apim-Subscription-Key", ApiAuthKey}
-                });
-        }
-
-        private void CreateOuterApiRestClient()
-        {
-            restClient = new RestClient(ApiBaseUrl);
-
-            restRequest = new RestRequest();
-
-            AddAuthHeaders();
-        }
+        AddAuthHeaders();
     }
 }
