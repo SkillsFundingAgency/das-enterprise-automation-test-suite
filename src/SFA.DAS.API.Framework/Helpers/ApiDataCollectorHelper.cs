@@ -14,7 +14,7 @@ public class ApiDataCollectorHelper
         _response = response;
     } 
 
-    internal string GetRequestData() => $"REQUEST DETAILS: {Environment.NewLine}{GetMethod()}{GetRequestUri()}{GetBody()}";
+    internal string GetRequestData() => $"{Environment.NewLine}REQUEST DETAILS: {GetMethod()}{GetRequestUri()}{GetBody()}";
 
     internal string GetResponseData() => $"RESPONSE: {Environment.NewLine}{GetMethod()}{GetResponseUri()}{GetBody()}{GetError()}";
 
@@ -24,9 +24,9 @@ public class ApiDataCollectorHelper
 
     private string GetRequestUri() => $"RequestUri: {_client.BuildUri(_request).AbsoluteUri}{Environment.NewLine}";
 
-    private string GetBody() => $"Body: {Environment.NewLine} {GetRequestBody()}";
+    private string GetBody() => $"Body: {GetRequestBody()}{Environment.NewLine} ";
 
-    private string GetError() => $"Exception : {_response.ErrorException?.Message}";
+    private string GetError() => $"Exception: {_response.ErrorException?.Message}";
 
     private static string GetAbsoluteUri(string absoluteUri)
     {
