@@ -1,58 +1,28 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NUnit.Framework;
-using RestSharp;
-using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Linq;
-using System.Net;
+﻿
+namespace SFA.DAS.API.Framework.Helpers;
 
-namespace SFA.DAS.API.Framework.Helpers
+public class AssertHelper
 {
-    public static class AssertHelper
+    private readonly ObjectContext _objectContext;
+
+    public AssertHelper(ObjectContext objectContext) => _objectContext = objectContext; 
+    
+    public IRestResponse ExecuteAndAssertResponse(HttpStatusCode expectedResponse, RestClient client, IRestRequest request)
     {
-        public static void AssertResponse(HttpStatusCode expectedResponse, IRestResponse response)
+        var response = client.Execute(request);
+
+        var apidataCollector = new ApiDataCollectorHelper(client, request, response);
+
+        _objectContext.SetDebugInformation(apidataCollector.GetRequestData());
+
+        Assert.Multiple(() =>
         {
-            Assert.Multiple(() =>
-            {
-                if (expectedResponse == HttpStatusCode.OK) 
-                    Assert.IsTrue(response.IsSuccessful, "Expected HttpStatusCode.OK, response status code does not indicate success");
+            if (expectedResponse == HttpStatusCode.OK)
+                Assert.IsTrue(response.IsSuccessful, "Expected HttpStatusCode.OK, response status code does not indicate success");
 
-                Assert.AreEqual(expectedResponse, response.StatusCode, GetResponseData(response));
-            });
+            Assert.AreEqual(expectedResponse, response.StatusCode, apidataCollector.GetResponseData());
+        });
 
-            TestContext.Progress.WriteLine(GetResponseData(response));
-        }
-
-        private static string GetRequestBody(IRestResponse response)
-        {
-            var list = new FrameworkList<object>();
-
-            foreach (var item in response.Request.Parameters.Where(x => x.Type == ParameterType.RequestBody))
-            {
-                list.Add(item.Value);
-            }
-
-            return list.Count == 0 ? string.Empty : JToken.Parse(list.ToString()).ToString(Formatting.Indented);
-        }
-
-        private static string GetResponseData(IRestResponse response)
-        {
-            return $"REQUEST DETAILS: {Environment.NewLine}" +
-                   $"Method: {response.Request.Method}{Environment.NewLine}" +
-                   $"URI: {GetUri(response.ResponseUri.AbsoluteUri)}{Environment.NewLine}" +
-                   $"Body: {Environment.NewLine} {GetRequestBody(response)}";
-        }
-
-        private static string GetUri(string absoluteUri) 
-        {
-            if (absoluteUri.ContainsCompareCaseInsensitive("code="))
-            {
-                var index = absoluteUri.IndexOf("=");
-                absoluteUri = absoluteUri.Substring(0, index + 1);
-            }
-
-            return absoluteUri;
-        }
+        return response;
     }
 }

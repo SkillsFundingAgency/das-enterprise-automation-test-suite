@@ -25,9 +25,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<FrameworkHelpers.RetryAssertHelper>();
-            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
-            _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(context.GetApprenticeCommitmentsJobsAuthTokenConfig());
-            _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
+            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
+            _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
+            _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
         }
