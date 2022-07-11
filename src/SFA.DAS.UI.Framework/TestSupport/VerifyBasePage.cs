@@ -11,8 +11,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class VerifyBasePage : InterimBasePage
     {
         #region Helpers and Context
-        private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
-        private readonly string _directory;
+        protected readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
+        protected readonly string _directory;
         private bool _takescreenshot;
         #endregion
 

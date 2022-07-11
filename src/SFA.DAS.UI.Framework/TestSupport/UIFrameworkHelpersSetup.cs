@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using Selenium.Axe;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
