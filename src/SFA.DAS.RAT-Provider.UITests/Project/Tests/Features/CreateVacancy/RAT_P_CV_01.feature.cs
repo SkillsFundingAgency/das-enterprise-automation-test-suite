@@ -35,7 +35,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Features.CreateVacancy
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features/CreateVacancy", "RAT_P_CV_01", "Provder creates a Traineeship vacancy", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/CreateVacancy", "RAT_P_CV_01", "Provder creates a Traineeship vacancy", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Features.CreateVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_CV_01 - Create anonymous vacancy through \'View all your vacancies\' page")]
+        [NUnit.Framework.DescriptionAttribute("RV2_P_CV_01 - Create traineeship vacancy")]
         [NUnit.Framework.CategoryAttribute("rat-p")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_P_CV_01_CreateAnonymousVacancyThroughViewAllYourVacanciesPage()
+        public void RV2_P_CV_01_CreateTraineeshipVacancy()
         {
             string[] tagsOfScenario = new string[] {
                     "rat-p",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_CV_01 - Create anonymous vacancy through \'View all your vacancies\' page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_CV_01 - Create traineeship vacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -95,7 +95,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-testRunner.Then("the Provider creates anonymous vacancy through View all your vacancies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the Provider creates traineeship vacancy through View all your traineeship vacanc" +
+                        "ies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
