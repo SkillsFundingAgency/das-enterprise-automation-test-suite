@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "deleteuser")]
+    [Binding, Scope(Tag = "deletecmaddatacreatedthroughapi")]
     public class AfterScenarioHooks
     {
         protected readonly ObjectContext _objectContext;
