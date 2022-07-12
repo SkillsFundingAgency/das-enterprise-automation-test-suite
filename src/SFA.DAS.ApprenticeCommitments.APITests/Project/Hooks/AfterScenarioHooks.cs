@@ -10,6 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         protected readonly ObjectContext _objectContext;
         protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
+        private readonly ApprenticeCommitmentsAccountsSqlDbHelper _apprenticeCommitmentsAccountsSqlDbHelper;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
 
         public AfterScenarioHooks(ScenarioContext context)
@@ -17,6 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             _objectContext = context.Get<ObjectContext>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+            _apprenticeCommitmentsAccountsSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         }
 
@@ -26,8 +28,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             var email = _objectContext.GetApprenticeEmail();
             var apprenticeshipid = _objectContext.GetCommitmentsApprenticeshipId();
 
-            //acomt db
-            _aComtSqlDbHelper.DeleteApprentice(email);
+            _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(email); //acomt db
+
+            //appacc db
+            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(email);
+            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteApprenticeTableData(email);
+
+            _aComtSqlDbHelper.DeleteRegistrationTableData(email); //acomt db
 
             //alogin db
             _aLoginSqlDbHelper.DeleteUser(email);

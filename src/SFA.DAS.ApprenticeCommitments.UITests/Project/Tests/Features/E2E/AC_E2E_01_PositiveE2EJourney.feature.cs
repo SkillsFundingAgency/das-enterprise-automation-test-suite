@@ -78,15 +78,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        [NUnit.Framework.CategoryAttribute("deleteuser")]
         public void AC_E2E_01_PositiveE2EJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "waitingtostartapprentice"};
+                    "waitingtostartapprentice",
+                    "deleteuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_01_PositiveE2EJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,24 +98,24 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the Employer creates an apprenticeship and the Provider approves it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("the apprentice creates the CMAD account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("the apprentice confirms all the sections and the overall apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("the apprentice is able to navigate to the Help and Support from the Overview page" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("the apprentice is able to navigate to Home page back and forth from Overview and " +
                         "Help pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.And("the apprentice is able to logout from the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
