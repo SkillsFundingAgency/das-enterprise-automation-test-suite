@@ -19,6 +19,6 @@ namespace SFA.DAS.UI.Framework
 
         internal bool IsAccessibilityTesting { get; set; }
 
-        public static string SampleFileName => "Sample.pdf";
+        public string SampleFileName => "Sample.pdf";
     }
 }
