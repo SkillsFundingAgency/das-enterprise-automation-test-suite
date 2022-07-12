@@ -1,10 +1,4 @@
-﻿using FluentAssertions;
-using Selenium.Axe;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using System.IO;
-
-namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
+﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
 
 public abstract class AedBasePage : VerifyBasePage
 {
@@ -22,21 +16,5 @@ public abstract class AedBasePage : VerifyBasePage
         context.TryGetValue(out dataHelper);
         
         VerifyPage();
-
-        AnalyzePage();
-    }
-
-    private void AnalyzePage()
-    {
-        string fileName = $"{RegexHelper.TrimAnySpace(PageTitle)}_{_screenShotTitleGenerator.GetTitle()}.html";
-
-        TestAttachmentHelper.AddTestAttachment(_directory, fileName, (x) => 
-        {
-            IWebDriver webDriver = context.GetWebDriver();
-
-            AxeResult axeResult = new AxeBuilder(webDriver).Analyze();
-
-            webDriver.CreateAxeHtmlReport(axeResult, x);
-        });
     }
 }

@@ -17,6 +17,8 @@ namespace SFA.DAS.UI.Framework
 
         internal bool CanTakeFullScreenShot { get; set; }
 
-        public string SampleFileName => "Sample.pdf";
+        internal bool IsAccessibilityTesting { get; set; }
+
+        public static string SampleFileName => "Sample.pdf";
     }
 }
