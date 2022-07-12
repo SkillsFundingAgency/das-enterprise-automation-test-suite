@@ -36,7 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
 
-        private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))";
+        private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE Id = (SELECT ApprenticeshipId from [Registration] WHERE Email = '{email}'))";
 
         private string GetDetails(string query, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(query, scenarioTitle));
     }
