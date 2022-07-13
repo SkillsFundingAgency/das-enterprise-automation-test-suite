@@ -7,7 +7,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
     {
         public ApprenticeCommitmentsAccountsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentAccountsDbConnectionString) { }
 
-        public void DeleteEmailAddressHistoryTableData(string email) => ExecuteSqlCommand($"DELETE FROM ApprenticeEmailAddressHistory WHERE EmailAddress = '{email}'");
+        public void DeleteEmailAddressHistoryTableData(string email) =>
+            ExecuteSqlCommand($"DELETE FROM ApprenticeEmailAddressHistory WHERE ApprenticeId = (SELECT Id FROM Apprentice WHERE Email = '{email}')");
 
         public void DeleteApprenticeTableData(string email) => ExecuteSqlCommand($"DELETE FROM Apprentice WHERE Email = '{email}'");
 
