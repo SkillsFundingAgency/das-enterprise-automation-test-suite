@@ -22,6 +22,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual bool TakeFullScreenShot => true;
 
+        protected virtual bool CanAnalyzePage => true;
+
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;
@@ -30,7 +32,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
 
-            if (frameworkConfig.IsAccessibilityTesting) AnalyzePage();
+            if (frameworkConfig.IsAccessibilityTesting && CanAnalyzePage) AnalyzePage();
         }
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
@@ -126,14 +128,19 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             string fileName = $"{RegexHelper.TrimAnySpace(PageTitle)}_{GetTitle()}.html";
 
+            AxeResult axeResult = null;
+
             TestAttachmentHelper.AddTestAttachment(_directory, fileName, (x) =>
             {
                 IWebDriver webDriver = GetWebDriver();
 
-                AxeResult axeResult = new AxeBuilder(webDriver).Analyze();
+                axeResult = new AxeBuilder(webDriver).Analyze();
 
                 webDriver.CreateAxeHtmlReport(axeResult, x);
             });
+
+            if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
+                throw new Exception($"{axeResult.Violations.Length} CRITICAL violation's is/are found in the url: {axeResult.Url}");
         }
 
         private string GetTitle() => _screenShotTitleGenerator.GetTitle();
