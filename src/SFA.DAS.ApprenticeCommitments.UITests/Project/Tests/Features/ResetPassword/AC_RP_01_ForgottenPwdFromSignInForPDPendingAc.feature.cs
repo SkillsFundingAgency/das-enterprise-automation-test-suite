@@ -77,13 +77,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ResetPass
         [NUnit.Framework.DescriptionAttribute("AC_RP_01_ForgottenPwdFromSignInPageForPersonalDetailsPendingAccount")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
+        [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi")]
         public void AC_RP_01_ForgottenPwdFromSignInPageForPersonalDetailsPendingAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "deleteuser"};
+                    "deletecmaddatacreatedthroughapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_RP_01_ForgottenPwdFromSignInPageForPersonalDetailsPendingAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6

@@ -4,7 +4,7 @@
 @apprenticecommitmentsapi
 @outerapi
 @regression
-@deleteuser
+@deletecmaddatacreatedthroughapi
 Scenario: AC_API_04_Get an apprenticeship record
 	Given an apprentice has created an account
 	Then the apprenticeship record can be fetched
