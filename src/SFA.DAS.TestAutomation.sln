@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.87
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.UI.Framework", "SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj", "{AFFF6638-BD32-41D3-8CB6-9D10139575D5}"
 EndProject
@@ -118,6 +118,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ManagingStandards.UITests", "SFA.DAS.ManagingStandards.UITests\SFA.DAS.ManagingStandards.UITests.csproj", "{88E9F296-F18F-466D-BD50-02C9C9518ED6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProvideFeedback.UITests", "SFA.DAS.ProvideFeedback.UITests\SFA.DAS.ProvideFeedback.UITests.csproj", "{2427AB5D-6615-4A3C-9116-84FE289C6F38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.EmployerAccounts.APITests", "SFA.DAS.EmployerAccounts.APITests\SFA.DAS.EmployerAccounts.APITests.csproj", "{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -408,6 +410,12 @@ Global
 		{2427AB5D-6615-4A3C-9116-84FE289C6F38}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{2427AB5D-6615-4A3C-9116-84FE289C6F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2427AB5D-6615-4A3C-9116-84FE289C6F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -434,6 +442,7 @@ Global
 		{9C39EE4C-65D6-4848-892A-FAAF201D34BB} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 		{6A30F7E3-9D50-44C6-9255-ED11A4A6CEF9} = {FC4EA916-845D-4BCB-9F27-F95C653AB289}
 		{62266CB9-9153-42CE-8AC3-BBD45C40CEDF} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
+		{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7E7F47-C08F-4B67-BB6A-FFCED573D7BF}
