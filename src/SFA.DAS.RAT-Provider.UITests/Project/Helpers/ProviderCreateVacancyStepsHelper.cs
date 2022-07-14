@@ -123,7 +123,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
         {
             (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
                 new RecruitmentProviderHomePageStepsHelper(_context)
-                .GoToRecruitmentProviderHomePage(_newTab)
+                .GoToTraineeshipRecruitmentProviderHomePage(_newTab)
                 .GoToViewAllVacancyPage()
                 .CreateVacancy()
                 .StartNow()

@@ -22,20 +22,24 @@ public class TraineeshipProviderHomePage : ProviderHomePage
     {
         formCompletionHelper.ClickElement(RecruitTraineesLink);
         
-        ClickIfPirenIsDisplayed();
+        //ClickIfPirenIsDisplayed();
         
         return new TraineeshipRecruitHomePage(context);
     }
-    public ManageRecruitPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
+    //public ManageRecruitPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
 
     public ProviderVacancySearchResultPage SearchVacancy() => _searchVacancyPageHelper.SearchProviderVacancy();
-    
-    
+
+    public ViewAllVacancyPage GoToViewAllVacancyPage()
+    {
+        formCompletionHelper.Click(ViewAllVacancy);
+        return new ViewAllVacancyPage(context);
+    }
     public ReferVacancyPage SearchReferAdvertTitle()
     {
         var vacancyPage = _searchVacancyPageHelper.SearchReferVacancy();
 
-        vacancyPage.NavigateToAdvertTitle();
+        //vacancyPage.NavigateToAdvertTitle();
 
         return new ReferVacancyPage(context);
     }

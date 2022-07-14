@@ -11,9 +11,9 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         public ProviderStepsHelper(ScenarioContext context) : base(context) => _stepsHelper = new StepsHelper(_context);
 
-        public ProviderVacancySearchResultPage SearchVacancy() => GoToRecruitmentHomePage().SearchVacancy();
+        public ProviderVacancySearchResultPage SearchVacancy() => GoToTraineeshipHomePage().SearchVacancy();
 
-        internal void ViewReferVacancy() => GoToRecruitmentHomePage().SearchReferAdvertTitle();
+        internal void ViewReferVacancy() => GoToTraineeshipHomePage().SearchReferAdvertTitle();
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
 
@@ -21,8 +21,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
-        private ManageRecruitPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage().SearchVacancyByVacancyReference();
+        private ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => GoToTraineeshipHomePage().SearchVacancyByVacancyReference();
 
-        private RecruitmentHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(true);
+        private TraineeshipRecruitHomePage GoToTraineeshipHomePage() => GoToTraineeshipHomePage(true);
     }
 }

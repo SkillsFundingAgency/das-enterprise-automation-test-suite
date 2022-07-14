@@ -8,6 +8,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Create a vacancy";
 
+        protected override By ContinueButton => By.CssSelector("[data-automation='create-vacancy']");
+
         public CreateAVacancyPage(ScenarioContext context) : base(context) { }
         public SelectEmployersPage StartNow()
         {

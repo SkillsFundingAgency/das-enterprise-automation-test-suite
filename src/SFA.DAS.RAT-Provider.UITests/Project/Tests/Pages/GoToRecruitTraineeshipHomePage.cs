@@ -10,13 +10,13 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
     {
         public GoToRecruitTraineeshipHomePage(ScenarioContext context) : base(context, true) { }
 
-        public RecruitmentHomePage NavigateToRecruitTrainee()
+        public TraineeshipRecruitHomePage NavigateToRecruitTrainee()
         {
             formCompletionHelper.ClickElement(RecruitTrainees);
 
             ClickIfPirenIsDisplayed();
 
-            return new RecruitmentHomePage(context);
+            return new TraineeshipRecruitHomePage(context);
         }
     }
 }

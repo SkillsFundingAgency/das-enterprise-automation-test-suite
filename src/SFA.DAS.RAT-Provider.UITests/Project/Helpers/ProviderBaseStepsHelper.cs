@@ -9,6 +9,6 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         public ProviderBaseStepsHelper(ScenarioContext context) => _context = context;
 
-        protected RecruitmentHomePage GoToRecruitmentHomePage(bool newTab) => new RecruitmentProviderHomePageStepsHelper(_context).GoToRecruitmentProviderHomePage(newTab);
+        protected TraineeshipRecruitHomePage GoToTraineeshipHomePage(bool newTab) => new RecruitmentTraineeshipsProviderHomePageStepsHelper(_context).GoToTraineeshipRecruitmentProviderHomePage(newTab);
     }
 }
