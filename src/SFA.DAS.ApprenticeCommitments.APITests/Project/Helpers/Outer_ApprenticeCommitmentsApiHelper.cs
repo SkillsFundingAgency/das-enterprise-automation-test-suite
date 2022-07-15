@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using RestSharp;
+﻿using RestSharp;
 using SFA.DAS.API.Framework;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
@@ -17,6 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
+        private readonly ApprenticeCommitmentsAccountsSqlDbHelper _appAccSqlDbHelper;
         private readonly ObjectContext _objectContext;
         protected readonly FrameworkHelpers.RetryAssertHelper _assertHelper;
 
@@ -25,11 +25,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<FrameworkHelpers.RetryAssertHelper>();
-            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(context.GetOuter_ApiAuthTokenConfig());
-            _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(context.GetApprenticeCommitmentsJobsAuthTokenConfig());
-            _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient();
+            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
+            _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
+            _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+            _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
         }
 
         public IRestResponse Ping() => _outerHealthApiRestClient.Ping(HttpStatusCode.OK);
@@ -92,7 +93,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             var regId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
                 
-            var apprenticeId = _aComtSqlDbHelper.GetApprenticeDetails(email).apprenticeId;
+            var apprenticeId = _appAccSqlDbHelper.GetApprenticeDetails(email).apprenticeId;
 
             _objectContext.SetApprenticeId(apprenticeId);
 

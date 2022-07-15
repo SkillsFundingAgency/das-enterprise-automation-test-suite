@@ -2,7 +2,7 @@
 
 @apprenticecommitments
 @regression
-@deleteuser
+@deletecmaddatacreatedthroughapi
 Scenario: AC_E2E_02_E2EJourneyWithNegativeFlows
 	Given an apprentice has created and validated the account
 	Then the apprentice is able to confirm the Employer

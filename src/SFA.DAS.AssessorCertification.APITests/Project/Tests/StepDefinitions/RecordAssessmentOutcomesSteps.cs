@@ -78,7 +78,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var actualEPARef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(_contextUln);
 
-            Assert.True(_restResponse.Content.ToString().Contains(actualEPARef), "Value is not contained in response");   
+            DoesContains(actualEPARef, _restResponse.Content, "Value is not contained in response");   
         }
 
         [Then(@"the CertificateReference in the response is same as in the Certificates table in the database")]
@@ -86,7 +86,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var actualCertRef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(_contextUln);
 
-            Assert.True(_restResponse.Content.ToString().Contains(actualCertRef), "Value is not contained in response");
+            DoesContains(actualCertRef, _restResponse.Content, "Value is not contained in response");
         }
 
         [Then(@"the status in the Certificates Table in database is (.*)")]
@@ -94,7 +94,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var certStatus = _assessorCertificationSqlDbHelper.GetCertificateStatus(_contextUln);
 
-            Assert.True(status.Equals(certStatus), "Certificated Status is not the expected value");
+            AreEqual(status, certStatus, "Certificated Status is not the expected value");
         }
 
         [Then(@"Action in the Certificatelog is (.*)")]
@@ -102,7 +102,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var certLogAction = _assessorCertificationSqlDbHelper.GetCertificateLogAction(_contextUln);
 
-            Assert.True(Action.Equals(certLogAction), "Certificated Status is not the expected value");
+            AreEqual(Action, certLogAction, "Certificated Status is not the expected value");
         }
 
         [Then(@"the Learner ULn in the response is same as Uln in the Ilrs table in the database")]
@@ -110,15 +110,19 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var learnerUln = _assessorCertificationSqlDbHelper.GetLearnerUln(_contextUln);
 
-            Assert.True(_restResponse.Content.ToString().Contains(learnerUln), "Learner Uln is not the expected value");
+            DoesContains(learnerUln, _restResponse.Content, "Learner Uln is not the expected value");
         }
 
         [Then(@"the currentStatus in the response message is (.*)")]
         public void ThenTheCurrentStatusInTheResponseMessageIsSubmitted(string currentStatus)
         {
-           Assert.True(_restResponse.Content.ToString().Contains(currentStatus), "Current Status is not the expected value");
+            DoesContains(currentStatus, _restResponse.Content, "Current Status is not the expected value");
         }
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
+
+        private static void AreEqual(string expected, string actual, string message) => Assert.AreEqual(expected, actual, message);
+
+        private static void DoesContains(string expectecd, string actual, string message) => StringAssert.Contains(expectecd, actual, message);
     }
 }
