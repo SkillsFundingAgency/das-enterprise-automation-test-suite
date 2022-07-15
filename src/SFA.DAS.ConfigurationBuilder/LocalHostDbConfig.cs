@@ -25,6 +25,7 @@ namespace SFA.DAS.ConfigurationBuilder
                 CommitmentsDbConnectionString = GetConnectionString(_dbDevConfig.CommitmentsDbName),
                 ApprenticeCommitmentDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentDbName),
                 ApprenticeCommitmentLoginDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentLoginDbName),
+                ApprenticeCommitmentAccountsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentAccountsDbName),
                 ApplyDatabaseConnectionString = GetConnectionString(_dbDevConfig.ApplyDatabaseName),
                 LoginDatabaseConnectionString = GetConnectionString(_dbDevConfig.LoginDatabaseName),
                 QnaDatabaseConnectionString = GetConnectionString(_dbDevConfig.QnaDatabaseName),
