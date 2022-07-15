@@ -9,15 +9,15 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
 
         public void DeleteCertificate(string uln) => ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE Uln = {uln}); DELETE FROM [Certificates] WHERE Uln = {uln};");
 
-        public void UpdateCertificateForSubmission(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Draft', CertificateReference = '00034998' WHERE Uln = {uln}");
+        public void UpdateCertificateForSubmission(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Draft', CertificateReference = '00034140' WHERE Uln = {uln}");
 
         public void UpdateCertificateReferenceEPA(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012123' WHERE Uln = {uln}");
 
-        public void UpdateCertificateReferenceCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00035741' WHERE Uln = {uln}");
+        public void UpdateCertificateReferenceCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00036874' WHERE Uln = {uln}");
 
         public void UpdateCertificateReferenceDelete(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012125' WHERE Uln = {uln}");
 
-        public void UpdateCertificateReferenceDeleteCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00011591' WHERE Uln = {uln}");
+        public void UpdateCertificateReferenceDeleteCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00034646' WHERE Uln = {uln}");
 
         public string GetEPAreferenceAfterAPI(string uln) => GetNullableData($"SELECT CertificateReference FROM [Certificates] WHERE Uln = {uln}");
 
