@@ -13,8 +13,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class VerifyBasePage : InterimBasePage
     {
         #region Helpers and Context
-        protected readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
-        protected readonly string _directory;
+        private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
+        private readonly string _directory;
         private bool _takescreenshot;
         #endregion
 
@@ -136,7 +136,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
                 axeResult = new AxeBuilder(webDriver).Analyze();
 
-                webDriver.CreateAxeHtmlReport(axeResult, x);
+                webDriver.CreateAxeHtmlReport(axeResult, x, ReportTypes.Violations);
             });
 
             if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
