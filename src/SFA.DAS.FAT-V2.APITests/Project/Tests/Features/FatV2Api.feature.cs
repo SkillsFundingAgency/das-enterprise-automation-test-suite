@@ -73,7 +73,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyFatV2Api(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyFatV2Api(string testCaseId, string method, string endpoint, string payload, string responseStatus, string responseContent, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,6 +90,7 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            argumentsOfScenario.Add("ResponseContent", responseContent);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -105,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("a {0}, {1} response is received", responseStatus, responseContent), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -119,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void VerifyFatV2Api_Fatv2001()
         {
 #line 6
-this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK", ((string[])(null)));
+this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK", "", ((string[])(null)));
 #line hidden
         }
         
@@ -131,7 +132,7 @@ this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK"
         public void VerifyFatV2Api_Fatv2002()
         {
 #line 6
-this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", ((string[])(null)));
+this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", "EPA0241", ((string[])(null)));
 #line hidden
         }
         
@@ -143,7 +144,7 @@ this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", ((str
         public void VerifyFatV2Api_Fatv2003()
         {
 #line 6
-this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
+this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", "", ((string[])(null)));
 #line hidden
         }
         
