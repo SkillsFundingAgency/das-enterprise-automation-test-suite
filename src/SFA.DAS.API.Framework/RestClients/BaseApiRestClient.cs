@@ -54,6 +54,8 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload)
     {
+        if (restRequest.Method == Method.GET) return;
+
         if (string.IsNullOrEmpty(payload)) restRequest.Body = null;
         else
         {
