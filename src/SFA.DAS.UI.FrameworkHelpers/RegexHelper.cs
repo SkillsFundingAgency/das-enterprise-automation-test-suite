@@ -101,6 +101,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private static Match CohortMatch(string url, string action) => Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
 
-        private static string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
+        public static string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
     }
 }
