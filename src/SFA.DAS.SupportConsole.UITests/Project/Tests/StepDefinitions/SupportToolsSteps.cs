@@ -105,6 +105,39 @@ public class SupportToolsSteps
         ValidateResumeSuccessful(ststusList);
     }
 
+    [When(@"that account is suspended using bulk utility")]
+    public void WhenThatAccountIsSuspendedUsingBulkUtility()
+    {
+        var status = _stepsHelper.ValidUserLogsinToSupportTools()
+                            .ClickSuspendUserAccountsLink()
+                            .EnterHashedAccountId("VK8LWJ")
+                            //.EnterHashedAccountId("D7LBPN")
+                            .ClickSubmitButton()
+                            .SelectAllRecords()
+                            .ClickSuspendUserButton()
+                            .ClicSuspendUsersbtn()
+                            .GetStatusColumn();
+       
+        status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
+    }
+
+    [When(@"that account is reinstated using bulk utility")]
+    public void WhenThatAccountIsReinstatedUsingBulkUtility()
+    {
+        var status = _stepsHelper.ValidUserLogsinToSupportTools()
+                            .ClickReinstateUserAccountsLink()
+                            .EnterHashedAccountId("VK8LWJ")
+                           //.EnterHashedAccountId("D7LBPN")
+                            .ClickSubmitButton()
+                            .SelectAllRecords()
+                            .ClickReinstateUserButton()
+                            .ClickReinstateUsersbtn()
+                            .GetStatusColumn();
+
+        status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
+    }
+
+
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
         int i = 0;

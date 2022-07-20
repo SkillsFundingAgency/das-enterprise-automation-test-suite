@@ -25,6 +25,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing Levy Account")]
         [When(@"the Employer logins using existing Levy Account")]
+        [Given(@"the employer user can login to EAS")]
+        [Then(@"the employer user can login to EAS")]
         public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
 
         [Given(@"the Employer logins using existing NonLevy Account")]

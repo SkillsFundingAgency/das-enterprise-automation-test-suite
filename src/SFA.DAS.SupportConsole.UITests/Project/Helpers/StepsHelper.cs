@@ -68,9 +68,21 @@ public class StepsHelper
     private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
     {
         _tabHelper.GoToUrl(UrlConfig.SupportTools_BaseUrl);
-        new IdamsPage(_context).LoginToAccess1Staff();
 
-        return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
+        var url = _context.Get<PageInteractionHelper>().GetUrl();
+
+        if (url.Contains("wsignin1"))
+        {
+            new IdamsPage(_context).LoginToAccess1Staff();
+
+            return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
+        }
+        else
+        {
+            return new ToolSupportHomePage(_context);
+        }
+
+        
     }
 
 
