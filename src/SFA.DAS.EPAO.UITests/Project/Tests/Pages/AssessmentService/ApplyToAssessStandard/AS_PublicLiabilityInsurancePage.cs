@@ -11,4 +11,10 @@ public class AS_PublicLiabilityInsurancePage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+    
+    public AS_IndemnityInsurancePage NHEI_UploadPublicLiabilityInsurance()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

@@ -11,4 +11,10 @@ public class AS_InternalAuditPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+
+    public AS_PublicLiabilityInsurancePage NHEI_UploadAuditPolicy()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

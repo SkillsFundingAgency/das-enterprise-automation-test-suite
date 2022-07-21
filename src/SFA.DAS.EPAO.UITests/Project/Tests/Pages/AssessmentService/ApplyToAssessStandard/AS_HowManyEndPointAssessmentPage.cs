@@ -12,4 +12,11 @@ public class AS_HowManyEndPointAssessmentPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+    
+    public AS_VolumeEndPointAssessmentPage NHEI_EnterHowManyEndPointAssessment()
+    {
+        formCompletionHelper.EnterText(InputNumber, EPAOApplyStandardDataHelper.GenerateRandomWholeNumber(1));
+        Continue();
+        return new(context);
+    }
 }

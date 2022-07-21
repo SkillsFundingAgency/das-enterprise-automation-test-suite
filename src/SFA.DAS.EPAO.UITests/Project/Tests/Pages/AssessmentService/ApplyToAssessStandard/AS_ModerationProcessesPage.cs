@@ -11,4 +11,10 @@ public class AS_ModerationProcessesPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+    
+    public AS_ComplaintsAndAppealsPolicyPage NHEI_UploadModerationProcesses()
+    {
+        UploadFile();
+        return new(context);
+    }
 }
