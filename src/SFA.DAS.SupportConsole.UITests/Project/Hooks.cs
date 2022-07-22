@@ -27,10 +27,10 @@ public class Hooks
 
     public Hooks(ScenarioContext context) => _context = context;
 
-    [BeforeScenario(Order = 21)]
+    [BeforeScenario(Order = 22)]
     public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
 
-    [BeforeScenario(Order = 22)]
+    [BeforeScenario(Order = 23)]
     public void SetUpHelpers()
     {
         var config = _context.GetSupportConsoleConfig<SupportConsoleConfig>();
