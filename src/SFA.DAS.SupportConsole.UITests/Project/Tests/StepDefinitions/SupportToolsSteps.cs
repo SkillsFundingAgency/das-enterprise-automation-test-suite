@@ -114,7 +114,7 @@ public class SupportToolsSteps
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools(true)
+        var status = _stepsHelper.ValidUserLogsinToSupportTools()
                             .ClickSuspendUserAccountsLink()
                             .EnterHashedAccountId(_hashedEmployerAccId)
                             .ClickSubmitButton()
@@ -129,16 +129,22 @@ public class SupportToolsSteps
     [When(@"that account is reinstated using bulk utility")]
     public void WhenThatAccountIsReinstatedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools(true)
+        string expectedStatusBefore = "Suspended " + DateTime.Now.ToString("dd/MM/yyyy");
+        string expectedStatusAfter = "Submitted successfully";
+
+        var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportTools(true)
                             .ClickReinstateUserAccountsLink()
                             .EnterHashedAccountId(_hashedEmployerAccId)
                             .ClickSubmitButton()
                             .SelectAllRecords()
                             .ClickReinstateUserButton()
-                            .ClickReinstateUsersbtn()
                             .GetStatusColumn();
 
-        status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
+        actualStatusBefore.Where(x => x.Text == expectedStatusBefore).FirstOrDefault();
+
+        var actualStatusAfter = new ReinstateUsersPage(_context).ClickReinstateUsersbtn().GetStatusColumn();
+
+        actualStatusAfter.Where(x => x.Text == expectedStatusAfter).FirstOrDefault();
     }
 
     private void UpdateStatusInDb(List<IWebElement> UlnList)
