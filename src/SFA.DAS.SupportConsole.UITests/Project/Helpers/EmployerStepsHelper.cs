@@ -13,6 +13,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
+        private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
 
 
@@ -20,11 +21,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
+            _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
-
-        
-
- 
-        internal HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
     }
 }

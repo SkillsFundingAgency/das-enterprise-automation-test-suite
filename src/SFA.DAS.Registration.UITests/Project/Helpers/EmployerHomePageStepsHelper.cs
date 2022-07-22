@@ -26,16 +26,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage GotoEmployerHomePage(bool openInNewTab = true)
         {
-            if (openInNewTab)
-            {
-                OpenInNewTab();
-            }                
+            GoToEmployerLoginPage(openInNewTab);
 
-            if (_loginHelper.IsIndexPageDisplayed())
-            {
-                new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage();
-            }
-            
             if (_loginHelper.IsSignInPageDisplayed())
             {
                 return _loginHelper.ReLogin();
@@ -50,6 +42,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new HomePage(_context, !openInNewTab);
         }
 
+        public SignInPage ValidateUnsuccessfulLogon(bool openInNewTab = true)
+        {
+            GoToEmployerLoginPage(openInNewTab);
+
+            if (_loginHelper.IsSignInPageDisplayed())
+            {
+                return _loginHelper.FailedLogin();
+            }
+
+            return new SignInPage(_context);
+        }
+
         public MyAccountWithOutPayePage GotoEmployerHomePage(MyAccountWithOutPayeLoginHelper loginHelper)
         {
             OpenInNewTab();
@@ -62,6 +66,22 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new MyAccountWithOutPayePage(_context);
         }
 
-        private void OpenInNewTab() => _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+        public void OpenInNewTab() => _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+
+        private void GoToEmployerLoginPage(bool openInNewTab)
+        {
+            if (openInNewTab)
+            {
+                OpenInNewTab();
+            }
+
+            if (_loginHelper.IsIndexPageDisplayed())
+            {
+                new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage();
+            }
+        }
+    
+    
+    
     }
 }

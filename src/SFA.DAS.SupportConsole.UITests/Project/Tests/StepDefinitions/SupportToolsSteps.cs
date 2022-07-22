@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
+﻿
+
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class SupportToolsSteps
@@ -6,12 +8,16 @@ public class SupportToolsSteps
     private readonly ScenarioContext _context;
     private readonly StepsHelper _stepsHelper;
     private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+    private readonly AccountsSqlDataHelper _accountsSqlDataHelper;
+    private readonly string _hashedEmployerAccId;
 
     public SupportToolsSteps(ScenarioContext context)
     {
         _context = context;
         _stepsHelper = new StepsHelper(context);
         _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
+        _accountsSqlDataHelper = context.Get<AccountsSqlDataHelper>();
+        _hashedEmployerAccId = GetPublicHashedId();
     }
 
     [Given(@"the User is logged into Support Tools")]
@@ -108,10 +114,9 @@ public class SupportToolsSteps
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools()
+        var status = _stepsHelper.ValidUserLogsinToSupportTools(true)
                             .ClickSuspendUserAccountsLink()
-                            .EnterHashedAccountId("VK8LWJ")
-                            //.EnterHashedAccountId("D7LBPN")
+                            .EnterHashedAccountId(_hashedEmployerAccId)
                             .ClickSubmitButton()
                             .SelectAllRecords()
                             .ClickSuspendUserButton()
@@ -124,10 +129,9 @@ public class SupportToolsSteps
     [When(@"that account is reinstated using bulk utility")]
     public void WhenThatAccountIsReinstatedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools()
+        var status = _stepsHelper.ValidUserLogsinToSupportTools(true)
                             .ClickReinstateUserAccountsLink()
-                            .EnterHashedAccountId("VK8LWJ")
-                           //.EnterHashedAccountId("D7LBPN")
+                            .EnterHashedAccountId(_hashedEmployerAccId)
                             .ClickSubmitButton()
                             .SelectAllRecords()
                             .ClickReinstateUserButton()
@@ -136,7 +140,6 @@ public class SupportToolsSteps
 
         status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
     }
-
 
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
@@ -216,6 +219,12 @@ public class SupportToolsSteps
 
             i++;
         }
+    }
+
+    private string GetPublicHashedId()
+    {
+        var user = _context.GetUser<LevyUser>();
+        return _accountsSqlDataHelper.GetPublicHashedId(user.Username);
     }
 
 }

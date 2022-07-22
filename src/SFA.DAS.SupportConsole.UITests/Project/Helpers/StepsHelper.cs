@@ -15,7 +15,7 @@ public class StepsHelper
 
     public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-    public ToolSupportHomePage ValidUserLogsinToSupportTools() => LoginToSupportTools(_context.GetUser<SupportToolsUser>());
+    public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab = false) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
 
     public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
@@ -65,9 +65,14 @@ public class StepsHelper
         return new SignInPage(_context).SignInWithValidDetails(loginUser);
     }
 
-    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
+    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser, bool openNewTab =  false)
     {
-        _tabHelper.GoToUrl(UrlConfig.SupportTools_BaseUrl);
+        var baseUrl = UrlConfig.SupportTools_BaseUrl;
+
+        if (openNewTab)
+            _tabHelper.OpenInNewTab(baseUrl);
+        else
+            _tabHelper.GoToUrl(baseUrl);
 
         var url = _context.Get<PageInteractionHelper>().GetUrl();
 

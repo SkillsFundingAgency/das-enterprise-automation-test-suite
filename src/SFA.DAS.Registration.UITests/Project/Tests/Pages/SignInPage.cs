@@ -17,6 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SignInButton => By.Id("button-signin");
         private By HeaderInformationMessage => By.CssSelector(".bold-large");
         private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
+        private By errorMsg => By.ClassName("danger");
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
@@ -26,6 +27,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new HomePage(context);
         }
+
+        public SignInPage FailedLogin(LoginUser loginUser)
+        {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return this;
+        }
+
+        public string GetErrorFromSigninPage()
+        {
+            return pageInteractionHelper.GetText(errorMsg).ToString();
+        }
+
 
         public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
         {

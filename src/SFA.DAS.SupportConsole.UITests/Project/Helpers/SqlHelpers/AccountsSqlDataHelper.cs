@@ -17,4 +17,17 @@ public class AccountsSqlDataHelper : SqlDbHelper
 
         return (result[0], DateTime.Parse(result[1]), result[2], result[3], result[4], result[5], result[6]);
     }
+
+    public string GetPublicHashedId(string email)
+    {
+        var query = $@"SELECT top(1) acc.HashedId FROM[employer_account].[Membership] msp 
+                    INNER JOIN[employer_account].[User] usr
+                    ON msp.UserId = usr.Id
+                    INNER JOIN[employer_account].[Account] acc
+                    ON acc.Id = msp.AccountId
+                    WHERE usr.Email = '{email}'";
+
+        return GetDataAsString(query);
+    }
+
 }
