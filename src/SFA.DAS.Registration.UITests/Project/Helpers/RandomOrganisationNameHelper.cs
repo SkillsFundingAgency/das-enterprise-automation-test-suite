@@ -56,47 +56,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new Dictionary<string, Dictionary<OrgType, string>>
             {
                 { "reodc01", new Dictionary<OrgType, string>() { { OrgType.Company, "COVENTRY AIRPORT LIMITED" } } },
-                { "flexijobapprenticeemployeraccount", new Dictionary<OrgType, string>() { { OrgType.Company, "ING UK LIMITED" } } }
+                { "flexijobapprenticeemployeraccount", new Dictionary<OrgType, string>() { { OrgType.Company, GetARandomOrganisationForFlexiJobApprentice() } } }
             };
         }
 
-        private static List<CharityTypeOrg> ListOfCharityTypeOrgOrganisation() => new List<CharityTypeOrg>
-        {
-            new CharityTypeOrg {Number = "200895", Name = "ALLHALLOWS CHARITY", Address = "WBW Solicitors, 118 High Street, Honiton, EX14 1JP"},
-            new CharityTypeOrg {Number = "202918", Name = "OXFAM", Address = "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY"},
-            new CharityTypeOrg {Number = "219348", Name = "CITY HOSPITAL NHS TRUST", Address = "LIFFORD HALL, TUNNEL LANE, KINGS NORTON, BIRMINGHAM, B30 3JN"},
-            new CharityTypeOrg {Number = "509965", Name = "Friends of Nottingham University Hospitals NHS Trust", Address = "NOTTINGHAM, NG9 6AS"},
-        };
+        private static string GetARandomOrganisationForFlexiJobApprentice() => GetRandomOrgName(ListOfListOfCompanyTypeOrganisationForFlexiJobApprentice());
 
-        private static List<string> ListOfPublicSectorTypeOrganisation() => new List<string>
-        {
-            "Royal School Hampstead",
-            "All Saints Centre",
-            "Amersham Family Centre",
-            "South Somerset East",
-            "South Somerset West",
-            "Taunton East",
-            "Bromley Cross Start Well Link Site",
-            "Barley Fields CC"
-        };
+        private static List<CharityTypeOrg> ListOfCharityTypeOrgOrganisation() => OrganisationNameHelper.ListOfCharityTypeOrgOrganisation();
 
-        private static List<string> ListOfCompanyTypeOrganisation() => new List<string>()
-        {
-            "BOOTS UK LIMITED",
-            "ODEON CINEMAS LIMITED",
-            "VUE ENTERTAINMENT LIMITED",
-            "NEXT PLC",
-            "MONZO BANK LIMITED",
-            "SANTANDER UK PLC",
-            "SCREWFIX DIRECT LIMITED",
-            "TOOLSTATION LIMITED",
-            "WICKES BUILDING SUPPLIES LIMITED",
-            "BIRMINGHAM AIRPORT LIMITED",
-            "LHR AIRPORTS LIMITED",
-            "STANSTED AIRPORT LIMITED",
-            "GATWICK AIRPORT LIMITED",
-            "COSTCO ONLINE UK LIMITED",
-            "COSTCO WHOLESALE UK LIMITED"
-        };
+        private static List<string> ListOfPublicSectorTypeOrganisation() => OrganisationNameHelper.ListOfPublicSectorTypeOrganisation();
+
+        private static List<string> ListOfCompanyTypeOrganisation() => OrganisationNameHelper.ListOfCompanyTypeOrganisation();
+
+        private static List<string> ListOfListOfCompanyTypeOrganisationForFlexiJobApprentice() => OrganisationNameHelper.ListOfListOfCompanyTypeOrganisationForFlexiJobApprentice();
     }
 }
