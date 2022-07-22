@@ -55,7 +55,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             return new Dictionary<string, Dictionary<OrgType, string>>
             {
-                { "reodc01", new Dictionary<OrgType, string>() { { OrgType.Company, "COVENTRY AIRPORT LIMITED" } } }
+                { "reodc01", new Dictionary<OrgType, string>() { { OrgType.Company, "COVENTRY AIRPORT LIMITED" } } },
+                { "flexijobapprenticeemployeraccount", new Dictionary<OrgType, string>() { { OrgType.Company, "ING UK LIMITED" } } }
             };
         }
 
