@@ -14,20 +14,18 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Review your details";
 
-        private By TrainingLocationsLink = By.LinkText("/10001259/traininglocations");
-
-        private By StandardsLink = By.LinkText("/10001259/standards");
-
         public ReviewYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void ClickTrainingLocations()
+        public TrainingLocationPage AccessTrainingLocations()
         {
-            formCompletionHelper.Click(TrainingLocationsLink);
+            formCompletionHelper.ClickLinkByText("Training locations");
+            return new TrainingLocationPage(context);
         }
 
-        public void ClickStandards()
+        public ManageTheStandardsYouDeliverPage AccessStandards()
         {
-            formCompletionHelper.Click(StandardsLink);
+            formCompletionHelper.ClickLinkByText("Standards");
+            return new ManageTheStandardsYouDeliverPage(context);
         }
 
     }

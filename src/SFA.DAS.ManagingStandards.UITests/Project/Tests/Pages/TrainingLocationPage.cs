@@ -15,5 +15,11 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
 
         public TrainingLocationPage(ScenarioContext context) : base(context) => VerifyPage();
 
+        public ReviewYourDetailsPage NavigateBackToReviewYourDetails()
+        {
+            formCompletionHelper.Click(BackLink);
+            return new ReviewYourDetailsPage(context);
+        }
+
     }
 }

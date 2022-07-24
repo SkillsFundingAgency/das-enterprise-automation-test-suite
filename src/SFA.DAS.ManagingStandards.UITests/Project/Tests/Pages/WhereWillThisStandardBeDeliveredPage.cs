@@ -13,22 +13,31 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Where will this standard be delivered";
 
-        private By AtOneOfYourTrainingLocationsButton => By.Id("ProviderLocationOption");
-        private By AtAnEmployersLocationButton => By.Id("EmployerLocationOption");
-        private By BothButton => By.Id("BothLocationOption");
-        private By SaveAndContinueButton => By.Id("submit");
-        private By CancelLink = By.LinkText("/10001259/standards/240");
+        private By AtOneOfYourTrainingLocationsRadio => By.Id("ProviderLocationOption");
+        private By AtAnEmployersLocationRadio => By.Id("EmployerLocationOption");
+        private By BothRadio => By.Id("BothLocationOption");
 
         public WhereWillThisStandardBeDeliveredPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public WhereWillThisStandardBeDeliveredPage ClickSaveAndContinueButton()
+        public TrainingLocation_ConfirmVenuePage ConfirmAtOneofYourTrainingLocations()
         {
-            formCompletionHelper.Click(SaveAndContinueButton);
-            return new WhereWillThisStandardBeDeliveredPage(context);
+            formCompletionHelper.SelectRadioOptionByLocator(AtOneOfYourTrainingLocationsRadio);
+            Continue();
+            return new TrainingLocation_ConfirmVenuePage(context);
         }
-        public void ClickCancel()
+
+        public AnyWhereInEnglandPage ConfirmAtAnEmployersLocation()
         {
-            formCompletionHelper.Click(CancelLink);
+            formCompletionHelper.SelectRadioOptionByLocator(AtAnEmployersLocationRadio);
+            Continue();
+            return new AnyWhereInEnglandPage(context);
+        }
+
+        public TrainingLocation_ConfirmVenuePage ConfirmStandardWillDeliveredInBoth()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(BothRadio);
+            Continue();
+            return new TrainingLocation_ConfirmVenuePage(context);
         }
     }
 }

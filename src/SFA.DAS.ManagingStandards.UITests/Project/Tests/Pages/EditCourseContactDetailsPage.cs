@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ManagingStandards.UITests.Project.Tests.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,30 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
 {
     public class YourContactInformationForThisStandardPage : VerifyBasePage
     {
-        protected override string PageTitle => "Edit course contact details";
+        protected override string PageTitle => "Your contact information for this standard";
+        protected readonly ManagingStandardsDataHelpers managingStandardsDataHelpers;
 
         private By EmailAddressTextBox => By.Id("ContactUsEmail");
         private By TelephoneNumberTextBox => By.Id("ContactUsPhoneNumber");
         private By ContactPageTextBox => By.Id("ContactUsPageUrl");
         private By YourWebsitePageTextBox => By.Id("StandardInfoUrl");
         private By SaveAndContinueButton => By.Id("submit");
-        private By CancelLink = By.LinkText("/10001259/standards/240");
 
-        public YourContactInformationForThisStandardPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public ManageAStandardPage UpdateContactInformation()
+        public YourContactInformationForThisStandardPage(ScenarioContext context) : base(context)
         {
-            formCompletionHelper.EnterText(EmailAddressTextBox, "test@test.com");
-            formCompletionHelper.EnterText(TelephoneNumberTextBox, "2213123322");
-            formCompletionHelper.EnterText(ContactPageTextBox, "test.com");
-            formCompletionHelper.EnterText(YourWebsitePageTextBox, "https://www.instituteforapprenticeships.org/apprenticeship-standards/advanced-carpentry-and-joinery-v1-1");
+            managingStandardsDataHelpers = new ManagingStandardsDataHelpers();
+            VerifyPage();
+        }
+
+        public ManageAStandard_DevopsPage UpdateContactInformation()
+        {
+            formCompletionHelper.EnterText(EmailAddressTextBox, managingStandardsDataHelpers.EmailAddress);
+            formCompletionHelper.EnterText(TelephoneNumberTextBox, managingStandardsDataHelpers.ContactNumber);
+            formCompletionHelper.EnterText(ContactPageTextBox, managingStandardsDataHelpers.ContactWebsite);
+            formCompletionHelper.EnterText(YourWebsitePageTextBox, managingStandardsDataHelpers.Website);
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new ManageAStandardPage(context);
+            return new ManageAStandard_DevopsPage(context);
         }
-        public void ClickCancel()
-        {
-            formCompletionHelper.Click(CancelLink);
-        }
+
     }
 }

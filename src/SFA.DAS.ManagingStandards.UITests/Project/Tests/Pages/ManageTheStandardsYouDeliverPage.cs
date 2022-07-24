@@ -11,22 +11,20 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
 {
     public class ManageTheStandardsYouDeliverPage : VerifyBasePage
     {
-        protected override string PageTitle => "ManageTheStandardsYouDeliverPage";
-
-        private By AdvancedCarpentryAndJoineryLevel3Link = By.LinkText("/10001259/standards/240");
-
-        private By BricklayerLevel2Link = By.LinkText("/10001259/standards/287");
+        protected override string PageTitle => "Manage the standards you deliver";
 
         public ManageTheStandardsYouDeliverPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void ClickAdvancedCarpentryAndJoineryLevel3()
+        public ManageAStandard_DevopsPage AccessDevopsEngineerLevel4()
         {
-            formCompletionHelper.Click(AdvancedCarpentryAndJoineryLevel3Link);
+            formCompletionHelper.ClickLinkByText("DevOps engineer (Level 4)");
+            return new ManageAStandard_DevopsPage(context);
         }
 
-        public void ClickBrickLayerLevel2()
+        public ManageAStandard_TeacherPage AccessTeacherLevelLevel6()
         {
-            formCompletionHelper.Click(BricklayerLevel2Link);
+            formCompletionHelper.ClickLinkByText("Teacher (Level 6)");
+            return new ManageAStandard_TeacherPage(context);
         }
     }
 }
