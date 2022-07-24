@@ -31,7 +31,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
-                _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>()
+                _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>(),
+                _configSection.GetConfigSection<FlexiJobUser>()
             });
 
             _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
