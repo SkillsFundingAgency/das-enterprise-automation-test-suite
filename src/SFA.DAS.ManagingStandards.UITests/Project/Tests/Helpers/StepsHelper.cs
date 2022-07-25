@@ -31,7 +31,7 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Helpers.Pages
             //This is the only way we can naviagate to Managing standards for now,
             //This will change when Dashboard link will be implemented
 
-            _tabHelper.GoToUrl("https://roatp.test-pas.apprenticeships.education.gov.uk/10001259/review-your-details");
+            _tabHelper.GoToUrl("https://roatp.pp-pas.apprenticeships.education.gov.uk/10001259/review-your-details");
             formCompletionHelper.ClickElement(PireanPreprod);
         }
 
