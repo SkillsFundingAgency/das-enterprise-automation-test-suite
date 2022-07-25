@@ -13,7 +13,7 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Helpers
         {
             Website = $"www.company.co.uk";
             ContactWebsite = $"www.companycontact.co.uk";
-            ContactNumber = RandomDataGenerator.GenerateRandomAlphanumericString(12);
+            ContactNumber = RandomDataGenerator.GenerateRandomNumber(12);
             EmailAddress = $"ManagingStandardstest.demo@digital.education.gov.uk";
         }
         public string EmailAddress { get; }
