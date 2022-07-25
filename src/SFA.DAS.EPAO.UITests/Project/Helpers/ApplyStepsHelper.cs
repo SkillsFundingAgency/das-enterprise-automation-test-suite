@@ -122,15 +122,15 @@ public class ApplyStepsHelper
     private static AS_ApplyToStandardPage ApplyToStandard(AS_ApplyToStandardPage applyToStandard)
     {
         applyToStandard = applyToStandard.AccessYourPolicies_01()
-            .NHEI_EnterRegNumber()
-            .NHEI_UploadPublicLiabilityInsurance()
-            .NHEI_UploadProfessionalIndemnityInsurance()
-            .NHEI_UploadEmployersLiabilityInsurance()
-            .NHEI_EnterHowManyAssessors()
-            .NHEI_EnterHowManyEndPointAssessment()
-            .NHEI_EnterVolume()
-            .NHEI_ChooseLocation()
-            .NHEI_EnterDayToStart();
+            .NHEIEnterRegNumber()
+            .NHEIUploadPublicLiabilityInsurance()
+            .NHEIUploadProfessionalIndemnityInsurance()
+            .NHEIUploadEmployersLiabilityInsurance()
+            .NHEIEnterHowManyAssessors()
+            .NHEIEnterHowManyEndPointAssessment()
+            .NHEIEnterVolume()
+            .NHEIChooseLocation()
+            .NHEIEnterDayToStart();
             return applyToStandard;
     }
 }

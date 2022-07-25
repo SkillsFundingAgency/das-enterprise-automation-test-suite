@@ -12,7 +12,7 @@ public class AS_IndemnityInsurancePage : AS_EPAOApplyStandardBasePage
         return new(context);
     }
 
-    public AS_EmployersLiabilityInsurancePage NHEI_UploadProfessionalIndemnityInsurance()
+    public AS_EmployersLiabilityInsurancePage NHEIUploadProfessionalIndemnityInsurance()
     {
         UploadFile();
         return new(context);

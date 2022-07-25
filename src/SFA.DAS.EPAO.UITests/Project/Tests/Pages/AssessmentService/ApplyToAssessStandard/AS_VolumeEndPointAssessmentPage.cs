@@ -13,7 +13,7 @@ public class AS_VolumeEndPointAssessmentPage : AS_EPAOApplyStandardBasePage
         return new(context);
     }
     
-    public AS_WhereWillYouDeliverEndPointAssessmentsPage NHEI_EnterVolume()
+    public AS_WhereWillYouDeliverEndPointAssessmentsPage NHEIEnterVolume()
     {
         formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
         Continue();

@@ -17,7 +17,7 @@ public class AS_WhereWillYouDeliverEndPointAssessmentsPage : AS_EPAOApplyStandar
         return new(context);
     }
     
-    public AS_ChooseDayPage NHEI_ChooseLocation()
+    public AS_ChooseDayPage NHEIChooseLocation()
     {
         ClickRandomElement(DeliveryAreas);
         Continue();

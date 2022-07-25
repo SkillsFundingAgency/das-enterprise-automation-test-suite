@@ -14,7 +14,7 @@ public class AS_ChooseDayPage : AS_EPAOApplyStandardBasePage
         return new(context);
     }
     
-    public AS_ApplyToStandardPage NHEI_EnterDayToStart()
+    public AS_ApplyToStandardPage NHEIEnterDayToStart()
     {
         SelectAndContinue("Yes");
         return new(context);

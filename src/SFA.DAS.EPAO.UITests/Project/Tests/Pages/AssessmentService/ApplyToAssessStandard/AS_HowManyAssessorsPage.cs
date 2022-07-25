@@ -13,7 +13,7 @@ public class AS_HowManyAssessorsPage : AS_EPAOApplyStandardBasePage
         return new(context);
     }
     
-    public AS_HowManyEndPointAssessmentPage NHEI_EnterHowManyAssessors()
+    public AS_HowManyEndPointAssessmentPage NHEIEnterHowManyAssessors()
     {
         formCompletionHelper.EnterText(InputNumber, EPAOApplyStandardDataHelper.GenerateRandomWholeNumber(1));
         Continue();

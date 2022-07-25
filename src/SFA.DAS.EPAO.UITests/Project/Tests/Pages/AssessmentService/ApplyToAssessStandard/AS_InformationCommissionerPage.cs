@@ -13,7 +13,7 @@ public class AS_InformationCommissionerPage : AS_EPAOApplyStandardBasePage
         return new(context);
     }
 
-    public AS_PublicLiabilityInsurancePage NHEI_EnterRegNumber()
+    public AS_PublicLiabilityInsurancePage NHEIEnterRegNumber()
     {
         formCompletionHelper.EnterText(InputText, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(8));
         Continue();
