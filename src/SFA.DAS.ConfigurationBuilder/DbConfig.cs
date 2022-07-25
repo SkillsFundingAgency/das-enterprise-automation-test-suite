@@ -26,5 +26,6 @@
         public string TMDbConnectionString { get; set; }
         public string CRSDbConnectionString { get; set; }
         public string EmploymentCheckDbConnectionString { get; set; }
+        public string ManagingStandardsDatabaseConnectionString { get; set; }
     }
 }

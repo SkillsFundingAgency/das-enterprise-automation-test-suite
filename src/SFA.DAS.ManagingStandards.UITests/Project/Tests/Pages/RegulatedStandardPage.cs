@@ -17,11 +17,11 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
         private By ApprovesNoRadio = By.Id("IsApprovedByRegulator-No");
         public RegulatedStandardPage(ScenarioContext context) : base(context) => VerifyPage();
         
-        public ManageAStandard_TeacherPage ApproveStandard()
+        public ManageTheStandardsYouDeliverPage ApproveStandard_FromStandardsPage()
         {
                 formCompletionHelper.SelectCheckbox(ApprovesYesRadio);
                 Continue();
-                return new ManageAStandard_TeacherPage(context);
+                return new ManageTheStandardsYouDeliverPage(context);
         }
 
         public YouMustBeApprovePage DisApproveStandard()

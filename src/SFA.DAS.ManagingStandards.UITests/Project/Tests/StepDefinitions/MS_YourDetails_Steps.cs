@@ -46,9 +46,9 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions
         {
             ReviewYourDetailsPage reviewYourDetailsPage = new ReviewYourDetailsPage(_context);
             reviewYourDetailsPage.AccessStandards()
-                .AccessTeacherLevelLevel6()
-                .AccessApprovedByRegulationOrNot()
-                .ApproveStandard();
+                .AccessRegulatorApprovalLinkFromTheSTandardsTable()
+                .ApproveStandard_FromStandardsPage()
+                .AccessTeacherLevel6();
         }
 
         [Then(@"the provider is able to disapprove regulated standard")]
@@ -85,7 +85,7 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions
         {
             ReviewYourDetailsPage reviewYourDetailsPage = new ReviewYourDetailsPage(_context);
             reviewYourDetailsPage.AccessStandards()
-                .AccessTeacherLevelLevel6()
+                .AccessTeacherLevel6()
                 .AccessWhereYouWillDeliverThisStandard()
                 .ConfirmStandardWillDeliveredInBoth()
                 .ConfirmVenueDetailsAndDeliveryMethod_AtBoth()
