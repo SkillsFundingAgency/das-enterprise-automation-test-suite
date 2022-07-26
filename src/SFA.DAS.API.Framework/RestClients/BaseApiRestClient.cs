@@ -32,7 +32,9 @@ public abstract class BaseApiRestClient
         AddPayload(payload);
     }
 
-    public IRestResponse Execute(HttpStatusCode expectedResponse) => new AssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, restClient, restRequest);
+    public IRestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
+
+    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new AssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
 
     protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
     {
@@ -52,6 +54,8 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload)
     {
+        if (restRequest.Method == Method.GET) return;
+
         if (string.IsNullOrEmpty(payload)) restRequest.Body = null;
         else
         {

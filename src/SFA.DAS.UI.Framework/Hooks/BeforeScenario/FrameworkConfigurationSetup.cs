@@ -33,7 +33,9 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             var fullscreenshotAdmin = testExecutionConfig.FullScreenShotAdmins.ToList(",");
 
-            bool.TryParse(testExecutionConfig.CanTakeFullScreenShot, out bool canTakeFullScreenShot);
+            _ = bool.TryParse(testExecutionConfig.CanTakeFullScreenShot, out bool canTakeFullScreenShot);
+
+            _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
 
             bool IsVstsExecution = Configurator.IsVstsExecution;
 
@@ -44,7 +46,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
                 IsVstsExecution = IsVstsExecution,
                 CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
-                CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot
+                CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot,
+                IsAccessibilityTesting = isAccessibilityTesting
             };
 
             _context.Set(frameworkConfig);

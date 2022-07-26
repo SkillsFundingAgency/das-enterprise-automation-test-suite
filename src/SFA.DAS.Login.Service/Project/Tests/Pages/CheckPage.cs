@@ -10,6 +10,8 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         protected abstract By Identifier { get; }
 
+        protected override bool CanAnalyzePage => false;
+
         public CheckPage(ScenarioContext context) : base(context) { }
 
         public virtual bool IsPageDisplayed() => pageInteractionHelper.IsElementDisplayedAfterPageLoad(Identifier);
