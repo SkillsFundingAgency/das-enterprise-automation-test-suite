@@ -74,18 +74,18 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MS_01A_Verify_Organisation_Details")]
+        [NUnit.Framework.DescriptionAttribute("MS_01A_Verify_Organisation_Details_And_Update_Contact_Details")]
         [NUnit.Framework.CategoryAttribute("managingstandards")]
         [NUnit.Framework.CategoryAttribute("managingstandards01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void MS_01A_Verify_Organisation_Details()
+        public void MS_01A_Verify_Organisation_Details_And_Update_Contact_Details()
         {
             string[] tagsOfScenario = new string[] {
                     "managingstandards",
                     "managingstandards01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01A_Verify_Organisation_Details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01A_Verify_Organisation_Details_And_Update_Contact_Details", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,41 +105,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the provider verifies organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MS_01B_Update_Contact_Details")]
-        [NUnit.Framework.CategoryAttribute("managingstandards")]
-        [NUnit.Framework.CategoryAttribute("managingstandards02")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public void MS_01B_Update_Contact_Details()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "managingstandards",
-                    "managingstandards02",
-                    "regression"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01B_Update_Contact_Details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 15
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 16
- testRunner.Given("the provider logs into employer portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 17
- testRunner.When("the provider navigates to Review your details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 18
- testRunner.Then("the provider updates contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the provider updates contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -148,17 +115,17 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MS_01C_Approve_DisApprove_Standard")]
         [NUnit.Framework.CategoryAttribute("managingstandards")]
-        [NUnit.Framework.CategoryAttribute("managingstandards03")]
+        [NUnit.Framework.CategoryAttribute("managingstandards02")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void MS_01C_Approve_DisApprove_Standard()
         {
             string[] tagsOfScenario = new string[] {
                     "managingstandards",
-                    "managingstandards03",
+                    "managingstandards02",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01C_Approve_DisApprove_Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -168,16 +135,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 17
  testRunner.Given("the provider logs into employer portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 26
+#line 18
  testRunner.When("the provider navigates to Review your details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 27
+#line 19
  testRunner.And("the provider is able to approve regulated standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
+#line 20
  testRunner.Then("the provider is able to disapprove regulated standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -187,17 +154,17 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MS_01D_WhereCanYouDeliver_EditLocations_Standard")]
         [NUnit.Framework.CategoryAttribute("managingstandards")]
-        [NUnit.Framework.CategoryAttribute("managingstandards04")]
+        [NUnit.Framework.CategoryAttribute("managingstandards03")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void MS_01D_WhereCanYouDeliver_EditLocations_Standard()
         {
             string[] tagsOfScenario = new string[] {
                     "managingstandards",
-                    "managingstandards04",
+                    "managingstandards03",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01D_WhereCanYouDeliver_EditLocations_Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 33
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -207,25 +174,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 34
+#line 26
  testRunner.Given("the provider logs into employer portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 35
+#line 27
  testRunner.When("the provider navigates to Review your details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 36
+#line 28
  testRunner.And("the provider is able to change the standard delivered in both not a national prov" +
                         "ider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 29
  testRunner.And("the provider is able to change the standard delivered in one of the training loca" +
                         "tions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
+#line 30
  testRunner.And("the provider is able to change the standard delivered at an employers location na" +
                         "tional provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 39
+#line 31
  testRunner.And("the provider is able to edit the regions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

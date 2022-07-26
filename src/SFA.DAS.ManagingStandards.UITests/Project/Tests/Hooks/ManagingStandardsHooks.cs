@@ -37,13 +37,13 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Hooks
         [BeforeScenario(Order = 32)]
         public void SetApprovedByRegulatorToNull()
         {
-            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.ClearRegulation(_config.Ukprn);
+            if (_tags.Any(x => x == "managingstandards02")) _managingStandardsSqlDataHelper.ClearRegulation(_config.Ukprn);
         }
 
         [BeforeScenario(Order = 33)]
         public void ClearDownAdminData()
         {
-            if (_tags.Any(x => x == "managingstandards04")) _managingStandardsSqlDataHelper.AddSingleProviderLocation(_config.Ukprn);
+            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderLocation(_config.Ukprn);
         }
     }
 }

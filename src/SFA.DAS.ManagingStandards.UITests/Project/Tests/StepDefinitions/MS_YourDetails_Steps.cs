@@ -34,8 +34,8 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider updates contact details")]
         public void ThenTheProviderUpdatesContactDetails()
         {
-            ReviewYourDetailsPage reviewYourDetailsPage = new ReviewYourDetailsPage(_context);
-            reviewYourDetailsPage.AccessStandards()
+            ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new ManageTheStandardsYouDeliverPage(_context);
+            manageTheStandardsYouDeliverPage
                 .AccessDevopsEngineerLevel4()
                 .UpdateTheseContactDetails()
                 .UpdateContactInformation();

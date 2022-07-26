@@ -16,7 +16,7 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Helpers
             $"where LarsCode = '203' and providerid = (select Id from provider where ukprn = {ukprn})");
 
         public void AddSingleProviderLocation(string ukprn) => ExecuteSqlCommand($"DECLARE @providerId int;" +
-            $"select @providerId=id from provider where ukprn = 10001259;" +
+            $"select @providerId=id from provider where ukprn = {ukprn};" +
             $"DECLARE @CentralHairHarlowLocationId  int;" +
             $"select @CentralHairHarlowLocationId=id from ProviderLocation where LocationName='CENTRAL HAIR HARLOW' and ProviderId=@providerId;" +
             $"DECLARE @ProviderCourseIdLarsCode203 int;" +

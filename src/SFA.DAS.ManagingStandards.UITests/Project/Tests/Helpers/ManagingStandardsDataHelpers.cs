@@ -11,10 +11,10 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Helpers
     {
         public ManagingStandardsDataHelpers()
         {
-            Website = $"www.company.co.uk";
-            ContactWebsite = $"www.companycontact.co.uk";
+            Website = "www.company.co.uk";
+            ContactWebsite = "www.companycontact.co.uk";
             ContactNumber = RandomDataGenerator.GenerateRandomNumber(12);
-            EmailAddress = $"ManagingStandardstest.demo@digital.education.gov.uk";
+            EmailAddress = "ManagingStandardstest.demo@digital.education.gov.uk";
         }
         public string EmailAddress { get; }
         public string Website { get; }
