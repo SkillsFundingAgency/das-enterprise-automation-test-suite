@@ -18,6 +18,7 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
     {
         private readonly string[] _tags;
         private ManagingStandardsSqlDataHelper _managingStandardsSqlDataHelper;
+        private ManagingStandardsDataHelpers _dataHelper;
         protected readonly DbConfig _dbConfig;
         private readonly ScenarioContext _context;
         private readonly ProviderConfig _config;
@@ -34,18 +35,19 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
         public void SetUpDataHelpers()
         {
             _context.Set(_managingStandardsSqlDataHelper = new ManagingStandardsSqlDataHelper(_dbConfig));
+            _context.Set(_dataHelper = new ManagingStandardsDataHelpers());
         }
 
         [BeforeScenario(Order = 32)]
         public void SetApprovedByRegulatorToNull()
         {
-            if (_tags.Any(x => x == "managingstandards02")) _managingStandardsSqlDataHelper.ClearRegulation(_config.Ukprn);
+            if (_tags.Any(x => x == "managingstandards02")) _managingStandardsSqlDataHelper.ClearRegulation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
         }
 
         [BeforeScenario(Order = 33)]
         public void ClearDownAdminData()
         {
-            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderLocation(_config.Ukprn);
+            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderLocation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
         }
     }
 }

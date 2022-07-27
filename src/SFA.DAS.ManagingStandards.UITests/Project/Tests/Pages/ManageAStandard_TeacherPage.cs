@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class ManageAStandard_TeacherPage : VerifyBasePage
+public class ManageAStandard_TeacherPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Teacher (Level 6)";
 
-    public ManageAStandard_TeacherPage(ScenarioContext context) : base(context) => VerifyPage();
+    public ManageAStandard_TeacherPage(ScenarioContext context) : base(context) { }
 
     public RegulatedStandardPage AccessApprovedByRegulationOrNot()
     {

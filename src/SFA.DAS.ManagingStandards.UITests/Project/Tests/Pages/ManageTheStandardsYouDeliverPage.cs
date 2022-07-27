@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class ManageTheStandardsYouDeliverPage : VerifyBasePage
+public class ManageTheStandardsYouDeliverPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Manage the standards you deliver";
 
-    public ManageTheStandardsYouDeliverPage(ScenarioContext context) : base(context) => VerifyPage();
+    public ManageTheStandardsYouDeliverPage(ScenarioContext context) : base(context) { }
 
     public ManageAStandard_DevopsPage AccessDevopsEngineerLevel4()
     {

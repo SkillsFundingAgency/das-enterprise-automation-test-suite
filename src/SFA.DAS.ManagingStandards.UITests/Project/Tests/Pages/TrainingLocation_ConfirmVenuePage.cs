@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class TrainingLocation_ConfirmVenuePage : VerifyBasePage
+public class TrainingLocation_ConfirmVenuePage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Training locations";
 
-    public TrainingLocation_ConfirmVenuePage(ScenarioContext context) : base(context) => VerifyPage();
+    public TrainingLocation_ConfirmVenuePage(ScenarioContext context) : base(context) { }
 
     public ManageAStandard_TeacherPage ConfirmVenueDetailsAndDeliveryMethod_AtOneOFYourTrainingLocation()
     {

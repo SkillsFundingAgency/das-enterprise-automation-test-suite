@@ -1,9 +1,8 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class YourContactInformationForThisStandardPage : VerifyBasePage
+public class YourContactInformationForThisStandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Your contact information for this standard";
-    protected readonly ManagingStandardsDataHelpers managingStandardsDataHelpers;
 
     private static By EmailAddressTextBox => By.Id("ContactUsEmail");
     private static By TelephoneNumberTextBox => By.Id("ContactUsPhoneNumber");
@@ -13,8 +12,6 @@ public class YourContactInformationForThisStandardPage : VerifyBasePage
 
     public YourContactInformationForThisStandardPage(ScenarioContext context) : base(context)
     {
-        managingStandardsDataHelpers = new ManagingStandardsDataHelpers();
-        VerifyPage();
     }
 
     public ManageAStandard_DevopsPage UpdateContactInformation()

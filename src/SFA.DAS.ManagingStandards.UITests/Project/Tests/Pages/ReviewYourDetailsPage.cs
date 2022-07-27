@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class ReviewYourDetailsPage : VerifyBasePage
+public class ReviewYourDetailsPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Review your details";
 
-    public ReviewYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+    public ReviewYourDetailsPage(ScenarioContext context) : base(context) { }
 
     public TrainingLocationPage AccessTrainingLocations()
     {
