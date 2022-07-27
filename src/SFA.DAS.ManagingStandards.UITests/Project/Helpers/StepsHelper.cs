@@ -22,7 +22,7 @@ public class StepsHelper
         //This is the only way we can naviagate to Managing standards for now,
         //This will change when Dashboard link will be implemented
 
-        _tabHelper.GoToUrl($"{UrlConfig.MS_BaseUrl}{_providerConfig}/review-your-details");
+        _tabHelper.GoToUrl($"{UrlConfig.MS_BaseUrl}{_providerConfig.Ukprn}/review-your-details");
         formCompletionHelper.ClickElement(PireanPreprod);
     }
 }

@@ -14,14 +14,14 @@ public class YourContactInformationForThisStandardPage : ManagingStandardsBasePa
     {
     }
 
-    public ManageAStandard_DevopsPage UpdateContactInformation()
+    public ManageAStandard_TeacherPage UpdateContactInformation()
     {
         formCompletionHelper.EnterText(EmailAddressTextBox, managingStandardsDataHelpers.EmailAddress);
         formCompletionHelper.EnterText(TelephoneNumberTextBox, managingStandardsDataHelpers.ContactNumber);
         formCompletionHelper.EnterText(ContactPageTextBox, managingStandardsDataHelpers.ContactWebsite);
         formCompletionHelper.EnterText(YourWebsitePageTextBox, managingStandardsDataHelpers.Website);
         formCompletionHelper.Click(SaveAndContinueButton);
-        return new ManageAStandard_DevopsPage(context);
+        return new ManageAStandard_TeacherPage(context);
     }
 
 }
