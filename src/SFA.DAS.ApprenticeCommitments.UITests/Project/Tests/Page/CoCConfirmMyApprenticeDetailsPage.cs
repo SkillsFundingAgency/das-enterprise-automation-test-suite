@@ -23,9 +23,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public (string sectionName, string sectionStatus) GetConfirmYourRolesAndResponsibilityStatus() => (SectionHelper.Section5, GetConfirmationStatus(SectionHelper.Section5));
 
-        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification("Your employer and apprenticeship details have been corrected. Please review and confirm the changes to your apprenticeship details.");
+        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been updated. Please review and confirm the changes.");
 
-        public ApprenticeOverviewPage VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been corrected. Please review and confirm the changes to your apprenticeship details.");
+        public ApprenticeOverviewPage VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been updated. Please review and confirm the changes.");
 
         public ApprenticeOverviewPage VerifyCoCNotificationIsNotDisplayed()
         {
