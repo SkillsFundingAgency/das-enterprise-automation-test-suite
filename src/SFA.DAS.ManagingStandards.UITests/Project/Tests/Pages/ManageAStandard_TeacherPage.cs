@@ -2,7 +2,7 @@
 
 public class ManageAStandard_TeacherPage : ManagingStandardsBasePage
 {
-    protected override string PageTitle => "Teacher (Level 6)";
+    protected override string PageTitle => managingStandardsDataHelpers.StandardsTestData.StandardName;
 
     public ManageAStandard_TeacherPage(ScenarioContext context) : base(context) { }
 
