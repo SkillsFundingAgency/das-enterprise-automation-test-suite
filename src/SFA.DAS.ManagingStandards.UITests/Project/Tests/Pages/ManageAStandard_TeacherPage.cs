@@ -23,4 +23,9 @@ public class ManageAStandard_TeacherPage : ManagingStandardsBasePage
         formCompletionHelper.ClickLinkByText("Edit these regions");
         return new WhereCanYouDeliverTrainingPage(context);
     }
+    public YourContactInformationForThisStandardPage UpdateTheseContactDetails()
+    {
+        formCompletionHelper.ClickLinkByText("Update these contact details");
+        return new YourContactInformationForThisStandardPage(context);
+    }
 }
