@@ -1,18 +1,20 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ManagingStandards.UITests.Project.Tests.Helpers;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
+﻿global using OpenQA.Selenium;
+global using SFA.DAS.ConfigurationBuilder;
+global using SFA.DAS.FrameworkHelpers;
+global using SFA.DAS.ManagingStandards.UITests.Project.Helpers;
+global using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
+global using SFA.DAS.ProviderLogin.Service;
+global using SFA.DAS.ProviderLogin.Service.Helpers;
+global using SFA.DAS.UI.Framework;
+global using SFA.DAS.UI.Framework.TestSupport;
+global using SFA.DAS.UI.FrameworkHelpers;
+global using System.Linq;
+global using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Hooks
+namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "managingstandards")]
-    public class ManagingStandardsHooks 
+    public class ManagingStandardsHooks
     {
         private readonly string[] _tags;
         private ManagingStandardsSqlDataHelper _managingStandardsSqlDataHelper;

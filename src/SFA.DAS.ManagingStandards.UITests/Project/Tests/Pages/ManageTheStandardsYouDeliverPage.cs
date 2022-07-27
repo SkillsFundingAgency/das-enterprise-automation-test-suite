@@ -1,36 +1,26 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
+public class ManageTheStandardsYouDeliverPage : VerifyBasePage
 {
-    public class ManageTheStandardsYouDeliverPage : VerifyBasePage
+    protected override string PageTitle => "Manage the standards you deliver";
+
+    public ManageTheStandardsYouDeliverPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public ManageAStandard_DevopsPage AccessDevopsEngineerLevel4()
     {
-        protected override string PageTitle => "Manage the standards you deliver";
+        formCompletionHelper.ClickLinkByText("DevOps engineer (Level 4)");
+        return new ManageAStandard_DevopsPage(context);
+    }
 
-        public ManageTheStandardsYouDeliverPage(ScenarioContext context) : base(context) => VerifyPage();
+    public ManageAStandard_TeacherPage AccessTeacherLevel6()
+    {
+        formCompletionHelper.ClickLinkByText("Teacher (Level 6)");
+        return new ManageAStandard_TeacherPage(context);
+    }
 
-        public ManageAStandard_DevopsPage AccessDevopsEngineerLevel4()
-        {
-            formCompletionHelper.ClickLinkByText("DevOps engineer (Level 4)");
-            return new ManageAStandard_DevopsPage(context);
-        }
-
-        public ManageAStandard_TeacherPage AccessTeacherLevel6()
-        {
-            formCompletionHelper.ClickLinkByText("Teacher (Level 6)");
-            return new ManageAStandard_TeacherPage(context);
-        }
-       
-        public RegulatedStandardPage AccessRegulatorApprovalLinkFromTheSTandardsTable()
-        {
-            formCompletionHelper.ClickLinkByText("Regulator's approval needed");
-            return new RegulatedStandardPage(context);
-        }
+    public RegulatedStandardPage AccessRegulatorApprovalLinkFromTheSTandardsTable()
+    {
+        formCompletionHelper.ClickLinkByText("Regulator's approval needed");
+        return new RegulatedStandardPage(context);
     }
 }

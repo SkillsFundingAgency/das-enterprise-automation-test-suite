@@ -1,8 +1,6 @@
-﻿
-using SFA.DAS.ProviderLogin.Service.Pages;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.ProviderLogin.Service.Pages;
 
-namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Provider
+namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
 {
     public class ManagingStandardsProviderHomePage : ProviderHomePage
     {
