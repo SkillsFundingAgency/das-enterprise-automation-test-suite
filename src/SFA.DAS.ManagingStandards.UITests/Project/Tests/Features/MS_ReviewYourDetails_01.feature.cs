@@ -113,18 +113,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MS_01C_Approve_DisApprove_Standard")]
+        [NUnit.Framework.DescriptionAttribute("MS_01B_Approve_DisApprove_Standard")]
         [NUnit.Framework.CategoryAttribute("managingstandards")]
         [NUnit.Framework.CategoryAttribute("managingstandards02")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void MS_01C_Approve_DisApprove_Standard()
+        public void MS_01B_Approve_DisApprove_Standard()
         {
             string[] tagsOfScenario = new string[] {
                     "managingstandards",
                     "managingstandards02",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01C_Approve_DisApprove_Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01B_Approve_DisApprove_Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -152,18 +152,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MS_01D_WhereCanYouDeliver_EditLocations_Standard")]
+        [NUnit.Framework.DescriptionAttribute("MS_01C_WhereCanYouDeliver_EditLocations_Standard")]
         [NUnit.Framework.CategoryAttribute("managingstandards")]
         [NUnit.Framework.CategoryAttribute("managingstandards03")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void MS_01D_WhereCanYouDeliver_EditLocations_Standard()
+        public void MS_01C_WhereCanYouDeliver_EditLocations_Standard()
         {
             string[] tagsOfScenario = new string[] {
                     "managingstandards",
                     "managingstandards03",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01D_WhereCanYouDeliver_EditLocations_Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_01C_WhereCanYouDeliver_EditLocations_Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

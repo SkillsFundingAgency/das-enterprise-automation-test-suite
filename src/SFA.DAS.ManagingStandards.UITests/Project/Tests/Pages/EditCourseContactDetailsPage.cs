@@ -23,5 +23,4 @@ public class YourContactInformationForThisStandardPage : ManagingStandardsBasePa
         formCompletionHelper.Click(SaveAndContinueButton);
         return new ManageAStandard_TeacherPage(context);
     }
-
 }

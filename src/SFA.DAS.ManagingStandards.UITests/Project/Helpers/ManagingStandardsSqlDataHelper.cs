@@ -18,5 +18,4 @@ public class ManagingStandardsSqlDataHelper : SqlDbHelper
         $"BEGIN INSERT INTO [dbo].[ProviderCourseLocation]" +
         $"([NavigationId],[ProviderCourseId],[ProviderLocationId],[HasDayReleaseDeliveryOption],[HasBlockReleaseDeliveryOption],[IsImported])" +
         $"VALUES (newId(), @ProviderCourseIdLarsCode, @CentralHairHarlowLocationId,1, 0,0) END;");
-
 }

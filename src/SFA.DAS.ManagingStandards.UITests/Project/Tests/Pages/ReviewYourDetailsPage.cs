@@ -17,6 +17,5 @@ public class ReviewYourDetailsPage : ManagingStandardsBasePage
         formCompletionHelper.ClickLinkByText("Standards");
         return new ManageTheStandardsYouDeliverPage(context);
     }
-
 }
 
