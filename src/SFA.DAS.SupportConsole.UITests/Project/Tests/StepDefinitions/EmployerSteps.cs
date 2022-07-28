@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Helpers;
 
-
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
@@ -10,7 +9,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
         private readonly UsersSqlDataHelper _usersSqlDataHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -18,34 +16,27 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _usersSqlDataHelper = new UsersSqlDataHelper(_context.Get<DbConfig>());
-            _employerStepsHelper = new EmployerStepsHelper(_context);   
         }
 
         [Given(@"the employer user can login to EAS")]
         public void GivenTheEmployerUserCanLoginToEAS()
         {
-            _employerStepsHelper.NavigateToEmployerHomePage();
+            _employerHomePageStepsHelper.NavigateToEmployerApprenticeshipService();
 
             var user = _context.GetUser<LevyUser>();
+
             _usersSqlDataHelper.ReinstateAccountInDb(user.Username);
-            _employerPortalLoginHelper.Login(user, true).Signout();
+            
+            var homePage = _employerPortalLoginHelper.Login(user, true);
+
+            new AccountSignOutHelper(_context).SignOut(homePage);
         }
 
         [Then(@"the employer user can login to EAS")]
-        public void ThenTheEmployerUserCanLoginToEAS()
-        {
-            _employerHomePageStepsHelper.GotoEmployerHomePage();
-        }
+        public void ThenTheEmployerUserCanLoginToEAS() => _employerHomePageStepsHelper.GotoEmployerHomePage();
 
         [Then(@"the employer user cannot login to EAS")]
-        public void ThenTheEmployerUserCannotLoginToEAS()
-        {
-            var errorMsg = _employerHomePageStepsHelper.ValidateUnsuccessfulLogon().GetErrorFromSigninPage();
-            Assert.IsTrue(errorMsg == "There was a problem logging into your account");
-        }
-
-
-
-
+        public void ThenTheEmployerUserCannotLoginToEAS() 
+            => StringAssert.Contains("There was a problem logging into your account", _employerHomePageStepsHelper.ValidateUnsuccessfulLogon().GetErrorFromSigninPage());
     }
 }

@@ -15,7 +15,7 @@ public class StepsHelper
 
     public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-    public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab = false) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
+    public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
 
     public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
@@ -56,39 +56,27 @@ public class StepsHelper
 
     public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
 
-    void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+    private void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
-    private SearchHomePage LoginToSupportConsole(LoginUser loginUser)
-    {
-        new IdamsPage(_context).LoginToAccess1Staff();
+    private SearchHomePage LoginToSupportConsole(LoginUser loginUser) => GoToSignInPage().SignInWithValidDetails(loginUser);
 
-        return new SignInPage(_context).SignInWithValidDetails(loginUser);
-    }
-
-    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser, bool openNewTab =  false)
+    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser, bool openNewTab)
     {
         var baseUrl = UrlConfig.SupportTools_BaseUrl;
 
-        if (openNewTab)
-            _tabHelper.OpenInNewTab(baseUrl);
-        else
-            _tabHelper.GoToUrl(baseUrl);
+        if (openNewTab) _tabHelper.OpenInNewTab(baseUrl);
 
-        var url = _context.Get<PageInteractionHelper>().GetUrl();
+        else _tabHelper.GoToUrl(baseUrl);
 
-        if (url.Contains("wsignin1"))
-        {
-            new IdamsPage(_context).LoginToAccess1Staff();
+        if (new CheckIdamsPage(_context).IsPageDisplayed()) return GoToSignInPage().SignIntoToolSupportWithValidDetails(loginUser);
 
-            return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
-        }
-        else
-        {
-            return new ToolSupportHomePage(_context);
-        }
-
-        
+        else return new ToolSupportHomePage(_context);
     }
 
+    private SignInPage GoToSignInPage()
+    {
+        new IdamsPage(_context).LoginToAccess1Staff();
 
+        return new(_context);
+    }
 }

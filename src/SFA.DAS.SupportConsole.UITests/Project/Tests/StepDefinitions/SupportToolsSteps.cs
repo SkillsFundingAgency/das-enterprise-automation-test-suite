@@ -1,27 +1,27 @@
 ﻿
 
+using SFA.DAS.Registration.UITests.Project;
+
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class SupportToolsSteps
 {
     private readonly ScenarioContext _context;
+    private readonly ObjectContext _objectContext;
     private readonly StepsHelper _stepsHelper;
     private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-    private readonly AccountsSqlDataHelper _accountsSqlDataHelper;
-    private readonly string _hashedEmployerAccId;
 
     public SupportToolsSteps(ScenarioContext context)
     {
         _context = context;
+        _objectContext = context.Get<ObjectContext>();
         _stepsHelper = new StepsHelper(context);
         _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
-        _accountsSqlDataHelper = context.Get<AccountsSqlDataHelper>();
-        _hashedEmployerAccId = GetPublicHashedId();
     }
 
     [Given(@"the User is logged into Support Tools")]
-    public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools();
+    public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools(false);
 
     [Given(@"Opens the Pause Utility")]
     [When(@"user opens Pause Utility")]
@@ -114,9 +114,9 @@ public class SupportToolsSteps
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools()
+        var status = _stepsHelper.ValidUserLogsinToSupportTools(false)
                             .ClickSuspendUserAccountsLink()
-                            .EnterHashedAccountId(_hashedEmployerAccId)
+                            .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()
                             .SelectAllRecords()
                             .ClickSuspendUserButton()
@@ -134,7 +134,7 @@ public class SupportToolsSteps
 
         var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportTools(true)
                             .ClickReinstateUserAccountsLink()
-                            .EnterHashedAccountId(_hashedEmployerAccId)
+                            .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()
                             .SelectAllRecords()
                             .ClickReinstateUserButton()
@@ -227,10 +227,5 @@ public class SupportToolsSteps
         }
     }
 
-    private string GetPublicHashedId()
-    {
-        var user = _context.GetUser<LevyUser>();
-        return _accountsSqlDataHelper.GetPublicHashedId(user.Username);
-    }
-
+    private string GetHashedAccountId() => _objectContext.GetHashedAccountId();
 }

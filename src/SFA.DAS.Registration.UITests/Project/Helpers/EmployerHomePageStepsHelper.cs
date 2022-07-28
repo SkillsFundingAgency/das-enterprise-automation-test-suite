@@ -28,28 +28,20 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             GoToEmployerLoginPage(openInNewTab);
 
-            if (_loginHelper.IsSignInPageDisplayed())
-            {
+            if (_loginHelper.IsSignInPageDisplayed()) 
                 return _loginHelper.ReLogin();
-            }
 
-            if (_loginHelper.IsYourAccountPageDisplayed())
-            {
-                return new YourAccountsPage(_context)
-                    .GoToHomePage(_objectContext.GetOrganisationName());
-            }
+            if (_loginHelper.IsYourAccountPageDisplayed()) 
+                return new YourAccountsPage(_context).GoToHomePage(_objectContext.GetOrganisationName());
 
             return new HomePage(_context, !openInNewTab);
         }
 
-        public SignInPage ValidateUnsuccessfulLogon(bool openInNewTab = true)
+        public SignInPage ValidateUnsuccessfulLogon()
         {
-            GoToEmployerLoginPage(openInNewTab);
+            GoToEmployerLoginPage(true);
 
-            if (_loginHelper.IsSignInPageDisplayed())
-            {
-                return _loginHelper.FailedLogin();
-            }
+            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.FailedLogin();
 
             return new SignInPage(_context);
         }
@@ -66,7 +58,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new MyAccountWithOutPayePage(_context);
         }
 
-        public void OpenInNewTab() => _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+        public void NavigateToEmployerApprenticeshipService() => _tabHelper.GoToUrl(EmployerApprenticeshipService_BaseUrl);
+
+        private void OpenInNewTab() => _tabHelper.OpenInNewTab(EmployerApprenticeshipService_BaseUrl);
 
         private void GoToEmployerLoginPage(bool openInNewTab)
         {
@@ -80,8 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage();
             }
         }
-    
-    
-    
+
+        private static string EmployerApprenticeshipService_BaseUrl => UrlConfig.EmployerApprenticeshipService_BaseUrl;
     }
 }

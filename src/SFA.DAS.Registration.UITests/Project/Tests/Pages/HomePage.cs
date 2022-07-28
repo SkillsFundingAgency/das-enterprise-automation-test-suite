@@ -17,8 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        private By Signgout => By.LinkText("Sign out");
-        
         protected By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
@@ -58,12 +56,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyElement(SetUpAnApprenticeshipSectionHeader);
             VerifyElement(StartNowButton);
         }
-
-        public SignoutPage Signout()
-        {
-            formCompletionHelper.ClickElement(Signgout);
-            return new SignoutPage(context);
-        }
-
     }
 }

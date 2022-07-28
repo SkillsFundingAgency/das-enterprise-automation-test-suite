@@ -34,11 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public string GetErrorFromSigninPage()
-        {
-            return pageInteractionHelper.GetText(errorMsg).ToString();
-        }
-
+        public string GetErrorFromSigninPage() => pageInteractionHelper.GetText(errorMsg).ToString();
 
         public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
         {
