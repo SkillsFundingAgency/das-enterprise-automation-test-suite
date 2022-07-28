@@ -16,14 +16,14 @@ Examples:
 @regression
 @assessorcertificationapi
 Scenario Outline: Verify Check Certificate for Apprenticeships
-	Given the user prepares request with uln 1000809113
+	Given the user prepares request with uln 6272349091
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
 	
 Examples: 
 | TestCaseId          | Method | Endpoint                                         | Payload | ResponseStatus |
-| CheckCertificate002 | GET    | /api/v1/certificate/1000809113/Name1000809113/91 |         | OK             |
+| CheckCertificate002 | GET    | /api/v1/certificate/6272349091/Familyname/138 |         | OK             |
 
 @api
 @regression

@@ -15,7 +15,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
 
         public void UpdateCertificateReferenceCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00036874' WHERE Uln = {uln}");
 
-        public void UpdateCertificateReferenceDelete(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00012125' WHERE Uln = {uln}");
+        public void UpdateCertificateReferenceDelete(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00040171' WHERE Uln = {uln}");
 
         public void UpdateCertificateReferenceDeleteCert(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET CertificateReference = '00034646' WHERE Uln = {uln}");
 
