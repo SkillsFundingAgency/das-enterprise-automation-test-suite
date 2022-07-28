@@ -11,4 +11,10 @@ public class AS_ConsistencyAssurancePage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+    
+    public AS_ImproveTheQualityPage NHEI_UploadConsistencyAssurance()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

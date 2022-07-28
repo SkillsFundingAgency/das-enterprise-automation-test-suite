@@ -12,4 +12,11 @@ public class AS_ExperiencePage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+    
+    public AS_OccupationalExpertisePage NHEI_EnterExperience()
+    {
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 }

@@ -12,4 +12,11 @@ public class AS_ImproveTheQualityPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+
+    public AS_EngagementWithTrailblazersAndEmployersPage NHEI_EnterImproveTheQuality()
+    {
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 }

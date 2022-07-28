@@ -12,4 +12,11 @@ public class AS_EngagementWithTrailblazersAndEmployersPage : AS_EPAOApplyStandar
         Continue();
         return new(context);
     }
+ 
+    public AS_MembershipProfessionalPage NHEI_EnterEngagement()
+    {
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 }
