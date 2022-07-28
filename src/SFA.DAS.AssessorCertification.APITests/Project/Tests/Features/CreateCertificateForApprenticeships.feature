@@ -16,14 +16,14 @@ Examples:
 @regression
 @assessorcertificationapi
 Scenario Outline: Verify Check Certificate for Apprenticeships
-	Given the user prepares request with uln 1000809113
+	Given the user prepares request with uln 6272349091
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
 	
 Examples: 
 | TestCaseId          | Method | Endpoint                                         | Payload | ResponseStatus |
-| CheckCertificate002 | GET    | /api/v1/certificate/1000809113/Name1000809113/91 |         | OK             |
+| CheckCertificate002 | GET    | /api/v1/certificate/6272349091/Familyname/138 |         | OK             |
 
 @api
 @regression
@@ -43,7 +43,7 @@ Examples:
 @regression
 @assessorcertificationapi
 Scenario Outline: Verify Update Certificate
-	Given the user prepares certificate update request with uln 1000809114
+	Given the user prepares certificate update request with uln 5976587401
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the CertificateReference in the response is same as in the Certificates table in the database
@@ -57,7 +57,7 @@ Examples:
 @regression
 @assessorcertificationapi
 Scenario Outline: Verify Submit Certificate
-	Given the user prepares request for submission with uln 1000809116 
+	Given the user prepares request for submission with uln 6808635381 
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And Action in the Certificatelog is Submit
@@ -72,7 +72,7 @@ Examples:
 @regression
 @assessorcertificationapi
 Scenario Outline: Verify Delete Certificate
-	Given the user prepares certificate delete request with uln 1000809115
+	Given the user prepares certificate delete request with uln 1000061107
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And Action in the Certificatelog is Delete
@@ -80,7 +80,7 @@ Scenario Outline: Verify Delete Certificate
 
 Examples: 
 | TestCaseId        | Method | Endpoint                                                  | Payload | ResponseStatus |
-| DeleteCertificate | DELETE | /api/v1/certificate/1000809115/Name1000809115/91/00012128 |         | NoContent      |
+| DeleteCertificate | DELETE | /api/v1/certificate/1000061107/Familyname/23/00034646 |         | NoContent      |
 
 @api
 @regression
