@@ -1,12 +1,12 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
-using System.Net;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class Outer_ApprenticeCommitmentsHealthApiRestClient : Outer_HealthApiRestClient
     {
-        public Outer_ApprenticeCommitmentsHealthApiRestClient() : base(UrlConfig.Outer_ApprenticeCommitmentsHealthBaseUrl) { }
+        public Outer_ApprenticeCommitmentsHealthApiRestClient(ObjectContext objectContext) : base(objectContext, UrlConfig.Outer_ApprenticeCommitmentsHealthBaseUrl) { }
     }
 }

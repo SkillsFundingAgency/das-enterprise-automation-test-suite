@@ -12,7 +12,9 @@ public abstract class AedBasePage : VerifyBasePage
     protected AedBasePage(ScenarioContext context) : base(context)
     {
         providerConfig = context.GetProviderConfig<ProviderConfig>();
+        
         context.TryGetValue(out dataHelper);
+        
         VerifyPage();
     }
 }

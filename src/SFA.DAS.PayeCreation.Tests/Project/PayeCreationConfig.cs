@@ -9,5 +9,7 @@
         public string NoOfLevy { get; set; }
 
         public string NoOfNonLevy { get; set; }
+
+        public string NoOfAornNonLevy { get; set; }
     }
 }

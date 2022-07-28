@@ -14,7 +14,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
         private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
-        private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
         protected By FeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
         private By HelpAndSupportSection => By.XPath("//h2[text()='Help and support']");
         private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
@@ -88,14 +87,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(context);
         }
 
+        public OverallApprenticeshipConfirmedPage ConfirmOverallApprenticeship()
+        {
+            ClickConfirmYourApprenticeshipLink();
+            return new OverallApprenticeshipConfirmedPage(context);
+        }
+
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
 
-        public OverallApprenticeshipConfirmedPage ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage()
+        public ApprenticeOverviewPage VerifyTopBannerOnOverviewPageBeforeOverallConfirmation()
         {
             VerifyElement(AppreticeshipConfirmBannerHeader);
             VerifyElement(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
-            formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
-            return new OverallApprenticeshipConfirmedPage(context);
+            return this;
         }
 
         public ApprenticeOverviewPage VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm()
@@ -116,5 +120,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section4);
 
         private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section5);
+
+        private void ClickConfirmYourApprenticeshipLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section6);
     }
 }

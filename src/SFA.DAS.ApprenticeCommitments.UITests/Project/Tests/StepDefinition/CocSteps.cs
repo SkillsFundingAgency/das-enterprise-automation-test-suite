@@ -125,7 +125,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private void VerifyCocAndConfirmApprenticeship()
         {
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed();
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage();
+            _apprenticeOverviewPage.VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship();
         }
     }
 }

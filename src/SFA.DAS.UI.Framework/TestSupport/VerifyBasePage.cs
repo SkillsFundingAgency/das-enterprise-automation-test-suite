@@ -5,6 +5,8 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
+using Selenium.Axe;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -20,6 +22,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual bool TakeFullScreenShot => true;
 
+        protected virtual bool CanAnalyzePage => true;
+
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;
@@ -27,6 +31,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _directory = objectContext.GetDirectory();
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
+
+            if (frameworkConfig.IsAccessibilityTesting && CanAnalyzePage) AnalyzePage();
         }
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
@@ -111,12 +117,34 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private void TakeScreenShot()
         {
-            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
+            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
             {
-                string counter = _screenShotTitleGenerator.GetTitle();
-                ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
+                string counter = GetTitle();
+                ScreenshotHelper.TakeScreenShot(GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
             }
-                
         }
+
+        private void AnalyzePage()
+        {
+            string fileName = $"{RegexHelper.TrimAnySpace(PageTitle)}_{GetTitle()}.html";
+
+            AxeResult axeResult = null;
+
+            TestAttachmentHelper.AddTestAttachment(_directory, fileName, (x) =>
+            {
+                IWebDriver webDriver = GetWebDriver();
+
+                axeResult = new AxeBuilder(webDriver).Analyze();
+
+                webDriver.CreateAxeHtmlReport(axeResult, x, ReportTypes.Violations);
+            });
+
+            if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
+                throw new Exception($"{axeResult.Violations.Length} CRITICAL violation's is/are found in the url: {axeResult.Url}");
+        }
+
+        private string GetTitle() => _screenShotTitleGenerator.GetTitle();
+
+        private IWebDriver GetWebDriver() => context.GetWebDriver();
     }
 }

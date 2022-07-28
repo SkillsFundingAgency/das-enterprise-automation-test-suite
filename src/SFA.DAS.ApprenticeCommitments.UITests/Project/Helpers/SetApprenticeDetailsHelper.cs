@@ -12,12 +12,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
+        private readonly ApprenticeCommitmentsAccountsSqlDbHelper _appAccSqlDbHelper;
 
         public SetApprenticeDetailsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+            _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
         }
 
         public (string firstName, string lastName) SetApprenticeDetails(ApprenticeUser user)
@@ -33,7 +35,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             var username = user.ApprenticeUsername;
 
-            (string apprenticeId, string firstName, string lastName) = _aComtSqlDbHelper.GetApprenticeDetails(username);
+            (string apprenticeId, string firstName, string lastName) = _appAccSqlDbHelper.GetApprenticeDetails(username);
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                 Assert.Fail($"{username} not found in the db");

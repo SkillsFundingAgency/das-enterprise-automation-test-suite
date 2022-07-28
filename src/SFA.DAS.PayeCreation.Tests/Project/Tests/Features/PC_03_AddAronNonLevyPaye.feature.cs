@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
+namespace SFA.DAS.PayeCreation.Tests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount")]
-    public partial class AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccountFeature
+    [NUnit.Framework.DescriptionAttribute("PC_03_AddAornNonLevyPaye")]
+    public partial class PC_03_AddAornNonLevyPayeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AC_Settings_06_UpdatePasswordForUnMatchedAccount.feature"
+#line 1 "PC_03_AddAronNonLevyPaye.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings", "AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "PC_03_AddAornNonLevyPaye", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Settings_06_Update password before confirming the account")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("accountsettingstest")]
-        [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi")]
-        public void AC_Settings_06_UpdatePasswordBeforeConfirmingTheAccount()
+        [NUnit.Framework.DescriptionAttribute("PC_03_AddAornNonLevyPaye")]
+        [NUnit.Framework.CategoryAttribute("payecreation")]
+        [NUnit.Framework.CategoryAttribute("aornpayecreation")]
+        public void PC_03_AddAornNonLevyPaye()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitments",
-                    "regression",
-                    "accountsettingstest",
-                    "deletecmaddatacreatedthroughapi"};
+                    "payecreation",
+                    "aornpayecreation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_06_Update password before confirming the account", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PC_03_AddAornNonLevyPaye", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,11 +94,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("an apprentice has created the account and about to validate personal details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.Then("an apprentice can change their password before confirming account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+ testRunner.Given("I add aorn non levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

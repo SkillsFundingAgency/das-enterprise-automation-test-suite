@@ -16,13 +16,12 @@ namespace SFA.DAS.RAA_V2.APITests.Project
             _context = context;
             _dbConfig = context.Get<DbConfig>();
         }
-      
 
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            _context.SetRestClient(new Outer_EmployerAccountLegalEntitiesApiClient(_context.GetOuter_ApiAuthTokenConfig()));
+            _context.SetRestClient(new Outer_EmployerAccountLegalEntitiesApiClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
 
             _context.Set(new EmployerLegalEntitiesSqlDbHelper(_dbConfig));
 

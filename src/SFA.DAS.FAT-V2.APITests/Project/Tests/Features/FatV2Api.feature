@@ -16,6 +16,17 @@ Examples:
 @api
 @fatv2api
 @regression
+Scenario Outline: Verify FatV2Api course
+	When the user sends <Method> request to <Endpoint> with payload <Payload> 
+	Then a <ResponseStatus>, <ResponseContent> response is received
+
+Examples: 
+| TestCaseId | Method | Endpoint               | Payload         | ResponseStatus | ResponseContent |
+| Fatv2004   | GET    | /epaos/EPA0241/courses |                 | OK             | EPA0241         |
+
+@api
+@fatv2api
+@regression
 Scenario: Verify FatV2Api EPAO
-	When the user sends GET request to /epaos without payload 
+	When the user sends GET request to /epaos without payload
 	Then a OK response is received
