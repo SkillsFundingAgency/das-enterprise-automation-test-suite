@@ -6,12 +6,6 @@ public class ManageTheStandardsYouDeliverPage : ManagingStandardsBasePage
 
     public ManageTheStandardsYouDeliverPage(ScenarioContext context) : base(context) { }
 
-    public ManageAStandard_DevopsPage AccessDevopsEngineerLevel4()
-    {
-        formCompletionHelper.ClickLinkByText("DevOps engineer (Level 4)");
-        return new ManageAStandard_DevopsPage(context);
-    }
-
     public ManageAStandard_TeacherPage AccessTeacherLevel6()
     {
         formCompletionHelper.ClickLinkByText("Teacher (Level 6)");

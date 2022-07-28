@@ -31,7 +31,7 @@ public class MS_YourDetails_Steps
     {
         ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new(_context);
         manageTheStandardsYouDeliverPage
-            .AccessDevopsEngineerLevel4()
+            .AccessTeacherLevel6()
             .UpdateTheseContactDetails()
             .UpdateContactInformation();
     }
@@ -99,5 +99,4 @@ public class MS_YourDetails_Steps
             .AccessEditTheseRegions()
             .EditRegionsAddLutonEssexAndConfirm();
     }
-
 }

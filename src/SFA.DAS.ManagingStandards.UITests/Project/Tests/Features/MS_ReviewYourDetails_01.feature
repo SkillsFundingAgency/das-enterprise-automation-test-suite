@@ -13,7 +13,7 @@ Scenario: MS_01A_Verify_Organisation_Details_And_Update_Contact_Details
 @managingstandards
 @managingstandards02
 @regression
-Scenario: MS_01C_Approve_DisApprove_Standard
+Scenario: MS_01B_Approve_DisApprove_Standard
 	Given the provider logs into employer portal
 	When the provider navigates to Review your details 
 	And the provider is able to approve regulated standard
@@ -22,7 +22,7 @@ Scenario: MS_01C_Approve_DisApprove_Standard
 @managingstandards
 @managingstandards03
 @regression
-Scenario: MS_01D_WhereCanYouDeliver_EditLocations_Standard
+Scenario: MS_01C_WhereCanYouDeliver_EditLocations_Standard
 	Given the provider logs into employer portal
 	When the provider navigates to Review your details 
 	And the provider is able to change the standard delivered in both not a national provider
