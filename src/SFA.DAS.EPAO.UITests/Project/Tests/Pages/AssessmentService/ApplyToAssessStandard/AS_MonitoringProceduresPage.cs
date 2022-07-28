@@ -11,4 +11,10 @@ public class AS_MonitoringProceduresPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+
+    public AS_ModerationProcessesPage NHEI_UploadMonitoringProcedure()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

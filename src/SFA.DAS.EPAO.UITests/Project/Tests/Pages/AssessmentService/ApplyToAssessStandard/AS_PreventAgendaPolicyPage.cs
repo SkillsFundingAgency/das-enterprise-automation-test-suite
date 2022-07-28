@@ -11,4 +11,10 @@ public class AS_PreventAgendaPolicyPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+
+    public AS_ConflictOfinterestPolicyPage NHEI_UploadPreventAgendaPolicy()
+    {
+        UploadFile();
+        return new(context);
+    }
 }
