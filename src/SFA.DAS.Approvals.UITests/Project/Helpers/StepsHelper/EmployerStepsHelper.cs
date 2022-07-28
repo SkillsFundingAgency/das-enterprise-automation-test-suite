@@ -308,13 +308,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                .SendInstructionsToProviderForEmptyCohort();
         }
 
-        public void FlexiEmployerAddsApprenticeAndSendsToProvider()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
-            var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect()
+            return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
                   .EmployerSelectsASStandardInFlexiJobJourney()
-                  .SelectFlexiJobAgencyDeliveryModelAndContinue()
-                  .SubmitValidApprenticeDetails(false);
+                  .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
     }
 }
