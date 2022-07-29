@@ -6,10 +6,10 @@ public class ReviewYourDetailsPage : ManagingStandardsBasePage
 
     public ReviewYourDetailsPage(ScenarioContext context) : base(context) { }
 
-    public TrainingLocationPage AccessTrainingLocations()
+    public TrainingVenuesPage AccessTrainingLocations()
     {
         formCompletionHelper.ClickLinkByText("Training locations");
-        return new TrainingLocationPage(context);
+        return new TrainingVenuesPage(context);
     }
 
     public ManageTheStandardsYouDeliverPage AccessStandards()
