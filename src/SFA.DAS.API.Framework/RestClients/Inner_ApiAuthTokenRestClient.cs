@@ -1,51 +1,45 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
-using SFA.DAS.API.Framework.Configs;
-using System;
-using System.Net;
+﻿
+namespace SFA.DAS.API.Framework.RestClients;
 
-namespace SFA.DAS.API.Framework.RestClients
+public class Inner_ApiAuthTokenRestClient
 {
-    public class Inner_ApiAuthTokenRestClient
+    private RestClient _restClient;
+
+    private RestRequest _restRequest;
+
+    private readonly Inner_ApiAuthTokenConfig _config;
+
+    public Inner_ApiAuthTokenRestClient(Inner_ApiAuthTokenConfig config)
     {
-        private RestClient _restClient;
+        _config = config;
 
-        private RestRequest _restRequest;
+        CreateInnerApiAuthTokenRestClient();
+    }
 
-        private readonly Inner_ApiAuthTokenConfig _config;
+    public (string tokenType, string accessToken) GetAuthToken()
+    {
+        _restRequest.Method = Method.POST;
 
-        public Inner_ApiAuthTokenRestClient(Inner_ApiAuthTokenConfig config)
+        _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
+
+        _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.ClientId}&client_secret={_config.ClientSecrets}&grant_type={_config.GrantType}&resource={_config.Resource}", ParameterType.RequestBody);
+
+        IRestResponse response = _restClient.Execute(_restRequest);
+
+        if (response.StatusCode != HttpStatusCode.OK)
         {
-            _config = config;
-
-            CreateInnerApiAuthTokenRestClient();
+            throw new System.Exception($"Failed to get auth token.{Environment.NewLine} {response.Content}", response.ErrorException);
         }
 
-        public (string tokenType, string accessToken) GetAuthToken()
-        {
-            _restRequest.Method = Method.POST;
+        AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
 
-            _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
+        return (authToken.Token_type, authToken.Access_token);
+    }
 
-            _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.ClientId}&client_secret={_config.ClientSecrets}&grant_type={_config.GrantType}&resource={_config.Resource}", ParameterType.RequestBody);
+    private void CreateInnerApiAuthTokenRestClient()
+    {
+        _restClient = new RestClient(UrlConfig.MangeIdentitybaseUrl(_config.Tenant));
 
-            IRestResponse response = _restClient.Execute(_restRequest);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new System.Exception($"Failed to get auth token.{Environment.NewLine} {response.Content}", response.ErrorException);
-            }
-
-            AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
-
-            return (authToken.Token_type, authToken.Access_token);
-        }
-
-        private void CreateInnerApiAuthTokenRestClient()
-        {
-            _restClient = new RestClient(UrlConfig.MangeIdentitybaseUrl(_config.Tenant));
-
-            _restRequest = new RestRequest();
-        }
+        _restRequest = new RestRequest();
     }
 }

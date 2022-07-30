@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the employer sets up the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("the invited employer status in \"Account started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the invited employer status in \"Account creation started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.When("the employer adds PAYE from Account Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

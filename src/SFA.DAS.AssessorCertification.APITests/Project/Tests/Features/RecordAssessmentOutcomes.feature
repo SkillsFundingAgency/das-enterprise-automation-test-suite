@@ -30,11 +30,11 @@ Examples:
 @regression
 @assessorcertificationapi
 Scenario Outline: Verify Delete EPA Record
-	Given the user prepares delete request with uln 1000809112
+	Given the user prepares delete request with uln 1000809117
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
 	Then a <ResponseStatus> response is received
 	And the status in the Certificates Table in database is Deleted
 
 Examples: 
 | TestCaseId         | Method | Endpoint                                          | Payload | ResponseStatus |
-| DeleteEPARecord001 | DELETE | /api/v1/epa/1000809112/Name1000809112/91/00012125 |         | NoContent      |
+| DeleteEPARecord001 | DELETE | /api/v1/epa/1000809117/Name1000809117/91/00040171 |         | NoContent      |

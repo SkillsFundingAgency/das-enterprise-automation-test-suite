@@ -1,9 +1,6 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿namespace SFA.DAS.API.Framework.Configs;
 
-namespace SFA.DAS.API.Framework.Configs
+public class Inner_CoursesApiAuthTokenConfig : Inner_ApiAuthTokenConfig
 {
-    public class Inner_CoursesApiAuthTokenConfig : Inner_ApiAuthTokenConfig
-    {
-        protected override string ApiName => $"das-{EnvironmentConfig.EnvironmentName}-crsapi-as-ar";
-    }
+    protected override string ApiName => $"das-{EnvironmentConfig.EnvironmentName}-crsapi-as-ar";
 }

@@ -2,13 +2,14 @@
 using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
+using SFA.DAS.ConfigurationBuilder;
 using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class ApprenticeCommitmentsJobs_CreateApprenticeshipClient : Outer_BaseApiRestClient
     {
-        public ApprenticeCommitmentsJobs_CreateApprenticeshipClient(ApprenticeCommitmentsJobsAuthTokenConfig config) : base(config.Code) { }
+        public ApprenticeCommitmentsJobs_CreateApprenticeshipClient(ObjectContext objectContext, ApprenticeCommitmentsJobsAuthTokenConfig config) : base(objectContext, config.Code) { }
 
         protected override string ApiName => "/api";
 

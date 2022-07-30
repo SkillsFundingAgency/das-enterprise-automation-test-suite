@@ -24,7 +24,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project
         {
             _context.Set(new AssessorCertificationSqlDbHelper(_dbConfig));
 
-            _context.SetRestClient(new Outer_AssessorCertificationApiRestClient(_context.GetOuter_ApiAuthTokenConfig()));
+            _context.SetRestClient(new Outer_AssessorCertificationApiRestClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
         }
     }
 }

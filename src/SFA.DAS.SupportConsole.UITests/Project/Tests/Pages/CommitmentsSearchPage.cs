@@ -22,9 +22,15 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     private static By SearchButton => By.Id("searchButton");
     private static By SearchTextBoxHelpText => By.Id("search-main");
     private static By CommitmentsSearchPageErrorText => By.CssSelector(".error-message");
+
+    public CommitmentsSqlDataHelper SqlDataHelper { get; }
     #endregion
 
-    public CommitmentsSearchPage(ScenarioContext context) : base(context) => VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
+    public CommitmentsSearchPage(ScenarioContext context) : base(context)
+    {
+        VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
+        SqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+    }
 
     private void EnterTextInSearchBox(string searchText) => formCompletionHelper.EnterText(SearchTextBox, searchText);
 
@@ -36,33 +42,16 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
 
     private void ClickSearchButton() => formCompletionHelper.Click(SearchButton);
 
-    public UlnSearchResultsPage SearchForULN()
+    public UlnSearchResultsPage SearchForULN(string uln)
     {
         SelectUlnSearchTypeRadioButton();
-        EnterTextInSearchBox(config.Uln);
-        ClickSearchButton();
-        return new (context);
+        Search(uln);
+        return new(context);
     }
 
-    public void SearchWithInvalidULN()
-    {
-        EnterTextInSearchBox(InvalidUln);
-        ClickSearchButton();
-    }
+    public void SearchWithInvalidULN() => Search(InvalidUln);
 
-    public void SearchWithInvalidULNWithSpecialChars()
-    {
-        EnterTextInSearchBox(InvalidUlnWithSpecialChars);
-        ClickSearchButton();
-    }
-
-    public CohortSummaryPage SearchForCohort()
-    {
-        SelectCohortRefSearchTypeRadioButton();
-        EnterTextInSearchBox(config.CohortRef);
-        ClickSearchButton();
-        return new (context);
-    }
+    public void SearchWithInvalidULNWithSpecialChars() => Search(InvalidUlnWithSpecialChars);
 
     public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
     {
@@ -70,25 +59,22 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
         return this;
     }
 
-    public void SearchWithInvalidCohort()
-    {
-        EnterTextInSearchBox(InvalidCohort);
-        ClickSearchButton();
-    }
+    public void SearchWithInvalidCohort() => Search(InvalidCohort);
 
-    public void SearchWithUnauthorisedCohortAccess()
-    {
-        EnterTextInSearchBox(config.CohortNotAssociatedToAccount);
-        ClickSearchButton();
-    }
+    public void SearchWithUnauthorisedCohortAccess() => Search(config.CohortNotAssociatedToAccount.CohortRef);
 
-    public void SearchWithInvalidCohortWithSpecialChars()
-    {
-        EnterTextInSearchBox(InvalidCohortWithSpecialChars);
-        ClickSearchButton();
-    }
+    public void SearchWithInvalidCohortWithSpecialChars() => Search(InvalidCohortWithSpecialChars);
 
     public string GetCommitmentsSearchPageErrorText() => pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
 
     public string GetSearchTextBoxHelpText() => pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
+
+    public CohortSummaryPage SearchCohort(string text)
+    {
+        SelectCohortRefSearchTypeRadioButton();
+        Search(text);
+        return new(context);
+    }
+
+    private void Search(string text) { EnterTextInSearchBox(text); ClickSearchButton(); }
 }

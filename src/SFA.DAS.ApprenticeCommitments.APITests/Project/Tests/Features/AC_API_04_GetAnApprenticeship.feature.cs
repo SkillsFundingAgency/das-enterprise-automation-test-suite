@@ -79,7 +79,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
+        [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi")]
         public void AC_API_04_GetAnApprenticeshipRecord()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.Features
                     "apprenticecommitmentsapi",
                     "outerapi",
                     "regression",
-                    "deleteuser"};
+                    "deletecmaddatacreatedthroughapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_04_Get an apprenticeship record", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8

@@ -1,7 +1,6 @@
-﻿namespace SFA.DAS.API.Framework.Configs
+﻿namespace SFA.DAS.API.Framework.Configs;
+
+public class ApprenticeCommitmentsJobsAuthTokenConfig
 {
-    public class ApprenticeCommitmentsJobsAuthTokenConfig
-    {
-        public string Code { get; set; }
-    }
+    public string Code { get; set; }
 }

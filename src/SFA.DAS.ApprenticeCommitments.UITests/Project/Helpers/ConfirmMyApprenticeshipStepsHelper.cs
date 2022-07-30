@@ -31,7 +31,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
         public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship()
-            => ConfirmAllSections().ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage();
+        {
+            var apprenticeOverviewPage = ConfirmAllSections().VerifyTopBannerOnOverviewPageBeforeOverallConfirmation();
+            AssertSection6Status(StatusHelper.InComplete);
+            return apprenticeOverviewPage.ConfirmOverallApprenticeship();
+        }
+
         public ApprenticeOverviewPage ConfirmYourEmployer(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourEmployerPage().SelectYesAndContinueToOverviewPage();
 
         public ApprenticeOverviewPage ConfirmYourTrainingProvider(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().SelectYesAndContinueToOverviewPage();
@@ -120,9 +125,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage AssertSection5Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section5, expectedStatus);
 
+        public ApprenticeOverviewPage AssertSection6Status(string expectedStatus) => AssertSection6Status(SectionHelper.Section6, expectedStatus);
+
         public ApprenticeOverviewPage AssertSectionStatus(string sectionName, string expectedStatus)
         {
             var page = new ApprenticeOverviewPage(_context);
+            Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
+            return page;
+        }
+
+        public ApprenticeOverviewPage AssertSection6Status(string sectionName, string expectedStatus)
+        {
+            var page = new ApprenticeOverviewPage(_context,false);
             Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
             return page;
         }

@@ -132,18 +132,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship().VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
 
-            _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
-                .VerifyCMADSectionStatusToBeCompleteOnHomePage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection6Status(StatusHelper.Complete);
+
+            VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
         [Then(@"the apprentice confirms the overall apprenticeship")]
         public void ThenTheApprenticeConfirmsTheOverallApprenticeship()
         {
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage().NavigateBackToOverviewPage();
-            _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
-            .VerifyCMADSectionStatusToBeCompleteOnHomePage();
+            _apprenticeOverviewPage.VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship().NavigateBackToOverviewPage();
+            VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
-        private ApprenticeOverviewPage ApprenticeOverviewPage() => new ApprenticeOverviewPage(_context);
+        private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
+
+        private ApprenticeHomePage VerifyOverviewPageAndHomePageAfterOVerallConfirmation() => _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
+            .VerifyCMADSectionStatusToBeCompleteOnHomePage();
     }
 }

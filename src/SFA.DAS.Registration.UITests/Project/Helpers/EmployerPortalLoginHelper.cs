@@ -28,6 +28,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage ReLogin() => new SignInPage(_context).Login(GetLoginCredentials());
 
+        public SignInPage FailedLogin() => new SignInPage(_context).FailedLogin(GetLoginCredentials());
+
         protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
 
         protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) 

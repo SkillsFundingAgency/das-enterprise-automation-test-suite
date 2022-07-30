@@ -8,6 +8,7 @@
         public string CommitmentsDbConnectionString { get; set; }
         public string ApprenticeCommitmentLoginDbConnectionString { get; set; }
         public string ApprenticeCommitmentDbConnectionString { get; set; }
+        public string ApprenticeCommitmentAccountsDbConnectionString { get; set; }
         public string RoatpDatabaseConnectionString { get; set; }
         public string ApplyDatabaseConnectionString { get; set; }
         public string QnaDatabaseConnectionString { get; set; }
@@ -25,5 +26,6 @@
         public string TMDbConnectionString { get; set; }
         public string CRSDbConnectionString { get; set; }
         public string EmploymentCheckDbConnectionString { get; set; }
+        public string ManagingStandardsDbConnectionString { get; set; }
     }
 }

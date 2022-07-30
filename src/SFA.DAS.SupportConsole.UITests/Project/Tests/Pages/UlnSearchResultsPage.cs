@@ -6,9 +6,9 @@ public class UlnSearchResultsPage : SupportConsoleBasePage
 
     public UlnSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    public UlnDetailsPage SelectULN()
+    public UlnDetailsPage SelectULN(CohortDetails cohortDetails)
     {
-        tableRowHelper.SelectRowFromTable("View", config.UlnName);
-        return new (context);
+        tableRowHelper.SelectRowFromTable("View", cohortDetails.UlnName);
+        return new (context, cohortDetails);
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
+
 [Binding]
 public class CommitmentsSteps
 {
@@ -15,10 +16,10 @@ public class CommitmentsSteps
     }
 
     [When(@"the User searches for an ULN")]
-    public void WhenTheUserSearchesForAnULN() => _stepsHelper.SearchForUln();
+    public void WhenTheUserSearchesForAnULN() => _stepsHelper.SearchForUln(_config.CohortDetails.Uln);
 
     [Then(@"the ULN details are displayed")]
-    public void ThenTheULNDetailsAreDisplayed() => new UlnSearchResultsPage(_context).SelectULN().VerifyUlnDetailsPageHeaders();
+    public void ThenTheULNDetailsAreDisplayed() => new UlnSearchResultsPage(_context).SelectULN(_config.CohortDetails).VerifyUlnDetailsPageHeaders();
 
     [When(@"the User searches with a invalid ULN")]
     public void WhenTheUserSearchesWithAInvalidULN() => _stepsHelper.SearchWithInvalidUln(false);
@@ -29,28 +30,6 @@ public class CommitmentsSteps
     [Then(@"appropriate ULN error message is shown to the user")]
     public void ThenAppropriateUlnErrorMessageIsShownToTheUser() => 
         Assert.AreEqual(new CommitmentsSearchPage(_context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
-
-    [When(@"the User searches for a Cohort")]
-    public void WhenTheUserSearchesForACohort() => _stepsHelper.SearchForCohort();
-
-    [When(@"the User clicks on 'View this cohort' button")]
-    public void WhenTheUserClicksOnButton()
-    {
-        var cohortSummaryPage = new CohortSummaryPage(_context);
-        Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
-        cohortSummaryPage.ClickViewThisCohortButton();
-    }
-
-    [When(@"the user chooses to view Uln of the Cohort")]
-    public void WhenTheUserChoosesToViewUlnOfTheCohort()
-    {
-        var cohortDetailsPage = new CohortDetailsPage(_context);
-        Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortDetailsPage");
-        cohortDetailsPage.ClickViewUlnLink();
-    }
-
-    [Then(@"the ULN details page is displayed")]
-    public void ThenTheULNDetailsPageIsDisplayed() => new UlnDetailsPage(_context).VerifyUlnDetailsPageHeaders();
 
     [When(@"the User searches with a invalid Cohort Ref")]
     public void WhenTheUserSearchesWithAInvalidCohortRef() => _stepsHelper.SearchWithInvalidCohort(false);
@@ -68,4 +47,6 @@ public class CommitmentsSteps
     [Then(@"unauthorised Cohort access error message is shown to the user")]
     public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser() => 
         Assert.AreEqual(new CommitmentsSearchPage(_context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
+
+    
 }

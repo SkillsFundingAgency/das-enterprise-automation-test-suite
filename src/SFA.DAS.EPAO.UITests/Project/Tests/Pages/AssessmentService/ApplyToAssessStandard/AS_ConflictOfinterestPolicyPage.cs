@@ -11,4 +11,10 @@ public class AS_ConflictOfinterestPolicyPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+
+    public AS_MonitoringProceduresPage NHEI_UploadConflictOfinterestPolicy()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

@@ -25,6 +25,7 @@ namespace SFA.DAS.ConfigurationBuilder
                 CommitmentsDbConnectionString = GetConnectionString(_dbDevConfig.CommitmentsDbName),
                 ApprenticeCommitmentDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentDbName),
                 ApprenticeCommitmentLoginDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentLoginDbName),
+                ApprenticeCommitmentAccountsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentAccountsDbName),
                 ApplyDatabaseConnectionString = GetConnectionString(_dbDevConfig.ApplyDatabaseName),
                 LoginDatabaseConnectionString = GetConnectionString(_dbDevConfig.LoginDatabaseName),
                 QnaDatabaseConnectionString = GetConnectionString(_dbDevConfig.QnaDatabaseName),
@@ -41,7 +42,8 @@ namespace SFA.DAS.ConfigurationBuilder
                 UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName),
                 TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName),
                 CRSDbConnectionString = GetConnectionString(_dbDevConfig.CrsDbName),
-                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName)
+                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName),
+                ManagingStandardsDbConnectionString = GetConnectionString(_dbDevConfig.ManagingStandardsDbName)
             };
         }
 

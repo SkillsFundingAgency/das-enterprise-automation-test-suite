@@ -15,11 +15,11 @@ public class StepsHelper
 
     public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-    public ToolSupportHomePage ValidUserLogsinToSupportTools() => LoginToSupportTools(_context.GetUser<SupportToolsUser>());
+    public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
 
     public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
-    public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
+    public UlnSearchResultsPage SearchForUln(string uln) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN(uln);
 
     public void SearchWithInvalidUln(bool WithSpecialChars)
     {
@@ -54,24 +54,29 @@ public class StepsHelper
         commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
     }
 
-    public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
+    public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
 
-    void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+    private void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
-    private SearchHomePage LoginToSupportConsole(LoginUser loginUser)
+    private SearchHomePage LoginToSupportConsole(LoginUser loginUser) => GoToSignInPage().SignInWithValidDetails(loginUser);
+
+    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser, bool openNewTab)
+    {
+        var baseUrl = UrlConfig.SupportTools_BaseUrl;
+
+        if (openNewTab) _tabHelper.OpenInNewTab(baseUrl);
+
+        else _tabHelper.GoToUrl(baseUrl);
+
+        if (new CheckIdamsPage(_context).IsPageDisplayed()) return GoToSignInPage().SignIntoToolSupportWithValidDetails(loginUser);
+
+        else return new ToolSupportHomePage(_context);
+    }
+
+    private SignInPage GoToSignInPage()
     {
         new IdamsPage(_context).LoginToAccess1Staff();
 
-        return new SignInPage(_context).SignInWithValidDetails(loginUser);
+        return new(_context);
     }
-
-    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
-    {
-        _tabHelper.GoToUrl(UrlConfig.SupportTools_BaseUrl);
-        new IdamsPage(_context).LoginToAccess1Staff();
-
-        return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
-    }
-
-
 }
