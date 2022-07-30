@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"the apprentice creates the CMAD account")]
-        public void ThenTheApprenticeCreatesTheCMADAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOrUnConfirmedOnHomePage();
+        public void ThenTheApprenticeCreatesTheCMADAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
 
         [Given(@"an apprentice has created and validated the account")]
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()

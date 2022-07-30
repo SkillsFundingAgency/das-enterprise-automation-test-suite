@@ -58,7 +58,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
         public ApprenticeOverviewPage VerifyCMADSectionStatusOnTheHomePageToBeInComplete(ApprenticeOverviewPage apprenticeOverviewPage)
-            => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyDashboardCMADSectionWhenInCompleteOrUnConfirmedOnHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
+            => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyDashboardCMADSectionWhenInCompleteOnHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
 
         public ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
         {

@@ -20,6 +20,6 @@
 
         internal static string DashboardCmadSectionTextWhenUnConfirmed = "Changes have been made to your apprenticeship details. Confirm your new details.";
 
-
+        internal static string DashboardHelpAndSupportDashboardText = "Who to contact if you have questions or concerns during your apprenticeship.";
     }
 }
