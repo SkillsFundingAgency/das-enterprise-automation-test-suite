@@ -21,8 +21,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected string ServiceName => "My apprenticeship";
         protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
         protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
-        protected By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship details']");
-        protected By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
+        protected By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Confirm my apprenticeship details']");
+        protected By HelpTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Help and support']");
         private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
         private By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -9,10 +10,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
-        private By ConfirmYourApprenticeshipNowLink => By.XPath("//a[text()='Confirm your apprenticeship now']");
-        private By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
-        private By CompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--green");
-        private By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
+        private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Confirm my apprenticeship details')]");
+        private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath("//a[text()='My apprenticeship details']");
+        private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
+        private static By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
+        private static By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmYourApprenticeLink = true) : base(context)
         {
@@ -29,13 +31,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyNotificationBannerHeader("Success");
             VerifyNotificationBannerContent("You have created an account and we have found your apprenticeship.");
-            VerifyElement(ConfirmYourApprenticeshipNowLink);
-            return this;
+            VerifyElement(InCompleteStatusSelector, StatusHelper.DashboardInCompleteStatus);
+            return VerifyDashboardCMADSectionWhenInCompleteOrUnConfirmedOnHomePage();
         }
 
-        public ApprenticeOverviewPage NavigateToOverviewPageFromLinkOnTheHomePage()
+        public ApprenticeOverviewPage NavigateToOverviewPageWithCmadLinkOnTheHomePage()
         {
-            formCompletionHelper.Click(ConfirmYourApprenticeshipNowLink);
+            formCompletionHelper.Click(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
             return new ApprenticeOverviewPage(context, false);
         }
 
@@ -45,8 +47,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new HelpAndSupportPage(context);
         }
 
-        public ApprenticeHomePage VerifyCMADSectionStatusToBeCompleteOnHomePage() { VerifyElement(CompleteStatusSelector); return this; }
+        public ApprenticeHomePage VerifyCMADCardOnHomePageOnceFullyConfirmed()
+        {
+            VerifyElement(CmadDashboardLinkAfterFullyConfirmed);
+            VerifyElement(CmadDashboardText, StatusHelper.DashboardCmadSectionTextWhenFullyConfirmed);
+            return this;
+        }
 
-        public ApprenticeHomePage VerifyCMADSectionStatusToBeInCompleteOnHomePage() { VerifyElement(InCompleteStatusSelector); return this; }
+        public ApprenticeHomePage VerifyDashboardCMADSectionWhenInCompleteOrUnConfirmedOnHomePage() 
+        {
+            VerifyElement(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
+            VerifyElement(CmadDashboardText, StatusHelper.DashboardCmadSectionTextWhenInCompleteOrUnConfirmed);
+            return this; 
+        }
     }
 }

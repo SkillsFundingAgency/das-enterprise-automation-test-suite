@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"the apprentice creates the CMAD account")]
-        public void ThenTheApprenticeCreatesTheCMADAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyCMADSectionStatusToBeInCompleteOnHomePage();
+        public void ThenTheApprenticeCreatesTheCMADAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOrUnConfirmedOnHomePage();
 
         [Given(@"an apprentice has created and validated the account")]
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to navigate to Home page back and forth from Overview and Help pages")]
         public void ThenTheApprenticeIsAbleToNavigateToHomePageBackAndForthFromOverviewAndHelpPages()
         {
-            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
+            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToOverviewPageWithCmadLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
             _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
             _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink();
             _apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
@@ -42,7 +42,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice can create account and confirm their details")]
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
         {
-            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
+            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
             confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
         }    
     }

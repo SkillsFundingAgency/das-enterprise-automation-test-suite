@@ -33,7 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship()
         {
             var apprenticeOverviewPage = ConfirmAllSections().VerifyTopBannerOnOverviewPageBeforeOverallConfirmation();
-            AssertSection6Status(StatusHelper.InComplete);
+            AssertSection6Status(StatusHelper.OverviewSectionInComplete);
             return apprenticeOverviewPage.ConfirmOverallApprenticeship();
         }
 
@@ -45,26 +45,26 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage ConfirmAllSections()
         {
-            var apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.InComplete);
+            var apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.OverviewSectionInComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.InComplete);
+            apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.OverviewSectionInComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.InComplete);
+            apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.OverviewSectionInComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.OverviewSectionInComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.InComplete);
+            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.OverviewSectionInComplete);
             return VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
         }
 
         public ApprenticeOverviewPage VerifyCMADSectionStatusOnTheHomePageToBeInComplete(ApprenticeOverviewPage apprenticeOverviewPage)
-            => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyCMADSectionStatusToBeInCompleteOnHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
+            => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyDashboardCMADSectionWhenInCompleteOrUnConfirmedOnHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
 
         public ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
         {
             AssertSection1Status(initialStatus);
             var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(_context));
-            AssertSection1Status(StatusHelper.Complete);
+            AssertSection1Status(StatusHelper.OverviewSectionComplete);
             return apprenticeOverviewPage;
         }
 
@@ -72,7 +72,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection2Status(initialStatus);
             var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));
-            AssertSection2Status(StatusHelper.Complete);
+            AssertSection2Status(StatusHelper.OverviewSectionComplete);
             return apprenticeOverviewPage;
         }
 
@@ -80,7 +80,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection3Status(initialStatus);
             var apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYesAndContinueToOverviewPage();
-            AssertSection3Status(StatusHelper.Complete);
+            AssertSection3Status(StatusHelper.OverviewSectionComplete);
             return apprenticeOverviewPage;
         }
 
@@ -88,7 +88,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection4Status(initialStatus);
             var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
-            AssertSection4Status(StatusHelper.Complete);
+            AssertSection4Status(StatusHelper.OverviewSectionComplete);
             return apprenticeOverviewPage;
         }
 
@@ -96,7 +96,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection5Status(initialStatus);
             var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities();
-            AssertSection5Status(StatusHelper.Complete);
+            AssertSection5Status(StatusHelper.OverviewSectionComplete);
             return apprenticeOverviewPage;
         }
 
@@ -104,7 +104,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection5Status(initialStatus);
             var apprenticeOverviewPage = VerifyAndConfirmRolesAndResponsibilitiesWithNegativeFlows(NavigateToRolesPage());
-            AssertSection5Status(StatusHelper.Complete);
+            AssertSection5Status(StatusHelper.OverviewSectionComplete);
             return apprenticeOverviewPage;
         }
 
