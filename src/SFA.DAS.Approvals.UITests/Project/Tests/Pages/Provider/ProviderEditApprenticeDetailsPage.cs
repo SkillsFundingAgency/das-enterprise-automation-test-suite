@@ -21,9 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
+            bool rpl = false;
+
             EnterUln();
 
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear)) > 2021) rpl = true;
+
             formCompletionHelper.ClickElement(SaveButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
@@ -32,6 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
+            bool rpl = false;
+
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
             formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
             formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
@@ -53,7 +61,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear)) > 2021) rpl = true;
+
             formCompletionHelper.ClickElement(SaveButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 

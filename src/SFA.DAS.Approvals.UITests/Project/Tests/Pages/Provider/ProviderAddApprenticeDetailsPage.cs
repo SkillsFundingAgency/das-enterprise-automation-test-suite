@@ -18,6 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
+            bool rpl = false;
+
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
@@ -33,8 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
-            
+
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear)) > 2021) rpl = true;
+
             formCompletionHelper.ClickElement(AddButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
