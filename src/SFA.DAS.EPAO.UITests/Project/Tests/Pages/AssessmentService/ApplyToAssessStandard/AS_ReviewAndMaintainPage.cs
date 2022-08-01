@@ -12,4 +12,11 @@ public class AS_ReviewAndMaintainPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+    
+    public AS_SecureITInfrastructurePage NHEI_EnterReviewAndMaintainPlan()
+    {
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 }

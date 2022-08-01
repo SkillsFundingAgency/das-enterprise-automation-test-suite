@@ -8,6 +8,8 @@ public class ToolSupportHomePage : ToolSupportBasePage
     private static By PauseApprenticeshipsLink => By.Id("pauseApprenticeship");
     private static By ResumeApprenticeshipsLink => By.Id("resumeApprenticeship");
     private static By StopApprenticeshipsLink => By.Id("stopApprenticeship");
+    private static By SuspendUserAccountsLink => By.Id("suspendUser");
+    private static By ReinstateUserAccountsLink => By.Id("reinstateUser");
     #endregion
 
     public ToolSupportHomePage(ScenarioContext context) : base(context) { }
@@ -28,5 +30,17 @@ public class ToolSupportHomePage : ToolSupportBasePage
     {
         formCompletionHelper.Click(StopApprenticeshipsLink);
         return new (context);
+    }
+
+    public SearchForAnEmployerPage ClickSuspendUserAccountsLink()
+    {
+        formCompletionHelper.Click(SuspendUserAccountsLink);
+        return new(context);
+    }
+
+    public SearchForAnEmployerPage ClickReinstateUserAccountsLink()
+    {
+        formCompletionHelper.Click(ReinstateUserAccountsLink);
+        return new(context);
     }
 }

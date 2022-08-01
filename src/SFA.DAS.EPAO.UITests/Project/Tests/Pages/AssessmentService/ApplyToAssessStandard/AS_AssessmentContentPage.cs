@@ -12,5 +12,12 @@ public class AS_AssessmentContentPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+    
+    public AS_ConfirmationOfAssessmentPage NHEI_EnterAssessmentContent()
+    {
+        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 
 }
