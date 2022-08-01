@@ -16,4 +16,11 @@ public class AS_WhereWillYouDeliverEndPointAssessmentsPage : AS_EPAOApplyStandar
         Continue();
         return new(context);
     }
+    
+    public AS_ChooseDayPage NHEIChooseLocation()
+    {
+        ClickRandomElement(DeliveryAreas);
+        Continue();
+        return new(context);
+    }
 }

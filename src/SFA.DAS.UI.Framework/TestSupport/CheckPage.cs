@@ -1,8 +1,7 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Login.Service.Project.Tests.Pages
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class CheckPage : VerifyBasePage
     {

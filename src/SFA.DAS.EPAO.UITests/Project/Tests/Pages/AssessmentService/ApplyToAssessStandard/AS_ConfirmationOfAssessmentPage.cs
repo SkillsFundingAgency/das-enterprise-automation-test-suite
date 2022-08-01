@@ -12,4 +12,11 @@ public class AS_ConfirmationOfAssessmentPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+    
+    public AS_RecordingAssessmentResultsPage NHEI_EnterCollationOutcome()
+    {
+        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 }
