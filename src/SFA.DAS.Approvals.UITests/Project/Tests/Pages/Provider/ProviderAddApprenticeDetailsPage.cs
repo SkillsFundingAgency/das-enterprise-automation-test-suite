@@ -18,8 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
-            bool rpl = false;
-
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
@@ -36,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterTrainingCostAndEmpReference();
 
-            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear)) > 2021) rpl = true;
+            bool rpl = CheckRPLCondition(false);
 
             formCompletionHelper.ClickElement(AddButton);
 
@@ -68,6 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SelectRadioOptionByForAttribute("confirm-BulkCsv");
             Continue();
             return new ProviderBeforeYouStartBulkUploadPage(context);
+        }
+
+        private bool CheckRPLCondition(bool rpl = false)
+        {
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            if (year > 2022) rpl = true;
+            return rpl;
         }
     }
 }
