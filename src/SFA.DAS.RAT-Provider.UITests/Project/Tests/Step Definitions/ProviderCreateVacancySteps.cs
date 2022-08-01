@@ -26,6 +26,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Step_Definitions
 
             CreateANewVacancy();
         }
+        [When(@"the Provider creates an Offline vacancy")]
+        public void WhenTheProviderCreatesAnOfflineVacancy() => _providerStepsHelper.CreateOfflineVacancy();
 
         private void CreateANewVacancy() => _providerStepsHelper.CreateANewTraineeshipVacancy();
     }

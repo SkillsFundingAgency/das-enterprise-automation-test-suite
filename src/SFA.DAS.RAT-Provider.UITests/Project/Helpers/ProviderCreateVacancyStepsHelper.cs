@@ -122,7 +122,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()
         {
             (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
-                new RecruitmentProviderHomePageStepsHelper(_context)
+                new RecruitmentTraineeshipsProviderHomePageStepsHelper(_context)
                 .GoToTraineeshipRecruitmentProviderHomePage(_newTab)
                 .GoToViewAllVacancyPage()
                 .CreateVacancy()

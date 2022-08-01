@@ -55,6 +55,7 @@
     <Folder Include="Project\Tests\Features\CreateVacancy\" />
     <Folder Include="Project\Tests\Features\E2EJourney\" />
     <Folder Include="Project\Tests\Features\FilterVacancies\" />
+    <Folder Include="Project\Tests\Features\OfflineVacancy\" />
   </ItemGroup>
 
 </Project>
