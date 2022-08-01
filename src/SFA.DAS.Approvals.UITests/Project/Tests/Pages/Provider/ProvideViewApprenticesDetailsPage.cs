@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProvideViewApprenticesDetailsPage(ScenarioContext context) : base(context, false)
         {           
-            var noOfApprentice = TotalNoOfViewOnlyApprentices();
+            var noOfApprentice = TotalNoOfApprentices();
             _pageTitle = noOfApprentice < 2 ? "View apprentice details" : $"View {noOfApprentice} apprentices' details";
             VerifyPage();
         }

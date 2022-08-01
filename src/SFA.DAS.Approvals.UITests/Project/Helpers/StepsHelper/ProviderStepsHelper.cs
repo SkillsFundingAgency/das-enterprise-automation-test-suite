@@ -292,7 +292,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderApproveApprenticeDetailsPage EditApprenticeForRPL()
         {
             ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage = CurrentCohortDetails();
-            var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
+
+            var totalNoOfApprentices = providerApproveApprenticeDetailsPage.TotalNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
