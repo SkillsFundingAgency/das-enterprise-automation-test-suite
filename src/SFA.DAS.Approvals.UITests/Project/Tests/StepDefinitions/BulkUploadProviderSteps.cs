@@ -71,6 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<NonLevyUser>();
             var employerName = GetOrgName(employerUser.OrganisationName);
+            _objectContext.SetNoOfApprentices(numberOfApprentices);
             _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
         }
 

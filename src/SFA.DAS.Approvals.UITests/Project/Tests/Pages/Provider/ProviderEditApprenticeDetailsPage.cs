@@ -36,6 +36,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
+        public ProviderApproveApprenticeDetailsPage SelectSaveAndUpdateRPLAsNo()
+        {
+            bool rpl = false;
+
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear)) > 2021) rpl = true;
+            formCompletionHelper.ClickElement(SaveButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
+
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
         public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
             bool rpl = false;
