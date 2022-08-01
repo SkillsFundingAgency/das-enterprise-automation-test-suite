@@ -115,6 +115,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("validate Flexi-job agency tag on Approve Apprentice Details page and send cohort " +
                         "to Provider for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 16
+ testRunner.And("the provider validates Flexi-job content, adds Uln and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

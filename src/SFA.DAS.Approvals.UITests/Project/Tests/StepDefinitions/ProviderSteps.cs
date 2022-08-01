@@ -53,6 +53,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts() => _providerStepsHelper.Approve();
 
+        [Then(@"the provider validates Flexi-job content, adds Uln and approves the cohorts")]
+        public void ThenTheProviderValidatesFlexi_JobContentAddsUlnAndApprovesTheCohorts() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+
+
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer() => _providerStepsHelper.EditApprentice().SubmitApprove();
 

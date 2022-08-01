@@ -53,6 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var cohortReference = _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
             _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
         }
 
 

@@ -329,6 +329,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void Approve() => EditApprentice().SubmitApprove();
 
+        public void ValidateFlexiJobContentAndApproveCohort()
+        {
+            EditApprentice().ValidateFlexiJobTagAndSubmitApprove();
+        }
+
         public void ViewApprentices()
         {
             ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new ProvideViewApprenticesDetailsPage(_context);
