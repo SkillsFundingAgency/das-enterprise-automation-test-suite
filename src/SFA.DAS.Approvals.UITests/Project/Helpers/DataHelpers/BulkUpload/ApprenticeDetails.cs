@@ -28,6 +28,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
         public string ProviderRef { get; set; }
         public string EmailAddress { get; set; }
         public string AgreementId { get; set; }
+
+        public override string ToString()
+        {
+            return $"ApprenticeDetails - CohortRef: {CohortRef}, ULN: {ULN}, First Name: {GivenNames}, Last Name: {FamilyName}, Email address: {EmailAddress}";
+        }
     }
 
     public class MapApprenticeDetails : ApprenticeDetails
