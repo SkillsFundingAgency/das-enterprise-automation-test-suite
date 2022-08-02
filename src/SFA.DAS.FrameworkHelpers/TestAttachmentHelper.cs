@@ -8,17 +8,17 @@ using System.Globalization;
 
 namespace SFA.DAS.FrameworkHelpers
 {
-    public class TestAttachmentHelper
+    public static class TestAttachmentHelper
     {
-        public void AddTestDataAttachment(string directoryPath, Dictionary<string, object> testrecords)
+        public static void AddTestDataAttachment(string directoryPath, Dictionary<string, object> testrecords)
         {
             string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            List<TestData> records = new List<TestData>();
+            List<TestData> records = new();
 
             var testdataset = testrecords;
 
-            testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
+            testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = GetTestDataValue(testdataset[x.Key]) }));
 
             AddTestAttachment(directoryPath, fileName, (x) =>
             {
@@ -42,6 +42,20 @@ namespace SFA.DAS.FrameworkHelpers
             TestContext.AddTestAttachment(filePath, fileName);
 
             TestContext.Progress.WriteLine($"***************{filePath} sucessfully created***************");
+        }
+
+        private static string GetTestDataValue(object testdata)
+        {
+            if (testdata is IEnumerable<object> enumerable)
+            {
+                var newtestdata = new FrameworkList<object>();
+                
+                newtestdata.AddRange(enumerable);
+
+                return newtestdata.ToString();
+            }
+
+            return testdata.ToString();
         }
     }
 }
