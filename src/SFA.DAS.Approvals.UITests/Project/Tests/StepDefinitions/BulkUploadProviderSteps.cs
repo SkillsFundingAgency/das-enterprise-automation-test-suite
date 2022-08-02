@@ -87,7 +87,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeList = GetBulkuploadData();
 
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .SelectsToSaveAllButDontSendToEmployer();
+                .SelectsToSaveAllButDontSendToEmployer()
+                .VerifyCorrectInformationIsDisplayed(apprenticeList);
 
             _providerStepsHelper.EditApprenticeForRPL();
 
