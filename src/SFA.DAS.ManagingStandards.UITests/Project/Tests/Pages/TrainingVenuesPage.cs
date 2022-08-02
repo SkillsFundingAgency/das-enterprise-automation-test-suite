@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class TrainingLocationPage : ManagingStandardsBasePage
+public class TrainingVenuesPage : ManagingStandardsBasePage
 {
-    protected override string PageTitle => "Training locations";
+    protected override string PageTitle => "Training venues";
 
-    public TrainingLocationPage(ScenarioContext context) : base(context) { }
+    public TrainingVenuesPage(ScenarioContext context) : base(context) { }
 
     public ReviewYourDetailsPage NavigateBackToReviewYourDetails()
     {
