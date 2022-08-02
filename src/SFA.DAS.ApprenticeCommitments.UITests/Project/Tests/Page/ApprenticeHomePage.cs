@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
         private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Confirm my apprenticeship details')]");
         private static By HelpAndSupportDashboardLink => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Help and support')]");
-        private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath("//a[text()='My apprenticeship details']");
+        private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath("//a[contains(text(),'My apprenticeship details')]");
         private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
         private static By HelpAndSupportDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[2]");
         private static By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
@@ -20,17 +20,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context)
         {
-            MultipleVerifyPage(new List<Func<bool>>
+            VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
+
+            if (verifyConfirmMyApprenticeLink)
             {
-                () => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}"),
-                () => {
-                    if (verifyConfirmMyApprenticeLink) 
-                        VerifySucessNotification();
-                        VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
-                        VerifyDashboardHelpAndSupportSectionOnHomePage();
-                        return true;
-                }
-            });
+                VerifySucessNotification();
+                VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
+                VerifyDashboardHelpAndSupportSectionOnHomePage();
+            }
         }
 
         public bool VerifyNotificationBannerIsNotDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
