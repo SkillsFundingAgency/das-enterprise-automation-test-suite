@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
 
         public override string ToString()
         {
-            return $"ApprenticeDetails - CohortRef: {CohortRef}, ULN: {ULN}, First Name: {GivenNames}, Last Name: {FamilyName}, Email address: {EmailAddress}";
+            return $"ApprenticeDetail - CohortRef: {CohortRef}, ULN: {ULN}, First Name: {GivenNames}, Last Name: {FamilyName}, Email address: {EmailAddress}";
         }
     }
 
