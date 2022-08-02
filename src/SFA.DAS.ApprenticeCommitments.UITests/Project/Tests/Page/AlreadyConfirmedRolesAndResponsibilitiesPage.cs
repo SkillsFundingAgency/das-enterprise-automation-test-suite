@@ -26,5 +26,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             NavigateBack();
             return new ApprenticeOverviewPage(context);
         }
+
+        public FullyConfirmedOverviewPage NavigateBackToFullyConfirmedOverviewPage()
+        {
+            NavigateBack();
+            return new FullyConfirmedOverviewPage(context);
+        }
     }
 }

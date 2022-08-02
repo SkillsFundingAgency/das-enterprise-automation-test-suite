@@ -21,5 +21,9 @@
         internal static string DashboardCmadSectionTextWhenUnConfirmed = "Changes have been made to your apprenticeship details. Confirm your new details.";
 
         internal static string DashboardHelpAndSupportDashboardText = "Who to contact if you have questions or concerns during your apprenticeship.";
+
+        internal static string FullyConfirmedOverviewRolesSubText = "You can read through the roles and responsibilities for you, your employer and your training provider.";
+
+        internal static string FullyConfirmedOverviewHYAWDSubText = "View details of how your apprenticeship will be delivered.";
     }
 }

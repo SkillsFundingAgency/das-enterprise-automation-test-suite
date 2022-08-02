@@ -7,8 +7,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CreateAccountAndConfirmDetailsSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
-        private ApprenticeOverviewPage _apprenticeOverviewPage;
         private ApprenticeHomePage _apprenticeHomePage;
+        private FullyConfirmedOverviewPage _fullyConfirmedOverviewPage;
 
         public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
@@ -19,22 +19,30 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
             => createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
 
-        [Then(@"the apprentice is able to navigate to the Help and Support from the Overview page")]
-        public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromTheOverviewPage()
+        [Then(@"the apprentice is able to navigate to the Help and Support from Home and Fully confirmed page")]
+        public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromHomeAndFullyConfirmedPage()
         {
             _apprenticeHomePage = new ApprenticeHomePage(_context, false).NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
-            _apprenticeOverviewPage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink();
-            _apprenticeOverviewPage = _apprenticeOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToOverviewPageWithBackLink();
+            _fullyConfirmedOverviewPage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink();
+            _fullyConfirmedOverviewPage = _fullyConfirmedOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToFullyConfirmedOverviewPageWithBackLink();
         }
 
-        [Then(@"the apprentice is able to navigate to Home page back and forth from Overview and Help pages")]
-        public void ThenTheApprenticeIsAbleToNavigateToHomePageBackAndForthFromOverviewAndHelpPages()
+        [Then(@"the apprentice is able to navigate to Home page back and forth from Fully confirmed Overview and Help pages")]
+        public void ThenTheApprenticeIsAbleToNavigateToHomePageBackAndForthFromFullyConfirmedOverviewAndHelpPages()
         {
-            _apprenticeHomePage = _apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToOverviewPageWithCmadLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
+            _apprenticeHomePage = _fullyConfirmedOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToFullyConfirmedOverviewPageWithMyApprenticeshipDetailsLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
+            _apprenticeHomePage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
             _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink();
             _apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
         }
+
+        [Then(@"the apprentice is able to navigate to Roles and HYAWD pages from Fully confirmed Overview page")]
+        public void ThenTheApprenticeIsAbleToNavigateToRolesAndHYAWDPagesFromFullyConfirmedOverviewPage()
+        {
+            _fullyConfirmedOverviewPage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageWithMyApprenticeshipDetailsLinkOnTheHomePage().GoToConfirmedRolesPage().NavigateBackToFullyConfirmedOverviewPage();
+            _apprenticeHomePage = _fullyConfirmedOverviewPage.GoToConfirmedHowYourApprenticeshipWillBeDeliveredPage().NavigateBackToFullyConfirmedOverviewPage().NavigateToHomePageFromTopNavigationLink();
+        }
+
 
         [Then(@"the apprentice is able to logout from the service")]
         public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();

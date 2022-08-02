@@ -13,5 +13,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage();
             pageInteractionHelper.VerifyText(GreenTickText, GreenTickTextInfo);
         }
+
+        public FullyConfirmedOverviewPage NavigateBackToFullyConfirmedOverviewPage()
+        {
+            NavigateBack();
+            return new FullyConfirmedOverviewPage(context);
+        }
     }
 }

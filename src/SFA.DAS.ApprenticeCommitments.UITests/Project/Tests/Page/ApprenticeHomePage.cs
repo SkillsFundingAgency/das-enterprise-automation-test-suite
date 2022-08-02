@@ -15,8 +15,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath("//a[contains(text(),'My apprenticeship details')]");
         private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
         private static By HelpAndSupportDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[2]");
-        private static By HelpAndSupportSectionLink => By.XPath("//a[text()='help and support section']");
         private static By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
+        private static By MyApprenticeshipDetailsLink => By.XPath("//a[contains(text(),'My apprenticeship details')]");
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context)
         {
@@ -27,6 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 VerifySucessNotification();
                 VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
                 VerifyDashboardHelpAndSupportSectionOnHomePage();
+
             }
         }
 
@@ -45,9 +46,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeOverviewPage(context, false);
         }
 
+        public FullyConfirmedOverviewPage NavigateToFullyConfirmedOverviewPageWithMyApprenticeshipDetailsLinkOnTheHomePage()
+        {
+            formCompletionHelper.Click(MyApprenticeshipDetailsLink);
+            return new FullyConfirmedOverviewPage(context);
+        }
+
         public HelpAndSupportPage NavigateToHelpAndSupportPageWithTheLinkOnHomePage()
         {
-            formCompletionHelper.Click(HelpAndSupportSectionLink);
+            formCompletionHelper.Click(HelpAndSupportDashboardLink);
             return new HelpAndSupportPage(context);
         }
 
