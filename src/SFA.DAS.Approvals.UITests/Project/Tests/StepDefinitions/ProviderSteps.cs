@@ -140,9 +140,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice().ProviderSelectsAStandard().SubmitValidApprenticeDetails().SubmitApprove();
         }
 
-        [When(@"approves the cohort from the saved draft section")]
-        public void WhenApprovesTheCohortFromTheSavedDraftSection() => _providerStepsHelper.EditApprenticeForRPL().SubmitApprove();
-
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
     }
 }

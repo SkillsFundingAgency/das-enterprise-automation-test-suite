@@ -87,16 +87,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeList = GetBulkuploadData();
 
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-                .SelectsToSaveAllButDontSendToEmployer()
+                .SelectToApproveAllAndSendToEmployer()
                 .VerifyCorrectInformationIsDisplayed(apprenticeList);
-
-            _providerStepsHelper.EditApprenticeForRPL();
-
-            new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
-
-            //new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
-            //    .SelectToApproveAllAndSendToEmployer()
-            //    .VerifyCorrectInformationIsDisplayed(apprenticeList);
         }
 
         [Given(@"User selects to upload an amended file")]
