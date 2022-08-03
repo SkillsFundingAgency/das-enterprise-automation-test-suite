@@ -13,19 +13,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage(ScenarioContext context) : base(context)  { }
 
-        public (string sectionName, string sectionStatus) GetConfirmYourEmployerStatus() => (SectionHelper.Section1, GetConfirmationStatus(SectionHelper.Section1));
+        public (string sectionName, string sectionStatus) GetConfirmYourEmployerStatus() => (OverviewPageHelper.Section1, GetConfirmationStatus(OverviewPageHelper.Section1));
 
-        public (string sectionName, string sectionStatus) GetConfirmYourTrainingProviderStatus() => (SectionHelper.Section2, GetConfirmationStatus(SectionHelper.Section2));
+        public (string sectionName, string sectionStatus) GetConfirmYourTrainingProviderStatus() => (OverviewPageHelper.Section2, GetConfirmationStatus(OverviewPageHelper.Section2));
 
-        public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipStatus() => (SectionHelper.Section3, GetConfirmationStatus(SectionHelper.Section3));
+        public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipStatus() => (OverviewPageHelper.Section3, GetConfirmationStatus(OverviewPageHelper.Section3));
 
-        public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipDeliveryStatus() => (SectionHelper.Section4, GetConfirmationStatus(SectionHelper.Section4));
+        public (string sectionName, string sectionStatus) GetConfirmYourApprenticeshipDeliveryStatus() => (OverviewPageHelper.Section4, GetConfirmationStatus(OverviewPageHelper.Section4));
 
-        public (string sectionName, string sectionStatus) GetConfirmYourRolesAndResponsibilityStatus() => (SectionHelper.Section5, GetConfirmationStatus(SectionHelper.Section5));
+        public (string sectionName, string sectionStatus) GetConfirmYourRolesAndResponsibilityStatus() => (OverviewPageHelper.Section5, GetConfirmationStatus(OverviewPageHelper.Section5));
 
-        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been updated. Please review and confirm the changes.");
+        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification(OverviewPageHelper.CoCNotificationText);
 
-        public ApprenticeOverviewPage VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification("The details of your apprenticeship have been updated. Please review and confirm the changes.");
+        public ApprenticeOverviewPage VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification(OverviewPageHelper.CoCNotificationText);
 
         public ApprenticeOverviewPage VerifyCoCNotificationIsNotDisplayed()
         {

@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage : ConfirmYourDetailsBasePage
     {
-        protected override string PageTitle => SectionHelper.Section4;
+        protected override string PageTitle => OverviewPageHelper.Section4;
         private string GreenTickTextInfo => "You have read through how your apprenticeship will be delivered";
 
         public AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(ScenarioContext context) : base(context)

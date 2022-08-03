@@ -21,9 +21,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             {
                 () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
                 () => VerifyPage(RolesSectionHeaderLink),
-                () => VerifyPage(RolesSectionSubText, StatusHelper.FullyConfirmedOverviewRolesSubText),
+                () => VerifyPage(RolesSectionSubText, OverviewPageHelper.FullyConfirmedOverviewRolesSubText),
                 () => VerifyPage(HYAWDSectionHeaderLink),
-                () => VerifyPage(HYAWDSectionSubText, StatusHelper.FullyConfirmedOverviewHYAWDSubText)
+                () => VerifyPage(HYAWDSectionSubText, OverviewPageHelper.FullyConfirmedOverviewHYAWDSubText)
             });
         }
 

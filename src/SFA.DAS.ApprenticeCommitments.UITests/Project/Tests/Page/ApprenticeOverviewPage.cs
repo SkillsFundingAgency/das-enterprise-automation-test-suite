@@ -110,16 +110,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
 
-        private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section1);
+        private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section1);
 
-        private void ClickYourProviderLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section2);
+        private void ClickYourProviderLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section2);
 
-        private void ClickYourApprenticeshipDetailsLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section3);
+        private void ClickYourApprenticeshipDetailsLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section3);
 
-        private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section4);
+        private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section4);
 
-        private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section5);
+        private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section5);
 
-        private void ClickConfirmYourApprenticeshipLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section6);
+        private void ClickConfirmYourApprenticeshipLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section6);
     }
 }

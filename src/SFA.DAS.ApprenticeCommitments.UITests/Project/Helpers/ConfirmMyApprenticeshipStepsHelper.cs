@@ -33,7 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship()
         {
             var apprenticeOverviewPage = ConfirmAllSections().VerifyTopBannerOnOverviewPageBeforeOverallConfirmation();
-            AssertSection6Status(StatusHelper.OverviewSectionInComplete);
+            AssertSection6Status(OverviewPageHelper.InComplete);
             return apprenticeOverviewPage.ConfirmOverallApprenticeship();
         }
 
@@ -45,15 +45,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage ConfirmAllSections()
         {
-            var apprenticeOverviewPage = ConfirmYourEmployer(StatusHelper.OverviewSectionInComplete);
+            var apprenticeOverviewPage = ConfirmYourEmployer(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmYourTrainingProvider(StatusHelper.OverviewSectionInComplete);
+            apprenticeOverviewPage = ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmApprenticeshipDetails(StatusHelper.OverviewSectionInComplete);
+            apprenticeOverviewPage = ConfirmApprenticeshipDetails(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.OverviewSectionInComplete);
+            apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(StatusHelper.OverviewSectionInComplete);
+            apprenticeOverviewPage = ConfirmRolesAndResponsibilities(OverviewPageHelper.InComplete);
             return VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
         }
 
@@ -64,7 +64,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection1Status(initialStatus);
             var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(_context));
-            AssertSection1Status(StatusHelper.OverviewSectionComplete);
+            AssertSection1Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
 
@@ -72,7 +72,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection2Status(initialStatus);
             var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));
-            AssertSection2Status(StatusHelper.OverviewSectionComplete);
+            AssertSection2Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
 
@@ -80,7 +80,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection3Status(initialStatus);
             var apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYesAndContinueToOverviewPage();
-            AssertSection3Status(StatusHelper.OverviewSectionComplete);
+            AssertSection3Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
 
@@ -88,7 +88,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection4Status(initialStatus);
             var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
-            AssertSection4Status(StatusHelper.OverviewSectionComplete);
+            AssertSection4Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
 
@@ -96,7 +96,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection5Status(initialStatus);
             var apprenticeOverviewPage = NavigateAndVerifyRolesAndResponsibilities();
-            AssertSection5Status(StatusHelper.OverviewSectionComplete);
+            AssertSection5Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
 
@@ -104,7 +104,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             AssertSection5Status(initialStatus);
             var apprenticeOverviewPage = VerifyAndConfirmRolesAndResponsibilitiesWithNegativeFlows(NavigateToRolesPage());
-            AssertSection5Status(StatusHelper.OverviewSectionComplete);
+            AssertSection5Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
 
@@ -115,17 +115,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return page;
         }
 
-        public ApprenticeOverviewPage AssertSection1Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section1, expectedStatus);
+        public ApprenticeOverviewPage AssertSection1Status(string expectedStatus) => AssertSectionStatus(OverviewPageHelper.Section1, expectedStatus);
 
-        public ApprenticeOverviewPage AssertSection2Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section2, expectedStatus);
+        public ApprenticeOverviewPage AssertSection2Status(string expectedStatus) => AssertSectionStatus(OverviewPageHelper.Section2, expectedStatus);
 
-        public ApprenticeOverviewPage AssertSection3Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section3, expectedStatus);
+        public ApprenticeOverviewPage AssertSection3Status(string expectedStatus) => AssertSectionStatus(OverviewPageHelper.Section3, expectedStatus);
 
-        public ApprenticeOverviewPage AssertSection4Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section4, expectedStatus);
+        public ApprenticeOverviewPage AssertSection4Status(string expectedStatus) => AssertSectionStatus(OverviewPageHelper.Section4, expectedStatus);
 
-        public ApprenticeOverviewPage AssertSection5Status(string expectedStatus) => AssertSectionStatus(SectionHelper.Section5, expectedStatus);
+        public ApprenticeOverviewPage AssertSection5Status(string expectedStatus) => AssertSectionStatus(OverviewPageHelper.Section5, expectedStatus);
 
-        public ApprenticeOverviewPage AssertSection6Status(string expectedStatus) => AssertSection6Status(SectionHelper.Section6, expectedStatus);
+        public ApprenticeOverviewPage AssertSection6Status(string expectedStatus) => AssertSection6Status(OverviewPageHelper.Section6, expectedStatus);
 
         public ApprenticeOverviewPage AssertSectionStatus(string sectionName, string expectedStatus)
         {

@@ -61,22 +61,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage VerifyCMADCardOnHomePageOnceFullyConfirmed()
         {
             VerifyElement(CmadDashboardLinkAfterFullyConfirmed);
-            VerifyElement(CmadDashboardText, StatusHelper.DashboardCmadSectionTextWhenFullyConfirmed);
+            VerifyElement(CmadDashboardText, HomePageHelper.DashboardCmadSectionTextWhenFullyConfirmed);
             return this;
         }
 
         public ApprenticeHomePage VerifyDashboardCMADSectionWhenInCompleteOnHomePage()
         {
-            VerifyElement(InCompleteStatusSelector, StatusHelper.DashboardInCompleteStatus);
+            VerifyElement(InCompleteStatusSelector, HomePageHelper.DashboardInCompleteStatus);
             VerifyElement(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
-            VerifyElement(CmadDashboardText, StatusHelper.DashboardCmadSectionTextWhenInCompleteOrUnConfirmed);
+            VerifyElement(CmadDashboardText, HomePageHelper.DashboardCmadSectionTextWhenInCompleteOrUnConfirmed);
             return this;
         }
 
         public ApprenticeHomePage VerifyDashboardHelpAndSupportSectionOnHomePage()
         {
             VerifyElement(HelpAndSupportDashboardLink);
-            VerifyElement(HelpAndSupportDashboardText, StatusHelper.DashboardHelpAndSupportDashboardText);
+            VerifyElement(HelpAndSupportDashboardText, HomePageHelper.DashboardHelpAndSupportDashboardText);
             return this;
         }
     }

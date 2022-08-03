@@ -63,14 +63,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"only the employer and apprenticeship detail sections should be marked as Incomplete")]
         public void ThenOnlyTheEmployerAndApprenticeshipDetailsSectionShouldBeMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
+            AssertSectionHelper(OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyEmployerAndApprenticehsipCoCNotification();
         }
 
         [Then(@"only the apprenticeship detail section is marked as Incomplete")]
         public void ThenOnlyTheApprenticeshipDetailsSectionIsMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
+            AssertSectionHelper(OverviewPageHelper.Complete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyApprenticeshipOnlyCoCNotification();
         }
 
@@ -89,7 +89,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyCocAndConfirmApprenticeship();
         }
 
-        private void AssertSectionStatus(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
+        private void AssertSectionHelper(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
         {
             var (sectionName1, section1Status) = _apprenticeOverviewPage.GetConfirmYourEmployerStatus();
             var (sectionName2, section2Status) = _apprenticeOverviewPage.GetConfirmYourTrainingProviderStatus();
