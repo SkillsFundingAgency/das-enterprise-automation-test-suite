@@ -23,7 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public (string sectionName, string sectionStatus) GetConfirmYourRolesAndResponsibilityStatus() => (OverviewPageHelper.Section5, GetConfirmationStatus(OverviewPageHelper.Section5));
 
-        public ApprenticeOverviewPage VerifyEmployerAndApprenticehsipCoCNotification() => VerifyCocNotification(OverviewPageHelper.CoCNotificationText);
+        public ApprenticeOverviewPage VerifyEmployerCoCNotification() => VerifyEmpCocNotification(OverviewPageHelper.CoCNotificationText);
 
         public ApprenticeOverviewPage VerifyApprenticeshipOnlyCoCNotification() => VerifyCocNotification(OverviewPageHelper.CoCNotificationText);
 
@@ -36,6 +36,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public bool IsCoCNotificationDisplayed() => pageInteractionHelper.IsElementDisplayed(NotificationBanner);
 
         private ApprenticeOverviewPage VerifyCocNotification(string expected) { VerifyElement(NotificationBanner, expected); return this; }
+
+        private ApprenticeOverviewPage VerifyEmpCocNotification(string expected) { VerifyElement(NotificationBanner, expected); return this; }
 
         private string GetConfirmationStatus(string section) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(section, Status, AppStatusTableIdentifier, AppStatusRowIdentifier));
     }

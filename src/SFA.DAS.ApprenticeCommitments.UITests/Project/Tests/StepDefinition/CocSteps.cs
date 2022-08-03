@@ -53,8 +53,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 
-        [When(@"the apprentice logs into the Apprentice portal")]
-        public void WhenTheApprenticeLogsIntoTheApprenticePortal()
+        [When(@"the apprentice logs into CMAD again following a CoC")]
+        public void WhenTheApprenticeLogsIntoCMADAgainFollowingACoC()
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl);
             _apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
@@ -64,7 +64,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenOnlyTheEmployerAndApprenticeshipDetailsSectionShouldBeMarkedAsIncomplete()
         {
             AssertSectionHelper(OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
-            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyEmployerAndApprenticehsipCoCNotification();
         }
 
         [Then(@"only the apprenticeship detail section is marked as Incomplete")]
@@ -99,11 +98,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             Assert.Multiple(() =>
             {
-                StringAssert.AreEqualIgnoringCase(exsection1Status, section1Status, $"Coc status did not match for {sectionName1}");
-                StringAssert.AreEqualIgnoringCase(exsection2Status, section2Status, $"Coc status did not match for {sectionName2}");
-                StringAssert.AreEqualIgnoringCase(exsection3Status, section3Status, $"Coc status did not match for {sectionName3}");
-                StringAssert.AreEqualIgnoringCase(exsection4Status, section4Status, $"Coc status did not match for {sectionName4}");
-                StringAssert.AreEqualIgnoringCase(exsection5Status, section5Status, $"Coc status did not match for {sectionName5}");
+                StringAssert.AreEqualIgnoringCase(exsection1Status, section1Status, $"CoC status did not match for '{sectionName1}' section");
+                StringAssert.AreEqualIgnoringCase(exsection2Status, section2Status, $"CoC status did not match for '{sectionName2}' section");
+                StringAssert.AreEqualIgnoringCase(exsection3Status, section3Status, $"CoC status did not match for '{sectionName3}' section");
+                StringAssert.AreEqualIgnoringCase(exsection4Status, section4Status, $"CoC status did not match for '{sectionName4}' section");
+                StringAssert.AreEqualIgnoringCase(exsection5Status, section5Status, $"CoC status did not match for '{sectionName5}' section");
             });
         }
 

@@ -11,18 +11,26 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
-        private By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
-        private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
-        private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
-        protected By FeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
-        private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
+        private static By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private static By AllSectionsConfirmedSuccessTickIcon => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
+        private static By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
+        protected static By FeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
+        private static By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
+        private static By OverviewPageSubTextBelowPageTitle => By.XPath("(//h1//following-sibling::p)[1]");
+        private static By OverviewPageWarningIcon => By.CssSelector(".govuk-warning-text__icon");
+        private static By OverviewPageWarningText => By.CssSelector(".govuk-warning-text__text");
+        private static By OverviewPageTopSubTextAfterWarning => By.XPath("(//h1//following-sibling::p)[2]");
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
-                () => VerifyPage(HelpTopNavigationLink)
+                () => VerifyPage(HelpTopNavigationLink),
+                () => VerifyPage(OverviewPageSubTextBelowPageTitle, OverviewPageHelper.OverviewPageTopSubText1),
+                () => VerifyPage(OverviewPageWarningIcon),
+                () => VerifyPage(OverviewPageWarningText, OverviewPageHelper.OverviewPageTopSubText2),
+                () => VerifyPage(OverviewPageTopSubTextAfterWarning, OverviewPageHelper.OverviewPageTopSubText3)
             });
         }
 
@@ -96,19 +104,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage VerifyTopBannerOnOverviewPageBeforeOverallConfirmation()
         {
-            VerifyElement(AppreticeshipConfirmBannerHeader);
-            VerifyElement(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
+            VerifyElement(AllSectionsConfirmedSuccessTickIcon);
+            VerifyElement(AppreticeshipConfirmBannerText, OverviewPageHelper.AllSectionsConfirmedConfirmationTextBeforeOVerallConfirmation); ;
             return this;
         }
 
         public ApprenticeOverviewPage VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm()
         {
             VerifyElement(PageHeader, PageTitleAfterConfirmation);
-            VerifyElement(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
+            VerifyElement(AppreticeshipConfirmBannerText, OverviewPageHelper.OverallConfirmationText);
             return this;
         }
 
-        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
+        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, OverviewPageHelper.OverviewPageTopSubText2); return this; }
 
         private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section1);
 

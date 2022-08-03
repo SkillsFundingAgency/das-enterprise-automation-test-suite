@@ -8,12 +8,16 @@
 
         internal static string DashboardStoppedStatus => "STOPPED";
 
-        internal static string DashboardCmadSectionTextWhenInCompleteOrUnConfirmed = "Confirm details of your employer, training provider and apprenticeship.";
+        internal static string UnConfirmedCmadSectionTitle => "Confirm my apprenticeship details";
 
-        internal static string DashboardCmadSectionTextWhenFullyConfirmed = "Details of your employer, training provider and apprenticeship.";
+        internal static string ConfirmedCmadSectionTitle => "My apprenticeship details";
 
-        internal static string DashboardCmadSectionTextWhenUnConfirmed = "Changes have been made to your apprenticeship details. Confirm your new details.";
+        internal static string CmadSectionTextWhenInComplete => "Confirm details of your employer, training provider and apprenticeship.";
 
-        internal static string DashboardHelpAndSupportDashboardText = "Who to contact if you have questions or concerns during your apprenticeship.";
+        internal static string CmadSectionTextWhenFullyConfirmed => "Details of your employer, training provider and apprenticeship.";
+
+        internal static string CmadSectionTextWhenUnConfirmed => "Changes have been made to your apprenticeship details. Confirm your new details.";
+
+        internal static string HelpAndSupportSectionText => "Who to contact if you have questions or concerns during your apprenticeship.";
     }
 }

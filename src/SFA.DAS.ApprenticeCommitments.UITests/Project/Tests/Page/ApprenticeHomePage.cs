@@ -10,12 +10,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
-        private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Confirm my apprenticeship details')]");
+        private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]");
+        private static By UnConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]/..//following-sibling::p");
+        private static By CmadDashboardLinkForConfimredApprenticeshipDetails => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.ConfirmedCmadSectionTitle}')]");
+        private static By ConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.ConfirmedCmadSectionTitle}')]/..//following-sibling::p");
         private static By HelpAndSupportDashboardLink => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Help and support')]");
         private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath("//a[contains(text(),'My apprenticeship details')]");
         private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
         private static By HelpAndSupportDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[2]");
-        private static By InCompleteStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
+        private static By CurrentApprenticeshipStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
         private static By MyApprenticeshipDetailsLink => By.XPath("//a[contains(text(),'My apprenticeship details')]");
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context)
@@ -27,7 +30,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
                 VerifySucessNotification();
                 VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
                 VerifyDashboardHelpAndSupportSectionOnHomePage();
-
             }
         }
 
@@ -61,23 +63,37 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage VerifyCMADCardOnHomePageOnceFullyConfirmed()
         {
             VerifyElement(CmadDashboardLinkAfterFullyConfirmed);
-            VerifyElement(CmadDashboardText, HomePageHelper.DashboardCmadSectionTextWhenFullyConfirmed);
+            VerifyElement(CmadDashboardText, HomePageHelper.CmadSectionTextWhenFullyConfirmed);
             return this;
         }
 
         public ApprenticeHomePage VerifyDashboardCMADSectionWhenInCompleteOnHomePage()
         {
-            VerifyElement(InCompleteStatusSelector, HomePageHelper.DashboardInCompleteStatus);
+            VerifyElement(CurrentApprenticeshipStatusSelector, HomePageHelper.DashboardInCompleteStatus);
             VerifyElement(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
-            VerifyElement(CmadDashboardText, HomePageHelper.DashboardCmadSectionTextWhenInCompleteOrUnConfirmed);
+            VerifyElement(CmadDashboardText, HomePageHelper.CmadSectionTextWhenInComplete);
             return this;
         }
 
         public ApprenticeHomePage VerifyDashboardHelpAndSupportSectionOnHomePage()
         {
             VerifyElement(HelpAndSupportDashboardLink);
-            VerifyElement(HelpAndSupportDashboardText, HomePageHelper.DashboardHelpAndSupportDashboardText);
+            VerifyElement(HelpAndSupportDashboardText, HomePageHelper.HelpAndSupportSectionText);
             return this;
+        }
+
+        public void VerifyConfirmedCoCPageViewAndNavigateToOverviewPage()
+        {
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(CmadDashboardLinkWhenIncompleteOrUnConfirmed),
+                () => VerifyPage(CurrentApprenticeshipStatusSelector, HomePageHelper.DashboardUnConfimredStatusForCoC),
+                () => VerifyPage(UnConfimredApprenticeshipDetailsSubText, HomePageHelper.CmadSectionTextWhenUnConfirmed),
+                () => VerifyPage(CmadDashboardLinkForConfimredApprenticeshipDetails),
+                () => VerifyPage(ConfimredApprenticeshipDetailsSubText, HomePageHelper.CmadSectionTextWhenFullyConfirmed)
+            });
+
+            formCompletionHelper.Click(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
         }
     }
 }
