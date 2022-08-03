@@ -1,4 +1,4 @@
-﻿Feature: MS_ReviewYourDetails_01
+﻿Feature: MS_01_ReviewYourDetails
 
 @managingstandards
 @managingstandards01
