@@ -151,8 +151,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer approves the cohorts")]
         public void ThenTheEmployerApprovesTheCohorts() => _employerStepsHelper.Approve();
 
-        [When(@"the Employer approves multiple cohorts")]
-        [Then(@"the Employer approves multiple cohorts")]
+        [StepDefinition(@"the Employer approves multiple cohorts")]
         public void WhenTheEmployerApprovesMultipleCohorts() => _employerStepsHelper.ApproveMultipleCohorts();
 
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
@@ -175,8 +174,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
-        [Given(@"a new live apprentice record is created")]
-        [Then(@"a new live apprentice record is created")]
+        [StepDefinition(@"a new live apprentice record is created")]
         public void ANewLiveApprenticeRecordIsCreated() => _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
 
         [Then(@"the apprenticeship status changes to completed")]

@@ -45,6 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderApprenticeRequestsDraftPage GoToDraftCohorts()
         {
             var providerWithDraftCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfDraftCohorts));
+
             if (providerWithDraftCohorts > 0)
             {
                 formCompletionHelper.ClickElement(NumberOfDraftCohorts);
