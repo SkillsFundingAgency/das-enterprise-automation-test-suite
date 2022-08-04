@@ -7,10 +7,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\MS_ReviewYourDetails_01 - Copy.feature.cs" />
-	</ItemGroup>
-
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -50,12 +46,5 @@
 		<None Update="specflow.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\MS_02_AddTrainingVenues.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 </Project>
