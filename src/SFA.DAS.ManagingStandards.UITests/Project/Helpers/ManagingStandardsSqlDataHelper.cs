@@ -20,5 +20,5 @@ public class ManagingStandardsSqlDataHelper : SqlDbHelper
     public void ClearProviderLocation(string ukprn, string venueName) => ExecuteSqlCommand
         ($"DECLARE @providerId int;" +
         $"Select @providerId = id from provider where ukprn = {ukprn};" +
-        $"Delete from ProviderLocation where providerid = @providerId and locationname = {venueName};");
+        $"Delete from ProviderLocation where providerid = @providerId and locationname = '{venueName}';");
 }
