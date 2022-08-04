@@ -23,9 +23,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
-            MultipleVerifyPage(new List<Func<bool>>
+            VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
+
+            if (verifypage)
+                MultipleVerifyPage(new List<Func<bool>>
             {
-                () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
                 () => VerifyPage(HelpTopNavigationLink),
                 () => VerifyPage(OverviewPageSubTextBelowPageTitle, OverviewPageHelper.OverviewPageTopSubText1),
                 () => VerifyPage(OverviewPageWarningIcon),
