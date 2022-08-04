@@ -99,4 +99,17 @@ public class MS_YourDetails_Steps
             .AccessEditTheseRegions()
             .EditRegionsAddLutonEssexAndConfirm();
     }
+
+    [Then(@"the provider is able to add a new training venue")]
+    public void ThenTheProviderIsAbleToAddANewTrainingVenue()
+    {
+       
+        ReviewYourDetailsPage reviewYourDetailsPage = new(_context);
+        reviewYourDetailsPage.AccessTrainingLocations()
+            .AccessAddANewTrainingVenue()
+            .EnterPostcodeAndContinue()
+            .ChooseTheAddressAndContinue()
+            .AddVenueDetailsAndSubmit();
+    }
+
 }
