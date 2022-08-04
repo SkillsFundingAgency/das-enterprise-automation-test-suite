@@ -14,8 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By DateOfBirthDay => By.Id("BirthDay");
         private By DateOfBirthMonth => By.Id("BirthMonth");
         private By DateOfBirthYear => By.Id("BirthYear");
-        private By StartDateMonth => By.Id("StartMonth");
-        private By StartDateYear => By.Id("StartYear");
+        public By StartDateMonth => By.Id("StartMonth");
+        public By StartDateYear => By.Id("StartYear");
         private By EndDateMonth => By.Id("EndMonth");
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");

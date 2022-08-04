@@ -13,4 +13,3 @@ Scenario: AP_COE_02_NewEmployerRequestsChange
 	And Provider Approves the Cohort
 	And new employer approves the cohort
 	And a new live apprenticeship record is created
-

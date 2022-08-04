@@ -2,6 +2,7 @@
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataCleanup;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.TestDataExport
 {
@@ -23,11 +24,11 @@ namespace SFA.DAS.TestDataExport
 
         #region AfterStepInformations
 
-        private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new FrameworkList<string>() { $"{string.Empty}" });
+        private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new List<string>() { $"{string.Empty}" });
 
         internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
-        private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
+        private static List<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<List<string>>(AfterStepInformations);
         #endregion
 
         #region AfterScenarioExceptions
