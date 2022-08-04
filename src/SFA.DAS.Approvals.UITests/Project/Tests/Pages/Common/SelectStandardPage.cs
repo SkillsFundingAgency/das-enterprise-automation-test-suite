@@ -25,6 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new AddApprenticeDetailsPage(context);
         }
 
+        public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney()
+        {
+            SelectStandardAndContinue();
+            return new SelectDeliveryModelPage(context);
+        }
+
         public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();

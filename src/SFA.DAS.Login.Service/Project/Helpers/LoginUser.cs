@@ -50,6 +50,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class ASListedLevyUser : EasAccountUser { }
 
+    public class FlexiJobUser : EasAccountUser { }
+
     #endregion
 
     #region MultipleAccountUser
