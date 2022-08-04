@@ -43,13 +43,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _employerPortalLoginHelper.Login(_user, true);
 
             var appDetailPage = _employerStepsHelper.ViewCurrentApprenticeDetails(false);
-            
+
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
             appDetailPage.ClickEditApprenticeDetailsLink().ClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
 
             _providerStepsHelper.ApproveChangesAndSubmit();
-            
+
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 
@@ -121,10 +121,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             return username;
         }
 
-        private void VerifyCocAndConfirmApprenticeship()
-        {
-            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed();
-            _apprenticeOverviewPage.VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship();
-        }
+        private void VerifyCocAndConfirmApprenticeship() => _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed()
+            .VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship();
     }
 }

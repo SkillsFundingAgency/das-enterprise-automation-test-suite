@@ -23,17 +23,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromHomeAndFullyConfirmedPage()
         {
             _apprenticeHomePage = new ApprenticeHomePage(_context, false).NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
-            _fullyConfirmedOverviewPage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink();
-            _fullyConfirmedOverviewPage = _fullyConfirmedOverviewPage.NavigateToHelpPageFromTopNavigationLink().NavigateToFullyConfirmedOverviewPageWithBackLink();
+
+            _fullyConfirmedOverviewPage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
+                .NavigateToHelpPageFromTopNavigationLink().NavigateToFullyConfirmedOverviewPageWithBackLink();
         }
 
         [Then(@"the apprentice is able to navigate to Home page back and forth from Fully confirmed Overview and Help pages")]
         public void ThenTheApprenticeIsAbleToNavigateToHomePageBackAndForthFromFullyConfirmedOverviewAndHelpPages()
         {
-            _apprenticeHomePage = _fullyConfirmedOverviewPage.NavigateToHomePageFromTopNavigationLink().NavigateToFullyConfirmedOverviewPageWithMyApprenticeshipDetailsLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink();
-            _apprenticeHomePage.NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
+            _apprenticeHomePage = _fullyConfirmedOverviewPage.NavigateToHomePageFromTopNavigationLink()
+                .NavigateToFullyConfirmedOverviewPageWithMyApprenticeshipDetailsLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink()
+                .NavigateToFullyConfirmedOverviewPageFromTopNavigationLink().NavigateToHomePageFromTopNavigationLink()
+                .NavigateToHelpAndSupportPageWithTheLinkOnHomePage().NavigateToHomePageWithBackLink()
+                .NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithBackLink();
         }
 
         [Then(@"the apprentice is able to navigate to Roles and HYAWD pages from Fully confirmed Overview page")]
@@ -52,6 +54,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
             confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
-        }    
+        }
     }
 }
