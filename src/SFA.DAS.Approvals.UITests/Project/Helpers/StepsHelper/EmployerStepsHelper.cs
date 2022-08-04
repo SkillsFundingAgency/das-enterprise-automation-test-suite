@@ -310,5 +310,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                .EmployerSendsToProviderToAddApprentices()
                .SendInstructionsToProviderForEmptyCohort();
         }
+
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        {
+            return ConfirmProviderDetailsAreCorrect()
+                  .EmployerAddsApprentices()
+                  .EmployerSelectsASStandardInFlexiJobJourney()
+                  .SelectFlexiJobAgencyDeliveryModelAndContinue();
+        }
     }
 }

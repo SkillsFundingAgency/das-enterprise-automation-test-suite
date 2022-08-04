@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using System;
@@ -28,6 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By CohortApproveOptions => RadioLabels;
         private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
         private By FlashMessage => By.ClassName("govuk-panel__title");
+
+        private By FlexiJobAgencyTag => By.CssSelector("span.govuk-tag");
 
         public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
@@ -136,6 +139,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderCohortApprovedPage(context);
         }
 
+        public ProviderCohortApprovedPage ValidateFlexiJobTagAndSubmitApprove()
+        {
+            validateFlexiJobAgencyTag();
+            SelectOption("radio-approve", false);
+            return new ProviderCohortApprovedPage(context);
+        }
+
         public ProviderCohortSentForReviewPage SubmitApproveAndSendToEmployerForApproval()
         {
             SelectOption("send-details");
@@ -165,5 +175,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
                 formCompletionHelper.ClickElement(PireanPreprod);
         }
+
+        public void validateFlexiJobAgencyTag() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(FlexiJobAgencyTag));
     }
 }
