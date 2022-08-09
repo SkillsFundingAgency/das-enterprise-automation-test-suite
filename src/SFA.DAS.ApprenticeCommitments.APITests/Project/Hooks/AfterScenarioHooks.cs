@@ -26,23 +26,24 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         public void ClearDownUserData()
         {
             var email = _objectContext.GetApprenticeEmail();
-            var apprenticeshipid = _objectContext.GetCommitmentsApprenticeshipId();
-
-            _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(email); //acomt db
+            var apprenticeshipId = _objectContext.GetCommitmentsApprenticeshipId();
+            var apprenticeId = _apprenticeCommitmentsAccountsSqlDbHelper.GetApprenticeIdFromApprenticeTable(email);
 
             //appacc db
-            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(email);
-            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteApprenticeTableData(email);
+            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(apprenticeId);
+            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteApprenticeTableData(apprenticeId);
 
-            _aComtSqlDbHelper.DeleteRegistrationTableData(email); //acomt db
+            //acomt db
+            _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(apprenticeId); 
+            _aComtSqlDbHelper.DeleteRegistrationTableData(apprenticeId); 
 
             //alogin db
-            _aLoginSqlDbHelper.DeleteUser(email);
-            _aLoginSqlDbHelper.DeleteResetPasswordRequests(email);
-            _aLoginSqlDbHelper.DeleteUserLogs(email);
+            _aLoginSqlDbHelper.DeleteAspNetUsersTableDataForCMAD(apprenticeId);
+            _aLoginSqlDbHelper.DeleteResetPasswordRequestsTableData(email);
+            _aLoginSqlDbHelper.DeleteUserLogsTableData(email);
 
             //Commitments db
-            _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(long.Parse(apprenticeshipid));
+            _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(long.Parse(apprenticeshipId));
         }
     }
 }
