@@ -10,6 +10,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -46,6 +47,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 _objectContext.ReplaceCohortReference(cohort);
 
                 Approve();
+
+                _objectContext.SetDebugInformation($"Approved Cohort - {cohort}");
             }
         }
 
@@ -306,6 +309,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
                .EmployerSendsToProviderToAddApprentices()
                .SendInstructionsToProviderForEmptyCohort();
+        }
+
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        {
+            return ConfirmProviderDetailsAreCorrect()
+                  .EmployerAddsApprentices()
+                  .EmployerSelectsASStandardInFlexiJobJourney()
+                  .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
     }
 }

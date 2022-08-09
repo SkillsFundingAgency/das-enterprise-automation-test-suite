@@ -11,4 +11,10 @@ public class AS_ComplaintsAndAppealsPolicyPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+    
+    public AS_FairAccessPage NHEI_UploadComplaintsPolicy()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

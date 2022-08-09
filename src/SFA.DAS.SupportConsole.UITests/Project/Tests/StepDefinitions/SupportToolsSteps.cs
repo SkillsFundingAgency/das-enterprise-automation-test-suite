@@ -1,21 +1,27 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
+﻿
+
+using SFA.DAS.Registration.UITests.Project;
+
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class SupportToolsSteps
 {
     private readonly ScenarioContext _context;
+    private readonly ObjectContext _objectContext;
     private readonly StepsHelper _stepsHelper;
     private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
     public SupportToolsSteps(ScenarioContext context)
     {
         _context = context;
+        _objectContext = context.Get<ObjectContext>();
         _stepsHelper = new StepsHelper(context);
         _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
     }
 
     [Given(@"the User is logged into Support Tools")]
-    public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools();
+    public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools(false);
 
     [Given(@"Opens the Pause Utility")]
     [When(@"user opens Pause Utility")]
@@ -105,6 +111,42 @@ public class SupportToolsSteps
         ValidateResumeSuccessful(ststusList);
     }
 
+    [When(@"that account is suspended using bulk utility")]
+    public void WhenThatAccountIsSuspendedUsingBulkUtility()
+    {
+        var status = _stepsHelper.ValidUserLogsinToSupportTools(false)
+                            .ClickSuspendUserAccountsLink()
+                            .EnterHashedAccountId(GetHashedAccountId())
+                            .ClickSubmitButton()
+                            .SelectAllRecords()
+                            .ClickSuspendUserButton()
+                            .ClicSuspendUsersbtn()
+                            .GetStatusColumn();
+       
+        status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
+    }
+
+    [When(@"that account is reinstated using bulk utility")]
+    public void WhenThatAccountIsReinstatedUsingBulkUtility()
+    {
+        string expectedStatusBefore = "Suspended " + DateTime.Now.ToString("dd/MM/yyyy");
+        string expectedStatusAfter = "Submitted successfully";
+
+        var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportTools(true)
+                            .ClickReinstateUserAccountsLink()
+                            .EnterHashedAccountId(GetHashedAccountId())
+                            .ClickSubmitButton()
+                            .SelectAllRecords()
+                            .ClickReinstateUserButton()
+                            .GetStatusColumn();
+
+        actualStatusBefore.Where(x => x.Text == expectedStatusBefore).FirstOrDefault();
+
+        var actualStatusAfter = new ReinstateUsersPage(_context).ClickReinstateUsersbtn().GetStatusColumn();
+
+        actualStatusAfter.Where(x => x.Text == expectedStatusAfter).FirstOrDefault();
+    }
+
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
         int i = 0;
@@ -185,4 +227,5 @@ public class SupportToolsSteps
         }
     }
 
+    private string GetHashedAccountId() => _objectContext.GetHashedAccountId();
 }

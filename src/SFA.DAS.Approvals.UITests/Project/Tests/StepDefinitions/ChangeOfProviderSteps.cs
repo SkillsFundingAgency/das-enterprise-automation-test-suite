@@ -54,6 +54,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
+                .SelectEditApprentice()
+                .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }
 

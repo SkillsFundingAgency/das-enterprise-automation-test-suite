@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
 {
-    public class CheckProviderPireanPreprodPage : CheckProviderPage
+    public class CheckProviderPireanPreprodPage : CheckPageUsingShorterTimeOut
     {
         protected override string PageTitle { get; }
 
@@ -14,7 +15,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         public CheckProviderPireanPreprodPage(ScenarioContext context) : base(context) { }
     }
 
-    public class CheckProviderHomePage : CheckProviderPage
+    public class CheckProviderHomePage : CheckPageUsingShorterTimeOut
     {
         protected override string PageTitle { get; }
 

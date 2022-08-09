@@ -23,8 +23,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             EnterUln();
 
+            bool rpl = CheckRPLCondition(false);
+
             formCompletionHelper.ClickElement(SaveButton);
 
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
+
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        public ProviderApproveApprenticeDetailsPage SelectSaveAndUpdateRPLAsNo()
+        {
+            bool rpl = CheckRPLCondition(false);
+
+            formCompletionHelper.ClickElement(SaveButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(context);
@@ -53,7 +69,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
+            bool rpl = CheckRPLCondition(false);
+
             formCompletionHelper.ClickElement(SaveButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
@@ -71,7 +91,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
+            bool rpl = CheckRPLCondition(false);
+
             formCompletionHelper.ClickElement(SaveButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
@@ -102,6 +127,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
 
             formCompletionHelper.EnterText(Uln, uln);
+        }
+
+        private bool CheckRPLCondition(bool rpl = false)
+        {
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            if (year > 2022) rpl = true;
+            return rpl;
         }
     }
 }

@@ -12,4 +12,10 @@ public class AS_FairAccessPage : AS_EPAOApplyStandardBasePage
         return new(context);
     }
 
+    public AS_ConsistencyAssurancePage NHEI_UploadFairAccess()
+    {
+        UploadFile();
+        return new(context);
+    }
+    
 }
