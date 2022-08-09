@@ -4,7 +4,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class ImportantDatesPage : VacancyDatesBasePage
     {
-        protected override string PageTitle => isRaaV2Employer ? "Important dates" : "Closing and start dates";
+        protected override string PageTitle => isRaaV2Employer ? "Closing and start date" : "Closing and start dates";
 
         public ImportantDatesPage(ScenarioContext context) : base(context) { }
 
