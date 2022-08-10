@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
 
-            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>);
+            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
 
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {

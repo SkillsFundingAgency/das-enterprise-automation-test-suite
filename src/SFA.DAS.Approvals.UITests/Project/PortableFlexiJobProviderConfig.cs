@@ -2,7 +2,8 @@
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
-    internal class PortableFlexiJobProviderConfig : ProviderConfig
+    public class PortableFlexiJobProviderConfig : ProviderConfig
     {
+        public string PortableFlexiJobCourseCode { get; set; }
     }
 }
