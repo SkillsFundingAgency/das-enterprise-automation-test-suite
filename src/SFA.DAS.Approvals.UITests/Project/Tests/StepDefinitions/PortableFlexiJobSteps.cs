@@ -41,14 +41,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer validates Portable flexi-job content on Add Apprentice Details page")]
         public void ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage()
         {
-            _addApprenticeDetailsPage.ValidateFlexiJobContent();
+            _addApprenticeDetailsPage.ValidatePortableFlexiJobContent();
             _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
         }
 
         [Then(@"validates Portable flexi-job tag on Approve Apprentice Details and sends the cohort to the Provider for approval")]
         public void ThenValidatesPortableFlexi_JobTagOnApproveApprenticeDetailsAndSendsTheCohortToTheProviderForApproval()
         {
-            _approveApprenticeDetailsPage.validateFlexiJobAgencyTag();
+            _approveApprenticeDetailsPage.ValidatePortableFlexiJobTag();
             var cohortReference = _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
             _objectContext.SetCohortReference(cohortReference);
@@ -56,9 +56,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Provider validates Portable flexi-job content and approves the cohort")]
-        public void ThenTheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort()
-        {
-            _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
-        }
+        public void ThenTheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort() => _providerStepsHelper.ValidatePortableFlexiJobContentAndApproveCohort();
     }
 }

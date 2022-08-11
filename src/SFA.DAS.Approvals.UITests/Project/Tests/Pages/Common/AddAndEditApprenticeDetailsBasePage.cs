@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -18,10 +19,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public By StartDateYear => By.Id("StartYear");
         private By EndDateMonth => By.Id("EndMonth");
         private By EndDateYear => By.Id("EndYear");
+        private By EmploymentEndMonth => By.Id("EmploymentEndMonth");
+        private By EmploymentEndYear => By.Id("EmploymentEndYear");
         private By TrainingCost => By.Id("Cost");
+        private By EmploymentPrice => By.Id("EmploymentPrice");
         private By EmployerReference => By.Id("Reference");
-        private By DeliveryModelSection => By.XPath("//legend[contains(text(),'Delivery model')]");
-        private By DeliveryModelRadioLabel => RadioLabels;
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context) { }
 
@@ -29,6 +31,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
+
+            if (tags.Contains("portableflexijob"))
+                formCompletionHelper.EnterText(EmploymentPrice, apprenticeDataHelper.TrainingCost.ToInt() - 50);
         }
 
         protected void ClickStartMonth() => formCompletionHelper.ClickElement(StartDateMonth);
@@ -43,6 +48,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             formCompletionHelper.EnterText(EndDateMonth, dateTime.Month);
             formCompletionHelper.EnterText(EndDateYear, dateTime.Year);
+
+            if (tags.Contains("portableflexijob"))
+            {
+                formCompletionHelper.EnterText(EndDateYear, dateTime.Year + 3);
+                formCompletionHelper.EnterText(EmploymentEndMonth, dateTime.Month);
+                formCompletionHelper.EnterText(EmploymentEndYear, dateTime.Year - 1);
+            }
         }
 
         protected void EnterApprenticeName()
@@ -56,9 +68,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected void EnterApprenticeMandatoryValidDetails()
         {
             EnterApprenticeName();
-
-            if (pageInteractionHelper.IsElementDisplayed(DeliveryModelSection))
-                formCompletionHelper.SelectRadioOptionByForAttribute(DeliveryModelRadioLabel, "DeliveryModelNormal");
 
             if (tags.Contains("aslistedemployer")) return;
 

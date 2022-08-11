@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "rt to the Provider for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And("the Provider validates Flexi-job content and approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Provider validates Portable flexi-job content and approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -80,10 +80,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return apprenticeCourseDataHelper.CourseStartDate;
         }
 
-        public void ValidateFlexiJobContent()
+        public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
+
+        public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
+
+        private void DeliveryModelAssertions(string delModelType)
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
-            StringAssert.StartsWith("Flexi-job agency", pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
+            StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
         }
     }
