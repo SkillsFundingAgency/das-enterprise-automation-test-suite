@@ -53,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             {
                 formCompletionHelper.EnterText(EndDateYear, dateTime.Year + 2);
                 formCompletionHelper.EnterText(EmploymentEndMonth, dateTime.Month);
-                formCompletionHelper.EnterText(EmploymentEndYear, dateTime.Year - 1);
+                formCompletionHelper.EnterText(EmploymentEndYear, dateTime.Year + 1);
             }
         }
 
