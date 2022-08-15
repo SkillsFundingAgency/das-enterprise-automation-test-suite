@@ -16,6 +16,8 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         private readonly ObjectContext _objectContext;
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ProviderLoginUser _login;
+        private readonly PortableFlexiJobProviderConfig _pfjConfig;
+        private readonly ProviderPortableFlexiJobUser _providerPortableFlexiJobUser;
 
         public ProviderHomePageStepsHelper(ScenarioContext context)
         {
@@ -23,16 +25,31 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _objectContext = _context.Get<ObjectContext>();
             _tabHelper = _context.Get<TabHelper>();
             _config = context.GetProviderConfig<ProviderConfig>();
+            _pfjConfig = context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>();
             _loginHelper = new ProviderPortalLoginHelper(_context);
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
+            _providerPortableFlexiJobUser = new ProviderPortableFlexiJobUser { UserId = _pfjConfig.UserId, Password = _pfjConfig.Password, Ukprn = _pfjConfig.Ukprn };
         }
 
         public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_login, newTab);
 
+        public ProviderHomePage GoToPortableFlexiJobProviderHomePage(bool newTab) => GoToProviderHomePageForPortableFlexiJobUser(_providerPortableFlexiJobUser, newTab);
+
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {
             if (newTab) _tabHelper.OpenNewTab();
-            
+
+            _tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+
+            _objectContext.SetUkprn(login.Ukprn);
+
+            return GoToProviderHomePage(login);
+        }
+
+        public ProviderHomePage GoToProviderHomePageForPortableFlexiJobUser(ProviderPortableFlexiJobUser login, bool newTab)
+        {
+            if (newTab) _tabHelper.OpenNewTab();
+
             _tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
 
             _objectContext.SetUkprn(login.Ukprn);
@@ -48,6 +65,17 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         }
 
         private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
+        {
+            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.ReLogin(login);
+
+            if (_loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
+
+            if (_loginHelper.IsIndexPageDisplayed()) return _loginHelper.Login(login);
+
+            return new ProviderHomePage(_context);
+        }
+
+        private ProviderHomePage GoToProviderHomePage(ProviderPortableFlexiJobUser login)
         {
             if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.ReLogin(login);
 

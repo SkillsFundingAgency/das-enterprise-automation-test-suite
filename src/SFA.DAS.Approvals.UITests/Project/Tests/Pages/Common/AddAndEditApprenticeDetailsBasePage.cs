@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             if (tags.Contains("portableflexijob"))
             {
-                formCompletionHelper.EnterText(EndDateYear, dateTime.Year + 3);
+                formCompletionHelper.EnterText(EndDateYear, dateTime.Year + 2);
                 formCompletionHelper.EnterText(EmploymentEndMonth, dateTime.Month);
                 formCompletionHelper.EnterText(EmploymentEndYear, dateTime.Year - 1);
             }

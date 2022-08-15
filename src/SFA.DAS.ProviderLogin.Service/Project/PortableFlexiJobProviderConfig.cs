@@ -1,6 +1,4 @@
-﻿using SFA.DAS.ProviderLogin.Service;
-
-namespace SFA.DAS.Approvals.UITests.Project
+﻿namespace SFA.DAS.ProviderLogin.Service
 {
     public class PortableFlexiJobProviderConfig : ProviderConfig
     {

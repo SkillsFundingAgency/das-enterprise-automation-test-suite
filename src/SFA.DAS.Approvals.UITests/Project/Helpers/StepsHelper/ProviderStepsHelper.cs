@@ -29,6 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
         private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
         private List<ApprenticeDetails> _apprenticeList;
+        private static string[] _tags;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -39,6 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             _apprenticeList = new List<ApprenticeDetails>();
+            _tags = context.ScenarioInfo.Tags;
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
@@ -52,6 +54,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab = true)
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(newTab);
+            return new ApprovalsProviderHomePage(_context);
+        }
+
+        public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage(bool newTab = true)
+        {
+            _providerHomePageStepsHelper.GoToPortableFlexiJobProviderHomePage(newTab);
             return new ApprovalsProviderHomePage(_context);
         }
 
@@ -254,7 +262,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
         {
-            GoToProviderHomePage();
+            if (_tags.Contains("portableflexijob"))
+                GoToPortableFlexiJobProviderHomePage();
+            else
+                GoToProviderHomePage();
 
             return new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
