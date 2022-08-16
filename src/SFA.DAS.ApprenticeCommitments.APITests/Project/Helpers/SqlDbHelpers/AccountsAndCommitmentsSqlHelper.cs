@@ -61,6 +61,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
 
-        public void ResetEmailForApprenticeshipRecord(long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
+        public void ResetEmailForApprenticeshipRecord(string email) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '{email}'", _dbConfig.CommitmentsDbConnectionString);
     }
 }
