@@ -17,7 +17,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             var data = GetData($"select  Id, FirstName, LastName from Apprentice where Email = '{email}'");
             return (data[0], data[1], data[2]);
         }
-
-        public string GetApprenticeIdFromApprenticeTable (string email) => GetDataAsString($"SELECT Id FROM Apprentice WHERE Email = '{email}'");
     }
 }

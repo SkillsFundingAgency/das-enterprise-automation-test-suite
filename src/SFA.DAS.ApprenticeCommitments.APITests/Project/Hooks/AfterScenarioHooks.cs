@@ -27,15 +27,15 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         {
             var email = _objectContext.GetApprenticeEmail();
             var apprenticeshipId = _objectContext.GetCommitmentsApprenticeshipId();
-            var apprenticeId = _apprenticeCommitmentsAccountsSqlDbHelper.GetApprenticeIdFromApprenticeTable(email);
+            var apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
 
             //appacc db
             _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(apprenticeId);
             _apprenticeCommitmentsAccountsSqlDbHelper.DeleteApprenticeTableData(apprenticeId);
 
             //acomt db
-            _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(apprenticeId); 
-            _aComtSqlDbHelper.DeleteRegistrationTableData(apprenticeId); 
+            _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(apprenticeId, email); 
+            _aComtSqlDbHelper.DeleteRegistrationTableData(email); 
 
             //alogin db
             _aLoginSqlDbHelper.DeleteAspNetUsersTableDataForCMAD(apprenticeId);
