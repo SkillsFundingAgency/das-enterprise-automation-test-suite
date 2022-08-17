@@ -40,18 +40,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private PasswordResetSuccessfulPage UpdatePassword()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
-            NavigateToMailinatorClickOnNotificationLink("change your password");
+            NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeEmail(), "change your password");
             return new ResetPasswordPage(_context).UpdatePassword();
         }
 
         private YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourEmailAddress().RequestToUpdateEmailAddress();
-            NavigateToMailinatorClickOnNotificationLink("Verify email address");
+            NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeChangedEmail(), "Verify email address");
             return new ChangeYourEmailAddressPage(_context).UpdateEmailAddress();
         }
 
-        private void NavigateToMailinatorClickOnNotificationLink(string linkText) => new MailinatorStepsHelper(_context, objectContext.GetApprenticeChangedEmail()).OpenLink(linkText);
+        private void NavigateToMailinatorClickOnNotificationLink(string email, string linkText) => new MailinatorStepsHelper(_context, email).OpenLink(linkText);
 
         private TopBannerSettingsPage GetTopBannerSettingsPage() => new TopBannerSettingsPage(_context);
     }
