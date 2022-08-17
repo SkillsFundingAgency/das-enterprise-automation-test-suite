@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void GivenAnApprenticeHasAConfirmedAccount() => createAccountStepsHelper.CreateAccountViaApiAndConfirmApprenticeshipViaDb();
 
         [Then(@"an apprentice can change their email")]
-        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToHome();
+        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToHome().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage().SignInWithUpdatedEmail();
 
         [Then(@"an apprentice can change their email before confirming account")]
         public void ThenAnApprenticeCanChangeTheirEmailBeforeConfirmingAccount() => UpdateEmailAddress().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
@@ -51,7 +51,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             return new ChangeYourEmailAddressPage(_context).UpdateEmailAddress();
         }
 
-        private void NavigateToMailinatorClickOnNotificationLink(string linkText) => new MailinatorStepsHelper(_context, objectContext.GetApprenticeEmail()).OpenLink(linkText);
+        private void NavigateToMailinatorClickOnNotificationLink(string linkText) => new MailinatorStepsHelper(_context, objectContext.GetApprenticeChangedEmail()).OpenLink(linkText);
 
         private TopBannerSettingsPage GetTopBannerSettingsPage() => new TopBannerSettingsPage(_context);
     }

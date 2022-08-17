@@ -28,6 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         [AfterScenario(Order = 33)]
         public void ClearDownUserData()
         {
+            string apprenticeId;
             var email = _objectContext.GetApprenticeEmail();
 
             if (tags.Contains("deletecmaddatacreatedthroughapi_RegAndAppTablesOnly"))
@@ -38,7 +39,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             }
             else if (tags.Contains("deletecmaddatacreatedthroughapi"))
             {
-                var apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
+                if (tags.Contains("cmadupdatedemail"))
+                    apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(_objectContext.GetApprenticeChangedEmail());
+                else
+                    apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
 
                 //appacc db
                 _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(apprenticeId);
