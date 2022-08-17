@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "deletecmaddatacreatedthroughapi"), Scope(Tag = "deletecmaddatacreatedthroughapi_RegAndAppTablesOnly")]
+    [Binding]
     public class AfterScenarioHooks
     {
         protected readonly ObjectContext _objectContext;
@@ -32,28 +32,30 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 
             if (tags.Contains("deletecmaddatacreatedthroughapi_RegAndAppTablesOnly"))
             {
-                _aComtSqlDbHelper.DeleteRegistrationTableData(email);
-                _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email);
+                _aComtSqlDbHelper.DeleteRegistrationTableData(email); //acomt db
+                _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email); //Commitments db
                 return;
             }
+            else if (tags.Contains("deletecmaddatacreatedthroughapi"))
+            {
+                var apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
 
-            var apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
+                //appacc db
+                _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(apprenticeId);
+                _apprenticeCommitmentsAccountsSqlDbHelper.DeleteApprenticeTableData(apprenticeId);
 
-            //appacc db
-            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(apprenticeId);
-            _apprenticeCommitmentsAccountsSqlDbHelper.DeleteApprenticeTableData(apprenticeId);
+                //alogin db
+                _aLoginSqlDbHelper.DeleteAspNetUsersTableDataForCMAD(apprenticeId);
+                _aLoginSqlDbHelper.DeleteResetPasswordRequestsTableData(email);
+                _aLoginSqlDbHelper.DeleteUserLogsTableData(email);
 
-            //alogin db
-            _aLoginSqlDbHelper.DeleteAspNetUsersTableDataForCMAD(apprenticeId);
-            _aLoginSqlDbHelper.DeleteResetPasswordRequestsTableData(email);
-            _aLoginSqlDbHelper.DeleteUserLogsTableData(email);
+                //acomt db
+                _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(apprenticeId, email);
+                _aComtSqlDbHelper.DeleteRegistrationTableData(email);
 
-            //acomt db
-            _aComtSqlDbHelper.DeleteRevisionAndApprenticeshipTableData(apprenticeId, email);
-            _aComtSqlDbHelper.DeleteRegistrationTableData(email);
-
-            //Commitments db
-            _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email);
+                //Commitments db
+                _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email);
+            }
         }
     }
 }
