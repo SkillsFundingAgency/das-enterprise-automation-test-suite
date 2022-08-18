@@ -318,5 +318,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .EmployerSelectsASStandardInFlexiJobJourney()
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
+
+        public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
+        {
+            return new ApprenticesHomePage(_context).AddAnApprentice()
+                .StartNowToAddTrainingProvider()
+                .EnterUkprnForPortableFlexiJobPilotProvider()
+                .ConfirmProviderDetailsAreCorrect()
+                .EmployerAddsApprentices()
+                .EmployerSelectsAPortableFlexiJobCourse()
+                .SelectPortableFlexiJobDeliveryModelAndContinue();
+        }
     }
 }

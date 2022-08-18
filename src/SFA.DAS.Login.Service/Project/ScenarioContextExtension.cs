@@ -16,6 +16,7 @@ namespace SFA.DAS.Login.Service
         {
             foreach (T item in value) SetUser(context, item);
         }
+
         public static void SetEasLoginUser(this ScenarioContext context, List<EasAccountUser> users)
         {
             var notNullUsers = users.Where(x => x != null).ToList();

@@ -9,9 +9,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
     {
         public ApprenticeCommitmentsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) { }
 
-        public void DeleteRevisionAndApprenticeshipTableData(string email) => ExecuteSqlCommand(
+        public void DeleteRevisionAndApprenticeshipTableData(string apprenticeId, string email) => ExecuteSqlCommand(
             $"DELETE FROM Revision WHERE ApprenticeshipId in (SELECT ApprenticeshipId from Registration WHERE Email = '{email}')" +
-            $"DELETE FROM Apprenticeship WHERE Id = (SELECT ApprenticeshipId from Registration WHERE Email = '{email}')");
+            $"DELETE FROM Apprenticeship WHERE ApprenticeId = '{apprenticeId}'");
 
         public void DeleteRegistrationTableData(string email) => ExecuteSqlCommand($"DELETE FROM Registration WHERE Email = '{email}'");
 

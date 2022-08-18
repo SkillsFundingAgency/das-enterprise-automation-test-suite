@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PortableFlexiJobJournies
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,24 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_Settings_02_UpdateEmailAddressAfterConfirmingTheAccount")]
-    public partial class AC_Settings_02_UpdateEmailAddressAfterConfirmingTheAccountFeature
+    [NUnit.Framework.DescriptionAttribute("AP_E2E_PFJ_01_CreateAPortableFlexiJobApprenticeship")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_E2E_PFJ_01_CreateAPortableFlexiJobApprenticeshipFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "approvals"};
         
-#line 1 "AC_Settings_02_UpdateEmailAddressForMatchedAccount.feature"
+#line 1 "AP_E2E_PFJ_01_CreateAPortableFlexiJobApprenticeship.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Settings", "AC_Settings_02_UpdateEmailAddressAfterConfirmingTheAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/PortableFlexiJobJournies", "AP_E2E_PFJ_01_CreateAPortableFlexiJobApprenticeship", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +76,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.Settings
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_Settings_02_Update EmailAddress after confirming the account")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
+        [NUnit.Framework.DescriptionAttribute("AP_E2E_PFJ_01 Employer creates a portable flexi-job apprenticeship and provider a" +
+            "pproves the cohort")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("accountsettingstest")]
-        [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi")]
-        [NUnit.Framework.CategoryAttribute("cmadupdatedemail")]
-        public void AC_Settings_02_UpdateEmailAddressAfterConfirmingTheAccount()
+        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        [NUnit.Framework.CategoryAttribute("portableflexijob")]
+        public void AP_E2E_PFJ_01EmployerCreatesAPortableFlexi_JobApprenticeshipAndProviderApprovesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticecommitments",
                     "regression",
-                    "accountsettingstest",
-                    "deletecmaddatacreatedthroughapi",
-                    "cmadupdatedemail"};
+                    "e2escenarios",
+                    "portableflexijob"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_Settings_02_Update EmailAddress after confirming the account", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_PFJ_01 Employer creates a portable flexi-job apprenticeship and provider a" +
+                    "pproves the cohort", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,11 +100,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 8
+ testRunner.Given("an Employer initiates a portable flexi-job apprenticeship creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 9
- testRunner.Given("an apprentice has a confirmed account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("the Employer validates Portable flexi-job content on Add Apprentice Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.Then("an apprentice can change their email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("validates Portable flexi-job tag on Approve Apprentice Details and sends the coho" +
+                        "rt to the Provider for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("the Provider validates Portable flexi-job content and approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
