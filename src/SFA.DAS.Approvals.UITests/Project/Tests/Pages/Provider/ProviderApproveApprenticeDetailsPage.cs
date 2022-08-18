@@ -30,8 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
         private By FlashMessage => By.ClassName("govuk-panel__title");
 
-        private By FlexiJobAgencyTag => By.CssSelector("span.govuk-tag");
-
         public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
             var noOfApprentice = TotalNoOfApprentices();
@@ -142,8 +140,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderCohortApprovedPage ValidateFlexiJobTagAndSubmitApprove()
         {
             validateFlexiJobAgencyTag();
-            SelectOption("radio-approve", false);
-            return new ProviderCohortApprovedPage(context);
+            return SubmitApprove();
+        }
+
+        public ProviderCohortApprovedPage ValidatePortableFlexiJobTagAndSubmitApprove()
+        {
+            ValidatePortableFlexiJobTag();
+            return SubmitApprove();
         }
 
         public ProviderCohortSentForReviewPage SubmitApproveAndSendToEmployerForApproval()
@@ -175,7 +178,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
                 formCompletionHelper.ClickElement(PireanPreprod);
         }
-
-        public void validateFlexiJobAgencyTag() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(FlexiJobAgencyTag));
     }
 }
