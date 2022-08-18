@@ -28,7 +28,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _pfjConfig = context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>();
             _loginHelper = new ProviderPortalLoginHelper(_context);
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
-            _providerPortableFlexiJobUser = new ProviderPortableFlexiJobUser { UserId = _pfjConfig.UserId, Password = _pfjConfig.Password, Ukprn = _pfjConfig.Ukprn };
+            //_providerPortableFlexiJobUser = new ProviderPortableFlexiJobUser { UserId = _pfjConfig.UserId, Password = _pfjConfig.Password, Ukprn = _pfjConfig.Ukprn };
         }
 
         public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_login, newTab);

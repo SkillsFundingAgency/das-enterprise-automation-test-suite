@@ -18,7 +18,7 @@
         private string Employmentdetails_4 => "Number of positions";
         private string Employmentdetails_5 => "Address";
 
-        private string Skillsandqualifications => "3. Requirements and prospects";
+        private string Skillsandqualifications => isRaaV2Employer ? "3. Requirements and prospects" : "3. Skills and qualifications";
         private string Skillsandqualifications_1 => "Skills";
         private string Skillsandqualifications_2 => "Qualifications";
         private string Skillsandqualifications_3 => "Other things to consider";
