@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new PreviewYourAdvertOrVacancyPage(context);
         }
 
-        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)
+        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool disabilityConfidence, bool optionalFields)
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             if (optionalFields)

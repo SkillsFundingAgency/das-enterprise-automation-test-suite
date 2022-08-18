@@ -73,7 +73,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
         {
-            return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertOrVacancySummary(createAdvertPage), true, false, RAAV2Const.NationalMinWages);
+            return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertOrVacancySummary(createAdvertPage), true, RAAV2Const.NationalMinWages);
         }
 
         internal void CreateFirstAdvertAndSubmit(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
@@ -120,11 +120,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA) =>
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA) =>
             createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
                 .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
                 .SelectApplicationMethod_Employer(isApplicationMethodFAA);
 
@@ -133,20 +133,21 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .Skills()
                 .SelectSkillAndGoToQualificationsPage()
                 .EnterQualifications()
-                .ConfirmQualificationsAndContinue()
+                .ConfirmQualificationsAndGoToFutureProspectsPage()
+                .EnterFutureProspect()
                 .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType) => 
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType) => 
             createAdvertPage
                 .ImportantDates()
-                .EnterImportantDates(disabilityConfidence)
+                .EnterImportantDates()
                 .EnterDuration()
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
 
         protected CreateAnApprenticeshipAdvertOrVacancyPage CompleteAboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
-            AboutTheEmployer(SkillsAndQualifications(createAdvertPage), string.Empty, true);
+            AboutTheEmployer(SkillsAndQualifications(createAdvertPage), string.Empty, true, true);
 
         private CreateAnApprenticeshipAdvertOrVacancyPage FirstAdvertSummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             AdvertSummary(NavigateToAdvertTitle(createAdvertPage).EnterVacancyTitleForTheFirstAdvert().SelectYes());

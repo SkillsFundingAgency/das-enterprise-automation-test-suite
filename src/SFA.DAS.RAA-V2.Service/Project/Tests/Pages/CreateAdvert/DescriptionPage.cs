@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DescriptionPage : Raav2BasePage
     {
-        protected override string PageTitle => isRaaV2Employer ? "About the apprenticeship" : "Tasks and training details";
+        protected override string PageTitle => isRaaV2Employer ? "Tasks and training details" : "Tasks and training details";
 
         private By IframeBody => By.CssSelector(".mce-content-body ");
         private By OutcomeDescription => By.Id("OutcomeDescription_ifr");
@@ -34,7 +34,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         public CreateAnApprenticeshipAdvertOrVacancyPage EnterAllDescription()
         {
             EnterVacancyAndTrainingDetails();
-            javaScriptHelper.SwitchFrameAndEnterText(OutcomeDescription, IframeBody, rAAV2DataHelper.VacancyOutcome);
             Continue();
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
