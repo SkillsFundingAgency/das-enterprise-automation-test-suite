@@ -1,9 +1,9 @@
-﻿Feature: AC_E2E_01_PositiveE2EJourney
+﻿Feature: AC_E2E_01_PositiveE2EJourneyForRegularApp
 
 @apprenticecommitments
 @regression
 @waitingtostartapprentice
-Scenario: AC_E2E_01_PositiveE2EJourney
+Scenario: AC_E2E_01_PositiveE2EJourneyForRegularApp
 	Given the Employer creates an apprenticeship and the Provider approves it
 	And the apprentice creates the CMAD account
 	Then the apprentice confirms all the sections and the overall apprenticeship

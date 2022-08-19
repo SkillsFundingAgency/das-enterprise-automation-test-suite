@@ -57,5 +57,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Provider validates Portable flexi-job content and approves the cohort")]
         public void ThenTheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort() => _providerStepsHelper.ValidatePortableFlexiJobContentAndApproveCohort();
+
+        [Given(@"the Employer creates a Portable flexi-job apprenticeship and the Provider approves it")]
+        public void GivenTheEmployerCreatesAPortableFlexi_JobApprenticeshipAndTheProviderApprovesIt()
+        {
+            GivenAnEmployerInitiatesAPortableFlexi_JobApprenticeshipCreation();
+            ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage();
+            ThenValidatesPortableFlexi_JobTagOnApproveApprenticeDetailsAndSendsTheCohortToTheProviderForApproval();
+            ThenTheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort();
+        }
     }
 }
