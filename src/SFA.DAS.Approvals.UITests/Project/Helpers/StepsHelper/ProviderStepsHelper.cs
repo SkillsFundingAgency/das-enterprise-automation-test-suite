@@ -260,18 +260,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .UploadFile();
         }
 
-        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
+        private ProviderApproveApprenticeDetailsPage CurrentCohortDetails(ApprovalsProviderHomePage _)
         {
-            if (_tags.Contains("portableflexijob"))
-                GoToPortableFlexiJobProviderHomePage();
-            else
-                GoToProviderHomePage();
-
             return new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails();
         }
 
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetailsForPortableFlexiJobProvider() => CurrentCohortDetails(GoToPortableFlexiJobProviderHomePage());
+
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => CurrentCohortDetails(GoToProviderHomePage());
+        
         public ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
@@ -315,6 +314,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerApproveApprenticeDetailsPage;
         }
 
+        public ProviderApproveApprenticeDetailsPage EditApprenticeForPortableFlexiJobContent() => EditApprentice(CurrentCohortDetailsForPortableFlexiJobProvider());
+
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
 
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
@@ -357,7 +358,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void ValidateFlexiJobContentAndApproveCohort() => EditApprentice().ValidateFlexiJobTagAndSubmitApprove();
 
-        public void ValidatePortableFlexiJobContentAndApproveCohort() => EditApprentice().ValidatePortableFlexiJobTagAndSubmitApprove();
+        public void ValidatePortableFlexiJobContentAndApproveCohort() => EditApprenticeForPortableFlexiJobContent().ValidatePortableFlexiJobTagAndSubmitApprove();
 
         public void ViewApprentices()
         {

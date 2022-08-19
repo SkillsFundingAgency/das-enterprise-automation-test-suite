@@ -23,6 +23,8 @@ namespace SFA.DAS.ProviderLogin.Service
         {
             _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
 
+            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
+
             _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
 
             _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
