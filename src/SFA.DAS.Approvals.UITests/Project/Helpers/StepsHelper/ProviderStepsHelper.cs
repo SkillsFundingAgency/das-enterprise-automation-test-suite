@@ -57,9 +57,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage(bool newTab = true)
+        public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage()
         {
-            _providerHomePageStepsHelper.GoToPortableFlexiJobProviderHomePage(newTab);
+            _providerHomePageStepsHelper.GoToPortableFlexiJobProviderHomePage();
             return new ApprovalsProviderHomePage(_context);
         }
 

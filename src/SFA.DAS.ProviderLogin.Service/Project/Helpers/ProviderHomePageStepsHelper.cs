@@ -11,37 +11,24 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
     public class ProviderHomePageStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
-        private readonly ProviderConfig _config;
-        private readonly ObjectContext _objectContext;
-        private readonly ProviderPortalLoginHelper _loginHelper;
-        private readonly ProviderLoginUser _login;
-        private readonly PortableFlexiJobProviderConfig _pfjConfig;
-        private readonly ProviderLoginUser _providerPortableFlexiJobUser;
+        
+        public ProviderHomePageStepsHelper(ScenarioContext context) => _context = context;
 
-        public ProviderHomePageStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-            _tabHelper = _context.Get<TabHelper>();
-            _config = context.GetProviderConfig<ProviderConfig>();
-            _pfjConfig = context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>();
-            _loginHelper = new ProviderPortalLoginHelper(_context);
-            _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
-            _providerPortableFlexiJobUser = new ProviderLoginUser { UserId = _pfjConfig.UserId, Password = _pfjConfig.Password, Ukprn = _pfjConfig.Ukprn };
-        }
+        public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_context.GetProviderConfig<ProviderConfig>(), newTab);
 
-        public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_login, newTab);
-
-        public ProviderHomePage GoToPortableFlexiJobProviderHomePage(bool newTab) => GoToProviderHomePage(_providerPortableFlexiJobUser, newTab);
+        public ProviderHomePage GoToPortableFlexiJobProviderHomePage() => GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true); 
 
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {
-            if (newTab) _tabHelper.OpenNewTab();
+            var objectContext = _context.Get<ObjectContext>();
 
-            _tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+            var tabHelper = _context.Get<TabHelper>();
 
-            _objectContext.SetUkprn(login.Ukprn);
+            if (newTab) tabHelper.OpenNewTab();
+
+            tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+
+            objectContext.SetUkprn(login.Ukprn);
 
             return GoToProviderHomePage(login);
         }
@@ -55,11 +42,13 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
         {
-            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.ReLogin(login);
+            var loginHelper = new ProviderPortalLoginHelper(_context);
 
-            if (_loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
+            if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
 
-            if (_loginHelper.IsIndexPageDisplayed()) return _loginHelper.Login(login);
+            if (loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
+
+            if (loginHelper.IsIndexPageDisplayed()) return loginHelper.Login(login);
 
             return new ProviderHomePage(_context);
         }
