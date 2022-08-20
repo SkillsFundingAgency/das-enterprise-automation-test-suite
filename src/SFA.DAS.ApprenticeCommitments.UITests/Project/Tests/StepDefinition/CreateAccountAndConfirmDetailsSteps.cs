@@ -45,7 +45,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeHomePage = _fullyConfirmedOverviewPage.GoToConfirmedHowYourApprenticeshipWillBeDeliveredPage().NavigateBackToFullyConfirmedOverviewPage().NavigateToHomePageFromTopNavigationLink();
         }
 
-
         [Then(@"the apprentice is able to logout from the service")]
         public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 

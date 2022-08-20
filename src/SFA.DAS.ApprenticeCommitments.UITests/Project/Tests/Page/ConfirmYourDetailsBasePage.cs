@@ -8,10 +8,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ConfirmYourDetailsBasePage : ApprenticeCommitmentsBasePage
     {
+        private By DeliveryModel => By.XPath("//th[text()='Delivery model']/following-sibling::td");
         private By ApprenticeshipInfo => By.XPath("//th[text()='Apprenticeship']/following-sibling::td");
         private By LevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
         private By EstimatedDurationInfo => By.XPath("//th[text()='Estimated duration']/following-sibling::td");
         private By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date for training']/following-sibling::td");
+        private By PlannedStartDateInfoForPortable => By.XPath("//th[text()='Planned training start date']/following-sibling::td");
+        private By PlannedEndDate => By.XPath("//th[text()='Planned training end date']/following-sibling::td");
+        private By JobEndDate => By.XPath("//th[text()='Job end date']/following-sibling::td");
         protected By GreenTickText => By.CssSelector(".app-notification-banner");
         protected By EmployerHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your employer's name\")]");
         protected By EmployerHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetEmployerName()} is your employer's legal name registered with Companies House.  You may know them by their trading name instead.\")]");
@@ -69,6 +73,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(GreenTickText, "You can now change your answer");
         }
 
+        public string GetDeliveryModelInfo() => pageInteractionHelper.GetText(DeliveryModel);
+
         public string GetApprenticeshipInfo() => pageInteractionHelper.GetText(ApprenticeshipInfo);
 
         public string GetApprenticeshipLevelInfo() => pageInteractionHelper.GetText(LevelInfo);
@@ -76,6 +82,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public string GetApprenticeshipEstimatedDurationInfo() => pageInteractionHelper.GetText(EstimatedDurationInfo);
 
         public string GetApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfo);
+
+        public string GetPortableApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfoForPortable);
+
+        public string GetPortableApprenticeshipPlannedEndDateInfo() => pageInteractionHelper.GetText(PlannedEndDate);
+
+        public string GetPortableApprenticeshipPlannedJobEndDateInfo() => pageInteractionHelper.GetText(JobEndDate);
 
         public void ClickOnConfirmButton() => formCompletionHelper.Click(ConfirmButton);
 

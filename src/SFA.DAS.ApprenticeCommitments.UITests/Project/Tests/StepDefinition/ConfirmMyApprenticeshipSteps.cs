@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -8,11 +9,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class ConfirmMyApprenticeshipSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
 
-        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) { 
+            _context = context;
+            _objectContext = _context.Get<ObjectContext>();
+        }
 
         [Then(@"the coc notification should not be displayed")]
         public void ThenTheCocNotificationShouldNotBeDisplayed() => _apprenticeOverviewPage = ApprenticeOverviewPage().VerifyCoCNotificationIsNotDisplayed();
@@ -35,7 +40,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(OverviewPageHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
         public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);

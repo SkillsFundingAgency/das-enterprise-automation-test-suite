@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenValidatesPortableFlexi_JobTagOnApproveApprenticeDetailsAndSendsTheCohortToTheProviderForApproval()
         {
             _approveApprenticeDetailsPage.ValidatePortableFlexiJobTag();
-            var cohortReference = _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview().CohortReference();
+            var cohortReference = _approveApprenticeDetailsPage.EmployerFirstApproveAndNotifyTrainingProvider().CohortReference();
 
             _objectContext.SetCohortReference(cohortReference);
             _objectContext.SetNoOfApprentices(1);
