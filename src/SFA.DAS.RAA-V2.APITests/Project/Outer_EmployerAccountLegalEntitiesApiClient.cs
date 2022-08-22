@@ -7,5 +7,5 @@ public class Outer_EmployerAccountLegalEntitiesApiClient : Outer_BaseApiRestClie
 
     protected override string ApiName => "";
 
-    protected override string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
+    protected override string ApiBaseUrl => UrlConfig.Outer_RAAV2ApiBaseUrl;
 }
