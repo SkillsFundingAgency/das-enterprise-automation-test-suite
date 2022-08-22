@@ -1,40 +1,31 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
+﻿namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers;
 
-namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers
+public class EmployerLegalEntitiesSqlDbHelper : SqlDbHelper
 {
-    public class EmployerLegalEntitiesSqlDbHelper : SqlDbHelper
+    public EmployerLegalEntitiesSqlDbHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+
+    public string GetEmployerAccountLegalEntities(string employerAccountHashedId)
     {
-        private readonly DbConfig _dbConfig;
+        List<string> queryResult = GetData($"SELECT (" +
+            $" SELECT  ale.Address as address, ale.Name as name, ale.PublicHashedId as accountLegalEntityPublicHashedId" +
+            $" FROM[employer_account].[AccountLegalEntity] AS ale" +
+            $" JOIN[employer_account].[LegalEntity] AS le" +
+            $" ON le.Id = ale.LegalEntityId " +
+            $" WHERE ale.AccountId in (select Id from[employer_account].[Account] where HashedId = '{employerAccountHashedId}') " +
+            $" and ale.Deleted IS NULL " +
+            $" FOR JSON PATH, ROOT('employerAccountLegalEntities') " +
+            $" ) AS queryResponse");
 
-        public EmployerLegalEntitiesSqlDbHelper(DbConfig dbConfig) : base (dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
+        return queryResult[0];
+    }
 
-        public List<string> GetEmployerAccountLegalEntities (string employerAccountHashedId)
-        {
-            var query = $"SELECT (" +
-                $" SELECT  ale.Address as address, ale.Name as name, ale.PublicHashedId as accountLegalEntityPublicHashedId" +
-                $" FROM[employer_account].[AccountLegalEntity] AS ale" +
-                $" JOIN[employer_account].[LegalEntity] AS le" +
-                $" ON le.Id = ale.LegalEntityId " +
-                $" WHERE   ale.AccountId in (select Id from[employer_account].[Account] where HashedId = '{employerAccountHashedId}') " +
-                $" and ale.Deleted IS NULL " +
-                $" FOR JSON PATH, ROOT('employerAccountLegalEntities') " +
-                $" ) AS queryResponse";
+    public string GetEmployerAccountHashedID()
+    {
+        List<string> queryResult = GetData(" select top (1) a.HashedId FROM [employer_account].[AccountLegalEntity] AS ale " +
+            " JOIN[employer_account].[LegalEntity] AS le ON le.Id = ale.LegalEntityId " +
+            " JOIN[employer_account].[Account] AS a ON a.Id = ale.AccountId " +
+            " Order by NEWID()");
 
-            return GetData(query, _dbConfig.AccountsDbConnectionString);
-        }
-
-        public string GetEmployerAccountHashedID()
-        {
-            var query = " select top (1) a.HashedId FROM [employer_account].[AccountLegalEntity] AS ale " +
-                " JOIN[employer_account].[LegalEntity] AS le ON le.Id = ale.LegalEntityId " +
-                " JOIN[employer_account].[Account] AS a ON a.Id = ale.AccountId " +
-                " Order by NEWID()";
-
-            List<string> queryResult =  GetData(query, _dbConfig.AccountsDbConnectionString);
-
-            return queryResult[0];
-        }
+        return queryResult[0];
     }
 }
