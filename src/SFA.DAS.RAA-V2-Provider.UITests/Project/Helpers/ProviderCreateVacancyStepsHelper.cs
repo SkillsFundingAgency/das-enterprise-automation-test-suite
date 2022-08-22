@@ -52,12 +52,12 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA);
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
         {
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
                 .EnterProviderContactDetails(optionalFields)
                 .SelectApplicationMethod_Provider(isApplicationMethodFAA)
                 .BackToTaskList();
@@ -72,11 +72,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             .EnterFutureProspect()
             .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType)
         {
             return createAdvertPage
                 .ImportantDates()
-                .EnterImportantDates(false)
+                .EnterImportantDates()
                 .EnterDuration()
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()

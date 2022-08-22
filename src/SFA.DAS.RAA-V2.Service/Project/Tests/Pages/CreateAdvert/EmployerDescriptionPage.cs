@@ -25,13 +25,17 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new PreviewYourAdvertOrVacancyPage(context);
         }
 
-        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)
+        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool disabilityConfidence, bool optionalFields)
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             if (optionalFields)
             {
                 formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
                 if (!isRaaV2Employer) formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
+            }
+            else
+            {
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
             }
             Continue();
             return new ContactDetailsPage(context);
