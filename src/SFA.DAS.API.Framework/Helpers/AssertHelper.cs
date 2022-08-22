@@ -16,7 +16,7 @@ public class AssertHelper
 
         var apidataCollector = new ApiDataCollectorHelper(client, request, response);
 
-        _objectContext.SetDebugInformation(apidataCollector.GetRequestData());
+        _objectContext.SetDebugInformation($"{apidataCollector.GetRequestData()}{Environment.NewLine}{apidataCollector.GetResponseData()}");
 
         Assert.Multiple(() =>
         {
