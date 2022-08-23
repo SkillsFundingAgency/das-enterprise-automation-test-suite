@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
@@ -12,6 +13,6 @@ namespace SFA.DAS.Courses.APITests.Project
         public BeforeScenarioHooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() => _context.SetRestClient(new Inner_CoursesApiRestClient(_context.Get<ObjectContext>(), _context.GetInner_CoursesApiAuthTokenConfig()));
+        public void SetUpHelpers() => _context.SetRestClient(new Inner_CoursesApiRestClient(_context.Get<ObjectContext>(), new Inner_CoursesApiAuthTokenConfig(_context.GetInner_ApiConfig())));
     }
 }

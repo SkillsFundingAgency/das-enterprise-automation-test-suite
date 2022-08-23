@@ -37,8 +37,6 @@ public class ApiFrameworkConfigurationSetup
         _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
 
         _context.Set(_configSection.GetConfigSection<Inner_CommitmentsApiAuthTokenConfig>());
-
-        _context.Set(_configSection.GetConfigSection<Inner_CoursesApiAuthTokenConfig>());
     }
 
     [BeforeScenario(Order = 4)]

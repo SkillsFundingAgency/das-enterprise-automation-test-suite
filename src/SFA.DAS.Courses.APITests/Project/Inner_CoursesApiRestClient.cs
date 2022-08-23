@@ -7,7 +7,7 @@ namespace SFA.DAS.Courses.APITests.Project
 {
     public class Inner_CoursesApiRestClient : Inner_BaseApiRestClient
     {
-        public Inner_CoursesApiRestClient(ObjectContext objectContext, API.Framework.Configs.Inner_ApiAuthConfigUsingOAuth config) : base(objectContext, new API.Framework.RestClients.Inner_ApiAuthUsingOAuth(config)) { }
+        public Inner_CoursesApiRestClient(ObjectContext objectContext, API.Framework.Configs.Inner_CoursesApiAuthTokenConfig config) : base(objectContext, new API.Framework.RestClients.Inner_ApiAuthUsingMI(config)) { }
 
         protected override string Inner_ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_CoursesApiBaseUrl;
 
