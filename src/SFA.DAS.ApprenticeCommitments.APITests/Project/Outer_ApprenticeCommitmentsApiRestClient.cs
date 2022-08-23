@@ -6,6 +6,20 @@ using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
+    public class Outer_ApprenticeAccountsApiRestClient : Outer_BaseApiRestClient
+    {
+        public Outer_ApprenticeAccountsApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
+
+        protected override string ApiName => "/apprenticeaccounts";
+
+        public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
+        {
+            return Execute(Method.POST, $"/apprentices", payload, expectedResponse);
+        }
+    }
+
+
+
     public class Outer_ApprenticeCommitmentsApiRestClient : Outer_BaseApiRestClient
     {
         public Outer_ApprenticeCommitmentsApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
@@ -15,11 +29,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public IRestResponse CreateApprovalsCreatedEvent(ApprovalsCreated payload, HttpStatusCode expectedResponse)
         {
             return Execute(Method.POST, $"/approvals", payload, expectedResponse);
-        }
-
-        public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
-        {
-            return Execute(Method.POST, $"/apprentices", payload, expectedResponse);
         }
 
         public IRestResponse CreateApprenticeship(CreateApprenticeshipFromRegistration payload, HttpStatusCode expectedResponse)

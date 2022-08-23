@@ -11,7 +11,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     public class Outer_ApprenticeCommitmentsApiHelper
     {
         private readonly ScenarioContext _context;
-        private readonly Outer_ApprenticeCommitmentsApiRestClient _outerApiRestClient;
+        private readonly Outer_ApprenticeCommitmentsApiRestClient _outerAppCommtApiRestClient;
+        private readonly Outer_ApprenticeAccountsApiRestClient _outerAppAccApiRestClient;
         private readonly ApprenticeCommitmentsJobs_CreateApprenticeshipClient _apprenticeCommitmentsJobs_CreateApprenticeshipClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
@@ -25,7 +26,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<FrameworkHelpers.RetryAssertHelper>();
-            _outerApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
+            _outerAppCommtApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
+            _outerAppAccApiRestClient = new Outer_ApprenticeAccountsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
             _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
@@ -52,7 +54,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 TrainingProviderId = providerId
             };
 
-            return _outerApiRestClient.CreateApprovalsCreatedEvent(createApprenticeship, HttpStatusCode.OK);
+            return _outerAppCommtApiRestClient.CreateApprovalsCreatedEvent(createApprenticeship, HttpStatusCode.OK);
         }
 
         protected IRestResponse CreateApprenticeshipViaCommitmentsJob()
@@ -84,7 +86,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 Email = GetApprenticeEmail()
             };
 
-            return _outerApiRestClient.CreateApprentice(createApprentice, HttpStatusCode.OK);
+            return _outerAppAccApiRestClient.CreateApprentice(createApprentice, HttpStatusCode.OK);
         }
 
         public IRestResponse CreateApprenticeship()
@@ -103,10 +105,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 ApprenticeId = apprenticeId
             };
 
-            return _outerApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.OK);
+            return _outerAppCommtApiRestClient.CreateApprenticeship(createApprenticeship, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetApprenticeships() => _outerApiRestClient.GetApprenticeships(_objectContext.GetApprenticeId(), HttpStatusCode.OK);
+        public IRestResponse GetApprenticeships() => _outerAppCommtApiRestClient.GetApprenticeships(_objectContext.GetApprenticeId(), HttpStatusCode.OK);
 
         public IRestResponse GetApprenticeship()
         {
@@ -114,7 +116,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
             var commitmentsApprenticeshipId = _aComtSqlDbHelper.GetApprenticeshipId(apprenticeId);
 
-            return _outerApiRestClient.GetApprenticeship(apprenticeId, commitmentsApprenticeshipId, HttpStatusCode.OK);
+            return _outerAppCommtApiRestClient.GetApprenticeship(apprenticeId, commitmentsApprenticeshipId, HttpStatusCode.OK);
         }
 
         private (string email, long accountid, long apprenticeshipid, string firstname, string lastname, string trainingname, string empname, long legalEntityId, long providerId, string startDate, string endDate, string createdOn) GetEmployerData()
