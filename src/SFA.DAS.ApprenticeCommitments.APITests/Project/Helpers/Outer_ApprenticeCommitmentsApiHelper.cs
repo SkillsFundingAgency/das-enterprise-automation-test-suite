@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using System;
@@ -12,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerAppCommtApiRestClient;
-        private readonly Outer_ApprenticeAccountsApiRestClient _outerAppAccApiRestClient;
+        private readonly Inner_ApprenticeAccountsApiRestClient _inner_ApprenticeAccountsApiRestClient;
         private readonly ApprenticeCommitmentsJobs_CreateApprenticeshipClient _apprenticeCommitmentsJobs_CreateApprenticeshipClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
@@ -27,7 +28,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<FrameworkHelpers.RetryAssertHelper>();
             _outerAppCommtApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
-            _outerAppAccApiRestClient = new Outer_ApprenticeAccountsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
+            _inner_ApprenticeAccountsApiRestClient = new Inner_ApprenticeAccountsApiRestClient(_objectContext, new Inner_ApprenticeAccountsApiAuthTokenConfig(context.GetInner_ApiConfig()));
             _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
@@ -86,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
                 Email = GetApprenticeEmail()
             };
 
-            return _outerAppAccApiRestClient.CreateApprentice(createApprentice, HttpStatusCode.OK);
+            return _inner_ApprenticeAccountsApiRestClient.CreateApprentice(createApprentice, HttpStatusCode.OK);
         }
 
         public IRestResponse CreateApprenticeship()

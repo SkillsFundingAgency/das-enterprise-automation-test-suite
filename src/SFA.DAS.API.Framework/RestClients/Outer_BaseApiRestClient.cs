@@ -8,7 +8,7 @@ public abstract class Outer_BaseApiRestClient : BaseApiRestClient
 
     protected virtual string ApiAuthKey => _authKey;
 
-    protected virtual string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
+    protected virtual string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
 
     public Outer_BaseApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : this(objectContext, config.Apim_SubscriptionKey) { }
 

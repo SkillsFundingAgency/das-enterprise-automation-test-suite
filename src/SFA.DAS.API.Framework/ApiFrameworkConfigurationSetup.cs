@@ -30,6 +30,8 @@ public class ApiFrameworkConfigurationSetup
     [BeforeScenario(Order = 2)]
     public void SetUpApiFrameworkConfiguration()
     {
+        _context.Set(_configSection.GetConfigSection<Inner_ApiConfig>());
+
         _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
         _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());

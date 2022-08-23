@@ -1,15 +1,15 @@
 ﻿
 namespace SFA.DAS.API.Framework.RestClients;
 
-public class Inner_ApiAuthTokenRestClient
+public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 {
     private RestClient _restClient;
 
     private RestRequest _restRequest;
 
-    private readonly Inner_ApiAuthTokenConfig _config;
+    private readonly Configs.Inner_ApiAuthConfigUsingOAuth _config;
 
-    public Inner_ApiAuthTokenRestClient(Inner_ApiAuthTokenConfig config)
+    public Inner_ApiAuthUsingOAuth(Configs.Inner_ApiAuthConfigUsingOAuth config)
     {
         _config = config;
 
@@ -22,7 +22,7 @@ public class Inner_ApiAuthTokenRestClient
 
         _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
 
-        _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.ClientId}&client_secret={_config.ClientSecrets}&grant_type={_config.GrantType}&resource={_config.Resource}", ParameterType.RequestBody);
+        _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.ClientId}&client_secret={_config.ClientSecrets}&grant_type={Configs.Inner_ApiAuthConfigUsingOAuth.GrantType}&resource={_config.GetResource()}", ParameterType.RequestBody);
 
         IRestResponse response = _restClient.Execute(_restRequest);
 
@@ -38,7 +38,7 @@ public class Inner_ApiAuthTokenRestClient
 
     private void CreateInnerApiAuthTokenRestClient()
     {
-        _restClient = new RestClient(UrlConfig.MangeIdentitybaseUrl(_config.Tenant));
+        _restClient = new RestClient(UrlConfig.InnerApiUrlConfig.MangeIdentitybaseUrl(_config.Tenant));
 
         _restRequest = new RestRequest();
     }

@@ -2,13 +2,13 @@
 
 public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 {
-    private readonly Inner_ApiAuthTokenConfig _config;
+    protected readonly IInner_ApiGetAuthToken _apiAuthToken;
 
     protected abstract string Inner_ApiBaseUrl { get; }
 
-    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiAuthTokenConfig config) : base(objectContext)
+    public Inner_BaseApiRestClient(ObjectContext objectContext, IInner_ApiGetAuthToken apiAuthToken) : base(objectContext)
     {
-        _config = config;
+        _apiAuthToken = apiAuthToken;
 
         CreateInnerApiRestClient();
     }
@@ -17,9 +17,7 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 
     protected override void AddAuthHeaders()
     {
-        var restClient = new Inner_ApiAuthTokenRestClient(_config);
-
-        (string tokenType, string accessToken) = restClient.GetAuthToken();
+        (string tokenType, string accessToken) = _apiAuthToken.GetAuthToken();
 
         Addheader("Authorization", $"{tokenType} {accessToken}");
     }

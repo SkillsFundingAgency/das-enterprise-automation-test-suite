@@ -29,5 +29,9 @@ public class EmployerAccountLegalEntitiesSteps
 
     [Then(@"verify response body displays correct information")]
     public void ThenVerifyResponseBodyDisplaysCorrectInformation()
-        => StringAssert.AreEqualIgnoringCase(_apiResponse.Content, _employerLegalEntitiesSqlHelper.GetEmployerAccountLegalEntities(_hashedAccountId));
+    {
+        var expected = _employerLegalEntitiesSqlHelper.GetEmployerAccountLegalEntities(_hashedAccountId);
+
+        StringAssert.AreEqualIgnoringCase(expected, _apiResponse.Content); 
+    }
 }

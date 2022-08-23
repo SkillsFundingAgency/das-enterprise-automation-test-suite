@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ConfigurationBuilder;
 using System.Net;
@@ -8,9 +7,9 @@ namespace SFA.DAS.Courses.APITests.Project
 {
     public class Inner_CoursesApiRestClient : Inner_BaseApiRestClient
     {
-        public Inner_CoursesApiRestClient(ObjectContext objectContext, Inner_ApiAuthTokenConfig config) : base(objectContext, config) { }
+        public Inner_CoursesApiRestClient(ObjectContext objectContext, API.Framework.Configs.Inner_ApiAuthConfigUsingOAuth config) : base(objectContext, new API.Framework.RestClients.Inner_ApiAuthUsingOAuth(config)) { }
 
-        protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CoursesApiBaseUrl;
+        protected override string Inner_ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_CoursesApiBaseUrl;
 
         public void PerformHeathCheck(string endpoint, HttpStatusCode expectedResponse)
         {
