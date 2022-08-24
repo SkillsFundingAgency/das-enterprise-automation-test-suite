@@ -106,18 +106,22 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the apprentice confirms all the sections and the overall apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
+ testRunner.And("the apprentice verifies the information displayed on the fully confirmed overview" +
+                        " page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
  testRunner.And("the apprentice is able to navigate to the Help and Support from Home and Fully co" +
                         "nfirmed page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("the apprentice is able to navigate to Home page back and forth from Fully confirm" +
                         "ed Overview and Help pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.And("the apprentice is able to navigate to Roles and HYAWD pages from Fully confirmed " +
                         "Overview page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
  testRunner.And("the apprentice is able to logout from the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

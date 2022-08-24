@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -13,10 +14,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
+        private readonly string[] _tags;
 
         public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) { 
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
+            _tags = context.ScenarioInfo.Tags;
         }
 
         [Then(@"the coc notification should not be displayed")]
@@ -148,6 +151,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeOverviewPage.VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship().NavigateBackToOverviewPage();
             VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
+
+        [Then(@"the apprentice verifies the information displayed on the fully confirmed overview page")]
+        public void ThenTheApprenticeVerifiesTheInformationDisplayedOnTheFullyConfirmedOverviewPage() => confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
 
         private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
 
