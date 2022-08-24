@@ -218,7 +218,7 @@ public class SupportToolsSteps
 
         foreach (var status in StatusList)
         {
-            if (i >= 0 && i < 7)
+            if (i >= 0 && i < 9)
                 Assert.IsTrue(status.Text == $"Submitted successfully {todaysDate}" || status.Text == $"Submitted successfully {todaysDate2}", $"validation failed at index [{i}]. Expected was [Submitted successfully {todaysDate}]  but actual value displayed is [{status.Text}]");
             else
                 Assert.IsTrue(status.Text == "Apprenticeship must be Active or Paused. Unable to stop apprenticeship", $"validation failed at index [{i}]. Expected was [Apprenticeship must be Active or Paused. Unable to stop apprenticeship]  but actual value displayed is [{status.Text}]");
