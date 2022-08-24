@@ -11,7 +11,7 @@ public class VenueAndDeliveryPage : ManagingStandardsBasePage
 
     public TrainingVenuesPage ChooseTheVenueDeliveryAndContinue()
     {
-        formCompletionHelper.SelectFromDropDownByValue(ChooseVenue, "3293679b-cfe2-4855-bbda-6b44b3d6a2e2");
+        formCompletionHelper.SelectFromDropDownByText(ChooseVenue, "CENTRAL HAIR ESSEX");
         formCompletionHelper.SelectCheckbox(DayRelease);
         formCompletionHelper.SelectCheckbox(BlockRelease);
         Continue();
