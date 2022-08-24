@@ -3,21 +3,22 @@
 [Binding]
 public class EmployerAccountLegalEntitiesSteps
 {
-    private readonly Outer_EmployerAccountLegalEntitiesApiClient _restClient;
+    private readonly Outer_RecruitApiClient _restClient;
     private readonly EmployerLegalEntitiesSqlDbHelper _employerLegalEntitiesSqlHelper;
     private string _hashedAccountId;
+    private string _expected;
     private IRestResponse _apiResponse;
 
     public EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     {
-        _restClient = context.GetRestClient<Outer_EmployerAccountLegalEntitiesApiClient>();
+        _restClient = context.GetRestClient<Outer_RecruitApiClient>();
 
         _employerLegalEntitiesSqlHelper = context.Get<EmployerLegalEntitiesSqlDbHelper>();
     }
 
     [Given(@"user prepares request with Employer HashedID")]
     public void GivenUserPreparesRequestWithEmployerHashedId()
-        => _hashedAccountId = _employerLegalEntitiesSqlHelper.GetEmployerAccountHashedID();
+        => (_hashedAccountId, _expected) = _employerLegalEntitiesSqlHelper.GetEmployerAccountDetails();
 
     [When(@"the user sends (GET) request to (.*)")]
     public void WhenTheUserSendsGETRequestToVacanciesEmployeraccountlegalentities(Method method, string endpoint)
@@ -28,10 +29,6 @@ public class EmployerAccountLegalEntitiesSteps
         => _apiResponse = _restClient.Execute(responseCode);
 
     [Then(@"verify response body displays correct information")]
-    public void ThenVerifyResponseBodyDisplaysCorrectInformation()
-    {
-        var expected = _employerLegalEntitiesSqlHelper.GetEmployerAccountLegalEntities(_hashedAccountId);
-
-        StringAssert.AreEqualIgnoringCase(expected, _apiResponse.Content); 
-    }
+    public void ThenVerifyResponseBodyDisplaysCorrectInformation() 
+        => StringAssert.Contains(_expected, _apiResponse.Content);
 }
