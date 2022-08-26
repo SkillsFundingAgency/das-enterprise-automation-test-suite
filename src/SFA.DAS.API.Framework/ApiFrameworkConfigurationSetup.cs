@@ -37,8 +37,6 @@ public class ApiFrameworkConfigurationSetup
 
         _context.Set(inner_ApiFrameworkConfig);
 
-        _context.Set(_configSection.GetConfigSection<Inner_ApiAuthTokenConfig>());
-
         _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
         _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());

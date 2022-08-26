@@ -6,16 +6,9 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 {
     protected readonly Inner_ApiFrameworkConfig config;
 
-    protected abstract string Inner_ApiBaseUrl { get; }
-
     protected abstract string AppServiceName { get; }
 
-    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext)
-    {
-        this.config = config;
-
-        CreateInnerApiRestClient();
-    }
+    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext) => this.config = config;
 
     protected override void AddResource(string resource) => restRequest.Resource = resource;
 
@@ -24,13 +17,6 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
         if (config.IsVstsExecution) AddOAuthHeaders();
 
         else AddMIAuthHeaders();
-    }
-
-    private void CreateInnerApiRestClient()
-    {
-        restClient = new RestClient(Inner_ApiBaseUrl);
-
-        restRequest = new RestRequest();
     }
 
     private void AddMIAuthHeaders()

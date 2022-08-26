@@ -8,16 +8,11 @@ public abstract class Outer_BaseApiRestClient : BaseApiRestClient
 
     protected virtual string ApiAuthKey => _authKey;
 
-    protected virtual string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
+    protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
 
     public Outer_BaseApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : this(objectContext, config.Apim_SubscriptionKey) { }
 
-    public Outer_BaseApiRestClient(ObjectContext objectContext, string authKey) : base(objectContext)
-    {
-        _authKey = authKey;
-
-        CreateOuterApiRestClient();
-    }
+    public Outer_BaseApiRestClient(ObjectContext objectContext, string authKey) : base(objectContext) => _authKey = authKey;
 
     protected override void AddResource(string resource) => restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 
@@ -29,14 +24,5 @@ public abstract class Outer_BaseApiRestClient : BaseApiRestClient
                 { "X-Version", "1" },
                 { "Ocp-Apim-Subscription-Key", ApiAuthKey}
             });
-    }
-
-    private void CreateOuterApiRestClient()
-    {
-        restClient = new RestClient(ApiBaseUrl);
-
-        restRequest = new RestRequest();
-
-        AddAuthHeaders();
     }
 }

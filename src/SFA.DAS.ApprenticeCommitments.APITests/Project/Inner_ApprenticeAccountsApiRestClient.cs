@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     {
         public Inner_ApprenticeAccountsApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext, config) { }
 
-        protected override string Inner_ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_ApprenticeAccountsApiBaseUrl;
+        protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_ApprenticeAccountsApiBaseUrl;
 
         protected override string AppServiceName => config.config.ApprenticeAccountsAppServiceName;
 

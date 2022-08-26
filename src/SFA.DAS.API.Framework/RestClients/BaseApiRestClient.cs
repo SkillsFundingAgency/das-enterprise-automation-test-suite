@@ -9,7 +9,14 @@ public abstract class BaseApiRestClient
 
     private readonly ObjectContext _objectContext;
 
-    public BaseApiRestClient(ObjectContext objectContext) => _objectContext = objectContext;
+    public BaseApiRestClient(ObjectContext objectContext) 
+    {
+        _objectContext = objectContext;
+
+        CreateApiClient();
+    } 
+
+    protected abstract string ApiBaseUrl { get; }
 
     protected abstract void AddResource(string resource);
 
@@ -60,5 +67,12 @@ public abstract class BaseApiRestClient
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
             else restRequest.AddJsonBody(payload);
         }
+    }
+
+    private void CreateApiClient()
+    {
+        restClient = new RestClient(ApiBaseUrl);
+
+        restRequest = new RestRequest();
     }
 }
