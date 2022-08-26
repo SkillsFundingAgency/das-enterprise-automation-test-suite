@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using System.Net.Http;
@@ -25,8 +26,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             var request = new WithdrawRequest
             {
                 WithdrawalType = withdrawalType,
-                ULN = uln,
-                AccountLegalEntityId = accountLegalEntityId
+                Applications = new List<Application>
+                {
+                    new Application 
+                    { 
+                        AccountLegalEntityId = accountLegalEntityId, 
+                        ULN = uln,
+                        ServiceRequest = new ServiceRequest { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
+                    }
+                }.ToArray()
             };
 
             var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
@@ -37,10 +45,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             var request = new ReinstateApplicationRequest
             {
-                ULN = uln,
-                AccountLegalEntityId = accountLegalEntityId
+                Applications = new List<Application>
+                {
+                    new Application
+                    {
+                        AccountLegalEntityId = accountLegalEntityId,
+                        ULN = uln,
+                        ServiceRequest = new ServiceRequest
+                            { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
+                    }
+                }.ToArray()
             };
-
             var response = await httpClient.PostAsync($"{baseUrl}/api/reinstate?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
@@ -69,18 +84,23 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             response.EnsureSuccessStatusCode();
         }
 
+        public class Application
+        {
+            public long AccountLegalEntityId { get; set; }
+            public long ULN { get; set; }
+            public ServiceRequest ServiceRequest { get; set; }
+        }
+
         public class WithdrawRequest
         {
             public WithdrawalType WithdrawalType { get; set; }
-            public long AccountLegalEntityId { get; set; }
-            public long ULN { get; set; }
+            public Application[] Applications { get; set; }
+            public ServiceRequest ServiceRequest { get; set; }
         }
 
         public class ReinstateApplicationRequest
         {
-            public WithdrawalType WithdrawalType { get; set; }
-            public long AccountLegalEntityId { get; set; }
-            public long ULN { get; set; }
+            public Application[] Applications { get; set; }
         }
 
         public class EmploymentCheckRequest
