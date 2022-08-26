@@ -8,6 +8,8 @@ public class Inner_ApiAuthTokenConfig
 
     public string Tenant { get; set; }
 
+    public string TenantId { get; set; }
+
     public string ApprenticeAccountsAppServiceName { get; set; }
 
     public string CoursesAppServiceName { get; set; }

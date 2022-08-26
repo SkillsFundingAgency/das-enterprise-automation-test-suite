@@ -34,7 +34,7 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
     private void CreateInnerApiAuthTokenRestClient()
     {
-        _restClient = new RestClient(UrlConfig.InnerApiUrlConfig.MangeIdentitybaseUrl(_config.config.Tenant));
+        _restClient = new RestClient(UrlConfig.InnerApiUrlConfig.MangeIdentitybaseUrl(_config.config.TenantId));
 
         _restRequest = new RestRequest();
     }
