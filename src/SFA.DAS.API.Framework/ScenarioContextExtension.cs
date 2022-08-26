@@ -12,10 +12,8 @@ public static class ScenarioContextExtension
     #endregion
 
     #region Getters
-    public static Inner_ApiConfig GetInner_ApiConfig(this ScenarioContext context) => context.Get<Inner_ApiConfig>();
     public static Outer_ApiAuthTokenConfig GetOuter_ApiAuthTokenConfig(this ScenarioContext context) => context.Get<Outer_ApiAuthTokenConfig>();
     public static ApprenticeCommitmentsJobsAuthTokenConfig GetApprenticeCommitmentsJobsAuthTokenConfig(this ScenarioContext context) => context.Get<ApprenticeCommitmentsJobsAuthTokenConfig>();
-    public static Inner_CommitmentsApiAuthTokenConfig GetInner_CommitmentsApiAuthTokenConfig(this ScenarioContext context) => context.Get<Inner_CommitmentsApiAuthTokenConfig>();
     public static T GetRestClient<T>(this ScenarioContext context) => Get<T>(context, RestClientKey<T>());
     public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
     #endregion

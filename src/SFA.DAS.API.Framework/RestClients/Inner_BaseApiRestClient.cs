@@ -1,14 +1,18 @@
-﻿namespace SFA.DAS.API.Framework.RestClients;
+﻿using RestSharp.Authenticators;
+
+namespace SFA.DAS.API.Framework.RestClients;
 
 public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 {
-    protected readonly IInner_ApiGetAuthToken _apiAuthToken;
+    protected readonly Inner_ApiFrameworkConfig config;
 
     protected abstract string Inner_ApiBaseUrl { get; }
 
-    public Inner_BaseApiRestClient(ObjectContext objectContext, IInner_ApiGetAuthToken apiAuthToken) : base(objectContext)
+    protected abstract string AppServiceName { get; }
+
+    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext)
     {
-        _apiAuthToken = apiAuthToken;
+        this.config = config;
 
         CreateInnerApiRestClient();
     }
@@ -17,9 +21,9 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 
     protected override void AddAuthHeaders()
     {
-        (string tokenType, string accessToken) = _apiAuthToken.GetAuthToken();
+        if (config.IsVstsExecution) AddOAuthHeaders();
 
-        Addheader("Authorization", $"{tokenType} {accessToken}");
+        else AddMIAuthHeaders();
     }
 
     private void CreateInnerApiRestClient()
@@ -27,5 +31,19 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
         restClient = new RestClient(Inner_ApiBaseUrl);
 
         restRequest = new RestRequest();
+    }
+
+    private void AddMIAuthHeaders()
+    {
+        (string tokenType, string accessToken) = new Inner_ApiAuthUsingMI(config).GetAuthToken(AppServiceName);
+
+        restClient.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, tokenType);
+    }
+
+    private void AddOAuthHeaders()
+    {
+        (string tokenType, string accessToken) = new Inner_ApiAuthUsingOAuth(config).GetAuthToken(AppServiceName);
+
+        Addheader("Authorization", $"{tokenType} {accessToken}");
     }
 }

@@ -13,6 +13,6 @@ namespace SFA.DAS.Courses.APITests.Project
         public BeforeScenarioHooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() => _context.SetRestClient(new Inner_CoursesApiRestClient(_context.Get<ObjectContext>(), new Inner_CoursesApiAuthTokenConfig(_context.GetInner_ApiConfig())));
+        public void SetUpHelpers() => _context.SetRestClient(new Inner_CoursesApiRestClient(_context.Get<ObjectContext>(), _context.Get<Inner_ApiFrameworkConfig>()));
     }
 }

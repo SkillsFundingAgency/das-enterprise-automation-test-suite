@@ -1,5 +1,4 @@
-﻿
-namespace SFA.DAS.API.Framework.RestClients;
+﻿namespace SFA.DAS.API.Framework.RestClients;
 
 public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 {
@@ -7,28 +6,25 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
     private RestRequest _restRequest;
 
-    private readonly Configs.Inner_ApiAuthConfigUsingOAuth _config;
+    private readonly Inner_ApiFrameworkConfig _config;
 
-    public Inner_ApiAuthUsingOAuth(Configs.Inner_ApiAuthConfigUsingOAuth config)
+    public Inner_ApiAuthUsingOAuth(Inner_ApiFrameworkConfig config) => _config = config;
+
+    public (string tokenType, string accessToken) GetAuthToken(string appServiceName)
     {
-        _config = config;
-
         CreateInnerApiAuthTokenRestClient();
-    }
 
-    public (string tokenType, string accessToken) GetAuthToken()
-    {
         _restRequest.Method = Method.POST;
 
         _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
 
-        _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.ClientId}&client_secret={_config.ClientSecrets}&grant_type={Configs.Inner_ApiAuthConfigUsingOAuth.GrantType}&resource={_config.GetResource()}", ParameterType.RequestBody);
+        _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.config.ClientId}&client_secret={_config.config.ClientSecrets}&grant_type=client_credentials&resource={_config.GetResource(appServiceName)}", ParameterType.RequestBody);
 
         IRestResponse response = _restClient.Execute(_restRequest);
 
         if (response.StatusCode != HttpStatusCode.OK)
         {
-            throw new System.Exception($"Failed to get auth token.{Environment.NewLine} {response.Content}", response.ErrorException);
+            throw new Exception($"Failed to get auth token.{Environment.NewLine} {response.Content}", response.ErrorException);
         }
 
         AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
@@ -38,7 +34,7 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
     private void CreateInnerApiAuthTokenRestClient()
     {
-        _restClient = new RestClient(UrlConfig.InnerApiUrlConfig.MangeIdentitybaseUrl(_config.Tenant));
+        _restClient = new RestClient(UrlConfig.InnerApiUrlConfig.MangeIdentitybaseUrl(_config.config.Tenant));
 
         _restRequest = new RestRequest();
     }

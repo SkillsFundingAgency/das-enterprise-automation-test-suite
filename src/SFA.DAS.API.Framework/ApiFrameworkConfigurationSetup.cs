@@ -30,13 +30,18 @@ public class ApiFrameworkConfigurationSetup
     [BeforeScenario(Order = 2)]
     public void SetUpApiFrameworkConfiguration()
     {
-        _context.Set(_configSection.GetConfigSection<Inner_ApiConfig>());
+        var inner_ApiFrameworkConfig = new Inner_ApiFrameworkConfig(_configSection.GetConfigSection<Inner_ApiAuthTokenConfig>())
+        {
+            IsVstsExecution = Configurator.IsVstsExecution
+        };
+
+        _context.Set(inner_ApiFrameworkConfig);
+
+        _context.Set(_configSection.GetConfigSection<Inner_ApiAuthTokenConfig>());
 
         _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
         _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
-
-        _context.Set(_configSection.GetConfigSection<Inner_CommitmentsApiAuthTokenConfig>());
     }
 
     [BeforeScenario(Order = 4)]

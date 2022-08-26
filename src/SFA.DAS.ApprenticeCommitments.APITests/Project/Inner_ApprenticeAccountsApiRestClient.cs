@@ -7,11 +7,13 @@ using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class Inner_ApprenticeAccountsApiRestClient : Inner_BaseApiRestClientUsingMI
+    public class Inner_ApprenticeAccountsApiRestClient : Inner_BaseApiRestClient
     {
-        public Inner_ApprenticeAccountsApiRestClient(ObjectContext objectContext, Inner_ApprenticeAccountsApiAuthTokenConfig config) : base(objectContext, new Inner_ApiAuthUsingMI(config)) { }
+        public Inner_ApprenticeAccountsApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext, config) { }
 
         protected override string Inner_ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_ApprenticeAccountsApiBaseUrl;
+
+        protected override string AppServiceName => config.config.ApprenticeAccountsAppServiceName;
 
         public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
         {
