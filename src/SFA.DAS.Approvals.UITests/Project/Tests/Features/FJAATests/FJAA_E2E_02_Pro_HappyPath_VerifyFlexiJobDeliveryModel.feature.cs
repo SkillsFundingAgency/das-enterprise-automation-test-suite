@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_01_VerifyFlexiJobDeliveryModel")]
+    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_02_VerifyFlexiJobDeliveryModel")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class FJAA_E2E_01_VerifyFlexiJobDeliveryModelFeature
+    public partial class FJAA_E2E_02_VerifyFlexiJobDeliveryModelFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,17 +30,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "FJAA_E2E_01_VerifyFlexiJobDeliveryModel.feature"
+#line 1 "FJAA_E2E_02_Pro_HappyPath_VerifyFlexiJobDeliveryModel.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_01_VerifyFlexiJobDeliveryModel", @"In this test, a levy employer, who is on Flexi-job register, logs in to their employer account. 
-Flexi employer adds an apprentice details and selects 'Flexi-job agency' as delivery model,
-validates flexi-job content and submits apprentice details for provider to review.
-Provider logs into their account, finds the cohort, adds ULN for the apprentice.
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_02_VerifyFlexiJobDeliveryModel", @"In this test, a Training Provider,logs in to their account. 
+Training Provider adds an apprentice details and selects 'Flexi-job agency' as delivery model,
+validates flexi-job content and submits apprentice details for flexi employer to review.
+Flexi Employer logs into their account, finds the cohort.
 Validates Flexi-job tag on the apprenticeship and approves the cohort.  ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -80,18 +80,18 @@ Validates Flexi-job tag on the apprenticeship and approves the cohort.  ", Progr
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_01_VerifyFlexiJobDeliveryModel_EmployerAddsApprenticeDetails")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_02_VerifyFlexiJobDeliveryModel_ProviderAddsApprenticeDetails")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-job")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public void FJAA_E2E_01_VerifyFlexiJobDeliveryModel_EmployerAddsApprenticeDetails()
+        public void FJAA_E2E_02_VerifyFlexiJobDeliveryModel_ProviderAddsApprenticeDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-job",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_01_VerifyFlexiJobDeliveryModel_EmployerAddsApprenticeDetails", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_02_VerifyFlexiJobDeliveryModel_ProviderAddsApprenticeDetails", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,18 +107,18 @@ this.ScenarioInitialize(scenarioInfo);
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.When("employer selects Flexi-job agency radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("validate Flexi-job agency content on Add Apprentice Details page and submit valid" +
-                        " details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the provider selects Flexi-job agency radio button on Select Delivery Model scree" +
+                        "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("validate Flexi-job agency tag on Approve Apprentice Details page and send cohort " +
-                        "to Provider for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("provider validate Flexi-job agency content on Add Apprentice Details page and sub" +
+                        "mit valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
- testRunner.And("the provider validates Flexi-job content, adds Uln and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

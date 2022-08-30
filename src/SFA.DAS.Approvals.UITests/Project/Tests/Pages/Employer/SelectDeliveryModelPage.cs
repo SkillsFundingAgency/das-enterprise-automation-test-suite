@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
@@ -18,6 +19,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
             return new AddApprenticeDetailsPage(context);
+        }
+
+        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
+        {
+            formCompletionHelper.Click(FlexiJobRadioButton);
+            Continue();
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public AddApprenticeDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
