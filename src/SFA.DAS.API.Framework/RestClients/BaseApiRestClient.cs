@@ -7,11 +7,11 @@ public abstract class BaseApiRestClient
 
     protected RestRequest restRequest;
 
-    private readonly ObjectContext _objectContext;
+    protected readonly ObjectContext objectContext;
 
     public BaseApiRestClient(ObjectContext objectContext) 
     {
-        _objectContext = objectContext;
+        this.objectContext = objectContext;
 
         CreateApiClient();
     } 
@@ -41,7 +41,7 @@ public abstract class BaseApiRestClient
 
     public IRestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
 
-    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new AssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
+    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new AssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
 
     protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
     {

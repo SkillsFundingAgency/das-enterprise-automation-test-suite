@@ -1,4 +1,7 @@
-﻿namespace SFA.DAS.API.Framework.RestClients;
+﻿using RestSharp;
+using SFA.DAS.ConfigurationBuilder;
+
+namespace SFA.DAS.API.Framework.RestClients;
 
 public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 {
@@ -8,7 +11,9 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
     private readonly Inner_ApiFrameworkConfig _config;
 
-    public Inner_ApiAuthUsingOAuth(Inner_ApiFrameworkConfig config) => _config = config;
+    private readonly ObjectContext _objectContext;
+
+    public Inner_ApiAuthUsingOAuth(Inner_ApiFrameworkConfig config, ObjectContext objectContext) { _config = config; _objectContext = objectContext; }
 
     public (string tokenType, string accessToken) GetAuthToken(string appServiceName)
     {
@@ -20,7 +25,7 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
         _restRequest.AddParameter("application/x-www-form-urlencoded", $@"client_id={_config.config.ClientId}&client_secret={_config.config.ClientSecrets}&grant_type=client_credentials&resource={_config.GetResource(appServiceName)}", ParameterType.RequestBody);
 
-        IRestResponse response = _restClient.Execute(_restRequest);
+        var response = new AssertHelper(_objectContext).ExecuteAndAssertResponse(HttpStatusCode.OK, _restClient, _restRequest);
 
         if (response.StatusCode != HttpStatusCode.OK)
         {

@@ -28,7 +28,7 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 
     private void AddOAuthHeaders()
     {
-        (string tokenType, string accessToken) = new Inner_ApiAuthUsingOAuth(config).GetAuthToken(AppServiceName);
+        (string tokenType, string accessToken) = new Inner_ApiAuthUsingOAuth(config, objectContext).GetAuthToken(AppServiceName);
 
         Addheader("Authorization", $"{tokenType} {accessToken}");
     }

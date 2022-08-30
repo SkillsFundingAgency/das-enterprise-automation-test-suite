@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_ApprenticeAccountsApiBaseUrl;
 
-        protected override string AppServiceName => config.IsVstsExecution ? _appServiceName : $"{_appServiceName}-ar";
+        protected override string AppServiceName => _appServiceName;
 
         public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
         {
