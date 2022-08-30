@@ -31,13 +31,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                     new Application 
                     { 
                         AccountLegalEntityId = accountLegalEntityId, 
-                        ULN = uln,
-                        ServiceRequest = new ServiceRequest { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
+                        ULN = uln
                     }
-                }.ToArray()
+                }.ToArray(),
+                ServiceRequest = new ServiceRequest { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
             };
 
-            var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+            var jsonRequest = JsonConvert.SerializeObject(request);
+            
+            var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw?code={AuthenticationCode}", new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
 
