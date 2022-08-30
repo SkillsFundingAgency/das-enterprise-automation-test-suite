@@ -49,6 +49,17 @@ public class ApiDataCollectorHelper
 
         foreach (var item in _response.Request.Parameters.Where(x => x.Type == ParameterType.RequestBody)) list.Add(item.Value);
 
-        return list.Count == 0 ? string.Empty : JToken.Parse(list.ToString()).ToString(Formatting.Indented);
+        return list.Count == 0 ? string.Empty : TryParse(list.ToString());
+    }
+
+    private static string TryParse(string value)
+    {
+        if (string.IsNullOrEmpty(value)) return "{}";
+
+        value = value.Trim();
+
+        if (value.StartsWith("{") && value.EndsWith("}")) return JToken.Parse(value).ToString(Formatting.Indented);
+
+        return value;
     }
 }
