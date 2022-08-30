@@ -1,7 +1,4 @@
-﻿using RestSharp;
-using SFA.DAS.ConfigurationBuilder;
-
-namespace SFA.DAS.API.Framework.RestClients;
+﻿namespace SFA.DAS.API.Framework.RestClients;
 
 public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 {
@@ -23,14 +20,11 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
         _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
 
-        _restRequest.AddParameter("application/x-www-form-urlencoded", $@"client_id={_config.config.ClientId}&client_secret={_config.config.ClientSecrets}&grant_type=client_credentials&resource={_config.GetResource(appServiceName)}", ParameterType.RequestBody);
+        var authParameter = new InnerApiOAuthModel(_config.config.ClientId, _config.config.ClientSecrets, _config.GetResource(appServiceName));
 
-        var response = new AssertHelper(_objectContext).ExecuteAndAssertResponse(HttpStatusCode.OK, _restClient, _restRequest);
+        _restRequest.AddParameter("application/x-www-form-urlencoded", authParameter.ToString(), ParameterType.RequestBody);
 
-        if (response.StatusCode != HttpStatusCode.OK)
-        {
-            throw new Exception($"Failed to get auth token.{Environment.NewLine} {response.Content}", response.ErrorException);
-        }
+        var response = new ApiAssertHelper(_objectContext).ExecuteAuthTokenAndAssertResponse(_restClient, _restRequest);
 
         AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
 

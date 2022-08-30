@@ -1,65 +1,20 @@
-﻿
-namespace SFA.DAS.API.Framework.Helpers;
+﻿namespace SFA.DAS.API.Framework.Helpers;
 
-public class ApiDataCollectorHelper
+
+public class ApiDataCollectorHelper : ApiBaseDataCollectorHelper
 {
-    private readonly IRestResponse _response;
-    private readonly IRestRequest _request;
-    private readonly RestClient _client;
 
-    public ApiDataCollectorHelper(RestClient client, IRestRequest request, IRestResponse response)
+    public ApiDataCollectorHelper(RestClient client, IRestRequest request, IRestResponse response) : base(client, request, response)
     {
-        _client = client;       
-        _request = request;
-        _response = response;
-    } 
-
-    internal string GetRequestData() => $"{Environment.NewLine}REQUEST DETAILS: {GetMethod()}{GetRequestUri()}{GetBody()}";
-
-    internal string GetResponseData() => $"RESPONSE DETAILS: {Environment.NewLine}{GetMethod()}{GetResponseUri()}{GetResponseBody()}{GetError()}";
-
-    private string GetMethod() => $"Method: {_response.Request.Method}{Environment.NewLine}";
-
-    private string GetResponseUri() => $"ResponseUri: {GetAbsoluteUri(_response.ResponseUri?.AbsoluteUri)}{Environment.NewLine}";
-
-    private string GetRequestUri() => $"RequestUri: {_client.BuildUri(_request).AbsoluteUri}{Environment.NewLine}";
-
-    private string GetResponseBody() => $"Body: {_response.Content}{Environment.NewLine} ";
-
-    private string GetBody() => $"Body: {GetRequestBody()}{Environment.NewLine} ";
-
-    private string GetError() => $"Exception: {_response.ErrorException?.Message}{Environment.NewLine} ";
-
-    private static string GetAbsoluteUri(string absoluteUri)
-    {
-        if (string.IsNullOrEmpty(absoluteUri)) return "Null";
-
-        if (absoluteUri.ContainsCompareCaseInsensitive("code="))
-        {
-            var index = absoluteUri.IndexOf("=");
-            absoluteUri = absoluteUri[..(index + 1)];
-        }
-
-        return absoluteUri;
     }
 
-    private string GetRequestBody()
+    protected override string GetRequestBody()
     {
-        var list = new FrameworkList<object>();
+        var list = GetRequestParameters();
 
-        foreach (var item in _response.Request.Parameters.Where(x => x.Type == ParameterType.RequestBody)) list.Add(item.Value);
-
-        return list.Count == 0 ? string.Empty : TryParse(list.ToString());
+        return list.Count == 0 ? string.Empty : GetBody(JToken.Parse(list.ToString()).ToString(Formatting.Indented));
     }
 
-    private static string TryParse(string value)
-    {
-        if (string.IsNullOrEmpty(value)) return "{}";
+    protected override string GetResponseBody() => GetResponseContent();
 
-        value = value.Trim();
-
-        if (value.StartsWith("{") && value.EndsWith("}")) return JToken.Parse(value).ToString(Formatting.Indented);
-
-        return value;
-    }
 }

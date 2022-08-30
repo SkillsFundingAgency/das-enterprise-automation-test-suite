@@ -1,4 +1,6 @@
-﻿using RestSharp.Authenticators;
+﻿using Gherkin;
+using Newtonsoft.Json.Linq;
+using RestSharp.Authenticators;
 
 namespace SFA.DAS.API.Framework.RestClients;
 
@@ -12,24 +14,13 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 
     protected override void AddResource(string resource) => restRequest.Resource = resource;
 
-    protected override void AddAuthHeaders()
-    {
-        if (config.IsVstsExecution) AddOAuthHeaders();
+    protected override void AddAuthHeaders() 
+        => AddAuthenticator(config.IsVstsExecution ? GetOAuthToken() : GetAADAuthToken());
 
-        else AddMIAuthHeaders();
-    }
+    private void AddAuthenticator((string tokenType, string accessToken) token) 
+        => restClient.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token.accessToken, token.tokenType);
 
-    private void AddMIAuthHeaders()
-    {
-        (string tokenType, string accessToken) = new Inner_ApiAuthUsingMI(config).GetAuthToken(AppServiceName);
+    private (string tokenType, string accessToken) GetAADAuthToken() => new Inner_ApiAuthUsingMI(config).GetAuthToken(AppServiceName);
 
-        restClient.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, tokenType);
-    }
-
-    private void AddOAuthHeaders()
-    {
-        (string tokenType, string accessToken) = new Inner_ApiAuthUsingOAuth(config, objectContext).GetAuthToken(AppServiceName);
-
-        Addheader("Authorization", $"{tokenType} {accessToken}");
-    }
+    private (string tokenType, string accessToken) GetOAuthToken() => new Inner_ApiAuthUsingOAuth(config, objectContext).GetAuthToken(AppServiceName);
 }

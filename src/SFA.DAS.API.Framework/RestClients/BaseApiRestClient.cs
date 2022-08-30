@@ -41,7 +41,7 @@ public abstract class BaseApiRestClient
 
     public IRestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
 
-    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new AssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
+    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new ApiAssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
 
     protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
     {
