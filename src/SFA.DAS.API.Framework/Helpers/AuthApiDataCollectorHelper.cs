@@ -32,5 +32,5 @@ public class AuthApiDataCollectorHelper : ApiBaseDataCollectorHelper
 
     private static string HashedValue => "********";
 
-    private static string EmptyJson => "{ }";
+    private static string EmptyJson => "{" + HashedValue + "}";
 }
