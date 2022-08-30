@@ -23,13 +23,13 @@ public static class UrlConfig
 
         public static string Inner_CoursesApiBaseUrl => GetInner_ApiBaseUrl("courses");
 
-        internal static string MicrosoftIdentityUri => "https://login.microsoftonline.com/";
-
         public static string MangeIdentitybaseUrl(string tenant) => $"{UriHelper.GetAbsoluteUri(MicrosoftIdentityUri,$"{tenant}/oauth2/token/")}";
 
         public static string ApprenticeCommitmentsJobs_BaseUrl => $"https://das-{EnvironmentConfig.EnvironmentName}-acomtwkr-fa.azurewebsites.net/";
 
         private static string GetInner_ApiBaseUrl(string apiname) => $"https://{EnvironmentConfig.EnvironmentName}-{apiname}-api.apprenticeships.education.gov.uk/";
+
+        private static string MicrosoftIdentityUri => "https://login.microsoftonline.com/";
 
     }
 }
