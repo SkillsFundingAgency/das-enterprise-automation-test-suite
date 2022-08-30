@@ -18,7 +18,7 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
         _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
 
-        _restRequest.AddParameter("application/x-www-form-urlencoded", $"client_id={_config.config.ClientId}&client_secret={_config.config.ClientSecrets}&grant_type=client_credentials&resource={_config.GetResource(appServiceName)}", ParameterType.RequestBody);
+        _restRequest.AddParameter("application/x-www-form-urlencoded", $@"client_id={_config.config.ClientId}&client_secret={_config.config.ClientSecrets}&grant_type=client_credentials&resource={_config.GetResource(appServiceName)}", ParameterType.RequestBody);
 
         IRestResponse response = _restClient.Execute(_restRequest);
 

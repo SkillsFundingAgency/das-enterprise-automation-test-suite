@@ -9,11 +9,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class Inner_ApprenticeAccountsApiRestClient : Inner_BaseApiRestClient
     {
-        public Inner_ApprenticeAccountsApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext, config) { }
+        private readonly string _appServiceName;
+
+        public Inner_ApprenticeAccountsApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext, config) => _appServiceName = config.config.ApprenticeAccountsAppServiceName;
 
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_ApprenticeAccountsApiBaseUrl;
 
-        protected override string AppServiceName => config.config.ApprenticeAccountsAppServiceName;
+        protected override string AppServiceName => config.IsVstsExecution ? _appServiceName : $"{_appServiceName}-ar";
 
         public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
         {
