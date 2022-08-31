@@ -42,7 +42,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         }
 
         private PreviewYourAdvertOrVacancyPage FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
-            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates(disabilityConfidence)
+            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates()
             .EnterDuration().SelectNationalMinimumWage().PreviewVacancy();
     }
 }
