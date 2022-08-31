@@ -7,7 +7,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
 {
     public class SetupScenarioTestData
     {
-        public TestData SetData(int scenarioId)
+        public static TestData SetData(int scenarioId)
         {
             var dataDictionary = new Dictionary<Tuple<int, string>, TestData>
             {
