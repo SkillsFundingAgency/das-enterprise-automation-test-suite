@@ -15,6 +15,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Given(@"the apprentice creates the CMAD account")]
         public void ThenTheApprenticeCreatesTheCMADAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
 
+        [Then(@"the apprentice creates their CMAD account")]
+        public void ThenTheApprenticeCreatesTheirCMADAccount()
+        {
+            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOnHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
+        }
+
         [Given(@"an apprentice has created and validated the account")]
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
             => createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
@@ -52,7 +58,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice can create account and confirm their details")]
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
         {
-            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
             confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
         }
     }

@@ -144,6 +144,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
+        [Then(@"the apprentice can navigate to CMAD Details confirmation page and confirm their apprenticeship is flexijob")]
+        public void ThenTheApprenticeCanNavigateToCMADDetailsConfirmationPageAndConfirmTheirApprenticeshipIsFlexijob()
+        {
+            confirmMyApprenticeshipStepsHelper.NavigateAndVerifyFlexijobApprenticeshipDetails();
+        }
+
         private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
 
         private ApprenticeHomePage VerifyOverviewPageAndHomePageAfterOVerallConfirmation() => _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()

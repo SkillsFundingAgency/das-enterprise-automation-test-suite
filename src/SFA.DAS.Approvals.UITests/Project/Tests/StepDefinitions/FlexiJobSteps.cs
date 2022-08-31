@@ -51,5 +51,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetCohortReference(cohortReference);
             _objectContext.SetNoOfApprentices(1);
         }
+
+        [Then(@"validate Flexi-job agency tag on Approve Apprectice Details page then notify Provider")]
+        public void ThenValidateFlexi_JobAgencyTagOnApproveApprecticeDetailsPageThenNotifyProvider()
+        {
+            _approveApprenticeDetailsPage.validateFlexiJobAgencyTag();
+            var cohortReference = _approveApprenticeDetailsPage.EmployerFirstApproveAndNotifyTrainingProvider().CohortReference();
+
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
+        }
+
     }
 }
