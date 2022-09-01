@@ -1,6 +1,8 @@
 ﻿Feature: RAT2_P_FV_01
 
-@rat-p
+@raa-v2	
+@raa-v2p		
+@rat-p	
 @regression
 Scenario: RAT2_P_FV_01 - Provider views Rejected vacancies
 	Given the Provider creates a vacancy by using a registered name

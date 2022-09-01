@@ -2,8 +2,10 @@
 
 A short summary of the feature
 
+@raa-v2	
+@raa-v2p		
 @rat-p	
-@regression			
+@regression		
 Scenario: RAT_P_E2E_01 - Create vacancy with registered name, Approve, Apply and make Application Successful
 	Given the Provider creates traineeship vacancy through View all your traineeship vacancies page
 	And the Reviewer Approves the vacancy
