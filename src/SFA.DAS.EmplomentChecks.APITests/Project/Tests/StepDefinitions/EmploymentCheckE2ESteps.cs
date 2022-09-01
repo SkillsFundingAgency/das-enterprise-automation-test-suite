@@ -68,7 +68,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"data is enriched with results from DC and Accounts")]
         public void ThenDataIsEnrichedWithResultsFromDCAndAccounts()
         {
-            static List<string> ToList(string value) => value.Contains(',') ? value.Split(',').ToList() : new List<string> { value };
+            static List<string> ToList(string value) => (!string.IsNullOrEmpty(value) && value.Contains(',')) ? value.Split(',').ToList() : new List<string> { value };
 
             var (nino, payeScheme) = _employmentChecksSqlDbHelper.GetEnrichmentData();
 
