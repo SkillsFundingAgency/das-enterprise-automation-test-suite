@@ -59,12 +59,12 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
             return new VacancyReferencePage(_context);
         }
         
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
         {
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
                 .EnterProviderContactDetailsTraineeship(optionalFields)
                 .BackToTaskList();
         }
@@ -74,7 +74,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToCheckYourAnswersPage(optionalFields);
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterProviderContactDetailsTraineeship(optionalFields);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
@@ -99,11 +100,11 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
             .EnterFutureProspect()
             .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType)
         {
             return createAdvertPage
                 .ImportantDates()
-                .EnterTraineeshipDates(false)
+                .EnterTraineeshipDates()
                 .EnterWorkExperience()
                 .EnterTraineeshipDuration()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
@@ -116,7 +117,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
             return EnterVacancyTitle(NavigateToAdvertTitle(createAdvertPage))
                 .EnterTrainingTitle()
                 .EnterShortDescription()
-                .EnterTraineeshipTrainingDetails();
+                .EnterTraineeshipTrainingDetails();                
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()

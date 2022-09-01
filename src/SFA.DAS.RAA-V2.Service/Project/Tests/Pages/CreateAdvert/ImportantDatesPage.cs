@@ -10,15 +10,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public DurationPage EnterImportantDates()
         {
-            EnterDates(disabilityConfidence);
+            EnterDates();
             return new DurationPage(context);
         }
-        public WorkExperienceProvidedPage EnterTraineeshipDates(bool disabilityConfidence)
+        public WorkExperienceProvidedPage EnterTraineeshipDates()
         {
-            EnterDates(disabilityConfidence);
+            EnterDates();
             return new WorkExperienceProvidedPage(context);
         }
-        private void EnterDates(bool disabilityConfidence)
+        private void EnterDates()
         {
             ClosingDate(rAAV2DataHelper.VacancyClosing);
             StartDate(rAAV2DataHelper.VacancyStart);

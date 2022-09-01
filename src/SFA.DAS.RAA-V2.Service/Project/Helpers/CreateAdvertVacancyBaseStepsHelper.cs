@@ -81,7 +81,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
             createTraineeshipPage.VerifyEmploymentDetailsSectionStatus(NotStarted);
             
-            createTraineeshipPage = EmploymentDetails(createTraineeshipPage, isEmployerAddress, disabilityConfidence, "");
+            createTraineeshipPage = EmploymentDetails(createTraineeshipPage, isEmployerAddress, "");
             
             createTraineeshipPage.VerifyEmploymentDetailsSectionStatus(Completed);
 
