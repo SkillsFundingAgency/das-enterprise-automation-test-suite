@@ -6,9 +6,15 @@ public class TrainingVenuesPage : ManagingStandardsBasePage
 
     public TrainingVenuesPage(ScenarioContext context) : base(context) { }
 
-    public ReviewYourDetailsPage NavigateBackToReviewYourDetails()
+    public YourStandardsAndTrainingVenuesPage NavigateBackToReviewYourDetails()
     {
         formCompletionHelper.Click(BackLink);
-        return new ReviewYourDetailsPage(context);
+        return new YourStandardsAndTrainingVenuesPage(context);
+    }
+
+    public PostcodePage AccessAddANewTrainingVenue()
+    {
+        formCompletionHelper.ClickLinkByText("Add a new training venue");
+        return new PostcodePage(context);
     }
 }

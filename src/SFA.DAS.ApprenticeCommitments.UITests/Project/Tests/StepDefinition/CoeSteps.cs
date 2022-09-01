@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -12,6 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CoeSteps : BaseSteps
     {
         private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
@@ -24,10 +26,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _providerStepsHelper = new ProviderStepsHelper(context);
             _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
+            _context = context;
         }
 
-        [Given(@"an apprenticeship has new employer")]
-        public void GivenAnApprenticeshipHasNewEmployer()
+        [Given(@"a new apprenticeship is CMAD created and fully confirmed that undergoes a Change of Employer")]
+        public void GivenANewApprenticeshipIsCMADCreatedAndFullyConfirmedThatUndergoesAChangeOfEmployer()
         {
             _multipleAccountsLoginHelper.Login(_changeOfEmployerLevyUser, true);
 
@@ -42,6 +45,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _objectContext.UpdateOrganisationName(_changeOfEmployerLevyUser.SecondOrganisationName);
             _employerStepsHelper.Approve();
+        }
+
+        [Then(@"Home page has two cards with one each for current and previous confirmed apprenticeship details")]
+        public void ThenHomePageHasTwoCardsWithOneEachForCurrentAndPreviousConfirmedApprenticeshipDetails()
+        {
+            new ApprenticeOverviewPage(_context).NavigateToHomePageFromTopNavigationLink().VerifyConfirmedCoCPageViewAndNavigateToOverviewPage();
         }
     }
 }

@@ -9,4 +9,6 @@
     public class ProviderContributorWithApprovalUser : ProviderConfig { }
 
     public class ProviderAccountOwnerUser : ProviderConfig { }
+
+    public class ProviderPortableFlexiJobUser : PortableFlexiJobProviderConfig { }
 }

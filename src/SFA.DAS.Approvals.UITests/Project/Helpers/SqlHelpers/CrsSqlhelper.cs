@@ -9,9 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
     {
         public CrsSqlhelper(string crsDbConnectionString) : base(crsDbConnectionString) { }
 
-        public List<CourseDetails> GetApprenticeCourseWithMultipleOptions() => GetApprenticeCourse("Options <> '[]' and Options like '%,%' and Options not like '%N/A%'");
+        public List<CourseDetails> GetApprenticeCourseWithMultipleOptions() => GetApprenticeCourse("Options NOT like '%core%' and Options like '%,%' and Options NOT like '%N/A%'");
 
-        public List<CourseDetails> GetApprenticeCourseWithNoOptions() => GetApprenticeCourse("Options = '[]'");
+        public List<CourseDetails> GetApprenticeCourseWithNoOptions() => GetApprenticeCourse("Options like '%core%'");
 
         private List<CourseDetails> GetApprenticeCourse(string optionsPredicate)
         {
@@ -24,8 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 return $"VersionEarliestStartDate < CONVERT(datetime, '{a.Year}-{a.Month}-{a.Day}')";
             }
 
-            var query = $"select top 5 s.LarsCode, Title, VersionEarliestStartDate, ProposedTypicalDuration, ProposedMaxFunding from [Standard] s join LarsStandard ls on ls.LarsCode = s.LarsCode " +
-                $"where {optionsPredicate} and VersionLatestStartDate is null and VersionLatestEndDate is null and {VersionEarliestStartDatePredicate()} and ls.LastDateStarts is null order by NEWID();";
+            var query = $"SELECT TOP 5 s.LarsCode, Title, VersionEarliestStartDate, ProposedTypicalDuration, ProposedMaxFunding from [Standard] s join LarsStandard ls on ls.LarsCode = s.LarsCode " +
+                $"WHERE {optionsPredicate} and VersionLatestStartDate is null and VersionLatestEndDate is null and {VersionEarliestStartDatePredicate()} and ls.LastDateStarts is null ORDER BY NEWID();";
 
             var result = GetMultipleData(query);
 

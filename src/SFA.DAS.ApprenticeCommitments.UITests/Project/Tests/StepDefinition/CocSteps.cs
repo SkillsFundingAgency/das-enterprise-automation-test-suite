@@ -43,18 +43,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _employerPortalLoginHelper.Login(_user, true);
 
             var appDetailPage = _employerStepsHelper.ViewCurrentApprenticeDetails(false);
-            
+
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
             appDetailPage.ClickEditApprenticeDetailsLink().ClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
 
             _providerStepsHelper.ApproveChangesAndSubmit();
-            
+
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 
-        [When(@"the apprentice logs into the Apprentice portal")]
-        public void WhenTheApprenticeLogsIntoTheApprenticePortal()
+        [When(@"the apprentice logs into CMAD again following a CoC")]
+        public void WhenTheApprenticeLogsIntoCMADAgainFollowingACoC()
         {
             tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl);
             _apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
@@ -63,14 +63,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"only the employer and apprenticeship detail sections should be marked as Incomplete")]
         public void ThenOnlyTheEmployerAndApprenticeshipDetailsSectionShouldBeMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
-            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyEmployerAndApprenticehsipCoCNotification();
+            AssertSectionHelper(OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
         }
 
         [Then(@"only the apprenticeship detail section is marked as Incomplete")]
         public void ThenOnlyTheApprenticeshipDetailsSectionIsMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
+            AssertSectionHelper(OverviewPageHelper.Complete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyApprenticeshipOnlyCoCNotification();
         }
 
@@ -89,7 +88,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyCocAndConfirmApprenticeship();
         }
 
-        private void AssertSectionStatus(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
+        private void AssertSectionHelper(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
         {
             var (sectionName1, section1Status) = _apprenticeOverviewPage.GetConfirmYourEmployerStatus();
             var (sectionName2, section2Status) = _apprenticeOverviewPage.GetConfirmYourTrainingProviderStatus();
@@ -99,11 +98,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             Assert.Multiple(() =>
             {
-                StringAssert.AreEqualIgnoringCase(exsection1Status, section1Status, $"Coc status did not match for {sectionName1}");
-                StringAssert.AreEqualIgnoringCase(exsection2Status, section2Status, $"Coc status did not match for {sectionName2}");
-                StringAssert.AreEqualIgnoringCase(exsection3Status, section3Status, $"Coc status did not match for {sectionName3}");
-                StringAssert.AreEqualIgnoringCase(exsection4Status, section4Status, $"Coc status did not match for {sectionName4}");
-                StringAssert.AreEqualIgnoringCase(exsection5Status, section5Status, $"Coc status did not match for {sectionName5}");
+                StringAssert.AreEqualIgnoringCase(exsection1Status, section1Status, $"CoC status did not match for '{sectionName1}' section");
+                StringAssert.AreEqualIgnoringCase(exsection2Status, section2Status, $"CoC status did not match for '{sectionName2}' section");
+                StringAssert.AreEqualIgnoringCase(exsection3Status, section3Status, $"CoC status did not match for '{sectionName3}' section");
+                StringAssert.AreEqualIgnoringCase(exsection4Status, section4Status, $"CoC status did not match for '{sectionName4}' section");
+                StringAssert.AreEqualIgnoringCase(exsection5Status, section5Status, $"CoC status did not match for '{sectionName5}' section");
             });
         }
 
@@ -122,10 +121,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             return username;
         }
 
-        private void VerifyCocAndConfirmApprenticeship()
-        {
-            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed();
-            _apprenticeOverviewPage.VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship();
-        }
+        private void VerifyCocAndConfirmApprenticeship() => _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed()
+            .VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship();
     }
 }

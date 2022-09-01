@@ -11,8 +11,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        private By Uln => By.Id("Uln");
-        private By AddButton => By.CssSelector("#addApprenticeship > button");
+        private static By Uln => By.Id("Uln");
+        private static By AddButton => By.XPath("//button[text()='Add']");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
@@ -33,8 +33,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
-            
+
+            bool rpl = CheckRPLCondition(false);
+
             formCompletionHelper.ClickElement(AddButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
@@ -62,6 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SelectRadioOptionByForAttribute("confirm-BulkCsv");
             Continue();
             return new ProviderBeforeYouStartBulkUploadPage(context);
+        }
+
+        private bool CheckRPLCondition(bool rpl = false)
+        {
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            if (year > 2022) rpl = true;
+            return rpl;
         }
     }
 }

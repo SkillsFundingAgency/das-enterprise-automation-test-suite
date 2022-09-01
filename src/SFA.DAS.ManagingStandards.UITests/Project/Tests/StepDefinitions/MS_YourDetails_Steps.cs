@@ -20,7 +20,7 @@ public class MS_YourDetails_Steps
     [Then(@"the provider verifies organisation details")]
     public void ThenTheProviderVerifiesOrganisationDetails()
     {
-        ReviewYourDetailsPage reviewYourDetailsPage = new(_context);
+        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
         reviewYourDetailsPage.AccessTrainingLocations()
             .NavigateBackToReviewYourDetails()
             .AccessStandards();
@@ -39,7 +39,7 @@ public class MS_YourDetails_Steps
     [When(@"the provider is able to approve regulated standard")]
     public void WhenTheProviderIsAbleToApproveRegulatedStandard()
     {
-        ReviewYourDetailsPage reviewYourDetailsPage = new(_context);
+        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
         reviewYourDetailsPage.AccessStandards()
             .AccessRegulatorApprovalLinkFromTheSTandardsTable()
             .ApproveStandard_FromStandardsPage()
@@ -78,7 +78,7 @@ public class MS_YourDetails_Steps
     [When(@"the provider is able to change the standard delivered in both not a national provider")]
     public void WhenTheProviderIsAbleToChangeTheStandardDeliveredInBothNotANationalProvider()
     {
-        ReviewYourDetailsPage reviewYourDetailsPage = new(_context);
+        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
         reviewYourDetailsPage.AccessStandards()
             .AccessTeacherLevel6()
             .AccessWhereYouWillDeliverThisStandard()
@@ -99,4 +99,17 @@ public class MS_YourDetails_Steps
             .AccessEditTheseRegions()
             .EditRegionsAddLutonEssexAndConfirm();
     }
+
+    [Then(@"the provider is able to add a new training venue")]
+    public void ThenTheProviderIsAbleToAddANewTrainingVenue()
+    {
+       
+        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
+        reviewYourDetailsPage.AccessTrainingLocations()
+            .AccessAddANewTrainingVenue()
+            .EnterPostcodeAndContinue()
+            .ChooseTheAddressAndContinue()
+            .AddVenueDetailsAndSubmit();
+    }
+
 }

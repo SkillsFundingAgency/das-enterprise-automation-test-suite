@@ -22,6 +22,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ConfirmTrainingProviderPage(context);
         }
 
+        public ConfirmTrainingProviderPage EnterUkprnForPortableFlexiJobPilotProvider()
+        {
+            formCompletionHelper.EnterText(UkprnField, portableFlexiJobProviderConfig.Ukprn);
+            Continue();
+            return new ConfirmTrainingProviderPage(context);
+        }
+
         private AddTrainingProviderDetailsPage EnterUkprn()
         {
             formCompletionHelper.EnterText(UkprnField, providerConfig.Ukprn);
