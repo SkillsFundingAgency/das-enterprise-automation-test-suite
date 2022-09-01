@@ -17,4 +17,9 @@ public class ManageTheStandardsYouDeliverPage : ManagingStandardsBasePage
         formCompletionHelper.ClickLinkByText("Regulator's approval needed");
         return new RegulatedStandardPage(context);
     }
+      public YourStandardsAndTrainingVenuesPage ReturnToYourStandardsAndTrainingVenues()
+    {
+        formCompletionHelper.Click(BackLink);
+        return new YourStandardsAndTrainingVenuesPage(context);
+    }
 }
