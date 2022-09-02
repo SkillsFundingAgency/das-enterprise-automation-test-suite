@@ -14,6 +14,7 @@ public class ManagingStandardsDataHelpers
     public string VenueName { get; init; } = LocationName;
     public string PostCode { get; init; } = "Tw14 9py";
     public string Website { get; init; } = "www.company.co.uk";
+    public string UpdatedWebsite { get; init; } = "www.123company.co.uk";
     public string ContactWebsite { get; init; } = "www.companycontact.co.uk";
     public string ContactNumber { get; init; } = RandomDataGenerator.GenerateRandomNumber(12);
     public StandardsTestData StandardsTestData { get; init; } = new StandardsTestData {LarsCode = "203", StandardName = "Teacher (Level 6)", Venue = LocationName };
