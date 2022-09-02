@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using Microsoft.Azure.Services.AppAuthentication;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,8 +11,6 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {
-        private const string AzureResource = "https://database.windows.net/";
-
         public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
             try
@@ -118,10 +115,7 @@ namespace SFA.DAS.FrameworkHelpers
         private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
         { 
             ConnectionString = connectionString, 
-            AccessToken = connectionString.Contains("User ID=") 
-                ? null 
-                : new AzureServiceTokenProvider().
-                    GetAccessTokenAsync(AzureResource).Result 
+            AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken()
         };
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport.Helper;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -13,6 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsAccountsSqlDbHelper _apprenticeCommitmentsAccountsSqlDbHelper;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+        private readonly TryCatchExceptionHelper _tryCatch;
         protected readonly string[] tags;
 
         public AfterScenarioHooks(ScenarioContext context)
@@ -22,11 +24,14 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _apprenticeCommitmentsAccountsSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
             tags = context.ScenarioInfo.Tags;
         }
 
         [AfterScenario(Order = 33)]
-        public void ClearDownUserData()
+        public void ClearDownUserData() => _tryCatch.AfterScenarioException(() => ClearDownUserDataQuery());
+
+        public void ClearDownUserDataQuery()
         {
             string apprenticeId;
             var email = _objectContext.GetApprenticeEmail();

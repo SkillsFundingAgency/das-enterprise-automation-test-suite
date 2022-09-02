@@ -13,7 +13,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project
         
         protected override string ApiName => $"/assessor-service-api-{environment}";
 
-        protected override string ApiBaseUrl => UrlConfig.Outer_AssessorCertificationApiBaseUrl;
+        protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_AssessorCertificationApiBaseUrl;
     }
 }
 

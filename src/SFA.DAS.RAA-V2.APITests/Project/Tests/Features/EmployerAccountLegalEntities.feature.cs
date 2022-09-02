@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void RV2_API_01_OuterApiGetEmployerAccountLegalEntities__001()
         {
 #line 6
-this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("001", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
+this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("001", "GET", "/employeraccounts/{hashedAccountId}/legalentities", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -136,7 +136,7 @@ this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("001", "GET", "manageva
         public void RV2_API_01_OuterApiGetEmployerAccountLegalEntities__002()
         {
 #line 6
-this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("002", "GET", "managevacancies/employeraccountlegalentities", "OK", ((string[])(null)));
+this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("002", "GET", "/employeraccounts/{hashedAccountId}/legalentities", "OK", ((string[])(null)));
 #line hidden
         }
     }
