@@ -13,7 +13,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiName => "/api";
 
-        protected override string ApiBaseUrl => UrlConfig.ApprenticeCommitmentsJobs_BaseUrl;
+        protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.ApprenticeCommitmentsJobs_BaseUrl;
 
         public IRestResponse CreateApprenticeshipViaCommitmentsJob(CreateApprenticeshipViaCommitmentsJob payload, HttpStatusCode expectedResponse)
         {

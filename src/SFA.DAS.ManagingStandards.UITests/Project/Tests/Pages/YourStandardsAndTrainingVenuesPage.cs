@@ -17,5 +17,11 @@ public class YourStandardsAndTrainingVenuesPage : ManagingStandardsBasePage
         formCompletionHelper.ClickLinkByText("The standards you deliver");
         return new ManageTheStandardsYouDeliverPage(context);
     }
+
+    public TrainingProviderOverviewPage AccessProviderOverview()
+    {
+        formCompletionHelper.ClickLinkByText("Provider overview");
+        return new TrainingProviderOverviewPage(context);
+    }
 }
 

@@ -18,7 +18,7 @@ public class AuthTokenResponse
     public string Not_before { get; set; }
 
     [JsonProperty("resource")]
-    public string resource { get; set; }
+    public string Resource { get; set; }
 
     [JsonProperty("access_token")]
     public string Access_token { get; set; }
