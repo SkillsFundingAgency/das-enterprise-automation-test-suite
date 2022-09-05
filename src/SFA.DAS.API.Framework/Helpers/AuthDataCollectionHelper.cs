@@ -2,10 +2,10 @@
 
 namespace SFA.DAS.API.Framework.Helpers;
 
-public class AuthApiDataCollectorHelper : ApiBaseDataCollectorHelper
+public class AuthDataCollectionHelper : RequestAndResponseCollectionHelper
 {
 
-    public AuthApiDataCollectorHelper(RestClient client, IRestRequest request, IRestResponse response) : base(client, request, response)
+    public AuthDataCollectionHelper(RestClient client, IRestRequest request, IRestResponse response) : base(client, request, response)
     {
     }
 

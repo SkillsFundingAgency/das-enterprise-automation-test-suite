@@ -11,7 +11,7 @@ public class ApiAssertHelper
     {
         var response = client.Execute(request);
 
-        var apidataCollector = new AuthApiDataCollectorHelper(client, request, response);
+        var apidataCollector = new AuthDataCollectionHelper(client, request, response);
 
         SetDebugInformation(apidataCollector);
 
@@ -27,7 +27,7 @@ public class ApiAssertHelper
     {
         var response = client.Execute(request);
 
-        var apidataCollector = new ApiDataCollectorHelper(client, request, response);
+        var apidataCollector = new ApiDataCollectionHelper(client, request, response);
 
         SetDebugInformation(apidataCollector);
 
@@ -44,7 +44,7 @@ public class ApiAssertHelper
         return response;
     }
 
-    private void SetDebugInformation(ApiBaseDataCollectorHelper apidataCollector)
+    private void SetDebugInformation(RequestAndResponseCollectionHelper apidataCollector)
         => _objectContext.SetDebugInformation($"{apidataCollector.GetRequestData()}{Environment.NewLine}{apidataCollector.GetResponseData()}");
 
 }
