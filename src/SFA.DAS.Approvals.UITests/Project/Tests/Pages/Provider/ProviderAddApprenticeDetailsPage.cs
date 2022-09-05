@@ -14,8 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private static By Uln => By.Id("Uln");
         private static By AddButton => By.XPath("//button[text()='Add']");
-        private By DeliveryModelLabel => By.XPath("//*[@id=\"addApprenticeship\"]/div[5]/p[1]");
-        private By DeliveryModelType => By.XPath("//*[@id=\"addApprenticeship\"]/div[5]/p[2]");
+        private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
+        private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
