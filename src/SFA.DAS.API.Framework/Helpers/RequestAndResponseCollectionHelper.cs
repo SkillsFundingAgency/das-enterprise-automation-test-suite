@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.API.Framework.Helpers;
 
-public abstract class ApiBaseDataCollectorHelper
+public abstract class RequestAndResponseCollectionHelper
 {
 
     protected readonly IRestResponse _response;
@@ -8,7 +8,7 @@ public abstract class ApiBaseDataCollectorHelper
     protected readonly RestClient _client;
     protected string _requestUri;
 
-    public ApiBaseDataCollectorHelper(RestClient client, IRestRequest request, IRestResponse response)
+    public RequestAndResponseCollectionHelper(RestClient client, IRestRequest request, IRestResponse response)
     {
         _client = client;
         _request = request;
