@@ -30,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
         private List<ApprenticeDetails> _apprenticeList;
         private static string[] _tags;
+        private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -157,6 +158,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApprove();
 
+        public void AddFlexiJobApprentice() => _providerAddApprenticeDetailsPage = AddApprenticeAndSelectFlexiJobAgencyDeliveryModel();
+
+        public void ValidateFlexiJobAgencyContentAndAddApprenticeDetails() => ValidateFlexiJobContentAndSendToEmployerForApproval(_providerAddApprenticeDetailsPage).ValidateFlexiJobTagAndSubmitApprove();
+
         public void BulkUploadApprenticeDetails(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApproveAndSendToEmployerForApproval();
 
         public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
@@ -196,6 +201,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
+        }
+
+        public ProviderAddApprenticeDetailsPage AddApprenticeAndSelectFlexiJobAgencyDeliveryModel()
+        {
+            var providerAddApprenticeDetailsPage = CurrentCohortDetails();
+
+            return  providerAddApprenticeDetailsPage.SelectAddAnApprentice()
+                .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
+                .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
+        }
+
+        public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddApprenticeDetailsPage providerAddApprenticeDetailsPage)
+        {
+            providerAddApprenticeDetailsPage.ValidateFlexiJobContent();
+
+            var providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
+
+            return SetApprenticeDetails(providerApproveApprenticeDetailsPage, 1);
         }
 
         public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices, bool isNonLevy = false)
