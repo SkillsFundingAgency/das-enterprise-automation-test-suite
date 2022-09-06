@@ -47,7 +47,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _helper = new RestartWebDriverHelper(context);
             _tranferBaseUrl = UrlConfig.EmployerApprenticeshipService_BaseUrl;
-            _tabHelper = context.Get<TabHelper>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _useTransferFundsPage = new UseTransferFundsPage(context);
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
