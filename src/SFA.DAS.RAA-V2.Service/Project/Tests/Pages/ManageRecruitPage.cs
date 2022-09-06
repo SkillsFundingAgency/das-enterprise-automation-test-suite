@@ -7,9 +7,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaV2Employer ? "Manage advert" : "Manage vacancy";
 
-        private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
-
         public ManageRecruitPage(ScenarioContext context) : base(context) { }
+
+        private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
 
         public CloneVacancyDatesPage CloneAdvert()
         {
@@ -17,10 +17,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new CloneVacancyDatesPage(context);
         }
 
-        public EditVacancyPage EditAdvert()
+        public EditVacancyDatesPage EditAdvert()
         {
             formCompletionHelper.ClickLinkByText("Edit advert");
-            return new EditVacancyPage(context);
+            return new EditVacancyDatesPage(context);
         }
 
         public CloseVacancyPage CloseAdvert()
@@ -28,19 +28,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Close advert");
             return new CloseVacancyPage(context);
         }
-
-        public ViewVacancyPage NavigateToViewAdvertPage()
-        {
-            string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
-            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkTest));
-
-            return new ViewVacancyPage(context);
-        }
-
-        public ManageApplicantPage NavigateToManageApplicant()
-        {
-            formCompletionHelper.Click(Applicant);
-            return new ManageApplicantPage(context);
-        }
+        
     }
 }

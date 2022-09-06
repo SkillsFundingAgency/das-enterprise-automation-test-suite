@@ -10,7 +10,6 @@
 		<PackageReference Include="CsvHelper" Version="27.2.1" />
 		<PackageReference Include="Dapper.Contrib" Version="2.0.78" />
 		<PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.6.2" />
-		<PackageReference Include="SFA.DAS.Payments.ProviderPayments.Messages" Version="0.0.69" />
 		<PackageReference Include="RestSharp" Version="106.12.0" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
 		<PackageReference Include="NUnit" Version="3.13.2" />

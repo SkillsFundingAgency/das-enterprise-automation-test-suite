@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using Microsoft.Azure.Services.AppAuthentication;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,8 +11,6 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {
-        private const string AzureResource = "https://database.windows.net/";
-
         public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
             try
@@ -38,8 +35,7 @@ namespace SFA.DAS.FrameworkHelpers
             }
             catch (Exception exception)
             {
-                throw new Exception("Exception occurred while executing SQL query"
-                    + "\n Exception: " + exception);
+                throw new Exception($"Exception occurred while executing SQL query:{Environment.NewLine}{queryToExecute}{Environment.NewLine}Exception: " + exception);
             }
         }
 
@@ -110,13 +106,16 @@ namespace SFA.DAS.FrameworkHelpers
             return await dbConnection.InsertAsync(entity);
         }
 
+        public static async Task<T> Get<T>(object id, string connectionString) where T : class
+        {
+            await using var dbConnection = GetSqlConnection(connectionString);
+            return await dbConnection.GetAsync<T>(id);
+        }
+
         private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
         { 
             ConnectionString = connectionString, 
-            AccessToken = connectionString.Contains("User ID=") 
-                ? null 
-                : new AzureServiceTokenProvider().
-                    GetAccessTokenAsync(AzureResource).Result 
+            AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken()
         };
     }
 }

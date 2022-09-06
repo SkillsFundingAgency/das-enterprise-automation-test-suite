@@ -143,6 +143,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return GetDataAsObject(query);
         }
 
+        public string getPledgeApplicationId(string reference)
+        {
+            string query = $@"select PledgeApplicationId from  [dbo].[Commitment] " +
+                $" where Reference = '{reference}'";
+
+            return GetDataAsObject(query);
+        }
+
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
     }
 }

@@ -1,17 +1,13 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
+public class ContactDetailsPage : OrganisationSectionsBasePage
 {
-    public class ContactDetailsPage : OrganisationSectionsBasePage
-    {
-        protected override string PageTitle => "View contact";
+    protected override string PageTitle => "View contact";
 
-        private By OrganisationLink => By.CssSelector(".govuk-link[href*='view-organisation']");
+    private static By OrganisationLink => By.CssSelector(".govuk-link[href*='view-organisation']");
 
-        public ContactDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+    public ContactDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public OrganisationDetailsPage ReturnToOrganisationDetailsPage() => ReturnToOrganisationDetailsPage(() => formCompletionHelper.ClickElement(OrganisationLink));
+    public OrganisationDetailsPage ReturnToOrganisationDetailsPage() => ReturnToOrganisationDetailsPage(() => formCompletionHelper.ClickElement(OrganisationLink));
 
-    }  
 }

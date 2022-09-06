@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System;
 using System.Linq;
@@ -11,8 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        private By Uln => By.Id("Uln");
-        private By AddButton => By.CssSelector("#addApprenticeship > button");
+        private static By Uln => By.Id("Uln");
+        private static By AddButton => By.XPath("//button[text()='Add']");
+        private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
+        private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
+        private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
@@ -33,8 +37,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
-            
+
+            bool rpl = CheckRPLCondition(false);
+
             formCompletionHelper.ClickElement(AddButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
@@ -62,6 +70,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SelectRadioOptionByForAttribute("confirm-BulkCsv");
             Continue();
             return new ProviderBeforeYouStartBulkUploadPage(context);
+        }
+
+        private bool CheckRPLCondition(bool rpl = false)
+        {
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            if (year > 2022) rpl = true;
+            return rpl;
+        }
+
+        public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
+
+        private void DeliveryModelAssertions(string delModelType)
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
+            StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
         }
     }
 }

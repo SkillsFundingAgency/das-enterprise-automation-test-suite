@@ -9,14 +9,20 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public StepsHelper(ScenarioContext context) { }
 
-        public void VerifyWageType(ManageRecruitPage manageVacancyPage, string wageType)
-            => manageVacancyPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
+        public void VerifyWageType(ProviderVacancySearchResultPage providerVacancySearchResultPage, string wageType)
+            => providerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
 
-        public void ApplicantSucessful(ManageRecruitPage manageVacancyPage)
-            => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        public void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+            => providerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
-        public void ApplicantUnsucessful(ManageRecruitPage manageVacancyPage)
-            => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        public void ApplicantUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+            => providerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        public void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+            => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        public void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+            => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        public void VerifyWageType(EmployerVacancySearchResultPage employerVacancySearchResultPage, string wageType)
+            => employerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyEmployerWageType(wageType);
 
         public PreviewYourAdvertOrVacancyPage PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
@@ -36,7 +42,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         }
 
         private PreviewYourAdvertOrVacancyPage FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
-            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates(disabilityConfidence)
+            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates()
             .EnterDuration().SelectNationalMinimumWage().PreviewVacancy();
     }
 }

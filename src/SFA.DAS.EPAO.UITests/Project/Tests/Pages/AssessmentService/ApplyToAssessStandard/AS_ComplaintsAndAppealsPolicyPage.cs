@@ -1,18 +1,20 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
+public class AS_ComplaintsAndAppealsPolicyPage : AS_EPAOApplyStandardBasePage
 {
-    public class AS_ComplaintsAndAppealsPolicyPage : AS_EPAOApplyStandardBasePage
+    protected override string PageTitle => "Complaints and appeals policy";
+
+    public AS_ComplaintsAndAppealsPolicyPage(ScenarioContext context) : base(context) { }
+
+    public AS_FairAccessPage UploadComplaintsPolicy()
     {
-        protected override string PageTitle => "Complaints and appeals policy";
-
-        public AS_ComplaintsAndAppealsPolicyPage(ScenarioContext context) : base(context) { }
-
-        public AS_FairAccessPage UploadComplaintsPolicy()
-        {
-            UploadFile();
-            return new AS_FairAccessPage(context);
-        }
-
+        UploadFile();
+        return new(context);
+    }
+    
+    public AS_FairAccessPage NHEI_UploadComplaintsPolicy()
+    {
+        UploadFile();
+        return new(context);
     }
 }

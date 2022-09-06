@@ -9,22 +9,13 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
     {
         public ApprenticeCommitmentsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) { }
 
-        public void DeleteApprentice(string email) => ExecuteSqlCommand(
-            $"DELETE FROM Revision WHERE ApprenticeshipId in (SELECT Id from Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))" +
-            $"DELETE FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}')" +
-            $"DELETE FROM ApprenticeEmailAddressHistory WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}')" +
-            $"DELETE FROM Apprentice WHERE Email = '{email}'" +
-            $"DELETE FROM Registration WHERE Email = '{email}'");
+        public void DeleteRevisionAndApprenticeshipTableData(string apprenticeId, string email) => ExecuteSqlCommand(
+            $"DELETE FROM Revision WHERE ApprenticeshipId in (SELECT ApprenticeshipId from Registration WHERE Email = '{email}')" +
+            $"DELETE FROM Apprenticeship WHERE ApprenticeId = '{apprenticeId}'");
 
-        public string GetApprenticeId(string email) => GetDataAsString($"select Id from Apprentice where Email ='{email}'");
+        public void DeleteRegistrationTableData(string email) => ExecuteSqlCommand($"DELETE FROM Registration WHERE Email = '{email}'");
 
         public string GetApprenticeshipId(string apprenticeId) => GetDataAsString($"select Id from Apprenticeship where ApprenticeId ='{apprenticeId}'");
-
-        public (string firstName, string lastName) GetApprenticeName(string email)
-        {
-            var data = GetData($"select FirstName, LastName from Registration where email = '{email}'");
-            return (data[0], data[1]);
-        }
 
         public void UpdateConfirmBeforeFieldInCommitmentStatementTable(string email)
         {
@@ -45,7 +36,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
 
-        private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE ApprenticeId in (SELECT Id from [Apprentice] WHERE Email = '{email}'))";
+        private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE Id = (SELECT TOP 1 ApprenticeshipId from [Registration] WHERE Email = '{email}' order by ApprenticeshipId desc))";
 
         private string GetDetails(string query, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(query, scenarioTitle));
     }

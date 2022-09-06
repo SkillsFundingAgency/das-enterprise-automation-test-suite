@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             
             validPassword = $"{validPassword}!%&";
-            objectContext.UpdateApprenticePassword(validPassword);
+            objectContext.SetApprenticePassword(validPassword);
         }
 
         public PasswordResetSuccessfulPage UpdatePassword()

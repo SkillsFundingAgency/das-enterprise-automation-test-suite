@@ -1,110 +1,80 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
+public class CommitmentsSearchPage : SupportConsoleBasePage
 {
-    public class CommitmentsSearchPage : SupportConsoleBasePage
+    protected override string PageTitle => "Department for Education";
+    public static string SearchSectionHeaderText => "Search";
+    public static string UlnSearchTextBoxHelpTextContent => "Enter ULN number";
+    public static string CohortSearchTextBoxHelpTextContent => "Enter Cohort Reference number";
+    public static string InvalidUln => "1234567";
+    public static string InvalidUlnWithSpecialChars => "!£$%^&*()@?|#";
+    public static string InvalidCohort => "ABCD";
+    public static string InvalidCohortWithSpecialChars => "!£$%^&*()@?|#";
+    public static string UlnSearchErrorMessage => "Please enter a 10-digit unique learner number";
+    public static string CohortSearchErrorMessage => "Please enter a 6-digit Cohort number";
+    public static string UnauthorisedCohortSearchErrorMessage => "Account is unauthorised to access this Cohort.";
+
+    #region Locators
+    private static By SearchSectionHeader => By.CssSelector(".searchfield h1");
+    private static By UlnRadioButton => By.CssSelector("label");
+    private static By CohortRefRadioButton => By.CssSelector("label");
+    private static By SearchTextBox => By.Id("search-main");
+    private static By SearchButton => By.Id("searchButton");
+    private static By SearchTextBoxHelpText => By.Id("search-main");
+    private static By CommitmentsSearchPageErrorText => By.CssSelector(".error-message");
+
+    public CommitmentsSqlDataHelper SqlDataHelper { get; }
+    #endregion
+
+    public CommitmentsSearchPage(ScenarioContext context) : base(context)
     {
-        protected override string PageTitle => "Department for Education";
-        public string SearchSectionHeaderText => "Search";
-        public string UlnSearchTextBoxHelpTextContent => "Enter ULN number";
-        public string CohortSearchTextBoxHelpTextContent => "Enter Cohort Reference number";
-        public string InvalidUln => "1234567";
-        public string InvalidUlnWithSpecialChars => "!£$%^&*()@?|#";
-        public string InvalidCohort => "ABCD";
-        public string InvalidCohortWithSpecialChars => "!£$%^&*()@?|#";
-        public string UlnSearchErrorMessage => "Please enter a 10-digit unique learner number";
-        public string CohortSearchErrorMessage => "Please enter a 6-digit Cohort number";
-        public string UnauthorisedCohortSearchErrorMessage => "Account is unauthorised to access this Cohort.";
-
-        #region Locators
-        private By SearchSectionHeader => By.CssSelector(".searchfield h1");
-        private By UlnRadioButton => By.CssSelector("label");
-        private By CohortRefRadioButton => By.CssSelector("label");
-        private By SearchTextBox => By.Id("search-main");
-        private By SearchButton => By.Id("searchButton");
-        public By SearchTextBoxHelpText => By.Id("search-main");
-        public By CommitmentsSearchPageErrorText => By.CssSelector(".error-message");
-        #endregion
-
-        public CommitmentsSearchPage(ScenarioContext context) : base(context) => VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
-
-        private void EnterTextInSearchBox(string searchText)
-        {
-            formCompletionHelper.EnterText(SearchTextBox, searchText);
-        }
-
-        public CommitmentsSearchPage SelectUlnSearchTypeRadioButton()
-        {
-            formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
-            return this;
-        }
-
-        private void ClickSearchButton()
-        {
-            formCompletionHelper.Click(SearchButton);
-        }
-
-        public UlnSearchResultsPage SearchForULN()
-        {
-            SelectUlnSearchTypeRadioButton();
-            EnterTextInSearchBox(config.Uln);
-            ClickSearchButton();
-            return new UlnSearchResultsPage(context);
-        }
-
-        public void SearchWithInvalidULN()
-        {
-            EnterTextInSearchBox(InvalidUln);
-            ClickSearchButton();
-        }
-
-        public void SearchWithInvalidULNWithSpecialChars()
-        {
-            EnterTextInSearchBox(InvalidUlnWithSpecialChars);
-            ClickSearchButton();
-        }
-
-        public CohortSummaryPage SearchForCohort()
-        {
-            SelectCohortRefSearchTypeRadioButton();
-            EnterTextInSearchBox(config.CohortRef);
-            ClickSearchButton();
-            return new CohortSummaryPage(context);
-        }
-
-        public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
-        {
-            formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
-            return this;
-        }
-
-        public void SearchWithInvalidCohort()
-        {
-            EnterTextInSearchBox(InvalidCohort);
-            ClickSearchButton();
-        }
-
-        public void SearchWithUnauthorisedCohortAccess()
-        {
-            EnterTextInSearchBox(config.CohortNotAssociatedToAccount);
-            ClickSearchButton();
-        }
-
-        public void SearchWithInvalidCohortWithSpecialChars()
-        {
-            EnterTextInSearchBox(InvalidCohortWithSpecialChars);
-            ClickSearchButton();
-        }
-
-        public string GetCommitmentsSearchPageErrorText()
-        {
-            return pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
-        }
-
-        public string GetSearchTextBoxHelpText()
-        {
-            return pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
-        }
+        VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
+        SqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
     }
+
+    private void EnterTextInSearchBox(string searchText) => formCompletionHelper.EnterText(SearchTextBox, searchText);
+
+    public CommitmentsSearchPage SelectUlnSearchTypeRadioButton()
+    {
+        formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
+        return this;
+    }
+
+    private void ClickSearchButton() => formCompletionHelper.Click(SearchButton);
+
+    public UlnSearchResultsPage SearchForULN(string uln)
+    {
+        SelectUlnSearchTypeRadioButton();
+        Search(uln);
+        return new(context);
+    }
+
+    public void SearchWithInvalidULN() => Search(InvalidUln);
+
+    public void SearchWithInvalidULNWithSpecialChars() => Search(InvalidUlnWithSpecialChars);
+
+    public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
+    {
+        formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
+        return this;
+    }
+
+    public void SearchWithInvalidCohort() => Search(InvalidCohort);
+
+    public void SearchWithUnauthorisedCohortAccess() => Search(config.CohortNotAssociatedToAccount.CohortRef);
+
+    public void SearchWithInvalidCohortWithSpecialChars() => Search(InvalidCohortWithSpecialChars);
+
+    public string GetCommitmentsSearchPageErrorText() => pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
+
+    public string GetSearchTextBoxHelpText() => pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
+
+    public CohortSummaryPage SearchCohort(string text)
+    {
+        SelectCohortRefSearchTypeRadioButton();
+        Search(text);
+        return new(context);
+    }
+
+    private void Search(string text) { EnterTextInSearchBox(text); ClickSearchButton(); }
 }

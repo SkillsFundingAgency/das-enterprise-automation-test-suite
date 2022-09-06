@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class EditVacancyConfirmationPage : Raav2BasePage
     {
-        protected override string PageTitle => $"The vacancy '{rAAV2DataHelper.VacancyTitle}' has been updated.";
+        protected override string PageTitle => $"The vacancy dates for “{rAAV2DataHelper.VacancyTitle}” have been updated.";
 
         private By Info => By.CssSelector(".info-summary");
 

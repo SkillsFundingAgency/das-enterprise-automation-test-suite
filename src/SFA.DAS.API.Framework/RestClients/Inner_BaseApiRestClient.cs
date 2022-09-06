@@ -1,37 +1,24 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework.Configs;
+﻿using RestSharp.Authenticators;
 
-namespace SFA.DAS.API.Framework.RestClients
+namespace SFA.DAS.API.Framework.RestClients;
+
+public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 {
-    public abstract class Inner_BaseApiRestClient : BaseApiRestClient
-    {
-        private readonly Inner_ApiAuthTokenConfig _config;
+    protected readonly Inner_ApiFrameworkConfig config;
 
-        protected abstract string Inner_ApiBaseUrl { get; }
+    protected abstract string AppServiceName { get; }
 
-        public Inner_BaseApiRestClient(Inner_ApiAuthTokenConfig config)
-        {
-            _config = config;
+    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext) => this.config = config;
 
-            CreateInnerApiRestClient();
-        }
+    protected override void AddResource(string resource) => restRequest.Resource = resource;
 
-        protected override void AddResource(string resource) => restRequest.Resource = resource;
+    protected override void AddAuthHeaders()
+        => AddAuthenticator(config.IsVstsExecution ? GetOAuthToken() : GetAADAuthToken());
 
-        protected override void AddAuthHeaders()
-        {
-            var restClient = new Inner_ApiAuthTokenRestClient(_config);
+    private void AddAuthenticator((string tokenType, string accessToken) token)
+        => restClient.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token.accessToken, token.tokenType);
 
-            (string tokenType, string accessToken) = restClient.GetAuthToken();
+    private (string tokenType, string accessToken) GetAADAuthToken() => new Inner_ApiAuthUsingMI(config).GetAuthToken(AppServiceName);
 
-            Addheader("Authorization", $"{tokenType} {accessToken}");
-        }
-
-        private void CreateInnerApiRestClient()
-        {
-            restClient = new RestClient(Inner_ApiBaseUrl);
-
-            restRequest = new RestRequest();
-        }
-    }
+    private (string tokenType, string accessToken) GetOAuthToken() => new Inner_ApiAuthUsingOAuth(config, objectContext).GetAuthToken(AppServiceName);
 }

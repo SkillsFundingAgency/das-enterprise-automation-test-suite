@@ -1,11 +1,9 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
@@ -17,27 +15,25 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class CocSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly ApprenticeDataHelper _apprenticeDataHelper;
         private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ASCoCEmployerUser _user;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
+        private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
 
         public CocSteps(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _apprenticeDataHelper = context.Get<ApprenticeDataHelper>();
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
             _user = _context.GetUser<ASCoCEmployerUser>();
+            _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
         }
 
         [Given(@"a Course date CoC occurs on an apprenticeship on Employer side")]
@@ -47,34 +43,33 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _employerPortalLoginHelper.Login(_user, true);
 
             var appDetailPage = _employerStepsHelper.ViewCurrentApprenticeDetails(false);
-            
+
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
             appDetailPage.ClickEditApprenticeDetailsLink().ClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
 
             _providerStepsHelper.ApproveChangesAndSubmit();
-            
+
             _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
         }
 
-        [When(@"the apprentice logs into the Apprentice portal")]
-        public void WhenTheApprenticeLogsIntoTheApprenticePortal()
+        [When(@"the apprentice logs into CMAD again following a CoC")]
+        public void WhenTheApprenticeLogsIntoCMADAgainFollowingACoC()
         {
-            tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl());
+            tabHelper.OpenInNewTab(UrlConfig.Apprentice_BaseUrl);
             _apprenticeOverviewPage = new SignIntoMyApprenticeshipPage(_context).CocSignInToApprenticePortal();
         }
 
         [Then(@"only the employer and apprenticeship detail sections should be marked as Incomplete")]
         public void ThenOnlyTheEmployerAndApprenticeshipDetailsSectionShouldBeMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
-            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyEmployerAndApprenticehsipCoCNotification();
+            AssertSectionHelper(OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
         }
 
         [Then(@"only the apprenticeship detail section is marked as Incomplete")]
         public void ThenOnlyTheApprenticeshipDetailsSectionIsMarkedAsIncomplete()
         {
-            AssertSectionStatus(SectionStatus.Complete, SectionStatus.Complete, SectionStatus.Incomplete, SectionStatus.Complete, SectionStatus.Complete);
+            AssertSectionHelper(OverviewPageHelper.Complete, OverviewPageHelper.Complete, OverviewPageHelper.InComplete, OverviewPageHelper.Complete, OverviewPageHelper.Complete);
             _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyApprenticeshipOnlyCoCNotification();
         }
 
@@ -93,7 +88,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyCocAndConfirmApprenticeship();
         }
 
-        private void AssertSectionStatus(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
+        private void AssertSectionHelper(string exsection1Status, string exsection2Status, string exsection3Status, string exsection4Status, string exsection5Status)
         {
             var (sectionName1, section1Status) = _apprenticeOverviewPage.GetConfirmYourEmployerStatus();
             var (sectionName2, section2Status) = _apprenticeOverviewPage.GetConfirmYourTrainingProviderStatus();
@@ -103,41 +98,30 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             Assert.Multiple(() =>
             {
-                StringAssert.AreEqualIgnoringCase(exsection1Status, section1Status, $"Coc status did not match for {sectionName1}");
-                StringAssert.AreEqualIgnoringCase(exsection2Status, section2Status, $"Coc status did not match for {sectionName2}");
-                StringAssert.AreEqualIgnoringCase(exsection3Status, section3Status, $"Coc status did not match for {sectionName3}");
-                StringAssert.AreEqualIgnoringCase(exsection4Status, section4Status, $"Coc status did not match for {sectionName4}");
-                StringAssert.AreEqualIgnoringCase(exsection5Status, section5Status, $"Coc status did not match for {sectionName5}");
+                StringAssert.AreEqualIgnoringCase(exsection1Status, section1Status, $"CoC status did not match for '{sectionName1}' section");
+                StringAssert.AreEqualIgnoringCase(exsection2Status, section2Status, $"CoC status did not match for '{sectionName2}' section");
+                StringAssert.AreEqualIgnoringCase(exsection3Status, section3Status, $"CoC status did not match for '{sectionName3}' section");
+                StringAssert.AreEqualIgnoringCase(exsection4Status, section4Status, $"CoC status did not match for '{sectionName4}' section");
+                StringAssert.AreEqualIgnoringCase(exsection5Status, section5Status, $"CoC status did not match for '{sectionName5}' section");
             });
         }
 
         private string SetApprenticeDetails()
         {
-            var username = _user.CocApprenticeUser.ApprenticeUsername;
+            var user = _user.CocApprenticeUser;
 
-            (string firstName, string lastName) = _aComtSqlDbHelper.GetApprenticeName(username);
+            var username = user.ApprenticeUsername;
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
-                Assert.Fail($"{username} not found in the db");
+            var (firstName, lastName) = _setApprenticeDetailsHelper.SetApprenticeDetails(user);
 
-            _apprenticeDataHelper.UpdateCurrentApprenticeName(firstName, lastName);
             _editedApprenticeDataHelper.UpdateCurrentApprenticeName(firstName, lastName);
-
-            _objectContext.UpdateApprenticeEmail(username);
-            _objectContext.UpdateApprenticePassword(_user.CocApprenticeUser.ApprenticePassword);
-
-            _objectContext.SetFirstName(firstName);
-            _objectContext.SetLastName(lastName);
 
             _aComtSqlDbHelper.ConfirmApprenticeship(username);
 
             return username;
         }
 
-        private void VerifyCocAndConfirmApprenticeship()
-        {
-            _apprenticeOverviewPage = _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed();
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage();
-        }
+        private void VerifyCocAndConfirmApprenticeship() => _apprenticeOverviewPage.VerifyCoCNotificationIsNotDisplayed()
+            .VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship();
     }
 }

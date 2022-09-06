@@ -9,6 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string PageTitle => "Your adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
+        private By Applicant => By.CssSelector("a[data-label='application_review']");
 
         public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 
@@ -28,6 +29,20 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             DraftVacancy();
             return new PreviewYourAdvertOrVacancyPage(context);
+        }
+        public ManageApplicantPage NavigateToManageApplicant()
+        {
+            GoToVacancyManagePage();
+            formCompletionHelper.Click(Applicant);
+            return new ManageApplicantPage(context);
+        }
+        public ViewVacancyPage NavigateToViewAdvertPage()
+        {
+            GoToVacancyManagePage();
+            string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
+            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText(linkTest));
+
+            return new ViewVacancyPage(context);
         }
     }
 }

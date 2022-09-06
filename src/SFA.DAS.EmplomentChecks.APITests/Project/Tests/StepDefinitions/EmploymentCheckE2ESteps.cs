@@ -6,6 +6,7 @@ using NUnit.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Models;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 {
@@ -15,8 +16,9 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
         private readonly SetupScenarioTestData _setupScenarioTestData;
         private TestData _testData;
-        private List<string> payeSchemes = new List<string>();
-        private ScenarioContext _context;
+        private List<string> _payeSchemes = new List<string>();
+        private readonly ScenarioContext _context;
+        private readonly Helper _helper;
 
         public EmploymentCheckE2ESteps(ScenarioContext context)
         {
@@ -24,6 +26,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
             _setupScenarioTestData = new SetupScenarioTestData();
             _testData = new TestData();
+            _helper = context.Get<Helper>();
         }
 
         [Given(@"employment check has been requested for an apprentice with '(.*)', '(.*)', '(.*)'")]
@@ -33,6 +36,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             string checkType = _context.ScenarioInfo.Title.Substring(0, 10);
 
             await _employmentChecksSqlDbHelper.InsertData(checkType, _testData.ULN, _testData.AccountId, minDate, maxDate);
+            await _helper.EmploymentCheckOrchestrationHelper.StartEmploymentChecksOrchestrator();
         }
 
         [Then(@"employment check record status is '([^']*)'")]
@@ -64,12 +68,18 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"data is enriched with results from DC and Accounts")]
         public void ThenDataIsEnrichedWithResultsFromDCAndAccounts()
         {
+            static List<string> ToList(string value) => (!string.IsNullOrEmpty(value) && value.Contains(',')) ? value.Split(',').ToList() : new List<string> { value };
+
             var (nino, payeScheme) = _employmentChecksSqlDbHelper.GetEnrichmentData();
 
             TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {nino} and PayeScheme: {payeScheme}");
 
-            Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
-            Assert.AreEqual(_testData.PayeScheme, payeScheme, "Unexpected Paye Scheme(s) returned");
+            Assert.Multiple(() => 
+            {
+                Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
+
+                CollectionAssert.AreEquivalent(ToList(_testData.PayeScheme), ToList(payeScheme), "Unexpected Paye Scheme(s) returned");
+            });
         }
 
 
@@ -115,15 +125,15 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"an employment check request is created for each unique Nino and paye scheme combination")]
         public void ThenAnEmploymentCheckRequestIsCreatedForEachUniqueNinoAndPayeSchemeCombination()
         {
-            payeSchemes = _testData.PayeScheme.Split(',').ToList();
+            _payeSchemes = _testData.PayeScheme.Split(',').ToList();
 
             var requests = _employmentChecksSqlDbHelper.getRelatedsPayeFromEmploymentCheckCacheRequestRows();
 
-            Assert.AreEqual(payeSchemes.Count, requests.Count, $"Incorrect number of EmploymentCheckCacheRequest returned.");
+            Assert.AreEqual(_payeSchemes.Count, requests.Count, $"Incorrect number of EmploymentCheckCacheRequest returned.");
 
-            for (int i = 0; i < payeSchemes.Count; i++)
+            for (int i = 0; i < _payeSchemes.Count; i++)
             {
-                Assert.AreEqual(String.Concat(payeSchemes[i].Where(c => !Char.IsWhiteSpace(c))), requests[i][0], "Incorrect PayeScheme displayed in EmploymentCheckCacheRequest table");
+                Assert.AreEqual(String.Concat(_payeSchemes[i].Where(c => !Char.IsWhiteSpace(c))), requests[i][0], "Incorrect PayeScheme displayed in EmploymentCheckCacheRequest table");
             }
         }
     }

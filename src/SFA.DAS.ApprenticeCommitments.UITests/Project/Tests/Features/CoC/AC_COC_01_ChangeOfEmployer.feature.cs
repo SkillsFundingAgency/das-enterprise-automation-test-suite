@@ -99,16 +99,21 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("an apprenticeship has new employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a new apprenticeship is CMAD created and fully confirmed that undergoes a Change " +
+                        "of Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("the apprentice logs into the Apprentice portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the apprentice logs into CMAD again following a CoC", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("only the employer and apprenticeship detail sections should be marked as Incomple" +
                         "te", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
+ testRunner.And("Home page has two cards with one each for current and previous confirmed apprenti" +
+                        "ceship details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
  testRunner.And("the apprentice is able to review and confirm employer and apprenticeship details " +
                         "section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

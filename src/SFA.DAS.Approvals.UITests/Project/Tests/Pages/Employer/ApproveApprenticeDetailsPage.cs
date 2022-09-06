@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using System;
@@ -19,7 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 		private By ReviewMessage => By.CssSelector("#send-details");
 		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
         private By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
-
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {

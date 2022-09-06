@@ -25,11 +25,13 @@ namespace SFA.DAS.ConfigurationBuilder
                 CommitmentsDbConnectionString = GetConnectionString(_dbDevConfig.CommitmentsDbName),
                 ApprenticeCommitmentDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentDbName),
                 ApprenticeCommitmentLoginDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentLoginDbName),
+                ApprenticeCommitmentAccountsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentAccountsDbName),
                 ApplyDatabaseConnectionString = GetConnectionString(_dbDevConfig.ApplyDatabaseName),
                 LoginDatabaseConnectionString = GetConnectionString(_dbDevConfig.LoginDatabaseName),
                 QnaDatabaseConnectionString = GetConnectionString(_dbDevConfig.QnaDatabaseName),
                 RoatpDatabaseConnectionString = GetConnectionString(_dbDevConfig.RoatpDatabaseName),
-                ProviderFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.ProviderFeedbackDbName),
+                EmployerFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.EmployerFeedbackDbName),
+                ApprenticeFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeFeedbackDbName),  
                 AssessorDbConnectionString = GetConnectionString(_dbDevConfig.AssessorDbName),
                 IncentivesDbConnectionString = GetConnectionString(_dbDevConfig.EmployerIncentivesDbName),
                 ReservationsDbConnectionString = GetConnectionString(_dbDevConfig.ReservationsDbName),
@@ -40,7 +42,8 @@ namespace SFA.DAS.ConfigurationBuilder
                 UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName),
                 TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName),
                 CRSDbConnectionString = GetConnectionString(_dbDevConfig.CrsDbName),
-                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName)
+                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName),
+                ManagingStandardsDbConnectionString = GetConnectionString(_dbDevConfig.ManagingStandardsDbName)
             };
         }
 
@@ -50,7 +53,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
             var x = $"Server={_dbDevConfig.Server};{GetDbName()}={dbName};{_dbDevConfig.ConnectionDetails};";
 
-            return Regex.Replace(x, "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
+            return EnvironmentConfig.ReplaceEnvironmentName(x);
         }
     }
 }

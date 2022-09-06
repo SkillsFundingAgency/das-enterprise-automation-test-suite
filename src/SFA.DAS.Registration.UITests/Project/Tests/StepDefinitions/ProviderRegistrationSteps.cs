@@ -80,7 +80,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ConfirmYesTrainingProviderPermissions();
         }
 
-        [Then(@"the invited employer status in ""(Account creation not started|Account started|PAYE scheme added|Legal agreement accepted)""")]
+        [Then(@"the invited employer status in ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
         public void ThenTheInvitedEmployerStatusIn(string status)
         {
             GoToProviderHomePage();

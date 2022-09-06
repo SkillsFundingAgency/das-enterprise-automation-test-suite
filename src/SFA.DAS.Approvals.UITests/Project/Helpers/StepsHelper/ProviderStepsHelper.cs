@@ -29,6 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
         private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
         private List<ApprenticeDetails> _apprenticeList;
+        private static string[] _tags;
+        private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -39,6 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             _apprenticeList = new List<ApprenticeDetails>();
+            _tags = context.ScenarioInfo.Tags;
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
@@ -52,6 +55,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab = true)
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(newTab);
+            return new ApprovalsProviderHomePage(_context);
+        }
+
+        public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage()
+        {
+            _providerHomePageStepsHelper.GoToPortableFlexiJobProviderHomePage();
             return new ApprovalsProviderHomePage(_context);
         }
 
@@ -149,6 +158,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApprove();
 
+        public void AddFlexiJobApprentice() => _providerAddApprenticeDetailsPage = AddApprenticeAndSelectFlexiJobAgencyDeliveryModel();
+
+        public void ValidateFlexiJobAgencyContentAndAddApprenticeDetails() => ValidateFlexiJobContentAndSendToEmployerForApproval(_providerAddApprenticeDetailsPage).ValidateFlexiJobTagAndSubmitApprove();
+
         public void BulkUploadApprenticeDetails(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApproveAndSendToEmployerForApproval();
 
         public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
@@ -188,6 +201,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
+        }
+
+        public ProviderAddApprenticeDetailsPage AddApprenticeAndSelectFlexiJobAgencyDeliveryModel()
+        {
+            var providerAddApprenticeDetailsPage = CurrentCohortDetails();
+
+            return  providerAddApprenticeDetailsPage.SelectAddAnApprentice()
+                .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
+                .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
+        }
+
+        public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddApprenticeDetailsPage providerAddApprenticeDetailsPage)
+        {
+            providerAddApprenticeDetailsPage.ValidateFlexiJobContent();
+
+            var providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
+
+            return SetApprenticeDetails(providerApproveApprenticeDetailsPage, 1);
         }
 
         public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices, bool isNonLevy = false)
@@ -252,15 +283,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .UploadFile();
         }
 
-        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails()
+        private ProviderApproveApprenticeDetailsPage CurrentCohortDetails(ApprovalsProviderHomePage _)
         {
-            GoToProviderHomePage();
-
             return new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails();
         }
 
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetailsForPortableFlexiJobProvider() => CurrentCohortDetails(GoToPortableFlexiJobProviderHomePage());
+
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => CurrentCohortDetails(GoToProviderHomePage());
+        
         public ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
@@ -288,6 +321,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             return providerApproveApprenticeDetailsPage;
         }
+
+        public ProviderApproveApprenticeDetailsPage EditApprenticeForRPL()
+        {
+            ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage = CurrentCohortDetails();
+
+            var totalNoOfApprentices = providerApproveApprenticeDetailsPage.TotalNoOfApprentices();
+
+            for (int i = 0; i < totalNoOfApprentices; i++)
+            {
+                var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
+                providerEditApprenticeDetailsPage.SelectSaveAndUpdateRPLAsNo();
+            }
+
+            return providerApproveApprenticeDetailsPage;
+        }
+
+        public ProviderApproveApprenticeDetailsPage EditApprenticeForPortableFlexiJobContent() => EditApprentice(CurrentCohortDetailsForPortableFlexiJobProvider());
 
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
 
@@ -328,6 +378,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public void Approve() => EditApprentice().SubmitApprove();
+
+        public void ValidateFlexiJobContentAndApproveCohort() => EditApprentice().ValidateFlexiJobTagAndSubmitApprove();
+
+        public void ValidatePortableFlexiJobContentAndApproveCohort() => EditApprenticeForPortableFlexiJobContent().ValidatePortableFlexiJobTagAndSubmitApprove();
 
         public void ViewApprentices()
         {
@@ -403,6 +457,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
         }
-
     }
 }

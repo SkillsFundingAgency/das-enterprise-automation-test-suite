@@ -26,6 +26,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeHomePage(context);
         }
 
+        public FullyConfirmedOverviewPage SignInWithUpdatedEmail()
+        {
+            formCompletionHelper.EnterText(Username, objectContext.GetApprenticeChangedEmail());
+            formCompletionHelper.EnterText(Password, objectContext.GetApprenticePassword());
+            formCompletionHelper.Click(SignInButton);
+            return new FullyConfirmedOverviewPage(context);
+        }
+
+        public ApprenticeOverviewPage GoToApprenticeOverviewPage(bool verifypage)
+        {
+            SignIn();
+            return new ApprenticeOverviewPage(context, verifypage);
+        }
+
         public ApprenticeOverviewPage CocSignInToApprenticePortal()
         {
             SignIn();

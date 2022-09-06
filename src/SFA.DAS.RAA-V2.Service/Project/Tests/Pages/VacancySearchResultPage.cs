@@ -8,9 +8,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected By Filter => By.CssSelector("#Filter");
 
-        protected By VacancyStatusSelector => By.CssSelector(".dashboard-status");
+        protected By VacancyStatusSelector => By.CssSelector("[data-label='Status']");
 
-        protected By VacancyActionSelector => By.CssSelector(".dashboard-action");
+        protected By VacancyActionSelector => By.CssSelector("[id^='manage']");
+        protected By RejectedVacancyActionSelector => By.CssSelector("[data-label='Action']");
 
         public VacancySearchResultPage(ScenarioContext context) : base(context) { }
 
@@ -28,9 +29,21 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyCompletedAllSectionsPage GoToVacancyCompletedPage()
         {
-            formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(vacancyTitleDataHelper.VacancyTitle, VacancyActionSelector));
+            formCompletionHelper.ClickElement(VacancyActionSelector);
 
             return new VacancyCompletedAllSectionsPage(context);
+        }
+        public VacancyCompletedAllSectionsPage GoToRejectedVacancyCompletedPage()
+        {
+            formCompletionHelper.ClickElement(RejectedVacancyActionSelector);
+
+            return new VacancyCompletedAllSectionsPage(context);
+        }
+        public ManageRecruitPage GoToVacancyManagePage()
+        {
+            formCompletionHelper.ClickElement(VacancyActionSelector);
+
+            return new ManageRecruitPage(context);
         }
     }
 }

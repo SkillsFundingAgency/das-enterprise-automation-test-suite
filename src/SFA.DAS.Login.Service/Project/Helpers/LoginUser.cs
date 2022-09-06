@@ -21,6 +21,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public List<string> LegalEntities { get; set; }
     }
 
+    public class EmployerFeedbackUser : EasAccountUser { }
+
     public class AuthTestUser : EasAccountUser { }
 
     public class RAAV2EmployerUser : EasAccountUser { }
@@ -49,6 +51,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class ASListedLevyUser : EasAccountUser { }
 
+    public class FlexiJobUser : EasAccountUser { }
+
+    public class EmployerConnectedToPortableFlexiJobProvider : EasAccountUser { }
+
     #endregion
 
     #region MultipleAccountUser
@@ -63,7 +69,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class TransferMatchingUser : MultipleEasAccountUser { }
 
-    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser {
+    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser
+    {
         public string ThirdOrganisationName => LegalEntities?.ElementAtOrDefault(2);
     }
 

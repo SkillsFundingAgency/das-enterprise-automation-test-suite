@@ -25,6 +25,7 @@ namespace SFA.DAS.UI.Framework
         public static string AR_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support.apprenticeships.education.gov.uk/";
         public static string AR_AdminBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support-admin.apprenticeships.education.gov.uk/";
         public static string FindEPAO_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-find-epao.apprenticeships.education.gov.uk/";
+        public static string MS_BaseUrl => $"https://roatp.{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
 
         public static string EI_VRFUrl => "https://dfeuat.achieveservice.com/forms";
 
@@ -43,7 +44,7 @@ namespace SFA.DAS.UI.Framework
 
         public static string Apprentice_ResetPasswordUrl(string clientId, string requestId) => $"https://login.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/NewPassword/{clientId}/{requestId}";
 
-        public static string Apprentice_BaseUrl() => $"https://confirm.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
+        public static string Apprentice_BaseUrl => $"https://confirm.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
 
         public static string TransferMacthingApplyUrl(string pledgeId) => $"https://transfers.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/opportunities/{pledgeId}";
     }

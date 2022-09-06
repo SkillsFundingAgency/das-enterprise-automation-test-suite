@@ -1,4 +1,4 @@
 ﻿Feature: TesData_Cleanup_All
 
 Scenario: Cleanup_Testdata_All
-	Then the test data are cleaned up for email %01Oct2020_010%
+	Then the test data are cleaned up for email %Jan2022%

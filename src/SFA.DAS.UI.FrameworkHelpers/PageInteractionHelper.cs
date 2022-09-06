@@ -20,6 +20,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public void RefreshPage() => _webDriver.Navigate().Refresh();
+
         public string GetUrl() { WaitForPageToLoad(); return _webDriver.Url; }
 
         public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
@@ -88,23 +90,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPage(By locator, string expected, Action retryAction = null) => VerifyPage(() => FindElement(locator), expected, retryAction);
 
-        public bool VerifyPageAfterRefresh(By locator)
-        {
-            void beforeAction() => WaitForPageToLoad();
-
-            void retryAction() => _webDriver.Navigate().Refresh();
-
-            return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
-        }
+        public bool VerifyPageAfterRefresh(By locator) => _retryHelper.RetryOnException(Func(locator), WaitForPageToLoad, RefreshPage);
 
         public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
-        private bool VerifyPage(Func<bool> func, Action retryAction = null)
-        {
-            void beforeAction() => WaitForPageToLoad();
-
-            return _retryHelper.RetryOnException(func, beforeAction, retryAction);
-        }
+        private bool VerifyPage(Func<bool> func, Action retryAction = null) => _retryHelper.RetryOnException(func, WaitForPageToLoad, retryAction);
 
         public bool VerifyText(string actual, string expected1, string expected2)
         {

@@ -1,7 +1,10 @@
-﻿using TechTalk.SpecFlow;
+﻿using System.Runtime.InteropServices;
+using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.API.Framework;
+using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
+using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project
 {
@@ -10,19 +13,23 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly DbConfig _dbConfig;
+        private readonly EmploymentCheckProcessConfig _config;
 
         public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _dbConfig = context.Get<DbConfig>();
+            _config = context.GetEmploymentCheckPaymentProcessConfig<EmploymentCheckProcessConfig>();
         }
        
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            _context.SetRestClient(new Outer_EmploymentCheckApiClient(_context.GetOuter_ApiAuthTokenConfig()));
+            _context.SetRestClient(new Outer_EmploymentCheckApiClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
 
+            _context.Set(new EmploymentCheckOrchestrationHelper(_config));
+            _context.Set(new Helper(_context));
             _context.Set(new EmploymentChecksSqlDbHelper(_dbConfig));
         }
            

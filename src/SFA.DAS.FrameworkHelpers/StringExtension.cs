@@ -20,5 +20,7 @@ namespace SFA.DAS.FrameworkHelpers
         public static string RemoveSpace(this string s) => Regex.Replace(s, @"\s+", string.Empty);
 
         public static List<string> ToList(this string s, string seperator) => s?.Split(seperator).ToList().Select(x => x.Trim()).ToList();
+
+        public static int ToInt(this string s) => int.Parse(s);
     }
 }

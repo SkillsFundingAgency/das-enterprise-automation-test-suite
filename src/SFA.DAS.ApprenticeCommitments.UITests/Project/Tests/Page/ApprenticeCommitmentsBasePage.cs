@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -11,13 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
-        #region Helpers and Context
-        protected readonly ApprenticeLoginSqlDbHelper loginInvitationsSqlDbHelper;
-        
-        protected readonly ApprenticeCommitmentsConfig apprenticeCommitmentsConfig;
-        protected readonly ApprenticeCommitmentsDataHelper apprenticeCommitmentsDataHelper;
-        #endregion
-
         protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
         protected By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
@@ -31,8 +21,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected string ServiceName => "My apprenticeship";
         protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
         protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
-        protected By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship details']");
-        protected By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
+        protected By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Confirm my apprenticeship details']");
+        protected By HelpTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Help and support']");
         private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
         private By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
@@ -48,10 +38,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
 
             bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
-            
-            loginInvitationsSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            apprenticeCommitmentsConfig = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
-            apprenticeCommitmentsDataHelper = context.Get<ApprenticeCommitmentsDataHelper>();
 
             MultipleVerifyPage(new List<Func<bool>>
             {
@@ -82,6 +68,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.Click(CMADTopNavigationLink);
             return new ApprenticeOverviewPage(context, false);
+        }
+
+        public FullyConfirmedOverviewPage NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
+        {
+            formCompletionHelper.Click(CMADTopNavigationLink);
+            return new FullyConfirmedOverviewPage(context);
         }
 
         public HelpAndSupportPage NavigateToHelpPageFromTopNavigationLink()

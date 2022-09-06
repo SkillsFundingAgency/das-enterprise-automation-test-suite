@@ -8,12 +8,7 @@ public class TestDataCleanupAComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUp
 
     public TestDataCleanupAComtSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) => _dbConfig = dbConfig;
 
-    internal int CleanUpAComtTestData(List<string> accountIdToDelete)
-    {
-        var apprenticeIds = new TestDataCleanupComtSqlDataHelper(_dbConfig).GetApprenticeIds(accountIdToDelete);
+    internal int CleanUpAComtTestData(List<string[]> apprenticeIds) => CleanUpUsingCommtApprenticeshipIds(apprenticeIds);
 
-        if (apprenticeIds.IsNoDataFound()) return 0;
-
-        return CleanUpTestData(apprenticeIds.ListOfArrayToList(0), (x) => $"Insert into #commitmentsapprenticeshipid values ({x})", "create table #commitmentsapprenticeshipid (id bigint)");
-    }
+    internal int CleanUpAComtTestData(List<string> accountIdToDelete) => CleanUpAComtTestData(new GetSupportDataHelper(_dbConfig).GetApprenticeIds(accountIdToDelete));
 }

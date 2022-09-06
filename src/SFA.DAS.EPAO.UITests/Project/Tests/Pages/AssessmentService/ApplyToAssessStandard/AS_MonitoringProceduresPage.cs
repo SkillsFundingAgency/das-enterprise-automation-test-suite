@@ -1,18 +1,20 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
+public class AS_MonitoringProceduresPage : AS_EPAOApplyStandardBasePage
 {
-    public class AS_MonitoringProceduresPage : AS_EPAOApplyStandardBasePage
+    protected override string PageTitle => "Monitoring procedures";
+
+    public AS_MonitoringProceduresPage(ScenarioContext context) : base(context) { }
+
+    public AS_ModerationProcessesPage UploadMonitoringProcedure()
     {
-        protected override string PageTitle => "Monitoring procedures";
+        UploadFile();
+        return new(context);
+    }
 
-        public AS_MonitoringProceduresPage(ScenarioContext context) : base(context) { }
-
-        public AS_ModerationProcessesPage UploadMonitoringProcedure()
-        {
-            UploadFile();
-            return new AS_ModerationProcessesPage(context);
-        }
-
+    public AS_ModerationProcessesPage NHEI_UploadMonitoringProcedure()
+    {
+        UploadFile();
+        return new(context);
     }
 }

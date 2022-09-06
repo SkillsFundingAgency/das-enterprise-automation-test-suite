@@ -12,11 +12,13 @@
         public string CommitmentsDbName { get; set; }
         public string ApprenticeCommitmentLoginDbName { get; set; }
         public string ApprenticeCommitmentDbName { get; set; }
+        public string ApprenticeCommitmentAccountsDbName { get; set; }
         public string RoatpDatabaseName { get; set; }
         public string ApplyDatabaseName { get; set; }
         public string QnaDatabaseName { get; set; }
         public string LoginDatabaseName { get; set; }
-        public string ProviderFeedbackDbName { get; set; }
+        public string EmployerFeedbackDbName { get; set; }
+        public string ApprenticeFeedbackDbName { get; init; }
         public string AssessorDbName { get; set; }
         public string EmployerIncentivesDbName { get; set; }
         public string ReservationsDbName { get; set; }
@@ -28,5 +30,6 @@
         public string TMDbName { get; set; }
         public string CrsDbName { get; set; }
         public string EmploymentCheckDbName { get; set; }
+        public string ManagingStandardsDbName { get; set; }
     }
 }

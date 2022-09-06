@@ -1,18 +1,22 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard
+public class AS_HowManyAssessorsPage : AS_EPAOApplyStandardBasePage
 {
-    public class AS_HowManyAssessorsPage : AS_EPAOApplyStandardBasePage
+    protected override string PageTitle => "How many assessors will you have?";
+
+    public AS_HowManyAssessorsPage(ScenarioContext context) : base(context) { }
+
+    public AS_HowManyEndPointAssessmentPage EnterHowManyAssessors()
     {
-        protected override string PageTitle => "How many assessors will you have?";
-
-        public AS_HowManyAssessorsPage(ScenarioContext context) : base(context) { }
-
-        public AS_HowManyEndPointAssessmentPage EnterHowManyAssessors()
-        {
-            formCompletionHelper.EnterText(InputNumber, standardDataHelper.GenerateRandomWholeNumber(1));
-            Continue();
-            return new AS_HowManyEndPointAssessmentPage(context);
-        }
+        formCompletionHelper.EnterText(InputNumber, EPAOApplyStandardDataHelper.GenerateRandomWholeNumber(1));
+        Continue();
+        return new(context);
+    }
+    
+    public AS_HowManyEndPointAssessmentPage NHEIEnterHowManyAssessors()
+    {
+        formCompletionHelper.EnterText(InputNumber, EPAOApplyStandardDataHelper.GenerateRandomWholeNumber(1));
+        Continue();
+        return new(context);
     }
 }

@@ -10,23 +10,16 @@ public class AllDbTestDataCleanUpHelper
 
     private readonly List<string> userswithconstraints = new();
 
+    private List<string[]> _apprenticeIds;
+
     public AllDbTestDataCleanUpHelper(DbConfig dbConfig) => _dbConfig = dbConfig;
-    
-    public (List<string>, List<string>) CleanUpAllDbTestData(string email)
-    {
-        (var easAccDbSqlDataHelper, var userEmailListArray) = GetUserEmailList(new List<string> { email });
 
-        if (userEmailListArray.IsNoDataFound()) return (usersdeleted, userswithconstraints);
-
-        AddInUseEmails(userEmailListArray.ListOfArrayToList(0));
-
-        foreach (var userEmailArray in userEmailListArray) CleanUpTestData(easAccDbSqlDataHelper, new List<string> { userEmailArray[0] });
-
-        return (usersdeleted, userswithconstraints);
-    }
+    public (List<string>, List<string>) CleanUpAllDbTestData(string email) => CleanUpAllDbTestData(new List<string> { email });
 
     public (List<string>, List<string>) CleanUpAllDbTestData(List<string> email)
     {
+        List<List<string>> userEmailListoflist = new();
+
         (var easAccDbSqlDataHelper, var userEmailListArray) = GetUserEmailList(email);
 
         if (userEmailListArray.IsNoDataFound()) return (usersdeleted, userswithconstraints);
@@ -35,7 +28,11 @@ public class AllDbTestDataCleanUpHelper
 
         AddInUseEmails(userEmailList);
 
-        CleanUpTestData(easAccDbSqlDataHelper, userEmailList);
+        int batchCount = 20;
+
+        for (int i = 0; i < userEmailList.Count; i+= batchCount) userEmailListoflist.Add(userEmailList.Skip(i).Take(batchCount).ToList());
+
+        foreach (var item in userEmailListoflist) CleanUpTestData(easAccDbSqlDataHelper, item);
 
         return (usersdeleted, userswithconstraints);
     }
@@ -65,7 +62,12 @@ public class AllDbTestDataCleanUpHelper
 
             noOfRowsDeleted += CleanUpEasDbTestData(easAccDbSqlDataHelper, userEmailList);
 
-            usersdeleted.Add($"{userEmailList.ToString(",")},{accountidsTodelete.ToString(",")},{noOfRowsDeleted} total rows deleted across the dbs");
+            int x = userEmailList.Count;
+
+            if (x < 15) usersdeleted.Add($"{userEmailList.ToString(",")}");
+            if (accountidsTodelete.Count < 15) usersdeleted.Add($"{accountidsTodelete.ToString(",")}");
+            usersdeleted.Add($"{noOfRowsDeleted} total rows deleted across the dbs");
+            usersdeleted.Add($"{userEmailList.Count} email account{(x == 1 ? string.Empty : "s")} deleted");
         }
         catch (Exception ex)
         {
@@ -73,17 +75,17 @@ public class AllDbTestDataCleanUpHelper
         }
     }
 
-
     private int CleanUpTestDataUsingAccountId(List<string> accountidsTodelete) 
     {
         return CleanUpRsvrTestData(accountidsTodelete) 
             + CleanUpPrelTestData(accountidsTodelete) 
             + CleanUpPsrTestData(accountidsTodelete) 
             + CleanUpPfbeTestData(accountidsTodelete) 
-            + CleanUpEmpFcastTestData(accountidsTodelete) 
+            + CleanUpEmpFcastTestData(accountidsTodelete)
+            + CleanUpAppfbTestData(accountidsTodelete)
             + CleanUpEmpFinTestData(accountidsTodelete) 
             + CleanUpEmpIncTestData(accountidsTodelete) 
-            + CleanUpAComtTestData(accountidsTodelete) 
+            + CleanUpAComtTestData() 
             + CleanUpEasLtmTestData(accountidsTodelete) 
             + CleanUpComtTestData(accountidsTodelete);
     }
@@ -113,13 +115,24 @@ public class AllDbTestDataCleanUpHelper
         return SetDebugMessage(() => helper.CleanUpEasLtmTestData(accountidsTodelete));
     }
 
-    private int CleanUpAComtTestData(List<string> accountidsTodelete)
+    private int CleanUpAppfbTestData(List<string> accountidsTodelete)
+    {
+        var helper = new TestDataCleanupAppfbqlDataHelper(_dbConfig);
+
+        SetDetails(helper);
+
+        _apprenticeIds = new GetSupportDataHelper(_dbConfig).GetApprenticeIds(accountidsTodelete);
+
+        return SetDebugMessage(() => helper.CleanUpAppfbTestData(_apprenticeIds));
+    }
+
+    private int CleanUpAComtTestData()
     {
         var helper = new TestDataCleanupAComtSqlDataHelper(_dbConfig);
 
         SetDetails(helper);
 
-        return SetDebugMessage(() => helper.CleanUpAComtTestData(accountidsTodelete));
+        return SetDebugMessage(() => helper.CleanUpAComtTestData(_apprenticeIds));
     }
 
     private int CleanUpEmpIncTestData(List<string> accountidsTodelete)

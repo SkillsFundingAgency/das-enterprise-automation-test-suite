@@ -46,7 +46,9 @@ namespace SFA.DAS.Registration.UITests.Project
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
                               tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" : "dasautomation.com";
 
-            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword);
+            var aornDataHelper = new AornDataHelper();
+
+            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword, aornDataHelper);
 
             _context.Set(registrationDatahelpers);
 
@@ -56,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(new RegistrationSqlDataHelper(_dbConfig));
 
-            _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, registrationDatahelpers));
+            _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }

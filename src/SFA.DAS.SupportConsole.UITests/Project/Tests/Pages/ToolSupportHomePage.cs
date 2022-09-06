@@ -1,45 +1,46 @@
-﻿using OpenQA.Selenium;
-using System;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
+public class ToolSupportHomePage : ToolSupportBasePage
 {
-    public class ToolSupportHomePage : ToolSupportBasePage
+    protected override string PageTitle => "DAS Tools Support";
+
+    #region Locators
+    private static By PauseApprenticeshipsLink => By.Id("pauseApprenticeship");
+    private static By ResumeApprenticeshipsLink => By.Id("resumeApprenticeship");
+    private static By StopApprenticeshipsLink => By.Id("stopApprenticeship");
+    private static By SuspendUserAccountsLink => By.Id("suspendUser");
+    private static By ReinstateUserAccountsLink => By.Id("reinstateUser");
+    #endregion
+
+    public ToolSupportHomePage(ScenarioContext context) : base(context) { }
+
+    public SearchForApprenticeshipPage ClickPauseApprenticeshipsLink()
     {
-        protected override string PageTitle => "DAS Tools Support";
+        formCompletionHelper.Click(PauseApprenticeshipsLink);
+        return new (context);
+    }
 
-        #region Locators
-        private By HomeHeading => By.LinkText("support");
-        protected By PauseApprenticeshipsLink => By.Id("pauseApprenticeship");
-        protected By ResumeApprenticeshipsLink => By.Id("resumeApprenticeship");
-        protected By StopApprenticeshipsLink => By.Id("stopApprenticeship");
-        #endregion
+    public SearchForApprenticeshipPage ClickResumeApprenticeshipsLink()
+    {
+        formCompletionHelper.Click(ResumeApprenticeshipsLink);
+        return new (context);
+    }
 
-        public ToolSupportHomePage(ScenarioContext context) : base(context) { }
+    public SearchForApprenticeshipPage ClickStopApprenticeshipsLink()
+    {
+        formCompletionHelper.Click(StopApprenticeshipsLink);
+        return new (context);
+    }
 
-        public SearchForApprenticeshipPage ClickPauseApprenticeshipsLink()
-        {
-            formCompletionHelper.Click(PauseApprenticeshipsLink);
-            return new SearchForApprenticeshipPage(context);
-        }
+    public SearchForAnEmployerPage ClickSuspendUserAccountsLink()
+    {
+        formCompletionHelper.Click(SuspendUserAccountsLink);
+        return new(context);
+    }
 
-        public SearchForApprenticeshipPage ClickResumeApprenticeshipsLink()
-        {
-            formCompletionHelper.Click(ResumeApprenticeshipsLink);
-            return new SearchForApprenticeshipPage(context);
-        }
-
-        public SearchForApprenticeshipPage ClickStopApprenticeshipsLink()
-        {
-            formCompletionHelper.Click(StopApprenticeshipsLink);
-            return new SearchForApprenticeshipPage(context);
-        }
-
-        public SearchHomePage GoToHomePage()
-        {
-            formCompletionHelper.ClickElement(HomeHeading);
-            return new SearchHomePage(context);
-        }
-
+    public SearchForAnEmployerPage ClickReinstateUserAccountsLink()
+    {
+        formCompletionHelper.Click(ReinstateUserAccountsLink);
+        return new(context);
     }
 }

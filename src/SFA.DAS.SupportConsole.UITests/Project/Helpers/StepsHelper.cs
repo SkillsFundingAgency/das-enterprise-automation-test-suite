@@ -1,87 +1,82 @@
-﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
-using TechTalk.SpecFlow;
-using NUnit.Framework;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.Login.Service;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.Login.Service.Project.Helpers;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers;
 
-namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
+public class StepsHelper
 {
-    public class StepsHelper
+    private readonly ScenarioContext _context;
+    private readonly TabHelper _tabHelper;
+
+    public StepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
+        _context = context;
+        _tabHelper = context.Get<TabHelper>();
+    }
 
-        public StepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _tabHelper = context.Get<TabHelper>();
-        }
+    public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());
 
-        public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());
-        
-        public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
+    public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-        public ToolSupportHomePage ValidUserLogsinToSupportTools() => LoginToSupportTools(_context.GetUser<SupportToolsUser>());
+    public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
 
-        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
+    public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
-        public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
+    public UlnSearchResultsPage SearchForUln(string uln) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN(uln);
 
-        public void SearchWithInvalidUln(bool WithSpecialChars)
-        {
-            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
+    public void SearchWithInvalidUln(bool WithSpecialChars)
+    {
+        var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
 
-            Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+        Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
-            if (WithSpecialChars)
-                commitmentsSearchPage.SearchWithInvalidULNWithSpecialChars();
-            else
-                commitmentsSearchPage.SearchWithInvalidULN();
-        }
+        if (WithSpecialChars)
+            commitmentsSearchPage.SearchWithInvalidULNWithSpecialChars();
+        else
+            commitmentsSearchPage.SearchWithInvalidULN();
+    }
 
-        public void SearchWithInvalidCohort(bool WithSpecialChars)
-        {
-            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+    public void SearchWithInvalidCohort(bool WithSpecialChars)
+    {
+        var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
-            VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
+        VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
 
-            if (WithSpecialChars)
-                commitmentsSearchPage.SearchWithInvalidCohortWithSpecialChars();
-            else
-                commitmentsSearchPage.SearchWithInvalidCohort();
-        }
+        if (WithSpecialChars)
+            commitmentsSearchPage.SearchWithInvalidCohortWithSpecialChars();
+        else
+            commitmentsSearchPage.SearchWithInvalidCohort();
+    }
 
-        public void SearchWithUnauthorisedCohortAccess()
-        {
-            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+    public void SearchWithUnauthorisedCohortAccess()
+    {
+        var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
-            VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
-            
-            commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
-        }
+        VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
 
-        public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
+        commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
+    }
 
-        void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+    public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
 
-        private SearchHomePage LoginToSupportConsole(LoginUser loginUser)
-        {
-            new IdamsPage(_context).LoginToAccess1Staff();
+    private void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
-            return new SignInPage(_context).SignInWithValidDetails(loginUser);
-        }
+    private SearchHomePage LoginToSupportConsole(LoginUser loginUser) => GoToSignInPage().SignInWithValidDetails(loginUser);
 
-        private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser)
-        {
-            _tabHelper.GoToUrl(UrlConfig.SupportTools_BaseUrl);
-            new IdamsPage(_context).LoginToAccess1Staff();
+    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser, bool openNewTab)
+    {
+        var baseUrl = UrlConfig.SupportTools_BaseUrl;
 
-            return new SignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
-        }
+        if (openNewTab) _tabHelper.OpenInNewTab(baseUrl);
 
-       
+        else _tabHelper.GoToUrl(baseUrl);
+
+        if (new CheckIdamsPage(_context).IsPageDisplayed()) return GoToSignInPage().SignIntoToolSupportWithValidDetails(loginUser);
+
+        else return new ToolSupportHomePage(_context);
+    }
+
+    private SignInPage GoToSignInPage()
+    {
+        new IdamsPage(_context).LoginToAccess1Staff();
+
+        return new(_context);
     }
 }

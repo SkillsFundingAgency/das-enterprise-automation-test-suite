@@ -1,18 +1,23 @@
-﻿using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.ConfigurationBuilder;
+﻿
+namespace SFA.DAS.RAA_V2.APITests.Project;
 
-
-namespace SFA.DAS.RAA_V2.APITests.Project
+public class Outer_RecruitApiClient : Outer_BaseApiRestClient
 {
-    public class Outer_EmployerAccountLegalEntitiesApiClient : Outer_BaseApiRestClient
+    public Outer_RecruitApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
+
+    protected override string ApiName => "recruit";
+
+    protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
+
+    public new void CreateRestRequest(Method method, string resource, string payload)
     {
+        base.CreateRestRequest(method, resource, payload);
 
-        public Outer_EmployerAccountLegalEntitiesApiClient(Outer_ApiAuthTokenConfig config) : base(config) { }
+        restRequest.RequestFormat = DataFormat.Json;
 
-        protected override string ApiName => "";
+        Addheader("Content-Type", "application/json");
 
-        protected override string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
+        Addheader("Accept", "application/json");
+
     }
 }

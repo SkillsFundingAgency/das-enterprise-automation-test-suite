@@ -28,10 +28,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }
 
-        public PreviewYourAdvertOrVacancyPage ReviewYourVacancy()
+        public VacancyCompletedAllSectionsPage ReviewYourVacancy()
         {
             formCompletionHelper.ClickLinkByText("Review your advert");
-            return new PreviewYourAdvertOrVacancyPage(context);
+            return new VacancyCompletedAllSectionsPage(context);
         }
 
         public RecruitmentDynamicHomePage ConfirmVacancyTitleAndStatus(string status)
@@ -41,10 +41,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public ApprenticeshipTrainingPage ContinueCreatingYourAdvert()
+        public CreateAnApprenticeshipAdvertOrVacancyPage ContinueCreatingYourAdvert()
         {
             formCompletionHelper.ClickLinkByText("Continue creating your advert");
-            return new ApprenticeshipTrainingPage(context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
         public YourApprenticeshipAdvertsHomePage GoToVacancyDashboard()

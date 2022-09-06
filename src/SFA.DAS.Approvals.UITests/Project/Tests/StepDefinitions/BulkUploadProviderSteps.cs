@@ -71,6 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<NonLevyUser>();
             var employerName = GetOrgName(employerUser.OrganisationName);
+            _objectContext.SetNoOfApprentices(numberOfApprentices);
             _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
         }
 
@@ -88,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                 .SelectToApproveAllAndSendToEmployer()
                 .VerifyCorrectInformationIsDisplayed(apprenticeList);
-        }        
+        }
 
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
@@ -185,7 +186,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
-        {            
+        {
             var apprenticeList = _objectContext.GetBulkuploadApprentices();
             var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
             var result = new List<FileUploadReviewEmployerDetails>();
