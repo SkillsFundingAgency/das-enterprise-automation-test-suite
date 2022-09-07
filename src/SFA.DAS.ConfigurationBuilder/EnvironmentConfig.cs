@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using System.Text.RegularExpressions;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
@@ -15,5 +16,7 @@ namespace SFA.DAS.ConfigurationBuilder
         public static bool IsPPEnvironment => EnvironmentName.CompareToIgnoreCase("pp");
 
         public static bool IsDemoEnvironment => EnvironmentName.CompareToIgnoreCase("demo");
+
+        public static string ReplaceEnvironmentName(string x) => Regex.Replace(x, "{environmentname}", EnvironmentName.ToLower());
     }
 }

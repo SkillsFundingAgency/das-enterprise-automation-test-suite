@@ -1,5 +1,5 @@
-﻿using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Configs;
+﻿using RestSharp;
+using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ConfigurationBuilder;
 using System.Net;
@@ -8,10 +8,12 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
     public class Inner_CommitmentsApiRestClient : Inner_BaseApiRestClient
     {
-        public Inner_CommitmentsApiRestClient(ObjectContext objectContext, Inner_ApiAuthTokenConfig config) : base(objectContext, config) { }
+        public Inner_CommitmentsApiRestClient(ObjectContext objectContext, API.Framework.Configs.Inner_ApiFrameworkConfig config) : base(objectContext, config) { }
 
-        protected override string Inner_ApiBaseUrl => UrlConfig.Inner_CommitmentsApiBaseUrl;
+        protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_CommitmentsApiBaseUrl;
 
-        public void GetApprenticeship(long app, HttpStatusCode expectedResponse) => Execute(RestSharp.Method.GET, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
+        protected override string AppServiceName => config.config.CommitmentsAppServiceName;
+
+        public void GetApprenticeship(long app, HttpStatusCode expectedResponse) => Execute(Method.GET, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
     }
 }

@@ -68,12 +68,18 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"data is enriched with results from DC and Accounts")]
         public void ThenDataIsEnrichedWithResultsFromDCAndAccounts()
         {
+            static List<string> ToList(string value) => (!string.IsNullOrEmpty(value) && value.Contains(',')) ? value.Split(',').ToList() : new List<string> { value };
+
             var (nino, payeScheme) = _employmentChecksSqlDbHelper.GetEnrichmentData();
 
             TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {nino} and PayeScheme: {payeScheme}");
 
-            Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
-            Assert.AreEqual(_testData.PayeScheme, payeScheme, "Unexpected Paye Scheme(s) returned");
+            Assert.Multiple(() => 
+            {
+                Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
+
+                CollectionAssert.AreEquivalent(ToList(_testData.PayeScheme), ToList(payeScheme), "Unexpected Paye Scheme(s) returned");
+            });
         }
 
 

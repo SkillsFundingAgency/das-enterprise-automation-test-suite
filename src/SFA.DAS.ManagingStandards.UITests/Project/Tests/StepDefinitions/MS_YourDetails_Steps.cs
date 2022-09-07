@@ -26,6 +26,18 @@ public class MS_YourDetails_Steps
             .AccessStandards();
     }
 
+    [Then(@"the provider verifies provider overview")]
+    public void ThenTheProviderVerifiesProviderOverview()
+    {
+        ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new(_context);
+        manageTheStandardsYouDeliverPage
+            .ReturnToYourStandardsAndTrainingVenues()
+            .AccessProviderOverview()
+            .NavigateBackToReviewYourDetails()
+            .AccessStandards();
+    }
+
+
     [Then(@"the provider updates contact details")]
     public void ThenTheProviderUpdatesContactDetails()
     {
@@ -64,6 +76,17 @@ public class MS_YourDetails_Steps
             .ConfirmAtOneofYourTrainingLocations()
             .ConfirmVenueDetailsAndDeliveryMethod_AtOneOFYourTrainingLocation();
     }
+
+    [When(@"the provider is able to add the training locations")]
+    public void WhenTheProviderIsAbleToAddTheTrainingLocations()
+    {
+        ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
+        manageAStandard_TeacherPage.AccessEditTrainingLocations()
+            .AccessAddTrainingVenue()
+            .ChooseTheVenueDeliveryAndContinue()
+            .NavigateBackToStandardPage();
+    }
+
 
     [When(@"the provider is able to change the standard delivered at an employers location national provider")]
     public void WhenTheProviderIsAbleToChangeTheStandardDeliveredAtAnEmployersLocationNationalProvider()
@@ -109,7 +132,18 @@ public class MS_YourDetails_Steps
             .AccessAddANewTrainingVenue()
             .EnterPostcodeAndContinue()
             .ChooseTheAddressAndContinue()
-            .AddVenueDetailsAndSubmit();
+            .AddVenueDetailsAndSubmit(); 
     }
+
+    [Then(@"the provider is able to update the new training venuw")]
+    public void ThenTheProviderIsAbleToUpdateTheNewTrainingVenuw()
+    {
+        TrainingVenuesPage trainingVenuesPage = new(_context);
+        trainingVenuesPage
+            .AccessNewTrainingVenue_Added()
+            .Click_UpdateContactDetails()
+            .UpdateVenueDetailsAndSubmit();
+    }
+
 
 }
