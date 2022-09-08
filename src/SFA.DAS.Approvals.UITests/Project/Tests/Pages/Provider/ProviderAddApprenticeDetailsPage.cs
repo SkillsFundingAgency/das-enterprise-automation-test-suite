@@ -17,10 +17,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
         private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private By IsOnFlexiPaymentsPilotRadioButton => By.CssSelector("label[for=IsOnFlexiPaymentPilot]");
+        private By IsNotFlexiPaymentsPilotRadioButton => By.CssSelector("label[for=IsOnFlexiPaymentPilot-no]");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isOnFlexiPaymentPilot = false)
         {
             EnterApprenticeMandatoryValidDetails();
 
@@ -36,6 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
+            PerformFlexiPaymentPilotSelection(isOnFlexiPaymentPilot);
+
             EnterTrainingCostAndEmpReference();
 
             bool rpl = CheckRPLCondition(false);
@@ -47,6 +51,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        private void PerformFlexiPaymentPilotSelection(bool isOnFlexiPaymentPilot)
+        {
+            if (pageInteractionHelper.IsElementDisplayedAfterPageLoad(IsOnFlexiPaymentsPilotRadioButton))
+                {
+                if (isOnFlexiPaymentPilot) formCompletionHelper.Click(IsOnFlexiPaymentsPilotRadioButton);
+                else formCompletionHelper.Click(IsNotFlexiPaymentsPilotRadioButton);
+            }
         }
 
         private new void EnterApprenticeMandatoryValidDetails()
