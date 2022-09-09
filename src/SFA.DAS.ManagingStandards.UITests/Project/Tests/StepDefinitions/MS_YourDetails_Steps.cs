@@ -136,8 +136,6 @@ public class MS_YourDetails_Steps
             .DeleteStandard();
     }
 
-
-
     [When(@"the provider is able to edit the regions")]
     public void WhenTheProviderIsAbleToEditTheRegions()
     {
@@ -171,6 +169,4 @@ public class MS_YourDetails_Steps
             .Click_UpdateContactDetails()
             .UpdateVenueDetailsAndSubmit();
     }
-
-
 }
