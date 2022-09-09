@@ -121,7 +121,7 @@ public class MS_YourDetails_Steps
             .YesStandardIsCorrectAndContinue()
             .Add_ContactInformation()
             .ConfirmAtOneofYourTrainingLocations_AddStandard()
-            .AccessAddTrainingVenue()
+            .AccessAddANewTrainingVenue_AddStandard()
             .ChooseTheVenueDeliveryAndContinue()
             .Save_NewTrainingVenue_Continue()
             .Save_NewStandard_Continue();

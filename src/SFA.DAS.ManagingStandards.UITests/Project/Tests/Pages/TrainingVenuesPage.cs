@@ -37,4 +37,9 @@ public class TrainingVenuesPage : ManagingStandardsBasePage
         Continue();
         return new AddAstandard_ActuaryPage(context);
     }
+    public VenueAndDeliveryPage AccessAddANewTrainingVenue_AddStandard()
+    {
+        formCompletionHelper.ClickLinkByText("Add a training venue");
+        return new VenueAndDeliveryPage(context);
+    }
 }

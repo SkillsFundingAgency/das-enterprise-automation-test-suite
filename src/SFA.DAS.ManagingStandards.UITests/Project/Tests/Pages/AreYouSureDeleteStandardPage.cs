@@ -10,7 +10,6 @@ public class AreYouSureDeleteStandardPage : ManagingStandardsBasePage
     public ManageTheStandardsYouDeliverPage DeleteStandard()
     {
         formCompletionHelper.ClickElement(DeleteStandardButton);
-        Continue();
         return new ManageTheStandardsYouDeliverPage(context);
     }
 }
