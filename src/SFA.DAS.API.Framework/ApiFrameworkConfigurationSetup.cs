@@ -30,13 +30,22 @@ public class ApiFrameworkConfigurationSetup
     [BeforeScenario(Order = 2)]
     public void SetUpApiFrameworkConfiguration()
     {
+        string _appServiceResourceSuffix = "-ar";
+
+        var inner_ApiFrameworkConfig = new Inner_ApiFrameworkConfig(_configSection.GetConfigSection<Inner_ApiAuthTokenConfig>())
+        {
+            IsVstsExecution = Configurator.IsVstsExecution,
+        };
+
+        inner_ApiFrameworkConfig.config.ApprenticeAccountsAppServiceName += _appServiceResourceSuffix;
+        inner_ApiFrameworkConfig.config.CoursesAppServiceName += _appServiceResourceSuffix;
+        inner_ApiFrameworkConfig.config.CommitmentsAppServiceName += _appServiceResourceSuffix;
+
+        _context.Set(inner_ApiFrameworkConfig);
+
         _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
         _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
-
-        _context.Set(_configSection.GetConfigSection<Inner_CommitmentsApiAuthTokenConfig>());
-
-        _context.Set(_configSection.GetConfigSection<Inner_CoursesApiAuthTokenConfig>());
     }
 
     [BeforeScenario(Order = 4)]

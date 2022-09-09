@@ -17,11 +17,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             return Execute(Method.POST, $"/approvals", payload, expectedResponse);
         }
 
-        public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
-        {
-            return Execute(Method.POST, $"/apprentices", payload, expectedResponse);
-        }
-
         public IRestResponse CreateApprenticeship(CreateApprenticeshipFromRegistration payload, HttpStatusCode expectedResponse)
         {
             return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);

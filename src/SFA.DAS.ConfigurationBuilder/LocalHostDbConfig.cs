@@ -53,7 +53,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
             var x = $"Server={_dbDevConfig.Server};{GetDbName()}={dbName};{_dbDevConfig.ConnectionDetails};";
 
-            return Regex.Replace(x, "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
+            return EnvironmentConfig.ReplaceEnvironmentName(x);
         }
     }
 }
