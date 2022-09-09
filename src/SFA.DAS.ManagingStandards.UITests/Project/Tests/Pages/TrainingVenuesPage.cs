@@ -32,4 +32,9 @@ public class TrainingVenuesPage : ManagingStandardsBasePage
         formCompletionHelper.Click(BackLink);
         return new ManageAStandard_TeacherPage(context);
     }
+    public AddAstandard_ActuaryPage Save_NewTrainingVenue_Continue()
+    {
+        Continue();
+        return new AddAstandard_ActuaryPage(context);
+    }
 }

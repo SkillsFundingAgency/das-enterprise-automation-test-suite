@@ -111,6 +111,33 @@ public class MS_YourDetails_Steps
             .SelectDerbyRutlandRegionsAndConfirm();
     }
 
+    [When(@"the provider is able to add the standard delivered in one of the training locations")]
+    public void WhenTheProviderIsAbleToAddTheStandardDeliveredInOneOfTheTrainingLocations()
+    {
+        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
+        reviewYourDetailsPage.AccessStandards()
+            .AccessAddStandard()
+            .SelectActuaryAndContinue()
+            .YesStandardIsCorrectAndContinue()
+            .Add_ContactInformation()
+            .ConfirmAtOneofYourTrainingLocations_AddStandard()
+            .AccessAddTrainingVenue()
+            .ChooseTheVenueDeliveryAndContinue()
+            .Save_NewTrainingVenue_Continue()
+            .Save_NewStandard_Continue();
+    }
+
+    [When(@"the provider is able to delete the standard")]
+    public void WhenTheProviderIsAbleToDeleteTheStandard()
+    {
+        ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new ManageTheStandardsYouDeliverPage(_context);
+        manageTheStandardsYouDeliverPage.AccessActuaryLevel6()
+            .ClickDeleteAStandard()
+            .DeleteStandard();
+    }
+
+
+
     [When(@"the provider is able to edit the regions")]
     public void WhenTheProviderIsAbleToEditTheRegions()
     {

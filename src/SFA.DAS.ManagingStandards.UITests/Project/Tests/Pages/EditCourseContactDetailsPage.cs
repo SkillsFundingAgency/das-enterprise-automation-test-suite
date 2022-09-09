@@ -23,4 +23,14 @@ public class YourContactInformationForThisStandardPage : ManagingStandardsBasePa
         formCompletionHelper.Click(SaveAndContinueButton);
         return new ManageAStandard_TeacherPage(context);
     }
+
+    public WhereWillThisStandardBeDeliveredPage Add_ContactInformation()
+    {
+        formCompletionHelper.EnterText(EmailAddressTextBox, managingStandardsDataHelpers.EmailAddress);
+        formCompletionHelper.EnterText(TelephoneNumberTextBox, managingStandardsDataHelpers.ContactNumber);
+        formCompletionHelper.EnterText(ContactPageTextBox, managingStandardsDataHelpers.ContactWebsite);
+        formCompletionHelper.EnterText(YourWebsitePageTextBox, managingStandardsDataHelpers.Website);
+        formCompletionHelper.Click(SaveAndContinueButton);
+        return new WhereWillThisStandardBeDeliveredPage(context);
+    }
 }

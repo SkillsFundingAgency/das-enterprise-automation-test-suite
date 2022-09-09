@@ -7,6 +7,10 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\MS_02_AddTrainingVenues - Copy.feature.cs" />
+	</ItemGroup>
+
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -33,6 +37,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\MS_03_Add_DeleteStandard.feature.cs">
+	    <DependentUpon>MS_03_Add_DeleteStandard.feature</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="appsettings.Environment.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -46,5 +56,12 @@
 		<None Update="specflow.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\MS_03_Add_DeleteStandard.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 </Project>
