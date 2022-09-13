@@ -27,9 +27,9 @@ public class ManageTheStandardsYouDeliverPage : ManagingStandardsBasePage
         formCompletionHelper.ClickLinkByText("Add a standard");
         return new SelectAStandardPage(context);
     }
-    public ManageAStandard_ActuaryPage AccessActuaryLevel6()
+    public ManageAStandard_ActuaryPage AccessActuaryLevel7()
     {
-        formCompletionHelper.ClickLinkByText("Actuary (Level 7)");
+        formCompletionHelper.ClickLinkByText(managingStandardsDataHelpers.Standard_ActuaryLevel7);
         return new ManageAStandard_ActuaryPage(context);
     }
 }

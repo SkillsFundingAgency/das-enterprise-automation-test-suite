@@ -131,7 +131,7 @@ public class MS_YourDetails_Steps
     public void WhenTheProviderIsAbleToDeleteTheStandard()
     {
         ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new ManageTheStandardsYouDeliverPage(_context);
-        manageTheStandardsYouDeliverPage.AccessActuaryLevel6()
+        manageTheStandardsYouDeliverPage.AccessActuaryLevel7()
             .ClickDeleteAStandard()
             .DeleteStandard();
     }
