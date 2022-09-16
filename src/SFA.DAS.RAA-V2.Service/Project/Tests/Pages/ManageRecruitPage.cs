@@ -17,10 +17,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new CloneVacancyDatesPage(context);
         }
 
-        public EditVacancyPage EditAdvert()
+        public EditVacancyDatesPage EditAdvert()
         {
             formCompletionHelper.ClickLinkByText("Edit advert");
-            return new EditVacancyPage(context);
+            return new EditVacancyDatesPage(context);
         }
 
         public CloseVacancyPage CloseAdvert()

@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.API.Framework.Configs;
 
-public abstract class Inner_ApiAuthTokenConfig
+public class Inner_ApiAuthTokenConfig
 {
     public string ClientId { get; set; }
 
@@ -8,9 +8,11 @@ public abstract class Inner_ApiAuthTokenConfig
 
     public string Tenant { get; set; }
 
-    public string GrantType => "client_credentials";
+    public string TenantId { get; set; }
 
-    protected abstract string ApiName { get; }
+    public string ApprenticeAccountsAppServiceName { get; set; }
 
-    public string Resource => UriHelper.GetAbsoluteUri($"https://{Tenant}", ApiName);
+    public string CoursesAppServiceName { get; set; }
+
+    public string CommitmentsAppServiceName { get; set; }
 }

@@ -5,9 +5,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class EditVacancyPage : Raav2BasePage
     {
-        protected override string PageTitle => "You can edit the following information:";
+        protected override string PageTitle => "Edit advert dates";
 
-        protected override By PageHeader => By.CssSelector(".info-summary");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         private By EditClosingDate => By.CssSelector("a[data-automation='edit-closing-date']");
 

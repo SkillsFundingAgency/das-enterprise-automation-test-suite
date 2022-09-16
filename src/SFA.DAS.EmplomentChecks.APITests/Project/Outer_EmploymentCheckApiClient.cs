@@ -10,7 +10,5 @@ namespace SFA.DAS.EmploymentChecks.APITests
         public Outer_EmploymentCheckApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
 
         protected override string ApiName => "employmentcheck";
-
-        protected override string ApiBaseUrl => UrlConfig.Outer_ApiBaseUrl;
     }
 }

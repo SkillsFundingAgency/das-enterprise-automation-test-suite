@@ -19,11 +19,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage page);
 
-        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType);
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
-        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA);
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA);
 
         protected WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
 
@@ -46,7 +46,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
             createAdvertPage.VerifyEmploymentDetailsSectionStatus(NotStarted);
 
-            createAdvertPage = EmploymentDetails(createAdvertPage, isEmployerAddress, disabilityConfidence, wageType);
+            createAdvertPage = EmploymentDetails(createAdvertPage, isEmployerAddress, wageType);
 
             createAdvertPage.VerifyEmploymentDetailsSectionStatus(Completed);
 
@@ -58,7 +58,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(NotStarted);
 
-            createAdvertPage = AboutTheEmployer(createAdvertPage, employername, isApplicationMethodFAA);
+            createAdvertPage = AboutTheEmployer(createAdvertPage, employername, disabilityConfidence, isApplicationMethodFAA);
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
 

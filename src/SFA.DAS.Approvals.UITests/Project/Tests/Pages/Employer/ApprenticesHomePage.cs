@@ -18,10 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By Cookies => By.LinkText("Cookies");
         private By BuiltBy => By.LinkText("Education and Skills Funding Agency");
         private By CrownCopyright => By.LinkText("© Crown copyright");
-
         private By CookiesAcceptButton => By.Id("btn-cookie-accept");
         private By CookiesSettingsButton => By.Id("btn-cookie-settings");
-
         private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private By ZenHelpWidgetScript2 => By.Id("co-snippet");
 

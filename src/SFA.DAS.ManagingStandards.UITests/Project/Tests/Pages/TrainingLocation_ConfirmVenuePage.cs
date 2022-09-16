@@ -2,7 +2,7 @@
 
 public class TrainingLocation_ConfirmVenuePage : ManagingStandardsBasePage
 {
-    protected override string PageTitle => "Training locations";
+    protected override string PageTitle => "Training venues";
 
     public TrainingLocation_ConfirmVenuePage(ScenarioContext context) : base(context) { }
 

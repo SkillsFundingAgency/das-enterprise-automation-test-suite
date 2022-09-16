@@ -1,40 +1,23 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
+﻿using System.Security.Principal;
+using System.Xml.Linq;
 
-namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers
+namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers;
+
+public class EmployerLegalEntitiesSqlDbHelper : SqlDbHelper
 {
-    public class EmployerLegalEntitiesSqlDbHelper : SqlDbHelper
+    public EmployerLegalEntitiesSqlDbHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+
+    public (string, string) GetEmployerAccountDetails()
     {
-        private readonly DbConfig _dbConfig;
+        List<string> queryResult = GetData("select top (1) a.HashedId, '\"accountLegalEntityPublicHashedId\":\"'+ ale.PublicHashedId +'\",\"name\":\"'+ ale.Name + '\"' as expected " +
+            "FROM [employer_account].[AccountLegalEntity] AS ale " +
+            "JOIN[employer_account].[LegalEntity] AS le " +
+            "ON le.Id = ale.LegalEntityId " +
+            "JOIN [employer_account].[Account] AS a " +
+            "ON a.Id = ale.AccountId " +
+            "WHERE ale.Deleted IS NUll " +
+            "Order by NEWID();");
 
-        public EmployerLegalEntitiesSqlDbHelper(DbConfig dbConfig) : base (dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
-
-        public List<string> GetEmployerAccountLegalEntities (string employerAccountHashedId)
-        {
-            var query = $"SELECT (" +
-                $" SELECT  ale.Address as address, ale.Name as name, ale.PublicHashedId as accountLegalEntityPublicHashedId" +
-                $" FROM[employer_account].[AccountLegalEntity] AS ale" +
-                $" JOIN[employer_account].[LegalEntity] AS le" +
-                $" ON le.Id = ale.LegalEntityId " +
-                $" WHERE   ale.AccountId in (select Id from[employer_account].[Account] where HashedId = '{employerAccountHashedId}') " +
-                $" and ale.Deleted IS NULL " +
-                $" FOR JSON PATH, ROOT('employerAccountLegalEntities') " +
-                $" ) AS queryResponse";
-
-            return GetData(query, _dbConfig.AccountsDbConnectionString);
-        }
-
-        public string GetEmployerAccountHashedID()
-        {
-            var query = " select top (1) a.HashedId FROM [employer_account].[AccountLegalEntity] AS ale " +
-                " JOIN[employer_account].[LegalEntity] AS le ON le.Id = ale.LegalEntityId " +
-                " JOIN[employer_account].[Account] AS a ON a.Id = ale.AccountId " +
-                " Order by NEWID()";
-
-            List<string> queryResult =  GetData(query, _dbConfig.AccountsDbConnectionString);
-
-            return queryResult[0];
-        }
+        return (queryResult[0], queryResult[1]);
     }
 }

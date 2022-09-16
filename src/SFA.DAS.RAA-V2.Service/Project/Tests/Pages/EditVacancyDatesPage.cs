@@ -8,12 +8,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public EditVacancyDatesPage(ScenarioContext context) : base(context) { }
 
-        public EditVacancyPage EnterVacancyDates()
+        public EmployerVacancySearchResultPage EnterVacancyDates()
         {
             ClosingDate(rAAV2DataHelper.EditedVacancyClosing);
             StartDate(rAAV2DataHelper.EditedVacancyStart);
             Continue();
-            return new EditVacancyPage(context);
+            return new EmployerVacancySearchResultPage(context);
         }
 
         public EditVacancyPage EnterPossibleStartDate()

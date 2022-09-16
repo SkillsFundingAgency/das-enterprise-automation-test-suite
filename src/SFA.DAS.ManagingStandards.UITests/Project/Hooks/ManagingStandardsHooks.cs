@@ -45,9 +45,15 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
         }
 
         [BeforeScenario(Order = 33)]
-        public void ClearDownAdminData()
+        public void ClearDownProviderCourseLocationData()
         {
-            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderLocation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
+            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderCourseLocation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
+        }
+
+        [BeforeScenario(Order = 34)]
+        public void ClearDownProviderLocationData()
+        {
+            if (_tags.Any(x => x == "managingstandards04")) _managingStandardsSqlDataHelper.ClearProviderLocation(_config.Ukprn, _dataHelper.StandardsTestData.Venue);
         }
     }
 }

@@ -1,0 +1,76 @@
+﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
+{
+    public interface IVerifyBulkUploadApprentices
+    {
+        public void VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList);
+    }
+
+    public sealed class VerifyBulkUploadApprentices : InitialiseBasePage, IVerifyBulkUploadApprentices
+    {
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+
+        private static By CohortsSaveTableRows => By.CssSelector("tbody tr");
+        private static By EmployerName => By.CssSelector("td.govuk-table__cell[data-label='EmployerName']");
+        private static By Cohort => By.CssSelector("td.govuk-table__cell[data-label='CohortReference']");
+        private static By NumberOfApprentices => By.CssSelector("td.govuk-table__cell[data-label='NumberOfApprenticeships']");
+
+
+        public VerifyBulkUploadApprentices(ScenarioContext context) : base(context)
+        {
+            _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
+        }
+
+        public void VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
+        {
+            var rows = pageInteractionHelper.FindElements(CohortsSaveTableRows);
+
+            var apprentices = objectContext.GetBulkuploadApprentices();
+            var groups = apprentices.GroupBy(x => new { x.AgreementId, x.CohortRef })
+                .Where(y => string.IsNullOrWhiteSpace(y.Key.CohortRef))
+                .Select(z =>
+                {
+                    var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReferenceWithNoContinuation(z.First().ULN, context.ScenarioInfo.Title);
+                    return new { cohortRef, z.Key.AgreementId };
+                }).ToList();
+
+
+            var flatennedList = apprenticeList
+                .SelectMany(
+                 x => x.CohortDetails,
+                 (z, y) => new { z.EmployerName, z.AgreementId, CohortDetails = y })
+                .ToList();
+
+
+
+            foreach (var flattenedRow in flatennedList)
+            {
+                if (string.IsNullOrWhiteSpace(flattenedRow.CohortDetails.CohortRef))
+                {
+                    var foundGroupd = groups.First(x => x.AgreementId == flattenedRow.AgreementId);
+                    flattenedRow.CohortDetails.CohortRef = foundGroupd.cohortRef;
+                }
+
+                var headerTextXpathQuery = $"//td[contains(text(),'{flattenedRow.CohortDetails.CohortRef}')]";
+                var header = pageInteractionHelper.FindElement(By.XPath(headerTextXpathQuery));
+                var parent = header.FindElement(By.XPath(".."));
+                var employerName = parent.FindElement(EmployerName);
+                var cohort = parent.FindElement(Cohort);
+                var numberOfApprentices = parent.FindElement(NumberOfApprentices);
+
+                pageInteractionHelper.VerifyText(flattenedRow.EmployerName.RemoveSpace(), pageInteractionHelper.GetText(employerName).RemoveSpace());
+                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.CohortRefText, pageInteractionHelper.GetText(cohort));
+                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.NumberOfApprentices.ToString(), pageInteractionHelper.GetText(numberOfApprentices));
+
+                objectContext.SetCohortReferenceList(flattenedRow.CohortDetails.CohortRefText);
+            }
+        }
+    }
+}

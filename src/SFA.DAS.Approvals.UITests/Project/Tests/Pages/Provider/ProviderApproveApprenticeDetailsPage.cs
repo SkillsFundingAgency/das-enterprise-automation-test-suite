@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using System;
@@ -134,6 +135,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             SelectOption("radio-approve", false);
             return new ProviderCohortApprovedPage(context);
+        }
+
+        public ProviderCohortApprovedPage ValidateFlexiJobTagAndSubmitApprove()
+        {
+            validateFlexiJobAgencyTag();
+            return SubmitApprove();
+        }
+
+        public ProviderCohortApprovedPage ValidatePortableFlexiJobTagAndSubmitApprove()
+        {
+            ValidatePortableFlexiJobTag();
+            return SubmitApprove();
         }
 
         public ProviderCohortSentForReviewPage SubmitApproveAndSendToEmployerForApproval()

@@ -17,5 +17,5 @@ public class Outer_HealthApiRestClient
 
     public IRestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
 
-    private IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => new AssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, new RestClient(_baseUrl), new RestRequest { Method = Method.GET, Resource = resource });
+    private IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => new ApiAssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, new RestClient(_baseUrl), new RestRequest { Method = Method.GET, Resource = resource });
 }
