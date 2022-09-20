@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
 
-        private By EmployerWageType => By.CssSelector(".govuk-list .govuk-body");
+        private By EmployerWageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
 
         protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 
