@@ -10,8 +10,9 @@ public class SelectAStandardPage : ManagingStandardsBasePage
 
     public AddAstandard_ActuaryPage SelectActuaryAndContinue()
     {
-        formCompletionHelper.ClickElement(SearchField);
-        formCompletionHelper.ClickElement(LarsCode4);
+        //formCompletionHelper.ClickElement(SearchField);
+        //formCompletionHelper.ClickElement(LarsCode4);
+        formCompletionHelper.SelectFromDropDownByText(SearchField, "Actuary (Level 7)");
         Continue();
         return new AddAstandard_ActuaryPage(context);
     }
