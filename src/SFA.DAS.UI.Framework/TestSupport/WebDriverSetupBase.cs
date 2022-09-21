@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -57,9 +58,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private string FindLocalDriverServiceLocation(string executableName)
         {
-            FileInfo[] file = Directory.GetParent(Directory.GetParent(DriverPath).FullName).GetFiles(executableName, SearchOption.AllDirectories);
+            string[] file = Directory.GetFiles(Regex.Replace(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Za-z]*Tests", "SFA.DAS.UI.FrameworkHelpers"), executableName);
 
-            return file.Length != 0 ? file.Last().DirectoryName : DriverPath;
+            return file.Length != 0 ? file.Last() : DriverPath;
         }
 
         private string FindVstsDriverServiceLocation(string executableName)
