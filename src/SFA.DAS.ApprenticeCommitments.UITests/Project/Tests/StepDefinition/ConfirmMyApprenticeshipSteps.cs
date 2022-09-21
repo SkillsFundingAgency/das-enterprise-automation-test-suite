@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -152,8 +153,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
-        [Then(@"the apprentice verifies the information displayed on the fully confirmed overview page")]
-        public void ThenTheApprenticeVerifiesTheInformationDisplayedOnTheFullyConfirmedOverviewPage() => confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
+        [Then(@"the apprentice verifies the (regular|portable) apprenticeship information displayed on the fully confirmed overview page")]
+        public void ThenTheApprenticeVerifiesTheApprenticeshipInformationDisplayedOnTheFullyConfirmedOverviewPage(string appType)
+        {
+            if (appType.CompareToIgnoreCase("regular"))
+                confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedRegularAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
+            else if (appType.CompareToIgnoreCase("portable"))
+                confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedPortableAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
+        }
 
         private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
 

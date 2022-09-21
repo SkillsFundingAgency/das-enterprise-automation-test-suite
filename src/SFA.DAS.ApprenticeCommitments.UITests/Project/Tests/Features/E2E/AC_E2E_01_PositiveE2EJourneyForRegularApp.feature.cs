@@ -106,8 +106,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the apprentice confirms all the sections and the overall apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.And("the apprentice verifies the information displayed on the fully confirmed overview" +
-                        " page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprentice verifies the regular apprenticeship information displayed on the f" +
+                        "ully confirmed overview page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.And("the apprentice is able to navigate to the Help and Support from Home and Fully co" +
