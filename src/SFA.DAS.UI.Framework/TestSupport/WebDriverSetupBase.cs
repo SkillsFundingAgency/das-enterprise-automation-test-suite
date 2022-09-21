@@ -60,7 +60,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             string[] file = Directory.GetFiles(Regex.Replace(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Za-z]*Tests", "SFA.DAS.UI.FrameworkHelpers"), executableName);
 
-            return file.Length != 0 ? file.Last() : DriverPath;
+            return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
         }
 
         private string FindVstsDriverServiceLocation(string executableName)
