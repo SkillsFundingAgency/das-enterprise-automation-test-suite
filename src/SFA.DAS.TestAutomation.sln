@@ -123,9 +123,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerAccounts.AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerFinance.APITests", "SFA.DAS.EmployerFinance.APITests\SFA.DAS.EmployerFinance.APITests.csproj", "{4D611664-103E-4370-914B-2BE16CC5639A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.FlexiPayments.E2ETests", "SFA.DAS.FlexiPayments.E2ETests\SFA.DAS.FlexiPayments.E2ETests.csproj", "{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FlexiPayments.E2ETests", "SFA.DAS.FlexiPayments.E2ETests\SFA.DAS.FlexiPayments.E2ETests.csproj", "{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TestDataCreation.Tests", "SFA.DAS.TestDataCreation.Tests\SFA.DAS.TestDataCreation.Tests.csproj", "{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.DataAnalytics.Tests", "SFA.DAS.DataAnalytics.Tests\SFA.DAS.DataAnalytics.Tests.csproj", "{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -428,18 +428,18 @@ Global
 		{4D611664-103E-4370-914B-2BE16CC5639A}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{4D611664-103E-4370-914B-2BE16CC5639A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D611664-103E-4370-914B-2BE16CC5639A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}.Development|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F9C21D9-CD75-449B-98A1-4C445DC1FC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-	<RootNamespace>SFA.DAS.TestDataCreation.Tests</RootNamespace>
+	<RootNamespace>SFA.DAS.DataAnalytics.Tests</RootNamespace>
 	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -13,14 +13,12 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
 		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>

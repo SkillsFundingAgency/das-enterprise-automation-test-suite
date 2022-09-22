@@ -1,10 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.TestDataCreation.Tests.Project.Helpers;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.TestDataCreation.Tests.Project.Tests.StepDefinitions
+﻿namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class DatamartSteps
@@ -29,7 +23,7 @@ namespace SFA.DAS.TestDataCreation.Tests.Project.Tests.StepDefinitions
 
             Assert.That(commtList.Count, Is.GreaterThanOrEqualTo(datamartList.Count), "Not enough data found in commitments");
 
-            List<string> updateQuery = new List<string>();
+            List<string> updateQuery = new();
 
             for (int i = 0; i < datamartList.Count; i++)
             {

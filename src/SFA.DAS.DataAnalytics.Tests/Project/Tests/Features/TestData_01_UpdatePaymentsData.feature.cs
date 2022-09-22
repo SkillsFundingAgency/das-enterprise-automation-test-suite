@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.TestDataCreation.Tests.Project.Tests.Features
+namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
