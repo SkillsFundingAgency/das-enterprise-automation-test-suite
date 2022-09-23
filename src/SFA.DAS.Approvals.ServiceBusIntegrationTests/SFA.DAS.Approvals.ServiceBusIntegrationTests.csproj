@@ -17,6 +17,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
 		<PackageReference Include="SFA.DAS.NServiceBus" Version="16.0.21" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	</ItemGroup>
 
 	<ItemGroup>

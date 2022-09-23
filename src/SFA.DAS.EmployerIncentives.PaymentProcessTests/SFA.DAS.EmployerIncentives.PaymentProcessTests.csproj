@@ -24,6 +24,7 @@
     <PackageReference Include="SFA.DAS.EmploymentCheck.Types" Version="1.1.72" />
     <PackageReference Include="SFA.DAS.NServiceBus" Version="16.0.21" />
 	<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.8.1" />
+	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
