@@ -7,9 +7,16 @@ public abstract class BaseApiRestClient
 
     protected RestRequest restRequest;
 
-    private readonly ObjectContext _objectContext;
+    protected readonly ObjectContext objectContext;
 
-    public BaseApiRestClient(ObjectContext objectContext) => _objectContext = objectContext;
+    public BaseApiRestClient(ObjectContext objectContext) 
+    {
+        this.objectContext = objectContext;
+
+        CreateApiClient();
+    } 
+
+    protected abstract string ApiBaseUrl { get; }
 
     protected abstract void AddResource(string resource);
 
@@ -34,7 +41,7 @@ public abstract class BaseApiRestClient
 
     public IRestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
 
-    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new AssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
+    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new ApiAssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
 
     protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
     {
@@ -54,13 +61,18 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload)
     {
-        if (restRequest.Method == Method.GET) return;
-
-        if (string.IsNullOrEmpty(payload)) restRequest.Body = null;
+        if (restRequest.Method == Method.GET || string.IsNullOrEmpty(payload)) restRequest.Body = null;
         else
         {
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
             else restRequest.AddJsonBody(payload);
         }
+    }
+
+    private void CreateApiClient()
+    {
+        restClient = new RestClient(ApiBaseUrl);
+
+        restRequest = new RestRequest();
     }
 }

@@ -105,6 +105,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the provider is able to add a new training venue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 10
+ testRunner.And("the provider is able to update the new training venuw", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
