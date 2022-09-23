@@ -2,7 +2,6 @@
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -15,12 +14,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
-        private readonly string[] _tags;
 
         public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) { 
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _tags = context.ScenarioInfo.Tags;
         }
 
         [Then(@"the coc notification should not be displayed")]
@@ -134,12 +131,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 .NavigateBackToCMADOverviewPage();
         }
 
-        [Then(@"the apprentice confirms all the sections and the overall apprenticeship")]
-        public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship()
+        [Then(@"the apprentice confirms all the sections and the overall (Regular|Portable) apprenticeship")]
+        public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship(string appType)
         {
-            _apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
+            new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
 
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship().VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship(appType).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
 
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection6Status(OverviewPageHelper.Complete);
 
@@ -153,12 +150,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
-        [Then(@"the apprentice verifies the (regular|portable) apprenticeship information displayed on the fully confirmed overview page")]
+        [Then(@"the apprentice verifies the (Regular|Portable) apprenticeship information displayed on the fully confirmed overview page")]
         public void ThenTheApprenticeVerifiesTheApprenticeshipInformationDisplayedOnTheFullyConfirmedOverviewPage(string appType)
         {
-            if (appType.CompareToIgnoreCase("regular"))
+            if (appType.CompareToIgnoreCase("Regular"))
                 confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedRegularAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
-            else if (appType.CompareToIgnoreCase("portable"))
+            else if (appType.CompareToIgnoreCase("Portable"))
                 confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedPortableAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
         }
 

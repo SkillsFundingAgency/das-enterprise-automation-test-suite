@@ -9,11 +9,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override By ContinueButton => By.CssSelector("#employer-provider-confirm");
 
         public ConfirmYourPortableApprenticeshipDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public new ConfirmYourPortableApprenticeshipDetailsPage ClickOnConfirmButton()
-        {
-            base.ClickOnConfirmButton();
-            return this;
-        }
     }
 }

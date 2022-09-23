@@ -52,7 +52,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
         {
             createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship();
         }
     }
 }
