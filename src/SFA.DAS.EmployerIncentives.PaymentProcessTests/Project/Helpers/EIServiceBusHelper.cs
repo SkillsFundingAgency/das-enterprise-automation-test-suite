@@ -26,7 +26,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             }
             else
             {
-                endpointConfiguration.UseAzureServiceBusTransport(config.EI_ServiceBusConnectionString, r => r.AddRouting());
+                var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                transport.ConnectionString(config.EI_ServiceBusConnectionString);
+                transport.Routing().AddRouting();
+                transport.SubscriptionRuleNamingConvention(RuleNameShortener.Shorten);
+                transport.Transactions(TransportTransactionMode.ReceiveOnly);
             }
 
             _endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
