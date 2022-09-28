@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -18,13 +19,28 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public void VerifyStatus(string status) => pageInteractionHelper.VerifyPage(() => GetTableData("Employer email", objectContext.GetRegisteredEmail(), "Status"), status);
 
+        public CheckDetailsPage VerifyResendInvitation()
+        {   
+            var link = By.Id($"resendInvitation-{objectContext.GetRegisteredEmail().ToLower()}");
+            formCompletionHelper.Click(link);
+            return new CheckDetailsPage(context);
+        }    
+        
+        public InvitedEmployersPage VerifyResendInvitationDate()
+        {   
+            var data = GetTableData("Employer email", objectContext.GetRegisteredEmail(), "Date Sent");
+            //Assert.AreEqual(data.Text.Substring(0, 2), DateTime.UtcNow.ToString("dd MMM yy"));
+            Assert.AreEqual(data.Text.Substring(0, 2), DateTime.UtcNow.ToString("dd"));
+            return new InvitedEmployersPage(context);
+        }
+
         private IWebElement GetTableData(string rowIdentifierHeadername, string rowIdentifierHeaderValue, string headerName)
         {
             var headers = pageInteractionHelper.FindElements(THeader).ToList();
 
             var rowIdentifierHeaderindex = headers.FindIndex(x => x.Text.ContainsCompareCaseInsensitive(rowIdentifierHeadername));
 
-            var headerNameindex = headers.FindIndex(x => x.Text.ContainsCompareCaseInsensitive(headerName));
+            var headerNameindex = headers.FindIndex(x => x.Text.ContainsCompareCaseInsensitive(headerName));            
 
             var rows = pageInteractionHelper.FindElements(TRows).ToList();
 
@@ -32,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             {
                 var tDatas = row.FindElements(TData).ToList();
                 if (tDatas[rowIdentifierHeaderindex].Text.ContainsCompareCaseInsensitive(rowIdentifierHeaderValue))
-                {
+                {                   
                     return tDatas[headerNameindex];
                 }
             }

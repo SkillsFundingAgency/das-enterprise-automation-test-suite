@@ -10,5 +10,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
 
         public EmployerAccountIsReadyPage(ScenarioContext context) : base(context) { }
+
+        public InvitedEmployersPage ViewInvitedEmployers()
+        {
+            SelectRadioOptionByForAttribute("employer-confirmation-3");            
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");            
+            return new InvitedEmployersPage(context);
+        }        
     }
 }

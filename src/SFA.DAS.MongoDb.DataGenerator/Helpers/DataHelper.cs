@@ -31,7 +31,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         public string GatewayPassword { get; }
 
         private string UserNamePrefix { get; }
-
-        private string GenerateRandomUserName() => $"{LevyOrNonLevy}_{UserNamePrefix}_{NextNumber}_{_dateTime.ToSeconds()}{EmpRefDigits}";
+        
+        //TODO : Need to sort this, without this change existing tests will fail.
+        private string GenerateRandomUserName() => $"{LevyOrNonLevy}_{UserNamePrefix}_{NextNumber}_{_dateTime.ToNanoSeconds()}{EmpRefDigits}";
     }
 }
