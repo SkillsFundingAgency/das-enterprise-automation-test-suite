@@ -40,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
             var rowIdentifierHeaderindex = headers.FindIndex(x => x.Text.ContainsCompareCaseInsensitive(rowIdentifierHeadername));
 
-            var headerNameindex = headers.FindIndex(x => x.Text.ContainsCompareCaseInsensitive(headerName));            
+            var headerNameindex = headers.FindIndex(x => x.Text.ContainsCompareCaseInsensitive(headerName));   
 
             var rows = pageInteractionHelper.FindElements(TRows).ToList();
 
@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             {
                 var tDatas = row.FindElements(TData).ToList();
                 if (tDatas[rowIdentifierHeaderindex].Text.ContainsCompareCaseInsensitive(rowIdentifierHeaderValue))
-                {                   
+                {
                     return tDatas[headerNameindex];
                 }
             }

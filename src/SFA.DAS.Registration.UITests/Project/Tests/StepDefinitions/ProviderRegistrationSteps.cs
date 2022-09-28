@@ -87,7 +87,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus(status);          
         }
 
-        [Then(@"change the details before resend invitation for status ""(Account creation not started)""")]
+        [Then(@"allow to resend invitation for status ""(Account creation not started)""")]
         public void ThenChangeTheDetailsBeforeResend(string status)
         {
             GoToProviderHomePage();

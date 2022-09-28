@@ -104,9 +104,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the invited employer status in \"Account creation not started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
- testRunner.And("change the details before resend invitation for status \"Account creation not star" +
-                        "ted\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And("allow to resend invitation for status \"Account creation not started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
