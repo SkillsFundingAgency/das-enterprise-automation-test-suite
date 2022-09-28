@@ -32,8 +32,6 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceB
             transport.SubscriptionRuleNamingConvention(RuleNameShortener.Shorten);
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
 
-            endpointConfiguration.UseAzureServiceBusTransport(_connectionString);
-
             var endpoint = await Endpoint.Start(endpointConfiguration);
 
             await endpoint.Publish(eventName);
