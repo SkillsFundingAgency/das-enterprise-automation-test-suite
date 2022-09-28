@@ -12,6 +12,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected By VacanciesList => By.ClassName("vacancy-link");
         protected By DisplayResults => By.Id("results-per-page");
         protected By SortResults => By.Id("sort-results");
+        protected By DistanceFilter => By.Id("loc-within");
 
         protected FAA_SearchVacancyBasePage(ScenarioContext context) : base(context) { }
 
