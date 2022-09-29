@@ -137,8 +137,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string CreateAccountWithRegisteredEmailErrorMessage => "Your email address has already been activated. Please try signing in again. If you’ve forgotten your password you can reset it.";
 
-        public string NationwideVacanciesText => "This apprenticeship has multiple positions across England.";        
-
         public string OptionalMessage { get; }
     }
 }
