@@ -10,7 +10,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected override string PageTitle => "Search results";
 
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
-        private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
+        private By NationwideVacanciesText => By.Id("result-message");
         private By VacancyLink => By.LinkText(vacancyTitleDataHelper.VacancyTitle);
         private By SearchAgainLink => By.Id("start-again-link");
 
@@ -18,19 +18,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void CheckSortOrderAndDistance()
         {
-            ClickNationwideVacancies();
             CheckSortOrder();
             CheckNationwideVacanciesText();
         }
 
         protected void CheckSortOrder()
         {
-            pageInteractionHelper.WaitforURLToChange("LocationType=National");
-
-            pageInteractionHelper.VerifyText(formCompletionHelper.GetSelectedOption(SortResults), "Closing date");
+            pageInteractionHelper.VerifyText(formCompletionHelper.GetSelectedOption(SortResults), "Distance");
         }
 
-        protected void CheckNationwideVacanciesText() => pageInteractionHelper.VerifyText(NationwideVacanciesText, faaDataHelper.NationwideVacanciesText);
+        protected void CheckNationwideVacanciesText() => pageInteractionHelper.VerifyText(formCompletionHelper.GetSelectedOption(DistanceFilter), "England");
 
         protected void ClickNationwideVacancies()
         {
