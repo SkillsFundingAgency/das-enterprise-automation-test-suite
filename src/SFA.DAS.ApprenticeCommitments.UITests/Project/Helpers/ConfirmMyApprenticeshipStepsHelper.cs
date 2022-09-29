@@ -38,9 +38,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
         }
 
-        public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndOverallApprenticeship(string appType = "Regular")
+        public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndOverallApprenticeship(bool isRegularApp = true)
         {
-            var apprenticeOverviewPage = ConfirmAllSections(appType).VerifyTopBannerOnOverviewPageBeforeOverallConfirmation();
+            var apprenticeOverviewPage = ConfirmAllSections(isRegularApp).VerifyTopBannerOnOverviewPageBeforeOverallConfirmation();
             AssertSection6Status(OverviewPageHelper.InComplete);
             return apprenticeOverviewPage.ConfirmOverallApprenticeship();
         }
@@ -51,13 +51,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYesAndContinueToOverviewPage();
 
-        public ApprenticeOverviewPage ConfirmAllSections(string appType)
+        public ApprenticeOverviewPage ConfirmAllSections(bool isRegularApp)
         {
             var apprenticeOverviewPage = ConfirmYourEmployer(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            apprenticeOverviewPage = ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete, appType);
+            apprenticeOverviewPage = ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete, isRegularApp);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
@@ -84,13 +84,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return apprenticeOverviewPage;
         }
 
-        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(string initialStatus, string appType = "Regular")
+        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(string initialStatus, bool isRegularApp = true)
         {
             AssertSection3Status(initialStatus);
 
-            if (appType.CompareToIgnoreCase("Regular"))
+            if (isRegularApp)
                 _apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYesAndContinueToOverviewPage();
-            else if (appType.CompareToIgnoreCase("Portable"))
+            else //Portable flexi-job apprenticeship
                 _apprenticeOverviewPage = NavigateAndVerifyPortableApprenticeshipDetails().SelectYesAndContinueToOverviewPage();
 
             AssertSection3Status(OverviewPageHelper.Complete);
