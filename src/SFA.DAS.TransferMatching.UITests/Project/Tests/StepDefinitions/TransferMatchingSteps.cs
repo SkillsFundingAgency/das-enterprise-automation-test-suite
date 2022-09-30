@@ -8,6 +8,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
+using SFA.DAS.Transfers.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -32,6 +33,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly RestartWebDriverHelper _helper;
         private readonly string _tranferBaseUrl;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly TransfersEmployerStepsHelper _employerStepsHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -44,6 +46,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _helper = new RestartWebDriverHelper(context);
             _tranferBaseUrl = UrlConfig.EmployerApprenticeshipService_BaseUrl;
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
+            _employerStepsHelper = new TransfersEmployerStepsHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -240,7 +243,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         }
 
-
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -420,5 +422,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _receiver = login.SecondOrganisationName;
         }
+
+        [Then(@"Verify a new live apprenticeship record is created")]
+        public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
+        {
+            UpdateOrganisationName(_receiver);
+
+            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+
+            manageYourApprenticePage.VerifyApprenticeExists();
+        }
+
     }
 }
