@@ -14,12 +14,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By RolesSectionSubText => By.XPath("//a[contains(text(),'Roles and responsibilities')]/..//following-sibling::p");
         private static By HYAWDSectionHeaderLink => By.XPath("//a[contains(text(),'How your apprenticeship will be delivered')]");
         private static By HYAWDSectionSubText => By.XPath("//a[contains(text(),'How your apprenticeship will be delivered')]/..//following-sibling::p");
+        private static By CourseName => By.CssSelector("span.govuk-caption-m");
+        private static By CurrentEmployer => By.XPath("//th[text()='Current employer']/following-sibling::td");
+        private static By TrainingProvider => By.XPath("//th[text()='Training provider']/following-sibling::td");
+        private static By JobEndDate => By.XPath("//th[text()='Current job end date']/following-sibling::td");
 
         public FullyConfirmedOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
+                () => VerifyPage(CourseName, objectContext.GetTrainingName().Split(',')[0]),
                 () => VerifyPage(RolesSectionHeaderLink),
                 () => VerifyPage(RolesSectionSubText, OverviewPageHelper.FullyConfirmedOverviewRolesSubText),
                 () => VerifyPage(HYAWDSectionHeaderLink),
@@ -38,5 +43,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.Click(HYAWDSectionHeaderLink);
             return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(context);
         }
+
+        public string GetEmployer() => pageInteractionHelper.GetText(CurrentEmployer);
+
+        public string GetTrainingProvider() => pageInteractionHelper.GetText(TrainingProvider);
+
+        public string GetPortableApprenticeshipCurrentJobEndDateInfo() => pageInteractionHelper.GetText(JobEndDate);
     }
 }
