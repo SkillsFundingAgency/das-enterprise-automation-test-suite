@@ -1,9 +1,9 @@
-﻿Feature: AC_E2E_02_E2EJourneyWithNegativeFlows
+﻿Feature: AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp
 
 @apprenticecommitments
 @regression
 @deletecmaddatacreatedthroughapi
-Scenario: AC_E2E_02_E2EJourneyWithNegativeFlows
+Scenario: AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp
 	Given an apprentice has created and validated the account
 	Then the apprentice is able to confirm the Employer
 	And confirmed employer already page is displayed for trying to confirm again
