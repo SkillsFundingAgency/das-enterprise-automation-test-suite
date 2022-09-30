@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AC_E2E_02_E2EJourneyWithNegativeFlows")]
-    public partial class AC_E2E_02_E2EJourneyWithNegativeFlowsFeature
+    [NUnit.Framework.DescriptionAttribute("AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp")]
+    public partial class AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularAppFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AC_E2E_02_E2EJourneyWithNegativeFlows.feature"
+#line 1 "AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2E", "AC_E2E_02_E2EJourneyWithNegativeFlows", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2E", "AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_E2E_02_E2EJourneyWithNegativeFlows")]
+        [NUnit.Framework.DescriptionAttribute("AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi")]
-        public void AC_E2E_02_E2EJourneyWithNegativeFlows()
+        public void AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
                     "deletecmaddatacreatedthroughapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_02_E2EJourneyWithNegativeFlows", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

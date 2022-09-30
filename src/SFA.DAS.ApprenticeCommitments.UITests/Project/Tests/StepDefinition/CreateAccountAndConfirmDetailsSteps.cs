@@ -45,7 +45,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _apprenticeHomePage = _fullyConfirmedOverviewPage.GoToConfirmedHowYourApprenticeshipWillBeDeliveredPage().NavigateBackToFullyConfirmedOverviewPage().NavigateToHomePageFromTopNavigationLink();
         }
 
-
         [Then(@"the apprentice is able to logout from the service")]
         public void ThenTheApprenticeIsAbleToLogoutFromTheService() => _apprenticeHomePage.SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
 
@@ -53,7 +52,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
         {
             createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship();
         }
     }
 }
