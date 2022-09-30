@@ -11,20 +11,28 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Confirm my apprenticeship details";
         private string PageTitleAfterConfirmation => "Your apprenticeship details";
-        private By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
-        private By AppreticeshipConfirmBannerHeader => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
-        private By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
-        private By ConfirmMyApprenticeshipButton => By.XPath("//button[text()='Confirm my apprenticeship']");
-        protected By FeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
-        private By HelpAndSupportSection => By.XPath("//h2[text()='Help and support']");
-        private By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
+        private static By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
+        private static By AllSectionsConfirmedSuccessTickIcon => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
+        private static By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
+        protected static By FeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
+        private static By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
+        private static By OverviewPageSubTextBelowPageTitle => By.XPath("(//h1//following-sibling::p)[1]");
+        private static By OverviewPageWarningIcon => By.CssSelector(".govuk-warning-text__icon");
+        private static By OverviewPageWarningText => By.CssSelector(".govuk-warning-text__text");
+        private static By OverviewPageTopSubTextAfterWarning => By.XPath("(//h1//following-sibling::p)[2]");
 
         public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
-            MultipleVerifyPage(new List<Func<bool>>
+            VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
+
+            if (verifypage)
+                MultipleVerifyPage(new List<Func<bool>>
             {
-                () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
-                () => VerifyPage(HelpAndSupportSection)
+                () => VerifyPage(HelpTopNavigationLink),
+                () => VerifyPage(OverviewPageSubTextBelowPageTitle, OverviewPageHelper.OverviewPageTopSubText1),
+                () => VerifyPage(OverviewPageWarningIcon),
+                () => VerifyPage(OverviewPageWarningText, OverviewPageHelper.OverviewPageTopSubText2),
+                () => VerifyPage(OverviewPageTopSubTextAfterWarning, OverviewPageHelper.OverviewPageTopSubText3)
             });
         }
 
@@ -88,33 +96,40 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new AlreadyConfirmedHowYourApprenticeshipWillBeDeliveredPage(context);
         }
 
+        public OverallApprenticeshipConfirmedPage ConfirmOverallApprenticeship()
+        {
+            ClickConfirmYourApprenticeshipLink();
+            return new OverallApprenticeshipConfirmedPage(context);
+        }
+
         public string GetTheSectionStatus(string sectionName) => pageInteractionHelper.GetText(SectionStatus(sectionName)).Replace("\r\n", " ");
 
-        public OverallApprenticeshipConfirmedPage ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage()
+        public ApprenticeOverviewPage VerifyTopBannerOnOverviewPageBeforeOverallConfirmation()
         {
-            VerifyElement(AppreticeshipConfirmBannerHeader);
-            VerifyElement(AppreticeshipConfirmBannerText, "Your apprenticeship is now ready to confirm");
-            formCompletionHelper.Click(ConfirmMyApprenticeshipButton);
-            return new OverallApprenticeshipConfirmedPage(context);
+            VerifyElement(AllSectionsConfirmedSuccessTickIcon);
+            VerifyElement(AppreticeshipConfirmBannerText, OverviewPageHelper.AllSectionsConfirmedConfirmationTextBeforeOVerallConfirmation); ;
+            return this;
         }
 
         public ApprenticeOverviewPage VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm()
         {
             VerifyElement(PageHeader, PageTitleAfterConfirmation);
-            VerifyElement(AppreticeshipConfirmBannerText, "You have completed the confirmation of your apprenticeship. Your employer and training provider will contact you shortly.");
+            VerifyElement(AppreticeshipConfirmBannerText, OverviewPageHelper.OverallConfirmationText);
             return this;
         }
 
-        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, "You have 14 days to confirm your apprenticeship details"); return this; }
+        public ApprenticeOverviewPage VerifyDaysToConfirmWarning() { VerifyElement(DaysToConfirmWarningText, OverviewPageHelper.OverviewPageTopSubText2); return this; }
 
-        private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section1);
+        private void ClickYourEmployerLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section1);
 
-        private void ClickYourProviderLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section2);
+        private void ClickYourProviderLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section2);
 
-        private void ClickYourApprenticeshipDetailsLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section3);
+        private void ClickYourApprenticeshipDetailsLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section3);
 
-        private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section4);
+        private void ClickHowYourApprenticeshipWillBeDeliveredLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section4);
 
-        private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(SectionHelper.Section5);
+        private void ClickRolesAndResponsibilitiesLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section5);
+
+        private void ClickConfirmYourApprenticeshipLink() => formCompletionHelper.ClickLinkByText(OverviewPageHelper.Section6);
     }
 }

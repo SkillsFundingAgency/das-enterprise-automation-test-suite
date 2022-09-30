@@ -25,10 +25,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new AddApprenticeDetailsPage(context);
         }
 
+        public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney() => NavigatesToSelectDeliveryModelPage();
+
         public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();
             return new ProviderAddApprenticeDetailsPage(context);
+        }
+
+        public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
+        
+        public SelectDeliveryModelPage EmployerSelectsAPortableFlexiJobCourse()
+        {
+            SelectStandard(portableFlexiJobProviderConfig.PortableFlexiJobCourseCode);
+            Continue();
+            return new SelectDeliveryModelPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPath()
@@ -70,6 +81,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
+
+        private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
+        {
+            SelectStandardAndContinue();
+            return new SelectDeliveryModelPage(context);
+        }
+
 
         private void SelectStandardAndContinue()
         {

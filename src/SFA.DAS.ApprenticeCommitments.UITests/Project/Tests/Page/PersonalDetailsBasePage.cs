@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -52,11 +51,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private string UpdatedNewName(string name) => $"New{name}";
 
-        private string UpdatedInvalidFirstName() => SetFirstName(UpdatedInvalidName(GetFirstName()));
+        private string UpdatedInvalidFirstName() => SetFirstName("InvalidFName");
 
-        private string UpdatedInvalidLastName() => SetLastName(UpdatedInvalidName(GetLastName()));
-
-        private string UpdatedInvalidName(string name) => $"Invalid_String_{name}";
+        private string UpdatedInvalidLastName() => SetLastName("InvalidLName");
 
         private string SetFirstName(string name) { objectContext.SetFirstName(name); return name; }
 

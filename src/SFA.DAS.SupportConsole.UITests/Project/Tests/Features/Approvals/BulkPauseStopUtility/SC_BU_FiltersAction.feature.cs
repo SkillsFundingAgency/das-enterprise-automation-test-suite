@@ -133,12 +133,12 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "Waiting to Start",
-                            "100"});
+                            "80"});
                 table4.AddRow(new string[] {
                             "",
                             "",
                             "",
-                            "17//02//2021",
+                            "01//12//2024",
                             "",
                             "Any",
                             "400"});

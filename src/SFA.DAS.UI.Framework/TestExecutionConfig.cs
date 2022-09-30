@@ -9,5 +9,7 @@
         public string FullScreenShotAdmins { get; set; }
 
         public string CanTakeFullScreenShot { get; set; }
+
+        public string IsAccessibilityTesting { get; init; }
     }
 }

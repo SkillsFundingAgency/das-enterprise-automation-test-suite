@@ -36,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ErrorTextAboveEmailTextBox => By.Id("error-email");
         private By EmailErrorTextAtheader => By.CssSelector(".danger");
         private By SigninLink => By.LinkText("sign in");
-        private By TermsAndConditionsLink => By.LinkText("terms and conditions");
+        private By TermsAndConditionsLink => By.LinkText("terms of use");
         #endregion
 
         public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = registrationDataHelper.Password; }

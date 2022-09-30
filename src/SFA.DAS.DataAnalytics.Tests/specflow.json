@@ -1,0 +1,15 @@
+{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" }
+  ],
+  "generator": {
+    "allowRowTests" : false
+  }
+}

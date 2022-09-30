@@ -5,7 +5,7 @@ global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Helpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Models;
-global using SFA.DAS.SupportConsole.UITests.Project.SqlHelpers;
+global using SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
@@ -27,10 +27,10 @@ public class Hooks
 
     public Hooks(ScenarioContext context) => _context = context;
 
-    [BeforeScenario(Order = 21)]
+    [BeforeScenario(Order = 22)]
     public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
 
-    [BeforeScenario(Order = 22)]
+    [BeforeScenario(Order = 23)]
     public void SetUpHelpers()
     {
         var config = _context.GetSupportConsoleConfig<SupportConsoleConfig>();
@@ -42,6 +42,8 @@ public class Hooks
         var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
 
         _context.ReplaceSupportConsoleConfig(updatedConfig);
+
+        _context.Get<ObjectContext>().Set("SupportConsoleConfig", updatedConfig);
 
         _context.Set(accsqlHelper);
 

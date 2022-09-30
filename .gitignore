@@ -107,6 +107,9 @@ _TeamCity*
 # DotCover is a Code Coverage Tool
 *.dotCover
 
+# rider - devenv from jetbrains
+*.idea
+
 # NCrunch
 _NCrunch_*
 .*crunch*.local.xml

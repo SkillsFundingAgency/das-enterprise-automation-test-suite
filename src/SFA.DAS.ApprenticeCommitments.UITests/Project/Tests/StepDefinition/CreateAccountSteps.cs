@@ -33,8 +33,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"a Positive match Home page is shown after entering valid data")]
         public void ThenAPositiveMatchHomePageIsShownAfterEnteringValidData()
         {
-            _apprenticeHomePage = _apprenticeHomePagNegativeMatch.GoToChangeYourPersonalDetailsPage().EnterValidApprenticeDetails(_name.firstName, _name.lastName).VerifySucessNotification();
-            _apprenticeHomePage = _apprenticeHomePage.NavigateToOverviewPageFromLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
+            _apprenticeHomePage = _apprenticeHomePagNegativeMatch.GoToChangeYourPersonalDetailsPage()
+                .EnterValidApprenticeDetails(_name.firstName, _name.lastName).VerifySucessNotification()
+                .NavigateToOverviewPageWithCmadLinkOnTheHomePage().NavigateToHomePageFromTopNavigationLink();
+
             Assert.IsFalse(_apprenticeHomePage.VerifyNotificationBannerIsNotDisplayed(), "Notification Banner is displayed");
         }
 

@@ -18,10 +18,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="102.0.5005.6102" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.58" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.58" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
+	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
   </ItemGroup>
 
   <ItemGroup>

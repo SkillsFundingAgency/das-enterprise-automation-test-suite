@@ -10,6 +10,6 @@ Scenario Outline: RV2_API_01_OuterApiGetEmployerAccountLegalEntities_
 	And verify response body displays correct information
 
 	Examples:
-		| TestCaseId | Method | Endpoint                                     | ResponseStatus |
-		| 001        | GET    | managevacancies/employeraccountlegalentities | OK             |
-		| 002        | GET    | managevacancies/employeraccountlegalentities | OK             |
+		| TestCaseId | Method | Endpoint                                          | ResponseStatus |
+		| 001        | GET    | /employeraccounts/{hashedAccountId}/legalentities | OK             |
+		| 002        | GET    | /employeraccounts/{hashedAccountId}/legalentities | OK             |

@@ -12,5 +12,12 @@ public class AS_SecureITInfrastructurePage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
-
+    
+    public AS_AssessmentAdministrationPage NHEI_EnterSecureITInfrastructurePlan()
+    {
+        formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }  
+    
 }

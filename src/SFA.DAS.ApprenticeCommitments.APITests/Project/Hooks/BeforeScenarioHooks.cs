@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
@@ -36,7 +37,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 
             _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
 
-            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_context.GetInner_CommitmentsApiAuthTokenConfig()));
+            _context.Set(new ApprenticeCommitmentsAccountsSqlDbHelper(_dbConfig));
+
+            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
         }
     }
 }

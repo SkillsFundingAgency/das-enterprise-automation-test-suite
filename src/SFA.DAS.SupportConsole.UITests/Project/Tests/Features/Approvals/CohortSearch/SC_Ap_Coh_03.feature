@@ -1,6 +1,5 @@
 ﻿Feature: SC_Ap_Coh_03
 
-@awaiting-fix
 @supportconsole
 @approvalssupportconsole
 Scenario: SC_Ap_Coh_03 - Search for a unauthorised Cohort

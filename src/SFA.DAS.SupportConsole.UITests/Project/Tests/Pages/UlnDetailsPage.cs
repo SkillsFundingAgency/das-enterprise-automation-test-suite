@@ -2,25 +2,32 @@
 
 public class UlnDetailsPage : SupportConsoleBasePage
 {
-    protected override string PageTitle => config.UlnName;
+    protected override string PageTitle => cohortDetails.UlnName;
 
-    #region Locators
-    private static By ApprenticeNameSelector => By.CssSelector(".column-three-quarters.column__double-padding-left.column__border-left .grid-row .column-full .heading-large");
-    #endregion
+    protected override By PageHeader => By.CssSelector(".heading-large");
 
-    public UlnDetailsPage(ScenarioContext context) : base(context) => VerifyApprenticeNameHeading();
+    private readonly CohortDetails cohortDetails;
 
-    private void VerifyApprenticeNameHeading() => pageInteractionHelper.VerifyText(ApprenticeNameSelector, PageTitle);
+    public UlnDetailsPage(ScenarioContext context, CohortDetails cohortDetails) : base(context)
+    {
+        this.cohortDetails = cohortDetails;
+
+        VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
+    }
 
     public void VerifyUlnDetailsPageHeaders()
     {
         MultipleVerifyPage(new List<Func<bool>>
         {
-            () => {VerifyHeaderAndValue("Unique learner number", config.Uln); return true;},
-            () => {VerifyHeaderAndValue("Name", config.UlnName); return true;},
-            () => {VerifyHeaderAndValue("Cohort reference", config.CohortRef); return true;}
+            () => {VerifyHeaderAndValue("Unique learner number", cohortDetails.Uln); return true;},
+            () => {VerifyHeaderAndValue("Name", cohortDetails.UlnName); return true;},
+            () => {VerifyHeaderAndValue("Cohort reference", cohortDetails.CohortRef); return true;}
         });
     }
+
+    protected void ClickTab(By by) => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
+
+    protected void IsTabDisplayed(By by) => Assert.IsTrue(pageInteractionHelper.FindElements(by).Count > 0);
 
     private void VerifyHeaderAndValue(string headerText, string headerValue)
     {

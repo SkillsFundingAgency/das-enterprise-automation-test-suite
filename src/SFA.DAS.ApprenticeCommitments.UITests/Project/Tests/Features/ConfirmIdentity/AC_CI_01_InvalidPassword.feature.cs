@@ -77,13 +77,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmId
         [NUnit.Framework.DescriptionAttribute("AC_CI_01_InvalidPassword")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteuser")]
+        [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi_RegAndAppTablesOnly")]
         public void AC_CI_01_InvalidPassword()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "deleteuser"};
+                    "deletecmaddatacreatedthroughapi_RegAndAppTablesOnly"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_CI_01_InvalidPassword", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6

@@ -8,7 +8,7 @@ namespace SFA.DAS.FrameworkHelpers
     {
         public override string ToString()
         {
-            StringBuilder s = new StringBuilder();
+            StringBuilder s = new();
             foreach (var element in this)
             {
                 s.Append(element?.ToString() + Environment.NewLine);
