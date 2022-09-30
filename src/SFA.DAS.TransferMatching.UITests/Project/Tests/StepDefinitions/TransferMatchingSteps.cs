@@ -1,19 +1,17 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
-using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
-using TechTalk.SpecFlow;
-using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
+using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using TechTalk.SpecFlow;
+using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -33,8 +31,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private bool _isAnonymousPledge;
         private readonly RestartWebDriverHelper _helper;
         private readonly string _tranferBaseUrl;
-        private EmployerStepsHelper _employerStepsHelper;
-        private readonly UseTransferFundsPage _useTransferFundsPage;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
@@ -47,8 +43,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _helper = new RestartWebDriverHelper(context);
             _tranferBaseUrl = UrlConfig.EmployerApprenticeshipService_BaseUrl;
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _useTransferFundsPage = new UseTransferFundsPage(context);
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
         }
 
@@ -205,7 +199,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the levy employer currently receiving funds can create pledge")]
         public void ThenTheLevyEmployerCurrentlyReceivingFundsCanCreatePledge() => CreateTransferPledge(true, true);
-        
+
         [Then(@"the user can not create transfer pledge")]
         public void TheUserCanNotCreateTransferPledge() => CreateTransferPledge(false, false);
 
@@ -230,7 +224,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
-            var apprenticeDetailsApprovedPage = _useTransferFundsPage.ClickOnStartNowButton()
+            var apprenticeDetailsApprovedPage = new UseTransferFundsPage(_context).ClickOnStartNowButton()
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
@@ -291,7 +285,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
 
-        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
 
         private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
         {
@@ -339,7 +333,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
 
-        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() => 
+        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() =>
             NavigateToTransferMatchingPage()
             .GotoCreateTransfersPledgePage()
             .StartCreatePledge()
@@ -353,7 +347,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
             _transferMatchingStepsHelper.SubmitApplication(page);
-            
+
             return OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
