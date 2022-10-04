@@ -62,7 +62,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             var page = ConfirmIdentityAndGoToApprenticeHomePage();
             _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
-            return page.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink();
+            return page.NavigateToOverviewPageFromTopNavigationLinkForDbConfirmedDetails();
         }
 
         public ApprenticeHomePage CreateAccountViaApi()

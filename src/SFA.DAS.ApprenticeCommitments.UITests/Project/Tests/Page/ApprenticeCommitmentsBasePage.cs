@@ -76,6 +76,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeOverviewPage(context, false);
         }
 
+        public FullyConfirmedOverviewPage NavigateToOverviewPageFromTopNavigationLinkForDbConfirmedDetails()
+        {
+            formCompletionHelper.Click(CMADTopNavigationLink);
+            return new FullyConfirmedOverviewPage(context, false);
+        }
+
         public FullyConfirmedOverviewPage NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(CMADTopNavigationLinkAfterFullyConfirmed);
