@@ -22,7 +22,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void RefreshPage() => _webDriver.Navigate().Refresh();
 
-        public string GetUrl() { WaitForPageToLoad(); return _webDriver.Url; }
+        public string GetUrl() => _webDriver.Url;
 
         public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
 
