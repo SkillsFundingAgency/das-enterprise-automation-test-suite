@@ -2,7 +2,7 @@
 
 public class AO_ProposedStandardDetailsPage : EPAO_BasePage
 {
-    protected override string PageTitle => "Nutritionist";
+    protected override string PageTitle => "Assistant farm manager";
 
     public AO_ProposedStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 

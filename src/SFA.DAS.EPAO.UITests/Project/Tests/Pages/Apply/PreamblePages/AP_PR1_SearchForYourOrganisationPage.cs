@@ -5,7 +5,7 @@ public class AP_PR1_SearchForYourOrganisationPage : EPAO_BasePage
     protected override string PageTitle => "Search for your organisation";
 
     #region Locators
-    private static By SearchTextBox => By.Id("SearchString");
+    private static By SearchTextBox => By.Id("search-string");
     #endregion
 
     public AP_PR1_SearchForYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();

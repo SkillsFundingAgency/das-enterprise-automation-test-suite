@@ -31,8 +31,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 .NavigateToOverviewPageWithCmadLinkOnTheHomePage().VerifyDaysToConfirmWarning();
         }
 
-        [Given(@"the apprentice completed confirm my apprenticeship details")]
-        public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
+        [Given(@"the apprentice creates the account and confirms the apprenticeship details")]
+        public void GivenTheApprenticeCreatesTheAccountAndConfirmsTheApprenticeshipDetails() => createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
 
         [Then(@"the apprentice is able to confirm the Employer")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(OverviewPageHelper.InComplete);
