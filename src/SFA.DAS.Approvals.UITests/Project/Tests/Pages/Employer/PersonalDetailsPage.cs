@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class PersonalDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
 
@@ -19,29 +19,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
+        public PersonalDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
+        public TrainingDetailsPage SubmitValidApprenticeDetails()
         {
-            var courseStartDate = SetEIJourneyTestData(apprenticeNo);
-
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
 
-            ClickStartMonth();
-
-            if (isMF == false) EnterStartDate(courseStartDate);
-
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
-
-            EnterTrainingCostAndEmpReference();
-
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
-
-            return new ApproveApprenticeDetailsPage(context);
+            return new TrainingDetailsPage(context);
         }
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()

@@ -120,7 +120,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices, bool isTransferReceiverEmployer = false)
         {
             var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
-                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
+                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails().SubmitValidTrainingDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
@@ -151,7 +151,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .CohortReference();
         }
 
-        public AddApprenticeDetailsPage NonLevyEmployerAddsProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
+        public PersonalDetailsPage NonLevyEmployerAddsProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
             return addAnApprenitcePage.StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
@@ -160,14 +160,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EmployerSelectsAStandard();
         }
 
-        public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
+        public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(PersonalDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
                 addApprenticeDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
             }
 
-            _approveApprenticeDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
+            _approveApprenticeDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails().SubmitValidTrainingDetails(true);
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_approveApprenticeDetailsPage);
             int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_approveApprenticeDetailsPage, count);
             _objectContext.SetNoOfApprentices(noOfApprentice);
@@ -295,7 +295,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             for (int i = 1; i < numberOfApprentices; i++)
             {
-                employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false, i);
+                employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails().SubmitValidTrainingDetails(false, i);
             }
 
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, numberOfApprentices));
@@ -311,7 +311,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                .SendInstructionsToProviderForEmptyCohort();
         }
 
-        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        public PersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -319,7 +319,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
-        public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
+        public PersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(_context).AddAnApprentice()
                 .StartNowToAddTrainingProvider()

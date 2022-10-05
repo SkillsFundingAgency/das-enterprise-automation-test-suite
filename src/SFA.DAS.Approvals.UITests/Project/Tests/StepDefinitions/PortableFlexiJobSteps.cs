@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+        private PersonalDetailsPage _addApprenticeDetailsPage;
         private ProviderStepsHelper _providerStepsHelper;
 
         public PortableFlexiJobSteps(ScenarioContext context)
@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage()
         {
             _addApprenticeDetailsPage.ValidatePortableFlexiJobContent();
-            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
+            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails().SubmitValidTrainingDetails(false);
         }
 
         [Then(@"validates Portable flexi-job tag on Approve Apprentice Details and sends the cohort to the Provider for approval")]

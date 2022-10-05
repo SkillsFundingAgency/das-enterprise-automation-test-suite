@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+        private PersonalDetailsPage _addApprenticeDetailsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
 
         public FlexiJobSteps(ScenarioContext context)
@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
         {
             _addApprenticeDetailsPage.ValidateFlexiJobContent();
-            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
+            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails().SubmitValidTrainingDetails(false);
         }
 
         [Then(@"validate Flexi-job agency tag on Approve Apprentice Details page and send cohort to Provider for review")]

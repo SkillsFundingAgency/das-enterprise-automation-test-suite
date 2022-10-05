@@ -14,11 +14,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
 
-        public AddApprenticeDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
+        public PersonalDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new PersonalDetailsPage(context);
         }
 
         public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
@@ -28,11 +28,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ProviderAddApprenticeDetailsPage(context);
         }
 
-        public AddApprenticeDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
+        public PersonalDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(PortableFlexiJobRadioButton);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new PersonalDetailsPage(context);
         }
     }
 }
