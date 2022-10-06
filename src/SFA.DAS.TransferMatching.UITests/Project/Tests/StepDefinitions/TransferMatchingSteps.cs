@@ -148,6 +148,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Given(@"the levy employer logins using existing transfer matching account")]
         public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
+        [Then(@"the non levy employer logins using existing transfer matching account")]
+        public void ThenTheNonLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsReceiver(_context.GetUser<NonLevyUser>());
+
         [Then(@"the levy employer cannot exceed the maximum funding available")]
         public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
 
@@ -397,6 +400,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void LoginAsReceiver(EasAccountUser login)
         {
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
             _receiver = login.OrganisationName;
 
             _loginFromCreateAcccountPageHelper.Login(login, false);
