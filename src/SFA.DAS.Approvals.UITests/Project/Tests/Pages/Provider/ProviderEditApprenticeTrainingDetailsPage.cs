@@ -10,10 +10,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderEditApprenticeTrainingDetailsPage : ProviderEditApprenticeCoursePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        private By Uln => By.Id("Uln");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveButton => By.XPath("//button[text()='Save and continue']");
+        private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
@@ -111,15 +110,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
-
-        private void EnterUln()
-        {
-            var uln = apprenticeDataHelper.Uln();
-
-            if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
-
-            formCompletionHelper.EnterText(Uln, uln);
-        }
 
         private bool CheckRPLCondition(bool rpl = false)
         {

@@ -314,7 +314,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                         if (shouldCheckCoursesAreStandards)
                             providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
-                        providerEditApprenticeDetailsPage.EnterUlnAndSave();
+                        providerEditApprenticeDetailsPage.EnterUlnAndSave().CheckRPLConditionAndSave();
                         break;
                     }
                     j--;

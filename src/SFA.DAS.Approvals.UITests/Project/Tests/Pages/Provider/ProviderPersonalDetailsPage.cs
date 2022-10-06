@@ -56,14 +56,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderBeforeYouStartBulkUploadPage(context);
         }
 
-        private bool CheckRPLCondition(bool rpl = false)
-        {
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
-            if (year > 2022) rpl = true;
-            return rpl;
-        }
-
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
 
         private void DeliveryModelAssertions(string delModelType)
