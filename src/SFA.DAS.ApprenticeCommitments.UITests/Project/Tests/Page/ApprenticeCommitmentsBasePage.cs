@@ -21,7 +21,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected static string ServiceName => "My apprenticeship";
         protected static By NonClickableServiceHeader => By.CssSelector(".das-header__span");
         protected static By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
-        protected static By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Confirm my apprenticeship details']");
+        protected static By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'Confirm my apprenticeship details')]");
+        protected static By CMADTopNavigationLinkAfterFullyConfirmed => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'My apprenticeship details')]");
         protected static By HelpTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Help and support']");
         private static By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
         private static By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
@@ -75,9 +76,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeOverviewPage(context, false);
         }
 
-        public FullyConfirmedOverviewPage NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
+        public FullyConfirmedOverviewPage NavigateToOverviewPageFromTopNavigationLinkForDbConfirmedDetails()
         {
             formCompletionHelper.Click(CMADTopNavigationLink);
+            return new FullyConfirmedOverviewPage(context, false);
+        }
+
+        public FullyConfirmedOverviewPage NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
+        {
+            formCompletionHelper.Click(CMADTopNavigationLinkAfterFullyConfirmed);
             return new FullyConfirmedOverviewPage(context);
         }
 
