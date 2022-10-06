@@ -27,10 +27,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney() => NavigatesToSelectDeliveryModelPage();
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
+        public ProviderPersonalDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new ProviderPersonalDetailsPage(context);
         }
 
         public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new SelectDeliveryModelPage(context);
         }
 
-        public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPath()
+        public ProviderEditApprenticePersonalDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPath()
         {
             SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
             Continue();
@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new EditApprenticePage(context);
         }
 
-        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
+        public ProviderEditApprenticePersonalDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
         {
             AssertStandardAndFrameworkCoursesAreSelectable();
             Continue();
@@ -80,7 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
         }
 
-        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
+        private ProviderEditApprenticePersonalDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticePersonalDetailsPage(context);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {

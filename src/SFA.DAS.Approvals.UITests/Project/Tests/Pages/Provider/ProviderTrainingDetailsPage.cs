@@ -7,27 +7,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderAddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class ProviderTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Add apprentice details";
+        protected override string PageTitle => "";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
-        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        private static By Uln => By.Id("Uln");
-        private static By AddButton => By.XPath("//button[text()='Add']");
+        protected override By ContinueButton => By.XPath("//button[text()='Add']");
         private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
         private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
+        public ProviderTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails()
         {
-            EnterApprenticeMandatoryValidDetails();
-
-            EnterDob();
-
-            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
-
             ClickStartMonth();
 
             EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
@@ -40,22 +32,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             bool rpl = CheckRPLCondition(false);
 
-            formCompletionHelper.ClickElement(AddButton);
+            formCompletionHelper.ClickElement(ContinueButton);
 
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(context);
-        }
-
-        private new void EnterApprenticeMandatoryValidDetails()
-        {
-            EnterApprenticeName();
-
-            if (tags.Contains("aslistedemployer")) return;
-
-            EnterApprenticeEmail();
         }
 
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()

@@ -7,21 +7,20 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderEditApprenticeDetailsPage : ProviderEditApprenticeCoursePage
+    public class ProviderEditApprenticeTrainingDetailsPage : ProviderEditApprenticeCoursePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private By Uln => By.Id("Uln");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveButton => By.XPath("//button[text()='Save']");
+        private By SaveButton => By.XPath("//button[text()='Save and continue']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) { }
+        public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
+        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave()
         {
-            EnterUln();
 
             bool rpl = CheckRPLCondition(false);
 
@@ -48,13 +47,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
-            formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
-            formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
-            formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
-            formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
-            formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
-            EnterUln();
-
             formCompletionHelper.ClickElement(StartDateMonth);
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
@@ -106,7 +98,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderConfirmApprenticeDeletionPage(context);
         }
 
-        public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
+        public ProviderEditApprenticeTrainingDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
         {
             GetAllEditBoxes();
 

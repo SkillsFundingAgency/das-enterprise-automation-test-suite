@@ -21,11 +21,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new PersonalDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
+        public ProviderPersonalDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new ProviderPersonalDetailsPage(context);
         }
 
         public PersonalDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()

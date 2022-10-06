@@ -108,6 +108,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
+                .EnterUlnAndSave()
                 .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }
