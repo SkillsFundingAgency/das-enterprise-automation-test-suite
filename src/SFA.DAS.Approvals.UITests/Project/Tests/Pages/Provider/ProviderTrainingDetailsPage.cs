@@ -67,9 +67,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void DeliveryModelAssertions(string delModelType)
         {
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
+            pageInteractionHelper.WaitForElementToBeDisplayed(DeliveryModelLabel);
+
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel), "Delivery Model Label not displayed");
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
         }
     }
 }

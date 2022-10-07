@@ -216,9 +216,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderPersonalDetailsPage providerAddApprenticeDetailsPage)
         {
-            providerAddApprenticeDetailsPage.ValidateFlexiJobContent();
+            var providerAddApprenticeTrainingDetailsPage = providerAddApprenticeDetailsPage.SubmitValidApprenticePersonalDetails();
+                providerAddApprenticeTrainingDetailsPage.ValidateFlexiJobContent();
 
-            var providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsPage.SubmitValidApprenticePersonalDetails().SubmitValidApprenticeTrainingDetails();
+            var providerApproveApprenticeDetailsPage = providerAddApprenticeTrainingDetailsPage.SubmitValidApprenticeTrainingDetails();
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, 1);
         }
