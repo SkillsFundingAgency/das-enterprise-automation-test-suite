@@ -42,20 +42,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterApprenticeEmail();
         }
 
-        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
-        {
-            SelectRadioOptionByForAttribute("confirm-Manual");
-            Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
-        }
-
-        internal ProviderBeforeYouStartBulkUploadPage SelectBulkUpload()
-        {
-            SelectRadioOptionByForAttribute("confirm-BulkCsv");
-            Continue();
-            return new ProviderBeforeYouStartBulkUploadPage(context);
-        }
-
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
 
         private void DeliveryModelAssertions(string delModelType)

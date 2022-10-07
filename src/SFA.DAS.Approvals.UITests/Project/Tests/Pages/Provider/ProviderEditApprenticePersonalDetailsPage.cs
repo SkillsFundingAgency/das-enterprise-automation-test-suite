@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-        public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
+        public ProviderEditApprenticeTrainingDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
             formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
@@ -35,9 +35,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
             EnterUln();
 
-            formCompletionHelper.ClickElement(SaveButton);          
+            formCompletionHelper.ClickElement(SaveButton);
 
-            return new ProviderApproveApprenticeDetailsPage(context);
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
        

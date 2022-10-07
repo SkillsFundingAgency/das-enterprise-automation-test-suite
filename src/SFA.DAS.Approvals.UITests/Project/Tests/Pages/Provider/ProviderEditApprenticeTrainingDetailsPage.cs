@@ -118,5 +118,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (year > 2022) rpl = true;
             return rpl;
         }
+
+        public ProviderApproveApprenticeDetailsPage ClickSave()
+        {
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
     }
 }
