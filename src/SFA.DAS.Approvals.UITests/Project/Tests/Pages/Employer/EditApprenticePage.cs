@@ -15,7 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditSaveAndContinueButton => By.CssSelector("#continue-button");
+        private By EditContinueButtonPersonalDetailsPage => By.XPath("//button[contains(text(),'continue')]");
+        private By EditContinueButtonTrainingDetailsPage => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
@@ -62,12 +63,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
+            formCompletionHelper.ClickElement(EditContinueButtonPersonalDetailsPage);
 
             AddValidEndDate();
             
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
-            formCompletionHelper.ClickElement(EditSaveAndContinueButton);
+            formCompletionHelper.ClickElement(EditContinueButtonTrainingDetailsPage);
             return new AfterEditApproveApprenticeDetailsPage(context);
         }
 

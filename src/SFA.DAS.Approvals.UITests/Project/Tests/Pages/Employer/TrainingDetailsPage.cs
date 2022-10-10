@@ -42,8 +42,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
-            EnterApprenticeMandatoryValidDetails();
-
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
             return new YouCantApproveThisApprenticeRequestUntilPage(context);

@@ -32,13 +32,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new TrainingDetailsPage(context);
         }
 
-        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        public TrainingDetailsPage DraftDynamicHomePageAddValidApprenticeDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            return new YouCantApproveThisApprenticeRequestUntilPage(context);
+            return new TrainingDetailsPage(context);
         }
 
         private DateTime SetEIJourneyTestData(int apprenticeNo)

@@ -121,7 +121,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage ClickSave()
         {
+            bool rpl = CheckRPLCondition(false);
             formCompletionHelper.ClickElement(SaveButton);
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
             return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
