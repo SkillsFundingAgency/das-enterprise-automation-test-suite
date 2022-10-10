@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Polly;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
@@ -33,8 +34,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly RestartWebDriverHelper _helper;
         private readonly string _tranferBaseUrl;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-
+        
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
@@ -46,7 +46,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _helper = new RestartWebDriverHelper(context);
             _tranferBaseUrl = UrlConfig.EmployerApprenticeshipService_BaseUrl;
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
-            _employerStepsHelper = new EmployerStepsHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -432,7 +431,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_receiver);
 
-            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+            var manageYourApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage();
 
             manageYourApprenticePage.VerifyApprenticeExists();
         }
