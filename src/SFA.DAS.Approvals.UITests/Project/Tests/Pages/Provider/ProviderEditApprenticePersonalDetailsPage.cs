@@ -70,5 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.EnterText(Uln, uln);
         }
+
+        public ProviderEditApprenticeTrainingDetailsPage ClickSaveAndContinue()
+        {
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
+        }
+
+
     }
 }
