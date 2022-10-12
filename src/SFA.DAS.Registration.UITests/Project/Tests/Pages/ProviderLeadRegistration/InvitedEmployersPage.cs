@@ -30,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         {   
             var data = GetTableData("Employer email", objectContext.GetRegisteredEmail(), "Date Sent");
             //Assert.AreEqual(data.Text.Substring(0, 2), DateTime.UtcNow.ToString("dd MMM yy"));
+            Assert.AreEqual(data.Text, DateTime.UtcNow.ToString("dd MMM yy"));
             Assert.AreEqual(data.Text.Substring(0, 2), DateTime.UtcNow.ToString("dd"));
             return new InvitedEmployersPage(context);
         }
