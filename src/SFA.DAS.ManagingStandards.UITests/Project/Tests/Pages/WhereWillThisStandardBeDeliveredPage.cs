@@ -31,4 +31,11 @@ public class WhereWillThisStandardBeDeliveredPage : ManagingStandardsBasePage
         Continue();
         return new TrainingLocation_ConfirmVenuePage(context);
     }
+
+    public TrainingVenuesPage ConfirmAtOneofYourTrainingLocations_AddStandard()
+    {
+        formCompletionHelper.SelectRadioOptionByLocator(AtOneOfYourTrainingLocationsRadio);
+        Continue();
+        return new TrainingVenuesPage(context);
+    }
 }

@@ -28,10 +28,8 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceB
                 || t == typeof(RecordedAct1CompletionPayment));
 
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            var ruleNameShortener = new RuleNameShortener();
-
             transport.ConnectionString(_connectionString);
-            transport.RuleNameShortener(ruleNameShortener.Shorten);
+            transport.SubscriptionRuleNamingConvention(RuleNameShortener.Shorten);
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
 
             var endpoint = await Endpoint.Start(endpointConfiguration);

@@ -1,4 +1,4 @@
-﻿Feature: MS_01_ReviewYourDetails
+﻿Feature: MS_01_ReviewYourDetails_ApproveStandard_EditTrainingLocations
 
 @managingstandards
 @managingstandards01
