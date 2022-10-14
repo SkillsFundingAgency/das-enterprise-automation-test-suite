@@ -31,12 +31,15 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</None>
-		<None Update="appsettings.Project.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Project\Helpers\SqlDbHelpers\" />
+	  <Folder Include="Project\Hooks\" />
+	  <Folder Include="Project\Tests\Features\" />
 	</ItemGroup>
 
 
