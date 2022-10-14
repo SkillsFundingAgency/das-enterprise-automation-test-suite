@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ProviderRegistration\RE_PR_01 - Copy.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -59,18 +55,6 @@
     <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
 	<ProjectReference Include="..\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\ProviderRegistration\RE_PR_02.feature.cs">
-      <DependentUpon>RE_PR_02.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ProviderRegistration\RE_PR_02.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
+ 
 	
 </Project>

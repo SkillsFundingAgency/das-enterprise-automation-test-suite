@@ -51,8 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         {
             pageInteractionHelper.VerifyPage(EmployerOrganisation($"[value='{OrganisationName}']"));
             pageInteractionHelper.VerifyPage(EmployerFirstName($"[value='{FirstName}']"));
-            pageInteractionHelper.VerifyPage(EmployerLastName($"[value='{LastName}']"));
-            // TODO : include this line after fixing GenerateRandomUserName from DataHelper
+            pageInteractionHelper.VerifyPage(EmployerLastName($"[value='{LastName}']"));            
             pageInteractionHelper.VerifyPage(EmployerEmailAddress($"[value='{Email}']"));
             return this;
         }
