@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
@@ -7,9 +8,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
     {
         protected override string PageTitle => "Check details";
 
+        #region locators
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
-
-        private By ChangeDetailsLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        private By EmployerOrganisationChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        private By EmployerFirstNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        private By EmployerLastNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        #endregion
 
         public CheckDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -19,10 +23,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             return new EmployerAccountIsReadyPage(context);
         }
 
-        public EnterTheEmployerDetailsPage ChangeDetails()
+        public EnterTheEmployerDetailsPage ClickEmployerOrganisationChange()
         {
-            formCompletionHelper.ClickElement(ChangeDetailsLink);
+            formCompletionHelper.ClickElement(EmployerOrganisationChangeLink);
             return new EnterTheEmployerDetailsPage(context);
+        }
+
+        public EnterTheEmployerDetailsPage ClickEmployerFirstNameChange()
+        {
+            formCompletionHelper.ClickElement(EmployerFirstNameChangeLink);
+            return new EnterTheEmployerDetailsPage(context);
+        }
+
+        public EnterTheEmployerDetailsPage ClickEmployerLastNameChange()
+        {
+            formCompletionHelper.ClickElement(EmployerLastNameChangeLink);
+            return new EnterTheEmployerDetailsPage(context);
+        }
+
+        public CheckDetailsPage VerifyEmailCannotBeEdited()
+        {
+            return this;
         }
     }
 }

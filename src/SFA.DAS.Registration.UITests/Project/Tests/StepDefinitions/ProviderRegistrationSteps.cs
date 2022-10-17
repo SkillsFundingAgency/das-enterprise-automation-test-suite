@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
         }
 
-        [Given(@"the provider invite an employer")]
+        [Given(@"the provider invites an employer")]
         public void GivenTheProviderInviteAnEmployer()
         {
             GoToProviderHomePage();
@@ -38,9 +38,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount()
                 .Start()
                 .EnterRegistrationDetailsAndContinue()
-                .ChangeDetails()
+                .ClickEmployerOrganisationChange()
                 .VerifyDetails()
                 .NavigateToCheckDetailsPage()
+                .InviteEmployer();
+        }
+
+        [When(@"the provider resends the invite after editing details")]
+        public void WhenTheProviderResendsTheInviteAfterEditingDetails()
+        {
+            GoToProviderHomePage();
+
+            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers()
+                .ResendInvitation()
+                .ClickEmployerFirstNameChange()
+                .UpdateEmployerFirstNameAndContinue("NewFirstName")
                 .InviteEmployer();
         }
 
@@ -80,12 +92,38 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ConfirmYesTrainingProviderPermissions();
         }
 
-        [Then(@"the invited employer status in ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
-        public void ThenTheInvitedEmployerStatusIn(string status)
+        [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
+        public void ThenTheInvitedEmployerStatusIs(string status)
         {
             GoToProviderHomePage();
             new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus(status);
         }
+
+        [Then(@"view status ""(Account creation started:|PAYE scheme added:|Legal agreement accepted:)"" is ""(Account creation not started|PAYE scheme not added|Legal agreement not accepted|today)""")]
+        public void ThenViewStatusIs(string status, string value)
+        {
+            if (value == "today")
+                value = DateTime.Today.ToString("dd MMMM yyyy");
+
+            GoToProviderHomePage();
+
+            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers()
+                .ViewStatus()
+                .VerifyStatus(status, value)
+                .ClickBackLink();
+        }
+
+        [Then(@"the email address is not editable")]
+        public void ThenTheEmailAddressIsNotEditable()
+        {
+            GoToProviderHomePage();
+
+            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers()
+                .ResendInvitation()
+                .ClickEmployerFirstNameChange()
+                .VerifyEmailIsNotEditable();
+        }
+
 
         private void GoToProviderHomePage() => _providerHomePageStepsHelper.GoToProviderHomePage(true);
     }
