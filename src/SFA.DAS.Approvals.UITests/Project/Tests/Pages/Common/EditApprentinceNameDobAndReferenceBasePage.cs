@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By EndDateYear => By.CssSelector("#EndYear, #EndDate_Year, #endDate-year");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
-        protected override By ContinueButton => By.XPath("//button[contains(text(),'continue')]");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         protected EditApprentinceNameDobAndReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 

@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
-        private ProviderPersonalDetailsPage _providerAddApprenticeDetailsPage;
+        private ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
 
         public ProviderReservationsSteps(ScenarioContext context)

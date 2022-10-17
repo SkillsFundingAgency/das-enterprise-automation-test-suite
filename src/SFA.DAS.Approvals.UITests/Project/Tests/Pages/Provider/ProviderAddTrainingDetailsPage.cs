@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class ProviderAddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         protected override string PageTitle => "";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public ProviderTrainingDetailsPage(ScenarioContext context) : base(context) { }
+        public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails()
         {

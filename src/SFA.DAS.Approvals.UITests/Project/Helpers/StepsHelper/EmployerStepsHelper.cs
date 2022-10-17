@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
-        public EditApprenticePage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
+        public EditApprenticeDetailsPage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
         internal ApproveApprenticeDetailsPage EmployerReviewCohort()
         {
@@ -151,7 +151,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .CohortReference();
         }
 
-        public PersonalDetailsPage NonLevyEmployerAddsProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
+        public AddPersonalDetailsPage NonLevyEmployerAddsProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
             return addAnApprenitcePage.StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
@@ -160,7 +160,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EmployerSelectsAStandard();
         }
 
-        public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(PersonalDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
+        public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddPersonalDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
@@ -312,7 +312,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                .SendInstructionsToProviderForEmptyCohort();
         }
 
-        public PersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -320,7 +320,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
-        public PersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
+        public AddPersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(_context).AddAnApprentice()
                 .StartNowToAddTrainingProvider()

@@ -207,7 +207,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ValidateOnlyEditableApprenticeDetails(editApprenticePage);     
         }
 
-        private void ValidateOnlyEditableApprenticeDetails(EditApprenticePage editApprenticePage)
+        private void ValidateOnlyEditableApprenticeDetails(EditApprenticeDetailsPage editApprenticePage)
         {
             Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == 6, "validate that cohort is editable on View apprentice details page");
         }

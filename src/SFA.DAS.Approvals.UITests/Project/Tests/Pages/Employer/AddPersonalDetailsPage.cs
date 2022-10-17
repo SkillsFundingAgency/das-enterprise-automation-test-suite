@@ -7,11 +7,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class TrainingDetailsPage  : AddAndEditApprenticeDetailsBasePage
+    public class AddPersonalDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => "Personal details";
 
-        private By SaveAndContinueButton => By.CssSelector("button[id=continue-button]");
+        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
         private By DeliveryModelLabel => By.XPath("//p[text()='Delivery model']");
 
@@ -19,32 +19,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public TrainingDetailsPage(ScenarioContext context) : base(context) { }
+        public AddPersonalDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
+        public AddTrainingDetailsPage SubmitValidApprenticeDetails()
         {
-            var courseStartDate = SetEIJourneyTestData(apprenticeNo);
+            EnterApprenticeMandatoryValidDetails();
 
-            ClickStartMonth();
-
-            if (isMF == false) EnterStartDate(courseStartDate);
-
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
-
-            EnterTrainingCostAndEmpReference();
+            EnterDob();
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
-
-            return new ApproveApprenticeDetailsPage(context);
+            return new AddTrainingDetailsPage(context);
         }
 
-        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        public AddTrainingDetailsPage DraftDynamicHomePageAddValidApprenticeDetails()
         {
+            EnterApprenticeMandatoryValidDetails();
+
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
-            return new YouCantApproveThisApprenticeRequestUntilPage(context);
+            return new AddTrainingDetailsPage(context);
         }
 
         private DateTime SetEIJourneyTestData(int apprenticeNo)

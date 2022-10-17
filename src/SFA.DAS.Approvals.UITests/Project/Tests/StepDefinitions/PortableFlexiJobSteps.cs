@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
-        private PersonalDetailsPage _addApprenticeDetailsPage;
+        private AddPersonalDetailsPage _addApprenticeDetailsPage;
         private ProviderStepsHelper _providerStepsHelper;
 
         public PortableFlexiJobSteps(ScenarioContext context)
