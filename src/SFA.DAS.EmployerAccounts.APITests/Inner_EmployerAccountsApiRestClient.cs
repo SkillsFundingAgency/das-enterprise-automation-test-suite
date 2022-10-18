@@ -14,7 +14,7 @@ namespace SFA.DAS.Courses.APITests.Project
 
         protected override string AppServiceName => config.config.EmployerAccountsAppServiceName;
 
-        public void PerformHeathCheck(string endpoint, HttpStatusCode expectedResponse)
+        public void ExecuteEndpoint(string endpoint, HttpStatusCode expectedResponse)
         {
            Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
         }

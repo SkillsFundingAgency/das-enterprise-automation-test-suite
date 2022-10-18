@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmployerAccountsApiHealthCheck")]
-    public partial class EmployerAccountsApiHealthCheckFeature
+    [NUnit.Framework.DescriptionAttribute("ApiGetEmployerAccountsInternalAccountsId")]
+    public partial class ApiGetEmployerAccountsInternalAccountsIdFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AC_API_01_HealthCheck.feature"
+#line 1 "EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EmployerAccountsApiHealthCheck", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "ApiGetEmployerAccountsInternalAccountsId", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_API_01_HealthCheck")]
+        [NUnit.Framework.DescriptionAttribute("EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("employeraccountsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
-        public void AC_API_01_HealthCheck()
+        public void EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
                     "regression",
                     "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_01_HealthCheck", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("das-employer-accounts-api /ping endpoint can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint /accounts/internal/{accountId} can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

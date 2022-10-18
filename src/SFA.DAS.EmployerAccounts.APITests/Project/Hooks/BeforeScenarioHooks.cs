@@ -1,0 +1,42 @@
+﻿using SFA.DAS.API.Framework;
+using SFA.DAS.API.Framework.Configs;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Courses.APITests.Project;
+using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.TestDataExport.Helper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks
+{
+    [Binding]
+    public class BeforeScenarioHooks
+    {
+        private readonly ScenarioContext _context;
+        private readonly DbConfig _dbConfig;
+        private readonly ObjectContext _objectContext;
+
+        public BeforeScenarioHooks(ScenarioContext context)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _dbConfig = context.Get<DbConfig>();
+        }
+
+        [BeforeScenario(Order = 45)]
+        public void SetUpHelpers()
+        {
+            var a = new EmployerAccountsSqlDbHelper(_dbConfig, _context);
+
+            _context.Set(a);            
+
+            _context.Set(new EmployerAccountsSqlDbHelper(_dbConfig, _context));          
+
+            _context.SetRestClient(new Inner_EmployerAccountsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
+        }
+    }
+}
