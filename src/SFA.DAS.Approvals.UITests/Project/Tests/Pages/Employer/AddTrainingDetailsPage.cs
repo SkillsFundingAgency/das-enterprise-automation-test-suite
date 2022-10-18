@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddTrainingDetailsPage  : AddAndEditApprenticeDetailsBasePage
+    public class AddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         protected override string PageTitle => "";
 
@@ -80,9 +80,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void DeliveryModelAssertions(string delModelType)
         {
+            pageInteractionHelper.WaitForElementToBeDisplayed(DeliveryModelLabel);
+
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
+
         }
     }
 }

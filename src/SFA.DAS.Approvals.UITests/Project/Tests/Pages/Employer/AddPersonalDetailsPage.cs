@@ -13,12 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        private By DeliveryModelLabel => By.XPath("//p[text()='Delivery model']");
-
-        private By DeliveryModelType => By.XPath("//p[text()='Delivery model'] // following-sibling :: p");
-
-        private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
-
         public AddPersonalDetailsPage(ScenarioContext context) : base(context) { }
 
         public AddTrainingDetailsPage SubmitValidApprenticeDetails()
@@ -66,17 +60,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
 
             return apprenticeCourseDataHelper.CourseStartDate;
-        }
-
-        public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
-
-        public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
-
-        private void DeliveryModelAssertions(string delModelType)
-        {
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
-            StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
         }
     }
 }
