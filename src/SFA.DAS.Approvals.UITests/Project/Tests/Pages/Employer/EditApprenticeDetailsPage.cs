@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditApprenticeDetailsPage : EditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Edit apprentice details";
+        protected override string PageTitle => "";
 
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");

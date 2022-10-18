@@ -162,12 +162,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddPersonalDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
+            var trainingDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails();
+
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
                 addApprenticeDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
             }
 
-            _approveApprenticeDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails().SubmitValidTrainingDetails(true);
+            _approveApprenticeDetailsPage = trainingDetailsPage.SubmitValidTrainingDetails(true);
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_approveApprenticeDetailsPage);
             int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_approveApprenticeDetailsPage, count);
             _objectContext.SetNoOfApprentices(noOfApprentice);
