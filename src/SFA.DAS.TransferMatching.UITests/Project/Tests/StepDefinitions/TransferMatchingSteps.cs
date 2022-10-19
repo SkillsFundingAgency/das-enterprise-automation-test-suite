@@ -428,7 +428,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
         {
-            //UpdateOrganisationName(_receiver);
+           
             var manageYourApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage();
             manageYourApprenticePage.VerifyApprenticeExists();
         }
