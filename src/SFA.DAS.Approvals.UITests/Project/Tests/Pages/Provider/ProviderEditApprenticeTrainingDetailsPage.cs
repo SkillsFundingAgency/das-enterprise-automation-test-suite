@@ -15,13 +15,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
+        private By ActualStartDateDay => By.Id("ActualStartDay");
+        public By ActualStartDateMonth => By.Id("ActualStartMonth");
+        public By ActualStartDateYear => By.Id("ActualStartYear");
 
         public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave()
+        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave(bool isPilotLearner = false)
         {
+            if (isPilotLearner) AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
 
-            bool rpl = CheckRPLCondition(false);
+            bool rpl = CheckRPLCondition(false, isPilotLearner);
 
             formCompletionHelper.ClickElement(SaveButton);
 
@@ -31,6 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
+
+        private void AddActualStartDateDay(DateTime dateTime) => formCompletionHelper.EnterText(ActualStartDateDay, dateTime.Day);
 
         public ProviderApproveApprenticeDetailsPage SelectSaveAndUpdateRPLAsNo()
         {
@@ -111,10 +117,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
 
-        private bool CheckRPLCondition(bool rpl = false)
+        private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
+               : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+
+            var month = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateMonth))
+                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth));
+
+            if (month > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
             return rpl;
         }

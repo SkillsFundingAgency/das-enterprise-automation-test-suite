@@ -26,6 +26,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
+        public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner)
+        {
+            EnterUln();
+
+            if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
+            else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
+
+            formCompletionHelper.ClickElement(ContinueButton);
+
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
+        }
+
         public ProviderEditApprenticeTrainingDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());

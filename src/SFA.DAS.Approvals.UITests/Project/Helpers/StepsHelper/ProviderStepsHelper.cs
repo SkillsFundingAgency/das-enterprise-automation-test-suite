@@ -311,7 +311,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetailsForPortableFlexiJobProvider() => CurrentCohortDetails(GoToPortableFlexiJobProviderHomePage());
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => CurrentCohortDetails(GoToProviderHomePage());
-        
+
         public ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
@@ -340,6 +340,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerApproveApprenticeDetailsPage;
         }
 
+        private ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool isPilotLearner, bool shouldCheckCoursesAreStandards)
+        {
+            var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
+
+            for (int i = 0; i < totalNoOfApprentices; i++)
+            {
+                var ulnFields = providerApproveApprenticeDetailsPage.ApprenticeUlns().Reverse<IWebElement>();
+                int j = ulnFields.Count() - 1;
+
+                foreach (IWebElement uln in ulnFields)
+                {
+                    if (uln.Text.Equals("-"))
+                    {
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+
+                        if (shouldCheckCoursesAreStandards)
+                            providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+
+                        providerEditApprenticeDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner).CheckRPLConditionAndSave(isPilotLearner);
+                        break;
+                    }
+                    j--;
+                }
+            }
+
+            return providerApproveApprenticeDetailsPage;
+        }
+
         public ProviderApproveApprenticeDetailsPage EditApprenticeForRPL()
         {
             ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage = CurrentCohortDetails();
@@ -358,6 +386,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderApproveApprenticeDetailsPage EditApprenticeForPortableFlexiJobContent() => EditApprentice(CurrentCohortDetailsForPortableFlexiJobProvider());
 
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
+
+        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner, bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), isPilotLearner, shouldCheckCoursesAreStandards);
 
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
@@ -396,6 +426,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public void Approve() => EditApprentice().SubmitApprove();
+
+        public ProviderApproveApprenticeDetailsPage ApproveFlexiPilotCohort(bool isPilotLearner) => EditFlexiPilotLeaner(isPilotLearner);
 
         public void ValidateFlexiJobContentAndApproveCohort() => EditApprentice().ValidateFlexiJobTagAndSubmitApprove();
 
