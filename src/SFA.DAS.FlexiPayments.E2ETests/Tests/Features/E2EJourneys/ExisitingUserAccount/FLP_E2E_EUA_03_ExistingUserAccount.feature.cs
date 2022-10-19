@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
+namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUserAccount
 {
     using TechTalk.SpecFlow;
     using System;
@@ -21,14 +21,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_03_ExistingUserAccount")]
-    [NUnit.Framework.CategoryAttribute("flexi-payments")]
     public partial class FLP_E2E_EUA_03_ExistingUserAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "flexi-payments"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "FLP_E2E_EUA_03_ExistingUserAccount.feature"
 #line hidden
@@ -37,7 +35,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_03_ExistingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_03_ExistingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,17 +78,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
             "rt")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        [NUnit.Framework.CategoryAttribute("selectstandardwithmultipleoptions")]
+        [NUnit.Framework.CategoryAttribute("flexi-payments")]
         public void FLP_E2E_EUA_03ProviderAddsApprenticesAndApprovesThenEmployerApprovesCohort()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "e2escenarios",
-                    "selectstandardwithmultipleoptions"};
+                    "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_03 Provider adds apprentices and approves then employer approves coho" +
                     "rt", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,16 +98,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 9
+ testRunner.And("the provider opts 1 learner into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 10
- testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider opts 1 learner out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
+ testRunner.And("the provider sends the cohort to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

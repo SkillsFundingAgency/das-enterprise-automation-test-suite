@@ -205,6 +205,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
+        public ProviderApproveApprenticeDetailsPage AddApprenticeForFlexiPaymentsProvider (int numberOfApprentices, bool isPilotLearner = false)
+        {
+            var providerApproveApprenticeDetailsPage = CurrentCohortDetails();
+
+            for (int i = 0; i < numberOfApprentices; i++)
+            {
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
+                    .ProviderSelectsAStandard()
+                    .SubmitValidApprenticePersonalDetails(isPilotLearner)
+                    .SubmitValidApprenticeTrainingDetails(isPilotLearner);
+            }
+
+            return SetApprenticeDetails(providerApproveApprenticeDetailsPage);
+        }
+
         public ProviderAddPersonalDetailsPage AddApprenticeAndSelectFlexiJobAgencyDeliveryModel()
         {
             var providerAddApprenticeDetailsPage = CurrentCohortDetails();
@@ -400,6 +415,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int numberOfApprentices)
         {
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage, numberOfApprentices));
+            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
+
+            return providerApproveApprenticeDetailsPage;
+        }
+
+        private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
+        {
+            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage));
             _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
 
             return providerApproveApprenticeDetailsPage;

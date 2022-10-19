@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -36,6 +38,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             });
 
             return noOfApprentice;
+        }
+
+        internal int NoOfApprentice(ReviewYourCohort reviewYourCohortPage)
+        {
+            return reviewYourCohortPage.TotalNoOfApprentices();
         }
     }
 }
