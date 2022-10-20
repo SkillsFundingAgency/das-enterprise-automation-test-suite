@@ -9,7 +9,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class AddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "";
+        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override string PageTitle => "Add training details";
 
         private By SaveAndContinueButton => By.CssSelector("button[id=continue-button]");
 

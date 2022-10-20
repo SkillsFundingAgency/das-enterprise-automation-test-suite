@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderEditApprenticeCoursePage : EditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => "Edit personal details";
 
         public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context) { }
 
