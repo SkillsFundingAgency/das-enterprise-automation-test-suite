@@ -99,7 +99,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("check with Raj accounts/{hashedAccountId}/levy/{payrollYear}/{payrollMonth}", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint accounts/{hashedAccountId}/levy/{payrollYear}/{payrollMonth} can be acce" +
+                        "ssed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

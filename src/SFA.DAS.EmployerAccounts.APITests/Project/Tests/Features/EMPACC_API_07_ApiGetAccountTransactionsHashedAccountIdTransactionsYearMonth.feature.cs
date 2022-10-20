@@ -99,8 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("check with Raj endpoint /accounts/{hashedAccountId}/transactions/{year}/{month} c" +
-                        "an be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint /accounts/{hashedAccountId}/transactions/{year}/{month} can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

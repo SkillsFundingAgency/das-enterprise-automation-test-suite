@@ -5,4 +5,4 @@
 @regression
 @innerapi
 Scenario: EMPACC_API_07_ApiGetAccountTransactionsHashedAccountIdTransactionsYearMonth
-	Then check with Raj endpoint /accounts/{hashedAccountId}/transactions/{year}/{month} can be accessed	
+	Then endpoint /accounts/{hashedAccountId}/transactions/{year}/{month} can be accessed	

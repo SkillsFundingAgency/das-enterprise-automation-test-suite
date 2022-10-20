@@ -85,21 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             GoToProviderHomePage();
             new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus(status);          
-        }
-
-        [Then(@"allow to resend invitation for status ""(Account creation not started)""")]
-        public void ThenChangeTheDetailsBeforeResend(string status)
-        {
-            GoToProviderHomePage();
-            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers()
-                .VerifyResendInvitation()
-                .ChangeResendInvitationDetails()
-                .EnterResendInvitationDetailsAndContinue()
-                .InviteEmployer()
-                .ViewInvitedEmployers()
-                .VerifyResendInvitationDate();
-        }
-
+        }       
 
         private void GoToProviderHomePage() => _providerHomePageStepsHelper.GoToProviderHomePage(true);
     }

@@ -1,7 +1,11 @@
-﻿using SFA.DAS.API.Framework;
+﻿using Newtonsoft.Json;
+using SFA.DAS.API.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Courses.APITests.Project;
+using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using TechTalk.SpecFlow;
@@ -12,12 +16,14 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
     public class EmployerAccountsAPISteps
     {
         private readonly Inner_EmployerAccountsApiRestClient _innerApiRestClient;
+        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;        
         private readonly EmployerAccountsSqlDbHelper _employerAccountsSqlDbHelper;
         private readonly ObjectContext _objectContext;
 
         public EmployerAccountsAPISteps(ScenarioContext context)
         {
             _innerApiRestClient = context.GetRestClient<Inner_EmployerAccountsApiRestClient>();
+            _innerApiLegacyRestClient = context.GetRestClient<Inner_EmployerAccountsLegacyApiRestClient>();
             _employerAccountsSqlDbHelper = context.Get<EmployerAccountsSqlDbHelper>();
             _objectContext = context.Get<ObjectContext>();
             _employerAccountsSqlDbHelper.GetAccountId();
@@ -138,6 +144,44 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         public void ThenEndpointApiUserCanBeAccessed()
         {
             _innerApiRestClient.ExecuteEndpoint("/api/User?email=test@account.com", HttpStatusCode.OK);            
+        }
+
+        [Then(@"endpoint /accounts/\{hashedAccountId}/levy can be accessed")]
+        public void ThenEndpointAccountsHashedAccountIdLevyCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy", HttpStatusCode.OK);        
+        }
+
+        [Then(@"endpoint /accounts/\{hashedAccountId}/transactions  can be accessed")]
+        public void ThenEndpointAccountsHashedAccountIdTransactionsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /accounts/\{hashedAccountId}/transactions/\{year}/\{month} can be accessed")]
+        public void ThenEndpointAccountsHashedAccountIdTransactionsYearMonthCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions");            
+            var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);            
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint accounts/\{hashedAccountId}/levy/\{payrollYear}/\{payrollMonth} can be accessed")]
+        public void ThenEndpointAccountsHashedAccountIdLevyPayrollYearPayrollMonthCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy");
+            var result = JsonConvert.DeserializeObject<ICollection<LevyDeclaration>>(response.Content);
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy/{result.FirstOrDefault().PayrollYear}/{result.FirstOrDefault().PayrollMonth}", HttpStatusCode.OK);
+        }
+
+        [Then(@"das-employer-accounts-api /ping endpoint can be accessed")]
+        public void ThenDas_Employer_Accounts_ApiPingEndpointCanBeAccessed()
+        {
+            _innerApiRestClient.ExecuteEndpoint("/ping", HttpStatusCode.OK);
         }
     }
 }

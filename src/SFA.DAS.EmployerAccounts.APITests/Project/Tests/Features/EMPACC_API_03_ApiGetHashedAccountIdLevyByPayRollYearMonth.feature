@@ -5,4 +5,4 @@
 @regression
 @innerapi
 Scenario: EMPACC_API_03_ApiGetHashedAccountIdLevyByPayRollYearMonth
-	Then check with Raj accounts/{hashedAccountId}/levy/{payrollYear}/{payrollMonth} 
+	Then endpoint accounts/{hashedAccountId}/levy/{payrollYear}/{payrollMonth} can be accessed

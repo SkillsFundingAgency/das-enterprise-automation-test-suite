@@ -24,11 +24,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             formCompletionHelper.ClickElement(ChangeDetailsLink);
             return new EnterTheEmployerDetailsPage(context);
         }
-
-        public EnterTheEmployerDetailsPage ChangeResendInvitationDetails()
-        {
-            formCompletionHelper.ClickElement(ChangeDetailsLink);
-            return new EnterTheEmployerDetailsPage(context);
-        }
     }
 }

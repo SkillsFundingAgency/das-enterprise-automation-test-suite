@@ -1,7 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -17,22 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         private By THeader => By.CssSelector("thead th");
         private By TData => By.CssSelector("td");
 
-        public void VerifyStatus(string status) => pageInteractionHelper.VerifyPage(() => GetTableData("Employer email", objectContext.GetRegisteredEmail(), "Status"), status);
-
-        public CheckDetailsPage VerifyResendInvitation()
-        {   
-            var link = By.Id($"resendInvitation-{objectContext.GetRegisteredEmail().ToLower()}");
-            formCompletionHelper.Click(link);
-            return new CheckDetailsPage(context);
-        }    
-        
-        public InvitedEmployersPage VerifyResendInvitationDate()
-        {   
-            var data = GetTableData("Employer email", objectContext.GetRegisteredEmail(), "Date Sent");
-            //Assert.AreEqual(data.Text.Substring(0, 2), DateTime.UtcNow.ToString("dd MMM yy"));
-            Assert.AreEqual(data.Text.Substring(0, 2), DateTime.UtcNow.ToString("dd"));
-            return new InvitedEmployersPage(context);
-        }
+        public void VerifyStatus(string status) => pageInteractionHelper.VerifyPage(() => GetTableData("Employer email", objectContext.GetRegisteredEmail(), "Status"), status);      
 
         private IWebElement GetTableData(string rowIdentifierHeadername, string rowIdentifierHeaderValue, string headerName)
         {
