@@ -84,8 +84,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheInvitedEmployerStatusIn(string status)
         {
             GoToProviderHomePage();
-            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus(status);          
-        }       
+            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus(status);
+        }
 
         private void GoToProviderHomePage() => _providerHomePageStepsHelper.GoToProviderHomePage(true);
     }

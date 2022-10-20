@@ -1,5 +1,7 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
@@ -29,12 +31,36 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
             return internalAccountId;
         }
 
+        public string GetLegalEntityId()
+        {
+            var legalEntityId = GetDataAsString($"SELECT  top (1) LegalEntityId FROM [employer_account].[AccountLegalEntity]  Where AccountId = {_objectContext.GetInternalAccountId()}");
+            _objectContext.SetLegalEntityId(legalEntityId);
+            return legalEntityId;
+        }
+
         public string GetpayeSchemeRef()
         {
             var payeScheme = GetDataAsString($"Select TOP 1 paye.Ref  from employer_account.Paye paye  INNER JOIN employer_account.AccountHistory ah ON ah.PayeRef = paye.Ref " +
                 $"INNER JOIN employer_account.account a ON a.Id = ah.AccountId WHERE a.HashedId = '{_objectContext.GetAccountId()}'");
 
             return payeScheme;
+        }
+
+        public List<object[]> GetAgreementId()
+        {
+            var agreementId = GetListOfDataAsObject(
+                $"	SELECT ale.PublicHashedId as AccountLegalEntityPublicHashedId , ea.Id" +
+                $"  FROM [employer_account].[EmployerAgreement] ea" +
+                $"  JOIN[employer_account].[AccountLegalEntity] ale " +
+                $"  ON ale.Id = ea.AccountLegalEntityId " +
+                $"  AND ale.Deleted IS NULL " +
+                $"  JOIN[employer_account].[LegalEntity] le  ON le.Id = ale.LegalEntityId" +
+                $"  JOIN[employer_account].[EmployerAgreementTemplate] eat  ON eat.Id = ea.TemplateId " +
+                $"  JOIN[employer_account].Account acc  on  acc.Id = ale.AccountId" +
+                $"  WHERE acc.Id = {_objectContext.GetInternalAccountId()} AND ea.ExpiredDate is Null ");
+
+            return agreementId;
+
         }
 
         public string GetUserEmail()

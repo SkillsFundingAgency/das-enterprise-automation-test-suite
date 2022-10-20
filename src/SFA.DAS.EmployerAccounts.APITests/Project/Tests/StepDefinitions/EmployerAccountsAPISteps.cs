@@ -4,6 +4,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Courses.APITests.Project;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.HashingService;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,6 +20,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;        
         private readonly EmployerAccountsSqlDbHelper _employerAccountsSqlDbHelper;
         private readonly ObjectContext _objectContext;
+        private readonly IHashingService _hashingService;        
 
         public EmployerAccountsAPISteps(ScenarioContext context)
         {
@@ -28,8 +30,9 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerAccountsSqlDbHelper.GetAccountId();
             _employerAccountsSqlDbHelper.GetInternalAccountId();
+            _employerAccountsSqlDbHelper.GetLegalEntityId();
+            _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
         }
-
 
         [Then(@"endpoint /api/accountlegalentities can be accessed")]
         public void ThenEndpointApiAccountlegalentitiesCanBeAccessed()
@@ -49,10 +52,9 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         {           
             var accountId = _objectContext.GetAccountId();
             var payeschemeRef = _employerAccountsSqlDbHelper.GetpayeSchemeRef();
-            var encode = HttpUtility.UrlEncode(payeschemeRef);
-            var doubleEncode = HttpUtility.UrlEncode(encode);
-            payeschemeRef = payeschemeRef.Replace("/", "%252F"); //double encoded             
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes/{payeschemeRef}", HttpStatusCode.OK);
+            var encodepayeschemeRef = HttpUtility.UrlEncode(payeschemeRef);
+            var doubleEncodeencodepayeschemeRef = HttpUtility.UrlEncode(encodepayeschemeRef);            
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes/{doubleEncodeencodepayeschemeRef}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts can be accessed")]
@@ -89,12 +91,13 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             var internalAccountId = _objectContext.GetInternalAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/users", HttpStatusCode.OK);
         }
-
-        //TODO
+        
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalEntities/\{hashedlegalEntityId}/agreements/\{agreementId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalEntitiesHashedlegalEntityIdAgreementsAgreementIdCanBeAccessed()
         {
-            throw new PendingStepException();
+            var result = _employerAccountsSqlDbHelper.GetAgreementId();
+            var hashedAgreementId = _hashingService.HashValue((long)result[0][1]);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities/{result[0][0]}/agreements/{hashedAgreementId}", HttpStatusCode.OK);
         }
         
         [Then(@"endpoint /api/user/\{userRef}/accounts can be accessed")]
@@ -107,14 +110,13 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalentities can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalentitiesCanBeAccessed()
         {   
-            var accountId = _objectContext.GetAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/legalentities", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities", HttpStatusCode.OK);
         }
-
+        
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalentities/\{legalEntityId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalentitiesLegalEntityIdCanBeAccessed()
-        {
-            _innerApiRestClient.ExecuteEndpoint("/api/accounts/M66NNB/legalentities/3842", HttpStatusCode.OK);
+        {        
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities/{_objectContext.GetLegalEntityId()}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/statistics can be accessed")]
@@ -123,7 +125,6 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint("/api/statistics", HttpStatusCode.OK);
         }
 
-
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/transfers/connections can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdTransfersConnectionsCanBeAccessed()
         {
@@ -131,13 +132,11 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transfers/connections", HttpStatusCode.OK);            
         }
 
-
         [Then(@"endpoint /api/accounts/internal/\{accountId}/transfers/connections can be accessed")]
         public void ThenEndpointApiAccountsInternalAccountIdTransfersConnectionsCanBeAccessed()
         {
             var internalAccountId = _employerAccountsSqlDbHelper.GetInternalAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/transfers/connections", HttpStatusCode.OK);
-            
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/transfers/connections", HttpStatusCode.OK);            
         }
 
         [Then(@"endpoint /api/user can be accessed")]
