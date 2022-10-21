@@ -1,14 +1,7 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Courses.APITests.Project;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.TestDataExport.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks

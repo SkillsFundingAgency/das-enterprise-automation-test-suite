@@ -1,10 +1,9 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ConfigurationBuilder;
-using System;
 using System.Net;
 
-namespace SFA.DAS.Courses.APITests.Project
+namespace SFA.DAS.EmployerAccounts.APITests.Project
 {
     public class Inner_EmployerAccountsApiRestClient : Inner_BaseApiRestClient
     {

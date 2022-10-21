@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.API.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Courses.APITests.Project;
+using SFA.DAS.EmployerAccounts.APITests.Project;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.HashingService;

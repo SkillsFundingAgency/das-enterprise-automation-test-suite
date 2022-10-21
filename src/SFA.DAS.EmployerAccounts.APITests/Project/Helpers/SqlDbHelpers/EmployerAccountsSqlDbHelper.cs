@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -60,7 +59,6 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
                 $"  WHERE acc.Id = {_objectContext.GetInternalAccountId()} AND ea.ExpiredDate is Null ");
 
             return agreementId;
-
         }
 
         public string GetUserEmail()

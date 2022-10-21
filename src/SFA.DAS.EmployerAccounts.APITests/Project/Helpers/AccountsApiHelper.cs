@@ -6,7 +6,6 @@
         public int Month { get; set; }        
     }
 
-
     public class LevyDeclaration
     {
         public string PayrollYear { get; set; }
