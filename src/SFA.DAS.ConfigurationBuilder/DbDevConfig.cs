@@ -6,6 +6,7 @@
         public string ConnectionDetails { get; set; }
         public string UserID { get; set; }
         public string Password { get; set; }
+        public string DatamartDbName { get; set; }
         public string AccountsDbName { get; set; }
         public string FinanceDbName { get; set; }
         public string FcastDbName { get; set; }
