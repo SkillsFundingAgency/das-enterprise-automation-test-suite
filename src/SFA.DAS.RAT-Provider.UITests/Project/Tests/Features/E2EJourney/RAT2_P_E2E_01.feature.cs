@@ -76,17 +76,21 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Features.E2EJourney
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RAT_P_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
             "cation Successful")]
+        [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("rat-p")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void RAT_P_E2E_01_CreateVacancyWithRegisteredNameApproveApplyAndMakeApplicationSuccessful()
         {
             string[] tagsOfScenario = new string[] {
+                    "raa-v2",
+                    "raa-v2p",
                     "rat-p",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_P_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
                     "cation Successful", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,20 +100,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 10
  testRunner.Given("the Provider creates traineeship vacancy through View all your traineeship vacanc" +
                         "ies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 11
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 12
  testRunner.When("the Applicant can apply for the Vacancy in FAT", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 13
  testRunner.Then("Provider can make the application successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 14
  testRunner.And("the status of the Application is shown as \'successful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

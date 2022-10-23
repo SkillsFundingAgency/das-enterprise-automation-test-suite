@@ -28,20 +28,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return (int.Parse(matches[0].Value), int.Parse(matches[1].Value));
         }
 
-        public static string GetAccountId(string url)
-        {
-            Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");
-
-            return match.Success ? Regex.Replace(match.Value, @"\/", string.Empty) : url;
-        }
-
-        public static string GetPublicAccountId(string text)
-        {
-            Match match = Regex.Match(text, @"Account ID: [A-Z0-9]{6}");
-
-            return match.Success ? TrimAnySpace(Regex.Replace(match.Value, @"Account ID:", string.Empty)) : text;
-        }
-
         public static string GetApplicationReference(string value)
         {
             Match match = Regex.Match(value, @"[0-9]{6}");

@@ -22,4 +22,14 @@ public class ManageTheStandardsYouDeliverPage : ManagingStandardsBasePage
         formCompletionHelper.Click(BackLink);
         return new YourStandardsAndTrainingVenuesPage(context);
     }
+    public SelectAStandardPage AccessAddStandard()
+    {
+        formCompletionHelper.ClickLinkByText("Add a standard");
+        return new SelectAStandardPage(context);
+    }
+    public ManageAStandard_ActuaryPage AccessActuaryLevel7()
+    {
+        formCompletionHelper.ClickLinkByText(managingStandardsDataHelpers.Standard_ActuaryLevel7);
+        return new ManageAStandard_ActuaryPage(context);
+    }
 }

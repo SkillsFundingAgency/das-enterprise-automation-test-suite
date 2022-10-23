@@ -75,16 +75,20 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Features.OfflineVacancy
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RAT2_P_OV_01 - Provider creates Offline vacancy and QA approves")]
+        [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("rat-p")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void RAT2_P_OV_01_ProviderCreatesOfflineVacancyAndQAApproves()
         {
             string[] tagsOfScenario = new string[] {
+                    "raa-v2",
+                    "raa-v2p",
                     "rat-p",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT2_P_OV_01 - Provider creates Offline vacancy and QA approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
 testRunner.When("the Provider creates an Offline vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
+#line 9
 testRunner.Then("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

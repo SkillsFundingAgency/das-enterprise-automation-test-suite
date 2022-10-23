@@ -75,16 +75,20 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Features.CreateVacancy
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RAT_P_CV_01 - Create traineeship vacancy")]
+        [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("rat-p")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void RAT_P_CV_01_CreateTraineeshipVacancy()
         {
             string[] tagsOfScenario = new string[] {
+                    "raa-v2",
+                    "raa-v2p",
                     "rat-p",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_P_CV_01 - Create traineeship vacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
 testRunner.Then("the Provider creates traineeship vacancy through View all your traineeship vacanc" +
                         "ies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

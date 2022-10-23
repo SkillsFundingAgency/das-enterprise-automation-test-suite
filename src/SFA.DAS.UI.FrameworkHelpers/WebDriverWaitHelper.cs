@@ -43,18 +43,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
 
-        internal void WaitForPageToLoad()
-        {
-            var isDocumentReady = WebDriverWait(_timeOutConfig.PageLoad);
-
-            isDocumentReady.IgnoreExceptionTypes(typeof(WebDriverException));
-
-            isDocumentReady.PollingInterval = TimeSpan.FromMilliseconds(1000);
-
-            isDocumentReady.Message = "Exception occured when waiting for 'document.readyState' to be 'complete'";
-
-            isDocumentReady.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
-        }
+        internal void WaitForPageToLoad() => _pagenavigationWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
 
         internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
 
