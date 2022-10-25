@@ -4,7 +4,6 @@ using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project
 {
@@ -26,12 +25,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [BeforeScenario(Order = 42)]
+        [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var courseDetails = _context.Get<ApprenticeCourseDataHelper>().CourseDetails;
-
-            _context.Set(new TMDataHelper(courseDetails));
+            _context.Set(new TMDataHelper());
 
             _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_dbConfig);
 
@@ -44,7 +41,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
             _objectContext.SetPledgeDetailList();
         }
 
-        [AfterScenario(Order = 41)]
+        [AfterScenario(Order = 31)]
         public void DeletePledge() 
         {
             if (_context.TestError == null) _tryCatch.AfterScenarioException(() => _transferMatchingSqlDataHelper.DeletePledge(_objectContext.GetPledgeDetailList()));

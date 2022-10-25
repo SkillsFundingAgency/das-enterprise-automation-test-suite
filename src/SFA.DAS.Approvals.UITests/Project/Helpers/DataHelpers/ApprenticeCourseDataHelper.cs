@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
@@ -20,6 +21,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
 
+        private readonly CourseDetails _courseDetails;
+        private readonly CourseDetails _otherCourseDetails;
+
         public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
         {
             _apprenticeStatus = apprenticeStatus;
@@ -28,21 +32,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
             _nextAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
-            CourseDetails = randomCourseHelper.RandomCourse();
-            CourseLarsCode = CourseDetails.Course.larsCode;
-            OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
-            OtherCourseLarsCode = OtherCourseDetails.Course.larsCode;
+            _courseDetails = randomCourseHelper.RandomCourse();
+            CourseLarsCode = _courseDetails.Course.larsCode;
+            _otherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
+            OtherCourseLarsCode = _otherCourseDetails.Course.larsCode;
         }
 
-        public CourseDetails CourseDetails { get; private set; }
-
-        public CourseDetails OtherCourseDetails { get; private set; }
+        public int RandomCourse(List<string> availablecourses)
+        {
+            var random = new Random().Next(1, availablecourses.Count);
+            CourseLarsCode = availablecourses[random];
+            return random;
+        }
 
         public string CourseLarsCode { get; private set; }
 
         public string OtherCourseLarsCode { get; private set; }
 
-        public int CourseDurationInMonths => CourseDetails.Course.proposedTypicalDuration;
+        public int CourseDurationInMonths => _courseDetails.Course.proposedTypicalDuration;
 
         public DateTime CourseStartDate { get; internal set; }
 
