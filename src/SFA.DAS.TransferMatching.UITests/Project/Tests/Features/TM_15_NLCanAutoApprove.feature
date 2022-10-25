@@ -11,5 +11,4 @@ Scenario: TM_15_NL Can auto approve application when shown options
 	And the non levy employer can accept funding
 	Then the non levy employer can add apprentice to the pledgeApplication
 	Then the provider adds Ulns and approves the cohorts
-	Then the non levy employer can approve
 	Then Verify a new live apprenticeship record is created
