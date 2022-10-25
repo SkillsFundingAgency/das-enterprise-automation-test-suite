@@ -418,13 +418,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         }
 
 
-        [Then(@"the non levy employer can approve")]
-        public void ThenTheNonLevyEmployerCanApprove()
-        {
-            new EmployerStepsHelper(_context).Approve();
-        }
-
-
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
         {
