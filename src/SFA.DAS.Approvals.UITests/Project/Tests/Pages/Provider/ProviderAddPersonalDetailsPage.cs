@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderAddPersonalDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Personal details";
+        protected override string PageTitle => "Add personal details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private static By Uln => By.Id("Uln");

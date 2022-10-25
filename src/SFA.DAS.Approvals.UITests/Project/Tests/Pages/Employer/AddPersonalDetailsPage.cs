@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class AddPersonalDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Personal details";
+        protected override string PageTitle => "Add personal details";
 
         private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
@@ -60,6 +60,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
 
             return apprenticeCourseDataHelper.CourseStartDate;
+        }
+
+        public AddTrainingDetailsPage ContinueToAddTrainingDetailsPage()
+        {
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new AddTrainingDetailsPage(context);
         }
     }
 }
