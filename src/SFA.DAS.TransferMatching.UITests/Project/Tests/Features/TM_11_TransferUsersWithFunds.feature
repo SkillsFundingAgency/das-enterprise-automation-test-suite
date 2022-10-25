@@ -1,6 +1,5 @@
 ﻿Feature: TM_11_TransferUsersWithFunds
-
-@regression
+//The scenario is not valid anymore
 @transfermatching
 Scenario: TM_11_Do not display the ‘Apply for transfers funding’ section to levy-paying employers that are currently sending transfer funds
 	Given the levy employer who are currently sending transfer funds login

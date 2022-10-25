@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -32,7 +34,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly RestartWebDriverHelper _helper;
         private readonly string _tranferBaseUrl;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-
+        
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
@@ -233,13 +235,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EmployerFirstApproveAndNotifyTrainingProvider();
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
-
-            string pledgeApplicationId = _commitmentsSqlDataHelper.getPledgeApplicationId(cohortReference);
-
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(pledgeApplicationId));
-
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);  
         }
-
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
@@ -395,6 +393,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void LoginAsReceiver(EasAccountUser login)
         {
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
             _receiver = login.OrganisationName;
 
             _loginFromCreateAcccountPageHelper.Login(login, false);
@@ -403,7 +402,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private void LoginAsSender(EasAccountUser login)
         {
             _sender = login.OrganisationName;
-
             _loginFromCreateAcccountPageHelper.Login(login, true);
         }
 
@@ -415,10 +413,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             };
 
             _multipleAccountsLoginHelper.Login(login, true);
-
             _sender = login.OrganisationName;
-
             _receiver = login.SecondOrganisationName;
         }
+
+
+        [Then(@"Verify a new live apprenticeship record is created")]
+        public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
+        {
+           
+            var manageYourApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage();
+            manageYourApprenticePage.VerifyApprenticeExists();
+        }
+
+
     }
 }
