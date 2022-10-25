@@ -1,0 +1,83 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - "master"
+
+variables:
+- name: BuildConfiguration
+  value: release
+- name: BuildPlatform
+  value: any cpu
+- name: TestCategory
+  value: "TestCategory=coursesapi"
+- group: RELEASE Management Resources
+- group: Release Automation Suite Variables
+- name: Deploy
+  value: $[or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.Reason'], 'Manual'), eq(variables['Build.Reason'], 'PullRequest'))]
+  
+resources:
+  repositories:
+  - repository: self
+  - repository: das-platform-building-blocks
+    type: github
+    name: SkillsFundingAgency/das-platform-building-blocks
+    ref: refs/tags/2.0.3
+    endpoint: SkillsFundingAgency
+  - repository: das-platform-automation
+    type: github
+    name: SkillsFundingAgency/das-platform-automation
+    ref: refs/tags/5.1.2
+    endpoint: SkillsFundingAgency
+  pipelines:
+  - pipeline: das-enterprise-automation-test-suite
+    project: Digital Apprenticeship Service
+    source: das-enterprise-automation-test-suite
+    branch: master
+
+stages:
+- stage: Deploy_AT
+  displayName: Run test suite on AT
+  #condition: and(succeeded(), eq(variables.Deploy, 'true'))
+  variables:
+  - group: DevTest Management Resources
+  - group: AT DevTest Shared Resources
+  - group: AT Automation Suite Variables
+  jobs:
+  - template: pipeline-templates/job/test-api.yml
+    parameters:
+      Environment: AT
+      ServiceConnection: SFA-DAS-DevTest-ARM
+- stage: Deploy_TEST
+  displayName: Run test suite on TEST
+  variables:
+  - group: DevTest Management Resources
+  - group: TEST DevTest Shared Resources
+  - group: TEST Automation Suite Variables
+  jobs:
+  - template: pipeline-templates/job/test-api.yml
+    parameters:
+      Environment: TEST
+      ServiceConnection: SFA-DAS-DevTest-ARM
+- stage: Deploy_TEST2
+  displayName: Run test suite on TEST2
+  variables:
+  - group: DevTest Management Resources
+  - group: TEST2 DevTest Shared Resources
+  - group: TEST2 Automation Suite Variables
+  jobs:
+  - template: pipeline-templates/job/test-api.yml
+    parameters:
+      Environment: TEST2
+      ServiceConnection: SFA-DAS-DevTest-ARM
+- stage: Deploy_PP
+  displayName: Run test suite on PP
+  variables:
+  - group: PreProd Management Resources
+  - group: PreProd Shared Resources
+  - group: PreProd Automation Suite Variables
+  jobs:
+  - template: pipeline-templates/job/test-api.yml
+    parameters:
+      Environment: PP
+      ServiceConnection: SFA-DIG-PreProd-ARM
