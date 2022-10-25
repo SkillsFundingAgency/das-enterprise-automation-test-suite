@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     {
         private readonly List<CourseDetails> _availableCourses;
 
-        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
+        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician };
 
         public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, string[] tags) => _availableCourses = tags.Contains("selectstandardwithmultipleoptions") ? crsSqlhelper.GetApprenticeCourseWithMultipleOptions() : crsSqlhelper.GetApprenticeCourseWithNoOptions();
 
@@ -25,14 +25,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }
 
-        private CourseDetails AbleSeafarerStandardCourseOption => new CourseDetails 
-        {
-            Course = ("34", "Able seafarer (deck)", new DateTime(2015, 08, 27), 18, 9000) 
-        };
-
-        private CourseDetails SoftwareTesterStandardCourseOption => new CourseDetails
+        private CourseDetails SoftwareTester => new CourseDetails
         {
             Course = ("91", "Software tester", new DateTime(2016, 04, 21), 24, 18000)
+        };
+
+        private CourseDetails SoftwareDeveloper => new CourseDetails
+        {
+            Course = ("2", "Software developer", new DateTime(2021, 06, 01), 24, 18000)
+        };
+
+        private CourseDetails AbattoirWorker => new CourseDetails
+        {
+            Course = ("274", "Abattoir worker", new DateTime(2018, 05, 08), 16, 6000)
+        };
+        private CourseDetails SoftwareDevelopmentTechnician => new CourseDetails
+        {
+            Course = ("154", "Software development technician", new DateTime(2022, 05, 16), 18, 15000)
         };
     }
 }
