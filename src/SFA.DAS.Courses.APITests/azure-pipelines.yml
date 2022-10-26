@@ -36,9 +36,9 @@ stages:
 - stage: Deploy_TEST
   displayName: Run test suite on TEST
   variables:
-  - group: DevTest Management Resources
-  - group: TEST DevTest Shared Resources
+  
   - group: TEST Automation Suite Variables
+  - group: TEST DevTest Shared Resources
   jobs:
   - template: pipeline-templates/job/test-api.yml
     parameters:
@@ -47,7 +47,6 @@ stages:
 - stage: Deploy_TEST2
   displayName: Run test suite on TEST2
   variables:
-  - group: DevTest Management Resources
   - group: TEST2 DevTest Shared Resources
   - group: TEST2 Automation Suite Variables
   jobs:
@@ -58,7 +57,6 @@ stages:
 - stage: Deploy_PP
   displayName: Run test suite on PP
   variables:
-  - group: PreProd Management Resources
   - group: PreProd Shared Resources
   - group: PreProd Automation Suite Variables
   jobs:
