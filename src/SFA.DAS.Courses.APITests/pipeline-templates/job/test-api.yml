@@ -6,7 +6,7 @@ jobs:
 - deployment: RunAcceptanceTests
   pool:
     vmImage: 'windows-latest'
-  environment: ${{ parameters.Environment }}
+  environment: TEST_SUITE
   strategy:
     runOnce:
       deploy:
