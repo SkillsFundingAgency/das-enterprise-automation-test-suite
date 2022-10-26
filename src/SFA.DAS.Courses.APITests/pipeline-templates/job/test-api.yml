@@ -11,7 +11,7 @@ jobs:
     runOnce:
       deploy:
         steps:
-        - checkout: self
+        - checkout: das-platform-automation
         - task: ExtractFiles@1
           displayName: 'Extract files '
           inputs:
