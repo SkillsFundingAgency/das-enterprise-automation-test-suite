@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public List<CourseDetails> GetApprenticeCourseWithNoOptions() => GetApprenticeCourse("Options like '%core%'");
 
-        public List<CourseDetails> GetApprenticeCourseWithNoOptions(List<string> larsCode) => GetApprenticeCourse($" s.LarsCode in ({string.Join(',', larsCode)}) and Options like '%core%'");
+        public List<CourseDetails> GetApprenticeCourseWithNoOptions(List<string> larsCode) => larsCode.Count == 0 ? GetApprenticeCourseWithNoOptions() : GetApprenticeCourse($" s.LarsCode in ({string.Join(',', larsCode)}) and Options like '%core%'");
 
         private List<CourseDetails> GetApprenticeCourse(string optionsPredicate)
         {

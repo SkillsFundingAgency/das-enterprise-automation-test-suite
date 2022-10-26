@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(_datahelper));
 
-            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>().Ukprn);
+            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
 
             var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, _tags);
 
