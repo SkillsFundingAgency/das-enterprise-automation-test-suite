@@ -2,7 +2,7 @@ trigger:
   batch: true
   branches:
     include:
-      - "master"
+      - "DASD-9766-courses-api"
 
 variables:
 - name: BuildConfiguration
@@ -36,18 +36,6 @@ resources:
     branch: master
 
 stages:
-- stage: Deploy_AT
-  displayName: Run test suite on AT
-  #condition: and(succeeded(), eq(variables.Deploy, 'true'))
-  variables:
-  - group: DevTest Management Resources
-  - group: AT DevTest Shared Resources
-  - group: AT Automation Suite Variables
-  jobs:
-  - template: pipeline-templates/job/test-api.yml
-    parameters:
-      Environment: AT
-      ServiceConnection: SFA-DAS-DevTest-ARM
 - stage: Deploy_TEST
   displayName: Run test suite on TEST
   variables:
