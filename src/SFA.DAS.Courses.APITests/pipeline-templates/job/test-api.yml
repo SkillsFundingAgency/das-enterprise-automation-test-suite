@@ -17,7 +17,7 @@ jobs:
           inputs:
             archiveFilePatterns: '$(Pipeline.Workspace)/**/tests.zip'
             destinationFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
-        - task: esfadevops.Tokenization.custom-build-task.Tokenization@0
+        - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
           displayName: 'Tokenization: Transform file *.json'
           inputs:
             SourcePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
