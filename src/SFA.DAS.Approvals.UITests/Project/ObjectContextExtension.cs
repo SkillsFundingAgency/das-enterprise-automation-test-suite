@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.ConfigurationBuilder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string UpdateDynamicPauseGlobalRule = "updatedynamicpauseglobalrule";
         private const string CohortReferenceList = "cohortreferencelist";
         private const string BulkuploadApprentices = "bulkuploadapprentices";
+        private const string StartDate = "startDate";
         #endregion
 
         internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<ApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
@@ -61,6 +63,8 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             objectContext.Replace(CohortReferenceList, list);
         }
+
+        internal static void SetStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(StartDate, value);
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
         internal static void ReplaceCohortReference(this ObjectContext objectContext, string value) => objectContext.Replace(CohortReference, value);
@@ -119,5 +123,14 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void ResetIsSameApprentice(this ObjectContext objectContext) => objectContext.Remove<bool>(SameApprentice);
 
         internal static bool IsSameApprentice(this ObjectContext objectContext) => objectContext.KeyExists<bool>(SameApprentice);
+
+        internal static bool HasStartDate(this ObjectContext objectContext) => objectContext.KeyExists<bool>(StartDate);
+
+        public static DateTime GetStartDate(this ObjectContext objectContext) 
+        { 
+            var dateTimeString  = objectContext.Get<string>(StartDate);
+            DateTime.TryParse(dateTimeString, out var date);
+            return date;
+        }
     }
 }
