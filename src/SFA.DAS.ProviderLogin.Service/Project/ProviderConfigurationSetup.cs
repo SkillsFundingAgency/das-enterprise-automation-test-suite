@@ -7,11 +7,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ProviderLogin.Service
 {
     [Binding]
-    public class ProviderConfigurationSetup          
+    public class ProviderConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
-        
+
         public ProviderConfigurationSetup(ScenarioContext context)
         {
             _context = context;
@@ -23,7 +23,11 @@ namespace SFA.DAS.ProviderLogin.Service
         {
             _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
 
-            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
+            var portableFlexiJobProviderConfig = _configSection.GetConfigSection<PortableFlexiJobProviderConfig>();
+
+            portableFlexiJobProviderConfig.PortableFlexiJobCourseCode = new RoatpV2SqlDataHelper(_context.Get<DbConfig>()).GetPortableFlexiJobLarsCode(portableFlexiJobProviderConfig.Ukprn);
+
+            _context.SetPortableFlexiJobProviderConfig(portableFlexiJobProviderConfig);
 
             _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
 
