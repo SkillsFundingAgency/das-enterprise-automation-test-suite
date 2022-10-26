@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly ManageFundingEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-        private readonly ObjectContext _objectContext;
+        protected readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
@@ -54,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
 
-        internal HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
+        public HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
 
         public ApprenticesHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
         {

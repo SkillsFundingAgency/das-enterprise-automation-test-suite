@@ -2,7 +2,9 @@
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers
@@ -10,12 +12,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
     public class TransfersEmployerStepsHelper : EmployerStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly TransfersUser _transfersUser;
 
         public TransfersEmployerStepsHelper(ScenarioContext context) : base(context)
         {
             _context = context;
-            _transfersUser = context.GetUser<TransfersUser>();
         }
 
         public ApproveApprenticeDetailsPage OpenRejectedCohort() =>
@@ -28,9 +28,15 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ApproveTransfersRequest() => OpenTransferRequestDetailsPage().ApproveTransferRequest();
 
+        public void VerifyTransferConnectionRequestReceivedTaskLink() => GotoEmployerHomePage().VerifyTransferRequestReceivedTaskLink();
+
+        public void VerifyNoTransferRequestReceviedTaskLink() => GotoEmployerHomePage().VerifyNoTransferRequestReceviedTaskLink();
+
         protected override AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
-            return addAnApprenitcePage.StartNowToCreateApprenticeViaTransfersFunds().SelectYesIWantToUseTransferFunds(_transfersUser.OrganisationName);
+            return addAnApprenitcePage
+                .StartNowToCreateApprenticeViaTransfersFunds()
+                .SelectYesIWantToUseTransferFunds(_objectContext.GetTransferSenderOrganisationName());
         }
 
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()

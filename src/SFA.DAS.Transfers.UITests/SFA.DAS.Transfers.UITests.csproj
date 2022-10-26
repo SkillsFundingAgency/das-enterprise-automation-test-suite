@@ -32,6 +32,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\TR_04_06_TransfersConnectionJourney.feature.cs">
+	    <Visible>true</Visible>
+	    <DependentUpon>TR_04_06_TransfersConnectionJourney.feature</DependentUpon>
+	    <DesignTime>true</DesignTime>
+	    <AutoGen>true</AutoGen>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="appsettings.Environment.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -45,6 +54,13 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\TR_04_06_TransfersConnectionJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 
 </Project>

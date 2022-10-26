@@ -74,14 +74,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TR_04_01 Transfers - Sucessfully create Transfer Request between Employer Account" +
-            "s")]
+        [NUnit.Framework.DescriptionAttribute("TR_04_01 Transfers - Sucessfully create Transfer Connection between Employer Acco" +
+            "unts")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
-        public void TR_04_01Transfers_SucessfullyCreateTransferRequestBetweenEmployerAccounts()
+        public void TR_04_01Transfers_SucessfullyCreateTransferConnectionBetweenEmployerAccounts()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -90,8 +90,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
                     "addtransferslevyfunds",
                     "addsecondlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_01 Transfers - Sucessfully create Transfer Request between Employer Account" +
-                    "s", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_01 Transfers - Sucessfully create Transfer Connection between Employer Acco" +
+                    "unts", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -106,12 +106,22 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("We have two Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("First account creates transfer request to Second account and Second account accep" +
-                        "ts the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("First account creates a transfer connection request to Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("A transfer connection is established successfully between First account as Sender" +
-                        " and Second account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'1 connection request to review\' task link is displayed under Tasks pane for the " +
+                        "Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.When("Second account accepts the transfer connection request from First account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then("No connection request(s) to review task links are displayed under Tasks pane for " +
+                        "the Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("A transfer connection is established successfully between First account as Sender" +
+                        " and Second account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

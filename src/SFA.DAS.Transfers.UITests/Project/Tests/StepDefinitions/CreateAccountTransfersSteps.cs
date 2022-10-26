@@ -1,33 +1,43 @@
-﻿using System;
-using TechTalk.SpecFlow;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Transfers.UITests.Project.Helpers;
 using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
-using SFA.DAS.ConfigurationBuilder;
+using System;
 using System.Collections.Generic;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class CreateAccountTransfersSteps
     {
-        private readonly AccountCreationStepsHelper _approvalsStepsHelper;
-        private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+
+        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+        private readonly TransfersEmployerStepsHelper _employerStepsHelper;
+        private readonly TransfersProviderStepsHelper _providerStepsHelper;
+
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
-        private HomePage _homePage;
 
         private readonly Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
+        private HomePage _homePage;
 
         public CreateAccountTransfersSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _approvalsStepsHelper = new AccountCreationStepsHelper(context);
+
+            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
+            _employerStepsHelper = new TransfersEmployerStepsHelper(context);
+            _providerStepsHelper = new TransfersProviderStepsHelper(context);
+
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+
             _accountDetails = new Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)>();
         }
 
@@ -35,7 +45,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void GivenWeHaveEmployerAccounts(string number) => AccountsAreCreated(number);
 
         [Given(@"(First|Second|Third) is a Sender connected to (First|Second|Third) as a Receiver")]
-        public void GivenSenderIsConnectedToReceiver(string sender, string receiver) => SenderConnectsToReceiverAndReceiverAccepts(sender, receiver);
+        public void GivenSenderIsConnectedToReceiver(string sender, string receiver)
+        {
+            SenderConnectsToReceiverAndReceiverAccepts(sender, receiver);
+        }
 
         [When(@"(First|Second|Third) account creates transfer request to (First|Second|Third) account and (First|Second|Third) account accepts the request")]
         public void WhenFirstAccountCreatesConnectionRequestToSecondAccountAndSecondAccountAcceptsTheRequest(string sender, string receiver, string acceptor)
@@ -43,6 +56,39 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             if (receiver != acceptor) throw new ArgumentException("The acceptor must be the same as the reciever");
 
             SenderConnectsToReceiverAndReceiverAccepts(sender, receiver);
+        }
+
+        [When(@"(First|Second|Third) account creates a transfer connection request to (First|Second|Third) account")]
+        public void WhenSenderAccountCreatesTransferConnectionRequestToReceiverAccount(string sender, string receiver)
+        {
+            SenderConnectsToReceiver(GetAccountDetails(sender).orgName, GetAccountDetails(receiver).publicHashedAccountId);
+        }
+
+        [When(@"(First|Second|Third) account accepts the transfer connection request from (First|Second|Third) account")]
+        public void WhenReceiverAccountAcceptsTheTransferConnectionRequest(string receiver, string sender)
+        {
+            ReceiverAcceptsConnection(GetAccountDetails(receiver).orgName, GetAccountDetails(sender).orgName);
+        }
+
+        [Then(@"'1 connection request to review' task link is displayed under Tasks pane for the (First|Second|Third) account")]
+        public void ThenSingleTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        {
+            _homePage = GoToHomePage(GetAccountDetails(sender).orgName);
+            _homePage.VerifyTransferConnectionRequestsToReviewTaskLink(1);
+        }
+
+        [Then(@"'(.*) connection requests to review' task link is displayed under Tasks pane for the (First|Second|Third) account")]
+        public void ThenMultipleTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string count, string sender)
+        {
+            _homePage = GoToHomePage(GetAccountDetails(sender).orgName);
+            _homePage.VerifyTransferConnectionRequestsToReviewTaskLink(int.Parse(count));
+        }
+
+        [Then(@"No connection request\(s\) to review task links are displayed under Tasks pane for the (First|Second|Third) account")]
+        public void ThenNoTransferConnectionRequestsToReviewTaskLinksAreDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        {
+            _homePage = GoToHomePage(GetAccountDetails(sender).orgName);
+            _homePage.VerifyNoTransferConnectionRequestsToReviewTaskLinks();
         }
 
         [Then(@"A transfer connection is established successfully between (First|Second|Third) account as Sender and (First|Second|Third) account as Receiver")]
@@ -65,13 +111,112 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             }
         }
 
+        [When(@"Receiver (First|Second|Third) sends empty cohort using transfer funds from Sender (First|Second|Third) to the provider for review and approval")]
+        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string sender)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+        }
+
+        [When(@"Receiver (First|Second|Third) sends approved cohort using transfer funds from Sender (First|Second|Third) with (.*) apprentices to the provider for review and approval")]
+        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string sender, int numberOfApprentices)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
+            _employerStepsHelper.SetCohortReference(cohortReference);
+        }
+
+        [When(@"Provider adds an apprentice and approves the cohort")]
+        public void WhenProviderAddsAnApprenticesApprovesTheCohort() => _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
+
+        [When(@"Provider approves the cohort")]
+        public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();
+
+        [When(@"Receiver (First|Second|Third) approves the cohort")]
+        public void WhenReceiverApprovesTheCohort(string receiver)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.Approve();
+        }
+
+        [When(@"Sender (First|Second|Third) approves the cohort")]
+        public void WhenSenderApprovesTheCohort(string sender)
+        {
+            UpdateOrganisationName(GetAccountDetails(sender).orgName);
+            _employerStepsHelper.ApproveTransfersRequest();
+        }
+
+        [When(@"Sender (First|Second|Third) rejects the cohort")]
+        public void WhenSenderRejectsTheCohort(string sender)
+        {
+            UpdateOrganisationName(GetAccountDetails(sender).orgName);
+            _employerStepsHelper.RejectTransfersRequest();
+        }
+
+        [When(@"Receiver (First|Second|Third) edits and sends an approved cohort to the provider")]
+        public void WhenReceiverEditsAndSendsAnApprovedCohortToTheProvider(string receiver)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+
+            _employerStepsHelper.OpenRejectedCohort()
+                .SelectEditApprentice()
+                .EditApprenticePreApprovalAndSubmit()
+                .EmployerFirstApproveAndNotifyTrainingProvider();
+        }
+
+        [When(@"Receiver (First|Second|Third) sends a cohort to the provider for review and approval")]
+        public void WhenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
+        }
+
+        [Then(@"Receiver (First|Second|Third) has a new live apprenticeship record created")]
+        public void ThenVerifyReceiverHasANewLiveApprenticeshipRecordCreated(string receiver)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+
+            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+
+            manageYourApprenticePage.VerifyApprenticeExists();
+        }
+
+        [Then(@"'Transfer request received' task link is displayed under Tasks pane for the Sender (First|Second|Third) account")]
+        public void ThenTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        {
+            UpdateOrganisationName(GetAccountDetails(sender).orgName);
+
+            _employerStepsHelper.VerifyTransferConnectionRequestReceivedTaskLink();
+        }
+
+        [Then(@"No 'Transfer request received' task link is displayed under Tasks pane for the Sender (First|Second|Third) account")]
+        public void ThenNoTransferRequestReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        {
+            UpdateOrganisationName(GetAccountDetails(sender).orgName);
+
+            _employerStepsHelper.VerifyNoTransferRequestReceviedTaskLink();
+        }
+
+        [When(@"Provider approves the cohort and sends to recevier for approval")]
+        public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval() => _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+
         private void AccountsAreCreated(string noOfAccounts)
         {
-            _homePage = _approvalsStepsHelper.CreateUserAccount();
+            var integers = new Dictionary<string, int> { { "one", 1 }, { "two", 2 }, { "three", 3 } };
+            if (!integers.ContainsKey(noOfAccounts))
+                throw new Exception("Only one to three accounts are supported.");
 
-            _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg2, 1);
+            _homePage = _accountCreationStepsHelper.CreateUserAccount();
 
-            if (noOfAccounts == "three") _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg3, 2);
+            if(integers[noOfAccounts] > 1)
+            {
+                _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg2, 1);
+            }
+
+            if (integers[noOfAccounts] > 2)
+            {
+                _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg3, 2);
+            }
 
             SetAccountDetails(noOfAccounts);
         }
@@ -80,7 +225,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(orgName);
 
-            return _homePage = _approvalsStepsHelper.AddNewAccount(_homePage, index);
+            return _accountCreationStepsHelper.AddNewAccount(_homePage, index);
         }
 
         private void SetAccountDetails(string noOfAccounts)
@@ -101,15 +246,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             (string receiverOrganisationName, _, string receiverPublicAccountId) = GetAccountDetails(receiver);
 
             SenderConnectsToReceiver(senderOrganisationName, receiverPublicAccountId);
-            ReceiverAcceptsConnection(senderOrganisationName, receiverOrganisationName);
+            ReceiverAcceptsConnection(receiverOrganisationName, senderOrganisationName);
         }
 
         private void SenderConnectsToReceiver(string senderOrganisationName, string publicReceiverAccountId)
         {
-            // Sender connects to receiver 
-            UpdateOrganisationName(senderOrganisationName);
-
-            _homePage.GoToYourAccountsPage().GoToHomePage(senderOrganisationName);
+            _objectContext.SetTransferSenderOrganisationName(senderOrganisationName);
+            _homePage = GoToHomePage(senderOrganisationName);
 
             _homePage = OpenTransfers()
                 .ConnectWithReceivingEmployer()
@@ -119,12 +262,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
                 .GoToHomePage();
         }
 
-        private void ReceiverAcceptsConnection(string senderOrganisationName, string receiverOrganiationName)
+        private void ReceiverAcceptsConnection(string receiverOrganiationName, string senderOrganisationName)
         {
-            UpdateOrganisationName(receiverOrganiationName);
-
-            _homePage.GoToYourAccountsPage().GoToHomePage(receiverOrganiationName);
-
+            _objectContext.SetTransferReceiverOrganisationName(receiverOrganiationName);
+            _homePage = GoToHomePage(receiverOrganiationName);
             _homePage = OpenTransfers().ViewTransferConnectionRequestDetails(senderOrganisationName).AcceptTransferConnectionRequest().GoToHomePage();
         }
 
