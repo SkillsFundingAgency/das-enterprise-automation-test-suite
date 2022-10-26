@@ -15,8 +15,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+        private AddPersonalDetailsPage _addApprenticeDetailsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
+        private readonly FlexiJobUser _fjaaEmployerLevyUser;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
 
         public FlexiJobSteps(ScenarioContext context)
         {
@@ -24,10 +26,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _fjaaEmployerLevyUser = context.GetUser<FlexiJobUser>();
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _fjaaEmployerLevyUser);
         }
 
         [Given(@"an employer who is on Flexi-job agency register logins using exisiting Levy Account")]
-        public void GivenAnEmployerWhoIsOnFlexi_JobAgencyRegisterLoginsUsingExisitingLevyAccount() => _employerPortalLoginHelper.Login(_context.GetUser<FlexiJobUser>(), true);
+        public void GivenAnEmployerWhoIsOnFlexi_JobAgencyRegisterLoginsUsingExisitingLevyAccount() => _multipleAccountsLoginHelper.Login(_fjaaEmployerLevyUser, true);
 
         [When(@"employer selects Flexi-job agency radio button on Select Delivery Model screen")]
         public void GivenEmployerSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen()
@@ -38,8 +42,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
         public void ThenValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
         {
-            _addApprenticeDetailsPage.ValidateFlexiJobContent();
-            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
+            var addTrainingDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails();
+            addTrainingDetailsPage.ValidateFlexiJobContent();
+
+            _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
         }
 
         [Then(@"validate Flexi-job agency tag on Approve Apprentice Details page and send cohort to Provider for review")]
