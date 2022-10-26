@@ -63,11 +63,17 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .BackToTaskList();
         }
 
-        protected override CheckYourAnswersPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
             string employername)
         {
-            throw new System.NotImplementedException();
+            return createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterProviderContactDetailsTraineeship(optionalFields)
+                .BackToTaskList();
         }
+
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             createAdvertPage

@@ -12,13 +12,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
         private By SearchBox => By.CssSelector("div.das-autocomplete-wrap");
 
-        public ViewAllVacancyPage(ScenarioContext context) : base(context,false) { }
+        public ViewAllVacancyPage(ScenarioContext context) : base(context,true) { }
 
         public CreateAVacancyPage CreateVacancy()
-        {
-            //Waiting for traineeship page to appear from login
-            Thread.Sleep(3000);
-            
+        {            
             if (pageInteractionHelper.IsElementDisplayed(SearchBox))
             {
                 formCompletionHelper.Click(CreateVacancyLink);    

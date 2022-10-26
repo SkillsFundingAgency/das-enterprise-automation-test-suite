@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA);
 
-        protected abstract CheckYourAnswersPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername);
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createTraineeshipPage, string employername);
 
         protected WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
 
@@ -73,25 +73,33 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             bool disabilityConfidence)
         {
             var createTraineeshipPage = CreateNewTraineeshipVacancy();
-            
+
             createTraineeshipPage.VerifyAdvertSummarySectionStatus(NotStarted);
+
             createTraineeshipPage = AdvertOrVacancySummary(createTraineeshipPage);
 
             createTraineeshipPage.VerifyAdvertSummarySectionStatus(Completed);
 
             createTraineeshipPage.VerifyEmploymentDetailsSectionStatus(NotStarted);
-            
+
             createTraineeshipPage = EmploymentDetails(createTraineeshipPage, isEmployerAddress, "");
-            
+
             createTraineeshipPage.VerifyEmploymentDetailsSectionStatus(Completed);
 
             createTraineeshipPage.VerifySkillsandqualificationsSectionStatus(NotStarted);
+
             createTraineeshipPage = SkillsAndQualifications(createTraineeshipPage);
+
             createTraineeshipPage.VerifySkillsandqualificationsSectionStatus(Completed);
 
             createTraineeshipPage.VerifyAbouttheemployerSectionStatus(NotStarted);
-            
-            return SubmitAndSetVacancyReference(AboutTheEmployerTraineeship(createTraineeshipPage, employerName));
+
+            createTraineeshipPage = AboutTheEmployerTraineeship(createTraineeshipPage, employerName);
+
+            createTraineeshipPage.VerifyAbouttheemployerSectionStatus(Completed);
+
+            return CheckAndSubmitAdvert(createTraineeshipPage);
         }
+
     }
 }

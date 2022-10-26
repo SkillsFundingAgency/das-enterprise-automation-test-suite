@@ -69,13 +69,14 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
                 .BackToTaskList();
         }
         
-        protected override CheckYourAnswersPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername)
         {
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
                 .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
-                .EnterProviderContactDetailsTraineeship(optionalFields);
+                .EnterProviderContactDetailsTraineeship(optionalFields)
+                .BackToTaskList();
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
