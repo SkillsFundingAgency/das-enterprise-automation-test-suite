@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class CrsSqlhelper : SqlDbHelper
     {
-        public CrsSqlhelper(string crsDbConnectionString) : base(crsDbConnectionString) { }
+        public CrsSqlhelper(DbConfig dbConfig) : base(dbConfig.CRSDbConnectionString) { }
 
         public List<CourseDetails> GetApprenticeCourseWithMultipleOptions() => GetApprenticeCourse("Options NOT like '%core%' and Options like '%,%' and Options NOT like '%N/A%'");
 
         public List<CourseDetails> GetApprenticeCourseWithNoOptions() => GetApprenticeCourse("Options like '%core%'");
+
+        public List<CourseDetails> GetApprenticeCourseWithNoOptions(List<string> larsCode) => GetApprenticeCourse($" s.LarsCode in ({string.Join(',', larsCode)}) and Options like '%core%'");
 
         private List<CourseDetails> GetApprenticeCourse(string optionsPredicate)
         {
@@ -31,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             foreach (var item in result)
             {
-                availableCoursesFromDb.Add(new CourseDetails {Course = (item[0], item[1], DateTime.Parse(item[2]), int.Parse(item[3]), int.Parse(item[4])) });
+                availableCoursesFromDb.Add(new CourseDetails { Course = (item[0], item[1], DateTime.Parse(item[2]), int.Parse(item[3]), int.Parse(item[4])) });
             }
 
             return availableCoursesFromDb;

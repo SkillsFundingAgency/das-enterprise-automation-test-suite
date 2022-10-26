@@ -10,9 +10,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     {
         private readonly List<CourseDetails> _availableCourses;
 
+        private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
+
         public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician };
 
-        public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, string[] tags) => _availableCourses = tags.Contains("selectstandardwithmultipleoptions") ? crsSqlhelper.GetApprenticeCourseWithMultipleOptions() : crsSqlhelper.GetApprenticeCourseWithNoOptions();
+        public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
+        { 
+            _availableCourses = tags.Contains("selectstandardwithmultipleoptions") ? crsSqlhelper.GetApprenticeCourseWithMultipleOptions() : crsSqlhelper.GetApprenticeCourseWithNoOptions();
+
+            _portableFlexiJobAvailableCourses = crsSqlhelper.GetApprenticeCourseWithNoOptions(roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode());
+        }
+
+        public CourseDetails GetPortableFlexiJobCourseDetails() => RandomDataGenerator.GetRandomElementFromListOfElements(_portableFlexiJobAvailableCourses);
 
         public CourseDetails RandomCourse() => SelectACourse(null);
 

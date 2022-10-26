@@ -1,11 +1,13 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -46,7 +48,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(_datahelper));
 
-            var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig.CRSDbConnectionString), _tags);
+            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>().Ukprn);
+
+            var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, _tags);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 

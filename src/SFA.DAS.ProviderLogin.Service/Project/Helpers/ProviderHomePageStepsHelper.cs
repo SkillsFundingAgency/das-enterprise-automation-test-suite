@@ -1,22 +1,23 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
 {
     public class ProviderHomePageStepsHelper
     {
         private readonly ScenarioContext _context;
-        
+
         public ProviderHomePageStepsHelper(ScenarioContext context) => _context = context;
 
         public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_context.GetProviderConfig<ProviderConfig>(), newTab);
 
-        public ProviderHomePage GoToPortableFlexiJobProviderHomePage() => GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true); 
+        public ProviderHomePage GoToPortableFlexiJobProviderHomePage() => GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
 
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {

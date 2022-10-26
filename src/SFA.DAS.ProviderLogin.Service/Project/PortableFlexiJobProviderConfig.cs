@@ -1,7 +1,5 @@
-﻿namespace SFA.DAS.ProviderLogin.Service
+﻿namespace SFA.DAS.ProviderLogin.Service.Project;
+
+public class PortableFlexiJobProviderConfig : ProviderConfig
 {
-    public class PortableFlexiJobProviderConfig : ProviderConfig
-    {
-        public string PortableFlexiJobCourseCode { get; set; }
-    }
 }

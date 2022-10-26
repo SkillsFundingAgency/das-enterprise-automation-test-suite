@@ -23,12 +23,6 @@ namespace SFA.DAS.ProviderLogin.Service
         {
             _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
 
-            var portableFlexiJobProviderConfig = _configSection.GetConfigSection<PortableFlexiJobProviderConfig>();
-
-            portableFlexiJobProviderConfig.PortableFlexiJobCourseCode = new RoatpV2SqlDataHelper(_context.Get<DbConfig>()).GetPortableFlexiJobLarsCode(portableFlexiJobProviderConfig.Ukprn);
-
-            _context.SetPortableFlexiJobProviderConfig(portableFlexiJobProviderConfig);
-
             _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
 
             _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
