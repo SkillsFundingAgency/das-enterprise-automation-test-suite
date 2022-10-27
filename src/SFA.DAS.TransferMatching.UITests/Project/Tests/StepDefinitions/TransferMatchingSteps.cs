@@ -232,7 +232,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
                 .EmployerSelectsAStandard()
-                .SubmitValidApprenticeDetails()
+                .SubmitValidPersonalDetails()
                 .SubmitValidTrainingDetails(false)
                 .EmployerFirstApproveAndNotifyTrainingProvider();
 

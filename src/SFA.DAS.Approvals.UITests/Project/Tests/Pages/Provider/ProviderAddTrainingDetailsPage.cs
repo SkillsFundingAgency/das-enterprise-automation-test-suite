@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
         {
             ClickStartMonth();
 

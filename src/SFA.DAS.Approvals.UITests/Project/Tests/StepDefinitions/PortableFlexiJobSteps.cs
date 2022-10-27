@@ -41,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer validates Portable flexi-job content on Add Apprentice Details page")]
         public void ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage()
         {
-            var addTrainingDetailsPage = _addPersonalDetailsPage.SubmitValidApprenticeDetails();
+            var addTrainingDetailsPage = _addPersonalDetailsPage.SubmitValidPersonalDetails();
             addTrainingDetailsPage.ValidatePortableFlexiJobContent();
 
             _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);

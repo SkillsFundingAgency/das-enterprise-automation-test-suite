@@ -169,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
-            var providerApproveApprenticeDetailsPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticePersonalDetails().SubmitValidApprenticeTrainingDetails();
+            var providerApproveApprenticeDetailsPage = _providerAddApprenticeDetailsPage.SubmitValidPersonalDetails().SubmitValidTrainingDetails();
 
             for (int i = 1; i < numberOfApprentices; i++)
             {
@@ -183,8 +183,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .VerifySucessMessage()
                     .GoToSelectStandardPage()
                     .ProviderSelectsAStandard()
-                    .SubmitValidApprenticePersonalDetails()
-                    .SubmitValidApprenticeTrainingDetails();
+                    .SubmitValidPersonalDetails()
+                    .SubmitValidTrainingDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
@@ -198,8 +198,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             {
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                     .ProviderSelectsAStandard()
-                    .SubmitValidApprenticePersonalDetails()
-                    .SubmitValidApprenticeTrainingDetails();
+                    .SubmitValidPersonalDetails()
+                    .SubmitValidTrainingDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
@@ -216,10 +216,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddPersonalDetailsPage providerAddApprenticeDetailsPage)
         {
-            var providerAddApprenticeTrainingDetailsPage = providerAddApprenticeDetailsPage.SubmitValidApprenticePersonalDetails();
+            var providerAddApprenticeTrainingDetailsPage = providerAddApprenticeDetailsPage.SubmitValidPersonalDetails();
                 providerAddApprenticeTrainingDetailsPage.ValidateFlexiJobContent();
 
-            var providerApproveApprenticeDetailsPage = providerAddApprenticeTrainingDetailsPage.SubmitValidApprenticeTrainingDetails();
+            var providerApproveApprenticeDetailsPage = providerAddApprenticeTrainingDetailsPage.SubmitValidTrainingDetails();
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, 1);
         }

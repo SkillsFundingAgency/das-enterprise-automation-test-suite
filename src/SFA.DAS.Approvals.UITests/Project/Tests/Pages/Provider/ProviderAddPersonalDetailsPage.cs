@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddPersonalDetailsPage(ScenarioContext context) : base(context)  { }
 
-        internal ProviderAddTrainingDetailsPage SubmitValidApprenticePersonalDetails()
+        internal ProviderAddTrainingDetailsPage SubmitValidPersonalDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
