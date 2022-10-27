@@ -11,7 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private By Uln => By.Id("Uln");
-        private By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 

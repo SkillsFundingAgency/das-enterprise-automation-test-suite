@@ -73,6 +73,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider adds Ulns and Opt the learners into the pilot")]
         public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
 
+        [When(@"the provider adds Ulns and opts the learners out of the pilot")]
+        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
+
+        [When(@"Provider approves the cohort")]
         [Then(@"Provider approves the cohort")]
         public void ThenProviderApprovesTheCohort() => _providerApproveApprenticeDetailsPage.SubmitApprove();
 
