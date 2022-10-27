@@ -72,7 +72,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 
-        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
+        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("RELEASE_ENVIRONMENTNAME") : GetHostingConfigSection("local_EnvironmentName");
 
         private static string GetProjectName() => GetHostingConfigSection("ProjectName");
 
