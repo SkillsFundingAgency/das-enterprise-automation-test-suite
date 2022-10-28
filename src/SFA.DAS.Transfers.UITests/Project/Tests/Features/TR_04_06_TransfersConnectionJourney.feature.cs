@@ -111,22 +111,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("First account creates a transfer connection request to Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("\'1 connection request to review\' task link is displayed under Tasks pane for the " +
-                        "Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Second account has \'1 connection request to review\' task link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.When("Third account creates a transfer connection request to Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.Then("\'2 connection requests to review\' task link is displayed under Tasks pane for the" +
-                        " Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Second account has \'2 connection requests to review\' task link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
  testRunner.When("Second account accepts the transfer connection request from First account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("\'1 connection request to review\' task link is displayed under Tasks pane for the " +
-                        "Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Second account has \'1 connection request to review\' task link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
  testRunner.And("A transfer connection is established successfully between First account as Sender" +
@@ -136,8 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Second account accepts the transfer connection request from Third account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
- testRunner.Then("No connection request(s) to review task links are displayed under Tasks pane for " +
-                        "the Second account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Second account has no \'... connection request(s) to review\' task link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 20
  testRunner.And("A transfer connection is established successfully between Third account as Sender" +

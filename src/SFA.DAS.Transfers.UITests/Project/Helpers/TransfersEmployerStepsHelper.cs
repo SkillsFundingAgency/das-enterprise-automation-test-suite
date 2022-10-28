@@ -28,9 +28,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ApproveTransfersRequest() => OpenTransferRequestDetailsPage().ApproveTransferRequest();
 
-        public void VerifyTransferConnectionRequestReceivedTaskLink() => GotoEmployerHomePage().VerifyTransferRequestReceivedTaskLink();
+        public void VerifyApprenticeChangeToReviewTaskLink(int numberOfTasks) => GotoEmployerHomePage().VerifyTaskCount("ApprenticeChangeToReview", numberOfTasks);
+        
+        public void VerifyCohortRequestReadyForApprovalTaskLink(int numberOfTasks) => GotoEmployerHomePage().VerifyTaskCount("CohortRequestReadyForApproval", numberOfTasks);
 
-        public void VerifyNoTransferRequestReceviedTaskLink() => GotoEmployerHomePage().VerifyNoTransferRequestReceviedTaskLink();
+        public void VerifyReviewConnectionRequestTaskLink(int numberOfTasks) => GotoEmployerHomePage().VerifyTaskCount("ReviewConnectionRequest", numberOfTasks);
+
+        public void VerifyTransferRequestReceivedTaskLink(int numberOfTasks) => GotoEmployerHomePage().VerifyTaskCount("TransferRequestReceived", numberOfTasks);
 
         protected override AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {

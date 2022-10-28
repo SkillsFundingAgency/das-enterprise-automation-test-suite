@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -21,9 +24,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By TaskList => By.XPath("//div[@id='tasks']");
         private By StartAddingApprenticesNowTaskLink => By.PartialLinkText("Start adding apprentices now");
-        private By ConnectionRequestToReviewTaskLink => By.XPath($"//ul/li/span[contains(.,'connection request to review')]");
-        private By ConnectionRequestsToReviewTaskLink => By.XPath($"//ul/li/span[contains(.,'connection requests to review')]");
-        private By ConnectionRequestsCountToReviewTaskLink(int count) => By.XPath($"//div[@id='tasks']/ul/li/span[contains(.,'{count} connection request{(count > 1 ? "s" : string.Empty)} to review')]");
+
+        private By ApprenticeChangeToReviewTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'apprentice change{(multiple ? "s" : string.Empty)} to review')]");
+        private By CohortRequestReadyForApprovalTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'cohort request{(multiple ? "s" : string.Empty)} ready for approval')]");
+
+        private By ReviewConnectionRequestTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'connection request{(multiple ? "s" : string.Empty)} to review')]");
+
         private By TransferRequestReceivedTaskLink => By.XPath("//ul/li/span[contains(.,'Transfer request received')]");
         #endregion
 
@@ -59,21 +65,51 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyElement(StartAddingApprenticesNowTaskLink);
 
-        public void VerifyTransferConnectionRequestsToReviewTaskLink(int count) => VerifyElement(ConnectionRequestsCountToReviewTaskLink(count));
-
-        public void VerifyNoTransferConnectionRequestsToReviewTaskLinks()
+        public void VerifyTaskCount(string taskType, int expectedNumberOfTasks)
         {
-            var taskList = pageInteractionHelper.FindElement(TaskList);
-            Assert.Zero(pageInteractionHelper.FindElements(taskList, ConnectionRequestToReviewTaskLink).Count);
-            Assert.Zero(pageInteractionHelper.FindElements(taskList, ConnectionRequestsToReviewTaskLink).Count);
+            int currentNumberOfTasks = GetTaskCount(taskType);
+            
+            if (currentNumberOfTasks != expectedNumberOfTasks)
+                throw new Exception($"The task type {taskType} was expected to have {expectedNumberOfTasks} tasks but currently has {currentNumberOfTasks} task");
         }
 
-        public void VerifyTransferRequestReceivedTaskLink() => VerifyElement(TransferRequestReceivedTaskLink);
-
-        public void VerifyNoTransferRequestReceviedTaskLink()
+        public int GetTaskCount(string taskType)
         {
             var taskList = pageInteractionHelper.FindElement(TaskList);
-            Assert.Zero(pageInteractionHelper.FindElements(taskList, TransferRequestReceivedTaskLink).Count);
+            switch (taskType)
+            {
+                case "ApprenticeChangeToReview":
+                    return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, ApprenticeChangeToReviewTaskLink(false), true).FirstOrDefault() ??
+                        pageInteractionHelper.FindElements(taskList, ApprenticeChangeToReviewTaskLink(true), true).FirstOrDefault(), true); ;
+
+                case "CohortRequestReadyForApproval":
+                    return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, CohortRequestReadyForApprovalTaskLink(false), true).FirstOrDefault() ?? 
+                        pageInteractionHelper.FindElements(taskList, CohortRequestReadyForApprovalTaskLink(true), true).FirstOrDefault(), true);;
+
+                case "ReviewConnectionRequest":
+                    return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, ReviewConnectionRequestTaskLink(false), true).FirstOrDefault() ??
+                        pageInteractionHelper.FindElements(taskList, ReviewConnectionRequestTaskLink(true), true).FirstOrDefault(), true);
+
+                case "TransferRequestReceived":
+                    return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, TransferRequestReceivedTaskLink, true).FirstOrDefault(), false);
+            }
+
+            return 0;
+        }
+
+        private int GetCurrentNumberOfTasks(IWebElement taskLink, bool hasItemsDueCount)
+        {
+            if(taskLink != null && hasItemsDueCount)
+            {
+                var match = Regex.Match(taskLink.Text, "^(\\d+).*\r?$", RegexOptions.Multiline);
+                return match.Success && match.Groups.Count > 0 ? int.Parse(match.Groups[1].Value) : 0;
+            }
+            else if(taskLink != null)
+            {
+                return 1;
+            }
+
+            return 0;
         }
     }
 }

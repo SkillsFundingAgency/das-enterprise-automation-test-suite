@@ -70,27 +70,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             ReceiverAcceptsConnection(GetAccountDetails(receiver).orgName, GetAccountDetails(sender).orgName);
         }
 
-        [Then(@"'1 connection request to review' task link is displayed under Tasks pane for the (First|Second|Third) account")]
-        public void ThenSingleTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
-        {
-            _homePage = GoToHomePage(GetAccountDetails(sender).orgName);
-            _homePage.VerifyTransferConnectionRequestsToReviewTaskLink(1);
-        }
-
-        [Then(@"'(.*) connection requests to review' task link is displayed under Tasks pane for the (First|Second|Third) account")]
-        public void ThenMultipleTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string count, string sender)
-        {
-            _homePage = GoToHomePage(GetAccountDetails(sender).orgName);
-            _homePage.VerifyTransferConnectionRequestsToReviewTaskLink(int.Parse(count));
-        }
-
-        [Then(@"No connection request\(s\) to review task links are displayed under Tasks pane for the (First|Second|Third) account")]
-        public void ThenNoTransferConnectionRequestsToReviewTaskLinksAreDisplayedUnderTasksPaneForTheSenderAccount(string sender)
-        {
-            _homePage = GoToHomePage(GetAccountDetails(sender).orgName);
-            _homePage.VerifyNoTransferConnectionRequestsToReviewTaskLinks();
-        }
-
         [Then(@"A transfer connection is established successfully between (First|Second|Third) account as Sender and (First|Second|Third) account as Receiver")]
         public void ThenATransferConnectionIsEstablishedSuccessfullyBetweenFirstAccountAsSenderAndSecondAccountAsReceiver(string sender, string receiver)
         {
@@ -181,24 +160,74 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             manageYourApprenticePage.VerifyApprenticeExists();
         }
 
+        [Then(@"Receiver (First|Second|Third) has '(.*) apprentice change to review' task link")]
+        [Then(@"Receiver (First|Second|Third) has '(.*) apprentice changes to review' task link")]
+        public void ThenApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.VerifyApprenticeChangeToReviewTaskLink(numberOfTasks);
+        }
+
+        [Then(@"Receiver (First|Second|Third) has no '... apprentice change\(s\) to review' task link")]
+        public void ThenNoApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.VerifyApprenticeChangeToReviewTaskLink(0);
+        }
+
+        [Then(@"Receiver (First|Second|Third) has '(.*) cohort request ready for approval' task link")]
+        [Then(@"Receiver (First|Second|Third) has '(.*) cohort requests ready for approval' task link")]
+        public void ThenCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.VerifyCohortRequestReadyForApprovalTaskLink(numberOfTasks);
+        }
+
+        [Then(@"Receiver (First|Second|Third) has no '... cohort request\(s\) ready for approval' task link")]
+        public void ThenNoCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.VerifyCohortRequestReadyForApprovalTaskLink(0);
+        }
+
+        [Then(@"(First|Second|Third) account has '(.*) connection request to review' task link")]
+        [Then(@"(First|Second|Third) account has '(.*) connection requests to review' task link")]
+        public void ThenConnectionRequestsToReviewTaskLinkIsDisplayedUnderTasksPaneForTheAccount(string account, int numberOfTasks)
+        {
+            UpdateOrganisationName(GetAccountDetails(account).orgName);
+            _employerStepsHelper.VerifyReviewConnectionRequestTaskLink(numberOfTasks);
+        }
+
+        [Then(@"(First|Second|Third) account has no '... connection'")]
+        [Then(@"(First|Second|Third) account has no '... connection request\(s\) to review' task link")]
+        public void ThenNoConnectionRequestsToReviewTaskLinksIsDisplayedUnderTasksPaneForTheAccount(string account)
+        {
+            UpdateOrganisationName(GetAccountDetails(account).orgName);
+            _employerStepsHelper.VerifyReviewConnectionRequestTaskLink(0);
+        }
+
         [Then(@"'Transfer request received' task link is displayed under Tasks pane for the Sender (First|Second|Third) account")]
-        public void ThenTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        public void ThenTransferRequestsReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
         {
             UpdateOrganisationName(GetAccountDetails(sender).orgName);
-
-            _employerStepsHelper.VerifyTransferConnectionRequestReceivedTaskLink();
+            _employerStepsHelper.VerifyTransferRequestReceivedTaskLink(1);
         }
 
         [Then(@"No 'Transfer request received' task link is displayed under Tasks pane for the Sender (First|Second|Third) account")]
-        public void ThenNoTransferRequestReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        public void ThenNoTransferRequestsReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
         {
             UpdateOrganisationName(GetAccountDetails(sender).orgName);
-
-            _employerStepsHelper.VerifyNoTransferRequestReceviedTaskLink();
+            _employerStepsHelper.VerifyTransferRequestReceivedTaskLink(0);
         }
 
         [When(@"Provider approves the cohort and sends to recevier for approval")]
         public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval() => _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+
+        [When(@"Provider edits the apprentice Name")]
+        public void WhenProviderEditsTheApprenticeName()
+        {
+            _providerStepsHelper.EditApprentice();
+        }
 
         private void AccountsAreCreated(string noOfAccounts)
         {
