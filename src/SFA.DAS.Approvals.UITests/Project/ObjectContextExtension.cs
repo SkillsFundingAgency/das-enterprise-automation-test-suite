@@ -32,6 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string CohortReferenceList = "cohortreferencelist";
         private const string BulkuploadApprentices = "bulkuploadapprentices";
         private const string StartDate = "startDate";
+        private const string UlnOltd = "UlnOltd";
         #endregion
 
         internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<ApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
@@ -63,8 +64,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             objectContext.Replace(CohortReferenceList, list);
         }
-
-        internal static void SetStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(StartDate, value);
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
         internal static void ReplaceCohortReference(this ObjectContext objectContext, string value) => objectContext.Replace(CohortReference, value);
@@ -124,6 +123,8 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static bool IsSameApprentice(this ObjectContext objectContext) => objectContext.KeyExists<bool>(SameApprentice);
 
+        internal static void SetStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(StartDate, value);
+
         internal static bool HasStartDate(this ObjectContext objectContext) => objectContext.KeyExists<bool>(StartDate);
 
         public static DateTime GetStartDate(this ObjectContext objectContext) 
@@ -132,5 +133,11 @@ namespace SFA.DAS.Approvals.UITests.Project
             DateTime.TryParse(dateTimeString, out var date);
             return date;
         }
+
+        internal static string GetUlnForOLTD(this ObjectContext objectContext) => objectContext.Get<string>(UlnOltd);
+
+        internal static bool HasUlnForOLTD(this ObjectContext objectContext) => objectContext.KeyExists<bool>(UlnOltd);
+
+        internal static void SetUlnForOLTD(this ObjectContext objectContext, string value) => objectContext.Replace(UlnOltd, value);
     }
 }

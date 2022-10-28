@@ -23,7 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterDob();
 
-            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
+            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
 
             formCompletionHelper.Click(ContinueButton);
 

@@ -45,6 +45,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToString(TryGetDataAsObject(query, title));
         }
 
+        public string GetApprenticeshipULN(string reference)
+        {
+            string query = $@"SELECT top (1) ULN FROM Commitment cmt
+                                INNER JOIN Apprenticeship app
+                                ON cmt.id = app.CommitmentId
+                                WHERE cmt.Reference = '{reference}'
+                                ORDER BY app.CreatedOn DESC";
+
+            return Convert.ToString(TryGetDataAsObject(query, reference));
+        }
+
+        public int GetApprenticeshipCountFromULN(string ULN)
+        {
+            string query = $@"SELECT count(*) ID FROM Apprenticeship app
+                                WHERE app.ULN = '{ULN}'";
+
+            return Convert.ToInt32(TryGetDataAsObject(query, ULN));
+        }
+
         public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
         {
             string query = $@"SELECT Reference FROM Commitment cmt

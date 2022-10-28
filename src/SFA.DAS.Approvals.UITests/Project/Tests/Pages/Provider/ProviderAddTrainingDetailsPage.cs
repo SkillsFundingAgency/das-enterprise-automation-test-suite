@@ -22,7 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             ClickStartMonth();
 
-            EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+            if (objectContext.HasStartDate()) EnterStartDate(objectContext.GetStartDate());
+            else  EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
 
@@ -40,6 +41,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
+
+        internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
+        {
+            ClickStartMonth();
+     
+            EnterStartDate(objectContext.GetStartDate());
+
+            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+
+            EnterTrainingCostAndEmpReference();
+
+            bool rpl = CheckRPLCondition(false);
+
+            formCompletionHelper.ClickElement(ContinueButton);
+
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
+
+            return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
+        }
+
+
 
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
         {
