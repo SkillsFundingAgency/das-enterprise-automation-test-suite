@@ -97,7 +97,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
         {
-            throw new System.NotImplementedException();
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)

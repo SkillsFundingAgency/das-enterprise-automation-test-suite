@@ -100,6 +100,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
             return CheckAndSubmitAdvert(createTraineeshipPage);
         }
-
     }
 }

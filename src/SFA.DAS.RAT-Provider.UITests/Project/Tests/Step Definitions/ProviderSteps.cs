@@ -16,9 +16,6 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Step_Definitions
         [Then(@"Provider can make the application unsuccessful")]
         public void ThenProviderCanMakeTheApplicationUnsuccessful() => _providerStepsHelper.ApplicantUnsucessful();
 
-        [Then(@"the Provider verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
-        public void ThenTheProviderVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _providerStepsHelper.VerifyWageType(wageType);
-
         [Then(@"Provider can view the refered vacancy")]
         public void ThenProviderCanViewTheReferedVacancy() => _providerStepsHelper.ViewReferVacancy();
     }

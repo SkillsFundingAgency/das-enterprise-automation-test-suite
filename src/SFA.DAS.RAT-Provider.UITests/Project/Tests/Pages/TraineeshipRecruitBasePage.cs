@@ -22,16 +22,4 @@ public abstract class TraineeshipRecruitBasePage : VerifyBasePage
         Ukprn = context.Get<ObjectContext>().Get("ukprn");
         ProviderConfig = context.GetProviderConfig<ProviderConfig>();
     }
-    
-    public ViewAllVacancyPage GoToViewAllVacancyPage()
-    {
-        Thread.Sleep(3000);
-        
-        if (pageInteractionHelper.IsElementDisplayed(ViewAllVacancy))
-        {
-            formCompletionHelper.Click(ViewAllVacancy);    
-        }
-
-        return new ViewAllVacancyPage(context);
-    }
 }

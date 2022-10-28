@@ -116,7 +116,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy() => GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
         {
-            throw new System.NotImplementedException();
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
@@ -132,10 +132,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
                 .SelectApplicationMethod_Employer(isApplicationMethodFAA);
 
-        protected override CheckYourAnswersPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
             string employername)
         {
-            throw new System.NotImplementedException();
+            return createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterProviderContactDetailsTraineeship(optionalFields)
+                .BackToTaskList();
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 

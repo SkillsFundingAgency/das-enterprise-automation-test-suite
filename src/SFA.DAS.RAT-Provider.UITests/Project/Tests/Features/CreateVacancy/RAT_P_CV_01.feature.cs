@@ -99,8 +99,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-testRunner.Then("the Provider creates traineeship vacancy through View all your traineeship vacanc" +
-                        "ies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("the Provider creates traineeship vacancy through View all your traineeship vacanc" +
+                        "ies page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

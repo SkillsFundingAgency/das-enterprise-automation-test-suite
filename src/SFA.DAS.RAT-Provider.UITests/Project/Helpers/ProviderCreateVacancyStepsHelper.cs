@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 {
-    public class ProviderCreateVacancyStepsHelper : CreateAdvertVacancyBaseStepsHelper
+    public class ProviderTraineeshipCreateVacancyStepsHelper : CreateAdvertVacancyBaseStepsHelper
     {
         private readonly ScenarioContext _context;
 
@@ -17,31 +17,18 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         private readonly bool _newTab;
 
-        public ProviderCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
+        public ProviderTraineeshipCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
 
-        public ProviderCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : base()
+        public ProviderTraineeshipCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : base()
         {
             _context = context;
             _newTab = newTab;
             _hashedid = string.Empty;
         }
-        public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername, string hashedid)
-        {
-            _hashedid = hashedid;
 
-            return CreateANewVacancy(employername);
-        }
-
-        public VacancyReferencePage CreateANewVacancyForRandomEmployer() => CreateANewVacancy(true);
         public VacancyReferencePage CreateANewTraineeshipVacancy() => CreateANewTraineeshipVacancy(string.Empty, false);
 
-        public VacancyReferencePage CreateAnonymousVacancy() => CreateANewVacancy(RAAV2Const.Anonymous);
-
         public VacancyReferencePage CreateOfflineVacancy() => CreateANewVacancy(false);
-
-        public VacancyReferencePage CreateVacancyForWageType(string wageType) => CreateANewAdvertOrVacancy(string.Empty, true, wageType, true);
-
-        private VacancyReferencePage CreateANewVacancy(string employername) => CreateANewVacancy(employername, true);
 
         private VacancyReferencePage CreateANewVacancy(bool isApplicationMethodFAA) => CreateANewVacancy(string.Empty, isApplicationMethodFAA);
 
