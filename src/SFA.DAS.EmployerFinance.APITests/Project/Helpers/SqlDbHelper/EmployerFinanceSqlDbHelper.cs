@@ -1,0 +1,69 @@
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers
+{
+    public class EmployerFinanceSqlDbHelper : SqlDbHelper
+    {
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+
+        public EmployerFinanceSqlDbHelper(DbConfig dbConfig, ScenarioContext context) : base(dbConfig.FinanceDbConnectionString)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+        }
+
+        public string GetAccountId()
+        {
+            var accountId = GetDataAsString($"Select top (1) HashedId from [employer_account].[Account] Where [ApprenticeshipEmployerType] = 1  order by Id desc");
+            _objectContext.SetAccountId(accountId);
+            return accountId;
+        }
+
+        public string GetInternalAccountId()
+        {
+            var internalAccountId = GetDataAsString($"Select top (1) Id  from [employer_account].[Account] Where [ApprenticeshipEmployerType] = 1  order by Id desc");
+            _objectContext.SetInternalAccountId(internalAccountId);
+            return internalAccountId;
+        }
+
+        public string GetLegalEntityId()
+        {
+            var legalEntityId = GetDataAsString($"SELECT  top (1) LegalEntityId FROM [employer_account].[AccountLegalEntity]  Where AccountId = {_objectContext.GetInternalAccountId()}");
+            _objectContext.SetLegalEntityId(legalEntityId);
+            return legalEntityId;
+        }
+
+        public string GetpayeSchemeRef()
+        {
+            var payeScheme = GetDataAsString($"Select TOP 1 paye.Ref  from employer_account.Paye paye  INNER JOIN employer_account.AccountHistory ah ON ah.PayeRef = paye.Ref " +
+                $"INNER JOIN employer_account.account a ON a.Id = ah.AccountId WHERE a.HashedId = '{_objectContext.GetAccountId()}'");
+
+            return payeScheme;
+        }
+
+        public List<object[]> GetAgreementId()
+        {
+            var agreementId = GetListOfDataAsObject(
+                $"	SELECT ale.PublicHashedId as AccountLegalEntityPublicHashedId , ea.Id" +
+                $"  FROM [employer_account].[EmployerAgreement] ea" +
+                $"  JOIN[employer_account].[AccountLegalEntity] ale " +
+                $"  ON ale.Id = ea.AccountLegalEntityId " +
+                $"  AND ale.Deleted IS NULL " +
+                $"  JOIN[employer_account].[LegalEntity] le  ON le.Id = ale.LegalEntityId" +
+                $"  JOIN[employer_account].[EmployerAgreementTemplate] eat  ON eat.Id = ea.TemplateId " +
+                $"  JOIN[employer_account].Account acc  on  acc.Id = ale.AccountId" +
+                $"  WHERE acc.Id = {_objectContext.GetInternalAccountId()} AND ea.ExpiredDate is Null ");
+
+            return agreementId;
+        }
+
+        public string GetUserEmail()
+        {
+            return GetDataAsString("Select top 1 Email from [employer_account].[User] order by Id desc");
+        }
+    }
+}
