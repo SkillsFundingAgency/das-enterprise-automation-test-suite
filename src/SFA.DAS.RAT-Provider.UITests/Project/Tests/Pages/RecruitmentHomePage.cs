@@ -31,8 +31,6 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(RecruitTraineesLink);
 
-            //ClickIfPirenIsDisplayed();
-
             return new TraineeshipRecruitHomePage(context);
         }
 

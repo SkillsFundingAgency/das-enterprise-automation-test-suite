@@ -11,8 +11,6 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         public ProviderStepsHelper(ScenarioContext context) : base(context) => _stepsHelper = new StepsHelper(_context);
 
-        public ProviderVacancySearchResultPage SearchVacancy() => GoToTraineeshipHomePage().SearchVacancy();
-
         internal void ViewReferVacancy() => GoToTraineeshipHomePage().SearchReferAdvertTitle();
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
