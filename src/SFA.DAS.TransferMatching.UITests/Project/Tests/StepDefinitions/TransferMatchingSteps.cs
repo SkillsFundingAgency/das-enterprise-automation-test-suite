@@ -13,6 +13,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -227,7 +228,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
-            var apprenticeDetailsApprovedPage = _useTransferFundsPage.ClickOnStartNowButton()
+            var apprenticeDetailsApprovedPage = new UseTransferFundsPage(_context).ClickOnStartNowButton()
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
@@ -236,13 +237,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EmployerFirstApproveAndNotifyTrainingProvider();
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
-
-            string pledgeApplicationId = _commitmentsSqlDataHelper.getPledgeApplicationId(cohortReference);
-
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(pledgeApplicationId));
-
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
         }
-
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
@@ -425,5 +422,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _receiver = login.SecondOrganisationName;
         }
+
+        [Then(@"Verify a new live apprenticeship record is created")]
+        public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
+        {
+            UpdateOrganisationName(_receiver);
+
+            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+
+            manageYourApprenticePage.VerifyApprenticeExists();
+        }
+
     }
 }
