@@ -1,4 +1,5 @@
-﻿using SFA.DAS.API.Framework;
+﻿using RestSharp;
+using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
 using SFA.DAS.ConfigurationBuilder;
 using System.Net;
@@ -16,6 +17,11 @@ namespace SFA.DAS.EmployerFinance.APITests.Project
         public void ExecuteEndpoint(string endpoint, HttpStatusCode expectedResponse)
         {
             Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
+        }
+
+        public IRestResponse ExecuteEndpoint(string endpoint)
+        {
+            return Execute(RestSharp.Method.GET, endpoint, string.Empty, HttpStatusCode.OK);
         }
     }
 }

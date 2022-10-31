@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("OuterApiHealthCheck")]
-    public partial class OuterApiHealthCheckFeature
+    [NUnit.Framework.DescriptionAttribute("EmpFin_Api_01_HealthCheck")]
+    public partial class EmpFin_Api_01_HealthCheckFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AC_API_01_OuterApiHealthCheck.feature"
+#line 1 "EmpFin_Api_01_HealthCheck.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "OuterApiHealthCheck", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EmpFin_Api_01_HealthCheck", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,21 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_API_01_OuterApiHealthCheck")]
+        [NUnit.Framework.DescriptionAttribute("ApiHealthCheck")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("apprenticecommitmentsapi")]
-        [NUnit.Framework.CategoryAttribute("outerapi")]
+        [NUnit.Framework.CategoryAttribute("employerfinanceapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AC_API_01_OuterApiHealthCheck()
+        [NUnit.Framework.CategoryAttribute("innerapi")]
+        public void ApiHealthCheck()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
-                    "apprenticecommitmentsapi",
-                    "outerapi",
-                    "regression"};
+                    "employerfinanceapi",
+                    "regression",
+                    "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_API_01_OuterApiHealthCheck", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ApiHealthCheck", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,8 +98,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
- testRunner.Then("the apprentice commitments api is reachable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.Then("endpoint das-employer-finance-api /ping can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
