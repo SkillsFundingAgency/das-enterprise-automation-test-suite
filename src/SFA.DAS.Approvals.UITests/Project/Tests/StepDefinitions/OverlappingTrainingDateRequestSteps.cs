@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -69,15 +68,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider selects to contact the employer themselves")]
         public void WhenProviderSelectsToContactTheEmployerThemselves()
         {
-            new ProviderAlreadyHasExistingApprenticeshipRecordPage(_context).SelectIWillAddApprenticesLater();
+            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SelectIWillAddApprenticesLater();
         }
 
-        [Then(@"Vaidate not information is stored in database")]
+        [When(@"provider decides to send stop request email from service")]
+        public void WhenProviderDecidesToSendStopRequestEmailFromService()
+        {
+            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SendStopEmail();
+        }
+
+        [Then(@"Vaidate information is not stored in database")]
         public void ThenVaidateNotInformationIsStoredInDatabase()
         {
             var uln = _objectContext.GetUlnForOLTD();
             var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
             Assert.AreEqual(1, numberOfApprenticesWithUln);
         }
+
+        [Then(@"Vaidate information is stored in database")]
+        public void ThenVaidateInformationIsStoredInDatabase()
+        {
+            var uln = _objectContext.GetUlnForOLTD();
+            var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
+            Assert.AreEqual(2, numberOfApprenticesWithUln);
+        }
+
+        [When(@"Employer is notfied to confirm changes")]
+        public void WhenEmployerIsNotfiedToConfirmChanges()
+        {
+            new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context);
+        }
+
+        [When(@"Review apprentice request page is displayed")]
+        public void WhenReviewApprenticeRequestPageIsDisplayed()
+        {
+           new ProviderApprenticeRequestsReadyForReviewPage(_context);
+        }
+
     }
 }

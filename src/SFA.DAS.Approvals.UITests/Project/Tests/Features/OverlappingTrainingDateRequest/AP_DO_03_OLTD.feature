@@ -9,4 +9,5 @@ Scenario: AP_DO_03_OLTD User decides to contact the employer themselves
 	When provider creates a draft apprentice which has an overlap
 	And provider selects all the information is correct
 	And provider selects to contact the employer themselves
-    Then Vaidate not information is stored in database
+	And Review apprentice request page is displayed
+    Then Vaidate information is not stored in database

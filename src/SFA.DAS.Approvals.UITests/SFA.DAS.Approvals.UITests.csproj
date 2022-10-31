@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\OverlappingTrainingDateRequest\AP_COE_01_HappyPath.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_03_OLTD - Copy.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,13 +70,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_COE_01_HappyPath.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
+    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_04_OLTD.feature.cs">
+      <DependentUpon>AP_DO_04_OLTD.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_03_OLTD.feature.cs">
+      <DependentUpon>AP_DO_03_OLTD.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_COE_01_HappyPath.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_04_OLTD.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_03_OLTD.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
