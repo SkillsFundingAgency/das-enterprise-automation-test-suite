@@ -15,19 +15,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
         private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private By ErrorMessagelLink => By.XPath("//*[@id='validationSummaryErrorList']/li/a");
+        private By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
+        private By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
 
-        public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
+        public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context)
+        {
+        }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails()
         {
             ClickStartMonth();
 
-            if (objectContext.HasStartDate()) EnterStartDate(objectContext.GetStartDate());
-            else  EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
@@ -45,10 +49,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
         {
             ClickStartMonth();
-     
-            EnterStartDate(objectContext.GetStartDate());
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
+
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
@@ -63,7 +67,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
         }
 
+        internal void VerifyOverlappingTrainingDetailsError(bool displayStartDateError, bool displayEndDateError)
+        {
+            ClickStartMonth();
 
+            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
+
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
+
+            EnterTrainingCostAndEmpReference();
+
+            formCompletionHelper.ClickElement(ContinueButton);
+
+            ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
+            ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
+        }
 
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
         {
@@ -96,6 +114,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel), "Delivery Model Label not displayed");
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
+        }
+
+        private void ValidateOltdErrorMessage(By locator, bool shouldBeDisplayed)
+        {
+            if (shouldBeDisplayed)
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not dsiplayed");
+                string expectedMessage = "The date overlaps with existing dates for the same apprentice";
+                string actualMessage = pageInteractionHelper.GetText(locator);
+                StringAssert.StartsWith(expectedMessage, actualMessage, "Incorrect Date Overlaps Message displayed");
+            }
+            else
+            {
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should be not dsiplayed");
+            }
         }
     }
 }

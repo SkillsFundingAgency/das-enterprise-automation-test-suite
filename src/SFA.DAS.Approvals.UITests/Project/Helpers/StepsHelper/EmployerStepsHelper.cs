@@ -11,6 +11,7 @@ using System;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.TestDataExport;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -271,6 +272,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .NewTrainingProviderWillAddThemLater()
                   .SelectYesAndContinue();
         }
+
+        public ApprenticesHomePage NavigateToEmployerHomePage() => new ApprenticesHomePage(_context);
 
         protected virtual AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {

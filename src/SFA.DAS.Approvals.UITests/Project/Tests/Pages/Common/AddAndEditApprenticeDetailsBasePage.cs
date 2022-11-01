@@ -25,7 +25,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By EmploymentPrice => By.Id("EmploymentPrice");
         private By EmployerReference => By.Id("Reference");
 
-        public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context) { }
+        public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
+        {
+        }
 
         protected void EnterTrainingCostAndEmpReference()
         {

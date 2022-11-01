@@ -19,8 +19,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By DeliveryModelType => By.XPath("//p[text()='Delivery model'] // following-sibling :: p");
 
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private By StartDateErrorMessagelLink => By.XPath("//*[@data-id='table1']");
+        private By EndDateErrorMessagelLink => By.XPath("//*[@data-id='table1']");
 
-        public AddTrainingDetailsPage(ScenarioContext context) : base(context) { }
+        public AddTrainingDetailsPage(ScenarioContext context) : base(context)
+        {
+        }
 
         public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
         {
@@ -39,6 +43,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
             return new ApproveApprenticeDetailsPage(context);
+        }
+
+        public void VerifyOverlappingTrainingDetailsError(bool displayStartDateError, bool displayEndDateError)
+        {
+            var courseStartDate = SetEIJourneyTestData(0);
+
+            ClickStartMonth();
+
+            EnterStartDate(courseStartDate);
+
+            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+
+            EnterTrainingCostAndEmpReference();
+
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
+
+            ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
+            ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
         }
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
@@ -88,7 +110,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
+        }
 
+        private void ValidateOltdErrorMessage(By locator, bool shouldBeDisplayed)
+        {
+            if (shouldBeDisplayed)
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not dsiplayed");
+                string expectedMessage = "The date overlaps with existing dates for the same apprentice";
+                string actualMessage = pageInteractionHelper.GetText(locator);
+                StringAssert.StartsWith(expectedMessage, actualMessage, "Incorrect Date Overlaps Message displayed");
+            }
+            else
+            {
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should be not dsiplayed");
+            }
         }
     }
 }
