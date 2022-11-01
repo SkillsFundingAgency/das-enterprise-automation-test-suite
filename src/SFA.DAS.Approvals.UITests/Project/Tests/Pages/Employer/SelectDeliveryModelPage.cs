@@ -14,25 +14,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
 
-        public AddApprenticeDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
+        public AddPersonalDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddPersonalDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
+        public ProviderAddPersonalDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new ProviderAddPersonalDetailsPage(context);
         }
 
-        public AddApprenticeDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
+        public AddPersonalDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(PortableFlexiJobRadioButton);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddPersonalDetailsPage(context);
         }
     }
 }

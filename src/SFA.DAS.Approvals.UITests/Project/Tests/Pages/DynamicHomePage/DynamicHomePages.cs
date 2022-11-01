@@ -27,11 +27,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             formCompletionHelper.ClickElement(StartNowButton);
             return new DoYouKnowWhichCourseYourApprenticeWillTakePage(context);
         }
-        public EditApprenticePage CheckDraftStatusAndAddDetails()
+        public EditApprenticeDetailsPage CheckDraftStatusAndAddDetails()
         {
             pageInteractionHelper.VerifyText(VerifyDraftStatus, VerifyDraftStatusMessage);
             formCompletionHelper.Click(DynamicHomeContinueButton);
-            return new EditApprenticePage(context);
+            return new EditApprenticeDetailsPage(context);
         }
         public DynamicHomePages CheckWithTrainingProviderStatus()
         {
