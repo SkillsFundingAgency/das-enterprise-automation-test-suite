@@ -11,9 +11,12 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
-using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -236,7 +239,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
             _objectContext.SetCohortReference(cohortReference);
-            _objectContext.SetNoOfApprentices(1);  
+            _objectContext.SetNoOfApprentices(1);
         }
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
@@ -417,15 +420,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _receiver = login.SecondOrganisationName;
         }
 
-
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
         {
-           
-            var manageYourApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage();
+            UpdateOrganisationName(_receiver);
+
+            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+
             manageYourApprenticePage.VerifyApprenticeExists();
         }
-
-
     }
 }
