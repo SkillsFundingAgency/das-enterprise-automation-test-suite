@@ -32,6 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             CourseLarsCode = CourseDetails.Course.larsCode;
             OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
             OtherCourseLarsCode = OtherCourseDetails.Course.larsCode;
+        }
 
         public CourseDetails CourseDetails { get; private set; }
 
