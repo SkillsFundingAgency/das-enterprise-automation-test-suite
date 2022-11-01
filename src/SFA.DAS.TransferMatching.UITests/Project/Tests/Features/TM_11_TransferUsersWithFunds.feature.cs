@@ -35,7 +35,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_11_TransferUsersWithFunds", "//The scenario is not valid anymore", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_11_TransferUsersWithFunds", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,7 +74,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-		
         [NUnit.Framework.DescriptionAttribute("TM_11_Display the ‘Apply for transfers funding’ section to levy-paying employers " +
             "that are currently sending transfer funds")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -82,9 +81,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         public void TM_11_DisplayTheApplyForTransfersFundingSectionToLevy_PayingEmployersThatAreCurrentlySendingTransferFunds()
         {
             string[] tagsOfScenario = new string[] {
+                    "regression",
                     "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_11_Display the ‘Apply for transfers funding’ section to levy-paying employers " +
                     "that are currently sending transfer funds", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
