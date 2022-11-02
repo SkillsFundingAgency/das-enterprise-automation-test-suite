@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class ChooseApprenticeshipLocationPage : Raav2BasePage
     {
-        protected override string PageTitle => "Where will the apprentice work?";
+        protected override string PageTitle => IsTraineeship ? "Where is the work experience placement" : "Where will the apprentice work?";
 
         private By AddressLine1 => By.CssSelector("#AddressLine1");
 
