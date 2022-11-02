@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
         public void ThenValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
         {
-            var addTrainingDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails();
+            var addTrainingDetailsPage = _addApprenticeDetailsPage.SubmitValidPersonalDetails();
             addTrainingDetailsPage.ValidateFlexiJobContent();
 
             _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);

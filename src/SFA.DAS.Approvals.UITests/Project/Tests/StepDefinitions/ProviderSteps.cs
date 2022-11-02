@@ -50,17 +50,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds (.*) apprentices approves them and sends to employer to approve")]
         public void WhenTheProviderAddsApprenticesApprovesThemAndSendsToEmployerToApprove(int numberOfApprentices) => _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(numberOfApprentices);
 
-        [When(@"the provider opts (.*) learner into the pilot")]
-        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(1, true);
-
-
-        [When(@"the provider opts (.*) learner out of the pilot")]
-        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(1, false);
-
-        [When(@"the provider sends the cohort to employer to approve")]
-        public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();
-
-
         [When(@"the provider selects Flexi-job agency radio button on Select Delivery Model screen")]
         public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerStepsHelper.AddFlexiJobApprentice();
 
@@ -69,16 +58,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts() => _providerStepsHelper.Approve();
-
-        [Then(@"the provider adds Ulns and Opt the learners into the pilot")]
-        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
-
-        [When(@"the provider adds Ulns and opts the learners out of the pilot")]
-        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
-
-        [When(@"Provider approves the cohort")]
-        [Then(@"Provider approves the cohort")]
-        public void ThenProviderApprovesTheCohort() => _providerApproveApprenticeDetailsPage.SubmitApprove();
 
         [Then(@"the provider validates Flexi-job content, adds Uln and approves the cohorts")]
         public void ThenTheProviderValidatesFlexi_JobContentAddsUlnAndApprovesTheCohorts() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
@@ -169,8 +148,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandard()
-                .SubmitValidApprenticePersonalDetails()
-                .SubmitValidApprenticeTrainingDetails()
+                .SubmitValidPersonalDetails()
+                .SubmitValidTrainingDetails()
                 .SubmitApprove();
         }
 

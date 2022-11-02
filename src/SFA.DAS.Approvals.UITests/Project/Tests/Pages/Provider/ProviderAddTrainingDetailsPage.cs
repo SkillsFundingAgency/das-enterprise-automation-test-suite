@@ -18,9 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails(bool isPilotLearner = false)
+        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
         {
-            EnterTrainingStartDate(isPilotLearner);
+            ClickStartMonth();
+
+            EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
 
@@ -28,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterTrainingCostAndEmpReference();
 
-            bool rpl = CheckRPLCondition(false, isPilotLearner);
+            bool rpl = CheckRPLCondition(false);
 
             formCompletionHelper.ClickElement(ContinueButton);
 
@@ -37,20 +39,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(context);
-        }
-
-        private void EnterTrainingStartDate(bool isPilotLearner)
-        {
-            if (isPilotLearner)
-            {
-                ClickActualStartDateDay();
-                EnterActualStartDate(apprenticeCourseDataHelper.CourseStartDate);
-            }
-            else
-            {
-                ClickStartMonth();
-                EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
-            }
         }
 
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
@@ -67,15 +55,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderBeforeYouStartBulkUploadPage(context);
         }
 
-        private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
+        private bool CheckRPLCondition(bool rpl = false)
         {
-            var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
-                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-
-            var month = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateMonth))
-                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth));
-
-            if (month  > 7 & year == 2022) rpl = true;
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
             return rpl;
         }

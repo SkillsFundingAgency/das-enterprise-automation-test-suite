@@ -74,19 +74,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_11_Do not display the ‘Apply for transfers funding’ section to levy-paying emp" +
-            "loyers that are currently sending transfer funds")]
+        [NUnit.Framework.DescriptionAttribute("TM_11_Display the ‘Apply for transfers funding’ section to levy-paying employers " +
+            "that are currently sending transfer funds")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
-        public void TM_11_DoNotDisplayTheApplyForTransfersFundingSectionToLevy_PayingEmployersThatAreCurrentlySendingTransferFunds()
+        public void TM_11_DisplayTheApplyForTransfersFundingSectionToLevy_PayingEmployersThatAreCurrentlySendingTransferFunds()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_11_Do not display the ‘Apply for transfers funding’ section to levy-paying emp" +
-                    "loyers that are currently sending transfer funds", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_11_Display the ‘Apply for transfers funding’ section to levy-paying employers " +
+                    "that are currently sending transfer funds", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,13 +96,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 5
  testRunner.Given("the levy employer who are currently sending transfer funds login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 6
  testRunner.Then("the levy employer is able to apply for transfer opportunities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 8
+#line 7
  testRunner.And("the levy employer currently receiving funds can create pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
