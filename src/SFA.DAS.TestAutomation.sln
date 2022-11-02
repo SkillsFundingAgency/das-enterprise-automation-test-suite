@@ -121,7 +121,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProvideFeedback.UIT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAT-Provider.UITests", "SFA.DAS.RAT-Provider.UITests\SFA.DAS.RAT-Provider.UITests.csproj", "{29C3E932-8AB2-4AB2-8587-DAFA39544386}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerFinance.APITests", "SFA.DAS.EmployerFinance.APITests\SFA.DAS.EmployerFinance.APITests.csproj", "{4D611664-103E-4370-914B-2BE16CC5639A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerAccounts.APITests", "SFA.DAS.EmployerAccounts.APITests\SFA.DAS.EmployerAccounts.APITests.csproj", "{C708ED79-CFA8-4FE0-B2F2-1A97EFABF993}"
+EndProject
+roject("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerFinance.APITests", "SFA.DAS.EmployerFinance.APITests\SFA.DAS.EmployerFinance.APITests.csproj", "{4D611664-103E-4370-914B-2BE16CC5639A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
