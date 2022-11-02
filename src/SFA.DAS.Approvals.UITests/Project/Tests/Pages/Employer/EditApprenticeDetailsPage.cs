@@ -1,25 +1,44 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticePage : EditApprenticeDetailsBasePage
+    public class EditApprenticeDetailsPage : EditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Edit apprentice details";
+        protected override string PageTitle => _pageTitle;
+
+        #region Helpers and Context
+        private readonly string _pageTitle;
+        #endregion
 
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditSaveAndContinueButton => By.CssSelector("#continue-button");
+        private By EditContinueButtonPersonalDetailsPage => By.XPath("//button[contains(text(),'Continue')]");
+        private By EditContinueButtonTrainingDetailsPage => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
 
-        public EditApprenticePage(ScenarioContext context) : base(context) { }
+        public EditApprenticeDetailsPage(ScenarioContext context) : base(context, false)
+        {
+            _pageTitle = DeterminePageTitle();
+            VerifyPage();
+        }
+
+        private string DeterminePageTitle()
+        {
+            var title = pageInteractionHelper.GetUrl().Contains("/unapproved/") 
+                ? "Edit personal details" 
+                : "Edit apprentice details";
+
+            return title;
+        }
 
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
         {
@@ -62,12 +81,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
+            formCompletionHelper.ClickElement(EditContinueButtonPersonalDetailsPage);
 
             AddValidEndDate();
             
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
-            formCompletionHelper.ClickElement(EditSaveAndContinueButton);
+            formCompletionHelper.ClickElement(EditContinueButtonTrainingDetailsPage);
             return new AfterEditApproveApprenticeDetailsPage(context);
         }
 
@@ -83,14 +103,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 .Concat(pageInteractionHelper.FindElements(InputBox("input[type='number']"))).ToList();
         }
 
-        private EditApprenticePage AddValidStartDate()
+        private EditApprenticeDetailsPage AddValidStartDate()
         {
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
             return this;
         }
 
-        private EditApprenticePage AddValidEndDate()
+        private EditApprenticeDetailsPage AddValidEndDate()
         {
             formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
