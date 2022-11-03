@@ -15,19 +15,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By Uln => By.Id("Uln");
         private static By AddButton => By.XPath("//button[text()='Add']");
 
-        public ProviderAddPersonalDetailsPage(ScenarioContext context) : base(context)  { }
+        public ProviderAddPersonalDetailsPage(ScenarioContext context) : base(context) { }
 
-        internal ProviderAddTrainingDetailsPage SubmitValidPersonalDetails()
+        internal ProviderAddTrainingDetailsPage SubmitValidPersonalDetails(bool isPilotLearner = false)
         {
+            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
 
-            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            if (tags.Contains("flexi-payments")) AddFlexiPaymentsPilotSelection(isPilotLearner);
 
             formCompletionHelper.Click(ContinueButton);
 
             return new ProviderAddTrainingDetailsPage(context);
+        }
+
+        private void AddFlexiPaymentsPilotSelection(bool isPilotLearner)
+        {
+            if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
+            else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
         }
 
         private new void EnterApprenticeMandatoryValidDetails()

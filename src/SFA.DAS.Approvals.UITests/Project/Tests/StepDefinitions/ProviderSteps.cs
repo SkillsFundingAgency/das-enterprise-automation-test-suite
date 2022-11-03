@@ -53,6 +53,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider selects Flexi-job agency radio button on Select Delivery Model screen")]
         public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerStepsHelper.AddFlexiJobApprentice();
 
+        [When(@"the provider opts (.*) learner into the pilot")]
+        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(1, true);
+
+        [When(@"the provider adds Ulns and opts the learners out of the pilot")]
+        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
+
+        [When(@"the provider opts (.*) learner out of the pilot")]
+        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(1, false);
+
+        [When(@"the provider sends the cohort to employer to approve")]
+        public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();
+
         [Then(@"provider validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
         public void ThenProviderValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails() => _providerStepsHelper.ValidateFlexiJobAgencyContentAndAddApprenticeDetails();
 
@@ -70,6 +82,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         
         [When(@"the provider adds Ulns")]
         public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice(true);
+
+        [Then(@"the provider adds Ulns and Opt the learners into the pilot")]
+        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
+
+        [When(@"Provider approves the cohort")]
+        [Then(@"Provider approves the cohort")]
+        public void ThenProviderApprovesTheCohort() => _providerApproveApprenticeDetailsPage.SubmitApprove();
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
         public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoA_ExistingCohort(int numberOfApprentices)

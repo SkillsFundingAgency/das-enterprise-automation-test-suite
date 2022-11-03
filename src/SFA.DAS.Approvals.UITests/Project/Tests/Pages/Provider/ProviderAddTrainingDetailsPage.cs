@@ -18,11 +18,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isPilotLearner = false)
         {
-            ClickStartMonth();
-
-            EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+            EnterTrainingStartDate(isPilotLearner);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
 
@@ -30,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterTrainingCostAndEmpReference();
 
-            bool rpl = CheckRPLCondition(false);
+            bool rpl = CheckRPLCondition(false, isPilotLearner);
 
             formCompletionHelper.ClickElement(ContinueButton);
 
@@ -55,10 +53,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderBeforeYouStartBulkUploadPage(context);
         }
 
-        private bool CheckRPLCondition(bool rpl = false)
+        private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
+                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+
+            var month = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateMonth))
+                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth));
+
+            if (month > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
             return rpl;
         }
@@ -72,6 +75,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel), "Delivery Model Label not displayed");
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
+        }
+
+        private void EnterTrainingStartDate(bool isPilotLearner)
+        {
+            if (isPilotLearner)
+            {
+                ClickActualStartDateDay();
+                EnterActualStartDate(apprenticeCourseDataHelper.CourseStartDate);
+            }
+            else
+            {
+                ClickStartMonth();
+                EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+            }
         }
     }
 }
