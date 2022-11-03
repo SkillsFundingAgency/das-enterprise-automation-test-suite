@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class SummaryOfTheApprenticeshipPage : Raav2BasePage
     {
-        protected override string PageTitle => "Summary of the apprenticeship";
+        protected override string PageTitle => IsTraineeship ? "Summary of the traineeship" : "Summary of the apprenticeship";
 
         private By ShortDescSelector => By.CssSelector("textarea#ShortDescription");
 

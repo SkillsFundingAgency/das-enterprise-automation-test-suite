@@ -13,6 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;
         protected readonly RAAV2DataHelper rAAV2DataHelper;
         protected readonly bool isRaaV2Employer;
+        protected readonly bool IsTraineeship;
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
@@ -23,6 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
             isRaaV2Employer = tags.Contains("raa-v2e");
+            IsTraineeship = tags.Contains("rat-p");
             vacancyReferenceHelper = context.GetValue<VacancyReferenceHelper>();
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
             rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
