@@ -92,8 +92,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenALiveApprenticeRecordExistsWithStartdateOfMonthsAndEndDateOfMonthsFromCurrentDate(int startDateFromNow, int endDateFromNow)
         {
             var courseStartDate = DateTime.Now.AddMonths(startDateFromNow);
+            var courseEndDate = DateTime.Now.AddMonths(endDateFromNow);
+
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
             _objectContext.SetStartDate(courseStartDate.ToString("dd-MM-yyyy", null));
+            _objectContext.SetEndDate(courseEndDate.ToString("dd-MM-yyyy", null));
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
             _employerStepsHelper.SetCohortReference(cohortReference);
@@ -121,8 +124,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                    .ChooseAnEmployer("Levy")
                    .ConfirmEmployer()
                    .ProviderSelectsAStandard()
-                   .SubmitValidApprenticePersonalDetails()
-                   .VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
+                .SubmitValidApprenticePersonalDetails()
+                .VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
             }
         }
 

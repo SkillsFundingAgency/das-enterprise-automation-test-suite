@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             if (isMF == false) EnterStartDate(courseStartDate);
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
@@ -53,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             EnterStartDate(courseStartDate);
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
