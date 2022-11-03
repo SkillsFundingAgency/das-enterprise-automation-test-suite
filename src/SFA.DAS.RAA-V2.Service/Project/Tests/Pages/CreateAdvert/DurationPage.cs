@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DurationPage : Raav2BasePage
     {
-        protected override string PageTitle => "Duration and working hours";
+        protected override string PageTitle => IsTraineeship ? "Duration and weekly hours" : "Duration and working hours";
 
         private By Duration => By.Id("Duration");
 
@@ -18,12 +18,26 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         public WageTypePage EnterDuration()
         {
             pageInteractionHelper.WaitforURLToChange("/duration/");
-            formCompletionHelper.EnterText(Duration, rAAV2DataHelper.Duration);
-            formCompletionHelper.EnterText(WorkingWeekDescription, rAAV2DataHelper.WorkkingWeek);
+            EnterDurationAndWorkingWeek(rAAV2DataHelper.Duration);
             formCompletionHelper.EnterText(WeeklyHours, rAAV2DataHelper.WeeklyHours);
             Continue();
             pageInteractionHelper.WaitforURLToChange("wage");
             return new WageTypePage(context);
+        }
+
+        public SubmitNoOfPositionsPage EnterTraineeshipDuration()
+        {
+            pageInteractionHelper.WaitforURLToChange("/duration/");
+            EnterDurationAndWorkingWeek(rAAV2DataHelper.TraineeshipDuration);
+            Continue();
+            pageInteractionHelper.WaitforURLToChange("number-of-positions");
+            return new SubmitNoOfPositionsPage(context);
+        }
+
+        private void EnterDurationAndWorkingWeek(string duration)
+        {
+            formCompletionHelper.EnterText(Duration, duration);
+            formCompletionHelper.EnterText(WorkingWeekDescription, rAAV2DataHelper.WorkkingWeek);
         }
     }
 }

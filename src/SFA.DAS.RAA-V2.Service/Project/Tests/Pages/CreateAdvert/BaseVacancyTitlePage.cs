@@ -22,6 +22,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new ApprenticeshipTrainingPage(context);
         }
 
+        public TraineeshipSectorPage EnterTraineeshipVacancyTitle()
+        {
+            ChangeVacancyTitle();
+            return new TraineeshipSectorPage(context);
+        }
+
         public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstAdvert()
         {
             ChangeVacancyTitle();
@@ -36,9 +42,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private void ChangeVacancyTitle()
         {
-            formCompletionHelper.EnterText(Title, $"{rAAV2DataHelper.VacancyTitle}");
+            var title = IsTraineeship ? rAAV2DataHelper.TraineeshipVacancyTitle : rAAV2DataHelper.VacancyTitle;
+            formCompletionHelper.EnterText(Title, title);
             Continue();
-            objectContext.SetVacancyTitle(rAAV2DataHelper.VacancyTitle);
+            objectContext.SetVacancyTitle(title);
         }
     }
 }
