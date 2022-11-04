@@ -39,20 +39,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
-        {
-            SelectRadioOptionByForAttribute("confirm-Manual");
-            Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
-        }
-
-        internal ProviderBeforeYouStartBulkUploadPage SelectBulkUpload()
-        {
-            SelectRadioOptionByForAttribute("confirm-BulkCsv");
-            Continue();
-            return new ProviderBeforeYouStartBulkUploadPage(context);
-        }
-
         private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
             var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
