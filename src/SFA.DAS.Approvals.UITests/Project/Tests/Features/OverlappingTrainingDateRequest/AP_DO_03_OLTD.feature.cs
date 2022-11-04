@@ -109,10 +109,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("provider selects to contact the employer themselves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("Review apprentice request page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("provider add and approve page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
-    testRunner.Then("Vaidate information is not stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Vaidate information is stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("provider selects to edit the price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("provider selects all the information is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And("provider selects to add apprentice details later", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.And("provider add and approve page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+    testRunner.Then("Vaidate price update information is not stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -76,7 +76,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickElement(ContinueButton);
             return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
-
-
     }
 }

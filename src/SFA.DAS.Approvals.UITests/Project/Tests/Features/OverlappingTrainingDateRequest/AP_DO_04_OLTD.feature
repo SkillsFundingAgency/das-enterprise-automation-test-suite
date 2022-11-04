@@ -10,3 +10,6 @@ Scenario: AP_DO_04_OLTD User decides to send stop request email from service
 	And provider decides to send stop request email from service
 	And Employer is notfied to confirm changes
     Then Vaidate information is stored in database
+	And Employer selects to edit the active apprentice
+	And overlapping training date request banner is displayed
+	And the apprenticeship record is locked for edit

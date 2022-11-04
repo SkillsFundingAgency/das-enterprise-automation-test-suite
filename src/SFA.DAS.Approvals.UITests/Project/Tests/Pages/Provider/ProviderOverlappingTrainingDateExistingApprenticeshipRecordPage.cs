@@ -15,11 +15,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By IWillAddLaterRadionButton => By.CssSelector("#overlap-option-3");
 
+        private static By ContactTheEmployerThemselves => By.CssSelector("#overlap-option-2");
+
         private static By SendStopEmailButton => By.CssSelector("#overlap-option-1");
 
         public void SelectIWillAddApprenticesLater()
         {
             formCompletionHelper.SelectRadioOptionByLocator(IWillAddLaterRadionButton);
+            Continue();
+        }
+
+        public void SelectContactTheEmployerThemselves()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(ContactTheEmployerThemselves);
             Continue();
         }
 

@@ -114,6 +114,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
     testRunner.Then("Vaidate information is stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 13
+ testRunner.And("Employer selects to edit the active apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("overlapping training date request banner is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("the apprenticeship record is locked for edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

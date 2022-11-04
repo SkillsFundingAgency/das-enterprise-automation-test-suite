@@ -1,11 +1,13 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -19,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private int _oldCost;
 
         public OverlappingTrainingDateRequestSteps(ScenarioContext context)
         {
@@ -33,8 +36,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Employer and provider approve an apprentice")]
         public void GivenEmployerAndProviderApproveAnApprentice()
         {
+            var sixMonthsOldDateTime = DateTime.UtcNow.AddMonths(-6);
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-            _objectContext.SetStartDate("01-06-2021");
+            var date = sixMonthsOldDateTime.ToString("01-MM-yyyy");
+            _objectContext.SetStartDate(date);
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
             _employerStepsHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
@@ -43,10 +48,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider creates a draft apprentice which has an overlap")]
         public void WhenProviderCreatesADraftApprenticeWhichHasAnOverlap()
         {
+            var twoMonthsOldDateTime = DateTime.UtcNow.AddMonths(-2);
             var reference = _objectContext.GetCohortReference();
             var uln =_commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
-            _objectContext.SetStartDate("01-10-2021");
+            _objectContext.SetStartDate(twoMonthsOldDateTime.ToString("01-MM-yyyy"));
 
             _providerStepsHelper.NavigateToProviderHomePage()
            .GotoSelectJourneyPage()
@@ -59,16 +65,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
            .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
-        [When(@"provider selects all the information is correct")]
-        public void WhenProviderSelectsAllTheInformationIsCorrect()
-        {
-            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context).SelectYesTheseDetailsAreCorrect();
-        }
-
         [When(@"provider selects to contact the employer themselves")]
         public void WhenProviderSelectsToContactTheEmployerThemselves()
         {
-            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SelectIWillAddApprenticesLater();
+            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SelectContactTheEmployerThemselves();
         }
 
         [When(@"provider decides to send stop request email from service")]
@@ -104,6 +104,72 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
            new ProviderApprenticeRequestsReadyForReviewPage(_context);
         }
+
+        [Then(@"provider add and approve page is displayed")]
+        [When(@"provider add and approve page is displayed")]
+        public void WhenProviderAddAndApprovePageIsDisplayed()
+        {
+            new ProviderApproveApprenticeDetailsPage(_context);
+        }
+
+
+        [Then(@"provider selects to edit the price")]
+        public void ThenProviderSelectsToEditThePrice()
+        {
+            var oldCost = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            _oldCost = int.Parse(oldCost);
+            new ProviderApproveApprenticeDetailsPage(_context)
+                .SelectEditApprentice()
+                .ClickSaveAndContinue()
+                .EditCost(_oldCost + 1)
+                .ClickSaveWhenOltd();
+        }
+
+        [When(@"provider selects all the information is correct")]
+        [Then(@"provider selects all the information is correct")]
+        public void ThenProviderSelectsAllTheInformationIsCorrect()
+        {
+            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context).SelectYesTheseDetailsAreCorrect();
+        }
+
+        [Then(@"provider selects to add apprentice details later")]
+        public void ThenProviderSelectsToAddApprenticeDetailsLater()
+        {
+            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SelectIWillAddApprenticesLater();
+        }
+
+        [Then(@"Vaidate price update information is not stored in database")]
+        public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
+        {
+            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var newCost = int.Parse(newCostString);
+            Assert.AreEqual(_oldCost, newCost);
+        }
+
+        [Then(@"Employer selects to edit the active apprentice")]
+        public void ThenEmployerSelectsToEditTheActiveApprentice()
+        {
+            _employerStepsHelper.GoToManageYourApprenticesPage()
+               .SelectViewCurrentApprenticeDetails();
+        }
+
+        [Then(@"overlapping training date request banner is displayed")]
+        public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()
+        {
+            var actualText = new ApprenticeDetailsPage(_context).GetAlertBanner();
+
+            string expectedText = "You have an outstanding request that needs to be reviewed and confirmed. Confirm changes";
+
+            Assert.AreEqual(expectedText, actualText, "Text in the changes pending banner");
+        }
+
+        [Then(@"the apprenticeship record is locked for edit")]
+        public void ThenTheApprenticeshipRecordIsLockedForEdit()
+        {
+            var editLinkVisible = new ApprenticeDetailsPage(_context).IsEditApprenticeDetailsLinkVisible();
+            Assert.IsFalse(editLinkVisible);
+        }
+
 
     }
 }

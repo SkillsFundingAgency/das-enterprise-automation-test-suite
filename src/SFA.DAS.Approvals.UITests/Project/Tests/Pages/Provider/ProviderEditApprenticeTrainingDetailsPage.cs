@@ -127,5 +127,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
             return new ProviderApproveApprenticeDetailsPage(context);
         }
+
+        public ProviderOverlappingTrainingDateThereMayBeProblemPage ClickSaveWhenOltd()
+        {
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditCost(int cost)
+        {
+            formCompletionHelper.EnterText(TrainingCost, cost);
+            return this;
+        }
     }
 }
