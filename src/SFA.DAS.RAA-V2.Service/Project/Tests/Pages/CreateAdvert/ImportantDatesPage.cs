@@ -10,11 +10,24 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public DurationPage EnterImportantDates()
         {
+            EnterDates();
+            return new DurationPage(context);
+        }
+        public WorkExperienceProvidedPage EnterTraineeshipDates()
+        {
+            EnterDates();
+            return new WorkExperienceProvidedPage(context);
+        }
+        private void EnterDates()
+        {
             ClosingDate(rAAV2DataHelper.VacancyClosing);
             StartDate(rAAV2DataHelper.VacancyStart);
             Continue();
-            pageInteractionHelper.WaitforURLToChange("duration");
-            return new DurationPage(context);
+
+            var expectedUrl = IsTraineeship ? "work-experience" : "duration"; 
+            
+            pageInteractionHelper.WaitforURLToChange(expectedUrl);
+            
         }
     }
 }

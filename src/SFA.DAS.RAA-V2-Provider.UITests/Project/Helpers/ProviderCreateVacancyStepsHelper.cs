@@ -63,6 +63,18 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .BackToTaskList();
         }
 
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+            string employername)
+        {
+            return createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterProviderContactDetailsTraineeship(optionalFields)
+                .BackToTaskList();
+        }
+
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             createAdvertPage
             .Skills()
@@ -81,6 +93,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+        }
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
+        {
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
