@@ -3,7 +3,6 @@ using SFA.DAS.API.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerFinance.APITests.Project.Helpers;
 using SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.HashingService;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,8 +15,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
     {
         private readonly Inner_EmployerFinanceApiRestClient _innerApiRestClient;        
         private readonly EmployerFinanceSqlHelper _employerFinanceSqlDbHelper;
-        private readonly ObjectContext _objectContext;
-        private readonly IHashingService _hashingService;
+        private readonly ObjectContext _objectContext;        
 
         public EmployerFinanceAPISteps(ScenarioContext context)
         {
@@ -25,7 +23,6 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
             _employerFinanceSqlDbHelper = context.Get<EmployerFinanceSqlHelper>();
             _objectContext = context.Get<ObjectContext>();
             _employerFinanceSqlDbHelper.GetHashedAccountId();
-            _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
         }
 
         [Then(@"endpoint das-employer-finance-api /ping can be accessed")]
