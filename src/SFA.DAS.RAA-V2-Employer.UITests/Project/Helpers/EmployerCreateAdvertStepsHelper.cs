@@ -114,6 +114,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true);
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy() => GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
+        {
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
+        }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
                     AdvertSummary(EnterAdvertTitle(createAdvertPage));
@@ -127,6 +131,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
                 .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
                 .SelectApplicationMethod_Employer(isApplicationMethodFAA);
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+            string employername)
+        {
+            return createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterProviderContactDetailsTraineeship(optionalFields)
+                .BackToTaskList();
+        }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             createAdvertPage

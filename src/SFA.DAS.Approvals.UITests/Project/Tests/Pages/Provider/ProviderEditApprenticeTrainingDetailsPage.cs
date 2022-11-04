@@ -7,21 +7,20 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderEditApprenticeDetailsPage : ProviderEditApprenticeCoursePage
+    public class ProviderEditApprenticeTrainingDetailsPage : ProviderEditApprenticeCoursePage
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        private By Uln => By.Id("Uln");
+        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override string PageTitle => "Edit training details";
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) { }
+        public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
+        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave()
         {
-            EnterUln();
 
             bool rpl = CheckRPLCondition(false);
 
@@ -48,13 +47,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
-            formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
-            formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
-            formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
-            formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
-            formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
-            EnterUln();
-
             formCompletionHelper.ClickElement(StartDateMonth);
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
@@ -106,7 +98,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderConfirmApprenticeDeletionPage(context);
         }
 
-        public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
+        public ProviderEditApprenticeTrainingDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
         {
             GetAllEditBoxes();
 
@@ -120,21 +112,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
 
-        private void EnterUln()
-        {
-            var uln = apprenticeDataHelper.Uln();
-
-            if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
-
-            formCompletionHelper.EnterText(Uln, uln);
-        }
-
         private bool CheckRPLCondition(bool rpl = false)
         {
             var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
             if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
             return rpl;
+        }
+
+        public ProviderApproveApprenticeDetailsPage ClickSave()
+        {
+            bool rpl = CheckRPLCondition(false);
+            formCompletionHelper.ClickElement(SaveButton);
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
     }
 }

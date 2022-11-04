@@ -25,8 +25,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             SetAccountNameAsOrgName = true;
         }
 
-        public string FirstName => "AutoFirstName";
-        public string LastName => "AutoLastName";
+        public string FirstName { get; set; } = "AutoFirstName";
+        public string LastName { get; set; } = "AutoLastName";
         public string FullName => $"{FirstName } {LastName}";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
