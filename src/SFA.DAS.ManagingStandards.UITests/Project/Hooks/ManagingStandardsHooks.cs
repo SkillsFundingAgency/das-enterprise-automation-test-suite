@@ -5,7 +5,6 @@ global using SFA.DAS.ManagingStandards.UITests.Project.Helpers;
 global using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 global using SFA.DAS.ProviderLogin.Service;
 global using SFA.DAS.ProviderLogin.Service.Helpers;
-global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;

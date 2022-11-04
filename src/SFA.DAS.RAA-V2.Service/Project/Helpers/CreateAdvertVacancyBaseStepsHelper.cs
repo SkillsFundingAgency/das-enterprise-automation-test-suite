@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         public CreateAdvertVacancyBaseStepsHelper() => optionalFields = false;
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy();
-
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy();
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage page);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType);
@@ -24,6 +24,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA);
+
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createTraineeshipPage, string employername);
 
         protected WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
 
@@ -65,6 +67,38 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 
             return CheckAndSubmitAdvert(createAdvertPage);
+        }
+
+        protected VacancyReferencePage CreateANewTraineeshipVacancy(string employerName, bool isEmployerAddress,
+            bool disabilityConfidence)
+        {
+            var createTraineeshipPage = CreateNewTraineeshipVacancy();
+
+            createTraineeshipPage.VerifyAdvertSummarySectionStatus(NotStarted);
+
+            createTraineeshipPage = AdvertOrVacancySummary(createTraineeshipPage);
+
+            createTraineeshipPage.VerifyAdvertSummarySectionStatus(Completed);
+
+            createTraineeshipPage.VerifyEmploymentDetailsSectionStatus(NotStarted);
+
+            createTraineeshipPage = EmploymentDetails(createTraineeshipPage, isEmployerAddress, "");
+
+            createTraineeshipPage.VerifyEmploymentDetailsSectionStatus(Completed);
+
+            createTraineeshipPage.VerifySkillsandqualificationsSectionStatus(NotStarted);
+
+            createTraineeshipPage = SkillsAndQualifications(createTraineeshipPage);
+
+            createTraineeshipPage.VerifySkillsandqualificationsSectionStatus(Completed);
+
+            createTraineeshipPage.VerifyAbouttheemployerSectionStatus(NotStarted);
+
+            createTraineeshipPage = AboutTheEmployerTraineeship(createTraineeshipPage, employerName);
+
+            createTraineeshipPage.VerifyAbouttheemployerSectionStatus(Completed);
+
+            return CheckAndSubmitAdvert(createTraineeshipPage);
         }
     }
 }

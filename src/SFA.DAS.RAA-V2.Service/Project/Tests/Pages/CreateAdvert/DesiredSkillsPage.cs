@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DesiredSkillsPage : Raav2BasePage
     {
-        protected override string PageTitle => "What skills and personal qualities do applicants need to have?";
+        protected override string PageTitle => IsTraineeship ? "What skills and personal qualities would you like applicants to have?" : "What skills and personal qualities do applicants need to have?";
 
         private By Skills => By.CssSelector("label.govuk-checkboxes__label");
 
@@ -31,6 +31,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             formCompletionHelper.Click(SaveAndContinue);
 
             return new QualificationsPage(context);
+        }
+
+        public FutureProspectsPage SelectSkillsAndGoToFutureProspectsPage()
+        {
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
+
+            formCompletionHelper.Click(SaveAndContinue);
+
+            return new FutureProspectsPage(context);
         }
     }
 }

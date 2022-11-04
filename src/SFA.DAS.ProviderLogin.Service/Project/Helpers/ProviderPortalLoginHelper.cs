@@ -19,14 +19,8 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         internal ProviderHomePage ReLogin(ProviderLoginUser login) => Login(new ProviderSiginPage(_context), login);
 
-        internal ProviderHomePage ReLogin(ProviderPortableFlexiJobUser login) => Login(new ProviderSiginPage(_context), login);
-
         internal ProviderHomePage Login(ProviderLoginUser login) => Login(new ProviderIndexPage(_context).StartNow(), login);
-
-        internal ProviderHomePage Login(ProviderPortableFlexiJobUser login) => Login(new ProviderIndexPage(_context).StartNow(), login);
-
+        
         private ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login);
-
-        private ProviderHomePage Login(ProviderSiginPage siginPage, ProviderPortableFlexiJobUser login) => siginPage.SubmitValidLoginDetails(login);
     }
 }

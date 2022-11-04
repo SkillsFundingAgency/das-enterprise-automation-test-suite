@@ -26,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         #endregion
 
         private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
+        private By SaveButton => By.XPath("//button[contains(text(),'Continue')]");
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
@@ -44,6 +45,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         public SelectStandardPage ClickEditCourseLink()
         {
+            if (!pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink))
+                formCompletionHelper.Click(SaveButton);
+
             formCompletionHelper.Click(TrainingCourseEditLink);
             return new SelectStandardPage(context);
         }

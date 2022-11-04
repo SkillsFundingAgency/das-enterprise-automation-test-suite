@@ -13,11 +13,5 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
             SubmitValidLoginDetails(login.UserId, login.Password);
             return new ProviderHomePage(context);
         }
-
-        public ProviderHomePage SubmitValidLoginDetails(ProviderPortableFlexiJobUser login)
-        {
-            SubmitValidLoginDetails(login.UserId, login.Password);
-            return new ProviderHomePage(context);
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
@@ -21,14 +22,16 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ApplicationProcessPage EnterProviderContactDetails(bool optionalFields)
         {
-            if (optionalFields)
-            {
-                SelectRadioOptionByForAttribute("contact-details-yes");
-                EnterContactDetails();
-            }
-            else { SelectRadioOptionByForAttribute("contact-details-no"); }
+            EnterProviderDetails(optionalFields);
 
             return GoToApplicationProcessPage();
+        }
+
+        public CheckYourAnswersPage EnterProviderContactDetailsTraineeship(bool optionalFields)
+        {
+            EnterProviderDetails(optionalFields);
+
+            return GoToCheckYourAnswersPage();
         }
 
         public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
@@ -36,6 +39,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             if (optionalFields) EnterContactDetails();
 
             return GoToApplicationProcessPage();
+        }
+
+        private void EnterProviderDetails(bool optionalFields)
+        {
+            if (optionalFields)
+            {
+                SelectRadioOptionByForAttribute("contact-details-yes");
+                EnterContactDetails();
+            }
+            else
+            {
+                SelectRadioOptionByForAttribute("contact-details-no");
+            }
         }
 
         private void EnterContactDetails()
@@ -49,6 +65,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             Continue();
             return new ApplicationProcessPage(context);
+        }
+        
+        private CheckYourAnswersPage GoToCheckYourAnswersPage()
+        {
+            Continue();
+            return new CheckYourAnswersPage(context);
         }
 
         private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;
