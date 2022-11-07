@@ -140,17 +140,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
             {
+                SetContextStartAnEndDates(13, 18);
+
+                var cohortReference = _providerStepsHelper
+                      .GoToProviderHomePage()
+                      .GotoSelectJourneyPage()
+                      .SelectAddManually()
+                      .SelectOptionCreateNewCohort()
+                      .ChooseAnEmployer("Levy")
+                      .ConfirmEmployer()
+                      .ProviderSelectsAStandard()
+                      .SubmitValidApprenticePersonalDetails()
+                      .SubmitValidApprenticeTrainingDetails()
+                      .SubmitSendToEmployerToReview()
+                      .CohortReference();
+
+                _employerStepsHelper.UpdateCohortReference(cohortReference);
+
                 SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
 
                 _employerStepsHelper
-                    .NavigateToEmployerHomePage()
-                    .AddAnApprentice()
-                    .StartNowToAddTrainingProvider()
-                    .SubmitValidUkprn()
-                    .ConfirmProviderDetailsAreCorrect()
-                    .EmployerAddsApprentices()
-                    .EmployerSelectsAStandard()
-                    .SubmitValidApprenticeDetails()
+                    .GoToApprenticeRequestsPage()
+                    .GoToReadyToReview()
+                    .SelectViewCurrentCohortDetails()
+                    .SelectEditApprenticeLink()
+                    .ContinueToAddTrainingDetailsPage()
                     .VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
             }
         }

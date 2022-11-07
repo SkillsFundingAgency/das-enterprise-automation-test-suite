@@ -201,6 +201,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                         .EmployerSelectsAStandard();
                 }
             }
+
             return new ApproveApprenticeDetailsPage(_context);
         }
 
@@ -273,8 +274,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectYesAndContinue();
         }
 
-        public ApprenticesHomePage NavigateToEmployerHomePage() => new ApprenticesHomePage(_context);
-
         protected virtual AddTrainingProviderDetailsPage AddTrainingProviderDetails(AddAnApprenitcePage addAnApprenitcePage)
         {
             return addAnApprenitcePage.StartNowToAddTrainingProvider();
@@ -335,5 +334,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EmployerSelectsAPortableFlexiJobCourse()
                 .SelectPortableFlexiJobDeliveryModelAndContinue();
         }
+
+        public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
     }
 }

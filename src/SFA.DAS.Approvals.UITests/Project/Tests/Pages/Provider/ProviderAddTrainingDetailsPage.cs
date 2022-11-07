@@ -127,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
             else
             {
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should be not dsiplayed");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should not be dsiplayed");
             }
         }
     }
