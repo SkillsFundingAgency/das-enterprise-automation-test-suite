@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddPersonalDetailsPage(ScenarioContext context) : base(context) { }
 
-        public AddTrainingDetailsPage SubmitValidApprenticeDetails()
+        public AddTrainingDetailsPage SubmitValidApprenticePersonalDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
