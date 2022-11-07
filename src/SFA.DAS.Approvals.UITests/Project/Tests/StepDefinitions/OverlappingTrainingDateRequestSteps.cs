@@ -11,9 +11,12 @@ using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using System.Threading.Tasks;
+
 using System;
+
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -237,7 +240,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
               .SelectIWillAddApprenticesLater();
         }
 
-
         [Then(@"Vaidate price update information is not stored in database")]
         public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
         {
@@ -259,7 +261,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
         }
 
-
         [Then(@"overlapping training date request banner is displayed")]
         public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()
         {
@@ -276,7 +277,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var editLinkVisible = new ApprenticeDetailsPage(_context).IsEditApprenticeDetailsLinkVisible();
             Assert.IsFalse(editLinkVisible);
         }
-
-
     }
 }
