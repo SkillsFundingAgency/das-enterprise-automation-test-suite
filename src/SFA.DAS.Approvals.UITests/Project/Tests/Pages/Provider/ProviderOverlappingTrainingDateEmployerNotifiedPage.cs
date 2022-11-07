@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    internal class ProviderOverlappingTrainingDateEmployerNotifiedPage : ApprovalsBasePage
+    public class ProviderOverlappingTrainingDateEmployerNotifiedPage : ApprovalsBasePage
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 

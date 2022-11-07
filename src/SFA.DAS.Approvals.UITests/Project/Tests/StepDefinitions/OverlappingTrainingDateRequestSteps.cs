@@ -55,26 +55,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetStartDate(twoMonthsOldDateTime.ToString("01-MM-yyyy"));
 
             _providerStepsHelper.NavigateToProviderHomePage()
-           .GotoSelectJourneyPage()
-           .SelectAddManually()
-           .SelectOptionCreateNewCohort()
-           .ChooseAnEmployer("Levy")
-           .ConfirmEmployer()
-           .ProviderSelectsAStandard()
-           .SubmitValidApprenticePersonalDetails()
-           .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
+                                .GotoSelectJourneyPage()
+                                .SelectAddManually()
+                                .SelectOptionCreateNewCohort()
+                                .ChooseAnEmployer("Levy")
+                                .ConfirmEmployer()
+                                .ProviderSelectsAStandard()
+                                .SubmitValidApprenticePersonalDetails()
+                                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
         [When(@"provider selects to contact the employer themselves")]
         public void WhenProviderSelectsToContactTheEmployerThemselves()
         {
-            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SelectContactTheEmployerThemselves();
+            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context)
+                .SelectYesTheseDetailsAreCorrect()
+                .SelectContactTheEmployerThemselves();
         }
 
         [When(@"provider decides to send stop request email from service")]
         public void WhenProviderDecidesToSendStopRequestEmailFromService()
         {
-            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SendStopEmail();
+            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context)
+                .SelectYesTheseDetailsAreCorrect()
+                .SendStopEmail();
         }
 
         [Then(@"Vaidate information is not stored in database")]
@@ -93,28 +97,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
 
-        [When(@"Employer is notfied to confirm changes")]
-        public void WhenEmployerIsNotfiedToConfirmChanges()
-        {
-            new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context);
-        }
-
-        [When(@"Review apprentice request page is displayed")]
-        public void WhenReviewApprenticeRequestPageIsDisplayed()
-        {
-           new ProviderApprenticeRequestsReadyForReviewPage(_context);
-        }
-
-        [Then(@"provider add and approve page is displayed")]
-        [When(@"provider add and approve page is displayed")]
-        public void WhenProviderAddAndApprovePageIsDisplayed()
-        {
-            new ProviderApproveApprenticeDetailsPage(_context);
-        }
-
-
-        [Then(@"provider selects to edit the price")]
-        public void ThenProviderSelectsToEditThePrice()
+        [When(@"provider selects to edit the price")]
+        public void WhenProviderSelectsToEditThePrice()
         {
             var oldCost = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
             _oldCost = int.Parse(oldCost);
@@ -125,18 +109,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ClickSaveWhenOltd();
         }
 
-        [When(@"provider selects all the information is correct")]
-        [Then(@"provider selects all the information is correct")]
-        public void ThenProviderSelectsAllTheInformationIsCorrect()
+        [When(@"provider selects to add apprentice details later")]
+        public void WhenProviderSelectsToAddApprenticeDetailsLater()
         {
-            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context).SelectYesTheseDetailsAreCorrect();
+            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context)
+              .SelectYesTheseDetailsAreCorrect()
+              .SelectIWillAddApprenticesLater();
         }
 
-        [Then(@"provider selects to add apprentice details later")]
-        public void ThenProviderSelectsToAddApprenticeDetailsLater()
-        {
-            new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(_context).SelectIWillAddApprenticesLater();
-        }
 
         [Then(@"Vaidate price update information is not stored in database")]
         public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
@@ -152,6 +132,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.GoToManageYourApprenticesPage()
                .SelectViewCurrentApprenticeDetails();
         }
+
+        [When(@"Employer selects to edit the active apprentice")]
+        public void WhenEmployerSelectsToEditTheActiveApprentice()
+        {
+            _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        }
+
 
         [Then(@"overlapping training date request banner is displayed")]
         public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()

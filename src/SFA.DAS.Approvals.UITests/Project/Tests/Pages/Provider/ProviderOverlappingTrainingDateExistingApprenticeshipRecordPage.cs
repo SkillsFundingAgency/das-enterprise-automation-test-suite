@@ -19,22 +19,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By SendStopEmailButton => By.CssSelector("#overlap-option-1");
 
-        public void SelectIWillAddApprenticesLater()
+        public ProviderApproveApprenticeDetailsPage SelectIWillAddApprenticesLater()
         {
             formCompletionHelper.SelectRadioOptionByLocator(IWillAddLaterRadionButton);
             Continue();
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        public void SelectContactTheEmployerThemselves()
+        public ProviderApproveApprenticeDetailsPage SelectContactTheEmployerThemselves()
         {
             formCompletionHelper.SelectRadioOptionByLocator(ContactTheEmployerThemselves);
             Continue();
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        public void SendStopEmail()
+        public ProviderOverlappingTrainingDateEmployerNotifiedPage SendStopEmail()
         {
             formCompletionHelper.SelectRadioOptionByLocator(SendStopEmailButton);
             Continue();
+            return new ProviderOverlappingTrainingDateEmployerNotifiedPage(context);
         }
     }
 }
