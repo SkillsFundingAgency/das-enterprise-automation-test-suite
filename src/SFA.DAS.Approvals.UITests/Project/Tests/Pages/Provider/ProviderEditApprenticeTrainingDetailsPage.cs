@@ -139,5 +139,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, cost);
             return this;
         }
+
+        public ProviderApproveApprenticeDetailsPage ClickSave()
+        {
+            bool rpl = CheckRPLCondition(false);
+            formCompletionHelper.ClickElement(SaveButton);
+            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
     }
 }

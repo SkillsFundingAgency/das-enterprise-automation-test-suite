@@ -120,7 +120,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices, bool isTransferReceiverEmployer = false)
         {
             var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
-                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails().SubmitValidTrainingDetails(false);
+                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
@@ -162,7 +162,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddPersonalDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
-            var trainingDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails();
+            var trainingDetailsPage = addApprenticeDetailsPage.SubmitValidPersonalDetails();
 
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
@@ -211,7 +211,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .DynamicHomePageNonLevyEmployerAddsApprentices()
                  .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
                  .EmployerSelectsAStandard()
-                 .DraftDynamicHomePageAddValidApprenticeDetails()
+                 .DraftDynamicHomePageAddValidPersonalDetails()
                  .DraftDynamicHomePageSubmitValidApprenticeDetails()
                  .DraftReturnToHomePage()
                  .CheckDraftStatusAndAddDetails()
@@ -298,7 +298,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             for (int i = 1; i < numberOfApprentices; i++)
             {
-                employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails().SubmitValidTrainingDetails(false, i);
+                employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false, i);
             }
 
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, numberOfApprentices));

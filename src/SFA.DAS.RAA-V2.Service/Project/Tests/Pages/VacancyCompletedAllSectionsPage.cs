@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
      
         public AreYouSureYouWantToSubmitPage SubmitAdvert()
         {
-            SelectRadioOptionByText("Submit advert to ESFA for checking and publication");
+            SelectRadioOptionByText("Submit advert to DfE for checking and publication");
 
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
 
