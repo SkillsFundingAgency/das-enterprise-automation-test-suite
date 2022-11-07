@@ -56,13 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterTrainingCostAndEmpReference();
 
-            bool rpl = CheckRPLCondition(false);
-
             formCompletionHelper.ClickElement(ContinueButton);
-
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
-
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
             return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
         }

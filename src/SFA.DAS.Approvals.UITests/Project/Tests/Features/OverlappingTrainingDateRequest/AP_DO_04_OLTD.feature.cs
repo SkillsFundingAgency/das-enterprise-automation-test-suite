@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DO_03_OLTD_user_decides_to_contact_the_employer_themselves")]
+    [NUnit.Framework.DescriptionAttribute("AP_DO_04_OLTD_user_decides_to_send_stop_request_email_from_service")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_DO_03_OLTD_User_Decides_To_Contact_The_Employer_ThemselvesFeature
+    public partial class AP_DO_04_OLTD_User_Decides_To_Send_Stop_Request_Email_From_ServiceFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "AP_COE_01_HappyPath.feature"
+#line 1 "AP_DO_04_OLTD.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_03_OLTD_user_decides_to_contact_the_employer_themselves", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_04_OLTD_user_decides_to_send_stop_request_email_from_service", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,16 +76,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DO_03_OLTD User decides to contact the employer themselves")]
+        [NUnit.Framework.DescriptionAttribute("AP_DO_04_OLTD User decides to send stop request email from service")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("overlappingtrainingdaterequest")]
-        public void AP_DO_03_OLTDUserDecidesToContactTheEmployerThemselves()
+        public void AP_DO_04_OLTDUserDecidesToSendStopRequestEmailFromService()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "overlappingtrainingdaterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_03_OLTD User decides to contact the employer themselves", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_04_OLTD User decides to send stop request email from service", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -103,13 +103,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("provider creates a draft apprentice which has an overlap", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("provider selects all the information is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("provider decides to send stop request email from service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And("provider selects to contact the employer themselves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Vaidate information is stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
-    testRunner.Then("Vaidate not information is stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Employer selects to edit the active apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then("overlapping training date request banner is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("the apprenticeship record is locked for edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

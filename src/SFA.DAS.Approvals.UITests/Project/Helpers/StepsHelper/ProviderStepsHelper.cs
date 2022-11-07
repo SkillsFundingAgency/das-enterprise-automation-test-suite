@@ -1,19 +1,18 @@
-﻿using System;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using NUnit.Framework;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using System.Collections.Generic;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
-using SFA.DAS.Login.Service;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -40,8 +39,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
-            _apprenticeList = new List<ApprenticeDetails>();
-            _tags = context.ScenarioInfo.Tags;
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab = true)
@@ -50,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new ApprovalsProviderHomePage(_context, true);
+        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new(_context, true);
 
         public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab = true)
         {
@@ -60,7 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage()
         {
-            _providerHomePageStepsHelper.GoToPortableFlexiJobProviderHomePage();
+            _providerHomePageStepsHelper.GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
             return new ApprovalsProviderHomePage(_context);
         }
 
@@ -209,7 +206,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             var providerAddApprenticeDetailsPage = CurrentCohortDetails();
 
-            return  providerAddApprenticeDetailsPage.SelectAddAnApprentice()
+            return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
         }
@@ -296,7 +293,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetailsForPortableFlexiJobProvider() => CurrentCohortDetails(GoToPortableFlexiJobProviderHomePage());
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => CurrentCohortDetails(GoToProviderHomePage());
-        
+
         public ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
@@ -388,7 +385,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void ViewApprentices()
         {
-            ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new ProvideViewApprenticesDetailsPage(_context);
+            ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new(_context);
             int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
             for (int i = 0; i < totalApprentices; i++)
             {

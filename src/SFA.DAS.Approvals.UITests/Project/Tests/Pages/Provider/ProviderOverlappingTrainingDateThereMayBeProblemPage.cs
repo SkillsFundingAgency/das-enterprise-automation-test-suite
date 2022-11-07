@@ -15,10 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By SelectYesCheckBox => By.CssSelector("#checkbox-acknowledgement");
 
-        public void SelectYesTheseDetailsAreCorrect()
+        public ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage SelectYesTheseDetailsAreCorrect()
         {
             formCompletionHelper.SelectCheckbox(SelectYesCheckBox);
             Continue();
+            return new ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(context);
         }
     }
 }

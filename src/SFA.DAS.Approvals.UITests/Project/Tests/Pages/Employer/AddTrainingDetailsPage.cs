@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
         }
 
-        public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails(bool isMF, int apprenticeNo = 0)
         {
             var courseStartDate = SetEIJourneyTestData(apprenticeNo);
 

@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
         }
 
-        public AddTrainingDetailsPage SubmitValidApprenticeDetails()
+        public AddTrainingDetailsPage SubmitValidApprenticePersonalDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
