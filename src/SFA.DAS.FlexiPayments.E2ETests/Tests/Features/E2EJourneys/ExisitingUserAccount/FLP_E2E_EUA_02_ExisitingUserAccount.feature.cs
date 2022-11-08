@@ -108,10 +108,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Provider is able to successfully approve the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

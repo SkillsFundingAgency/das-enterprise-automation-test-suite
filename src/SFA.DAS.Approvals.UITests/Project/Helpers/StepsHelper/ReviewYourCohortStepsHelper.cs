@@ -40,9 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return noOfApprentice;
         }
 
-        internal int NoOfApprentice(ReviewYourCohort reviewYourCohortPage)
-        {
-            return reviewYourCohortPage.TotalNoOfApprentices();
-        }
+        internal int NoOfApprentice(ReviewYourCohort reviewYourCohortPage) => reviewYourCohortPage.TotalNoOfApprentices();
     }
 }

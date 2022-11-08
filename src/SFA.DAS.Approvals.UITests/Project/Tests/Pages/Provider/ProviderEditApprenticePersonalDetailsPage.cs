@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) { }
+        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) {}
 
         public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndSave()
         {

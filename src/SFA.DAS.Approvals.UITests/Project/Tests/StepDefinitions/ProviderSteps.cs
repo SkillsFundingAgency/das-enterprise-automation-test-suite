@@ -10,6 +10,9 @@ using NUnit.Framework;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -24,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage;
         private readonly RetryAssertHelper _assertHelper;
 
         public ProviderSteps(ScenarioContext context)
@@ -54,13 +58,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerStepsHelper.AddFlexiJobApprentice();
 
         [When(@"the provider opts (.*) learner into the pilot")]
-        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(1, true);
+        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, true);
 
         [When(@"the provider adds Ulns and opts the learners out of the pilot")]
         public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
 
         [When(@"the provider opts (.*) learner out of the pilot")]
-        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(1, false);
+        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, false);
 
         [When(@"the provider sends the cohort to employer to approve")]
         public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();
@@ -83,11 +87,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds Ulns")]
         public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice(true);
 
-        [Then(@"the provider adds Ulns and Opt the learners into the pilot")]
+        [When(@"the provider adds Ulns and Opt the learners into the pilot")]
         public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
 
-        [When(@"Provider approves the cohort")]
-        [Then(@"Provider approves the cohort")]
+        [When(@"Provider is able to successfully approve the cohort")]
+        [Then(@"Provider is able to successfully approve the cohort")]
         public void ThenProviderApprovesTheCohort() => _providerApproveApprenticeDetailsPage.SubmitApprove();
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
@@ -170,6 +174,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SubmitValidPersonalDetails()
                 .SubmitValidTrainingDetails()
                 .SubmitApprove();
+        }
+
+        [Given(@"Provider creates a new cohort")]
+        public void GivenProviderCreatesANewCohort()
+        {
+            providerAddApprenticeDetailsViaSelectJourneyPage = _providerStepsHelper
+               .GoToProviderHomePage(true)
+               .GotoSelectJourneyPage()
+               .SelectAddManually();
+        }
+
+        [Given(@"provider add leaners details and opts them into the pilot")]
+        public void GivenOptsLeanerIntoThePilot()
+        {
+            _providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsViaSelectJourneyPage
+                .SelectOptionCreateNewCohort()
+                .ChooseAnEmployer("Levy")
+                .ConfirmEmployer()
+                .ProviderSelectsAStandard()
+                .SubmitValidPersonalDetails(true)
+                .SubmitValidTrainingDetails();
         }
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);

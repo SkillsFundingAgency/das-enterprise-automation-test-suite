@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderAddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
+        private readonly Boolean _isFlexiPaymentPilotLearner;
         protected override By PageHeader => By.CssSelector(".das-show > h1");
         protected override string PageTitle => "Add training details";
         protected override By ContinueButton => By.XPath("//button[text()='Add']");
@@ -16,19 +17,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
-
-        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isPilotLearner = false)
+        public ProviderAddTrainingDetailsPage(ScenarioContext context, Boolean isFlexiPaymentPilotLearner) : base(context) 
         {
-            EnterTrainingStartDate(isPilotLearner);
+            _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
+        }
 
-            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
+        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
+        {
+            EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
+
+            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterTrainingStartDate(DateTime.Now);
 
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
-            bool rpl = CheckRPLCondition(false, isPilotLearner);
+            bool rpl = CheckRPLCondition(false);
 
             formCompletionHelper.ClickElement(ContinueButton);
 
@@ -39,13 +43,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
+        private bool CheckRPLCondition(bool rpl = false)
         {
-            var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
-                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateYear : StartDateYear));
 
-            var month = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateMonth))
-                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth));
+            var month = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateMonth : StartDateMonth));
 
             if (month > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
@@ -63,17 +65,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
         }
 
-        private void EnterTrainingStartDate(bool isPilotLearner)
+        private void EnterTrainingStartDate(DateTime date)
         {
-            if (isPilotLearner)
+            if (_isFlexiPaymentPilotLearner)
             {
                 ClickActualStartDateDay();
-                EnterActualStartDate(apprenticeCourseDataHelper.CourseStartDate);
+                EnterActualStartDate(date);
             }
             else
             {
                 ClickStartMonth();
-                EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+                EnterStartDate(date);
             }
         }
     }

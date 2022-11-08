@@ -339,7 +339,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
 
-        private ProviderApproveApprenticeDetailsPage EditApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool isPilotLearner, bool shouldCheckCoursesAreStandards)
+        public ProviderApproveApprenticeDetailsPage EditFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards, bool isPilotLearner)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
@@ -376,13 +376,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                     .ProviderSelectsAStandard()
                     .SubmitValidPersonalDetails(isPilotLearner)
-                    .SubmitValidTrainingDetails(isPilotLearner);
+                    .SubmitValidTrainingDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage);
         }
 
-        private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
+        public ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage));
             _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
@@ -390,7 +390,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner, bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), isPilotLearner, shouldCheckCoursesAreStandards);
+        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner, bool shouldCheckCoursesAreStandards = false) => EditFlexiPaymentsPilotApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards, isPilotLearner);
 
         public ProviderApproveApprenticeDetailsPage ApproveFlexiPilotCohort(bool isPilotLearner) => EditFlexiPilotLeaner(isPilotLearner);
 

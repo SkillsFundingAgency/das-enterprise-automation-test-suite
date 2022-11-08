@@ -102,16 +102,16 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Provider creates a new cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("the provider opts 2 learner into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("provider add leaners details and opts them into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("the provider sends the cohort to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the provider sends the cohort to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.When("the Employer approves the cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Employer approves the cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.Then("the provider approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
