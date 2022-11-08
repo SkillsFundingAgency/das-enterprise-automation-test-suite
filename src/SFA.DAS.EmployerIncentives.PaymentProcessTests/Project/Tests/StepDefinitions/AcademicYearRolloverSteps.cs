@@ -75,7 +75,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             DateTime.Parse(coc.NewValue).Should().Be(_endDate.AddDays(1));
             coc.PreviousValue.Should().BeNullOrEmpty();
-            coc.ChangedDate.Should().BeCloseTo(DateTime.Today);
+            coc.ChangedDate.Should().BeCloseTo(DateTime.Today, TimeSpan.FromMinutes(1));
         }
 
         [Then(@"do not trigger a learning stopped CoC event")]

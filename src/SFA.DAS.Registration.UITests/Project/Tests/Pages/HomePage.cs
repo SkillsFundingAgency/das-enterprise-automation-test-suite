@@ -37,10 +37,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public string AccountId() => RegexHelper.GetAccountId(GetUrl());
-
-        public string PublicAccountId() => RegexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
-
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {
             formCompletionHelper.Click(AcceptYourAgreementLink);

@@ -13,9 +13,9 @@ public class AP_ApplicationOverviewPage : EPAO_BasePage
     private static By GoToOrganisationDetailsLink => By.LinkText("Go to organisation details");
     private static By GoToDeclarationsLink => By.LinkText("Go to declarations");
     private static By GoToFinancialHealthAssessmentLink => By.LinkText("Go to financial health assessment");
-    private static By OrganisationDetailsSectionCompletedTextLabel => By.XPath("(//span[@id='company-details-hint'])[1]");
-    private static By DeclarationsSectionCompletedTextLabel => By.XPath("(//span[@id='company-details-hint'])[2]");
-    private static By FHASectionCompletedTextLabel => By.XPath("(//span[@id='company-details-hint'])[3]");
+    private static By OrganisationDetailsSectionCompletedTextLabel => By.Id("company-details-hint_1");
+    private static By DeclarationsSectionCompletedTextLabel => By.Id("company-details-hint_2");
+    private static By FHASectionCompletedTextLabel => By.Id("company-details-hint_3");
     private static By CancelAStandardLink => By.XPath("(//p[@class='govuk-body'])[4]");
     #endregion
 

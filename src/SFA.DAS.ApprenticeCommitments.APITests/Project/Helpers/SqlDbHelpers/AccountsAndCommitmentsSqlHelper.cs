@@ -44,7 +44,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             var createdOn = apprenticeData[9];
             var dateOfBirth = apprenticeData[10];
 
-            List<object[]> empNameData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT [NAME] from employer_account.Account WHERE id = {accountid}", connectionString);
+            List<object[]> empNameData = EmpNameData(long.Parse(accountid));
+            
 
             if (empNameData.Count == 0)
                 return (0, 0, string.Empty, string.Empty, default, string.Empty, string.Empty, 0, 0, string.Empty, string.Empty, string.Empty);
@@ -62,5 +63,17 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
 
         public void ResetEmailForApprenticeshipRecord(string email) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '{email}'", _dbConfig.CommitmentsDbConnectionString);
+
+        public (string empName, string providerName) GetEmpAndProvNames(string email)
+        {
+            var apprenticeData = GetData($"SELECT C.EmployerAccountId, C.ProviderId FROM Apprenticeship App INNER JOIN Commitment C on App.CommitmentId = C.Id WHERE App.Email = '{email}'", _dbConfig.CommitmentsDbConnectionString);
+            var (legalName, tradingName) = GetProviderData(long.Parse(apprenticeData[1]));
+            var providerName = string.IsNullOrWhiteSpace(tradingName) ? legalName : tradingName;
+            return (EmployerName(long.Parse(apprenticeData[0])), providerName);
+        }
+
+        private string EmployerName(long accountId) => EmpNameData(accountId)[0][0].ToString();
+
+        private List<object[]> EmpNameData(long accountId) => SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT [NAME] from employer_account.Account WHERE id = {accountId}", connectionString);
     }
 }

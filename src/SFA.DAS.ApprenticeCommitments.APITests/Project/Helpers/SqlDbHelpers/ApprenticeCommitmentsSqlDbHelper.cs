@@ -34,6 +34,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email)).ListOfArrayToList(0);
 
+        public string GetPlannedEndDateFromRegistration(string email) => Convert.ToString(GetDataAsObject($"SELECT PlannedEndDate FROM Registration WHERE Email = '{email}'"));
+
+        public string GetEmploymentEndDateFromRegistration(string email) => Convert.ToString(GetDataAsObject($"SELECT EmploymentEndDate FROM Registration WHERE Email = '{email}'"));
+
         private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
 
         private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE Id = (SELECT TOP 1 ApprenticeshipId from [Registration] WHERE Email = '{email}' order by ApprenticeshipId desc))";

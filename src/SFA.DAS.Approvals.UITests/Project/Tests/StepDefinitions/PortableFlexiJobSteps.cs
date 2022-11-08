@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+        private AddPersonalDetailsPage _addPersonalDetailsPage;
         private ProviderStepsHelper _providerStepsHelper;
 
         public PortableFlexiJobSteps(ScenarioContext context)
@@ -35,21 +35,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenAnEmployerInitiatesAPortableFlexi_JobApprenticeshipCreation()
         {
             _employerPortalLoginHelper.Login(_context.GetUser<EmployerConnectedToPortableFlexiJobProvider>(), true);
-            _addApprenticeDetailsPage = _employerStepsHelper.AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider();
+            _addPersonalDetailsPage = _employerStepsHelper.AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider();
         }
 
         [Then(@"the Employer validates Portable flexi-job content on Add Apprentice Details page")]
         public void ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage()
         {
-            _addApprenticeDetailsPage.ValidatePortableFlexiJobContent();
-            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
+            var addTrainingDetailsPage = _addPersonalDetailsPage.SubmitValidPersonalDetails();
+            addTrainingDetailsPage.ValidatePortableFlexiJobContent();
+
+            _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
         }
 
         [Then(@"validates Portable flexi-job tag on Approve Apprentice Details and sends the cohort to the Provider for approval")]
         public void ThenValidatesPortableFlexi_JobTagOnApproveApprenticeDetailsAndSendsTheCohortToTheProviderForApproval()
         {
             _approveApprenticeDetailsPage.ValidatePortableFlexiJobTag();
-            var cohortReference = _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview().CohortReference();
+            var cohortReference = _approveApprenticeDetailsPage.EmployerFirstApproveAndNotifyTrainingProvider().CohortReference();
 
             _objectContext.SetCohortReference(cohortReference);
             _objectContext.SetNoOfApprentices(1);
@@ -57,5 +59,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Provider validates Portable flexi-job content and approves the cohort")]
         public void ThenTheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort() => _providerStepsHelper.ValidatePortableFlexiJobContentAndApproveCohort();
+
+        [Given(@"the Employer creates a Portable flexi-job apprenticeship and the Provider approves it")]
+        public void GivenTheEmployerCreatesAPortableFlexi_JobApprenticeshipAndTheProviderApprovesIt()
+        {
+            GivenAnEmployerInitiatesAPortableFlexi_JobApprenticeshipCreation();
+            ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage();
+            ThenValidatesPortableFlexi_JobTagOnApproveApprenticeDetailsAndSendsTheCohortToTheProviderForApproval();
+            ThenTheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort();
+        }
     }
 }

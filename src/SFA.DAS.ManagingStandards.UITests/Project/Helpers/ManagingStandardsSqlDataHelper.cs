@@ -1,4 +1,4 @@
-﻿  namespace SFA.DAS.ManagingStandards.UITests.Project.Helpers;
+﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Helpers;
 
 public class ManagingStandardsSqlDataHelper : SqlDbHelper
 {
