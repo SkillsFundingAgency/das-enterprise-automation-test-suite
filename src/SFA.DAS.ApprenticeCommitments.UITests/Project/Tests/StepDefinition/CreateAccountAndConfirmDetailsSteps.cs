@@ -58,7 +58,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice can create account and confirm their details")]
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
         {
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship();
+            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship();
         }
     }
 }

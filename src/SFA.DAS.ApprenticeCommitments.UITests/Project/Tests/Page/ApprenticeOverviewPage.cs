@@ -66,6 +66,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ConfirmYourApprenticeshipDetailsPage(context);
         }
 
+        public ConfirmYourPortableApprenticeshipDetailsPage GoToConfirmYourPortableApprenticeshipDetailsPage()
+        {
+            ClickYourApprenticeshipDetailsLink();
+            return new ConfirmYourPortableApprenticeshipDetailsPage(context);
+        }
+
         public ConfirmYourFlexiJobApprenticeshipDetailsPage GoToConfirmYourFlexiJobApprenticeshipDetailsPage()
         {
             ClickYourApprenticeshipDetailsLink();

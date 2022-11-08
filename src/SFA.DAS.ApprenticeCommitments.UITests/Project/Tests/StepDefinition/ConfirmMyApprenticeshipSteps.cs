@@ -1,5 +1,7 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -8,11 +10,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class ConfirmMyApprenticeshipSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
 
-        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _objectContext = _context.Get<ObjectContext>();
+        }
 
         [Then(@"the coc notification should not be displayed")]
         public void ThenTheCocNotificationShouldNotBeDisplayed() => _apprenticeOverviewPage = ApprenticeOverviewPage().VerifyCoCNotificationIsNotDisplayed();
@@ -25,8 +32,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 .NavigateToOverviewPageWithCmadLinkOnTheHomePage().VerifyDaysToConfirmWarning();
         }
 
-        [Given(@"the apprentice completed confirm my apprenticeship details")]
-        public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
+        [Given(@"the apprentice creates the account and confirms the apprenticeship details")]
+        public void GivenTheApprenticeCreatesTheAccountAndConfirmsTheApprenticeshipDetails() => createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
 
         [Then(@"the apprentice is able to confirm the Employer")]
         public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(OverviewPageHelper.InComplete);
@@ -35,7 +42,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(OverviewPageHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
         public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);
@@ -125,12 +132,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 .NavigateBackToCMADOverviewPage();
         }
 
-        [Then(@"the apprentice confirms all the sections and the overall apprenticeship")]
-        public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship()
+        [Then(@"the apprentice confirms all the sections and the overall (Regular|Portable) apprenticeship")]
+        public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship(string appType)
         {
-            _apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
+            //_apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
 
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship().VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
+            bool isRegularApp = appType.CompareToIgnoreCase("Regular");
+
+            new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
+
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship(isRegularApp).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
 
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection6Status(OverviewPageHelper.Complete);
 
@@ -148,6 +159,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeCanNavigateToCMADDetailsConfirmationPageAndConfirmTheirApprenticeshipIsFlexijob()
         {
             confirmMyApprenticeshipStepsHelper.NavigateAndVerifyFlexijobApprenticeshipDetails();
+        }
+
+        [Then(@"the apprentice verifies the (Regular|Portable) apprenticeship information displayed on the fully confirmed overview page")]
+        public void ThenTheApprenticeVerifiesTheApprenticeshipInformationDisplayedOnTheFullyConfirmedOverviewPage(string appType)
+        {
+            if (appType.CompareToIgnoreCase("Regular"))
+                confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedRegularAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
+            else if (appType.CompareToIgnoreCase("Portable"))
+                confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedPortableAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
         }
 
         private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
