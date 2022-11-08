@@ -7,6 +7,26 @@
 	  <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EMPACC_EAS_API_21_GetAccount - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EMPACC_EAS_API_22_GetAccountByInternalId - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EMPACC_EAS_API_23_GetAccountUsers - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_API_01_ApiGetLegalEntities.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_10_ GetPageOfAccountLegalEntities - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_11_ GetPayeSchemesConnectedToAccount - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_12_ GetStatistics - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_13_GetTransactionSummary - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_14_GetTransactions - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_22_GetAccountByInternalId.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_23_GetAccountUsers.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_24_GeInternaltAccountUsers.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_5_GetEmployerAgreement - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_6_GetLegalEntitiesConnectedToAccount - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_7_GetLegalEntityDetailsConnectedToAccount - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_8_GetLegalEntity - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_9_ GetLevyDeclarations - Copy.feature.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -33,6 +53,87 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_01_GetAccounts.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_15_GetUserAccounts.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_14_GetTransactions.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_13_GetTransactionSummary.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_12_ GetStatistics.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_11_ GetPayeSchemesConnectedToAccount.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_10_ GetPageOfAccountLegalEntities.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_02_GetAccountByInternalId.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_3_GetAccountUsers.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_4_GeInternaltAccountUsers.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_9_ GetLevyDeclarations.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_8_GetLegalEntity.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_7_GetLegalEntityDetailsConnectedToAccount.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_6_GetLegalEntitiesConnectedToAccount.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_5_GetEmployerAgreement.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_01_GetAccounts.feature.cs">
+	    <DependentUpon>EMPACC_EAS_API_01_GetAccounts.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_02_GetAccountByInternalId.feature.cs">
+	    <DependentUpon>EMPACC_EAS_API_02_GetAccountByInternalId.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_3_GetAccountUsers.feature.cs">
+	    <DependentUpon>EMPACC_EAS_API_3_GetAccountUsers.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_4_GeInternaltAccountUsers.feature.cs">
+	    <DependentUpon>EMPACC_EAS_API_4_GeInternaltAccountUsers.feature</DependentUpon>
+	  </Compile>
+	  <Compile Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_5_GetEmployerAgreement.feature.cs">
+	    <DependentUpon>EMPACC_EAS_API_5_GetEmployerAgreement.feature</DependentUpon>
+	  </Compile>
 	</ItemGroup>	
 
 </Project>

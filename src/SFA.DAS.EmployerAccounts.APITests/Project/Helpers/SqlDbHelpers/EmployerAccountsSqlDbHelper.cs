@@ -64,6 +64,13 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
         public string GetUserEmail()
         {
             return GetDataAsString("Select top 1 Email from [employer_account].[User] order by Id desc");            
-        }    
+        }
+        
+        public string GetUserRef()
+        { 
+            var userRef = GetDataAsString("SELECT top 1  UserRef  FROM[employer_account].[User] Where TermAndConditionsAcceptedOn is  not null  order by Id desc");
+            _objectContext.SetUserRef(userRef);
+            return userRef;
+        }
     }
 }

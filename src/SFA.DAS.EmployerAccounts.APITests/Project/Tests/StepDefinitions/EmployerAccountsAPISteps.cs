@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.API.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EmployerAccounts.APITests.Project;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.HashingService;
@@ -30,7 +29,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerAccountsSqlDbHelper.GetAccountId();
             _employerAccountsSqlDbHelper.GetInternalAccountId();
-            _employerAccountsSqlDbHelper.GetLegalEntityId();
+            _employerAccountsSqlDbHelper.GetLegalEntityId();            
             _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
         }
 
@@ -175,12 +174,12 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy");
             var result = JsonConvert.DeserializeObject<ICollection<LevyDeclaration>>(response.Content);
             _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy/{result.FirstOrDefault().PayrollYear}/{result.FirstOrDefault().PayrollMonth}", HttpStatusCode.OK);
-        }
+        }      
 
         [Then(@"das-employer-accounts-api /ping endpoint can be accessed")]
         public void ThenDas_Employer_Accounts_ApiPingEndpointCanBeAccessed()
         {
             _innerApiRestClient.ExecuteEndpoint("/ping", HttpStatusCode.OK);
-        }
+        }      
     }
 }
