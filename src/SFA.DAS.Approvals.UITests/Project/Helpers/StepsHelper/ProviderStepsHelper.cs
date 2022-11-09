@@ -307,16 +307,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        if (shouldCheckCoursesAreStandards)
-                            providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                        var providerEditTrainingDetailsPage =  providerEditApprenticeDetailsPage.EnterUlnAndSave();
 
-                        providerEditApprenticeDetailsPage.EnterUlnAndSave().CheckRPLConditionAndSave();
+                        if (shouldCheckCoursesAreStandards)
+                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+
+                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave();
                         break;
                     }
                     j--;
                 }
             }
-
             return providerApproveApprenticeDetailsPage;
         }
 
@@ -345,10 +346,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i).ClickEditCourseLink().ProviderSelectsAStandardForEditApprenticeDetailsPath();
-                providerApproveApprenticeDetailsPage = _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse().ClickSave();
+                _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
+                providerApproveApprenticeDetailsPage = 
+                    _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
+                    .ClickEditCourseLink()
+                    .ProviderSelectsAStandardForEditApprenticeDetailsPath()
+                    .ClickSave();
             }
-
             return providerApproveApprenticeDetailsPage;
         }
 
