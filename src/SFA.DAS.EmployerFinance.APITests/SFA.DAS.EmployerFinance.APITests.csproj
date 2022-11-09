@@ -7,6 +7,19 @@
 	  <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AC_API_01_OuterApiHealthCheck.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_01_OuterApiHealthCheck - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_02_OuterApiHealthCheck - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_03_AccountUsersWhichReceiveNotification - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_04_AccountUsersWhichReceiveNotification - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_05_GetProjections - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_06_GetProviders - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_07_GetTrainingCoursesFrameworks - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_08_GetTrainingCoursesStandards - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_08_GetTrainingCoursesStandards - Copy.feature.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -20,8 +33,41 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.3.0" />
-	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
-	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_01_OuterApiHealthCheck.feature.cs">
+      <DependentUpon>EmpFin_Api_01_OuterApiHealthCheck.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_02_AccountMinimumSignedAgreement.feature.cs">
+      <DependentUpon>EmpFin_Api_02_AccountMinimumSignedAgreement.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_03_AccountUsersWhichReceiveNotification.feature.cs">
+      <DependentUpon>EmpFin_Api_03_AccountUsersWhichReceiveNotification.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_04_GetPledges.feature.cs">
+      <DependentUpon>EmpFin_Api_04_GetPledges.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_07_GetTrainingCoursesFrameworks.feature.cs">
+      <DependentUpon>EmpFin_Api_07_GetTrainingCoursesFrameworks.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_09_AccountTransfersCount.feature.cs">
+      <DependentUpon>EmpFin_Api_09_AccountTransfersCount.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_10_AccountTransfersFinancialBreakdown.feature.cs">
+      <DependentUpon>EmpFin_Api_10_AccountTransfersFinancialBreakdown.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_08_GetTrainingCoursesStandards.feature.cs">
+      <DependentUpon>EmpFin_Api_08_GetTrainingCoursesStandards.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_06_GetProviders.feature.cs">
+      <DependentUpon>EmpFin_Api_06_GetProviders.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Outer\EmpFin_Api_05_GetProjections.feature.cs">
+      <DependentUpon>EmpFin_Api_05_GetProjections.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +81,49 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_01_OuterApiHealthCheck.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_02_AccountMinimumSignedAgreement.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_03_AccountUsersWhichReceiveNotification.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_04_GetPledges.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_07_GetTrainingCoursesFrameworks.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_09_AccountTransfersCount.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_10_AccountTransfersFinancialBreakdown.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_08_GetTrainingCoursesStandards.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_06_GetProviders.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EmpFin_Api_05_GetProjections.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
