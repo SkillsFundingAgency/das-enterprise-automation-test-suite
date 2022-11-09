@@ -1,4 +1,4 @@
-﻿Feature: AC_E2E_03_VerifyCmadPotalContentForFlexijobApprentice
+﻿Feature: AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice
 
 This test verifies the content of the CMAD account for a Flexijob apprentice
 
@@ -6,7 +6,7 @@ This test verifies the content of the CMAD account for a Flexijob apprentice
 @regression
 @flexi-job
 @e2escenarios
-Scenario: AC_E2E_03_VerifyCmadPotalContentForFlexijobApprentice
+Scenario: AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When employer selects Flexi-job agency radio button on Select Delivery Model screen 
 	Then validate Flexi-job agency content on Add Apprentice Details page and submit valid details
