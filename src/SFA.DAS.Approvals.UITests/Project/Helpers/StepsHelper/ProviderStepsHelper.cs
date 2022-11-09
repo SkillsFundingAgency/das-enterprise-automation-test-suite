@@ -350,7 +350,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 providerApproveApprenticeDetailsPage = 
                     _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
-                    .ProviderSelectsAStandardForEditApprenticeDetailsPath()
+                    .ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
                     .ClickSave();
             }
             return providerApproveApprenticeDetailsPage;
