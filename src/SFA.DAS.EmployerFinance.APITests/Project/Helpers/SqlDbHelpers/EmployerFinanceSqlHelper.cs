@@ -27,5 +27,11 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers
             var hashedAccountId =  SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _dbConfig.AccountsDbConnectionString);
             _objectContext.SetHashedAccountId(hashedAccountId[0][0].ToString());
         }
+
+        public void SetEmpRef()
+        {
+            var empRef = GetDataAsString($"Select top (1) EmpRef from [employer_financial].[AccountPaye] Where [AccountId] = {long.Parse(_objectContext.GetAccountId())}");
+            _objectContext.SetEmpRef(empRef);
+        }
     }
 }

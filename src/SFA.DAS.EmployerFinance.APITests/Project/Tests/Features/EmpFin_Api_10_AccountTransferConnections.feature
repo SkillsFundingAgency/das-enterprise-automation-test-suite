@@ -1,9 +1,9 @@
-﻿Feature: ApiGetTransferConnectionsHashedAccountId
+﻿Feature: EmpFin_Api_10_AccountTransferConnections
 
 @api
 @employeraccountsapi
 @regression
 @innerapi
-Scenario: EMPACC_API_19_ApiGetTransferConnectionsHashedAccountId
+Scenario: EmpFin_Api_10_AccountTransferConnections
 	Then endpoint /api/accounts/{hashedAccountId}/transfers/connections can be accessed
 	Then endpoint /api/accounts/internal/{accountId}/transfers/connections can be accessed

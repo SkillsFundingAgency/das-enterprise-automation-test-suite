@@ -26,6 +26,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerFinanceSqlDbHelper.SetHashedAccountId();
             _employerFinanceSqlDbHelper.SetAccountId();
+            _employerFinanceSqlDbHelper.SetEmpRef();
         }
 
         [Then(@"the employer finance outer api is reachable")]
@@ -101,7 +102,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint das-employer-finance-api /ping can be accessed")]
         public void ThenEndpointDas_Employer_Finance_ApiPingCanBeAccessed()
         {
-            _innerApiRestClient.ExecuteEndpoint("/api/healthcheck", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint("/ping", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint api/accounts/\{hashedAccountId}/levy can be accessed")]
@@ -148,6 +149,28 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         {
             var hashedAccountId = _objectContext.GetHashedAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transferAllowance", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/levy/english-fraction-current can be accessed")]
+        public void ThenEndpointApiAccountsHashedAccountIdLevyEnglishFractionCurrentCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy/english-fraction-current", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/levy/english-fraction-history can be accessed")]
+        public void ThenEndpointApiAccountsHashedAccountIdLevyEnglishFractionHistoryCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var empRef = _objectContext.GetEmpRef();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy/english-fraction-history?empRef={empRef}", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /api/accounts/\{hashedAccountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsHashedAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transfers/connections", HttpStatusCode.OK);
         }
     }
 }
