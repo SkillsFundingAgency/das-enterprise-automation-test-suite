@@ -12,9 +12,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By PageHeader => By.CssSelector(".das-show > h1");
         protected override string PageTitle => "Add training details";
         protected override By ContinueButton => By.XPath("//button[text()='Add']");
-        private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
-        private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
-        private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
+        private static By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
+        private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
         public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 

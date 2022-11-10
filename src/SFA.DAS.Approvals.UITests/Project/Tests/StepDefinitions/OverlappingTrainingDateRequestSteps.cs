@@ -142,7 +142,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
         }
 
-
         [Then(@"overlapping training date request banner is displayed")]
         public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()
         {
@@ -159,7 +158,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var editLinkVisible = new ApprenticeDetailsPage(_context).IsEditApprenticeDetailsLinkVisible();
             Assert.IsFalse(editLinkVisible);
         }
-
-
     }
 }
