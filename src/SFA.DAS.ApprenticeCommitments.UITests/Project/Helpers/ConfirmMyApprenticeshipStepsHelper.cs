@@ -20,12 +20,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         protected readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private string expectedApprenticeshipName, expectedApprenticeshipLevel, actualDeliveryModel;
-        //private string expectedDeliveryModel, expectedApprenticeshipName, expectedApprenticeshipLevel;
         private DateTime expectedApprenticeshipStartDate;
         private DateTime expectedApprenticeshipEndDate;
         private DateTime expectedJobEndDate;
         private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualEsimatedDurationInfo;
-        //private string actualApprenticeshipDeliveryModel, actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualEsimatedDurationInfo;
         private string actualApprenticeshipEndDate, actualJobEndDate;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private FullyConfirmedOverviewPage _fullyConfirmedOverviewPage;
@@ -41,13 +39,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
         }
-
-        //public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndApprenticeship()
-        //{
-        //    var apprenticeOverviewPage = ConfirmAllSections().VerifyTopBannerOnOverviewPageBeforeOverallConfirmation();
-        //    AssertSection6Status(OverviewPageHelper.InComplete);
-        //    return apprenticeOverviewPage.ConfirmOverallApprenticeship();
-        //}
 
         public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndOverallApprenticeship(bool isRegularApp = true)
         {
@@ -68,7 +59,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
-            //apprenticeOverviewPage = ConfirmApprenticeshipDetails(OverviewPageHelper.InComplete);
             apprenticeOverviewPage = ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete, isRegularApp);
             VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
             apprenticeOverviewPage = ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);
@@ -95,14 +85,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertSection2Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
-
-        //public ApprenticeOverviewPage ConfirmApprenticeshipDetails(string initialStatus)
-        //{
-        //    AssertSection3Status(initialStatus);
-        //    var apprenticeOverviewPage = NavigateAndVerifyApprenticeshipDetails().SelectYesAndContinueToOverviewPage();
-        //    AssertSection3Status(OverviewPageHelper.Complete);
-        //    return apprenticeOverviewPage;
-        //}
 
         public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(string initialStatus, bool isRegularApp = true)
         {
@@ -305,7 +287,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private void PopulateExpectedFlexijobApprenticeshipDetails()
         {
             email = _objectContext.GetApprenticeEmail();
-            //expectedDeliveryModel = _objectContext.GetDeliveryModel().Split(',')[0];
             expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];
             expectedApprenticeshipLevel = _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
             expectedApprenticeshipStartDate = DateTime.Parse(_objectContext.GetTrainingStartDate());
@@ -318,7 +299,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(expectedApprenticeshipName), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
             Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
-            //Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
             Assert.AreEqual(expectedApprenticeshipStartDate.ToString("MMMM yyyy"), actualApprenticeshipStartDate);
             Assert.IsNotNull(actualEsimatedDurationInfo);
         }
