@@ -218,7 +218,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public void VerifyFlexijobApprenticeshipDataDisplayed(ConfirmYourFlexiJobApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)
         {
             PopulateExpectedFlexijobApprenticeshipDetails();
-            //actualApprenticeshipDeliveryModel = confirmYourApprenticeshipDetailsPage.GetDeliveryModelInfo();
+            actualDeliveryModel = confirmYourApprenticeshipDetailsPage.GetDeliveryModelInfo();
             actualApprenticeshipName = confirmYourApprenticeshipDetailsPage.GetApprenticeshipInfo();
             actualApprenticeshipLevel = confirmYourApprenticeshipDetailsPage.GetApprenticeshipLevelInfo();
             actualApprenticeshipStartDate = confirmYourApprenticeshipDetailsPage.GetFlexiJobApprenticeshipPlannedStartDateInfo();
@@ -325,9 +325,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void AssertFlexijobApprenticeshipDetails()
         {
-            //string expectedDeliveryModel = "Flexi-job Agency";
+            string expectedDeliveryModel = "Flexi-job Agency";
             Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(expectedApprenticeshipName), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
-            //Assert.AreEqual(expectedDeliveryModel, actualApprenticeshipDeliveryModel);
+            Assert.AreEqual(expectedDeliveryModel, actualDeliveryModel);
             Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
             Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
             Assert.IsNotNull(actualEsimatedDurationInfo);
