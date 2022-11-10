@@ -8,7 +8,7 @@ Scenario: AP_DO_03_OLTD User decides to contact the employer themselves
 	Given Employer and provider approve an apprentice
 	When provider creates a draft apprentice which has an overlap
 	And provider selects to contact the employer themselves
-	Then Vaidate information is stored in database
+	Then information is saved in the cohort
 	When provider selects to edit the price
 	And provider selects to add apprentice details later
-    Then Vaidate price update information is not stored in database
+    Then price update information is not stored in the cohort

@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("provider decides to send stop request email from service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("Vaidate information is stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("information is saved in the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.When("Employer selects to edit the active apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

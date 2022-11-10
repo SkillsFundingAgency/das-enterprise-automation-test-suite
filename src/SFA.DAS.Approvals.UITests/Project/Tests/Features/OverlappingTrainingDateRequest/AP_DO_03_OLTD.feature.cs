@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("provider selects to contact the employer themselves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("Vaidate information is stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("information is saved in the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.When("provider selects to edit the price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("provider selects to add apprentice details later", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
-    testRunner.Then("Vaidate price update information is not stored in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("price update information is not stored in the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

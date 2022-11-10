@@ -220,6 +220,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
 
+
         [When(@"provider selects to edit the price")]
         public void WhenProviderSelectsToEditThePrice()
         {
@@ -240,6 +241,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
               .SelectIWillAddApprenticesLater();
         }
 
+
         [Then(@"Vaidate price update information is not stored in database")]
         public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
         {
@@ -247,6 +249,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
         }
+
 
         [Then(@"Employer selects to edit the active apprentice")]
         public void ThenEmployerSelectsToEditTheActiveApprentice()
