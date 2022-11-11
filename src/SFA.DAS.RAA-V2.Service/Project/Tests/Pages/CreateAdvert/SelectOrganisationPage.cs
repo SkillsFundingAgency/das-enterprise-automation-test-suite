@@ -22,5 +22,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             Continue();
             return new ApprenticeshipTrainingPage(context);
         }
+        
+        public TraineeshipSectorPage SelectOrganisationMultiOrgTraineeship()
+        {
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
+            Continue();
+            return new TraineeshipSectorPage(context);
+        }
     }
 }
