@@ -220,7 +220,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
 
-
         [When(@"provider selects to edit the price")]
         public void WhenProviderSelectsToEditThePrice()
         {
@@ -241,7 +240,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
               .SelectIWillAddApprenticesLater();
         }
 
-
         [Then(@"Vaidate price update information is not stored in database")]
         public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
         {
@@ -249,7 +247,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
         }
-
 
         [Then(@"Employer selects to edit the active apprentice")]
         public void ThenEmployerSelectsToEditTheActiveApprentice()
@@ -279,6 +276,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var editLinkVisible = new ApprenticeDetailsPage(_context).IsEditApprenticeDetailsLinkVisible();
             Assert.IsFalse(editLinkVisible);
+        }
+
+        [Then(@"information is saved in the cohort")]
+        public void ThenInformationIsSavedInTheCohort()
+        {
+            var uln = _objectContext.GetUlnForOLTD();
+            var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
+            Assert.AreEqual(2, numberOfApprenticesWithUln);
+        }
+
+        [Then(@"price update information is not stored in the cohort")]
+        public void ThenPriceUpdateInformationIsNotStoredInTheCohort()
+        {
+            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var newCost = int.Parse(newCostString);
+            Assert.AreEqual(_oldCost, newCost);
         }
     }
 }
