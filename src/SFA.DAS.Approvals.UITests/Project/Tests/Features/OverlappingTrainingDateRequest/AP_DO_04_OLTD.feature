@@ -1,7 +1,6 @@
-﻿@approvals
-Feature: AP_DO_04_OLTD_user_decides_to_send_stop_request_email_from_service
+﻿Feature: AP_DO_04_OLTD_user_decides_to_send_stop_request_email_from_service
 
-
+@approvals
 @regression
 @overlappingtrainingdaterequest
 Scenario: AP_DO_04_OLTD User decides to send stop request email from service

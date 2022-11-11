@@ -50,6 +50,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
+        private DateTime SetEIJourneyTestData(int apprenticeNo)
+        {
+            if (objectContext.IsEIJourney())
+            {
+                var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
+
+                var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
+
+                objectContext.SetEIAgeCategoryAsOfAug2021(eiApprenticeDetail.AgeCategoryAsOfAug2021);
+                objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
+                objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
+
+                apprenticeDataHelper.DateOfBirthDay = 1;
+                apprenticeDataHelper.DateOfBirthMonth = 8;
+                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2021().Equals("Aged16to24")) ? 2005 : 1994;
+                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
+                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
+                apprenticeDataHelper.TrainingCost = "7500";
+
+                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
+            }
+
+            if (objectContext.HasStartDate()) apprenticeCourseDataHelper.CourseStartDate = objectContext.GetStartDate();
+
+            if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
+
+            return apprenticeCourseDataHelper.CourseStartDate;
+        }
+
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
 
         public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
