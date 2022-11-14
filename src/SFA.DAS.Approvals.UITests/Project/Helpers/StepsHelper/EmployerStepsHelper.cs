@@ -120,7 +120,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices, bool isTransferReceiverEmployer = false)
         {
             var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
+<<<<<<< HEAD
                   .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+=======
+                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticePersonalDetails().SubmitValidApprenticeTrainingDetails(false);
+>>>>>>> master
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
@@ -162,14 +166,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddPersonalDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
+<<<<<<< HEAD
             var trainingDetailsPage = addApprenticeDetailsPage.SubmitValidPersonalDetails();
+=======
+            var trainingDetailsPage = addApprenticeDetailsPage.SubmitValidApprenticePersonalDetails();
+>>>>>>> master
 
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
                 trainingDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable().ContinueToAddTrainingDetailsPage();
             }
 
+<<<<<<< HEAD
             _approveApprenticeDetailsPage = trainingDetailsPage.SubmitValidTrainingDetails(true);
+=======
+            _approveApprenticeDetailsPage = trainingDetailsPage.SubmitValidApprenticeTrainingDetails(true);
+>>>>>>> master
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_approveApprenticeDetailsPage);
             int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_approveApprenticeDetailsPage, count);
             _objectContext.SetNoOfApprentices(noOfApprentice);
@@ -211,7 +223,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .DynamicHomePageNonLevyEmployerAddsApprentices()
                  .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
                  .EmployerSelectsAStandard()
+<<<<<<< HEAD
                  .DraftDynamicHomePageAddValidPersonalDetails()
+=======
+                 .DraftDynamicHomePageAddValidApprenticeDetails()
+>>>>>>> master
                  .DraftDynamicHomePageSubmitValidApprenticeDetails()
                  .DraftReturnToHomePage()
                  .CheckDraftStatusAndAddDetails()
@@ -298,7 +314,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             for (int i = 1; i < numberOfApprentices; i++)
             {
+<<<<<<< HEAD
                 employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false, i);
+=======
+                employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticePersonalDetails().SubmitValidApprenticeTrainingDetails(false, i);
+>>>>>>> master
             }
 
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, numberOfApprentices));

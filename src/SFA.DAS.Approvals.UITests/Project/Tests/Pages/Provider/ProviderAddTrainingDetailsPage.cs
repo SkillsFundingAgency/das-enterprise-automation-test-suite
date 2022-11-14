@@ -12,17 +12,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By PageHeader => By.CssSelector(".das-show > h1");
         protected override string PageTitle => "Add training details";
         protected override By ContinueButton => By.XPath("//button[text()='Add']");
-        private By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
-        private By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
-        private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
+        private static By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
+        private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
         public ProviderAddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
+        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails()
         {
             ClickStartMonth();
 
-            EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+            if (objectContext.HasStartDate()) EnterStartDate(objectContext.GetStartDate());
+            else  EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
 
@@ -39,6 +40,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
+        {
+            ClickStartMonth();
+     
+            EnterStartDate(objectContext.GetStartDate());
+
+            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+
+            EnterTrainingCostAndEmpReference();
+
+            formCompletionHelper.ClickElement(ContinueButton);
+
+            return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
         }
 
         internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
