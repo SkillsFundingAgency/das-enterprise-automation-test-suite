@@ -20,10 +20,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         public ProviderFundingForNonLevyEmployersPage(ScenarioContext context) : base(context) => _reservationId = objectContext.GetReservationId();
 
-        internal ProviderAddApprenticeDetailsPage AddApprenticeWithReservedFunding()
+        internal ProviderAddPersonalDetailsPage AddApprenticeWithReservedFunding()
         {
             formCompletionHelper.ClickElement(AddApprenticeLink);
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new ProviderAddPersonalDetailsPage(context);
         }
 
         public ProviderAccessDeniedPage AddApprenticeWithReservedFundingGoesToAccessDenied()

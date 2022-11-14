@@ -1,0 +1,48 @@
+parameters:
+  Environment:
+  ServiceConnection:
+
+jobs:
+- deployment: RunAcceptanceTests
+  pool:
+    vmImage: 'windows-latest'
+  environment: TEST_SUITE
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - checkout: self
+        - checkout: das-platform-automation
+        - task: FileTransform@1
+          displayName: 'Tokenization: Transform file *.json'
+          inputs:
+            FolderPath: '$(Pipeline.Workspace)/**/tests.zip'
+            FileType: json
+        - task: ExtractFiles@1
+          displayName: 'Extract files '
+          inputs:
+            archiveFilePatterns: '$(Pipeline.Workspace)/**/tests.zip'
+            destinationFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
+        - ${{ if eq(parameters['Environment'], 'PP') }}:
+          - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
+            parameters:
+              ServiceConnection: ${{ parameters.ServiceConnection }}
+              ResourceName: $(CoursesAppServiceName)
+              RuleName: '$(TestCategory)'
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'test'
+            arguments: '--filter "TestCategory=$(TestCategory)" --logger trx'
+            projects: |
+              $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Courses.APITests/SFA.DAS.Courses.APITests.dll
+        - task: PowerShell@2
+          displayName: 'Check .trx File Exists'
+          inputs:
+            targetType: filePath
+            filePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/src/Check-TestResults.ps1'
+            arguments: '-SourcePath "$(Agent.TempDirectory)"'
+        - ${{ if eq(parameters['Environment'], 'PP') }}:
+          - template: azure-pipelines-templates/deploy/step/appservice-remove-ip.yml@das-platform-building-blocks
+            parameters:
+              ServiceConnection: ${{ parameters.ServiceConnection }}
+              ResourceName: $(CoursesAppServiceName)

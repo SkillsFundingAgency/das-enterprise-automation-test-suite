@@ -62,6 +62,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
                 .AddJsonFile("appsettings.Environment.json", true)
+                .AddJsonFile("appsettings.AdoEnvironment.json")
                 .AddEnvironmentVariables()
                 .Build();
 
