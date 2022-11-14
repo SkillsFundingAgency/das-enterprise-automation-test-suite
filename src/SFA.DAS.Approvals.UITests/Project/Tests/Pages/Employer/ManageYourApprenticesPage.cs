@@ -73,6 +73,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new FilteredManageYourApprenticesPage(context);
         }
 
+        public ApprenticeDetailsPage SelectFromRow(string apprenticesFirstName, string status)
+        {
+            tableRowHelper.SelectRowFromTable(apprenticesFirstName, status);
+            return new ApprenticeDetailsPage(context);
+        }
+
         public void VerifyApprenticeExists()
         {
             pageInteractionHelper.InvokeAction(() => 
