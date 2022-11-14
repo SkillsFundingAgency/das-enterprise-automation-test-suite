@@ -17,13 +17,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddPersonalDetailsPage(ScenarioContext context) : base(context)  { }
 
-        internal ProviderAddTrainingDetailsPage SubmitValidPersonalDetails()
+        internal ProviderAddTrainingDetailsPage SubmitValidApprenticePersonalDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
 
-            formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
+            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
 
             formCompletionHelper.Click(ContinueButton);
 
