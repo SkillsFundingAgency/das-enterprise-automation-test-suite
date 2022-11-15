@@ -27,8 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
         private ProviderEditApprenticePersonalDetailsPage _providerEditApprenticeDetailsPage;
-        private List<ApprenticeDetails> _apprenticeList;
-        private static string[] _tags;
         private ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
