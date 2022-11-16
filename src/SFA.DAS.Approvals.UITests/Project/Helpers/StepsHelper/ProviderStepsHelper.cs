@@ -353,12 +353,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 {
                     if (uln.Text.Equals("-"))
                     {
-                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+                        var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+
+                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner);
 
                         if (shouldCheckCoursesAreStandards)
-                            providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
-                        providerEditApprenticeDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner).CheckRPLConditionAndSave(isPilotLearner);
+                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
                         break;
                     }
                     j--;
