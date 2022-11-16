@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice")]
+        [NUnit.Framework.DescriptionAttribute("AC_E2E_04_VerifyCmadPortalContentForFlexijobApprentice")]
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-job")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public void AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice()
+        public void AC_E2E_04_VerifyCmadPortalContentForFlexijobApprentice()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
                     "flexi-job",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_04_VerifyCmadPortalContentForFlexijobApprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
