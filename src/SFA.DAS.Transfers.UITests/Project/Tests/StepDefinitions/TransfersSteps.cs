@@ -68,7 +68,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         }
 
 
-        [When(@"Provider approves the cohort")]
+        [When(@"the Provider approves the cohort")]
         public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();
 
         [When(@"Provider approves the cohort and sends to recevier for approval")]

@@ -15,6 +15,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By DateOfBirthDay => By.Id("BirthDay");
         private By DateOfBirthMonth => By.Id("BirthMonth");
         private By DateOfBirthYear => By.Id("BirthYear");
+        private By ActualStartDateDay => By.Id("ActualStartDay");
+        public By ActualStartDateMonth => By.Id("ActualStartMonth");
+        public By ActualStartDateYear => By.Id("ActualStartYear");
         public By StartDateMonth => By.Id("StartMonth");
         public By StartDateYear => By.Id("StartYear");
         private By EndDateMonth => By.Id("EndMonth");
@@ -38,10 +41,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected void ClickStartMonth() => formCompletionHelper.ClickElement(StartDateMonth);
 
+        protected void ClickActualStartDateDay() => formCompletionHelper.ClickElement(ActualStartDateDay);
+
         protected void EnterStartDate(DateTime dateTime)
         {
             formCompletionHelper.EnterText(StartDateMonth, dateTime.Month);
             formCompletionHelper.EnterText(StartDateYear, dateTime.Year);
+        }
+
+        protected void EnterActualStartDate(DateTime dateTime)
+        {
+            formCompletionHelper.EnterText(ActualStartDateDay, dateTime.Day);
+            formCompletionHelper.EnterText(ActualStartDateMonth, dateTime.Month);
+            formCompletionHelper.EnterText(ActualStartDateYear, dateTime.Year);
         }
 
         protected void EnterEndDate(DateTime dateTime)
