@@ -26,7 +26,7 @@ resources:
   - pipeline: das-enterprise-automation-test-suite
     project: Digital Apprenticeship Service
     source: das-enterprise-automation-test-suite
-    branch: DASD-9766-courses-api
+    branch: master
     trigger: 
       stages:
       - Deploy_PP
