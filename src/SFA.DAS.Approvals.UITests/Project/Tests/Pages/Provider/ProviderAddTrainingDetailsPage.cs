@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         private readonly Boolean _isFlexiPaymentPilotLearner;
-        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Add training details";
         protected override By ContinueButton => By.XPath("//button[text()='Add']");
         private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
