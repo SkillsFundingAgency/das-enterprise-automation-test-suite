@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -14,11 +13,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) { }
+        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) {}
 
         public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndSave()
         {
             EnterUln();
+
+            formCompletionHelper.ClickElement(ContinueButton);
+
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner)
+        {
+            EnterUln();
+
+            if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
+            else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
 
             formCompletionHelper.ClickElement(ContinueButton);
 
