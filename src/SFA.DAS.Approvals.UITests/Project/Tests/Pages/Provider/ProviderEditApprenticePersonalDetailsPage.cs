@@ -50,8 +50,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-       
-
         public ProviderConfirmApprenticeDeletionPage DeleteApprentice()
         {
             formCompletionHelper.ClickElement(DeleteButton);
