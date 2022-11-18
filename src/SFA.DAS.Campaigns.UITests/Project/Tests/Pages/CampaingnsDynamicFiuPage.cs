@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class CampaingnsDynamicFiuPage : CampaingnsHeaderBasePage
     {
-        protected By FiuPageHeading => By.CssSelector(".fiu-page-heading__title");
+        private static By FiuPageHeading => By.CssSelector(".govuk-heading-xl");
 
         public CampaingnsDynamicFiuPage(ScenarioContext context, string pageTitle) : base(context) 
         {
