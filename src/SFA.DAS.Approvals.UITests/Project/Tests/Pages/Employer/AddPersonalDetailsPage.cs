@@ -10,10 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Add personal details";
 
-        public AddPersonalDetailsPage(ScenarioContext context) : base(context)
-        {
-        }
-
         public AddPersonalDetailsPage(ScenarioContext context) : base(context) { }
 
         public AddTrainingDetailsPage SubmitValidPersonalDetails()

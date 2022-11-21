@@ -70,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .ChooseAnEmployer("Levy")
                .ConfirmEmployer()
                .ProviderSelectsAStandard()
-               .SubmitValidApprenticePersonalDetails()
+               .SubmitValidPersonalDetails()
                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
             _providerStepsHelper.NavigateToProviderHomePage()
                                 .GotoSelectJourneyPage()
@@ -143,7 +143,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                    .ChooseAnEmployer("Levy")
                    .ConfirmEmployer()
                    .ProviderSelectsAStandard()
-                .SubmitValidApprenticePersonalDetails()
+                .SubmitValidPersonalDetails()
                 .VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
             }
         }
@@ -169,8 +169,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                       .ChooseAnEmployer("Levy")
                       .ConfirmEmployer()
                       .ProviderSelectsAStandard()
-                      .SubmitValidApprenticePersonalDetails()
-                      .SubmitValidApprenticeTrainingDetails()
+                      .SubmitValidPersonalDetails()
+                      .SubmitValidTrainingDetails()
                       .SubmitSendToEmployerToReview()
                       .CohortReference();
 
