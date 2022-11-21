@@ -131,12 +131,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.And("Receiver Second has a new live apprenticeship record created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
- testRunner.When("Provider edits the apprentice Name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 19
- testRunner.Then("Receiver Second has \'1 apprentice change to review\' task link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
             }
             this.ScenarioCleanup();
         }

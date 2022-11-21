@@ -280,7 +280,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private void SenderConnectsToReceiver(string senderOrganisationName, string publicReceiverAccountId)
         {
-            _objectContext.SetTransferSenderOrganisationName(senderOrganisationName);
+            _objectContext.ReplaceTransferSenderOrganisationName(senderOrganisationName);
             _homePage = GoToHomePage(senderOrganisationName);
 
             _homePage = OpenTransfers()
@@ -293,7 +293,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private void ReceiverAcceptsConnection(string receiverOrganiationName, string senderOrganisationName)
         {
-            _objectContext.SetTransferReceiverOrganisationName(receiverOrganiationName);
+            _objectContext.ReplaceTransferReceiverOrganisationName(receiverOrganiationName);
             _homePage = GoToHomePage(receiverOrganiationName);
             _homePage = OpenTransfers().ViewTransferConnectionRequestDetails(senderOrganisationName).AcceptTransferConnectionRequest().GoToHomePage();
         }

@@ -30,8 +30,9 @@ namespace SFA.DAS.Registration.UITests.Project
 
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
-        public static void SetTransferSenderOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(TransferSenderOrganisationNameKey, organisationName);
-        public static void SetTransferReceiverOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(TransferReceiverOrganisationNameKey, organisationName);
+        public static void ReplaceTransferSenderOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferSenderOrganisationNameKey, organisationName);
+        public static void ReplaceTransferReceiverOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferReceiverOrganisationNameKey, organisationName);
+
         public static void SetRecentlyAddedOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(RecentlyAddedOrganisationName, organisationName);
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalOrganisation(index), secondAccountOrganisationName);
