@@ -33,6 +33,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
             OtherCourseLarsCode = OtherCourseDetails.Course.larsCode;
             PortableFlexiJobCourseDetails = randomCourseHelper.GetPortableFlexiJobCourseDetails();
+            CourseEndDate = CourseStartDate.AddMonths(CourseDurationInMonths);
+        }
+
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus, DateTime courseStartDate, DateTime courseEndDate, string larsCode)
+        {
+            _apprenticeStatus = apprenticeStatus;
+            _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
+            _currentAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate();
+            _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
+            _nextAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_nextAcademicYearStartDate);
+            CourseStartDate = courseStartDate;
+            CourseEndDate = courseEndDate;
+            CourseDetails = randomCourseHelper.SelectASpecificCourse(larsCode);
+            CourseLarsCode = larsCode;
         }
 
         public CourseDetails PortableFlexiJobCourseDetails { get; private set; }
@@ -49,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public DateTime CourseStartDate { get; internal set; }
 
-        public DateTime CourseEndDate => CourseStartDate.AddMonths(CourseDurationInMonths);
+        public DateTime CourseEndDate { get; internal set; }
 
         public DateTime GenerateCourseStartDate(ApprenticeStatus apprenticeStatus)
         {

@@ -32,7 +32,27 @@ namespace SFA.DAS.TestDataExport.Helper
             DateOfBirthDay = RandomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
-            
+
+            _apprenticeEmail = $"{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
+        }
+
+        public ApprenticePPIDataHelper(DateTime dateOfBirth)
+        {
+            var emailprefix = "ApprenticeAccount_";
+            var emaildomain = "mailinator.com";
+
+            var firstName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            var lastName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+
+            var nameprefix = "FLP_LE";
+
+            ApprenticeFirstname = $"{nameprefix}F_{firstName}";
+            ApprenticeLastname = $"{nameprefix}L_{lastName}";
+
+            DateOfBirthDay = dateOfBirth.Day;
+            DateOfBirthMonth = dateOfBirth.Month;
+            DateOfBirthYear = dateOfBirth.Year;
+
             _apprenticeEmail = $"{emailprefix}{DateTime.Now:ddMMMyy_HHmmss_fffff}@{emaildomain}";
         }
 

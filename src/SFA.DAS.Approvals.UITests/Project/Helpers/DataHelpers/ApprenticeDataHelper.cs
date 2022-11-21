@@ -30,6 +30,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _apprenticeid = 0;
         }
 
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost)
+        {
+            _objectContext = objectContext;
+            _apprenticePPIDataHelper = apprenticePPIDataHelper;
+            _commitmentsdataHelper = commitmentsdataHelper;
+            ApprenticeFirstname = apprenticePPIDataHelper.ApprenticeFirstname;
+            ApprenticeLastname = apprenticePPIDataHelper.ApprenticeLastname;
+            DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
+            DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
+            DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
+            TrainingCost = trainingCost;
+            EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
+            Ulns = new List<string>();
+            _apprenticeid = 0;
+        }
+
         public string ApprenticeFirstname { get; set; }
 
         public string ApprenticeLastname { get; set; }

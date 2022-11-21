@@ -34,9 +34,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public CourseDetails RandomCourse(string selectedCourse) => SelectACourse(selectedCourse);
 
+        public CourseDetails SelectASpecificCourse(string CoourseToSelect) => SelectSpecificCourse(CoourseToSelect);
         private CourseDetails SelectACourse(string except)
         {
             var newlist = _availableCourses.Where(x => x.Course.larsCode != except).ToList();
+
+            return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
+        }
+
+        private CourseDetails SelectSpecificCourse(string larsCode)
+        {
+            var newlist = _availableCourses.Where(x => x.Course.larsCode == larsCode).ToList();
 
             return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }
