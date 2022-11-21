@@ -20,7 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public AddTrainingDetailsPage(ScenarioContext context) : base(context) { }
+        public AddTrainingDetailsPage(ScenarioContext context) : base(context)
+        {
+        }
 
         public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
         {
@@ -30,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             if (isMF == false) EnterStartDate(courseStartDate);
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
