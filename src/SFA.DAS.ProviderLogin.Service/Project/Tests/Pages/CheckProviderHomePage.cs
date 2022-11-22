@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -8,7 +9,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         protected override string PageTitle { get; }
 
-        protected override By Identifier => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+        protected override By Identifier => Selectors.PireanPreprod;
 
         public By PireanPreprod => Identifier;
 

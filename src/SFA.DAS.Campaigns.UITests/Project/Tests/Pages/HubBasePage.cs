@@ -15,17 +15,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected By SubPageHeader => By.CssSelector(".govuk-heading-xl");
 
-        private By FiuCard => By.CssSelector(".fiu-card");
+        private static By FiuCard => By.CssSelector(".fiu-card");
 
-        private By FiuHeading => By.CssSelector(".fiu-card__heading");
+        private static By FiuHeading => By.CssSelector(".fiu-card__heading");
 
-        private By FiuLink => By.CssSelector(".fiu-card__link");
+        private static By FiuLink => By.CssSelector(".fiu-card__link");
 
         public HubBasePage(ScenarioContext context) : base(context)  { }
 
         protected T VerifyFiuCards<T>(Func<T> func)
         {
-            List<Exception> exceptions = new List<Exception>();
+            List<Exception> exceptions = new();
 
             T result = default;
 
@@ -39,7 +39,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
                     formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink));
 
-                    new CampaingnsDynamicFiuPage(context, fiuCardHeading);
+                    _ = new CampaingnsDynamicFiuPage(context, fiuCardHeading);
                 }
                 catch (Exception ex)
                 {
