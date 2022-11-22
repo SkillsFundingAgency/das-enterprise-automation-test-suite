@@ -88,11 +88,11 @@
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_01_Regression_Provider.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_01_ULN Overlap_Provider.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_02_Regression_Employer.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_02_ULN Overlap_Employer.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

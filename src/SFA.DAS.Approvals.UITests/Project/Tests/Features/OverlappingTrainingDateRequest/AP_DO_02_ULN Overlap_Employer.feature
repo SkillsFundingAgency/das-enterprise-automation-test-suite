@@ -1,9 +1,9 @@
-﻿Feature: AP_DO_02_Regression_Employer
+﻿Feature: AP_DO_02_ULN Overlap_Employer
 OLTD release 2 (overlapping regression)
 
 @approvals
 @regression
-Scenario: AP_DO_02_Regression_Employer
+Scenario: AP_DO_02_ULN Overlap_Employer
 	Given a live apprentice record exists with startdate of <-6> months and endDate of <+6> months from current date
 	When Employer tries to add a new apprentice using details from table below
 	| NewStartDate | NewEndDate | DisplayOverlapErrorOnStartDate | DisplayOverlapErrorOnEndDate |

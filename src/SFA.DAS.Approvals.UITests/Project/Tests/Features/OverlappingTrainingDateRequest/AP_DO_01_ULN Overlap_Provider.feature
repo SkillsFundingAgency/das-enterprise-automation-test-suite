@@ -1,10 +1,10 @@
 ﻿@approvals
-Feature: AP_DO_01_Regression_Provider
+Feature: AP_DO_01_ULN Overlap_Provider
 OLTD release 2 (overlapping regression)
 
 @regression
 @liveapprentice
-Scenario: AP_DO_01_Regression_Provider
+Scenario: AP_DO_01_ULN Overlap_Provider
 	Given a live apprentice record exists with startdate of <-6> months and endDate of <+6> months from current date
 	When Provider tries to add a new apprentice using details from table below
 	| NewStartDate	 | NewEndDate	| DisplayOverlapErrorOnStartDate   | DisplayOverlapErrorOnEndDate 	|

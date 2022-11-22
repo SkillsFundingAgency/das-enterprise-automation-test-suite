@@ -20,22 +20,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DO_02_Regression_Employer")]
-    public partial class AP_DO_02_Regression_EmployerFeature
+    [NUnit.Framework.DescriptionAttribute("AP_DO_01_ULN Overlap_Provider")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_DO_01_ULNOverlap_ProviderFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "approvals"};
         
-#line 1 "AP_DO_02_Regression_Employer.feature"
+#line 1 "AP_DO_01_ULN Overlap_Provider.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_02_Regression_Employer", "OLTD release 2 (overlapping regression)", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_01_ULN Overlap_Provider", "OLTD release 2 (overlapping regression)", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +76,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DO_02_Regression_Employer")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.DescriptionAttribute("AP_DO_01_ULN Overlap_Provider")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AP_DO_02_Regression_Employer()
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        public void AP_DO_01_ULNOverlap_Provider()
         {
             string[] tagsOfScenario = new string[] {
-                    "approvals",
-                    "regression"};
+                    "regression",
+                    "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_02_Regression_Employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_01_ULN Overlap_Provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,37 +96,37 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("a live apprentice record exists with startdate of <-6> months and endDate of <+6>" +
                         " months from current date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "NewStartDate",
                             "NewEndDate",
                             "DisplayOverlapErrorOnStartDate",
                             "DisplayOverlapErrorOnEndDate"});
-                table3.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "-12",
                             "+0",
                             "false",
                             "true"});
-                table3.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "-3",
                             "+3",
                             "true",
                             "true"});
-                table3.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "-12",
                             "+12",
                             "true",
                             "true"});
-                table3.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "+6",
                             "+18",
                             "false",
                             "false"});
-#line 8
- testRunner.When("Employer tries to add a new apprentice using details from table below", ((string)(null)), table3, "When ");
+#line 9
+ testRunner.When("Provider tries to add a new apprentice using details from table below", ((string)(null)), table2, "When ");
 #line hidden
             }
             this.ScenarioCleanup();
