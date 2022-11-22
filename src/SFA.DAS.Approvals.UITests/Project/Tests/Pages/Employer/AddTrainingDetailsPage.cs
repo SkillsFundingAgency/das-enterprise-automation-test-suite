@@ -12,17 +12,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By PageHeader => By.CssSelector(".das-show > h1");
         protected override string PageTitle => "Add training details";
 
-        private By SaveAndContinueButton => By.CssSelector("button[id=continue-button]");
+        private static By SaveAndContinueButton => By.CssSelector("button[id=continue-button]");
 
-        private By DeliveryModelLabel => By.XPath("//p[text()='Delivery model']");
+        private static By DeliveryModelLabel => By.XPath("//p[text()='Delivery model']");
 
-        private By DeliveryModelType => By.XPath("//p[text()='Delivery model'] // following-sibling :: p");
+        private static By DeliveryModelType => By.XPath("//p[text()='Delivery model'] // following-sibling :: p");
 
-        private By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public AddTrainingDetailsPage(ScenarioContext context) : base(context)
-        {
-        }
+        public AddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
         public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
         {
@@ -48,35 +46,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
-        }
-
-        private DateTime SetEIJourneyTestData(int apprenticeNo)
-        {
-            if (objectContext.IsEIJourney())
-            {
-                var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
-
-                var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
-
-                objectContext.SetEIAgeCategoryAsOfAug2021(eiApprenticeDetail.AgeCategoryAsOfAug2021);
-                objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
-                objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
-
-                apprenticeDataHelper.DateOfBirthDay = 1;
-                apprenticeDataHelper.DateOfBirthMonth = 8;
-                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2021().Equals("Aged16to24")) ? 2005 : 1994;
-                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
-                apprenticeDataHelper.TrainingCost = "7500";
-
-                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
-            }
-
-            if (objectContext.HasStartDate()) apprenticeCourseDataHelper.CourseStartDate = objectContext.GetStartDate();
-
-            if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
-
-            return apprenticeCourseDataHelper.CourseStartDate;
         }
 
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
