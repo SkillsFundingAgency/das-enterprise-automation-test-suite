@@ -108,6 +108,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to delete the cohort before approval")]
         public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval() => _approveApprenticeDetailsPage.SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
+        [Given(@"the Employer approves (\d) cohort and sends to provider")]
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
         {

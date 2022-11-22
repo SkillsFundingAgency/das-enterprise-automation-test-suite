@@ -106,13 +106,13 @@ this.ScenarioInitialize(scenarioInfo);
                         "/08/01\", end date \"2024/07/31\" and agreed price \"15000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.When("the Employer approves 1 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Employer approves 1 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
  testRunner.And("the provider adds Ulns and Opt the learners into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("Provider is able to successfully approve the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Provider is able to successfully approve the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();

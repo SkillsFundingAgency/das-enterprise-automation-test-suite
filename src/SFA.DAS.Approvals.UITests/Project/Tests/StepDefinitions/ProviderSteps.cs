@@ -87,6 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds Ulns")]
         public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice(true);
 
+        [Given(@"the provider adds Ulns and Opt the learners into the pilot")]
         [When(@"the provider adds Ulns and Opt the learners into the pilot")]
         public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
 
