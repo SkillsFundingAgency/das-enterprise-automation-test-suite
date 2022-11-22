@@ -10,29 +10,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     public abstract class AddAndEditApprenticeDetailsBasePage : ApprovalsBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        private By FirstNameField => By.Id("FirstName");
-        private By LastNameField => By.Id("LastName");
-        private By EmailField => By.Id("Email");
-        private By DateOfBirthDay => By.Id("BirthDay");
-        private By DateOfBirthMonth => By.Id("BirthMonth");
-        private By DateOfBirthYear => By.Id("BirthYear");
-        private By ActualStartDateDay => By.Id("ActualStartDay");
-        public By ActualStartDateMonth => By.Id("ActualStartMonth");
-        public By ActualStartDateYear => By.Id("ActualStartYear");
-        public By StartDateMonth => By.Id("StartMonth");
-        public By StartDateYear => By.Id("StartYear");
-        private By EndDateMonth => By.Id("EndMonth");
-        private By EndDateYear => By.Id("EndYear");
-        private By EmploymentEndMonth => By.Id("EmploymentEndMonth");
-        private By EmploymentEndYear => By.Id("EmploymentEndYear");
-        private By TrainingCost => By.Id("Cost");
-        private By EmploymentPrice => By.Id("EmploymentPrice");
-        private By EmployerReference => By.Id("Reference");
-        private By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
-        private By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
+        private static By FirstNameField => By.Id("FirstName");
+        private static By LastNameField => By.Id("LastName");
+        private static By EmailField => By.Id("Email");
+        private static By DateOfBirthDay => By.Id("BirthDay");
+        private static By DateOfBirthMonth => By.Id("BirthMonth");
+        private static By DateOfBirthYear => By.Id("BirthYear");
+        private static By ActualStartDateDay => By.Id("ActualStartDay");
+        public static By ActualStartDateMonth => By.Id("ActualStartMonth");
+        public static By ActualStartDateYear => By.Id("ActualStartYear");
+        public static By StartDateMonth => By.Id("StartMonth");
+        public static By StartDateYear => By.Id("StartYear");
+        private static By EndDateMonth => By.Id("EndMonth");
+        private static By EndDateYear => By.Id("EndYear");
+        private static By EmploymentEndMonth => By.Id("EmploymentEndMonth");
+        private static By EmploymentEndYear => By.Id("EmploymentEndYear");
+        private static By TrainingCost => By.Id("Cost");
+        private static By EmploymentPrice => By.Id("EmploymentPrice");
+        private static By EmployerReference => By.Id("Reference");
+        private static By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
+        private static By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
 
         protected By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
-        private By ContinueButton => By.Id("continue-button");
+        private static By ContinueButtonSelector => By.Id("continue-button");
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
         {
@@ -113,7 +113,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             EnterTrainingCostAndEmpReference();
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(ContinueButtonSelector);
 
             ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);

@@ -17,6 +17,9 @@ using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using System.Collections.Generic;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -125,9 +128,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider tries to add a new apprentice using details from table below")]
         public void WhenProviderTriesToAddANewApprenticeUsingDetailsFromTableBelow(Table table)
         {
-            var apprenticeshipDetails = table.CreateSet<OltdApprenticeDetails>();
-
             var reference = _objectContext.GetCohortReference();
+
             var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
 
@@ -141,20 +143,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                       .ProviderSelectsAStandard()
                                                       .SubmitValidPersonalDetails();
 
-            foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
-            {
-                SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
-
-                providerAddTrainingDetailsPage.VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
-            }
-
+            VerifyOverlappingTrainingDetailsError(table, providerAddTrainingDetailsPage);
          }
 
         [When(@"Employer tries to add a new apprentice using details from table below")]
         public void WhenEmployerTriesToAddANewApprenticeUsingDetailsFromTableBelow(Table table)
         {
-            var apprenticeshipDetails = table.CreateSet<OltdApprenticeDetails>();
-
+            
             var reference = _objectContext.GetCohortReference();
             var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
@@ -184,13 +179,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                 .SelectEditApprenticeLink()
                                                 .ContinueToAddTrainingDetailsPage();
 
-            foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
-            {
-                SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
-
-                editTrainingDetailsPage.VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
-            }
-        
+            VerifyOverlappingTrainingDetailsError(table, editTrainingDetailsPage);
         }
 
         private void SetContextStartAnEndDates(int startDateDurationInMonths, int endDateDurationInMonths)
@@ -254,17 +243,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer selects to edit the active apprentice")]
-        public void ThenEmployerSelectsToEditTheActiveApprentice()
-        {
-            _employerStepsHelper.GoToManageYourApprenticesPage()
-               .SelectViewCurrentApprenticeDetails();
-        }
+        public void ThenEmployerSelectsToEditTheActiveApprentice() => _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
 
         [When(@"Employer selects to edit the active apprentice")]
-        public void WhenEmployerSelectsToEditTheActiveApprentice()
-        {
-            _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
-        }
+        public void WhenEmployerSelectsToEditTheActiveApprentice() => _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
 
         [Then(@"overlapping training date request banner is displayed")]
         public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()
@@ -297,6 +279,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
+        }
+
+        private void VerifyOverlappingTrainingDetailsError(Table table, AddAndEditApprenticeDetailsBasePage page)
+        {
+            var apprenticeshipDetails = table.CreateSet<OltdApprenticeDetails>().ToList();
+
+            foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
+            {
+                SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
+
+                page.VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
+            }
         }
     }
 }

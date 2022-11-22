@@ -1,7 +1,4 @@
-﻿using System;
-using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -30,33 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(SaveAndContinueButton);
 
             return new AddTrainingDetailsPage(context);
-        }
-
-        private DateTime SetEIJourneyTestData(int apprenticeNo)
-        {
-            if (objectContext.IsEIJourney())
-            {
-                var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
-
-                var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
-
-                objectContext.SetEIAgeCategoryAsOfAug2021(eiApprenticeDetail.AgeCategoryAsOfAug2021);
-                objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
-                objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
-
-                apprenticeDataHelper.DateOfBirthDay = 1;
-                apprenticeDataHelper.DateOfBirthMonth = 8;
-                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2021().Equals("Aged16to24")) ? 2005 : 1994;
-                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
-                apprenticeDataHelper.TrainingCost = "7500";
-
-                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
-            }
-
-            if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
-
-            return apprenticeCourseDataHelper.CourseStartDate;
         }
 
         public AddTrainingDetailsPage ContinueToAddTrainingDetailsPage()

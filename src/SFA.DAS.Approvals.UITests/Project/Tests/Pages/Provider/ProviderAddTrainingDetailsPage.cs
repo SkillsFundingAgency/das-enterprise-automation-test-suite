@@ -69,35 +69,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
         }
-        internal void VerifyOverlappingTrainingDetailsError(bool displayStartDateError, bool displayEndDateError)
-        {
-            ClickStartMonth();
-
-            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
-
-            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
-
-            EnterTrainingCostAndEmpReference();
-
-            formCompletionHelper.ClickElement(ContinueButton);
-
-            ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
-            ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
-        }
-
-        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
-        {
-            SelectRadioOptionByForAttribute("confirm-Manual");
-            Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
-        }
-
-        internal ProviderBeforeYouStartBulkUploadPage SelectBulkUpload()
-        {
-            SelectRadioOptionByForAttribute("confirm-BulkCsv");
-            Continue();
-            return new ProviderBeforeYouStartBulkUploadPage(context);
-        }
 
         private bool CheckRPLCondition(bool rpl = false)
         {
@@ -133,22 +104,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 EnterStartDate(date);
             }
         }
-
-        public void ValidateOltdErrorMessage(By locator, bool shouldBeDisplayed)
-        {
-            if (shouldBeDisplayed)
-            {
-                string expectedMessage = "The date overlaps with existing dates for the same apprentice";
-                string actualMessage = pageInteractionHelper.GetText(locator);
-                
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not dsiplayed");
-                StringAssert.StartsWith(expectedMessage, actualMessage, "Incorrect Date Overlaps Message displayed");
-            }
-            else
-            {
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should not be dsiplayed");
-            }
-        }
-        
     }
 }

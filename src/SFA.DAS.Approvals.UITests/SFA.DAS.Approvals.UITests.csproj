@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\OverlappingTrainingDateRequest\AP_COE_01_HappyPath.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_03_OLTD - Copy.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Compile>
@@ -68,15 +63,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_04_OLTD.feature.cs">
-      <DependentUpon>AP_DO_04_OLTD.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_03_OLTD.feature.cs">
-      <DependentUpon>AP_DO_03_OLTD.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
