@@ -14,8 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add training details";
         protected override By ContinueButton => By.XPath("//button[text()='Add']");
         private By ErrorMessagelLink => By.XPath("//*[@id='validationSummaryErrorList']/li/a");
-        private By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
-        private By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
+        private By StartDateErrorMessagelLink => By.CssSelector("a[href*='error-message-StartDate']");
+        private By EndDateErrorMessagelLink => By.CssSelector("a[href*='error-message-EndDate']");
         private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
         private static By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
@@ -30,8 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (objectContext.HasStartDate()) EnterTrainingStartDate(objectContext.GetStartDate());
             else EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
-            //EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
-            //else  EnterStartDate(apprenticeCourseDataHelper.CourseStartDate);
+
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
 
             EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
@@ -47,6 +46,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        internal ProviderApproveApprenticeDetailsPage SubmitNullTrainingDetails()
+        {
+            formCompletionHelper.ClickElement(ContinueButton);
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
@@ -133,9 +138,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             if (shouldBeDisplayed)
             {
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not dsiplayed");
                 string expectedMessage = "The date overlaps with existing dates for the same apprentice";
                 string actualMessage = pageInteractionHelper.GetText(locator);
+                
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not dsiplayed");
                 StringAssert.StartsWith(expectedMessage, actualMessage, "Incorrect Date Overlaps Message displayed");
             }
             else

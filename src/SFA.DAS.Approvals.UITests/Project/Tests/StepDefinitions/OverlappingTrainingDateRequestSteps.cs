@@ -131,22 +131,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
 
+            var providerAddTrainingDetailsPage = _providerStepsHelper
+                                                      .NavigateToProviderHomePage()
+                                                      .GotoSelectJourneyPage()
+                                                      .SelectAddManually()
+                                                      .SelectOptionCreateNewCohort()
+                                                      .ChooseAnEmployer("Levy")
+                                                      .ConfirmEmployer()
+                                                      .ProviderSelectsAStandard()
+                                                      .SubmitValidPersonalDetails();
+
             foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
             {
                 SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
 
-                _providerStepsHelper
-                   .NavigateToProviderHomePage()
-                   .GotoSelectJourneyPage()
-                   .SelectAddManually()
-                   .SelectOptionCreateNewCohort()
-                   .ChooseAnEmployer("Levy")
-                   .ConfirmEmployer()
-                   .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails()
-                .VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
+                providerAddTrainingDetailsPage.VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
             }
-        }
+
+         }
 
         [When(@"Employer tries to add a new apprentice using details from table below")]
         public void WhenEmployerTriesToAddANewApprenticeUsingDetailsFromTableBelow(Table table)
@@ -157,35 +159,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
 
+            SetContextStartAnEndDates(13, 18);
+
+            var cohortReference = _providerStepsHelper
+                  .GoToProviderHomePage()
+                  .GotoSelectJourneyPage()
+                  .SelectAddManually()
+                  .SelectOptionCreateNewCohort()
+                  .ChooseAnEmployer("Levy")
+                  .ConfirmEmployer()
+                  .ProviderSelectsAStandard()
+                  .SubmitValidPersonalDetails()
+                  .SubmitNullTrainingDetails()
+                  .SubmitSendToEmployerToReview()
+                  .CohortReference();
+
+            _employerStepsHelper.UpdateCohortReference(cohortReference);
+
+
+            var editTrainingDetailsPage = _employerStepsHelper
+                                                .GoToApprenticeRequestsPage()
+                                                .GoToReadyToReview()
+                                                .SelectViewCurrentCohortDetails()
+                                                .SelectEditApprenticeLink()
+                                                .ContinueToAddTrainingDetailsPage();
+
             foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
             {
-                SetContextStartAnEndDates(13, 18);
-
-                var cohortReference = _providerStepsHelper
-                      .GoToProviderHomePage()
-                      .GotoSelectJourneyPage()
-                      .SelectAddManually()
-                      .SelectOptionCreateNewCohort()
-                      .ChooseAnEmployer("Levy")
-                      .ConfirmEmployer()
-                      .ProviderSelectsAStandard()
-                      .SubmitValidPersonalDetails()
-                      .SubmitValidTrainingDetails()
-                      .SubmitSendToEmployerToReview()
-                      .CohortReference();
-
-                _employerStepsHelper.UpdateCohortReference(cohortReference);
-
                 SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
 
-                _employerStepsHelper
-                    .GoToApprenticeRequestsPage()
-                    .GoToReadyToReview()
-                    .SelectViewCurrentCohortDetails()
-                    .SelectEditApprenticeLink()
-                    .ContinueToAddTrainingDetailsPage()
-                    .VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
+                editTrainingDetailsPage.VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
             }
+        
         }
 
         private void SetContextStartAnEndDates(int startDateDurationInMonths, int endDateDurationInMonths)
