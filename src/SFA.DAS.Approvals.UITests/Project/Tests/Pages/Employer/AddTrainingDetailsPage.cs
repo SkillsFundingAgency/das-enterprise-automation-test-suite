@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApproveApprenticeDetailsPage SubmitValidApprenticeTrainingDetails(bool isMF, int apprenticeNo = 0)
+        public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
         {
             var courseStartDate = SetEIJourneyTestData(apprenticeNo);
 
@@ -88,7 +88,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
-
         }
     }
 }
