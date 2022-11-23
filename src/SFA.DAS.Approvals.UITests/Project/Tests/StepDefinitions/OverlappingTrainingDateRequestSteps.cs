@@ -61,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ChooseAnEmployer("Levy")
                                 .ConfirmEmployer()
                                 .ProviderSelectsAStandard()
-                                .SubmitValidApprenticePersonalDetails()
+                                .SubmitValidPersonalDetails()
                                 .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
