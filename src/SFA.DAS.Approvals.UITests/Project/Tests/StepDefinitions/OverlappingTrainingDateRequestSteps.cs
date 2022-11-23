@@ -158,5 +158,64 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var editLinkVisible = new ApprenticeDetailsPage(_context).IsEditApprenticeDetailsLinkVisible();
             Assert.IsFalse(editLinkVisible);
         }
+
+        [When(@"provider selects to edit the draft apprenticeship")]
+        public void WhenProviderSelectsToEditTheDraftApprenticeship()
+        {
+          var providerApproveApprenticeDetailsPage =  new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context).IWillAddAnotherApprentice();
+          providerApproveApprenticeDetailsPage.SelectEditApprentice(0);
+        }
+
+        [When(@"provider deletes start and end date from Draft cohort")]
+        public void WhenProviderDeletesStartAndEndDateFromDraftCohort()
+        {
+           var providerEditApprenticeTrainingDetailsPage = new ProviderEditApprenticePersonalDetailsPage(_context).ClickSaveAndContinue();
+            providerEditApprenticeTrainingDetailsPage
+                .EditStartDate("", "")
+                .EditEndDate("","")
+                .ClickSave();
+        }
+
+        [Then(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
+        public void ThenOverlappingTrainingDateRequestIsResolvedInDatabaseWithStatusAndResolutionType(int status, int resolutionType)
+        {
+          var result =  _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(_objectContext.GetUlnForOLTD());
+            Assert.AreEqual(resolutionType, result.resolutionType);
+            Assert.AreEqual(status, result.status);
+        }
+
+        [When(@"provider updates the draft apprentice which creates an overlap")]
+        public void WhenProviderUpdatesTheDraftApprenticeWhichCreatesAnOverlap()
+        {
+            var startDate = _objectContext.GetStartDate();
+            var endDate =  startDate.AddMonths(36);
+            
+            var providerEditApprenticePersonalDetailsPage = new ProviderApproveApprenticeDetailsPage(_context).SelectEditApprentice(0);
+            var providerEditApprenticeTrainingDetailsPage = providerEditApprenticePersonalDetailsPage.ClickSaveAndContinue();
+            providerEditApprenticeTrainingDetailsPage
+                .EditStartDate(startDate.Month.ToString(), startDate.Year.ToString())
+                .EditEndDate(endDate.Month.ToString(), endDate.Year.ToString())
+                .ClickSaveWhenOltd();
+        }
+
+        [When(@"Employer selects to stop the active apprentice")]
+        public void WhenEmployerSelectsToStopTheActiveApprentice()
+        {
+            var apprenticeDetailsPage = _employerStepsHelper
+                .GoToManageYourApprenticesPage()
+                .SelectViewCurrentApprenticeDetails();
+            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage);
+        }
+
+        [When(@"overlapping training date request banner is not displayed")]
+        public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayed()
+        {
+            var actualText = new StoppedApprenticeDetailsPage(_context).GetAlertBanner();
+
+            string expectedText = "You have an outstanding request that needs to be reviewed and confirmed. Confirm changes";
+
+            Assert.AreNotEqual(expectedText, actualText, "Text in the changes pending banner");
+        }
+
     }
 }

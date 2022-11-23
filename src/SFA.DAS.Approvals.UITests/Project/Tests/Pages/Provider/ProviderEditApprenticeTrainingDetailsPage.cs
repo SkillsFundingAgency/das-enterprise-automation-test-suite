@@ -114,10 +114,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private bool CheckRPLCondition(bool rpl = false)
         {
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
-            if (year > 2022) rpl = true;
-            return rpl;
+            var startYear = pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear);
+            var startMonth = pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth);
+            if (!string.IsNullOrWhiteSpace(startYear) && !string.IsNullOrWhiteSpace(startMonth))
+            {
+                var year = Int32.Parse(startYear);
+                if (Int32.Parse(startMonth) > 7 & year == 2022) rpl = true;
+                if (year > 2022) rpl = true;
+                return rpl;
+            }
+            return false;
         }
 
         public ProviderApproveApprenticeDetailsPage ClickSave()
@@ -137,6 +143,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderEditApprenticeTrainingDetailsPage EditCost(int cost)
         {
             formCompletionHelper.EnterText(TrainingCost, cost);
+            return this;
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditStartDate(string month, string year)
+        {
+            formCompletionHelper.EnterText(StartDateMonth, month);
+            formCompletionHelper.EnterText(StartDateYear, year);
+            return this;
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditEndDate(string month, string year)
+        {
+            formCompletionHelper.EnterText(EndDateMonth, month);
+            formCompletionHelper.EnterText(EndDateYear, year);
             return this;
         }
 
