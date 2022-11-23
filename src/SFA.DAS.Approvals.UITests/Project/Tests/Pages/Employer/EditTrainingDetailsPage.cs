@@ -10,6 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By PageHeader => By.CssSelector(".das-show > h1");
         protected override string PageTitle => "Edit training details";
 
+        protected override By AddButtonSelector => By.XPath("//button[text()='Save']");
+
         public EditTrainingDetailsPage(ScenarioContext context) : base(context)
         {
         }   
