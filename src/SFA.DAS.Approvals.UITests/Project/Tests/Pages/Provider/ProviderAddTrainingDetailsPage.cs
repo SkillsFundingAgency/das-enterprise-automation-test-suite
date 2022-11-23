@@ -2,28 +2,21 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderAddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        private readonly Boolean _isFlexiPaymentPilotLearner;
+        private readonly bool _isFlexiPaymentPilotLearner;
         protected override By PageHeader => By.CssSelector(".das-show > h1");
         protected override string PageTitle => "Add training details";
-        protected override By ContinueButton => By.XPath("//button[text()='Add']");
-        private By ErrorMessagelLink => By.XPath("//*[@id='validationSummaryErrorList']/li/a");
-        private By StartDateErrorMessagelLink => By.CssSelector("a[href*='error-message-StartDate']");
-        private By EndDateErrorMessagelLink => By.CssSelector("a[href*='error-message-EndDate']");
+        protected override By ContinueButton => AddButtonSelector;
         private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
         private static By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public ProviderAddTrainingDetailsPage(ScenarioContext context, Boolean isFlexiPaymentPilotLearner) : base(context)
-        {
-            _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
-        }
+        public ProviderAddTrainingDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner) : base(context) => _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
         {

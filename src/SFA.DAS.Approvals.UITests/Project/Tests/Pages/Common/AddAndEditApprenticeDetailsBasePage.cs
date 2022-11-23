@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
 
         protected By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
-        private static By ContinueButtonSelector => By.Id("continue-button");
+        protected static By AddButtonSelector => By.XPath("//button[text()='Add']");
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
         {
@@ -113,7 +113,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             EnterTrainingCostAndEmpReference();
 
-            formCompletionHelper.ClickElement(ContinueButtonSelector);
+            formCompletionHelper.ClickElement(AddButtonSelector);
 
             ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
