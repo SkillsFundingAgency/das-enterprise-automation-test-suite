@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Edit personal details";
 
-        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
+        private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public EditPersonalDetailsPage(ScenarioContext context) : base(context)
         {

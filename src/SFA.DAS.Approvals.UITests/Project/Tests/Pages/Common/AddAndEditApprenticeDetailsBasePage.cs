@@ -30,8 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By EmployerReference => By.Id("Reference");
         private static By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
         private static By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
-
-        protected By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
         protected static By AddButtonSelector => By.XPath("//button[text()='Add']");
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)

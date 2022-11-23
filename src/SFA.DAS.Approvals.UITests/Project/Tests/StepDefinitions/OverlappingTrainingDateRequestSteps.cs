@@ -7,17 +7,11 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
-using System.Threading.Tasks;
-
-using System;
-
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using System.Collections.Generic;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System.Linq;
 

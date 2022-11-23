@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             EnterTrainingCostAndEmpReference();
 
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            SaveAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            SaveAndContinue();
 
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
@@ -60,5 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
         }
+
+        private void SaveAndContinue() => formCompletionHelper.ClickElement(SaveAndContinueButton);
     }
 }
