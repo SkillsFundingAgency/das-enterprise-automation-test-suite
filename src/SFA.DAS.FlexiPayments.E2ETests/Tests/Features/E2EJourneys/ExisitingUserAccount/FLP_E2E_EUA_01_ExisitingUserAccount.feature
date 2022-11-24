@@ -1,7 +1,7 @@
 ﻿Feature: FLP_E2E_EUA_01_ExisitingUserAccount
 
-Please note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
-commitments through the UI. These are later used to validate the commitments db and earnings data. 
+Note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
+commitments through the UI. These are later used to validate data in the commitments and earnings db. 
 Please do not change the ULN keys and any new entries in the table will need to follow the same structure: "ULN<n>"
 
 @regression
@@ -17,6 +17,6 @@ Scenario: FLP_E2E_EUA_01 Employer sends an approved cohort then provider approve
 	And the provider adds Ulns and Opt the learners into the pilot
 	When Provider successfully approves the cohort
 	Then validate the following data is created in the commitments database
-		| ULN  | is_pilot | price_episode_from_date | price_episode_to_date | price_episode_cost |
-		| ULN1 | true     | 2023/08/01              |                       | 15000              |
-		| ULN2 | true     | 2023/09/01              |                       | 18000              |
+		| ULN  | is_pilot | price_episode_from_date | price_episode_cost |
+		| ULN1 | true     | 2023/08/01              | 15000              |
+		| ULN2 | true     | 2023/09/01              | 18000              |

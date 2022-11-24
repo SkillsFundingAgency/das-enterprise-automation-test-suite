@@ -35,8 +35,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUse
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", @"Please note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
-commitments through the UI. These are later used to validate the commitments db and earnings data. 
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", @"Note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
+commitments through the UI. These are later used to validate data in the commitments and earnings db. 
 Please do not change the ULN keys and any new entries in the table will need to follow the same structure: ""ULN<n>""", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -140,19 +140,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "ULN",
                             "is_pilot",
                             "price_episode_from_date",
-                            "price_episode_to_date",
                             "price_episode_cost"});
                 table2.AddRow(new string[] {
                             "ULN1",
                             "true",
                             "2023/08/01",
-                            "",
                             "15000"});
                 table2.AddRow(new string[] {
                             "ULN2",
                             "true",
                             "2023/09/01",
-                            "",
                             "18000"});
 #line 19
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");

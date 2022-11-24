@@ -67,7 +67,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.StepDefinitions
                 Assert.That(inputCommitmentData.IsPilot, Is.EqualTo(Boolean.Parse(commitmentDbData.isPilot)));
                 Assert.That(inputCommitmentData.PriceEpisodeFromDate, Is.EqualTo(DateHelpers.TryParse(commitmentDbData.fromDate)));
                 Assert.That(inputCommitmentData.PriceEpisodeCost, Is.EqualTo(double.Parse(commitmentDbData.cost)));
-                Assert.That(inputCommitmentData.PriceEpisodeToDate, Is.EqualTo(DateHelpers.TryParse(commitmentDbData.toDate)));
+                Assert.That(DateHelpers.TryParse(commitmentDbData.toDate), Is.EqualTo (null));
             }
         }
     }

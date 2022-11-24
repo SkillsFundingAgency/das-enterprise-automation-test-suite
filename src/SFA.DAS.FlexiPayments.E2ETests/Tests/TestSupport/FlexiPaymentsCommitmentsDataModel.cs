@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFA.DAS.FlexiPayments.E2ETests.Tests.Helpers;
+using System;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Tests.TestSupport
 {
@@ -7,7 +8,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.TestSupport
         public string ULN { get; set; }
         public Boolean IsPilot { get; set; }
         public DateTime PriceEpisodeFromDate { get; set; }
-        public DateTime? PriceEpisodeToDate { get; set; }
-        public double PriceEpisodeCost { get; set; }
+        public decimal PriceEpisodeCost { get; set; }
     }
 }
