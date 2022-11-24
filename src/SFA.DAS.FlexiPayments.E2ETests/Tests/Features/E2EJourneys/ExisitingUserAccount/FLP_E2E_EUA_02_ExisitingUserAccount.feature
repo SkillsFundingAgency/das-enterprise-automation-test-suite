@@ -7,5 +7,5 @@ Scenario: FLP_E2E_EUA_02 Employer sends cohort to provider for review then provi
 	Given the Employer logins using existing Levy Account
 	When the Employer adds 2 apprentices and sends to provider
 	And the provider adds Ulns and opts the learners out of the pilot 
-	Then Provider is able to successfully approve the cohort
+	Then Provider successfully approves the cohort
 	And the Employer approves the cohorts

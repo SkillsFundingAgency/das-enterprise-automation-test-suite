@@ -355,7 +355,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner);
+                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, j+1);
 
                         if (shouldCheckCoursesAreStandards)
                             providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();

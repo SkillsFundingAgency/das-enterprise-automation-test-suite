@@ -124,6 +124,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
+        public ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage(bool isTransferReceiverEmployer = false)
+        {
+            return _approveApprenticeDetailsPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
+                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        }
+
+        public ApproveApprenticeDetailsPage EmployerAddAnotherApprenticeToCohort()
+        {
+            return _approveApprenticeDetailsPage = _approveApprenticeDetailsPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        }
+
         public string EmployerApproveAndSendToProvider(int numberOfApprentices)
         {
             var ReviewYourCohortPage = EmployerAddApprentice(numberOfApprentices);
@@ -331,6 +342,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EmployerAddsApprentices()
                 .EmployerSelectsAPortableFlexiJobCourse()
                 .SelectPortableFlexiJobDeliveryModelAndContinue();
+        }
+
+        public void EmployerFirstApproveCohortAndNotifyProvider()
+        {
+            var cohortReference = new ApproveApprenticeDetailsPage(_context).EmployerFirstApproveAndNotifyTrainingProvider().CohortReferenceFromUrl();
+
+            _objectContext.SetCohortReference(cohortReference);
         }
     }
 }

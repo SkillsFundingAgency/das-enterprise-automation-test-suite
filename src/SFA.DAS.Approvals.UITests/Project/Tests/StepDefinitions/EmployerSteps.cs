@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -89,6 +88,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticeRequestsPage = _approveApprenticeDetailsPage.SaveAndExit();
         }
 
+        [Given(@"the Employer approves the cohort")]
+        public void EmployerApprovesTheCohort() => _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
+
+
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft() => _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
 
@@ -108,7 +111,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to delete the cohort before approval")]
         public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval() => _approveApprenticeDetailsPage.SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
-        [Given(@"the Employer approves (\d) cohort and sends to provider")]
+        [Given(@"the Employer approves cohort with (\d) apprentices and sends to provider")]
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
         {

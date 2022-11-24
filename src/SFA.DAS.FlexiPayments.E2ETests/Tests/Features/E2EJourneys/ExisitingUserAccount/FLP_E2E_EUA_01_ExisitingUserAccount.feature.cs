@@ -35,7 +35,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUse
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", @"Please note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
+commitments through the UI. These are later used to validate the commitments db and earnings data. 
+Please do not change the ULN keys and any new entries in the table will need to follow the same structure: ""ULN<n>""", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -88,7 +90,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUse
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_01 Employer sends an approved cohort then provider approves the cohor" +
                     "t", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,21 +100,62 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 11
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.And("the learner has training code \"154\", date of birth \"2004/05/27\", start date \"2023" +
-                        "/08/01\", end date \"2024/07/31\" and agreed price \"15000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN",
+                            "training_code",
+                            "date_of_birth",
+                            "actual_start_date",
+                            "planned_end_date",
+                            "agreed_price"});
+                table1.AddRow(new string[] {
+                            "ULN1",
+                            "154",
+                            "2004/05/27",
+                            "2023/08/01",
+                            "2024/07/31",
+                            "15000"});
+                table1.AddRow(new string[] {
+                            "ULN2",
+                            "91",
+                            "2004/05/27",
+                            "2023/09/01",
+                            "2024/07/31",
+                            "18000"});
+#line 12
+ testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table1, "And ");
 #line hidden
-#line 9
- testRunner.And("the Employer approves 1 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 17
  testRunner.And("the provider adds Ulns and Opt the learners into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
- testRunner.When("Provider is able to successfully approve the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN",
+                            "is_pilot",
+                            "price_episode_from_date",
+                            "price_episode_to_date",
+                            "price_episode_cost"});
+                table2.AddRow(new string[] {
+                            "ULN1",
+                            "true",
+                            "2023/08/01",
+                            "",
+                            "15000"});
+                table2.AddRow(new string[] {
+                            "ULN2",
+                            "true",
+                            "2023/09/01",
+                            "",
+                            "18000"});
+#line 19
+ testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
