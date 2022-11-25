@@ -23,6 +23,8 @@ public static class UrlConfig
 
         public static string Inner_CoursesApiBaseUrl => GetInner_ApiBaseUrl("courses");
 
+        public static string Inner_EmployerFinanceApiBaseUrl => GetInner_ApiBaseUrl("finance");
+
         public static string MangeIdentitybaseUrl(string tenant) => $"{UriHelper.GetAbsoluteUri(MicrosoftIdentityUri,$"{tenant}/oauth2/token/")}";
 
         public static string ApprenticeCommitmentsJobs_BaseUrl => $"https://das-{EnvironmentConfig.EnvironmentName}-acomtwkr-fa.azurewebsites.net/";
