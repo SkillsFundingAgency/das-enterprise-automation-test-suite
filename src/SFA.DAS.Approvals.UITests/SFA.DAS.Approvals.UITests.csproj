@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_05_OLTD  - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_06_OLTD - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Compile>
@@ -32,6 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_07_OLTD.feature.cs">
+      <DependentUpon>AP_DO_07_OLTD.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_06_OLTD.feature.cs">
+      <DependentUpon>AP_DO_06_OLTD.feature</DependentUpon>
+    </Compile>
     <Compile Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_05_OLTD .feature.cs">
       <Visible>true</Visible>
       <DependentUpon>AP_DO_05_OLTD .feature</DependentUpon>
@@ -75,6 +86,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_07_OLTD.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_06_OLTD.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\OverlappingTrainingDateRequest\AP_DO_05_OLTD .feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>

@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
         private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
         private By FlashMsgBox => PanelTitle;
-
+        private By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
@@ -65,6 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
         public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeTrainingProviderLink);
+        public bool IsOverlappingTrainingDateRequestLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(OverlappingTrainingDateRequestLink);
         public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
         public string GetFlashMsg() => pageInteractionHelper.GetText(FlashMsgBox);
 
@@ -90,6 +91,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             pageInteractionHelper.VerifyText(GetFlashMsg(), expectedMsg);
             return this;
+        }
+
+        public ConfirmWhenApprenticeshipTrainingStoppedPage ClickOnChangeOfOverlappingTrainingDateRequestLink()
+        {
+            formCompletionHelper.ClickElement(OverlappingTrainingDateRequestLink);
+            return new ConfirmWhenApprenticeshipTrainingStoppedPage(context);
+        }
+
+        public ThisApprenticeshipEndDatePage ClickEndDateLink()
+        {
+            formCompletionHelper.ClickElement(EditEndDateLink);
+            return new ThisApprenticeshipEndDatePage(context);
         }
     }
 }

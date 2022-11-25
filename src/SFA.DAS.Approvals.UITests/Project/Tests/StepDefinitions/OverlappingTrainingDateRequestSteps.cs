@@ -6,7 +6,10 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -177,6 +180,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
+        [When(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
         public void ThenOverlappingTrainingDateRequestIsResolvedInDatabaseWithStatusAndResolutionType(int status, int resolutionType)
         {
           var result =  _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(_objectContext.GetUlnForOLTD());
@@ -198,6 +202,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ClickSaveWhenOltd();
         }
 
+        [Given(@"Employer selects to stop the active apprentice")]
         [When(@"Employer selects to stop the active apprentice")]
         public void WhenEmployerSelectsToStopTheActiveApprentice()
         {
@@ -210,11 +215,112 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"overlapping training date request banner is not displayed")]
         public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayed()
         {
-            var actualText = new StoppedApprenticeDetailsPage(_context).GetAlertBanner();
+            var page = new StoppedApprenticeDetailsPage(_context);
+            Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
+        }
 
-            string expectedText = "You have an outstanding request that needs to be reviewed and confirmed. Confirm changes";
+        [When(@"overlapping training date request banner is not displayed when training date is changed")]
+        public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayedWhenTrainingDateIsChanged()
+        {
+            var page = new NewTrainingDatePage(_context);
+            Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
+        }
 
-            Assert.AreNotEqual(expectedText, actualText, "Text in the changes pending banner");
+        [When(@"Employer selects to reject the overlapping training date request")]
+        public void WhenEmployerSelectsToRejectTheOverlappingTrainingDateRequest()
+        {
+            var apprenticeDetailsPage = _employerStepsHelper
+               .GoToManageYourApprenticesPage()
+               .SelectViewCurrentApprenticeDetails();
+            apprenticeDetailsPage
+                .ClickOnChangeOfOverlappingTrainingDateRequestLink()
+                .ClickDateIsCorrectRadionButton();
+        }
+
+        [When(@"provider goes to its home page")]
+        public void WhenProviderGoesToItsHomePage()
+        {
+            var tabHelper = _context.Get<TabHelper>();
+            tabHelper.OpenNewTab();
+            tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+
+            new ProviderHomePage(_context);
+        }
+
+        [When(@"provider edits draft apprenitce start date which has an overlap")]
+        public void WhenProviderEditsTheStartDate()
+        {
+            var oneMonthOldStartDate = DateTime.UtcNow.AddMonths(-1);
+
+            var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
+            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
+            _objectContext.UpdateCohortReference(draftApprenticeshipCohortRef);
+
+            new ProviderApprenticeRequestsPage(_context, true)
+               .GoToDraftCohorts()
+               .SelectViewCurrentCohortDetails()
+               .SelectEditApprentice(0)
+               .ClickSaveAndContinue()
+               .EditStartDate(oneMonthOldStartDate.Month.ToString(), oneMonthOldStartDate.Year.ToString())
+               .ClickSaveWhenOltd();
+
+            _objectContext.UpdateCohortReference(previousApprenticeshipCohortReference);
+        }
+
+        [When(@"Employer decides to update the stopped date")]
+        public void WhenEmployerDecidesToUpdateTheStoppedDate()
+        {
+            var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
+            var apprenticeDetailsPage = _employerStepsHelper
+                .GoToManageYourApprenticesPage()
+                .SelectViewCurrentApprenticeDetails();
+            apprenticeDetailsPage
+                .ClickOnChangeOfOverlappingTrainingDateRequestLink()
+                .ClickDateIsWrongRadionButton()
+                .EditStopDateToCourseStartDateAndSubmit(threeMonthOldStartDate.Month.ToString(), threeMonthOldStartDate.Year.ToString());
+        }
+
+        [Given(@"Completed event is received for the apprentice")]
+        public void GivenCompletedEventIsReceivedForTheApprentice()
+        {
+            var reference = _objectContext.GetCohortReference();
+            var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
+            _commitmentsSqlDataHelper.UpdateApprentieshipStatusToCompleted(uln);
+        }
+
+        [When(@"Employer decides to update end date")]
+        public void WhenEmployerDecidesToUpdateEndDate()
+        {
+            var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
+            var apprenticeDetailsPage = _employerStepsHelper
+                .GoToManageYourApprenticesPage()
+                .SelectViewCurrentApprenticeDetails();
+            apprenticeDetailsPage
+                .ClickEndDateLink()
+                .EditEndDate(threeMonthOldStartDate.Month.ToString(), threeMonthOldStartDate.Year.ToString());
+        }
+
+        [When(@"provider navigates to approve cohort details page")]
+        [When(@"provider navigates to approve cohort details page")]
+        public void WhenProivderNavigatesToApproveCohortPage()
+        {
+            var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
+            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
+            _objectContext.UpdateCohortReference(draftApprenticeshipCohortRef);
+
+            new ProviderApprenticeRequestsPage(_context, true)
+               .GoToDraftCohorts()
+               .SelectViewCurrentCohortDetails();
+
+            _objectContext.UpdateCohortReference(previousApprenticeshipCohortReference);
+        }
+    
+
+        [When(@"provider overlapping training date banner is not displayed")]
+        [Then(@"provider overlapping training date banner is not displayed")]
+        public void WhenOverlappingTrainingDateBannerIsNotDisplayed()
+        {
+            throw new PendingStepException();
         }
 
     }

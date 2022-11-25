@@ -11,10 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By IWillAddAnotherApprenticeRadionButton => By.CssSelector("#radio-add-another-apprentice");
 
-        //private static By ContactTheEmployerThemselves => By.CssSelector("#overlap-option-2");
-
-        //private static By SendStopEmailButton => By.CssSelector("#overlap-option-1");
-
         protected override bool TakeFullScreenShot => false;
 
         public ProviderOverlappingTrainingDateEmployerNotifiedPage(ScenarioContext context) : base(context) { }

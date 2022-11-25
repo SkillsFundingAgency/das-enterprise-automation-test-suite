@@ -215,5 +215,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         }
 
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
+
+        internal string GetCohortReferenceForDraftApprenitceship(string previousApprenticeshipCohortReference)
+        {
+            var query = @$"SELECT TOP(1) CAD.Reference
+                           FROM[dbo].[OverlappingTrainingDateRequest] OLTD
+                           Inner Join Apprenticeship Da on OLTD.DraftApprenticeshipId = Da.Id
+                           Inner join Apprenticeship A on OLTD.PreviousApprenticeshipId = A.Id
+                           Inner join Commitment CA on A.CommitmentId = CA.Id
+                           Inner join Commitment CAD on Da.CommitmentId = CAD.Id
+                           Where CA.Reference = '{previousApprenticeshipCohortReference}'
+                           Order by OLTD.Id desc";
+
+            var data = GetData(query);
+
+            return data[0];
+        }
+
+        internal int UpdateApprentieshipStatusToCompleted(string uln)
+        {
+            var sql = @$"  Update Apprenticeship
+                          set PaymentStatus = 4
+                          , CompletionDate = '{DateTime.UtcNow.ToString("MM-dd-yyyy")}'
+                          Where ULN = '{uln}'";
+
+            var rowsEffected = ExecuteSqlCommand(sql);
+            return rowsEffected;
+        }
     }
 }
