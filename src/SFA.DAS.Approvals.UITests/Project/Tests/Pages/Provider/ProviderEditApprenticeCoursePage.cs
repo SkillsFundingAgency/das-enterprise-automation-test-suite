@@ -5,9 +5,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderEditApprenticeCoursePage : EditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Edit apprentice details";
+        protected override string PageTitle => _pageTitle;
 
-        public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context) { }
+        #region Helpers and Context
+        private readonly string _pageTitle;
+        #endregion
+
+        public ProviderEditApprenticeCoursePage(ScenarioContext context) : base(context, false)
+        {
+            _pageTitle = DeterminePageTitle();
+            VerifyPage();
+        }
+
+        public string DeterminePageTitle()
+        {
+            var title = pageInteractionHelper.GetUrl().Contains("/unapproved/")
+                ? "Edit personal details"
+                : "Edit apprentice details";
+
+            return title;
+        }
 
         public ProviderConfirmChangesPage AddValidEmailAndContinue()
         {
@@ -27,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return ProviderConfirmChangesPage();
         }
 
-        protected override void EditCourse() => ClickEditCourseLink().ProviderSelectsAStandardForEditApprenticeDetailsPath();
+        protected override void EditCourse() => ClickEditCourseLink().ProviderSelectsAStandardForEditApprenticeDetailsPathPostApproval();
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(context);
     }

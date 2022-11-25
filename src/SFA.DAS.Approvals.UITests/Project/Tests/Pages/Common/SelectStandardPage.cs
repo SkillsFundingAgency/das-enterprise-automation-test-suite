@@ -19,58 +19,65 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectStandardPage(ScenarioContext context) : base(context) { }
 
-        public AddApprenticeDetailsPage EmployerSelectsAStandard()
+        public AddPersonalDetailsPage EmployerSelectsAStandard()
         {
             SelectStandardAndContinue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddPersonalDetailsPage(context);
         }
 
         public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney() => NavigatesToSelectDeliveryModelPage();
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
+        public ProviderAddPersonalDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new ProviderAddPersonalDetailsPage(context);
         }
 
         public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
         
         public SelectDeliveryModelPage EmployerSelectsAPortableFlexiJobCourse()
         {
-            SelectStandard(portableFlexiJobProviderConfig.PortableFlexiJobCourseCode);
+            SelectStandard(apprenticeCourseDataHelper.PortableFlexiJobCourseDetails.Course.larsCode);
             Continue();
             return new SelectDeliveryModelPage(context);
         }
 
-        public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPath()
+        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
         {
             SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
             Continue();
-            return GoToProviderEditApprenticeDetailsPage();
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-        public EditApprenticePage EmployerSelectsAStandardForEditApprenticeDetailsPath()
+        public ProviderEditApprenticePersonalDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPathPostApproval()
         {
             SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
             Continue();
-            return new EditApprenticePage(context);
+            return new ProviderEditApprenticePersonalDetailsPage(context);
         }
 
-        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
+        public EditApprenticeDetailsPage EmployerSelectsAStandardForEditApprenticeDetailsPath()
+        {
+            SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
+            Continue();
+            return new EditApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
         {
             AssertStandardAndFrameworkCoursesAreSelectable();
             Continue();
-            return GoToProviderEditApprenticeDetailsPage();
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
+        public AddPersonalDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
-        public EditApprenticePage EmployerSelectsAnotherCourse()
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse()
         {
             var selectedCourse = formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
             formCompletionHelper.SelectFromDropDownByText(TrainingCourseContainer, GetAnyStandardCourse(selectedCourse));
             Continue();
-            return new EditApprenticePage(context);
+            return new EditApprenticeDetailsPage(context);
         }
 
         private string GetAnyStandardCourse(string selectedCourseName)
@@ -80,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
         }
 
-        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
+        private ProviderEditApprenticePersonalDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticePersonalDetailsPage(context);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
@@ -99,11 +106,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.False(GetAllTrainingCourses().All(x => x.Contains("(Framework)")));
 
-        private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
+        private AddPersonalDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
             Assert.True(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")));
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddPersonalDetailsPage(context);
         }
 
         private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
