@@ -1,8 +1,8 @@
-﻿using SFA.DAS.FlexiPayments.E2ETests.Tests.Helpers;
+﻿using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using System;
 using System.Security.AccessControl;
 
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.TestSupport
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
 {
     public class FlexiPaymentsCommitmentsDataModel
     {

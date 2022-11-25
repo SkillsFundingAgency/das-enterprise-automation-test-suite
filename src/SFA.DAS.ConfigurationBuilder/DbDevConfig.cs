@@ -32,5 +32,6 @@
         public string CrsDbName { get; set; }
         public string EmploymentCheckDbName { get; set; }
         public string ManagingStandardsDbName { get; set; }
+        public string EarningsDbName { get; set; }
     }
 }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUserAccount
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUse
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_02_ExisitingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_02_ExisitingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

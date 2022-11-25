@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Helpers
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 {
     public static class DateHelpers
     {

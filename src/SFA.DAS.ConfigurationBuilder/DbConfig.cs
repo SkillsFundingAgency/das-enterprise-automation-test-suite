@@ -28,5 +28,6 @@
         public string CRSDbConnectionString { get; set; }
         public string EmploymentCheckDbConnectionString { get; set; }
         public string ManagingStandardsDbConnectionString { get; set; }
+        public string EarningsDbConnectionString { get; set; }
     }
 }

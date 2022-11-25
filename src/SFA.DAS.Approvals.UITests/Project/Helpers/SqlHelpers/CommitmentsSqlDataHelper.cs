@@ -186,7 +186,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             var query = $"SELECT app.IsOnFlexiPaymentPilot, pr.FromDate, pr.ToDate, pr.Cost " +
                 $"FROM [dbo].[Apprenticeship] app " +
                 $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
-                $"WHERE ULN = {uln}";
+                $"WHERE ULN = '{uln}'";
 
             var data = GetData(query);
 

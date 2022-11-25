@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.TestSupport
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
 {
     public class FlexiPaymentsInputDataModel
     {

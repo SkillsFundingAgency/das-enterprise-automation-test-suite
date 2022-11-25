@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUserAccount
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.E2EJourneys.ExisitingUse
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", @"Note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", @"Note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
 commitments through the UI. These are later used to validate data in the commitments and earnings db. 
 Please do not change the ULN keys and any new entries in the table will need to follow the same structure: ""ULN<n>""", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
@@ -114,15 +114,15 @@ this.ScenarioInitialize(scenarioInfo);
                             "ULN1",
                             "154",
                             "2004/05/27",
-                            "2023/08/01",
+                            "2022/08/01",
                             "2024/07/31",
                             "15000"});
                 table1.AddRow(new string[] {
                             "ULN2",
                             "91",
                             "2004/05/27",
-                            "2023/09/01",
-                            "2024/07/31",
+                            "2022/09/01",
+                            "2024/08/31",
                             "18000"});
 #line 12
  testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table1, "And ");
@@ -145,17 +145,35 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "ULN1",
                             "true",
-                            "2023/08/01",
+                            "2022/08/01",
                             "Null",
                             "15000"});
                 table2.AddRow(new string[] {
                             "ULN2",
                             "true",
-                            "2023/09/01",
+                            "2022/09/01",
                             "Null",
                             "18000"});
 #line 19
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN",
+                            "total_on_program_payment",
+                            "monthly_on_program_payment",
+                            "number_of_delivery_months"});
+                table3.AddRow(new string[] {
+                            "ULN1",
+                            "12000",
+                            "1000",
+                            "12"});
+                table3.AddRow(new string[] {
+                            "ULN2",
+                            "14400",
+                            "1200",
+                            "12"});
+#line 23
+ testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

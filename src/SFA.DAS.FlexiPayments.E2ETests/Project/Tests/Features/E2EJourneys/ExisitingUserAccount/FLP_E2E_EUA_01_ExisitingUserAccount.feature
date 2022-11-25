@@ -11,12 +11,16 @@ Scenario: FLP_E2E_EUA_01 Employer sends an approved cohort then provider approve
 	Given the Employer logins using existing Levy Account
 	And Employer adds apprentices to the cohort with the following details
 		| ULN  | training_code | date_of_birth | actual_start_date | planned_end_date | agreed_price |
-		| ULN1 | 154           | 2004/05/27    | 2023/08/01        | 2024/07/31       | 15000        |
-		| ULN2 | 91            | 2004/05/27    | 2023/09/01        | 2024/07/31       | 18000        |
+		| ULN1 | 154           | 2004/05/27    | 2022/08/01        | 2024/07/31       | 15000        |
+		| ULN2 | 91            | 2004/05/27    | 2022/09/01        | 2024/08/31       | 18000        |
 	And the Employer approves the cohort
 	And the provider adds Ulns and Opt the learners into the pilot
 	When Provider successfully approves the cohort
 	Then validate the following data is created in the commitments database
 		| ULN  | is_pilot | price_episode_from_date | price_episode_to_date | price_episode_cost |
-		| ULN1 | true     | 2023/08/01              | Null                  | 15000              |
-		| ULN2 | true     | 2023/09/01              | Null                  | 18000              |
+		| ULN1 | true     | 2022/08/01              | Null                  | 15000              |
+		| ULN2 | true     | 2022/09/01              | Null                  | 18000              |
+	And validate the following data is created in the earnings database
+		| ULN  | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
+		| ULN1 | 12000                    | 1000                       | 12                        |
+		| ULN2 | 14400                    | 1200                       | 12                        |
