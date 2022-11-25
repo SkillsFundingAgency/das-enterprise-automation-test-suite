@@ -20,24 +20,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DO_07_OLTD_Employer_resolves_OLTD_request_by_updating_End_date_Of_Completed_Re" +
-        "cord")]
-    public partial class AP_DO_07_OLTD_Employer_Resolves_OLTD_Request_By_Updating_End_Date_Of_Completed_RecordFeature
+    [NUnit.Framework.DescriptionAttribute("AP_DO_01_ULN Overlap_Provider")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_DO_01_ULNOverlap_ProviderFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "approvals"};
         
-#line 1 "AP_DO_07_OLTD.feature"
+#line 1 "AP_DO_01_ULN Overlap_Provider.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_07_OLTD_Employer_resolves_OLTD_request_by_updating_End_date_Of_Completed_Re" +
-                    "cord", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_01_ULN Overlap_Provider", "OLTD release 2 (overlapping regression)", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,21 +76,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DO_07_OLTD_Employer resolves OLTD request by updating End date of completed re" +
-            "cord")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.DescriptionAttribute("AP_DO_01_ULN Overlap_Provider")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("overlappingtrainingdaterequest")]
-        public void AP_DO_07_OLTD_EmployerResolvesOLTDRequestByUpdatingEndDateOfCompletedRecord()
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        public void AP_DO_01_ULNOverlap_Provider()
         {
             string[] tagsOfScenario = new string[] {
-                    "approvals",
                     "regression",
-                    "overlappingtrainingdaterequest"};
+                    "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_07_OLTD_Employer resolves OLTD request by updating End date of completed re" +
-                    "cord", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_01_ULN Overlap_Provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,31 +96,37 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("Employer and provider approve an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
- testRunner.And("Completed event is received for the apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("a live apprentice record exists with startdate of <-6> months and endDate of <+6>" +
+                        " months from current date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "NewStartDate",
+                            "NewEndDate",
+                            "DisplayOverlapErrorOnStartDate",
+                            "DisplayOverlapErrorOnEndDate"});
+                table2.AddRow(new string[] {
+                            "-12",
+                            "+0",
+                            "false",
+                            "true"});
+                table2.AddRow(new string[] {
+                            "-3",
+                            "+3",
+                            "true",
+                            "true"});
+                table2.AddRow(new string[] {
+                            "-12",
+                            "+12",
+                            "true",
+                            "true"});
+                table2.AddRow(new string[] {
+                            "+6",
+                            "+18",
+                            "false",
+                            "false"});
 #line 9
- testRunner.When("provider creates a draft apprentice which has an overlap", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.And("provider decides to send stop request email from service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.Then("information is saved in the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 12
- testRunner.When("Employer decides to update end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 13
- testRunner.And("overlapping training date request banner is not displayed when training date is c" +
-                        "hanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.Then("overlapping training date request is resolved in database with status 1 and resol" +
-                        "utionType 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Provider tries to add a new apprentice using details from table below", ((string)(null)), table2, "When ");
 #line hidden
             }
             this.ScenarioCleanup();
