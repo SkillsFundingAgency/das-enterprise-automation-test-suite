@@ -64,10 +64,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.StepDefinitions
 
                 var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(_objectContext.Get(inputCommitmentData.ULN));
 
-                Assert.That(inputCommitmentData.IsPilot, Is.EqualTo(Boolean.Parse(commitmentDbData.isPilot)));
-                Assert.That(inputCommitmentData.PriceEpisodeFromDate, Is.EqualTo(DateHelpers.TryParse(commitmentDbData.fromDate)));
-                Assert.That(inputCommitmentData.PriceEpisodeCost, Is.EqualTo(double.Parse(commitmentDbData.cost)));
-                Assert.That(DateHelpers.TryParse(commitmentDbData.toDate), Is.EqualTo (null));
+                Assert.That(inputCommitmentData.IsPilot, Is.EqualTo(Boolean.Parse(commitmentDbData.isPilot)), "Incorrect Pilot status found");
+                Assert.That(inputCommitmentData.PriceEpisodeFromDate, Is.EqualTo(DateHelpers.TryParse(commitmentDbData.fromDate)), "Incorrect PriceEpisode From Date found");
+                Assert.That(inputCommitmentData.PriceEpisodeToDate_Date, Is.EqualTo(DateHelpers.TryParse(commitmentDbData.toDate)), "Incorrect PriceEpisode To Date found");
+                Assert.That(inputCommitmentData.PriceEpisodeCost, Is.EqualTo(double.Parse(commitmentDbData.cost)), "Incorrect PriceEpisode Cost found");
             }
         }
     }

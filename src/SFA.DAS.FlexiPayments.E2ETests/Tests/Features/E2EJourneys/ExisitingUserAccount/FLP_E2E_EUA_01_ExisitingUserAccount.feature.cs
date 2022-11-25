@@ -140,16 +140,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "ULN",
                             "is_pilot",
                             "price_episode_from_date",
+                            "price_episode_to_date",
                             "price_episode_cost"});
                 table2.AddRow(new string[] {
                             "ULN1",
                             "true",
                             "2023/08/01",
+                            "Null",
                             "15000"});
                 table2.AddRow(new string[] {
                             "ULN2",
                             "true",
                             "2023/09/01",
+                            "Null",
                             "18000"});
 #line 19
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");
