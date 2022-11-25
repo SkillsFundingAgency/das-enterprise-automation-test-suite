@@ -5,8 +5,6 @@ variables:
   value: release
 - name: BuildPlatform
   value: any cpu
-- name: TestCategory
-  value: coursesapi
 - group: Release Automation Suite Variables
 - group: Release Automation Suite Variables (Db)
 resources:
@@ -27,14 +25,14 @@ resources:
     project: Digital Apprenticeship Service
     source: das-enterprise-automation-test-suite
     branch: master
-    trigger: 
+    trigger:
       stages:
       - Deploy_PP
 
 stages:
 - stage: Deploy_TEST
   displayName: Run test suite on TEST
-  variables:
+  variables:  
   - group: TEST Automation Suite Variables
   - group: TEST DevTest Shared Resources
   jobs:
@@ -57,6 +55,7 @@ stages:
   variables:
   - group: PreProd Shared Resources
   - group: PreProd Automation Suite Variables
+  - group: PREPROD Automation Suite Variables (Db)
   jobs:
   - template: pipeline-templates/job/test-api.yml
     parameters:
