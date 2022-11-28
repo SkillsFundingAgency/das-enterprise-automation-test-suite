@@ -102,8 +102,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("endpoint /api/accounts/{hashedAccountId}/transfers/connections can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.Then("endpoint /api/accounts/internal/{accountId}/transfers/connections can be accessed" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("endpoint /api/accounts/internal/{accountId}/transfers/connections can be accessed" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

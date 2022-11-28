@@ -169,8 +169,15 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/transfers/connections can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdTransfersConnectionsCanBeAccessed()
         {
-            var accountId = _objectContext.GetHashedAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transfers/connections", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transfers/connections", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /api/accounts/internal/\{accountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsInternalAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/transfers/connections", HttpStatusCode.OK);
         }
     }
 }
