@@ -23,6 +23,8 @@ public static class UrlConfig
 
         public static string Inner_CoursesApiBaseUrl => GetInner_ApiBaseUrl("courses");
 
+        public static string Inner_EmployerFinanceApiBaseUrl => GetInner_ApiBaseUrl("finance");
+
         public static string Inner_EmployerAccountsApiBaseUrl => GetInner_ApiBaseUrl("accounts");
 
         public static string Inner_EmployerAccountsLegacyApiBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-accounts.apprenticeships.education.gov.uk/";

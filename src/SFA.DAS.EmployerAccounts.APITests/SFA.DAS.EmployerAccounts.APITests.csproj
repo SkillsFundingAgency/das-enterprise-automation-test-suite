@@ -53,7 +53,7 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
+	</ItemGroup>	
 
 	<ItemGroup>
 	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerAccountsLegacyApi\EMPACC_EAS_API_01_GetAccounts.feature">
