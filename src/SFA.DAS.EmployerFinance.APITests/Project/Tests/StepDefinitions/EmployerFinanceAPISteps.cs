@@ -101,7 +101,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint das-employer-finance-api /ping can be accessed")]
         public void ThenEndpointDas_Employer_Finance_ApiPingCanBeAccessed()
         {
-            _innerApiRestClient.ExecuteEndpoint("/ping", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint("/api/healthcheck", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint api/accounts/\{hashedAccountId}/levy can be accessed")]
