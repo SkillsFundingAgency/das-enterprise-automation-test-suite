@@ -57,9 +57,14 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
             return agreementId;
         }
 
+        public string GetUserRef()
+        {
+            return GetDataAsString("Select top 1 UserRef from [employer_account].[User] order by Id desc");
+        }
+
         public string GetUserEmail()
         {
-            return GetDataAsString("Select top 1 Email from [employer_account].[User] order by Id desc");            
+            return GetDataAsString("Select top 1 Email from [employer_account].[User] order by Id desc");
         }    
     }
 }

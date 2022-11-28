@@ -39,7 +39,7 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
+	</ItemGroup>	
 
 	<ItemGroup>
 	  <Compile Update="Project\Tests\Features\Outer\EMPACC_API_01_OuterApiHealthCheck.feature.cs">

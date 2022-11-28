@@ -13,10 +13,10 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerFinanceAPISteps
     {
-        private readonly Inner_EmployerFinanceApiRestClient _innerApiRestClient;
+        private readonly Inner_EmployerFinanceApiRestClient _innerApiRestClient;        
         private readonly Outer_EmployerFinanceApiHelper _employerFinanceOuterApiHelper;
         private readonly EmployerFinanceSqlHelper _employerFinanceSqlDbHelper;
-        private readonly ObjectContext _objectContext;
+        private readonly ObjectContext _objectContext;        
 
         public EmployerFinanceAPISteps(ScenarioContext context)
         {
@@ -142,7 +142,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         public void ThenEndpointGetFinanceStatisticsCanBeAccessed()
         {
             _innerApiRestClient.ExecuteEndpoint("/api/financestatistics", HttpStatusCode.OK);
-        }
+        }   
 
         [Then(@"endpoint api/accounts/\{hashedAccountId}/transferAllowance can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdTransferAllowanceCanBeAccessed()

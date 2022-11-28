@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerAccounts.APITests
         internal static void SetLegalEntityId(this ObjectContext objectContext, string value) => objectContext.Replace(LegalEntityIdKey, value);
         internal static void SetPayeSchemeRef(this ObjectContext objectContext, string value) => objectContext.Replace(PayeSchemeRef, value);
 
-       
+
         internal static string GetHashedAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);
         internal static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(InternalAccountIdKey);
         internal static string GetLegalEntityId(this ObjectContext objectContext) => objectContext.Get(LegalEntityIdKey);
