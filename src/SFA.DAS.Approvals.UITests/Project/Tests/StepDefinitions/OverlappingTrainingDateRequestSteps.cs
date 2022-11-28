@@ -72,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .ProviderSelectsAStandard()
                .SubmitValidPersonalDetails()
                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
-            _providerStepsHelper.NavigateToProviderHomePage()
+            /*_providerStepsHelper.NavigateToProviderHomePage()
                                 .GotoSelectJourneyPage()
                                 .SelectAddManually()
                                 .SelectOptionCreateNewCohort()
@@ -80,7 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                 .ConfirmEmployer()
                                 .ProviderSelectsAStandard()
                                 .SubmitValidPersonalDetails()
-                                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
+                                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();*/
         }
 
         [When(@"provider selects to contact the employer themselves")]
