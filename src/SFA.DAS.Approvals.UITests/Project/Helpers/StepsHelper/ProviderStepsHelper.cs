@@ -307,16 +307,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        if (shouldCheckCoursesAreStandards)
-                            providerEditApprenticeDetailsPage = providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                        var providerEditTrainingDetailsPage =  providerEditApprenticeDetailsPage.EnterUlnAndSave();
 
-                        providerEditApprenticeDetailsPage.EnterUlnAndSave().CheckRPLConditionAndSave();
+                        if (shouldCheckCoursesAreStandards)
+                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+
+                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave();
                         break;
                     }
                     j--;
                 }
             }
-
             return providerApproveApprenticeDetailsPage;
         }
 
@@ -339,16 +340,76 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
 
+        public ProviderApproveApprenticeDetailsPage EditFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards, bool isPilotLearner)
+        {
+            var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
+
+            for (int i = 0; i < totalNoOfApprentices; i++)
+            {
+                var ulnFields = providerApproveApprenticeDetailsPage.ApprenticeUlns().Reverse<IWebElement>();
+                int j = ulnFields.Count() - 1;
+
+                foreach (IWebElement uln in ulnFields)
+                {
+                    if (uln.Text.Equals("-"))
+                    {
+                        var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+
+                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner);
+
+                        if (shouldCheckCoursesAreStandards)
+                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+
+                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
+                        break;
+                    }
+                    j--;
+                }
+            }
+
+            return providerApproveApprenticeDetailsPage;
+        }
+
+        public ProviderApproveApprenticeDetailsPage AddApprenticeForFlexiPaymentsProvider(int numberOfApprentices, bool isPilotLearner = false)
+        {
+            var providerApproveApprenticeDetailsPage = CurrentCohortDetails();
+
+            for (int i = 0; i < numberOfApprentices; i++)
+            {
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
+                    .ProviderSelectsAStandard()
+                    .SubmitValidPersonalDetails(isPilotLearner)
+                    .SubmitValidTrainingDetails();
+            }
+
+            return SetApprenticeDetails(providerApproveApprenticeDetailsPage);
+        }
+
+        public ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
+        {
+            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage));
+            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
+
+            return providerApproveApprenticeDetailsPage;
+        }
+
+        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner, bool shouldCheckCoursesAreStandards = false) => EditFlexiPaymentsPilotApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards, isPilotLearner);
+
+        public ProviderApproveApprenticeDetailsPage ApproveFlexiPilotCohort(bool isPilotLearner) => EditFlexiPilotLeaner(isPilotLearner);
+
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i).ClickEditCourseLink().ProviderSelectsAStandardForEditApprenticeDetailsPath();
-                providerApproveApprenticeDetailsPage = _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse().ClickSave();
+                _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
+                providerApproveApprenticeDetailsPage = 
+                    _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
+                    .ClickEditCourseLink()
+                    .ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
+                    .ClickSave();
             }
-
             return providerApproveApprenticeDetailsPage;
         }
 

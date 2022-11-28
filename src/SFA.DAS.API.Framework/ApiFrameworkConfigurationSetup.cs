@@ -41,6 +41,8 @@ public class ApiFrameworkConfigurationSetup
         inner_ApiFrameworkConfig.config.CoursesAppServiceName += _appServiceResourceSuffix;
         inner_ApiFrameworkConfig.config.CommitmentsAppServiceName += _appServiceResourceSuffix;
         inner_ApiFrameworkConfig.config.EmployerFinanceAppServiceName += _appServiceResourceSuffix;
+        inner_ApiFrameworkConfig.config.EmployerAccountsAppServiceName += _appServiceResourceSuffix;
+        inner_ApiFrameworkConfig.config.EmployerAccountsLegacyAppServiceName += _appServiceResourceSuffix;
 
         _context.Set(inner_ApiFrameworkConfig);
 

@@ -13,10 +13,10 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerFinanceAPISteps
     {
-        private readonly Inner_EmployerFinanceApiRestClient _innerApiRestClient;
+        private readonly Inner_EmployerFinanceApiRestClient _innerApiRestClient;        
         private readonly Outer_EmployerFinanceApiHelper _employerFinanceOuterApiHelper;
         private readonly EmployerFinanceSqlHelper _employerFinanceSqlDbHelper;
-        private readonly ObjectContext _objectContext;
+        private readonly ObjectContext _objectContext;        
 
         public EmployerFinanceAPISteps(ScenarioContext context)
         {
@@ -101,7 +101,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint das-employer-finance-api /ping can be accessed")]
         public void ThenEndpointDas_Employer_Finance_ApiPingCanBeAccessed()
         {
-            _innerApiRestClient.ExecuteEndpoint("/api/healthcheck", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint("/ping", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint api/accounts/\{hashedAccountId}/levy can be accessed")]
@@ -141,13 +141,27 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         public void ThenEndpointGetFinanceStatisticsCanBeAccessed()
         {
             _innerApiRestClient.ExecuteEndpoint("/api/financestatistics", HttpStatusCode.OK);
-        }
+        }   
 
         [Then(@"endpoint api/accounts/\{hashedAccountId}/transferAllowance can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdTransferAllowanceCanBeAccessed()
         {
             var hashedAccountId = _objectContext.GetHashedAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transferAllowance", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /api/accounts/\{hashedAccountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsHashedAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transfers/connections", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /api/accounts/internal/\{accountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsInternalAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/transfers/connections", HttpStatusCode.OK);
         }
     }
 }

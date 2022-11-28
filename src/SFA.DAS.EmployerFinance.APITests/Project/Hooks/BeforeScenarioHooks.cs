@@ -27,6 +27,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Hooks
             _context.Set(employerFinanceSqlHelper);
 
             _context.SetRestClient(new Inner_EmployerFinanceApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
+            
         }
     }
 }

@@ -7,6 +7,7 @@
   },
   "stepAssemblies": [
     { "assembly": "SFA.DAS.UI.Framework" },
+    { "assembly": "SFA.DAS.Transfers.UITests" },
     { "assembly": "SFA.DAS.ConfigurationBuilder" },
     { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.Registration.UITests" },
