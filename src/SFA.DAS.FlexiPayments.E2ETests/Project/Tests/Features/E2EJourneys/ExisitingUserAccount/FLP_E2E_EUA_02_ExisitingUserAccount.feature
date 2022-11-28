@@ -5,7 +5,18 @@
 @flexi-payments
 Scenario: FLP_E2E_EUA_02 Employer sends cohort to provider for review then provider approves then employer approves
 	Given the Employer logins using existing Levy Account
-	When the Employer adds 2 apprentices and sends to provider
-	And the provider adds Ulns and opts the learners out of the pilot 
-	Then Provider successfully approves the cohort
-	And the Employer approves the cohorts
+	And Employer adds apprentices to the cohort with the following details
+		| ULN_Key | training_code | date_of_birth | actual_start_date | planned_end_date | agreed_price |
+		| 1       | 154           | 2004/05/27    | 2023/08/01        | 2024/07/31       | 15000        |
+		| 2       | 91            | 2004/05/27    | 2023/09/01        | 2024/08/31       | 18000        |
+	And the Employer approves the cohort
+	And the provider adds Ulns and opts the learners out of the pilot
+	When Provider successfully approves the cohort
+	Then validate the following data is created in the commitments database
+		| ULN_Key | is_pilot | price_episode_from_date | price_episode_to_date | price_episode_cost |
+		| 1       | false    | 2023/08/01              | Null                  | 15000              |
+		| 2       | false    | 2023/09/01              | Null                  | 18000              |
+	And validate the following data is created in the earnings database
+		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
+		| 1       | 12000                    | 1000                       | 12                        |
+		| 2       | 14400                    | 1200                       | 12                        |

@@ -114,14 +114,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/05/27",
-                            "2022/08/01",
+                            "2023/08/01",
                             "2024/07/31",
                             "15000"});
                 table1.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/05/27",
-                            "2022/09/01",
+                            "2023/09/01",
                             "2024/08/31",
                             "18000"});
 #line 11
@@ -145,35 +145,26 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "1",
                             "true",
-                            "2022/08/01",
+                            "2023/08/01",
                             "Null",
                             "15000"});
                 table2.AddRow(new string[] {
                             "2",
                             "true",
-                            "2022/09/01",
+                            "2023/09/01",
                             "Null",
                             "18000"});
 #line 18
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key",
-                            "total_on_program_payment",
-                            "monthly_on_program_payment",
-                            "number_of_delivery_months"});
+                            "ULN_Key"});
                 table3.AddRow(new string[] {
-                            "1",
-                            "12000",
-                            "1000",
-                            "12"});
+                            "1"});
                 table3.AddRow(new string[] {
-                            "2",
-                            "14400",
-                            "1200",
-                            "12"});
+                            "2"});
 #line 22
- testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table3, "And ");
+ testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -86,5 +86,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             }
         }
 
+        [Then(@"validate earnings are not generated for the learners")]
+        public void ThenValidateEarningsAreNotGeneratedForTheLearners(Table table)
+        {
+            for (int i = 0; i < table.RowCount; i++)
+            {
+                var inputEarningsData = table.Rows[i].CreateInstance<FlexiPaymentsEarningDataModel>();
+
+                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"));
+
+                Assert.IsEmpty(earningsDbData.totalOnProgramPayment, "Incorrect total on-program payment found");
+                Assert.IsEmpty(earningsDbData.monthlyOnProgramPayment, "Incorrect total on-program payment found");
+                Assert.IsEmpty(earningsDbData.numberOfDeliveryMonths, "Incorrect total on-program payment found");
+            }
+        }
     }
 }

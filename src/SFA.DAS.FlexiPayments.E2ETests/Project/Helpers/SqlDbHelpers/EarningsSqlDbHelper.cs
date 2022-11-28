@@ -10,7 +10,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 
         public EarningsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EarningsDbConnectionString) { _dbConfig = dbConfig; }
 
-        public (string totalOnProgramPayment, string monthlyOnProgramPayment, string numberOfDeliveryMonths) GetEarnings (string uln)
+        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings (string uln)
         {
             string query = $"SELECT TOP 1 Amount AS MonthlyOnProgramPayment, SUM(Amount) AS 'TotalOnProgramPayment', COUNT(DeliveryPeriod) AS 'NumberOfDeliveryMonths' " +
                 $"FROM [Query].[Earning] " +
