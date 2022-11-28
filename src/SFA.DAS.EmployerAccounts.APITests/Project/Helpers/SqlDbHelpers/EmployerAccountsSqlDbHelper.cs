@@ -16,25 +16,22 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
             _objectContext = context.Get<ObjectContext>();
         }
 
-        public string GetAccountId()
+        public void SetHashedAccountId()
         {
             var accountId =  GetDataAsString($"Select top (1) HashedId from [employer_account].[Account] Where [ApprenticeshipEmployerType] = 1  order by Id desc");            
             _objectContext.SetAccountId(accountId);
-            return accountId;
         }
 
-        public string GetInternalAccountId()
+        public void SetInternalAccountId()
         {
             var internalAccountId = GetDataAsString($"Select top (1) Id  from [employer_account].[Account] Where [ApprenticeshipEmployerType] = 1  order by Id desc");
             _objectContext.SetInternalAccountId(internalAccountId);
-            return internalAccountId;
         }
 
-        public string GetLegalEntityId()
+        public void SetLegalEntityId()
         {
             var legalEntityId = GetDataAsString($"SELECT  top (1) LegalEntityId FROM [employer_account].[AccountLegalEntity]  Where AccountId = {_objectContext.GetInternalAccountId()}");
             _objectContext.SetLegalEntityId(legalEntityId);
-            return legalEntityId;
         }
 
         public string GetpayeSchemeRef()
@@ -61,9 +58,14 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
             return agreementId;
         }
 
+        public string GetUserRef()
+        {
+            return GetDataAsString("Select top 1 UserRef from [employer_account].[User] order by Id desc");
+        }
+
         public string GetUserEmail()
         {
-            return GetDataAsString("Select top 1 Email from [employer_account].[User] order by Id desc");            
+            return GetDataAsString("Select top 1 Email from [employer_account].[User] order by Id desc");
         }    
     }
 }
