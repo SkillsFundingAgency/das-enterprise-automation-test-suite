@@ -4,7 +4,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
 {
     public class FlexiPaymentsInputDataModel
     {
-        public string ULN { get; set; }
+        public int ULNKey { get; set; }
         public string TrainingCode { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime ActualStartDate { get; set; }

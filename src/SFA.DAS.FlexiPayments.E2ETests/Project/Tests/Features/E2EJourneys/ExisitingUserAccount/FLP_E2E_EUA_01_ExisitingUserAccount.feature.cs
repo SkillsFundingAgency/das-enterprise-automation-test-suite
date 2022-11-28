@@ -35,9 +35,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", @"Note that, in the tables below, ULN column is used as a key to store and retrieve ULNs that are used while creating 
-commitments through the UI. These are later used to validate data in the commitments and earnings db. 
-Please do not change the ULN keys and any new entries in the table will need to follow the same structure: ""ULN<n>""", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_01_ExisitingUserAccount", "Note that, in the tables below, ULN column is used as a key to store and retrieve" +
+                    " ULNs that are used while creating \r\ncommitments through the UI. These are later" +
+                    " used to validate data in the commitments and earnings db. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -90,7 +90,7 @@ Please do not change the ULN keys and any new entries in the table will need to 
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_01 Employer sends an approved cohort then provider approves the cohor" +
                     "t", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,79 +100,79 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 10
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN",
+                            "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "actual_start_date",
                             "planned_end_date",
                             "agreed_price"});
                 table1.AddRow(new string[] {
-                            "ULN1",
+                            "1",
                             "154",
                             "2004/05/27",
                             "2022/08/01",
                             "2024/07/31",
                             "15000"});
                 table1.AddRow(new string[] {
-                            "ULN2",
+                            "2",
                             "91",
                             "2004/05/27",
                             "2022/09/01",
                             "2024/08/31",
                             "18000"});
-#line 12
+#line 11
  testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table1, "And ");
 #line hidden
-#line 16
+#line 15
  testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 16
  testRunner.And("the provider adds Ulns and Opt the learners into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 17
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN",
+                            "ULN_Key",
                             "is_pilot",
                             "price_episode_from_date",
                             "price_episode_to_date",
                             "price_episode_cost"});
                 table2.AddRow(new string[] {
-                            "ULN1",
+                            "1",
                             "true",
                             "2022/08/01",
                             "Null",
                             "15000"});
                 table2.AddRow(new string[] {
-                            "ULN2",
+                            "2",
                             "true",
                             "2022/09/01",
                             "Null",
                             "18000"});
-#line 19
+#line 18
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN",
+                            "ULN_Key",
                             "total_on_program_payment",
                             "monthly_on_program_payment",
                             "number_of_delivery_months"});
                 table3.AddRow(new string[] {
-                            "ULN1",
+                            "1",
                             "12000",
                             "1000",
                             "12"});
                 table3.AddRow(new string[] {
-                            "ULN2",
+                            "2",
                             "14400",
                             "1200",
                             "12"});
-#line 23
+#line 22
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table3, "And ");
 #line hidden
             }

@@ -50,7 +50,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 if (i == 0) _employerStepsHelper.EmployerAddApprenticeFromHomePage();
                 else _employerStepsHelper.EmployerAddAnotherApprenticeToCohort();
 
-                _objectContext.Set(inputData.ULN, apprenticeDatahelper.Uln());
+                _objectContext.Set($"ULN{inputData.ULNKey}", apprenticeDatahelper.Uln());
             }
             _objectContext.SetNoOfApprentices(table.RowCount);
         }
@@ -62,7 +62,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputCommitmentData = table.Rows[i].CreateInstance<FlexiPaymentsCommitmentsDataModel>();
 
-                var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(_objectContext.Get(inputCommitmentData.ULN));
+                var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(_objectContext.Get($"ULN{inputCommitmentData.ULNKey}"));
 
                 Assert.That(inputCommitmentData.IsPilot, Is.EqualTo(Boolean.Parse(commitmentDbData.isPilot)), "Incorrect Pilot status found");
                 Assert.That(inputCommitmentData.PriceEpisodeFromDate, Is.EqualTo(DateHelpers.TryParse(commitmentDbData.fromDate)), "Incorrect PriceEpisode From Date found");
@@ -78,7 +78,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputEarningsData = table.Rows[i].CreateInstance<FlexiPaymentsEarningDataModel>();
 
-                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get(inputEarningsData.ULN));
+                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"));
 
                 Assert.That(inputEarningsData.TotalOnProgramPayment, Is.EqualTo(double.Parse(earningsDbData.totalOnProgramPayment)), "Incorrect total on-program payment found");
                 Assert.That(inputEarningsData.MonthlyOnProgramPayment, Is.EqualTo(double.Parse(earningsDbData.monthlyOnProgramPayment)), "Incorrect monthly on-program payment found");
