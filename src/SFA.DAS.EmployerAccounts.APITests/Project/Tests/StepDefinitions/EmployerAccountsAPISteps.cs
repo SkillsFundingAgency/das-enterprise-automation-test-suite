@@ -125,20 +125,6 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint("/api/statistics", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /api/accounts/\{hashedAccountId}/transfers/connections can be accessed")]
-        public void ThenEndpointApiAccountsHashedAccountIdTransfersConnectionsCanBeAccessed()
-        {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transfers/connections", HttpStatusCode.OK);            
-        }
-
-        [Then(@"endpoint /api/accounts/internal/\{accountId}/transfers/connections can be accessed")]
-        public void ThenEndpointApiAccountsInternalAccountIdTransfersConnectionsCanBeAccessed()
-        {
-            var internalAccountId = _employerAccountsSqlDbHelper.GetInternalAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/transfers/connections", HttpStatusCode.OK);            
-        }
-
         [Then(@"endpoint /api/user can be accessed")]
         public void ThenEndpointApiUserCanBeAccessed()
         {

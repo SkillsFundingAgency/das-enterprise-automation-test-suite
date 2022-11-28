@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
+namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ApiGetTransferConnectionsHashedAccountId")]
-    public partial class ApiGetTransferConnectionsHashedAccountIdFeature
+    [NUnit.Framework.DescriptionAttribute("EmpFin_Api_10_AccountTransferConnections")]
+    public partial class EmpFin_Api_10_AccountTransferConnectionsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EMPACC_API_19_ApiGetTransferConnectionsHashedAccountId.feature"
+#line 1 "EmpFin_Api_10_AccountTransferConnections.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "ApiGetTransferConnectionsHashedAccountId", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EmpFin_Api_10_AccountTransferConnections", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EMPACC_API_19_ApiGetTransferConnectionsHashedAccountId")]
+        [NUnit.Framework.DescriptionAttribute("EmpFin_Api_10_AccountTransferConnections")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("employeraccountsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
-        public void EMPACC_API_19_ApiGetTransferConnectionsHashedAccountId()
+        public void EmpFin_Api_10_AccountTransferConnections()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
                     "regression",
                     "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EMPACC_API_19_ApiGetTransferConnectionsHashedAccountId", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmpFin_Api_10_AccountTransferConnections", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -102,8 +102,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("endpoint /api/accounts/{hashedAccountId}/transfers/connections can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.Then("endpoint /api/accounts/internal/{accountId}/transfers/connections can be accessed" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("endpoint /api/accounts/internal/{accountId}/transfers/connections can be accessed" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
