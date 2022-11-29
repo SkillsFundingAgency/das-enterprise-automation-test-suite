@@ -11,6 +11,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class SelectEmployersPage : Raav2BasePage
     {
+
+        private List<(string hashedid, string value)> values = new();
+
         protected override string PageTitle => "Which employer do you want to create a vacancy for?";
         private By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
 
@@ -28,7 +31,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             (string hashedidvalue, int noOfLegalEntity) = ((string)publichashedid[0], (int)publichashedid[1]);
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem($"[value='{hashedidvalue}']")));
+            var value = RandomDataGenerator.GetRandomElementFromListOfElements(values.Where(x => x.hashedid == hashedidvalue).ToList()).value;
+
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem(value));
 
             if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
 
@@ -41,14 +46,19 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private List<string> GetEmployers(string empHashedid)
         {
-            if (string.IsNullOrEmpty(empHashedid))
-            {
-                var items = pageInteractionHelper.FindElements(SelectItemList).ToList();
-                return items.Select(x => x.GetAttribute("value")?.Split('|')[1]).ToList();
-            }
+            values = GetEmpDetails();
 
+            if (string.IsNullOrEmpty(empHashedid)) return value.Select(x => x.hashedid).ToList();
 
             return new List<string>() { (empHashedid) };
+        }
+
+        private List<(string hashedid, string value)> GetEmpDetails()
+        {
+            var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetAttribute("value")).ToList();
+
+            return value.Select(x => (x?.Split('|')[1], x)).ToList();
+
         }
     }
 }
