@@ -15,6 +15,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private List<(string hashedid, string value)> values = new();
 
         protected override string PageTitle => "Which employer do you want to create a vacancy for?";
+
         private By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
 
         private By ListItem(string value) => By.CssSelector($"#select-{value}");
@@ -33,7 +34,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             var value = RandomDataGenerator.GetRandomElementFromListOfElements(values.Where(x => x.hashedid == hashedidvalue).ToList()).value;
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem(value));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem(value)));
 
             if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
 
@@ -48,7 +49,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         {
             values = GetEmpDetails();
 
-            if (string.IsNullOrEmpty(empHashedid)) return value.Select(x => x.hashedid).ToList();
+            if (string.IsNullOrEmpty(empHashedid)) return values.Select(x => x.hashedid).ToList();
 
             return new List<string>() { (empHashedid) };
         }
@@ -58,7 +59,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetAttribute("value")).ToList();
 
             return value.Select(x => (x?.Split('|')[1], x)).ToList();
-
         }
     }
 }
