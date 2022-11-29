@@ -48,7 +48,7 @@ jobs:
         - task: DotNetCoreCLI@2
           inputs:
             command: 'test'
-            arguments: '--filter "TestCategory=$(TestCategory)" --logger trx'
+            arguments: '--filter "TestCategory=$(TestCategory)" --logger trx;logfilename=${{ parameters.Environment }}_testResults.trx'
             projects: |
               $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.ApprenticeCommitments.APITests/SFA.DAS.ApprenticeCommitments.APITests.dll
               $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Courses.APITests/SFA.DAS.Courses.APITests.dll
