@@ -11,9 +11,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class SelectEmployersPage : Raav2BasePage
     {
-        protected override string PageTitle => "Which organisation do you want to create a vacancy for?";
+        protected override string PageTitle => "Which employer do you want to create a vacancy for?";
+        private By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
 
-        private By RadioItem(string value) => By.CssSelector($".govuk-radios__item input{value}");
+        private By ListItem(string value) => By.CssSelector($"#select-{value}");
 
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
@@ -23,11 +24,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             var validemployers = context.Get<ProviderCreateVacancySqlDbHelper>().GetValidHashedId(employers);
 
-            var hashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
+            var publichashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
 
-            (string hashedidvalue, int noOfLegalEntity) = ((string)hashedid[0], (int)hashedid[1]);
+            (string hashedidvalue, int noOfLegalEntity) = ((string)publichashedid[0], (int)publichashedid[1]);
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RadioItem($"[value='{hashedidvalue}']")));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem($"[value='{hashedidvalue}']")));
 
             if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
 
@@ -40,11 +41,14 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private List<string> GetEmployers(string empHashedid)
         {
-            return string.IsNullOrEmpty(empHashedid) ? 
+            if (string.IsNullOrEmpty(empHashedid))
+            {
+                var items = pageInteractionHelper.FindElements(SelectItemList).ToList();
+                return items.Select(x => x.GetAttribute("value")?.Split('|')[1]).ToList();
+            }
 
-                pageInteractionHelper.FindElements(RadioItem(string.Empty)).ToList().Select(x => x.GetAttribute("value")).ToList() :
-                
-                new List<string>() { (empHashedid) };
+
+            return new List<string>() { (empHashedid) };
         }
     }
 }
