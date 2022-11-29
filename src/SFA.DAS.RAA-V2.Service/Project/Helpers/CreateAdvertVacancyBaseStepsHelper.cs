@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         {
             var createAdvertPage = CreateAnApprenticeshipAdvertOrVacancy();
 
-            createAdvertPage.VerifyAdvertSummarySectionStatus(NotStarted);
+            createAdvertPage.VerifyAdvertSummarySectionStatus(InProgress);
 
             createAdvertPage = AdvertOrVacancySummary(createAdvertPage);
 

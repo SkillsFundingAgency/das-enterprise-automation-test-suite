@@ -18,7 +18,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
 
-        private By ListItem(string value) => By.CssSelector($"#select-{value}");
+        private By ListItem(string value) => By.CssSelector($".govuk-table .das-button--inline-link[value='{value}']");
+
+        private By SelectedEmployerYes => By.Id("confirm-yes");
+        
 
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
@@ -28,9 +31,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             var validemployers = context.Get<ProviderCreateVacancySqlDbHelper>().GetValidHashedId(employers);
 
-            var publichashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
+            var hashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
 
-            (string hashedidvalue, int noOfLegalEntity) = ((string)publichashedid[0], (int)publichashedid[1]);
+            (string hashedidvalue, int noOfLegalEntity) = ((string)hashedid[0], (int)hashedid[1]);
 
             var value = RandomDataGenerator.GetRandomElementFromListOfElements(values.Where(x => x.hashedid == hashedidvalue).ToList()).value;
 
@@ -40,8 +43,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             objectContext.SetDebugInformation($"Selected employer with hashed id '{hashedidvalue}' who has {noOfLegalEntity} legal entities with provider permission");
 
-            Continue();
+            formCompletionHelper.SelectRadioOptionByLocator(SelectedEmployerYes);
 
+            SaveAndContinue();             
+            
             return (new CreateAnApprenticeshipAdvertOrVacancyPage(context), noOfLegalEntity > 1);
         }
 
