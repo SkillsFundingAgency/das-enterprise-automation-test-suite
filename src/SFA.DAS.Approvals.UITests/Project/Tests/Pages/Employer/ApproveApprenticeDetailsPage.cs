@@ -13,18 +13,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context
+
         private readonly string _pageTitle;
-        #endregion
+
+        #endregion Helpers and Context
 
         private By ApproveMessage => By.CssSelector("#approve-details");
-		private By ReviewMessage => By.CssSelector("#send-details");
-		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
+        private By ReviewMessage => By.CssSelector("#send-details");
+        private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
         private By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
             var noOfApprentice = TotalNoOfApprentices();
-	        _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
+            _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
             VerifyPage();
         }
 
@@ -32,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-			return new EditApprenticeDetailsPage(context);
+            return new EditApprenticeDetailsPage(context);
         }
 
         public SelectStandardPage SelectAddAnotherApprentice()
@@ -53,23 +55,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeRequestsPage(context);
         }
 
-		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
-		{
-			SelectRadioOptionByForAttribute("radio-approve");
-			formCompletionHelper.EnterText(ApproveMessage, apprenticeDataHelper.MessageToProvider);
-			formCompletionHelper.Click(SaveSubmit);
-			return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(context);
-		}
+        public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
+        {
+            SelectRadioOptionByForAttribute("radio-approve");
+            formCompletionHelper.EnterText(ApproveMessage, apprenticeDataHelper.MessageToProvider);
+            formCompletionHelper.Click(SaveSubmit);
+            return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(context);
+        }
 
-		public NotificationSentToTrainingProviderPage EmployerSendsToTrainingProviderForReview()
+        public NotificationSentToTrainingProviderPage EmployerSendsToTrainingProviderForReview()
         {
             SelectRadioOptionByForAttribute("radio-send");
-			formCompletionHelper.EnterText(ReviewMessage, apprenticeDataHelper.MessageToProvider);
+            formCompletionHelper.EnterText(ReviewMessage, apprenticeDataHelper.MessageToProvider);
             formCompletionHelper.Click(SaveSubmit);
             return new NotificationSentToTrainingProviderPage(context);
         }
 
-		public ApprenticeDetailsApprovedPage EmployerDoesSecondApproval()
+        public ApprenticeDetailsApprovedPage EmployerDoesSecondApproval()
         {
             SelectRadioOptionByForAttribute("radio-approve");
             formCompletionHelper.Click(SaveSubmit);
@@ -90,6 +92,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Link is still available to add another apprentice record");
             else
                 return this;
+        }
+
+        public EditPersonalDetailsPage SelectEditApprenticeLink(int apprenticeNumber = 0)
+        {
+            var editApprenticeLinks = TotalNoOfEditableApprentices();
+            formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+            return new EditPersonalDetailsPage(context);
         }
     }
 }

@@ -9,26 +9,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderAddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        private readonly Boolean _isFlexiPaymentPilotLearner;
+        private readonly bool _isFlexiPaymentPilotLearner;
         protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Add training details";
-        protected override By ContinueButton => By.XPath("//button[text()='Add']");
+        protected override By ContinueButton => AddButtonSelector;
         private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
         private static By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
         private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
 
-        public ProviderAddTrainingDetailsPage(ScenarioContext context, Boolean isFlexiPaymentPilotLearner) : base(context)
-        {
-            _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
-        }
+        public ProviderAddTrainingDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner) : base(context) => _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails()
         {
             if (objectContext.HasStartDate()) EnterTrainingStartDate(objectContext.GetStartDate());
             else EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
-            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterTrainingStartDate(DateTime.Now);
 
+            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
+
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
@@ -44,33 +43,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
+        internal ProviderApproveApprenticeDetailsPage SubmitNullTrainingDetails()
+        {
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
         internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
         {
-            ClickStartMonth();
 
+            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
             EnterStartDate(objectContext.GetStartDate());
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
             formCompletionHelper.ClickElement(ContinueButton);
 
             return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
-        }
-
-        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
-        {
-            SelectRadioOptionByForAttribute("confirm-Manual");
-            Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
-        }
-
-        internal ProviderBeforeYouStartBulkUploadPage SelectBulkUpload()
-        {
-            SelectRadioOptionByForAttribute("confirm-BulkCsv");
-            Continue();
-            return new ProviderBeforeYouStartBulkUploadPage(context);
         }
 
         private bool CheckRPLCondition(bool rpl = false)
