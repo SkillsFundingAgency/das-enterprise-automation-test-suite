@@ -74,7 +74,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         {
             var createTraineeshipPage = CreateNewTraineeshipVacancy();
 
-            createTraineeshipPage.VerifyAdvertSummarySectionStatus(NotStarted);
+            createTraineeshipPage.VerifyAdvertSummarySectionStatus(InProgress);
 
             createTraineeshipPage = AdvertOrVacancySummary(createTraineeshipPage);
 
