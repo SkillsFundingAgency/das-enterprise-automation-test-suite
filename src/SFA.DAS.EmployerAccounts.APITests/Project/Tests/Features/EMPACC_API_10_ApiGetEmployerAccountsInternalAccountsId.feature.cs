@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
+namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,24 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_03_ExistingUserAccount")]
-    [NUnit.Framework.CategoryAttribute("flexi-payments")]
-    public partial class FLP_E2E_EUA_03_ExistingUserAccountFeature
+    [NUnit.Framework.DescriptionAttribute("ApiGetEmployerAccountsInternalAccountsId")]
+    public partial class ApiGetEmployerAccountsInternalAccountsIdFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "flexi-payments"};
+        private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_E2E_EUA_03_ExistingUserAccount.feature"
+#line 1 "EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/E2EJourneys/ExisitingUserAccount", "FLP_E2E_EUA_03_ExistingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "ApiGetEmployerAccountsInternalAccountsId", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,20 +74,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.E2EJourneys.ExisitingUserAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_03 Provider adds apprentices and approves then employer approves coho" +
-            "rt")]
+        [NUnit.Framework.DescriptionAttribute("EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("employeraccountsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        [NUnit.Framework.CategoryAttribute("selectstandardwithmultipleoptions")]
-        public void FLP_E2E_EUA_03ProviderAddsApprenticesAndApprovesThenEmployerApprovesCohort()
+        [NUnit.Framework.CategoryAttribute("innerapi")]
+        public void EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId()
         {
             string[] tagsOfScenario = new string[] {
+                    "api",
+                    "employeraccountsapi",
                     "regression",
-                    "e2escenarios",
-                    "selectstandardwithmultipleoptions"};
+                    "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_03 Provider adds apprentices and approves then employer approves coho" +
-                    "rt", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EMPACC_API_10_ApiGetEmployerAccountsInternalAccountsId", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -101,16 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint /accounts/internal/{accountId} can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
