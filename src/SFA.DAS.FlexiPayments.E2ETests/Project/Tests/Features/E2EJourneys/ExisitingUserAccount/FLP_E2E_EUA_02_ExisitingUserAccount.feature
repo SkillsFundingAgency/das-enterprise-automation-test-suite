@@ -16,6 +16,10 @@ Scenario: FLP_E2E_EUA_02 Employer sends cohort to provider for review then provi
 		| ULN_Key | is_pilot | price_episode_from_date | price_episode_to_date | price_episode_cost |
 		| 1       | false    | 2023/08/01              | Null                  | 15000              |
 		| 2       | false    | 2023/09/01              | Null                  | 18000              |
+	And validate the following data in Earnings Apprenticeship database
+		| ULN_Key | actual_start_date | planned_end_date | agreed_price | funding_type | funding_band_maximum |
+		| 1       | 2023/08/01        | 2024/07/01       | 15000        | 1            | 15000                |
+		| 2       | 2023/09/01        | 2024/08/01       | 18000        | 1            | 18000                |
 	And validate the following data is created in the earnings database
 		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
 		| 1       | 12000                    | 1000                       | 12                        |

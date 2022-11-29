@@ -158,13 +158,37 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table2, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key"});
+                            "ULN_Key",
+                            "actual_start_date",
+                            "planned_end_date",
+                            "agreed_price",
+                            "funding_type",
+                            "funding_band_maximum"});
                 table3.AddRow(new string[] {
-                            "1"});
+                            "1",
+                            "2023/08/01",
+                            "2024/07/01",
+                            "15000",
+                            "1",
+                            "15000"});
                 table3.AddRow(new string[] {
-                            "2"});
+                            "2",
+                            "2023/09/01",
+                            "2024/08/01",
+                            "18000",
+                            "1",
+                            "18000"});
 #line 22
- testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table3, "And ");
+ testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table3, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN_Key"});
+                table4.AddRow(new string[] {
+                            "1"});
+                table4.AddRow(new string[] {
+                            "2"});
+#line 26
+ testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table4, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

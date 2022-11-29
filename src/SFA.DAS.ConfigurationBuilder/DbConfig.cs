@@ -29,5 +29,6 @@
         public string EmploymentCheckDbConnectionString { get; set; }
         public string ManagingStandardsDbConnectionString { get; set; }
         public string EarningsDbConnectionString { get; set; }
+        public string ApprenticeshipsDbConnectionString { get; set; }
     }
 }

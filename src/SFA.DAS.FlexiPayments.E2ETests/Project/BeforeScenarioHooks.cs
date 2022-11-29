@@ -24,6 +24,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project
 
 
         [BeforeScenario(Order = 40)]
-        public void SetUpHelpers() => _context.Set(new EarningsSqlDbHelper(_dbConfig));
+        public void SetUpHelpers()
+        {
+            _context.Set(new EarningsSqlDbHelper(_dbConfig));
+            _context.Set(new ApprenticeshipsSqlDbHelper(_dbConfig));
+        }
     }
 }

@@ -33,5 +33,6 @@
         public string EmploymentCheckDbName { get; set; }
         public string ManagingStandardsDbName { get; set; }
         public string EarningsDbName { get; set; }
+        public string ApprenticeshipsDbName { get; set; }
     }
 }
