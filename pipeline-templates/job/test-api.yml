@@ -57,7 +57,7 @@ jobs:
           inputs:
             targetType: filePath
             filePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/src/Check-TestResults.ps1'
-            arguments: '-SourcePath "$(Agent.TempDirectory)"'
+            arguments: '-SourcePath "$(Agent.TempDirectory)"/${{ parameters.Environment }}'
         - template: azure-pipelines-templates/deploy/step/sql-remove-ip.yml@das-platform-building-blocks
           parameters:
             ServiceConnection: ${{ parameters.ServiceConnection }}
