@@ -184,6 +184,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();     
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
+
+        [Then(@"employer validates apprentice is Flexi-job and can edit Delivery Model")]
+        public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel()
+        {
+            throw new PendingStepException();
+        }
+
     }
 }
