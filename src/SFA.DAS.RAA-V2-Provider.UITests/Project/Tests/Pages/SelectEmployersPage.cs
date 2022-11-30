@@ -34,11 +34,17 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             (string hashedidvalue, int noOfLegalEntity) = ((string)hashedid[0], (int)hashedid[1]);
 
-            var value = GetRandomElementFromListOfElements(values.Where(x => x.hashedid == hashedidvalue).ToList()).value;
+            objectContext.SetDebugInformation($"Employer with hashed id '{hashedidvalue}' has {noOfLegalEntity} legal entities");
+
+            var legalEntity = values.Where(x => x.hashedid == hashedidvalue).ToList();
+
+            objectContext.SetDebugInformation($"Employer with hashed id '{hashedidvalue}' has {legalEntity.Count} legal entities with provider permission");
+
+            var value = GetRandomElementFromListOfElements(legalEntity).value;
 
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem(value)));
 
-            if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
+            if (noOfLegalEntity > 1) noOfLegalEntity = legalEntity.Count;
 
             objectContext.SetDebugInformation($"Selected employer with hashed id '{value}' who has {noOfLegalEntity} legal entities with provider permission");
 
