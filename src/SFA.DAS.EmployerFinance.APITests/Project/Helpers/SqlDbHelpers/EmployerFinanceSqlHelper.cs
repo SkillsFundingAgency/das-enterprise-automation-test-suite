@@ -25,7 +25,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers
 
         public void SetHashedAccountId()
         {            
-            var queryToExecute = "Select top (1) HashedId from [employer_account].[Account] Where [ApprenticeshipEmployerType] = 1  order by Id desc";
+            var queryToExecute = "Select top (1) HashedId from [employer_account].[Account] Where [ApprenticeshipEmployerType] = 1 order by Id desc";
             var hashedAccountId =  SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _dbConfig.AccountsDbConnectionString);
             _objectContext.SetHashedAccountId(hashedAccountId[0][0].ToString());
         }
