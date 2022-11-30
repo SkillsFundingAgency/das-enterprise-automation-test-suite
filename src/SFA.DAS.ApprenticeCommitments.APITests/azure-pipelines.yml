@@ -13,4 +13,4 @@ extends:
   template: ../../pipeline-templates/resource-template.yml
   parameters:
     TestCategory: apprenticecommitmentsapi
-    TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.ApprenticeCommitments.APITests/SFA.DAS.ApprenticeCommitments.APITests.dl
+    TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.ApprenticeCommitments.APITests/SFA.DAS.ApprenticeCommitments.APITests.dll
