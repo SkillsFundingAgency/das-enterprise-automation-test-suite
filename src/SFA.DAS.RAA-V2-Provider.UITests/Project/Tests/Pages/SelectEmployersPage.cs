@@ -22,7 +22,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private By SelectedEmployerYes => By.Id("confirm-yes");
         
-
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
         public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer(string empHashedid)
@@ -31,17 +30,17 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             var validemployers = context.Get<ProviderCreateVacancySqlDbHelper>().GetValidHashedId(employers);
 
-            var hashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
+            var hashedid = GetRandomElementFromListOfElements(validemployers);
 
             (string hashedidvalue, int noOfLegalEntity) = ((string)hashedid[0], (int)hashedid[1]);
 
-            var value = RandomDataGenerator.GetRandomElementFromListOfElements(values.Where(x => x.hashedid == hashedidvalue).ToList()).value;
+            var value = GetRandomElementFromListOfElements(values.Where(x => x.hashedid == hashedidvalue).ToList()).value;
 
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem(value)));
 
             if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
 
-            objectContext.SetDebugInformation($"Selected employer with hashed id '{hashedidvalue}' who has {noOfLegalEntity} legal entities with provider permission");
+            objectContext.SetDebugInformation($"Selected employer with hashed id '{value}' who has {noOfLegalEntity} legal entities with provider permission");
 
             formCompletionHelper.SelectRadioOptionByLocator(SelectedEmployerYes);
 
@@ -49,6 +48,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             
             return (new CreateAnApprenticeshipAdvertOrVacancyPage(context), noOfLegalEntity > 1);
         }
+
+        private T GetRandomElementFromListOfElements<T>(List<T> elements) => RandomDataGenerator.GetRandomElementFromListOfElements(elements);
 
         private List<string> GetEmployers(string empHashedid)
         {
