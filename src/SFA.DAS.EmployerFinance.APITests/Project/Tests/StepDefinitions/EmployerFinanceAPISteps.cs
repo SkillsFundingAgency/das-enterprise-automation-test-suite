@@ -14,15 +14,88 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
     public class EmployerFinanceAPISteps
     {
         private readonly Inner_EmployerFinanceApiRestClient _innerApiRestClient;        
+        private readonly Outer_EmployerFinanceApiHelper _employerFinanceOuterApiHelper;
         private readonly EmployerFinanceSqlHelper _employerFinanceSqlDbHelper;
         private readonly ObjectContext _objectContext;        
 
         public EmployerFinanceAPISteps(ScenarioContext context)
         {
             _innerApiRestClient = context.GetRestClient<Inner_EmployerFinanceApiRestClient>();
+            _employerFinanceOuterApiHelper = new Outer_EmployerFinanceApiHelper(context);
             _employerFinanceSqlDbHelper = context.Get<EmployerFinanceSqlHelper>();
             _objectContext = context.Get<ObjectContext>();
-            _employerFinanceSqlDbHelper.GetHashedAccountId();
+            _employerFinanceSqlDbHelper.SetHashedAccountId();
+            _employerFinanceSqlDbHelper.SetAccountId();
+        }
+
+        [Then(@"the employer finance outer api is reachable")]
+        public void ThenTheApprenticeCommitmentsApiIsReachable() => _employerFinanceOuterApiHelper.Ping();
+
+        [Then(@"endpoint /Accounts/\{accountId}/minimum-signed-agreement-version can be accessed")]
+        public void ThenEndpointAccountsAccountIdMinimum_Signed_Agreement_VersionCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _employerFinanceOuterApiHelper.GetAccountMinimumSignedAgreementVersion(long.Parse(accountId));
+        }
+
+        [Then(@"endpoint /Accounts/\{accountId}/users/which-receive-notifications can be accessed")]
+        public void ThenEndpointAccountsAccountIdUsersWhich_Receive_NotificationsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _employerFinanceOuterApiHelper.GetAccountUserWhichCanReceiveNotifications(long.Parse(accountId));
+        }
+
+        [Then(@"endpoint /Pledges\?accountId=\{accountId} can be accessed")]
+        public void ThenEndpointPledgesAccountIdAccountIdCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _employerFinanceOuterApiHelper.GetPledges(long.Parse(accountId));
+        }
+
+
+        [Then(@"endpoint /Projections/\{accountId} can be accessed")]
+        public void ThenEndpointProjectionsAccountIdCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _employerFinanceOuterApiHelper.GetProjections(long.Parse(accountId));
+        }
+
+        [Then(@"endpoint /Providers can be accessed")]
+        public void ThenEndpointProvidersCanBeAccessed()
+        {
+            _employerFinanceOuterApiHelper.GetProviders();
+        }
+
+        [Then(@"endpoint /Profiders/\{id} can be accessed")]
+        public void ThenEndpointProfidersIdCanBeAccessed()
+        {
+            _employerFinanceOuterApiHelper.GetProvidersById();
+        }
+
+        [Then(@"endpoint /TrainingCourses/frameworks can be accessed")]
+        public void ThenEndpointTrainingCoursesFrameworksCanBeAccessed()
+        {
+            _employerFinanceOuterApiHelper.GetTrainingCoursesFrameworks();
+        }
+
+        [Then(@"endpoint /TrainingCourses/standards can be accessed")]
+        public void ThenEndpointTrainingCoursesStandardsCanBeAccessed()
+        {
+            _employerFinanceOuterApiHelper.GetTrainingCoursesStandards();
+        }
+
+        [Then(@"endpoint /Transfers/\{accountId}/counts can be accessed")]
+        public void ThenEndpointTransfersAccountIdCountsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _employerFinanceOuterApiHelper.GetTransfersCounts(long.Parse(accountId));
+        }
+
+        [Then(@"endpoint /Transfers/\{accountId}/financial-breakdown can be accessed")]
+        public void ThenEndpointTransfersAccountIdFinancial_BreakdownCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _employerFinanceOuterApiHelper.GetTransfersFinancialBreakdown(long.Parse(accountId));
         }
 
         [Then(@"endpoint das-employer-finance-api /ping can be accessed")]
@@ -73,9 +146,22 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint api/accounts/\{hashedAccountId}/transferAllowance can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdTransferAllowanceCanBeAccessed()
         {
-            var hashedAccountId = _objectContext.GetHashedAccountId();  //_employerFinanceSqlDbHelper.GetHashedAccountId();
+            var hashedAccountId = _objectContext.GetHashedAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transferAllowance", HttpStatusCode.OK);
         }
 
+        [Then(@"endpoint /api/accounts/\{hashedAccountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsHashedAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transfers/connections", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /api/accounts/internal/\{accountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsInternalAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/transfers/connections", HttpStatusCode.OK);
+        }
     }
 }

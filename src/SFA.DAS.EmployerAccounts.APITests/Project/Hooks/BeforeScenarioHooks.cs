@@ -1,10 +1,10 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerFinance.APITests.Project.Hooks
+namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks
 {
     [Binding]
     public class BeforeScenarioHooks
@@ -23,11 +23,15 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Hooks
         [BeforeScenario(Order = 45)]
         public void SetUpHelpers()
         {
-            var employerFinanceSqlHelper = new EmployerFinanceSqlHelper(_dbConfig, _context);
-            _context.Set(employerFinanceSqlHelper);
+            var a = new EmployerAccountsSqlDbHelper(_dbConfig, _context);
 
-            _context.SetRestClient(new Inner_EmployerFinanceApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
-            
+            _context.Set(a);            
+
+            _context.Set(new EmployerAccountsSqlDbHelper(_dbConfig, _context));          
+
+            _context.SetRestClient(new Inner_EmployerAccountsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
+
+            _context.SetRestClient(new Inner_EmployerAccountsLegacyApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
         }
     }
 }
