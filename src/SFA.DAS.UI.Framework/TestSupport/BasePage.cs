@@ -13,7 +13,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
-        protected virtual By SaveAndContinueButton => By.ClassName("govuk-button");
 
         protected By PanelTitle => By.CssSelector(".govuk-panel__title");
 
@@ -28,8 +27,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected string GetUrl() => pageInteractionHelper.GetUrl();
 
         protected virtual void Continue() => formCompletionHelper.Click(ContinueButton);
-
-        protected virtual void SaveAndContinue() => formCompletionHelper.ClickButtonByText(SaveAndContinueButton, "Save and continue");
 
         protected void SelectRadioOptionByForAttribute(string value) => formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
 
