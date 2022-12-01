@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
 
-        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician };
+        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician, FoodTechnologist };
 
         public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
         {
@@ -66,6 +66,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private CourseDetails SoftwareDevelopmentTechnician => new CourseDetails
         {
             Course = ("154", "Software development technician", new DateTime(2022, 05, 16), 18, 15000)
+        };
+
+        private CourseDetails FoodTechnologist => new CourseDetails
+        {
+            Course = ("131", "Food Technologist", new DateTime(2016, 08, 25), 24, 18000)
         };
     }
 }

@@ -3,6 +3,7 @@ using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
@@ -24,6 +25,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly EarningsSqlDbHelper _earningsSqlDbHelper;
         private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper;
+        private FlexiPaymentsInputDataModel _inputData;
 
         public FlexiPaymentsSteps(ScenarioContext context)
         {
@@ -40,22 +42,27 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             for (int i = 0; i < table.RowCount; i++)
             {
-                var inputData = table.Rows[i].CreateInstance<FlexiPaymentsInputDataModel>();
-
-                var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
-
-                var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live, inputData.ActualStartDate, inputData.PlannedEndDate, inputData.TrainingCode);
-
-                _context.Replace<ApprenticeDataHelper>(apprenticeDatahelper);
-                _context.Replace<ApprenticeCourseDataHelper>(apprenticeCourseDataHelper);
+                _inputData = ReadApprenticeData(table.Rows[i]);
 
                 if (i == 0) _employerStepsHelper.EmployerAddApprenticeFromHomePage();
                 else _employerStepsHelper.EmployerAddAnotherApprenticeToCohort();
-
-                _objectContext.Set($"ULN{inputData.ULNKey}", apprenticeDatahelper.Uln());
             }
             _objectContext.SetNoOfApprentices(table.RowCount);
         }
+
+        [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
+        public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table)
+        {
+            for (int i = 0; i < table.RowCount; i++)
+            {
+                _inputData = ReadApprenticeData(table.Rows[i]);
+
+                if (i == 0) _employerStepsHelper.NonLevyEmployerAddsFirstApprenticesUsingReservations();
+                else _employerStepsHelper.NonLevyEmployerAddsAnotherApprenticesUsingReservations(i+1);
+            }
+            _objectContext.SetNoOfApprentices(table.RowCount);
+        }
+
 
         [Then(@"validate the following data is created in the commitments database")]
         public void ThenValidateTheFollowingDataIsCreatedInTheCommitmentsDatabase(Table table)
@@ -97,7 +104,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
                 var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.GetEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}"));
 
-                Assert.That(inputApprenticeshipsData.ActualStartDate, Is.EqualTo(DataHelpers.TryParse(apprenticeshipDbData.actualStartDate)), "Incorrect actual start date found in Apprenticeships db");
+                Assert.That(inputApprenticeshipsData.StartDate, Is.EqualTo(DataHelpers.TryParse(apprenticeshipDbData.actualStartDate)), "Incorrect actual start date found in Apprenticeships db");
                 Assert.That(inputApprenticeshipsData.PlannedEndDate, Is.EqualTo(DataHelpers.TryParse(apprenticeshipDbData.plannedEndDate)), "Incorrect planned end date found in Apprenticeships db");
                 Assert.That(inputApprenticeshipsData.AgreedPrice, Is.EqualTo(double.Parse(apprenticeshipDbData.agreedPrice)), "Incorrect agreed price found in Apprenticeships db");
                 Assert.That(inputApprenticeshipsData.FundingType, Is.EqualTo(apprenticeshipDbData.FundingType.ToEnum<FundingType>()), "Incorrect funding type found in Apprenticeships db");
@@ -119,6 +126,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 Assert.IsEmpty(earningsDbData.monthlyOnProgramPayment, "Incorrect total on-program payment found in earnings db");
                 Assert.IsEmpty(earningsDbData.numberOfDeliveryMonths, "Incorrect total on-program payment found in earnings db");
             }
+        }
+
+        private FlexiPaymentsInputDataModel ReadApprenticeData (TableRow data)
+        {
+            var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
+
+            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
+
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live, inputData.StartDate, inputData.EndDate, inputData.TrainingCode);
+
+            _context.Replace<ApprenticeDataHelper>(apprenticeDatahelper);
+            _context.Replace<ApprenticeCourseDataHelper>(apprenticeCourseDataHelper);
+
+            _objectContext.Set($"ULN{inputData.ULNKey}", apprenticeDatahelper.Uln());
+
+            return inputData;
         }
     }
 }

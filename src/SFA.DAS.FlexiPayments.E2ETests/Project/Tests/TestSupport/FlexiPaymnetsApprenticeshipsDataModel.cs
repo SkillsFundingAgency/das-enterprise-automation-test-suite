@@ -1,13 +1,16 @@
-﻿using System;
+﻿using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
+using System;
 using System.ComponentModel;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
 {
     public  class FlexiPaymnetsApprenticeshipsDataModel
     {
+        public DateTime? StartDate;
+
         public int ULNKey { get; set; }
         public Boolean IsPilot { get; set; }
-        public DateTime ActualStartDate { get; set; }
+        public string StartDateStr { set { StartDate = value == "Today" ? DateTime.Now : DataHelpers.TryParse(value); } }
         public DateTime PlannedEndDate { get; set; }
         public double AgreedPrice { get; set; }
         public FundingType FundingType { get; set; }

@@ -12,6 +12,7 @@ using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.TestDataExport;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -354,5 +355,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
+
+        public ApproveApprenticeDetailsPage NonLevyEmployerAddsFirstApprenticesUsingReservations()
+        {
+            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
+
+            var addAnApprenitcePage = _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                .AddApprentice();
+            var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails(addAnApprenitcePage);
+
+            _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, 1);
+
+            return new ApproveApprenticeDetailsPage(_context);
+        }
+
+        public ApproveApprenticeDetailsPage NonLevyEmployerAddsAnotherApprenticesUsingReservations(int apprenticeCount)
+        {
+            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _approveApprenticeDetailsPage.SelectAddAnApprenticeUsingSameReservation();
+
+            _employerReservationStepsHelper
+                .CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                .AddAnotherApprentice()
+                .EmployerSelectsAStandard();
+
+            _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(new AddPersonalDetailsPage(_context), apprenticeCount);
+
+            return new ApproveApprenticeDetailsPage(_context);
+        }
     }
 }

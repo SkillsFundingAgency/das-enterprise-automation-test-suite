@@ -3,7 +3,7 @@
 @regression
 @e2escenarios
 @flexi-payments
-Scenario: FLP_E2E_EUA_02 Employer sends cohort to provider for review then provider approves then employer approves
+Scenario: FLP_E2E_EUA_02 Employer adds two apprentices details to a cohort and Provider opts them out of the pilot
 	Given the Employer logins using existing Levy Account
 	And Employer adds apprentices to the cohort with the following details
 		| ULN_Key | training_code | date_of_birth | actual_start_date | planned_end_date | agreed_price |
@@ -20,7 +20,7 @@ Scenario: FLP_E2E_EUA_02 Employer sends cohort to provider for review then provi
 		| ULN_Key | actual_start_date | planned_end_date | agreed_price | funding_type | funding_band_maximum |
 		| 1       | 2023/08/01        | 2024/07/01       | 15000        | 1            | 15000                |
 		| 2       | 2023/09/01        | 2024/08/01       | 18000        | 1            | 18000                |
-	And validate the following data is created in the earnings database
-		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
-		| 1       | 12000                    | 1000                       | 12                        |
-		| 2       | 14400                    | 1200                       | 12                        |
+	#And validate earnings are not generated for the learners
+	#	| ULN_Key |
+	#	| 1       |
+	#	| 2       |
