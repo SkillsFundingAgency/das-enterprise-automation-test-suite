@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.ConfigurationBuilder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     public static class ObjectContextExtension
     {
         #region Constants
+
         private const string NoOfApprentices = "noofapprentices";
         private const string ApprenticeTotalCost = "apprenticetotalcost";
         private const string CohortReference = "cohortreference";
@@ -30,7 +32,11 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string UpdateDynamicPauseGlobalRule = "updatedynamicpauseglobalrule";
         private const string CohortReferenceList = "cohortreferencelist";
         private const string BulkuploadApprentices = "bulkuploadapprentices";
-        #endregion
+        private const string StartDate = "startDate";
+        private const string UlnOltd = "UlnOltd";
+        private const string EndDate = "endDate";
+
+        #endregion Constants
 
         internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<ApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
 
@@ -38,9 +44,8 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
             objectContext.Set(UpdateDynamicPauseGlobalRule, true);
-        
 
-        internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
+        internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) =>
             objectContext.Set(ProviderMakesReservationForNonLevyEmployers, true);
 
         public static void SetNoOfApprentices(this ObjectContext objectContext, int value) => objectContext.Replace(NoOfApprentices, value);
@@ -53,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var list = objectContext.GetCohortReferenceList();
 
-            if (list == null) list = new List<string>(); 
+            if (list == null) list = new List<string>();
 
             if (list.Any(x => x == cohortReference)) return;
 
@@ -63,6 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         }
 
         internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
+
         internal static void ReplaceCohortReference(this ObjectContext objectContext, string value) => objectContext.Replace(CohortReference, value);
 
         internal static void SetApprenticeId(this ObjectContext objectContext, int value) => objectContext.Set(ApprenticeId, value);
@@ -77,7 +83,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var eIApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
 
-            eIApprenticeDetailList.Add(new EIApprenticeDetail {StartMonth = int.Parse(startMonth), StartYear = int.Parse(startYear), AgeCategoryAsOfAug2021 = eIAgeCategory });
+            eIApprenticeDetailList.Add(new EIApprenticeDetail { StartMonth = int.Parse(startMonth), StartYear = int.Parse(startYear), AgeCategoryAsOfAug2021 = eIAgeCategory });
         }
 
         internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Set(EIJourney, true);
@@ -88,7 +94,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetEIStartYear(this ObjectContext objectContext, int value) => objectContext.Replace(EIStartYear, value);
 
-        internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
+        internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) =>
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
 
         internal static bool IsUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
@@ -101,7 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static int GetNoOfApprentices(this ObjectContext objectContext) => objectContext.Get<int>(NoOfApprentices);
 
         internal static string GetCohortReference(this ObjectContext objectContext) => objectContext.Get(CohortReference);
-        
+
         internal static List<string> GetCohortReferenceList(this ObjectContext objectContext) => objectContext.Get<List<string>>(CohortReferenceList);
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
@@ -119,5 +125,37 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void ResetIsSameApprentice(this ObjectContext objectContext) => objectContext.Remove<bool>(SameApprentice);
 
         internal static bool IsSameApprentice(this ObjectContext objectContext) => objectContext.KeyExists<bool>(SameApprentice);
+
+        internal static void SetStartDate(this ObjectContext objectContext, string value) => objectContext.Replace(StartDate, value);
+
+        internal static bool HasStartDate(this ObjectContext objectContext) => objectContext.KeyExists<bool>(StartDate);
+
+        public static DateTime GetStartDate(this ObjectContext objectContext)
+        {
+            var dateTimeString = objectContext.Get<string>(StartDate);
+            DateTime.TryParse(dateTimeString, out var date);
+            return date;
+        }
+
+        internal static string GetUlnForOLTD(this ObjectContext objectContext) => objectContext.Get<string>(UlnOltd);
+
+        internal static bool HasUlnForOLTD(this ObjectContext objectContext) => objectContext.KeyExists<bool>(UlnOltd);
+
+        internal static void SetUlnForOLTD(this ObjectContext objectContext, string value) => objectContext.Replace(UlnOltd, value);
+
+        internal static void SetEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(EndDate, value);
+
+        internal static bool HasEndDate(this ObjectContext objectContext) => objectContext.KeyExists<bool>(EndDate);
+
+        public static DateTime GetEndDate(this ObjectContext objectContext)
+        {
+            var dateTimeString = objectContext.Get<string>(EndDate);
+            DateTime.TryParse(dateTimeString, out var date);
+            return date;
+        }
+
+        internal static void UpdateEndDate(this ObjectContext objectContext, string value) => objectContext.Update(EndDate, value);
+
+        internal static void UpdateStartDate(this ObjectContext objectContext, string value) => objectContext.Update(StartDate, value);
     }
 }

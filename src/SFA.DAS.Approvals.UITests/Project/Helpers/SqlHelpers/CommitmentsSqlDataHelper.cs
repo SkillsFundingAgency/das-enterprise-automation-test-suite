@@ -45,6 +45,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToString(TryGetDataAsObject(query, title));
         }
 
+        public string GetApprenticeshipULN(string reference)
+        {
+            string query = $@"SELECT top (1) ULN FROM Commitment cmt
+                                INNER JOIN Apprenticeship app
+                                ON cmt.id = app.CommitmentId
+                                WHERE cmt.Reference = '{reference}'
+                                ORDER BY app.CreatedOn DESC";
+
+            return Convert.ToString(TryGetDataAsObject(query, reference));
+        }
+
+        public int GetApprenticeshipCountFromULN(string ULN)
+        {
+            string query = $@"SELECT count(*) ID FROM Apprenticeship app
+                                WHERE app.ULN = '{ULN}'";
+
+            return Convert.ToInt32(TryGetDataAsObject(query, ULN));
+        }
+
         public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
         {
             string query = $@"SELECT Reference FROM Commitment cmt
@@ -149,6 +168,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 $" where Reference = '{reference}'";
 
             return GetDataAsObject(query);
+        }
+
+        public (string apprenticeshipid, string dob, string fname, string lname, string startDate, string trainningName, string uln, string ukprn, string cost) GetLatestApprenticeshipForUln(string uln)
+        {
+            var query = @$"select top 1 a.Id, a.DateOfBirth, a.FirstName, a.LastName, a.StartDate, a.TrainingName, a.ULN, c.ProviderId, a.Cost from dbo.Apprenticeship a
+                            JOIN dbo.Commitment c on a.CommitmentId = c.Id where ULN = {uln}
+                            order by a.Id desc";
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
         }
 
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
