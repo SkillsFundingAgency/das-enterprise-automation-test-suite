@@ -134,7 +134,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Employer decides to update the stopped date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
- testRunner.And("overlapping training date request banner is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("overlapping training date request banner is not displayed when stop date is chang" +
+                        "ed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
  testRunner.Then("overlapping training date request is resolved in database with status 1 and resol" +

@@ -16,6 +16,6 @@ Scenario: AP_DO_06_OLTD_Employer resolves OLTD request by updating Stopped date
 	And provider edits draft apprenitce start date which has an overlap
 	And provider decides to send stop request email from service
 	And Employer decides to update the stopped date
-	And overlapping training date request banner is not displayed
+	And overlapping training date request banner is not displayed when stop date is changed
 	Then overlapping training date request is resolved in database with status 1 and resolutionType 2
 	

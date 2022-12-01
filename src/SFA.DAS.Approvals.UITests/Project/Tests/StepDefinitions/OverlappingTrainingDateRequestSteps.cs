@@ -326,6 +326,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
         }
 
+        [When(@"overlapping training date request banner is not displayed when stop date is changed")]
+        public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayedWhenStopDateIsChanged()
+        {
+            var page = new ApprenticeDetailsPage(_context);
+            Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
+        }
+
         [When(@"Employer selects to reject the overlapping training date request")]
         public void WhenEmployerSelectsToRejectTheOverlappingTrainingDateRequest()
         {
