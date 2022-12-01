@@ -34,7 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
-        
+
+
         public SelectDeliveryModelPage EmployerSelectsAPortableFlexiJobCourse()
         {
             SelectStandard(apprenticeCourseDataHelper.PortableFlexiJobCourseDetails.Course.larsCode);
@@ -94,7 +95,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             SelectStandardAndContinue();
             return new SelectDeliveryModelPage(context);
         }
-
 
         private void SelectStandardAndContinue()
         {

@@ -187,10 +187,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
 
         [Then(@"employer validates apprentice is Flexi-job and can edit Delivery Model")]
-        public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel()
-        {
-            throw new PendingStepException();
-        }
+        public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel() => _employerStepsHelper.EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable();
+
+        [Then(@"the Employer changes the Delivery Model from Regular to Flexi and sends back to provider to review")]
+        public void ThenTheEmployerChangesTheDeliveryModelFromRegularToFlexiAndSendsBackToProviderToReview() => _employerStepsHelper.EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval();
+
 
     }
 }

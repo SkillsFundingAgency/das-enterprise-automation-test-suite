@@ -336,5 +336,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
+
+        public void EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable()
+        {
+            var employerEditTrainingDetailsPage = GoToEmployerApprenticesHomePage()
+                .ClickApprenticeRequestsLink()
+                .GoToReadyToReview()
+                .SelectViewCurrentCohortDetails()
+                .SelectEditApprenticeLink()
+                .ContinueToAddTrainingDetailsPage();
+
+            Assert.True(employerEditTrainingDetailsPage.ConfirmDeliveryModelLabelText("Flexi-job agency"));
+            Assert.True(employerEditTrainingDetailsPage.IsEditDeliveryModelLinkVisible());
+        }
+
+        public NotificationSentToTrainingProviderPage EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
+        {
+              return GoToEmployerApprenticesHomePage()
+                    .ClickApprenticeRequestsLink()
+                    .GoToReadyToReview()
+                    .SelectViewCurrentCohortDetails()
+                    .SelectEditApprenticeLink()
+                    .ContinueToAddTrainingDetailsPage()
+                    .ClickEditDeliveryModelLink()
+                    .EditDeliveryModelToFlexiAndContinue()
+                    .SaveEditedTrainingDetails()
+                    .EmployerSendsToTrainingProviderForReview();
+               
+        }
     }
 }
