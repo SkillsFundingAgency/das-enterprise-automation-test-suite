@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderEditApprenticeTrainingDetailsPage : ProviderEditApprenticeCoursePage
     {
-        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Edit training details";
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
