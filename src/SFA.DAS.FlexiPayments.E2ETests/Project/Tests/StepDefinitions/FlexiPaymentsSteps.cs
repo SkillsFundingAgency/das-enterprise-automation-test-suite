@@ -74,7 +74,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(_objectContext.Get($"ULN{inputCommitmentData.ULNKey}"));
 
                 Assert.That(Boolean.Parse(commitmentDbData.isPilot), Is.EqualTo(inputCommitmentData.IsPilot), "Incorrect Pilot status found in commitments db");
-                Assert.That(DataHelpers.TryParse(commitmentDbData.fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), "Incorrect PriceEpisode From Date found in commitments db");
+                Assert.That(DataHelpers.TryParseDate(commitmentDbData.fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), "Incorrect PriceEpisode From Date found in commitments db");
                 Assert.That(DataHelpers.TryParseDate(commitmentDbData.toDate), Is.EqualTo(inputCommitmentData.PriceEpisodeToDate), "Incorrect PriceEpisode To Date found in commitments db");
                 Assert.That(double.Parse(commitmentDbData.cost), Is.EqualTo(inputCommitmentData.PriceEpisodeCost), "Incorrect PriceEpisode Cost found in commitments db");
             }
@@ -104,8 +104,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
                 var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.GetEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}"));
 
-                Assert.That(DataHelpers.TryParse(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect actual start date found in Apprenticeships db");
-                Assert.That(DataHelpers.TryParse(apprenticeshipDbData.plannedEndDate), Is.EqualTo(inputApprenticeshipsData.PlannedEndDate), "Incorrect planned end date found in Apprenticeships db");
+                Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect actual start date found in Apprenticeships db");
+                Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedEndDate), Is.EqualTo(inputApprenticeshipsData.PlannedEndDate), "Incorrect planned end date found in Apprenticeships db");
                 Assert.That(double.Parse(apprenticeshipDbData.agreedPrice), Is.EqualTo(inputApprenticeshipsData.AgreedPrice), "Incorrect agreed price found in Apprenticeships db");
                 Assert.That(apprenticeshipDbData.FundingType.ToEnum<FundingType>(), Is.EqualTo(inputApprenticeshipsData.FundingType), "Incorrect funding type found in Apprenticeships db");
                 Assert.That(double.Parse(apprenticeshipDbData.FundingBandMax), Is.EqualTo(inputApprenticeshipsData.FundingBandMaximum), "Incorrect funding band max found in Apprenticeships db");
