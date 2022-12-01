@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -9,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         private readonly bool _isFlexiPaymentPilotLearner;
-        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Add training details";
         protected override By ContinueButton => AddButtonSelector;
         private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
