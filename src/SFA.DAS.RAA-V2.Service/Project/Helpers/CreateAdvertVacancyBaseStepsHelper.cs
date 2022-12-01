@@ -36,11 +36,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             checkYourAnswersPage.SubmitAdvert().SetVacancyReference();
 
 
-        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA)
+        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA, bool isProvider)
         {
             var createAdvertPage = CreateAnApprenticeshipAdvertOrVacancy();
 
-            //createAdvertPage.VerifyAdvertSummarySectionStatus(InProgress);
+            createAdvertPage.VerifyAdvertSummarySectionStatus(isProvider ? InProgress : NotStarted);
 
             createAdvertPage = AdvertOrVacancySummary(createAdvertPage);
 

@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
@@ -109,9 +109,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress) => CreateANewAdvert(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages);
 
-        internal VacancyReferencePage CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, true, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+        internal VacancyReferencePage CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, true, RAAV2Const.NationalMinWages, isApplicationMethodFAA, false);
 
-        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true);
+        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true, false);
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy() => GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
