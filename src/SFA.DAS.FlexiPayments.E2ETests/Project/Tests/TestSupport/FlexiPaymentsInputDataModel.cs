@@ -11,7 +11,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         public int ULNKey { get; set; }
         public string TrainingCode { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string StartDateStr { set { StartDate = value == "Today" ? DateTime.Now : DataHelpers.TryParse(value); } }
+        public string StartDateStr { set { StartDate = value == "Today" ? DateTime.Today : DataHelpers.TryParse(value); } }
         public int DurationInMonths { set { EndDate = DateTime.Now.AddMonths(value);  } }
         public string AgreedPrice { get; set; }
     }

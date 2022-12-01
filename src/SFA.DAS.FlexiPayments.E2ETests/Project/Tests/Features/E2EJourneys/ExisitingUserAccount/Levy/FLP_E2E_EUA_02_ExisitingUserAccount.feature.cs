@@ -105,22 +105,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
-                            "actual_start_date",
+                            "start_date_str",
                             "planned_end_date",
                             "agreed_price"});
                 table4.AddRow(new string[] {
                             "1",
                             "154",
-                            "2004/05/27",
+                            "2004/02/01",
                             "2023/08/01",
-                            "2024/07/31",
+                            "12",
                             "15000"});
                 table4.AddRow(new string[] {
                             "2",
                             "91",
-                            "2004/05/27",
+                            "2004/02/01",
                             "2023/09/01",
-                            "2024/08/31",
+                            "12",
                             "18000"});
 #line 8
  testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table4, "And ");
@@ -137,8 +137,8 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "is_pilot",
-                            "price_episode_from_date",
-                            "price_episode_to_date",
+                            "price_episode_from_date_str",
+                            "price_episode_to_date_str",
                             "price_episode_cost"});
                 table5.AddRow(new string[] {
                             "1",
@@ -157,7 +157,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
-                            "actual_start_date",
+                            "start_date_str",
                             "planned_end_date",
                             "agreed_price",
                             "funding_type",
@@ -167,14 +167,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/08/01",
                             "2024/07/01",
                             "15000",
-                            "1",
+                            "0",
                             "15000"});
                 table6.AddRow(new string[] {
                             "2",
                             "2023/09/01",
                             "2024/08/01",
                             "18000",
-                            "1",
+                            "0",
                             "18000"});
 #line 19
  testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table6, "And ");

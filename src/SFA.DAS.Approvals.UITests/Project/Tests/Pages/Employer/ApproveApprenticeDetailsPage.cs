@@ -49,12 +49,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChooseAReservationPage(context);
         }
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage SelectAddAnApprenticeUsingSameReservation()
-        {
-            AddAnApprentice();
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
-        }
-
         public ApprenticeRequestsPage SaveAndExit()
         {
             formCompletionHelper.ClickLinkByText("Save and exit");

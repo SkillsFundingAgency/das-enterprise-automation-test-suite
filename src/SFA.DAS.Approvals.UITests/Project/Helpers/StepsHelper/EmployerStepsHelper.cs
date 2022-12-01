@@ -371,7 +371,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsAnotherApprenticesUsingReservations(int apprenticeCount)
         {
-            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _approveApprenticeDetailsPage.SelectAddAnApprenticeUsingSameReservation();
+            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation()
+                .ChooseCreateANewReservationRadioButton()
+                        .ClickSaveAndContinueButton();
 
             _employerReservationStepsHelper
                 .CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)

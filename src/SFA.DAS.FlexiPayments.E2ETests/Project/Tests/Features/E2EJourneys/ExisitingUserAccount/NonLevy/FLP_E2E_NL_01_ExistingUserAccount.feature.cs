@@ -145,7 +145,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ULN_Key",
                             "is_pilot",
                             "price_episode_from_date_str",
-                            "price_episode_to_date",
+                            "price_episode_to_date_str",
                             "price_episode_cost"});
                 table8.AddRow(new string[] {
                             "1",
@@ -174,14 +174,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "Today",
                             "2025/07/01",
                             "6000",
-                            "0",
+                            "1",
                             "6000"});
                 table9.AddRow(new string[] {
                             "2",
                             "Today",
                             "2024/12/01",
                             "6000",
-                            "0",
+                            "1",
                             "6000"});
 #line 21
  testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table9, "And ");
