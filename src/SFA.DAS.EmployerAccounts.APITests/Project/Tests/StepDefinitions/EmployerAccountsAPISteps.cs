@@ -18,10 +18,10 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
     {
         private readonly Inner_EmployerAccountsApiRestClient _innerApiRestClient;
         private readonly Outer_EmployerAccountsApiHelper _employerAccountsOuterApiHelper;
-        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;        
+        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;
         private readonly EmployerAccountsSqlDbHelper _employerAccountsSqlDbHelper;
         private readonly ObjectContext _objectContext;
-        private readonly IHashingService _hashingService;        
+        private readonly IHashingService _hashingService;
 
         public EmployerAccountsAPISteps(ScenarioContext context)
         {
