@@ -36,7 +36,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
         {
-            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA);
+            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA, true);
         }
 
         private VacancyReferencePage CreateANewTraineeshipVacancy(string employername, bool isEmployerAddress)
