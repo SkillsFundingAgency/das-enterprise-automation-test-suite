@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Edit training details";
         private static By EditDeliveryModelLink => By.CssSelector("#change-delivery-model-link");
         private static By DeliveryModelLabel => By.XPath("//*[@id='draftApprenticeshipSection2']/div[2]/p[2]");

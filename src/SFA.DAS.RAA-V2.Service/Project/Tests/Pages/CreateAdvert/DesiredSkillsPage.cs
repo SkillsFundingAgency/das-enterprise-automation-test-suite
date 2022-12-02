@@ -2,7 +2,6 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DesiredSkillsPage : Raav2BasePage
@@ -11,35 +10,30 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private By Skills => By.CssSelector("label.govuk-checkboxes__label");
 
-        private By SaveAndContinue => By.CssSelector(".save-button[data-automation='btn-continue']");
+        protected override By ContinueButton => By.CssSelector(".save-button[data-automation='btn-continue']");
 
         public DesiredSkillsPage(ScenarioContext context) : base(context) { }
 
-        public PreviewYourAdvertOrVacancyPage SelectSkill()
-        {
-            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
-
-            formCompletionHelper.Click(SaveAndContinue);
-
-            return new PreviewYourAdvertOrVacancyPage(context);
-        }
-
         public QualificationsPage SelectSkillAndGoToQualificationsPage()
         {
-            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
-
-            formCompletionHelper.Click(SaveAndContinue);
+            SelectSkillsAndContinue();
 
             return new QualificationsPage(context);
         }
 
         public FutureProspectsPage SelectSkillsAndGoToFutureProspectsPage()
         {
-            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
-
-            formCompletionHelper.Click(SaveAndContinue);
+            SelectSkillsAndContinue();
 
             return new FutureProspectsPage(context);
+        }
+
+        private void SelectSkillsAndContinue()
+        {
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Skills)));
+
+            Continue();
+
         }
     }
 }

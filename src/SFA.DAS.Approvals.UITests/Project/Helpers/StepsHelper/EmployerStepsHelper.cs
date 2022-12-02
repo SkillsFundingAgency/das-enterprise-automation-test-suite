@@ -167,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
-                trainingDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable().ContinueToAddTrainingDetailsPage();
+                trainingDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
             }
 
             _approveApprenticeDetailsPage = trainingDetailsPage.SubmitValidTrainingDetails(true);
