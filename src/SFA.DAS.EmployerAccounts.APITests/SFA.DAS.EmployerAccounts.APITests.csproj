@@ -7,12 +7,6 @@
 	  <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_01_OuterApiHealthCheck.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_02_AccountMinimumSignedAgreement.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Outer\EmpFin_Api_03_AccountUsersWhichReceiveNotification.feature.cs" />
-  </ItemGroup>
-
 	<ItemGroup>
 	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -39,33 +33,6 @@
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>	
-
-	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\Outer\EMPACC_API_01_OuterApiHealthCheck.feature.cs">
-	    <DependentUpon>EMPACC_API_01_OuterApiHealthCheck.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\Outer\EMPACC_API_02_GetEnglishFractionCurrent.feature.cs">
-	    <DependentUpon>EMPACC_API_02_GetEnglishFractionCurrent.feature</DependentUpon>
-	  </Compile>
-	  <Compile Update="Project\Tests\Features\Outer\EMPACC_API_03_GetEnglishFractionHistory.feature.cs">
-	    <DependentUpon>EMPACC_API_03_GetEnglishFractionHistory.feature</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EMPACC_API_01_OuterApiHealthCheck.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EMPACC_API_02_GetEnglishFractionCurrent.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\Outer\EMPACC_API_03_GetEnglishFractionHistory.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
 	</ItemGroup>	
 
 </Project>
