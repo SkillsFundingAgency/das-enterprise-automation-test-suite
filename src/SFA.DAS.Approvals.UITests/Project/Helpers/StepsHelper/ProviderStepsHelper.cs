@@ -517,5 +517,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
         }
+
+        public ProviderAppsIndicativeEarningsReportPage GoToAppsIndicativeEarningsReportPage() => GoToProviderHomePage(false).GoToAppsIndicativeEarningsReportPage();
     }
 }

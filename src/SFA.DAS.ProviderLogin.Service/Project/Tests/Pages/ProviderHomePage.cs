@@ -24,6 +24,8 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         protected By InviteEmployers => By.LinkText("Send invitation to employer");
         protected By RecruitTrainees => By.LinkText("Recruit trainees");
 
+        protected By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
         
     }
