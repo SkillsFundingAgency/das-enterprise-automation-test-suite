@@ -99,8 +99,9 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("endpoint api/accounts/{accountId}/legalEntities/{legalEntityId}/agreements/{agree" +
-                        "mentId}/agreement can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint api/accounts/{hashedAccountId}/legalEntities/{publicHashedLegalEntityId}" +
+                        "/agreements/{hashedAgreementId}/agreement from legacy accounts api can be access" +
+                        "ed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

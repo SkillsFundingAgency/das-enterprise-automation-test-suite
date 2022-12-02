@@ -99,8 +99,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("endpoint api/accounts/{accountId}/legalentities?includeDetails=true can be access" +
-                        "ed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint api/accounts/{hashedAccountId}/legalentities?includeDetails=true from le" +
+                        "gacy accounts api can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

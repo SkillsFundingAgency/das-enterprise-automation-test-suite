@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features.EmployerAccou
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GeInternaltAccountUsers")]
-    public partial class GeInternaltAccountUsersFeature
+    [NUnit.Framework.DescriptionAttribute("GetInternalAccountUsers")]
+    public partial class GetInternalAccountUsersFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EMPACC_EAS_API_4_GeInternaltAccountUsers.feature"
+#line 1 "EMPACC_EAS_API_4_GetInternalAccountUsers.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmployerAccountsLegacyApi", "GeInternaltAccountUsers", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmployerAccountsLegacyApi", "GetInternalAccountUsers", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features.EmployerAccou
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EMPACC_EAS_API_4_GeInternaltAccountUsers")]
+        [NUnit.Framework.DescriptionAttribute("EMPACC_EAS_API_4_GetInternalAccountUsers")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("employeraccountsapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("innerapi")]
-        public void EMPACC_EAS_API_4_GeInternaltAccountUsers()
+        public void EMPACC_EAS_API_4_GetInternalAccountUsers()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.Features.EmployerAccou
                     "regression",
                     "innerapi"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EMPACC_EAS_API_4_GeInternaltAccountUsers", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EMPACC_EAS_API_4_GetInternalAccountUsers", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("endpoint /api/accounts/{accountId}/users can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint /api/accounts/internal/{accountId}/users from legacy accounts api can be" +
+                        " accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

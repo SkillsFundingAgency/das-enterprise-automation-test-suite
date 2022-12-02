@@ -5,4 +5,4 @@
 @regression
 @innerapi
 Scenario: EMPACC_EAS_API_10_ GetPageOfAccountLegalEntities
-	Then endpoint api/accountlegalentities?pageNumber=1&pageSize=100 can be accessed
+	Then endpoint api/accountlegalentities?pageNumber=1&pageSize=100 from legacy accounts api can be accessed

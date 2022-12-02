@@ -28,20 +28,19 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _employerAccountsSqlDbHelper = context.Get<EmployerAccountsSqlDbHelper>();
             _objectContext = context.Get<ObjectContext>();
             _employerAccountsSqlDbHelper.SetAccountId();
-            _employerAccountsSqlDbHelper.SetAccountId();
+            _employerAccountsSqlDbHelper.SetHashedAccountId();
             _employerAccountsSqlDbHelper.SetLegalEntityId();
-            _employerAccountsSqlDbHelper.GetUserRef();
             _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
         }
 
-        [Then(@"endpoint api/accounts/\{hashedAccountId} can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId} from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /api/accounts/internal/\{accountId} can be accessed")]
+        [Then(@"endpoint /api/accounts/internal/\{accountId} from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsInternalAccountIdCanBeAccessed()
         {
             var accountId = _objectContext.GetAccountId();
@@ -51,94 +50,96 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/users from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdUsersFromLegacyAccountsApiCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/users", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/users", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /api/accounts/\{accountId}/users can be accessed")]
+        [Then(@"endpoint /api/accounts/internal/\{accountId}/users from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdUsersCanBeAccessed()
         {
-            var internalAccountId = _objectContext.GetAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/users", HttpStatusCode.OK);
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/users", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/legalEntities/\{legalEntityId}/agreements/\{agreementId}/agreement can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/legalEntities/\{publicHashedLegalEntityId}/agreements/\{hashedAgreementId}/agreement from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdLegalEntitiesLegalEntityIdAgreementsAgreementIdAgreementCanBeAccessed()
         {
-            var result = _employerAccountsSqlDbHelper.GetAgreementId();
-            var hashedAgreementId = _hashingService.HashValue((long)result[0][1]);
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities/{result[0][0]}/agreements/{hashedAgreementId}", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var agreementInfo = _employerAccountsSqlDbHelper.GetAgreementInfo();
+            var accountLegalEntityPublicHashedId = agreementInfo[0][0];
+            var hashedAgreementId = _hashingService.HashValue((long)agreementInfo[0][1]);
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/legalentities/{accountLegalEntityPublicHashedId}/agreements/{hashedAgreementId}", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/legalentities can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/legalentities from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdLegalentitiesCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/legalentities", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/legalentities", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/legalentities\?includeDetails=true can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/legalentities\?includeDetails=true from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdLegalentitiesIncludeDetailsTruecanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/legalentities?includeDetails=true", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/legalentities?includeDetails=true", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/legalentities/\{legalEntityId} can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/legalentities/\{legalEntityId} from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdLegalentitiesLegalEntityIdCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
+            var hashedAccountId = _objectContext.GetHashedAccountId();
             var legalEntityId = _objectContext.GetLegalEntityId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/legalentities/{legalEntityId}", HttpStatusCode.OK);
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/legalentities/{legalEntityId}", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/levy can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/levy from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdLevyCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accountlegalentities\?pageNumber=(.*)&pageSize=(.*) can be accessed")]
+        [Then(@"endpoint api/accountlegalentities\?pageNumber=(.*)&pageSize=(.*) from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountlegalentitiesPageNumberPageSizeCanBeAccessed(int p0, int p1)
         {
             _innerApiLegacyRestClient.ExecuteEndpoint("/api/accountlegalentities?pageNumber=1&pageSize=100", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /api/accounts/\{accountId}/payeschemes can be accessed")]
+        [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdPayeschemesCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /api/statistics from legacy accounts can be accessed")]
+        [Then(@"endpoint /api/statistics from legacy accounts api can be accessed")]
         public void ThenEndpointApiStatisticsFromLegacyAccountsCanBeAccessed()
         {
             _innerApiLegacyRestClient.ExecuteEndpoint($"/api/statistics", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/transactions can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/transactions from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdTransactionsCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/accounts/\{accountId}/transactions/year/month can be accessed")]
+        [Then(@"endpoint api/accounts/\{hashedAccountId}/transactions/year/month from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsAccountIdTransactionsYearMonthCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions");
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions");
             var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint api/user/\{userId}/accounts can be accessed")]
-        public void ThenEndpointApiUserUserIdAccountsCanBeAccessed()
+        [Then(@"endpoint api/user/\{userRef}/accounts from legacy accounts api can be accessed")]
+        public void ThenEndpointApiUserUserRefAccountsCanBeAccessed()
         {
-            var userId = _objectContext.GetUserRef();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/user/{userId}/accounts", HttpStatusCode.OK);
+            var userRef = _employerAccountsSqlDbHelper.GetUserRef();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/user/{userRef}/accounts", HttpStatusCode.OK);
         }
     }
 }

@@ -41,10 +41,10 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
             _objectContext.SetPayeSchemeRef(payeScheme);
         }
 
-        public List<object[]> GetAgreementId()
+        public List<object[]> GetAgreementInfo()
         {
             var agreementId = GetListOfDataAsObject(
-                $"	SELECT ale.PublicHashedId as AccountLegalEntityPublicHashedId , ea.Id" +
+                $"	SELECT ale.PublicHashedId as AccountLegalEntityPublicHashedId , ea.Id as EmployerAgreementId" +
                 $"  FROM [employer_account].[EmployerAgreement] ea" +
                 $"  JOIN[employer_account].[AccountLegalEntity] ale " +
                 $"  ON ale.Id = ea.AccountLegalEntityId " +
