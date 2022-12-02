@@ -11,6 +11,8 @@ public static class UrlConfig
         public static string Outer_ApprenticeCommitmentsHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-acomt-api.apprenticeships.education.gov.uk";
         
         public static string Outer_EmployerFinanceHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-empfin-api.apprenticeships.education.gov.uk";
+        
+        public static string Outer_EmployerAccountsHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-empacc-api.apprenticeships.education.gov.uk";
 
         public static string Outer_AssessorCertificationApiBaseUrl => $"https://test-apis.apprenticeships.education.gov.uk/";
 
@@ -39,6 +41,5 @@ public static class UrlConfig
         
 
         private static string MicrosoftIdentityUri => "https://login.microsoftonline.com/";
-
     }
 }
