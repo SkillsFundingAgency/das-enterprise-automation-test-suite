@@ -104,7 +104,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Receiver sends an approved cohort with 2 apprentices to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

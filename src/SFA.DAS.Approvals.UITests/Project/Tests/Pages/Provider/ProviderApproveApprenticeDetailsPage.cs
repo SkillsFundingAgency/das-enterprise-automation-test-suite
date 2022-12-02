@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -17,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly string _pageTitle;
         #endregion
 
-        private By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+        private By PireanPreprod => Selectors.PireanPreprod;
         private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private new By EditApprenticeLink => By.ClassName("edit-apprentice");

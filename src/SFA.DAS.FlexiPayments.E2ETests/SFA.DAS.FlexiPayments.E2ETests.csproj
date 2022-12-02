@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.Transfers.UITests\SFA.DAS.Transfers.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
 		<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
@@ -31,6 +32,7 @@
 		</PackageReference>
 		<PackageReference Include="coverlet.collector" Version="3.1.2" />
 		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
 	</ItemGroup>
 
 	<ItemGroup>

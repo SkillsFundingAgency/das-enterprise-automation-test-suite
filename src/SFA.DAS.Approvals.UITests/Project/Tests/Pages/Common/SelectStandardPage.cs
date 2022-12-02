@@ -42,11 +42,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new SelectDeliveryModelPage(context);
         }
 
-        public ProviderEditApprenticePersonalDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPath()
+        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
         {
             SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
             Continue();
-            return GoToProviderEditApprenticeDetailsPage();
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
+        }
+
+        public ProviderEditApprenticePersonalDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPathPostApproval()
+        {
+            SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
+            Continue();
+            return new ProviderEditApprenticePersonalDetailsPage(context);
         }
 
         public EditApprenticeDetailsPage EmployerSelectsAStandardForEditApprenticeDetailsPath()
@@ -56,14 +63,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new EditApprenticeDetailsPage(context);
         }
 
-        public ProviderEditApprenticePersonalDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
+        public ProviderEditApprenticeTrainingDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
         {
             AssertStandardAndFrameworkCoursesAreSelectable();
             Continue();
-            return GoToProviderEditApprenticeDetailsPage();
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-        public AddPersonalDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
+        public AddTrainingDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
         public EditApprenticeDetailsPage EmployerSelectsAnotherCourse()
         {
@@ -99,11 +106,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.False(GetAllTrainingCourses().All(x => x.Contains("(Framework)")));
 
-        private AddPersonalDetailsPage AssertOnlyStandardCoursesAreSelectable()
+        private AddTrainingDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
             Assert.True(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")));
             Continue();
-            return new AddPersonalDetailsPage(context);
+            return new AddTrainingDetailsPage(context);
         }
 
         private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);

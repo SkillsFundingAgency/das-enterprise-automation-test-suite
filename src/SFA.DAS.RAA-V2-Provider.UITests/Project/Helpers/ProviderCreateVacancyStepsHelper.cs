@@ -49,7 +49,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
         {
-            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA);
+            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA, true);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
@@ -62,6 +62,18 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .SelectApplicationMethod_Provider(isApplicationMethodFAA)
                 .BackToTaskList();
         }
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+            string employername)
+        {
+            return createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
+                .EnterProviderContactDetailsTraineeship(optionalFields)
+                .BackToTaskList();
+        }
+
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             createAdvertPage
@@ -81,6 +93,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+        }
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
+        {
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)

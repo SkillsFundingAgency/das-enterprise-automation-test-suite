@@ -11,6 +11,7 @@ using System;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.TestDataExport;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -166,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             if (shouldConfirmOnlyStandardCoursesSelectable)
             {
-                trainingDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable().ContinueToAddTrainingDetailsPage();
+                trainingDetailsPage = addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
             }
 
             _approveApprenticeDetailsPage = trainingDetailsPage.SubmitValidTrainingDetails(true);
@@ -200,6 +201,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                         .EmployerSelectsAStandard();
                 }
             }
+
             return new ApproveApprenticeDetailsPage(_context);
         }
 
@@ -332,5 +334,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EmployerSelectsAPortableFlexiJobCourse()
                 .SelectPortableFlexiJobDeliveryModelAndContinue();
         }
+
+        public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
     }
 }
