@@ -101,7 +101,7 @@ testRunner.Given("the provider logs into their account", ((string)(null)), ((Tec
 testRunner.When("provider is on Apps indicative earnings report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
-testRunner.Then("validate correct earnings numbers are reported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("validate correct earnings numbers are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

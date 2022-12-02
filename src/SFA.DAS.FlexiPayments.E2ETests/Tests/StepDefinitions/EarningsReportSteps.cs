@@ -25,7 +25,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.StepDefinitions
         [When(@"provider is on Apps indicative earnings report page")]
         public void WhenProviderIsOnAppsIndicativeEarningsReportPage() => _providerStepsHelper.GoToAppsIndicativeEarningsReportPage();
 
-        [Then(@"validate correct earnings numbers are reported")]
+        [Then(@"validate correct earnings numbers are displayed")]
         public void ThenValidateCorrectEarningsNumbersAreReported() => new ProviderAppsIndicativeEarningsReportPage(_context).ValidateUIElementsOnPage();
 
     }
