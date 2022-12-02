@@ -44,7 +44,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/internal/\{accountId} can be accessed")]
         public void ThenEndpointApiAccountsInternalAccountIdCanBeAccessed()
         {
-            var accountId = _objectContext.GetInternalAccountId();
+            var accountId = _objectContext.GetAccountId();
             _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}", HttpStatusCode.OK);
         }
 
@@ -58,7 +58,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{accountId}/users can be accessed")]
         public void ThenEndpointApiAccountsAccountIdUsersCanBeAccessed()
         {
-            var internalAccountId = _objectContext.GetInternalAccountId();
+            var internalAccountId = _objectContext.GetAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/users", HttpStatusCode.OK);
         }
 
