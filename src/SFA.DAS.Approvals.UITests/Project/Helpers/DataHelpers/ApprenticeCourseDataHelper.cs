@@ -41,7 +41,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             CourseStartDate = courseStartDate;
             CourseDurationInMonths = durationInMonths == default ? CourseDetails.Course.proposedTypicalDuration : durationInMonths;
-            CourseEndDate = CourseStartDate.AddMonths(CourseDurationInMonths);
             CourseLarsCode = CourseDetails.Course.larsCode;
             OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
             OtherCourseLarsCode = OtherCourseDetails.Course.larsCode;
@@ -64,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public DateTime CourseStartDate { get; internal set; }
 
-        public DateTime CourseEndDate { get; internal set; }
+        public DateTime CourseEndDate => CourseStartDate.AddMonths(CourseDurationInMonths);
 
         public DateTime GenerateCourseStartDate(ApprenticeStatus apprenticeStatus)
         {

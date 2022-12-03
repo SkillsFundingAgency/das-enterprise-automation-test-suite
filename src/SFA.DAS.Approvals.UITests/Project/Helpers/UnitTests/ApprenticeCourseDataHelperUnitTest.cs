@@ -100,6 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
                 Assert.IsTrue(apprentice.CourseStartDate == startDate);
                 Assert.IsTrue(apprentice.CourseDetails.Course.larsCode == expectedLarsCode);
                 Assert.IsTrue(apprentice.CourseDurationInMonths == durationInMonths);
+                Assert.IsTrue(apprentice.CourseEndDate == apprentice.CourseStartDate.AddMonths(durationInMonths));
                 Assert.IsTrue(apprentice.GetApprenticeStatus() == apprenticeStatus);
             });
         }
