@@ -19,16 +19,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public FutureProspectsPage ConfirmQualificationsAndGoToFutureProspectsPage()
         {
-            SaveAndContinue();
+            formCompletionHelper.ClickLinkByText("Save and continue");
             return new FutureProspectsPage(context);
         }
-
-        public ThingsToConsiderPage ConfirmQualificationsAndContinue()
-        {
-            SaveAndContinue();
-            return new ThingsToConsiderPage(context);
-        }
-
-        private void SaveAndContinue() => formCompletionHelper.ClickLinkByText("Save and continue");
     }
 }
