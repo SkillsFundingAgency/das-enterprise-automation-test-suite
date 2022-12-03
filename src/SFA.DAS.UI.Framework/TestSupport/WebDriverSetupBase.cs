@@ -60,6 +60,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             string[] file = Directory.GetFiles(Regex.Replace(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Za-z]*Tests", "SFA.DAS.UI.FrameworkHelpers"), executableName);
 
+            var match = Regex.Match(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Z0-9a-z]*Tests");
+
             return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
         }
 
