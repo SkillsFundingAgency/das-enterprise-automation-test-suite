@@ -7,6 +7,7 @@ using SFA.DAS.FrameworkHelpers;
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
     [TestFixture]
+    [Category("Unittests")]
     public class ApprenticeCourseDataHelperUnitTest
     {
         [TestCase(0)]
