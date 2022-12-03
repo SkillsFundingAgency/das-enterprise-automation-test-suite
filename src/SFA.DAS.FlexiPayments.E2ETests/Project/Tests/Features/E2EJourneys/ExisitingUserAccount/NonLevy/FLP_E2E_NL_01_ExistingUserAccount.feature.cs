@@ -156,7 +156,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table6.AddRow(new string[] {
                             "2",
                             "false",
-                            "Today",
+                            "StartCurrentMonth",
                             "Null",
                             "6000"});
 #line 17

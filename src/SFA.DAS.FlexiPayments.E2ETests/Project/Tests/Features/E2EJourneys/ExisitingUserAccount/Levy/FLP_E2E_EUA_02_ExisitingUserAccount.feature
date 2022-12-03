@@ -6,9 +6,9 @@
 Scenario: FLP_E2E_EUA_02 Employer adds two apprentices details to a cohort and Provider opts them out of the pilot
 	Given the Employer logins using existing Levy Account
 	And Employer adds apprentices to the cohort with the following details
-		| ULN_Key | training_code | date_of_birth | start_date_str | planned_end_date | agreed_price |
-		| 1       | 154           | 2004/02/01    | 2023/08/01     | 12               | 15000        |
-		| 2       | 91            | 2004/02/01    | 2023/09/01     | 12               | 18000        |
+		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price |
+		| 1       | 154           | 2004/02/01    | 2023/08/01     | 12                 | 15000        |
+		| 2       | 91            | 2004/02/01    | 2023/09/01     | 12                 | 18000        |
 	And the Employer approves the cohort
 	And the provider adds Ulns and opts the learners out of the pilot
 	When Provider successfully approves the cohort

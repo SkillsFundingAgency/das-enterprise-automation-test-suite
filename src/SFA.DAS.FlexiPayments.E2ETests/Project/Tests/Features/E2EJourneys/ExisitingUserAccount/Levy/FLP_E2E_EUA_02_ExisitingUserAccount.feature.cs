@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
-                            "planned_end_date",
+                            "duration_in_months",
                             "agreed_price"});
                 table3.AddRow(new string[] {
                             "1",
