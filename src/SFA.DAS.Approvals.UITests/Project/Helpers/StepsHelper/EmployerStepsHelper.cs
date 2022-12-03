@@ -189,7 +189,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }
 
-            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
+            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count + 1);
         }
 
         private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices)
