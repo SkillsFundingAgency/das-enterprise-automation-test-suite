@@ -20,34 +20,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
 
-        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus) 
+            : this(apprenticeStatus) => SetCourseDetails(randomCourseHelper, GenerateCourseStartDate(), default, string.Empty);
+
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths , string larsCode) 
+            : this(courseStartDate > DateTime.Now ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Live) => SetCourseDetails(randomCourseHelper, courseStartDate, durationInMonths, larsCode);
+
+        private ApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus)
         {
             _apprenticeStatus = apprenticeStatus;
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
             _currentAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate();
             _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
             _nextAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_nextAcademicYearStartDate);
-            CourseStartDate = GenerateCourseStartDate();
-            CourseDetails = randomCourseHelper.RandomCourse();
+        }
+
+        private void SetCourseDetails(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode)
+        {
+            CourseDetails = string.IsNullOrEmpty(larsCode) ? randomCourseHelper.RandomCourse() : randomCourseHelper.SelectASpecificCourse(larsCode);
+
+            CourseStartDate = courseStartDate;
+            CourseDurationInMonths = durationInMonths == default ? CourseDetails.Course.proposedTypicalDuration : durationInMonths;
+            CourseEndDate = CourseStartDate.AddMonths(CourseDurationInMonths);
             CourseLarsCode = CourseDetails.Course.larsCode;
             OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
             OtherCourseLarsCode = OtherCourseDetails.Course.larsCode;
             PortableFlexiJobCourseDetails = randomCourseHelper.GetPortableFlexiJobCourseDetails();
-            CourseEndDate = CourseStartDate.AddMonths(CourseDurationInMonths);
         }
 
-        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus, DateTime courseStartDate, DateTime courseEndDate, string larsCode)
-        {
-            _apprenticeStatus = apprenticeStatus;
-            _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
-            _currentAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate();
-            _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
-            _nextAcademicYearEndDate = AcademicYearDatesHelper.GetAcademicYearEndDate(_nextAcademicYearStartDate);
-            CourseStartDate = courseStartDate;
-            CourseEndDate = courseEndDate;
-            CourseDetails = randomCourseHelper.SelectASpecificCourse(larsCode);
-            CourseLarsCode = larsCode;
-        }
+        internal ApprenticeStatus GetApprenticeStatus() => _apprenticeStatus;
 
         public CourseDetails PortableFlexiJobCourseDetails { get; private set; }
 
@@ -59,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string OtherCourseLarsCode { get; private set; }
 
-        public int CourseDurationInMonths => CourseDetails.Course.proposedTypicalDuration;
+        public int CourseDurationInMonths { get; private set; }
 
         public DateTime CourseStartDate { get; internal set; }
 

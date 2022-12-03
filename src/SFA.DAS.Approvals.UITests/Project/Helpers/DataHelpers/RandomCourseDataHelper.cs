@@ -12,7 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
 
-        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician, FoodTechnologist };
+        public RandomCourseDataHelper(List<CourseDetails> availableCourses, List<CourseDetails> portableFlexiJobAvailableCourses)
+        {
+            _availableCourses = availableCourses;
+            _portableFlexiJobAvailableCourses = portableFlexiJobAvailableCourses;
+        }
 
         public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
         {
@@ -35,6 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public CourseDetails RandomCourse(string selectedCourse) => SelectACourse(selectedCourse);
 
         public CourseDetails SelectASpecificCourse(string CoourseToSelect) => SelectSpecificCourse(CoourseToSelect);
+
         private CourseDetails SelectACourse(string except)
         {
             var newlist = _availableCourses.Where(x => x.Course.larsCode != except).ToList();
@@ -48,29 +53,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }
-
-        private CourseDetails SoftwareTester => new CourseDetails
-        {
-            Course = ("91", "Software tester", new DateTime(2016, 04, 21), 24, 18000)
-        };
-
-        private CourseDetails SoftwareDeveloper => new CourseDetails
-        {
-            Course = ("2", "Software developer", new DateTime(2021, 06, 01), 24, 18000)
-        };
-
-        private CourseDetails AbattoirWorker => new CourseDetails
-        {
-            Course = ("274", "Abattoir worker", new DateTime(2018, 05, 08), 16, 6000)
-        };
-        private CourseDetails SoftwareDevelopmentTechnician => new CourseDetails
-        {
-            Course = ("154", "Software development technician", new DateTime(2022, 05, 16), 18, 15000)
-        };
-
-        private CourseDetails FoodTechnologist => new CourseDetails
-        {
-            Course = ("131", "Food Technologist", new DateTime(2016, 08, 25), 24, 18000)
-        };
     }
 }

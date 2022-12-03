@@ -104,11 +104,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
                 var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.GetEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}"));
 
-                Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect actual start date found in Apprenticeships db");
-                Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedEndDate), Is.EqualTo(inputApprenticeshipsData.PlannedEndDate), "Incorrect planned end date found in Apprenticeships db");
-                Assert.That(double.Parse(apprenticeshipDbData.agreedPrice), Is.EqualTo(inputApprenticeshipsData.AgreedPrice), "Incorrect agreed price found in Apprenticeships db");
-                Assert.That(apprenticeshipDbData.FundingType.ToEnum<FundingType>(), Is.EqualTo(inputApprenticeshipsData.FundingType), "Incorrect funding type found in Apprenticeships db");
-                Assert.That(double.Parse(apprenticeshipDbData.FundingBandMax), Is.EqualTo(inputApprenticeshipsData.FundingBandMaximum), "Incorrect funding band max found in Apprenticeships db");
+                Assert.Multiple(() =>
+                {
+                    Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect actual start date found in Apprenticeships db");
+                    Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedEndDate), Is.EqualTo(inputApprenticeshipsData.PlannedEndDate), "Incorrect planned end date found in Apprenticeships db");
+                    Assert.That(double.Parse(apprenticeshipDbData.agreedPrice), Is.EqualTo(inputApprenticeshipsData.AgreedPrice), "Incorrect agreed price found in Apprenticeships db");
+                    Assert.That(apprenticeshipDbData.FundingType.ToEnum<FundingType>(), Is.EqualTo(inputApprenticeshipsData.FundingType), "Incorrect funding type found in Apprenticeships db");
+                    Assert.That(double.Parse(apprenticeshipDbData.FundingBandMax), Is.EqualTo(inputApprenticeshipsData.FundingBandMaximum), "Incorrect funding band max found in Apprenticeships db");
+                });
             }
         }
 
@@ -131,12 +134,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
 
+            var randomCourseDataHelper = _context.Get<RandomCourseDataHelper>();
+
             var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live, inputData.StartDate, inputData.EndDate, inputData.TrainingCode);
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCourseDataHelper, inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
 
-            _context.Replace<ApprenticeDataHelper>(apprenticeDatahelper);
-            _context.Replace<ApprenticeCourseDataHelper>(apprenticeCourseDataHelper);
+            _context.Replace(apprenticeDatahelper);
+            _context.Replace(apprenticeCourseDataHelper);
 
             _objectContext.Set($"ULN{inputData.ULNKey}", apprenticeDatahelper.Uln());
 
