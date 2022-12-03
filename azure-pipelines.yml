@@ -36,6 +36,14 @@ steps:
   inputs:
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: dotnet unit test
+  inputs:
+    command: 'test'
+    arguments: '--filter "TestCategory=Unittests" --logger trx;logfilename=${{ parameters.Environment }}_testResults.trx'
+    projects: 'src/**/*tests.dll'
+
     
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
