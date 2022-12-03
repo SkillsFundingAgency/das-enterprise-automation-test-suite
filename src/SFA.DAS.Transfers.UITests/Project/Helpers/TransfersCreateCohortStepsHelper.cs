@@ -8,13 +8,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
-    public class TransfersEmployerStepsHelper : EmployerCreateCohortStepsHelper
+    public class TransfersCreateCohortStepsHelper : EmployerCreateCohortStepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly TransfersUser _transfersUser;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
-        public TransfersEmployerStepsHelper(ScenarioContext context) : base(context)
+        public TransfersCreateCohortStepsHelper(ScenarioContext context) : base(context)
         {
             _context = context;
             _transfersUser = context.GetUser<TransfersUser>();
@@ -27,7 +27,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ApproveTransfersRequest() => OpenTransferRequestDetailsPage().ApproveTransferRequest();
 
-        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => (x) => x.StartNowToCreateApprenticeViaTransfersFunds().SelectYesIWantToUseTransferFunds(_transfersUser.OrganisationName);
+        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc(_transfersUser.OrganisationName);
 
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()
         {

@@ -84,13 +84,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return employerReviewYourCohortPage;
         }
 
-
         public ApproveApprenticeDetailsPage EmployerAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(EmployerAddApprenticeFromHomePage(), listOfApprentice);
 
         internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices) => AddApprentices(EmployerAddApprenticeFromHomePage(), numberOfApprentices);
 
         public ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
-            => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, null).EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
 
         public string EmployerApproveAndSendToProvider(int numberOfApprentices) => EmployerApproveAndSendToProvider(EmployerAddApprentice(numberOfApprentices));
 
@@ -197,7 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
-            return _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, null)
+            return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
                   .EmployerSelectsASStandardInFlexiJobJourney()
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
@@ -224,5 +223,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
 
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
+
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
+
+        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
     }
 }

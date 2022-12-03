@@ -18,8 +18,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ObjectContext _objectContext;
-        private readonly TransfersEmployerStepsHelper _transferEmployerStepsHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly TransfersCreateCohortStepsHelper _transfersCreateCohortStepsHelper;
+        private readonly TransferEmployerStepsHelper _transferEmployerStepsHelper;
         private readonly TransfersProviderStepsHelper _providerStepsHelper;
         private readonly TransfersUser _transfersUser;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
@@ -37,8 +37,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _receiver = _transfersUser.SecondOrganisationName;
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _transfersUser);
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-            _transferEmployerStepsHelper = new TransfersEmployerStepsHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(_context);
+            _transfersCreateCohortStepsHelper = new TransfersCreateCohortStepsHelper(context);
+            _transferEmployerStepsHelper = new TransferEmployerStepsHelper(context);
             _providerStepsHelper = new TransfersProviderStepsHelper(context);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
@@ -62,7 +62,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             LoginAsReceiver();
 
-            _transferEmployerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            _transfersCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
 
         [Given(@"Receiver sends an approved cohort with (.*) apprentices to the provider")]
@@ -70,7 +70,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             LoginAsReceiver();
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
+            var cohortReference = _transferEmployerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
@@ -90,7 +90,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_receiver);
 
-            _transferEmployerStepsHelper.OpenRejectedCohort()
+            _transfersCreateCohortStepsHelper.OpenRejectedCohort()
                 .SelectEditApprentice()
                 .EditApprenticePreApprovalAndSubmit()
                 .EmployerFirstApproveAndNotifyTrainingProvider();
@@ -101,7 +101,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_receiver);
 
-            _transferEmployerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
+            _transfersCreateCohortStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
         }
 
         [When(@"Receiver approves the cohort")]
@@ -109,7 +109,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_receiver);
 
-            _employerStepsHelper.Approve();
+            _transferEmployerStepsHelper.Approve();
         }
 
         [When(@"Sender approves the cohort")]
@@ -117,7 +117,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_sender);
 
-            _transferEmployerStepsHelper.ApproveTransfersRequest();
+            _transfersCreateCohortStepsHelper.ApproveTransfersRequest();
         }
 
         [When(@"Sender rejects the cohort")]
@@ -125,7 +125,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_sender);
 
-            _transferEmployerStepsHelper.RejectTransfersRequest();
+            _transfersCreateCohortStepsHelper.RejectTransfersRequest();
         }
 
         [Then(@"Verify a new live apprenticeship record is created")]
