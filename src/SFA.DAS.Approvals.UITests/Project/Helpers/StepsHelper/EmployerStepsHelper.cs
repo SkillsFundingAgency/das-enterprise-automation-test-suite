@@ -9,6 +9,7 @@ using NUnit.Framework;
 using System;
 using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -84,12 +85,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return employerReviewYourCohortPage;
         }
 
-        public ApproveApprenticeDetailsPage EmployerAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(EmployerAddApprenticeFromHomePage(), listOfApprentice);
+        public ApproveApprenticeDetailsPage EmployerAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(listOfApprentice);
 
-        internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices) => AddApprentices(EmployerAddApprenticeFromHomePage(), numberOfApprentices);
-
-        public ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
-            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        internal ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices) => AddApprentices(numberOfApprentices);
 
         public string EmployerApproveAndSendToProvider(int numberOfApprentices) => EmployerApproveAndSendToProvider(EmployerAddApprentice(numberOfApprentices));
 
@@ -168,12 +166,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectYesAndContinue();
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(ApproveApprenticeDetailsPage employerReviewYourCohortPage, List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
+        private ApproveApprenticeDetailsPage AddApprentices(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
         {
-            foreach (var apprentice in listOfApprentice)
+            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
             {
                 _context.Replace(apprentice.Item1);
                 _context.Replace(apprentice.Item2);
+            }
+
+            var firstApprentice = listOfApprentice.First();
+
+            ReplaceInContext(firstApprentice);
+
+            var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
+
+            listOfApprentice.Remove(firstApprentice);
+
+            foreach (var apprentice in listOfApprentice)
+            {
+                ReplaceInContext(apprentice);
 
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }
@@ -181,15 +192,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices)
+        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices)
         {
-            for (int i = 1; i < numberOfApprentices; i++)
+            var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
+
+            for (int i = 1; i <= numberOfApprentices; i++)
             {
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }
 
             return SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
         }
+
+        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
+            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+
 
         private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
 
