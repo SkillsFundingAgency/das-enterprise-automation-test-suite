@@ -14,21 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly ObjectContext _objectContext;
         private readonly ApprenticePPIDataHelper _apprenticePPIDataHelper;
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper)
-        {
-            _objectContext = objectContext;
-            _apprenticePPIDataHelper = apprenticePPIDataHelper;
-            _commitmentsdataHelper = commitmentsdataHelper;
-            ApprenticeFirstname = apprenticePPIDataHelper.ApprenticeFirstname;
-            ApprenticeLastname = apprenticePPIDataHelper.ApprenticeLastname;
-            DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
-            DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
-            DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
-            TrainingCost = "1" + RandomDataGenerator.GenerateRandomNumber(3);
-            EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
-            Ulns = new List<string>();
-            _apprenticeid = 0;
-        }
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) 
+            : this(apprenticePPIDataHelper, objectContext, commitmentsdataHelper, string.Empty) { }
 
         public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost)
         {
@@ -40,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
             DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
-            TrainingCost = trainingCost;
+            TrainingCost = trainingCost == string.Empty ? "1" + RandomDataGenerator.GenerateRandomNumber(3) : trainingCost;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;
