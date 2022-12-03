@@ -126,11 +126,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
 
-            var randomCourseDataHelper = _context.Get<RandomCourseDataHelper>();
-
             var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCourseDataHelper, inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
 
             _objectContext.Set($"ULN{inputData.ULNKey}", apprenticeDatahelper.Uln());
 

@@ -105,6 +105,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             });
         }
 
-        private RandomCourseDataHelper GetRandomCourseDataHelper() => new(AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses());
+        private RandomCourseDataHelper GetRandomCourseDataHelper() => new RandomCourseDataHelper();
     }
 }

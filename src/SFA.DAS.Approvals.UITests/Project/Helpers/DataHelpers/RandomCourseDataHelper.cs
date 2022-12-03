@@ -18,6 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _portableFlexiJobAvailableCourses = portableFlexiJobAvailableCourses;
         }
 
+        public RandomCourseDataHelper() : this(AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses()) { }
+
         public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
         {
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
