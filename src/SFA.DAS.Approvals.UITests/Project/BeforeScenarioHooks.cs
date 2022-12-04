@@ -5,6 +5,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -15,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
+        private CommitmentsSqlDataHelper commitmentsdatahelper;
         private ApprenticeDataHelper _datahelper;
         private readonly DbConfig _dbConfig;
         private readonly string[] _tags;
@@ -35,13 +37,13 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
+            commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
             _context.Set(commitmentsdatahelper);
 
             _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
-            _datahelper = new ApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>(), _objectcontext, commitmentsdatahelper);
+            _datahelper = GetApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>());
 
             _context.Set(_datahelper);
 
@@ -66,6 +68,15 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
+
+            _context.Set(new List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>
+            {
+                (_datahelper, apprenticeCourseDataHelper),
+
+                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live))
+            });
+
+            ApprenticeDataHelper GetApprenticeDataHelper(ApprenticePPIDataHelper dataHelper) => new(dataHelper, _objectcontext, commitmentsdatahelper);
         }
     }
 }
