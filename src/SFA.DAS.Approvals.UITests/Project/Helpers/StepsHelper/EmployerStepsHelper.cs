@@ -192,24 +192,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count + 1);
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices)
-        {
-            var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
-
-            for (int i = 1; i <= numberOfApprentices; i++)
-            {
-                employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
-            }
-
-            return SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
-        }
+        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
 
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
             => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
 
-
         private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
-
 
         public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {

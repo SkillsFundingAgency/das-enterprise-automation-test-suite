@@ -17,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         private CommitmentsSqlDataHelper commitmentsdatahelper;
-        private ApprenticeDataHelper _datahelper;
         private readonly DbConfig _dbConfig;
         private readonly string[] _tags;
 
@@ -43,23 +42,23 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
-            _datahelper = GetApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>());
+            var apprenticeDataHelper = GetApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>());
 
-            _context.Set(_datahelper);
+            _context.Set(apprenticeDataHelper);
 
-            _context.Set(new EditedApprenticeDataHelper(_datahelper));
+            _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
             var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
 
             var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, _tags);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
+            var apprenticeCourseDataHelper = GetApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
             _context.Set(randomCoursehelper);
 
             _context.Set(apprenticeCourseDataHelper);
 
-            _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
+            _context.Set(new DataLockSqlHelper(_dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
 
             _context.Set(new AccountsDbSqlHelper(_dbConfig));
 
@@ -71,12 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>
             {
-                (_datahelper, apprenticeCourseDataHelper),
+                (_context.Get<ApprenticeDataHelper>(), _context.Get<ApprenticeCourseDataHelper>()),
 
-                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live))
+                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live))
             });
 
             ApprenticeDataHelper GetApprenticeDataHelper(ApprenticePPIDataHelper dataHelper) => new(dataHelper, _objectcontext, commitmentsdatahelper);
+
+            ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus) => 
+                new(randomCourseHelper, apprenticeStatus);
         }
     }
 }
