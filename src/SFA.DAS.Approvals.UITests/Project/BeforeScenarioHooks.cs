@@ -5,6 +5,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -15,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
-        private ApprenticeDataHelper _datahelper;
+        private CommitmentsSqlDataHelper commitmentsdatahelper;
         private readonly DbConfig _dbConfig;
         private readonly string[] _tags;
 
@@ -35,29 +36,31 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
+            commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
             _context.Set(commitmentsdatahelper);
 
             _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
-            _datahelper = new ApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>(), _objectcontext, commitmentsdatahelper);
+            var apprenticeDataHelper = GetApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>());
 
-            _context.Set(_datahelper);
+            _context.Set(apprenticeDataHelper);
 
-            _context.Set(new EditedApprenticeDataHelper(_datahelper));
+            _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
             var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
 
             var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, _tags);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
+            var apprenticeCourseDataHelper = GetApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
+
+            _context.Set(randomCoursehelper);
 
             _context.Set(randomCoursehelper);
 
             _context.Set(apprenticeCourseDataHelper);
 
-            _context.Set(new DataLockSqlHelper(_dbConfig, _datahelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
+            _context.Set(new DataLockSqlHelper(_dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
 
             _context.Set(new AccountsDbSqlHelper(_dbConfig));
 
@@ -66,6 +69,20 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
+
+            _context.Set(new List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>
+            {
+                (_context.Get<ApprenticeDataHelper>(), _context.Get<ApprenticeCourseDataHelper>()),
+
+                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(new RandomCourseDataHelper(GetRandomCourses()), ApprenticeStatus.Live))
+            });
+
+            ApprenticeDataHelper GetApprenticeDataHelper(ApprenticePPIDataHelper dataHelper) => new(dataHelper, _objectcontext, commitmentsdatahelper);
+
+            ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus) => 
+                new(randomCourseHelper, apprenticeStatus);
+
+            (List<CourseDetails>, List<CourseDetails>) GetRandomCourses() => randomCoursehelper.GetRandomCourses();
         }
     }
 }

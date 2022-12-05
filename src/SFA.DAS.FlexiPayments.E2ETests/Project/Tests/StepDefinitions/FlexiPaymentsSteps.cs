@@ -1,16 +1,14 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -21,47 +19,28 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private EmployerStepsHelper _employerStepsHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly EarningsSqlDbHelper _earningsSqlDbHelper;
         private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper;
-        private FlexiPaymentsInputDataModel _inputData;
 
         public FlexiPaymentsSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(_context);
+            _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(_context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
             _apprenticeshipsSqlDbHelper = context.Get<ApprenticeshipsSqlDbHelper>();
         }
 
         [Given(@"Employer adds apprentices to the cohort with the following details")]
-        public void GivenEmployerAddsApprenticesToTheCohortWithTheFollowingDetails(Table table)
-        {
-            for (int i = 0; i < table.RowCount; i++)
-            {
-                _inputData = ReadApprenticeData(table.Rows[i]);
-
-                if (i == 0) _employerStepsHelper.EmployerAddApprenticeFromHomePage();
-                else _employerStepsHelper.EmployerAddAnotherApprenticeToCohort();
-            }
-            _objectContext.SetNoOfApprentices(table.RowCount);
-        }
+        public void GivenEmployerAddsApprenticesToTheCohortWithTheFollowingDetails(Table table) => _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
-        public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table)
-        {
-            for (int i = 0; i < table.RowCount; i++)
-            {
-                _inputData = ReadApprenticeData(table.Rows[i]);
-
-                if (i == 0) _employerStepsHelper.NonLevyEmployerAddsFirstApprenticesUsingReservations();
-                else _employerStepsHelper.NonLevyEmployerAddsAnotherApprenticesUsingReservations(i+1);
-            }
-            _objectContext.SetNoOfApprentices(table.RowCount);
-        }
+        public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(ReadApprenticeData(table), false);
 
 
         [Then(@"validate the following data is created in the commitments database")]
@@ -130,22 +109,28 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             }
         }
 
-        private FlexiPaymentsInputDataModel ReadApprenticeData (TableRow data)
+        private List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
+        {
+            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice = new();
+
+            foreach (var row in table.Rows) listOfApprentice.Add(ReadApprenticeData(row));
+
+            _context.Set(listOfApprentice);
+
+            return listOfApprentice;
+        }
+
+        private (ApprenticeDataHelper, ApprenticeCourseDataHelper) ReadApprenticeData(TableRow data)
         {
             var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
 
-            var randomCourseDataHelper = _context.Get<RandomCourseDataHelper>();
-
             var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCourseDataHelper, inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
-
-            _context.Replace(apprenticeDatahelper);
-            _context.Replace(apprenticeCourseDataHelper);
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
 
             _objectContext.Set($"ULN{inputData.ULNKey}", apprenticeDatahelper.Uln());
 
-            return inputData;
+            return (apprenticeDatahelper, apprenticeCourseDataHelper);
         }
     }
 }

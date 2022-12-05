@@ -29,6 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterUlnForFlexiPayments(apprenticeNumber);
 
             if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
+
             else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
 
             formCompletionHelper.ClickElement(ContinueButton);
