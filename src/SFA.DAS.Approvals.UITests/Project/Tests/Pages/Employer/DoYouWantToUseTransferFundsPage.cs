@@ -11,11 +11,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public DoYouWantToUseTransferFundsPage(ScenarioContext context) : base(context)  { }
 
-        public AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds(string organisationName)
+        public AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
         {
             string yesOption = "Yes, I will use transfer funds";
             
-            if (formCompletionHelper.GetElementsByText(CohortFundingOptions, yesOption).Count > 1) throw new WebDriverException($"multiple elements found with text {yesOption}");
+            if (formCompletionHelper.GetElementsByText(CohortFundingOptions, yesOption).Count > 1) throw new WebDriverException($"multiple options found with text {yesOption}");
 
             return GoToAddTrainingProviderDetailsPage(yesOption);
         }

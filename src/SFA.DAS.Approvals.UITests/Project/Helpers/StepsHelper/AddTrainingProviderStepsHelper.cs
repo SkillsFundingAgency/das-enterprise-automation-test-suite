@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         }
 
-        public Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc(string transferOrgName) => (x) => x.StartNowToCreateApprenticeViaTransfersFunds().SelectYesIWantToUseTransferFunds(transferOrgName);
+        public Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsUsingTransfersFunc() => (x) => x.StartNowToCreateApprenticeViaTransfersFunds().SelectYesIWantToUseTransferFunds();
 
         internal Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => (x) => x.StartNowToAddTrainingProvider();
     }
