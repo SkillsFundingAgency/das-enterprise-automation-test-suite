@@ -7,6 +7,7 @@ using SFA.DAS.FrameworkHelpers;
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
     [TestFixture]
+    [Category("Unittests")]
     public class ApprenticeCourseDataHelperUnitTest
     {
         [TestCase(0)]
@@ -105,6 +106,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             });
         }
 
-        private RandomCourseDataHelper GetRandomCourseDataHelper() => new(AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses());
+        private RandomCourseDataHelper GetRandomCourseDataHelper() => new RandomCourseDataHelper();
     }
 }

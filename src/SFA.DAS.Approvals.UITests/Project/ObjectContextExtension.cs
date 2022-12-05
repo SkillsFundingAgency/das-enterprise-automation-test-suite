@@ -23,12 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string ApprenticeId = "apprenticeid";
         private const string ReservationId = "reservationid";
         private const string ProviderMakesReservationForNonLevyEmployers = "providermakesreservationfornonlevyemployers";
-        private const string EIAgeCategoryAsOfAug2021 = "EIAgeCategoryAsOfAug2021";
-        private const string EIStartMonth = "EIStartMonth";
-        private const string EIStartYear = "EIStartYear";
-        private const string EIJourney = "IsEIJourney";
         private const string SameApprentice = "IsSameApprentice";
-        private const string EIApprenticeDetailList = "eiapprenticedetaillist";
         private const string UpdateDynamicPauseGlobalRule = "updatedynamicpauseglobalrule";
         private const string CohortReferenceList = "cohortreferencelist";
         private const string BulkuploadApprentices = "bulkuploadapprentices";
@@ -58,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var list = objectContext.GetCohortReferenceList();
 
-            if (list == null) list = new List<string>();
+            list ??= new List<string>();
 
             if (list.Any(x => x == cohortReference)) return;
 
@@ -77,30 +72,11 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
 
-        internal static void SetEIApprenticeDetailList(this ObjectContext objectContext) => objectContext.Set(EIApprenticeDetailList, new List<EIApprenticeDetail>());
-
-        internal static void SetEIApprenticeDetail(this ObjectContext objectContext, string eIAgeCategory, string startMonth, string startYear)
-        {
-            var eIApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
-
-            eIApprenticeDetailList.Add(new EIApprenticeDetail { StartMonth = int.Parse(startMonth), StartYear = int.Parse(startYear), AgeCategoryAsOfAug2021 = eIAgeCategory });
-        }
-
-        internal static void SetIsEIJourney(this ObjectContext objectContext) => objectContext.Set(EIJourney, true);
-
-        internal static void SetEIAgeCategoryAsOfAug2021(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2021, value);
-
-        internal static void SetEIStartMonth(this ObjectContext objectContext, int value) => objectContext.Replace(EIStartMonth, value);
-
-        internal static void SetEIStartYear(this ObjectContext objectContext, int value) => objectContext.Replace(EIStartYear, value);
-
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) =>
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
 
         internal static bool IsUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
             objectContext.KeyExists<bool>(UpdateDynamicPauseGlobalRule);
-
-        public static List<EIApprenticeDetail> GetEIApprenticeDetailList(this ObjectContext objectContext) => objectContext.Get<List<EIApprenticeDetail>>(EIApprenticeDetailList);
 
         public static string GetApprenticeTotalCost(this ObjectContext objectContext) => objectContext.Get(ApprenticeTotalCost);
 
@@ -112,17 +88,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
 
-        public static string GetEIAgeCategoryAsOfAug2021(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2021);
-
-        public static int GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get<int>(EIStartMonth);
-
-        public static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
-
-        internal static bool IsEIJourney(this ObjectContext objectContext) => objectContext.KeyExists<bool>(EIJourney);
-
         internal static void SetIsSameApprentice(this ObjectContext objectContext) => objectContext.Replace(SameApprentice, true);
-
-        internal static void ResetIsSameApprentice(this ObjectContext objectContext) => objectContext.Remove<bool>(SameApprentice);
 
         internal static bool IsSameApprentice(this ObjectContext objectContext) => objectContext.KeyExists<bool>(SameApprentice);
 
