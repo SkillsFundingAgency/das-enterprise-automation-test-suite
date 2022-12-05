@@ -229,10 +229,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval() => _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
 
         [When(@"Provider edits the apprentice Name")]
-        public void WhenProviderEditsTheApprenticeName()
-        {
-            _providerStepsHelper.EditApprentice();
-        }
+        public void WhenProviderEditsTheApprenticeName() => _providerStepsHelper.EditApprentice();
 
         private void AccountsAreCreated(string noOfAccounts)
         {
