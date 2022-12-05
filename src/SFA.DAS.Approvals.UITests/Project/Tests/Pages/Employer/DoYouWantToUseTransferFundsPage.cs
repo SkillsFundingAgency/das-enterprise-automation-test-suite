@@ -13,15 +13,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds(string organisationName)
         {
-            formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, $"Yes, I will use transfer funds from {organisationName}");
-            Continue();
-            return new AddTrainingProviderDetailsPage(context);
+            string yesOption = "Yes, I will use transfer funds";
+            
+            if (formCompletionHelper.GetElementsByText(CohortFundingOptions, yesOption).Count > 1) throw new WebDriverException($"multiple elements found with text {yesOption}");
+
+            return GoToAddTrainingProviderDetailsPage(yesOption);
         }
 
-        public AddTrainingProviderDetailsPage SelectNoIDontWantToUseTransferFunds()
+        public AddTrainingProviderDetailsPage SelectNoIDontWantToUseTransferFunds() => GoToAddTrainingProviderDetailsPage($"No, I don't want to use transfer funds");
+
+        private AddTrainingProviderDetailsPage GoToAddTrainingProviderDetailsPage(string option)
         {
-            formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, $"No, I don't want to use transfer funds");
+            formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, option);
+
             Continue();
+
             return new AddTrainingProviderDetailsPage(context);
         }
     }
