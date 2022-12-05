@@ -70,5 +70,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickElement(AddNewApprenticesLink);
             return new ProviderAccessDeniedPage(context);
         }
+
+        public ProviderAppsIndicativeEarningsReportPage GoToAppsIndicativeEarningsReportPage()
+        {
+            formCompletionHelper.ClickElement(AppsIndicativeEarningsReport);
+            return new ProviderAppsIndicativeEarningsReportPage(context);
+        }
     }
 }
