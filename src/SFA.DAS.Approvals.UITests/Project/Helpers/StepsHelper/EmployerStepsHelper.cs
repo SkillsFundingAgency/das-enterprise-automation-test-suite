@@ -12,6 +12,7 @@ using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.TestDataExport;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -123,6 +124,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
                   .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
+        }
+
+        public ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage(bool isTransferReceiverEmployer = false)
+        {
+            return _approveApprenticeDetailsPage = ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer)
+                  .EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        }
+
+        public ApproveApprenticeDetailsPage EmployerAddAnotherApprenticeToCohort()
+        {
+            return _approveApprenticeDetailsPage = _approveApprenticeDetailsPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
         }
 
         public string EmployerApproveAndSendToProvider(int numberOfApprentices)
@@ -335,6 +347,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectPortableFlexiJobDeliveryModelAndContinue();
         }
 
+        public void EmployerFirstApproveCohortAndNotifyProvider()
+        {
+            var cohortReference = new ApproveApprenticeDetailsPage(_context).EmployerFirstApproveAndNotifyTrainingProvider().CohortReferenceFromUrl();
+
+            _objectContext.SetCohortReference(cohortReference);
+        }
+
         public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
+
+        public ApproveApprenticeDetailsPage NonLevyEmployerAddsFirstApprenticesUsingReservations()
+        {
+            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
+
+            var addAnApprenitcePage = _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                .AddApprentice();
+            var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails(addAnApprenitcePage);
+
+            _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, 1);
+
+            return new ApproveApprenticeDetailsPage(_context);
+        }
+
+        public ApproveApprenticeDetailsPage NonLevyEmployerAddsAnotherApprenticesUsingReservations(int apprenticeCount)
+        {
+            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation()
+                .ChooseCreateANewReservationRadioButton()
+                        .ClickSaveAndContinueButton();
+
+            _employerReservationStepsHelper
+                .CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                .AddAnotherApprentice()
+                .EmployerSelectsAStandard();
+
+            _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(new AddPersonalDetailsPage(_context), apprenticeCount);
+
+            return new ApproveApprenticeDetailsPage(_context);
+        }
     }
 }
