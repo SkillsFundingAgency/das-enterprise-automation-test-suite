@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -17,11 +18,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
 
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
-        private readonly TransfersEmployerStepsHelper _employerStepsHelper;
+        private readonly TransferEmployerStepsHelper _employerStepsHelper;
         private readonly TransfersProviderStepsHelper _providerStepsHelper;
-
+        private readonly TransfersCreateCohortStepsHelper _transfersCreateCohortStepsHelper;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly CohortReferenceHelper _cohortReferenceHelper;
 
         private readonly Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
         private HomePage _homePage;
@@ -32,11 +35,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
 
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
-            _employerStepsHelper = new TransfersEmployerStepsHelper(context);
+            _employerStepsHelper = new TransferEmployerStepsHelper(context);
             _providerStepsHelper = new TransfersProviderStepsHelper(context);
-
+            _transfersCreateCohortStepsHelper = new TransfersCreateCohortStepsHelper(context);
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _cohortReferenceHelper = new CohortReferenceHelper(context);
 
             _accountDetails = new Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)>();
         }
@@ -94,7 +99,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string sender)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            _transfersCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
 
         [When(@"Receiver (First|Second|Third) sends approved cohort using transfer funds from Sender (First|Second|Third) with (.*) apprentices to the provider for review and approval")]
@@ -102,7 +107,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
-            _employerStepsHelper.SetCohortReference(cohortReference);
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
 
         [When(@"Provider adds an apprentice and approves the cohort")]
@@ -122,14 +127,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void WhenSenderApprovesTheCohort(string sender)
         {
             UpdateOrganisationName(GetAccountDetails(sender).orgName);
-            _employerStepsHelper.ApproveTransfersRequest();
+            _transfersCreateCohortStepsHelper.ApproveTransfersRequest();
         }
 
         [When(@"Sender (First|Second|Third) rejects the cohort")]
         public void WhenSenderRejectsTheCohort(string sender)
         {
             UpdateOrganisationName(GetAccountDetails(sender).orgName);
-            _employerStepsHelper.RejectTransfersRequest();
+            _transfersCreateCohortStepsHelper.RejectTransfersRequest();
         }
 
         [When(@"Receiver (First|Second|Third) edits and sends an approved cohort to the provider")]
@@ -137,7 +142,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
 
-            _employerStepsHelper.OpenRejectedCohort()
+            _transfersCreateCohortStepsHelper.OpenRejectedCohort()
                 .SelectEditApprentice()
                 .EditApprenticePreApprovalAndSubmit()
                 .EmployerFirstApproveAndNotifyTrainingProvider();
@@ -147,7 +152,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void WhenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
+            _transfersCreateCohortStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
         }
 
         [Then(@"Receiver (First|Second|Third) has a new live apprenticeship record created")]
@@ -155,7 +160,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
 
-            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
 
             manageYourApprenticePage.VerifyApprenticeExists();
         }
@@ -232,8 +237,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private void AccountsAreCreated(string noOfAccounts)
         {
             var integers = new Dictionary<string, int> { { "one", 1 }, { "two", 2 }, { "three", 3 } };
-            if (!integers.ContainsKey(noOfAccounts))
-                throw new Exception("Only one to three accounts are supported.");
+
+            if (!integers.ContainsKey(noOfAccounts)) throw new Exception("Only one to three accounts are supported.");
 
             _homePage = _accountCreationStepsHelper.CreateUserAccount();
 

@@ -24,11 +24,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner)
+        public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner, int apprenticeNumber)
         {
-            EnterUln();
+            EnterUlnForFlexiPayments(apprenticeNumber);
 
             if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
+
             else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
 
             formCompletionHelper.ClickElement(ContinueButton);
@@ -77,6 +78,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
 
             formCompletionHelper.EnterText(Uln, uln);
+        }
+
+        private void EnterUlnForFlexiPayments(int apprenticeNumber) 
+        {
+            if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
+                formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));
+            else
+                formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
         }
 
         public ProviderEditApprenticeTrainingDetailsPage ClickSaveAndContinue()

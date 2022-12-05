@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
         #endregion
@@ -26,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _config = context.GetProviderConfig<ProviderConfig>();
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
@@ -48,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"The NonLevyEmployer Reviews and Approves the apprentice")]
         public void ThenTheNonLevyEmployerReviewsandApprovesTheApprentice()
         {
-            _employerStepsHelper.GotoEmployerHomePage();
+            _apprenticeHomePageStepsHelper.GotoEmployerHomePage();
 
             _employerStepsHelper.DynamicHomePageFinishToAddApprenticeJourney();
         }
