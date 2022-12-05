@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the provider logs into their account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-testRunner.When("provider is on Apps indicative earnings report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("provider is on Apprenticeship indicative earnings report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
 testRunner.Then("validate correct earnings numbers are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

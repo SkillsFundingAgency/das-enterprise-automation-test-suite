@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderAppsIndicativeEarningsReportPage : ApprovalsBasePage
+    public class ProviderApprenticeshipIndicativeEarningsReportPage : ApprovalsBasePage
     {
         private static DateTime _currentAcademicYearStartDate;
         private static By ExpectedTotalOnProgrammeEarningsHeading => By.XPath($"//h2[text()='Expected total on-programme earnings in current academic year ({_currentAcademicYearStartDate.Year} to {_currentAcademicYearStartDate.Year + 1})']");
@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DownloadSumaryReportButton => By.XPath("//a[text()='Download CSV Summary report']");
         protected override string PageTitle => "Apps indicative earnings report";
 
-        public ProviderAppsIndicativeEarningsReportPage(ScenarioContext context) : base(context)
+        public ProviderApprenticeshipIndicativeEarningsReportPage(ScenarioContext context) : base(context)
         {
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
         }

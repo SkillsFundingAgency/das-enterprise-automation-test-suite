@@ -30,19 +30,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Given(@"the provider logs into their account")]
         public void GivenTheProviderLogsIntoTheirAccount() => _providerStepsHelper.GoToProviderHomePage(false);
 
-        [When(@"provider is on Apps indicative earnings report page")]
-        public void WhenProviderIsOnAppsIndicativeEarningsReportPage() => _providerStepsHelper.GoToAppsIndicativeEarningsReportPage();
+        [When(@"provider is on Apprenticeship indicative earnings report page")]
+        public void WhenProviderIsOnApprenticeshipIndicativeEarningsReportPage() => _providerStepsHelper.GoToApprenticeshipIndicativeEarningsReportPage();
 
         [Then(@"validate correct earnings numbers are displayed")]
         public void ThenValidateCorrectEarningsNumbersAreReported()
         {
-            var providerAppsIndicativeEarningsReportPage = new ProviderAppsIndicativeEarningsReportPage(_context);
+            var providerApprenticeshipIndicativeEarningsReportPage = new ProviderApprenticeshipIndicativeEarningsReportPage(_context);
 
-            providerAppsIndicativeEarningsReportPage.ValidateUIElementsOnPage();
+            providerApprenticeshipIndicativeEarningsReportPage.ValidateUIElementsOnPage();
 
             var earnings = _earningsSqlDbHelper.GetEarningsByFundingType(_objectContext.Get("ukprn"));
 
-            providerAppsIndicativeEarningsReportPage.ValidateEarnings(earnings.totalEarnings, earnings.levyEarnings, earnings.nonLevyEarnings);
+            providerApprenticeshipIndicativeEarningsReportPage.ValidateEarnings(earnings.totalEarnings, earnings.levyEarnings, earnings.nonLevyEarnings);
 
         }
     }
