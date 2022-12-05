@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.ProviderFeatures
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.ProviderFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Tests.Features.ProviderFeatures
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Tests/Features/ProviderFeatures", "FLP_AIER_01_ValidateEarnings", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ProviderFeatures", "FLP_AIER_01_ValidateEarnings", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
