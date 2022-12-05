@@ -19,6 +19,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector($"{PageHeaderSelector}, .govuk-label--xl");
 
+        protected virtual By SaveAndContinueButton => By.ClassName("govuk-button");
+
         private By CancelLink => By.LinkText("Cancel");
 
         public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context) 
@@ -31,6 +33,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             if (verifypage) VerifyPage();
         }
+
+        protected virtual void SaveAndContinue() => formCompletionHelper.ClickButtonByText(SaveAndContinueButton, "Save and continue");
 
         protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);
 
