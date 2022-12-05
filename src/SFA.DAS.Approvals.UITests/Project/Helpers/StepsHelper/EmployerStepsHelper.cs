@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -21,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
-        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
