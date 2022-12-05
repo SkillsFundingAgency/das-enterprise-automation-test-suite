@@ -12,13 +12,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
 
-        public RandomCourseDataHelper(List<CourseDetails> availableCourses, List<CourseDetails> portableFlexiJobAvailableCourses)
+        public RandomCourseDataHelper((List<CourseDetails>, List<CourseDetails>) courses)
         {
-            _availableCourses = availableCourses;
-            _portableFlexiJobAvailableCourses = portableFlexiJobAvailableCourses;
+            _availableCourses = courses.Item1;
+            _portableFlexiJobAvailableCourses = courses.Item2;
         }
 
-        public RandomCourseDataHelper() : this(AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses()) { }
+        public RandomCourseDataHelper() : this((AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses())) { }
 
         public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
         {
@@ -33,6 +33,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             _portableFlexiJobAvailableCourses = multiqueryResult[1];
         }
+
+        internal (List<CourseDetails>, List<CourseDetails>) GetRandomCourses() => (_availableCourses, _portableFlexiJobAvailableCourses);
 
         public CourseDetails GetPortableFlexiJobCourseDetails() => RandomDataGenerator.GetRandomElementFromListOfElements(_portableFlexiJobAvailableCourses);
 

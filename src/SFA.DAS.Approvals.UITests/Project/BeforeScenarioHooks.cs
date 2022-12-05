@@ -72,13 +72,15 @@ namespace SFA.DAS.Approvals.UITests.Project
             {
                 (_context.Get<ApprenticeDataHelper>(), _context.Get<ApprenticeCourseDataHelper>()),
 
-                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.Live))
+                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(new RandomCourseDataHelper(GetRandomCourses()), ApprenticeStatus.Live))
             });
 
             ApprenticeDataHelper GetApprenticeDataHelper(ApprenticePPIDataHelper dataHelper) => new(dataHelper, _objectcontext, commitmentsdatahelper);
 
             ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus) => 
                 new(randomCourseHelper, apprenticeStatus);
+
+            (List<CourseDetails>, List<CourseDetails>) GetRandomCourses() => randomCoursehelper.GetRandomCourses();
         }
     }
 }
