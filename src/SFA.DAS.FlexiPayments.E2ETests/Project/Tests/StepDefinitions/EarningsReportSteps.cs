@@ -38,8 +38,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var providerApprenticeshipIndicativeEarningsReportPage = new ProviderApprenticeshipIndicativeEarningsReportPage(_context);
 
-            providerApprenticeshipIndicativeEarningsReportPage.ValidateUIElementsOnPage();
-
             var earnings = _earningsSqlDbHelper.GetEarningsByFundingType(_objectContext.Get("ukprn"));
 
             providerApprenticeshipIndicativeEarningsReportPage.ValidateEarnings(earnings.totalEarnings, earnings.levyEarnings, earnings.nonLevyEarnings);

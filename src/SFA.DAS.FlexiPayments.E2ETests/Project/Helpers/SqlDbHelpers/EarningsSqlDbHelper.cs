@@ -8,15 +8,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
     public class EarningsSqlDbHelper : SqlDbHelper
     {
         private readonly DbConfig _dbConfig;
-        private static DateTime _currentAcademicYearStartDate;
+        private static int _currentAcademicYear;
 
-        public EarningsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EarningsDbConnectionString) 
-        { 
+        public EarningsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EarningsDbConnectionString)
+        {
             _dbConfig = dbConfig;
-            _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
+            _currentAcademicYear = AcademicYearDatesHelper.GetCurrentAcademicYear();
         }
 
-        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings (string uln)
+        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings(string uln)
         {
             string query = $"SELECT TOP 1 Amount AS MonthlyOnProgramPayment, SUM(Amount) AS 'TotalOnProgramPayment', COUNT(DeliveryPeriod) AS 'NumberOfDeliveryMonths' " +
                 $"FROM [Query].[Earning] " +
@@ -33,30 +33,35 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             string totalEarnings, levyEarnings, nonLevyEarnings;
             totalEarnings = levyEarnings = nonLevyEarnings = "0.00";
 
-            string query = $" SELECT FundingType, SUM(Amount) AS 'Earnings' " +
-                $" FROM [Query].[Earning] " +
-                $" WHERE Ukprn = {uln} and AcademicYear= {GetAcademicYear()} and FundingType in (0,1,2) " +
-                $" GROUP by FundingType";
+            string query = $" BEGIN TRANSACTION Earnings; " +
+                $" DECLARE @Ukprn int = {uln} " +
+                $" DECLARE @AcademicYear int = {_currentAcademicYear} " +
+                $" SELECT A.TotalEarnings, B.LevyEarnings, C.NonLevyEarnings " +
+                $" FROM " +
+                $" ( " +
+                $" SELECT Ukprn, SUM (Amount) as TotalEarnings FROM [Query].[Earning] " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear " +
+                $" GROUP BY UKPRN, AcademicYear " +
+                $" ) A, " +
+                $" ( " +
+                $" SELECT Ukprn, SUM(Amount) as LevyEarnings FROM [Query].[Earning] " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND AcademicYear = @AcademicYear AND FundingType in (0,2) " +
+                $" GROUP BY UKPRN, AcademicYear " +
+                $" ) B," +
+                $" ( " +
+                $" SELECT Ukprn, SUM(Amount) as NonLevyEarnings FROM [Query].[Earning] " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 1 GROUP BY UKPRN, AcademicYear " +
+                $" )C " +
+                $" WHERE A.Ukprn=B.Ukprn AND A.Ukprn=C.Ukprn " +
+                $" COMMIT TRANSACTION;";
 
-            var data = GetMultipleData(query, _dbConfig.EarningsDbConnectionString);
+            var data = GetData(query);
 
-            if (data == null) return (totalEarnings, levyEarnings, nonLevyEarnings);
-            else
-            {
-                foreach (var item in data)
-                {
-                    if (item[0] == "0") levyEarnings = String.Format("{0:n}", (double.Parse(data[0][1])));
+            if (!String.IsNullOrWhiteSpace(data[0])) totalEarnings = String.Format("{0:n}", (double.Parse(data[0])));
+            if (!String.IsNullOrWhiteSpace(data[1])) levyEarnings = String.Format("{0:n}", (double.Parse(data[1])));
+            if (!String.IsNullOrWhiteSpace(data[2])) nonLevyEarnings = String.Format("{0:n}", (double.Parse(data[2])));
 
-                    if (item[0] == "1") nonLevyEarnings = String.Format("{0:n}", (double.Parse(data[1][1])));
-
-                    if (item[0] == "2") levyEarnings = String.Format("{0:n}", (double.Parse(levyEarnings) + double.Parse(data[2][1])));
-                }
-                totalEarnings = String.Format("{0:n}", (double.Parse(levyEarnings) + double.Parse(nonLevyEarnings)));
-
-                return (totalEarnings, levyEarnings, nonLevyEarnings);
-            }
+            return (totalEarnings, levyEarnings, nonLevyEarnings);
         }
-
-        public int GetAcademicYear() => Convert.ToInt32(_currentAcademicYearStartDate.ToString("yy") + _currentAcademicYearStartDate.AddYears(1).ToString("yy"));
     }
 }
