@@ -101,7 +101,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public void VerifyOverlappingTrainingDetailsError(bool displayStartDateError, bool displayEndDateError)
         {
-            var courseStartDate = SetEIJourneyTestData(0);
+            var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
 
@@ -117,28 +117,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
         }
 
-        protected DateTime SetEIJourneyTestData(int apprenticeNo)
+        protected DateTime GetCourseStartDate()
         {
-            if (objectContext.IsEIJourney())
-            {
-                var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
-
-                var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
-
-                objectContext.SetEIAgeCategoryAsOfAug2021(eiApprenticeDetail.AgeCategoryAsOfAug2021);
-                objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
-                objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
-
-                apprenticeDataHelper.DateOfBirthDay = 1;
-                apprenticeDataHelper.DateOfBirthMonth = 8;
-                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2021().Equals("Aged16to24")) ? 2005 : 1994;
-                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
-                apprenticeDataHelper.TrainingCost = "7500";
-
-                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
-            }
-
             if (objectContext.HasStartDate()) apprenticeCourseDataHelper.CourseStartDate = objectContext.GetStartDate();
 
             if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);

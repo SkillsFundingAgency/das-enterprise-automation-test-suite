@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
         protected readonly PageInteractionHelper _pageInteractionHelper;
         protected readonly ApprovalsConfig _approvalsConfig;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
-            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<RetryAssertHelper>());
+            _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(_context);
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
         }
@@ -352,7 +352,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditApprentice(bool shouldCheckCoursesAreStandards = false) => EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
 
-        public ProviderApproveApprenticeDetailsPage EditFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool shouldCheckCoursesAreStandards, bool isPilotLearner)
+        public ProviderApproveApprenticeDetailsPage EditFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, bool isPilotLearner)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
@@ -367,10 +367,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner);
-
-                        if (shouldCheckCoursesAreStandards)
-                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, j+1);
 
                         providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
                         break;
@@ -379,6 +376,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 }
             }
 
+            return providerApproveApprenticeDetailsPage;
+        }
+
+        public ProviderApproveApprenticeDetailsPage EditSpecificFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int learnerToEdit, bool isPilotLearner)
+        {
+            var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1); 
+
+            var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, learnerToEdit);
+            
+            providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
+                        
             return providerApproveApprenticeDetailsPage;
         }
 
@@ -399,13 +407,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
-            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage));
-            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
+            _setApprenticeDetailsHelper.SetApprenticeDetails(providerApproveApprenticeDetailsPage);
 
             return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner, bool shouldCheckCoursesAreStandards = false) => EditFlexiPaymentsPilotApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards, isPilotLearner);
+        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner) => EditFlexiPaymentsPilotApprentice(CurrentCohortDetails(), isPilotLearner);
 
         public ProviderApproveApprenticeDetailsPage ApproveFlexiPilotCohort(bool isPilotLearner) => EditFlexiPilotLeaner(isPilotLearner);
 
@@ -467,8 +474,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int numberOfApprentices)
         {
-            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerApproveApprenticeDetailsPage, numberOfApprentices));
-            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerApproveApprenticeDetailsPage));
+            _setApprenticeDetailsHelper.SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
 
             return providerApproveApprenticeDetailsPage;
         }

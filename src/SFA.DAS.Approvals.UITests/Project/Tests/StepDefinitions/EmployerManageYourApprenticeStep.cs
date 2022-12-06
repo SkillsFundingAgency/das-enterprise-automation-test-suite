@@ -12,15 +12,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class EmployerManageYourApprenticeStep
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private ManageYourApprenticesPage _manageYourApprenticesPage;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         public EmployerManageYourApprenticeStep(ScenarioContext context)
         {
             _context = context;
-            _employerStepsHelper = new EmployerStepsHelper(context);   
             _loginHelper = new EmployerPortalLoginHelper(context);
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"An employer has navigated to Manage your apprentice page")]
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            _manageYourApprenticesPage = _employerStepsHelper.GoToManageYourApprenticesPage();
+            _manageYourApprenticesPage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
         }
 
         [Given(@"the employer filters by '(.*)'")]

@@ -14,6 +14,7 @@ using TechTalk.SpecFlow.Assist;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System.Linq;
+using Polly;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -26,6 +27,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+
         private int _oldCost;
 
         public OverlappingTrainingDateRequestSteps(ScenarioContext context)
@@ -36,6 +40,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _cohortReferenceHelper = new CohortReferenceHelper(context);
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"Employer and provider approve an apprentice")]
@@ -46,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var date = sixMonthsOldDateTime.ToString("01-MM-yyyy");
             _objectContext.SetStartDate(date);
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-            _employerStepsHelper.SetCohortReference(cohortReference);
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }
 
@@ -115,7 +121,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetEndDate(courseEndDate.ToString("dd-MM-yyyy", null));
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-            _employerStepsHelper.SetCohortReference(cohortReference);
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }
 
@@ -163,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                   .SubmitSendToEmployerToReview()
                   .CohortReference();
 
-            _employerStepsHelper.UpdateCohortReference(cohortReference);
+            _cohortReferenceHelper.UpdateCohortReference(cohortReference);
 
 
             var editTrainingDetailsPage = _employerStepsHelper
@@ -237,10 +243,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer selects to edit the active apprentice")]
-        public void ThenEmployerSelectsToEditTheActiveApprentice() => _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        public void ThenEmployerSelectsToEditTheActiveApprentice() => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
 
         [When(@"Employer selects to edit the active apprentice")]
-        public void WhenEmployerSelectsToEditTheActiveApprentice() => _employerStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        public void WhenEmployerSelectsToEditTheActiveApprentice() => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
 
         [Then(@"overlapping training date request banner is displayed")]
         public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()

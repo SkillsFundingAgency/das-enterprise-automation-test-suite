@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EmployerHomePageStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ObjectContext _objectContext;
 
@@ -18,7 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _tabHelper = _context.Get<TabHelper>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
@@ -58,9 +56,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new MyAccountWithOutPayePage(_context);
         }
 
-        public void NavigateToEmployerApprenticeshipService() => _tabHelper.GoToUrl(EmployerApprenticeshipService_BaseUrl);
+        public void NavigateToEmployerApprenticeshipService() => GetTabHelper().GoToUrl(EmployerApprenticeshipService_BaseUrl);
 
-        private void OpenInNewTab() => _tabHelper.OpenInNewTab(EmployerApprenticeshipService_BaseUrl);
+        private void OpenInNewTab() => GetTabHelper().OpenInNewTab(EmployerApprenticeshipService_BaseUrl);
 
         private void GoToEmployerLoginPage(bool openInNewTab)
         {
@@ -76,5 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         private static string EmployerApprenticeshipService_BaseUrl => UrlConfig.EmployerApprenticeshipService_BaseUrl;
+
+        private TabHelper GetTabHelper() => _context.Get<TabHelper>();
     }
 }
