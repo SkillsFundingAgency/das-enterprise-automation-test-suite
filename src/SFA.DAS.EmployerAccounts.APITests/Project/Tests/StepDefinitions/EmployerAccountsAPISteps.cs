@@ -17,21 +17,41 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
     public class EmployerAccountsAPISteps
     {
         private readonly Inner_EmployerAccountsApiRestClient _innerApiRestClient;
-        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;        
+        private readonly Outer_EmployerAccountsApiHelper _employerAccountsOuterApiHelper;
+        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;
         private readonly EmployerAccountsSqlDbHelper _employerAccountsSqlDbHelper;
         private readonly ObjectContext _objectContext;
-        private readonly IHashingService _hashingService;        
+        private readonly IHashingService _hashingService;
 
         public EmployerAccountsAPISteps(ScenarioContext context)
         {
             _innerApiRestClient = context.GetRestClient<Inner_EmployerAccountsApiRestClient>();
+            _employerAccountsOuterApiHelper = new Outer_EmployerAccountsApiHelper(context);
             _innerApiLegacyRestClient = context.GetRestClient<Inner_EmployerAccountsLegacyApiRestClient>();
             _employerAccountsSqlDbHelper = context.Get<EmployerAccountsSqlDbHelper>();
             _objectContext = context.Get<ObjectContext>();
             _employerAccountsSqlDbHelper.SetHashedAccountId();
-            _employerAccountsSqlDbHelper.SetInternalAccountId();
+            _employerAccountsSqlDbHelper.SetAccountId();
             _employerAccountsSqlDbHelper.SetLegalEntityId();
+            _employerAccountsSqlDbHelper.SetPayeSchemeRef();
             _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
+        }
+
+        [Then(@"the employer accounts outer api is reachable")]
+        public void ThenTheEmployerAccountsOuterApiIsReachable() => _employerAccountsOuterApiHelper.Ping();
+
+        [Then(@"endpoint /Accounts/\{hashedAccountId}/levy/english-fraction-current can be accessed")]
+        public void ThenEndpointAccountsHashedAccountIdLevyEnglish_Fraction_CurrentCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _employerAccountsOuterApiHelper.GetAccountEnglishFractionCurrent(hashedAccountId);
+        }
+
+        [Then(@"endpoint /Accounts/\{hashedAccountId}/levy/english-fraction-history can be accessed")]
+        public void ThenEndpointAccountsHashedAccountIdLevyEnglish_Fraction_HistoryCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _employerAccountsOuterApiHelper.GetAccountEnglishFractionHistory(hashedAccountId);
         }
 
         [Then(@"endpoint /api/accountlegalentities can be accessed")]
@@ -43,18 +63,18 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-           _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+           _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/\{payeSchemeRef} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesPayeSchemeRefCanBeAccessed()
         {           
-            var accountId = _objectContext.GetAccountId();
-            var payeschemeRef = _employerAccountsSqlDbHelper.GetpayeSchemeRef();
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var payeschemeRef = _objectContext.GetPayeSchemeRefId();
             var encodepayeschemeRef = HttpUtility.UrlEncode(payeschemeRef);
             var doubleEncodeencodepayeschemeRef = HttpUtility.UrlEncode(encodepayeschemeRef);            
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes/{doubleEncodeencodepayeschemeRef}", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/{doubleEncodeencodepayeschemeRef}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts can be accessed")]
@@ -66,38 +86,38 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{hashedAccountId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdCanBeAccessed()
         {               
-            var accountId = _objectContext.GetAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /accounts/internal/\{accountId} can be accessed")]
         public void ThenEndpointAccountsInternalAccountIdCanBeAccessed()
         {
-            var internalAccountId = _objectContext.GetInternalAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/users", HttpStatusCode.OK);
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/users", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/users can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdUsersCanBeAccessed()
         {   
-            var accountId = _objectContext.GetAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/users", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/users", HttpStatusCode.OK);
         }
 
 
         [Then(@"endpoint /api/accounts/internal/\{accountId}/users can be accessed")]
         public void ThenEndpointApiAccountsInternalAccountIdUsersCanBeAccessed()
         {       
-            var internalAccountId = _objectContext.GetInternalAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{internalAccountId}/users", HttpStatusCode.OK);
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/users", HttpStatusCode.OK);
         }
         
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalEntities/\{hashedlegalEntityId}/agreements/\{agreementId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalEntitiesHashedlegalEntityIdAgreementsAgreementIdCanBeAccessed()
         {
-            var result = _employerAccountsSqlDbHelper.GetAgreementId();
+            var result = _employerAccountsSqlDbHelper.GetAgreementInfo();
             var hashedAgreementId = _hashingService.HashValue((long)result[0][1]);
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities/{result[0][0]}/agreements/{hashedAgreementId}", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetHashedAccountId()}/legalentities/{result[0][0]}/agreements/{hashedAgreementId}", HttpStatusCode.OK);
         }
         
         [Then(@"endpoint /api/user/\{userRef}/accounts can be accessed")]
@@ -110,19 +130,26 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalentities can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalentitiesCanBeAccessed()
         {   
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetHashedAccountId()}/legalentities", HttpStatusCode.OK);
         }
         
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalentities/\{legalEntityId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalentitiesLegalEntityIdCanBeAccessed()
         {        
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetAccountId()}/legalentities/{_objectContext.GetLegalEntityId()}", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetHashedAccountId()}/legalentities/{_objectContext.GetLegalEntityId()}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/statistics can be accessed")]
         public void ThenEndpointApiStatisticsCanBeAccessed()
         {   
             _innerApiRestClient.ExecuteEndpoint("/api/statistics", HttpStatusCode.OK);
+        }
+
+        [Then(@"endpoint /api/accounts/internal/\{accountId}/transfers/connections can be accessed")]
+        public void ThenEndpointApiAccountsInternalAccountIdTransfersConnectionsCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/transfers/connections", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/user can be accessed")]
@@ -135,33 +162,33 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /accounts/\{hashedAccountId}/levy can be accessed")]
         public void ThenEndpointAccountsHashedAccountIdLevyCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /accounts/\{hashedAccountId}/transactions  can be accessed")]
         public void ThenEndpointAccountsHashedAccountIdTransactionsCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions", HttpStatusCode.OK);
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /accounts/\{hashedAccountId}/transactions/\{year}/\{month} can be accessed")]
         public void ThenEndpointAccountsHashedAccountIdTransactionsYearMonthCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions");            
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions");            
             var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);            
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint accounts/\{hashedAccountId}/levy/\{payrollYear}/\{payrollMonth} can be accessed")]
         public void ThenEndpointAccountsHashedAccountIdLevyPayrollYearPayrollMonthCanBeAccessed()
         {
-            var accountId = _objectContext.GetAccountId();
-            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy");
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy");
             var result = JsonConvert.DeserializeObject<ICollection<LevyDeclaration>>(response.Content);
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/levy/{result.FirstOrDefault().PayrollYear}/{result.FirstOrDefault().PayrollMonth}", HttpStatusCode.OK);
+            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy/{result.FirstOrDefault().PayrollYear}/{result.FirstOrDefault().PayrollMonth}", HttpStatusCode.OK);
         }
 
         [Then(@"das-employer-accounts-api /ping endpoint can be accessed")]

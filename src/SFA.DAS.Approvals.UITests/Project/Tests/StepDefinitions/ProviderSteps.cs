@@ -10,9 +10,6 @@ using NUnit.Framework;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -60,9 +57,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider opts (.*) learner into the pilot")]
         public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, true);
 
-        [When(@"the provider adds Ulns and opts the learners out of the pilot")]
-        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
-
         [When(@"the provider opts (.*) learner out of the pilot")]
         public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, false);
 
@@ -86,13 +80,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         
         [When(@"the provider adds Ulns")]
         public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice(true);
-
-        [When(@"the provider adds Ulns and Opt the learners into the pilot")]
-        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
-
-        [When(@"Provider is able to successfully approve the cohort")]
-        [Then(@"Provider is able to successfully approve the cohort")]
-        public void ThenProviderApprovesTheCohort() => _providerApproveApprenticeDetailsPage.SubmitApprove();
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
         public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoA_ExistingCohort(int numberOfApprentices)

@@ -214,6 +214,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
         }
 
+        public (string isPilot, string fromDate, string toDate, string cost) GetFlexiPaymentsCommitmentData (string uln)
+        {
+            var query = $"SELECT app.IsOnFlexiPaymentPilot, pr.FromDate, pr.ToDate, pr.Cost " +
+                $"FROM [dbo].[Apprenticeship] app " +
+                $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
+                $"WHERE ULN = '{uln}'";
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2], data[3]);
+        }
+
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
 
         internal string GetCohortReferenceForDraftApprenitceship(string previousApprenticeshipCohortReference)

@@ -11,10 +11,17 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class SelectEmployersPage : Raav2BasePage
     {
-        protected override string PageTitle => "Which organisation do you want to create a vacancy for?";
 
-        private By RadioItem(string value) => By.CssSelector($".govuk-radios__item input{value}");
+        private List<(string hashedid, string value)> values = new();
 
+        protected override string PageTitle => "Which employer do you want to create a vacancy for?";
+
+        private static By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
+
+        private static By ListItem(string value) => By.CssSelector($".govuk-table .das-button--inline-link[value='{value}']");
+
+        private static By SelectedEmployerYes => By.Id("confirm-yes");
+        
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
         public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer(string empHashedid)
@@ -23,28 +30,47 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             var validemployers = context.Get<ProviderCreateVacancySqlDbHelper>().GetValidHashedId(employers);
 
-            var hashedid = RandomDataGenerator.GetRandomElementFromListOfElements(validemployers);
+            var hashedid = GetRandomElementFromListOfElements(validemployers);
 
             (string hashedidvalue, int noOfLegalEntity) = ((string)hashedid[0], (int)hashedid[1]);
 
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RadioItem($"[value='{hashedidvalue}']")));
+            objectContext.SetDebugInformation($"Employer with hashed id '{hashedidvalue}' has {noOfLegalEntity} legal entities");
 
-            if (noOfLegalEntity > 1) noOfLegalEntity = context.Get<RAAV2ProviderPermissionsSqlDbHelper>().GetNoOfValidOrganisations(hashedidvalue);
+            var legalEntity = values.Where(x => x.hashedid == hashedidvalue).ToList();
 
-            objectContext.SetDebugInformation($"Selected employer with hashed id '{hashedidvalue}' who has {noOfLegalEntity} legal entities with provider permission");
+            objectContext.SetDebugInformation($"Employer with hashed id '{hashedidvalue}' has {legalEntity.Count} legal entities with provider permission");
 
-            Continue();
+            var value = GetRandomElementFromListOfElements(legalEntity).value;
 
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ListItem(value)));
+
+            if (noOfLegalEntity > 1) noOfLegalEntity = legalEntity.Count;
+
+            objectContext.SetDebugInformation($"Selected employer with hashed id '{value}' who has {noOfLegalEntity} legal entities with provider permission");
+
+            formCompletionHelper.SelectRadioOptionByLocator(SelectedEmployerYes);
+
+            SaveAndContinue();             
+            
             return (new CreateAnApprenticeshipAdvertOrVacancyPage(context), noOfLegalEntity > 1);
         }
 
+        private T GetRandomElementFromListOfElements<T>(List<T> elements) => RandomDataGenerator.GetRandomElementFromListOfElements(elements);
+
         private List<string> GetEmployers(string empHashedid)
         {
-            return string.IsNullOrEmpty(empHashedid) ? 
+            values = GetEmpDetails();
 
-                pageInteractionHelper.FindElements(RadioItem(string.Empty)).ToList().Select(x => x.GetAttribute("value")).ToList() :
-                
-                new List<string>() { (empHashedid) };
+            if (string.IsNullOrEmpty(empHashedid)) return values.Select(x => x.hashedid).ToList();
+
+            return new List<string>() { (empHashedid) };
+        }
+
+        private List<(string hashedid, string value)> GetEmpDetails()
+        {
+            var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetAttribute("value")).ToList();
+
+            return value.Select(x => (x?.Split('|')[1], x)).ToList();
         }
     }
 }

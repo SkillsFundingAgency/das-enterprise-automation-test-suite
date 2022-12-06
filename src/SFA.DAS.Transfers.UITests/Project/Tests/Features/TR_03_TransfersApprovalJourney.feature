@@ -4,15 +4,25 @@
 @approvals
 @transfers
 @liveapprentice
+@addtransferslevyfunds
+@addsecondlevyfunds
 Scenario: TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties
-	Given Receiver sends an approved cohort with 1 apprentices to the provider
-	When the Provider approves the cohort
-	And Sender rejects the cohort
-	And Receiver edits and sends an approved cohort to the provider
-	And the Provider approves the cohort
-	And Sender rejects the cohort
-	When Receiver sends a cohort to the provider for review and approval
+	Given We have two Employer accounts
+	And First is a Sender connected to Second as a Receiver
+	When Receiver Second sends approved cohort using transfer funds from Sender First with 1 apprentices to the provider for review and approval
+	And Provider approves the cohort
+	Then 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
+	When Sender First rejects the cohort
+	Then No 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
+	When Receiver Second edits and sends an approved cohort to the provider
+	And Provider approves the cohort
+	Then 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
+	When Sender First rejects the cohort
+	Then No 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
+	When Receiver Second sends a cohort to the provider for review and approval
 	And Provider approves the cohort and sends to recevier for approval
-	And Receiver approves the cohort
-	And Sender approves the cohort
-	Then Verify a new live apprenticeship record is created
+	And Receiver Second approves the cohort
+	Then 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
+	When Sender First approves the cohort
+	Then No 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
+	And Receiver Second has a new live apprenticeship record created
