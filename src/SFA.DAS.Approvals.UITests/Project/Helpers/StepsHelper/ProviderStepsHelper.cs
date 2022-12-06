@@ -209,6 +209,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
+        public ProviderCohortSentForReviewPage AddApprenticeAndSelectRegularDeliveryModel()
+        {
+            var providerAddApprenticeDetailsPage = CurrentCohortDetails();
+
+            return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
+                .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
+                .SelectRegularDeliveryModelAndContinue()
+                .SubmitValidPersonalDetails()
+                .SubmitValidTrainingDetails()
+                .SubmitSendToEmployerToReview();
+        }
+
         public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddPersonalDetailsPage providerAddApprenticeDetailsPage)
         {
             var providerAddApprenticeTrainingDetailsPage = providerAddApprenticeDetailsPage.SubmitValidPersonalDetails();
