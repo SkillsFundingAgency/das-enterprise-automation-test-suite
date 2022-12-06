@@ -28,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ApprenticeHomePageStepsHelper _homePageStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
@@ -45,6 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _homePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"Employer and provider approve an apprentice")]
@@ -312,7 +314,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Employer selects to stop the active apprentice")]
         public void WhenEmployerSelectsToStopTheActiveApprentice()
         {
-            var apprenticeDetailsPage = _employerStepsHelper
+            var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
             _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage);
@@ -342,7 +344,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Employer selects to reject the overlapping training date request")]
         public void WhenEmployerSelectsToRejectTheOverlappingTrainingDateRequest()
         {
-            var apprenticeDetailsPage = _employerStepsHelper
+            var apprenticeDetailsPage = _homePageStepsHelper
                .GoToManageYourApprenticesPage()
                .SelectViewCurrentApprenticeDetails();
             apprenticeDetailsPage
@@ -384,7 +386,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenEmployerDecidesToUpdateTheStoppedDate()
         {
             var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
-            var apprenticeDetailsPage = _employerStepsHelper
+            var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
             apprenticeDetailsPage
@@ -405,7 +407,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenEmployerDecidesToUpdateEndDate()
         {
             var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
-            var apprenticeDetailsPage = _employerStepsHelper
+            var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
             apprenticeDetailsPage
