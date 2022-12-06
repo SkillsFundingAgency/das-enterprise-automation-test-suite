@@ -184,6 +184,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SubmitValidTrainingDetails();
         }
 
+        [Then(@"the provider validates flexi-job content and approves cohort")]
+        public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+
+        [When(@"the provider adds an apprentice on the Regular Delivery Model and sends to Employer for approval")]
+        public void WhenTheProviderAddsAnApprenticeOnTheRegularDeliveryModelAndSendsToEmployerForApproval() => _providerStepsHelper.AddApprenticeAndSelectRegularDeliveryModel();
+
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
     }
 }
