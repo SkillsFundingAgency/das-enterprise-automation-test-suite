@@ -14,6 +14,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician };
 
+        private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
+
+        public RandomCourseDataHelper((List<CourseDetails>, List<CourseDetails>) courses)
+        {
+            _availableCourses = courses.Item1;
+            _portableFlexiJobAvailableCourses = courses.Item2;
+        }
+
+        public RandomCourseDataHelper() : this((AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses())) { }
+
         public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
         {
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
@@ -28,11 +38,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _portableFlexiJobAvailableCourses = multiqueryResult[1];
         }
 
+        internal (List<CourseDetails>, List<CourseDetails>) GetRandomCourses() => (_availableCourses, _portableFlexiJobAvailableCourses);
+
         public CourseDetails GetPortableFlexiJobCourseDetails() => RandomDataGenerator.GetRandomElementFromListOfElements(_portableFlexiJobAvailableCourses);
 
         public CourseDetails RandomCourse() => SelectACourse(null);
 
         public CourseDetails RandomCourse(string selectedCourse) => SelectACourse(selectedCourse);
+
+        public CourseDetails SelectASpecificCourse(string CoourseToSelect) => SelectSpecificCourse(CoourseToSelect);
 
         private CourseDetails SelectACourse(string except)
         {
@@ -41,23 +55,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }
 
-        private CourseDetails SoftwareTester => new CourseDetails
+        private CourseDetails SelectSpecificCourse(string larsCode)
         {
-            Course = ("91", "Software tester", new DateTime(2016, 04, 21), 24, 18000)
-        };
+            var newlist = _availableCourses.Where(x => x.Course.larsCode == larsCode).ToList();
 
-        private CourseDetails SoftwareDeveloper => new CourseDetails
-        {
-            Course = ("2", "Software developer", new DateTime(2021, 06, 01), 24, 18000)
-        };
-
-        private CourseDetails AbattoirWorker => new CourseDetails
-        {
-            Course = ("274", "Abattoir worker", new DateTime(2018, 05, 08), 16, 6000)
-        };
-        private CourseDetails SoftwareDevelopmentTechnician => new CourseDetails
-        {
-            Course = ("154", "Software development technician", new DateTime(2022, 05, 16), 18, 15000)
-        };
+            return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
+        }
     }
 }
