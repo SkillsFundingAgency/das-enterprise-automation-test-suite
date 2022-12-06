@@ -28,13 +28,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1], data[2]);
         }
 
-        public (string totalEarnings, string levyEarnings, string nonLevyEarnings) GetEarningsByFundingType(string uln)
+        public (string totalEarnings, string levyEarnings, string nonLevyEarnings) GetEarningsByFundingType(string ukprn)
         {
             string totalEarnings, levyEarnings, nonLevyEarnings;
             totalEarnings = levyEarnings = nonLevyEarnings = "0.00";
 
             string query = $" BEGIN TRANSACTION Earnings; " +
-                $" DECLARE @Ukprn int = {uln} " +
+                $" DECLARE @Ukprn int = {ukprn} " +
                 $" DECLARE @AcademicYear int = {_currentAcademicYear} " +
                 $" SELECT A.TotalEarnings, B.LevyEarnings, C.NonLevyEarnings " +
                 $" FROM " +
