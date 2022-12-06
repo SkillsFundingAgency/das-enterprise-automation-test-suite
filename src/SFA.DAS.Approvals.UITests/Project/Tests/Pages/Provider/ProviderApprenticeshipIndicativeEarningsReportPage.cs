@@ -24,20 +24,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
         }
 
-        public void ValidateUIElementsOnPage()
-        {
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ExpectedTotalOnProgrammeEarningsHeading), "Total on-programme earnings heading not displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(TotalEarningsHeading), "Total earnings Heading not displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(LevyEarningsHeading), "Levy earnings heading not displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(NonLevyEarningsHeading), "Non-levy earnings heading not displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DownloadSumaryReportButton), "Download sumary report button not displayed");
-        }
+        public void ValidateUIElementsOnPage() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ExpectedTotalOnProgrammeEarningsHeading), "Total on-programme earnings heading not displayed");
 
         public void ValidateEarnings(string TotalEarnings, string LevyEarnings, string NonLevyEarnings)
         {
-            Assert.AreEqual(pageInteractionHelper.GetText(TotalEarningsValue), "£" + TotalEarnings, "Incorrect Total earnings found");
-            Assert.AreEqual(pageInteractionHelper.GetText(LevyEarningsValue), "£" + LevyEarnings, "Incorrect Levy earnings found");
-            Assert.AreEqual(pageInteractionHelper.GetText(NonLevyEarningsValue), "£" + NonLevyEarnings, "Incorrect Non-levy earnings found");
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(pageInteractionHelper.GetText(TotalEarningsValue), "£" + TotalEarnings, "Incorrect Total earnings found");
+                Assert.AreEqual(pageInteractionHelper.GetText(LevyEarningsValue), "£" + LevyEarnings, "Incorrect Levy earnings found");
+                Assert.AreEqual(pageInteractionHelper.GetText(NonLevyEarningsValue), "£" + NonLevyEarnings, "Incorrect Non-levy earnings found");
+            });
         }
     }
 }
