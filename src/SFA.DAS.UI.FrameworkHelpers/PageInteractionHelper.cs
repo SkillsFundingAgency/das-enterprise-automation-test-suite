@@ -170,9 +170,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return IsElementDisplayed(locator);
         }
 
-        public bool IsElementDisplayed(By locator) => IsElementDisplayed(() => _webDriver.FindElement(locator).Displayed);
+        public bool IsElementDisplayed(By locator) => WithoutImplicitWaits(() => _webDriver.FindElement(locator).Displayed);
 
-        public bool IsElementDisplayed(Func<bool> func)
+        public T WithoutImplicitWaits<T>(Func<T> func)
         {
             _webDriverWaitHelper.TurnOffImplicitWaits();
             try
@@ -181,7 +181,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             catch (Exception)
             {
-                return false;
+                return default(T);
             }
             finally
             {
@@ -229,7 +229,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
 
-        public List<IWebElement> FindElements(IWebElement element, By locator) => element.FindElements(locator).ToList();
+        public List<IWebElement> FindElements(IWebElement element, By locator, bool withoutImplicitWaits = false) =>
+            withoutImplicitWaits ? WithoutImplicitWaits(() => element.FindElements(locator).ToList()) : element.FindElements(locator).ToList();
 
         public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
 

@@ -22,7 +22,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ASCoCEmployerUser _user;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
-        private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
+        private readonly Helpers.SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
 
         public CocSteps(ScenarioContext context) : base(context)
         {
@@ -33,7 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _providerStepsHelper = new ProviderStepsHelper(context);
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
             _user = _context.GetUser<ASCoCEmployerUser>();
-            _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
+            _setApprenticeDetailsHelper = new Helpers.SetApprenticeDetailsHelper(context);
         }
 
         [Given(@"a Course date CoC occurs on an apprenticeship on Employer side")]
