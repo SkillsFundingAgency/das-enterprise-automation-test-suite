@@ -12,10 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
 
-        public RandomCourseDataHelper() => _availableCourses = new List<CourseDetails> { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician };
-
-        private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
-
         public RandomCourseDataHelper((List<CourseDetails>, List<CourseDetails>) courses)
         {
             _availableCourses = courses.Item1;
