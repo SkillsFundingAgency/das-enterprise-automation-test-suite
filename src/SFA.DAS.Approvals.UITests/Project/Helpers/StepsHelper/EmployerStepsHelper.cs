@@ -226,6 +226,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
 
+        public void EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable()
+        {
+            var employerEditTrainingDetailsPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickApprenticeRequestsLink()
+                .GoToReadyToReview()
+                .SelectViewCurrentCohortDetails()
+                .SelectEditApprenticeLink()
+                .ContinueToAddTrainingDetailsPage();
+
+            Assert.True(employerEditTrainingDetailsPage.ConfirmDeliveryModelLabelText("Flexi-job agency"));
+            Assert.True(employerEditTrainingDetailsPage.IsEditDeliveryModelLinkVisible());
+        }
+
+        public NotificationSentToTrainingProviderPage EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .SelectEditApprenticeLink()
+                  .ContinueToAddTrainingDetailsPage()
+                  .ClickEditDeliveryModelLink()
+                  .EditDeliveryModelToFlexiAndContinue()
+                  .SaveEditedTrainingDetails()
+                  .EmployerSendsToTrainingProviderForReview();
+
+        }
+
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
