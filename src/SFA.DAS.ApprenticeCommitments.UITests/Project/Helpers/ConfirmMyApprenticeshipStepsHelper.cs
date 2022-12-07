@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
@@ -24,7 +23,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private string actualApprenticeshipEndDate, actualJobEndDate;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private FullyConfirmedOverviewPage _fullyConfirmedOverviewPage;
-        private string email, expectedEmpName, expectedProviderName;
 
         public ConfirmMyApprenticeshipStepsHelper(ScenarioContext context)
         {
@@ -80,7 +78,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return apprenticeOverviewPage;
         }
 
-        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(string initialStatus, bool isRegularApp = true)
+        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(string initialStatus, bool isRegularApp)
         {
             AssertSection3Status(initialStatus);
 
@@ -177,7 +175,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyPortableApprenticeshipDataDisplayed(ConfirmYourPortableApprenticeshipDetailsPage confirmYourPortableApprenticeshipDetailsPage)
         {
-            PopulateExpectedApprenticeshipDetails();
             PopulateExpectedJobEndDateForPortableApprenticeship();
 
             actualDeliveryModel = confirmYourPortableApprenticeshipDetailsPage.GetDeliveryModelInfo();
@@ -187,7 +184,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             actualApprenticeshipEndDate = confirmYourPortableApprenticeshipDetailsPage.GetApprenticeshipEndDateInfo();
             actualJobEndDate = confirmYourPortableApprenticeshipDetailsPage.GetPortableApprenticeshipPlannedJobEndDateInfo();
 
-            AssertApprenticeshipDetails();
             AssertApprenticeshipDetailsForPortableApprenticeship();
         }
 
@@ -235,16 +231,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage alreadyConfirmedRolesAndResponsibilitiesPage)
             => alreadyConfirmedRolesAndResponsibilitiesPage.VerifySubSectionHeaders();
 
-        public FullyConfirmedOverviewPage VerifyFullyConfirmedRegularAppOverviewPageDetails()
+        public FullyConfirmedOverviewPage VerifyFullyConfirmedAppOverviewPageDetails(bool isRegularApp)
         {
             NavigateToFullyConfirmedOverviewPageAndValidateRegularAppDetails();
-            return _fullyConfirmedOverviewPage;
-        }
 
-        public FullyConfirmedOverviewPage VerifyFullyConfirmedPortableAppOverviewPageDetails()
-        {
-            NavigateToFullyConfirmedOverviewPageAndValidateRegularAppDetails();
-            ValidatePortableAppInfoOnFullyConfirmedOverviewPage();
+            if (!isRegularApp) ValidatePortableAppInfoOnFullyConfirmedOverviewPage();
+
             return _fullyConfirmedOverviewPage;
         }
 
@@ -252,13 +244,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             _fullyConfirmedOverviewPage = new ApprenticeHomePage(_context, false).NavigateToFullyConfirmedOverviewPageFromTopNavigationLink();
 
-            (expectedEmpName, expectedProviderName) = _accountsAndCommitmentsSqlHelper.GetEmpAndProvNames(_objectContext.GetApprenticeEmail());
+            (string expectedEmpName, string expectedProviderName) = _accountsAndCommitmentsSqlHelper.GetEmpAndProvNames(_objectContext.GetApprenticeEmail());
 
             Assert.AreEqual(expectedEmpName.ToUpper(), _fullyConfirmedOverviewPage.GetEmployer());
             Assert.AreEqual(expectedProviderName.ToUpper(), _fullyConfirmedOverviewPage.GetTrainingProvider());
             Assert.AreEqual(expectedApprenticeshipLevel, _fullyConfirmedOverviewPage.GetApprenticeshipLevelInfo());
             Assert.AreEqual(expectedApprenticeshipStartDate.ToString("MMMM yyyy"), _fullyConfirmedOverviewPage.GetPortableApprenticeshipPlannedStartDateInfo());
-            Assert.AreEqual(expectedApprenticeshipEndDate.ToString("MMMM yyyy"), _fullyConfirmedOverviewPage.GetApprenticeshipEndDateInfo());
         }
 
         private void ValidatePortableAppInfoOnFullyConfirmedOverviewPage()
@@ -273,21 +264,31 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void PopulateExpectedApprenticeshipDetails()
         {
-            expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];
-            expectedApprenticeshipLevel = _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
-            expectedApprenticeshipStartDate = DateTime.Parse(_objectContext.GetTrainingStartDate());
+            expectedApprenticeshipName = GetApprenticeshipName();
+            expectedApprenticeshipLevel = GetApprenticeshipLevel();
+            expectedApprenticeshipStartDate = GetApprenticeshipStartDate();
         }
 
         private void PopulateExpectedFlexijobApprenticeshipDetails()
         {
-            email = _objectContext.GetApprenticeEmail();
-            expectedApprenticeshipName = _objectContext.GetTrainingName().Split(',')[0];
-            expectedApprenticeshipLevel = _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
-            expectedApprenticeshipStartDate = DateTime.Parse(_objectContext.GetTrainingStartDate());
-            expectedApprenticeshipEndDate = DateTime.Parse(_apprenticeCommitmentsSqlDbHelper.GetPlannedEndDateFromRegistration(email));
+            PopulateExpectedApprenticeshipDetails();
+
+            expectedApprenticeshipEndDate = DateTime.Parse(_apprenticeCommitmentsSqlDbHelper.GetPlannedEndDateFromRegistration(GetApprenticeEmail()));
         }
 
-        private void PopulateExpectedJobEndDateForPortableApprenticeship() => expectedJobEndDate = DateTime.Parse(_apprenticeCommitmentsSqlDbHelper.GetEmploymentEndDateFromRegistration(email));
+        private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
+
+        private string GetApprenticeshipName() => _objectContext.GetTrainingName().Split(',')[0];
+
+        private string GetApprenticeshipLevel() => _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
+
+        private DateTime GetApprenticeshipStartDate() => DateTime.Parse(_objectContext.GetTrainingStartDate());
+
+        private void PopulateExpectedJobEndDateForPortableApprenticeship()
+        {
+            PopulateExpectedApprenticeshipDetails();
+            expectedJobEndDate = DateTime.Parse(_apprenticeCommitmentsSqlDbHelper.GetEmploymentEndDateFromRegistration(GetApprenticeEmail()));
+        }
 
         private void AssertApprenticeshipDetails()
         {
@@ -309,12 +310,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void AssertApprenticeshipDetailsForPortableApprenticeship()
         {
+            AssertApprenticeshipDetails();
+
             Assert.AreEqual("Portable flexi-job", actualDeliveryModel);
             Assert.AreEqual(expectedApprenticeshipEndDate.ToString("MMMM yyyy"), actualApprenticeshipEndDate);
-
-
             Assert.AreEqual(expectedJobEndDate.ToString("MMMM yyyy"), actualJobEndDate);
-
         }
 
         private void AssertActualEsimatedDurationInfo() => Assert.IsNotNull(actualEsimatedDurationInfo);
