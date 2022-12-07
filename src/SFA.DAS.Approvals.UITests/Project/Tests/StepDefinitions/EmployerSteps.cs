@@ -193,5 +193,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the employer edits apprentice delivery model to Regular in Post Approvals and Submits changes")]
         public void WhenTheEmployerEditsApprenticeDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _employerStepsHelper.EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
+
+        [Then(@"the employer validates Flexi-Job content and approves")]
+        public void ThenTheEmployerValidatesFlexi_JobContentAndApproves() => _employerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+
     }
 }

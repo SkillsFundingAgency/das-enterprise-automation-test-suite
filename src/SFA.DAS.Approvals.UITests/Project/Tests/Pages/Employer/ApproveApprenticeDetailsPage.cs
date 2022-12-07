@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -104,6 +105,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
             return new EditPersonalDetailsPage(context);
+        }
+
+        public ApprenticeDetailsApprovedPage ValidateFlexiJobTagAndApprove()
+        {
+            validateFlexiJobAgencyTag();
+            return EmployerDoesSecondApproval();
         }
     }
 }

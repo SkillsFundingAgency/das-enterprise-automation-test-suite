@@ -39,6 +39,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _addApprenticeDetailsPage = _employerStepsHelper.FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel();
         }
 
+        [When(@"employer selects Regular radio button on Select Delivery Model screen")]
+        public void WhenEmployerSelectsRegularRadioButtonOnSelectDeliveryModelScreen()
+        {
+            _addApprenticeDetailsPage = _employerStepsHelper.FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel();
+        }
+
+
         [Then(@"validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
         public void ThenValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
         {
@@ -47,6 +54,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
         }
+
+        [Then(@"validate Regular content on Add Apprentice Details page and submit valid details")]
+        public void ThenValidateRegularContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
+        {
+            var addTrainingDetailsPage = _addApprenticeDetailsPage.SubmitValidPersonalDetails();
+            addTrainingDetailsPage.ValidateRegularContent();
+
+            _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
+        }
+
 
         [Then(@"validate Flexi-job agency tag on Approve Apprentice Details page and send cohort to Provider for review")]
         public void ThenValidateFlexi_JobAgencyTagOnApproveApprenticeDetailsPageAndSendCohortToProviderForReview()
@@ -57,5 +74,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetCohortReference(cohortReference);
             _objectContext.SetNoOfApprentices(1);
         }
+
+        [Then(@"validate Flexi-job agency tag is not displayed on Approve Apprentice Details page and send cohort to provider for review")]
+        public void ThenValidateFlexi_JobAgencyTagIsNotDisplayedOnApproveApprenticeDetailsPageAndSendCohortToProviderForReview()
+        {
+            _approveApprenticeDetailsPage.ValidateFlexiTagNotDisplayed();
+            var cohortReference = _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview().CohortReference();
+
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
+        }
+
     }
 }

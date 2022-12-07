@@ -13,7 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Changes approved";
 
         private By DeliveryModel => By.Id("apprentice-deliverymodel");
-        private By FinishButton => By.Id("submit-confirm-change");
 
         public ProviderChangesApprovedPage(ScenarioContext context) : base(context) { }
 

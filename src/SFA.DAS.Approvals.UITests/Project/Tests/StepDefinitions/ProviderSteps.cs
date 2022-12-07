@@ -194,5 +194,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the provider validates Delivery Model is displayed and does not contain Flexi-Job agency on Apprentice Details Screen")]
         public void ThenTheProviderValidatesDeliveryModelIsDisplayedAndDoesNotContainFlexi_JobAgencyOnApprenticeDetailsScreen() => _providerStepsHelper.ValidateRegularDeliveryModelDisplayedOnChangesApprovedPage();
+
+        [Then(@"the Provider changes the Delivery Model from Regular to Flexi and sends back to employer to review")]
+        public void ThenTheProviderChangesTheDeliveryModelFromRegularToFlexiAndSendsBackToEmployerToReview() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval();
+
+
     }
 }

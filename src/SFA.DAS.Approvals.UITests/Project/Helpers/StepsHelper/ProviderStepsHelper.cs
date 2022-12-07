@@ -548,5 +548,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             Assert.IsTrue(_providerChangesApprovedPage.IsDeliveryModelDisplayed(), "Delivery Model is not displayed");
             Assert.AreEqual(expected, actual, $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
         }
+
+        public ProviderCohortApprovedPage ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
+        {
+            return GoToProviderHomePage()
+                .GoToApprenticeRequestsPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectEditApprentice()
+                .EnterUlnAndSave()
+                .ClickEditDeliveryModel()
+                .ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
+                .ClickSave()
+                .ValidateFlexiJobTagAndSubmitApprove();
+        }
     }
 }
