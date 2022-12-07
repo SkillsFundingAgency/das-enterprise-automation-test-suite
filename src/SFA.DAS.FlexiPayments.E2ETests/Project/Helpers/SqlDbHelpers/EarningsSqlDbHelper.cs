@@ -28,7 +28,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1], data[2]);
         }
 
-        public (string totalEarnings, string levyEarnings, string nonLevyEarnings) GetEarningsByFundingType(string ukprn)
+        public (string totalEarnings, string levyEarnings, string nonLevyEarnings) GetApprenticeshipIndicativeEarnings(string ukprn)
         {
             string totalEarnings, levyEarnings, nonLevyEarnings;
             totalEarnings = levyEarnings = nonLevyEarnings = "0.00";
