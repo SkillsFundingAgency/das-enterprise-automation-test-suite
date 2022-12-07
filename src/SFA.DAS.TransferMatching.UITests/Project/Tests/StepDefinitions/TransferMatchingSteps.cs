@@ -9,12 +9,12 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project;
 using Polly;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -27,14 +27,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
         private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
-        private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly AccountSignOutHelper _accountSignOutHelper;
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
-        private EmployerStepsHelper _employerStepsHelper;
-        private readonly UseTransferFundsPage _useTransferFundsPage;
+        private readonly RestartWebDriverHelper _helper;
+        private readonly string _tranferBaseUrl;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
@@ -46,9 +45,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
-            _tabHelper = context.Get<TabHelper>();
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _useTransferFundsPage = new UseTransferFundsPage(context);
+            _helper = new RestartWebDriverHelper(context);
+            _tranferBaseUrl = UrlConfig.EmployerApprenticeshipService_BaseUrl;
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
@@ -65,7 +63,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can view the task")]
         public void ThenTheLevyEmployerCanViewTheTask()
         {
-            SignOut();
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
 
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
@@ -75,7 +73,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Given(@"the another levy employer creates a pledge")]
         public void GivenTheAnotherLevyEmployerCreatesAPledge()
         {
-            SignOut();
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
 
             CreateATransferPledge(_context.GetUser<TransactorUser>());
         }
@@ -125,8 +123,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
         {
             UpdateOrganisationName(_receiver);
-            
-            SignOut();
+
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
 
             LoginAsReceiver(_context.Get<NonLevyUser>());
 
@@ -271,9 +269,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         public void SignOutAndGoToTransferMacthingApplyUrl()
         {
-            SignOut();
-
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
+            _helper.RestartWebDriver(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId), "TransferMatching");
         }
 
         public void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
@@ -284,14 +280,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_sender);
 
-            SignOut();
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
 
             LoginAsReceiver(_context.Get<NonLevyUser>());
 
             return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
 
-        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
 
         private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
         {
@@ -311,7 +307,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private TransferPledgePage GoToTransferPledgePageAsSender()
         {
-            SignOut();
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
 
             LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
@@ -322,7 +318,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private TransferPledgePage GoToTransferPledgePageAsReceiver()
         {
-            SignOut();
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
 
             UpdateOrganisationName(_sender);
 
@@ -339,7 +335,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
 
-        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() => 
+        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() =>
             NavigateToTransferMatchingPage()
             .GotoCreateTransfersPledgePage()
             .StartCreatePledge()
@@ -401,6 +397,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private void LoginAsReceiver(EasAccountUser login)
         {
+            _helper.RestartWebDriver(_tranferBaseUrl, "TransferMatching");
             _receiver = login.OrganisationName;
 
             _loginFromCreateAcccountPageHelper.Login(login, false);
