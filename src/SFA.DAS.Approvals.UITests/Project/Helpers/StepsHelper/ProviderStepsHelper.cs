@@ -535,5 +535,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectAddManually()
                     .SelectOptionAddToAnExistingCohort();
         }
+
+        public ProviderApprenticeshipIndicativeEarningsReportPage GoToApprenticeshipIndicativeEarningsReportPage() => GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
     }
 }

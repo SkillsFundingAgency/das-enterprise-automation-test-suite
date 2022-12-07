@@ -109,7 +109,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             }
         }
 
-        private List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
+        public List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
         {
             List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice = new();
 

@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_TR_03_TransfersApprovalJourney")]
-    public partial class FLP_TR_03_TransfersApprovalJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_TR_01_TransfersApprovalJourney")]
+    public partial class FLP_TR_01_TransfersApprovalJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_TR_03_TransfersApprovalJourney.feature"
+#line 1 "FLP_TR_01_TransfersApprovalJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/Transfer", "FLP_TR_03_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/Transfer", "FLP_TR_01_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all" +
-            " 3 parties")]
+        [NUnit.Framework.DescriptionAttribute("FLP_TR_01 Transfers - Creating Cohort and then approved by all 3 parties")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_TR_03Transfers_CreatingCohortRejectedBySenderAndThenApprovedByAll3Parties()
+        public void FLP_TR_01Transfers_CreatingCohortAndThenApprovedByAll3Parties()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "liveapprentice",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all" +
-                    " 3 parties", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_TR_01 Transfers - Creating Cohort and then approved by all 3 parties", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,41 +96,60 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN_Key",
+                            "training_code",
+                            "date_of_birth",
+                            "start_date_str",
+                            "duration_in_months",
+                            "agreed_price"});
+                table7.AddRow(new string[] {
+                            "1",
+                            "154",
+                            "2004/06/01",
+                            "2023/08/01",
+                            "12",
+                            "15000"});
+                table7.AddRow(new string[] {
+                            "2",
+                            "91",
+                            "2004/06/01",
+                            "2023/09/01",
+                            "12",
+                            "18000"});
 #line 7
- testRunner.Given("Receiver sends an approved cohort with 1 apprentices to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.When("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("Receiver sends an approved cohort with 2 apprentices to the provider with the fol" +
+                        "lowing details", ((string)(null)), table7, "Given ");
 #line hidden
 #line 11
- testRunner.And("Receiver edits and sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.And("the Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("Receiver sends a cohort to the provider for review and approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.And("Provider approves the cohort and sends to recevier for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
- testRunner.And("Receiver approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
  testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
- testRunner.Then("Verify a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN_Key",
+                            "is_pilot",
+                            "price_episode_from_date_str",
+                            "price_episode_to_date_str",
+                            "price_episode_cost"});
+                table8.AddRow(new string[] {
+                            "1",
+                            "false",
+                            "2023/08/01",
+                            "Null",
+                            "15000"});
+                table8.AddRow(new string[] {
+                            "2",
+                            "false",
+                            "2023/09/01",
+                            "Null",
+                            "18000"});
+#line 14
+ testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table8, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
