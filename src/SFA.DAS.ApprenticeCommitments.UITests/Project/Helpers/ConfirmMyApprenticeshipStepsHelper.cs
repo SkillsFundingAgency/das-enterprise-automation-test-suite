@@ -13,12 +13,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
     public class ConfirmMyApprenticeshipStepsHelper
     {
         private readonly ScenarioContext _context;
-        protected readonly ObjectContext _objectContext;
-        protected readonly RetryAssertHelper _assertHelper;
-        protected readonly ApprenticeCommitmentsSqlDbHelper _apprenticeCommitmentsSqlDbHelper;
-        protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
-        protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
-        protected readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+        private readonly ObjectContext _objectContext;
+        private readonly ApprenticeCommitmentsSqlDbHelper _apprenticeCommitmentsSqlDbHelper;
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
         private string expectedApprenticeshipName, expectedApprenticeshipLevel, actualDeliveryModel;
         private DateTime expectedApprenticeshipStartDate;
         private DateTime expectedApprenticeshipEndDate;
@@ -33,11 +30,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _assertHelper = context.Get<RetryAssertHelper>();
-            _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _apprenticeCommitmentsSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-            appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
         }
 
         public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndOverallApprenticeship(bool isRegularApp = true)

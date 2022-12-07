@@ -23,7 +23,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         private const string EmployerNameKey = "employername";
         private const string TrainingStartDateKey = "trainingstartdate";
         private const string TrainingEndDateKey = "trainingenddate";
-        private const string DeliveryModelKey = "deliverymodel";
         #endregion
 
         internal static void SetAccountId(this ObjectContext objectContext, long value) => objectContext.Replace(AccountIdKey, value);
@@ -62,6 +61,5 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerNameKey);
         public static string GetTrainingName(this ObjectContext objectContext) => objectContext.Get(TrainingNameKey);
         public static string GetTrainingStartDate(this ObjectContext objectContext) => objectContext.Get(TrainingStartDateKey);
-        public static string GetDeliveryModel(this ObjectContext objectContext) => objectContext.Get(DeliveryModelKey);
     }
 }

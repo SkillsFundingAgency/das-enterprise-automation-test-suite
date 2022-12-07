@@ -13,13 +13,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"the apprentice creates the CMAD account")]
-        public void ThenTheApprenticeCreatesTheCMADAccount() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
+        public void TheApprenticeCreatesTheCMADAccount() => ApprenticeCreatesTheCMADAccount();
 
         [Then(@"the apprentice creates their CMAD account")]
-        public void ThenTheApprenticeCreatesTheirCMADAccount()
-        {
-            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOnHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
-        }
+        public void ThenTheApprenticeCreatesTheirCMADAccount() => ApprenticeCreatesTheCMADAccount().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
 
         [Given(@"an apprentice has created and validated the account")]
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
@@ -58,8 +55,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice can create account and confirm their details")]
         public void ThenTheApprenticeCanCreateAccountAndConfirmTheirDetails()
         {
-            createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
+            ConfirmIdentityAndGoToApprenticeHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
+
             confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship();
         }
+
+        private ApprenticeHomePage ApprenticeCreatesTheCMADAccount() => ConfirmIdentityAndGoToApprenticeHomePage().VerifyDashboardCMADSectionWhenInCompleteOnHomePage();
+
+        private ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage() => createAccountStepsHelper.ConfirmIdentityAndGoToApprenticeHomePage();
     }
 }

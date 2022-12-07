@@ -135,8 +135,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice confirms all the sections and the overall (Regular|Portable) apprenticeship")]
         public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship(string appType)
         {
-            //_apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
-
             bool isRegularApp = appType.CompareToIgnoreCase("Regular");
 
             new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
