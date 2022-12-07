@@ -296,7 +296,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(expectedApprenticeshipName), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
             Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
             Assert.AreEqual(expectedApprenticeshipStartDate.ToString("MMMM yyyy"), actualApprenticeshipStartDate);
-            Assert.IsNotNull(actualEsimatedDurationInfo);
         }
 
         private void AssertFlexijobApprenticeshipDetails()
