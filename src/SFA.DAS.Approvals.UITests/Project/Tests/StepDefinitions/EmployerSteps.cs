@@ -94,7 +94,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer approves the cohort")]
         public void EmployerApprovesTheCohort() => _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
 
-
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft() => _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
 
@@ -179,7 +178,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();     
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
+
+        [Then(@"employer validates apprentice is Flexi-job and can edit Delivery Model")]
+        public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel() => _employerStepsHelper.EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable();
+
+        [Then(@"the Employer changes the Delivery Model from Regular to Flexi and sends back to provider to review")]
+        public void ThenTheEmployerChangesTheDeliveryModelFromRegularToFlexiAndSendsBackToProviderToReview() => _employerStepsHelper.EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval();
 
         private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition) 
             => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);

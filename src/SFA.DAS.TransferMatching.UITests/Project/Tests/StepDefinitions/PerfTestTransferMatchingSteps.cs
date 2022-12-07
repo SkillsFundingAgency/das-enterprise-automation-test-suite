@@ -20,7 +20,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"an employer can apply for '(.*)' pledge")]
         public void ThenAnEmployerCanApplyTimesForGXWBWPledge(string pledgeId)
         {
-            new EmployerLoginFromCreateAcccountPageHelper(_context).Login(_context.GetUser<NonLevyUser>(), false);
+            new CreateAccountEmployerPortalLoginHelper(_context).Login(_context.GetUser<NonLevyUser>(), false);
 
             _context.Get<ObjectContext>().SetPledgeDetail(pledgeId);
 

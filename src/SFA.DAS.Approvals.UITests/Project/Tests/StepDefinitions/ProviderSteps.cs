@@ -10,9 +10,6 @@ using NUnit.Framework;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -60,10 +57,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider opts (.*) learner into the pilot")]
         public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, true);
 
-        [Given(@"the provider adds Ulns and opts the learners out of the pilot")]
-        [When(@"the provider adds Ulns and opts the learners out of the pilot")]
-        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
-
         [When(@"the provider opts (.*) learner out of the pilot")]
         public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, false);
 
@@ -87,20 +80,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         
         [When(@"the provider adds Ulns")]
         public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice(true);
-
-        [Given(@"the provider adds Ulns and Opt the learners into the pilot")]
-        [When(@"the provider adds Ulns and Opt the learners into the pilot")]
-        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
-
-        [Given(@"the provider adds Uln and Opt learner (.*) into the pilot")]
-        public void GivenTheProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
-
-        [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
-        public void GivenTheProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
-
-        [When(@"Provider successfully approves the cohort")]
-        [Then(@"Provider successfully approves the cohort")]
-        public void ThenProviderApprovesTheCohort() => _providerApproveApprenticeDetailsPage.SubmitApprove();
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
         public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoA_ExistingCohort(int numberOfApprentices)
@@ -205,8 +184,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SubmitValidTrainingDetails();
         }
 
-        [Given(@"provider logs in to review the cohort")]
-        public void GivenProviderLogsInToReviewTheCohort() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.CurrentCohortDetails();
+        [Then(@"the provider validates flexi-job content and approves cohort")]
+        public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+
+        [When(@"the provider adds an apprentice on the Regular Delivery Model and sends to Employer for approval")]
+        public void WhenTheProviderAddsAnApprenticeOnTheRegularDeliveryModelAndSendsToEmployerForApproval() => _providerStepsHelper.AddApprenticeAndSelectRegularDeliveryModel();
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
     }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.ProviderFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TR_02_TransfersApprovalJourney")]
-    public partial class TR_02_TransfersApprovalJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_AIER_01_ValidateEarnings")]
+    public partial class FLP_AIER_01_ValidateEarningsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "TR_02_TransfersApprovalJourney.feature"
+#line 1 "FLP_AIER_01_ValidateEarnings.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_02_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ProviderFeatures", "FLP_AIER_01_ValidateEarnings", "This test will be enabled when FLP-165 is dev\'d and ready to merge. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,27 +74,19 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TR_02 Transfers - Creating Cohort and approve by all 3 parties and second approva" +
-            "l by provider")]
+        [NUnit.Framework.DescriptionAttribute("FLP_AIER_01 Validate Apps indicative earnings report")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
-        [NUnit.Framework.CategoryAttribute("transfers")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
-        [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
-        public void TR_02Transfers_CreatingCohortAndApproveByAll3PartiesAndSecondApprovalByProvider()
+        [NUnit.Framework.CategoryAttribute("flexi-payments")]
+        public void FLP_AIER_01ValidateAppsIndicativeEarningsReport()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "regression",
-                    "approvals",
-                    "transfers",
-                    "liveapprentice",
-                    "addtransferslevyfunds",
-                    "addsecondlevyfunds"};
+                    "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_02 Transfers - Creating Cohort and approve by all 3 parties and second approva" +
-                    "l by provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_AIER_01 Validate Apps indicative earnings report", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -105,31 +97,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 10
- testRunner.Given("We have two Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the provider logs into their account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.And("First is a Sender connected to Second as a Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("provider is on Apprenticeship indicative earnings report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.When("Receiver Second sends approved cohort using transfer funds from Sender First with" +
-                        " 2 apprentices to the provider for review and approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 13
- testRunner.And("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.Then("\'Transfer request received\' task link is displayed under Tasks pane for the Sende" +
-                        "r First account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.When("Sender First approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
- testRunner.Then("No \'Transfer request received\' task link is displayed under Tasks pane for the Se" +
-                        "nder First account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 17
- testRunner.And("Receiver Second has a new live apprenticeship record created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("validate correct earnings numbers are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

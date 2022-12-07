@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,29 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TR_04_02_TransfersConnectionJourney")]
-    public partial class TR_04_02_TransfersConnectionJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class FJAA_E2E_04_Emp_Pre_ApprovalEmployerChnagesDMFromRegularToFlexiFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "approvals"};
         
-#line 1 "TR_04_02_TransfersConnectionJourney.feature"
+#line 1 "FJAA_E2E_04_Emp_Pre-ApprovalEmployerChangesDMFromRegularToFlexi.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TR_04_02_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi", @"In this test, a Training Provider,logs in to their account. 
+Training Provider adds an apprentice details and selects 'Regular' as delivery model,
+and submits apprentice details for flexi employer to review.
+Flexi Employer logs into their account, finds the cohort.
+Flexi Employer then changes DM from Regular to Flexi 
+and sends back to Provider for Approval.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,27 +81,19 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TR_04_02 Transfers - Sucessfully create Transfer Connection from existing Receive" +
-            "r to existing Sender Account")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
-        [NUnit.Framework.CategoryAttribute("transfers")]
-        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
-        [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("addthirdlevyfunds")]
-        public void TR_04_02Transfers_SucessfullyCreateTransferConnectionFromExistingReceiverToExistingSenderAccount()
+        [NUnit.Framework.CategoryAttribute("flexi-job")]
+        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        public void FJAA_E2E_04_Emp_Pre_ApprovalEmployerChnagesDMFromRegularToFlexi()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "approvals",
-                    "transfers",
-                    "addtransferslevyfunds",
-                    "addsecondlevyfunds",
-                    "addthirdlevyfunds"};
+                    "flexi-job",
+                    "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_02 Transfers - Sucessfully create Transfer Connection from existing Receive" +
-                    "r to existing Sender Account", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,22 +103,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
- testRunner.Given("We have three Employer accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
+                        "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
- testRunner.And("First is a Sender connected to Second as a Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
- testRunner.And("Third is a Sender connected to First as a Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.And("the provider adds an apprentice on the Regular Delivery Model and sends to Employ" +
+                        "er for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
- testRunner.When("Second account creates transfer request to Third account and Third account accept" +
-                        "s the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
+ testRunner.Then("the Employer changes the Delivery Model from Regular to Flexi and sends back to p" +
+                        "rovider to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
- testRunner.Then("A transfer connection is established successfully between Second account as Sende" +
-                        "r and Third account as Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+ testRunner.And("the provider validates flexi-job content and approves cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

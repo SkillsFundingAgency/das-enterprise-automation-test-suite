@@ -1,6 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -22,16 +25,24 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         protected WebElementInteractionHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
-        protected IWebElement GetElementByText(By locator, string expectedvalue) => GetElementByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
+        public List<IWebElement> GetElementsByText(By locator, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
 
-        protected IWebElement GetElementByAttribute(By locator, string attribute, string expectedvalue) => GetElementByAttribute(locator, expectedvalue, (IWebElement e) => e.GetAttribute(attribute));
+        protected IWebElement GetElementByText(By locator, string expectedvalue) => GetElementsByText(locator, expectedvalue).FirstOrDefault();
 
-        protected IWebElement GetElementByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
+        protected IWebElement GetElementByAttribute(By locator, string attribute, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.GetAttribute(attribute)).FirstOrDefault();
+
+        private List<IWebElement> GetElementsByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
         {
-            foreach (var e in _webDriver.FindElements(locator)) if (actualValue(e).Contains(expectedvalue)) return e;
+            List<IWebElement> elements = new();
 
-            return null;
+            foreach (var e in _webDriver.FindElements(locator))
+            {
+                if (actualValue(e).Contains(expectedvalue)) elements.Add(e);
+            }
+
+            return elements;
         }
+
 
         protected SelectElement SelectElement(IWebElement element) => new SelectElement(element);
 
