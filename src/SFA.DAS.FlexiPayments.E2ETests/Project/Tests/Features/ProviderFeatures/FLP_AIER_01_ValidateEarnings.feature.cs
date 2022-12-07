@@ -75,13 +75,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.ProviderFeatures
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FLP_AIER_01 Validate Apps indicative earnings report")]
-        [NUnit.Framework.CategoryAttribute("ignoreinpp")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
         public void FLP_AIER_01ValidateAppsIndicativeEarningsReport()
         {
             string[] tagsOfScenario = new string[] {
-                    "ignoreinpp",
+                    "ignore",
                     "regression",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
