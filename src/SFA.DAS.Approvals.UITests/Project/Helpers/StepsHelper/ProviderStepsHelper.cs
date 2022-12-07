@@ -28,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
         private ProviderEditApprenticePersonalDetailsPage _providerEditApprenticeDetailsPage;
         private ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage;
+        private ProviderChangesApprovedPage _providerChangesApprovedPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -537,5 +538,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public ProviderApprenticeshipIndicativeEarningsReportPage GoToApprenticeshipIndicativeEarningsReportPage() => GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
+
+        public void ValidateRegularDeliveryModelDisplayedOnChangesApprovedPage()
+        {
+            _providerChangesApprovedPage = new ProviderChangesApprovedPage(_context);
+            string expected = "Regular";
+            string actual = _providerChangesApprovedPage.GetDeliveryModel();
+
+            Assert.IsTrue(_providerChangesApprovedPage.IsDeliveryModelDisplayed(), "Delivery Model is not displayed");
+            Assert.AreEqual(expected, actual, $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+        }
     }
 }

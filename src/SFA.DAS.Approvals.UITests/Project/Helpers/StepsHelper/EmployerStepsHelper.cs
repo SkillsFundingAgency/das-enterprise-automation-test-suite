@@ -254,6 +254,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         }
 
+        public ApprenticeDetailsPage EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickManageYourApprenticesLink()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickEditApprenticeDetailsLink()
+                  .ClickEditDeliveryModelLink()
+                  .EmployerSelectRegularDeliveryModelAndContinue()
+                  .ClickUpdateDetailsButtonAfterChange()
+                  .AcceptChangesAndSubmit();
+        }
+
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();

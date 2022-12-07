@@ -191,5 +191,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderAddsAnApprenticeOnTheRegularDeliveryModelAndSendsToEmployerForApproval() => _providerStepsHelper.AddApprenticeAndSelectRegularDeliveryModel();
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
+
+        [Then(@"the provider validates Delivery Model is displayed and does not contain Flexi-Job agency on Apprentice Details Screen")]
+        public void ThenTheProviderValidatesDeliveryModelIsDisplayedAndDoesNotContainFlexi_JobAgencyOnApprenticeDetailsScreen() => _providerStepsHelper.ValidateRegularDeliveryModelDisplayedOnChangesApprovedPage();
     }
 }

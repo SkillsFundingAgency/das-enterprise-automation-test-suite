@@ -24,6 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditContinueButtonTrainingDetailsPage => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
+        private By EditDeliveryModelLink => By.CssSelector("button[name='ChangeDeliveryModel']");
 
         public EditApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
@@ -118,5 +119,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(context);
+
+        public SelectDeliveryModelPage ClickEditDeliveryModelLink()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new SelectDeliveryModelPage(context);
+        }
+
+        public ConfirmChangesPage ClickUpdateDetailsButtonAfterChange()
+        {
+            formCompletionHelper.ClickElement(UpdateDetailsButton);
+            return new ConfirmChangesPage(context);
+        }
     }
 }

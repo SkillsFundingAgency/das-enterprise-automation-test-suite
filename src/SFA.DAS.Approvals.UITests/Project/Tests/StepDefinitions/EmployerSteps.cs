@@ -190,5 +190,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);
 
         public void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
+
+        [When(@"the employer edits apprentice delivery model to Regular in Post Approvals and Submits changes")]
+        public void WhenTheEmployerEditsApprenticeDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _employerStepsHelper.EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
     }
 }
