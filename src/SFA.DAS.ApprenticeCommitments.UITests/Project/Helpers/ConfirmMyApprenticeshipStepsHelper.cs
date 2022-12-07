@@ -175,7 +175,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyPortableApprenticeshipDataDisplayed(ConfirmYourPortableApprenticeshipDetailsPage confirmYourPortableApprenticeshipDetailsPage)
         {
-            PopulateExpectedJobEndDateForPortableApprenticeship();
+            PopulateExpectedPortableJobApprenticeshipDetails();
 
             actualDeliveryModel = confirmYourPortableApprenticeshipDetailsPage.GetDeliveryModelInfo();
             actualApprenticeshipName = confirmYourPortableApprenticeshipDetailsPage.GetApprenticeshipInfo();
@@ -189,7 +189,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public void VerifyFlexijobApprenticeshipDataDisplayed(ConfirmYourFlexiJobApprenticeshipDetailsPage confirmYourApprenticeshipDetailsPage)
         {
-            PopulateExpectedFlexijobApprenticeshipDetails();
+            PopulateExpectedFlexiJobApprenticeshipDetails();
             actualDeliveryModel = confirmYourApprenticeshipDetailsPage.GetDeliveryModelInfo();
             actualApprenticeshipName = confirmYourApprenticeshipDetailsPage.GetApprenticeshipInfo();
             actualApprenticeshipLevel = confirmYourApprenticeshipDetailsPage.GetApprenticeshipLevelInfo();
@@ -269,7 +269,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             expectedApprenticeshipStartDate = GetApprenticeshipStartDate();
         }
 
-        private void PopulateExpectedFlexijobApprenticeshipDetails()
+        private void PopulateExpectedFlexiJobApprenticeshipDetails()
         {
             PopulateExpectedApprenticeshipDetails();
 
@@ -284,9 +284,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private DateTime GetApprenticeshipStartDate() => DateTime.Parse(_objectContext.GetTrainingStartDate());
 
-        private void PopulateExpectedJobEndDateForPortableApprenticeship()
+        private void PopulateExpectedPortableJobApprenticeshipDetails()
         {
             PopulateExpectedApprenticeshipDetails();
+
             expectedJobEndDate = DateTime.Parse(_apprenticeCommitmentsSqlDbHelper.GetEmploymentEndDateFromRegistration(GetApprenticeEmail()));
         }
 
