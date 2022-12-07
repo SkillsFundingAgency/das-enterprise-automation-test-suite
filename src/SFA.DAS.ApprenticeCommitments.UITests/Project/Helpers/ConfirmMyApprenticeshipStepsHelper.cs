@@ -300,13 +300,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
         private void AssertFlexijobApprenticeshipDetails()
-        {
-            string expectedDeliveryModel = "Flexi-job Agency";
-            Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(expectedApprenticeshipName), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
-            Assert.AreEqual(expectedDeliveryModel, actualDeliveryModel);
-            Assert.AreEqual(expectedApprenticeshipLevel, actualApprenticeshipLevel);
-            Assert.AreEqual(actualApprenticeshipStartDate, expectedApprenticeshipStartDate.ToString("MMMM yyyy"));
-            Assert.IsNotNull(actualEsimatedDurationInfo);
+        {            
+            Assert.AreEqual("Flexi-job Agency", actualDeliveryModel);
+            
+            AssertApprenticeshipDetails();
         }
 
         private void AssertApprenticeshipDetailsForPortableApprenticeship()
