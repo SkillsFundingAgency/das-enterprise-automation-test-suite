@@ -8,14 +8,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ConfirmYourDetailsBasePage : ApprenticeCommitmentsBasePage
     {
-        private By DeliveryModelInfo => By.XPath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[1]/td");
         private static By ApprenticeshipInfo => By.XPath("//th[text()='Apprenticeship']/following-sibling::td");
-        private By LevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
         private static By EstimatedDurationInfo => By.XPath("//th[text()='Estimated duration']/following-sibling::td");
-        private By EstimatedDurationInfoFlexiJob => By.XPath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[5]/td");
-        private By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date for training']/following-sibling::td");
-        private By JobEndDate => By.XPath("//th[text()='Job end date']/following-sibling::td");
-        private By PlannedStartDateInfoFlexiJob => By.XPath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[4]/td");
+        private static By EstimatedDurationInfoFlexiJob => By.XPath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[5]/td");
+        private static By JobEndDate => By.XPath("//th[text()='Job end date']/following-sibling::td");
+        private static By PlannedStartDateInfoFlexiJob => By.XPath("//*[@id=\"main-content\"]/div/div/table/tbody/tr[4]/td");
         protected static By GreenTickText => By.CssSelector(".app-notification-banner");
         protected static By EmployerHelpSectionLink => By.XPath("//span[@class='govuk-details__summary-text' and contains(text(),\"Help if you do not recognise your employer's name\")]");
         protected By EmployerHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetEmployerName()} is your employer's legal name registered with Companies House.  You may know them by their trading name instead.\")]");
@@ -73,18 +70,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(GreenTickText, "You can now change your answer");
         }
 
-        public string GetDeliveryModelInfo() => pageInteractionHelper.GetText(DeliveryModelInfo);
-
         public string GetApprenticeshipInfo() => pageInteractionHelper.GetText(ApprenticeshipInfo);
-
-        public string GetApprenticeshipLevelInfo() => pageInteractionHelper.GetText(LevelInfo);
 
         public string GetApprenticeshipEstimatedDurationInfo() => pageInteractionHelper.GetText(EstimatedDurationInfo);
 
         public string GetFlexiJobApprenticeshipEstimatedDurationInfo() => pageInteractionHelper.GetText(EstimatedDurationInfoFlexiJob);
         public string GetPortableApprenticeshipPlannedJobEndDateInfo() => pageInteractionHelper.GetText(JobEndDate);
-
-        public string GetApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfo);
 
         public string GetFlexiJobApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfoFlexiJob);
 
