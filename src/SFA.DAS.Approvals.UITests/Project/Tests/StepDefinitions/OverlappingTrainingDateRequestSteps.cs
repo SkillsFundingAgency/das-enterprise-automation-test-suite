@@ -17,7 +17,6 @@ using TechTalk.SpecFlow.Assist;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System.Linq;
-using Polly;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -80,15 +79,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .ProviderSelectsAStandard()
                .SubmitValidPersonalDetails()
                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
-            /*_providerStepsHelper.NavigateToProviderHomePage()
-                                .GotoSelectJourneyPage()
-                                .SelectAddManually()
-                                .SelectOptionCreateNewCohort()
-                                .ChooseAnEmployer("Levy")
-                                .ConfirmEmployer()
-                                .ProviderSelectsAStandard()
-                                .SubmitValidPersonalDetails()
-                                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();*/
         }
 
         [When(@"provider selects to contact the employer themselves")]
@@ -110,7 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Vaidate information is not stored in database")]
         public void ThenVaidateNotInformationIsStoredInDatabase()
         {
-            var uln = _objectContext.GetUlnForOLTD();
+            var uln = GetUlnForOLTD();
             var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
             Assert.AreEqual(1, numberOfApprenticesWithUln);
         }
@@ -214,7 +204,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Vaidate information is stored in database")]
         public void ThenVaidateInformationIsStoredInDatabase()
         {
-            var uln = _objectContext.GetUlnForOLTD();
+            var uln = GetUlnForOLTD();
             var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
@@ -222,7 +212,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider selects to edit the price")]
         public void WhenProviderSelectsToEditThePrice()
         {
-            var oldCost = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var oldCost = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             _oldCost = int.Parse(oldCost);
             new ProviderApproveApprenticeDetailsPage(_context)
                 .SelectEditApprentice()
@@ -242,7 +232,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Vaidate price update information is not stored in database")]
         public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
         {
-            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
         }
@@ -291,7 +281,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
         public void ThenOverlappingTrainingDateRequestIsResolvedInDatabaseWithStatusAndResolutionType(int status, int resolutionType)
         {
-          var result =  _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(_objectContext.GetUlnForOLTD());
+          var result =  _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(GetUlnForOLTD());
             Assert.AreEqual(resolutionType, result.resolutionType);
             Assert.AreEqual(status, result.status);
         }
@@ -410,6 +400,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
+            
             apprenticeDetailsPage
                 .ClickEndDateLink()
                 .EditEndDate(threeMonthOldStartDate.Month.ToString(), threeMonthOldStartDate.Year.ToString());
@@ -421,39 +412,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
             var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
-            _objectContext.UpdateCohortReference(draftApprenticeshipCohortRef);
+            _cohortReferenceHelper.UpdateCohortReference(draftApprenticeshipCohortRef);
 
             new ProviderApprenticeRequestsPage(_context, true)
                .GoToDraftCohorts()
                .SelectViewCurrentCohortDetails();
 
-            _objectContext.UpdateCohortReference(previousApprenticeshipCohortReference);
+            _cohortReferenceHelper.UpdateCohortReference(previousApprenticeshipCohortReference);
         }
-    
-
-        [When(@"provider overlapping training date banner is not displayed")]
-        [Then(@"provider overlapping training date banner is not displayed")]
-        public void WhenOverlappingTrainingDateBannerIsNotDisplayed()
-        {
-            throw new PendingStepException();
-        }
-
 
         [Then(@"information is saved in the cohort")]
         public void ThenInformationIsSavedInTheCohort()
         {
-            var uln = _objectContext.GetUlnForOLTD();
-            var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
+            var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(GetUlnForOLTD());
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
 
         [Then(@"price update information is not stored in the cohort")]
         public void ThenPriceUpdateInformationIsNotStoredInTheCohort()
         {
-            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
         }
+
+        private string GetUlnForOLTD() => _objectContext.GetUlnForOLTD();
 
         private void VerifyOverlappingTrainingDetailsError(Table table, AddAndEditApprenticeDetailsBasePage page)
         {
