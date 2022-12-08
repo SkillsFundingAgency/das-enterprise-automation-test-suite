@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi")]
+    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class FJAA_E2E_04_Emp_Pre_ApprovalEmployerChnagesDMFromRegularToFlexiFeature
+    public partial class FJAA_E2E_04_Employer_Pre_ApprovalEmployerChangesDMFromRegularToFlexiFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "FJAA_E2E_04_Emp_Pre-ApprovalEmployerChangesDMFromRegularToFlexi.feature"
+#line 1 "FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi", @"In this test, a Training Provider,logs in to their account. 
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi", @"In this test, a Training Provider,logs in to their account. 
 Training Provider adds an apprentice details and selects 'Regular' as delivery model,
 and submits apprentice details for flexi employer to review.
 Flexi Employer logs into their account, finds the cohort.
@@ -81,18 +81,18 @@ and sends back to Provider for Approval.", ProgrammingLanguage.CSharp, featureTa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-job")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public void FJAA_E2E_04_Emp_Pre_ApprovalEmployerChnagesDMFromRegularToFlexi()
+        public void FJAA_E2E_04_Employer_Pre_ApprovalEmployerChangesDMFromRegularToFlexi()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-job",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_04_Emp_Pre-ApprovalEmployerChnagesDMFromRegularToFlexi", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

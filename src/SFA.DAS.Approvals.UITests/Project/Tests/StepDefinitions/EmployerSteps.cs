@@ -197,5 +197,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer validates Flexi-Job content and approves")]
         public void ThenTheEmployerValidatesFlexi_JobContentAndApproves() => _employerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
 
+        [Then(@"the employer confirms Delivery Model is displayed as ""([^""]*)"" on Apprentice Details and Edit Apprentice screens")]
+        public void ThenTheEmployerConfirmsDeliveryModelIsDisplayedAsOnApprenticeDetailsAndEditApprenticeScreens(string deliveryModel) => _employerStepsHelper.ValidateDeliveryModelDisplayedInDMSections(deliveryModel);
+
+        [Then(@"the employer confirms Delivery Model is not displayed on Apprentice Details Screen")]
+        public void ThenTheEmployerConfirmsDeliveryModelIsNotDisplayedOnApprenticeDetailsScreen() => _employerStepsHelper.ValidateDeliveryModelNotDisplayed();
     }
 }

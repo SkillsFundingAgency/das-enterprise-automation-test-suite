@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegular")]
+    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegular")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegularFeature
+    public partial class FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegularFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,14 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegular.feature"
+#line 1 "FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegular.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegular", @"In this test, an FJAA Employer logs into their account and navigates to the 'Manage your apprentices' page. 
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegular", @"In this test, an FJAA Employer logs into their account and navigates to the 'Manage your apprentices' page. 
 Employer then edits an apprentice record changing DM from Flexi to Regular
 and submits changes for approval.
 Training Provider then views changes and approves, later verifying that changes have been saved.", ProgrammingLanguage.CSharp, featureTags);
@@ -79,18 +79,18 @@ Training Provider then views changes and approves, later verifying that changes 
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegular")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegular")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-job")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public void FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegular()
+        public void FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegular()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-job",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_05_EmpPostApprovalEmployerChangesDMFromFlexiToRegular", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_05_Employer_PostApprovalEmployerChangesDMFromFlexiToRegular", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -127,8 +127,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 20
- testRunner.And("the provider validates Delivery Model is displayed and does not contain Flexi-Job" +
-                        " agency on Apprentice Details Screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider confirms Delivery Model is displayed as \"Regular\" on Apprentice Deta" +
+                        "ils and Edit Apprentice screens", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 21
+ testRunner.And("the employer confirms Delivery Model is displayed as \"Regular\" on Apprentice Deta" +
+                        "ils and Edit Apprentice screens", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

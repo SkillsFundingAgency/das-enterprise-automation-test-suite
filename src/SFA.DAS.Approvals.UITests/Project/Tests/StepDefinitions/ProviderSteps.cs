@@ -192,12 +192,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
 
-        [Then(@"the provider validates Delivery Model is displayed and does not contain Flexi-Job agency on Apprentice Details Screen")]
-        public void ThenTheProviderValidatesDeliveryModelIsDisplayedAndDoesNotContainFlexi_JobAgencyOnApprenticeDetailsScreen() => _providerStepsHelper.ValidateRegularDeliveryModelDisplayedOnChangesApprovedPage();
+        [Then(@"the provider confirms Delivery Model is displayed as ""([^""]*)"" on Apprentice Details and Edit Apprentice screens")]
+        public void ThenTheProviderConfirmsDeliveryModelIsDisplayedAsOnApprenticeDetailsAndEditApprenticeScreens(string deliveryModel) => _providerStepsHelper.ValidateDeliveryModelDisplayedInDMSections(deliveryModel);
 
         [Then(@"the Provider changes the Delivery Model from Regular to Flexi and sends back to employer to review")]
         public void ThenTheProviderChangesTheDeliveryModelFromRegularToFlexiAndSendsBackToEmployerToReview() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval();
 
-
+        [When(@"the Provider edits the Delivery Model to Regular in Post Approvals and submits changes")]
+        public void WhenTheProviderEditsTheDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
     }
 }

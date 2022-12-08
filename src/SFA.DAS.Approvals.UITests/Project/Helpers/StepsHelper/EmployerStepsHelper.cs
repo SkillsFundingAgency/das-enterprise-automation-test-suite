@@ -286,8 +286,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .ClickApprenticeRequestsLink()
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
-                  .ValidateFlexiJobTagAndApprove();
-                  
+                  .ValidateFlexiJobTagAndApprove();         
+        }
+
+        public EditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelDisplayed(deliveryModel)
+                .ClickEditApprenticeDetailsLink()
+                .ValidateDeliveryModelDisplayed(deliveryModel);
+        }
+
+        public ApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelNotDisplayed();
         }
     }
 }

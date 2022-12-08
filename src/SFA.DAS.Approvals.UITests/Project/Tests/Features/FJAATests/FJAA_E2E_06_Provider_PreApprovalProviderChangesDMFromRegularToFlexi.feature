@@ -1,5 +1,5 @@
 ﻿@approvals
-Feature: FJAA_E2E_06_Pro_PreApprovalProviderChangesDMFromRegularToFlexi
+Feature: FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi
 
 In this test, an FJAA Employer,logs in to their account. 
 Employer adds apprentice details and selects 'Regular' as delivery model,
@@ -11,7 +11,7 @@ and sends back to Employer for Approval.
 @regression
 @flexi-job
 @e2escenarios
-Scenario: FJAA_E2E_06_Pro_PreApprovalProviderChangesDMFromRegularToFlexi
+Scenario: FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When employer selects Regular radio button on Select Delivery Model screen
 	Then validate Regular content on Add Apprentice Details page and submit valid details

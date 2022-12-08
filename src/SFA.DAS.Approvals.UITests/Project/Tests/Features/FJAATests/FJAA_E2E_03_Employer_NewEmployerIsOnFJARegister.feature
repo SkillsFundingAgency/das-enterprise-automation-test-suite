@@ -1,5 +1,5 @@
 ﻿@approvals
-Feature: FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister
+Feature: FJAA_E2E_03_Employer_HappyPath_NewEmployerIsOnFJARegister
 
 In this test, a Training Provider,logs in to their account. 
 Training Provider adds an apprentice details and selects 'Flexi-job agency' as delivery model,
@@ -10,7 +10,8 @@ Validates Flexi-job tag on the apprenticeship and can edit the DM.
 @regression
 @flexi-job
 @e2escenarios
-Scenario: FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister
+Scenario: FJAA_E2E_03_Employer_HappyPath_NewEmployerIsOnFJARegister
+Then User should be able to add or edit apprentice details on any cohort
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When the Employer create a cohort and send to provider to add apprentices
 	And the provider selects Flexi-job agency radio button on Select Delivery Model screen 

@@ -23,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ViewDetailsLink => By.LinkText("View details");
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
+        private By DeliveryModel => By.Id("apprentice-deliverymodel");
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
@@ -37,6 +38,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             ClickEditApprenticeDetailsLink();
             return new ProviderEditApprenticeCoursePage(context);
         }
+
+        public ProviderEditApprenticeDetailsPage ClickEditApprenticeLink()
+        {
+            ClickEditApprenticeDetailsLink();
+            return new ProviderEditApprenticeDetailsPage(context);
+        }
+
 
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
         {
@@ -108,5 +116,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
 
         private void ClickEditApprenticeDetailsLink() => formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+
+        public ProviderApprenticeDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        {
+            string expected = deliveryModel;
+            string actual = GetDeliveryModel();
+            Assert.IsTrue(actual.Contains(expected), $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+            return this;
+        }
+
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModel);
     }
 }
