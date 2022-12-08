@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.Transfer
+namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_TR_03_TransfersApprovalJourney")]
-    public partial class FLP_TR_03_TransfersApprovalJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice")]
+    public partial class AC_E2E_04_VerifyCmadPotalContentForFlexijobApprenticeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_TR_03_TransfersApprovalJourney.feature"
+#line 1 "AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/Transfer", "FLP_TR_03_TransfersApprovalJourney", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2E", "AC_E2E_04_VerifyCmadPotalContentForFlexijobApprentice", "This test verifies the content of the CMAD account for a Flexijob apprentice", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,21 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all" +
-            " 3 parties")]
+        [NUnit.Framework.DescriptionAttribute("AC_E2E_04_VerifyCmadPortalContentForFlexijobApprentice")]
+        [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_TR_03Transfers_CreatingCohortRejectedBySenderAndThenApprovedByAll3Parties()
+        [NUnit.Framework.CategoryAttribute("flexi-job")]
+        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        public void AC_E2E_04_VerifyCmadPortalContentForFlexijobApprentice()
         {
             string[] tagsOfScenario = new string[] {
+                    "apprenticecommitments",
                     "regression",
-                    "liveapprentice",
-                    "flexi-payments"};
+                    "flexi-job",
+                    "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_TR_03 Transfers - Creating Cohort rejected by Sender and then approved by all" +
-                    " 3 parties", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_04_VerifyCmadPortalContentForFlexijobApprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,41 +98,30 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("Receiver sends an approved cohort with 1 apprentices to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.When("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 10
- testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
+                        "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.And("Receiver edits and sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("employer selects Flexi-job agency radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.And("the Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("validate Flexi-job agency content on Add Apprentice Details page and submit valid" +
+                        " details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate Flexi-job agency tag on Approve Apprectice Details page then notify Prov" +
+                        "ider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("Receiver sends a cohort to the provider for review and approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider validates Flexi-job content, adds Uln and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("Provider approves the cohort and sends to recevier for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprentice creates their CMAD account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("Receiver approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
- testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
- testRunner.Then("Verify a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the apprentice can navigate to CMAD Details confirmation page and confirm their a" +
+                        "pprenticeship is flexijob", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -20,6 +20,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly TransfersUser _transfersUser;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly FlexiPaymentsSteps _flexiPaymentsSteps;
 
         private readonly string _sender;
         private readonly string _receiver;
@@ -35,6 +36,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
+            _flexiPaymentsSteps = new FlexiPaymentsSteps(context);
         }
 
         [Given(@"Receiver sends an approved cohort with (.*) apprentices to the provider")]
@@ -46,6 +48,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
+
+        [Given(@"Receiver sends an approved cohort with (.*) apprentices to the provider with the following details")]
+        public void GivenReceiverSendsAnApprovedCohortWithApprenticesToTheProviderWithTheFollowingDetails(int numberOfApprentices, Table table)
+        {
+            LoginAsReceiver();
+
+            _flexiPaymentsSteps.ReadApprenticeData(table);
+
+            var cohortReference = _transferEmployerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
+
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
+        }
+
 
         [When(@"Sender rejects the cohort")]
         public void WhenSenderRejectsTheCohort()
