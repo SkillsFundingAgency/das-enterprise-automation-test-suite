@@ -15,7 +15,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
 
-        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) { 
+        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context)
+        {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
         }
@@ -41,7 +42,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete, isRegularApp: true);
 
         [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
         public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);
@@ -134,11 +135,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice confirms all the sections and the overall (Regular|Portable) apprenticeship")]
         public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship(string appType)
         {
-            bool isRegularApp = appType.CompareToIgnoreCase("Regular");
-
             new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
 
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship(isRegularApp).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship(IsRegularApp(appType)).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
 
             _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection6Status(OverviewPageHelper.Complete);
 
@@ -152,14 +151,19 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
+        [Then(@"the apprentice can navigate to CMAD Details confirmation page and confirm their apprenticeship is flexijob")]
+        public void ThenTheApprenticeCanNavigateToCMADDetailsConfirmationPageAndConfirmTheirApprenticeshipIsFlexijob()
+        {
+            confirmMyApprenticeshipStepsHelper.NavigateAndVerifyFlexijobApprenticeshipDetails();
+        }
+
         [Then(@"the apprentice verifies the (Regular|Portable) apprenticeship information displayed on the fully confirmed overview page")]
         public void ThenTheApprenticeVerifiesTheApprenticeshipInformationDisplayedOnTheFullyConfirmedOverviewPage(string appType)
         {
-            if (appType.CompareToIgnoreCase("Regular"))
-                confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedRegularAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
-            else if (appType.CompareToIgnoreCase("Portable"))
-                confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedPortableAppOverviewPageDetails().NavigateToHomePageFromTopNavigationLink();
+             confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedAppOverviewPageDetails(IsRegularApp(appType)).NavigateToHomePageFromTopNavigationLink();
         }
+
+        private static bool IsRegularApp(string appType) => appType.CompareToIgnoreCase("Regular");
 
         private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
 
