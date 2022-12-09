@@ -192,8 +192,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
 
-        [Given(@"I count rofjaa employers")]
-        public void GivenICountRofjaaEmployers() => _employerStepsHelper.CountRofjaaEmployers();
+        [Then(@"the employer is removed from the Flexi-job agency register")]
+        public void ThenTheEmployerIsRemovedFromTheFlexi_JobAgencyRegister() => _employerStepsHelper.RemoveEmployerFromFlexiJobAgencyRegister();
+
 
 
     }

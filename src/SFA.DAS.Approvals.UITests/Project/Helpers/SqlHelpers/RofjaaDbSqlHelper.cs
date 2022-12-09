@@ -12,14 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
     {
         public RofjaaDbSqlHelper(DbConfig dBConfig) : base(dBConfig.RofjaaDbConnectionString) { }
 
-        // POC Method below unlikely I'll be using this, just wanting to check if query executes
-        // against Rofjaa dbo.agency
-        public int GetCountFJAAEmployers()
-        {
-            string query = "SELECT Count(LegalEntityId) from [dbo].[Agency]";
-            return ExecuteSqlCommand(query);
-        }
-
         public void RemoveFJAAEmployerFromRegister()
         {
             string query = "UPDATE Agency SET EffectiveTo = '2022-12-09 12:00:00.0000000' where LegalEntityId = 18562";

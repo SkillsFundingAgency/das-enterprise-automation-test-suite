@@ -264,9 +264,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
 
-        public int CountRofjaaEmployers()
+        public void RemoveEmployerFromFlexiJobAgencyRegister()
         {
-            return _rofjaaDbSqlHelper.GetCountFJAAEmployers();
+            _rofjaaDbSqlHelper.RemoveFJAAEmployerFromRegister();
         }
     }
 }

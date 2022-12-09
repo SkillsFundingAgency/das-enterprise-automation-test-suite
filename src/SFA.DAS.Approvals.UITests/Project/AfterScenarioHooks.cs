@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
@@ -15,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly TryCatchExceptionHelper _tryCatch;
         private readonly ApprenticeDataHelper _datahelper;
         private readonly ManageFundingEmployerStepsHelper _manageFundingEmployerStepsHelper;
+        private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
         protected readonly string[] tags;
 
         public AfterScenarioHooks(ScenarioContext context)
@@ -23,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             context.TryGetValue(out _datahelper);
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
+            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
             tags = context.ScenarioInfo.Tags;
         }
 
@@ -36,11 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         [Scope(Tag = "Flexi-job")]
         public void ResetFJAARegister()
         {
-            if(tags.Contains("flexi-job"))
-            {
-
-            }
-            
+            _rofjaaDbSqlHelper.AddFJAAEmployerToRegister();
         }
     }
 }
