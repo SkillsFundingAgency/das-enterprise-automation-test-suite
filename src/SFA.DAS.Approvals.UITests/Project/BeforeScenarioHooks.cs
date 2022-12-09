@@ -67,6 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
 
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
+            _context.Set(new RofjaaDbSqlHelper(_dbConfig));
 
             _context.Set(new List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>
             {

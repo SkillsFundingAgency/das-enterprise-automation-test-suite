@@ -1,7 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using MongoDB.Driver;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -13,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly TryCatchExceptionHelper _tryCatch;
         private readonly ApprenticeDataHelper _datahelper;
         private readonly ManageFundingEmployerStepsHelper _manageFundingEmployerStepsHelper;
+        protected readonly string[] tags;
 
         public AfterScenarioHooks(ScenarioContext context)
         {
@@ -20,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             context.TryGetValue(out _datahelper);
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
+            tags = context.ScenarioInfo.Tags;
         }
 
         [AfterScenario(Order = 10)]
@@ -27,5 +31,16 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         [AfterScenario(Order = 11)]
         public void RemoveDynamicPauseGlobalRule() => _manageFundingEmployerStepsHelper.RemoveDynamicPauseGlobalRule();
+
+        [AfterScenario(Order = 12)]
+        [Scope(Tag = "Flexi-job")]
+        public void ResetFJAARegister()
+        {
+            if(tags.Contains("flexi-job"))
+            {
+
+            }
+            
+        }
     }
 }

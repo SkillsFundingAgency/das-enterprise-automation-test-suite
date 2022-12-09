@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
@@ -190,5 +191,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);
 
         public void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
+
+        [Given(@"I count rofjaa employers")]
+        public void GivenICountRofjaaEmployers() => _employerStepsHelper.CountRofjaaEmployers();
+
+
     }
 }

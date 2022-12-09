@@ -9,6 +9,7 @@ using System;
 using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -21,6 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
         protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
+
 
         public EmployerStepsHelper(ScenarioContext context)
         {
@@ -31,6 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -259,5 +263,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
+
+        public int CountRofjaaEmployers()
+        {
+            return _rofjaaDbSqlHelper.GetCountFJAAEmployers();
+        }
     }
 }
