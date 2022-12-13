@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -16,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public OverallApprenticeshipConfirmedPage VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage()
         {
-            Assert.AreEqual(objectContext.GetTrainingName().Split(',')[0].ToLower(), pageInteractionHelper.GetText(TrainingName).ToLower());
+            Assert.AreEqual(objectContext.GetTrainingTitle(), pageInteractionHelper.GetText(TrainingName));
             return new OverallApprenticeshipConfirmedPage(context);
         }
     }

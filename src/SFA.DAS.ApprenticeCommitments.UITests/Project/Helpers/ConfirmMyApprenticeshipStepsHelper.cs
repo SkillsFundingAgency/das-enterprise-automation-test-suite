@@ -256,10 +256,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private ConfirmRolesAndResponsibilitiesPage1of3 NavigateToRolesPage() => new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
+        
+        private string GetApprenticeshipName() => _objectContext.GetTrainingTitle();
 
-        private string GetApprenticeshipName() => _objectContext.GetTrainingName().Split(',')[0];
-
-        private string GetApprenticeshipLevel() => _objectContext.GetTrainingName().Split(':')[1].Trim()[0].ToString();
+        private string GetApprenticeshipLevel() => _objectContext.GetTrainingLevel().Trim()[0].ToString();
 
         private DateTime GetApprenticeshipStartDate() => DateTime.Parse(_objectContext.GetTrainingStartDate());
 
