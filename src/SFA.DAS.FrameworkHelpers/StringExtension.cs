@@ -23,6 +23,6 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static int ToInt(this string s) => int.Parse(s);
 
-        public static string ToFirstLetterCaps(this string s) => string.IsNullOrEmpty(s) ? s : $"{s[..0].ToUpperInvariant()}{s[1..].ToLowerInvariant()}";
+        public static string ToFirstLetterCaps(this string s) => string.IsNullOrEmpty(s) ? s : $"{s[0..1].ToUpperInvariant()}{s[1..].ToLowerInvariant()}";
     }
 }
