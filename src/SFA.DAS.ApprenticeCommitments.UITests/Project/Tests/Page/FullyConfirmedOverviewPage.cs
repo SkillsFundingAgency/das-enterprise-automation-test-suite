@@ -24,7 +24,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
-                () => VerifyPage(CourseName, objectContext.GetTrainingName().Split(',')[0]),
+                () => VerifyPage(() => pageInteractionHelper.FindElement(CourseName), objectContext.GetExpectedTrainingTitles()),
                 () => VerifyPage(RolesSectionHeaderLink),
                 () => VerifyPage(RolesSectionSubText, OverviewPageHelper.FullyConfirmedOverviewRolesSubText),
                 () => VerifyPage(HYAWDSectionHeaderLink),
