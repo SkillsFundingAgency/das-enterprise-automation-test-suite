@@ -61,7 +61,7 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload)
     {
-        if (restRequest.Method == Method.Get || string.IsNullOrEmpty(payload)) restRequest.AddBody(null);
+        if (restRequest.Method == Method.Get || string.IsNullOrEmpty(payload)) return;
         else
         {
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
