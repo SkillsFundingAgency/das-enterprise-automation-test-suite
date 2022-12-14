@@ -168,17 +168,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderEditApprenticeTrainingDetailsPage EditStartDate(string month, string year)
         {
-            formCompletionHelper.EnterText(StartDateMonth, month);
-            formCompletionHelper.EnterText(StartDateYear, year);
+            EnterText(StartDateMonth, month);
+            EnterText(StartDateYear, year);
             return this;
         }
 
         public ProviderEditApprenticeTrainingDetailsPage EditEndDate(string month, string year)
         {
-            formCompletionHelper.EnterText(EndDateMonth, month);
-            formCompletionHelper.EnterText(EndDateYear, year);
+            EnterText(EndDateMonth, month);
+            EnterText(EndDateYear, year);
             return this;
         }
 
+        private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
     }
 }
