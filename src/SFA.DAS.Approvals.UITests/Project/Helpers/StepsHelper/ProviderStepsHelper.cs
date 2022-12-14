@@ -537,5 +537,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public ProviderApprenticeshipIndicativeEarningsReportPage GoToApprenticeshipIndicativeEarningsReportPage() => GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
+
+        public ProviderCohortApprovedPage ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
+        {
+            return GoToProviderHomePage()
+                .GoToApprenticeRequestsPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectEditApprentice()
+                .EnterUlnAndSave()
+                .ClickEditDeliveryModel()
+                .ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
+                .ClickSave()
+                .ValidateFlexiJobTagAndSubmitApprove();
+        }
+
+        public ProviderApprenticeDetailsPage ProviderChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval()
+        {
+            return GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickEditApprenticeLink()
+                .ClickEditDeliveryModel()
+                .ProviderEditsDeliveryModelToRegularAndSubmits()
+                .ClickUpdateDetails()
+                .AcceptChangesAndSubmit();
+        }
+
+        public ProviderEditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
+        {
+            return GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelDisplayed(deliveryModel)
+                .ClickEditApprenticeLink()
+                .ValidateDeliveryModelDisplayed(deliveryModel);
+        }
     }
 }
