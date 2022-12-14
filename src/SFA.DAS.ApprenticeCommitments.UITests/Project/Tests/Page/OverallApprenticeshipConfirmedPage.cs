@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public OverallApprenticeshipConfirmedPage VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage()
         {
-            Assert.AreEqual(objectContext.GetTrainingTitle(), pageInteractionHelper.GetText(TrainingName));
+            VerifyPage(() => pageInteractionHelper.FindElement(TrainingName), objectContext.GetExpectedTrainingTitles());
             return new OverallApprenticeshipConfirmedPage(context);
         }
     }

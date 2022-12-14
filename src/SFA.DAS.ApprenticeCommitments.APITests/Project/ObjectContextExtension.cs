@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
@@ -60,9 +61,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public static string GetApprenticeId(this ObjectContext objectContext) => objectContext.Get(ApprenticeIdKey);
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerNameKey);
-        public static string GetTrainingTitle(this ObjectContext objectContext) => objectContext.GetTrainingName().Split(',')[0].ToFirstLetterCaps();
+        public static List<string> GetExpectedTrainingTitles(this ObjectContext objectContext) => new() { objectContext.GetTrainingTitle(), objectContext.GetTrainingTitle().ToFirstLetterCaps() };
         public static string GetTrainingLevel(this ObjectContext objectContext) => objectContext.GetTrainingName().Split(':')[1];
         public static string GetTrainingStartDate(this ObjectContext objectContext) => objectContext.Get(TrainingStartDateKey);
+        private static string GetTrainingTitle(this ObjectContext objectContext) => objectContext.GetTrainingName().Split(',')[0];
         private static string GetTrainingName(this ObjectContext objectContext) => objectContext.Get(TrainingNameKey);
     }
 }

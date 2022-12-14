@@ -5,6 +5,7 @@ using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
@@ -256,8 +257,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         private ConfirmRolesAndResponsibilitiesPage1of3 NavigateToRolesPage() => new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
-        
-        private string GetApprenticeshipName() => _objectContext.GetTrainingTitle();
 
         private string GetApprenticeshipLevel() => _objectContext.GetTrainingLevel().Trim()[0].ToString();
 
@@ -267,7 +266,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void AssertApprenticeshipDetails()
         {
-            Assert.AreEqual(GetStringWithoutSpacesAndLeftOfParanthesis(GetApprenticeshipName()), GetStringWithoutSpacesAndLeftOfParanthesis(actualApprenticeshipName));
+            Assert.True(_objectContext.GetExpectedTrainingTitles().Any(x => actualApprenticeshipName.Contains(x)));
             Assert.AreEqual(GetApprenticeshipLevel(), actualApprenticeshipLevel);
             Assert.AreEqual(GetApprenticeshipStartDate().ToString("MMMM yyyy"), actualApprenticeshipStartDate);
         }
@@ -289,7 +288,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
         private void AssertActualEsimatedDurationInfo() => Assert.IsNotNull(actualEsimatedDurationInfo);
-
-        private string GetStringWithoutSpacesAndLeftOfParanthesis(string str) => String.Concat(str.ToLower().Trim().Split('(')[0]).RemoveSpace();
     }
 }
