@@ -121,23 +121,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
-            var startYear = pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear);
-            var startMonth = pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth);
-            if (!string.IsNullOrWhiteSpace(startYear) && !string.IsNullOrWhiteSpace(startMonth))
-            {
+            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateYear : StartDateYear));
 
+            var month = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateMonth : StartDateMonth));
 
-                var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
-                   : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-
-                var month = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateMonth))
-                    : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth));
-
-                if (month > 7 & year == 2022) rpl = true;
-                if (year > 2022) rpl = true;
-                return rpl;
-            }
-            return false;
+            if (month > 7 & year == 2022) rpl = true;
+            if (year > 2022) rpl = true;
+            return rpl;
         }
 
         public ProviderApproveApprenticeDetailsPage ClickSave()
