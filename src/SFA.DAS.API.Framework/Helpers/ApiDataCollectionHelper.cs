@@ -4,7 +4,7 @@
 public class ApiDataCollectionHelper : RequestAndResponseCollectionHelper
 {
 
-    public ApiDataCollectionHelper(RestClient client, IRestRequest request, IRestResponse response) : base(client, request, response)
+    public ApiDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : base(client, request, response)
     {
     }
 

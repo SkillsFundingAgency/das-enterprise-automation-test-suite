@@ -30,7 +30,7 @@ public abstract class BaseApiRestClient
 
         AddResource(resource);
 
-        restRequest.Parameters.Clear();
+        foreach (var item in restRequest.Parameters.GetParameters<ParametersCollection>()) restRequest.Parameters.RemoveParameter(item.Name);
 
         AddParameter();
 
@@ -39,18 +39,18 @@ public abstract class BaseApiRestClient
         AddPayload(payload);
     }
 
-    public IRestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
+    public RestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
 
-    public IRestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new ApiAssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
+    public RestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new ApiAssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
 
-    protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
+    protected RestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
     {
         CreateRestRequest(method, resource, JsonHelper.Serialize(payload));
 
         return Execute(expectedResponse);
     }
 
-    protected IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => Execute(Method.GET, resource, string.Empty, expectedResponse);
+    protected RestResponse Execute(string resource, HttpStatusCode expectedResponse) => Execute(Method.Get, resource, string.Empty, expectedResponse);
 
     protected void Addheader(string key, string value) => restRequest.AddHeader(key, value);
 
@@ -61,7 +61,7 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload)
     {
-        if (restRequest.Method == Method.GET || string.IsNullOrEmpty(payload)) restRequest.Body = null;
+        if (restRequest.Method == Method.Get || string.IsNullOrEmpty(payload)) restRequest.AddBody(null);
         else
         {
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));

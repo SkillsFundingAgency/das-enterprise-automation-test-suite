@@ -16,12 +16,12 @@ namespace SFA.DAS.EmployerFinance.APITests.Project
 
         public void ExecuteEndpoint(string endpoint, HttpStatusCode expectedResponse)
         {
-            Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
+            Execute(RestSharp.Method.Get, endpoint, string.Empty, expectedResponse);
         }
 
-        public IRestResponse ExecuteEndpoint(string endpoint)
+        public RestResponse ExecuteEndpoint(string endpoint)
         {
-            return Execute(RestSharp.Method.GET, endpoint, string.Empty, HttpStatusCode.OK);
+            return Execute(RestSharp.Method.Get, endpoint, string.Empty, HttpStatusCode.OK);
         }
     }
 }
