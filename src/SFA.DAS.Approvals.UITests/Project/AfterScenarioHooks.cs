@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             context.TryGetValue(out _datahelper);
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
-            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
+            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>(), context);
             tags = context.ScenarioInfo.Tags;
         }
 
@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         public void RemoveDynamicPauseGlobalRule() => _manageFundingEmployerStepsHelper.RemoveDynamicPauseGlobalRule();
 
         [AfterScenario(Order = 12)]
-        [Scope(Tag = "Flexi-job")]
+        [Scope(Tag = "rofjaadb")]
         public void ResetFJAARegister()
         {
             _rofjaaDbSqlHelper.AddFJAAEmployerToRegister();

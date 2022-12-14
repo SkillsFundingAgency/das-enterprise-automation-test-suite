@@ -195,6 +195,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer is removed from the Flexi-job agency register")]
         public void ThenTheEmployerIsRemovedFromTheFlexi_JobAgencyRegister() => _employerStepsHelper.RemoveEmployerFromFlexiJobAgencyRegister();
 
+        [Then(@"employer navigates to Approve Apprentice page and deletes Cohort before approval")]
+        public void ThenEmployerNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _employerStepsHelper.DeleteCurrentCohort();
+
+        [Then(@"the previously registered FJAA employer can no longer approve the draft cohort")]
+        public void ThenThePreviouslyRegisteredFJAAEmployerCanNoLongerApproveTheDraftCohort() => _employerStepsHelper.ValidateEmployerCanNoLongerApproveCohort();
+
+        [Then(@"the previously registered FJAA employer can edit delivery model and then approve")]
+        public void ThenThePreviouslyRegisteredFJAAEmployerCanEditDeliveryModelAndThenApprove() => _employerStepsHelper.RemovedFJAEmployerEditsDeliveryModelAndApproves();
+
+        [When(@"the employer edits apprentice delivery model to Regular in Post Approvals and Submits changes")]
+        public void WhenTheEmployerEditsApprenticeDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _employerStepsHelper.EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
+
+        [Then(@"the employer validates Flexi-Job content and approves")]
+        public void ThenTheEmployerValidatesFlexi_JobContentAndApproves() => _employerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+
+        [Then(@"the employer confirms Delivery Model is displayed as ""([^""]*)"" on Apprentice Details and Edit Apprentice screens")]
+        public void ThenTheEmployerConfirmsDeliveryModelIsDisplayedAsOnApprenticeDetailsAndEditApprenticeScreens(string deliveryModel) => _employerStepsHelper.ValidateDeliveryModelDisplayedInDMSections(deliveryModel);
+
+        [Then(@"the employer confirms Delivery Model is not displayed on Apprentice Details Screen")]
+        public void ThenTheEmployerConfirmsDeliveryModelIsNotDisplayedOnApprenticeDetailsScreen() => _employerStepsHelper.ValidateDeliveryModelNotDisplayed();
+
+
 
 
     }

@@ -1,26 +1,42 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using Polly;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class RofjaaDbSqlHelper : SqlDbHelper
     {
-        public RofjaaDbSqlHelper(DbConfig dBConfig) : base(dBConfig.RofjaaDbConnectionString) { }
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        public RofjaaDbSqlHelper(DbConfig dBConfig, ScenarioContext context) : base(dBConfig.RofjaaDbConnectionString)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+        }
+
+        public string GetAccountLegalEntityId(string removalReason) => GetDataAsString($"SELECT LegalEntityId FROM Agency WHERE RemovalReason = '{removalReason}'");
 
         public void RemoveFJAAEmployerFromRegister()
         {
-            string query = "UPDATE Agency SET EffectiveTo = '2022-12-09 12:00:00.0000000' where LegalEntityId = 18562";
-            ExecuteSqlCommand(query);
+            var removalReason = "Automation";
+            var accountLegalEntityId = _context.Get<RofjaaDbSqlHelper>().GetAccountLegalEntityId(removalReason);
+            string query = $"UPDATE Agency SET EffectiveTo = '2022-12-09 12:00:00.0000000' where LegalEntityId = {accountLegalEntityId}";
+            ExecuteSqlCommand(query);      
         }
 
         public void AddFJAAEmployerToRegister()
         {
-            string query = "UPDATE Agency SET EffectiveTo = NULL where LegalEntityId = 18562";
+            var removalReason = "Automation";
+            var accountLegalEntityId = _context.Get<RofjaaDbSqlHelper>().GetAccountLegalEntityId(removalReason);
+            string query = $"UPDATE Agency SET EffectiveTo = NULL where LegalEntityId = {accountLegalEntityId}";
             ExecuteSqlCommand(query);
         }
     }

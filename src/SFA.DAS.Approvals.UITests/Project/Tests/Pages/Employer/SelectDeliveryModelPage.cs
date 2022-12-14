@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
@@ -12,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By FlexiJobRadioButton => By.CssSelector("label[for=DeliveryModelFjaa]");
         private static By EditFlexiJobRadioButton => By.CssSelector("label[for=FlexiJobAgency]");
         private static By RegularRadioButton => By.CssSelector("label[for=DeliveryModelRegular]");
+        private static By EditRegularRadioButton => By.CssSelector("label[for=Regular]");
         private static By PortableFlexiJobRadioButton => By.CssSelector("label[for=DeliveryModelFlexible]");
 
         public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
@@ -49,6 +51,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.Click(RegularRadioButton);
             Continue();
             return new ProviderAddPersonalDetailsPage(context);
+        }
+
+        public EditApprenticeDetailsPage EmployerEditDeliveryModelToRegularAndContinue()
+        {
+            formCompletionHelper.Click(EditRegularRadioButton);
+            Continue();
+            return new EditApprenticeDetailsPage(context);
+        }
+
+        public AddPersonalDetailsPage EmployerSelectRegularDeliveryModelAndContinue()
+        {
+            formCompletionHelper.Click(RegularRadioButton);
+            Continue();
+            return new AddPersonalDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
+        {
+            formCompletionHelper.Click(EditFlexiJobRadioButton);
+            Continue();
+            return new ProviderEditApprenticeTrainingDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()
+        {
+            formCompletionHelper.Click(RegularRadioButton);
+            Continue();
+            return new ProviderEditApprenticeDetailsPage(context);
         }
     }
 }

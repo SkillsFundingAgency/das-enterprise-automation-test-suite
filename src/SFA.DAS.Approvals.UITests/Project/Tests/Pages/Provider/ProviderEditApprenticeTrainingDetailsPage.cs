@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using NUnit.Framework;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -18,6 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ActualStartDateDay => By.Id("ActualStartDay");
         public By ActualStartDateMonth => By.Id("ActualStartMonth");
         public By ActualStartDateYear => By.Id("ActualStartYear");
+        private static By EditDeliveryModelLink => By.CssSelector("#change-delivery-model-link");
+        private By DeliveryModelLabel => By.XPath("//*[@id='editApprenticeship']/div[7]/p[2]");
 
         public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -150,5 +154,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public SelectDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new SelectDeliveryModelPage(context);
+        }
+
+        public ProviderConfirmApprenticeDeliveryModelPage SelectEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new ProviderConfirmApprenticeDeliveryModelPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        {
+            string expected = deliveryModel;
+            string actual = GetDeliveryModel();
+            Assert.IsTrue(actual.Contains(expected), $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+            return this;
+        }
+
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
+
+        public ProviderEditApprenticeTrainingDetailsPage ValidateDeliveryModelNotDisplayed()
+        {
+            string actual = GetDeliveryModel();
+            if (actual.Contains("Regular") || actual.Contains("Flexi-job agency") || actual.Contains("Portable flexi-job"))
+            {
+                throw new Exception("Edit apprentice training details page references delivery model");
+            }
+            else return this;
+        }
     }
 }

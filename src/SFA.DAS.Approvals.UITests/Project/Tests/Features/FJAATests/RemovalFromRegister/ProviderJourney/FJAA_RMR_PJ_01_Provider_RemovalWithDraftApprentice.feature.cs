@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests.RemovalFromRegister.EmployerJourney
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests.RemovalFromRegister.ProviderJourney
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests.RemovalFrom
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_RMR_EJ_01_RemovalWithDraftApprentices")]
+    [NUnit.Framework.DescriptionAttribute("FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class FJAA_RMR_EJ_01_RemovalWithDraftApprenticesFeature
+    public partial class FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprenticeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,17 +30,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests.RemovalFrom
         private static string[] featureTags = new string[] {
                 "approvals"};
         
-#line 1 "FJAA_RMR_EJ_01_RemovalWithDraftApprentices.feature"
+#line 1 "FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests/RemovalFromRegister/EmployerJourney", "FJAA_RMR_EJ_01_RemovalWithDraftApprentices", @"In this test, a levy employer, who is on Flexi-job register, 
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests/RemovalFromRegister/ProviderJourney", "FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice", @"In this test, a Training Provider, 
 has draft apprentices on the ""Flexi-job agency"" delivery model. 
-Then the employer is removed from the Flexi-Job register,
-and they are prevented from approving the cohort until delivery model is changed to Regular. ", ProgrammingLanguage.CSharp, featureTags);
+Then the FJAA employer is removed from the Flexi-Job register,
+and the Provider is prevented from approving the cohort until delivery model is changed to Regular. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,12 +79,12 @@ and they are prevented from approving the cohort until delivery model is changed
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_RMR_EJ_01_RemovalWithDraftApprentices")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-job")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         [NUnit.Framework.CategoryAttribute("rofjaadb")]
-        public void FJAA_RMR_EJ_01_RemovalWithDraftApprentices()
+        public void FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -92,7 +92,7 @@ and they are prevented from approving the cohort until delivery model is changed
                     "e2escenarios",
                     "rofjaadb"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_RMR_EJ_01_RemovalWithDraftApprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -108,27 +108,24 @@ this.ScenarioInitialize(scenarioInfo);
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("employer selects Flexi-job agency radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.And("employer selects Flexi-job agency radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("validate Flexi-job agency content on Add Apprentice Details page and submit valid" +
+                        " details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
- testRunner.And("the provider selects Flexi-job agency radio button on Select Delivery Model scree" +
-                        "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate Flexi-job agency tag on Approve Apprentice Details page and send cohort " +
+                        "to Provider for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.Then("provider validate Flexi-job agency content on Add Apprentice Details page and sub" +
-                        "mit valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 19
  testRunner.Then("the employer is removed from the Flexi-job agency register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
- testRunner.And("the previously registered FJAA employer can no longer approve the draft cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.And("the provider can no longer approve the draft cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
- testRunner.And("the previously registered FJAA employer can edit delivery model and then approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+ testRunner.And("provider can edit delivery model and approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -10,6 +10,8 @@ using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -34,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
+            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>(), context);
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -258,15 +260,84 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         }
 
+        public ApprenticeDetailsPage EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickManageYourApprenticesLink()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickEditApprenticeDetailsLink()
+                  .ClickEditDeliveryModelLink()
+                  .EmployerEditDeliveryModelToRegularAndContinue()
+                  .ClickUpdateDetailsButtonAfterChange()
+                  .AcceptChangesAndSubmit();
+        }
+
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
 
+        public ApprenticeDetailsApprovedPage ValidateFlexiJobContentAndApproveCohort()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .ValidateFlexiJobTagAndApprove();
+        }
+
+        public EditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelDisplayed(deliveryModel)
+                .ClickEditApprenticeDetailsLink()
+                .ValidateDeliveryModelDisplayed(deliveryModel);
+        }
+
+        public ApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelNotDisplayed();
+        }
+
         public void RemoveEmployerFromFlexiJobAgencyRegister()
         {
             _rofjaaDbSqlHelper.RemoveFJAAEmployerFromRegister();
+        }
+
+        public ApprenticeRequestsPage DeleteCurrentCohort()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .SelectDeleteThisGroup()
+                  .ConfirmDeleteAndSubmit();
+        }
+
+        public ApproveApprenticeDetailsPage ValidateEmployerCanNoLongerApproveCohort()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .ValidateEmployerCannotApproveCohort();
+        }
+
+        public ApproveApprenticeDetailsPage RemovedFJAEmployerEditsDeliveryModelAndApproves()
+        {
+            return new ApproveApprenticeDetailsPage(_context)
+                .SelectEditApprenticeLink()
+                .ContinueToAddTrainingDetailsPage()
+                .ClickEditDeliveryModel()
+                .ConfirmDeliveryModelChangeToRegular()
+                .ValidateDeliveryModelDisplayed("Regular")
+                .SaveEditedTrainingDetails();
         }
     }
 }

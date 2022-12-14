@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -34,10 +35,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new SelectDeliveryModelPage(context);
         }
 
+        public ConfirmApprenticeshipDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new ConfirmApprenticeshipDeliveryModelPage(context);
+        }
+
         public ApproveApprenticeDetailsPage SaveEditedTrainingDetails()
         {
             formCompletionHelper.ClickElement(AddButtonSelector);
             return new ApproveApprenticeDetailsPage(context);
+        }
+
+        public EditTrainingDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        {
+            string expected = deliveryModel;
+            string actual = GetDeliveryModel();
+            Assert.IsTrue(actual.Contains(deliveryModel), $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+            return this;
+        }
+
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
+
+        public EditTrainingDetailsPage ValidateDeliveryModelNotDisplayed()
+        {
+            string actual = GetDeliveryModel();
+            if (actual.Contains("Regular") || actual.Contains("Flexi-job agency") || actual.Contains("Portable flexi-job"))
+            {
+                throw new Exception("Edit Apprentice Training details page references delivery model");
+            }
+            else return this;
         }
 
     }

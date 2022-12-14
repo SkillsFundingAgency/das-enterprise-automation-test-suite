@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -21,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
         private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
         private By FlashMsgBox => PanelTitle;
+        private By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
 
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
@@ -90,6 +92,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             pageInteractionHelper.VerifyText(GetFlashMsg(), expectedMsg);
             return this;
+        }
+
+        public ApprenticeDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        {
+            string expected = deliveryModel;
+            string actual = GetDeliveryModel();
+            Assert.IsTrue(actual.Contains(expected), $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+            return this;
+        }
+
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModel);
+
+        public ApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
+        {
+            string actual = GetDeliveryModel();
+            if (actual.Contains("Regular") || actual.Contains("Flexi-job agency") || actual.Contains("Portable flexi-job"))
+            {
+                throw new Exception("Apprentice details page references delivery model");
+            }
+            else return this;
         }
     }
 }
