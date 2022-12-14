@@ -30,7 +30,7 @@ public abstract class BaseApiRestClient
 
         AddResource(resource);
 
-        foreach (var item in restRequest.Parameters.GetParameters<ParametersCollection>()) restRequest.Parameters.RemoveParameter(item.Name);
+        foreach (var item in restRequest.Parameters.GetParameters(ParameterType.RequestBody)) restRequest.Parameters.RemoveParameter(item);
 
         AddParameter();
 
