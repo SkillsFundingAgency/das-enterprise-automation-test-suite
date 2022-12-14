@@ -22,5 +22,7 @@ namespace SFA.DAS.FrameworkHelpers
         public static List<string> ToList(this string s, string seperator) => s?.Split(seperator).ToList().Select(x => x.Trim()).ToList();
 
         public static int ToInt(this string s) => int.Parse(s);
+
+        public static string ToFirstLetterCaps(this string s) => string.IsNullOrEmpty(s) ? s : $"{s[0..1].ToUpperInvariant()}{s[1..].ToLowerInvariant()}";
     }
 }
