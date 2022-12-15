@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public By ActualStartDateMonth => By.Id("ActualStartMonth");
         public By ActualStartDateYear => By.Id("ActualStartYear");
         private static By EditDeliveryModelLink => By.CssSelector("#change-delivery-model-link");
-        private By DeliveryModelLabel => By.XPath("//*[@id='editApprenticeship']/div[7]/p[2]");
+        private By DeliveryModelLabel => By.XPath("//*[@id='draftApprenticeshipSection2']/div[2]/p[2]");
 
         public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -175,15 +175,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
-
-        public ProviderEditApprenticeTrainingDetailsPage ValidateDeliveryModelNotDisplayed()
-        {
-            string actual = GetDeliveryModel();
-            if (actual.Contains("Regular") || actual.Contains("Flexi-job agency") || actual.Contains("Portable flexi-job"))
-            {
-                throw new Exception("Edit apprentice training details page references delivery model");
-            }
-            else return this;
-        }
     }
 }

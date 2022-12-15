@@ -208,7 +208,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
-        }
+        } 
 
         public ProviderCohortSentForReviewPage AddApprenticeAndSelectRegularDeliveryModel()
         {
@@ -541,8 +541,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApprenticeRequestsPage NavigateToApproveApprenticeDetailsAndDeleteCohort()
         {
-            return _approvalsProviderHomePage.GoToApprenticeRequestsPage()
-                .GoToCohortsToReviewPage()
+            return GoToProviderHomePage()
+                .GoToApprenticeRequestsPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectDeleteCohort()
                 .ConfirmDeleteAndSubmit();
@@ -592,13 +592,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .AcceptChangesAndSubmit();
         }
 
-        public ProviderEditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
+        public ProviderApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
         {
             return GoToProviderHomePage()
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
-                .ValidateDeliveryModelDisplayed(deliveryModel)
-                .ClickEditApprenticeLink()
                 .ValidateDeliveryModelDisplayed(deliveryModel);
         }
     }
