@@ -81,11 +81,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputApprenticeshipsData = table.Rows[i].CreateInstance<FlexiPaymnetsApprenticeshipsDataModel>();
 
-                var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.GetEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}"));
+                var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.WaitForEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}")).Result;
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect actual start date found in Apprenticeships db");
+                    Assert.That(Boolean.Parse(apprenticeshipDbData.isPilot), Is.EqualTo(inputApprenticeshipsData.IsPilot), "Incorrect pilot status found in Apprenticeships db");
+                    Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.ActualStartDate), "Incorrect actual start date found in Apprenticeships db");
+                    Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect planned start date found in Apprenticeships db");
                     Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedEndDate), Is.EqualTo(inputApprenticeshipsData.PlannedEndDate), "Incorrect planned end date found in Apprenticeships db");
                     Assert.That(double.Parse(apprenticeshipDbData.agreedPrice), Is.EqualTo(inputApprenticeshipsData.AgreedPrice), "Incorrect agreed price found in Apprenticeships db");
                     Assert.That(apprenticeshipDbData.FundingType.ToEnum<FundingType>(), Is.EqualTo(inputApprenticeshipsData.FundingType), "Incorrect funding type found in Apprenticeships db");
