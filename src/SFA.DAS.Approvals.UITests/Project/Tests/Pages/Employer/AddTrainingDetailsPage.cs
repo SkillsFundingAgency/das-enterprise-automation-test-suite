@@ -46,6 +46,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
+        public void ValidateRegularContent() => DeliveryModelAssertions("Regular");
+
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
 
         public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
