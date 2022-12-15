@@ -1,5 +1,6 @@
 ﻿Feature: FLP_E2E_EUA_04_ExistingUserAccount
 
+@ignore
 @regression
 @e2escenarios
 @flexi-payments
