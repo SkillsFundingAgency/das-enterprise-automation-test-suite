@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -18,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ActualStartDateDay => By.Id("ActualStartDay");
         public By ActualStartDateMonth => By.Id("ActualStartMonth");
         public By ActualStartDateYear => By.Id("ActualStartYear");
+        private static By EditDeliveryModelLink => By.CssSelector("#change-delivery-model-link");
 
         public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -148,6 +150,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.EnterText(TrainingCost, cost);
             return this;
+        }
+
+        public SelectDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new SelectDeliveryModelPage(context);
         }
 
     }
