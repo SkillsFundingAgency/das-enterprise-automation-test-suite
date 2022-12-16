@@ -12,6 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By FlexiJobRadioButton => By.CssSelector("label[for=DeliveryModelFjaa]");
         private static By EditFlexiJobRadioButton => By.CssSelector("label[for=FlexiJobAgency]");
         private static By RegularRadioButton => By.CssSelector("label[for=DeliveryModelRegular]");
+        private static By EditRegularRadioButton => By.CssSelector("label[for=Regular]");
         private static By PortableFlexiJobRadioButton => By.CssSelector("label[for=DeliveryModelFlexible]");
 
         public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
@@ -53,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public EditApprenticeDetailsPage EmployerEditDeliveryModelToRegularAndContinue()
         {
-            formCompletionHelper.Click(RegularRadioButton);
+            formCompletionHelper.Click(EditRegularRadioButton);
             Continue();
             return new EditApprenticeDetailsPage(context);
         }
@@ -74,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()
         {
-            formCompletionHelper.Click(RegularRadioButton);
+            formCompletionHelper.Click(EditRegularRadioButton);
             Continue();
             return new ProviderEditApprenticeDetailsPage(context);
         }
