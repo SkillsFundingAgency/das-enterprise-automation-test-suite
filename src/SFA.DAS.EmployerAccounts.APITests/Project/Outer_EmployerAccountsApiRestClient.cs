@@ -12,12 +12,12 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project
 
         protected override string ApiName => "/employeraccounts";
 
-        public IRestResponse GetAccountEnglishFractionCurrent(string hashedAccountId, HttpStatusCode expectedResponse)
+        public RestResponse GetAccountEnglishFractionCurrent(string hashedAccountId, HttpStatusCode expectedResponse)
         {
             return Execute($"/Accounts/{hashedAccountId}/levy/english-fraction-current", expectedResponse);
         }
 
-        public IRestResponse GetAccountEnglishFractionHistory(string hashedAccountId, HttpStatusCode expectedResponse)
+        public RestResponse GetAccountEnglishFractionHistory(string hashedAccountId, HttpStatusCode expectedResponse)
         {
             return Execute($"/Accounts/{hashedAccountId}/levy/english-fraction-history", expectedResponse);
         }

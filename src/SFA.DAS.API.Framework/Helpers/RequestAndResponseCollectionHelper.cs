@@ -3,12 +3,12 @@
 public abstract class RequestAndResponseCollectionHelper
 {
 
-    protected readonly IRestResponse _response;
-    protected readonly IRestRequest _request;
+    protected readonly RestResponse _response;
+    protected readonly RestRequest _request;
     protected readonly RestClient _client;
     protected string _requestUri;
 
-    public RequestAndResponseCollectionHelper(RestClient client, IRestRequest request, IRestResponse response)
+    public RequestAndResponseCollectionHelper(RestClient client, RestRequest request, RestResponse response)
     {
         _client = client;
         _request = request;
