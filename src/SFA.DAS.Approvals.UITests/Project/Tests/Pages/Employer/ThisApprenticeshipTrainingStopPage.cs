@@ -33,6 +33,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(context);
         }
 
+        public ApprenticeDetailsPage EditStopDateToCourseStartDateAndSubmit(string month, string year)
+        {
+            formCompletionHelper.EnterText(NewStopDate_Month, month);
+            formCompletionHelper.EnterText(NewStopDate_Year, year);
+            formCompletionHelper.Click(ContinueButton);
+            return new ApprenticeDetailsPage(context);
+        }
+
         private void EnterTheStopDate()
         {
             DateTime stopDate = DateTime.Now;
