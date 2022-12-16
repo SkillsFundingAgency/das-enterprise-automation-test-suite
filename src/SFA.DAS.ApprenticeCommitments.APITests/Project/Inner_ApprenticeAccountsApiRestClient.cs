@@ -15,9 +15,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string AppServiceName => config.config.ApprenticeAccountsAppServiceName;
 
-        public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
+        public RestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
         {
-            return Execute(Method.POST, $"/apprentices", payload, expectedResponse);
+            return Execute(Method.Post, $"/apprentices", payload, expectedResponse);
         }
     }
 }

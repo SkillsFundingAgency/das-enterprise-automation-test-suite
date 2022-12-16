@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()
         {
-            formCompletionHelper.Click(RegularRadioButton);
+            formCompletionHelper.Click(EditRegularRadioButton);
             Continue();
             return new ProviderEditApprenticeDetailsPage(context);
         }

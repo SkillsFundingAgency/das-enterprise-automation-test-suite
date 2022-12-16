@@ -9,21 +9,18 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector("#signin_title");
 
-        private By UserEmail => By.CssSelector("#user_email");
-        private By UserPassword => By.CssSelector("#user_password");
-        private By SignInButton => By.CssSelector("#sign-in-submit-button");
+        private static By UserEmail => By.CssSelector("#user_email");
+        private static By UserPassword => By.CssSelector("#user_password");
+        private static By SignInButton => By.CssSelector("#sign-in-submit-button");
 
-        public SignInPage(ScenarioContext context) : base(context) => frameHelper.SwitchFrameAndAction(() => VerifyPage());
+        public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public HomePage SignIntoApprenticeshipServiceSupport()
         {
-            frameHelper.SwitchFrameAndAction(() =>
-            {
-                formCompletionHelper.EnterText(UserEmail, config.Username);
-                formCompletionHelper.EnterText(UserPassword, config.Password);
-                formCompletionHelper.ClickElement(SignInButton);
-            });
-
+            formCompletionHelper.EnterText(UserEmail, config.Username);
+            formCompletionHelper.EnterText(UserPassword, config.Password);
+            formCompletionHelper.ClickElement(SignInButton);
+            
             return new HomePage(context, true);
         }
     }

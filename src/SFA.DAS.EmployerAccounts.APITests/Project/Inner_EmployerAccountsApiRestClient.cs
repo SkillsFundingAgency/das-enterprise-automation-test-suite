@@ -15,7 +15,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project
 
         public void ExecuteEndpoint(string endpoint, HttpStatusCode expectedResponse)
         {
-           Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
+           Execute(RestSharp.Method.Get, endpoint, string.Empty, expectedResponse);
         }
     }
 }

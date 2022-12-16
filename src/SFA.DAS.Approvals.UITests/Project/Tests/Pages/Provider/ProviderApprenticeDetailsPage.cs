@@ -45,6 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeDetailsPage(context);
         }
 
+
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
         {
             ClickEditApprenticeDetailsLink();

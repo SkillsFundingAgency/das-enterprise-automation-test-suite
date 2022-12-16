@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDateRequest
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,28 +20,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegisterFeature
+    [NUnit.Framework.DescriptionAttribute("AP_DO_07_OLTD_Employer_resolves_OLTD_request_by_updating_End_date_Of_Completed_Re" +
+        "cord")]
+    public partial class AP_DO_07_OLTD_Employer_Resolves_OLTD_Request_By_Updating_End_Date_Of_Completed_RecordFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
-#line 1 "FJAA_E2E_03_Emp_NewEmployerIsOnFJARegister.feature"
+#line 1 "AP_DO_07_OLTD.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister", @"In this test, a Training Provider,logs in to their account. 
-Training Provider adds an apprentice details and selects 'Flexi-job agency' as delivery model,
-validates flexi-job content and submits apprentice details for flexi employer to review.
-Flexi Employer logs into their account, finds the cohort.
-Validates Flexi-job tag on the apprenticeship and can edit the DM.", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OverlappingTrainingDateRequest", "AP_DO_07_OLTD_Employer_resolves_OLTD_request_by_updating_End_date_Of_Completed_Re" +
+                    "cord", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,19 +76,21 @@ Validates Flexi-job tag on the apprenticeship and can edit the DM.", Programming
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister")]
+        [NUnit.Framework.DescriptionAttribute("AP_DO_07_OLTD_Employer resolves OLTD request by updating End date of completed re" +
+            "cord")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("flexi-job")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public void FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister()
+        [NUnit.Framework.CategoryAttribute("overlappingtrainingdaterequest")]
+        public void AP_DO_07_OLTD_EmployerResolvesOLTDRequestByUpdatingEndDateOfCompletedRecord()
         {
             string[] tagsOfScenario = new string[] {
+                    "approvals",
                     "regression",
-                    "flexi-job",
-                    "e2escenarios"};
+                    "overlappingtrainingdaterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_03_Emp_HappyPath_NewEmployerIsOnFJARegister", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_07_OLTD_Employer resolves OLTD request by updating End date of completed re" +
+                    "cord", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -102,23 +100,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given("Employer and provider approve an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
+ testRunner.And("Completed event is received for the apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+ testRunner.When("provider creates a draft apprentice which has an overlap", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.And("provider decides to send stop request email from service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.Then("information is saved in the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.When("Employer decides to update end date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.And("overlapping training date request banner is not displayed when training date is c" +
+                        "hanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 14
- testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
-                        "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 15
- testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
- testRunner.And("the provider selects Flexi-job agency radio button on Select Delivery Model scree" +
-                        "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
- testRunner.Then("provider validate Flexi-job agency content on Add Apprentice Details page and sub" +
-                        "mit valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 18
- testRunner.And("employer validates apprentice is Flexi-job and can edit Delivery Model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("overlapping training date request is resolved in database with status 1 and resol" +
+                        "utionType 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

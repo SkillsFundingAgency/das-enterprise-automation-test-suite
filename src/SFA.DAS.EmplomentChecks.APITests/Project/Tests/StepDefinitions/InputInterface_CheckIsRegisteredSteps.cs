@@ -13,7 +13,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         private ScenarioContext _context;
         private readonly Outer_EmploymentCheckApiClient _restClient;
         private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
-        private IRestResponse apiResponse;
+        private RestResponse apiResponse;
 
         public InputInterface_CheckIsRegisteredSteps(ScenarioContext context)
         {

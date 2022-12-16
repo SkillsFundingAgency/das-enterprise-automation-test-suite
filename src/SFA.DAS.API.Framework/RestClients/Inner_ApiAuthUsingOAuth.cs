@@ -16,7 +16,7 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
     {
         CreateInnerApiAuthTokenRestClient();
 
-        _restRequest.Method = Method.POST;
+        _restRequest.Method = Method.Post;
 
         _restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
 

@@ -123,11 +123,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
-            var year = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateYear))
-               : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
+            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateYear : StartDateYear), out int year);
 
-            var month = isPilotLearner ? Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(ActualStartDateMonth))
-                : Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth));
+            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateMonth : StartDateMonth), out int month);
 
             if (month > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
@@ -154,6 +152,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public SelectDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new SelectDeliveryModelPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditStartDate(string month, string year)
+        {
+            EnterText(StartDateMonth, month);
+            EnterText(StartDateYear, year);
+            return this;
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditEndDate(string month, string year)
+        {
+            EnterText(EndDateMonth, month);
+            EnterText(EndDateYear, year);
+            return this;
+        }
+
+        private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
         public SelectDeliveryModelPage ClickEditDeliveryModel()
         {
             formCompletionHelper.ClickElement(EditDeliveryModelLink);
