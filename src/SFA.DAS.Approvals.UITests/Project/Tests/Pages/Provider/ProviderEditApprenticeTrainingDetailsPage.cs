@@ -121,9 +121,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateYear : StartDateYear));
+            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateYear : StartDateYear), out int year);
 
-            var month = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateMonth : StartDateMonth));
+            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateMonth : StartDateMonth), out int month);
 
             if (month > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
