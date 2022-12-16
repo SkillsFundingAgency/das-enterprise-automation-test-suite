@@ -11,7 +11,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 
         #region Locators
         private By PostCodeTextBox => By.Id("search-box");
-        protected override By SearchButton => By.CssSelector(".button.postcode-search-button");
+        protected override By SearchButton => By.CssSelector(".button.Postcode-search-button");
         #endregion
 
         public ProviderSearchResultsPage EnterPostCodeAndSearch(string postCode)

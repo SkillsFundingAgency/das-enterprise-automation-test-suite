@@ -21,7 +21,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             if (IsNotSucess(response)) throw new Exception(response.Content, response.ErrorException);
         }
 
-        private IRestResponse Execute(string sessionId, object jsonObj)
+        private RestResponse Execute(string sessionId, object jsonObj)
         {
             var request = Request(sessionId, jsonObj);
 
@@ -32,7 +32,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return response;
         }
 
-        private bool IsNotSucess(IRestResponse response) => response.StatusCode != HttpStatusCode.OK;
+        private static bool IsNotSucess(RestResponse response) => response.StatusCode != HttpStatusCode.OK;
 
         private static string JSonBody(bool testStatus, string exceptionmessage)
         {
@@ -46,10 +46,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
         private static string UpdateNameJSonBody(string newname) => JsonConvert.SerializeObject(new { name = $"{newname}", });
 
-        private static IRestRequest Request(string sessionId, object jsonObj) => Request(sessionId).AddJsonBody(jsonObj);
+        private static RestRequest Request(string sessionId, object jsonObj) => Request(sessionId).AddJsonBody(jsonObj);
 
-        private static RestRequest Request(string sessionId) => new RestRequest($"{sessionId}.json", Method.PUT) { RequestFormat = DataFormat.Json };
+        private static RestRequest Request(string sessionId) => new($"{sessionId}.json", Method.Put) { RequestFormat = DataFormat.Json };
 
-        private static RestClient Client(BrowserStackSetting options) => new RestClient(options.AutomateSessions) { Authenticator = new HttpBasicAuthenticator(options.User, options.Key) };
+        private static RestClient Client(BrowserStackSetting options) => new(options.AutomateSessions) { Authenticator = new HttpBasicAuthenticator(options.User, options.Key) };
     }
 }

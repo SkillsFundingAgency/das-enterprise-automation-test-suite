@@ -12,22 +12,22 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiName => "/apprenticecommitments";
 
-        public IRestResponse CreateApprovalsCreatedEvent(ApprovalsCreated payload, HttpStatusCode expectedResponse)
+        public RestResponse CreateApprovalsCreatedEvent(ApprovalsCreated payload, HttpStatusCode expectedResponse)
         {
-            return Execute(Method.POST, $"/approvals", payload, expectedResponse);
+            return Execute(Method.Post, $"/approvals", payload, expectedResponse);
         }
 
-        public IRestResponse CreateApprenticeship(CreateApprenticeshipFromRegistration payload, HttpStatusCode expectedResponse)
+        public RestResponse CreateApprenticeship(CreateApprenticeshipFromRegistration payload, HttpStatusCode expectedResponse)
         {
-            return Execute(Method.POST, $"/apprenticeships", payload, expectedResponse);
+            return Execute(Method.Post, $"/apprenticeships", payload, expectedResponse);
         }
 
-        public IRestResponse GetApprenticeships(string apprenticeId, HttpStatusCode expectedResponse)
+        public RestResponse GetApprenticeships(string apprenticeId, HttpStatusCode expectedResponse)
         {
             return Execute($"/apprentices/{apprenticeId}/apprenticeships", expectedResponse);
         }
 
-        public IRestResponse GetApprenticeship(string apprenticeId, string commitmentsApprenticeshipId, HttpStatusCode expectedResponse)
+        public RestResponse GetApprenticeship(string apprenticeId, string commitmentsApprenticeshipId, HttpStatusCode expectedResponse)
         {
             return Execute($"/apprentices/{apprenticeId}/apprenticeships/{long.Parse(commitmentsApprenticeshipId)}", expectedResponse);
         }

@@ -4,7 +4,7 @@
 public class ApiDataCollectionHelper : RequestAndResponseCollectionHelper
 {
 
-    public ApiDataCollectionHelper(RestClient client, IRestRequest request, IRestResponse response) : base(client, request, response)
+    public ApiDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : base(client, request, response)
     {
     }
 
@@ -12,9 +12,20 @@ public class ApiDataCollectionHelper : RequestAndResponseCollectionHelper
     {
         var list = GetRequestParameters();
 
-        return list.Count == 0 ? string.Empty : GetBody(JToken.Parse(list.ToString()).ToString(Formatting.Indented));
+        return list.Count == 0 ? string.Empty : GetBody(ParseJson(list.ToString()));
     }
 
     protected override string GetResponseBody() => GetResponseContent();
 
+    private static string ParseJson(string json)
+    {
+        try
+        {
+            return JToken.Parse(json).ToString(Formatting.Indented);
+        }
+        catch (Exception)
+        {
+            return json;
+        }
+    }
 }
