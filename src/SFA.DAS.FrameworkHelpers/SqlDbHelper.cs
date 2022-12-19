@@ -94,6 +94,20 @@ namespace SFA.DAS.FrameworkHelpers
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
             => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
+        protected List<string> TryGetDataAsList(string queryToExecute, string title)
+        {
+            return RetryOnIndexOutOfRangeException(() => 
+            {
+                var x = GetMultipleData(queryToExecute, connectionString);
+
+                _ = x[0][0];
+
+                return x.ListOfArrayToList(0);
+
+            }, title);
+            
+        }
+
         protected object TryGetDataAsObject(string queryToExecute, string title)
             => RetryOnIndexOutOfRangeException(() => GetDataAsObject(queryToExecute), title);
 
