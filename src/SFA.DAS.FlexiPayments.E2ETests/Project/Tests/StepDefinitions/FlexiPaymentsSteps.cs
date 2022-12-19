@@ -81,7 +81,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputApprenticeshipsData = table.Rows[i].CreateInstance<FlexiPaymnetsApprenticeshipsDataModel>();
 
-                var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.WaitForEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}")).Result;
+                var apprenticeshipDbData = _apprenticeshipsSqlDbHelper.GetEarningsApprenticeshipDetails(_objectContext.Get($"ULN{inputApprenticeshipsData.ULNKey}"));
 
                 Assert.Multiple(() =>
                 {
