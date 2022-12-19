@@ -7,7 +7,7 @@ public class EmployerAccountLegalEntitiesSteps
     private readonly EmployerLegalEntitiesSqlDbHelper _employerLegalEntitiesSqlHelper;
     private string _hashedAccountId;
     private string _expected;
-    private IRestResponse _apiResponse;
+    private RestResponse _apiResponse;
 
     public EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     {

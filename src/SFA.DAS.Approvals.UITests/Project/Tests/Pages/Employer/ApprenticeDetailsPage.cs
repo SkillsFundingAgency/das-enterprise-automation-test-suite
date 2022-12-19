@@ -25,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
 
+        private By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
@@ -68,6 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
         public bool IsChangeOfProviderLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeTrainingProviderLink);
+        public bool IsOverlappingTrainingDateRequestLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(OverlappingTrainingDateRequestLink);
         public string GetAlertBanner() => pageInteractionHelper.GetText(AlertBox);
         public string GetFlashMsg() => pageInteractionHelper.GetText(FlashMsgBox);
 
@@ -113,6 +115,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Apprentice details page references delivery model");
             }
             else return this;
+        }
+
+        public ConfirmWhenApprenticeshipTrainingStoppedPage ClickOnChangeOfOverlappingTrainingDateRequestLink()
+        {
+            formCompletionHelper.ClickElement(OverlappingTrainingDateRequestLink);
+            return new ConfirmWhenApprenticeshipTrainingStoppedPage(context);
+        }
+
+        public ThisApprenticeshipEndDatePage ClickEndDateLink()
+        {
+            formCompletionHelper.ClickElement(EditEndDateLink);
+            return new ThisApprenticeshipEndDatePage(context);
         }
     }
 }

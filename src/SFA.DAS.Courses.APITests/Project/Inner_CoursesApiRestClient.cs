@@ -15,7 +15,7 @@ namespace SFA.DAS.Courses.APITests.Project
 
         public void PerformHeathCheck(string endpoint, HttpStatusCode expectedResponse)
         {
-            Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
+            Execute(RestSharp.Method.Get, endpoint, string.Empty, expectedResponse);
         }
     }
 }
