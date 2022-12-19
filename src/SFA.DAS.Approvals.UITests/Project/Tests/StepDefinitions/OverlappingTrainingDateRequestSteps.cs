@@ -7,14 +7,16 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System.Linq;
-using Polly;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -25,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ApprenticeHomePageStepsHelper _homePageStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
@@ -42,6 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _homePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"Employer and provider approve an apprentice")]
@@ -75,15 +79,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .ProviderSelectsAStandard()
                .SubmitValidPersonalDetails()
                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
-            _providerStepsHelper.NavigateToProviderHomePage()
-                                .GotoSelectJourneyPage()
-                                .SelectAddManually()
-                                .SelectOptionCreateNewCohort()
-                                .ChooseAnEmployer("Levy")
-                                .ConfirmEmployer()
-                                .ProviderSelectsAStandard()
-                                .SubmitValidPersonalDetails()
-                                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
         [When(@"provider selects to contact the employer themselves")]
@@ -105,7 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Vaidate information is not stored in database")]
         public void ThenVaidateNotInformationIsStoredInDatabase()
         {
-            var uln = _objectContext.GetUlnForOLTD();
+            var uln = GetUlnForOLTD();
             var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
             Assert.AreEqual(1, numberOfApprenticesWithUln);
         }
@@ -209,7 +204,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Vaidate information is stored in database")]
         public void ThenVaidateInformationIsStoredInDatabase()
         {
-            var uln = _objectContext.GetUlnForOLTD();
+            var uln = GetUlnForOLTD();
             var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
@@ -217,7 +212,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider selects to edit the price")]
         public void WhenProviderSelectsToEditThePrice()
         {
-            var oldCost = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var oldCost = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             _oldCost = int.Parse(oldCost);
             new ProviderApproveApprenticeDetailsPage(_context)
                 .SelectEditApprentice()
@@ -237,7 +232,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Vaidate price update information is not stored in database")]
         public void ThenVaidatePriceUpdateInformationIsNotStoredInDatabase()
         {
-            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
         }
@@ -265,21 +260,183 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(editLinkVisible);
         }
 
+        [When(@"provider selects to edit the draft apprenticeship")]
+        public void WhenProviderSelectsToEditTheDraftApprenticeship()
+        {
+          var providerApproveApprenticeDetailsPage =  new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context).IWillAddAnotherApprentice();
+          providerApproveApprenticeDetailsPage.SelectEditApprentice(0);
+        }
+
+        [When(@"provider deletes start and end date from Draft cohort")]
+        public void WhenProviderDeletesStartAndEndDateFromDraftCohort()
+        {
+           var providerEditApprenticeTrainingDetailsPage = new ProviderEditApprenticePersonalDetailsPage(_context).ClickSaveAndContinue();
+            providerEditApprenticeTrainingDetailsPage
+                .EditStartDate("", "")
+                .EditEndDate("","")
+                .ClickSave();
+        }
+
+        [Then(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
+        [When(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
+        public void ThenOverlappingTrainingDateRequestIsResolvedInDatabaseWithStatusAndResolutionType(int status, int resolutionType)
+        {
+          var result =  _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(GetUlnForOLTD());
+            Assert.AreEqual(resolutionType, result.resolutionType);
+            Assert.AreEqual(status, result.status);
+        }
+
+        [When(@"provider updates the draft apprentice which creates an overlap")]
+        public void WhenProviderUpdatesTheDraftApprenticeWhichCreatesAnOverlap()
+        {
+            var startDate = _objectContext.GetStartDate();
+            var endDate =  startDate.AddMonths(36);
+            
+            var providerEditApprenticePersonalDetailsPage = new ProviderApproveApprenticeDetailsPage(_context).SelectEditApprentice(0);
+            var providerEditApprenticeTrainingDetailsPage = providerEditApprenticePersonalDetailsPage.ClickSaveAndContinue();
+            providerEditApprenticeTrainingDetailsPage
+                .EditStartDate(startDate.Month.ToString(), startDate.Year.ToString())
+                .EditEndDate(endDate.Month.ToString(), endDate.Year.ToString())
+                .ClickSaveWhenOltd();
+        }
+
+        [Given(@"Employer selects to stop the active apprentice")]
+        [When(@"Employer selects to stop the active apprentice")]
+        public void WhenEmployerSelectsToStopTheActiveApprentice()
+        {
+            var apprenticeDetailsPage = _homePageStepsHelper
+                .GoToManageYourApprenticesPage()
+                .SelectViewCurrentApprenticeDetails();
+            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage);
+        }
+
+        [When(@"overlapping training date request banner is not displayed")]
+        public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayed()
+        {
+            var page = new StoppedApprenticeDetailsPage(_context);
+            Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
+        }
+
+        [When(@"overlapping training date request banner is not displayed when training date is changed")]
+        public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayedWhenTrainingDateIsChanged()
+        {
+            var page = new NewTrainingDatePage(_context);
+            Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
+        }
+
+        [When(@"overlapping training date request banner is not displayed when stop date is changed")]
+        public void WhenOverlappingTrainingDateRequestBannerIsNotDisplayedWhenStopDateIsChanged()
+        {
+            var page = new ApprenticeDetailsPage(_context);
+            Assert.IsFalse(page.IsOverlappingTrainingDateRequestLinkDisplayed());
+        }
+
+        [When(@"Employer selects to reject the overlapping training date request")]
+        public void WhenEmployerSelectsToRejectTheOverlappingTrainingDateRequest()
+        {
+            var apprenticeDetailsPage = _homePageStepsHelper
+               .GoToManageYourApprenticesPage()
+               .SelectViewCurrentApprenticeDetails();
+            apprenticeDetailsPage
+                .ClickOnChangeOfOverlappingTrainingDateRequestLink()
+                .ClickDateIsCorrectRadionButton();
+        }
+
+        [When(@"provider goes to its home page")]
+        public void WhenProviderGoesToItsHomePage()
+        {
+            var tabHelper = _context.Get<TabHelper>();
+            tabHelper.OpenNewTab();
+            tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+
+            new ProviderHomePage(_context);
+        }
+
+        [When(@"provider edits draft apprenitce start date which has an overlap")]
+        public void WhenProviderEditsTheStartDate()
+        {
+            var oneMonthOldStartDate = DateTime.UtcNow.AddMonths(-1);
+
+            var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
+            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
+            _objectContext.UpdateCohortReference(draftApprenticeshipCohortRef);
+
+            new ProviderApprenticeRequestsPage(_context, true)
+               .GoToDraftCohorts()
+               .SelectViewCurrentCohortDetails()
+               .SelectEditApprentice(0)
+               .ClickSaveAndContinue()
+               .EditStartDate(oneMonthOldStartDate.Month.ToString(), oneMonthOldStartDate.Year.ToString())
+               .ClickSaveWhenOltd();
+
+            _objectContext.UpdateCohortReference(previousApprenticeshipCohortReference);
+        }
+
+        [When(@"Employer decides to update the stopped date")]
+        public void WhenEmployerDecidesToUpdateTheStoppedDate()
+        {
+            var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
+            var apprenticeDetailsPage = _homePageStepsHelper
+                .GoToManageYourApprenticesPage()
+                .SelectViewCurrentApprenticeDetails();
+            apprenticeDetailsPage
+                .ClickOnChangeOfOverlappingTrainingDateRequestLink()
+                .ClickDateIsWrongRadionButton()
+                .EditStopDateToCourseStartDateAndSubmit(threeMonthOldStartDate.Month.ToString(), threeMonthOldStartDate.Year.ToString());
+        }
+
+        [Given(@"Completed event is received for the apprentice")]
+        public void GivenCompletedEventIsReceivedForTheApprentice()
+        {
+            var reference = _objectContext.GetCohortReference();
+            var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
+            _commitmentsSqlDataHelper.UpdateApprentieshipStatusToCompleted(uln);
+        }
+
+        [When(@"Employer decides to update end date")]
+        public void WhenEmployerDecidesToUpdateEndDate()
+        {
+            var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
+            var apprenticeDetailsPage = _homePageStepsHelper
+                .GoToManageYourApprenticesPage()
+                .SelectViewCurrentApprenticeDetails();
+            
+            apprenticeDetailsPage
+                .ClickEndDateLink()
+                .EditEndDate(threeMonthOldStartDate.Month.ToString(), threeMonthOldStartDate.Year.ToString());
+        }
+
+        [When(@"provider navigates to approve cohort details page")]
+        [When(@"provider navigates to approve cohort details page")]
+        public void WhenProivderNavigatesToApproveCohortPage()
+        {
+            var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
+            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
+            _cohortReferenceHelper.UpdateCohortReference(draftApprenticeshipCohortRef);
+
+            new ProviderApprenticeRequestsPage(_context, true)
+               .GoToDraftCohorts()
+               .SelectViewCurrentCohortDetails();
+
+            _cohortReferenceHelper.UpdateCohortReference(previousApprenticeshipCohortReference);
+        }
+
         [Then(@"information is saved in the cohort")]
         public void ThenInformationIsSavedInTheCohort()
         {
-            var uln = _objectContext.GetUlnForOLTD();
-            var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
+            var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(GetUlnForOLTD());
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
 
         [Then(@"price update information is not stored in the cohort")]
         public void ThenPriceUpdateInformationIsNotStoredInTheCohort()
         {
-            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(_objectContext.GetUlnForOLTD()).cost;
+            var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             var newCost = int.Parse(newCostString);
             Assert.AreEqual(_oldCost, newCost);
         }
+
+        private string GetUlnForOLTD() => _objectContext.GetUlnForOLTD();
 
         private void VerifyOverlappingTrainingDetailsError(Table table, AddAndEditApprenticeDetailsBasePage page)
         {

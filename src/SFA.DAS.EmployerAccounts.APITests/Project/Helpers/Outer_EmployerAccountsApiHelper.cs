@@ -21,16 +21,16 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers
             _outerEmployerAccountsHealthApiRestClient = new Outer_EmployerAccountsHealthApiRestClient(_objectContext);
         }
 
-        public IRestResponse Ping() => _outerEmployerAccountsHealthApiRestClient.Ping(HttpStatusCode.OK);
+        public RestResponse Ping() => _outerEmployerAccountsHealthApiRestClient.Ping(HttpStatusCode.OK);
 
-        public IRestResponse CheckHealth() => _outerEmployerAccountsHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
+        public RestResponse CheckHealth() => _outerEmployerAccountsHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
 
-        public IRestResponse GetAccountEnglishFractionCurrent(string hashedAccountId)
+        public RestResponse GetAccountEnglishFractionCurrent(string hashedAccountId)
         {
             return _outerEmployerAccountsApiRestClient.GetAccountEnglishFractionCurrent(hashedAccountId, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetAccountEnglishFractionHistory(string hashedAccountId)
+        public RestResponse GetAccountEnglishFractionHistory(string hashedAccountId)
         {
             return _outerEmployerAccountsApiRestClient.GetAccountEnglishFractionHistory(hashedAccountId, HttpStatusCode.OK);
         }

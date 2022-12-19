@@ -13,7 +13,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         private readonly Outer_AssessorCertificationApiRestClient _restClient;
         private readonly AssessorCertificationSqlDbHelper _assessorCertificationSqlDbHelper;
         private string _contextUln;
-        private IRestResponse _restResponse = null;
+        private RestResponse _restResponse = null;
 
         public RecordAssessmentOutcomesSteps(ScenarioContext context)
         {

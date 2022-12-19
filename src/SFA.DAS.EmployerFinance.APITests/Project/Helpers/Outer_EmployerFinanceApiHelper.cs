@@ -22,55 +22,55 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers
             _outerEmployerFinanceHealthApiRestClient = new Outer_EmployerFinanceHealthApiRestClient(_objectContext);
         }
 
-        public IRestResponse Ping() => _outerEmployerFinanceHealthApiRestClient.Ping(HttpStatusCode.OK);
+        public RestResponse Ping() => _outerEmployerFinanceHealthApiRestClient.Ping(HttpStatusCode.OK);
 
-        public IRestResponse CheckHealth() => _outerEmployerFinanceHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
+        public RestResponse CheckHealth() => _outerEmployerFinanceHealthApiRestClient.CheckHealth(HttpStatusCode.OK);
 
-        public IRestResponse GetAccountMinimumSignedAgreementVersion(long accountId)
+        public RestResponse GetAccountMinimumSignedAgreementVersion(long accountId)
         {
             return _outerEmployerFinanceApiRestClient.GetAccountMinimumSignedAgreementVersion(accountId, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetAccountUserWhichCanReceiveNotifications(long accountId)
+        public RestResponse GetAccountUserWhichCanReceiveNotifications(long accountId)
         {
             return _outerEmployerFinanceApiRestClient.GetAccountUserWhichCanReceiveNotifications(accountId, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetPledges(long accountId)
+        public RestResponse GetPledges(long accountId)
         {
             return _outerEmployerFinanceApiRestClient.GetPledges(accountId, HttpStatusCode.OK);
         }
-        public IRestResponse GetProjections(long accountId)
+        public RestResponse GetProjections(long accountId)
         {
             return _outerEmployerFinanceApiRestClient.GetProjections(accountId, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetProviders()
+        public RestResponse GetProviders()
         {
             return _outerEmployerFinanceApiRestClient.GetProviders(HttpStatusCode.OK);
         }
 
-        public IRestResponse GetProvidersById()
+        public RestResponse GetProvidersById()
         {
             return _outerEmployerFinanceApiRestClient.GetProvidersById(HttpStatusCode.OK);
         }
 
-        public IRestResponse GetTrainingCoursesFrameworks()
+        public RestResponse GetTrainingCoursesFrameworks()
         {
             return _outerEmployerFinanceApiRestClient.GetTrainingCoursesFrameworks(HttpStatusCode.OK);
         }
 
-        public IRestResponse GetTrainingCoursesStandards()
+        public RestResponse GetTrainingCoursesStandards()
         {
             return _outerEmployerFinanceApiRestClient.GetTrainingCoursesStandards(HttpStatusCode.OK);
         }
 
-        public IRestResponse GetTransfersCounts(long accountId)
+        public RestResponse GetTransfersCounts(long accountId)
         {
             return _outerEmployerFinanceApiRestClient.GetTransfersCounts(accountId, HttpStatusCode.OK);
         }
 
-        public IRestResponse GetTransfersFinancialBreakdown(long accountId)
+        public RestResponse GetTransfersFinancialBreakdown(long accountId)
         {
             return _outerEmployerFinanceApiRestClient.GetTransfersFinancialBreakdown(accountId, HttpStatusCode.OK);
         }
