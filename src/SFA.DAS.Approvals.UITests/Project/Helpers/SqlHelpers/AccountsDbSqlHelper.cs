@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         private string ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
         {
-            var (data, _) = SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString, parameters);
+            var (data, _) = SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString, parameters, mustFindresult);
 
             if (data.Count == 0)
                 return null;

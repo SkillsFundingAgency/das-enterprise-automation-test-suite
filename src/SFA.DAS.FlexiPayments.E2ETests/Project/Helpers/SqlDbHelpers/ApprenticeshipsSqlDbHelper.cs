@@ -14,7 +14,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
                $"JOIN [dbo].[Apprenticeship] apprn ON apprv.ApprenticeshipKey = apprn.[Key]" +
                $"WHERE Uln = '{uln}'";
 
-            var data = TryGetDataAsList(query, $"query for a {uln}");
+            mustFindresult = true;
+
+            var data = GetMultipleData(query, $"query for a {uln}").ListOfArrayToList(0);
 
             return (data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         }
