@@ -1,10 +1,5 @@
-﻿using Polly;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {

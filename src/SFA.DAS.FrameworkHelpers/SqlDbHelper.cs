@@ -100,7 +100,7 @@ namespace SFA.DAS.FrameworkHelpers
             {
                 var x = GetMultipleData(queryToExecute, connectionString);
 
-                _ = x[0][0];
+                if (x.IsNoDataFound()) throw new Exception("Index was out of range");
 
                 return x.ListOfArrayToList(0);
 

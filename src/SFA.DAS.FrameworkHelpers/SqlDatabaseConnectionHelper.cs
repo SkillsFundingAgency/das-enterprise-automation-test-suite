@@ -19,7 +19,7 @@ namespace SFA.DAS.FrameworkHelpers
                 {
                     databaseConnection.Open();
 
-                    using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
+                    using (SqlCommand command = new(queryToExecute, databaseConnection))
                     {
                         if (parameters != null)
                         {
@@ -46,13 +46,13 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
         {
-            List<(List<object[]>, int)> multiresult = new List<(List<object[]>, int)>();
+            List<(List<object[]>, int)> multiresult = new();
 
             try
             {
                 using (SqlConnection dbConnection = GetSqlConnection(connectionString))
                 {
-                    using (SqlCommand command = new SqlCommand(string.Join(string.Empty, queryToExecute), dbConnection))
+                    using (SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection))
                     {
                         command.CommandType = CommandType.Text;
 
@@ -70,7 +70,7 @@ namespace SFA.DAS.FrameworkHelpers
 
                         foreach (var item in queryToExecute)
                         {
-                            List<object[]> result = new List<object[]>();
+                            List<object[]> result = new();
                             int noOfColumns = dataReader.FieldCount;
                             while (dataReader.Read())
                             {
