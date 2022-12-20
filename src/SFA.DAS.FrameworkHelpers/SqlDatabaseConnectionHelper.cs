@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,13 +17,17 @@ public static class WaitConfigurationHelper
     {
         private static WaitConfiguration Config => new();
 
-        public static async Task WaitForIt(Func<bool> lookForIt)
+        public static async Task WaitForIt(Func<bool> lookForIt, string textMessage)
         {
             var endTime = DateTime.Now.Add(Config.TimeToWait);
+
+            int retryCount = 0;
 
             while (DateTime.Now <= endTime)
             {
                 if (lookForIt()) return;
+
+                TestContext.Progress.WriteLine($"Retry {retryCount++} -  Waiting for the sql query to return valid data - '{textMessage}'");
 
                 await Task.Delay(Config.TimeToPoll);
             }
@@ -87,7 +92,7 @@ public static class SqlDatabaseConnectionHelper
                     result = RetriveData(queryToExecute, connectionString, parameters);
 
                     return false;
-                }).Wait();
+                }, queryToExecute.FirstOrDefault()).Wait();
             }
 
             return result;   
