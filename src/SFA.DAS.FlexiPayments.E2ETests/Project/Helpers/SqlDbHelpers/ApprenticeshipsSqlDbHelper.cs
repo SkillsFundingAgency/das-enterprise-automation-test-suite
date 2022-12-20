@@ -16,11 +16,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 
             waitForResults = true;
 
-            var data = GetMultipleData(query).ListOfArrayToList(0);
+            var data = GetData(query);
 
             return (data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         }
     }
 }
-
-

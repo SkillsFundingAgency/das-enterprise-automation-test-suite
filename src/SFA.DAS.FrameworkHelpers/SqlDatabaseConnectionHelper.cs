@@ -89,7 +89,7 @@ public static class SqlDatabaseConnectionHelper
             {
                 WaitHelper.WaitForIt(() =>
                 {
-                    if (result.Any((x) => x.data.Any(x => !string.IsNullOrEmpty(x?.ToString())))) return true;
+                    if (result.Any((x) => x.data.Any(y => !string.IsNullOrEmpty(y?.ToString())))) return true;
 
                     result = RetriveData(queryToExecute, connectionString, parameters);
 
