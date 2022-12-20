@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -75,8 +76,6 @@ public static class SqlDatabaseConnectionHelper
 
     public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters, bool mustFindresult)
     {
-        List<(List<object[]>, int)> multiresult = new();
-
         try
         {
             using (SqlConnection dbConnection = GetSqlConnection(connectionString))
@@ -93,19 +92,21 @@ public static class SqlDatabaseConnectionHelper
                         }
                     }
 
-                    dbConnection.Open();
+                    var result = RetriveData(queryToExecute, dbConnection, command);
 
                     if (mustFindresult)
                     {
                         WaitHelper.WaitForIt(() =>
                         {
-                            var result = RetriveData(queryToExecute, multiresult, command);
+                            if (result.Any((x) => x.data.Any(x => !string.IsNullOrEmpty(x?.ToString())))) return true;
 
-                            return result.Any((x) => x.data.Any(x => !string.IsNullOrEmpty(x?.ToString())));
+                            result = RetriveData(queryToExecute, dbConnection, command);
+
+                            return false;
                         }).Wait();
                     }
 
-                    return RetriveData(queryToExecute, multiresult, command);
+                    return result;
                 }
             }
         }
@@ -116,11 +117,15 @@ public static class SqlDatabaseConnectionHelper
         }
     }
 
-    private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, List<(List<object[]>, int)> multiresult, SqlCommand command)
+    private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, SqlConnection dbConnection, SqlCommand command)
     {
+        List<(List<object[]>, int)> multiresult = new();
+
+        dbConnection.Open();
+
         SqlDataReader dataReader = command.ExecuteReader();
 
-        foreach (var item in queryToExecute)
+        foreach (var _ in queryToExecute)
         {
             List<object[]> result = new();
             int noOfColumns = dataReader.FieldCount;
@@ -134,6 +139,8 @@ public static class SqlDatabaseConnectionHelper
             multiresult.Add((result, noOfColumns));
             dataReader.NextResult();
         }
+
+        dbConnection.Close();
 
         return multiresult;
     }
