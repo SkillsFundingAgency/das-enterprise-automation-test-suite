@@ -1,10 +1,8 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,37 +76,21 @@ public static class SqlDatabaseConnectionHelper
     {
         try
         {
-            using (SqlConnection dbConnection = GetSqlConnection(connectionString))
+            var result = RetriveData(queryToExecute, connectionString, parameters);
+
+            if (mustFindresult)
             {
-                using (SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection))
+                WaitHelper.WaitForIt(() =>
                 {
-                    command.CommandType = CommandType.Text;
+                    if (result.Any((x) => x.data.Any(x => !string.IsNullOrEmpty(x?.ToString())))) return true;
 
-                    if (parameters != null)
-                    {
-                        foreach (KeyValuePair<string, string> param in parameters)
-                        {
-                            command.Parameters.AddWithValue(param.Key, param.Value);
-                        }
-                    }
+                    result = RetriveData(queryToExecute, connectionString, parameters);
 
-                    var result = RetriveData(queryToExecute, dbConnection, command);
-
-                    if (mustFindresult)
-                    {
-                        WaitHelper.WaitForIt(() =>
-                        {
-                            if (result.Any((x) => x.data.Any(x => !string.IsNullOrEmpty(x?.ToString())))) return true;
-
-                            result = RetriveData(queryToExecute, dbConnection, command);
-
-                            return false;
-                        }).Wait();
-                    }
-
-                    return result;
-                }
+                    return false;
+                }).Wait();
             }
+
+            return result;   
         }
         catch (Exception exception)
         {
@@ -117,32 +99,46 @@ public static class SqlDatabaseConnectionHelper
         }
     }
 
-    private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, SqlConnection dbConnection, SqlCommand command)
+    private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
         List<(List<object[]>, int)> multiresult = new();
 
-        dbConnection.Open();
-
-        SqlDataReader dataReader = command.ExecuteReader();
-
-        foreach (var _ in queryToExecute)
+        using (SqlConnection dbConnection = GetSqlConnection(connectionString))
         {
-            List<object[]> result = new();
-            int noOfColumns = dataReader.FieldCount;
-            while (dataReader.Read())
+            using (SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection))
             {
-                object[] items = new object[noOfColumns];
-                dataReader.GetValues(items);
-                result.Add(items);
+                command.CommandType = CommandType.Text;
+
+                if (parameters != null)
+                {
+                    foreach (KeyValuePair<string, string> param in parameters)
+                    {
+                        command.Parameters.AddWithValue(param.Key, param.Value);
+                    }
+                }
+
+                dbConnection.Open();
+
+                SqlDataReader dataReader = command.ExecuteReader();
+
+                foreach (var item in queryToExecute)
+                {
+                    List<object[]> result = new();
+                    int noOfColumns = dataReader.FieldCount;
+                    while (dataReader.Read())
+                    {
+                        object[] items = new object[noOfColumns];
+                        dataReader.GetValues(items);
+                        result.Add(items);
+                    }
+
+                    multiresult.Add((result, noOfColumns));
+                    dataReader.NextResult();
+                }
+
+                return multiresult;
             }
-
-            multiresult.Add((result, noOfColumns));
-            dataReader.NextResult();
         }
-
-        dbConnection.Close();
-
-        return multiresult;
     }
 
     public static int ExecuteSqlCommand(string queryToExecute, string connectionString)
@@ -163,7 +159,7 @@ public static class SqlDatabaseConnectionHelper
         return await dbConnection.GetAsync<T>(id);
     }
 
-    private static SqlConnection GetSqlConnection(string connectionString) => new SqlConnection 
+    private static SqlConnection GetSqlConnection(string connectionString) => new()
     { 
         ConnectionString = connectionString, 
         AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken()
