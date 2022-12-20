@@ -72,13 +72,13 @@ public static class SqlDatabaseConnectionHelper
     public static (List<object[]> data, int noOfColumns) ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters, bool mustFindresult) =>
         ReadMultipleDataFromDataBase(new List<string> { queryToExecute }, connectionString, parameters, mustFindresult).FirstOrDefault();
 
-    public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters, bool mustFindresult)
+    public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters, bool waitForResults)
     {
         try
         {
             var result = RetriveData(queryToExecute, connectionString, parameters);
 
-            if (mustFindresult)
+            if (waitForResults)
             {
                 WaitHelper.WaitForIt(() =>
                 {

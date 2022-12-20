@@ -7,12 +7,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
     public class EarningsSqlDbHelper : SqlDbHelper
     {
-        private readonly DbConfig _dbConfig;
         private static int _currentAcademicYear;
 
         public EarningsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EarningsDbConnectionString)
         {
-            _dbConfig = dbConfig;
             _currentAcademicYear = AcademicYearDatesHelper.GetCurrentAcademicYear();
         }
 
@@ -22,6 +20,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
                 $"FROM [Query].[Earning] " +
                 $"WHERE Uln = '{uln}' " +
                 $"GROUP BY Amount";
+
+            waitForResults = true;
 
             var data = GetData(query);
 

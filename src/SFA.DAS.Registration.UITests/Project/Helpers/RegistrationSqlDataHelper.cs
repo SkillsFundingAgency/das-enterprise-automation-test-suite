@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public List<(string accountId, string hashedId, string orgName, string publicHashedId)> CollectAccountDetails(string email)
         {
-            mustFindresult = true;
+            waitForResults = true;
 
             var id = GetMultipleData($"SELECT id, HashedId, [Name], PublicHashedId FROM [employer_account].[Account] WHERE id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
 

@@ -221,6 +221,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
                 $"WHERE ULN = '{uln}'";
 
+            waitForResults = true;
+
             var data = GetData(query);
 
             return (data[0], data[1], data[2], data[3]);

@@ -8,7 +8,7 @@ namespace SFA.DAS.FrameworkHelpers
     {
         protected readonly string connectionString;
 
-        protected bool mustFindresult = false;
+        protected bool waitForResults = false;
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         protected List<string> GetData(string query, string connectionstring, Dictionary<string, string> parameters)
         {
-            (List<object[]> data, int noOfColumns) data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters, mustFindresult);
+            (List<object[]> data, int noOfColumns) data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters, waitForResults);
 
             var returnItems = new List<string>();
 
@@ -104,6 +104,6 @@ namespace SFA.DAS.FrameworkHelpers
 
         private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
-        private List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadMultipleDataFromDataBase(queryToExecute, connectionString, null, mustFindresult);
+        private List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadMultipleDataFromDataBase(queryToExecute, connectionString, null, waitForResults);
     }
 }
