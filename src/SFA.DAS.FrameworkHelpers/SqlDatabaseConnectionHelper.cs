@@ -1,11 +1,13 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static SFA.DAS.FrameworkHelpers.WaitConfigurationHelper;
 
@@ -27,7 +29,7 @@ public static class WaitConfigurationHelper
             {
                 if (lookForIt()) return;
 
-                TestContext.Progress.WriteLine($"Retry {retryCount++} -  Waiting for the sql query to return valid data - '{textMessage}'");
+                TestContext.Progress.WriteLine($"Retry {retryCount++} - Waiting for the sql query to return valid data - '{textMessage}'");
 
                 await Task.Delay(Config.TimeToPoll);
             }
@@ -164,9 +166,17 @@ public static class SqlDatabaseConnectionHelper
         return await dbConnection.GetAsync<T>(id);
     }
 
-    private static SqlConnection GetSqlConnection(string connectionString) => new()
-    { 
-        ConnectionString = connectionString, 
-        AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken()
-    };
+    private static SqlConnection GetSqlConnection(string connectionString)
+    {
+        WriteDebugMessage(connectionString);
+
+        return new() { ConnectionString = connectionString, AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken() };
+    }
+
+    private static void WriteDebugMessage(string connectionString)
+    {
+        var x = Regex.Replace(connectionString, @"Password=.*;Trusted_Connection", "Password=<*******>;Trusted_Connection");
+
+        TestContext.Progress.WriteLine($"Connect to sql using '{x}'");
+    }
 }
