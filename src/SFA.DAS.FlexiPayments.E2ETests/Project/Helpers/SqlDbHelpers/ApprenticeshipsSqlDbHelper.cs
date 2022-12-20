@@ -5,9 +5,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeshipsSqlDbHelper : SqlDbHelper
     {
-        private readonly DbConfig _dbConfig;
-
-        public ApprenticeshipsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeshipsDbConnectionString) { _dbConfig = dbConfig; } 
+        public ApprenticeshipsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeshipsDbConnectionString) { }
         
         public (string isPilot, string actualStartDate, string plannedStartDate, string plannedEndDate, string agreedPrice, string FundingType, string FundingBandMax) GetEarningsApprenticeshipDetails (string uln)
         {
