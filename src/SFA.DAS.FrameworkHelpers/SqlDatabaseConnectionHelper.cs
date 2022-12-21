@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,14 +30,14 @@ public static class WaitConfigurationHelper
 
                 TestContext.Progress.WriteLine($"Retry {retryCount++} - Waiting for the sql query to return valid data - '{textMessage}'");
 
-                await Task.Delay(Config.TimeToPoll);
+                await Task.Delay(Config.TimeToPoll(retryCount));
             }
         }
 
         public class WaitConfiguration
         {
-            public TimeSpan TimeToWait { get; set; } = TimeSpan.FromMinutes(3);
-            public TimeSpan TimeToPoll { get; set; } = TimeSpan.FromSeconds(10);
+            public TimeSpan TimeToWait { get; set; } = TimeSpan.FromMinutes(5);
+            public TimeSpan TimeToPoll(int x) => TimeSpan.FromSeconds(5 * x);
         }
     }
 }
@@ -83,21 +82,37 @@ public static class SqlDatabaseConnectionHelper
     {
         try
         {
-            var result = RetriveData(queryToExecute, connectionString, parameters);
-
-            if (waitForResults)
+            using (SqlConnection dbConnection = GetSqlConnection(connectionString))
             {
-                WaitHelper.WaitForIt(() =>
+                using (SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection))
                 {
-                    if (result.Any((x) => x.data.Any(y => !string.IsNullOrEmpty(y?.ToString())))) return true;
+                    command.CommandType = CommandType.Text;
 
-                    result = RetriveData(queryToExecute, connectionString, parameters);
+                    if (parameters != null)
+                    {
+                        foreach (KeyValuePair<string, string> param in parameters)
+                        {
+                            command.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+                    }
 
-                    return false;
-                }, queryToExecute.FirstOrDefault()).Wait();
+                    var result = RetriveData(queryToExecute, dbConnection, command);
+
+                    if (waitForResults)
+                    {
+                        WaitHelper.WaitForIt(() =>
+                        {
+                            if (result.Any(x => x.data.Any(y => !string.IsNullOrEmpty(y?.ToString())))) return true;
+
+                            result = RetriveData(queryToExecute, dbConnection, command);
+
+                            return false;
+                        }, queryToExecute.FirstOrDefault()).Wait();
+                    }
+
+                    return result;
+                }
             }
-
-            return result;   
         }
         catch (Exception exception)
         {
@@ -106,46 +121,32 @@ public static class SqlDatabaseConnectionHelper
         }
     }
 
-    private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
+    private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, SqlConnection dbConnection, SqlCommand command)
     {
         List<(List<object[]>, int)> multiresult = new();
 
-        using (SqlConnection dbConnection = GetSqlConnection(connectionString))
+        dbConnection.Open();
+
+        SqlDataReader dataReader = command.ExecuteReader();
+
+        foreach (var _ in queryToExecute)
         {
-            using (SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection))
+            List<object[]> result = new();
+            int noOfColumns = dataReader.FieldCount;
+            while (dataReader.Read())
             {
-                command.CommandType = CommandType.Text;
-
-                if (parameters != null)
-                {
-                    foreach (KeyValuePair<string, string> param in parameters)
-                    {
-                        command.Parameters.AddWithValue(param.Key, param.Value);
-                    }
-                }
-
-                dbConnection.Open();
-
-                SqlDataReader dataReader = command.ExecuteReader();
-
-                foreach (var item in queryToExecute)
-                {
-                    List<object[]> result = new();
-                    int noOfColumns = dataReader.FieldCount;
-                    while (dataReader.Read())
-                    {
-                        object[] items = new object[noOfColumns];
-                        dataReader.GetValues(items);
-                        result.Add(items);
-                    }
-
-                    multiresult.Add((result, noOfColumns));
-                    dataReader.NextResult();
-                }
-
-                return multiresult;
+                object[] items = new object[noOfColumns];
+                dataReader.GetValues(items);
+                result.Add(items);
             }
+
+            multiresult.Add((result, noOfColumns));
+            dataReader.NextResult();
         }
+
+        dbConnection.Close();
+
+        return multiresult;
     }
 
     public static int ExecuteSqlCommand(string queryToExecute, string connectionString)

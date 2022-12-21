@@ -96,8 +96,13 @@ namespace SFA.DAS.FrameworkHelpers
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
             => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
-        protected object TryGetDataAsObject(string queryToExecute, string title)
-            => RetryOnIndexOutOfRangeException(() => GetDataAsObject(queryToExecute), title);
+        protected object TryGetDataAsObject(string queryToExecute)
+        {
+            waitForResults = true;
+
+            return GetDataAsObject(queryToExecute);
+        }
+
 
         private List<(List<object[]> data, int noOfColumns)> TryReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString)
             => RetryOnException(() => ReadMultipleDataFromDataBase(queryToExecute, connectionString));
