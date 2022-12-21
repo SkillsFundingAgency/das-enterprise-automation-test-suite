@@ -107,7 +107,7 @@ public static class SqlDatabaseConnectionHelper
                             result = RetriveData(queryToExecute, dbConnection, command);
 
                             return false;
-                        }, queryToExecute.FirstOrDefault()).Wait();
+                        }, $"{queryToExecute.FirstOrDefault()}{Environment.NewLine}{WriteDebugMessage(connectionString)}").Wait();
                     }
 
                     return result;
@@ -169,15 +169,11 @@ public static class SqlDatabaseConnectionHelper
 
     private static SqlConnection GetSqlConnection(string connectionString)
     {
-        WriteDebugMessage(connectionString);
-
         return new() { ConnectionString = connectionString, AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken() };
     }
 
-    private static void WriteDebugMessage(string connectionString)
+    private static string WriteDebugMessage(string connectionString)
     {
-        var x = Regex.Replace(connectionString, @"Password=.*;Trusted_Connection", "Password=<*******>;Trusted_Connection");
-
-        TestContext.Progress.WriteLine($"Connect to sql using '{x}'");
+        return Regex.Replace(connectionString, @"Password=.*;Trusted_Connection", "Password=<*******>;Trusted_Connection");
     }
 }
