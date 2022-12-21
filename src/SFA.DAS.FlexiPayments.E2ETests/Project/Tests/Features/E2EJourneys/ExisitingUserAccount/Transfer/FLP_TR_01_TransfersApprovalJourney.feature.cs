@@ -187,8 +187,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "1"});
                 table17.AddRow(new string[] {
                             "2"});
-                table17.AddRow(new string[] {
-                            "2"});
 #line 22
   testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table17, "And ");
 #line hidden

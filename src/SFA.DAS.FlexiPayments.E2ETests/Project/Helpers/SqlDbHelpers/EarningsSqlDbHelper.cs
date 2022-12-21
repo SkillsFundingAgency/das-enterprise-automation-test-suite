@@ -14,14 +14,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             _currentAcademicYear = AcademicYearDatesHelper.GetCurrentAcademicYear();
         }
 
-        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings(string uln)
+        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings(string uln, bool waitForResults)
         {
             string query = $"SELECT TOP 1 Amount AS MonthlyOnProgramPayment, SUM(Amount) AS 'TotalOnProgramPayment', COUNT(DeliveryPeriod) AS 'NumberOfDeliveryMonths' " +
                 $"FROM [Query].[Earning] " +
                 $"WHERE Uln = '{uln}' " +
                 $"GROUP BY Amount";
 
-            waitForResults = true;
+            this.waitForResults = waitForResults;
 
             var data = GetData(query);
 

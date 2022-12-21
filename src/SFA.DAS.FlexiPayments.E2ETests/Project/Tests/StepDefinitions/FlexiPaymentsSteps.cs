@@ -66,7 +66,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputEarningsData = table.Rows[i].CreateInstance<FlexiPaymentsEarningDataModel>();
 
-                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"));
+                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"), true);
 
                 Assert.That(double.Parse(earningsDbData.totalOnProgramPayment), Is.EqualTo(inputEarningsData.TotalOnProgramPayment), "Incorrect total on-program payment found in earnings db");
                 Assert.That(double.Parse(earningsDbData.monthlyOnProgramPayment), Is.EqualTo(inputEarningsData.MonthlyOnProgramPayment), "Incorrect monthly on-program payment found in earnings db");
@@ -103,7 +103,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputEarningsData = table.Rows[i].CreateInstance<FlexiPaymentsEarningDataModel>();
 
-                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"));
+                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"), false);
 
                 Assert.IsEmpty(earningsDbData.totalOnProgramPayment, "Incorrect total on-program payment found in earnings db");
                 Assert.IsEmpty(earningsDbData.monthlyOnProgramPayment, "Incorrect total on-program payment found in earnings db");

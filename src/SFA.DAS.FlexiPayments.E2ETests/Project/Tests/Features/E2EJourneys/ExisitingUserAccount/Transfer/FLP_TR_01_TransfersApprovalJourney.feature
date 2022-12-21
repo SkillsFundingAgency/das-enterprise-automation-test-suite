@@ -23,4 +23,3 @@ Scenario: FLP_TR_01 Transfers - Creating Cohort and then approved by all 3 parti
 		| ULN_Key |
 		| 1       |
 		| 2       |
-		| 2       |
