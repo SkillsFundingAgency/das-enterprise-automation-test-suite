@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             get
             {
                 int noOfApprentice = TotalNoOfApprentices();
-                return noOfApprentice == 1 ? "View apprentice details" : $"View {noOfApprentice} apprentices' details";
+                return noOfApprentice < 2 ? "View apprentice details" : $"View {noOfApprentice} apprentices' details";
             }
         }
 
