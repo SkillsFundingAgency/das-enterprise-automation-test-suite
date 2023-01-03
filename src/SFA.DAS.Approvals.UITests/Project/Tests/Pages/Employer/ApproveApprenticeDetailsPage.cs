@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -21,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ReviewMessage => By.CssSelector("#send-details");
         private static By SaveSubmit => By.CssSelector("#main-content .govuk-button");
         private static By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
+        private static By CohortStatus => By.Id("cohortStatus");
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
@@ -105,5 +107,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
             return new EditPersonalDetailsPage(context);
         }
+
+        public ApprenticeDetailsApprovedPage ValidateFlexiJobTagAndApprove()
+        {
+            validateFlexiJobAgencyTag();
+            return EmployerDoesSecondApproval();
+        }
+
+        public void ValidateCohortStatus(string status) => pageInteractionHelper.VerifyText(CohortStatus, status);
     }
 }

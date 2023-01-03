@@ -206,6 +206,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
+        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
+        {
+            return ConfirmProviderDetailsAreCorrect()
+                  .EmployerAddsApprentices()
+                  .EmployerSelectsASStandardInFlexiJobJourney()
+                  .EmployerSelectRegularDeliveryModelAndContinue();
+        }
+
         public AddPersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(_context).AddAnApprentice()
@@ -254,10 +262,49 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         }
 
+        public ApprenticeDetailsPage EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickManageYourApprenticesLink()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickEditApprenticeDetailsLink()
+                  .ClickEditDeliveryModelLink()
+                  .EmployerEditDeliveryModelToRegularAndContinue()
+                  .ClickUpdateDetailsButtonAfterChange()
+                  .AcceptChangesAndSubmit();
+        }
+
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
+
+        public ApprenticeDetailsApprovedPage ValidateFlexiJobContentAndApproveCohort()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .ValidateFlexiJobTagAndApprove();         
+        }
+
+        public EditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelDisplayed(deliveryModel)
+                .ClickEditApprenticeDetailsLink()
+                .ValidateDeliveryModelDisplayed(deliveryModel);
+        }
+
+        public ApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateDeliveryModelNotDisplayed();
+        }
     }
 }

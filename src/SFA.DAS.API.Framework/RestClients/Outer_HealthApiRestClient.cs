@@ -13,9 +13,9 @@ public class Outer_HealthApiRestClient
         _baseUrl = baseurl;
     }
 
-    public IRestResponse Ping(HttpStatusCode expectedResponse) => Execute($"/ping", expectedResponse);
+    public RestResponse Ping(HttpStatusCode expectedResponse) => Execute($"/ping", expectedResponse);
 
-    public IRestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
+    public RestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
 
-    private IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => new ApiAssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, new RestClient(_baseUrl), new RestRequest { Method = Method.GET, Resource = resource });
+    private RestResponse Execute(string resource, HttpStatusCode expectedResponse) => new ApiAssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, new RestClient(_baseUrl), new RestRequest { Method = Method.Get, Resource = resource });
 }

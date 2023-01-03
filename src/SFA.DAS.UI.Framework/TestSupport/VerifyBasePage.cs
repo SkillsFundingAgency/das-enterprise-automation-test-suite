@@ -18,6 +18,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private bool _takescreenshot;
         #endregion
 
+        public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle);
+
         protected virtual bool CaptureUrl => true;
 
         protected virtual bool TakeFullScreenShot => true;
@@ -56,7 +58,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         #region VerifyPage
         // VerifyPage methods are used to verify that the application landed on the expected page
-
         protected bool VerifyPage() => VerifyPage(() => VerifyElement());
 
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
