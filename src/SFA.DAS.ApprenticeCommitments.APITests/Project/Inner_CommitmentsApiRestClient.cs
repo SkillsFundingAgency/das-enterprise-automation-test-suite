@@ -14,6 +14,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string AppServiceName => config.config.CommitmentsAppServiceName;
 
-        public void GetApprenticeship(long app, HttpStatusCode expectedResponse) => Execute(Method.GET, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
+        public void GetApprenticeship(long app, HttpStatusCode expectedResponse) => Execute(Method.Get, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
     }
 }

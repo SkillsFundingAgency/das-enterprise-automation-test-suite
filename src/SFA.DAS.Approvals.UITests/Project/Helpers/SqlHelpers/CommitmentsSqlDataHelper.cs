@@ -181,6 +181,78 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
         }
 
+        internal (int? status, int? resolutionType) GetOverlappingTrainingDateRequestDetailsForUln(string uln)
+        {
+            var query = $@"SELECT TOP (1) 
+                              [Status]
+                             ,[ResolutionType]
+                          FROM [dbo].[OverlappingTrainingDateRequest] OLTD
+                          Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
+                          Where ULN = '{uln}'
+                          Order by OLTD.Id desc";
+
+            var data = GetData(query);
+            int? status = null;
+            int? resolutionType = null;
+
+            if (int.TryParse(data[0], out var statusCheck))
+                status = statusCheck;
+            if (int.TryParse(data[1], out var resolutionTypeCheck))
+                resolutionType = resolutionTypeCheck;
+
+            return (status, resolutionType);
+        }
+
+        public (string apprenticeshipid, string dob, string fname, string lname, string startDate, string trainningName, string uln, string ukprn, string cost) GetOverlappingTrainingDateRequest(string uln)
+        {
+            var query = @$"select top 1 a.Id, a.DateOfBirth, a.FirstName, a.LastName, a.StartDate, a.TrainingName, a.ULN, c.ProviderId, a.Cost from dbo.Apprenticeship a
+                            JOIN dbo.Commitment c on a.CommitmentId = c.Id where ULN = {uln}
+                            order by a.Id desc";
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
+        }
+
+        public (string isPilot, string fromDate, string toDate, string cost) GetFlexiPaymentsCommitmentData (string uln)
+        {
+            var query = $"SELECT app.IsOnFlexiPaymentPilot, pr.FromDate, pr.ToDate, pr.Cost " +
+                $"FROM [dbo].[Apprenticeship] app " +
+                $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
+                $"WHERE ULN = '{uln}'";
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2], data[3]);
+        }
+
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
+
+        internal string GetCohortReferenceForDraftApprenitceship(string previousApprenticeshipCohortReference)
+        {
+            var query = @$"SELECT TOP(1) CAD.Reference
+                           FROM[dbo].[OverlappingTrainingDateRequest] OLTD
+                           Inner Join Apprenticeship Da on OLTD.DraftApprenticeshipId = Da.Id
+                           Inner join Apprenticeship A on OLTD.PreviousApprenticeshipId = A.Id
+                           Inner join Commitment CA on A.CommitmentId = CA.Id
+                           Inner join Commitment CAD on Da.CommitmentId = CAD.Id
+                           Where CA.Reference = '{previousApprenticeshipCohortReference}'
+                           Order by OLTD.Id desc";
+
+            var data = GetData(query);
+
+            return data[0];
+        }
+
+        internal int UpdateApprentieshipStatusToCompleted(string uln)
+        {
+            var sql = @$"  Update Apprenticeship
+                          set PaymentStatus = 4
+                          , CompletionDate = '{DateTime.UtcNow.ToString("MM-dd-yyyy")}'
+                          Where ULN = '{uln}'";
+
+            var rowsEffected = ExecuteSqlCommand(sql);
+            return rowsEffected;
+        }
     }
 }

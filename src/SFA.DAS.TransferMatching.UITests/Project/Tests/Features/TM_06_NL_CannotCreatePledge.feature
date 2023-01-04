@@ -3,5 +3,5 @@
 @regression
 @transfermatching
 Scenario: TM_06_NL_Non Levy User Cannot Create Pledge
-	Given the non levy employer logins using existing non levy account
+	Given the Employer logins using existing NonLevy Account
 	Then the user can not create transfer pledge

@@ -7,7 +7,7 @@ public class ApiAssertHelper
 
     public ApiAssertHelper(ObjectContext objectContext) => _objectContext = objectContext; 
 
-    public IRestResponse ExecuteAuthTokenAndAssertResponse(RestClient client, IRestRequest request)
+    public RestResponse ExecuteAuthTokenAndAssertResponse(RestClient client, RestRequest request)
     {
         var response = client.Execute(request);
 
@@ -20,10 +20,10 @@ public class ApiAssertHelper
         return response;
     }
 
-    public IRestResponse ExecuteAndAssertResponse(HttpStatusCode expectedResponse, RestClient client, IRestRequest request)
+    public RestResponse ExecuteAndAssertResponse(HttpStatusCode expectedResponse, RestClient client, RestRequest request)
     => ExecuteAndAssertResponse(expectedResponse, string.Empty, client, request);
 
-    public IRestResponse ExecuteAndAssertResponse(HttpStatusCode expectedResponse, string responseContent, RestClient client, IRestRequest request)
+    public RestResponse ExecuteAndAssertResponse(HttpStatusCode expectedResponse, string responseContent, RestClient client, RestRequest request)
     {
         var response = client.Execute(request);
 

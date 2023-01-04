@@ -24,6 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage;
         private readonly RetryAssertHelper _assertHelper;
 
         public ProviderSteps(ScenarioContext context)
@@ -52,6 +53,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the provider selects Flexi-job agency radio button on Select Delivery Model screen")]
         public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerStepsHelper.AddFlexiJobApprentice();
+
+        [When(@"the provider opts (.*) learner into the pilot")]
+        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, true);
+
+        [When(@"the provider opts (.*) learner out of the pilot")]
+        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, false);
+
+        [When(@"the provider sends the cohort to employer to approve")]
+        public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();
 
         [Then(@"provider validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
         public void ThenProviderValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails() => _providerStepsHelper.ValidateFlexiJobAgencyContentAndAddApprenticeDetails();
@@ -148,11 +158,47 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandard()
-                .SubmitValidApprenticePersonalDetails()
-                .SubmitValidApprenticeTrainingDetails()
+                .SubmitValidPersonalDetails()
+                .SubmitValidTrainingDetails()
                 .SubmitApprove();
         }
 
+        [Given(@"Provider creates a new cohort")]
+        public void GivenProviderCreatesANewCohort()
+        {
+            providerAddApprenticeDetailsViaSelectJourneyPage = _providerStepsHelper
+               .GoToProviderHomePage(true)
+               .GotoSelectJourneyPage()
+               .SelectAddManually();
+        }
+
+        [Given(@"provider add leaners details and opts them into the pilot")]
+        public void GivenOptsLeanerIntoThePilot()
+        {
+            _providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsViaSelectJourneyPage
+                .SelectOptionCreateNewCohort()
+                .ChooseAnEmployer("Levy")
+                .ConfirmEmployer()
+                .ProviderSelectsAStandard()
+                .SubmitValidPersonalDetails(true)
+                .SubmitValidTrainingDetails();
+        }
+
+        [Then(@"the provider validates flexi-job content and approves cohort")]
+        public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+
+        [When(@"the provider adds an apprentice on the Regular Delivery Model and sends to Employer for approval")]
+        public void WhenTheProviderAddsAnApprenticeOnTheRegularDeliveryModelAndSendsToEmployerForApproval() => _providerStepsHelper.AddApprenticeAndSelectRegularDeliveryModel();
+
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
+
+        [Then(@"the provider confirms Delivery Model is displayed as ""([^""]*)"" on Apprentice Details and Edit Apprentice screens")]
+        public void ThenTheProviderConfirmsDeliveryModelIsDisplayedAsOnApprenticeDetailsAndEditApprenticeScreens(string deliveryModel) => _providerStepsHelper.ValidateDeliveryModelDisplayedInDMSections(deliveryModel);
+
+        [Then(@"the Provider changes the Delivery Model from Regular to Flexi and sends back to employer to review")]
+        public void ThenTheProviderChangesTheDeliveryModelFromRegularToFlexiAndSendsBackToEmployerToReview() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval();
+
+        [When(@"the Provider edits the Delivery Model to Regular in Post Approvals and submits changes")]
+        public void WhenTheProviderEditsTheDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
     }
 }

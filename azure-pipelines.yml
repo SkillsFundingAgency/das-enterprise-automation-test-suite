@@ -15,7 +15,7 @@ resources:
   - repository: das-platform-building-blocks
     type: github
     name: SkillsFundingAgency/das-platform-building-blocks
-    ref: refs/tags/0.4.63
+    ref: refs/tags/2.1.0
     endpoint: SkillsFundingAgency
 
 pool:
@@ -36,7 +36,14 @@ steps:
   inputs:
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
-    
+
+- task: DotNetCoreCLI@2
+  displayName: dotnet unit test
+  inputs:
+    command: 'test'
+    arguments: '--filter "TestCategory=Unittests" --logger trx;logfilename=UnittestResults.trx'
+    projects: 'src/**/*SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:

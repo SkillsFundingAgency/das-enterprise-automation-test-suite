@@ -24,5 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public void validateFlexiJobAgencyTag() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(FlexiJobAgencyTag));
 
         public void ValidatePortableFlexiJobTag() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PortableFlexiJobDeliveryModelTag));
+
+        public void ValidateFlexiTagNotDisplayed() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(FlexiJobAgencyTag));
     }
 }

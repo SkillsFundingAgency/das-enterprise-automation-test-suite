@@ -9,6 +9,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public CheckPageUsingShorterTimeOut(ScenarioContext context) : base(context) => checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
 
-        public override bool IsPageDisplayed() => checkPageInteractionHelper.IsElementDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier));
+        public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => checkPageInteractionHelper.VerifyPage(Identifier));
     }
 }

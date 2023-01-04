@@ -1,28 +1,33 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderEditApprenticeTrainingDetailsPage : ProviderEditApprenticeCoursePage
     {
-        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Edit training details";
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
+        private By ActualStartDateDay => By.Id("ActualStartDay");
+        public By ActualStartDateMonth => By.Id("ActualStartMonth");
+        public By ActualStartDateYear => By.Id("ActualStartYear");
+        private static By EditDeliveryModelLink => By.CssSelector("#change-delivery-model-link");
 
         public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave()
+        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave(bool isPilotLearner = false)
         {
+            if (isPilotLearner) AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
 
-            bool rpl = CheckRPLCondition(false);
+            bool rpl = CheckRPLCondition(false, isPilotLearner);
 
             formCompletionHelper.ClickElement(SaveButton);
 
@@ -32,6 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
+
+        private void AddActualStartDateDay(DateTime dateTime) => formCompletionHelper.EnterText(ActualStartDateDay, dateTime.Day);
 
         public ProviderApproveApprenticeDetailsPage SelectSaveAndUpdateRPLAsNo()
         {
@@ -112,10 +119,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
 
-        private bool CheckRPLCondition(bool rpl = false)
+        private bool CheckRPLCondition(bool rpl = false, bool isPilotLearner = false)
         {
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateYear));
-            if (Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(StartDateMonth)) > 7 & year == 2022) rpl = true;
+            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateYear : StartDateYear), out int year);
+
+            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(isPilotLearner ? ActualStartDateMonth : StartDateMonth), out int month);
+
+            if (month > 7 & year == 2022) rpl = true;
             if (year > 2022) rpl = true;
             return rpl;
         }
@@ -140,5 +150,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public SelectDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new SelectDeliveryModelPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditStartDate(string month, string year)
+        {
+            EnterText(StartDateMonth, month);
+            EnterText(StartDateYear, year);
+            return this;
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage EditEndDate(string month, string year)
+        {
+            EnterText(EndDateMonth, month);
+            EnterText(EndDateYear, year);
+            return this;
+        }
+
+        private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
     }
 }

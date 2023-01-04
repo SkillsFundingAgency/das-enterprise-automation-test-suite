@@ -1,0 +1,8 @@
+﻿Feature: ApiGetAccountPayeSchemesHashedAccountIdPayeSchemesPayeSchemeRef
+
+@api
+@employeraccountsapi
+@regression
+@innerapi
+Scenario: EMPACC_API_05_ApiGetAccountPayeSchemesHashedAccountIdPayeSchemesPayeSchemeRef
+	Then endpoint /api/accounts/{hashedAccountId}/payeschemes/{payeSchemeRef} can be accessed

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project;
+using SFA.DAS.Registration.UITests.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +83,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         public TransferRequestDetailsPage OpenPendingCohortRequestAsFundingEmployer()
         {
-            var receivingEmployer = transfersUser.SecondOrganisationName;
+            var receivingEmployer = objectContext.GetTransferReceiverOrganisationName();
             var cohortTotalCost = objectContext.GetApprenticeTotalCost();
 
             // the new transfer is likely to be at the bottom and as the cost is random starting at the bottom should
