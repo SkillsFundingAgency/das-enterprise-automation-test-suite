@@ -106,7 +106,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: '" + actual + "' page");
         }
 
-        public bool VerifyText(String actual, string expected)
+        public bool VerifyText(string actual, string expected)
         {
             if (actual.Contains(expected))
                 return true;
@@ -120,6 +120,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             var actual = GetText(locator);
             return VerifyText(actual, expected);
+        }
+
+        public bool CheckText(By locator, string expected)
+        {
+            var actual = GetText(locator);
+            return actual.Contains(expected);
         }
 
         public string GetTextFromElementsGroup(By locator)

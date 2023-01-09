@@ -137,6 +137,20 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _transfersCreateCohortStepsHelper.RejectTransfersRequest();
         }
 
+        [Then(@"Receiver (First|Second|Third) sees the cohort in With transfer sending employers with status of (.*)")]
+        public void ThenTheCohortIsInWithTransferSendingEmployersWithStatus(string receiver, string status)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _transfersCreateCohortStepsHelper.ValidateWithTransferSendingEmployersCohortStatus(status);
+        }
+
+        [Then(@"Receiver (First|Second|Third) sees the cohort in Ready to review with status of (.*)")]
+        public void ThenTheCohortIsInReadyToReviewWithStatus(string receiver, string status)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _transfersCreateCohortStepsHelper.ValidateReadyToReviewCohortStatus(status);
+        }
+
         [When(@"Receiver (First|Second|Third) edits and sends an approved cohort to the provider")]
         public void WhenReceiverEditsAndSendsAnApprovedCohortToTheProvider(string receiver)
         {
