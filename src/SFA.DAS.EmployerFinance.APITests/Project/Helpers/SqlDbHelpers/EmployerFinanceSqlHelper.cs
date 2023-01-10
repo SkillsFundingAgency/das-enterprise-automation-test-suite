@@ -4,6 +4,25 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers
 {
+    public class EmployerAccountsSqlHelper : SqlDbHelper
+    {
+        private readonly ObjectContext _objectContext;
+
+        public EmployerAccountsSqlHelper(DbConfig dbConfig, ObjectContext objectContext) : base(dbConfig.AccountsDbConnectionString)
+        {
+
+        }
+
+        public string SetHashedAccountId(string accountId)
+        {
+            var id = GetDataAsString($"SELECT HashedId FROM [employer_account].[Account] WHERE id = '{accountId}' ");
+            _objectContext.SetHashedAccountId(id);
+            return id;
+        }
+
+
+    }
+
     public class EmployerFinanceSqlHelper : SqlDbHelper
     {
         private readonly ObjectContext _objectContext;

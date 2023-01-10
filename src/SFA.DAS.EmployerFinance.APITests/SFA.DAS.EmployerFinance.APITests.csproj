@@ -18,7 +18,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SFA.DAS.Encoding" Version="1.1.76" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
