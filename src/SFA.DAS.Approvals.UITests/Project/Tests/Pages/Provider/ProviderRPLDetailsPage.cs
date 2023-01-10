@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -15,8 +16,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void EnterRPLDataAndContinue()
         {
-            formCompletionHelper.EnterText(ReducedDurationTextBox, 20);
-            formCompletionHelper.EnterText(ReducedPriceTextBox, 200);
+            formCompletionHelper.EnterText(ReducedDurationTextBox, RPLDataHelper.DurationReducedBy);
+            formCompletionHelper.EnterText(ReducedPriceTextBox, RPLDataHelper.PriceReducedBy);
             Continue();
         }
     }

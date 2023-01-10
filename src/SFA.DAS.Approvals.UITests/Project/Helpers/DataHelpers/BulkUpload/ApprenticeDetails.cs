@@ -13,9 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
             DateOfBirth = dateOfBirth.ToString("yyyy-MM-dd");
             StartDate = startDate.ToString("yyyy-MM-dd");
             EndDate = endDate.ToString("yyyy-MM");
-            RecognisePriorLearning = "true";
-            DurationReducedBy = "20";
-            PriceReducedBy = "200";
+            RecognisePriorLearning = RPLDataHelper.RecognisePriorLearning;
+            DurationReducedBy = RPLDataHelper.DurationReducedBy;
+            PriceReducedBy = RPLDataHelper.PriceReducedBy;
         }
 
         public string CohortRef { get; set; }
