@@ -8,15 +8,16 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers
     {
         private readonly ObjectContext _objectContext;
 
-        public EmployerFinanceSqlHelper(DbConfig dbConfig, ScenarioContext context) : base(dbConfig.FinanceDbConnectionString)
+        public EmployerFinanceSqlHelper(DbConfig dbConfig, ObjectContext objectContext) : base(dbConfig.FinanceDbConnectionString)
         {
-            _objectContext = context.Get<ObjectContext>();
+            _objectContext = objectContext;
         }
 
-        public void SetAccountId()
+        public string SetAccountId()
         {
             var accountId = GetDataAsString($"SELECT top (1) AccountId FROM [employer_financial].[LevyDeclaration] order by Id desc");
             _objectContext.SetAccountId(accountId);
+            return accountId;
         }
 
         public void SetEmpRef()
