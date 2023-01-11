@@ -25,16 +25,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
-            var addPersonalDetailsPage = NonLevyEmployerAddsProviderDetails();
-
-            foreach (var apprentice in listOfApprentice)
+            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
             {
                 _context.Replace(apprentice.Item1);
                 _context.Replace(apprentice.Item2);
+            }
+            var firstApprentice = listOfApprentice.First();
 
-                bool IslastItem = listOfApprentice.IndexOf(apprentice) == listOfApprentice.Count - 1;
+            ReplaceInContext(firstApprentice);
+
+            var startAddingApprenticesPage = NonLevyEmployerAddsProviderDetails();
+
+            var addPersonalDetailsPage = startAddingApprenticesPage.EmployerAddsApprentices().EmployerSelectsAStandard();
+
+            foreach (var apprentice in listOfApprentice)
+            {
+                ReplaceInContext(apprentice);
 
                 _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addPersonalDetailsPage, shouldConfirmOnlyStandardCoursesSelectable);
+
+                bool IslastItem = listOfApprentice.IndexOf(apprentice) == listOfApprentice.Count - 1;
 
                 if (!IslastItem) addPersonalDetailsPage = AddAnotherApprentice(_approveApprenticeDetailsPage);
             }
@@ -65,15 +75,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return trainingDetailsPage.SubmitValidTrainingDetails(true);
         }
 
-        private AddPersonalDetailsPage NonLevyEmployerAddsProviderDetails()
+        private StartAddingApprenticesPage NonLevyEmployerAddsProviderDetails()
         {
             return _employerReservationStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding())
                 .AddApprentice()
                 .StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
-                .ConfirmProviderDetailsAreCorrect()
-                .NonLevyEmployerAddsApprentices()
-                .EmployerSelectsAStandard();
+                .ConfirmProviderDetailsAreCorrect();
         }
 
         private ApproveApprenticeDetailsPage SetApprenticeDetails(int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(_approveApprenticeDetailsPage, numberOfApprentices);

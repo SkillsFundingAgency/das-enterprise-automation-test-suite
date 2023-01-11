@@ -8,6 +8,8 @@ namespace SFA.DAS.FrameworkHelpers
     {
         protected readonly string connectionString;
 
+        protected bool waitForResults = false;
+
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
         protected List<string> GetData(string query) => GetData(query, connectionString);
@@ -18,7 +20,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         protected List<string> GetData(string query, string connectionstring, Dictionary<string, string> parameters)
         {
-            (List<object[]> data, int noOfColumns) data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters);
+            (List<object[]> data, int noOfColumns) data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters, waitForResults);
 
             var returnItems = new List<string>();
 
@@ -94,14 +96,19 @@ namespace SFA.DAS.FrameworkHelpers
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
             => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
 
-        protected object TryGetDataAsObject(string queryToExecute, string title)
-            => RetryOnIndexOutOfRangeException(() => GetDataAsObject(queryToExecute), title);
+        protected object TryGetDataAsObject(string queryToExecute)
+        {
+            waitForResults = true;
+
+            return GetDataAsObject(queryToExecute);
+        }
+
 
         private List<(List<object[]> data, int noOfColumns)> TryReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString)
             => RetryOnException(() => ReadMultipleDataFromDataBase(queryToExecute, connectionString));
 
         private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
 
-        private List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadMultipleDataFromDataBase(queryToExecute, connectionString, null);
+        private List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadMultipleDataFromDataBase(queryToExecute, connectionString, null, waitForResults);
     }
 }

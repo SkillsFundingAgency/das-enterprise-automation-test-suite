@@ -10,10 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private By Uln => By.Id("Uln");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) {}
+        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) { }
 
         public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndSave()
         {
@@ -80,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(Uln, uln);
         }
 
-        private void EnterUlnForFlexiPayments(int apprenticeNumber) 
+        private void EnterUlnForFlexiPayments(int apprenticeNumber)
         {
             if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
                 formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));

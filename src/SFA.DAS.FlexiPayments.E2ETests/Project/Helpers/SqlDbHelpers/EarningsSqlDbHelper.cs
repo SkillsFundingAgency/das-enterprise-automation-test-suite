@@ -7,21 +7,21 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
     public class EarningsSqlDbHelper : SqlDbHelper
     {
-        private readonly DbConfig _dbConfig;
         private static int _currentAcademicYear;
 
         public EarningsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EarningsDbConnectionString)
         {
-            _dbConfig = dbConfig;
             _currentAcademicYear = AcademicYearDatesHelper.GetCurrentAcademicYear();
         }
 
-        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings(string uln)
+        public (string monthlyOnProgramPayment, string totalOnProgramPayment, string numberOfDeliveryMonths) GetEarnings(string uln, bool waitForResults)
         {
             string query = $"SELECT TOP 1 Amount AS MonthlyOnProgramPayment, SUM(Amount) AS 'TotalOnProgramPayment', COUNT(DeliveryPeriod) AS 'NumberOfDeliveryMonths' " +
                 $"FROM [Query].[Earning] " +
                 $"WHERE Uln = '{uln}' " +
                 $"GROUP BY Amount";
+
+            this.waitForResults = waitForResults;
 
             var data = GetData(query);
 
