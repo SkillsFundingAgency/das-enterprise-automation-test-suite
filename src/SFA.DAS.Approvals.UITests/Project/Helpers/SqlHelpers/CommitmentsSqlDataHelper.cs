@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
         }
 
-        public int GetApprenticeshipId(string uln, string title) => Convert.ToInt32(TryGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1", title));
+        public int GetApprenticeshipId(string uln, string title) => Convert.ToInt32(TryGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
 
         public string GetNewcohortReference(string ULN, string title)
         {
@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query, title));
+            return Convert.ToString(TryGetDataAsObject(query));
         }
 
         public string GetApprenticeshipULN(string reference)
@@ -53,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 WHERE cmt.Reference = '{reference}'
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query, reference));
+            return Convert.ToString(TryGetDataAsObject(query));
         }
 
         public int GetApprenticeshipCountFromULN(string ULN)
@@ -61,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             string query = $@"SELECT count(*) ID FROM Apprenticeship app
                                 WHERE app.ULN = '{ULN}'";
 
-            return Convert.ToInt32(TryGetDataAsObject(query, ULN));
+            return Convert.ToInt32(TryGetDataAsObject(query));
         }
 
         public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query, title));
+            return Convert.ToString(TryGetDataAsObject(query));
         }
 
         public List<decimal> GetExistingApprentices(string cohortRef)
@@ -220,6 +220,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 $"FROM [dbo].[Apprenticeship] app " +
                 $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
                 $"WHERE ULN = '{uln}'";
+
+            waitForResults = true;
 
             var data = GetData(query);
 
