@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
                 $" FROM [employer_account].[Paye] paye" +
                 $" INNER JOIN [employer_account].[AccountHistory] ah ON ah.PayeRef = paye.Ref" +
                 $" INNER JOIN [employer_account].[Account] a ON a.Id = ah.AccountId" +
-                $" WHERE paye.Ref IS NOT NULL AND a.[ApprenticeshipEmployerType] = 1");
+                $" WHERE paye.Ref IS NOT NULL AND a.[ApprenticeshipEmployerType] = 1 ORDER BY NEWID()");
             _objectContext.SetHashedAccountId(hashedAccountId);
         }
 
