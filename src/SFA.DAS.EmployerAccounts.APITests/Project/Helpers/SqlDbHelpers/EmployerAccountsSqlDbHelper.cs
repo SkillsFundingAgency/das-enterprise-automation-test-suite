@@ -1,19 +1,16 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
 {
     public class EmployerAccountsSqlDbHelper : SqlDbHelper
     {        
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
 
-        public EmployerAccountsSqlDbHelper(DbConfig dbConfig, ScenarioContext context) : base(dbConfig.AccountsDbConnectionString)
+        public EmployerAccountsSqlDbHelper(DbConfig dbConfig, ObjectContext objectContext) : base(dbConfig.AccountsDbConnectionString)
         {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
+            _objectContext = objectContext;
         }
 
         public void SetHashedAccountId()
@@ -22,7 +19,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
                 $" FROM [employer_account].[Paye] paye" +
                 $" INNER JOIN [employer_account].[AccountHistory] ah ON ah.PayeRef = paye.Ref" +
                 $" INNER JOIN [employer_account].[Account] a ON a.Id = ah.AccountId" +
-                $" WHERE paye.Ref IS NOT NULL AND a.[ApprenticeshipEmployerType] = 1");
+                $" WHERE paye.Ref IS NOT NULL AND a.[ApprenticeshipEmployerType] = 1 ORDER BY NEWID()");
             _objectContext.SetHashedAccountId(hashedAccountId);
         }
 
