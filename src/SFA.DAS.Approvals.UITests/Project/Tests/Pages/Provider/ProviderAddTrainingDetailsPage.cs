@@ -36,7 +36,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(ContinueButton);
 
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            if (rpl) 
+                new ProviderRPLPage(context).SelectYesAndContinue().EnterRPLDataAndContinue();
+            else
+                new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
