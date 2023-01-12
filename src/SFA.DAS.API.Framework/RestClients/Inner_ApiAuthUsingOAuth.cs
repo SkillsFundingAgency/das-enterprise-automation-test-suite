@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.API.Framework.RestClients;
+﻿using SFA.DAS.API.Framework.Helpers;
+
+namespace SFA.DAS.API.Framework.RestClients;
 
 public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 {
@@ -24,7 +26,7 @@ public class Inner_ApiAuthUsingOAuth : IInner_ApiGetAuthToken
 
         _restRequest.AddParameter("application/x-www-form-urlencoded", authParameter.ToString(), ParameterType.RequestBody);
 
-        var response = new ApiAssertHelper(_objectContext).ExecuteAuthTokenAndAssertResponse(_restClient, _restRequest);
+        var response = new InnerApiAuthTokenAssertHelper(_objectContext).ExecuteInnerApiAuthTokenAndAssertResponse(_restClient, _restRequest);
 
         AuthTokenResponse authToken = JsonConvert.DeserializeObject<AuthTokenResponse>(response.Content);
 

@@ -1,5 +1,5 @@
 ﻿
-namespace SFA.DAS.API.Framework.RestClients;
+namespace SFA.DAS.API.FrameworkHelpers;
 
 public abstract class BaseApiRestClient
 {
@@ -9,12 +9,12 @@ public abstract class BaseApiRestClient
 
     protected readonly ObjectContext objectContext;
 
-    public BaseApiRestClient(ObjectContext objectContext) 
+    public BaseApiRestClient(ObjectContext objectContext)
     {
         this.objectContext = objectContext;
 
         CreateApiClient();
-    } 
+    }
 
     protected abstract string ApiBaseUrl { get; }
 
