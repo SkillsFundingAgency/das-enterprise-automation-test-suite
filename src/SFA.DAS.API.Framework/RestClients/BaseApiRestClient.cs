@@ -1,5 +1,6 @@
-﻿
-namespace SFA.DAS.API.FrameworkHelpers;
+﻿using SFA.DAS.API.FrameworkHelpers;
+
+namespace SFA.DAS.API.Framework.RestClients;
 
 public abstract class BaseApiRestClient
 {

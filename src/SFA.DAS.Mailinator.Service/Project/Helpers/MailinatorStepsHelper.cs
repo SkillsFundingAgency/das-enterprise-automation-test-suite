@@ -4,8 +4,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Helpers;
 
-//public class MailinatorAPIStepsHelper
-
 public class MailinatorStepsHelper
 {
     private readonly ScenarioContext _context;
