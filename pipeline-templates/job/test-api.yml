@@ -21,7 +21,7 @@ jobs:
             FolderPath: '$(Pipeline.Workspace)/**/tests.zip'
             FileType: json
         - task: ExtractFiles@1
-          displayName: 'Extract files '
+          displayName: 'Extract files'
           inputs:
             archiveFilePatterns: '$(Pipeline.Workspace)/**/tests.zip'
             destinationFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
@@ -48,6 +48,8 @@ jobs:
               ResourceName: $(CoursesAppServiceName)
               RuleName: ${{ parameters.TestCategory }}
         - task: DotNetCoreCLI@2
+          env:
+            ResourceEnvironmentName: $(ResourceEnvironmentName)
           inputs:
             command: 'test'
             arguments: '--filter "TestCategory=${{ parameters.TestCategory }}" --logger trx;logfilename=${{ parameters.Environment }}_testResults.trx'
