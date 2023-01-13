@@ -23,11 +23,9 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Hooks
         [BeforeScenario(Order = 45)]
         public void SetUpHelpers()
         {
-            var a = new EmployerFinanceSqlHelper(_dbConfig, _context);
+            _context.Set(new EmployerFinanceSqlHelper(_dbConfig, _context.Get<ObjectContext>()));
 
-            _context.Set(a);
-
-            _context.Set(new EmployerFinanceSqlHelper(_dbConfig, _context));
+            _context.Set(new EmployerAccountsSqlHelper(_dbConfig, _context.Get<ObjectContext>()));
 
             _context.SetRestClient(new Inner_EmployerFinanceApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
             

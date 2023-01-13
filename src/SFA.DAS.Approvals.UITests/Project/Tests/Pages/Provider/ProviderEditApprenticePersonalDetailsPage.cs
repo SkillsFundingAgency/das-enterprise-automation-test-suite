@@ -10,10 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private By Uln => By.Id("Uln");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
 
-        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) {}
+        public ProviderEditApprenticePersonalDetailsPage(ScenarioContext context) : base(context) { }
 
         public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndSave()
         {
@@ -24,11 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeTrainingDetailsPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner)
+        public ProviderEditApprenticeTrainingDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner, int apprenticeNumber)
         {
-            EnterUln();
+            EnterUlnForFlexiPayments(apprenticeNumber);
 
             if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
+
             else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
 
             formCompletionHelper.ClickElement(ContinueButton);
@@ -77,6 +79,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
 
             formCompletionHelper.EnterText(Uln, uln);
+        }
+
+        private void EnterUlnForFlexiPayments(int apprenticeNumber)
+        {
+            if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
+                formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));
+            else
+                formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
         }
 
         public ProviderEditApprenticeTrainingDetailsPage ClickSaveAndContinue()

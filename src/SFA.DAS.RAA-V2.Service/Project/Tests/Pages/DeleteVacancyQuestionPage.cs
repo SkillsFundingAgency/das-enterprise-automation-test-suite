@@ -23,11 +23,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new EmployerVacancySearchResultPage(context);
         }
 
-        public PreviewYourAdvertOrVacancyPage NoDeleteVacancy()
+        public CreateAnApprenticeshipAdvertOrVacancyPage NoDeleteVacancy()
         {
             SelectRadioOptionByForAttribute("delete-no");
             Continue();
-            return new PreviewYourAdvertOrVacancyPage(context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
     }
 }

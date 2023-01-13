@@ -1,4 +1,5 @@
 ﻿using RestSharp.Authenticators;
+using RestSharp.Authenticators.OAuth2;
 
 namespace SFA.DAS.API.Framework.RestClients;
 

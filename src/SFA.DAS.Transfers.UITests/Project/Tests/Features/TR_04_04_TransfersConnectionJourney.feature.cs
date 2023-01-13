@@ -74,14 +74,15 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TR_04_04 Transfers - Sucessfully create Transfer Request from Receiver to Sender")]
+        [NUnit.Framework.DescriptionAttribute("TR_04_04 Transfers - Sucessfully create Transfer Connection from Receiver back to" +
+            " its Sender")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("transfers")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         [NUnit.Framework.CategoryAttribute("addsecondlevyfunds")]
         [NUnit.Framework.CategoryAttribute("addthirdlevyfunds")]
-        public void TR_04_04Transfers_SucessfullyCreateTransferRequestFromReceiverToSender()
+        public void TR_04_04Transfers_SucessfullyCreateTransferConnectionFromReceiverBackToItsSender()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
@@ -91,7 +92,8 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Features
                     "addsecondlevyfunds",
                     "addthirdlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_04 Transfers - Sucessfully create Transfer Request from Receiver to Sender", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TR_04_04 Transfers - Sucessfully create Transfer Connection from Receiver back to" +
+                    " its Sender", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

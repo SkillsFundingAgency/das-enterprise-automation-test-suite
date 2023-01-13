@@ -1,15 +1,13 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class AddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override By PageHeader => By.CssSelector(".das-show > h1");
+        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
         protected override string PageTitle => "Add training details";
 
         private static By SaveAndContinueButton => By.CssSelector("button[id=continue-button]");
@@ -22,9 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF, int apprenticeNo = 0)
+        public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF)
         {
-            var courseStartDate = SetEIJourneyTestData(apprenticeNo);
+            var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
 
@@ -47,6 +45,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
+
+        public void ValidateRegularContent() => DeliveryModelAssertions("Regular");
 
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
 

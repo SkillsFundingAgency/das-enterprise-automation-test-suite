@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -14,20 +14,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
 
-        private readonly string _pageTitle;
+        private string _pageTitle;
 
         #endregion Helpers and Context
 
-        private By ApproveMessage => By.CssSelector("#approve-details");
-        private By ReviewMessage => By.CssSelector("#send-details");
-        private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
-        private By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
+        private static By ApproveMessage => By.CssSelector("#approve-details");
+        private static By ReviewMessage => By.CssSelector("#send-details");
+        private static By SaveSubmit => By.CssSelector("#main-content .govuk-button");
+        private static By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
+        private static By CohortStatus => By.Id("cohortStatus");
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
-            var noOfApprentice = TotalNoOfApprentices();
-            _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
-            VerifyPage();
+            void SetPageTitle()
+            {
+                int noOfApprentice = TotalNoOfApprentices();
+                _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
+            }
+
+            SetPageTitle();
+
+            VerifyPage(() => SetPageTitle());
         }
 
         public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
@@ -100,5 +107,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
             return new EditPersonalDetailsPage(context);
         }
+
+        public ApprenticeDetailsApprovedPage ValidateFlexiJobTagAndApprove()
+        {
+            validateFlexiJobAgencyTag();
+            return EmployerDoesSecondApproval();
+        }
+
+        public void ValidateCohortStatus(string status) => pageInteractionHelper.VerifyText(CohortStatus, status);
     }
 }
