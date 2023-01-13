@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using Polly;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Mailinator.Service.Project.Helpers;
 using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -12,12 +13,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationConfig _config;
-        private readonly MailinatorApiHelper _mailinatorApiHelper;
+       
         public MailinatorSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _mailinatorApiHelper = context.Get<MailinatorApiHelper>();
             _config = _context.GetRegistrationConfig<RegistrationConfig>();
         }
 
@@ -27,6 +27,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"mailinator api can access the inbox")]
         public void ThenMailinatorApiCanAccessTheInbox()
         {
+            var _mailinatorApiHelper = _context.Get<MailinatorApiHelper>();
+
             _mailinatorApiHelper.VerifyAccessCode(_objectContext.GetRegisteredEmail(), _config.RE_ConfirmCode);
         }
     }
