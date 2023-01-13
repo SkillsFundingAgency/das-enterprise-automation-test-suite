@@ -20,22 +20,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01")]
-    public partial class RE_NOTIF_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_NOTIF_02")]
+    public partial class RE_NOTIF_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RE_NOTIF_01.feature"
+#line 1 "RE_NOTIF_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Notifications", "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Notifications", "RE_NOTIF_02", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01_Veify Access code notification receipt during Account creation")]
+        [NUnit.Framework.DescriptionAttribute("RE_NOTIF_02_Veify Access code via mailinator api")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("mailinator")]
+        [NUnit.Framework.CategoryAttribute("testinator")]
         [NUnit.Framework.CategoryAttribute("verifyemailnotification")]
-        public void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
+        public void RE_NOTIF_02_VeifyAccessCodeViaMailinatorApi()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "mailinator",
+                    "testinator",
                     "verifyemailnotification"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_02_Veify Access code via mailinator api", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -102,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("mailinator api can access the inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
