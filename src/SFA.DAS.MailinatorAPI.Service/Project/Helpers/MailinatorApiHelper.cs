@@ -6,6 +6,7 @@ using mailinator_csharp_client.Models.Responses;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataExport;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -58,6 +59,8 @@ public class MailinatorApiHelper
 
         _assertHelper.RetryOnNUnitException(() =>
         {
+            _objectContext.SetDebugInformation($"FetchInboxRequest using domain - {domain}, Inbox - {inbox}");
+
             //Fetch Inbox
             FetchInboxRequest fetchInboxRequest = new() { Domain = domain, Inbox = inbox, Skip = 0, Limit = 20, Sort = Sort.asc };
 
@@ -67,6 +70,8 @@ public class MailinatorApiHelper
 
             Assert.IsNotNull(messageId, $"No new email - {email}");
 
+            _objectContext.SetDebugInformation($"FetchMessageRequest using domain - {domain}, Inbox - {inbox} and message id - {messageId}");
+
             //Fetch Message
             FetchMessageRequest fetchMessageRequest = new() { Domain = domain, Inbox = inbox, MessageId = messageId };
 
@@ -74,7 +79,11 @@ public class MailinatorApiHelper
 
             _objectContext.SetMessage((domain, inbox, messageId));
 
-            Assert.That(fetchMessageResponse.Parts.Any(x => x.Body.Contains(code)), Is.True, $"{email} did not contain '{code}'{Environment.NewLine}");
+            Assert.That(fetchMessageResponse.Parts.Any(x => x.Body.Contains(code)), Is.True, $"{email} did not contain '{code}'");
+
+            var actual = fetchMessageResponse.Parts.FirstOrDefault(x => x.Body.Contains(code))?.Body;
+
+            _objectContext.SetDebugInformation($"Actual message received {Environment.NewLine}{actual}");
         });
     }
 }
