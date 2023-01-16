@@ -1,4 +1,6 @@
 ﻿
+using SFA.DAS.API.FrameworkHelpers;
+
 namespace SFA.DAS.API.Framework.RestClients;
 
 public class Outer_HealthApiRestClient
