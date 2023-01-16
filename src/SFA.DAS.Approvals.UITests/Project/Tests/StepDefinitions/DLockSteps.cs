@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer can stop the live apprentice")]
-        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(); 
+        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth("Apprentice has withdrawn from training"); 
 
         [Then(@"the Employer can stop the waiting to start apprentice")]
         public void ThenTheEmployerCanStopTheWaitingToStartApprentice()

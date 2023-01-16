@@ -307,7 +307,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
-            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage);
+            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage, "Apprentice left my employment");
         }
 
         [When(@"overlapping training date request banner is not displayed")]
