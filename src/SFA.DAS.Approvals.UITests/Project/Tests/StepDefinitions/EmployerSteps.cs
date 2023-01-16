@@ -217,7 +217,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerConfirmsDeliveryModelIsNotDisplayedOnApprenticeDetailsScreen() => _employerStepsHelper.ValidateDeliveryModelNotDisplayed();
 
 
-
-
     }
 }

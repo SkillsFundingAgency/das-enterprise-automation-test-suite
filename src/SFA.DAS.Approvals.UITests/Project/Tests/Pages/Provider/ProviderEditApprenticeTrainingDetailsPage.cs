@@ -173,11 +173,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
-        public SelectDeliveryModelPage ClickEditDeliveryModel()
-        {
-            formCompletionHelper.ClickElement(EditDeliveryModelLink);
-            return new SelectDeliveryModelPage(context);
-        }
 
         public ProviderConfirmApprenticeDeliveryModelPage SelectEditDeliveryModel()
         {
