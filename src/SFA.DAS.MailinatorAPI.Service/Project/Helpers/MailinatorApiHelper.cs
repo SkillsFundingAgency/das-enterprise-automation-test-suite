@@ -49,7 +49,7 @@ public class MailinatorApiHelper
         return getAllDomainsResponse.Domains.FirstOrDefault().Name;
     }
 
-    public void VerifyAccessCode(string email, string code)
+    public void VerifyEmail(string email, string expected)
     {
         var emailSplit = email.Split('@');
 
@@ -79,9 +79,9 @@ public class MailinatorApiHelper
 
             _objectContext.SetMessage((domain, inbox, messageId));
 
-            Assert.That(fetchMessageResponse.Parts.Any(x => x.Body.Contains(code)), Is.True, $"{email} did not contain '{code}'");
+            Assert.That(fetchMessageResponse.Parts.Any(x => x.Body.Contains(expected)), Is.True, $"{email} did not contain '{expected}'");
 
-            var actual = fetchMessageResponse.Parts.FirstOrDefault(x => x.Body.Contains(code))?.Body;
+            var actual = fetchMessageResponse.Parts.FirstOrDefault(x => x.Body.Contains(expected))?.Body;
 
             _objectContext.SetDebugInformation($"Actual message received {Environment.NewLine}{actual}");
         });

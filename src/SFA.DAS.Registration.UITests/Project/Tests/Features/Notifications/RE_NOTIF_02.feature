@@ -7,4 +7,4 @@ Feature: RE_NOTIF_02
 @verifyemailnotification
 Scenario: RE_NOTIF_02_Veify Access code via mailinator api
 	When the User initiates Account creation
-	Then mailinator api can access the inbox 
+	Then the User receives Access code notification to the registered email
