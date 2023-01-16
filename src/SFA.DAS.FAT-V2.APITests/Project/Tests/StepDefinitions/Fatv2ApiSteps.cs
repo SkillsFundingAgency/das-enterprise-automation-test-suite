@@ -1,7 +1,5 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
-using SFA.DAS.API.Framework.RestClients;
 using System.Net;
 using TechTalk.SpecFlow;
 
