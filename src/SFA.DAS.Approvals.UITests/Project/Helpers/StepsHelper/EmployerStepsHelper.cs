@@ -49,14 +49,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
         }
 
-        public StoppedApprenticeDetailsPage StopApprenticeThisMonth(string reason) => StopApprenticeThisMonth(ViewCurrentApprenticeDetails(), reason);
+        public StoppedApprenticeDetailsPage StopApprenticeThisMonth(StopApprentice reason) => StopApprenticeThisMonth(ViewCurrentApprenticeDetails(), reason);
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage) =>
             apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
-        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage, string reason)
+        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage, StopApprentice reason)
         {
             return apprenticeDetailsPage
                 .ClickEditStatusLink()

@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
             _apprenticeDetailsPage = _employerStepsHelper
-            .StopApprenticeThisMonth(_apprenticeDetailsPage, "Apprentice has withdrawn from training")
+            .StopApprenticeThisMonth(_apprenticeDetailsPage, StopApprentice.Withdrawn)
              .ValidateFlashMessage("Apprenticeship stopped");
         }
         

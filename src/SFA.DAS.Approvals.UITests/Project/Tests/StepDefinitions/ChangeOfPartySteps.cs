@@ -55,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             bool isChangeOfEmployer = _context.ScenarioInfo.Tags.Contains("changeOfEmployer");
             EmployerAndProviderApprove(isChangeOfEmployer);
 
-            string reasonToStop = isChangeOfEmployer ? "Apprentice left my employment" : "Change to training provider";
+            StopApprentice reasonToStop = isChangeOfEmployer ? StopApprentice.LeftEmployer : StopApprentice.ChangeTrainingProvider;
             _employerStepsHelper.StopApprenticeThisMonth(reasonToStop);
         }
 
