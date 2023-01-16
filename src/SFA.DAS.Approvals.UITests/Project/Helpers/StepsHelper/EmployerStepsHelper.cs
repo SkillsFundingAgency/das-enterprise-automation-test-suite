@@ -306,5 +306,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateDeliveryModelNotDisplayed();
         }
+
+        public ApprenticeDetailsPage EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickManageYourApprenticesLink()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickEditApprenticeDetailsLink()
+                  .ClickEditDeliveryModelLink()
+                  .EmployerEditDeliveryModelToFlexiAndContinue()
+                  .ClickUpdateDetailsButtonAfterChange()
+                  .AcceptChangesAndSubmit();
+        }
     }
 }

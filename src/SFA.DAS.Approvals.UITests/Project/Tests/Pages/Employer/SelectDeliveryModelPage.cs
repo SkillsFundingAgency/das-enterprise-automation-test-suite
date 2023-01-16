@@ -79,5 +79,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Continue();
             return new ProviderEditApprenticeDetailsPage(context);
         }
+
+        public EditApprenticeDetailsPage EmployerEditDeliveryModelToFlexiAndContinue()
+        {
+            formCompletionHelper.Click(EditFlexiJobRadioButton);
+            Continue();
+            return new EditApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToFlexiAndSubmits()
+        {
+            formCompletionHelper.Click(EditFlexiJobRadioButton);
+            Continue();
+            return new ProviderEditApprenticeDetailsPage(context);
+        }
     }
 }
