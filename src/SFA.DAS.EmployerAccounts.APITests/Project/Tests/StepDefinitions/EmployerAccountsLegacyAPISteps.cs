@@ -27,8 +27,8 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiLegacyRestClient = context.GetRestClient<Inner_EmployerAccountsLegacyApiRestClient>();
             _employerAccountsSqlDbHelper = context.Get<EmployerAccountsSqlDbHelper>();
             _objectContext = context.Get<ObjectContext>();
-            _employerAccountsSqlDbHelper.SetAccountId();
             _employerAccountsSqlDbHelper.SetHashedAccountId();
+            _employerAccountsSqlDbHelper.SetAccountId();
             _employerAccountsSqlDbHelper.SetLegalEntityId();
             _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
         }

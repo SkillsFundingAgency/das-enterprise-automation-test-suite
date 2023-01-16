@@ -105,17 +105,17 @@ this.ScenarioInitialize(scenarioInfo);
                             "DisplayOverlapErrorOnEndDate"});
                 table3.AddRow(new string[] {
                             "-12",
+                            "+12",
+                            "true",
+                            "true"});
+                table3.AddRow(new string[] {
+                            "-12",
                             "+0",
                             "false",
                             "true"});
                 table3.AddRow(new string[] {
                             "-3",
                             "+3",
-                            "true",
-                            "true"});
-                table3.AddRow(new string[] {
-                            "-12",
-                            "+12",
                             "true",
                             "true"});
                 table3.AddRow(new string[] {

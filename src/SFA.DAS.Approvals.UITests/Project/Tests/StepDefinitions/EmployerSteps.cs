@@ -20,6 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
+        private ViewApprenticeDetailsPage _viewApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
 
         public EmployerSteps(ScenarioContext context)
@@ -81,13 +82,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ValidateFlashMessage("New stop date confirmed");
         }
 
-        [Given(@"Employer adds (\d) apprentices to current cohort")]
+        [Given(@"Employer adds (\d) apprentices to a new cohort")]
         public void EmployerAddsApprenticesToCurrentCohort(int numberOfApprentices)
         {
             _approveApprenticeDetailsPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
 
-            var x = _approveApprenticeDetailsPage.CohortReferenceFromUrl();
-            _objectContext.SetCohortReference(x);
+            var cohortReference = _approveApprenticeDetailsPage.CohortReferenceFromUrl();
+            _objectContext.SetCohortReference(cohortReference);
 
             _apprenticeRequestsPage = _approveApprenticeDetailsPage.SaveAndExit();
         }
@@ -155,6 +156,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             SetCohortReference(cohortReference);
         }
 
+        [When(@"the Employer sends new cohort to provider")]
+        public void WhenTheEmployerSendsCohortToProvider()
+        {         
+            _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview();
+        }
+
         [Then(@"the Employer approves the cohorts")]
         public void ThenTheEmployerApprovesTheCohorts() => _employerStepsHelper.Approve();
 
@@ -186,6 +193,45 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer changes the Delivery Model from Regular to Flexi and sends back to provider to review")]
         public void ThenTheEmployerChangesTheDeliveryModelFromRegularToFlexiAndSendsBackToProviderToReview() => _employerStepsHelper.EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval();
+
+        [Then(@"the Employer sees the cohort in Draft with status of (.*)")]
+        public void ThenTheCohortIsInDraftWithStatus(string status)
+        {
+            if(!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
+            {
+                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
+            }
+
+            _approveApprenticeDetailsPage = _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
+
+            _approveApprenticeDetailsPage.ValidateCohortStatus(status);
+        }
+
+        [Then(@"the Employer sees the cohort in With training providers with status of (.*)")]
+        public void ThenTheCohortIsInWithTrainingProvidersWithStatus(string status)
+        {
+            if (!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
+            {
+                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
+            }
+
+            _viewApprenticeDetailsPage = _apprenticeRequestsPage.GoToWithTrainingProviders().SelectViewCurrentCohortDetails();
+
+            _viewApprenticeDetailsPage.ValidateCohortStatus(status);
+        }
+
+        [Then(@"the Employer sees the cohort in Ready to review with status of (.*)")]
+        public void ThenTheCohortIsInReadyToReviewWithStatus(string status)
+        {
+            if(!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
+            {
+                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
+            }
+
+            _approveApprenticeDetailsPage = _apprenticeRequestsPage.GoToReadyToReview().SelectViewCurrentCohortDetails();
+
+            _approveApprenticeDetailsPage.ValidateCohortStatus(status);
+        }
 
         private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition) 
             => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);

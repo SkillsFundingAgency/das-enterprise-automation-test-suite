@@ -22,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ReviewMessage => By.CssSelector("#send-details");
         private static By SaveSubmit => By.CssSelector("#main-content .govuk-button");
         private static By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
+        private static By CohortStatus => By.Id("cohortStatus");
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
@@ -130,5 +131,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             validateFlexiJobAgencyTag();
             return EmployerDoesSecondApproval();
         }
+
+        public void ValidateCohortStatus(string status) => pageInteractionHelper.VerifyText(CohortStatus, status);
     }
 }

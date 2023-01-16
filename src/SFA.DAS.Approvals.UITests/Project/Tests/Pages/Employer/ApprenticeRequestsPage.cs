@@ -10,23 +10,37 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By NumberofApprenticeRequestsReadyForReview => By.CssSelector("span[id='Review'] span[class*='das-tabs-boxes__figure']");
-        private By NumberOfTransferRejectedCohorts => By.CssSelector(".block-one .bold-xxlarge");
-        private By NumberOfDrafts => By.CssSelector("a[href*='draft'] span[class*='das-tabs-boxes__figure']");
+        private By NumberOfReadyForReview => By.CssSelector("span[id='Review'] span[class*='das-tabs-boxes__figure']");
+        private By NumberOfWithTrainingProviders => By.CssSelector("a[id='WithProvider'] span[class*='das-tabs-boxes__figure']");
+        private By NumberOfDrafts => By.CssSelector("a[id='Draft'] span[class*='das-tabs-boxes__figure']");
+        private By NumberOfWithTransferSendingEmployers => By.CssSelector("a[id='WithTransferSender'] span[class*='das-tabs-boxes__figure']");
 
         public ApprenticeRequestsPage(ScenarioContext context) : base(context)  { }
 
-        public ApprenticeRequestsReadyToReview GoToReadyToReview()
+        public ApprenticeRequestsReadyForReviewPage GoToReadyToReview()
         {
-            var employerReadyForReviewCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberofApprenticeRequestsReadyForReview));
+            var employerReadyForReviewCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfReadyForReview));
             if (employerReadyForReviewCohorts > 0)
             {
-                formCompletionHelper.ClickElement(NumberofApprenticeRequestsReadyForReview);
-                return new ApprenticeRequestsReadyToReview(context);
+                formCompletionHelper.ClickElement(NumberOfReadyForReview);
+                return new ApprenticeRequestsReadyForReviewPage(context);
             }
 
-            throw new Exception("No cohorts available for review");
+            throw new Exception("No cohorts available in Ready to review");
         }
+
+        public ApprenticeRequestsWithTrainingProvidersPage GoToWithTrainingProviders()
+        {
+            var employerWithTrainingProviders = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfWithTrainingProviders));
+            if (employerWithTrainingProviders > 0)
+            {
+                formCompletionHelper.ClickElement(NumberOfWithTrainingProviders);
+                return new ApprenticeRequestsWithTrainingProvidersPage(context);
+            }
+
+            throw new Exception("No cohorts available in With training providers");
+        }
+
         public ApprenticeRequestDraftsPage GoToDrafts()
         {
             var employerDraftCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfDrafts));
@@ -36,18 +50,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return new ApprenticeRequestDraftsPage(context);
             }
 
-            throw new Exception("No cohorts available in Draft");
+            throw new Exception("No cohorts available in Drafts");
         }
 
-        public RejectedTransferRequestsPage GoToRejectedTransferRequests()
+        public ApprenticeRequestsWithTransferSendingEmployersPage GoToWithTransferSendingEmployers()
         {
-            int employerRejectedTransferRequests = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfTransferRejectedCohorts));
-            if (employerRejectedTransferRequests > 0)
+            var employerWithTransferSendingEmployersCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfWithTransferSendingEmployers));
+            if (employerWithTransferSendingEmployersCohorts > 0)
             {
-                formCompletionHelper.ClickElement(NumberOfTransferRejectedCohorts);
-                return new RejectedTransferRequestsPage(context);
+                formCompletionHelper.ClickElement(NumberOfWithTransferSendingEmployers);
+                return new ApprenticeRequestsWithTransferSendingEmployersPage(context);
             }
-            throw new Exception("No cohorts available with Employer in Rejected Transfers Request Status");
+
+            throw new Exception("No cohorts available in With transfer sending employers");
         }
     }
 }

@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("Employer adds 2 apprentices to current cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer adds 2 apprentices to a new cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.Then("Employer is able to view saved cohort from Draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

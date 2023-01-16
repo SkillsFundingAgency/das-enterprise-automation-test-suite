@@ -13,6 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
             DateOfBirth = dateOfBirth.ToString("yyyy-MM-dd");
             StartDate = startDate.ToString("yyyy-MM-dd");
             EndDate = endDate.ToString("yyyy-MM");
+            RecognisePriorLearning = RPLDataHelper.RecognisePriorLearning;
+            DurationReducedBy = RPLDataHelper.DurationReducedBy;
+            PriceReducedBy = RPLDataHelper.PriceReducedBy;
         }
 
         public string CohortRef { get; set; }
@@ -28,6 +31,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
         public string ProviderRef { get; set; }
         public string EmailAddress { get; set; }
         public string AgreementId { get; set; }
+        public string RecognisePriorLearning { get; set; }
+        public string DurationReducedBy { get; set; }
+        public string PriceReducedBy { get; set; }
 
         public override string ToString()
         {
