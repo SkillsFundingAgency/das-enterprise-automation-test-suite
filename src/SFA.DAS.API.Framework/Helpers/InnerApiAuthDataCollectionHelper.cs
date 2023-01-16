@@ -1,11 +1,13 @@
 ﻿using SFA.DAS.API.Framework.RestClients;
+using SFA.DAS.API.FrameworkHelpers;
+using System.Linq;
 
 namespace SFA.DAS.API.Framework.Helpers;
 
-public class AuthDataCollectionHelper : RequestAndResponseCollectionHelper
+public class InnerApiAuthDataCollectionHelper : RequestAndResponseCollectionHelper
 {
 
-    public AuthDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : base(client, request, response)
+    public InnerApiAuthDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : base(client, request, response)
     {
     }
 
