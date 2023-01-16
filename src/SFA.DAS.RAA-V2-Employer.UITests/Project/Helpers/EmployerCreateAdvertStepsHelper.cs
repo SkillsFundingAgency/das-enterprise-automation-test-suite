@@ -161,6 +161,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
 
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
+            createAdvertPage
+            .EnterAdditionalQuestionsForApplicants()
+            .CompleteAllAdditionalQuestionsForApplicants();
+
         protected CreateAnApprenticeshipAdvertOrVacancyPage CompleteAboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             AboutTheEmployer(SkillsAndQualifications(createAdvertPage), string.Empty, true, true);
 
