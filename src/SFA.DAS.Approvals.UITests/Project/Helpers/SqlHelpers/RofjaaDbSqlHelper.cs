@@ -14,20 +14,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class RofjaaDbSqlHelper : SqlDbHelper
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        public RofjaaDbSqlHelper(DbConfig dBConfig, ScenarioContext context) : base(dBConfig.RofjaaDbConnectionString)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+
+        public RofjaaDbSqlHelper(DbConfig dBConfig) : base(dBConfig.RofjaaDbConnectionString){}
 
         public string GetAccountLegalEntityId(string removalReason) => GetDataAsString($"SELECT LegalEntityId FROM Agency WHERE RemovalReason = '{removalReason}'");
 
         public void RemoveFJAAEmployerFromRegister()
         {
             var removalReason = "Automation";
-            var accountLegalEntityId = _context.Get<RofjaaDbSqlHelper>().GetAccountLegalEntityId(removalReason);
+            var accountLegalEntityId = GetAccountLegalEntityId(removalReason);
             string query = $"UPDATE Agency SET EffectiveTo = '2022-12-09 12:00:00.0000000' where LegalEntityId = {accountLegalEntityId}";
             ExecuteSqlCommand(query);      
         }
@@ -35,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         public void AddFJAAEmployerToRegister()
         {
             var removalReason = "Automation";
-            var accountLegalEntityId = _context.Get<RofjaaDbSqlHelper>().GetAccountLegalEntityId(removalReason);
+            var accountLegalEntityId = GetAccountLegalEntityId(removalReason);
             string query = $"UPDATE Agency SET EffectiveTo = NULL where LegalEntityId = {accountLegalEntityId}";
             ExecuteSqlCommand(query);
         }

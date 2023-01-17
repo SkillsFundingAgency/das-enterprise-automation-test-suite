@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>(), context);
+            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();

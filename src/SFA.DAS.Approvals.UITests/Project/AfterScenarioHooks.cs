@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             context.TryGetValue(out _datahelper);
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
-            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>(), context);
+            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
             tags = context.ScenarioInfo.Tags;
         }
 

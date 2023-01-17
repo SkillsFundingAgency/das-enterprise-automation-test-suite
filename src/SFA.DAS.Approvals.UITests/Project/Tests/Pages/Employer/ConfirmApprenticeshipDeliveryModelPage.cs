@@ -19,7 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public EditTrainingDetailsPage ConfirmDeliveryModelChangeToRegular()
         {
             formCompletionHelper.ClickElement(ContinueBtn);
-            //Continue();
             return new EditTrainingDetailsPage(context);
         }
     }
