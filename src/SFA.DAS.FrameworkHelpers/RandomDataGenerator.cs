@@ -67,7 +67,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static string GenerateRandomUln()
         {
-            String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString() + DateTime.Now.ToString("ssffffff");
+            System.String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString() + DateTime.Now.ToString("ssffffff");
 
             for (int i = 1; i < 30; i++)
             {
