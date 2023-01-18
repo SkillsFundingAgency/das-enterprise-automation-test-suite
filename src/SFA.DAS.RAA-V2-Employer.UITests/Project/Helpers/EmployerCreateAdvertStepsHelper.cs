@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         internal VacancyReferencePage SubmitDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
-            CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage));
+            CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage).EnterAdditionalQuestionsForApplicants().CompleteAllAdditionalQuestionsForApplicants());
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             CompleteAboutTheEmployer(createAdvertPage).EnterAdditionalQuestionsForApplicants().CompleteAllAdditionalQuestionsForApplicants().CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
