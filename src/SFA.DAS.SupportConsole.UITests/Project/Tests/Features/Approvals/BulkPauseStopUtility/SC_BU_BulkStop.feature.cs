@@ -130,6 +130,67 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Bulk Stop Apprentice SCS Role")]
+        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
+        [NUnit.Framework.CategoryAttribute("BulkUtility")]
+        public void BulkStopApprenticeSCSRole()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "supportconsole",
+                    "approvalssupportconsole",
+                    "BulkUtility"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Stop Apprentice SCS Role", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+  testRunner.Given("the SCS User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 21
+  testRunner.Then("User should NOT be able to see Pause,Resume,Suspend and Reinstate Utilities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 22
+  testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "EmployerName",
+                            "ProviderName",
+                            "Ukprn",
+                            "EndDate",
+                            "Uln",
+                            "Status",
+                            "TotalRecords"});
+                table4.AddRow(new string[] {
+                            "COMPLIANCE LIMITED",
+                            "",
+                            "10005310",
+                            "",
+                            "",
+                            "",
+                            "25"});
+#line 23
+  testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table4, "And ");
+#line hidden
+#line 27
+ testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+ testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

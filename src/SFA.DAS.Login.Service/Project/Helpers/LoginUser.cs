@@ -106,6 +106,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class SupportConsoleTier2User : NonAccountUser { }
 
+    public class SupportToolsSCPUser : NonAccountUser { }
+
+    public class SupportToolsSCSUser : NonAccountUser { }
+
     #endregion
 
 }

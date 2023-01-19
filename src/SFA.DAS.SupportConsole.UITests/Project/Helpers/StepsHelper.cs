@@ -17,6 +17,10 @@ public class StepsHelper
 
     public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
 
+    public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsSCPUser>(), openNewTab);
+
+    public ToolSupportHomePage ValidUserLogsinToSupportSCSTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsSCSUser>(), openNewTab);
+
     public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
     public UlnSearchResultsPage SearchForUln(string uln) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN(uln);
