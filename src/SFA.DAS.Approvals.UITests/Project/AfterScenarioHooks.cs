@@ -1,10 +1,8 @@
-﻿using MongoDB.Driver;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.TestDataExport.Helper;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -12,20 +10,20 @@ namespace SFA.DAS.Approvals.UITests.Project
     [Binding]
     public class AfterScenarioHooks
     {
+        private readonly ScenarioContext context;
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
         private readonly ApprenticeDataHelper _datahelper;
         private readonly ManageFundingEmployerStepsHelper _manageFundingEmployerStepsHelper;
-        private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
         protected readonly string[] tags;
 
         public AfterScenarioHooks(ScenarioContext context)
         {
+            this.context = context;
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             context.TryGetValue(out _datahelper);
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
-            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
             tags = context.ScenarioInfo.Tags;
         }
 
@@ -37,9 +35,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         [AfterScenario(Order = 12)]
         [Scope(Tag = "rofjaadb")]
-        public void ResetFJAARegister()
-        {
-            _rofjaaDbSqlHelper.AddFJAAEmployerToRegister();
-        }
+        public void ResetFJAARegister() => context.Get<RofjaaDbSqlHelper>().AddFJAAEmployerToRegister();
     }
 }

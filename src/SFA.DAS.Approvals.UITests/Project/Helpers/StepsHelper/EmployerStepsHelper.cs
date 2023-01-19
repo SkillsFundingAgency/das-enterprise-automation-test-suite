@@ -10,8 +10,6 @@ using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -32,11 +30,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
+            _rofjaaDbSqlHelper = context.Get<RofjaaDbSqlHelper>();
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _rofjaaDbSqlHelper = new RofjaaDbSqlHelper(context.Get<DbConfig>());
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -314,10 +312,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ValidateDeliveryModelNotDisplayed();
         }
 
-        public void RemoveEmployerFromFlexiJobAgencyRegister()
-        {
-            _rofjaaDbSqlHelper.RemoveFJAAEmployerFromRegister();
-        }
+        public void RemoveEmployerFromFlexiJobAgencyRegister() => _rofjaaDbSqlHelper.RemoveFJAAEmployerFromRegister();
 
         public ApprenticeRequestsPage DeleteCurrentCohort()
         {

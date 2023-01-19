@@ -1,20 +1,10 @@
-﻿using Polly;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class RofjaaDbSqlHelper : SqlDbHelper
     {
-
         public RofjaaDbSqlHelper(DbConfig dBConfig) : base(dBConfig.RofjaaDbConnectionString){}
 
         public string GetAccountLegalEntityId(string removalReason) => GetDataAsString($"SELECT LegalEntityId FROM Agency WHERE RemovalReason = '{removalReason}'");
