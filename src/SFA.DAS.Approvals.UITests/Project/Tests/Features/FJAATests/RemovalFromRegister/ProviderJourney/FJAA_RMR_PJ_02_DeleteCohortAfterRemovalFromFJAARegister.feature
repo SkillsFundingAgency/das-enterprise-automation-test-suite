@@ -1,4 +1,5 @@
 ﻿@approvals
+@donotexecuteinparallel
 Feature: FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister
 
 In this test, a Training Provider holds a draft cohort with apprentices on

@@ -1,4 +1,5 @@
 ﻿@approvals
+@donotexecuteinparallel
 Feature: FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice
 
 In this test, a Training Provider, 

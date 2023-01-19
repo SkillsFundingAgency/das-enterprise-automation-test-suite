@@ -1,4 +1,5 @@
 ﻿@approvals
+@donotexecuteinparallel
 Feature: FJAA_RMR_PJ_03_EditLiveApprenticeAfterRemoval
 
 In this test, an Training Provider, 

@@ -1,4 +1,5 @@
 ﻿@approvals
+@donotexecuteinparallel
 Feature: FJAA_RMR_EJ_02_DeleteCohortAfterRemovalFromFJAARegister
 
 In this test, an FJAA Employer holds a draft cohort with apprentices on

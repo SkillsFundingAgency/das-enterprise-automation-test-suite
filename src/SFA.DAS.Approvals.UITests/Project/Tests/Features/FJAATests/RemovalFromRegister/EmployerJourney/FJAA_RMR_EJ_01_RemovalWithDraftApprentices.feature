@@ -1,4 +1,5 @@
 ﻿@approvals
+@donotexecuteinparallel
 Feature: FJAA_RMR_EJ_01_RemovalWithDraftApprentices
 
 In this test, a levy employer, who is on Flexi-job register, 

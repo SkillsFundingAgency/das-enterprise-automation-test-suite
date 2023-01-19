@@ -21,14 +21,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests.RemovalFrom
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister")]
+    [NUnit.Framework.NonParallelizableAttribute()]
     [NUnit.Framework.CategoryAttribute("approvals")]
+    [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
     public partial class FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegisterFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = new string[] {
-                "approvals"};
+                "approvals",
+                "donotexecuteinparallel"};
         
 #line 1 "FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister.feature"
 #line hidden
@@ -93,7 +96,7 @@ and we confirm that the provider is still able to delete cohort", ProgrammingLan
                     "rofjaadb"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -103,25 +106,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 14
+#line 15
  testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 15
+#line 16
  testRunner.When("employer selects Flexi-job agency radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 17
  testRunner.Then("validate Flexi-job agency content on Add Apprentice Details page and submit valid" +
                         " details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 17
+#line 18
  testRunner.And("validate Flexi-job agency tag on Approve Apprentice Details page and send cohort " +
                         "to Provider for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 19
  testRunner.Then("the employer is removed from the Flexi-job agency register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 20
  testRunner.And("provider navigates to Approve Apprentice page and deletes Cohort before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

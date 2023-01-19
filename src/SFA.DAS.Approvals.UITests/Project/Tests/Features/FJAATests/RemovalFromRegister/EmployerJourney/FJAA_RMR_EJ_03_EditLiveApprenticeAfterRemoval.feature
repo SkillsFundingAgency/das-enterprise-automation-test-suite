@@ -1,4 +1,5 @@
 ﻿@approvals
+@donotexecuteinparallel
 Feature: FJAA_RMR_EJ_03_EditLiveApprenticeAfterRemoval
 
 In this test, an FJAA Employer, 
