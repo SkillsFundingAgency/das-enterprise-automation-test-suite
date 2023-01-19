@@ -15,8 +15,6 @@ public class StepsHelper
 
     public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-    public ToolSupportHomePage ValidUserLogsinToSupportTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsUser>(), openNewTab);
-
     public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsSCPUser>(), openNewTab);
 
     public ToolSupportHomePage ValidUserLogsinToSupportSCSTools(bool openNewTab) => LoginToSupportTools(_context.GetUser<SupportToolsSCSUser>(), openNewTab);

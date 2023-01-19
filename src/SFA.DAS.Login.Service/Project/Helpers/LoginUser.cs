@@ -100,8 +100,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EPAOAdminUser : NonAccountUser { }
 
-    public class SupportToolsUser : NonAccountUser { }
-
     public class SupportConsoleTier1User : NonAccountUser { }
 
     public class SupportConsoleTier2User : NonAccountUser { }
