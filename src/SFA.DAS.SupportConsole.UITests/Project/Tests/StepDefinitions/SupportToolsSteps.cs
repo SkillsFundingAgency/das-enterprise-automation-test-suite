@@ -70,12 +70,6 @@ public class SupportToolsSteps
     [Given(@"the SCS User is logged into Support Tools")]
     public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools(false);
 
-    [Given(@"the SCS User should NOT be able to see Pause,Resume,Suspend and Reinstate Utilities")]
-    public void ThenUserShouldNOTBeAbleToSeePauseResumeSuspendAndReinstateUtilities()
-    {
-        throw new PendingStepException();
-    }
-
     [Given(@"the SCP User is logged into Support Tools")]
     public void GivenTheSCPUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCPTools(false);
 
@@ -126,7 +120,7 @@ public class SupportToolsSteps
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools(false)
+        var status = _stepsHelper.ValidUserLogsinToSupportSCPTools(false)
                             .ClickSuspendUserAccountsLink()
                             .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()
@@ -144,7 +138,7 @@ public class SupportToolsSteps
         string expectedStatusBefore = "Suspended " + DateTime.Now.ToString("dd/MM/yyyy");
         string expectedStatusAfter = "Submitted successfully";
 
-        var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportTools(true)
+        var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportSCPTools(true)
                             .ClickReinstateUserAccountsLink()
                             .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()
