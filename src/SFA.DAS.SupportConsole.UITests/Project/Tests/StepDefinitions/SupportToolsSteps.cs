@@ -20,9 +20,6 @@ public class SupportToolsSteps
         _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
     }
 
-    [Given(@"the User is logged into Support Tools")]
-    public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools(false);
-
     [Given(@"Opens the Pause Utility")]
     [When(@"user opens Pause Utility")]
     public void WhenUserOpensPauseUtility() => new ToolSupportHomePage(_context).ClickPauseApprenticeshipsLink();
