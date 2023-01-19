@@ -27,10 +27,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney() => NavigatesToSelectDeliveryModelPage();
 
-        public ProviderAddPersonalDetailsPage ProviderSelectsAStandard()
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();
-            return new ProviderAddPersonalDetailsPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();

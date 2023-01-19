@@ -158,8 +158,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails()
-                .SubmitValidTrainingDetails()
+                .SubmitValidApprenticeDetails()
                 .SubmitApprove();
         }
 
@@ -180,8 +179,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ChooseAnEmployer("Levy")
                 .ConfirmEmployer()
                 .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails(true)
-                .SubmitValidTrainingDetails();
+                .SubmitValidApprenticeDetails(true);
         }
 
         [Then(@"the provider validates flexi-job content and approves cohort")]

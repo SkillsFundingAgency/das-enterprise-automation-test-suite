@@ -77,7 +77,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .ChooseAnEmployer("Levy")
                .ConfirmEmployer()
                .ProviderSelectsAStandard()
-               .SubmitValidPersonalDetails()
                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
@@ -128,17 +127,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
 
-            var providerAddTrainingDetailsPage = _providerStepsHelper
+            var providerAddApprenticeDetailsPage = _providerStepsHelper
                                                       .NavigateToProviderHomePage()
                                                       .GotoSelectJourneyPage()
                                                       .SelectAddManually()
                                                       .SelectOptionCreateNewCohort()
                                                       .ChooseAnEmployer("Levy")
                                                       .ConfirmEmployer()
-                                                      .ProviderSelectsAStandard()
-                                                      .SubmitValidPersonalDetails();
+                                                      .ProviderSelectsAStandard();
 
-            VerifyOverlappingTrainingDetailsError(table, providerAddTrainingDetailsPage);
+            VerifyOverlappingTrainingDetailsError(table, providerAddApprenticeDetailsPage);
          }
 
         [When(@"Employer tries to add a new apprentice using details from table below")]
@@ -159,7 +157,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                   .ChooseAnEmployer("Levy")
                   .ConfirmEmployer()
                   .ProviderSelectsAStandard()
-                  .SubmitValidPersonalDetails()
                   .SubmitNullTrainingDetails()
                   .SubmitSendToEmployerToReview()
                   .CohortReference();
