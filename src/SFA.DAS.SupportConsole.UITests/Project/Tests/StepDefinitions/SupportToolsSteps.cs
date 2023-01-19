@@ -70,7 +70,7 @@ public class SupportToolsSteps
     [Given(@"the SCS User is logged into Support Tools")]
     public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools(false);
 
-    [Then(@"User should NOT be able to see Pause,Resume,Suspend and Reinstate Utilities")]
+    [Given(@"the SCS User should NOT be able to see Pause,Resume,Suspend and Reinstate Utilities")]
     public void ThenUserShouldNOTBeAbleToSeePauseResumeSuspendAndReinstateUtilities()
     {
         throw new PendingStepException();
