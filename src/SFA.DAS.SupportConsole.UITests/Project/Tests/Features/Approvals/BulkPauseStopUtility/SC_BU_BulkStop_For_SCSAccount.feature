@@ -1,4 +1,4 @@
-﻿Feature: SC_BU_BulkStop_For_SCPSCSAccount
+﻿Feature: SC_BU_BulkStop_For_SCSAccount
 
 
 @supportconsole

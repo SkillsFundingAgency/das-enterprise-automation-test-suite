@@ -20,22 +20,22 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_BU_BulkStop_For_SCPSCSAccount")]
-    public partial class SC_BU_BulkStop_For_SCPSCSAccountFeature
+    [NUnit.Framework.DescriptionAttribute("SC_BU_BulkStop_For_SCSAccount")]
+    public partial class SC_BU_BulkStop_For_SCSAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "SC_BU_BulkStop_For_SCPSCSAccount.feature"
+#line 1 "SC_BU_BulkStop_For_SCSAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Approvals/BulkPauseStopUtility", "SC_BU_BulkStop_For_SCPSCSAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Approvals/BulkPauseStopUtility", "SC_BU_BulkStop_For_SCSAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
