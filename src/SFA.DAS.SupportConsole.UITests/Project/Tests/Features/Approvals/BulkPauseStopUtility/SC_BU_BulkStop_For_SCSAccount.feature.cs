@@ -100,6 +100,9 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.Given("the SCS User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
+  testRunner.And("User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
   testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -118,14 +121,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "25"});
-#line 10
+#line 11
   testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table4, "And ");
 #line hidden
-#line 14
- testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 15
- testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+  testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

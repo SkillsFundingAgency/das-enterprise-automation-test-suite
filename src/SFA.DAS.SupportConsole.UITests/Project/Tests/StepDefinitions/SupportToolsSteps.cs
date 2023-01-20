@@ -114,6 +114,19 @@ public class SupportToolsSteps
         ValidateResumeSuccessful(ststusList);
     }
 
+    [Given(@"User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities")]
+    public void ThenUserShouldNOTBeAbleToSeePauseResumeSuspendAndReinstateUtilities()
+    {
+        ToolSupportHomePage toolSupportHomePage = new ToolSupportHomePage(_context);
+
+        Assert.IsFalse(toolSupportHomePage.IsPauseApprenticeshipLinkVisible());
+        Assert.IsFalse(toolSupportHomePage.IsResumeApprenticeshipLinkVisible());
+        Assert.IsFalse(toolSupportHomePage.IsReinstateApprenticeshipLinkVisible());
+        Assert.IsFalse(toolSupportHomePage.IsSuspendApprenticeshipLinkVisible());
+        Assert.IsTrue(toolSupportHomePage.IsStopApprenticeshipLinkVisible());
+    }
+
+
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
