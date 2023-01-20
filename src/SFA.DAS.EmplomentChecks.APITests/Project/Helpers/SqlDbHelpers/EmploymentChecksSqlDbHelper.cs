@@ -107,7 +107,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             // Completion status [null] signifies that the record has not been processed yet.
             // give it a max of 10 seconds for it to be picked up by the orchestrator
 
-            while (String.IsNullOrEmpty(completionStatus) && count < 5)
+            while (string.IsNullOrEmpty(completionStatus) && count < 5)
             {
                 Thread.Sleep(2000);
                 count++;
@@ -133,7 +133,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             // Completion status [null] signifies that the record has not been processed yet.
             // give it a max of 10 seconds for it to be picked up by the orchestrator
 
-            while (String.IsNullOrEmpty(completionStatus) && count < 10)
+            while (string.IsNullOrEmpty(completionStatus) && count < 10)
             {
                 Thread.Sleep(2000);
                 count++;

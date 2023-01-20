@@ -201,6 +201,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	@donotexecuteinparallel 
 	Feature: FeatureName
 	```
+	- ```@testinator```(to use mailinator api to verify notification email content)
 4. Reserved tags (these reserved tags are used to create test data)
 	- ```@addtransferslevyfunds``` (to create a levy account which makes sender eligible to transfer funds), ```@addlevyfunds``` (to create a levy funds), ```@donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
 	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse, @changeOfEmployer, @changeOfProvider``` (in approvals (including transfers), apprenticecommitments)

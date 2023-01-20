@@ -1,6 +1,7 @@
 ﻿using Polly;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -42,7 +43,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _providerStepsHelper.Approve();
             createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
-            _employerStepsHelper.StopApprenticeThisMonth();
+            _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.LeftEmployer);
             _providerStepsHelper.StartChangeOfEmployerJourney();
             _cohortReferenceHelper.UpdateNewCohortReference();
 
