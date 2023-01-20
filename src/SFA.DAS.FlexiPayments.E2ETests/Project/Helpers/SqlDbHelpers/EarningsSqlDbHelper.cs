@@ -45,12 +45,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
                 $" ) A, " +
                 $" ( " +
                 $" SELECT Ukprn, SUM(Amount) as LevyEarnings FROM [Query].[Earning] " +
-                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND AcademicYear = @AcademicYear AND FundingType in (0,2) " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND AcademicYear = @AcademicYear AND FundingType in ('Levy','Transfer') " +
                 $" GROUP BY UKPRN, AcademicYear " +
                 $" ) B," +
                 $" ( " +
                 $" SELECT Ukprn, SUM(Amount) as NonLevyEarnings FROM [Query].[Earning] " +
-                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 1 GROUP BY UKPRN, AcademicYear " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 'NonLevy' GROUP BY UKPRN, AcademicYear " +
                 $" )C " +
                 $" WHERE A.Ukprn=B.Ukprn AND A.Ukprn=C.Ukprn " +
                 $" COMMIT TRANSACTION;";
