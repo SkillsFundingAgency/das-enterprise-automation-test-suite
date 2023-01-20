@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.ConfigurationBuilder;
@@ -49,6 +50,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
             var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
+
+            _context.Set(new RofjaaDbSqlHelper(_dbConfig));
 
             var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, _tags);
 

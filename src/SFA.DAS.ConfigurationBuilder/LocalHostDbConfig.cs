@@ -46,7 +46,8 @@ namespace SFA.DAS.ConfigurationBuilder
                 EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName),
                 ManagingStandardsDbConnectionString = GetConnectionString(_dbDevConfig.ManagingStandardsDbName),
                 EarningsDbConnectionString = GetConnectionString(_dbDevConfig.EarningsDbName),
-                ApprenticeshipsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeshipsDbName)
+                ApprenticeshipsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeshipsDbName),
+                RofjaaDbConnectionString = GetConnectionString(_dbDevConfig.RofjaaDbName)
             };
         }
 
