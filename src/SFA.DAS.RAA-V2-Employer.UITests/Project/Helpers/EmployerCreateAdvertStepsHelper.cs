@@ -82,6 +82,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             createAdvertPage = CreateFirstDraftAdvert(createAdvertPage);
 
             createAdvertPage = CompleteAboutTheEmployer(createAdvertPage);
+            
+            createAdvertPage = Application(createAdvertPage);
 
             CheckAndSubmitAdvert(createAdvertPage);
         }
