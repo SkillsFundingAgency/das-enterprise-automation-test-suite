@@ -7,7 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ForgottenPasswordPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "Forgotten password";
-        //protected override By ServiceHeader => NonClickableServiceHeader;
         private By Email => By.CssSelector("input#Email");
 
         public ForgottenPasswordPage(ScenarioContext context) : base(context)  { }

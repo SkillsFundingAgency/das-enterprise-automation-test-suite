@@ -19,7 +19,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
         protected static By ConfirmButton => By.Id("employer-provider-confirm");
         protected static string ServiceName => "My apprenticeship";
-        //protected static By NonClickableServiceHeader => By.CssSelector(".das-header__span");
         protected static By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
         protected static By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'Confirm my apprenticeship details')]");
         protected static By CMADTopNavigationLinkAfterFullyConfirmed => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'My apprenticeship details')]");
