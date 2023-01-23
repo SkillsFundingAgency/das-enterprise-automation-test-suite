@@ -4,7 +4,7 @@
 @approvalssupportconsole
 @BulkUtility
 Scenario: Validate Combination of filters
-	Given the User is logged into Support Tools
+	Given the SCP User is logged into Support Tools
 	When user opens Pause Utility
 	Then following filters should return the expected number of TotalRecords
 		| EmployerName       | ProviderName						| Ukprn		| EndDate		| Uln		 | Status			| TotalRecords	|

@@ -43,4 +43,13 @@ public class ToolSupportHomePage : ToolSupportBasePage
         formCompletionHelper.Click(ReinstateUserAccountsLink);
         return new(context);
     }
+    public bool IsPauseApprenticeshipLinkVisible() => pageInteractionHelper.IsElementDisplayed(PauseApprenticeshipsLink);
+
+    public bool IsResumeApprenticeshipLinkVisible() => pageInteractionHelper.IsElementDisplayed(ResumeApprenticeshipsLink);
+
+    public bool IsStopApprenticeshipLinkVisible() => pageInteractionHelper.IsElementDisplayed(StopApprenticeshipsLink);
+
+    public bool IsReinstateApprenticeshipLinkVisible() => pageInteractionHelper.IsElementDisplayed(ReinstateUserAccountsLink);
+
+    public bool IsSuspendApprenticeshipLinkVisible() => pageInteractionHelper.IsElementDisplayed(SuspendUserAccountsLink);
 }
