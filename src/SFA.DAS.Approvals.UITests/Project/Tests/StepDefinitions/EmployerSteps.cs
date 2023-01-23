@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
@@ -60,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
             _apprenticeDetailsPage = _employerStepsHelper
-            .StopApprenticeThisMonth(_apprenticeDetailsPage)
+            .StopApprenticeThisMonth(_apprenticeDetailsPage, StopApprentice.Withdrawn)
              .ValidateFlashMessage("Apprenticeship stopped");
         }
         
@@ -237,6 +238,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
 
+        [Then(@"the employer is removed from the Flexi-job agency register")]
+        public void ThenTheEmployerIsRemovedFromTheFlexi_JobAgencyRegister() => _employerStepsHelper.RemoveEmployerFromFlexiJobAgencyRegister();
+
+        [Then(@"employer navigates to Approve Apprentice page and deletes Cohort before approval")]
+        public void ThenEmployerNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _employerStepsHelper.DeleteCurrentCohort();
+
+        [Then(@"the previously registered FJAA employer can no longer approve the draft cohort")]
+        public void ThenThePreviouslyRegisteredFJAAEmployerCanNoLongerApproveTheDraftCohort() => _employerStepsHelper.ValidateEmployerCanNoLongerApproveCohort();
+
+        [Then(@"the previously registered FJAA employer can edit delivery model and then approve")]
+        public void ThenThePreviouslyRegisteredFJAAEmployerCanEditDeliveryModelAndThenApprove() => _employerStepsHelper.RemovedFJAEmployerEditsDeliveryModelAndApproves();
+
         [When(@"the employer edits apprentice delivery model to Regular in Post Approvals and Submits changes")]
         public void WhenTheEmployerEditsApprenticeDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _employerStepsHelper.EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
 
@@ -248,5 +261,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the employer confirms Delivery Model is not displayed on Apprentice Details Screen")]
         public void ThenTheEmployerConfirmsDeliveryModelIsNotDisplayedOnApprenticeDetailsScreen() => _employerStepsHelper.ValidateDeliveryModelNotDisplayed();
+
+
     }
 }

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+		<ProjectReference Include="..\SFA.DAS.API.FrameworkHelpers\SFA.DAS.API.FrameworkHelpers.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

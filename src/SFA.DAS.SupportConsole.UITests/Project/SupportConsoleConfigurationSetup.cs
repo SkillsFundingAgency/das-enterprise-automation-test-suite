@@ -21,7 +21,9 @@ public class SupportConsoleConfigurationSetup
 
         _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
 
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsUser>());
-        
+        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsSCPUser>());
+
+        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsSCSUser>());
+
     }
 }

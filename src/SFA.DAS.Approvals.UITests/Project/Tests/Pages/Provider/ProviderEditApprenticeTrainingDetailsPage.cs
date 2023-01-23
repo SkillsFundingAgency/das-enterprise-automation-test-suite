@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using NUnit.Framework;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -20,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public By ActualStartDateMonth => By.Id("ActualStartMonth");
         public By ActualStartDateYear => By.Id("ActualStartYear");
         private static By EditDeliveryModelLink => By.CssSelector("#change-delivery-model-link");
+        private By DeliveryModelLabel => By.XPath("//*[@id='draftApprenticeshipSection2']/div[2]/p[2]");
 
         public ProviderEditApprenticeTrainingDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -171,5 +173,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
+
+        public ProviderConfirmApprenticeDeliveryModelPage SelectEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new ProviderConfirmApprenticeDeliveryModelPage(context);
+        }
+
+        public ProviderEditApprenticeTrainingDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        {
+            string expected = deliveryModel;
+            string actual = GetDeliveryModel();
+            Assert.IsTrue(actual.Contains(expected), $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+            return this;
+        }
+
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
     }
 }
