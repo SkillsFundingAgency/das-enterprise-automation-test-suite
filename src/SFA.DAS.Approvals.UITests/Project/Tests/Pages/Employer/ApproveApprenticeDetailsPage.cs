@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -10,13 +9,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ApproveApprenticeDetailsPage : ReviewYourCohort
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        protected override string PageTitle => _pageTitle;
-
-        #region Helpers and Context
-
-        private string _pageTitle;
-
-        #endregion Helpers and Context
 
         private static By ApproveMessage => By.CssSelector("#approve-details");
         private static By ReviewMessage => By.CssSelector("#send-details");
@@ -26,18 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
-        {
-            void SetPageTitle()
-            {
-                int noOfApprentice = TotalNoOfApprentices();
-                _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
-            }
-
-            SetPageTitle();
-
-            VerifyPage(() => SetPageTitle());
-        }
+        public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x == 1 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {

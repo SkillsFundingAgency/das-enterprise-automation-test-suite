@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.IdamsLogin.Service.Project.Helpers;
@@ -12,11 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderApproveApprenticeDetailsPage : ReviewYourCohort
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
-        protected override string PageTitle => _pageTitle;
-
-        #region Helpers and Context
-        private readonly string _pageTitle;
-        #endregion
 
         private By PireanPreprod => Selectors.PireanPreprod;
         private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
@@ -33,12 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
-        {
-            var noOfApprentice = TotalNoOfApprentices();
-            _pageTitle = noOfApprentice < 2 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
-            VerifyPage();
-        }
+        public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x == 1 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
