@@ -4,7 +4,7 @@
 @approvalssupportconsole
 @BulkUtility
 Scenario: Bulk Pause Apprentice Records
-	Given the User is logged into Support Tools
+	Given the SCP User is logged into Support Tools
 	And Opens the Pause Utility
 	And Search for Apprentices using following criteria
 		| EmployerName			| ProviderName | Ukprn		| EndDate	| Uln | Status	| TotalRecords	|
@@ -18,7 +18,7 @@ Scenario: Bulk Pause Apprentice Records
 @approvalssupportconsole
 @BulkUtility
 Scenario: Bulk Resume Apprentice Records
-	Given the User is logged into Support Tools
+	Given the SCP User is logged into Support Tools
 	And Opens the Resume Utility
 	And Search for Apprentices using following criteria
 		| EmployerName			| ProviderName | Ukprn		| EndDate	| Uln | Status	| TotalRecords	|
