@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SFA.DAS.API.Framework;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EmployerAccounts.APITests.Project;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
-using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.HashingService;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,29 +8,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 {
-    [Binding]
-    public class EmployerAccountsAPISteps
-    {
-        private readonly Inner_EmployerAccountsApiRestClient _innerApiRestClient;
-        private readonly Outer_EmployerAccountsApiHelper _employerAccountsOuterApiHelper;
-        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;
-        private readonly EmployerAccountsSqlDbHelper _employerAccountsSqlDbHelper;
-        private readonly ObjectContext _objectContext;
-        private readonly IHashingService _hashingService;
 
-        public EmployerAccountsAPISteps(ScenarioContext context)
-        {
-            _innerApiRestClient = context.GetRestClient<Inner_EmployerAccountsApiRestClient>();
-            _employerAccountsOuterApiHelper = new Outer_EmployerAccountsApiHelper(context);
-            _innerApiLegacyRestClient = context.GetRestClient<Inner_EmployerAccountsLegacyApiRestClient>();
-            _employerAccountsSqlDbHelper = context.Get<EmployerAccountsSqlDbHelper>();
-            _objectContext = context.Get<ObjectContext>();
-            _employerAccountsSqlDbHelper.SetHashedAccountId();
-            _employerAccountsSqlDbHelper.SetAccountId();
-            _employerAccountsSqlDbHelper.SetLegalEntityId();
-            _employerAccountsSqlDbHelper.SetPayeSchemeRef();
-            _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
-        }
+    [Binding]
+    public class EmployerAccountsAPISteps : BaseSteps
+    {
+
+        public EmployerAccountsAPISteps(ScenarioContext context) : base(context) { }
 
         [Then(@"the employer accounts outer api is reachable")]
         public void ThenTheEmployerAccountsOuterApiIsReachable() => _employerAccountsOuterApiHelper.Ping();
