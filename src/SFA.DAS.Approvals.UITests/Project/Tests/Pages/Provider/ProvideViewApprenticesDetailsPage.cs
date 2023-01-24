@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ViewApprenticeLink => By.PartialLinkText("View");
 
 
-        public ProvideViewApprenticesDetailsPage(ScenarioContext context) : base(context, (x) => x == 1 ? "View apprentice details" : $"View {x} apprentices' details") { }
+        public ProvideViewApprenticesDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "View apprentice details" : $"View {x} apprentices' details") { }
 
         internal ProviderViewApprenticeDetailsPage SelectViewApprentice(int apprenticeNumber = 0)
         {

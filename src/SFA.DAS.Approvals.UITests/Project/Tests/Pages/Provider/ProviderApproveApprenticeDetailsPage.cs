@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x == 1 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
+        public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
