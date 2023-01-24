@@ -20,6 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
+        private By SaveButton => By.XPath("//button[text()='Save']");
 
         protected EditApprentinceNameDobAndReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
@@ -32,8 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
-            if (!pageInteractionHelper.IsElementDisplayed(Reference))
-                formCompletionHelper.Click(ContinueButton);
+ 
             formCompletionHelper.EnterText(Reference, reference);
             return this;
         }

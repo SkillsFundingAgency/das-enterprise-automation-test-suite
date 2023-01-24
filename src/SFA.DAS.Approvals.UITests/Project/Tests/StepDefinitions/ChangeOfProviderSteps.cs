@@ -45,7 +45,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
                 .ValidateEditableTextBoxes(9)
-                .ClickSaveAndContinue()
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
@@ -59,7 +58,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }
@@ -108,7 +106,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .EditCopApprenticeDetails()
                 .SubmitSendToEmployerToReview();
         }
@@ -138,7 +135,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
                 .ValidateEditableTextBoxes(9)
-                .ClickSaveAndContinue()
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }

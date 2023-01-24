@@ -57,7 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public List<IWebElement> ApprenticeUlns() => pageInteractionHelper.FindElements(ApprenticeUlnField);
 
-        public ProviderEditApprenticePersonalDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
             
@@ -65,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             
             ClickIfPirenIsDisplayed();
             
-            return new ProviderEditApprenticePersonalDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public ProviderConfirmCohortDeletionPage SelectDeleteCohort()

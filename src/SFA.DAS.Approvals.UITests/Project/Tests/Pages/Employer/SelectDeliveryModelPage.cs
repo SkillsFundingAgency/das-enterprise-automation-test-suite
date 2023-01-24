@@ -67,11 +67,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddPersonalDetailsPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
+        public ProviderEditApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
         {
             formCompletionHelper.Click(EditFlexiJobRadioButton);
             Continue();
-            return new ProviderEditApprenticeTrainingDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()

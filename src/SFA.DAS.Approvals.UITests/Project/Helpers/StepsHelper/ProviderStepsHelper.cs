@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         protected readonly ApprovalsConfig _approvalsConfig;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
-        private ProviderEditApprenticePersonalDetailsPage _providerEditApprenticeDetailsPage;
+        private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
         private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
@@ -316,12 +316,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        var providerEditTrainingDetailsPage =  providerEditApprenticeDetailsPage.EnterUlnAndSave();
-
                         if (shouldCheckCoursesAreStandards)
-                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                            providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
-                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave();
+                        providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
                     }
                     j--;
@@ -339,7 +337,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
                 var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
-                providerEditApprenticeDetailsPage.EnterUlnAndSave().SelectSaveAndUpdateRPLAsNo();
+                providerEditApprenticeDetailsPage.EnterUlnAndSave();
             }
 
             return providerApproveApprenticeDetailsPage;
@@ -362,11 +360,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 {
                     if (uln.Text.Equals("-"))
                     {
-                        var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, j+1);
+                        providerEditApprenticeDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, j+1);
 
-                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
                         break;
                     }
                     j--;
@@ -378,13 +375,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditSpecificFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int learnerToEdit, bool isPilotLearner)
         {
-            var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1); 
+            var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1); 
 
-            var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, learnerToEdit);
-            
-            providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
-                        
-            return providerApproveApprenticeDetailsPage;
+            return providerEditApprenticeDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, learnerToEdit);
+                       
         }
 
         public ProviderApproveApprenticeDetailsPage AddApprenticeForFlexiPaymentsProvider(int numberOfApprentices, bool isPilotLearner = false)
@@ -419,10 +413,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
                 _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
-                providerApproveApprenticeDetailsPage = 
+                providerApproveApprenticeDetailsPage =
                     _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
-                    .ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
+                    .ProviderSelectsAStandardForEditApprenticeDetails()
                     .ClickSave();
             }
             return providerApproveApprenticeDetailsPage;
@@ -487,7 +481,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice(0)
                 .EnterUlnAndSave()
-                .CheckRPLConditionAndSave()
                 .SubmitApprove();
         }
 
@@ -555,7 +548,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return new ProviderApproveApprenticeDetailsPage(_context)
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()
                 .ValidateDeliveryModelDisplayed("Regular")
@@ -568,8 +560,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .GoToApprenticeRequestsPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .EnterUlnAndSave()
-                .ClickEditDeliveryModel()
+                .EnterUlnAndSelectEditDeliveryModel()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
                 .ClickSave()
                 .ValidateFlexiJobTagAndSubmitApprove();
