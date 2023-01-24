@@ -18,6 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EditDeliveryModelLink => By.Name("ChangeDeliveryModel");
         private By UpdateDetailsBtn => By.Id("continue-button");
         private By DeliveryModelLabel => By.XPath("//*[@id='editApprenticeship']/div[7]/p[2]");
+        private By TrainingName => By.XPath("//*[@id='trainingName']");
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -42,7 +43,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
-
-
     }
 }

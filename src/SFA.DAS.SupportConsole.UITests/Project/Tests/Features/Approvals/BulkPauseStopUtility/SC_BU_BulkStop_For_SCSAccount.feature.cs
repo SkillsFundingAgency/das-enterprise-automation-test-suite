@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.ProviderFeatures
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPauseStopUtility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.ProviderFeatures
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_AIER_01_ValidateEarnings")]
-    public partial class FLP_AIER_01_ValidateEarningsFeature
+    [NUnit.Framework.DescriptionAttribute("SC_BU_BulkStop_For_SCSAccount")]
+    public partial class SC_BU_BulkStop_For_SCSAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_AIER_01_ValidateEarnings.feature"
+#line 1 "SC_BU_BulkStop_For_SCSAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ProviderFeatures", "FLP_AIER_01_ValidateEarnings", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Approvals/BulkPauseStopUtility", "SC_BU_BulkStop_For_SCSAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.ProviderFeatures
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_AIER_01 Validate Apps indicative earnings report")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_AIER_01ValidateAppsIndicativeEarningsReport()
+        [NUnit.Framework.DescriptionAttribute("Bulk Stop Apprentice SCS Role")]
+        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
+        [NUnit.Framework.CategoryAttribute("BulkUtility")]
+        public void BulkStopApprenticeSCSRole()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "flexi-payments"};
+                    "supportconsole",
+                    "approvalssupportconsole",
+                    "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_AIER_01 Validate Apps indicative earnings report", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Stop Apprentice SCS Role", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,14 +96,39 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
-testRunner.Given("the provider logs into their account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
-testRunner.When("provider is on Apprenticeship indicative earnings report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.Given("the SCS User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-testRunner.Then("validate correct earnings numbers are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.And("User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+  testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "EmployerName",
+                            "ProviderName",
+                            "Ukprn",
+                            "EndDate",
+                            "Uln",
+                            "Status",
+                            "TotalRecords"});
+                table4.AddRow(new string[] {
+                            "COMPLIANCE LIMITED",
+                            "",
+                            "10005310",
+                            "",
+                            "",
+                            "",
+                            "25"});
+#line 11
+  testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table4, "And ");
+#line hidden
+#line 15
+  testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+  testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

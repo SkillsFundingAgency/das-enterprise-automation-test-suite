@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
@@ -205,7 +206,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
-        }
+        } 
 
         public ProviderCohortSentForReviewPage AddApprenticeAndSelectRegularDeliveryModel()
         {
@@ -533,6 +534,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApprenticeshipIndicativeEarningsReportPage GoToApprenticeshipIndicativeEarningsReportPage() => GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
 
+        public ProviderApprenticeRequestsPage NavigateToApproveApprenticeDetailsAndDeleteCohort()
+        {
+            return GoToProviderHomePage()
+                .GoToApprenticeRequestsPage()
+                .SelectViewCurrentCohortDetails()
+                .SelectDeleteCohort()
+                .ConfirmDeleteAndSubmit();
+        }
+
+        public ProviderApproveApprenticeDetailsPage ValidateProviderCanNoLongerApproveCohort()
+        {
+            return GoToProviderHomePage()
+                .GoToApprenticeRequestsPage()
+                .SelectViewCurrentCohortDetails()
+                .ValidateProviderCannotApproveCohort();
+        }
+
+        public ProviderApproveApprenticeDetailsPage ProviderEditsDeliveryModelAndApprovesAfterFJAARemoval()
+        {
+            return new ProviderApproveApprenticeDetailsPage(_context)
+                .SelectEditApprentice()
+                .ClickSaveAndContinue()
+                .SelectEditDeliveryModel()
+                .ConfirmDeliveryModelChangeToRegular()
+                .ValidateDeliveryModelDisplayed("Regular")
+                .ClickSave();
+        }
+
         public ProviderCohortApprovedPage ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
         {
             return GoToProviderHomePage()
@@ -558,13 +587,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .AcceptChangesAndSubmit();
         }
 
-        public ProviderEditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
+        public ProviderApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
         {
             return GoToProviderHomePage()
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
-                .ValidateDeliveryModelDisplayed(deliveryModel)
-                .ClickEditApprenticeLink()
                 .ValidateDeliveryModelDisplayed(deliveryModel);
         }
     }
