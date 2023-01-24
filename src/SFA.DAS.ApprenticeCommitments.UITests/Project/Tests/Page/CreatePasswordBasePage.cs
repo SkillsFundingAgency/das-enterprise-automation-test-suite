@@ -8,7 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected string validPassword;
         protected override string PageTitle { get; }
-        protected override By ServiceHeader => NonClickableServiceHeader;
         private By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
         protected By ConfirmPassword => By.CssSelector("#ConfirmPassword");
 
