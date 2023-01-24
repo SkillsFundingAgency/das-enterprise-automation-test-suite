@@ -31,9 +31,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(pageInteractionHelper.GetText(TotalEarningsValue), "£" + TotalEarnings, "Incorrect Total earnings found");
-                Assert.AreEqual(pageInteractionHelper.GetText(LevyEarningsValue), "£" + LevyEarnings, "Incorrect Levy earnings found");
-                Assert.AreEqual(pageInteractionHelper.GetText(NonLevyEarningsValue), "£" + NonLevyEarnings, "Incorrect Non-levy earnings found");
+                Assert.AreEqual(TotalEarnings, pageInteractionHelper.GetText(TotalEarningsValue),  "Incorrect Total earnings found");
+                Assert.AreEqual(LevyEarnings, pageInteractionHelper.GetText(LevyEarningsValue),  "Incorrect Levy earnings found");
+                Assert.AreEqual(NonLevyEarnings, pageInteractionHelper.GetText(NonLevyEarningsValue),  "Incorrect Non-levy earnings found");
             });
         }
     }

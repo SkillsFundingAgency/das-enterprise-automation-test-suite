@@ -1,8 +1,5 @@
 ﻿Feature: FLP_AIER_01_ValidateEarnings
 
-This test will be enabled when FLP-165 is dev'd and ready to merge. 
-
-@ignore
 @regression
 @flexi-payments
 Scenario: FLP_AIER_01 Validate Apps indicative earnings report
