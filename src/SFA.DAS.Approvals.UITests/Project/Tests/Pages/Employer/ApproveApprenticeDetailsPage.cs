@@ -23,6 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By SaveSubmit => By.CssSelector("#main-content .govuk-button");
         private static By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
         private static By CohortStatus => By.Id("cohortStatus");
+        private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
+        private static By ApproveRadioButton => By.Id("radio-approve");
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
@@ -106,6 +108,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
             return new EditPersonalDetailsPage(context);
+        }
+
+        public string GetBannerHeading() => pageInteractionHelper.GetText(NotificationBannerHeading);
+
+        public ApproveApprenticeDetailsPage ValidateEmployerCannotApproveCohort()
+        {
+            string bannerHeading = "You are no longer on the Register of Flexi-Job Apprenticeship Agencies";
+
+            if (!pageInteractionHelper.IsElementDisplayed(NotificationBannerHeading))
+                throw new Exception("Notification banner is not displayed");
+            if(GetBannerHeading() != bannerHeading)
+                throw new Exception($"Expected: {bannerHeading} but actual was: {GetBannerHeading()}");
+            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton))
+                throw new Exception("The approve radio button is displayed to the user");
+
+            return this;
         }
 
         public ApprenticeDetailsApprovedPage ValidateFlexiJobTagAndApprove()

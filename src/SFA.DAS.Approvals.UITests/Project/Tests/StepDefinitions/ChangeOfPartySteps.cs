@@ -52,9 +52,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the employer has an apprentice with stopped status")]
         public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
         {
-            EmployerAndProviderApprove(_context.ScenarioInfo.Tags.Contains("changeOfEmployer"));
-            
-            _employerStepsHelper.StopApprenticeThisMonth();
+            bool isChangeOfEmployer = _context.ScenarioInfo.Tags.Contains("changeOfEmployer");
+            EmployerAndProviderApprove(isChangeOfEmployer);
+
+            StopApprentice reasonToStop = isChangeOfEmployer ? StopApprentice.LeftEmployer : StopApprentice.ChangeTrainingProvider;
+            _employerStepsHelper.StopApprenticeThisMonth(reasonToStop);
         }
 
         [When(@"employer sends COP request to new provider")]

@@ -1,37 +1,16 @@
 ﻿using Newtonsoft.Json;
-using SFA.DAS.API.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
-using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.HashingService;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerAccountsLegacyAPISteps
+    public class EmployerAccountsLegacyAPISteps : BaseSteps
     {
-        private readonly Inner_EmployerAccountsApiRestClient _innerApiRestClient;
-        private readonly Inner_EmployerAccountsLegacyApiRestClient _innerApiLegacyRestClient;
-        private readonly EmployerAccountsSqlDbHelper _employerAccountsSqlDbHelper;
-        private readonly ObjectContext _objectContext;
-        private readonly IHashingService _hashingService;
-
-        public EmployerAccountsLegacyAPISteps(ScenarioContext context)
-        {
-            _innerApiRestClient = context.GetRestClient<Inner_EmployerAccountsApiRestClient>();
-            _innerApiLegacyRestClient = context.GetRestClient<Inner_EmployerAccountsLegacyApiRestClient>();
-            _employerAccountsSqlDbHelper = context.Get<EmployerAccountsSqlDbHelper>();
-            _objectContext = context.Get<ObjectContext>();
-            _employerAccountsSqlDbHelper.SetAccountId();
-            _employerAccountsSqlDbHelper.SetHashedAccountId();
-            _employerAccountsSqlDbHelper.SetLegalEntityId();
-            _hashingService = new HashingService.HashingService("46789BCDFGHJKLMNPRSTVWXY", "SFA: digital apprenticeship service");
-        }
+        public EmployerAccountsLegacyAPISteps(ScenarioContext context) : base(context) { }
 
         [Then(@"endpoint api/accounts/\{hashedAccountId} from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdCanBeAccessed()

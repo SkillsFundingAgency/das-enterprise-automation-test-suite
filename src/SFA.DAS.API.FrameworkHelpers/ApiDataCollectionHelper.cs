@@ -1,5 +1,4 @@
-﻿namespace SFA.DAS.API.Framework.Helpers;
-
+﻿namespace SFA.DAS.API.FrameworkHelpers;
 
 public class ApiDataCollectionHelper : RequestAndResponseCollectionHelper
 {

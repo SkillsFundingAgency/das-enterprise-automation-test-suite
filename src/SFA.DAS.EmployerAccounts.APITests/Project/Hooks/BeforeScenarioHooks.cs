@@ -23,11 +23,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks
         [BeforeScenario(Order = 45)]
         public void SetUpHelpers()
         {
-            var a = new EmployerAccountsSqlDbHelper(_dbConfig, _context);
-
-            _context.Set(a);            
-
-            _context.Set(new EmployerAccountsSqlDbHelper(_dbConfig, _context));          
+            _context.Set(new EmployerAccountsSqlDbHelper(_dbConfig, _context.Get<ObjectContext>()));          
 
             _context.SetRestClient(new Inner_EmployerAccountsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
 

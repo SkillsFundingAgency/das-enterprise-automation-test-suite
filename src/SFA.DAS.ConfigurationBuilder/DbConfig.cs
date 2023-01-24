@@ -30,5 +30,6 @@
         public string ManagingStandardsDbConnectionString { get; set; }
         public string EarningsDbConnectionString { get; set; }
         public string ApprenticeshipsDbConnectionString { get; set; }
+        public string RofjaaDbConnectionString { get; set; }
     }
 }

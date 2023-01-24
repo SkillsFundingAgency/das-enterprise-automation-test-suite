@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer can stop the live apprentice")]
-        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(); 
+        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.Withdrawn); 
 
         [Then(@"the Employer can stop the waiting to start apprentice")]
         public void ThenTheEmployerCanStopTheWaitingToStartApprentice()

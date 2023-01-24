@@ -57,9 +57,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 
             var data = GetData(query);
 
-            if (!String.IsNullOrWhiteSpace(data[0])) totalEarnings = String.Format("{0:n}", (double.Parse(data[0])));
-            if (!String.IsNullOrWhiteSpace(data[1])) levyEarnings = String.Format("{0:n}", (double.Parse(data[1])));
-            if (!String.IsNullOrWhiteSpace(data[2])) nonLevyEarnings = String.Format("{0:n}", (double.Parse(data[2])));
+            if (!string.IsNullOrWhiteSpace(data[0])) totalEarnings = string.Format("{0:C}", (decimal.Parse(data[0])));
+            if (!string.IsNullOrWhiteSpace(data[1])) levyEarnings = string.Format("{0:C}", (decimal.Parse(data[1])));
+            if (!string.IsNullOrWhiteSpace(data[2])) nonLevyEarnings = string.Format("{0:C}", (decimal.Parse(data[2])));
 
             return (totalEarnings, levyEarnings, nonLevyEarnings);
         }

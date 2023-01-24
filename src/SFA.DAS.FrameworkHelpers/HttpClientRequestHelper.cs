@@ -86,7 +86,7 @@ namespace SFA.DAS.FrameworkHelpers
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthScheme, accessToken);
 
             HttpResponseMessage patchRequestResponse = await Client.SendAsync(requestMessage);
-            String content = await patchRequestResponse.Content.ReadAsStringAsync();
+            System.String content = await patchRequestResponse.Content.ReadAsStringAsync();
             patchRequestResponse.EnsureSuccessStatusCode();
             return content;
         }

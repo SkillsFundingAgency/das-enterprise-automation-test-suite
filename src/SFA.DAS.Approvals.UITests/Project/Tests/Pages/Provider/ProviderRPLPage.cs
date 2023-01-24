@@ -16,5 +16,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.SelectRadioOptionByText("No");
             Continue();
         }
+
+        public ProviderRPLDetailsPage SelectYesAndContinue()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Yes");
+            Continue();
+            return new ProviderRPLDetailsPage(context);
+        }
     }
 }
