@@ -96,6 +96,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public string OptionalMessage { get; }
 
         public string RandomAlphabeticString(int length) => RandomDataGenerator.GenerateRandomAlphabeticString(length);
+        public string RandomQuestionString(int length) => RandomDataGenerator.GenerateRandomQuestionString(length);
 
         private string WebsiteUrl(string url) => $"www.{url}.com";
 

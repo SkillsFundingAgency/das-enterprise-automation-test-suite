@@ -12,6 +12,7 @@ namespace SFA.DAS.FrameworkHelpers
         private const string Numbers = "0123456789";
         private const string WholeNumbers = "123456789";
         private const string SpecialChars = "!@£$%^&*()_+{}:<>?-=[];',./";
+        private const string QuestionMark = "?";
 
         public static T GetRandomElementFromListOfElements<T>(List<T> elements)
         {
@@ -36,6 +37,7 @@ namespace SFA.DAS.FrameworkHelpers
         public static string GenerateRandomWholeNumber(int length) => GenerateRandomString(WholeNumbers, length);
 
         public static string GenerateRandomAlphanumericString(int length) => GenerateRandomString(Alphabets + Numbers, length);
+        public static string GenerateRandomQuestionString(int length) => GenerateRandomString(Alphabets + QuestionMark, length);
 
         public static string GenerateRandomAlphanumericStringWithSpecialCharacters(int length) => GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
 
