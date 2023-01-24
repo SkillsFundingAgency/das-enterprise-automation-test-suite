@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA.DataGenerator.Project
 {

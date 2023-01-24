@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 

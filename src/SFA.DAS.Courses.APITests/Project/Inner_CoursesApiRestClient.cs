@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Net;
 
 namespace SFA.DAS.Courses.APITests.Project

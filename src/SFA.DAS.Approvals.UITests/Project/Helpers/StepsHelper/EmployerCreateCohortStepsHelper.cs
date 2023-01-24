@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using System;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
