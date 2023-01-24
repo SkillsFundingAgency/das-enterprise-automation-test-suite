@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using System;
 
 namespace SFA.DAS.TestDataExport
 {
@@ -16,7 +15,7 @@ namespace SFA.DAS.TestDataExport
 
         private static void SetRetryInformations(this ObjectContext objectContext) => objectContext.Set(RetryInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
-        public static void SetRetryInformation(this ObjectContext objectContext, string value) => objectContext.GetRetryInformations().Add($"{Environment.NewLine}{value}");
+        public static void SetRetryInformation(this ObjectContext objectContext, string value) => objectContext.GetRetryInformations().Add($"{value}");
 
         private static FrameworkList<string> GetRetryInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(RetryInformations);
         #endregion
