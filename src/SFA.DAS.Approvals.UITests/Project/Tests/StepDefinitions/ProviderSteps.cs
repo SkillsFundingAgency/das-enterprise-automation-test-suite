@@ -209,6 +209,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Provider edits the Delivery Model to Regular in Post Approvals and submits changes")]
         public void WhenTheProviderEditsTheDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
+
+        [When(@"the Provider edits the Delivery Model to Flexi in Post Approvals and submits changes")]
+        public void WhenTheProviderEditsTheDeliveryModelToFlexiInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval();
+
     }
 }
 
