@@ -15,8 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        private static By DeliveryModelLabel => By.XPath("//p[text()='Apprenticeship delivery model']");
-        private static By DeliveryModelType => By.XPath("//p[text()='Apprenticeship delivery model'] // following-sibling :: p");
+        private static By DeliveryModelLabel => By.XPath("//*[@id='addApprenticeship']/div[2]/dl/div[3]/dt");
+        private static By DeliveryModelType => By.XPath("//*[@id='addApprenticeship']/div[2]/dl/div[3]/dd[1]");
         private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
         private static By Uln => By.Id("Uln");
 

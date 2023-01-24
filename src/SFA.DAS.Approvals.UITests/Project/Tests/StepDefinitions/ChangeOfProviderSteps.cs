@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeLinkDisplayed()
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(9)
+                .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
@@ -134,7 +134,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeLinkDisplayed()
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(9)
+                .ValidateEditableTextBoxes(6)
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
