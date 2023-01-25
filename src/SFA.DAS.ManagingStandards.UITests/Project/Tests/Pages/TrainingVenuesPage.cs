@@ -22,9 +22,9 @@ public class TrainingVenuesPage : ManagingStandardsBasePage
         formCompletionHelper.ClickLinkByText("Test Demo Automation Venue");
         return new VenueAddedPage(context);
     }
-    public VenueAndDeliveryPage AccessAddTrainingVenue()
+    public VenueAndDeliveryPage AccessSeeTrainingVenue()
     {
-        formCompletionHelper.ClickLinkByText("Add training venue");
+        formCompletionHelper.ClickLinkByText("See training venues");
         return new VenueAndDeliveryPage(context);
     }
     public ManageAStandard_TeacherPage NavigateBackToStandardPage()
@@ -37,9 +37,9 @@ public class TrainingVenuesPage : ManagingStandardsBasePage
         Continue();
         return new AddAstandard_ActuaryPage(context);
     }
-    public VenueAndDeliveryPage AccessAddANewTrainingVenue_AddStandard()
+    public VenueAndDeliveryPage AccessSeeANewTrainingVenue_AddStandard()
     {
-        formCompletionHelper.ClickLinkByText("Add a training venue");
+        formCompletionHelper.ClickLinkByText("See training venues");
         return new VenueAndDeliveryPage(context);
     }
 }
