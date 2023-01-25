@@ -360,9 +360,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 {
                     if (uln.Text.Equals("-"))
                     {
-                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j, isPilotLearner);
 
-                        providerEditApprenticeDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, j+1);
+                        providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
+                            .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
+                            .EnterUlnAndActualStartDayThenSave(j);
 
                         break;
                     }
@@ -375,10 +377,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditSpecificFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int learnerToEdit, bool isPilotLearner)
         {
-            var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1); 
+            var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1);
 
-            return providerEditApprenticeDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, learnerToEdit);
-                       
+            return providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
+                .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
+                .EnterUlnAndActualStartDayThenSave(learnerToEdit);
         }
 
         public ProviderApproveApprenticeDetailsPage AddApprenticeForFlexiPaymentsProvider(int numberOfApprentices, bool isPilotLearner = false)

@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Edit apprentice details";
-        private By EditDeliveryModelLink => By.Name("ChangeDeliveryModel");
+        private By ChangeDeliveryModelLink => By.Name("ChangeDeliveryModel");
         private By UpdateDetailsBtn => By.Id("continue-button");
         private By DeliveryModelType => By.Id("delivery-model-value");
         private By TrainingName => By.XPath("//*[@id='trainingName']");
@@ -29,7 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public By ActualStartDateYear => By.Id("ActualStartYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        protected override By ContinueButton => By.XPath("//button[contains(text(),'Save')]");
+        private By ChangeSimplifiedPaymentsPilotLink => By.Id("change-pilot-status-link");
+        protected By SaveButton => By.XPath("//button[contains(text(),'Save')]");
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
         {
@@ -39,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public SelectDeliveryModelPage ClickEditDeliveryModel()
         {
-            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            formCompletionHelper.ClickElement(ChangeDeliveryModelLink);
             return new SelectDeliveryModelPage(context);
         }
 
@@ -60,26 +61,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
             EnterUln();
+            return CheckRPLConditionAndSave();
+        }
+
+        public ProviderApproveApprenticeDetailsPage EnterUlnAndActualStartDayThenSave(int apprenticeNumber)
+        {
+            EnterUlnForFlexiPayments(apprenticeNumber);
 
             return CheckRPLConditionAndSave();
         }
+
 
         public SelectDeliveryModelPage EnterUlnAndSelectEditDeliveryModel()
         {
             EnterUln();
-            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            formCompletionHelper.ClickElement(ChangeDeliveryModelLink);
             return new SelectDeliveryModelPage(context);
-        }
-
-        public ProviderApproveApprenticeDetailsPage EnterUlnAndPilotSelectionThenSave(bool isPilotLearner, int apprenticeNumber)
-        {
-            EnterUlnForFlexiPayments(apprenticeNumber);
-
-            if (isPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
-
-            else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
-
-            return CheckRPLConditionAndSave();
         }
 
         public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
@@ -108,14 +105,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             bool rpl = CheckRPLCondition(false);
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
 
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
@@ -144,7 +141,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             bool rpl = CheckRPLCondition(false);
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
 
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
@@ -157,7 +154,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             bool rpl = CheckRPLCondition(false);
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
 
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
@@ -178,7 +175,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             bool rpl = CheckRPLCondition(false);
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
 
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
@@ -187,7 +184,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderOverlappingTrainingDateThereMayBeProblemPage ClickSaveWhenOltd()
         {
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
             return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
         }
         public ProviderEditApprenticeDetailsPage EditCost(int cost)
@@ -212,16 +209,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderConfirmApprenticeDeliveryModelPage SelectEditDeliveryModel()
         {
-            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            formCompletionHelper.ClickElement(ChangeDeliveryModelLink);
             return new ProviderConfirmApprenticeDeliveryModelPage(context);
         }
 
         public ProviderApproveApprenticeDetailsPage ClickSave()
         {
             bool rpl = CheckRPLCondition(false);
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SaveButton);
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
             return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        public SimplifiedPaymentsPilotPage ClickEditSimplifiedPaymentsPilotLink()
+        {
+            formCompletionHelper.ClickElement(ChangeSimplifiedPaymentsPilotLink);
+            return new SimplifiedPaymentsPilotPage(context);
         }
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
