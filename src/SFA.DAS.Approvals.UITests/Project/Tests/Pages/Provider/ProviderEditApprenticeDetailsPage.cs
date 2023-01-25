@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Edit apprentice details";
         private By EditDeliveryModelLink => By.Name("ChangeDeliveryModel");
         private By UpdateDetailsBtn => By.Id("continue-button");
-        private By DeliveryModelType => By.XPath("//*[@id='addApprenticeship']/div[2]/dl/div[3]/dd[1]");
+        private By DeliveryModelType => By.Id("delivery-model-value");
         private By TrainingName => By.XPath("//*[@id='trainingName']");
         private By Uln => By.Id("Uln");
         private By DeleteButton => By.LinkText("Delete");

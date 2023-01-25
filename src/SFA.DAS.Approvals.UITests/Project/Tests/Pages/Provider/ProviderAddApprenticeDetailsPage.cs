@@ -14,10 +14,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
-        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        private static By DeliveryModelLabel => By.XPath("//*[@id='addApprenticeship']/div[2]/dl/div[3]/dt");
-        private static By DeliveryModelType => By.XPath("//*[@id='addApprenticeship']/div[2]/dl/div[3]/dd[1]");
-        private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        protected By AddButton => By.XPath("//button[contains(text(),'Add')]");
+        private static By DeliveryModelLabel => By.Id("delivery-model-label");
+        private static By DeliveryModelType => By.Id("delivery-model-value");
+        private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
         private static By Uln => By.Id("Uln");
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context) 
@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             bool rpl = CheckRPLCondition(false);
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(AddButton);
 
             if (rpl)
                 new ProviderRPLPage(context).SelectYesAndContinue().EnterRPLDataAndContinue();
@@ -85,7 +85,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterTrainingCostAndEmpReference();
 
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(AddButton);
 
             return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
         }
@@ -93,7 +93,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderApproveApprenticeDetailsPage SubmitNullTrainingDetails()
         {
             SubmitValidPersonalDetails();
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(AddButton);
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
