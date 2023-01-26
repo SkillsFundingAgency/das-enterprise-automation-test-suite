@@ -13,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderEditApprenticeDetailsPage : ProviderEditApprenticeCoursePage
     {
-        private readonly bool _isFlexiPaymentPilotProvider;
-
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Edit apprentice details";
         private By ChangeDeliveryModelLink => By.Name("ChangeDeliveryModel");
@@ -34,7 +32,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
         {
-            _isFlexiPaymentPilotProvider = tags.Contains("flexi-payments");
             _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
         }
 
@@ -79,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new SelectDeliveryModelPage(context);
         }
 
-        public ProviderApproveApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
+        public ProviderEditApprenticeDetailsPage EditAllApprenticeDetailsExceptCourse()
         {
             formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
             formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
@@ -103,18 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
-            bool rpl = CheckRPLCondition(false);
-
-            formCompletionHelper.ClickElement(SaveButton);
-
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
-
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
-
-
-            formCompletionHelper.ClickElement(SaveButton);
-
-            return new ProviderApproveApprenticeDetailsPage(context);
+            return this;
         }
 
         public ProviderConfirmApprenticeDeletionPage DeleteApprentice()

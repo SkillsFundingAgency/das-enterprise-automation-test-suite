@@ -9,8 +9,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderAddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        private readonly bool  _isFlexiPaymentPilotProvider;
-
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
@@ -22,7 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context) 
         {
-            _isFlexiPaymentPilotProvider = tags.Contains("flexi-payments");
             _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
         }
 
@@ -59,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
         }
 
-        private void SubmitValidPersonalDetails()
+        public void SubmitValidPersonalDetails()
         {
             if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
             else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
@@ -67,8 +64,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
-
-            //if (_isFlexiPaymentPilotProvider) AddFlexiPaymentsPilotSelection(isFlexiPaymentPilotLearner);
 
             if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
             else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());

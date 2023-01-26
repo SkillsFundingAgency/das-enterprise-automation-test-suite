@@ -136,6 +136,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                       .ConfirmEmployer()
                                                       .ProviderSelectsAStandard();
 
+            providerAddApprenticeDetailsPage.SubmitValidPersonalDetails();
+
             VerifyOverlappingTrainingDetailsError(table, providerAddApprenticeDetailsPage);
          }
 
