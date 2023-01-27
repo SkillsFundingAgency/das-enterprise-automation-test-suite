@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmploymentChecks.APITests
 {

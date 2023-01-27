@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;

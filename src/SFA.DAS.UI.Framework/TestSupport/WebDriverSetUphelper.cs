@@ -6,8 +6,8 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Edge;
 using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {

@@ -1,6 +1,4 @@
-﻿
-
-using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 

@@ -2,7 +2,6 @@
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;

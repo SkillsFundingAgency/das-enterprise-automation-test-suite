@@ -6,6 +6,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using System;
 using System.Collections.Generic;
