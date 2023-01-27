@@ -47,5 +47,5 @@ public class ApiFrameworkConfigurationSetup
     }
 
     [BeforeScenario(Order = 4)]
-    public void SetUpHelpers() => _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
+    public void SetUpHelpers() => _context.Replace(new RetryAssertHelper(_context.ScenarioInfo, _context.Get<ObjectContext>()));
 }

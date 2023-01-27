@@ -9,7 +9,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         protected T RetryOnException<T>(Func<T> func, string exception, string title, TimeSpan[] timeSpans = null)
         {
-            timeSpans ??= Logging.Timeout();
+            timeSpans ??= RetryTimeOut.Timeout();
 
             return Policy
                 .Handle<Exception>((x) => x.Message.Contains(exception))

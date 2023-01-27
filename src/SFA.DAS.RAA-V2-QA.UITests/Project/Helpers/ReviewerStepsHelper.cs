@@ -1,10 +1,10 @@
 ﻿using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
 {

@@ -1,9 +1,8 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.ConfigurationBuilder
+namespace SFA.DAS.FrameworkHelpers
 {
     public class ObjectContext
     {
@@ -21,7 +20,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public IEnumerable<T> GetAll<T>() => _objects.Values.OfType<T>();
 
-        public Dictionary<string,object> GetAll() => _objects;
+        public Dictionary<string, object> GetAll() => _objects;
 
         #endregion
 
@@ -29,7 +28,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public void Set<T>(string key, T value) => _objects.Add(key, value);
 
-        public void Update<T>(T value) => Update<T>(typeof(T).FullName, value);
+        public void Update<T>(T value) => Update(typeof(T).FullName, value);
 
         public void Update<T>(string key, T value)
         {
@@ -43,7 +42,7 @@ namespace SFA.DAS.ConfigurationBuilder
             }
         }
 
-        public void Replace<T>(T value) => Replace<T>(typeof(T).FullName, value);
+        public void Replace<T>(T value) => Replace(typeof(T).FullName, value);
 
         public void Replace<T>(string key, T value) => _objects.Replace(key, value);
 

@@ -7,8 +7,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public class UIFrameworkHelpersSetup
     {
         private readonly ScenarioContext _context;
-        
-        public UIFrameworkHelpersSetup(ScenarioContext context) => _context = context;
+
+        private readonly ObjectContext objectContext;
+
+
+        public UIFrameworkHelpersSetup(ScenarioContext context)
+        {
+            _context = context;
+
+            objectContext = context.Get<ObjectContext>();
+        }
 
         public void SetupUIFrameworkHelpers(bool restart)
         {
@@ -33,7 +41,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
 
-            var retryHelper = new RetryHelper(webDriver, scenarioInfo);
+            var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext);
 
             var pageInteractionHelper = new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(pageInteractionHelper);
@@ -41,11 +49,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(formCompletionHelper);
 
-            _context.Replace(new CheckPageInteractionHelper(webDriver, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo)));
+            _context.Replace(new CheckPageInteractionHelper(webDriver, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext)));
 
             _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
 
-            _context.Replace(new RetryAssertHelper(_context.ScenarioInfo));
+            _context.Replace(new RetryAssertHelper(_context.ScenarioInfo, objectContext));
         }
     }
 }
