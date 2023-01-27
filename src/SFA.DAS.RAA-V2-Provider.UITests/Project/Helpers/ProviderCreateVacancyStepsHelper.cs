@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername, string hashedid)
         {
-            _hashedid = hashedid; 
+            _hashedid = hashedid;
 
             return CreateANewVacancy(employername);
         }
@@ -59,9 +59,14 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .ChooseEmployerNameForEmployerJourney(employername)
                 .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
                 .EnterProviderContactDetails(optionalFields)
-                .SelectApplicationMethod_Provider(isApplicationMethodFAA)
-                .BackToTaskList();
+                .SelectApplicationMethod_Provider(isApplicationMethodFAA);
         }
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        {
+            return createAdvertPage
+            .EnterAdditionalQuestionsForApplicants()
+            .CompleteAllAdditionalQuestionsForApplicants();
+        } 
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
             string employername)
