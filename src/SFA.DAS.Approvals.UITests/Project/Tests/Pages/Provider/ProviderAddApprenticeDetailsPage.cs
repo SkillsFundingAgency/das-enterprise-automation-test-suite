@@ -23,9 +23,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
         }
 
-        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isFlexiPaymentPilotLearner = false)
+        internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
             SubmitValidPersonalDetails();
+            SubmitValidTrainingDetails();
+
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        public ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider(int apprenticeNumber)
+        {
+            EnterUlnForFlexiPayments(apprenticeNumber);
+            EnterApprenticeMandatoryValidDetails();
+            EnterDob();
+
             SubmitValidTrainingDetails();
 
             return new ProviderApproveApprenticeDetailsPage(context);
@@ -37,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             else EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
 
-            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers()) EnterStartDate(DateTime.Now);
+            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers() && !_isFlexiPaymentPilotLearner) EnterStartDate(DateTime.Now);
 
             EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
@@ -64,9 +75,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterApprenticeMandatoryValidDetails();
 
             EnterDob();
-
-            if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
-            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
         }
 
         internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
@@ -90,12 +98,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SubmitValidPersonalDetails();
             formCompletionHelper.ClickElement(AddButton);
             return new ProviderApproveApprenticeDetailsPage(context);
-        }
-
-        private void AddFlexiPaymentsPilotSelection(bool isFlexiPaymentPilotLearner)
-        {
-            if (isFlexiPaymentPilotLearner) SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot");
-            else SelectRadioOptionByForAttribute("IsOnFlexiPaymentPilot-no");
         }
 
         private new void EnterApprenticeMandatoryValidDetails()
@@ -140,6 +142,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel), "Delivery Model Label not displayed");
             StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
+        }
+
+        private void EnterUlnForFlexiPayments(int apprenticeNumber)
+        {
+            if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
+                formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));
+            else
+                formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
         }
     }
 }

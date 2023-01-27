@@ -55,6 +55,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new SelectStandardPage(context);
         }
 
+        internal SimplifiedPaymentsPilotPage SelectAddAnApprenticeForFlexiPaymentsProvider()
+        {
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+
+            ClickIfPirenIsDisplayed();
+
+            return new SimplifiedPaymentsPilotPage(context);
+        }
+
         public List<IWebElement> ApprenticeUlns() => pageInteractionHelper.FindElements(ApprenticeUlnField);
 
         public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0, bool isFlexiPaymentPilotLearner = false)

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
@@ -26,6 +27,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             SelectRadioOptionByForAttribute("confirm-true");
             formCompletionHelper.ClickElement(ContinueButton);
             return new SelectStandardPage(context);
+        }
+
+        internal SimplifiedPaymentsPilotPage ConfirmEmployerForFlexiTrainingProvider()
+        {
+            SelectRadioOptionByForAttribute("confirm-true");
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new SimplifiedPaymentsPilotPage(context);
         }
     }
 }

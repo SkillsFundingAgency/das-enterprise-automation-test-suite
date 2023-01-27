@@ -9,6 +9,7 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.TestDataExport.Helper;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -20,6 +21,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly EarningsSqlDbHelper _earningsSqlDbHelper;
@@ -30,6 +32,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(_context);
+            _providerStepsHelper = new ProviderStepsHelper(_context);
             _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(_context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
@@ -38,6 +41,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [Given(@"Employer adds apprentices to the cohort with the following details")]
         public void GivenEmployerAddsApprenticesToTheCohortWithTheFollowingDetails(Table table) => _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));
+
+        [Given(@"Pilot Provider adds apprentices to the cohort witht the following details")]
+        public void GivenPilotProviderAddsApprenticesToTheCohortWithtTheFollowingDetails(Table table) => _providerStepsHelper.ProviderAddApprentice(ReadApprenticeData(table));
+
+        [When(@"employer reviews and approves the cohort")]
+        public void WhenEmployerReviewsAndApprovesTheCohort()
+        {
+            new EmployerStepsHelper(_context)
+               .EmployerReviewCohort()
+               .EmployerDoesSecondApproval();
+        }
+
+
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
         public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(ReadApprenticeData(table), false);

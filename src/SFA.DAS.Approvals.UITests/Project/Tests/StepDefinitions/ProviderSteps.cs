@@ -171,17 +171,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .SelectAddManually();
         }
 
-        [Given(@"provider add leaners details and opts them into the pilot")]
-        public void GivenOptsLeanerIntoThePilot()
-        {
-            _providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsViaSelectJourneyPage
-                .SelectOptionCreateNewCohort()
-                .ChooseAnEmployer("Levy")
-                .ConfirmEmployer()
-                .ProviderSelectsAStandard()
-                .SubmitValidApprenticeDetails(true);
-        }
-
         [Then(@"the provider validates flexi-job content and approves cohort")]
         public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
 
