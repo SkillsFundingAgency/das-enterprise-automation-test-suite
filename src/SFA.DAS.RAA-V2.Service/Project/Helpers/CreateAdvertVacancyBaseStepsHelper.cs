@@ -24,6 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA);
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createTraineeshipPage, string employername);
 
@@ -63,6 +64,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             createAdvertPage = AboutTheEmployer(createAdvertPage, employername, disabilityConfidence, isApplicationMethodFAA);
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
+            
+            createAdvertPage.VerifyApplicationSectionStatus(NotStarted);
+
+            createAdvertPage = Application(createAdvertPage);
+
+            createAdvertPage.VerifyApplicationSectionStatus(Completed);
 
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 

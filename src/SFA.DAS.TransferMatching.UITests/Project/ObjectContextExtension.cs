@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;

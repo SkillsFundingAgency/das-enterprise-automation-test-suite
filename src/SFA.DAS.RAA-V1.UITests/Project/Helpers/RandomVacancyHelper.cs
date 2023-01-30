@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
