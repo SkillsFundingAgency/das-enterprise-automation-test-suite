@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using mailinator_csharp_client.Models.Stats.Entities;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
@@ -33,6 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DownloadAllDataLink => By.PartialLinkText("Download all data");
         private By NextPageLink => By.PartialLinkText("Next");
         private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
+        private By SimplifiedPaymentsPilotFilter => By.Id("selectedPilotStatus");
 
         public ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
         {
@@ -82,5 +84,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public bool DownloadAllDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
 
         public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
+
+        public bool isPaymentsPilotLearnerDisplayed(string apprenticeName, SimplifiedPaymentsPilot status)
+        {
+            SearchForApprenntice(apprenticeName);
+            ApplySimplifiedPaymentsPilotFilter(status);
+            formCompletionHelper.ClickElement(ApplyFilter);
+
+            return pageInteractionHelper.IsElementDisplayed(By.PartialLinkText(apprenticeName));
+        }
+
+        private void ApplySimplifiedPaymentsPilotFilter(SimplifiedPaymentsPilot status) => formCompletionHelper.SelectFromDropDownByValue(SimplifiedPaymentsPilotFilter, status.ToString());
+
+        public enum SimplifiedPaymentsPilot
+        {
+            All, 
+            True,
+            False
+        }
     }
 }

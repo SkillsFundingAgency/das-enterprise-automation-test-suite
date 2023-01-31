@@ -26,6 +26,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string EIProjectConfigKey = "eiprojectconfigkey";
         private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
         private const string PortableFlexiJobProviderConfigKey = "portableflexijobproviderconfigkey";
+        private const string ListOfApprenticeConfigKey = "listofapprenticeconfigkey";
         #endregion
 
         #region Setters
@@ -72,6 +73,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
         public static T GetEIConfig<T>(this ScenarioContext context) => Get<T>(context, EIProjectConfigKey);
         public static T GetApprenticeCommitmentsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprenticeCommitmentsConfigKey);
+        public static T GetListOfApprenticesConfig<T>(this ScenarioContext context) => Get<T>(context, ListOfApprenticeConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
         public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
         #endregion

@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
+using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourApprenticesPage;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -603,6 +604,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         public ProviderApproveApprenticeDetailsPage ProviderAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(listOfApprentice, true);
+
+        public bool FindLearnerBySimplifiedPaymentsPilotFilter(string learnerName, SimplifiedPaymentsPilot status)
+        {
+            var manageYourApprenticesPage = GoToProviderHomePage().GoToProviderManageYourApprenticePage();
+
+            bool learnerFound = manageYourApprenticesPage.isPaymentsPilotLearnerDisplayed(learnerName, status);
+
+            return learnerFound;
+        }
 
         private ProviderApproveApprenticeDetailsPage AddApprentices(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool isFlexiPaymentsPilot = false)
         {

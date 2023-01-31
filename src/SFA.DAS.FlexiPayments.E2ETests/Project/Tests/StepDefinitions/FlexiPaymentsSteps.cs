@@ -133,7 +133,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             foreach (var row in table.Rows) listOfApprentice.Add(ReadApprenticeData(row));
 
-            _context.Set(listOfApprentice);
+            _context.Set(listOfApprentice, "listofapprenticeconfigkey");
 
             return listOfApprentice;
         }

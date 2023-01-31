@@ -178,22 +178,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 _context.Replace(apprentice.Item2);
             }
 
-            var firstApprentice = listOfApprentice.First();
+            var firstApprentice = listOfApprentice[0];
 
             ReplaceInContext(firstApprentice);
 
             var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
 
-            listOfApprentice.Remove(firstApprentice);
-
-            foreach (var apprentice in listOfApprentice)
+            for (int i = 1; i < listOfApprentice.Count; i++)
             {
+                var apprentice = listOfApprentice[i];
+
                 ReplaceInContext(apprentice);
 
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }
 
-            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count + 1);
+            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
         }
 
         private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
