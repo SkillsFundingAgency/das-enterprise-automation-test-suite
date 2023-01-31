@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Transfers.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly TransfersProviderStepsHelper _providerStepsHelper;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices;
 
         public FlexiPaymentProviderSteps(ScenarioContext context)
         {
@@ -54,38 +56,40 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
 
-        [Then(@"Provider can search (first|second) learner using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
-        public void ThenProviderCanSearchLearnerUsingSimplifiedPaymentsPilotFilterOnManageYourApprenticesPage(string learner, string filter)
-        {
-            string apprenticeFullName;
-            SimplifiedPaymentsPilot filterValue; 
-
-            var listOfApprentice = _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
-
-            if (learner == "first")
-                apprenticeFullName = listOfApprentice.First().Item1.ApprenticeFullName;
-            else
-            {
-                listOfApprentice.Remove(listOfApprentice.First());
-                apprenticeFullName = listOfApprentice.First().Item1.ApprenticeFullName;
-            }
-
-            filterValue = filter == "yes" ? SimplifiedPaymentsPilot.True : filter == "no" ? SimplifiedPaymentsPilot.False : SimplifiedPaymentsPilot.All;
-
-            Assert.IsTrue(_providerStepsHelper.FindLearnerBySimplifiedPaymentsPilotFilter(apprenticeFullName, filterValue)); 
-        }
-
         [Then(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         public void ThenProviderCanSearchLearnerUsingSimplifiedPaymentsPilotFilterSetToYesOnManageYourApprenticesPage(int learnerNumber, string filter)
         {
-            var listOfApprentice = _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
+            listOfApprentices = _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
 
-            string apprenticeFullName = listOfApprentice[learnerNumber-1].Item1.ApprenticeFullName;
+            SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
 
             SimplifiedPaymentsPilot filterValue = filter == "yes" ? SimplifiedPaymentsPilot.True : filter == "no" ? SimplifiedPaymentsPilot.False : SimplifiedPaymentsPilot.All;
 
-            Assert.IsTrue(_providerStepsHelper.FindLearnerBySimplifiedPaymentsPilotFilter(apprenticeFullName, filterValue));
+            Assert.IsTrue(_providerStepsHelper.FindLearnerBySimplifiedPaymentsPilotFilter(filterValue));
         }
 
+        [Then(@"Provider (can|cannot) make changes to fully approved learner (.*)")]
+        public void ThenProviderIsUnableToMakeAnyChangesToFullyApprovedLearner(string action, int learnerNumber)
+        {
+            SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
+
+            if (action == "can")
+                _providerStepsHelper.ValidateProviderCanEditApprovedApprentice();
+            else
+                _providerStepsHelper.ValidateProviderCannotEditApprovedApprentice();
+        }
+
+        private void SetApprenticeDetailsInContext(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, int learnerNumber)
+        {
+            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
+            {
+                _context.Replace(apprentice.Item1);
+                _context.Replace(apprentice.Item2);
+            }
+
+            var currentApprentice = listOfApprentice[learnerNumber-1];
+
+            ReplaceInContext(currentApprentice);
+        }
     }
 }

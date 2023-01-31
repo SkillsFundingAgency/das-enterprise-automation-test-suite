@@ -75,20 +75,20 @@ for learners opted in the pilot. They should be able to make changes to aproved 
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_01 Employer adds two apprentices details to a cohort and Provider opt" +
-            "s them into the pilot")]
+        [NUnit.Framework.DescriptionAttribute("FLP_CoC_01 Employer and Provider cannot edit an approved pilot learner but can ed" +
+            "it a non-pilot user")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_E2E_EUA_01EmployerAddsTwoApprenticesDetailsToACohortAndProviderOptsThemIntoThePilot()
+        public void FLP_CoC_01EmployerAndProviderCannotEditAnApprovedPilotLearnerButCanEditANon_PilotUser()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_01 Employer adds two apprentices details to a cohort and Provider opt" +
-                    "s them into the pilot", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_01 Employer and Provider cannot edit an approved pilot learner but can ed" +
+                    "it a non-pilot user", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -144,6 +144,16 @@ this.ScenarioInitialize(scenarioInfo);
 #line 20
  testRunner.Then("Provider can search learner 1 using Simplified Payments Pilot filter set to yes o" +
                         "n Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
+ testRunner.And("Provider cannot make changes to fully approved learner 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 22
+ testRunner.And("Provider can search learner 2 using Simplified Payments Pilot filter set to no on" +
+                        " Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 23
+ testRunner.And("Provider can make changes to fully approved learner 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

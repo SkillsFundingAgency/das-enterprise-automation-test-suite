@@ -1,4 +1,5 @@
 ﻿using mailinator_csharp_client.Models.Stats.Entities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
@@ -36,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
         private By SimplifiedPaymentsPilotFilter => By.Id("selectedPilotStatus");
 
-        public ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
+        public ProviderManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
             
@@ -45,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
-            SearchForApprenntice(apprenticeDataHelper.ApprenticeFullName);
+            SearchForApprentice(apprenticeDataHelper.ApprenticeFullName);
             while (true)
             {
                 var apprenticeRows = pageInteractionHelper.FindElements(ApprenticeInfoRow);
@@ -72,6 +73,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
         }
 
+        public bool FindCurrentApprenticeDetails()
+        {
+            SearchForApprentice(apprenticeDataHelper.ApprenticeFullName);
+            while (true)
+            {
+                var apprenticeRows = pageInteractionHelper.FindElements(ApprenticeInfoRow);
+                var detailsLinks = pageInteractionHelper.FindElement(ViewApprenticeFullName);
+
+                int i = 0;
+                foreach (IWebElement apprenticeRow in apprenticeRows)
+                {
+                    if (apprenticeRow.Text.Contains(apprenticeDataHelper.ApprenticeFullName))
+                        return true;
+                    i++;
+                }
+                if (pageInteractionHelper.IsElementDisplayed(NextPageLink))
+                {
+                    formCompletionHelper.ClickElement(NextPageLink);
+                }
+                else
+                {
+                    throw new Exception("Apprentice with - " + apprenticeDataHelper.ApprenticeFullName + " - name is not found");
+                }
+            }
+        }
+
         public ProviderManageYourApprenticesPage FilterPagination(string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
@@ -85,13 +112,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
 
-        public bool isPaymentsPilotLearnerDisplayed(string apprenticeName, SimplifiedPaymentsPilot status)
+        public bool isPaymentsPilotLearnerDisplayed(SimplifiedPaymentsPilot status)
         {
-            SearchForApprenntice(apprenticeName);
             ApplySimplifiedPaymentsPilotFilter(status);
             formCompletionHelper.ClickElement(ApplyFilter);
 
-            return pageInteractionHelper.IsElementDisplayed(By.PartialLinkText(apprenticeName));
+            return FindCurrentApprenticeDetails();
         }
 
         private void ApplySimplifiedPaymentsPilotFilter(SimplifiedPaymentsPilot status) => formCompletionHelper.SelectFromDropDownByValue(SimplifiedPaymentsPilotFilter, status.ToString());
