@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
@@ -26,8 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         protected readonly ApprovalsConfig _approvalsConfig;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
-        private ProviderEditApprenticePersonalDetailsPage _providerEditApprenticeDetailsPage;
-        private ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage;
+        private ProviderEditApprenticeDetailsPage _providerEditApprenticeDetailsPage;
+        private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -128,7 +129,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .VerifyProblem("You must select a start date");
         }
 
-        public ProviderAddPersonalDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
+        public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login = null)
         {
             return ProviderMakeReservation(login, false).GoToSelectStandardPage().ProviderSelectsAStandard();
         }
@@ -162,9 +163,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public ProviderApprenticeRequestsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
 
 
-        public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
+        public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
-            var providerApproveApprenticeDetailsPage = _providerAddApprenticeDetailsPage.SubmitValidPersonalDetails().SubmitValidTrainingDetails();
+            var providerApproveApprenticeDetailsPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
 
             for (int i = 1; i < numberOfApprentices; i++)
             {
@@ -178,8 +179,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .VerifySucessMessage()
                     .GoToSelectStandardPage()
                     .ProviderSelectsAStandard()
-                    .SubmitValidPersonalDetails()
-                    .SubmitValidTrainingDetails();
+                    .SubmitValidApprenticeDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
@@ -193,14 +193,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             {
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                     .ProviderSelectsAStandard()
-                    .SubmitValidPersonalDetails()
-                    .SubmitValidTrainingDetails();
+                    .SubmitValidApprenticeDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
-        public ProviderAddPersonalDetailsPage AddApprenticeAndSelectFlexiJobAgencyDeliveryModel()
+        public ProviderAddApprenticeDetailsPage AddApprenticeAndSelectFlexiJobAgencyDeliveryModel()
         {
             var providerAddApprenticeDetailsPage = CurrentCohortDetails();
 
@@ -216,17 +215,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .SelectRegularDeliveryModelAndContinue()
-                .SubmitValidPersonalDetails()
-                .SubmitValidTrainingDetails()
+                .SubmitValidApprenticeDetails()
                 .SubmitSendToEmployerToReview();
         }
 
-        public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddPersonalDetailsPage providerAddApprenticeDetailsPage)
+        public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddApprenticeDetailsPage providerAddApprenticeDetailsPage)
         {
-            var providerAddApprenticeTrainingDetailsPage = providerAddApprenticeDetailsPage.SubmitValidPersonalDetails();
-                providerAddApprenticeTrainingDetailsPage.ValidateFlexiJobContent();
+            providerAddApprenticeDetailsPage.ValidateFlexiJobContent();
 
-            var providerApproveApprenticeDetailsPage = providerAddApprenticeTrainingDetailsPage.SubmitValidTrainingDetails();
+            var providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage, 1);
         }
@@ -319,12 +316,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
 
-                        var providerEditTrainingDetailsPage =  providerEditApprenticeDetailsPage.EnterUlnAndSave();
-
                         if (shouldCheckCoursesAreStandards)
-                            providerEditTrainingDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                            providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
-                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave();
+                        providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
                     }
                     j--;
@@ -342,7 +337,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
                 var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
-                providerEditApprenticeDetailsPage.EnterUlnAndSave().SelectSaveAndUpdateRPLAsNo();
+                providerEditApprenticeDetailsPage.EnterUlnAndSave();
             }
 
             return providerApproveApprenticeDetailsPage;
@@ -365,11 +360,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 {
                     if (uln.Text.Equals("-"))
                     {
-                        var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j, isPilotLearner);
 
-                        var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, j+1);
+                        providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
+                            .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
+                            .EnterUlnAndActualStartDayThenSave(j+1);
 
-                        providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
                         break;
                     }
                     j--;
@@ -381,13 +377,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditSpecificFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int learnerToEdit, bool isPilotLearner)
         {
-            var providerEditPersonalDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1); 
+            var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit-1);
 
-            var providerEditTrainingDetailsPage = providerEditPersonalDetailsPage.EnterUlnAndPilotSelectionThenSave(isPilotLearner, learnerToEdit);
-            
-            providerEditTrainingDetailsPage.CheckRPLConditionAndSave(isPilotLearner);
-                        
-            return providerApproveApprenticeDetailsPage;
+            return providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
+                .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
+                .EnterUlnAndActualStartDayThenSave(learnerToEdit);
         }
 
         public ProviderApproveApprenticeDetailsPage AddApprenticeForFlexiPaymentsProvider(int numberOfApprentices, bool isPilotLearner = false)
@@ -398,8 +392,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             {
                 providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                     .ProviderSelectsAStandard()
-                    .SubmitValidPersonalDetails(isPilotLearner)
-                    .SubmitValidTrainingDetails();
+                    .SubmitValidApprenticeDetails();
             }
 
             return SetApprenticeDetails(providerApproveApprenticeDetailsPage);
@@ -423,10 +416,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
                 _providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
-                providerApproveApprenticeDetailsPage = 
+                providerApproveApprenticeDetailsPage =
                     _providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
-                    .ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
+                    .ProviderSelectsAStandardForEditApprenticeDetails()
                     .ClickSave();
             }
             return providerApproveApprenticeDetailsPage;
@@ -491,7 +484,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice(0)
                 .EnterUlnAndSave()
-                .CheckRPLConditionAndSave()
                 .SubmitApprove();
         }
 
@@ -559,7 +551,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return new ProviderApproveApprenticeDetailsPage(_context)
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()
                 .ValidateDeliveryModelDisplayed("Regular")
@@ -572,8 +563,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .GoToApprenticeRequestsPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .EnterUlnAndSave()
-                .ClickEditDeliveryModel()
+                .EnterUlnAndSelectEditDeliveryModel()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
                 .ClickSave()
                 .ValidateFlexiJobTagAndSubmitApprove();
@@ -610,5 +600,54 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickUpdateDetails()
                 .AcceptChangesAndSubmit();
         }
+
+        public ProviderApproveApprenticeDetailsPage ProviderAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(listOfApprentice, true);
+
+        private ProviderApproveApprenticeDetailsPage AddApprentices(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool isFlexiPaymentsPilot = false)
+        {
+            int apprenticeNumber = 1;
+
+            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
+            {
+                _context.Replace(apprentice.Item1);
+                _context.Replace(apprentice.Item2);
+            }
+
+            var firstApprentice = listOfApprentice.First();
+
+            ReplaceInContext(firstApprentice);
+
+            var providerReviewYourCohortPage = ProviderAddApprenticeFromHomePage(isFlexiPaymentsPilot);
+
+            listOfApprentice.Remove(firstApprentice);
+
+            foreach (var apprentice in listOfApprentice)
+            {
+                apprenticeNumber++;
+
+                ReplaceInContext(apprentice);
+
+                providerReviewYourCohortPage = SubmitValidTrainingDetails(providerReviewYourCohortPage, apprenticeNumber, isFlexiPaymentsPilot);
+            }
+
+            return SetApprenticeDetails(providerReviewYourCohortPage, listOfApprentice.Count + 1);
+        }
+
+        private ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails(ProviderApproveApprenticeDetailsPage providerReviewYourCohortPage, int apprenticeNumber, bool isFlexiPaymentsPilot = false) 
+            => providerReviewYourCohortPage.SelectAddAnApprenticeForFlexiPaymentsProvider()
+                .MakePaymentsPilotSelectionAndContinueToSelectStandardPage(isFlexiPaymentsPilot)
+                .ProviderSelectsAStandardForFlexiPaymentsPilot(isFlexiPaymentsPilot)
+                .SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider(apprenticeNumber);
+
+        private ProviderApproveApprenticeDetailsPage ProviderAddApprenticeFromHomePage(bool isFlexiPaymentsPilot = false)
+          => GoToProviderHomePage()
+            .GotoSelectJourneyPage()
+            .SelectAddManually()
+            .SelectOptionCreateNewCohort()
+            .ChooseAnEmployer("Levy")
+            .ConfirmEmployerForFlexiTrainingProvider()
+            .MakePaymentsPilotSelectionAndContinueToSelectStandardPage(isFlexiPaymentsPilot)
+            .ProviderSelectsAStandardForFlexiPaymentsPilot(isFlexiPaymentsPilot)
+            .SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider(1);
     }
 }

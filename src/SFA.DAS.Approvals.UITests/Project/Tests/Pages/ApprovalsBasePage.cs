@@ -45,9 +45,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         public SelectStandardPage ClickEditCourseLink()
         {
-            if (!pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink))
-                formCompletionHelper.Click(SaveButton);
-
             formCompletionHelper.Click(TrainingCourseEditLink);
             return new SelectStandardPage(context);
         }
