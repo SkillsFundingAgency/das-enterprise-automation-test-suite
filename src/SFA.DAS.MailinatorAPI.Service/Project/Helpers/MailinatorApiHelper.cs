@@ -1,10 +1,8 @@
 ﻿using mailinator_csharp_client;
-using mailinator_csharp_client.Models.Domains.Entities;
 using mailinator_csharp_client.Models.Domains.Responses;
 using mailinator_csharp_client.Models.Messages.Entities;
 using mailinator_csharp_client.Models.Messages.Requests;
 using mailinator_csharp_client.Models.Responses;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport;
