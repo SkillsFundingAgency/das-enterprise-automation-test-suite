@@ -99,61 +99,46 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
- testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
-                            "agreed_price"});
+                            "agreed_price",
+                            "is_pilot"});
                 table1.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
                             "2023/08/01",
                             "11",
-                            "15000"});
+                            "15000",
+                            "true"});
                 table1.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/27",
                             "2022/09/01",
                             "11",
-                            "18000"});
-#line 11
- testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table1, "And ");
+                            "18000",
+                            "false"});
+#line 10
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table1, "Given ");
+#line hidden
+#line 14
+ testRunner.When("Provider can search learner 1 using Simplified Payments Pilot filter set to yes o" +
+                        "n Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Provider cannot make changes to fully approved learner 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 16
- testRunner.And("provider logs in to review the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Provider can search learner 2 using Simplified Payments Pilot filter set to no on" +
+                        " Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
- testRunner.And("the provider adds Uln and Opt learner 1 into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
- testRunner.And("the provider adds Uln and Opt learner 2 out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
- testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
- testRunner.Then("Provider can search learner 1 using Simplified Payments Pilot filter set to yes o" +
-                        "n Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 21
- testRunner.And("Provider cannot make changes to fully approved learner 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
- testRunner.And("Provider can search learner 2 using Simplified Payments Pilot filter set to no on" +
-                        " Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
- testRunner.And("Provider can make changes to fully approved learner 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Provider can make changes to fully approved learner 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

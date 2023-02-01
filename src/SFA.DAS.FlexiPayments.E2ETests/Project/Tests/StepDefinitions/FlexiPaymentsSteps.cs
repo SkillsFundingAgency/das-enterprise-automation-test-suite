@@ -7,6 +7,7 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.TestDataExport.Helper;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly EarningsSqlDbHelper _earningsSqlDbHelper;
         private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper;
+        private readonly ExistingAccountSteps _existingAccountSteps;
+        private readonly FlexiPaymentProviderSteps _flexiPaymentProviderSteps;
 
         public FlexiPaymentsSteps(ScenarioContext context)
         {
@@ -38,7 +41,34 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
             _apprenticeshipsSqlDbHelper = context.Get<ApprenticeshipsSqlDbHelper>();
+            _existingAccountSteps = new ExistingAccountSteps(_context);
+            _flexiPaymentProviderSteps = new FlexiPaymentProviderSteps(_context);
         }
+
+        [Given(@"fully approved apprentices with the below data")]
+        public void GivenFullyApprovedApprenticesWithTheBelowData(Table table)
+        {
+            _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount("Levy");
+            
+            _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));
+
+            _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
+
+            _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
+
+            int index = 0;
+
+            foreach (var row in table.Rows)
+            {
+                index++;
+                var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
+                if (inputData.IsPilot) _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerIntoThePilot(index);
+                else _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerOutOfThePilot(index);
+            }
+
+            _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
+        }
+
 
         [Given(@"Employer adds apprentices to the cohort with the following details")]
         public void GivenEmployerAddsApprenticesToTheCohortWithTheFollowingDetails(Table table) => _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));

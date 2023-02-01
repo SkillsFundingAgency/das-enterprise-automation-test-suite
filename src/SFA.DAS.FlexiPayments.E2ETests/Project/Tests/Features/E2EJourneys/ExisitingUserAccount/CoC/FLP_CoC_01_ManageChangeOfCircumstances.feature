@@ -7,17 +7,11 @@ for learners opted in the pilot. They should be able to make changes to aproved 
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_01 Employer and Provider cannot edit an approved pilot learner but can edit a non-pilot user
-	Given the Employer logins using existing Levy Account
-	And Employer adds apprentices to the cohort with the following details
-		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price |
-		| 1       | 154           | 2004/06/20    | 2023/08/01     | 11                 | 15000        |
-		| 2       | 91            | 2004/06/27    | 2022/09/01     | 11                 | 18000        |
-	And the Employer approves the cohort
-	And provider logs in to review the cohort
-	And the provider adds Uln and Opt learner 1 into the pilot
-	And the provider adds Uln and Opt learner 2 out of the pilot
-	When Provider successfully approves the cohort
-	Then Provider can search learner 1 using Simplified Payments Pilot filter set to yes on Manage your apprentices page
-	And Provider cannot make changes to fully approved learner 1
-	And Provider can search learner 2 using Simplified Payments Pilot filter set to no on Manage your apprentices page
-	And Provider can make changes to fully approved learner 2
+	Given fully approved apprentices with the below data
+		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price | is_pilot |
+		| 1       | 154           | 2004/06/20    | 2023/08/01     | 11                 | 15000        | true     |
+		| 2       | 91            | 2004/06/27    | 2022/09/01     | 11                 | 18000        | false    |
+	When Provider can search learner 1 using Simplified Payments Pilot filter set to yes on Manage your apprentices page
+	Then Provider cannot make changes to fully approved learner 1
+	When Provider can search learner 2 using Simplified Payments Pilot filter set to no on Manage your apprentices page
+	Then Provider can make changes to fully approved learner 2
