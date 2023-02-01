@@ -7,10 +7,16 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
     [Binding]
     public class FlexiPaymentProviderSteps
     {
+        private readonly ScenarioContext _context;
         private readonly TransfersProviderStepsHelper _providerStepsHelper;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
 
-        public FlexiPaymentProviderSteps(ScenarioContext context) => _providerStepsHelper = new TransfersProviderStepsHelper(context);
+        public FlexiPaymentProviderSteps(ScenarioContext context)
+        {
+            _context = context;
+            _providerStepsHelper = new TransfersProviderStepsHelper(context);
+        }
+
 
         [Given(@"provider logs in to review the cohort")]
         public void GivenProviderLogsInToReviewTheCohort() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.CurrentCohortDetails();
@@ -35,5 +41,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
         public void GivenTheProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
+
+        [When(@"pilot provider approves the cohort")]
+        public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
     }
 }

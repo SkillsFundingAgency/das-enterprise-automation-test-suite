@@ -130,7 +130,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             if (shouldBeDisplayed)
             {
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not dsiplayed");
+                pageInteractionHelper.WaitForElementToBeDisplayed(locator);
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not displayed");
                 
                 string expectedMessage = "The date overlaps with existing dates for the same apprentice";
                 string actualMessage = pageInteractionHelper.GetText(locator);
@@ -138,7 +139,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             }
             else
             {
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should not be dsiplayed");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should not be displayed");
             }
         }
     }

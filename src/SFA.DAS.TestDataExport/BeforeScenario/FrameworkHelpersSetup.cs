@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
@@ -19,6 +19,8 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
             _context.Set(new TryCatchExceptionHelper(objectContext));
 
             objectContext.SetTestDataList();
+
+            objectContext.SetRetryInformationList();
         }
 
         [BeforeScenario(Order = 12)]

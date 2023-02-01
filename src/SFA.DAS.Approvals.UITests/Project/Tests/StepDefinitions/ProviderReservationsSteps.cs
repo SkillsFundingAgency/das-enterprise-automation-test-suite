@@ -5,9 +5,9 @@ using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
-        private ProviderAddPersonalDetailsPage _providerAddApprenticeDetailsPage;
+        private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
 
         public ProviderReservationsSteps(ScenarioContext context)

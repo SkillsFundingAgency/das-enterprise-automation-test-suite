@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
@@ -77,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public EditApprenticeDetailsPage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
-        internal ApproveApprenticeDetailsPage EmployerReviewCohort()
+        public ApproveApprenticeDetailsPage EmployerReviewCohort()
         {
             var employerReviewYourCohortPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
                 .ClickApprenticeRequestsLink()

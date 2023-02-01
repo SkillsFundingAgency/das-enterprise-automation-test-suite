@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;

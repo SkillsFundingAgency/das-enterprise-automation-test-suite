@@ -29,7 +29,10 @@
         private string Abouttheemployer_3 => "Contact details";
         private string Abouttheemployer_4 => isRaaV2Employer ? "Website for applications" : "Application website";
 
-        private string Checkandsubmityouradvert => isRaaV2Employer ? "5. Check and submit your advert" : "5. Check and submit your vacancy";
+        private string Application => "5. Application";
+        private string Application_1 => "Questions for applicants";
+
+        private string Checkandsubmityouradvert => IsTraineeship ? "5. Check and submit your vacancy" : (isRaaV2Employer ? "6. Check and submit your advert" : "6. Check and submit your vacancy");
         private string Checkandsubmityouradvert_1 => isRaaV2Employer ? "Check your answers and submit your advert" : "Check your answers and submit your vacancy";
         #endregion
     }

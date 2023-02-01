@@ -8,8 +8,14 @@ namespace SFA.DAS.FrameworkHelpers
     public class RetryAssertHelper
     {
         private readonly string _title;
-        
-        public RetryAssertHelper(ScenarioInfo scenarioInfo) => _title = scenarioInfo.Title;
+
+        private readonly ObjectContext objectContext;
+
+        public RetryAssertHelper(ScenarioInfo scenarioInfo, ObjectContext objectContext)
+        {
+            _title = scenarioInfo.Title;
+            this.objectContext = objectContext;
+        }
 
         public void RetryOnNUnitException(Action action) => RetryOnNUnitException(action, false);
 
@@ -20,9 +26,9 @@ namespace SFA.DAS.FrameworkHelpers
             Policy
                  .Handle<AssertionException>()
                  .Or<MultipleAssertException>()
-                 .WaitAndRetry(longerTimeout == true ? Logging.LongerTimeout() : Logging.DefaultTimeout(), (exception, timeSpan, retryCount, context) =>
+                 .WaitAndRetry(longerTimeout == true ? RetryTimeOut.LongerTimeout() : RetryTimeOut.DefaultTimeout(), (exception, timeSpan, retryCount, context) =>
                  {
-                     Logging.Report(retryCount, exception, _title, null);
+                     new RetryLogging(objectContext).Report(retryCount, exception, _title, null);
                  })
                  .Execute(() =>
                  {

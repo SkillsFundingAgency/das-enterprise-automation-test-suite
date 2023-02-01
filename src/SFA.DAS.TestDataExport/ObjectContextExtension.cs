@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataCleanup;
 using System;
 using System.Collections.Generic;

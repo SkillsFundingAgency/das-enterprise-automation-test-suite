@@ -1,5 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
