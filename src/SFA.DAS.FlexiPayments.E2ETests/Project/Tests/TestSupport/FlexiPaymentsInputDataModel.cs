@@ -12,6 +12,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         public string StartDateStr { set { StartDate = value == "Today" ? DateTime.Today : DataHelpers.TryParse(value); } }
         public int DurationInMonths { get; set; }
         public string AgreedPrice { get; set; }
-        public bool IsPilot { get; set; } = false;
+        public bool PilotStatus { get; set; } = false;
     }
 }
