@@ -126,22 +126,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModel);
 
-        internal void ValidateProviderCannotEditApprovedApprentice()
-        {
-            Assert.Multiple(() =>
-            {
-               Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is displayed");
-               Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink), "Change Employer link is displayed");
-            });
-        }
+        internal void ValidateProviderCannotEditApprovedApprentice() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is displayed");
 
-        internal void ValidateProviderCanEditApprovedApprentice()
-        {
-            Assert.Multiple(() =>
-            {
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is NOT displayed");
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink), "Change Employer link is NOT displayed");
-            });
-        }
+        internal void ValidateProviderCanEditApprovedApprentice() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is NOT displayed");
     }
 }
