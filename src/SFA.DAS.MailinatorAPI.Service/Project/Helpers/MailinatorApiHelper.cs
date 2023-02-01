@@ -92,7 +92,7 @@ public class MailinatorApiHelper
         });
     }
 
-    private (string inbox, string domain) GetEmail(string email)
+    private static (string inbox, string domain) GetEmail(string email)
     {
         var emailSplit = email.Split('@');
 
