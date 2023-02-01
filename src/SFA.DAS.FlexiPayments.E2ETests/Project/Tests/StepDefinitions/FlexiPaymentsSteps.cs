@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
@@ -9,6 +10,7 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.TestDataExport.Helper;
+using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -30,6 +32,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper;
         private readonly ExistingAccountSteps _existingAccountSteps;
         private readonly FlexiPaymentProviderSteps _flexiPaymentProviderSteps;
+        private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices;
 
         public FlexiPaymentsSteps(ScenarioContext context)
         {
@@ -62,7 +66,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 index++;
                 var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
-                if (inputData.IsPilot) _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerIntoThePilot(index);
+                if (inputData.PilotStatus) _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerIntoThePilot(index);
                 else _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerOutOfThePilot(index);
             }
 
@@ -157,6 +161,28 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 Assert.IsEmpty(earningsDbData.numberOfDeliveryMonths, "Incorrect total on-program payment found in earnings db");
             }
         }
+
+        [When(@"Employer searches learner (.*) on Manage your apprentices page")]
+        public void WhenEmployerSearchesLearnerOnManageYourApprenticesPage(int learnerNumber)
+        {
+            listOfApprentices = _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
+
+            _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
+
+            _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
+        }
+
+        [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]
+        public void ThenEmployerCannotMakeChangesToFullyApprovedLearner(string action, int learnerNumber)
+        {
+            _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
+
+            if (action == "can")
+                _apprenticeDetailsPage.ValidateEmployerCanEditApprovedApprentice();
+            else
+                _apprenticeDetailsPage.ValidateEmployerCannotEditApprovedApprentice();
+        }
+
 
         public List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
         {

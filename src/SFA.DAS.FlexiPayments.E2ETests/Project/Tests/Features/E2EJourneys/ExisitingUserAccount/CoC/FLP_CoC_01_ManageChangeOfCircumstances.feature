@@ -15,3 +15,7 @@ Scenario: FLP_CoC_01 Employer and Provider cannot edit an approved pilot learner
 	Then Provider cannot make changes to fully approved learner 1
 	When Provider can search learner 2 using Simplified Payments Pilot filter set to no on Manage your apprentices page
 	Then Provider can make changes to fully approved learner 2
+	When Employer searches learner 1 on Manage your apprentices page
+	Then Employer cannot make changes to fully approved learner 1
+	When Employer searches learner 2 on Manage your apprentices page
+	Then Employer can make changes to fully approved learner 2

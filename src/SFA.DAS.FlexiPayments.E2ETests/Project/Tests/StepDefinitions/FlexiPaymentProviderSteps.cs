@@ -78,7 +78,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 _providerStepsHelper.ValidateProviderCannotEditApprovedApprentice();
         }
 
-        private void SetApprenticeDetailsInContext(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, int learnerNumber)
+        internal void SetApprenticeDetailsInContext(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, int learnerNumber)
         {
             void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
             {

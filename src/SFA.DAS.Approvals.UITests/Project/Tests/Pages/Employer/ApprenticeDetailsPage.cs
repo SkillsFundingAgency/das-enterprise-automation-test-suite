@@ -128,5 +128,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(EditEndDateLink);
             return new ThisApprenticeshipEndDatePage(context);
         }
+
+        public void ValidateEmployerCanEditApprovedApprentice()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is NOT displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink), "Edit Apprentice Status link is NOT displayed");
+
+            });
+        }
+
+        public void ValidateEmployerCannotEditApprovedApprentice()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is displayed");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink), "Edit Apprentice Status link is displayed");
+
+            });
+        }
     }
 }

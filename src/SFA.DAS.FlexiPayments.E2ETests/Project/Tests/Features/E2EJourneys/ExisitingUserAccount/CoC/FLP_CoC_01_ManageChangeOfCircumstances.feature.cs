@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "start_date_str",
                             "duration_in_months",
                             "agreed_price",
-                            "is_pilot"});
+                            "pilot_status"});
                 table1.AddRow(new string[] {
                             "1",
                             "154",
@@ -139,6 +139,18 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 17
  testRunner.Then("Provider can make changes to fully approved learner 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 18
+ testRunner.When("Employer searches learner 1 on Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 19
+ testRunner.Then("Employer cannot make changes to fully approved learner 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 20
+ testRunner.When("Employer searches learner 2 on Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
+ testRunner.Then("Employer can make changes to fully approved learner 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
