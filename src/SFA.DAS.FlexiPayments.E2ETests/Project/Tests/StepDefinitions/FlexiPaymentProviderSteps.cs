@@ -28,7 +28,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _providerStepsHelper = new TransfersProviderStepsHelper(context);
         }
 
-
         [Given(@"provider logs in to review the cohort")]
         public void GivenProviderLogsInToReviewTheCohort() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.CurrentCohortDetails();
 

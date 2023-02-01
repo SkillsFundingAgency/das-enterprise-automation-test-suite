@@ -39,6 +39,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
             return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA, true);
         }
 
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
+            createAdvertPage;
         private VacancyReferencePage CreateANewTraineeshipVacancy(string employername, bool isEmployerAddress)
         {
             CreateANewTraineeshipVacancy(employername, isEmployerAddress, false);

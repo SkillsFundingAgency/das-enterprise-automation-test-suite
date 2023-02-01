@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.API.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.HashingService;
 using TechTalk.SpecFlow;
 

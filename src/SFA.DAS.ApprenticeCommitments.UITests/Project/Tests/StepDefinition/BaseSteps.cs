@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
