@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         
         #region Locators
         private By UpdateTheseDetailsLink => By.LinkText("Update these details");
-        private By ExpandAgreementLink => By.ClassName("govuk-accordion__icon");
+        private By ExpandAgreementLink => By.ClassName("govuk-accordion__section-toggle");
         private By AgreementId => By.CssSelector("h3.govuk-heading-l");
         #endregion
 
