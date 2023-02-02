@@ -39,7 +39,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
                     formCompletionHelper.ClickElement(() => fiuCard.FindElement(FiuLink));
 
-                    _ = new CampaingnsDynamicFiuPage(context, fiuCardHeading);
+                    _ = new CampaingnsDynamicFiuPage(context, GetFiuCardHeading(fiuCardHeading));
                 }
                 catch (Exception ex)
                 {
@@ -57,5 +57,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         }
 
         private List<IWebElement> GetFiuCards() => pageInteractionHelper.FindElements(FiuCard);
+
+        private string GetFiuCardHeading(string x)
+        {
+            return true switch
+            {
+                bool _ when (x == "The road to a quality apprenticeship") => "Employ an apprentice for your business: step by step",
+                _ => x,
+            };
+        }
     }
 }
