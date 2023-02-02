@@ -10,19 +10,19 @@ Scenario: FLP_E2E_EUA_01 Employer adds two apprentices details to a cohort and P
 	Given the Employer logins using existing Levy Account
 	And Employer adds apprentices to the cohort with the following details
 		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price |
-		| 1       | 154           | 2004/06/01    | 2022/08/01     | 11                 | 15000        |
-		| 2       | 91            | 2004/06/01    | 2022/09/01     | 11                 | 18000        |
+		| 1       | 154           | 2004/06/01    | 2022/08/05     | 11                 | 15000        |
+		| 2       | 91            | 2004/06/01    | 2022/09/05     | 11                 | 18000        |
 	And the Employer approves the cohort
 	And the provider adds Ulns and Opt the learners into the pilot
 	When Provider successfully approves the cohort
 	Then validate the following data is created in the commitments database
 		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost |
-		| 1       | true     | 2022/08/01                  | Null                      | 15000              |
-		| 2       | true     | 2022/09/01                  | Null                      | 18000              |
+		| 1       | true     | 2022/08/05                  | Null                      | 15000              |
+		| 2       | true     | 2022/09/05                  | Null                      | 18000              |
 	And validate the following data in Earnings Apprenticeship database
 		| ULN_Key | is_pilot | actual_start_date_str | start_date_str | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
-		| 1       | true     | 2022/08/01            | Null           | 2023/07/01           | 15000        | 0            | 15000                |
-		| 2       | true     | 2022/09/01            | Null           | 2023/08/01           | 18000        | 0            | 18000                |
+		| 1       | true     | 2022/08/05            | 2022/08/01     | 2023/07/01           | 15000        | 0            | 15000                |
+		| 2       | true     | 2022/09/05            | 2022/08/01     | 2023/08/01           | 18000        | 0            | 18000                |
 	And validate the following data is created in the earnings database
 		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
 		| 1       | 12000                    | 1000                       | 12                        |

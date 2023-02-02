@@ -175,7 +175,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "true",
                             "Today",
-                            "Null",
+                            "StartCurrentMonth",
                             "+23Months",
                             "6000",
                             "1",

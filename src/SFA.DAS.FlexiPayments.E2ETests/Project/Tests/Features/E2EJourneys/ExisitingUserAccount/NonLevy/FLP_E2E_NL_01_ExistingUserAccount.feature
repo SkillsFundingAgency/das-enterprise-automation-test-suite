@@ -20,7 +20,7 @@ Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provid
 		| 2       | false    | StartCurrentMonth           | Null                      | 6000               |
 	And validate the following data in Earnings Apprenticeship database
 		| ULN_Key | is_pilot | actual_start_date_str | start_date_str    | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
-		| 1       | true     | Today                 | Null              | +23Months            | 6000         | 1            | 18000                |
+		| 1       | true     | Today                 | StartCurrentMonth | +23Months            | 6000         | 1            | 18000                |
 		| 2       | false    | Null                  | StartCurrentMonth | +23Months            | 6000         | 1            | 18000                |
 	And validate the following data is created in the earnings database
 		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
