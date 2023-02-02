@@ -32,11 +32,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EditTrainingDetailsPage(context);
         }
 
-        public ProviderAddPersonalDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
+        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new ProviderAddPersonalDetailsPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public AddPersonalDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
@@ -46,11 +46,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddPersonalDetailsPage(context);
         }
 
-        public ProviderAddPersonalDetailsPage SelectRegularDeliveryModelAndContinue()
+        public ProviderAddApprenticeDetailsPage SelectRegularDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(RegularRadioButton);
             Continue();
-            return new ProviderAddPersonalDetailsPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public EditApprenticeDetailsPage EmployerEditDeliveryModelToRegularAndContinue()
@@ -67,11 +67,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddPersonalDetailsPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
+        public ProviderEditApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
         {
             formCompletionHelper.Click(EditFlexiJobRadioButton);
             Continue();
-            return new ProviderEditApprenticeTrainingDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()

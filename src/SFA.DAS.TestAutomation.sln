@@ -129,9 +129,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FlexiPayments.E2ETe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.DataAnalytics.Tests", "SFA.DAS.DataAnalytics.Tests\SFA.DAS.DataAnalytics.Tests.csproj", "{3A0B1F90-8B3F-4BBC-BE02-1084A541CE9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.API.FrameworkHelpers", "SFA.DAS.API.FrameworkHelpers\SFA.DAS.API.FrameworkHelpers.csproj", "{ADA2596C-4438-43DC-930D-B62E0E3D2CD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.API.FrameworkHelpers", "SFA.DAS.API.FrameworkHelpers\SFA.DAS.API.FrameworkHelpers.csproj", "{ADA2596C-4438-43DC-930D-B62E0E3D2CD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.MailinatorAPI.Service", "SFA.DAS.MailinatorAPI.Service\SFA.DAS.MailinatorAPI.Service.csproj", "{8A740E59-E669-4017-9457-6B8F0C292F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MailinatorAPI.Service", "SFA.DAS.MailinatorAPI.Service\SFA.DAS.MailinatorAPI.Service.csproj", "{8A740E59-E669-4017-9457-6B8F0C292F43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeAmbassadorNetwork.UITests", "SFA.DAS.ApprenticeAmbassadorNetwork.UITests\SFA.DAS.ApprenticeAmbassadorNetwork.UITests.csproj", "{D440F170-4FA4-4809-99F8-E36E0B51D606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -464,6 +466,12 @@ Global
 		{8A740E59-E669-4017-9457-6B8F0C292F43}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{8A740E59-E669-4017-9457-6B8F0C292F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A740E59-E669-4017-9457-6B8F0C292F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D440F170-4FA4-4809-99F8-E36E0B51D606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D440F170-4FA4-4809-99F8-E36E0B51D606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D440F170-4FA4-4809-99F8-E36E0B51D606}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{D440F170-4FA4-4809-99F8-E36E0B51D606}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{D440F170-4FA4-4809-99F8-E36E0B51D606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D440F170-4FA4-4809-99F8-E36E0B51D606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

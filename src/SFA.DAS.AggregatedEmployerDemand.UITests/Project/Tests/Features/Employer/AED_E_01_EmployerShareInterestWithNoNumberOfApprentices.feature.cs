@@ -77,14 +77,16 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Employ
         [NUnit.Framework.DescriptionAttribute("AED_E_01_EmployerShareInterestWithNoNumberOfApprentices")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("testinator")]
         public void AED_E_01_EmployerShareInterestWithNoNumberOfApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
-                    "regression"};
+                    "regression",
+                    "testinator"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_E_01_EmployerShareInterestWithNoNumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,13 +96,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.And("the user selects get help with finding a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("the user can register interest without apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

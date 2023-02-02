@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {

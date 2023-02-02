@@ -2,6 +2,7 @@
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AssessorCertification.APITests.Project

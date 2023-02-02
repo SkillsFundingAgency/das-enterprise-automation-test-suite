@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.UI.Framework;

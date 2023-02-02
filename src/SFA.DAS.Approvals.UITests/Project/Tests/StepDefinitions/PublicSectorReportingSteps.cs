@@ -1,8 +1,8 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
