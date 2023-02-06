@@ -8,6 +8,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MailinatorAPI.Service.Project.Helpers;
@@ -48,35 +49,38 @@ public class MailinatorApiHelper
         return getAllDomainsResponse.Domains.FirstOrDefault().Name;
     }
 
-    public void VerifyEmail(string email, string expected)
+    public string GetData(string email, string expected)
     {
-        var emailSplit = email.Split('@');
+        string data = string.Empty;
 
-        string inbox = emailSplit[0];
-
-        string domain = emailSplit[1];
+        (string inbox, string domain) = GetEmail(email);
 
         _assertHelper.RetryOnNUnitException(() =>
         {
-            _objectContext.SetDebugInformation($"FetchInboxRequest using domain - {domain}, Inbox - {inbox}");
+            FetchMessageResponse fetchMessageResponse = FetchMessage(inbox, domain);
 
-            //Fetch Inbox
-            FetchInboxRequest fetchInboxRequest = new() { Domain = domain, Inbox = inbox, Skip = 0, Limit = 20, Sort = Sort.asc };
+            var body = fetchMessageResponse.Parts.FirstOrDefault(x => x.Headers.Any(h => h.Key == "content-type" && h.Value.ToString().Contains("text/plain;")) && x.Body.Contains(expected))?.Body;
 
-            FetchInboxResponse fetchInboxResponse = mailinatorClient.MessagesClient.FetchInboxAsync(fetchInboxRequest).Result;
+            Assert.IsNotNull(body, $"No body found with content - {expected}");
 
-            var messageId = fetchInboxResponse.Messages.FirstOrDefault()?.Id;
+            _objectContext.SetDebugInformation($"Actual message received {Environment.NewLine}{body}");
 
-            Assert.IsNotNull(messageId, $"No new email - {email}");
+            var match = Regex.Match(body, $"{@expected}.*", RegexOptions.IgnoreCase);
 
-            _objectContext.SetDebugInformation($"FetchMessageRequest using domain - {domain}, Inbox - {inbox} and message id - {messageId}");
+            data = match.Groups[0].Value;
+        });
 
-            //Fetch Message
-            FetchMessageRequest fetchMessageRequest = new() { Domain = domain, Inbox = inbox, MessageId = messageId };
+        return data;
 
-            FetchMessageResponse fetchMessageResponse = mailinatorClient.MessagesClient.FetchMessageAsync(fetchMessageRequest).Result;
+    }
 
-            _objectContext.SetMessage((domain, inbox, messageId));
+    public void VerifyEmail(string email, string expected)
+    {
+        (string inbox, string domain) = GetEmail(email);
+
+        _assertHelper.RetryOnNUnitException(() =>
+        {
+            FetchMessageResponse fetchMessageResponse = FetchMessage(inbox, domain);
 
             Assert.That(fetchMessageResponse.Parts.Any(x => x.Body.Contains(expected)), Is.True, $"{email} did not contain '{expected}'");
 
@@ -84,5 +88,37 @@ public class MailinatorApiHelper
 
             _objectContext.SetDebugInformation($"Actual message received {Environment.NewLine}{actual}");
         });
+    }
+
+    private static (string inbox, string domain) GetEmail(string email)
+    {
+        var emailSplit = email.Split('@');
+
+        return (emailSplit[0], emailSplit[1]);
+    }
+
+    private FetchMessageResponse FetchMessage(string inbox, string domain)
+    {
+        _objectContext.SetDebugInformation($"FetchInboxRequest using domain - {domain}, Inbox - {inbox}");
+
+        //Fetch Inbox
+        FetchInboxRequest fetchInboxRequest = new() { Domain = domain, Inbox = inbox, Skip = 0, Limit = 20, Sort = Sort.asc };
+
+        FetchInboxResponse fetchInboxResponse = mailinatorClient.MessagesClient.FetchInboxAsync(fetchInboxRequest).Result;
+
+        var messageId = fetchInboxResponse.Messages.FirstOrDefault()?.Id;
+
+        Assert.IsNotNull(messageId, $"No new email - {inbox}@{domain}");
+
+        _objectContext.SetDebugInformation($"FetchMessageRequest using domain - {domain}, Inbox - {inbox} and message id - {messageId}");
+
+        //Fetch Message
+        FetchMessageRequest fetchMessageRequest = new() { Domain = domain, Inbox = inbox, MessageId = messageId };
+
+        FetchMessageResponse fetchMessageResponse = mailinatorClient.MessagesClient.FetchMessageAsync(fetchMessageRequest).Result;
+
+        _objectContext.SetMessage((domain, inbox, messageId));
+
+        return fetchMessageResponse;
     }
 }

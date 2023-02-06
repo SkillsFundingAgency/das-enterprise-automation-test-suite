@@ -27,10 +27,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney() => NavigatesToSelectDeliveryModelPage();
 
-        public ProviderAddPersonalDetailsPage ProviderSelectsAStandard()
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();
-            return new ProviderAddPersonalDetailsPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
+        }
+
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPaymentsPilot(bool isPilot = false)
+        {
+            SelectStandardAndContinue();
+            return new ProviderAddApprenticeDetailsPage(context, isPilot);
         }
 
         public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
@@ -43,18 +49,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new SelectDeliveryModelPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPathPreApproval()
+        public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetails()
         {
             SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
             Continue();
-            return new ProviderEditApprenticeTrainingDetailsPage(context);
-        }
-
-        public ProviderEditApprenticePersonalDetailsPage ProviderSelectsAStandardForEditApprenticeDetailsPathPostApproval()
-        {
-            SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
-            Continue();
-            return new ProviderEditApprenticePersonalDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public EditApprenticeDetailsPage EmployerSelectsAStandardForEditApprenticeDetailsPath()
@@ -64,11 +63,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new EditApprenticeDetailsPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
+        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
         {
             AssertStandardAndFrameworkCoursesAreSelectable();
             Continue();
-            return new ProviderEditApprenticeTrainingDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public AddTrainingDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
@@ -88,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
         }
 
-        private ProviderEditApprenticePersonalDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticePersonalDetailsPage(context);
+        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {

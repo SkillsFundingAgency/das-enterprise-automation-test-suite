@@ -44,9 +44,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new SelectStandardPage(context);
         }
 
+        internal SimplifiedPaymentsPilotPage SelectAddAnApprenticeForFlexiPaymentsProvider()
+        {
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+
+            ClickIfPirenIsDisplayed();
+
+            return new SimplifiedPaymentsPilotPage(context);
+        }
+
         public List<IWebElement> ApprenticeUlns() => pageInteractionHelper.FindElements(ApprenticeUlnField);
 
-        public ProviderEditApprenticePersonalDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0, bool isFlexiPaymentPilotLearner = false)
         {
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
             
@@ -54,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             
             ClickIfPirenIsDisplayed();
             
-            return new ProviderEditApprenticePersonalDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
         public ProviderConfirmCohortDeletionPage SelectDeleteCohort()

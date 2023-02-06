@@ -158,8 +158,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails()
-                .SubmitValidTrainingDetails()
+                .SubmitValidApprenticeDetails()
                 .SubmitApprove();
         }
 
@@ -170,18 +169,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .GoToProviderHomePage(true)
                .GotoSelectJourneyPage()
                .SelectAddManually();
-        }
-
-        [Given(@"provider add leaners details and opts them into the pilot")]
-        public void GivenOptsLeanerIntoThePilot()
-        {
-            _providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsViaSelectJourneyPage
-                .SelectOptionCreateNewCohort()
-                .ChooseAnEmployer("Levy")
-                .ConfirmEmployer()
-                .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails(true)
-                .SubmitValidTrainingDetails();
         }
 
         [Then(@"the provider validates flexi-job content and approves cohort")]
