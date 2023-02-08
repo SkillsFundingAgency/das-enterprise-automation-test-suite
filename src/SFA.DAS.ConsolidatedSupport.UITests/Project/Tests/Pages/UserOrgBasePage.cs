@@ -16,19 +16,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             Org
         }
 
-        private By OptionsButton => By.CssSelector(".ember-view .object_options > .object_options_btn");
+        private static By OptionsButton => By.CssSelector(".ember-view .object_options > .object_options_btn");
 
-        private By ModelButtons => By.CssSelector(".modal-footer .btn");
+        private static By ModelButtons => By.CssSelector(".modal-footer .btn");
 
-        private By CustomerRecordFields => By.CssSelector(".customer_record > .ember-view.property");
+        private static By CustomerRecordFields => By.CssSelector(".customer_record > .ember-view.property");
 
-        private By UserLabel => By.CssSelector(".custom-field-label");
+        private static By UserLabel => By.CssSelector(".custom-field-label");
 
-        private By SelectElement => By.CssSelector("div.select");
+        private static By SelectElement => By.CssSelector("div.select");
 
-        private By SearchInputElement => By.CssSelector(".zd-searchmenu-base");
+        private static By SearchInputElement => By.CssSelector(".zd-searchmenu-base");
 
-        private By TextAreaInputElement => By.CssSelector("input.textarea");
+        private static By TextAreaInputElement => By.CssSelector("input.textarea");
 
         protected abstract PageTypeEnum PageType { get; }
 

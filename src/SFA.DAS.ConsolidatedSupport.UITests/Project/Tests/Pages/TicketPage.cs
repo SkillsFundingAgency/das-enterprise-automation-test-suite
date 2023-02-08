@@ -15,37 +15,37 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector("[data-test-id='header-tab-title']");
 
-        private By FindParent => By.XPath("..");
+       private static By FindParent => By.XPath("..");
 
-        private By TicketStatus(string statusclass) => By.CssSelector($"[data-test-id='tabs-section-nav-item-ticket'] {statusclass}.ticket_status_label");
+       private static By TicketStatus(string statusclass) => By.CssSelector($"[data-test-id='tabs-section-nav-item-ticket'] {statusclass}.ticket_status_label");
 
-        private By TicketOrganisationName => By.CssSelector("span[data-test-id='tabs-nav-item-organizations']");
+       private static By TicketOrganisationName => By.CssSelector("span[data-test-id='tabs-nav-item-organizations']");
 
-        private By TicketOrganisationUserName => By.CssSelector("span[data-test-id='tabs-nav-item-users']");
+       private static By TicketOrganisationUserName => By.CssSelector("span[data-test-id='tabs-nav-item-users']");
 
-        private By MenuButton => By.CssSelector("[data-test-id='submit_button-menu-button']");
+       private static By MenuButton => By.CssSelector("[data-test-id='submit_button-menu-button']");
 
-        private By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
+       private static By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
 
-        private By CommentEditorSelector => By.CssSelector("[data-test-id='standalone-rich-text-ckeditor']");
+       private static By CommentEditorSelector => By.CssSelector("[data-test-id='standalone-rich-text-ckeditor']");
 
-        private By CommentsSections => By.CssSelector(".zd-comment");
+       private static By CommentsSections => By.CssSelector(".zd-comment");
 
-        private By TicketDropdownFields => By.CssSelector("[data-garden-id='forms.field']");
+       private static By TicketDropdownFields => By.CssSelector("[data-garden-id='forms.field']");
 
-        private By TicketDropdownLabel => By.CssSelector("[data-garden-id='forms.input_label']");
+       private static By TicketDropdownLabel => By.CssSelector("[data-garden-id='forms.input_label']");
 
-        private By TicketDropdownSelect => By.CssSelector("[data-garden-id='dropdowns.select']");
+       private static By TicketDropdownSelect => By.CssSelector("[data-garden-id='dropdowns.select']");
 
-        private By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
+       private static By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
 
-        private By TicketFormsInput => By.CssSelector("[data-garden-id='forms.input']");
+       private static By TicketFormsInput => By.CssSelector("[data-garden-id='forms.input']");
 
-        private By TicketDropdownItem => By.CssSelector("li");
+       private static By TicketDropdownItem => By.CssSelector("li");
 
-        private By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
+       private static By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
 
-        private By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
+       private static By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
 
         public TicketPage(ScenarioContext context) : base(context, false)
         {
