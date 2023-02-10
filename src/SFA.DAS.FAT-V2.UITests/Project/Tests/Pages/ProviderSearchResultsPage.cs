@@ -1,5 +1,17 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
+public class ProviderShortListedResultPage : ProviderSearchResultsPage
+{
+    protected override string PageTitle => "SHORTLISTED";
+
+    protected override By PageHeader => By.CssSelector(".govuk-tag.app-provider-shortlist-tag");
+
+    public ProviderShortListedResultPage(ScenarioContext context) : base(context)
+    {
+
+    }
+}
+
 public class ProviderSearchResultsPage : FATV2BasePage
 {
     protected override string PageTitle => "Training providers for";
@@ -34,10 +46,10 @@ public class ProviderSearchResultsPage : FATV2BasePage
         formCompletionHelper.Click(BackToCourseSummaryPage);
         return new TrainingCourseSummaryPage(context);
     }
-    public ProviderSearchResultsPage ShortlistAProviderFromProviderList()
+    public ProviderShortListedResultPage ShortlistAProviderFromProviderList()
     {
         formCompletionHelper.Click(AddToShortlist);
-        return new ProviderSearchResultsPage(context);
+        return new ProviderShortListedResultPage(context);
     }
     public ProviderSearchResultsPage RemoveLocationOnProviderListPage()
     {
