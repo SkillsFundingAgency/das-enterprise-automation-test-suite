@@ -11,17 +11,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Organisations";
 
-        private By ClearSearch => By.CssSelector("[data-test-id='organization-lists-search-box'] [data-garden-id='buttons.icon']");
+        private static By ClearSearch => By.CssSelector("[data-test-id='organization-lists-search-box'] [data-garden-id='buttons.icon']");
 
-        private By SearchOrganisationInput => By.CssSelector("[data-test-id='search-input']");
+        private static By SearchOrganisationInput => By.CssSelector("[data-test-id='search-input']");
 
-        private By ResultCount => By.CssSelector("[data-test-id='results-count']");
+        private static By ResultCount => By.CssSelector("[data-test-id='results-count']");
 
-        private By Tickets => By.CssSelector("[data-garden-id='tables.cell'] > [href*='/tickets']");
-        
-        private By OrganisationButton => By.CssSelector("#main_navigation [data-original-title='Organisations']");
+        private static By Tickets => By.CssSelector("[data-garden-id='tables.cell'] > [href*='/tickets']");
 
-        public OrganisationListPage(ScenarioContext context) : base(context) { formCompletionHelper.ClickElement(OrganisationButton); VerifyPage(); }
+        public OrganisationListPage(ScenarioContext context) : base(context) { ClickOrganisationsButton(); VerifyPage(); }
 
         public void VerifyOrganisationDetails()
         {
