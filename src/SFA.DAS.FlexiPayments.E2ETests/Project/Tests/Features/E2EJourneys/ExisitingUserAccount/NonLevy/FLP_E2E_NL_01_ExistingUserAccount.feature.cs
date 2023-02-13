@@ -164,7 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
-                            "is_pilot",
+                            "funding_platform",
                             "actual_start_date_str",
                             "start_date_str",
                             "planned_end_date_str",
@@ -173,7 +173,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "funding_band_maximum"});
                 table16.AddRow(new string[] {
                             "1",
-                            "true",
+                            "1",
                             "Today",
                             "StartCurrentMonth",
                             "+23Months",
@@ -182,7 +182,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "18000"});
                 table16.AddRow(new string[] {
                             "2",
-                            "false",
+                            "2",
                             "Null",
                             "StartCurrentMonth",
                             "+23Months",

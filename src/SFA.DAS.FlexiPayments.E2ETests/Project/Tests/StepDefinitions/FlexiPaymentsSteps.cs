@@ -136,7 +136,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(Boolean.Parse(apprenticeshipDbData.isPilot), Is.EqualTo(inputApprenticeshipsData.IsPilot), "Incorrect pilot status found in Apprenticeships db");
+                    Assert.That(apprenticeshipDbData.isPilot.ToEnum<FundingPlatform>(), Is.EqualTo(inputApprenticeshipsData.FundingPlatform), "Incorrect pilot status found in Apprenticeships db");
                     Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.actualStartDate), Is.EqualTo(inputApprenticeshipsData.ActualStartDate), "Incorrect actual start date found in Apprenticeships db");
                     Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedStartDate), Is.EqualTo(inputApprenticeshipsData.StartDate), "Incorrect planned start date found in Apprenticeships db");
                     Assert.That(DataHelpers.TryParseDate(apprenticeshipDbData.plannedEndDate), Is.EqualTo(inputApprenticeshipsData.PlannedEndDate), "Incorrect planned end date found in Apprenticeships db");
