@@ -9,6 +9,7 @@ using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -195,8 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
-
+        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) => AddApprentices(_context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>());
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
             => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
 

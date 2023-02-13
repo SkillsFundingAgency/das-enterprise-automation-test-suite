@@ -153,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
                 TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
-                            "is_pilot",
+                            "funding_platform",
                             "actual_start_date_str",
                             "start_date_str",
                             "planned_end_date_str",
@@ -162,7 +162,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "funding_band_maximum"});
                 table21.AddRow(new string[] {
                             "1",
-                            "false",
+                            "2",
                             "Null",
                             "2023/08/01",
                             "2024/07/01",
@@ -171,7 +171,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "15000"});
                 table21.AddRow(new string[] {
                             "2",
-                            "false",
+                            "2",
                             "Null",
                             "2023/09/01",
                             "2024/08/01",
@@ -188,7 +188,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table22.AddRow(new string[] {
                             "2"});
 #line 22
-  testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table22, "And ");
+ testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table22, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
