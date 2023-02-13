@@ -21,6 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         [Then(@"the admin should be taken to multiple results found page")]
         public void ThenTheAdminShouldBeTakenToMultipleResultsFoundPage() => _resultsFoundPage.VerifyMultipleMatchingResults();
 
+        [Given(@"the admin searches for a provider by provider name")]
         [When(@"the admin searches for a provider by provider name")]
         public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().SearchForTrainingProvider().SearchTrainingProviderByName();
 
