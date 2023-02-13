@@ -9,15 +9,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override string PageTitle => dataHelper.NewUserFullName;
 
-        private By AllRecordsFields => By.CssSelector(".property_box > .ember-view .property");
+        private static By AllRecordsFields => By.CssSelector(".property_box > .ember-view .property");
 
-        private By OrganisationTab => By.CssSelector("[data-test-id='tabs-nav-item-organizations']");
+        private static By OrganisationTab => By.CssSelector("[data-test-id='tabs-nav-item-organizations']");
 
-        private By OrganisationName => By.CssSelector("[data-test-id='organization-add-modal-name-input']");
+        private static By OrganisationName => By.CssSelector("[data-test-id='organization-add-modal-name-input']");
 
-        private By OrganisationDomain => By.CssSelector("[data-test-id='organization-add-modal-domain-input']");
+        private static By OrganisationDomain => By.CssSelector("[data-test-id='organization-add-modal-domain-input']");
 
-        private By AddOrganisationButton => By.CssSelector("[data-test-id='organization-add-modal-submit-button']");
+        private static By AddOrganisationButton => By.CssSelector("[data-test-id='organization-add-modal-submit-button']");
 
         protected override PageTypeEnum PageType => PageTypeEnum.User;
 
