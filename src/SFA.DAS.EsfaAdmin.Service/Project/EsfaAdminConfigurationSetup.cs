@@ -1,9 +1,8 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EsfaAdmin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project;
+namespace SFA.DAS.EsfaAdmin.Service.Project;
 
 [Binding]
 public class EsfaAdminConfigurationSetup
