@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Edit training details";
+        protected override string PageTitle => "Edit apprentice details";
 
         #region Helpers and Context
         #endregion
@@ -21,12 +21,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditContinueButtonPersonalDetailsPage => By.XPath("//button[contains(text(),'Continue')]");
         private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
-        private By EditDeliveryModelLink => By.CssSelector("button[name='ChangeDeliveryModel']");
-        private By DeliveryModelLabel => By.XPath("//*[@id='editApprenticeship']/div[7]/p[2]");
+        private By EditDeliveryModelLink => By.Id("change-delivery-model-link");
+        private By DeliveryModelLabel => By.Id("delivery-model-label");
 
         public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
         {

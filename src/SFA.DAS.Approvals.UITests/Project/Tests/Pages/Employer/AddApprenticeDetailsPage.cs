@@ -8,11 +8,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
-        private static By DeliveryModelLabel => By.XPath("//p[text()='Delivery model']");
+        private static By DeliveryModelLabel => By.Id("delivery-model-label");
 
-        private static By DeliveryModelType => By.XPath("//p[text()='Delivery model'] // following-sibling :: p");
+        private static By DeliveryModelType => By.Id("delivery-model-value");
 
-        private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
 
         protected override string PageTitle => "Add apprentice details";
 
