@@ -16,10 +16,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmApprenticeshipDeliveryModelPage(ScenarioContext context) : base(context) { }
 
-        public EditTrainingDetailsPage ConfirmDeliveryModelChangeToRegular()
+        public EditApprenticeDetailsPage ConfirmDeliveryModelChangeToRegular()
         {
             formCompletionHelper.ClickElement(ContinueBtn);
-            return new EditTrainingDetailsPage(context);
+            return new EditApprenticeDetailsPage(context);
         }
     }
 }

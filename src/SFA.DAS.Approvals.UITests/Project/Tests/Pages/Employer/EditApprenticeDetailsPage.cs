@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditApprenticeDetailsPage : EditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => _pageTitle;
+        protected override string PageTitle => "Edit training details";
 
         #region Helpers and Context
         private readonly string _pageTitle;
@@ -22,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
         private By EditContinueButtonPersonalDetailsPage => By.XPath("//button[contains(text(),'Continue')]");
-        private By EditContinueButtonTrainingDetailsPage => By.XPath("//button[text()='Save']");
+        private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => By.CssSelector("button[name='ChangeDeliveryModel']");
@@ -30,17 +31,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public EditApprenticeDetailsPage(ScenarioContext context) : base(context, false)
         {
-            _pageTitle = DeterminePageTitle();
-            VerifyPage();
-        }
-
-        private string DeterminePageTitle()
-        {
-            var title = pageInteractionHelper.GetUrl().Contains("/unapproved/") 
-                ? "Edit personal details" 
-                : "Edit apprentice details";
-
-            return title;
         }
 
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
@@ -84,13 +74,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
-            formCompletionHelper.ClickElement(EditContinueButtonPersonalDetailsPage);
 
             AddValidEndDate();
             
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
-            formCompletionHelper.ClickElement(EditContinueButtonTrainingDetailsPage);
+            formCompletionHelper.ClickElement(SaveButton);
             return new AfterEditApproveApprenticeDetailsPage(context);
         }
 
@@ -152,6 +141,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Apprentice details page references delivery model");
             }
             else return this;
+        }
+
+        public bool IsEditDeliveryModelLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditDeliveryModelLink);
+
+        public bool ConfirmDeliveryModelLabelText(string deliveryModel)
+        {
+            if (pageInteractionHelper.VerifyText(DeliveryModelLabel, deliveryModel) == true)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public ConfirmApprenticeshipDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new ConfirmApprenticeshipDeliveryModelPage(context);
+        }
+
+        public ApproveApprenticeDetailsPage SaveEditedTrainingDetails()
+        {
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ApproveApprenticeDetailsPage(context);
         }
     }
 }

@@ -112,8 +112,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .DynamicHomePageNonLevyEmployerAddsApprentices()
                  .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
                  .EmployerSelectsAStandard()
-                 .DraftDynamicHomePageAddValidPersonalDetails()
-                 .DraftDynamicHomePageSubmitValidApprenticeDetails()
+                 .DraftDynamicHomePageAddValidApprenticeDetails()
                  .DraftReturnToHomePage()
                  .CheckDraftStatusAndAddDetails()
                  .ContinueToAddValidApprenticeDetails()
@@ -202,12 +201,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             => AddApprentices(_tags.Contains("flexi-payments") 
                 ? _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>()
                 : _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
-        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
-            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
+            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -215,7 +214,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
-        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -223,7 +222,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .EmployerSelectRegularDeliveryModelAndContinue();
         }
 
-        public AddPersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
+        public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(_context).AddAnApprentice()
                 .StartNowToAddTrainingProvider()
@@ -249,8 +248,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
                 .SelectViewCurrentCohortDetails()
-                .SelectEditApprenticeLink()
-                .ContinueToAddTrainingDetailsPage();
+                .SelectEditApprenticeLink();
 
             Assert.True(employerEditTrainingDetailsPage.ConfirmDeliveryModelLabelText("Flexi-job agency"));
             Assert.True(employerEditTrainingDetailsPage.IsEditDeliveryModelLinkVisible());
@@ -263,7 +261,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .SelectEditApprenticeLink()
-                  .ContinueToAddTrainingDetailsPage()
                   .ClickEditDeliveryModelLink()
                   .EditDeliveryModelToFlexiAndContinue()
                   .SaveEditedTrainingDetails()
@@ -341,7 +338,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return new ApproveApprenticeDetailsPage(_context)
                 .SelectEditApprenticeLink()
-                .ContinueToAddTrainingDetailsPage()
                 .ClickEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()
                 .ValidateDeliveryModelDisplayed("Regular")
