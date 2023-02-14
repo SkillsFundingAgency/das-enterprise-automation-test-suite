@@ -1,24 +1,25 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+
+public class ChangeOrganisationTypePage : ChangeBasePage
 {
-    public class ChangeOrganisationTypePage : ChangeBasePage
+    protected override string PageTitle => $"Change organisation type for {objectContext.GetProviderName()}";
+
+    public ChangeOrganisationTypePage(ScenarioContext context) : base(context) { }
+
+    public ResultsFoundPage ConfirmNewOrganisationType()
     {
-        protected override string PageTitle => $"Change organisation type for {objectContext.GetProviderName()}";
-
-        public ChangeOrganisationTypePage(ScenarioContext context) : base(context) { }
-
-        public ResultsFoundPage ConfirmNewOrganisationType()
+        formCompletionHelper.ClickElement(() =>
         {
-            formCompletionHelper.ClickElement(() =>
-            {
-                var randomElement = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs));
-                objectContext.UpdateOrganisationType(randomElement?.Text);
-                return randomElement;
-            });
-            Continue();
-            return new ResultsFoundPage(context);
-        }
+            var randomElement = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs));
+            objectContext.UpdateOrganisationType(randomElement?.Text);
+            return randomElement;
+        });
+
+        Continue();
+
+        return new ResultsFoundPage(context);
     }
 }

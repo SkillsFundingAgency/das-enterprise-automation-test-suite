@@ -1,12 +1,11 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+
+public class ChangeCompanyNumberPage : ChangeBasePage
 {
-    public class ChangeCompanyNumberPage : ChangeBasePage
-    {
-        protected override string PageTitle => $"Change company number for {objectContext.GetProviderName()}";
+    protected override string PageTitle => $"Change company number for {objectContext.GetProviderName()}";
 
-        public ChangeCompanyNumberPage(ScenarioContext context) : base(context) { }
+    public ChangeCompanyNumberPage(ScenarioContext context) : base(context) { }
 
-    }
 }

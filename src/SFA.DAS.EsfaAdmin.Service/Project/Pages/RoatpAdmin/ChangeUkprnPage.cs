@@ -1,12 +1,10 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+
+public class ChangeUkprnPage : ChangeBasePage
 {
-    public class ChangeUkprnPage : ChangeBasePage
-    {
-        protected override string PageTitle => $"Change UKPRN for {objectContext.GetProviderName()}";
+    protected override string PageTitle => $"Change UKPRN for {objectContext.GetProviderName()}";
 
-        public ChangeUkprnPage(ScenarioContext context) : base(context) { }
-    }
+    public ChangeUkprnPage(ScenarioContext context) : base(context) { }
 }

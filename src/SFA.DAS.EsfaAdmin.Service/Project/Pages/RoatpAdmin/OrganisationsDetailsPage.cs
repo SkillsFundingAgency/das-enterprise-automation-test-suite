@@ -1,20 +1,19 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+
+public class OrganisationsDetailsPage : RoatpAdminBasePage
 {
-    public class OrganisationsDetailsPage : RoatpAdminBasePage
+    protected override string PageTitle => "Organisation's details";
+
+    protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
+
+    public OrganisationsDetailsPage(ScenarioContext context) : base(context) { }
+
+    public ProviderRoutePage ConfirmOrganisationsDetails()
     {
-        protected override string PageTitle => "Organisation's details";
-
-        protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
-
-        public OrganisationsDetailsPage(ScenarioContext context) : base(context) { }
-
-        public ProviderRoutePage ConfirmOrganisationsDetails()
-        {
-            Continue();
-            return new ProviderRoutePage(context);
-        }
+        Continue();
+        return new ProviderRoutePage(context);
     }
 }
