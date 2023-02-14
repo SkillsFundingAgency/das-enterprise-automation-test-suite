@@ -5,12 +5,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers
 {
-    public class RoatpAdminLoginStepsHelper
+    public class EsfaAdminLoginStepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly EsfaAdminConfig _config;
 
-        public RoatpAdminLoginStepsHelper(ScenarioContext context)
+        public EsfaAdminLoginStepsHelper(ScenarioContext context)
         {
             _context = context;
             _config = context.GetEsfaAdminConfig<EsfaAdminConfig>();

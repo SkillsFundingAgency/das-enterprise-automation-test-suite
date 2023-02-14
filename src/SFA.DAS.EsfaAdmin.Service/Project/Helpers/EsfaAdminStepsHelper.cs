@@ -3,15 +3,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers
 {
-    public abstract class RoatpAdminStepsHelper
+    public abstract class EsfaAdminStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
+        private readonly EsfaAdminLoginStepsHelper _loginStepsHelper;
 
-        public RoatpAdminStepsHelper(ScenarioContext context)
+        public EsfaAdminStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _loginStepsHelper = new RoatpAdminLoginStepsHelper(context);
+            _loginStepsHelper = new EsfaAdminLoginStepsHelper(context);
         }
 
         public SearchPage InitatesAnApplication(string providerType)

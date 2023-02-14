@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
 {
-    public class NewRoatpAdminStepsHelper : RoatpAdminStepsHelper
+    public class NewRoatpAdminStepsHelper : EsfaAdminStepsHelper
     {
         private readonly ScenarioContext _context;
 

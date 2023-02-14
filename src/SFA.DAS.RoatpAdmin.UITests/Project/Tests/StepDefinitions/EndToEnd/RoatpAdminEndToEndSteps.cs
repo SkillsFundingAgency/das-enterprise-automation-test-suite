@@ -24,7 +24,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
-        private readonly RoatpAdminLoginStepsHelper _roatpAdminLoginStepsHelper;
+        private readonly EsfaAdminLoginStepsHelper _roatpAdminLoginStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _roatpAdminLoginStepsHelper = new RoatpAdminLoginStepsHelper(context);
+            _roatpAdminLoginStepsHelper = new EsfaAdminLoginStepsHelper(context);
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(_context);
             _gatewayEndToEndStepsHelpers = new GatewayEndtoEndStepsHelpers();
             _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
