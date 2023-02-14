@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 public class OldRoatpAdminStepsHelper : EsfaAdminStepsHelper
 {

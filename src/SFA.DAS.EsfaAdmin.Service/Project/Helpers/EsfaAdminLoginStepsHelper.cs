@@ -1,9 +1,4 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 public class EsfaAdminLoginStepsHelper
 {

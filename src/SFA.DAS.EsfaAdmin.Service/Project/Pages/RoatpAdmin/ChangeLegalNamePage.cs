@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 
 public class ChangeLegalNamePage : ChangeBasePage
 {

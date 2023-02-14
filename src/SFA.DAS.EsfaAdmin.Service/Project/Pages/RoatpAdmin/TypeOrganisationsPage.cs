@@ -1,8 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 
 public class TypeOrganisationsPage : RoatpAdminBasePage
 {

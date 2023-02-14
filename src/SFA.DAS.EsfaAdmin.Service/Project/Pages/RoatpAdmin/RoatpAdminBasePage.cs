@@ -1,8 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 
 public abstract class RoatpAdminBasePage : VerifyBasePage
 {

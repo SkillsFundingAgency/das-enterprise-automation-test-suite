@@ -1,8 +1,4 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
-using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project.StepDefinitions.RoatpAdmin;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.StepDefinitions.RoatpAdmin;
 
 [Binding]
 public class RoatpAdminSteps
