@@ -9,12 +9,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticeDetailsPage : EditApprenticeDetailsBasePage
+    public class EditApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
         protected override string PageTitle => "Edit training details";
 
         #region Helpers and Context
-        private readonly string _pageTitle;
         #endregion
 
         private By EditDateOfBirthDay => By.Id("BirthDay");
@@ -29,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditDeliveryModelLink => By.CssSelector("button[name='ChangeDeliveryModel']");
         private By DeliveryModelLabel => By.XPath("//*[@id='editApprenticeship']/div[7]/p[2]");
 
-        public EditApprenticeDetailsPage(ScenarioContext context) : base(context, false)
+        public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
         }
 
@@ -47,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected override void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
+        protected void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {

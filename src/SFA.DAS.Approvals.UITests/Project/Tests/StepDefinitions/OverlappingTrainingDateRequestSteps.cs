@@ -430,17 +430,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private string GetUlnForOLTD() => _objectContext.GetUlnForOLTD();
 
-        private void VerifyOverlappingTrainingDetailsError(Table table, EditApprenticeDetailsBasePage page)
-        {
-            var apprenticeshipDetails = table.CreateSet<OltdApprenticeDetails>().ToList();
-
-            foreach (OltdApprenticeDetails apprenticeship in apprenticeshipDetails)
-            {
-                SetContextStartAnEndDates(apprenticeship.NewStartDate, apprenticeship.NewEndDate);
-
-                page.VerifyOverlappingTrainingDetailsError(apprenticeship.DisplayOverlapErrorOnStartDate, apprenticeship.DisplayOverlapErrorOnEndDate);
-            }
-        }
         private void VerifyOverlappingTrainingDetailsError(Table table, AddAndEditApprenticeDetailsBasePage page)
         {
             var apprenticeshipDetails = table.CreateSet<OltdApprenticeDetails>().ToList();

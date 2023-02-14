@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -21,8 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public static By ActualStartDateYear => By.Id("ActualStartYear");
         public static By StartDateMonth => By.Id("StartMonth");
         public static By StartDateYear => By.Id("StartYear");
-        private static By EndDateMonth => By.Id("EndMonth");
-        private static By EndDateYear => By.Id("EndYear");
+        public static By EndDateMonth => By.Id("EndMonth");
+        public static By EndDateYear => By.Id("EndYear");
         private static By EmploymentEndMonth => By.Id("EmploymentEndMonth");
         private static By EmploymentEndYear => By.Id("EmploymentEndYear");
         private static By TrainingCost => By.Id("Cost");
@@ -31,9 +32,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
         private static By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
         protected virtual By AddButtonSelector => By.XPath("//button[text()='Add']");
+        protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
+        protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
+        private By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
+        private By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
+        private By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
         {
+        }
+        public void VerifyCourseAndCostAreReadOnly()
+        {
+            MultipleVerifyPage(new List<Func<bool>>
+            {
+                () => VerifyPage(ReadOnlyTrainingCost),
+                () => VerifyPage(ReadOnlyTrainingCourse)
+            });
         }
 
         protected void EnterTrainingCostAndEmpReference()
@@ -116,6 +130,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
         }
+        public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
+        public void EditCostCourseAndReference(string reference)
+        {
+            EditCourse();
+            EditCost();
+            EditApprenticeNameDobAndReference(reference);
+        }
 
         protected DateTime GetCourseStartDate()
         {
@@ -142,5 +163,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message should not be displayed");
             }
         }
+        protected void EditEmail()
+        {
+            AddValidEmail();
+            Update();
+        }
+        protected void AddValidEmail() => formCompletionHelper.EnterText(EmailField, GetApprenticeEmail());
+        private string GetApprenticeEmail() => apprenticeDataHelper.ApprenticeEmail;
+        protected void Update() => formCompletionHelper.ClickElement(UpdateDetailsButton);
+        public void EditApprenticeNameDobAndReference(string reference) => EditNameDobAndReference(reference).Update();
+        private AddAndEditApprenticeDetailsBasePage EditNameDobAndReference(string reference)
+        {
+            formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
+            formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
+            formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
+            formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
+            formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
+            formCompletionHelper.EnterText(Reference, reference);
+            return this;
+        }
+
+        private void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
+        private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingCost);
+
     }
 }
