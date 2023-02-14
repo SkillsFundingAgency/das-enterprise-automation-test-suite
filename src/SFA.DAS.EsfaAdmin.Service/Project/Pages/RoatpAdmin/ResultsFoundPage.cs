@@ -8,17 +8,17 @@ namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"found for";
 
-        private By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
+        private static By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
 
-        private By ActiveStatus => By.XPath("//span[text()='Active']");
+        private static By ActiveStatus => By.XPath("//span[text()='Active']");
 
-        private By ProviderType => By.XPath("(//dd[@class='govuk-summary-list__value'])[4]");
+        private static By ProviderType => By.XPath("(//dd[@class='govuk-summary-list__value'])[4]");
 
-        private By OrganisationType => By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+        private static By OrganisationType => By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
 
-        private By ApplicationDeterminedDate => By.XPath("(//dd[@class='govuk-summary-list__value'])[11]");
+        private static By ApplicationDeterminedDate => By.XPath("(//dd[@class='govuk-summary-list__value'])[11]");
 
-        private By RefineSearch => By.LinkText("Refine search");
+        private static By RefineSearch => By.LinkText("Refine search");
 
         private string MainAndEmployerStatus => "ON-BOARDING";
 

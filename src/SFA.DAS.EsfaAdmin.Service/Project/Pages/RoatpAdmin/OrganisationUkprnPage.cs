@@ -7,7 +7,7 @@ namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
     {
         protected override string PageTitle => "What is the organisation's UKPRN?";
 
-        private By UkprnField => By.Id("UKPRN");
+        private static By UkprnField => By.Id("UKPRN");
 
         public OrganisationUkprnPage(ScenarioContext context) : base(context) { }
 

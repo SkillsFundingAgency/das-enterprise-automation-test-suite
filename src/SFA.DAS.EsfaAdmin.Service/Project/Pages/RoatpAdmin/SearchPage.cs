@@ -9,9 +9,9 @@ namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        private By Confirmation => By.CssSelector(".govuk-panel--confirmation");
+        private static By Confirmation => By.CssSelector(".govuk-panel--confirmation");
 
-        private By ProviderSearch => By.Id("SearchTerm");
+        private static By ProviderSearch => By.Id("SearchTerm");
 
         public SearchPage(ScenarioContext context) : base(context) => VerifyPage();
 

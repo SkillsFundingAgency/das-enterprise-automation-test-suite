@@ -10,11 +10,11 @@ namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-        private By Day => By.CssSelector("#Day");
+        private static By Day => By.CssSelector("#Day");
 
-        private By Month => By.CssSelector("#Month");
+        private static By Month => By.CssSelector("#Month");
 
-        private By Year => By.CssSelector("#Year");
+        private static By Year => By.CssSelector("#Year");
 
         public ApplicationDateDeterminedPage(ScenarioContext context) : base(context) { }
 

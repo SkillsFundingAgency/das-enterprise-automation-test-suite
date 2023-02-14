@@ -7,7 +7,7 @@ namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"Change provider type for {objectContext.GetProviderName()}";
 
-        private By OrganisationTypeIdEmployer => By.Id("OrganisationTypeIdEmployer");
+        private static By OrganisationTypeIdEmployer => By.Id("OrganisationTypeIdEmployer");
 
         public ChangeProviderTypePage(ScenarioContext context) : base(context) { }
 

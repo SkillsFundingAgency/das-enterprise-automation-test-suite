@@ -7,9 +7,9 @@ namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
     {
         protected override string PageTitle => $"Change status for {objectContext.GetProviderName()}";
 
-        private By ActiveStatus => By.CssSelector("label[for='status-1']");
+        private static By ActiveStatus => By.CssSelector("label[for='status-1']");
 
-        private By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");
+        private static By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Change']");
 
