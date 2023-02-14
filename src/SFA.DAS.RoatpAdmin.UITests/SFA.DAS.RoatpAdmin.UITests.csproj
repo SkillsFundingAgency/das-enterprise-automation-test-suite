@@ -22,6 +22,7 @@
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
     <ProjectReference Include="..\SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj" />
+	<ProjectReference Include="..\SFA.DAS.EsfaAdmin.Service\SFA.DAS.EsfaAdmin.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

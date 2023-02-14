@@ -1,7 +1,7 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 {

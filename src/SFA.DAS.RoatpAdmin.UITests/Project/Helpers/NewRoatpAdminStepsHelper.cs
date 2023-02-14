@@ -1,5 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 

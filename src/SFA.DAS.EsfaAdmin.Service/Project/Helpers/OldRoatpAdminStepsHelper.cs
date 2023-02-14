@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers
 {
     public class OldRoatpAdminStepsHelper : RoatpAdminStepsHelper
     {

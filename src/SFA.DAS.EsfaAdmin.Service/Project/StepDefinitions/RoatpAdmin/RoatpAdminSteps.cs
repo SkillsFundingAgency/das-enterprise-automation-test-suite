@@ -1,8 +1,8 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.StepDefinitions.RoatpAdmin
 {
     [Binding]
     public class RoatpAdminSteps
@@ -68,7 +68,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         {
             _searchPage = _roatpAdminStepsHelper.
                 InitatesAnApplication(providerType)
-                .VerifyNewProviderHasBeenAdded();         
+                .VerifyNewProviderHasBeenAdded();
         }
 
         [When(@"the admin update the provider details")]

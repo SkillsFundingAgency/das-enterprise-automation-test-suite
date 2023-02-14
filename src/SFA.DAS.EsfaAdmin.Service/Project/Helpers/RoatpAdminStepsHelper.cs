@@ -1,7 +1,7 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers
 {
     public abstract class RoatpAdminStepsHelper
     {
@@ -30,6 +30,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             _loginStepsHelper.SubmitValidLoginDetails();
             return new RoatpAdminHomePage(_context);
-        } 
+        }
     }
 }

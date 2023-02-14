@@ -1,18 +1,19 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.EsfaAdmin.Service.Project;
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers
 {
     public class RoatpAdminLoginStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly RoatpConfig _config;
+        private readonly EsfaAdminConfig _config;
 
         public RoatpAdminLoginStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetRoatpConfig<RoatpConfig>();
+            _config = context.GetEsfaAdminConfig<EsfaAdminConfig>();
         }
 
         public void SubmitValidLoginDetails() => SubmitValidLoginDetails(_config.AdminUserName, _config.AdminPassword);

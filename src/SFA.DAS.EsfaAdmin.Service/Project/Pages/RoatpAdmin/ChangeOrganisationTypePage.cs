@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
 {
     public class ChangeOrganisationTypePage : ChangeBasePage
     {
@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public ResultsFoundPage ConfirmNewOrganisationType()
         {
-            formCompletionHelper.ClickElement(() => 
+            formCompletionHelper.ClickElement(() =>
             {
                 var randomElement = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs));
                 objectContext.UpdateOrganisationType(randomElement?.Text);

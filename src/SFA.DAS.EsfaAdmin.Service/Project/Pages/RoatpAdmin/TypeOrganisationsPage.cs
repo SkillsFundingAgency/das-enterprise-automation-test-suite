@@ -2,7 +2,7 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
+namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin
 {
     public class TypeOrganisationsPage : RoatpAdminBasePage
     {
