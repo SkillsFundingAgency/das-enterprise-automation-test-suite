@@ -1,6 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-
-namespace SFA.DAS.EsfaAdmin.Service.Project;
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project;
 
 public static class ObjectContextExtension
 {
