@@ -11,12 +11,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     public abstract class AddAndEditApprenticeDetailsBasePage : ApprovalsBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-        private static By FirstNameField => By.Id("FirstName");
-        private static By LastNameField => By.Id("LastName");
-        private static By EmailField => By.Id("Email");
-        private static By DateOfBirthDay => By.Id("BirthDay");
-        private static By DateOfBirthMonth => By.Id("BirthMonth");
-        private static By DateOfBirthYear => By.Id("BirthYear");
+        private static By Uln => By.Name("Uln");
+        private static By FirstNameField => By.Name("FirstName");
+        private static By LastNameField => By.Name("LastName");
+        private static By EmailField => By.Name("Email");
+        private static By DateOfBirthDay => By.Name("BirthDay");
+        private static By DateOfBirthMonth => By.Name("BirthMonth");
+        private static By DateOfBirthYear => By.Name("BirthYear");
         private static By ActualStartDateDay => By.Id("ActualStartDay");
         public static By ActualStartDateMonth => By.Id("ActualStartMonth");
         public static By ActualStartDateYear => By.Id("ActualStartYear");
@@ -26,12 +27,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public static By EndDateYear => By.Id("EndYear");
         private static By EmploymentEndMonth => By.Id("EmploymentEndMonth");
         private static By EmploymentEndYear => By.Id("EmploymentEndYear");
-        private static By TrainingCost => By.Id("Cost");
+        private static By TrainingCost => By.Name("Cost");
         private static By EmploymentPrice => By.Id("EmploymentPrice");
         private static By EmployerReference => By.Id("Reference");
-        private static By StartDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-StartDate']");
-        private static By EndDateErrorMessagelLink => By.XPath("//*[@data-focuses='error-message-EndDate']");
-        protected virtual By AddButtonSelector => By.XPath("//button[text()='Add']");
+        private static By StartDateErrorMessagelLink => By.XPath("//*[contains(@data-focuses, 'error-message-StartDate')]");
+        private static By EndDateErrorMessagelLink => By.XPath("//*[contains(@data-focuses, 'error-message-EndDate')]");
+        protected virtual By SaveButtonSelector => GetFormSubmitButton(); 
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
         private By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
@@ -115,6 +116,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public void VerifyOverlappingTrainingDetailsError(bool displayStartDateError, bool displayEndDateError)
         {
+            if (pageInteractionHelper.IsElementDisplayed(Uln))
+                formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
+
+            EnterApprenticeName();
+
             var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
@@ -125,7 +131,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             EnterTrainingCostAndEmpReference();
 
-            formCompletionHelper.ClickElement(AddButtonSelector);
+            formCompletionHelper.ClickElement(SaveButtonSelector);
 
             ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
@@ -184,7 +190,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         private void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
+
         private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingCost);
+
+        private By GetFormSubmitButton()
+        {
+            return pageInteractionHelper.GetUrl().Contains("eas")
+                ? By.XPath("//button[text()='Save']")
+                : By.XPath("//button[text()='Add']");
+        }
 
     }
 }
