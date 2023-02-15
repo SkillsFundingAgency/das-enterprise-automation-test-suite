@@ -24,8 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
-        private By EditDeliveryModelLink => By.Id("change-delivery-model-link");
-        private By DeliveryModelLabel => By.Id("delivery-model-label");
+        private By EditDeliveryModelLink => GetEditDeliveryModelLink();
+        private By DeliveryModelValue => GetDeliveryModelValue();
 
         public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
@@ -129,7 +129,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelValue);
 
         public EditApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
         {
@@ -145,7 +145,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public bool ConfirmDeliveryModelLabelText(string deliveryModel)
         {
-            if (pageInteractionHelper.VerifyText(DeliveryModelLabel, deliveryModel) == true)
+            if (pageInteractionHelper.VerifyText(DeliveryModelValue, deliveryModel) == true)
             {
                 return true;
             }
@@ -162,6 +162,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(SaveButton);
             return new ApproveApprenticeDetailsPage(context);
+        }
+
+        private By GetEditDeliveryModelLink()
+        {
+            return pageInteractionHelper.GetUrl().Contains("/unapproved")
+                ? By.Id("change-delivery-model-link")
+                : By.CssSelector("button[name='ChangeDeliveryModel']");
+        }
+
+        private By GetDeliveryModelValue()
+        {
+            return pageInteractionHelper.GetUrl().Contains("/unapproved")
+                ? By.Id("delivery-model-value")
+                : By.XPath("//*[@id=\"editApprenticeship\"]/div[7]/p[2]");
         }
     }
 }
