@@ -72,10 +72,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
 
-            if (action == "can")
-                _providerStepsHelper.ValidateProviderCanEditApprovedApprentice();
-            else
-                _providerStepsHelper.ValidateProviderCannotEditApprovedApprentice();
+            _providerStepsHelper.ValidateProviderEditApprovedApprentice(action == "can");
         }
 
         internal void SetApprenticeDetailsInContext(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, int learnerNumber)

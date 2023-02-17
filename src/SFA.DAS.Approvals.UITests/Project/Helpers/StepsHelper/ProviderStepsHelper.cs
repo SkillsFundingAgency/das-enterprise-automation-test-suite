@@ -606,9 +606,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public bool FindLearnerBySimplifiedPaymentsPilotFilter(SimplifiedPaymentsPilot status) => GoToProviderHomePage().GoToProviderManageYourApprenticePage().isPaymentsPilotLearnerDisplayed(status);
 
-        public void ValidateProviderCannotEditApprovedApprentice() => new ProviderManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails().ValidateProviderCannotEditApprovedApprentice();
-
-        public void ValidateProviderCanEditApprovedApprentice() => new ProviderManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails().ValidateProviderCanEditApprovedApprentice();
+        public void ValidateProviderEditApprovedApprentice(bool isDisplayed) => new ProviderManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(isDisplayed);
 
         private ProviderApproveApprenticeDetailsPage AddApprentices(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool isFlexiPaymentsPilot = false)
         {

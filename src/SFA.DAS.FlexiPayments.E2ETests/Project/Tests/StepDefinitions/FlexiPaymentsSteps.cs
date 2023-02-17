@@ -177,10 +177,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
 
-            if (action == "can")
-                _apprenticeDetailsPage.ValidateEmployerCanEditApprovedApprentice();
-            else
-                _apprenticeDetailsPage.ValidateEmployerCannotEditApprovedApprentice();
+            _apprenticeDetailsPage.ValidateEmployerEditApprovedApprentice(action == "can");
         }
 
 

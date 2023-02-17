@@ -129,22 +129,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ThisApprenticeshipEndDatePage(context);
         }
 
-        public void ValidateEmployerCanEditApprovedApprentice()
+        public void ValidateEmployerEditApprovedApprentice(bool isDisplayed)
         {
+            string message() => isDisplayed ? "is NOT displayed" : "is displayed";
+
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is NOT displayed");
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink), "Edit Apprentice Status link is NOT displayed");
-
-            });
-        }
-
-        public void ValidateEmployerCannotEditApprovedApprentice()
-        {
-            Assert.Multiple(() =>
-            {
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), "Edit Apprentice Details link is displayed");
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink), "Edit Apprentice Status link is displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), Is.EqualTo(isDisplayed), $"Edit Apprentice Details link {message}");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink), Is.EqualTo(isDisplayed), $"Edit Apprentice Status link {message}");
 
             });
         }
