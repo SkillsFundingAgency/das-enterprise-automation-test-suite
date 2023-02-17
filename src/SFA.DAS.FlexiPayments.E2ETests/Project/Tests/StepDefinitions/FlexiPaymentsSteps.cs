@@ -165,7 +165,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"Employer searches learner (.*) on Manage your apprentices page")]
         public void WhenEmployerSearchesLearnerOnManageYourApprenticesPage(int learnerNumber)
         {
-            listOfApprentices = _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
+            listOfApprentices = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
 
             _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
 
@@ -190,7 +190,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             foreach (var row in table.Rows) listOfApprentice.Add(ReadApprenticeData(row));
 
-            _context.Set(listOfApprentice, "listofapprenticeconfigkey");
+            _context.Set(listOfApprentice);
 
             return listOfApprentice;
         }

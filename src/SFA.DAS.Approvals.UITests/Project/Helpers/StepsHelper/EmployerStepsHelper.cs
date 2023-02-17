@@ -9,7 +9,6 @@ using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -23,7 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
         protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
         private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
-        private readonly string[] _tags;
 
 
         public EmployerStepsHelper(ScenarioContext context)
@@ -36,7 +34,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _tags = context.ScenarioInfo.Tags;
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -198,9 +195,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
 
         private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) 
-            => AddApprentices(_tags.Contains("flexi-payments") 
-                ? _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>()
-                : _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
+            => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
             => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
