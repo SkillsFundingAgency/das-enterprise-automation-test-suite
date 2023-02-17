@@ -58,7 +58,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         public void ProviderCanSearchLearnerUsingSimplifiedPaymentsPilotFilterSetToYesOnManageYourApprenticesPage(int learnerNumber, string filter)
         {
-            listOfApprentices = _context.GetListOfApprenticesConfig<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
+            listOfApprentices = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
 
             SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
 
