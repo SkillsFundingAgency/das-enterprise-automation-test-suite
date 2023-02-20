@@ -17,9 +17,9 @@ Scenario: FLP_E2E_EUA_02 Employer adds two apprentices details to a cohort and P
 		| 1       | false    | 2022/08/01                  | Null                      | 15000              |
 		| 2       | false    | 2022/09/01                  | Null                      | 18000              |
 	And validate the following data in Earnings Apprenticeship database
-		| ULN_Key | is_pilot | actual_start_date_str | start_date_str | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
-		| 1       | false    | Null                  | 2022/08/01     | 2023/07/01           | 15000        | 0            | 15000                |
-		| 2       | false    | Null                  | 2022/09/01     | 2023/08/01           | 18000        | 0            | 18000                |
+		| ULN_Key | funding_platform | actual_start_date_str | start_date_str | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
+		| 1       | 2                | Null                  | 2022/08/01     | 2023/07/01           | 15000        | 0            | 15000                |
+		| 2       | 2                | Null                  | 2022/09/01     | 2023/08/01           | 18000        | 0            | 18000                |
 	And validate earnings are not generated for the learners
 		| ULN_Key |
 		| 1       |

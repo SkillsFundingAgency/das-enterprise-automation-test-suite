@@ -36,11 +36,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"validate correct earnings numbers are displayed")]
         public void ThenValidateCorrectEarningsNumbersAreReported()
         {
-            var providerApprenticeshipIndicativeEarningsReportPage = new ProviderApprenticeshipIndicativeEarningsReportPage(_context);
+            var appsIndicativeEarningsReportPage = new ProviderApprenticeshipIndicativeEarningsReportPage(_context);
 
             var earnings = _earningsSqlDbHelper.GetApprenticeshipIndicativeEarnings(_objectContext.Get("ukprn"));
 
-            providerApprenticeshipIndicativeEarningsReportPage.ValidateEarnings(earnings.totalEarnings, earnings.levyEarnings, earnings.nonLevyEarnings);
+            appsIndicativeEarningsReportPage.ValidateEarnings(earnings);
 
         }
     }
