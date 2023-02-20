@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticeDetailsPage : EditApprenticeDetailsBasePage
+    public class EditApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => _pageTitle;
+        protected override string PageTitle => "Edit apprentice details";
 
         #region Helpers and Context
-        private readonly string _pageTitle;
         #endregion
 
         private By EditDateOfBirthDay => By.Id("BirthDay");
@@ -21,26 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditContinueButtonPersonalDetailsPage => By.XPath("//button[contains(text(),'Continue')]");
-        private By EditContinueButtonTrainingDetailsPage => By.XPath("//button[text()='Save']");
+        private By SaveButton => By.XPath("//button[text()='Save']");
         private By DeleteButton => By.LinkText("Delete");
         private By InputBox(string identifier) => By.CssSelector(identifier);
-        private By EditDeliveryModelLink => By.CssSelector("button[name='ChangeDeliveryModel']");
-        private By DeliveryModelLabel => By.XPath("//*[@id='editApprenticeship']/div[7]/p[2]");
+        private By EditDeliveryModelLink => GetEditDeliveryModelLink();
+        private By DeliveryModelValue => GetDeliveryModelValue();
 
-        public EditApprenticeDetailsPage(ScenarioContext context) : base(context, false)
+        public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
-            _pageTitle = DeterminePageTitle();
-            VerifyPage();
-        }
-
-        private string DeterminePageTitle()
-        {
-            var title = pageInteractionHelper.GetUrl().Contains("/unapproved/") 
-                ? "Edit personal details" 
-                : "Edit apprentice details";
-
-            return title;
         }
 
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
@@ -57,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected override void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
+        protected void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
@@ -84,13 +72,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditDateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(EditDateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
-            formCompletionHelper.ClickElement(EditContinueButtonPersonalDetailsPage);
 
             AddValidEndDate();
             
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
-            formCompletionHelper.ClickElement(EditContinueButtonTrainingDetailsPage);
+            formCompletionHelper.ClickElement(SaveButton);
             return new AfterEditApproveApprenticeDetailsPage(context);
         }
 
@@ -142,7 +129,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelLabel);
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelValue);
 
         public EditApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
         {
@@ -152,6 +139,43 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Apprentice details page references delivery model");
             }
             else return this;
+        }
+
+        public bool IsEditDeliveryModelLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditDeliveryModelLink);
+
+        public bool ConfirmDeliveryModelLabelText(string deliveryModel)
+        {
+            if (pageInteractionHelper.VerifyText(DeliveryModelValue, deliveryModel) == true)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public ConfirmApprenticeshipDeliveryModelPage ClickEditDeliveryModel()
+        {
+            formCompletionHelper.ClickElement(EditDeliveryModelLink);
+            return new ConfirmApprenticeshipDeliveryModelPage(context);
+        }
+
+        public ApproveApprenticeDetailsPage SaveEditedTrainingDetails()
+        {
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ApproveApprenticeDetailsPage(context);
+        }
+
+        private By GetEditDeliveryModelLink()
+        {
+            return pageInteractionHelper.GetUrl().Contains("/unapproved")
+                ? By.Id("change-delivery-model-link")
+                : By.CssSelector("button[name='ChangeDeliveryModel']");
+        }
+
+        private By GetDeliveryModelValue()
+        {
+            return pageInteractionHelper.GetUrl().Contains("/unapproved")
+                ? By.Id("delivery-model-value")
+                : By.XPath("//*[@id=\"editApprenticeship\"]/div[7]/p[2]");
         }
     }
 }

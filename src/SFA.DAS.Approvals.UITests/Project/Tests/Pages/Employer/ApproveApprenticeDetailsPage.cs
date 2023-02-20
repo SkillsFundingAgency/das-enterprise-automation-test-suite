@@ -84,11 +84,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return this;
         }
 
-        public EditPersonalDetailsPage SelectEditApprenticeLink(int apprenticeNumber = 0)
+        public EditApprenticeDetailsPage SelectEditApprenticeLink(int apprenticeNumber = 0)
         {
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            return new EditPersonalDetailsPage(context);
+            return new EditApprenticeDetailsPage(context);
         }
 
         public string GetBannerHeading() => pageInteractionHelper.GetText(NotificationBannerHeading);
