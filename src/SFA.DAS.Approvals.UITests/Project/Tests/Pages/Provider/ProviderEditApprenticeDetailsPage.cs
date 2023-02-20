@@ -61,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return CheckRPLConditionAndSave();
         }
 
-        public ProviderApproveApprenticeDetailsPage EnterUlnAndActualStartDayThenSave(int apprenticeNumber)
+        public ProviderApproveApprenticeDetailsPage EnterUlnAndTrainingStartEndDaysThenSave(int apprenticeNumber)
         {
             EnterUlnForFlexiPayments(apprenticeNumber);
 
@@ -123,7 +123,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave()
         {
-            if (_isFlexiPaymentPilotLearner) AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
+            if (_isFlexiPaymentPilotLearner)
+            {
+                AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
+                AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
+            }
 
             bool rpl = CheckRPLCondition(false);
 
@@ -235,6 +239,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         private void AddActualStartDateDay(DateTime dateTime) => formCompletionHelper.EnterText(ActualStartDateDay, dateTime.Day);
+        private void AddPlannedEndDateDay(DateTime dateTime) => formCompletionHelper.EnterText(EndDateDay, dateTime.Day);
 
         private bool CheckRPLCondition(bool rpl = false)
         {
