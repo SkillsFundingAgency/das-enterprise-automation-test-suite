@@ -21,10 +21,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By ActualStartDateDay => By.Id("ActualStartDay");
         public static By ActualStartDateMonth => By.Id("ActualStartMonth");
         public static By ActualStartDateYear => By.Id("ActualStartYear");
-        public static By StartDateMonth => By.Id("StartMonth");
-        public static By StartDateYear => By.Id("StartYear");
-        public static By EndDateMonth => By.Id("EndMonth");
-        public static By EndDateYear => By.Id("EndYear");
+        public static By StartDateMonth => By.Name("StartMonth");
+        public static By StartDateYear => By.Name("StartYear");
+        public static By EndDateMonth => By.Name("EndMonth");
+        public static By EndDateYear => By.Name("EndYear");
         private static By EmploymentEndMonth => By.Id("EmploymentEndMonth");
         private static By EmploymentEndYear => By.Id("EmploymentEndYear");
         private static By TrainingCost => By.Name("Cost");
