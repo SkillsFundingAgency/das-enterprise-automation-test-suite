@@ -8,7 +8,7 @@ public class AS_CheckWithdrawalRequestPage : EPAO_BasePage
 
     public AS_WithdrawalRequestOverviewPage ContinueWithWithdrawalRequest()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(By.CssSelector("#yes")));
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(By.CssSelector("#confirm-withdrawal-request")));
 
         Continue();
 
