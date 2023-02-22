@@ -4,11 +4,13 @@ public class AS_CheckWithdrawalRequestPage : EPAO_BasePage
 {
     protected override string PageTitle => "Check withdrawal request";
 
+    private static By ConfirmRequest => By.CssSelector(".govuk-radios__label[for='confirm-withdrawal-request']");
+
     public AS_CheckWithdrawalRequestPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public AS_WithdrawalRequestOverviewPage ContinueWithWithdrawalRequest()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(By.CssSelector("#yes")));
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmRequest));
 
         Continue();
 
