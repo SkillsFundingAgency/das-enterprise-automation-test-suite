@@ -1,6 +1,5 @@
 ﻿Feature: MS_04_TribalUpdateProviderInfo
 
-@roatp
 @managingstandards
 @regression
 @esfaadmin
