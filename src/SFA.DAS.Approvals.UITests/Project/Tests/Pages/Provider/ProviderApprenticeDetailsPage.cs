@@ -24,6 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
         private By DeliveryModel => By.Id("apprentice-deliverymodel");
+        private By SimplifiedPatmentsPilotNotificationMessage => By.XPath("//ol/li[2]");
+        private string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
@@ -131,6 +133,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             string message() => isDisplayed ? "is NOT displayed" : "is displayed";
 
             Assert.That(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), Is.EqualTo(isDisplayed), $"Edit Apprentice Details link {message}");
+        }
+
+        public void ValidateFlexiPaymentDataLockMessageDisplayed(bool isDisplayed)
+        {
+            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPatmentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
+            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPatmentsPilotNotificationMessage));
         }
     }
 }
