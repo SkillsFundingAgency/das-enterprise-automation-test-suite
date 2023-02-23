@@ -109,8 +109,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .DynamicHomePageNonLevyEmployerAddsApprentices()
                  .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
                  .EmployerSelectsAStandard()
-                 .DraftDynamicHomePageAddValidPersonalDetails()
-                 .DraftDynamicHomePageSubmitValidApprenticeDetails()
+                 .DraftDynamicHomePageAddValidApprenticeDetails()
                  .DraftReturnToHomePage()
                  .CheckDraftStatusAndAddDetails()
                  .ContinueToAddValidApprenticeDetails()
@@ -177,32 +176,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 _context.Replace(apprentice.Item2);
             }
 
-            var firstApprentice = listOfApprentice.First();
+            var firstApprentice = listOfApprentice[0];
 
             ReplaceInContext(firstApprentice);
 
             var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
 
-            listOfApprentice.Remove(firstApprentice);
-
-            foreach (var apprentice in listOfApprentice)
+            for (int i = 1; i < listOfApprentice.Count; i++)
             {
+                var apprentice = listOfApprentice[i];
+
                 ReplaceInContext(apprentice);
 
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }
 
-            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count + 1);
+            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
+        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) 
+            => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
+        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
+            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
-            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
-
-        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -210,7 +209,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
-        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -218,7 +217,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .EmployerSelectRegularDeliveryModelAndContinue();
         }
 
-        public AddPersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
+        public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(_context).AddAnApprentice()
                 .StartNowToAddTrainingProvider()
@@ -244,8 +243,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
                 .SelectViewCurrentCohortDetails()
-                .SelectEditApprenticeLink()
-                .ContinueToAddTrainingDetailsPage();
+                .SelectEditApprenticeLink();
 
             Assert.True(employerEditTrainingDetailsPage.ConfirmDeliveryModelLabelText("Flexi-job agency"));
             Assert.True(employerEditTrainingDetailsPage.IsEditDeliveryModelLinkVisible());
@@ -258,7 +256,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .SelectEditApprenticeLink()
-                  .ContinueToAddTrainingDetailsPage()
                   .ClickEditDeliveryModelLink()
                   .EditDeliveryModelToFlexiAndContinue()
                   .SaveEditedTrainingDetails()
@@ -336,7 +333,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return new ApproveApprenticeDetailsPage(_context)
                 .SelectEditApprenticeLink()
-                .ContinueToAddTrainingDetailsPage()
                 .ClickEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()
                 .ValidateDeliveryModelDisplayed("Regular")

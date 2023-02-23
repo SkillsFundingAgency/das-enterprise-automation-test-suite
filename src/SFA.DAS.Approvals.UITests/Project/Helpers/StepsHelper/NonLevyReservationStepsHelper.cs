@@ -59,20 +59,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return NonLevyEmployerAddsApprenticesUsingReservations(listOfApprentice.Take(numberOfApprentices).ToList(), shouldConfirmOnlyStandardCoursesSelectable);
         }
 
-        private AddPersonalDetailsPage AddAnotherApprentice(ApproveApprenticeDetailsPage approveApprenticeDetailsPage)
+        private AddApprenticeDetailsPage AddAnotherApprentice(ApproveApprenticeDetailsPage approveApprenticeDetailsPage)
         {
             var page = approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().ChooseCreateANewReservationRadioButton().ClickSaveAndContinueButton();
 
             return _employerReservationStepsHelper.CreateReservation(page).AddAnotherApprentice().EmployerSelectsAStandard();
         }
 
-        private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddPersonalDetailsPage addPersonalDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable)
+        private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
-            var trainingDetailsPage = addPersonalDetailsPage.SubmitValidPersonalDetails();
+            if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
 
-            if (shouldConfirmOnlyStandardCoursesSelectable) trainingDetailsPage = addPersonalDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
-
-            return trainingDetailsPage.SubmitValidTrainingDetails(true);
+            return addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
         }
 
         private StartAddingApprenticesPage NonLevyEmployerAddsProviderDetails()

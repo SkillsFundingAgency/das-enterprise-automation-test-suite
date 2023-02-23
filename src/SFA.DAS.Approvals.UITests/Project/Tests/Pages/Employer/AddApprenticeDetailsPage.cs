@@ -5,22 +5,34 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddTrainingDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class AddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override By PageHeader => By.CssSelector("#draftApprenticeshipSection2 > h1");
-        protected override string PageTitle => "Add training details";
+        private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
+        private static By DeliveryModelLabel => By.Id("delivery-model-label");
 
-        private static By SaveAndContinueButton => By.CssSelector("button[id=continue-button]");
+        private static By DeliveryModelType => By.Id("delivery-model-value");
 
-        private static By DeliveryModelLabel => By.XPath("//p[text()='Delivery model']");
+        private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
 
-        private static By DeliveryModelType => By.XPath("//p[text()='Delivery model'] // following-sibling :: p");
+        protected override string PageTitle => "Add apprentice details";
 
-        private static By EditDeliverModelLink => By.Name("ChangeDeliveryModel");
+        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
-        public AddTrainingDetailsPage(ScenarioContext context) : base(context) { }
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF)
+        {
+            SubmitValidPersonalDetails();
+            SubmitValidTrainingDetails(isMF);
 
-        public ApproveApprenticeDetailsPage SubmitValidTrainingDetails(bool isMF)
+            return new ApproveApprenticeDetailsPage(context);
+        }
+
+        public void SubmitValidPersonalDetails()
+        {
+            EnterApprenticeMandatoryValidDetails();
+            EnterDob();
+        }
+
+        public void SubmitValidTrainingDetails(bool isMF)
         {
             var courseStartDate = GetCourseStartDate();
 
@@ -35,12 +47,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             SaveAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
-
-            return new ApproveApprenticeDetailsPage(context);
         }
 
-        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageAddValidApprenticeDetails()
         {
+            EnterApprenticeMandatoryValidDetails();
+
             SaveAndContinue();
 
             return new YouCantApproveThisApprenticeRequestUntilPage(context);

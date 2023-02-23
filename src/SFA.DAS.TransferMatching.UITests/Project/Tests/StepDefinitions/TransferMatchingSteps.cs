@@ -236,8 +236,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
                 .EmployerSelectsAStandard()
-                .SubmitValidPersonalDetails()
-                .SubmitValidTrainingDetails(false)
+                .SubmitValidApprenticeDetails(false)
                 .EmployerFirstApproveAndNotifyTrainingProvider();
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();

@@ -136,8 +136,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                       .ConfirmEmployer()
                                                       .ProviderSelectsAStandard();
 
-            providerAddApprenticeDetailsPage.SubmitValidPersonalDetails();
-
             VerifyOverlappingTrainingDetailsError(table, providerAddApprenticeDetailsPage);
          }
 
@@ -170,8 +168,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                 .GoToApprenticeRequestsPage()
                                                 .GoToReadyToReview()
                                                 .SelectViewCurrentCohortDetails()
-                                                .SelectEditApprenticeLink()
-                                                .ContinueToAddTrainingDetailsPage();
+                                                .SelectEditApprenticeLink();
 
             VerifyOverlappingTrainingDetailsError(table, editTrainingDetailsPage);
         }
