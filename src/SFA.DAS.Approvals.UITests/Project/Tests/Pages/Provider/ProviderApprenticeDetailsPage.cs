@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
         private By DeliveryModel => By.Id("apprentice-deliverymodel");
-        private By SimplifiedPatmentsPilotNotificationMessage => By.XPath("//ol/li[2]");
+        private By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) { }
