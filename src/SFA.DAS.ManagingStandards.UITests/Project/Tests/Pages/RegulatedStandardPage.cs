@@ -4,8 +4,8 @@ public class RegulatedStandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "This is a regulated standard";
 
-    private static By ApprovesYesRadio => By.Id("IsApprovedByRegulator");
-    private static By ApprovesNoRadio => By.Id("IsApprovedByRegulator-No");
+    private static By ApprovesYesRadio => By.Id("ConfirmRegulatedStandard-Yes");
+    private static By ApprovesNoRadio => By.Id("ConfirmRegulatedStandard-No");
     public RegulatedStandardPage(ScenarioContext context) : base(context) { }
 
     public ManageTheStandardsYouDeliverPage ApproveStandard_FromStandardsPage()
