@@ -117,7 +117,7 @@ public class MS_YourDetails_Steps
         YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
         reviewYourDetailsPage.AccessStandards()
             .AccessAddStandard()
-            .SelectActuaryAndContinue()
+            .SelectAbbattoirAndContinue()
             .YesStandardIsCorrectAndContinue()
             .Add_ContactInformation()
             .ConfirmAtOneofYourTrainingLocations_AddStandard()
