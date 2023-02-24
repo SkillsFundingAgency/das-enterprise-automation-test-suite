@@ -25,7 +25,7 @@ public class AedStepsHelper
     {
         getHelpWithFindingATrainingProviderPage.EnterValidDetails(noOfApprentices).ConfirmYourAnswers();
 
-        var email = _context.Get<AedDataHelper>().RandomEmail;
+        var email = _context.Get<AedDataHelper>().Email;
 
         _tabHelper.OpenInNewTab(_context.Get<MailinatorApiHelper>().GetData(email, "https://"));
 
