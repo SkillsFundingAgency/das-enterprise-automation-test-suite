@@ -21,5 +21,8 @@ public class Hooks
     public void SetUpMailinatorApiHelpers() => _context.Set(mailinatorApiHelper = new MailinatorApiHelper(_context));
 
     [AfterScenario(Order = 22)]
-    public void DeleteMessages() => _tryCatch.AfterScenarioException(() => mailinatorApiHelper.DeleteMessages());
+    public void DeleteMessages()
+    {
+        if (_context.TestError != null) _tryCatch.AfterScenarioException(() => mailinatorApiHelper.DeleteInbox());
+    }
 }
