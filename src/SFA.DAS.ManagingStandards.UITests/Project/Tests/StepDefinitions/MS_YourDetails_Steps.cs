@@ -82,7 +82,7 @@ public class MS_YourDetails_Steps
     {
         ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
         manageAStandard_TeacherPage.AccessEditTrainingLocations()
-            .AccessAddTrainingVenue()
+            .AccessSeeTrainingVenue()
             .ChooseTheVenueDeliveryAndContinue()
             .NavigateBackToStandardPage();
     }
@@ -121,7 +121,7 @@ public class MS_YourDetails_Steps
             .YesStandardIsCorrectAndContinue()
             .Add_ContactInformation()
             .ConfirmAtOneofYourTrainingLocations_AddStandard()
-            .AccessAddANewTrainingVenue_AddStandard()
+            .AccessSeeANewTrainingVenue_AddStandard()
             .ChooseTheVenueDeliveryAndContinue()
             .Save_NewTrainingVenue_Continue()
             .Save_NewStandard_Continue();

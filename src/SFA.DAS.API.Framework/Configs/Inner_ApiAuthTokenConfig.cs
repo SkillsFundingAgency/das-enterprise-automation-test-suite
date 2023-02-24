@@ -15,4 +15,10 @@ public class Inner_ApiAuthTokenConfig
     public string CoursesAppServiceName { get; set; }
 
     public string CommitmentsAppServiceName { get; set; }
+
+    public string EmployerFinanceAppServiceName { get; set; }
+
+    public string EmployerAccountsAppServiceName { get; set; }
+
+    public string EmployerAccountsLegacyAppServiceName { get; set; }
 }

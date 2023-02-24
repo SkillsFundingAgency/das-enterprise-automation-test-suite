@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -58,7 +58,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private string FindLocalDriverServiceLocation(string executableName)
         {
-            string[] file = Directory.GetFiles(Regex.Replace(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Za-z]*Tests", "SFA.DAS.UI.FrameworkHelpers"), executableName);
+            string[] file = Directory.GetFiles(Regex.Replace(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Z0-9a-z]*Tests", "SFA.DAS.UI.FrameworkHelpers"), executableName);
 
             return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
         }

@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.ConfigurationBuilder;
 using System;
 using System.Linq;
 using SFA.DAS.Registration.UITests.Project;
@@ -11,6 +10,8 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service.Project.Helpers;
+using Polly;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -25,6 +26,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerWithMultipleAccountsUser _changeOfEmployerLevyUser;
+        private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         private readonly string _oldEmployerName;
         private readonly string _newEmployerName;
@@ -41,16 +44,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _oldEmployerName = _changeOfEmployerLevyUser.OrganisationName;
             _newEmployerName = _changeOfEmployerLevyUser.SecondOrganisationName;
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
-            
+            _cohortReferenceHelper = new CohortReferenceHelper(context);
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"the provider has an apprentice with stopped status")]
         [Given(@"the employer has an apprentice with stopped status")]
         public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
         {
-            EmployerAndProviderApprove(_context.ScenarioInfo.Tags.Contains("changeOfEmployer"));
-            
-            _employerStepsHelper.StopApprenticeThisMonth();
+            bool isChangeOfEmployer = _context.ScenarioInfo.Tags.Contains("changeOfEmployer");
+            EmployerAndProviderApprove(isChangeOfEmployer);
+
+            StopApprentice reasonToStop = isChangeOfEmployer ? StopApprentice.LeftEmployer : StopApprentice.ChangeTrainingProvider;
+            _employerStepsHelper.StopApprenticeThisMonth(reasonToStop);
         }
 
         [When(@"employer sends COP request to new provider")]
@@ -90,7 +96,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"a new live apprenticeship record is created")]
-        public void ThenANewLiveApprenticeshipRecordIsCreated() => _employerStepsHelper.GoToManageYourApprenticesPage().VerifyApprenticeExists();
+        public void ThenANewLiveApprenticeshipRecordIsCreated() => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().VerifyApprenticeExists();
 
         [When(@"new employer rejects the cohort")]
         public void WhenNewEmployerRejectsTheCohort()
@@ -108,7 +114,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }
@@ -133,10 +138,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Validate that old Employer cannot request CoP during in-flight CoE")]
-        public void WhenValidateThatOldEmployerCannotRequestCoPDuringIn_FlightCoE()
+        public void ValidateIsChangeOfProviderLinkDisplayed()
         {
             bool IsChangeOfProviderLinkDisplayed
-               = _employerStepsHelper
+               = _apprenticeHomePageStepsHelper
                .GoToManageYourApprenticesPage()
                .SelectViewCurrentApprenticeDetails()
                .IsChangeOfProviderLinkDisplayed();
@@ -149,13 +154,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_oldEmployerName);
 
-            bool IsChangeOfProviderLinkDisplayed
-              = _employerStepsHelper
-              .GoToManageYourApprenticesPage()
-              .SelectViewCurrentApprenticeDetails()
-              .IsChangeOfProviderLinkDisplayed();
-
-            Assert.IsFalse(IsChangeOfProviderLinkDisplayed, "Validate that CoP link is not available for the old employer");
+            ValidateIsChangeOfProviderLinkDisplayed();
         }
 
         [Then(@"previous Provider should not be able to start CoE on the old record when CoP is inflight")]
@@ -279,11 +278,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-            _employerStepsHelper.SetCohortReference(cohortReference);
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }
 
-        private void UpdateNewCohortReference() => _employerStepsHelper.UpdateNewCohortReference();
+        private void UpdateNewCohortReference() => _cohortReferenceHelper.UpdateNewCohortReference();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }

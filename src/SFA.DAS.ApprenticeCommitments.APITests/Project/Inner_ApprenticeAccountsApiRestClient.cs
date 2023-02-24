@@ -2,7 +2,7 @@
 using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
@@ -15,9 +15,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string AppServiceName => config.config.ApprenticeAccountsAppServiceName;
 
-        public IRestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
+        public RestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
         {
-            return Execute(Method.POST, $"/apprentices", payload, expectedResponse);
+            return Execute(Method.Post, $"/apprentices", payload, expectedResponse);
         }
     }
 }

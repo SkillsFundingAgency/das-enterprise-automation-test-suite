@@ -1,5 +1,4 @@
-﻿
-namespace SFA.DAS.RAA_V2.APITests.Project;
+﻿namespace SFA.DAS.RAA_V2.APITests.Project;
 
 public class Outer_RecruitApiClient : Outer_BaseApiRestClient
 {

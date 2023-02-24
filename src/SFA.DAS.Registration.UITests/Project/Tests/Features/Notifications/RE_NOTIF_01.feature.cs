@@ -78,15 +78,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("mailinator")]
+        [NUnit.Framework.CategoryAttribute("verifyemailnotification")]
         public void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
-                    "mailinator"};
+                    "mailinator",
+                    "verifyemailnotification"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

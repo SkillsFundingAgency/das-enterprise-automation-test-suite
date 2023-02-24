@@ -24,6 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA);
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createTraineeshipPage, string employername);
 
@@ -36,11 +37,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             checkYourAnswersPage.SubmitAdvert().SetVacancyReference();
 
 
-        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA)
+        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA, bool isProvider)
         {
             var createAdvertPage = CreateAnApprenticeshipAdvertOrVacancy();
 
-            createAdvertPage.VerifyAdvertSummarySectionStatus(NotStarted);
+            createAdvertPage.VerifyAdvertSummarySectionStatus(isProvider ? InProgress : NotStarted);
 
             createAdvertPage = AdvertOrVacancySummary(createAdvertPage);
 
@@ -63,6 +64,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             createAdvertPage = AboutTheEmployer(createAdvertPage, employername, disabilityConfidence, isApplicationMethodFAA);
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
+            
+            createAdvertPage.VerifyApplicationSectionStatus(NotStarted);
+
+            createAdvertPage = Application(createAdvertPage);
+
+            createAdvertPage.VerifyApplicationSectionStatus(Completed);
 
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 
@@ -74,7 +81,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         {
             var createTraineeshipPage = CreateNewTraineeshipVacancy();
 
-            createTraineeshipPage.VerifyAdvertSummarySectionStatus(NotStarted);
+            createTraineeshipPage.VerifyAdvertSummarySectionStatus(InProgress);
 
             createTraineeshipPage = AdvertOrVacancySummary(createTraineeshipPage);
 

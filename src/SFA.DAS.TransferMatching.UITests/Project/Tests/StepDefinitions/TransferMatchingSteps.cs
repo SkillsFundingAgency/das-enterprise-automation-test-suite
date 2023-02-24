@@ -8,12 +8,13 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project;
+using Polly;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -24,7 +25,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
+        private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
         private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
@@ -35,12 +36,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private EmployerStepsHelper _employerStepsHelper;
         private readonly UseTransferFundsPage _useTransferFundsPage;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
             _isAnonymousPledge = false;
-            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(context);
+            _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
             _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
@@ -48,6 +50,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _useTransferFundsPage = new UseTransferFundsPage(context);
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -233,8 +236,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
                 .EmployerSelectsAStandard()
-                .SubmitValidPersonalDetails()
-                .SubmitValidTrainingDetails(false)
+                .SubmitValidApprenticeDetails(false)
                 .EmployerFirstApproveAndNotifyTrainingProvider();
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
@@ -429,7 +431,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_receiver);
 
-            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
 
             manageYourApprenticePage.VerifyApprenticeExists();
         }

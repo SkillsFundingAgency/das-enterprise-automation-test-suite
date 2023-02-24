@@ -22,8 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public static DateTime GetAcademicYearEndDate() => GetAcademicYearEndDate(_currentAcademicYearStartDate);
 
-        public static DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new DateTime(academicYearStartDate.Year + 1, EndMonth, EndDay);
+        public static DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new(academicYearStartDate.Year + 1, EndMonth, EndDay);
 
-        public static DateTime GetNextAcademicYearStartDate() => new DateTime(_currentAcademicYearStartDate.Year + 1, StartMonth, StartDay);
+        public static DateTime GetNextAcademicYearStartDate() => new(_currentAcademicYearStartDate.Year + 1, StartMonth, StartDay);
+
+        public static int GetCurrentAcademicYear() => Convert.ToInt32(_currentAcademicYearStartDate.ToString("yy") + _currentAcademicYearStartDate.AddYears(1).ToString("yy"));
     }
 }

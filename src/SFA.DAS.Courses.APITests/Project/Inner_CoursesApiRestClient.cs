@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Net;
 
 namespace SFA.DAS.Courses.APITests.Project
@@ -15,7 +15,7 @@ namespace SFA.DAS.Courses.APITests.Project
 
         public void PerformHeathCheck(string endpoint, HttpStatusCode expectedResponse)
         {
-            Execute(RestSharp.Method.GET, endpoint, string.Empty, expectedResponse);
+            Execute(RestSharp.Method.Get, endpoint, string.Empty, expectedResponse);
         }
     }
 }

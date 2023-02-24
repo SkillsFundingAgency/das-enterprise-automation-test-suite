@@ -1,6 +1,4 @@
-﻿
-
-using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
@@ -19,9 +17,6 @@ public class SupportToolsSteps
         _stepsHelper = new StepsHelper(context);
         _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
     }
-
-    [Given(@"the User is logged into Support Tools")]
-    public void GivenTheUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportTools(false);
 
     [Given(@"Opens the Pause Utility")]
     [When(@"user opens Pause Utility")]
@@ -66,7 +61,13 @@ public class SupportToolsSteps
 
     [When(@"User selects all records and click on Stop Apprenticeship button")]
     public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton() => SelectAllRecords().ClickStopButton();
-    
+
+    [Given(@"the SCS User is logged into Support Tools")]
+    public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools(false);
+
+    [Given(@"the SCP User is logged into Support Tools")]
+    public void GivenTheSCPUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCPTools(false);
+
     private SearchForApprenticeshipPage SelectAllRecords()
     {
         var page = new SearchForApprenticeshipPage(_context, false);
@@ -111,10 +112,23 @@ public class SupportToolsSteps
         ValidateResumeSuccessful(ststusList);
     }
 
+    [Given(@"User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities")]
+    public void ThenUserShouldNOTBeAbleToSeePauseResumeSuspendAndReinstateUtilities()
+    {
+        ToolSupportHomePage toolSupportHomePage = new ToolSupportHomePage(_context);
+
+        Assert.IsFalse(toolSupportHomePage.IsPauseApprenticeshipLinkVisible());
+        Assert.IsFalse(toolSupportHomePage.IsResumeApprenticeshipLinkVisible());
+        Assert.IsFalse(toolSupportHomePage.IsReinstateApprenticeshipLinkVisible());
+        Assert.IsFalse(toolSupportHomePage.IsSuspendApprenticeshipLinkVisible());
+        Assert.IsTrue(toolSupportHomePage.IsStopApprenticeshipLinkVisible());
+    }
+
+
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportTools(false)
+        var status = _stepsHelper.ValidUserLogsinToSupportSCPTools(false)
                             .ClickSuspendUserAccountsLink()
                             .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()
@@ -132,7 +146,7 @@ public class SupportToolsSteps
         string expectedStatusBefore = "Suspended " + DateTime.Now.ToString("dd/MM/yyyy");
         string expectedStatusAfter = "Submitted successfully";
 
-        var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportTools(true)
+        var actualStatusBefore = _stepsHelper.ValidUserLogsinToSupportSCPTools(true)
                             .ClickReinstateUserAccountsLink()
                             .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()

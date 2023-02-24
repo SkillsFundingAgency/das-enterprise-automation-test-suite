@@ -2,7 +2,7 @@
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
@@ -11,14 +11,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly ApprenticeCommitmentsAccountsSqlDbHelper _appAccSqlDbHelper;
 
         public SetApprenticeDetailsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
         }
 

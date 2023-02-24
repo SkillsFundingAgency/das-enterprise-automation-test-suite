@@ -1,8 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -30,6 +31,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
 
+        private readonly CohortReferenceHelper _cohortReferenceHelper;
+
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+
+
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
@@ -40,6 +46,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
+            _cohortReferenceHelper = new CohortReferenceHelper(context);
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"the listed employer has approved apprentice")]
@@ -126,7 +134,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the employer accepts these changes")]
         public void WhenTheEmployerAcceptsTheseChanges()
         {
-            _employerStepsHelper
+            _apprenticeHomePageStepsHelper
                 .GoToManageYourApprenticesPage()
                     .SelectViewCurrentApprenticeDetails()
                     .ClickReviewChanges()
@@ -160,9 +168,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
 
             if (!(_objectContext.IsSameApprentice()))
-                _employerStepsHelper.SetCohortReference(cohortReference);
+                _cohortReferenceHelper.SetCohortReference(cohortReference);
             else
-                _employerStepsHelper.UpdateCohortReference(cohortReference);
+                _cohortReferenceHelper.UpdateCohortReference(cohortReference);
 
             _providerStepsHelper.Approve();
         }

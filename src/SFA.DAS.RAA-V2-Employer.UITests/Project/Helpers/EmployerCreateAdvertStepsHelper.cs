@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
@@ -16,12 +16,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         internal VacancyReferencePage SubmitDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
-            CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage));
+            CheckAndSubmitAdvert(CompleteAboutTheEmployer(createAdvertPage).EnterAdditionalQuestionsForApplicants().CompleteAllAdditionalQuestionsForApplicants());
 
-        internal PreviewYourAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
-            CompleteAboutTheEmployer(createAdvertPage).CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+            CompleteAboutTheEmployer(createAdvertPage).EnterAdditionalQuestionsForApplicants().CompleteAllAdditionalQuestionsForApplicants().CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
 
-        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new PreviewYourAdvertOrVacancyPage(context).DeleteVacancy().YesDeleteVacancy();
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new CreateAnApprenticeshipAdvertOrVacancyPage(context).CheckYourAnswers().PreviewAdvert().DeleteVacancy().YesDeleteVacancy();
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
 
@@ -73,6 +73,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
         {
+            
             return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertOrVacancySummary(createAdvertPage), true, RAAV2Const.NationalMinWages);
         }
 
@@ -81,6 +82,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             createAdvertPage = CreateFirstDraftAdvert(createAdvertPage);
 
             createAdvertPage = CompleteAboutTheEmployer(createAdvertPage);
+            
+            createAdvertPage = Application(createAdvertPage);
 
             CheckAndSubmitAdvert(createAdvertPage);
         }
@@ -109,9 +112,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress) => CreateANewAdvert(employername, isEmployerAddress, false, RAAV2Const.NationalMinWages);
 
-        internal VacancyReferencePage CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, true, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+        internal VacancyReferencePage CreateANewAdvert(bool disabilityConfidence, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(string.Empty, true, true, RAAV2Const.NationalMinWages, isApplicationMethodFAA, false);
 
-        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true);
+        internal VacancyReferencePage CreateANewAdvert(string employername, bool isEmployerAddress, bool disabilityConfidence, string wageType) => CreateANewAdvertOrVacancy(employername, isEmployerAddress, disabilityConfidence, wageType, true, false);
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy() => GoToRecruitmentHomePage().CreateAnApprenticeshipAdvert().GoToCreateAnApprenticeshipAdvertPage();
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
@@ -131,6 +134,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
                 .EnterContactDetailsAndGoToApplicationProcessPage(optionalFields)
                 .SelectApplicationMethod_Employer(isApplicationMethodFAA);
+
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
             string employername)
@@ -160,6 +164,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
+            createAdvertPage
+            .EnterAdditionalQuestionsForApplicants()
+            .CompleteAllAdditionalQuestionsForApplicants();
 
         protected CreateAnApprenticeshipAdvertOrVacancyPage CompleteAboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             AboutTheEmployer(SkillsAndQualifications(createAdvertPage), string.Empty, true, true);

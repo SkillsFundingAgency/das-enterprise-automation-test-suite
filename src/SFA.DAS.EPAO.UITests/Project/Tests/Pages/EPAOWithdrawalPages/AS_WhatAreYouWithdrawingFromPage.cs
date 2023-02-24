@@ -5,8 +5,8 @@ public class AS_WhatAreYouWithdrawingFromPage : EPAO_BasePage
     protected override string PageTitle => "What are you withdrawing from?";
 
     #region Locators
-    private static By AssessingASpecificStandardRaidoButton => By.XPath("//*[@id='TypeOfWithdrawal']");
-    private static By TheRegisterOfEPAOrganisationsRaidoButton => By.Id("TypeOfWithdrawal-2");
+    private static By AssessingASpecificStandardRaidoButton => By.CssSelector(".govuk-radios__label[for='withdrawal-type-standard']");
+    private static By TheRegisterOfEPAOrganisationsRaidoButton => By.CssSelector(".govuk-radios__label[for='withdrawal-type-register']");
     #endregion
 
     public AS_WhatAreYouWithdrawingFromPage(ScenarioContext context) : base(context) => VerifyPage();

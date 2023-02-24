@@ -3,6 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
@@ -149,7 +150,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             foreach (var apprentice in apprenticeList)
             {
-                var actualStatus = providerManageYourApprenticesPage.SearchForApprenntice(apprentice.ULN).GetStatus(apprentice.ULN);
+                var actualStatus = providerManageYourApprenticesPage.SearchForApprentice(apprentice.ULN).GetStatus(apprentice.ULN);
                 Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper() || actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
             }
 

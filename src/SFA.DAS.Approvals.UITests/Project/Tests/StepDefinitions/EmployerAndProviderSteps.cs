@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly EmployerCreateCohortStepsHelper _employerCreateCohortStepsHelper;
         private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
 
         public EmployerAndProviderSteps(ScenarioContext context)
@@ -22,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
+            _employerCreateCohortStepsHelper = new EmployerCreateCohortStepsHelper(context);
         }
 
 
@@ -30,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            _employerCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
 
             _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
 

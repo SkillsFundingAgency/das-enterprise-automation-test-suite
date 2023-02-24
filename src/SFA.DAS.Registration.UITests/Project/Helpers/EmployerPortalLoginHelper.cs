@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -45,6 +45,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             return homePage;
         }
+
+        public HomePage Login(LevyUser nonLevyUser) => Login(nonLevyUser, true);
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
 

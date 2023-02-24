@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -44,7 +45,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" : "dasautomation.com";
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" :
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("testinator")) ? GetPrivateDomainName() : "dasautomation.com";
 
             var aornDataHelper = new AornDataHelper();
 
@@ -70,5 +72,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
+
+        private string GetPrivateDomainName() => _context.Get<MailinatorApiHelper>().GetDomain();
     }
 }

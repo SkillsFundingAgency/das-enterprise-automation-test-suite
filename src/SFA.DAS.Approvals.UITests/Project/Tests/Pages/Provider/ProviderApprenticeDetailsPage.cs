@@ -18,13 +18,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By DateOfBirth => By.Id("apprentice-dob");
         private By Reference => By.Id("apprentice-reference");
         private By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        private By ViewChanges => By.Id("change-employer-link");        
+        private By ViewChanges => By.Id("change-employer-link");
         private By ViewChangesLink => By.LinkText("View changes");
         private By ViewDetailsLink => By.LinkText("View details");
         private By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
+        private By DeliveryModel => By.Id("apprentice-deliverymodel");
 
-        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
+        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         public ProviderReviewChangesPage ClickReviewChanges()
         {
@@ -37,6 +38,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             ClickEditApprenticeDetailsLink();
             return new ProviderEditApprenticeCoursePage(context);
         }
+
+        public ProviderEditApprenticeDetailsPage ClickEditApprenticeLink()
+        {
+            ClickEditApprenticeDetailsLink();
+            return new ProviderEditApprenticeDetailsPage(context);
+        }
+
 
         public ProviderAccessDeniedPage ClickEditApprenticeDetailsLinkGoesToAccessDenied()
         {
@@ -78,14 +86,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             pageInteractionHelper.VerifyText(actualName, expectedName);
             pageInteractionHelper.VerifyText(actualDateOfBirth.ToString(), expectedDateOfBirth.ToString());
             pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
-
         }
-        
+
         public ProviderViewChangesPage ClickViewChangesLink()
         {
             formCompletionHelper.Click(ViewChanges);
             return new ProviderViewChangesPage(context);
-        }        
+        }
 
         public ProviderViewChangesPage ClickViewChanges()
         {
@@ -97,7 +104,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.ClickElement(ViewDetailsLink);
             return new ProviderDetailsOfILRDataMismatchPage(context);
-        }      
+        }
 
         public bool IsCoELinkDisplayed() => pageInteractionHelper.IsElementDisplayed(ChangeEmployerLink);
 
@@ -108,5 +115,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
 
         private void ClickEditApprenticeDetailsLink() => formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+
+        public ProviderApprenticeDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        {
+            string expected = deliveryModel;
+            string actual = GetDeliveryModel();
+            Assert.IsTrue(actual.Contains(expected), $"Incorrect delivery model is displayed, expected {expected} but actual was {actual}");
+            return this;
+        }
+
+        public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModel);
+
+        public void ValidateProviderEditApprovedApprentice(bool isDisplayed)
+        {
+            string message() => isDisplayed ? "is NOT displayed" : "is displayed";
+
+            Assert.That(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), Is.EqualTo(isDisplayed), $"Edit Apprentice Details link {message}");
+        }
     }
 }

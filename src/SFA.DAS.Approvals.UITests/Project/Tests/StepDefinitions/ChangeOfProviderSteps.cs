@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Polly;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -19,6 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderConfig _oldProviderLogin;
         private readonly ProviderLoginUser _newProviderLoginDetails;
         private readonly ProviderLoginUser _oldProviderLoginDetails;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private const int expectedEditableFields = 7;
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
@@ -27,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _oldProviderLogin = context.GetProviderConfig<ProviderConfig>();
             _newProviderLoginDetails = new ProviderLoginUser { UserId = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
             _oldProviderLoginDetails = new ProviderLoginUser { UserId = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
  
@@ -41,8 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeLinkDisplayed()
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(9)
-                .ClickSaveAndContinue()
+                .ValidateEditableTextBoxes(expectedEditableFields)
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
@@ -56,7 +59,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }
@@ -89,7 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can only edit start date, end date and Price on the new record")]
         public void ThenEmployerCanOnlyEditStartDateEndDateAndPriceOnTheNewRecord()
         {
-            var editApprenticePage = new EmployerStepsHelper(_context).GoToManageYourApprenticesPage()
+            var editApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()
                 .SelectApprentices("LIVE")
                 .ClickEditApprenticeDetailsLink();
 
@@ -105,7 +107,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .EditCopApprenticeDetails()
                 .SubmitSendToEmployerToReview();
         }
@@ -134,8 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeLinkDisplayed()
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(9)
-                .ClickSaveAndContinue()
+                .ValidateEditableTextBoxes(expectedEditableFields)
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
@@ -144,8 +144,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenPreventEmployerFromRequestingCoPOnTheOriginalApprenticeship()
         {
             bool IsChangeOfProviderLinkDisplayed 
-                = new EmployerStepsHelper(_context)
-                .GoToManageYourApprenticesPage()
+                = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()
                 .SelectApprentices("STOPPED")
                 .IsChangeOfProviderLinkDisplayed();
 
@@ -209,7 +208,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateOnlyEditableApprenticeDetails(EditApprenticeDetailsPage editApprenticePage)
         {
-            Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == 6, "validate that cohort is editable on View apprentice details page");
+            Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == expectedEditableFields, "validate that cohort is editable on View apprentice details page");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 
@@ -14,7 +13,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly ObjectContext _objectContext;
         private readonly ApprenticePPIDataHelper _apprenticePPIDataHelper;
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper)
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) 
+            : this(apprenticePPIDataHelper, objectContext, commitmentsdataHelper, string.Empty) { }
+
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost)
         {
             _objectContext = objectContext;
             _apprenticePPIDataHelper = apprenticePPIDataHelper;
@@ -24,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
             DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
-            TrainingCost = "1" + RandomDataGenerator.GenerateRandomNumber(3);
+            TrainingCost = trainingCost == string.Empty ? "1" + RandomDataGenerator.GenerateRandomNumber(3) : trainingCost;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;

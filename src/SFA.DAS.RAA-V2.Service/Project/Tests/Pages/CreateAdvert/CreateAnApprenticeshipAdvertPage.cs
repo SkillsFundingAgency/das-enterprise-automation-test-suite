@@ -47,7 +47,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
         
         public void NavigateToAdvertTitle() => NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_1);
-
+      
+        public AdditionalQuestionsPage EnterAdditionalQuestionsForApplicants()
+        {
+            NavigateToTask(Application, Application_1);
+            return new AdditionalQuestionsPage(context);
+        }
         public SelectOrganisationPage EnterAdvertOrganisaition()
         {
             NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_2);
@@ -76,7 +81,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_6);
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
-
+        
         public void VerifyAdvertSummarySectionStatus(string status) => VerifySectionStatus(AdvertOrVacancysummary, status);
 
         public void VerifyEmploymentDetailsSectionStatus(string status) => VerifySectionStatus(Employmentdetails, status);
@@ -84,6 +89,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public void VerifySkillsandqualificationsSectionStatus(string status) => VerifySectionStatus(Skillsandqualifications, status);
 
         public void VerifyAbouttheemployerSectionStatus(string status) => VerifySectionStatus(Abouttheemployer, status);
+        public void VerifyApplicationSectionStatus(string status) => VerifySectionStatus(Application, status);
 
         public void VerifyCheckandsubmityouradvertSectionStatus(string status) => VerifySectionStatus(Checkandsubmityouradvert, status);
 

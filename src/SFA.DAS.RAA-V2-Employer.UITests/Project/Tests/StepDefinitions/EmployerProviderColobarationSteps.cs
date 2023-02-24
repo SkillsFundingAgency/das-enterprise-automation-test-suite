@@ -8,8 +8,8 @@ using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
 using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {

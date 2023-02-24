@@ -2,7 +2,7 @@
 using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
@@ -15,9 +15,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.ApprenticeCommitmentsJobs_BaseUrl;
 
-        public IRestResponse CreateApprenticeshipViaCommitmentsJob(CreateApprenticeshipViaCommitmentsJob payload, HttpStatusCode expectedResponse)
+        public RestResponse CreateApprenticeshipViaCommitmentsJob(CreateApprenticeshipViaCommitmentsJob payload, HttpStatusCode expectedResponse)
         {
-            return Execute(Method.POST, $"/test-apprenticeship-created-event", payload, expectedResponse);
+            return Execute(Method.Post, $"/test-apprenticeship-created-event", payload, expectedResponse);
         }
 
         protected override void AddAuthHeaders() { }
