@@ -78,7 +78,7 @@ public class MailinatorApiHelper
     {
         (string inbox, string domain) = GetEmail(email);
 
-        _assertHelper.RetryOnNUnitException(() =>
+        _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(() =>
         {
             FetchMessageResponse fetchMessageResponse = FetchMessage(inbox, domain);
 
