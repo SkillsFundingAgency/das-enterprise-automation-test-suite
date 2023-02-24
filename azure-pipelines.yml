@@ -25,6 +25,12 @@ steps:
 - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks
 
 - task: DotNetCoreCLI@2
+  displayName: install net7.x
+  inputs:
+    packageType: sdk
+    useGlobalJson: true
+
+- task: DotNetCoreCLI@2
   displayName: dotnet restore
   inputs:
     command: restore
