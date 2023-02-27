@@ -56,7 +56,7 @@ public class MailinatorApiHelper
         return getAllDomainsResponse.Domains.FirstOrDefault().Name;
     }
 
-    public string GetData(string email, string expected)
+    public string GetLink(string email, string expected)
     {
         string link = "https://";
 
