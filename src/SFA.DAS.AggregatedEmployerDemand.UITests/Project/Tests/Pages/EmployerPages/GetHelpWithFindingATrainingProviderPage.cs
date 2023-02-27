@@ -25,7 +25,7 @@ public class GetHelpWithFindingATrainingProviderPage : AedBasePage
             formCompletionHelper.EnterText(NumberOfApprenticesTextBox, noOfApprentices);
         }
 
-        formCompletionHelper.EnterText(OrganisationEmailAddressTextBox, dataHelper.RandomEmail);
+        formCompletionHelper.EnterText(OrganisationEmailAddressTextBox, dataHelper.Email);
 
         Continue();
 
