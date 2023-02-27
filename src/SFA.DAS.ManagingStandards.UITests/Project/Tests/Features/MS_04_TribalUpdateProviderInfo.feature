@@ -4,5 +4,6 @@
 @regression
 @esfaadmin
 Scenario: MS_04_TribalUpdateProviderInfo
-	When the admin searches for a provider by provider name
-	Then the admin should be taken to one provider name result found page
+	Given the tribal user searches for provider with UKPRN
+	When the tribal user chooses to change the provider details
+	Then the tribal user is allowed to make the change
