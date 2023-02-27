@@ -4,13 +4,19 @@ public class SelectAStandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Select a standard";
 
-    private By SearchField = By.Id("SelectedLarsCode");
+    private static By SearchField => By.CssSelector("#SelectedLarsCode");
+
+    private static By FirstStandard => By.CssSelector("ul#SelectedLarsCode__listbox > li");
     public SelectAStandardPage(ScenarioContext context) : base(context) { }
 
-    public AddAstandard_ActuaryPage SelectAbbattoirAndContinue()
+    public AddAstandardPage SelectAStandardAndContinue(string standardName)
     {
-        formCompletionHelper.SelectFromDropDownByText(SearchField, "Abattoir worker (Level 2)");
+        formCompletionHelper.EnterText(SearchField, standardName);
+
+        formCompletionHelper.Click(FirstStandard);
+
         Continue();
-        return new AddAstandard_ActuaryPage(context);
+
+        return new AddAstandardPage(context, standardName);
     }
 }

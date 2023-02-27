@@ -114,16 +114,18 @@ public class MS_YourDetails_Steps
     [When(@"the provider is able to add the standard delivered in one of the training locations")]
     public void WhenTheProviderIsAbleToAddTheStandardDeliveredInOneOfTheTrainingLocations()
     {
+        var standardName = "Actuary (Level 7)";
+
         YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
         reviewYourDetailsPage.AccessStandards()
             .AccessAddStandard()
-            .SelectAbbattoirAndContinue()
+            .SelectAStandardAndContinue(standardName)
             .YesStandardIsCorrectAndContinue()
             .Add_ContactInformation()
             .ConfirmAtOneofYourTrainingLocations_AddStandard()
             .AccessSeeANewTrainingVenue_AddStandard()
             .ChooseTheVenueDeliveryAndContinue()
-            .Save_NewTrainingVenue_Continue()
+            .Save_NewTrainingVenue_Continue(standardName)
             .Save_NewStandard_Continue();
     }
 
