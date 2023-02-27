@@ -26,13 +26,13 @@ public class EditProvidersContactDetailsPage : AedBasePage
 
     public EditProvidersContactDetailsPage EnterInvalidDetails()
     {
-        EnterProvidersContactDetails($"{dataHelper.RandomEmail}@gmail.com", $"{dataHelper.TelephoneNumber}ABC", dataHelper.RandomWebsiteAddress);
+        EnterProvidersContactDetails($"{dataHelper.Email}@gmail.com", $"{dataHelper.TelephoneNumber}ABC", dataHelper.RandomWebsiteAddress);
         return StayOnEditProvidersContactDetailsPage();
     }
 
     public ConfirmProvidersContactDetailsPage EnterValidDetails()
     {
-        EnterProvidersContactDetails(dataHelper.RandomEmail, dataHelper.TelephoneNumber, dataHelper.RandomWebsiteAddress);
+        EnterProvidersContactDetails(dataHelper.Email, dataHelper.TelephoneNumber, dataHelper.RandomWebsiteAddress);
         Continue();
         return new ConfirmProvidersContactDetailsPage(context);
     }

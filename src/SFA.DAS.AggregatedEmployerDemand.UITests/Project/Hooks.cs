@@ -13,6 +13,7 @@ global using SFA.DAS.ProviderLogin.Service.Pages;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project;
 
@@ -28,6 +29,10 @@ public class Hooks
     {
         var emailDomain = _context.Get<MailinatorApiHelper>().GetDomain();
 
-        _context.Set(new AedDataHelper(emailDomain));
+        var datahelper = new AedDataHelper(emailDomain);
+
+        _context.Set(datahelper);
+
+        _context.Get<ObjectContext>().SetDebugInformation($"'{datahelper.Email}' is used");
     }
 }

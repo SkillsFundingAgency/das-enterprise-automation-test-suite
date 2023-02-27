@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
@@ -9,13 +8,13 @@ public class AedStepsHelper
     private readonly ScenarioContext _context;
     private readonly FATV2StepsHelper _fATV2StepsHelper;
     private readonly TabHelper _tabHelper;
-    private readonly string[] tags;
 
     public AedStepsHelper(ScenarioContext context)
     {
         _context = context;
-        tags = _context.ScenarioInfo.Tags;
+
         _fATV2StepsHelper = new FATV2StepsHelper(_context);
+
         _tabHelper = context.Get<TabHelper>();
     }
 
@@ -25,9 +24,9 @@ public class AedStepsHelper
     {
         getHelpWithFindingATrainingProviderPage.EnterValidDetails(noOfApprentices).ConfirmYourAnswers();
 
-        var email = _context.Get<AedDataHelper>().RandomEmail;
+        var email = _context.Get<AedDataHelper>().Email;
 
-        _tabHelper.OpenInNewTab(_context.Get<MailinatorApiHelper>().GetData(email, "https://"));
+        _tabHelper.OpenInNewTab(_context.Get<MailinatorApiHelper>().GetLink(email, "Confirm your contact email address"));
 
         new WeveSharedYourInterestWithProviderPage(_context).VerifyContent(email);
     }
