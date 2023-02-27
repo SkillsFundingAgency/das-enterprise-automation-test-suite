@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation
 {
-    public class Moderation_CheckProviderUpdatePage : RoatpAdminBasePage
+    public class Moderation_CheckProviderUpdatePage : ManagingStandardsBasePage
     {
         protected override string PageTitle => $"Check the provider description entry for {MS_DataHelper.ProviderName}";
 

@@ -1,8 +1,8 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+﻿using NUnit.Framework;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation
 {
-    public class Moderation_UpdateProviderPage : RoatpAdminBasePage
+    public class Moderation_UpdateProviderPage : ManagingStandardsBasePage
     {
         protected override string PageTitle => $"Update the provider description for {MS_DataHelper.ProviderName}";
         private By UpdateDescriptionTextField => By.Id("ProviderDescription");
@@ -12,12 +12,11 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation
 
         public Moderation_CheckProviderUpdatePage EnterUpdateDescriptionAndContinue()
         {
-            formCompletionHelper.EnterText(UpdateDescriptionTextField, "test");
+            formCompletionHelper.EnterText(UpdateDescriptionTextField, managingStandardsDataHelpers.UpdateProviderDescriptionText);
             Continue();
             return new Moderation_CheckProviderUpdatePage(context);
         }
 
-        public string GetUpdateDescriptionText() =>
-            pageInteractionHelper.GetText(UpdatedText);
+        public void VerifyUpdateDescriptionText() => Assert.AreEqual(managingStandardsDataHelpers.UpdateProviderDescriptionText, pageInteractionHelper.GetText(UpdatedText));
     }
 }

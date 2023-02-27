@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions
@@ -35,12 +34,10 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions
         [Then(@"the tribal user is allowed to make the change")]
         public void ThenTheTribalUserIsAllowedToMakeTheChange()
         {
-            var updateText = _moderation_UpdateProviderPage.EnterUpdateDescriptionAndContinue()
+            _moderation_UpdateProviderPage.EnterUpdateDescriptionAndContinue()
                 .ContinueOnCheckProviderUpdatePage()
                 .ChangeProviderDetail()
-                .GetUpdateDescriptionText();
-
-            Assert.AreEqual("test", updateText);
+                .VerifyUpdateDescriptionText();
         }
     }
 }

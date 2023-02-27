@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation
 {
-    public class Moderation_SearchPage : RoatpAdminBasePage
+    public class Moderation_SearchPage : ManagingStandardsBasePage
     {
         protected override string PageTitle => "Search for an apprenticeship training provider";
         private static By UkprnSearch => By.Id("Ukprn");

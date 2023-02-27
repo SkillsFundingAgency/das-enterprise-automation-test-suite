@@ -3,7 +3,7 @@ using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation
 {
-    public class Moderation_ProviderDetailsPage : RoatpAdminBasePage
+    public class Moderation_ProviderDetailsPage : ManagingStandardsBasePage
     {
         protected override string PageTitle => $"Provider details for {MS_DataHelper.ProviderName}";
         private By ChangeLink => By.XPath("//a[contains(text(),'Change')]");

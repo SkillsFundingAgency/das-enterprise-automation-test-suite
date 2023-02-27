@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation
 {
-    public class Moderation_HomePage : RoatpAdminBasePage
+    public class Moderation_HomePage : ManagingStandardsBasePage
     {
         protected override string PageTitle => "Staff dashboard";
 
