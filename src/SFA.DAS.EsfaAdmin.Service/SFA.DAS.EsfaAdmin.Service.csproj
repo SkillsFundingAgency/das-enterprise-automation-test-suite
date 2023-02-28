@@ -13,8 +13,4 @@
 		<ProjectReference Include="..\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Project\Pages\Moderation\" />
-	</ItemGroup>
-
 </Project>
