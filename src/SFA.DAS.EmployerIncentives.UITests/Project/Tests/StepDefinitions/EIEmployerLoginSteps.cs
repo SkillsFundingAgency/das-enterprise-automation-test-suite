@@ -1,5 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
+﻿using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;

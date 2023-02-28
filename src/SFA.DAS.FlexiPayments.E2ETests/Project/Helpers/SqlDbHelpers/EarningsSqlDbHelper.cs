@@ -28,15 +28,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1], data[2]);
         }
 
-        public (string totalEarnings, string levyEarnings, string nonLevyEarnings) GetApprenticeshipIndicativeEarnings(string ukprn)
+        public (string totalEarnings, string levyEarnings, string nonLevyEarnings, string nonLevyGovernmentContribution, string nonLevyEmployerContribution) GetApprenticeshipIndicativeEarnings(string ukprn)
         {
-            string totalEarnings, levyEarnings, nonLevyEarnings;
-            totalEarnings = levyEarnings = nonLevyEarnings = "0.00";
+            string totalEarnings, levyEarnings, nonLevyEarnings, nonLevyGovernmentContribution, nonLevyEmployerContribution;
+            totalEarnings = levyEarnings = nonLevyEarnings = nonLevyGovernmentContribution = nonLevyEmployerContribution = "0.00";
 
             string query = $" BEGIN TRANSACTION Earnings; " +
                 $" DECLARE @Ukprn int = {ukprn} " +
                 $" DECLARE @AcademicYear int = {_currentAcademicYear} " +
-                $" SELECT A.TotalEarnings, B.LevyEarnings, C.NonLevyEarnings " +
+                $" SELECT A.TotalEarnings, B.LevyEarnings, C.NonLevyEarnings, C.NonLevyGovernmentContribution, C.NonLevyEmployerContribution " +
                 $" FROM " +
                 $" ( " +
                 $" SELECT Ukprn, SUM (Amount) as TotalEarnings FROM [Query].[Earning] " +
@@ -45,23 +45,26 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
                 $" ) A, " +
                 $" ( " +
                 $" SELECT Ukprn, SUM(Amount) as LevyEarnings FROM [Query].[Earning] " +
-                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND AcademicYear = @AcademicYear AND FundingType in (0,2) " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND AcademicYear = @AcademicYear AND FundingType in ('Levy','Transfer') " +
                 $" GROUP BY UKPRN, AcademicYear " +
                 $" ) B," +
                 $" ( " +
-                $" SELECT Ukprn, SUM(Amount) as NonLevyEarnings FROM [Query].[Earning] " +
-                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 1 GROUP BY UKPRN, AcademicYear " +
+                $" SELECT Ukprn, SUM(Amount) as NonLevyEarnings, SUM(Amount) * 0.95 as NonLevyGovernmentContribution, SUM(Amount) * 0.05 as NonLevyEmployerContribution " +
+                $" FROM [Query].[Earning] " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 'NonLevy' GROUP BY UKPRN, AcademicYear " +
                 $" )C " +
                 $" WHERE A.Ukprn=B.Ukprn AND A.Ukprn=C.Ukprn " +
                 $" COMMIT TRANSACTION;";
 
             var data = GetData(query);
 
-            if (!String.IsNullOrWhiteSpace(data[0])) totalEarnings = String.Format("{0:n}", (double.Parse(data[0])));
-            if (!String.IsNullOrWhiteSpace(data[1])) levyEarnings = String.Format("{0:n}", (double.Parse(data[1])));
-            if (!String.IsNullOrWhiteSpace(data[2])) nonLevyEarnings = String.Format("{0:n}", (double.Parse(data[2])));
+            if (!string.IsNullOrWhiteSpace(data[0])) totalEarnings = string.Format("{0:C}", (decimal.Parse(data[0])));
+            if (!string.IsNullOrWhiteSpace(data[1])) levyEarnings = string.Format("{0:C}", (decimal.Parse(data[1])));
+            if (!string.IsNullOrWhiteSpace(data[2])) nonLevyEarnings = string.Format("{0:C}", (decimal.Parse(data[2])));
+            if (!string.IsNullOrWhiteSpace(data[2])) nonLevyGovernmentContribution = string.Format("{0:C}", (decimal.Parse(data[3])));
+            if (!string.IsNullOrWhiteSpace(data[2])) nonLevyEmployerContribution = string.Format("{0:C}", (decimal.Parse(data[4])));
 
-            return (totalEarnings, levyEarnings, nonLevyEarnings);
+            return (totalEarnings, levyEarnings, nonLevyEarnings, nonLevyGovernmentContribution, nonLevyEmployerContribution);
         }
     }
 }

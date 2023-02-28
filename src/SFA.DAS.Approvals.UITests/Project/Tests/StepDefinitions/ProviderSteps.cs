@@ -158,8 +158,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
                 .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails()
-                .SubmitValidTrainingDetails()
+                .SubmitValidApprenticeDetails()
                 .SubmitApprove();
         }
 
@@ -172,18 +171,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .SelectAddManually();
         }
 
-        [Given(@"provider add leaners details and opts them into the pilot")]
-        public void GivenOptsLeanerIntoThePilot()
-        {
-            _providerApproveApprenticeDetailsPage = providerAddApprenticeDetailsViaSelectJourneyPage
-                .SelectOptionCreateNewCohort()
-                .ChooseAnEmployer("Levy")
-                .ConfirmEmployer()
-                .ProviderSelectsAStandard()
-                .SubmitValidPersonalDetails(true)
-                .SubmitValidTrainingDetails();
-        }
-
         [Then(@"the provider validates flexi-job content and approves cohort")]
         public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
 
@@ -191,6 +178,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderAddsAnApprenticeOnTheRegularDeliveryModelAndSendsToEmployerForApproval() => _providerStepsHelper.AddApprenticeAndSelectRegularDeliveryModel();
 
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
+
+        [Then(@"provider navigates to Approve Apprentice page and deletes Cohort before approval")]
+        public void ThenProviderNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _providerStepsHelper.NavigateToApproveApprenticeDetailsAndDeleteCohort();
+
+        [Then(@"the provider can no longer approve the draft cohort")]
+        public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerStepsHelper.ValidateProviderCanNoLongerApproveCohort();
+
+        [Then(@"provider can edit delivery model and approve")]
+        public void ThenProviderCanEditDeliveryModelAndApprove() => _providerStepsHelper.ProviderEditsDeliveryModelAndApprovesAfterFJAARemoval();
 
         [Then(@"the provider confirms Delivery Model is displayed as ""([^""]*)"" on Apprentice Details and Edit Apprentice screens")]
         public void ThenTheProviderConfirmsDeliveryModelIsDisplayedAsOnApprenticeDetailsAndEditApprenticeScreens(string deliveryModel) => _providerStepsHelper.ValidateDeliveryModelDisplayedInDMSections(deliveryModel);
@@ -200,5 +196,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Provider edits the Delivery Model to Regular in Post Approvals and submits changes")]
         public void WhenTheProviderEditsTheDeliveryModelToRegularInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval();
+
+        [When(@"the Provider edits the Delivery Model to Flexi in Post Approvals and submits changes")]
+        public void WhenTheProviderEditsTheDeliveryModelToFlexiInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval();
+
     }
 }
+

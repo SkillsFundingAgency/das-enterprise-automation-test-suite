@@ -5,6 +5,7 @@ using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.API.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project
 {

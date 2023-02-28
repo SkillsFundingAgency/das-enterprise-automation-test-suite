@@ -1,11 +1,19 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class AddAstandard_ActuaryPage : ManagingStandardsBasePage
+public class AddAstandardPage : ManagingStandardsBasePage
 {
-    protected override string PageTitle => "Actuary (Level 7)";
+    protected override string PageTitle => pageTitle;
 
-    private static By YesRadio => By.Id("is-correct-standard-yes");
-    public AddAstandard_ActuaryPage(ScenarioContext context) : base(context) { }
+    private readonly string pageTitle;
+
+    private static By YesRadio => By.CssSelector("#is-correct-standard-yes");
+
+    public AddAstandardPage(ScenarioContext context, string standardname) : base(context, false) 
+    {
+        pageTitle = standardname;
+
+        VerifyPage();
+    }
 
     public YourContactInformationForThisStandardPage YesStandardIsCorrectAndContinue()
     {

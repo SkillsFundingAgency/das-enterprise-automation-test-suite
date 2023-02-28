@@ -1,14 +1,21 @@
-﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
+﻿using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
 public class AedStepsHelper
 {
     private readonly ScenarioContext _context;
     private readonly FATV2StepsHelper _fATV2StepsHelper;
+    private readonly TabHelper _tabHelper;
 
     public AedStepsHelper(ScenarioContext context)
     {
         _context = context;
+
         _fATV2StepsHelper = new FATV2StepsHelper(_context);
+
+        _tabHelper = context.Get<TabHelper>();
     }
 
     public void RegisterInterest(int noOfApprentices) => RegisterInterest(noOfApprentices, GetHelpWithFindingATrainingProvider(NavigateToShareYourInterestWithTrainingProvidersPage()));
@@ -17,7 +24,11 @@ public class AedStepsHelper
     {
         getHelpWithFindingATrainingProviderPage.EnterValidDetails(noOfApprentices).ConfirmYourAnswers();
 
-        new MailinatorStepsHelper(_context, _context.Get<AedDataHelper>().RandomEmail).OpenLink("https://");
+        var email = _context.Get<AedDataHelper>().Email;
+
+        _tabHelper.OpenInNewTab(_context.Get<MailinatorApiHelper>().GetLink(email, "Confirm your contact email address"));
+
+        new WeveSharedYourInterestWithProviderPage(_context).VerifyContent(email);
     }
 
     public static GetHelpWithFindingATrainingProviderPage GetHelpWithFindingATrainingProvider(AedIndexPage aEDIndexPage) => ClickStartNow(aEDIndexPage.ClickGetHelpWithFindingATrainingProviderLink());

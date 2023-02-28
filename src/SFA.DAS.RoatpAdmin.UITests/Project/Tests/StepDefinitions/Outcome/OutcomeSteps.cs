@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
 using SFA.DAS.UI.Framework;
@@ -16,14 +16,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         private ApplicationSummaryPage _applicationSummaryPage;
         private readonly TabHelper _tabhelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
+        private readonly EsfaAdminLoginStepsHelper _loginStepsHelper;
 
         public OutcomeSteps(ScenarioContext context)
         { 
             _context = context;
             _tabhelper = _context.Get<TabHelper>();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
-            _loginStepsHelper = new RoatpAdminLoginStepsHelper(context);
+            _loginStepsHelper = new EsfaAdminLoginStepsHelper(context);
         }
 
         [Given(@"the admin navigates to the Dashboard")]

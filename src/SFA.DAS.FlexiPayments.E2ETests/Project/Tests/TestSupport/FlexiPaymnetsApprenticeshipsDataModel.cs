@@ -11,7 +11,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         public DateTime? PlannedEndDate;
 
         public int ULNKey { get; set; }
-        public Boolean IsPilot { get; set; }
+        public FundingPlatform FundingPlatform { get; set; }
         public string StartDateStr { set { StartDate = value == "Today" ? DateTime.Today 
                     : value == "StartCurrentMonth" ? DataHelpers.GetFirstDateOfCurrentMonth()
                     : DataHelpers.TryParseDate(value); } }
@@ -32,5 +32,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         NonLevy = 1,
         [Description("Transfer")]
         transfer = 2
+    }
+
+    public enum FundingPlatform
+    {
+        [Description("Pilot")]
+        Levy = 1,
+        [Description("NonPilot")]
+        NonLevy = 2,
     }
 }

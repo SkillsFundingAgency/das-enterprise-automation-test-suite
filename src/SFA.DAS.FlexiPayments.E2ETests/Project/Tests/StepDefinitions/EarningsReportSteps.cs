@@ -2,8 +2,8 @@
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -36,11 +36,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"validate correct earnings numbers are displayed")]
         public void ThenValidateCorrectEarningsNumbersAreReported()
         {
-            var providerApprenticeshipIndicativeEarningsReportPage = new ProviderApprenticeshipIndicativeEarningsReportPage(_context);
+            var appsIndicativeEarningsReportPage = new ProviderApprenticeshipIndicativeEarningsReportPage(_context);
 
             var earnings = _earningsSqlDbHelper.GetApprenticeshipIndicativeEarnings(_objectContext.Get("ukprn"));
 
-            providerApprenticeshipIndicativeEarningsReportPage.ValidateEarnings(earnings.totalEarnings, earnings.levyEarnings, earnings.nonLevyEarnings);
+            appsIndicativeEarningsReportPage.ValidateEarnings(earnings);
 
         }
     }

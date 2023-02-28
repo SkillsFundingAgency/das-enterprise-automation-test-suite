@@ -4,7 +4,7 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private AddPersonalDetailsPage _addApprenticeDetailsPage;
+        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private readonly FlexiJobUser _fjaaEmployerLevyUser;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
@@ -49,19 +49,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
         public void ThenValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
         {
-            var addTrainingDetailsPage = _addApprenticeDetailsPage.SubmitValidPersonalDetails();
-            addTrainingDetailsPage.ValidateFlexiJobContent();
+            _addApprenticeDetailsPage.ValidateFlexiJobContent();
 
-            _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
+            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
         }
 
         [Then(@"validate Regular content on Add Apprentice Details page and submit valid details")]
         public void ThenValidateRegularContentOnAddApprenticeDetailsPageAndSubmitValidDetails()
         {
-            var addTrainingDetailsPage = _addApprenticeDetailsPage.SubmitValidPersonalDetails();
-            addTrainingDetailsPage.ValidateRegularContent();
+            _addApprenticeDetailsPage.ValidateRegularContent();
 
-            _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
+            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
         }
 
 

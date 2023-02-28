@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
@@ -17,39 +18,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
 
-        public AddPersonalDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
+        public AddApprenticeDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new AddPersonalDetailsPage(context);
+            return new AddApprenticeDetailsPage(context);
         }
 
-        public EditTrainingDetailsPage EditDeliveryModelToFlexiAndContinue()
+        public EditApprenticeDetailsPage EditDeliveryModelToFlexiAndContinue()
         {
             formCompletionHelper.Click(EditFlexiJobRadioButton);
             Continue();
-            return new EditTrainingDetailsPage(context);
+            return new EditApprenticeDetailsPage(context);
         }
 
-        public ProviderAddPersonalDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
+        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
-            return new ProviderAddPersonalDetailsPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
-        public AddPersonalDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
+        public AddApprenticeDetailsPage SelectPortableFlexiJobDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(PortableFlexiJobRadioButton);
             Continue();
-            return new AddPersonalDetailsPage(context);
+            return new AddApprenticeDetailsPage(context);
         }
 
-        public ProviderAddPersonalDetailsPage SelectRegularDeliveryModelAndContinue()
+        public ProviderAddApprenticeDetailsPage SelectRegularDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(RegularRadioButton);
             Continue();
-            return new ProviderAddPersonalDetailsPage(context);
+            return new ProviderAddApprenticeDetailsPage(context);
         }
 
         public EditApprenticeDetailsPage EmployerEditDeliveryModelToRegularAndContinue()
@@ -59,23 +60,37 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EditApprenticeDetailsPage(context);
         }
 
-        public AddPersonalDetailsPage EmployerSelectRegularDeliveryModelAndContinue()
+        public AddApprenticeDetailsPage EmployerSelectRegularDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(RegularRadioButton);
             Continue();
-            return new AddPersonalDetailsPage(context);
+            return new AddApprenticeDetailsPage(context);
         }
 
-        public ProviderEditApprenticeTrainingDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
+        public ProviderEditApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
         {
             formCompletionHelper.Click(EditFlexiJobRadioButton);
             Continue();
-            return new ProviderEditApprenticeTrainingDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()
         {
             formCompletionHelper.Click(EditRegularRadioButton); 
+            Continue();
+            return new ProviderEditApprenticeDetailsPage(context);
+        }
+
+        public EditApprenticeDetailsPage EmployerEditDeliveryModelToFlexiAndContinue()
+        {
+            formCompletionHelper.Click(EditFlexiJobRadioButton);
+            Continue();
+            return new EditApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToFlexiAndSubmits()
+        {
+            formCompletionHelper.Click(EditFlexiJobRadioButton);
             Continue();
             return new ProviderEditApprenticeDetailsPage(context);
         }

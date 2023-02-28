@@ -77,7 +77,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .ChooseAnEmployer("Levy")
                .ConfirmEmployer()
                .ProviderSelectsAStandard()
-               .SubmitValidPersonalDetails()
                .SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
@@ -128,17 +127,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var uln = _commitmentsSqlDataHelper.GetApprenticeshipULN(reference);
             _objectContext.SetUlnForOLTD(uln);
 
-            var providerAddTrainingDetailsPage = _providerStepsHelper
+            var providerAddApprenticeDetailsPage = _providerStepsHelper
                                                       .NavigateToProviderHomePage()
                                                       .GotoSelectJourneyPage()
                                                       .SelectAddManually()
                                                       .SelectOptionCreateNewCohort()
                                                       .ChooseAnEmployer("Levy")
                                                       .ConfirmEmployer()
-                                                      .ProviderSelectsAStandard()
-                                                      .SubmitValidPersonalDetails();
+                                                      .ProviderSelectsAStandard();
 
-            VerifyOverlappingTrainingDetailsError(table, providerAddTrainingDetailsPage);
+            VerifyOverlappingTrainingDetailsError(table, providerAddApprenticeDetailsPage);
          }
 
         [When(@"Employer tries to add a new apprentice using details from table below")]
@@ -159,7 +157,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                   .ChooseAnEmployer("Levy")
                   .ConfirmEmployer()
                   .ProviderSelectsAStandard()
-                  .SubmitValidPersonalDetails()
                   .SubmitNullTrainingDetails()
                   .SubmitSendToEmployerToReview()
                   .CohortReference();
@@ -171,8 +168,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                 .GoToApprenticeRequestsPage()
                                                 .GoToReadyToReview()
                                                 .SelectViewCurrentCohortDetails()
-                                                .SelectEditApprenticeLink()
-                                                .ContinueToAddTrainingDetailsPage();
+                                                .SelectEditApprenticeLink();
 
             VerifyOverlappingTrainingDetailsError(table, editTrainingDetailsPage);
         }
@@ -216,7 +212,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _oldCost = int.Parse(oldCost);
             new ProviderApproveApprenticeDetailsPage(_context)
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .EditCost(_oldCost + 1)
                 .ClickSaveWhenOltd();
         }
@@ -270,8 +265,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider deletes start and end date from Draft cohort")]
         public void WhenProviderDeletesStartAndEndDateFromDraftCohort()
         {
-           var providerEditApprenticeTrainingDetailsPage = new ProviderEditApprenticePersonalDetailsPage(_context).ClickSaveAndContinue();
-            providerEditApprenticeTrainingDetailsPage
+           new ProviderEditApprenticeDetailsPage(_context)
                 .EditStartDate("", "")
                 .EditEndDate("","")
                 .ClickSave();
@@ -292,9 +286,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var startDate = _objectContext.GetStartDate();
             var endDate =  startDate.AddMonths(36);
             
-            var providerEditApprenticePersonalDetailsPage = new ProviderApproveApprenticeDetailsPage(_context).SelectEditApprentice(0);
-            var providerEditApprenticeTrainingDetailsPage = providerEditApprenticePersonalDetailsPage.ClickSaveAndContinue();
-            providerEditApprenticeTrainingDetailsPage
+            var providerEditApprenticeDetailsPage = new ProviderApproveApprenticeDetailsPage(_context).SelectEditApprentice(0);
+            providerEditApprenticeDetailsPage
                 .EditStartDate(startDate.Month.ToString(), startDate.Year.ToString())
                 .EditEndDate(endDate.Month.ToString(), endDate.Year.ToString())
                 .ClickSaveWhenOltd();
@@ -307,7 +300,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
-            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage);
+            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage, StopApprentice.LeftEmployer);
         }
 
         [When(@"overlapping training date request banner is not displayed")]
@@ -365,7 +358,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                .GoToDraftCohorts()
                .SelectViewCurrentCohortDetails()
                .SelectEditApprentice(0)
-               .ClickSaveAndContinue()
                .EditStartDate(oneMonthOldStartDate.Month.ToString(), oneMonthOldStartDate.Year.ToString())
                .ClickSaveWhenOltd();
 

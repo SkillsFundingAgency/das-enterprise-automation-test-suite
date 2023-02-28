@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ConfigurationBuilder
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.ConfigurationBuilder
 {
     public static class ObjectContextExtension
     {

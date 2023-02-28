@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
-        private AddPersonalDetailsPage _addPersonalDetailsPage;
+        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
         private ProviderStepsHelper _providerStepsHelper;
 
         public PortableFlexiJobSteps(ScenarioContext context)
@@ -35,16 +35,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenAnEmployerInitiatesAPortableFlexi_JobApprenticeshipCreation()
         {
             _employerPortalLoginHelper.Login(_context.GetUser<EmployerConnectedToPortableFlexiJobProvider>(), true);
-            _addPersonalDetailsPage = _employerStepsHelper.AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider();
+            _addApprenticeDetailsPage = _employerStepsHelper.AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider();
         }
 
         [Then(@"the Employer validates Portable flexi-job content on Add Apprentice Details page")]
         public void ThenTheEmployerValidatesPortableFlexi_JobContentOnAddApprenticeDetailsPage()
         {
-            var addTrainingDetailsPage = _addPersonalDetailsPage.SubmitValidPersonalDetails();
-            addTrainingDetailsPage.ValidatePortableFlexiJobContent();
+            _addApprenticeDetailsPage.ValidatePortableFlexiJobContent();
 
-            _approveApprenticeDetailsPage = addTrainingDetailsPage.SubmitValidTrainingDetails(false);
+            _approveApprenticeDetailsPage = _addApprenticeDetailsPage.SubmitValidApprenticeDetails(false);
         }
 
         [Then(@"validates Portable flexi-job tag on Approve Apprentice Details and sends the cohort to the Provider for approval")]

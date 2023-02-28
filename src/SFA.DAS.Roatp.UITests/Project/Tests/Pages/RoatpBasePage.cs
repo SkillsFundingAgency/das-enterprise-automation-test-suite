@@ -11,13 +11,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        protected By ChooseFileSelector => By.ClassName("govuk-file-upload");
+        protected static By ChooseFileSelector => By.ClassName("govuk-file-upload");
 
-        #region Helpers and Context
-        protected readonly RoatpConfig roatpConfig;
-        #endregion
 
-        protected RoatpBasePage(ScenarioContext context) : base(context) => roatpConfig = context.GetRoatpConfig<RoatpConfig>();
+        protected RoatpBasePage(ScenarioContext context) : base(context) { }
 
         protected void ChooseFile()
         {

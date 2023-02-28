@@ -5,21 +5,18 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static class Logging
     {
-        public static void Report(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null)
+        public static void Report(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null) => TestContext.Progress.WriteLine(Message(retryCount, exception, scenarioTitle, retryAction));
+
+        internal static string Message(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null)
         {
-            TestContext.Progress.WriteLine($"{Environment.NewLine}" +
-                $"Retry Count : {retryCount}{Environment.NewLine}" +
-                $"Scenario Title : {scenarioTitle}{Environment.NewLine}" +
-                $"Exception : {exception.Message}{Environment.NewLine}" +
-                $"Retry Action : {retryAction == null}");
+          return ($"{Environment.NewLine}" +
+                 $"Retry Count : {retryCount}{Environment.NewLine}" +
+                 $"Scenario Title : {scenarioTitle}{Environment.NewLine}" +
+                 $"Exception : {exception.Message}{Environment.NewLine}" +
+                 $"Retry Action : {HasRetryAction(retryAction)}");
         }
 
-        internal static TimeSpan[] LongerTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(13) };
 
-        public static TimeSpan[] DefaultTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
-
-        public static TimeSpan[] ShorterTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1) };
-
-        internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
+        private static string HasRetryAction(Action retryAction) => retryAction == null ? "No Retry Action" : "Retry Action Exists";
     }
 }

@@ -10,21 +10,21 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector("#main_navigation");
 
         protected override string PageTitle { get; }
-        private By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
 
-        private By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
+        private static By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
 
-        private By BrandingHeader => By.CssSelector("#branding_header");
+        private static By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
 
-        private By Indicators => By.CssSelector(".indicators");
+        private static By BrandingHeader => By.CssSelector("#branding_header");
 
-        private By TicketTable => By.CssSelector("[data-test-id='table_container'] table");
+        private static By Indicators => By.CssSelector(".indicators");
 
-        private By HomeButton => By.CssSelector("#main_navigation [data-original-title='Home']");
+        private static By TicketTable => By.CssSelector("[data-test-id='table_container'] table");
+
 
         public HomePage(ScenarioContext context, bool navigateTo) : base(context)
         {
-            void action() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
+            void action() => ClickHomeButton();
 
             if (navigateTo) 
             {

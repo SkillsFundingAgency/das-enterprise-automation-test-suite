@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.ConfigurationBuilder;
 using System;
 using System.Linq;
 using SFA.DAS.Registration.UITests.Project;
@@ -12,6 +11,7 @@ using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service.Project.Helpers;
 using Polly;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -52,9 +52,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the employer has an apprentice with stopped status")]
         public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
         {
-            EmployerAndProviderApprove(_context.ScenarioInfo.Tags.Contains("changeOfEmployer"));
-            
-            _employerStepsHelper.StopApprenticeThisMonth();
+            bool isChangeOfEmployer = _context.ScenarioInfo.Tags.Contains("changeOfEmployer");
+            EmployerAndProviderApprove(isChangeOfEmployer);
+
+            StopApprentice reasonToStop = isChangeOfEmployer ? StopApprentice.LeftEmployer : StopApprentice.ChangeTrainingProvider;
+            _employerStepsHelper.StopApprenticeThisMonth(reasonToStop);
         }
 
         [When(@"employer sends COP request to new provider")]
@@ -112,7 +114,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }

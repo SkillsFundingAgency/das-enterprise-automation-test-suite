@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using System.Collections.Generic;
 

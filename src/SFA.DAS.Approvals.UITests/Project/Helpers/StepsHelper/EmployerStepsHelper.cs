@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
@@ -9,6 +8,7 @@ using System;
 using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -21,12 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
         protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
+
 
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
+            _rofjaaDbSqlHelper = context.Get<RofjaaDbSqlHelper>();
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
@@ -49,18 +52,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
         }
 
-        public StoppedApprenticeDetailsPage StopApprenticeThisMonth() => StopApprenticeThisMonth(ViewCurrentApprenticeDetails());
+        public StoppedApprenticeDetailsPage StopApprenticeThisMonth(StopApprentice reason) => StopApprenticeThisMonth(ViewCurrentApprenticeDetails(), reason);
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage) =>
             apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
-        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage)
+        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage, StopApprentice reason)
         {
             return apprenticeDetailsPage
                 .ClickEditStatusLink()
                 .SelectStopAndContinueForAStartedApprentice()
+                .SelectedReasonToStop(reason)
                 .EditStopDateToThisMonthAndSubmit()
                 .ClickARadioButtonAndContinue()
                 .SelectYesAndConfirm()
@@ -72,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public EditApprenticeDetailsPage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
-        internal ApproveApprenticeDetailsPage EmployerReviewCohort()
+        public ApproveApprenticeDetailsPage EmployerReviewCohort()
         {
             var employerReviewYourCohortPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
                 .ClickApprenticeRequestsLink()
@@ -105,8 +109,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .DynamicHomePageNonLevyEmployerAddsApprentices()
                  .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
                  .EmployerSelectsAStandard()
-                 .DraftDynamicHomePageAddValidPersonalDetails()
-                 .DraftDynamicHomePageSubmitValidApprenticeDetails()
+                 .DraftDynamicHomePageAddValidApprenticeDetails()
                  .DraftReturnToHomePage()
                  .CheckDraftStatusAndAddDetails()
                  .ContinueToAddValidApprenticeDetails()
@@ -173,32 +176,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 _context.Replace(apprentice.Item2);
             }
 
-            var firstApprentice = listOfApprentice.First();
+            var firstApprentice = listOfApprentice[0];
 
             ReplaceInContext(firstApprentice);
 
             var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
 
-            listOfApprentice.Remove(firstApprentice);
-
-            foreach (var apprentice in listOfApprentice)
+            for (int i = 1; i < listOfApprentice.Count; i++)
             {
+                var apprentice = listOfApprentice[i];
+
                 ReplaceInContext(apprentice);
 
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }
 
-            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count + 1);
+            return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
+        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) 
+            => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
+        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
+            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage() 
-            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
+        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidPersonalDetails().SubmitValidTrainingDetails(false);
-
-        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -206,7 +209,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
-        public AddPersonalDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
+        public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
@@ -214,7 +217,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .EmployerSelectRegularDeliveryModelAndContinue();
         }
 
-        public AddPersonalDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
+        public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(_context).AddAnApprentice()
                 .StartNowToAddTrainingProvider()
@@ -240,8 +243,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
                 .SelectViewCurrentCohortDetails()
-                .SelectEditApprenticeLink()
-                .ContinueToAddTrainingDetailsPage();
+                .SelectEditApprenticeLink();
 
             Assert.True(employerEditTrainingDetailsPage.ConfirmDeliveryModelLabelText("Flexi-job agency"));
             Assert.True(employerEditTrainingDetailsPage.IsEditDeliveryModelLinkVisible());
@@ -254,7 +256,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .SelectEditApprenticeLink()
-                  .ContinueToAddTrainingDetailsPage()
                   .ClickEditDeliveryModelLink()
                   .EditDeliveryModelToFlexiAndContinue()
                   .SaveEditedTrainingDetails()
@@ -286,7 +287,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                   .ClickApprenticeRequestsLink()
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
-                  .ValidateFlexiJobTagAndApprove();         
+                  .ValidateFlexiJobTagAndApprove();
         }
 
         public EditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
@@ -305,6 +306,49 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickManageYourApprenticesLink()
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateDeliveryModelNotDisplayed();
+        }
+
+        public void RemoveEmployerFromFlexiJobAgencyRegister() => _rofjaaDbSqlHelper.RemoveFJAAEmployerFromRegister();
+
+        public ApprenticeRequestsPage DeleteCurrentCohort()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .SelectDeleteThisGroup()
+                  .ConfirmDeleteAndSubmit();
+        }
+
+        public ApproveApprenticeDetailsPage ValidateEmployerCanNoLongerApproveCohort()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickApprenticeRequestsLink()
+                  .GoToReadyToReview()
+                  .SelectViewCurrentCohortDetails()
+                  .ValidateEmployerCannotApproveCohort();
+        }
+
+        public ApproveApprenticeDetailsPage RemovedFJAEmployerEditsDeliveryModelAndApproves()
+        {
+            return new ApproveApprenticeDetailsPage(_context)
+                .SelectEditApprenticeLink()
+                .ClickEditDeliveryModel()
+                .ConfirmDeliveryModelChangeToRegular()
+                .ValidateDeliveryModelDisplayed("Regular")
+                .SaveEditedTrainingDetails();
+        }
+
+        public ApprenticeDetailsPage EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval()
+        {
+            return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                  .ClickManageYourApprenticesLink()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickEditApprenticeDetailsLink()
+                  .ClickEditDeliveryModelLink()
+                  .EmployerEditDeliveryModelToFlexiAndContinue()
+                  .ClickUpdateDetailsButtonAfterChange()
+                  .AcceptChangesAndSubmit();
         }
     }
 }

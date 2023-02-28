@@ -2,7 +2,9 @@
 
 public record AedDataHelper
 {
-    public string RandomEmail { get; init; } = GetDateTimeValue() + "@mailinator.com";
+    public AedDataHelper(string domainName) => Email = $"{GetDateTimeValue()}@{domainName}";
+    
+    public string Email { get; init; }
     public string RandomWebsiteAddress { get; init; } = "www.TEST" + GetDateTimeValue() + ".com";
     public string TelephoneNumber { get; init; } = $"020{GetRandomNumber(8)}";
     public string Location { get; init; } = RandomDataGenerator.GetRandomElementFromListOfElements(ValidLocations);

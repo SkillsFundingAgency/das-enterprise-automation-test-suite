@@ -2,6 +2,7 @@
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks

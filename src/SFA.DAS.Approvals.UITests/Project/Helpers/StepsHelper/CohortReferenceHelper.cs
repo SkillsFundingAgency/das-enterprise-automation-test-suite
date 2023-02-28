@@ -4,6 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using System;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {

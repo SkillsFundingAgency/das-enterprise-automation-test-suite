@@ -32,8 +32,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
-            if (!pageInteractionHelper.IsElementDisplayed(Reference))
-                formCompletionHelper.Click(ContinueButton);
             formCompletionHelper.EnterText(Reference, reference);
             return this;
         }

@@ -21,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderLoginUser _newProviderLoginDetails;
         private readonly ProviderLoginUser _oldProviderLoginDetails;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private const int expectedEditableFields = 7;
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
@@ -44,8 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeLinkDisplayed()
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(9)
-                .ClickSaveAndContinue()
+                .ValidateEditableTextBoxes(expectedEditableFields)
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
@@ -59,7 +59,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .SelectSaveAndUpdateRPLAsNo()
                 .SubmitApprove();
         }
@@ -108,7 +107,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
-                .ClickSaveAndContinue()
                 .EditCopApprenticeDetails()
                 .SubmitSendToEmployerToReview();
         }
@@ -137,8 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .IsAddApprenticeLinkDisplayed()
                 .IsBulkUpLoadLinkDisplayed()
                 .SelectEditApprentice()
-                .ValidateEditableTextBoxes(9)
-                .ClickSaveAndContinue()
+                .ValidateEditableTextBoxes(expectedEditableFields)
                 .EditCopApprenticeDetails()
                 .SubmitApprove();
         }
@@ -211,7 +208,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ValidateOnlyEditableApprenticeDetails(EditApprenticeDetailsPage editApprenticePage)
         {
-            Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == 6, "validate that cohort is editable on View apprentice details page");
+            Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == expectedEditableFields, "validate that cohort is editable on View apprentice details page");
         }
     }
 }
