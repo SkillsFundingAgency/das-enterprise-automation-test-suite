@@ -113,14 +113,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "131",
                             "2004/05/01",
                             "Today",
-                            "23",
+                            "24",
                             "6000"});
                 table14.AddRow(new string[] {
                             "2",
                             "131",
                             "2004/05/01",
                             "Today",
-                            "23",
+                            "24",
                             "6000"});
 #line 8
  testRunner.And("the Employer uses the reservation to create and approve apprentices with the foll" +
@@ -176,7 +176,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "Today",
                             "StartCurrentMonth",
-                            "+23Months",
+                            "+24Months",
                             "6000",
                             "1",
                             "18000"});
@@ -185,7 +185,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2",
                             "Null",
                             "StartCurrentMonth",
-                            "+23Months",
+                            "+24Months",
                             "6000",
                             "1",
                             "18000"});
@@ -200,8 +200,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table17.AddRow(new string[] {
                             "1",
                             "4800",
-                            "200",
-                            "24"});
+                            "192",
+                            "25"});
 #line 25
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table17, "And ");
 #line hidden
