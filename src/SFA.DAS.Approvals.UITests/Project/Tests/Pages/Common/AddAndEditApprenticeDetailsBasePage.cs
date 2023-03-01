@@ -21,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By ActualStartDateDay => By.Id("ActualStartDay");
         public static By ActualStartDateMonth => By.Id("ActualStartMonth");
         public static By ActualStartDateYear => By.Id("ActualStartYear");
+        protected virtual By EndDateDay => By.Name("EndDay");
         public static By StartDateMonth => By.Name("StartMonth");
         public static By StartDateYear => By.Name("StartYear");
         public static By EndDateMonth => By.Name("EndMonth");

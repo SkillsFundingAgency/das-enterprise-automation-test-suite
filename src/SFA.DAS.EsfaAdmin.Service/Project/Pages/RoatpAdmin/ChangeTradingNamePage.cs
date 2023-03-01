@@ -1,0 +1,8 @@
+﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
+
+public class ChangeTradingNamePage : ChangeBasePage
+{
+    protected override string PageTitle => $"Change trading name for {objectContext.GetProviderName()}";
+
+    public ChangeTradingNamePage(ScenarioContext context) : base(context) { }
+}

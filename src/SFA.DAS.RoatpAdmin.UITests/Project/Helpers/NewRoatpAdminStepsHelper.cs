@@ -1,11 +1,11 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+using SFA.DAS.EsfaAdmin.Service.Project.Pages.RoatpAdmin;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
 {
-    public class NewRoatpAdminStepsHelper : RoatpAdminStepsHelper
+    public class NewRoatpAdminStepsHelper : EsfaAdminStepsHelper
     {
         private readonly ScenarioContext _context;
 

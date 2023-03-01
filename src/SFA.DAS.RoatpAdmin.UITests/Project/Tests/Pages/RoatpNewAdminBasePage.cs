@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EsfaAdmin.Service.Project;
 using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
 using System;
@@ -16,21 +17,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         private By ProviderLink => By.LinkText(objectContext.GetProviderName());
 
-        protected By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
+        protected static By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
 
-        private By FailInternalComments => By.CssSelector("textarea.govuk-textarea#OptionFailText");
+        private static By FailInternalComments => By.CssSelector("textarea.govuk-textarea#OptionFailText");
 
-        private By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
+        private static By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
 
-        private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
+        private static By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
         
-        private By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
+        private static By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
-        private By SearchField => By.CssSelector("#SearchTerm");
+        private static By SearchField => By.CssSelector("#SearchTerm");
         
-        protected By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
+        protected static By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
-        private By SearchButton => By.CssSelector(".app-search-form__button-wrap");
+        private static By SearchButton => By.CssSelector(".app-search-form__button-wrap");
 
         public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {

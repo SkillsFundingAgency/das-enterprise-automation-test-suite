@@ -365,7 +365,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
                         providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
                             .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
-                            .EnterUlnAndActualStartDayThenSave(j+1);
+                            .EnterUlnAndTrainingStartEndDaysThenSave(j+1);
 
                         break;
                     }
@@ -382,7 +382,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             return providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
                 .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
-                .EnterUlnAndActualStartDayThenSave(learnerToEdit);
+                .EnterUlnAndTrainingStartEndDaysThenSave(learnerToEdit);
         }
 
         public ProviderApproveApprenticeDetailsPage AddApprenticeForFlexiPaymentsProvider(int numberOfApprentices, bool isPilotLearner = false)
