@@ -66,9 +66,26 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 index++;
                 var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
-                if (inputData.PilotStatus) _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerIntoThePilot(index);
-                else _flexiPaymentProviderSteps.GivenTheProviderAddsUlnAndOptLearnerOutOfThePilot(index);
+                if (inputData.PilotStatus) _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerIntoThePilot(index);
+                else _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerOutOfThePilot(index);
             }
+
+            _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
+        }
+
+        [Given(@"the Employer has an approved (Pilot|NonPilot) apprentice")]
+        public void EmployerHasFullyApprovedPilotApprentice(string pilotStatus)
+        {
+            _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount("Levy");
+
+            _employerStepsHelper.EmployerAddApprentice(1);
+
+            _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
+
+            _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
+
+            if (pilotStatus == "Pilot") _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerIntoThePilot(1);
+            else _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerOutOfThePilot(1);
 
             _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
         }
