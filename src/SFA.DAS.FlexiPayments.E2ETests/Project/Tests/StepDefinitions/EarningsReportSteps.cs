@@ -42,6 +42,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             appsIndicativeEarningsReportPage.ValidateEarnings(earnings);
 
+            appsIndicativeEarningsReportPage.DownloadCsvSummaryReport();
         }
     }
 }

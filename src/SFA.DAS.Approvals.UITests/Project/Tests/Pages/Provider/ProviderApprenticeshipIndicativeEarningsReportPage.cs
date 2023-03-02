@@ -37,5 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.AreEqual(earnings.nonLevyEmployerContribution, pageInteractionHelper.GetText(NonLevyEmployerContribution), "Incorrect Non-levy employer contribution found");
             });
         }
+
+        public void DownloadCsvSummaryReport() => formCompletionHelper.Click(DownloadSumaryReportButton);
     }
 }
