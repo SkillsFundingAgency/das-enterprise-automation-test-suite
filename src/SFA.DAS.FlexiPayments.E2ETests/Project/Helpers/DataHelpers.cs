@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
+using System;
 using System.Linq;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
@@ -17,12 +18,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return DateTime.TryParse(text, out date) ? date : null;
         }
 
-        public static DateTime CalculatePlannedEndDate(DateTime date, string months) 
+        public static DateTime CalculatePlannedEndDate(DateTime date, string months, FundingPlatform funding) 
         {
             var numberOfMonths = Convert.ToInt32(new String(months.Where(Char.IsDigit).ToArray()));
 
             var endDate = date.AddMonths(numberOfMonths);
-            return new DateTime(endDate.Year, endDate.Month, 1);
+
+            return (int)funding != 1 ? new DateTime(endDate.Year, endDate.Month, 1) : endDate;
         }
 
         public static  DateTime GetFirstDateOfCurrentMonth()

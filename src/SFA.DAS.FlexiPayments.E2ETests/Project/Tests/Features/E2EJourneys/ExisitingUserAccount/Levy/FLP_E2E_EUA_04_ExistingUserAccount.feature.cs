@@ -113,14 +113,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "154",
                             "2004/06/01",
                             "2023/08/01",
-                            "11",
+                            "12",
                             "15000"});
                 table10.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/01",
                             "2023/09/01",
-                            "11",
+                            "12",
                             "18000"});
 #line 8
  testRunner.And("Pilot Provider adds apprentices to the cohort witht the following details", ((string)(null)), table10, "And ");
@@ -166,7 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "2023/08/01",
                             "2023/08/01",
-                            "2024/07/01",
+                            "2024/08/01",
                             "15000",
                             "0",
                             "15000"});
@@ -175,7 +175,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "2023/09/01",
                             "2023/09/01",
-                            "2024/08/01",
+                            "2024/09/01",
                             "18000",
                             "0",
                             "18000"});
@@ -190,13 +190,13 @@ this.ScenarioInitialize(scenarioInfo);
                 table13.AddRow(new string[] {
                             "1",
                             "12000",
-                            "1000",
-                            "12"});
+                            "923",
+                            "13"});
                 table13.AddRow(new string[] {
                             "2",
                             "14400",
-                            "1200",
-                            "12"});
+                            "1108",
+                            "13"});
 #line 22
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table13, "And ");
 #line hidden

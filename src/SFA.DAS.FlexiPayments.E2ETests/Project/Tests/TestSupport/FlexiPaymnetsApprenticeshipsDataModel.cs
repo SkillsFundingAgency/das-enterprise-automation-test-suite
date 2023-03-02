@@ -17,7 +17,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
                     : DataHelpers.TryParseDate(value); } }
         public string ActualStartDateStr { set { ActualStartDate = value == "Today" ? DateTime.Today 
                     : DataHelpers.TryParseDate(value); } }
-        public string PlannedEndDateStr { set { PlannedEndDate = value == "+23Months" ? DataHelpers.CalculatePlannedEndDate(DateTime.Today, value) 
+        public string PlannedEndDateStr { set { PlannedEndDate = value == "+24Months" ? DataHelpers.CalculatePlannedEndDate(DateTime.Today, value, FundingPlatform) 
                     : DataHelpers.TryParseDate(value); } }
         public double AgreedPrice { get; set; }
         public FundingType FundingType { get; set; }
@@ -37,8 +37,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
     public enum FundingPlatform
     {
         [Description("Pilot")]
-        Levy = 1,
+        Pilot = 1,
         [Description("NonPilot")]
-        NonLevy = 2,
+        NonPilot = 2,
     }
 }

@@ -53,6 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
+            if (_isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
+
             EnterTrainingCostAndEmpReference();
 
             bool rpl = CheckRPLCondition(false);
@@ -151,5 +153,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             else
                 formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
         }
+
+        private void AddPlannedEndDateDay(DateTime dateTime) => formCompletionHelper.EnterText(EndDateDay, dateTime.Day);
     }
 }
