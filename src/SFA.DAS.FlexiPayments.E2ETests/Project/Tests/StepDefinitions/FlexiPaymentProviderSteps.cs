@@ -47,10 +47,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
 
         [Given(@"the provider adds Uln and Opt learner (.*) into the pilot")]
-        public void GivenTheProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
+        public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
 
         [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
-        public void GivenTheProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
+        public void ProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
 
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
@@ -74,6 +74,16 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             _providerStepsHelper.ValidateProviderEditApprovedApprentice(action == "can");
         }
+
+        [Then(@"validate provider (can|cannot) view Pilot DataLock message")]
+        public void ThenValidateProviderCanViewPilotDataLockMessage(string action)
+        {
+            _providerStepsHelper.GoToProviderHomePage(false)
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ValidateFlexiPaymentDataLockMessageDisplayed(action == "can");
+        }
+
 
         internal void SetApprenticeDetailsInContext(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, int learnerNumber)
         {
