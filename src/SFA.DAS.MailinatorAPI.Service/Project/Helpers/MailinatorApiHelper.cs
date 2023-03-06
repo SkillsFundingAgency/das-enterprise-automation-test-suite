@@ -48,12 +48,15 @@ public class MailinatorApiHelper
 
     public string GetDomain()
     {
-        //Get All Domains
-        GetAllDomainsResponse getAllDomainsResponse = mailinatorClient.DomainsClient.GetAllDomainsAsync().Result;
-
         _objectContext.SetMessageList();
 
-        return getAllDomainsResponse.Domains.FirstOrDefault().Name;
+        //testing with public domain
+        return "mailinator.com";
+
+        //Get All Domains
+        //GetAllDomainsResponse getAllDomainsResponse = mailinatorClient.DomainsClient.GetAllDomainsAsync().Result;
+
+       // return getAllDomainsResponse.Domains.FirstOrDefault().Name;
     }
 
     public string GetLink(string email, string expected)
