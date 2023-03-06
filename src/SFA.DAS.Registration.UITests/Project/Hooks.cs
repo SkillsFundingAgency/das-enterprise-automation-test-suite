@@ -73,6 +73,6 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
 
-        private string GetPrivateDomainName() => _context.Get<MailinatorApiHelper>().GetDomain();
+        private string GetPrivateDomainName() => _context.Get<MailinatorApiHelper>().GetDomainName();
     }
 }
