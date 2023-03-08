@@ -55,7 +55,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         }
 
         private static Dictionary<string, object> SetBrowserstackCapabilities(BrowserStackSetting options) => 
-            new Dictionary<string, object> 
+            new()
             {
                 { "userName", options.User },
                 { "accessKey", options.Key },
