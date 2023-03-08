@@ -45,7 +45,7 @@ public class MailinatorApiHelper
     {
         foreach (var email in mailers)
         {
-            string inbox = GetEmail(email);
+            string inbox = GetEmail(email, false);
 
             //Delete Message
             DeleteAllInboxMessagesRequest deleteMessageRequest = new() { Domain = apiDomainName, Inbox = inbox };
@@ -88,7 +88,7 @@ public class MailinatorApiHelper
 
         string body = string.Empty;
 
-        string inbox = GetEmail(email);
+        string inbox = GetEmail(email, true);
 
         _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(() =>
         {
@@ -104,13 +104,14 @@ public class MailinatorApiHelper
         return body;
     }
 
-    private static string GetEmail(string email)
+    private static string GetEmail(string email, bool addToTheList)
     {
-        mailers.Add(email);
+        if (addToTheList) mailers.Add(email);
 
         var emailSplit = email.Split('@');
 
-        return emailSplit[0];
+        // To access public domain via mailinator api using verified pro token, it will only work if the email is all lower case and within 15 char limit
+        return emailSplit[0].ToLower();
     }
 
     private FetchMessageResponse FetchMessage(string inbox, Func<FetchMessageResponse, bool> func)
@@ -118,6 +119,7 @@ public class MailinatorApiHelper
         _objectContext.SetDebugInformation($"FetchInboxRequest using domain - {domainName}/{apiDomainName}, Inbox - {inbox}");
 
         //Fetch Inbox
+
         FetchInboxRequest fetchInboxRequest = new() { Domain = apiDomainName, Inbox = inbox, Skip = 0, Limit = 20, Sort = Sort.asc };
 
         FetchInboxResponse fetchInboxResponse = mailinatorClient.MessagesClient.FetchInboxAsync(fetchInboxRequest).Result;

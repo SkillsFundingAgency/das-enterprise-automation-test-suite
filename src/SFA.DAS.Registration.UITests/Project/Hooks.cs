@@ -46,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
                               tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("testinator")) ? GetPrivateDomainName() : "dasautomation.com";
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("testinator")) ? GetDomainName() : "dasautomation.com";
 
             var aornDataHelper = new AornDataHelper();
 
@@ -73,6 +73,6 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
 
-        private string GetPrivateDomainName() => _context.Get<MailinatorApiHelper>().GetDomainName();
+        private string GetDomainName() => _context.Get<MailinatorApiHelper>().GetDomainName();
     }
 }
