@@ -1,6 +1,7 @@
 ﻿Feature: FATV2_ShortlistACourse
 
-@mytag
+@fatv2
+@regression
 Scenario: FATV2_SAC_01_Shortlist A Course With And Without Location
 	Given the User searches with adult term
 	And the User chooses the first course from the Search Results page
