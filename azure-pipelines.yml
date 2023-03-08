@@ -19,7 +19,7 @@ resources:
     endpoint: SkillsFundingAgency
 
 pool:
-  name: DAS - Continuous Integration Agents
+  vmImage: ubuntu-latest
 
 steps:
 - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks

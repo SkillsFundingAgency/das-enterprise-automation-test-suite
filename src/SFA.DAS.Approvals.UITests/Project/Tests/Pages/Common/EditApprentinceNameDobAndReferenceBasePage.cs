@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By DateOfBirthYear => By.CssSelector("#BirthYear, #DateOfBirth_Year, #dob-year");
         protected virtual By StartDateMonth => By.CssSelector("#StartMonth, #StartDate_Month, #startDate-month");
         protected virtual By StartDateYear => By.CssSelector("#StartYear, #StartDate_Year, #startDate-year");
+        protected virtual By EndDateDay => By.Name("EndDay");
         protected virtual By EndDateMonth => By.CssSelector("#EndMonth, #EndDate_Month, #endDate-month");
         protected virtual By EndDateYear => By.CssSelector("#EndYear, #EndDate_Year, #endDate-year");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");

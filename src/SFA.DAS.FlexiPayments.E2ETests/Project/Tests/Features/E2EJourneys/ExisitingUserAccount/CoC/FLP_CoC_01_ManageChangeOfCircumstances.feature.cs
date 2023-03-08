@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "154",
                             "2004/06/20",
                             "2023/08/01",
-                            "11",
+                            "12",
                             "15000",
                             "true"});
                 table1.AddRow(new string[] {
@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "91",
                             "2004/06/27",
                             "2022/09/01",
-                            "11",
+                            "12",
                             "18000",
                             "false"});
 #line 10

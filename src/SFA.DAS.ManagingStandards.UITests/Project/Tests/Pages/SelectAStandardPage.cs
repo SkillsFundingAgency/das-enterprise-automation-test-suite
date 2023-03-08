@@ -4,15 +4,19 @@ public class SelectAStandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Select a standard";
 
-    private By SearchField = By.Id("SelectedLarsCode");
-    private By LarsCode4 = By.XPath("//li[text()='Actuary (Level 7)']"); 
+    private static By SearchField => By.CssSelector("#SelectedLarsCode");
+
+    private static By FirstStandard => By.CssSelector("ul#SelectedLarsCode__listbox > li");
     public SelectAStandardPage(ScenarioContext context) : base(context) { }
 
-    public AddAstandard_ActuaryPage SelectActuaryAndContinue()
+    public AddAstandardPage SelectAStandardAndContinue(string standardName)
     {
-        formCompletionHelper.ClickElement(SearchField);
-        formCompletionHelper.ClickElement(LarsCode4);
+        formCompletionHelper.EnterText(SearchField, standardName);
+
+        formCompletionHelper.Click(FirstStandard);
+
         Continue();
-        return new AddAstandard_ActuaryPage(context);
+
+        return new AddAstandardPage(context, standardName);
     }
 }
