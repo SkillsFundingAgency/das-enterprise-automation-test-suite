@@ -75,14 +75,16 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.Shortlist
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FATV2_SAC_01_Shortlist A Course With And Without Location")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("fatv2")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void FATV2_SAC_01_ShortlistACourseWithAndWithoutLocation()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "fatv2",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_SAC_01_Shortlist A Course With And Without Location", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -92,20 +94,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
+#line 6
  testRunner.Given("the User searches with adult term", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 6
+#line 7
  testRunner.And("the User chooses the first course from the Search Results page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 7
+#line 8
  testRunner.And("the User is able to find the Provider by location CV1 2WT for the chosen training" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 8
+#line 9
  testRunner.When("user shortlists with a location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.And("user shortlists without a location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
