@@ -18,7 +18,7 @@ public class Hooks
     }
 
     [BeforeScenario(Order = 12)]
-    public void SetUpMailinatorApiHelpers() => _context.Set(mailinatorApiHelper = new MailinatorApiHelper(_context));
+    public void SetUpMailinatorApiHelpers() => _context.Set(mailinatorApiHelper = new MailinatorApiHelper(_context, true));
 
     [AfterScenario(Order = 22)]
     public void DeleteMessages()

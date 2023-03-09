@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
