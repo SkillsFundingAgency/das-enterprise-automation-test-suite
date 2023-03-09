@@ -27,7 +27,7 @@ public class Hooks
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        var emailDomain = _context.Get<MailinatorApiHelper>().GetDomain();
+        var emailDomain = _context.Get<MailinatorApiHelper>().GetDomainName();
 
         var datahelper = new AedDataHelper(emailDomain);
 

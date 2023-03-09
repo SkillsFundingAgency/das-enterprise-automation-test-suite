@@ -1,5 +1,4 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {

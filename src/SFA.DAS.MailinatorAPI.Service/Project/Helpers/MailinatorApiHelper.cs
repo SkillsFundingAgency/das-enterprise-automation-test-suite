@@ -24,34 +24,47 @@ public class MailinatorApiHelper
 
     private static readonly HashSet<string> mailers = new();
 
-    public MailinatorApiHelper(ScenarioContext context)
+    private readonly string domainName;
+
+    private readonly string apiDomainName;
+
+    public MailinatorApiHelper(ScenarioContext context, bool isPublic)
     {
         mailinatorClient = new(context.Get<MailinatorConfig>().ApiToken);
 
         _assertHelper = context.Get<RetryAssertHelper>();
 
         _objectContext = context.Get<ObjectContext>();
+        
+        domainName = isPublic ? "mailinator.com" : GetPrivateDomain();
+
+        apiDomainName = isPublic ? "public" : domainName;
     }
 
     internal void DeleteInbox()
     {
         foreach (var email in mailers)
         {
-            (string inbox, string domain) = GetEmail(email);
+            string inbox = GetEmail(email, false);
 
             //Delete Message
-            DeleteAllInboxMessagesRequest deleteMessageRequest = new() { Domain = domain, Inbox = inbox };
+            DeleteAllInboxMessagesRequest deleteMessageRequest = new() { Domain = apiDomainName, Inbox = inbox };
 
             _ = mailinatorClient.MessagesClient.DeleteAllInboxMessagesAsync(deleteMessageRequest).Result;
         }
     }
 
-    public string GetDomain()
+    public string GetDomainName()
+    {
+        _objectContext.SetMessageList();
+
+        return domainName; 
+    }
+
+    private string GetPrivateDomain()
     {
         //Get All Domains
         GetAllDomainsResponse getAllDomainsResponse = mailinatorClient.DomainsClient.GetAllDomainsAsync().Result;
-
-        _objectContext.SetMessageList();
 
         return getAllDomainsResponse.Domains.FirstOrDefault().Name;
     }
@@ -75,11 +88,11 @@ public class MailinatorApiHelper
 
         string body = string.Empty;
 
-        (string inbox, string domain) = GetEmail(email);
+        string inbox = GetEmail(email, true);
 
         _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(() =>
         {
-            FetchMessageResponse fetchMessageResponse = FetchMessage(inbox, domain, func());
+            FetchMessageResponse fetchMessageResponse = FetchMessage(inbox, func());
 
             Assert.That(func().Invoke(fetchMessageResponse), Is.True, $"{email} did not contain '{expected}'");
 
@@ -91,40 +104,42 @@ public class MailinatorApiHelper
         return body;
     }
 
-    private static (string inbox, string domain) GetEmail(string email)
+    private static string GetEmail(string email, bool addToTheList)
     {
-        mailers.Add(email);
+        if (addToTheList) mailers.Add(email);
 
         var emailSplit = email.Split('@');
 
-        return (emailSplit[0], emailSplit[1]);
+        // To access public domain via mailinator api using verified pro token, it will only work if the email is all lower case and within 15 char limit
+        return emailSplit[0].ToLower();
     }
 
-    private FetchMessageResponse FetchMessage(string inbox, string domain, Func<FetchMessageResponse, bool> func)
+    private FetchMessageResponse FetchMessage(string inbox, Func<FetchMessageResponse, bool> func)
     {
-        _objectContext.SetDebugInformation($"FetchInboxRequest using domain - {domain}, Inbox - {inbox}");
+        _objectContext.SetDebugInformation($"FetchInboxRequest using domain - {domainName}/{apiDomainName}, Inbox - {inbox}");
 
         //Fetch Inbox
-        FetchInboxRequest fetchInboxRequest = new() { Domain = domain, Inbox = inbox, Skip = 0, Limit = 20, Sort = Sort.asc };
+
+        FetchInboxRequest fetchInboxRequest = new() { Domain = apiDomainName, Inbox = inbox, Skip = 0, Limit = 20, Sort = Sort.asc };
 
         FetchInboxResponse fetchInboxResponse = mailinatorClient.MessagesClient.FetchInboxAsync(fetchInboxRequest).Result;
 
-        var messageId = fetchInboxResponse.Messages.FirstOrDefault(x => func(FetchMessage(inbox, domain, x.Id)))?.Id;
+        var messageId = fetchInboxResponse.Messages.FirstOrDefault(x => func(FetchMessage(inbox, x.Id)))?.Id;
 
-        Assert.IsNotNull(messageId, $"No new email - {inbox}@{domain}");
+        Assert.IsNotNull(messageId, $"No new email - {inbox}@{domainName} in {apiDomainName} inbox");
 
         //Fetch Message
 
-        return FetchMessage(inbox, domain, messageId);
+        return FetchMessage(inbox, messageId);
     }
 
-    private FetchMessageResponse FetchMessage(string inbox, string domain, string messageId)
+    private FetchMessageResponse FetchMessage(string inbox, string messageId)
     {
         //Fetch Message
 
-        _objectContext.SetDebugInformation($"FetchMessageRequest using domain - {domain}, Inbox - {inbox} and message id - {messageId}");
+        _objectContext.SetDebugInformation($"FetchMessageRequest using domain - {domainName}/{apiDomainName}, Inbox - {inbox} and message id - {messageId}");
 
-        FetchMessageRequest fetchMessageRequest = new() { Domain = domain, Inbox = inbox, MessageId = messageId };
+        FetchMessageRequest fetchMessageRequest = new() { Domain = apiDomainName, Inbox = inbox, MessageId = messageId };
 
         FetchMessageResponse fetchMessageResponse = mailinatorClient.MessagesClient.FetchMessageAsync(fetchMessageRequest).Result;
 
