@@ -1,6 +1,6 @@
 ﻿Feature: EmpFin_Api_07_GetTransferAllowance
 
-@ignore
+@ignoreinpp
 @api
 @employerfinanceapi
 @regression

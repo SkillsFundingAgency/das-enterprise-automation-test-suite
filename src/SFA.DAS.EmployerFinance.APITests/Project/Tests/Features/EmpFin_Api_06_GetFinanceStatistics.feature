@@ -1,6 +1,6 @@
 ﻿Feature: EmpFin_Api_06_GetFinanceStatistics
 
-@ignore
+@ignoreinpp
 @api
 @employerfinanceapi
 @regression
