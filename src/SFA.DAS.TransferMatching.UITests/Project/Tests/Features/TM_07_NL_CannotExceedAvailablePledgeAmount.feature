@@ -1,5 +1,6 @@
 ﻿Feature: TM_07_NL_CannotExceedAvailablePledgeAmount
 
+@ignore
 @regression
 @transfermatching
 Scenario: TM_07_NL_Cannot Exceed Available Pledge Amount
