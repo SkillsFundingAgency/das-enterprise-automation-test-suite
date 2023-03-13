@@ -113,6 +113,6 @@ namespace SFA.DAS.FrameworkHelpers
             return checkSumValue % 11 == 10;
         }
 
-        private static string GenerateRandomString(string characters, int length) => new string(Enumerable.Repeat(characters, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
+        private static string GenerateRandomString(string characters, int length) => new(Enumerable.Repeat(characters, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
     }
 }
