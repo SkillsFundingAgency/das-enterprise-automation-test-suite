@@ -7,52 +7,43 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    // ReSharper disable once InconsistentNaming
     public class EIServiceBusHelper
     {
-        private readonly EIPaymentProcessConfig _config;
+        private readonly IEndpointInstance _endpoint;
 
         public EIServiceBusHelper(EIPaymentProcessConfig config)
         {
-            _config = config;
-        }
-
-        public async Task Send<T>(string queueName, T message) where T : class
-        {
-            var endpoint = SetupEndpoint(queueName);
-            await endpoint.Send(message);
-        }
-
-        public async Task Publish<T>(string queueName, T message) where T : class
-        {
-            var endpoint = SetupEndpoint(queueName);
-            await endpoint.Publish(message);
-        }
-
-        private IEndpointInstance SetupEndpoint(string queueName)
-        {
-
-            var endpointConfiguration = new EndpointConfiguration(queueName)
+            var endpointConfiguration = new EndpointConfiguration("SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers")
                 .UseMessageConventions()
-            .UseNewtonsoftJsonSerializer();
+                .UseNewtonsoftJsonSerializer();
 
-            if (_config.EI_ServiceBusConnectionString.Equals("UseLearningEndpoint=true", StringComparison.CurrentCultureIgnoreCase))
+            if (config.EI_ServiceBusConnectionString.Equals("UseLearningEndpoint=true", StringComparison.CurrentCultureIgnoreCase))
             {
                 var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                transport.StorageDirectory(_config.LearningTransportStorageDirectory);
+                transport.StorageDirectory(config.LearningTransportStorageDirectory);
                 transport.Routing().AddRouting();
                 transport.Transactions(TransportTransactionMode.ReceiveOnly);
             }
             else
             {
                 var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-                transport.ConnectionString(_config.EI_ServiceBusConnectionString);
+                transport.ConnectionString(config.EI_ServiceBusConnectionString);
                 transport.Routing().AddRouting();
                 transport.SubscriptionRuleNamingConvention(RuleNameShortener.Shorten);
                 transport.Transactions(TransportTransactionMode.ReceiveOnly);
             }
 
-            return Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+            _endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+        }
+
+        public async Task Send<T>(T message) where T : class
+        {
+            await _endpoint.Send(message);
+        }
+
+        public async Task Publish<T>(T message) where T : class
+        {
+            await _endpoint.Publish(message);
         }
     }
 }
