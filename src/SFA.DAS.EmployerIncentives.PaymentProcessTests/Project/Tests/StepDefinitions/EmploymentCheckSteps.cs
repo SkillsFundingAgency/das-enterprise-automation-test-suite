@@ -235,9 +235,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenTheEmploymentCheckIsComplete(string statusBeforeScheme, string statusAtStart)
         {
             var employedBeforeSchemeCheck = _employmentChecks.Single(x => x.CheckType == EmploymentCheckType.EmployedBeforeSchemeStarted);
-            await Helper.EIServiceBusHelper.Publish(new EmploymentCheck.Types.EmploymentCheckCompletedEvent(employedBeforeSchemeCheck.CorrelationId, IsEmployed(statusBeforeScheme), DateTime.Now, null!));
+            await Helper.EIServiceBusHelper.Publish(EmploymentCheck.Types.QueueNames.PublishEmploymentCheckResult, new EmploymentCheck.Types.EmploymentCheckCompletedEvent(employedBeforeSchemeCheck.CorrelationId, IsEmployed(statusBeforeScheme), DateTime.Now, null!));
             var employedAtStartCheck = _employmentChecks.Single(x => x.CheckType == EmploymentCheckType.EmployedAtStartOfApprenticeship);
-            await Helper.EIServiceBusHelper.Publish(new EmploymentCheck.Types.EmploymentCheckCompletedEvent(employedAtStartCheck.CorrelationId, IsEmployed(statusAtStart), DateTime.Now, null!));
+            await Helper.EIServiceBusHelper.Publish(EmploymentCheck.Types.QueueNames.PublishEmploymentCheckResult, new EmploymentCheck.Types.EmploymentCheckCompletedEvent(employedAtStartCheck.CorrelationId, IsEmployed(statusAtStart), DateTime.Now, null!));
         }
 
         private static bool IsEmployed(string status) => status == "employed";
