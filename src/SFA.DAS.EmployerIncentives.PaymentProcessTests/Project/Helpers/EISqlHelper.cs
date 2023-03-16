@@ -215,9 +215,17 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 SubmittedByEmail = application.SubmittedByEmail,
                 CourseName = apprenticeship.CourseName,
                 Status = IncentiveStatus.Active,
-                MinimumAgreementVersion = 4,
+                MinimumAgreementVersion = 6,
                 Phase = apprenticeship.Phase,
-                EmploymentStartDate = apprenticeship.EmploymentStartDate
+                EmploymentStartDate = apprenticeship.EmploymentStartDate,
+                BreakInLearnings = new List<ApprenticeshipBreakInLearning>(),
+                ClawbackPayments = new List<ClawbackPayment>(),
+                HasPossibleChangeOfCircumstances = false,
+                PausePayments = false,
+                Payments = new List<Payment>(),
+                PendingPayments = new List<PendingPayment>(),
+                RefreshedLearnerForEarnings = false,
+                WithdrawnBy = null
             };
 
             await using var dbConnection = new SqlConnection(connectionString);
