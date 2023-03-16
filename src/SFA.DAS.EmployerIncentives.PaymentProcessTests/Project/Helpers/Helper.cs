@@ -38,12 +38,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             context.Set(new PaymentsOrchestratorHelper(context));
             context.Set(new LearnerMatchOrchestratorHelper(context));
             context.Set(new EIServiceBusHelper(eiConfig));
+            context.Set(new EIFunctionsHelper(eiConfig));
             context.Set(new IncentiveApplicationHelper(context));
             context.Set(new IncentiveHelper(context));            
             context.Set(new BusinessCentralApiHelper(context));
             context.Set(new LearnerMatchApiHelper(context));
             context.Set(new LearnerDataHelper(context));
-            context.Set(new EIFunctionsHelper(eiConfig));
             context.Set(new EmploymentCheckHelper(context));
             context.Set(new EmploymentCheckApiHelper(context));
         }

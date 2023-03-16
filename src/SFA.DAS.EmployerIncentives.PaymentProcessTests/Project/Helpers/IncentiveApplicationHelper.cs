@@ -10,6 +10,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
     {
         private readonly EISqlHelper _sqlHelper;
         private readonly StopWatchHelper _stopWatchHelper;
+        private readonly EIFunctionsHelper _eiFunctionsHelper;
         private readonly EIServiceBusHelper _eIServiceBusHelper;
         private readonly TestData _testData;
 
@@ -17,6 +18,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             _sqlHelper = context.Get<EISqlHelper>();
             _stopWatchHelper = context.Get<StopWatchHelper>();
+            _eiFunctionsHelper = context.Get<EIFunctionsHelper>();
             _eIServiceBusHelper = context.Get<EIServiceBusHelper>();
             _testData = context.Get<TestData>();
         }
@@ -29,27 +31,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             foreach (var apprenticeship in application.Apprenticeships)
             {
-                var command = new CreateIncentiveCommand(
-                    application.AccountId,
-                    application.AccountLegalEntityId,
-                    apprenticeship.Id,
-                    apprenticeship.ApprenticeshipId,
-                    apprenticeship.FirstName,
-                    apprenticeship.LastName,
-                    apprenticeship.DateOfBirth,
-                    apprenticeship.ULN,
-                    apprenticeship.PlannedStartDate,
-                    apprenticeship.ApprenticeshipEmployerTypeOnApproval,
-                    apprenticeship.UKPRN,
-                    application.DateSubmitted.Value,
-                    application.SubmittedByEmail,
-                    apprenticeship.CourseName,
-                    apprenticeship.EmploymentStartDate.Value,
-                    apprenticeship.Phase
-                );
-
-                await _eIServiceBusHelper.Send(command);
-                _testData.ApprenticeshipIncentiveId = await _sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(1));
+                await _sqlHelper.CreateEarnings(application, apprenticeship);
+                await _eiFunctionsHelper.TriggerEarningsResilienceCheck();
+                _testData.ApprenticeshipIncentiveId = await _sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(2));
                 _testData.IncentiveIds.Add(_testData.ApprenticeshipIncentiveId);
                 await _sqlHelper.WaitUntilEarningsExist(_testData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
             }

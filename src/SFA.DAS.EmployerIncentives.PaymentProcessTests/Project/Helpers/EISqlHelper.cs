@@ -194,5 +194,34 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.ExecuteAsync(SqlScripts.DeleteEmploymentChecks, new { apprenticeshipIncentiveId });
         }
+
+        public async Task CreateEarnings(IncentiveApplication application, IncentiveApplicationApprenticeship apprenticeship)
+        {
+            var incentive = new ApprenticeshipIncentive
+            {
+                Id = Guid.NewGuid(),
+                AccountId = application.AccountId,
+                ApprenticeshipId = apprenticeship.ApprenticeshipId,
+                FirstName = apprenticeship.FirstName,
+                LastName = apprenticeship.LastName,
+                DateOfBirth = apprenticeship.DateOfBirth,
+                ULN = apprenticeship.ULN,
+                UKPRN = apprenticeship.UKPRN,
+                EmployerType = apprenticeship.ApprenticeshipEmployerTypeOnApproval,
+                StartDate = apprenticeship.PlannedStartDate,
+                IncentiveApplicationApprenticeshipId = apprenticeship.Id,
+                AccountLegalEntityId = application.AccountLegalEntityId,
+                SubmittedDate = application.DateSubmitted,
+                SubmittedByEmail = application.SubmittedByEmail,
+                CourseName = apprenticeship.CourseName,
+                Status = IncentiveStatus.Active,
+                MinimumAgreementVersion = 4,
+                Phase = apprenticeship.Phase,
+                EmploymentStartDate = apprenticeship.EmploymentStartDate
+            };
+
+            await using var dbConnection = new SqlConnection(connectionString);
+            await dbConnection.InsertAsync(incentive, enumAsString: true);
+        }
     }
 }
