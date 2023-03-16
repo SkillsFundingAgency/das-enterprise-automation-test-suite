@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -29,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EmployerReference => By.Id("Reference");
         private By ChangeSimplifiedPaymentsPilotLink => By.Id("change-pilot-status-link");
         protected By SaveButton => By.XPath("//button[contains(text(),'Save')]");
+        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
         {
@@ -170,6 +172,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ValidateTrainingCourseNotEditable()
+        {
+            Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
+            return this;
         }
 
         public ProviderOverlappingTrainingDateThereMayBeProblemPage ClickSaveWhenOltd()

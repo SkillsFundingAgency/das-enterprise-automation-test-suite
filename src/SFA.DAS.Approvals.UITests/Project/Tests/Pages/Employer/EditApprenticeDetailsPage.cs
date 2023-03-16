@@ -26,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => GetEditDeliveryModelLink();
         private By DeliveryModelValue => GetDeliveryModelValue();
+        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
 
         public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
@@ -162,6 +163,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(SaveButton);
             return new ApproveApprenticeDetailsPage(context);
+        }
+
+        public EditApprenticeDetailsPage ValidateTrainingCourseNotEditable()
+        {
+            Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
+            return this;
         }
 
         private By GetEditDeliveryModelLink()

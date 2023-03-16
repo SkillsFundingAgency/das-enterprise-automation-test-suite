@@ -69,6 +69,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new EmployerStepsHelper(_context)
                 .EmployerReviewCohort()
                 .IsAddApprenticeLinkDisplayed()
+                .SelectEditApprentice()
+                .ValidateTrainingCourseNotEditable()
+                .SaveEditedTrainingDetails()
                 .EmployerDoesSecondApproval();
         }
 
@@ -107,6 +110,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
+                .ValidateTrainingCourseNotEditable()
                 .EditCopApprenticeDetails()
                 .SubmitSendToEmployerToReview();
         }
