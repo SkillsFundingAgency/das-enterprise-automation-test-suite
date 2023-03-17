@@ -34,19 +34,19 @@ jobs:
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeAccountsAppServiceName)
-              RuleName: $(Build.DefinitionName)
+              RuleName: ${{ replace(variables['Build.DefinitionName'], '-automation-test-suite', '') }}
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeCommitmentsOuterApiAppServiceName)
-              RuleName: $(Build.DefinitionName)
+              RuleName: ${{ replace(variables['Build.DefinitionName'], '-automation-test-suite', '') }}
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(CoursesAppServiceName)
-              RuleName: $(Build.DefinitionName)
+              RuleName: ${{ replace(variables['Build.DefinitionName'], '-automation-test-suite', '') }}
         - task: DotNetCoreCLI@2
           env:
             ResourceEnvironmentName: $(ResourceEnvironmentName)
