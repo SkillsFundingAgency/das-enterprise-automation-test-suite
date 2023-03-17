@@ -1,7 +1,8 @@
 ﻿using MongoDB.Driver;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public class MongoDbConnectionHelper
     {

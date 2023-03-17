@@ -13,7 +13,7 @@ public record AedDataHelper
 
     public static string GetRandomNumber(int length) => RandomDataGenerator.GenerateRandomNumber(length);
 
-    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
+    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
 
     private static List<string> ValidLocations => new() { "Crawley, West Sussex", "Bilston, West Midlands", "Coventry, West Midlands", "Canary Wharf, Greater London", "CV1 2WT" };
 }
