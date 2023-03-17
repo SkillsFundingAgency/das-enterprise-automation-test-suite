@@ -40,7 +40,7 @@ jobs:
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeCommitmentsOuterApiAppServiceName)
-              RuleName: 'apprenticecommitments-outer'
+              RuleName: $(Build.DefinitionName)
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
             parameters:
