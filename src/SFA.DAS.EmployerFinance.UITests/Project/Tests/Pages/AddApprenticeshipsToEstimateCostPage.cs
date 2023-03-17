@@ -11,24 +11,33 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         private By ApprenticeshipCombobox => By.CssSelector(".govuk-checkboxes__label[for='IsTransferFunded']");
 
-        private By ApprenticeshipInputBox => By.XPath("//label[@class='govuk-label govuk-label--s'][1]");
+        private static By SearchField => By.CssSelector("#choose-apprenticeship");
 
-        private By NoOfApprentice => By.CssSelector("input#no-of-app");
+        private static By Standard => By.CssSelector("ul#choose-apprenticeship__listbox > li");
 
-        private By StartDateMonth => By.CssSelector("input#startDateMonth");
+        private static By NoOfApprentice => By.CssSelector("input#no-of-app");
 
-        private By StartDateYear => By.CssSelector("input#startDateYear");
+        private static By StartDateMonth => By.CssSelector("input#startDateMonth");
 
-        private By SaveButton => By.CssSelector("#save");
+        private static By StartDateYear => By.CssSelector("input#startDateYear");
+
+        private static By SaveButton => By.CssSelector("#save");
 
         public AddApprenticeshipsToEstimateCostPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EstimatedCostsPage Add()
         {
-            var date = DateTime.Now; 
-            
-            javaScriptHelper.ClickElement(ApprenticeshipCombobox);
-            javaScriptHelper.SetTextUsingJavaScript(ApprenticeshipInputBox, "software tester");
+            var date = DateTime.Now;
+
+            //an account with transfer needs to be mapped to enable this checkbox
+            //formCompletionHelper.ClickElement(ApprenticeshipCombobox);
+
+            formCompletionHelper.EnterText(SearchField, "Retail:");
+
+            pageInteractionHelper.FocusTheElement(Standard);
+
+            formCompletionHelper.Click(Standard);
+
             formCompletionHelper.EnterText(NoOfApprentice, 1);
             formCompletionHelper.EnterText(StartDateMonth, date.Month);
             formCompletionHelper.EnterText(StartDateYear, date.Year);
