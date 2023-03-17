@@ -86,12 +86,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task TriggerEarningsResilienceCheck()
-        {
-            var response = await httpClient.PostAsync($"{baseUrl}/api/HttpEarningsResilienceCheck?code={AuthenticationCode}", null);
-            response.EnsureSuccessStatusCode();
-        }
-
         public class Application
         {
             public long AccountLegalEntityId { get; set; }
