@@ -228,8 +228,44 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 WithdrawnBy = null
             };
 
+            var pendingPayment1 = new PendingPayment
+            {
+                AccountId = application.AccountId,
+                AccountLegalEntityId = application.AccountLegalEntityId,
+                Amount = 1500m,
+                ApprenticeshipIncentiveId = incentive.Id,
+                CalculatedDate = DateTime.Now,
+                ClawedBack = false,
+                DueDate = apprenticeship.PlannedStartDate.AddDays(90),
+                EarningType = EarningType.FirstPayment,
+                Id = Guid.NewGuid(),
+                PaymentMadeDate = null,
+                PaymentYear = 2223,
+                PeriodNumber = 7,
+                ValidationResults = new List<PendingPaymentValidationResult>()
+            };
+
+            var pendingPayment2 = new PendingPayment
+            {
+                AccountId = application.AccountId,
+                AccountLegalEntityId = application.AccountLegalEntityId,
+                Amount = 1500m,
+                ApprenticeshipIncentiveId = incentive.Id,
+                CalculatedDate = DateTime.Now,
+                ClawedBack = false,
+                DueDate = apprenticeship.PlannedStartDate.AddDays(365),
+                EarningType = EarningType.SecondPayment,
+                Id = Guid.NewGuid(),
+                PaymentMadeDate = null,
+                PaymentYear = 2223,
+                PeriodNumber = 7,
+                ValidationResults = new List<PendingPaymentValidationResult>()
+            };
+
             await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.InsertAsync(incentive, enumAsString: true);
+            await dbConnection.InsertAsync(pendingPayment1, enumAsString: true);
+            await dbConnection.InsertAsync(pendingPayment2, enumAsString: true);
         }
     }
 }

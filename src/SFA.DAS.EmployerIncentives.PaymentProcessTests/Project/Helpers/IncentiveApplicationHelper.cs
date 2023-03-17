@@ -28,11 +28,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _stopWatchHelper.Start("SubmitIncentiveApplication");
             await _sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId, signedAgreementVersion);
             await _sqlHelper.CreateIncentiveApplication(application);
+            //await _eiFunctionsHelper.TriggerEarningsResilienceCheck();
 
             foreach (var apprenticeship in application.Apprenticeships)
             {
                 await _sqlHelper.CreateEarnings(application, apprenticeship);
-                await _eiFunctionsHelper.TriggerEarningsResilienceCheck();
                 _testData.ApprenticeshipIncentiveId = await _sqlHelper.GetApprenticeshipIncentiveIdWhenExists(apprenticeship.Id, TimeSpan.FromMinutes(2));
                 _testData.IncentiveIds.Add(_testData.ApprenticeshipIncentiveId);
                 await _sqlHelper.WaitUntilEarningsExist(_testData.ApprenticeshipIncentiveId, TimeSpan.FromMinutes(1));
