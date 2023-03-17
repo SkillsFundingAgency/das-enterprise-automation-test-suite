@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,11 +9,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add apprenticeships to estimate cost";
 
-        private By ApprenticeshipCombobox => By.CssSelector(".select2-selection");
+        private By ApprenticeshipCombobox => By.CssSelector(".govuk-checkboxes__label[for='IsTransferFunded']");
 
-        private By ApprenticeshipInputBox => By.CssSelector(".select2-search__field");
-
-        private By ApprenticeshipOptions => By.CssSelector(".select2-results__option");
+        private By ApprenticeshipInputBox => By.XPath("//label[@class='govuk-label govuk-label--s'][1]");
 
         private By NoOfApprentice => By.CssSelector("input#no-of-app");
 
@@ -27,9 +26,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public EstimatedCostsPage Add()
         {
             var date = DateTime.Now; 
-            formCompletionHelper.Click(ApprenticeshipCombobox);
-            formCompletionHelper.EnterText(ApprenticeshipInputBox, "software tester");
-            formCompletionHelper.Click(ApprenticeshipOptions);
+            
+            javaScriptHelper.ClickElement(ApprenticeshipCombobox);
+            javaScriptHelper.SetTextUsingJavaScript(ApprenticeshipInputBox, "software tester");
             formCompletionHelper.EnterText(NoOfApprentice, 1);
             formCompletionHelper.EnterText(StartDateMonth, date.Month);
             formCompletionHelper.EnterText(StartDateYear, date.Year);
