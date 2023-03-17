@@ -12,5 +12,5 @@ schedules:
 extends:
   template: ../../pipeline-templates/resource-template.yml
   parameters:
-    TestCategory: coursesapi
+    TestFilter: TestCategory=coursesapi
     TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Courses.APITests/SFA.DAS.Courses.APITests.dll
