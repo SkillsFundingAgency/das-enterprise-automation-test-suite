@@ -1,3 +1,7 @@
+parameters:
+  TestFilter:
+  TestDlls:
+
 stages:
 - stage: Deploy_TEST
   dependsOn: []
@@ -10,5 +14,5 @@ stages:
     parameters:
       Environment: TEST
       ServiceConnection: SFA-DAS-DevTest-ARM
-      TestCategory: ${{ parameters.TestCategory }}
+      TestFilter: ${{ parameters.TestFilter }}
       TestDlls: ${{ parameters.TestDlls }}

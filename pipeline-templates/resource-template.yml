@@ -1,5 +1,5 @@
 parameters:
-- name: TestCategory
+- name: TestFilter
   type: string
 - name: TestDlls
   type: string
@@ -36,13 +36,13 @@ resources:
 stages:
 - template: stage/test.yml
   parameters:
-    TestCategory: ${{ parameters.TestCategory }}
+    TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
 - template: stage/test2.yml
   parameters:
-    TestCategory: ${{ parameters.TestCategory }}
+    TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
 - template: stage/preprod.yml
   parameters:
-    TestCategory: ${{ parameters.TestCategory }}
+    TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}

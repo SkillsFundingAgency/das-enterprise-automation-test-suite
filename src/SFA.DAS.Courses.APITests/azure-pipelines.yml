@@ -1,3 +1,8 @@
+parameters:
+- name: TestFilter
+  type: string
+  default: TestCategory=coursesapi
+
 trigger: none
 pr: none
 
@@ -12,5 +17,5 @@ schedules:
 extends:
   template: ../../pipeline-templates/resource-template.yml
   parameters:
-    TestFilter: TestCategory=coursesapi
+    TestFilter: ${{ parameters.TestFilter }}
     TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Courses.APITests/SFA.DAS.Courses.APITests.dll

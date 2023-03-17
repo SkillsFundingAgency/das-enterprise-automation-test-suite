@@ -1,5 +1,5 @@
 parameters:
-  TestCategory:
+  TestFilter:
   TestDlls:
 
 stages:
@@ -15,5 +15,5 @@ stages:
     parameters:
       Environment: PP
       ServiceConnection: SFA-DIG-PreProd-ARM
-      TestCategory: ${{ parameters.TestCategory }}
+      TestFilter: ${{ parameters.TestFilter }}
       TestDlls: ${{ parameters.TestDlls }}
