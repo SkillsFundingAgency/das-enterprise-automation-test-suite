@@ -26,7 +26,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => GetEditDeliveryModelLink();
         private By DeliveryModelValue => GetDeliveryModelValue();
-        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
 
         public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
