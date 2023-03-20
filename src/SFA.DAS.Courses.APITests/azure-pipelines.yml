@@ -1,0 +1,21 @@
+parameters:
+- name: TestFilter
+  type: string
+  default: TestCategory=coursesapi
+
+trigger: none
+pr: none
+
+schedules:
+- cron: "0 3 * * *"
+  displayName: Daily midnight run
+  branches:
+    include:
+    - master
+  always: true
+
+extends:
+  template: ../../pipeline-templates/resource-template.yml
+  parameters:
+    TestFilter: ${{ parameters.TestFilter }}
+    TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Courses.APITests/SFA.DAS.Courses.APITests.dll
