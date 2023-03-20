@@ -197,6 +197,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task CreateEarnings(IncentiveApplication application, IncentiveApplicationApprenticeship apprenticeship)
         {
+            await using var dbConnection = new SqlConnection(connectionString);
+
+            var collectionCalendar = dbConnection.GetAll<CollectionCalendar>();
+
+            var firstDueDate = apprenticeship.PlannedStartDate.AddDays(90);
+            var secondDueDate = apprenticeship.PlannedStartDate.AddDays(365);
+            var firstPaymentPeriod = collectionCalendar.FirstOrDefault(x => x.CalendarMonth == firstDueDate.Month && x.CalendarYear == firstDueDate.Year);
+            var secondPaymentPeriod = collectionCalendar.FirstOrDefault(x => x.CalendarMonth == secondDueDate.Month && x.CalendarYear == secondDueDate.Year);
+
             var incentive = new ApprenticeshipIncentive
             {
                 Id = Guid.NewGuid(),
@@ -240,8 +249,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 EarningType = EarningType.FirstPayment,
                 Id = Guid.NewGuid(),
                 PaymentMadeDate = null,
-                PaymentYear = 2223,
-                PeriodNumber = 7,
+                PaymentYear = Convert.ToInt16(firstPaymentPeriod.AcademicYear),
+                PeriodNumber = firstPaymentPeriod.PeriodNumber,
                 ValidationResults = new List<PendingPaymentValidationResult>()
             };
 
@@ -257,12 +266,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 EarningType = EarningType.SecondPayment,
                 Id = Guid.NewGuid(),
                 PaymentMadeDate = null,
-                PaymentYear = 2223,
-                PeriodNumber = 7,
+                PaymentYear = Convert.ToInt16(secondPaymentPeriod.AcademicYear),
+                PeriodNumber = secondPaymentPeriod.PeriodNumber,
                 ValidationResults = new List<PendingPaymentValidationResult>()
             };
 
-            await using var dbConnection = new SqlConnection(connectionString);
             await dbConnection.InsertAsync(incentive, enumAsString: true);
             await dbConnection.InsertAsync(pendingPayment1, enumAsString: true);
             await dbConnection.InsertAsync(pendingPayment2, enumAsString: true);
