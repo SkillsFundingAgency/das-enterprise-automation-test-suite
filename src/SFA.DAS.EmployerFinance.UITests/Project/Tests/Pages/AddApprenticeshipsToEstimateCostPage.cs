@@ -28,16 +28,10 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public EstimatedCostsPage Add()
         {
             var date = DateTime.Now;
-
-            //an account with transfer needs to be mapped to enable this checkbox
-            //formCompletionHelper.ClickElement(ApprenticeshipCombobox);
-
-            formCompletionHelper.EnterText(SearchField, "Retail:");
-
+            formCompletionHelper.ClickElement(ApprenticeshipCombobox);
+            formCompletionHelper.EnterText(SearchField, "Retail manager, Level: 4 (Standard)");
             pageInteractionHelper.FocusTheElement(Standard);
-
             formCompletionHelper.Click(Standard);
-
             formCompletionHelper.EnterText(NoOfApprentice, 1);
             formCompletionHelper.EnterText(StartDateMonth, date.Month);
             formCompletionHelper.EnterText(StartDateYear, date.Year);
