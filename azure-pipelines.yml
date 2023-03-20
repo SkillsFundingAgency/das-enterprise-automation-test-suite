@@ -15,7 +15,7 @@ resources:
   - repository: das-platform-building-blocks
     type: github
     name: SkillsFundingAgency/das-platform-building-blocks
-    ref: refs/tags/2.1.0
+    ref: refs/tags/2.1.2
     endpoint: SkillsFundingAgency
 
 pool:
@@ -72,23 +72,23 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy UpdateNoofTestWorkers.ps1 to: $(build.artifactstagingdirectory)'
   inputs:
-    Contents: |     
+    Contents: |
      src/**/UpdateNoofTestWorkers.ps1
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
-    
+
 - task: CopyFiles@2
   displayName: 'Copy runsettings to: $(build.artifactstagingdirectory)'
   inputs:
-    Contents: |     
+    Contents: |
       src/**/*.runsettings
     TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
     OverWrite: true
-    
+
 - task: CopyFiles@2
   displayName: 'Copy chromedriver to: $(build.artifactstagingdirectory)'
   inputs:
-    Contents: |     
+    Contents: |
       src/**/chromedriver.exe
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true

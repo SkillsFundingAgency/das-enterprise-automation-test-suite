@@ -1,0 +1,18 @@
+parameters:
+  TestFilter:
+  TestDlls:
+
+stages:
+- stage: Deploy_TEST
+  dependsOn: []
+  displayName: Run test suite on TEST
+  variables:  
+  - group: TEST Automation Suite Variables
+  - group: TEST DevTest Shared Resources
+  jobs:
+  - template: ../job/test-api.yml
+    parameters:
+      Environment: TEST
+      ServiceConnection: SFA-DAS-DevTest-ARM
+      TestFilter: ${{ parameters.TestFilter }}
+      TestDlls: ${{ parameters.TestDlls }}
