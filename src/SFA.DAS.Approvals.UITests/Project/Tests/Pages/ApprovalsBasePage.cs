@@ -25,8 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly PortableFlexiJobProviderConfig portableFlexiJobProviderConfig;
         #endregion
 
-        internal By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
-        private By SaveButton => By.XPath("//button[contains(text(),'Continue')]");
+        internal static By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
