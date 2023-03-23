@@ -34,7 +34,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
             await _helper.CollectionCalendarHelper.Reset();
         }
 
-        [BeforeScenarioBlock()]
+        [BeforeScenario(Order = 43)]
         public async Task InitialCleanup()
         {
             if (!_hasRunInitialCleanup)
