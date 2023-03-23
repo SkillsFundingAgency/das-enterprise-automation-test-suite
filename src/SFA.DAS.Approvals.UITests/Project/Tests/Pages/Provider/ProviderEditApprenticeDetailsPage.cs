@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -170,6 +171,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
 
             return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ValidateTrainingCourseNotEditable()
+        {
+            Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
+            return this;
         }
 
         public ProviderOverlappingTrainingDateThereMayBeProblemPage ClickSaveWhenOltd()

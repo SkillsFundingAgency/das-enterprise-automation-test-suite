@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderLoginUser _newProviderLoginDetails;
         private readonly ProviderLoginUser _oldProviderLoginDetails;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private const int expectedEditableFields = 7;
+        private const int expectedEditableFields = 12;
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
@@ -69,6 +69,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new EmployerStepsHelper(_context)
                 .EmployerReviewCohort()
                 .IsAddApprenticeLinkDisplayed()
+                .SelectEditApprentice()
+                .ValidateTrainingCourseNotEditable()
+                .SaveEditedTrainingDetails()
                 .EmployerDoesSecondApproval();
         }
 
@@ -107,6 +110,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
+                .ValidateTrainingCourseNotEditable()
                 .EditCopApprenticeDetails()
                 .SubmitSendToEmployerToReview();
         }
