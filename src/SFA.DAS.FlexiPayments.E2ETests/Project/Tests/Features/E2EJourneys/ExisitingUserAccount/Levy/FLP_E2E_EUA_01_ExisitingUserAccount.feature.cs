@@ -113,15 +113,15 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "1",
                             "154",
-                            "2004/06/01",
+                            "2004/06/20",
                             "2022/08/01",
                             "12",
                             "15000"});
                 table2.AddRow(new string[] {
                             "2",
                             "91",
-                            "2004/06/01",
-                            "2022/09/01",
+                            "2004/06/27",
+                            "2022/09/29",
                             "12",
                             "18000"});
 #line 11
@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table3.AddRow(new string[] {
                             "2",
                             "true",
-                            "2022/09/01",
+                            "2022/09/29",
                             "Null",
                             "18000"});
 #line 18
@@ -178,9 +178,9 @@ this.ScenarioInitialize(scenarioInfo);
                 table4.AddRow(new string[] {
                             "2",
                             "1",
+                            "2022/09/29",
                             "2022/09/01",
-                            "2022/09/01",
-                            "2023/09/01",
+                            "2023/09/29",
                             "18000",
                             "0",
                             "18000"});
@@ -195,13 +195,13 @@ this.ScenarioInitialize(scenarioInfo);
                 table5.AddRow(new string[] {
                             "1",
                             "12000",
-                            "923",
-                            "13"});
+                            "1000",
+                            "12"});
                 table5.AddRow(new string[] {
                             "2",
                             "14400",
-                            "1108",
-                            "13"});
+                            "1200",
+                            "12"});
 #line 26
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table5, "And ");
 #line hidden
