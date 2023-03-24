@@ -371,7 +371,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                             _context.Replace(apprentice.Item2);
                         }
 
-                        var currentApprentice = listOfApprentices[j+1];
+                        var currentApprentice = listOfApprentices[j];
 
                         ReplaceInContext(currentApprentice);
 
