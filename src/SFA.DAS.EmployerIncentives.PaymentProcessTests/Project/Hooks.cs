@@ -49,7 +49,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
         {
             if (_testData.ApprenticeshipIncentiveId != Guid.Empty) await _helper.IncentiveHelper.Delete(_testData.IncentiveApplication);
             if (_testData.IncentiveApplication != null) await _helper.IncentiveApplicationHelper.Delete(_testData.IncentiveApplication);
-            //if (_testData.Account != default) await _helper.IncentiveApplicationHelper.DeleteAccount(_testData.Account);
+            if (_testData.Account != default) await _helper.IncentiveApplicationHelper.DeleteAccount(_testData.Account);
             await _helper.LearnerMatchApiHelper.DeleteMapping(_testData.ULN, _testData.UKPRN);
             await _helper.CollectionCalendarHelper.Reset();
             await _helper.EmploymentCheckApiHelper.DeleteMapping();

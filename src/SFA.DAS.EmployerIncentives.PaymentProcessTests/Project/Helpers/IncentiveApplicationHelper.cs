@@ -65,9 +65,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task DeleteAccount((long AccountId, long AccountLegalEntityId) account)
         {
-            _stopWatchHelper.Start("DeleteAccount");
-            await _sqlHelper.DeleteAccount(account);
-            _stopWatchHelper.Stop("DeleteAccount");
+            //_stopWatchHelper.Start("DeleteAccount");
+            //await _sqlHelper.DeleteAccount(account);
+            //_stopWatchHelper.Stop("DeleteAccount");
         }
     }
 }
