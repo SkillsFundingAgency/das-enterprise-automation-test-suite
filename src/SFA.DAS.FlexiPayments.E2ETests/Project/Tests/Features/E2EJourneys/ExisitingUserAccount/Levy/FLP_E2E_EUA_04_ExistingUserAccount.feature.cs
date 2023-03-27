@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2",
                             "91",
                             "2004/06/01",
-                            "2023/09/06",
+                            "2023/09/30",
                             "12",
                             "18000"});
 #line 8
@@ -146,7 +146,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table11.AddRow(new string[] {
                             "2",
                             "true",
-                            "2023/09/06",
+                            "2023/09/30",
                             "Null",
                             "18000"});
 #line 14
@@ -173,9 +173,9 @@ this.ScenarioInitialize(scenarioInfo);
                 table12.AddRow(new string[] {
                             "2",
                             "1",
-                            "2023/09/06",
+                            "2023/09/30",
                             "2023/09/01",
-                            "2024/09/06",
+                            "2024/09/30",
                             "18000",
                             "0",
                             "18000"});
@@ -195,8 +195,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table13.AddRow(new string[] {
                             "2",
                             "14400",
-                            "1200",
-                            "12"});
+                            "1108",
+                            "13"});
 #line 22
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table13, "And ");
 #line hidden
