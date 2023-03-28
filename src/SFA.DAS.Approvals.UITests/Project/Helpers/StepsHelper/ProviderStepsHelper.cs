@@ -363,6 +363,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     {
                         var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j, isPilotLearner);
 
+                        var listOfApprentices = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
+
+                        void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
+                        {
+                            _context.Replace(apprentice.Item1);
+                            _context.Replace(apprentice.Item2);
+                        }
+
+                        var currentApprentice = listOfApprentices[j];
+
+                        ReplaceInContext(currentApprentice);
+
                         providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
                             .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
                             .EnterUlnAndTrainingStartEndDaysThenSave(j+1);
