@@ -23,15 +23,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task Submit(IncentiveApplication application, int signedAgreementVersion = 6)
         {
-            _stopWatchHelper.Start("SubmitIncentiveApplication"); 
-            await _sqlHelper.CreateAccount(111222, 123123, signedAgreementVersion);
+            _stopWatchHelper.Start("SubmitIncentiveApplication");
+            await _sqlHelper.CreateAccount(application.AccountId, application.AccountLegalEntityId, signedAgreementVersion);
             await _sqlHelper.CreateIncentiveApplication(application);
 
             foreach (var apprenticeship in application.Apprenticeships)
             {
                 var command = new CreateIncentiveCommand(
-                    111222,
-                    123123,
+                    application.AccountId,
+                    application.AccountLegalEntityId,
                     apprenticeship.Id,
                     apprenticeship.ApprenticeshipId,
                     apprenticeship.FirstName,
