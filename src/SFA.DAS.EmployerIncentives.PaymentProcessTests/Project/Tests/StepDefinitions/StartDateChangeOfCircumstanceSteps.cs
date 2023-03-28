@@ -35,7 +35,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(TestData.Account)
+                .WithAccount(111222, 123123)
 				.WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase1)
                 .Create();
@@ -53,7 +53,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(TestData.Account)
+                .WithAccount(111222, 123123)
 				.WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
@@ -71,7 +71,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11); // under 25 at the start of learning 
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(TestData.Account)
+                .WithAccount(111222, 123123)
                 .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase3)
                 .Create();

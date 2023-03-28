@@ -40,7 +40,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             }
             
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(TestData.Account)
+                .WithAccount(111222, 123123)
                 .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
                     _initialStartDate.AddYears(-24), Context.ScenarioInfo.Title, _phase)
@@ -79,7 +79,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var startDate = new DateTime(2021, 03, 03);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(TestData.Account)
+                .WithAccount(111222, 123123)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, 
                     TestData.UKPRN, startDate, startDate.AddYears(-20), Context.ScenarioInfo.Title
                     ,Phase.Phase1)

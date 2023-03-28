@@ -29,10 +29,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             return this;
         }
 
-        public IncentiveApplicationBuilder WithAccount((long AccountId, long AccountLegalEntityId) account)
+        public IncentiveApplicationBuilder WithAccount(long accountId, long accountLegalEntityId)
         {
-            _incentiveApplication.AccountId = account.AccountId;
-            _incentiveApplication.AccountLegalEntityId = account.AccountLegalEntityId;
+            _incentiveApplication.AccountId = accountId;
+            _incentiveApplication.AccountLegalEntityId = accountLegalEntityId;
             return this;
         }
 
