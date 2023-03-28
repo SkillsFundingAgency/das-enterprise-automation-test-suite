@@ -37,5 +37,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
         {
             return (T)Enum.Parse(typeof(T), value, ignoreCase);
         }
+
+        internal static DateTime CalculateStartDate() => IsLastDayOfTheMonth() ? DateTime.Today.AddDays(-1) : DateTime.Today;
+
+        private static bool IsLastDayOfTheMonth() => DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) == DateTime.Now.Day;
     }
 }

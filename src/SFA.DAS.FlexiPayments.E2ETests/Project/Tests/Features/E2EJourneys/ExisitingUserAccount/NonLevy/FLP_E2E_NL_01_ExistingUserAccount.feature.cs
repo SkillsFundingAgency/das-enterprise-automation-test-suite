@@ -20,8 +20,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_03_ExistingUserAccount")]
-    public partial class FLP_E2E_EUA_03_ExistingUserAccountFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_E2E_NL_01_ExistingUserAccount")]
+    public partial class FLP_E2E_NL_01_ExistingUserAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/NonLevy", "FLP_E2E_EUA_03_ExistingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/NonLevy", "FLP_E2E_NL_01_ExistingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -200,8 +200,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table17.AddRow(new string[] {
                             "1",
                             "4800",
-                            "192",
-                            "25"});
+                            "200",
+                            "24"});
 #line 25
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table17, "And ");
 #line hidden

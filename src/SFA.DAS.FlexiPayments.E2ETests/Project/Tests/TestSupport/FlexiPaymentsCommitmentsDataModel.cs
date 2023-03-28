@@ -10,7 +10,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         public DateTime? PriceEpisodeToDate;
         public int ULNKey { get; set; }
         public Boolean IsPilot { get; set; }
-        public string PriceEpisodeFromDateStr { set { PriceEpisodeFromDate = value == "Today" ? DateTime.Today 
+        public string PriceEpisodeFromDateStr { set { PriceEpisodeFromDate = value == "Today" ? DataHelpers.CalculateStartDate()
                     : value == "StartCurrentMonth" ? DataHelpers.GetFirstDateOfCurrentMonth() 
                     : DataHelpers.TryParseDate(value); } }
         public string PriceEpisodeToDateStr { set {PriceEpisodeToDate = DataHelpers.TryParseDate(value); } }
