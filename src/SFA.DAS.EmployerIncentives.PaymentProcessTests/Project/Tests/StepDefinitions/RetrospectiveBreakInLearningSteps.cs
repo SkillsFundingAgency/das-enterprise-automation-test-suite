@@ -37,7 +37,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(111222, 123123)
+                .WithAccount(TestData.Account)
                 .WithDateSubmitted(_submittedOn)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN,
                     _initialStartDate, _initialStartDate.AddYears(-20),

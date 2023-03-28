@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _initialStartDate = new DateTime(2021, 4, 5);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(111222, 123123)
+                .WithAccount(TestData.Account)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
                     _initialStartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase1)
                 .Create();
@@ -44,7 +44,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(1, 2122);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(111222, 123123)
+                .WithAccount(TestData.Account)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate.AddMonths(4),
                     _initialStartDate.AddYears(-24), Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();

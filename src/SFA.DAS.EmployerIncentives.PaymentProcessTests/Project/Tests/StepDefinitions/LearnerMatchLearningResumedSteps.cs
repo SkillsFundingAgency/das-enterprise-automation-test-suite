@@ -41,7 +41,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _initialEndDate = DateTime.Today.AddMonths(12);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                .WithAccount(111222, 123123)
+                .WithAccount(TestData.Account)
                 .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate,
                     _initialStartDate.AddYears(-24), Context.ScenarioInfo.Title, _phase)

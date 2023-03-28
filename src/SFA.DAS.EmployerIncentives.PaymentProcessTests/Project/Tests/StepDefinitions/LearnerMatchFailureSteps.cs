@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var dateOfBirth = _initialStartDate.AddYears(-24).AddMonths(-11);
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
-                    .WithAccount(111222, 123123)
+                    .WithAccount(TestData.Account)
                     .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
                     .WithApprenticeship(Fixture.Create<long>(), Fixture.Create<long>(), Fixture.Create<long>(), _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
                     .WithApprenticeship(Fixture.Create<long>(), Fixture.Create<long>(), Fixture.Create<long>(), _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
