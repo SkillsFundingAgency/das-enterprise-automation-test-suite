@@ -35,7 +35,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
         {
-            var element = FindElementInTable(byLinkText, byKey, tableSelector);
+            var element = FindElementInTable(byLinkText, new List<string> { byKey }, tableSelector);
 
             _formCompletionHelper.ClickElement(element);
         }
@@ -53,24 +53,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 i++;
             }
             throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKeys.ToString(",")}' and selector '{tableSelector}'");
-        }
-
-
-        public IWebElement FindElementInTable(string byLinkText, string byKey, string tableSelector = "table")
-        {
-            var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
-            var tableRows = table.FindElements(By.CssSelector("tbody tr"));
-            var links = _pageInteractionHelper.FindElements(By.PartialLinkText(byLinkText));
-            int i = 0;
-            foreach (IWebElement tableRow in tableRows)
-            {
-                if (tableRow.Text.Contains(byKey))
-                {
-                    return links[i];
-                }
-                i++;
-            }
-            throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKey}' and selector '{tableSelector}'");
         }
 
         public void SelectRowFromTableDescending(string byLinkText, string byKey, string tableSelector = "table")
