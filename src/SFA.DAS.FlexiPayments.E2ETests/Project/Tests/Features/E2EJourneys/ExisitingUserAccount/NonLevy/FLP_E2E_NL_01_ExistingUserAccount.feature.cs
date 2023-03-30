@@ -101,21 +101,21 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
                             "agreed_price"});
-                table14.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "1",
                             "131",
                             "2004/05/01",
                             "Today",
                             "24",
                             "6000"});
-                table14.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "2",
                             "131",
                             "2004/05/01",
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "6000"});
 #line 8
  testRunner.And("the Employer uses the reservation to create and approve apprentices with the foll" +
-                        "owing details", ((string)(null)), table14, "And ");
+                        "owing details", ((string)(null)), table15, "And ");
 #line hidden
 #line 12
  testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -141,28 +141,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 16
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "is_pilot",
                             "price_episode_from_date_str",
                             "price_episode_to_date_str",
                             "price_episode_cost"});
-                table15.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "1",
                             "true",
                             "Today",
                             "Null",
                             "6000"});
-                table15.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "2",
                             "false",
                             "StartCurrentMonth",
                             "Null",
                             "6000"});
 #line 17
- testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table15, "Then ");
+ testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table16, "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "funding_platform",
                             "actual_start_date_str",
@@ -171,7 +171,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "agreed_price",
                             "funding_type",
                             "funding_band_maximum"});
-                table16.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "1",
                             "1",
                             "Today",
@@ -180,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "6000",
                             "1",
                             "18000"});
-                table16.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "2",
                             "2",
                             "Null",
@@ -190,27 +190,27 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "18000"});
 #line 21
- testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table16, "And ");
+ testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table17, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "total_on_program_payment",
                             "monthly_on_program_payment",
                             "number_of_delivery_months"});
-                table17.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "1",
                             "4800",
                             "200",
                             "24"});
 #line 25
- testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table17, "And ");
+ testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table18, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key"});
-                table18.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "2"});
 #line 28
- testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table18, "And ");
+ testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table19, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
