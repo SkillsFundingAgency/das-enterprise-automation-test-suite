@@ -13,61 +13,38 @@
         private static By FeedbackTab => By.Id("tab_feedback");
         private static By ApprovedTab => By.Id("tab_approved");
 
+        private static string WithrawalOrgName => "Ingram Limited";
+
         public AD_WithdrawalApplicationsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public AD_WithdrawalRequestOverviewPage GoToStandardWithdrawlApplicationOverivewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
-            tableRowHelper.SelectRowFromTable("Ingram Limited", "Brewer");
+            tableRowHelper.SelectRowFromTable(WithrawalOrgName, "Brewer");
             return new AD_WithdrawalRequestOverviewPage(context);
-        }
-
-        public AD_WithdrawalApplicationsPage StoreCurrentTabValues()
-        {
-            context["NewApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(NewTab);
-            context["InProgressApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(InProgressTab);
-            context["FeedbackApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab);
-            context["ApprovedApplicationsCountBeforeApproval"] = pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab);
-
-            return this;
         }
 
         public AD_WithdrawalRequestOverviewPage GoToRegisterWithdrawlApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(NewTab);
-            tableRowHelper.SelectRowFromTable("Ingram Limited", "Withdrawal from register", NewTableSelector);
+            tableRowHelper.SelectRowFromTable(WithrawalOrgName, "Withdrawal from register", NewTableSelector);
             return new(context);
         }
 
         public AD_WithdrawalRequestOverviewPage GoToAmmendedWithdrawalApplicationOverviewPage()
         {
             formCompletionHelper.ClickElement(FeedbackTab);
-            tableRowHelper.SelectRowFromTable("Ingram Limited", "Feedback received", FeedbackTableSelector);
+            tableRowHelper.SelectRowFromTable(WithrawalOrgName, "Feedback received", FeedbackTableSelector);
             return new(context);
         }
 
-        public AD_WithdrawalApplicationsPage VerifyAnApplicationHasMovedFromNewTab()
-        {
-            Assert.AreEqual(int.Parse(context["NewApplicationsCountBeforeApproval"].ToString()) - 1, pageInteractionHelper.GetDataCountOfAnElement(NewTab));
-            return this;
-        }
+        public void VerifyAnApplicationAddedToFeedbackTab() => DoesNotThrow(FeedbackTableSelector);
 
-        public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToFeedbackTab()
-        {
-            Assert.AreEqual(int.Parse(context["FeedbackApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(FeedbackTab));
-            return this;
-        }
+        public void VerifyApprovedTabContainsRegisterWithdrawal() => DoesNotThrow(ApprovedTableSelector);
 
-        public AD_WithdrawalApplicationsPage VerifyAnApplicationAddedToApprovedTab()
-        {
-            Assert.AreEqual(int.Parse(context["ApprovedApplicationsCountBeforeApproval"].ToString()) + 1, pageInteractionHelper.GetDataCountOfAnElement(ApprovedTab));
-            return this;
-        }
-
-        public void VerifyApprovedTabContainsRegisterWithdrawal()
-        {
-            var approvedTableLinkElement = tableRowHelper.FindElementInTable("Ingram Limited", "Withdrawal from register", ApprovedTableSelector);
-            Assert.IsNotNull(approvedTableLinkElement);
+        private void DoesNotThrow(string table)
+        {        
+            Assert.DoesNotThrow(() => tableRowHelper.FindElementInTable(WithrawalOrgName, new List<string> { "Withdrawal from register", $"{DateTime.Now:dd MMMM yyyy}" }, table));
         }
     }
 }
