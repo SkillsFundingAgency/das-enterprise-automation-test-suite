@@ -47,9 +47,9 @@ stages:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
   schedule:
-    - cron: "15 12 * * 1-5"
-      displayName: Daily midnight run
-      branches:
-        include:
-        - master
-      always: true
+  - cron: "15 12 * * 1-5"
+    displayName: Daily midnight run
+    branches:
+      include:
+      - master
+    always: true
