@@ -98,33 +98,33 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("a live apprentice record exists with startdate of <-6> months and endDate of <+6>" +
                         " months from current date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "NewStartDate",
                             "NewEndDate",
                             "DisplayOverlapErrorOnStartDate",
                             "DisplayOverlapErrorOnEndDate"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "-12",
                             "+12",
                             "true",
                             "true"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "-12",
                             "+0",
                             "false",
                             "true"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "-3",
                             "+3",
                             "true",
                             "true"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "+6",
                             "+18",
                             "false",
                             "false"});
 #line 8
- testRunner.When("Employer tries to add a new apprentice using details from table below", ((string)(null)), table3, "When ");
+ testRunner.When("Employer tries to add a new apprentice using details from table below", ((string)(null)), table4, "When ");
 #line hidden
             }
             this.ScenarioCleanup();
