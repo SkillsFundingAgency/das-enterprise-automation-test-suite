@@ -85,7 +85,6 @@ public class EPAOWithdrawalHelper
     {
         return staffDashboardPage
             .GoToNewWithdrawalApplications()
-            .StoreCurrentTabValues()
             .GoToRegisterWithdrawlApplicationOverviewPage()
             .GoToWithdrawalRequestQuestionsPage()
             .MarkCompleteAndGoToWithdrawalApplicationOverviewPage()
@@ -98,7 +97,6 @@ public class EPAOWithdrawalHelper
     {
         return staffDashboardPage
             .GoToNewWithdrawalApplications()
-            .StoreCurrentTabValues()
             .GoToRegisterWithdrawlApplicationOverviewPage()
             .GoToWithdrawalRequestQuestionsPage()
             .ClickAddFeedbackToHowWillYouSupportLearnersQuestion()
@@ -114,24 +112,9 @@ public class EPAOWithdrawalHelper
         new AD_YouhaveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
     }
 
-    public void VerifyApplicationMovedFromNewToFeedback()
-    {
-        new AD_WithdrawalApplicationsPage(_context)
-            .VerifyAnApplicationHasMovedFromNewTab()
-            .VerifyAnApplicationAddedToFeedbackTab();
-    }
+    public void VerifyApplicationMovedFromNewToFeedback() => new AD_WithdrawalApplicationsPage(_context).VerifyAnApplicationAddedToFeedbackTab();
 
-    public void VerifyApplicationMovedToFeedback()
-    {
-        new AD_WithdrawalApplicationsPage(_context).VerifyAnApplicationAddedToFeedbackTab();
-    }
-
-    public void VerifyApplicationIsMovedToApprovedTab()
-    {
-        new AD_WithdrawalApplicationsPage(_context)
-            .VerifyAnApplicationAddedToApprovedTab()
-            .VerifyApprovedTabContainsRegisterWithdrawal();
-    }
+    public void VerifyApplicationIsMovedToApprovedTab() => new AD_WithdrawalApplicationsPage(_context).VerifyApprovedTabContainsRegisterWithdrawal();
 
 
     public void AmmendWithdrawalApplication()
@@ -150,7 +133,6 @@ public class EPAOWithdrawalHelper
     {
         return staffDashboardPage
             .GoToFeedbackWithdrawalApplications()
-            .StoreCurrentTabValues()
             .GoToAmmendedWithdrawalApplicationOverviewPage()
             .VerifyAnswerUpdatedTag()
             .GoToWithdrawalRequestQuestionsPage()
