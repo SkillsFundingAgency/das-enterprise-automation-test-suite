@@ -20,12 +20,12 @@ stages:
   - group: PREPROD Automation Suite Variables (Db)
   jobs:
   - schedule:
-      - cron: "0 3 * * 1-5"
-        displayName: Daily midnight run
-        branches:
-          include:
-            - master
-        always: true
+      cron: "0 3 * * 1-5"
+      displayName: Daily midnight run
+      branches:
+        include:
+        - master
+      always: true
   - template: ../job/test-api.yml
     parameters:
       Environment: PP
