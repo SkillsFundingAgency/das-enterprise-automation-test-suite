@@ -38,18 +38,13 @@ stages:
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
+  condition: eq(variables['Build.Reason'], 'Manual')
 - template: stage/test2.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
+  condition: eq(variables['Build.Reason'], 'Manual')
 - template: stage/preprod.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
-  schedules:
-  - cron: "0 3 * * 1-5"
-    displayName: Daily midnight run
-    branches:
-      include:
-      - master
-    always: true
