@@ -3,16 +3,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
-    public class YourEmployeesPage : PublicSectorReportingBasePage
+    public class YourSchoolEmployeesPage : PublicSectorReportingBasePage
     {
-        protected override string PageTitle => "Your employees - excluding maintained schools";
+        protected override string PageTitle => "Your employees - maintained schools only";
         private By NoOfEmployees2021 => By.CssSelector("#z0__Answer");
         private By NoOfEmployees2022 => By.CssSelector("#z1__Answer");
         private By NoOfEmployees => By.CssSelector("#z2__Answer");
 
-        public YourEmployeesPage(ScenarioContext context) : base(context)  { }
+        public YourSchoolEmployeesPage(ScenarioContext context) : base(context)  { }
 
-        public ReportYourProgressPage EnterEmployeesDetails()
+        public ReportYourProgressPage EnterSchoolEmployeesDetails()
         {
             formCompletionHelper.EnterText(NoOfEmployees2021, publicSectorReportingDataHelper.NoofEmployees2021);
             formCompletionHelper.EnterText(NoOfEmployees2022, publicSectorReportingDataHelper.NoofEmployees2022);
