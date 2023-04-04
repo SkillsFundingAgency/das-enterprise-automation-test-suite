@@ -2,7 +2,7 @@
 
 TestDataPreparation for RP_AD_CLA_01_ExistingProvider
 
-@roatpadmintestdataprep
+@roatpfulle2eviaadmintestdataprep
 @roatpadminclatestdataprep
 @donottakescreenshot
 @rpadcla01

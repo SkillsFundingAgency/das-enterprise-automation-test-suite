@@ -75,14 +75,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_Clarification_01_TestDataPreparation-For_RP_AD_CLA_01_ExistingProvider")]
-        [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
+        [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadminclatestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("rpadcla01")]
         public void RP_Clarification_01_TestDataPreparation_For_RP_AD_CLA_01_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
-                    "roatpadmintestdataprep",
+                    "roatpfulle2eviaadmintestdataprep",
                     "roatpadminclatestdataprep",
                     "donottakescreenshot",
                     "rpadcla01"};
