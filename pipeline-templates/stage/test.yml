@@ -6,6 +6,7 @@ stages:
 - stage: Deploy_TEST
   dependsOn: []
   displayName: Run test suite on TEST
+  condition: eq(variables['Build.Reason'], 'Manual')
   variables:  
   - group: TEST Automation Suite Variables
   - group: TEST DevTest Shared Resources
