@@ -17,6 +17,6 @@ public class EsfaAdminLaunchApplicationHooks
     [BeforeScenario(Order = 40)]
     public void EsfaAdminLaunchApplication()
     {
-        if (_tags.Any(x => x == "esfaadmin" || x == "oldroatpadmin" || x == "newroatpadmin" || x == "roatpfulle2eviaadmin" || x == "roatpfulle2eviaadmintestdataprep")) _tabHelper.GoToUrl(UrlConfig.Admin_BaseUrl);
+        if (_tags.Any(x => x == "esfaadmin" || x == "oldroatpadmin" || x == "newroatpadmin" || x == "roatpfulle2eviaadmin" || x == "roatpfulle2eviaadmintestdataprep"|| x == "roatpadmintestdataprep")) _tabHelper.GoToUrl(UrlConfig.Admin_BaseUrl);
     }
 }
