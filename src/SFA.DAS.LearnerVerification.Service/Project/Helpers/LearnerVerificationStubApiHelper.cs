@@ -20,7 +20,7 @@ namespace SFA.DAS.LearnerVerification.Service.Project.Helpers
             httpClient = new HttpClient();
         }
 
-        public async Task SetupOkResponse(LearnerVerificationParameters parameters, Models.LearnerVerification expectedResponse)
+        public async Task SetupOkResponse(LearnerVerificationParameters parameters, LearnerVerificationResponse expectedResponse)
         {
             await SetupResponseWithHttpStatusCode(parameters, JsonConvert.SerializeObject(expectedResponse), HttpStatusCode.OK);
         }

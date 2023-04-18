@@ -2,12 +2,12 @@
 
 namespace SFA.DAS.LearnerVerification.Service.Project.Helpers.Models
 {
-    public class LearnerVerification
+    public class LearnerVerificationResponse
     {
         public LearnerVerificationResponseType ResponseType { get; set; }
         public IEnumerable<LearnerDetailMatchingError> MatchingErrors { get; set; }
 
-        public LearnerVerification(bool generatePositiveResponse = false)
+        public LearnerVerificationResponse(bool generatePositiveResponse = false)
         {
             if (generatePositiveResponse)
             {
