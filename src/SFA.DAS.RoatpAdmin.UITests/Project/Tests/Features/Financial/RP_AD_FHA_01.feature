@@ -5,6 +5,7 @@
 @newroatpadmin
 @rpadfha01
 @regression
+@accessibility
 Scenario: RP_AD_FHA_01
 	Given the admin lands on the Dashboard
 	When the admin access the Financial Applications

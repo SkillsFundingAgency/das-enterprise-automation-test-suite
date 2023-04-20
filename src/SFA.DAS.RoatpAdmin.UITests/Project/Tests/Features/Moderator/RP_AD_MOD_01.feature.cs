@@ -82,6 +82,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
         [NUnit.Framework.CategoryAttribute("roatpmoderator")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
         public void RP_AD_MOD_01CompleteModerationOfACompanyTypeApplicationViaMainProviderRoute()
         {
             string[] tagsOfScenario = new string[] {
@@ -90,11 +91,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Moderator
                     "roatpadmin",
                     "roatpmoderator",
                     "newroatpadmin",
-                    "regression"};
+                    "regression",
+                    "accessibility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_MOD_01 Complete Moderation of a Company type Application via Main provider " +
                     "route", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,20 +106,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 11
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.When("selects the Main Provider Route For Existing Provider application from Moderation" +
                         " Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the Moderator assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.Then("the Moderator assesses the outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("the Outcome tab is updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
