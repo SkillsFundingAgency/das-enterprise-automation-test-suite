@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
+namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_01")]
-    public partial class RP_AD_CLA_01Feature
+    [NUnit.Framework.DescriptionAttribute("FATV2_Accessibility")]
+    public partial class FATV2_AccessibilityFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RP_AD_CLA_01.feature"
+#line 1 "FATV2_Accessibility.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Clarification", "RP_AD_CLA_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "FATV2_Accessibility", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,27 +74,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Clarification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PA" +
-            "SS for existing provider")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpadcla01")]
-        [NUnit.Framework.CategoryAttribute("roatpclarification")]
-        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.DescriptionAttribute("FATV2_Accessibility_TEST")]
+        [NUnit.Framework.CategoryAttribute("fatv2")]
         [NUnit.Framework.CategoryAttribute("accessibility")]
-        public void RP_AD_CLA_01CompleteClarificationJourneyAsMainProviderRouteAndMarkAsPASSForExistingProvider()
+        public void FATV2_Accessibility_TEST()
         {
             string[] tagsOfScenario = new string[] {
-                    "roatp",
-                    "rpadcla01",
-                    "roatpclarification",
-                    "newroatpadmin",
-                    "regression",
+                    "fatv2",
                     "accessibility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_CLA_01 Complete Clarification Journey as Main Provider Route and mark as PA" +
-                    "SS for existing provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_Accessibility_TEST", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,24 +94,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
- testRunner.Given("the admin lands on the Dashboard as Assessor1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.Given("the user has shortlisted a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
- testRunner.When("selects the Main Provider Route For Existing Provider application from Clarificat" +
-                        "ion Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.When("the the user navigates to shortlist page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
- testRunner.Then("the Clarification assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.Then("the user is able remove the shortlisted provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
- testRunner.Then("the Clarification assessor assesses the outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 14
- testRunner.Then("the Outcome tab is updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.Then("verify subsections outcome passed by Clarification assessor are updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("the user is able to return to course search page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

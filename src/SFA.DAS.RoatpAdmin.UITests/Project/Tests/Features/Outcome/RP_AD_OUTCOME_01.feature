@@ -6,6 +6,7 @@
 @roatpoutcome
 @newroatpadmin
 @regression
+@accessibility
 Scenario: RP_AD_OUTCOME_01A Complete Outcome of a Company type Application via Main provider route
 	Given the admin lands on the Dashboard
 	And the application with PASS outcome is ready to be assessed

@@ -82,6 +82,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         [NUnit.Framework.CategoryAttribute("rpgateway")]
         [NUnit.Framework.CategoryAttribute("rpadgw01")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
         public void RP_AD_GW_01_MainRoute_Company()
         {
             string[] tagsOfScenario = new string[] {
@@ -91,10 +92,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
                     "newroatpadmin",
                     "rpgateway",
                     "rpadgw01",
-                    "regression"};
+                    "regression",
+                    "accessibility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01_MainRoute_Company", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 10
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,19 +106,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 12
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 13
  testRunner.When("the admin access the application from GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 14
  testRunner.And("the gateway admin assess all sections as PASS for MainRoute Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("the Gateway Applications Outcome tab is updated with PASS outcome for this Applic" +
                         "ation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
