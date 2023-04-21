@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\MS_01_ReviewApproveEditStandard.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -40,6 +44,19 @@
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\AAN_01_OnboardingJourney.feature.cs">
+	    <DependentUpon>AAN_01_OnboardingJourney.feature</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\AAN_01_OnboardingJourney.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 
 </Project>
