@@ -1,9 +1,4 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
 
 [Binding]
 public class AANConfigurationSetup
@@ -18,5 +13,5 @@ public class AANConfigurationSetup
     }
 
     [BeforeScenario(Order = 2)]
-    public void SetUpRoatpConfigConfiguration() => _context.SetRoatpConfig(_configSection.GetConfigSection<AANConfig>());
+    public void SetUpRoatpConfigConfiguration() => _context.SetAANConfig(_configSection.GetConfigSection<AANConfig>());
 }
