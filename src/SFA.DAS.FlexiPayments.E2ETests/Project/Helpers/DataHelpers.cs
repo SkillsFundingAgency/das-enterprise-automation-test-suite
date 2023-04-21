@@ -24,6 +24,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 
             var endDate = date.AddMonths(numberOfMonths);
 
+            if (IsLastDayOfTheMonth(endDate)) endDate = endDate.AddDays(-1);
+
             return (int)funding != 1 ? new DateTime(endDate.Year, endDate.Month, 1) : endDate;
         }
 
@@ -38,8 +40,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return (T)Enum.Parse(typeof(T), value, ignoreCase);
         }
 
-        internal static DateTime CalculateStartDate() => IsLastDayOfTheMonth() ? DateTime.Today.AddDays(-1) : DateTime.Today;
+        internal static DateTime CalculateStartDate() => IsLastDayOfTheMonth(DateTime.Now) ? DateTime.Today.AddDays(-1) : DateTime.Today;
 
-        private static bool IsLastDayOfTheMonth() => DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) == DateTime.Now.Day;
+        private static bool IsLastDayOfTheMonth(DateTime date) => DateTime.DaysInMonth(date.Year, date.Month) == date.Day;
     }
 }

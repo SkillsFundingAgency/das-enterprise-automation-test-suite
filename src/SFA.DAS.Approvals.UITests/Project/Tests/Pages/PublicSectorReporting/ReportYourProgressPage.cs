@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
@@ -11,16 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         #region Question Links
         private static string OrganisationName => "Your organisation's name";
-
+        private static string TotalNumberOfEmployees => "Total number of employees";
         private static string Employees => "Number of employees who work in England";
         private static string Apprentices => "Number of apprentices who work in England";
-        private static string FullTime => "Number of full-time equivalents who work in England (optional)";
-
-        private static string Actions => "What actions have you taken this year to meet the target? How do these compare to the actions taken in the previous year?";
-        private static string Challenges => "What challenges have you faced this year in your efforts to meet the target? How do these compare to the challenges experienced in the previous year?";
-        private static string Planning => "How are you planning to meet the target in future? What will you continue to do or do differently?";
-        private static string AnythingElse => "Do you have anything else you want to tell us? (optional)";
-
+        private By SchoolEmployees => By.CssSelector("a[href*='SchoolsEmployees']");
+        private By SchoolApprentices => By.CssSelector("a[href*='SchoolsApprentices']");
         private static string Review => "Review and submit answers";
         #endregion
 
@@ -30,6 +26,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         {
             formCompletionHelper.ClickLinkByText(OrganisationName);
             return new YourOrganisationNamePage(context);
+        }
+
+        public TotalNumberOfEmployeesPage GoToTotalNumberOfEmployeesPage()
+        {
+            formCompletionHelper.ClickLinkByText(TotalNumberOfEmployees);
+            return new TotalNumberOfEmployeesPage(context);
         }
 
         public YourEmployeesPage GoToYourEmployeesPage()
@@ -42,30 +44,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
             formCompletionHelper.ClickLinkByText(Apprentices);
             return new YourApprenticesPage(context);
         }
-        public YourFullTimeEquivalentsPage GoToYourFullTimeEquivalentsPage()
+        public YourSchoolEmployeesPage GoToYourSchoolEmployeesPage()
         {
-            formCompletionHelper.ClickLinkByText(FullTime);
-            return new YourFullTimeEquivalentsPage(context);
+            formCompletionHelper.Click(SchoolEmployees);
+            return new YourSchoolEmployeesPage(context);
         }
-        public WhatActionsHaveYouTakenPage GoToWhatActionsHaveYouTakenPage()
+        public YourSchoolApprenticesPage GoToYourSchoolApprenticesPage()
         {
-            formCompletionHelper.ClickLinkByText(Actions);
-            return new WhatActionsHaveYouTakenPage(context);
-        }
-        public WhatChallengesHaveYouFacedPage GoToWhatChallengesHaveYouFacedPage()
-        {
-            formCompletionHelper.ClickLinkByText(Challenges);
-            return new WhatChallengesHaveYouFacedPage(context);
-        }
-        public HowAreYouPlanningToMeetTheTargetPage GoToHowAreYouPlanningToMeetTheTargetPage()
-        {
-            formCompletionHelper.ClickLinkByText(Planning);
-            return new HowAreYouPlanningToMeetTheTargetPage(context);
-        }
-        public DoYouHaveAnythingToTellUsPage GoToDoYouHaveAnythingToTellUsPage()
-        {
-            formCompletionHelper.ClickLinkByText(AnythingElse);
-            return new DoYouHaveAnythingToTellUsPage(context);
+            formCompletionHelper.Click(SchoolApprentices);
+            return new YourSchoolApprenticesPage(context);
         }
         public ReviewDetailsPage GoToReviewPage()
         {
