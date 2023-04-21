@@ -18,5 +18,5 @@ public class AANConfigurationSetup
     }
 
     [BeforeScenario(Order = 2)]
-    public void SetUpRoatpConfigConfiguration() => _context.SetRoatpConfig(_configSection.GetConfigSection<AANConfig>());
+    public void SetUpAANConfigConfiguration() => _context.SetAANConfig(_configSection.GetConfigSection<AANConfig>());
 }
