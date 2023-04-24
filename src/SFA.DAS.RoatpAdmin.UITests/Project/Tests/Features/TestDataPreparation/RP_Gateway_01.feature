@@ -2,12 +2,12 @@
 
 TestDataPreparation for RP_AD_GW_01_MainRoute_Company_ExistingProvider
 
-@roatpfulle2eviaadmintestdataprep
 @roatpadmintestdataprep
 @roatpadmingwtestdataprep
 @donottakescreenshot
 @rpadgw01
 Scenario: RP_Gateway_01_TestDataPreparation-For_RP_AD_GW_01_MainRoute_Company_ExistingProvider
-    Given the Provider is added to the register as Main provider
+	Given the provider naviagate to Admin
+    And the Provider is added to the register as Main provider
 	And the provider naviagate to Apply
-	Given the provider completes the Apply Journey as Main Provider Route For Existing Provider
+	And the provider completes the Apply Journey as Main Provider Route For Existing Provider

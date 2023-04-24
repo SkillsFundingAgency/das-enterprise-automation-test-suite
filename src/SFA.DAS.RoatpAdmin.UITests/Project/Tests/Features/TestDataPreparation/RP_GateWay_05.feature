@@ -7,4 +7,5 @@ TestDataPreparation for  RP_AD_GW_05_EmployerRoute_Charity_Reject
 @donottakescreenshot
 @rpadgw05
 Scenario: RP_Gateway_05_TestDataPreparation-For_RP_AD_GW_05_EmployerRoute_Charity_Reject
-	Given the provider completes the Apply Journey as Employer Provider Route
+	Given the provider naviagate to Apply
+	And the provider completes the Apply Journey as Employer Provider Route
