@@ -84,13 +84,15 @@ namespace SFA.DAS.FrameworkHelpers
 
         protected string GetDataAsString(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 
+        protected int GetDataAsInteger(string queryToExecute) => Convert.ToInt32(GetDataAsObject(queryToExecute));
+
         protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
 
         protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
 
         protected List<object[]> GetListOfDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString);
 
-        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) 
+        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
             => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
 
         protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
@@ -102,7 +104,6 @@ namespace SFA.DAS.FrameworkHelpers
 
             return GetDataAsObject(queryToExecute);
         }
-
 
         private List<(List<object[]> data, int noOfColumns)> TryReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString)
             => RetryOnException(() => ReadMultipleDataFromDataBase(queryToExecute, connectionString));

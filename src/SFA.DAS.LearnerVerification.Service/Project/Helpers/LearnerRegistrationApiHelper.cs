@@ -11,18 +11,12 @@ namespace SFA.DAS.LearnerVerification.Service.Project.Helpers
     {
         private LearnerVerificationConfig _config { get; set; }
 
-        public LearnerRegistrationApiHelper(ScenarioContext context)
+        public LearnerRegistrationApiHelper(ScenarioContext context, LearnerVerificationConfig config)
         {
-            _config = context.GetLearnerVerificationProcessConfig<LearnerVerificationConfig>();
+            _config = config;
         }
 
-        public async Task<LearnerRegistrationResponse> RegisterLearner(LearnerRegistrationParameters parameters)
-        {
-            var response = await RegisterLearnerAsync(parameters.FirstName, parameters.LastName, parameters.PostCode, parameters.DateOfBirth, ((int)parameters.Gender).ToString());
-            return response;
-        }
-
-        private async Task<LearnerRegistrationResponse> RegisterLearnerAsync(string firstName, string lastName, string postcode, DateTime dateOfBirth, string gender)
+        public async Task<LearnerRegistrationResponse> RegisterLearnerAsync(string firstName, string lastName, string postcode, DateTime dateOfBirth, string gender)
         {
             await using var service = new ClientProvider(_config).Get();
             var learnerRegistrationResponse = await service.RegisterLearnerAsync(new RegisterSingleLearnerRqst()

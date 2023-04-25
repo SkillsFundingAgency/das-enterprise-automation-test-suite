@@ -9,5 +9,6 @@
         public string? LV_UserName { get; set; }
         public string? LV_OrgPassword { get; set; }
         public string? LV_KeyVaultUrl { get; set; }
+        public int LV_MaxNumberOfLearnerRegistrationAttempts { get; set; }
     }
 }

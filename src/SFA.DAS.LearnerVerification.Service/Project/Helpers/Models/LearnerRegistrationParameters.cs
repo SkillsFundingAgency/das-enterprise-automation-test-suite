@@ -4,6 +4,15 @@ namespace SFA.DAS.LearnerVerification.Service.Project.Helpers.Models
 {
     public class LearnerRegistrationParameters
     {
+        public LearnerRegistrationParameters(string firstName, string lastName, string postCode, DateTime dateOfBirth, Gender gender)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            PostCode = postCode;
+            DateOfBirth = dateOfBirth;
+            Gender = gender;
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PostCode { get; set; }
