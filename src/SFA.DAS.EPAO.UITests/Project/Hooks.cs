@@ -87,10 +87,14 @@ public class Hooks
     public void ResetApplyUserOrganisationId() => _ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(_context.GetUser<EPAOApplyUser>().Username);
 
     [BeforeScenario(Order = 35)]
-    [Scope(Tag = "deletestandardwithdrawal")]
-    public void DeleteStandardWithdrawalApplication() => _ePAOApplySqlDataHelper.DeleteStandardWithdrawalApplication(_context.GetUser<EPAOWithdrawalUser>().Username);
+    [Scope(Tag = "resetstandardwithdrawal")]
+    public void ResetStandardWithdrawalApplication() => _ePAOApplySqlDataHelper.ResetStandardWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username);
 
     [BeforeScenario(Order = 36)]
+    [Scope(Tag = "resetregisterwithdrawal")]
+    public void ResetRegisterWithdrawalApplication() => _ePAOApplySqlDataHelper.ResetRegisterWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username);
+
+    [BeforeScenario(Order = 37)]
     [Scope(Tag = "deleteorganisationstandardversion")]
     public void ClearOrgganisationStandardVersion() => _ePAOApplySqlDataHelper.DeleteOrganisationStandardVersion();
 
