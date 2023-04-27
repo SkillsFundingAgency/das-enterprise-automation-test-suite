@@ -12,7 +12,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
 
-        protected AanBasePage(ScenarioContext context) : base(context) { }
+        protected AanBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
     }
 }
+
