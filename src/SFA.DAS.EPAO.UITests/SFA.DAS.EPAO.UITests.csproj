@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AssessmentService\EPAOWithdrawal\EPAO_AS_RWD_01 - Copy.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -39,12 +35,6 @@
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
     <ProjectReference Include="..\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\AssessmentService\EPAOWithdrawal\EPAO_AS_WD_01.feature.cs">
-      <DependentUpon>EPAO_AS_WD_01.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -76,13 +66,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\AssessmentService\EPAOWithdrawal\EPAO_AS_WD_01.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
