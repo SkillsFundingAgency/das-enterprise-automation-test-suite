@@ -3,28 +3,56 @@
 public class EPAOWithdrawalHelper
 {
     private readonly ScenarioContext _context;
+    private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
 
-    public EPAOWithdrawalHelper(ScenarioContext context) => _context = context;
+    public EPAOWithdrawalHelper(ScenarioContext context)
+    {
+        _context = context;
+        _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
+    }
 
     public void StartOfStandardWithdrawalJourney()
     {
         AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
-        aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
-                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                           .ClickStartNewWithdrawalNotification()
-                           .ClickAssessingASpecificStandard()
-                           .ClickASpecificStandardToWithdraw()
-                           .ContinueWithWithdrawalRequest();
+
+        if (_ePAOSqlDataHelper.HasWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username))
+        {
+            aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
+               .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
+               .ClickStartNewWithdrawalNotification()
+               .ClickAssessingASpecificStandard()
+               .ClickASpecificStandardToWithdraw()
+               .ContinueWithWithdrawalRequest();
+        }
+        else
+        { 
+            aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
+                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
+                .ClickAssessingASpecificStandard()
+                .ClickASpecificStandardToWithdraw()
+                .ContinueWithWithdrawalRequest();
+        }
     }
 
     public void StartOfRegisterWithdrawalJourney()
     {
         AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
-        aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
-                           .ClickStartNewWithdrawalNotification()
-                           .ClickWithdrawFromRegister()
-                           .ContinueWithWithdrawalRequest();
+
+        if (_ePAOSqlDataHelper.HasWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username))
+        {
+            aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
+                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
+                .ClickStartNewWithdrawalNotification()
+                .ClickWithdrawFromRegister()
+                .ContinueWithWithdrawalRequest();
+        }
+        else
+        {
+            aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
+                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
+                .ClickWithdrawFromRegister()
+                .ContinueWithWithdrawalRequest();
+        }
     }
 
     public void StandardApplicationFinalJourney()
@@ -60,7 +88,7 @@ public class EPAOWithdrawalHelper
     {
         new AS_LoggedInHomePage(_context)
             .ClickWithdrawFromAStandardLink()
-            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
             .ValidateStatus("In progress");
     }
 
@@ -121,7 +149,7 @@ public class EPAOWithdrawalHelper
     {
         AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
         aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
                            .ClickViewOnRegisterWithdrawalWithFeedbackAdded()
                            .ClickContinueButton()
                            .ClickSupportingCurrentLearnersFeedback()

@@ -48,7 +48,13 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Project\Helpers\SqlScripts\DeleteStandardWithdrawals.sql">
+    <None Update="Project\Helpers\SqlScripts\HasWithdrawals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\Helpers\SqlScripts\ResetRegisterWithdrawals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\Helpers\SqlScripts\ResetStandardWithdrawals.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Project\Helpers\SqlScripts\GetMultiStandardLearnersData.sql">
