@@ -199,6 +199,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Provider edits the Delivery Model to Flexi in Post Approvals and submits changes")]
         public void WhenTheProviderEditsTheDeliveryModelToFlexiInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval();
+        
+        [Given(@"Provider can add standards to its list of standards offered")]
+        public void GivenProviderCanAddStandardsToItsListOfStandardsOffered()
+        {
+            var _providerManageTheStandardsYouDeliverPage
+                = _providerStepsHelper
+                .GoToProviderHomePage()
+                .GoToYourStandardsAndTrainingVenues()
+                .ClickOnTheStandardsYouDeliverLink();
+
+
+            for (int i = 0; i < 200; i++)
+            {
+                _providerManageTheStandardsYouDeliverPage
+                .ClickAddAStandardLink()
+                .AddStandard()
+                .ConfirmStandard()
+                .AddContactInfo()
+                .SelectOptionAtEmployerLocation()
+                .SelectOptionICanDeliverAnywhereInEngland()
+                .SaveStandard();
+            }
+        }
 
     }
 }

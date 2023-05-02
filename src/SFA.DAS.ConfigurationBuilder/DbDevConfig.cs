@@ -35,5 +35,6 @@
         public string EarningsDbName { get; set; }
         public string ApprenticeshipsDbName { get; set; }
         public string RofjaaDbName { get; set; }
+        public string AANDbName { get; set; }
     }
 }

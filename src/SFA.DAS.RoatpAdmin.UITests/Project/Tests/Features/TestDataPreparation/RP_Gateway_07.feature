@@ -7,4 +7,5 @@ TestDataPreparation for RP_AD_GW_07_SupportRoute
 @donottakescreenshot
 @rpadgw07
 Scenario: RP_Gateway_07_TestDataPreparation-For_RP_AD_GW_07_SupportRoute
-	Given the provider completes the Apply Journey as Supporting Provider Route
+	Given the provider naviagate to Apply
+	And the provider completes the Apply Journey as Supporting Provider Route
