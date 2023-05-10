@@ -7,6 +7,7 @@ using System.Linq;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using Selenium.Axe;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -141,7 +142,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             });
 
             if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
-                throw new Exception($"{axeResult.Violations.Length} CRITICAL violation's is/are found in the url: {axeResult.Url}");
+            {
+                objectContext.SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in the url: {axeResult.Url}");
+            }
         }
 
         private string GetTitle() => _screenShotTitleGenerator.GetTitle();

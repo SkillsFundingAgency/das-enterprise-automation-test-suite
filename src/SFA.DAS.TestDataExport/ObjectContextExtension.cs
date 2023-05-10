@@ -11,11 +11,13 @@ namespace SFA.DAS.TestDataExport
         private const string AfterStepInformations = "afterstepinformations";
         private const string AfterScenarioExceptions = "afterscenarioexceptions";
         private const string DebugInformations = "testdebuginformations";
+        private const string AccessibilityInformations = "accessibilityinformations";
         #endregion
 
         internal static void SetTestDataList(this ObjectContext objectContext)
         {
             objectContext.SetDebugInformations();
+            objectContext.SetAccessibilityInformations();
             objectContext.SetAfterStepInformations();
             objectContext.SetAfterScenarioExceptions();
             objectContext.SetAfterScenarioTestDataTearDown();
@@ -46,6 +48,15 @@ namespace SFA.DAS.TestDataExport
         public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> DebugInformation: {value}");
         
         private static FrameworkList<string> GetDebugInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(DebugInformations);
+        #endregion
+
+        #region AccessibilityInformations
+
+        private static void SetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Set(AccessibilityInformations, new FrameworkList<string>() { $"{string.Empty}" });
+
+        public static void SetAccessibilityInformation(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityInformations().Add($"-> {value}");
+
+        private static FrameworkList<string> GetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityInformations);
         #endregion
 
     }
