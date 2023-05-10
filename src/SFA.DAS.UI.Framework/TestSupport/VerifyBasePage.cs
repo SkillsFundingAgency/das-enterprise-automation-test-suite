@@ -143,7 +143,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
             {
-                objectContext.SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in the url: {axeResult.Url}");
+                objectContext.SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in '{PageTitle}' page - url: {axeResult.Url}");
             }
         }
 
