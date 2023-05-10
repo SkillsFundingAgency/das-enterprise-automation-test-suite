@@ -6,6 +6,7 @@
 @roatpmoderator
 @newroatpadmin
 @regression
+@accessibility
 Scenario: RP_AD_MOD_01 Complete Moderation of a Company type Application via Main provider route
 	Given the admin lands on the Dashboard
 	When selects the Main Provider Route For Existing Provider application from Moderation Tab

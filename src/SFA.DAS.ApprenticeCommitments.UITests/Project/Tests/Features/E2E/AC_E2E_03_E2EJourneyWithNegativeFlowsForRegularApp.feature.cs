@@ -78,15 +78,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.CategoryAttribute("apprenticecommitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deletecmaddatacreatedthroughapi")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
         public void AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp()
         {
             string[] tagsOfScenario = new string[] {
                     "apprenticecommitments",
                     "regression",
-                    "deletecmaddatacreatedthroughapi"};
+                    "deletecmaddatacreatedthroughapi",
+                    "accessibility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AC_E2E_03_E2EJourneyWithNegativeFlowsForRegularApp", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,68 +98,68 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("an apprentice has created and validated the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("the apprentice is able to confirm the Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 10
  testRunner.And("confirmed employer already page is displayed for trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("the apprentice is able to change the answer and choose to confirm the Employer de" +
                         "tails as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("an appropriate error displayed when the apprentice chooses CTA without making a s" +
                         "election on Confirm employer page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the apprentice is able to confirm the Training Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.And("confirmed training provider already page is displayed for trying to confirm again" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  testRunner.And("the apprentice is able to change the answer and choose to confirm the Provider de" +
                         "tails as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("an appropriate error displayed when the apprentice chooses CTA without making a s" +
                         "election on Confirm provider page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
  testRunner.Then("the apprentice is able to confirm the Apprenticeship details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 17
+#line 18
  testRunner.And("confirmed apprenticeship already page is displayed for trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 19
  testRunner.And("the apprentice is able to change the answer and choose to confirm the Apprentices" +
                         "hip details as Incorrect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 20
  testRunner.And("an appropriate error displayed when the apprentice chooses CTA without making a s" +
                         "election on Confirm details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 21
  testRunner.Then("the apprentice is able to confirm \'How the apprenticeship will be delivered\' sect" +
                         "ion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 21
+#line 22
  testRunner.And("confirmed \'How the apprenticeship will be delivered\' section page is displayed fo" +
                         "r trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 23
  testRunner.Then("the apprentice is able to confirm Roles and responsibilities by checking Negative" +
                         " flows", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 23
+#line 24
  testRunner.And("confirmed Roles page is displayed for trying to confirm again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 24
+#line 25
  testRunner.Then("the apprentice confirms the overall apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

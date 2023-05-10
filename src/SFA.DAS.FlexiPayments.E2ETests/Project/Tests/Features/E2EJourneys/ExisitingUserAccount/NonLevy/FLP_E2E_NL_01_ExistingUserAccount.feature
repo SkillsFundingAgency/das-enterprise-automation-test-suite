@@ -1,4 +1,4 @@
-﻿Feature: FLP_E2E_EUA_03_ExistingUserAccount
+﻿Feature: FLP_E2E_NL_01_ExistingUserAccount
 
 @regression
 @e2escenarios
@@ -24,7 +24,7 @@ Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provid
 		| 2       | 2                | Null                  | StartCurrentMonth | +24Months            | 6000         | 1            | 18000                |
 	And validate the following data is created in the earnings database
 		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
-		| 1       | 4800                     | 192                        | 25                        |
+		| 1       | 4800                     | 200                        | 24                        |
 	And validate earnings are not generated for the learners
 		| ULN_Key |
 		| 2       |

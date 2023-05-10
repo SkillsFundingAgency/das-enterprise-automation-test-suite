@@ -75,6 +75,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.AfterPhase3C
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EI_P3_04_ExistingLevyAc_AddVRF")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         [NUnit.Framework.CategoryAttribute("vrfservice")]
@@ -83,10 +84,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.AfterPhase3C
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "vrfservice"};
+                    "vrfservice",
+                    "ignore"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_P3_04_ExistingLevyAc_AddVRF", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 10
  testRunner.Given("the Employer logins using existing EI Levy Account to add vrf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 11
  testRunner.Then("the Employer can add organisation and finance details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

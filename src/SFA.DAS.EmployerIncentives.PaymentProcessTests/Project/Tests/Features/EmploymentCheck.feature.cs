@@ -784,7 +784,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("month end is not in progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 145
- testRunner.When("the second line support user requests a recheck", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the refresh of an employment check is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 146
  testRunner.Then("a new employment check is requested to ensure the apprentice was not employed in " +
@@ -825,7 +825,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("month end is not in progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 153
- testRunner.When("the refresh of all employment checks is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the refresh of an employment check is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 154
  testRunner.Then("a new employment check is requested to ensure the apprentice was not employed in " +
@@ -866,7 +866,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("month end is not in progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 161
- testRunner.When("the refresh of all employment checks is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the refresh of an employment check is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 162
  testRunner.Then("a new employment check is not requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -899,7 +899,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("month end is not in progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 167
- testRunner.When("the refresh of all employment checks is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the refresh of an employment check is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 168
  testRunner.Then("a new employment check is not requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -935,7 +935,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("month end is not in progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 174
- testRunner.When("the refresh of all employment checks is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the refresh of an employment check is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 175
  testRunner.Then("a new employment check is not requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -971,7 +971,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("month end is in progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 181
- testRunner.When("the refresh of all employment checks is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the refresh of an employment check is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 182
  testRunner.Then("a new employment check is not requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

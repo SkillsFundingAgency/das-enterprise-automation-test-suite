@@ -36,12 +36,25 @@ public class EPAOApplySqlDataHelper : SqlDbHelper
 
     public void DeleteStandardApplicication(string standardcode, string organisationId, string userid) => ExecuteSqlCommand($"DELETE from [Apply] where OrganisationId = (select Id from Organisations WHERE EndPointAssessorOrganisationId = '{organisationId}') and CreatedBy = (select Id from Contacts where Email = '{userid}') and StandardCode = {standardcode}");
 
-    public void DeleteStandardWithdrawalApplication(string email)
+    public bool HasWithdrawals(string email)
     {
-        string sqlQueryFromFile = FileHelper.GetSql("DeleteStandardWithdrawals");
+        var sqlQueryFromFile = Regex.Replace(FileHelper.GetSql("HasWithdrawals"), @"__email__", email);
+        var data = GetData(sqlQueryFromFile, connectionString);
 
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__email__", email);
+        return data.Any() && data.First() == "1"
+                ? true
+                : false;
+    }
 
+    public void ResetStandardWithdrawals(string email)
+    {
+        var sqlQueryFromFile = Regex.Replace(FileHelper.GetSql("ResetStandardWithdrawals"), @"__email__", email);
+        ExecuteSqlCommand(sqlQueryFromFile, connectionString);
+    }
+
+    public void ResetRegisterWithdrawals(string email)
+    {
+        var sqlQueryFromFile = Regex.Replace(FileHelper.GetSql("ResetRegisterWithdrawals"), @"__email__", email);
         ExecuteSqlCommand(sqlQueryFromFile, connectionString);
     }
 }

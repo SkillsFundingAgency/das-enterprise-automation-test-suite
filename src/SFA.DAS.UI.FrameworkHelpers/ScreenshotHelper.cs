@@ -9,17 +9,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class ScreenshotHelper
     {
-        public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage)
+        public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage, bool throwException)
         {
             string screenshotPath, imageName;
 
             (screenshotPath, imageName) = GetScreenShotDetails(screenshotsDirectory, scenarioTitle);
 
-            if (isFullpage) TakeFullPageScreenShot(webDriver, imageName, screenshotPath);
-            else TakeNormalScreenShot(webDriver, imageName, screenshotPath);
+            if (isFullpage) TakeFullPageScreenShot(webDriver, imageName, screenshotPath, throwException);
+            else TakeNormalScreenShot(webDriver, imageName, screenshotPath, throwException);
         }
 
-        private static void TakeFullPageScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
+        private static void TakeFullPageScreenShot(IWebDriver webDriver, string imageName, string screenshotPath, bool throwException)
         {
             var html2canvasJs = File.ReadAllText($"{Path.Combine(FileHelper.GetAssemblyDirectory(), "html2canvas.js")}");
             var generateScreenshotJS = @"function genScreenshot () { var canvasImgContentDecoded; html2canvas(document.body).then(function(canvas) { window.canvasImgContentDecoded = canvas.toDataURL(""image/png""); }); } genScreenshot();";
@@ -48,11 +48,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 TestContext.Progress.WriteLine($"Exception occurred while taking full screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
 
-                TakeNormalScreenShot(webDriver, imageName, screenshotPath);
+                TakeNormalScreenShot(webDriver, imageName, screenshotPath, throwException);
             }
         }
 
-        private static void TakeNormalScreenShot(IWebDriver webDriver, string imageName, string screenshotPath)
+        private static void TakeNormalScreenShot(IWebDriver webDriver, string imageName, string screenshotPath, bool throwException)
         {
             try
             {
@@ -63,7 +63,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             catch (Exception exception)
             {
-                TestContext.Progress.WriteLine($"Exception occurred while taking screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
+                var message = $"Exception occurred while taking screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception;
+
+                if (throwException) throw new Exception(message);
+                else TestContext.Progress.WriteLine(message);
             }
         }
 

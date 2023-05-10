@@ -6,13 +6,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     {
         public PublicSectorReportingDataHelper()
         {
-            NoofEmployees2019 = RandomDataGenerator.GenerateRandomWholeNumber(2);
-            NoofEmployees2020 = RandomDataGenerator.GenerateRandomWholeNumber(3);
-            NoofNewEmployees = (int.Parse(NoofEmployees2020) - int.Parse(NoofEmployees2019)).ToString();
+            NoofEmployees2021 = RandomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofEmployees2022 = RandomDataGenerator.GenerateRandomWholeNumber(3);
+            NoofNewEmployees = (int.Parse(NoofEmployees2022) - int.Parse(NoofEmployees2021)).ToString();
 
-            NoofApprentices2019 = RandomDataGenerator.GenerateRandomWholeNumber(1);
-            NoofApprentices2020 = RandomDataGenerator.GenerateRandomWholeNumber(2);
-            NoofNewApprentices = (int.Parse(NoofEmployees2020) - int.Parse(NoofEmployees2019)).ToString();
+            NoofApprentices2021 = RandomDataGenerator.GenerateRandomWholeNumber(1);
+            NoofApprentices2022 = RandomDataGenerator.GenerateRandomWholeNumber(2);
+            NoofNewApprentices = (int.Parse(NoofEmployees2022) - int.Parse(NoofEmployees2021)).ToString();
 
             NoofFullTimeEmployees = RandomDataGenerator.GenerateRandomWholeNumber(2);
 
@@ -26,11 +26,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         internal string EmployerChallenges { get; }
         internal string EmployerPlanning { get; }
         internal string EmployerComments { get; }
-        internal string NoofEmployees2019 { get; }
-        internal string NoofEmployees2020 { get; }
+        internal string NoofEmployees2021 { get; }
+        internal string NoofEmployees2022 { get; }
         internal string NoofNewEmployees { get; }
-        internal string NoofApprentices2019 { get; }
-        internal string NoofApprentices2020 { get; }
+        internal string NoofApprentices2021 { get; }
+        internal string NoofApprentices2022 { get; }
         internal string NoofNewApprentices { get; }
         internal string NoofFullTimeEmployees { get; }
     }

@@ -22,19 +22,16 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         }
 
         [AfterScenario(Order = 11)]
-        public void TakeScreenshotOnFailure()
+        public void TakeScreenshotOnTeardown()
         {
-            if (_context.TestError != null)
+            _tryCatch.AfterScenarioException(() =>
             {
-                _tryCatch.AfterScenarioException(() =>
-                {
-                    var scenarioTitle = _context.ScenarioInfo.Title;
-                    var webDriver = _context.GetWebDriver();
-                    var directory = _objectContext.GetDirectory();
+                var scenarioTitle = _context.TestError != null ? "TestFailedOnThisPage" : "TestCompletedOnThisPage";
+                var webDriver = _context.GetWebDriver();
+                var directory = _objectContext.GetDirectory();
 
-                    ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true);
-                });
-            }
+                ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true, true);
+            });
         }
     }
 }

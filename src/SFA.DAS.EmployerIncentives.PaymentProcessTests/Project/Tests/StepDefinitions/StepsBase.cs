@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             Helper = context.Get<Helper>();
             Fixture = new Fixture();
             TestData = context.Get<TestData>();
-            TestData.Account = (Fixture.Create<long>(), Fixture.Create<long>());
+            TestData.Account = (111222, 123123);
             TestData.ApprenticeshipId = Fixture.Create<long>();
             Context = context;
         }

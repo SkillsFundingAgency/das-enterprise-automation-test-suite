@@ -171,12 +171,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             await dbConnection.ExecuteAsync(SqlScripts.ResetCalendar);
         }
 
-        public async Task DeleteAccount((long AccountId, long AccountLegalEntityId) account)
-        {
-            await using var dbConnection = new SqlConnection(connectionString);
-            await dbConnection.ExecuteAsync(SqlScripts.DeleteAccount, new {account.AccountId, account.AccountLegalEntityId});
-        }
-
         public async Task Execute(string sql)
         {
             await using var dbConnection = new SqlConnection(connectionString);

@@ -80,6 +80,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("rpadfha01")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
         public void RP_AD_FHA_01()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,10 +88,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
                     "roatp",
                     "newroatpadmin",
                     "rpadfha01",
-                    "regression"};
+                    "regression",
+                    "accessibility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_FHA_01", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,17 +102,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.When("the admin access the Financial Applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("the Financial assessor completes assessment by confirming the Financial outcome a" +
                         "s outstanding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 13
  testRunner.And("the Financial Applications Outcome tab is updated with Outstanding outcome for th" +
                         "is Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

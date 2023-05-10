@@ -164,6 +164,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApproveApprenticeDetailsPage(context);
         }
 
+        public EditApprenticeDetailsPage ValidateTrainingCourseNotEditable()
+        {
+            Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
+            return this;
+        }
+
         private By GetEditDeliveryModelLink()
         {
             return pageInteractionHelper.GetUrl().Contains("/unapproved")

@@ -11,10 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         public PublicSectorTargetDatePage(ScenarioContext context) : base(context)  { }
 
-        public ReportYourProgressPage Start()
+        public IsYourOrganisationALocalAuthorityPage Start()
         {
             Continue();
-            return new ReportYourProgressPage(context);
+            return new IsYourOrganisationALocalAuthorityPage(context);
         }
     }
 }

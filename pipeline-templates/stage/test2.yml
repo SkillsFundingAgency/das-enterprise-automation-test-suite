@@ -1,0 +1,19 @@
+parameters:
+  TestFilter:
+  TestDlls:
+
+stages:
+- stage: Deploy_TEST2
+  dependsOn: []
+  displayName: Run test suite on TEST2
+  condition: eq(variables['Build.Reason'], 'Manual')
+  variables:
+  - group: TEST2 DevTest Shared Resources
+  - group: TEST2 Automation Suite Variables
+  jobs:
+  - template: ../job/test-api.yml
+    parameters:
+      Environment: TEST2
+      ServiceConnection: SFA-DAS-DevTest-ARM
+      TestFilter: ${{ parameters.TestFilter }}
+      TestDlls: ${{ parameters.TestDlls }}
