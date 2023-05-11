@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {

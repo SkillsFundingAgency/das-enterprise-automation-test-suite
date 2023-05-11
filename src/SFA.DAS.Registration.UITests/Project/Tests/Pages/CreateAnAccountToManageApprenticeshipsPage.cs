@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -15,6 +16,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+        public StubSignInPage GoToStubSignInPage()
+        {
+            formCompletionHelper.ClickElement(SigninLink);
+            return new StubSignInPage(context);
+        }
 
         public SignInPage ClickSignInLinkOnIndexPage()
         {

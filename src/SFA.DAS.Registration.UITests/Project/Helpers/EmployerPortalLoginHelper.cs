@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -30,13 +31,15 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public SignInPage FailedLogin() => new SignInPage(_context).FailedLogin(GetLoginCredentials());
 
-        protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
+        protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToLogin();
 
         protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) 
             => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName, isLevy);
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
         {
+            loginUser.Password = _registrationSqlDataHelper.GetUserRef(loginUser.Username);
+
             SetLoginCredentials(loginUser, isLevy);
 
             var homePage = Login(loginUser);

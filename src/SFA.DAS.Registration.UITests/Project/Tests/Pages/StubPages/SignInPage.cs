@@ -3,8 +3,9 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
+
     public class SignInPage : VerifyBasePage
     {
         protected override string PageTitle => "Sign in";
@@ -81,7 +82,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public AddAPAYESchemePage LoginWithResetPassword(string userName, string password)
         {
-            EnterLoginDetailsAndClickSignIn(userName,password);
+            EnterLoginDetailsAndClickSignIn(userName, password);
             return new AddAPAYESchemePage(context);
         }
     }
