@@ -8,8 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         public RegistrationSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
-        public string GetUserRef(string email) => GetDataAsString($"SELECT UserRef from employer_account.[User] where email ='{email}'");
-
         public string GetAccountApprenticeshipEmployerType(string email) => GetDataAsString($"SELECT ApprenticeshipEmployerType FROM [employer_account].[Account] WHERE Id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
 
         public void UpdateLegalEntityName(string email) => ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] SET [Name] = 'Changed Org Name' WHERE AccountId IN {GetAccountIdQuery(email)}");

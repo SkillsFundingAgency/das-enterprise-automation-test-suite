@@ -38,8 +38,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
         {
-            loginUser.IdOrUserRef = _registrationSqlDataHelper.GetUserRef(loginUser.Username);
-
             SetLoginCredentials(loginUser, isLevy);
 
             var homePage = Login(loginUser);
