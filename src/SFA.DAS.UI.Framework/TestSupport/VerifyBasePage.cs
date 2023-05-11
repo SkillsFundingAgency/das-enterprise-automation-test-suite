@@ -128,7 +128,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private void AnalyzePage()
         {
-            string fileName = $"{RegexHelper.TrimAnySpace(PageTitle)}_{GetTitle()}.html";
+            string pageTitle = RegexHelper.TrimAnySpace(PageTitle);
+
+            pageTitle = string.IsNullOrEmpty(pageTitle) ? "NoPageTitle" : pageTitle;
+
+            string fileName = $"{pageTitle}_{GetTitle()}.html";
 
             AxeResult axeResult = null;
 
