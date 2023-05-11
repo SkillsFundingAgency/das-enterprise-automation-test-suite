@@ -51,12 +51,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to rename account settings page")]
         public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToRenameAccountPage();
 
-        [Then(@"the employer can navigate to change your password settings page")]
-        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToChangeYourPasswordPage();
-
-        [Then(@"the employer can navigate to change your email address settings page")]
-        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToChangeYourEmailAddressPage();
-
         [Then(@"the employer can navigate to notification settings page")]
         public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToNotificationSettingsPage();
 

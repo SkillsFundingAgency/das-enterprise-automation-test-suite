@@ -438,22 +438,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
         }
 
-        [Then(@"the User is able to change the registered Email")]
-        public void ThenTheUserIsAbleToChangeTheRegisteredEmail()
-        {
-            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourEmailAddressPage()
-            .ChangeEmail().EnterSecurityCodeDetailsDuringAccountCreationJourney();
-
-            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.Password);
-        }
-
-        [Then(@"the User is able to change the account Password")]
-        public void ThenTheUserIsAbleToChangeTheAccountPassword()
-        {
-            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourPasswordPage().ChangePasswordDuringAccountCreationJourney();
-            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
-        }
-
         [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
         public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
         {
@@ -494,8 +478,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
-        private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
-            addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
-            .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), password);
     }
 }

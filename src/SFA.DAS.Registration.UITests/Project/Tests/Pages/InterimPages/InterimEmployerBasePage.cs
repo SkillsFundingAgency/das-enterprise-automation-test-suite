@@ -64,18 +64,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             return new RenameAccountPage(context);
         }
 
-        public ChangeYourPasswordPage GoToChangeYourPasswordPage()
-        {
-            NavigateToSettings(ChangePasswordLink);
-            return new ChangeYourPasswordPage(context);
-        }
-
-        public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
-        {
-            NavigateToSettings(ChangeEmailAddressLink);
-            return new ChangeYourEmailAddressPage(context);
-        }
-
         public NotificationSettingsPage GoToNotificationSettingsPage()
         {
             NavigateToSettings(NotificationSettingsLink);
