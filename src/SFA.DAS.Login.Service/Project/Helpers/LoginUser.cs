@@ -10,23 +10,15 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string Username { get; set; }
     }
 
-    public abstract class EASLoginUser : LoginUser
-    {
-        public string IdOrUserRef { get; set; }
-    }
-
-    public abstract class NonEasAccountUser : LoginUser
-    {
-        public string Password { get; set; }
-    }
-
     #region SingleAccountUser
 
-    public abstract class EasAccountUser : EASLoginUser
+    public abstract class EasAccountUser : LoginUser
     {
         public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
+
+        public string IdOrUserRef { get; set; }
 
     }
 
@@ -85,7 +77,12 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #endregion
 
-    #region NonAccountUser
+    #region NonEasAccountUser
+
+    public abstract class NonEasAccountUser : LoginUser
+    {
+        public string Password { get; set; }
+    }
 
     public class EPAOStandardApplyUser : NonEasAccountUser { }
 
