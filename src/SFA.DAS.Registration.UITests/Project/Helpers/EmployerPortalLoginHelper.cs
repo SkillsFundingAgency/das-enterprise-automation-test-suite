@@ -34,17 +34,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToLogin();
 
         protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) 
-            => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, loginUser.OrganisationName, isLevy);
+            => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, loginUser.OrganisationName, isLevy);
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
         {
-            loginUser.Password = _registrationSqlDataHelper.GetUserRef(loginUser.Username);
+            loginUser.IdOrUserRef = _registrationSqlDataHelper.GetUserRef(loginUser.Username);
 
             SetLoginCredentials(loginUser, isLevy);
 
             var homePage = Login(loginUser);
 
-            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.Password, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
+            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
 
             return homePage;
         }

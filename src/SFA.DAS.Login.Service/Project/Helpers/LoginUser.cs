@@ -8,17 +8,26 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public abstract class LoginUser
     {
         public string Username { get; set; }
+    }
 
+    public abstract class EASLoginUser : LoginUser
+    {
+        public string IdOrUserRef { get; set; }
+    }
+
+    public abstract class NonEasAccountUser : LoginUser
+    {
         public string Password { get; set; }
     }
 
     #region SingleAccountUser
 
-    public abstract class EasAccountUser : LoginUser
+    public abstract class EasAccountUser : EASLoginUser
     {
         public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
+
     }
 
     public class EmployerFeedbackUser : EasAccountUser { }
@@ -77,36 +86,35 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     #endregion
 
     #region NonAccountUser
-    public abstract class NonAccountUser : LoginUser { }
 
-    public class EPAOStandardApplyUser : NonAccountUser { }
+    public class EPAOStandardApplyUser : NonEasAccountUser { }
 
-    public class EPAOAssessorUser : NonAccountUser { }
+    public class EPAOAssessorUser : NonEasAccountUser { }
 
-    public class EPAODeleteAssessorUser : NonAccountUser { }
+    public class EPAODeleteAssessorUser : NonEasAccountUser { }
 
-    public class EPAOWithdrawalUser : NonAccountUser { }
+    public class EPAOWithdrawalUser : NonEasAccountUser { }
 
-    public class EPAOManageUser : NonAccountUser { }
+    public class EPAOManageUser : NonEasAccountUser { }
 
-    public class EPAOApplyUser : NonAccountUser
+    public class EPAOApplyUser : NonEasAccountUser
     {
         public string FullName { get; set; }
     }
 
-    public class EPAOStageTwoStandardCancelUser : NonAccountUser { }
+    public class EPAOStageTwoStandardCancelUser : NonEasAccountUser { }
 
-    public class EPAOE2EApplyUser : NonAccountUser { }
+    public class EPAOE2EApplyUser : NonEasAccountUser { }
 
-    public class EPAOAdminUser : NonAccountUser { }
+    public class EPAOAdminUser : NonEasAccountUser { }
 
-    public class SupportConsoleTier1User : NonAccountUser { }
+    public class SupportConsoleTier1User : NonEasAccountUser { }
 
-    public class SupportConsoleTier2User : NonAccountUser { }
+    public class SupportConsoleTier2User : NonEasAccountUser { }
 
-    public class SupportToolsSCPUser : NonAccountUser { }
+    public class SupportToolsSCPUser : NonEasAccountUser { }
 
-    public class SupportToolsSCSUser : NonAccountUser { }
+    public class SupportToolsSCSUser : NonEasAccountUser { }
 
     #endregion
 

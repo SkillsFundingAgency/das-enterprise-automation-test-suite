@@ -23,15 +23,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public HomePage Login(LoginUser loginUser)
+        public HomePage Login(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return new HomePage(context);
         }
 
-        public SignInPage FailedLogin(LoginUser loginUser)
+        public SignInPage FailedLogin(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return this;
         }
 
@@ -43,21 +43,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             return new ConfirmYourIdentityPage(context, userName, password);
         }
 
-        public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
+        public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return new MyAccountWithOutPayePage(context);
         }
 
-        public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
+        public YourAccountsPage MultipleAccountLogin(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return new YourAccountsPage(context);
         }
 
-        public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(LoginUser loginUser)
+        public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return new MyAccountTransferFundingPage(context);
         }
 

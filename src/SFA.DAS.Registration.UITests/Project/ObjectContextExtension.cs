@@ -21,11 +21,11 @@ namespace SFA.DAS.Registration.UITests.Project
         
         #endregion
 
-        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword, string organisationName)
+        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string idOrUserRef, string organisationName)
         {
             objectContext.SetRegisteredEmail(loginusername);
             objectContext.UpdateOrganisationName(organisationName);
-            objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
+            objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, IdOrUserRef = idOrUserRef, OrganisationName = organisationName });
         }
 
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);

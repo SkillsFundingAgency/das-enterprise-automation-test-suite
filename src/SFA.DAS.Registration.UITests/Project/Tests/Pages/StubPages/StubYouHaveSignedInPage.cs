@@ -15,13 +15,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         protected override By ContinueButton => By.CssSelector("a.govuk-button");
 
-        public StubYouHaveSignedInPage(ScenarioContext context, LoginUser loginUser) : base(context)
+        public StubYouHaveSignedInPage(ScenarioContext context, EasAccountUser loginUser) : base(context)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(),
                 () => VerifyPage(MainContent, loginUser.Username),
-                () => VerifyPage(MainContent, loginUser.Password)
+                () => VerifyPage(MainContent, loginUser.IdOrUserRef)
             });
         }
 

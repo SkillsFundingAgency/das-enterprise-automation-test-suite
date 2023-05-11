@@ -4,14 +4,14 @@ public class SignInPage : EsfaSignInPage
 {
     public SignInPage(ScenarioContext context) : base(context) { }
 
-    public SearchHomePage SignInWithValidDetails(LoginUser usercreds)
+    public SearchHomePage SignInWithValidDetails(NonEasAccountUser usercreds)
     {
         SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
 
         return new (context);
     }
 
-    public ToolSupportHomePage SignIntoToolSupportWithValidDetails(LoginUser usercreds)
+    public ToolSupportHomePage SignIntoToolSupportWithValidDetails(NonEasAccountUser usercreds)
     {
         SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
 

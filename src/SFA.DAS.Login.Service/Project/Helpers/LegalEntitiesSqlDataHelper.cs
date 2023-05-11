@@ -9,22 +9,32 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public LegalEntitiesSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
-        internal List<List<string>> GetAccountLegalEntities(List<string> emails)
+        internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountLegalEntities(List<string> emails)
         {
             var query = emails.Select(x => GetSqlQuery(x)).ToList();
 
             var listoflegalEntities = new List<List<string>>();
 
+            var accountdetails = new List<(List<string>, string)>();
+
             foreach (var legalEntities in GetListOfMultipleData(query))
             {
                 var legalEntitieslist = legalEntities.ListOfArrayToList(0);
 
-                listoflegalEntities.Add(legalEntitieslist.IsNoDataFound() ? new List<string>() : legalEntitieslist);
+                var userref = legalEntities.ListOfArrayToList(1);
+
+                var x = legalEntitieslist.IsNoDataFound() ? new List<string>() : legalEntitieslist;
+
+                listoflegalEntities.Add(x);
+
+                var y = userref.IsNoDataFound() ? string.Empty : userref.FirstOrDefault();
+
+                accountdetails.Add((x, y));
             }
 
-            return listoflegalEntities;
+            return accountdetails;
         }
 
-        private static string GetSqlQuery(string email) => $"select [name] from employer_account.AccountLegalEntity where deleted is null and AccountId in (select AccountId from employer_account.Membership where UserId in ( select id from employer_account.[User] where Email = '{email}' )) order by Created asc;";
+        private static string GetSqlQuery(string email) => $"SELECT ale.[name], u.Userref FROM employer_account.AccountLegalEntity ale JOIN employer_account.Membership m ON ale.AccountId = m.AccountId JOIN employer_account.[User] u ON m.UserId = u.id WHERE ale.deleted is null AND u.Email = '{email}' ORDER BY ale.Created ASC;";
     }
 }

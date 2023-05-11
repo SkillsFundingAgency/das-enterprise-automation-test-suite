@@ -19,9 +19,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public StubSignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public StubYouHaveSignedInPage Login(LoginUser loginUser)
+        public StubYouHaveSignedInPage Login(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return new StubYouHaveSignedInPage(context, loginUser);
         }
 

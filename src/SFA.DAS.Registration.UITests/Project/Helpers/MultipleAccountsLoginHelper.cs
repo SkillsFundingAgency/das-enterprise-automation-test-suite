@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) => 
-            loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, OrganisationName, isLevy); 
+            loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, OrganisationName, isLevy); 
         
         protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
 

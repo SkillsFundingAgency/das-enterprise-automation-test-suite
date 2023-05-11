@@ -60,9 +60,9 @@ public class StepsHelper
 
     private void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
-    private SearchHomePage LoginToSupportConsole(LoginUser loginUser) => GoToSignInPage().SignInWithValidDetails(loginUser);
+    private SearchHomePage LoginToSupportConsole(NonEasAccountUser loginUser) => GoToSignInPage().SignInWithValidDetails(loginUser);
 
-    private ToolSupportHomePage LoginToSupportTools(LoginUser loginUser, bool openNewTab)
+    private ToolSupportHomePage LoginToSupportTools(NonEasAccountUser loginUser, bool openNewTab)
     {
         var baseUrl = UrlConfig.SupportTools_BaseUrl;
 
