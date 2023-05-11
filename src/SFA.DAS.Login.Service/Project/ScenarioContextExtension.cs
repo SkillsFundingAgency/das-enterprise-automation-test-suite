@@ -27,7 +27,7 @@ namespace SFA.DAS.Login.Service
 
             for (int i = 0; i < notNullUsers.Count; i++)
             {
-                //notNullUsers[i].IdOrUserRef = legalentities[i].idOrUserRef;
+                notNullUsers[i].IdOrUserRef = legalentities[i].idOrUserRef;
 
                 notNullUsers[i].LegalEntities = legalentities[i].listoflegalEntities;
 
