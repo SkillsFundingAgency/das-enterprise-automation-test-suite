@@ -57,10 +57,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             pageInteractionHelper.VerifyText(ErrorTextAboveEmailTextBox, ExpectedEmailErrorText);
         }
 
-        public SignInPage SignIn()
+        public StubSignInPage SignIn()
         {
             formCompletionHelper.ClickElement(SigninLink);
-            return new SignInPage(context);
+            return new StubSignInPage(context);
         }
 
         public TermsAndConditionsPage ClickTermsAndConditionsLink()

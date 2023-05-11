@@ -10,6 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public CreateAccountEmployerPortalLoginHelper(ScenarioContext context) : base(context) => _context = context;
 
-        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().SignIn().Login(loginUser);
+        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().SignIn().Login(loginUser).ContinueToLogin();
     }
 }
