@@ -1,13 +1,11 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
-using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class NotificationSettingsPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Notification Settings";
+        protected override string PageTitle => "Notification settings";
 
         #region Locators
         private By NotificationOptions => By.CssSelector(".selection-button-radio");
