@@ -15,6 +15,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             var endpointConfiguration = new EndpointConfiguration("SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers")
                 .UseMessageConventions()
+                .UseSendOnly()
                 .UseNewtonsoftJsonSerializer();
 
             if (config.EI_ServiceBusConnectionString.Equals("UseLearningEndpoint=true", StringComparison.CurrentCultureIgnoreCase))

@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table1.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "12",
                             "15000",
                             "true"});
-                table1.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/27",
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "18000",
                             "false"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table1, "Given ");
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table2, "Given ");
 #line hidden
 #line 14
  testRunner.When("Provider can search learner 1 using Simplified Payments Pilot filter set to yes o" +
