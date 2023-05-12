@@ -22,11 +22,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _objectContext = context.Get<ObjectContext>();
         }
 
-        internal void AnalyzePage(string PageTitle)
+        internal void AnalyzePage(string actualPageTitle)
         {
-            (bool shouldAnalyzePage, string pageTitle) = ShouldAnalyzePage(PageTitle);
+            if (!ShouldAnalyzePage()) return;
 
-            if (!shouldAnalyzePage) return;
+            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? "NoPageTitle" : actualPageTitle;
 
             string counter = _context.Get<ScreenShotTitleGenerator>().GetTitle();
 
@@ -53,34 +53,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
         }
 
-        private (bool shouldAnalyzePage, string pageTitle) ShouldAnalyzePage(string PageTitle)
+        private bool ShouldAnalyzePage()
         {
-            string noPageTitle = "NoPageTitle";
+            var url = _context.Get<PageInteractionHelper>().GetUrl();
 
-            var analyzedPages = _objectContext.GetAccessibilityInformations();
-
-            string pageTitle = string.IsNullOrEmpty(PageTitle) ? noPageTitle : PageTitle;
-
-            if (pageTitle != noPageTitle && analyzedPages.Contains(pageTitle))
+            if (_objectContext.GetAccessibilityInformations().Contains(url))
             {
-                SetAccessibilityInformation($"{pageTitle} page is already analyzed");
+                SetAccessibilityInformation($"{url} url is already analyzed");
 
-                return (false, string.Empty);
+                return false;
             }
-
-            if (pageTitle == noPageTitle)
-            {
-                var url = _context.Get<PageInteractionHelper>().GetUrl();
-
-                if (analyzedPages.Contains(url))
-                {
-                    SetAccessibilityInformation($"{pageTitle} page is already analyzed");
-
-                    return (false, string.Empty); ;
-                }
-            }
-
-            return (true, pageTitle);
+            
+            return true;
         }
 
         private void SetAccessibilityInformation(string x) => _objectContext.SetAccessibilityInformation(x);
