@@ -55,14 +55,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool ShouldAnalyzePage()
         {
+            var analyzedPages = _objectContext.GetAccessibilityInformations();
+
             var url = _context.Get<PageInteractionHelper>().GetUrl();
 
-            if (_objectContext.GetAccessibilityInformations().Contains(url))
-            {
-                SetAccessibilityInformation($"{url} url is already analyzed");
+            if (analyzedPages.Any(x=> x.Contains(url))) return false;
 
-                return false;
-            }
+            var urlsplit = url.Split("?");
+
+            if (urlsplit.Any() && analyzedPages.Any(x => x.Contains(urlsplit[0]))) return false;
             
             return true;
         }
