@@ -56,7 +56,7 @@ namespace SFA.DAS.TestDataExport
 
         public static void SetAccessibilityInformation(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityInformations().Add($"-> {value}");
 
-        private static FrameworkList<string> GetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityInformations);
+        public static FrameworkList<string> GetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityInformations);
         #endregion
 
     }
