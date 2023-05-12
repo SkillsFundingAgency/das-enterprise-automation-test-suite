@@ -128,15 +128,17 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private void AnalyzePage()
         {
-            string pageTitle = RegexHelper.TrimAnySpace(PageTitle);
+            string counter = GetTitle();
 
-            pageTitle = string.IsNullOrEmpty(pageTitle) ? "NoPageTitle" : pageTitle;
+            string pageTitle = string.IsNullOrEmpty(PageTitle) ? "NoPageTitle" : PageTitle;
 
-            string fileName = $"{pageTitle}_{GetTitle()}.html";
+            string fileName = $"{RegexHelper.TrimAnySpace($"{counter}_{pageTitle}")}.html";
+
+            (string _, string escapedfileName) = new WindowsFileHelper().GetFileDetails(_directory, fileName);
 
             AxeResult axeResult = null;
 
-            TestAttachmentHelper.AddTestAttachment(_directory, fileName, (x) =>
+            TestAttachmentHelper.AddTestAttachment(_directory, escapedfileName, (x) =>
             {
                 IWebDriver webDriver = GetWebDriver();
 
@@ -147,7 +149,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
             {
-                objectContext.SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in '{PageTitle}' page - url: {axeResult.Url}");
+                objectContext.SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in {counter} - '{pageTitle}' page - url: {axeResult.Url}");
             }
         }
 
