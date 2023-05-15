@@ -5,5 +5,4 @@
 @outerapi
 @regression
 Scenario: EmpFin_Api_07_GetTrainingCoursesFrameworks
-	Then endpoint /Providers can be accessed
-	And endpoint /Profiders/{id} can be accessed
+	Then endpoint /TrainingCourses/frameworks can be accessed
