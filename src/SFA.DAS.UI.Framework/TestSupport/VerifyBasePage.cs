@@ -33,8 +33,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
 
-            if (frameworkConfig.IsAccessibilityTesting && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
+            if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
         }
+
+        protected bool IsAccessibilityTesting() => frameworkConfig.IsAccessibilityTesting;
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
         {

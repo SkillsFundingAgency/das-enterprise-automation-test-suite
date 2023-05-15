@@ -17,7 +17,7 @@ public abstract class SignInBasePage : IdamsLoginBasePage
     protected By SignInButton => By.XPath("//button[@value='Log in']");
     #endregion
 
-    protected SignInBasePage(ScenarioContext context) : base(context) { }
+    protected SignInBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
     public void SubmitValidLoginDetails(string username, string password)
     {

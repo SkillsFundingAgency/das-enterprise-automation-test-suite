@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EsfaAdmin.Service.Project;
-using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
@@ -35,7 +35,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public RoatpNewAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
-            if (verifyPage) VerifyPage();
+            if (verifyPage)
+            {
+                VerifyPage(PageHeader, PageTitle, () => 
+                {
+                    // Pages are logging out due to longer test run, so need to re login
+                    if (IsAccessibilityTesting())
+                    {
+                        if (new CheckEsfaSignInPage(context).IsPageDisplayed())
+                        {
+                            var (username, password) = objectContext.GetEsfaAdminLoginCreds();
+
+                            new EsfaSignInPage(context, false).SubmitValidLoginDetails(username, password);
+                        }
+                    }
+                });
+            }
         }
 
         public void SelectPassAndContinueToSubSection()
