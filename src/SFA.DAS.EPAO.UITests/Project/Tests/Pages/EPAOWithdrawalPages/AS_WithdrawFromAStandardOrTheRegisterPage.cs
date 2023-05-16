@@ -6,7 +6,13 @@ public class AS_WithdrawFromAStandardOrTheRegisterPage : EPAO_BasePage
     
     public AS_WithdrawFromAStandardOrTheRegisterPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    public AS_YourWithdrawalRequestsPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPage()
+    public AS_WhatAreYouWithdrawingFromPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
+    {
+        Continue();
+        return new(context);
+    }
+
+    public AS_YourWithdrawalRequestsPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
     {
         Continue();
         return new(context);

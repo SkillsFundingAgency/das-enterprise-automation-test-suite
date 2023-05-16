@@ -253,17 +253,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
         }
 
-        [When(@"the second line support user requests a recheck")]
+        [When(@"the refresh of an employment check is requested")]
         public async Task WhenARecheckIsRequested()
         {
             await Helper.EIFunctionsHelper.TriggerEmploymentCheck(TestData.Account.AccountLegalEntityId, TestData.ULN);
-        }
-
-        [When(@"the refresh of all employment checks is requested")]
-        public async Task WhenTheRefreshOfAllEmploymentChecksIsRequested()
-        {
-            await Helper.EISqlHelper.DeleteEmploymentChecks(TestData.ApprenticeshipIncentiveId);
-            await Helper.EIFunctionsHelper.TriggerEmploymentChecks();
         }
 
         [Then(@"a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 1 starting")]

@@ -66,8 +66,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             var request = new EmploymentCheckRequest
             {
-                ULN = uln,
-                AccountLegalEntityId = accountLegalEntityId,
+                CheckType = RefreshEmploymentCheckType.InitialEmploymentChecks.ToString(),
+                Applications = new List<Application> 
+                    {
+                        new Application
+                        {
+                            ULN = uln,
+                            AccountLegalEntityId = accountLegalEntityId
+                        }
+                    },
                 ServiceRequest = new ServiceRequest
                 {
                     DecisionReference = "ABC123",
@@ -75,14 +82,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                     TaskId = "ZZZ999"
                 }
             };
+            var requests = new List<EmploymentCheckRequest> { request }; 
 
-            var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
-            response.EnsureSuccessStatusCode();
-        }
-
-        public async Task TriggerEmploymentChecks()
-        {
-            var response = await httpClient.PostAsync($"{baseUrl}/api/HttpTriggerRefreshEmploymentChecks?code={AuthenticationCode}", null);
+            var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(requests), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
 
@@ -107,9 +109,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public class EmploymentCheckRequest
         {
-            public long AccountLegalEntityId { get; set; }
-            public long ULN { get; set; }
+            public string CheckType { get; set; }
+            public List<Application> Applications { get; set; }
             public ServiceRequest ServiceRequest { get; set; }
+        }
+
+        public enum RefreshEmploymentCheckType
+        {
+            InitialEmploymentChecks,
+            EmployedAt365DaysCheck
         }
 
         public class ServiceRequest

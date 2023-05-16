@@ -6,7 +6,8 @@
 @rpadoutcomeappeals01
 @roatpoutcome
 Scenario: RP_Outcome_01_TestDataPreparation-For_RP_AD_OUTCOME_Appeals_01
-	Given the provider completes the Apply Journey as Main Provider Route
+	Given the provider naviagate to Apply
+	And the provider completes the Apply Journey as Main Provider Route
 	When the GateWay user assess the application by confirming Gateway outcome as Pass
 	And the Financial user assess the application by confirming Finance outcome as outstanding
 	And the Asssesssors assess the application and marks the application as Ready for Moderation

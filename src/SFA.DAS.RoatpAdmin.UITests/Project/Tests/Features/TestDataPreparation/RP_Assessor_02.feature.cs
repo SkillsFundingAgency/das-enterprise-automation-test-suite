@@ -75,7 +75,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_Assessor_02_TestDataPreparation-For_RP_AD_AS_02_ExistingProvider")]
-        [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadminastestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -83,14 +82,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         public void RP_Assessor_02_TestDataPreparation_For_RP_AD_AS_02_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
-                    "roatpfulle2eviaadmintestdataprep",
                     "roatpadmintestdataprep",
                     "roatpadminastestdataprep",
                     "donottakescreenshot",
                     "rpadas02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Assessor_02_TestDataPreparation-For_RP_AD_AS_02_ExistingProvider", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,15 +98,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 10
+ testRunner.Given("the provider naviagate to Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 11
-    testRunner.Given("the Provider is added to the register as Employer provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.And("the Provider is added to the register as Employer provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
   testRunner.And("the provider naviagate to Apply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.Given("the provider completes the Apply Journey as Employer Provider Route For Existing " +
-                        "Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("the provider completes the Apply Journey as Employer Provider Route For Existing " +
+                        "Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.And("the GateWay user assess the application by confirming Gateway outcome as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

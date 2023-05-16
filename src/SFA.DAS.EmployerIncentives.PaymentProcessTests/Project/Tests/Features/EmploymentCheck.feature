@@ -142,7 +142,7 @@ Scenario: New check requested by support user
 	Given an employment check has failed for an apprenticeship incentive
 	And the employer has requested the check be re-ran
 	And month end is not in progress
-	When the second line support user requests a recheck
+	When the refresh of an employment check is requested
 	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
 	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
 
@@ -150,7 +150,7 @@ Scenario: New checks requested
 	Given an apprenticeship incentive has been submitted in phase 2
 	And an ILR submission has been received for that learner
 	And month end is not in progress
-	When the refresh of all employment checks is requested
+	When the refresh of an employment check is requested
 	Then a new employment check is requested to ensure the apprentice was not employed in the 6 months prior to phase 2 starting
 	And a new employment check is requested to ensure the apprentice was employed in the six weeks following their start date
 
@@ -158,25 +158,25 @@ Scenario: New checks requested - ILR not submitted
 	Given an apprenticeship incentive has been submitted in phase 2
 	And an ILR has not been submitted for the learner
 	And month end is not in progress
-	When the refresh of all employment checks is requested
+	When the refresh of an employment check is requested
 	Then a new employment check is not requested
 
 Scenario: New checks requested - 6 weeks not elapsed
 	Given an apprenticeship incentive has been submitted less than 6 weeks ago
 	And month end is not in progress
-	When the refresh of all employment checks is requested
+	When the refresh of an employment check is requested
 	Then a new employment check is not requested
 
 Scenario: New checks requested - incentive withdrawn
 	Given an apprenticeship incentive has been submitted in phase 2
 	And the apprenticeship incentive has been withdrawn
 	And month end is not in progress
-	When the refresh of all employment checks is requested
+	When the refresh of an employment check is requested
 	Then a new employment check is not requested
 
 Scenario: New checks requested - month end in progress
 	Given an apprenticeship incentive has been submitted in phase 1
 	And an ILR submission has been received for that learner
 	And month end is in progress
-	When the refresh of all employment checks is requested
+	When the refresh of an employment check is requested
 	Then a new employment check is not requested
