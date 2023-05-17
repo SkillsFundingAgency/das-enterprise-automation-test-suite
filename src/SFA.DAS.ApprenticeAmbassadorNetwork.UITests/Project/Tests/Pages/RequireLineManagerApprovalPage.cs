@@ -16,11 +16,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         private readonly string pageTitle;
 
-        public RequiresLineManagerApprovalPage(ScenarioContext context) : base(context) => VerifyPage();
+        private static By YesRadio => By.id("yes");
 
+        public RequiresLineManagerApprovalPage(ScenarioContext context, string requireslinemanagersapproval) : base(context, false)
+        {
+            pageTitle = requireslinemanagersapproval;
+
+            VerifyPage();
+        }
+
+        public YourContactInformationForThisStandardPage YesStandardIsCorrectAndContinue()
+        {
+        formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
+        Continue();
+        return new SearchEmployerNamePage(context);
+        }
         
-    }
 }
-
         
 

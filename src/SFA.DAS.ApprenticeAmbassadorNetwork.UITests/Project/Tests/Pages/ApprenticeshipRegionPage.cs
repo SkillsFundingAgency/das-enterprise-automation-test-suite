@@ -10,13 +10,21 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class TermsAndConditionsPage : BeforeYouStartPage
+    public class RegionsPage : CurrentJobTitlePage
     {
         protected override string PageTitle => pageTitle;
 
         private readonly string pageTitle;
 
         public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+        private static By YesRadio => By.id("SelectedRegionId");
+
+        public RegionsPage ClickConfirmAndContinueButton()
+        {
+            clickContinueButton By.Id("continue-button");
+            return new RegionsPage(context);
+        }
 
         
     }

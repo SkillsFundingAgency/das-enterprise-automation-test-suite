@@ -10,15 +10,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class TermsAndConditionsPage : BeforeYouStartPage
+    public class EmployerDetailsPage : SearchEmployerNamePage
     {
-        protected override string PageTitle => pageTitle;
+        protected override string PageTitle => "Check your employer's name and address";
 
-        private readonly string pageTitle;
+        private By AddressFound = By.Id("AddressLine1");
+        private By EmployerName = By.Id("EmployerName")
+        public EmployerDetailsPage(ScenarioContext context) : base(context) { }
 
-        public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        
+        public AddressDetailsPage ChooseTheAddressAndContinue()
+        {
+            Continue();
+            return new CurrentJobTitlePage(context);
+        }
     }
 }
 
