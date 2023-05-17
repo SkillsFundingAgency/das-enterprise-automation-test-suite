@@ -9,9 +9,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Search for your organisation";
 
         #region Locators
-        private By SearchInput => By.Id("searchTerm");
-        private By SearchButton => By.CssSelector("input.govuk-button");
+        private static By SearchInput => By.Id("searchTerm");
+        private static By SearchButton => By.CssSelector("input.govuk-button");
         #endregion
+
+        protected override By PageHeader => By.CssSelector("#main-content");
 
         public SearchForYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 
