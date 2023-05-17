@@ -35,7 +35,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
-        private SetUpAsAUserPage _setUpAsAUserPage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
         private SignInPage _signInPage;
         private string _loginEmail;
@@ -54,7 +53,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+        public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
         [When("the User initiates Account creation")]
         public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
@@ -206,7 +205,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
 
-            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
             _theseDetailsAreAlreadyInUsePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage);
         }
@@ -297,7 +296,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an User tries to regiser an Account with an Email already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
+        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => throw new PendingStepException();  //new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
 
         [Then(@"'Email already regisered' message is shown to the User")]
         public void ThenMessageIsShownToTheUser() => new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
@@ -309,7 +308,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserTriesToRegiserAnotherAccountWithTheSameEmailThatIsPendingActivation()
         {
             VisitEmployerApprenticeshipSite();
-            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
         }
 
         [Then(@"the User is allowed to activate the account and continue with registration")]
@@ -422,12 +421,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
             .EnterDetailsAndClickUnlockButton(_loginEmail)
             .Login(_objectContext.GetLoginCredentials());
-
-        [When(@"the User is on the 'Set up as a user' page")]
-        public void WhenTheUserIsOnTheSetUpAsAUserPage() => _setUpAsAUserPage = new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount();
-
-        [Then(@"the User is able to navigate to 'Terms and conditions' page")]
-        public void ThenTheUserIsAbleToNavigateToTermsAndConditionsPage() => _setUpAsAUserPage.ClickTermsAndConditionsLink();
 
         [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
         public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()

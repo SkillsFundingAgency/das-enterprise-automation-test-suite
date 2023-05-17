@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 {

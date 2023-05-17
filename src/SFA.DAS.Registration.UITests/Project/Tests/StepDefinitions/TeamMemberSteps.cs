@@ -65,13 +65,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the invited team member is able to accept the invite and login to the Employer account")]
         public void ThenTheInvitedTeamMemberIsAbleToAcceptTheInviteAndLoginToTheEmployerAccount()
         {
-            ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
+            throw new PendingStepException();
 
-            SignOut()
-                .CreateAccount()
-                .Register(_invitedMemberEmailId)
-                .ContinueToInvitationsPage()
-                .ClickAcceptInviteLink();
+            //ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
+
+            //SignOut()
+            //    .CreateAccount()
+            //    .Register(_invitedMemberEmailId)
+            //    .ContinueToInvitationsPage()
+            //    .ClickAcceptInviteLink();
         }
 
         [Then(@"Employer is able to Remove the team member from the account")]

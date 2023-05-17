@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace SFA.DAS.Login.Service.Project.Helpers
 {
-    internal class LegalEntitiesSqlDataHelper : SqlDbHelper
+    internal class EasAccountsSqlDataHelper : SqlDbHelper
     {
-        public LegalEntitiesSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        public EasAccountsSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
 
-        internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountLegalEntities(List<string> emails)
+        internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountDetails(List<string> emails)
         {
             var query = emails.Select(x => GetSqlQuery(x)).ToList();
 

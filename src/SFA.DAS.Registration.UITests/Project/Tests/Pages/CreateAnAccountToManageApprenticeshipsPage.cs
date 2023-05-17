@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public StubSignInPage GoToStubSignInPage()
         {
             formCompletionHelper.ClickElement(SigninLink);
-            return new StubSignInPage(context);
+            return StubSignInPage();
         }
 
         public SignInPage ClickSignInLinkOnIndexPage()
@@ -29,10 +29,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new SignInPage(context);
         }
 
-        public SetUpAsAUserPage CreateAccount()
+        public StubSignInPage CreateAccount()
         {
             formCompletionHelper.ClickElement(CreateAccountLink);
-            return new SetUpAsAUserPage(context);
+            return StubSignInPage();
+        }
+
+        private StubSignInPage StubSignInPage()
+        {
+            return new StubSignInPage(context);
         }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.TestDataCleanup;
 using SFA.DAS.UI.Framework.TestSupport;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using Polly;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
@@ -15,20 +19,35 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         protected override By ContinueButton => By.CssSelector("a.govuk-button");
 
-        public StubYouHaveSignedInPage(ScenarioContext context, EasAccountUser loginUser) : base(context)
+        public StubYouHaveSignedInPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
                 () => VerifyPage(),
-                () => VerifyPage(MainContent, loginUser.Username),
-                () => VerifyPage(MainContent, loginUser.IdOrUserRef)
+                () => VerifyPage(MainContent, username),
+                () => newUser || VerifyPage(MainContent, idOrUserRef)
             });
+
+            if (newUser)
+            {
+                idOrUserRef = new UsersSqlDataHelper(context.Get<DbConfig>()).GetUserId(username);
+
+                objectContext.SetOrUpdateUserCreds(username, idOrUserRef);
+
+                objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, username);
+            }
         }
 
-        public HomePage ContinueToLogin()
+        public HomePage ContinueToHomePage()
         {
             Continue();
             return new HomePage(context);
+        }
+
+        public StubAddYourUserDetailsPage ContinueToStubAddYourUserDetailsPage()
+        {
+            Continue();
+            return new StubAddYourUserDetailsPage(context);
         }
 
     }

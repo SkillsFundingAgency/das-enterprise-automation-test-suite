@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public SignInPage FailedLogin() => new SignInPage(_context).FailedLogin(GetLoginCredentials());
 
-        protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToLogin();
+        protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToHomePage();
 
         protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) 
             => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, loginUser.OrganisationName, isLevy);

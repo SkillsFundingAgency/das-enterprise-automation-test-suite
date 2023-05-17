@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
-        public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount().ContinueToGetApprenticeshipFunding(), 0);
+        public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount(), 0);
 
         public HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
         {
@@ -34,11 +34,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
 
-        internal ConfirmYourIdentityPage RegisterUserAccount() => 
+        internal AddAPAYESchemePage RegisterUserAccount() => 
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
-        internal ConfirmYourIdentityPage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
-            indexPage.CreateAccount().Register(email);
+        internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
+            indexPage.CreateAccount().Register(email).ContinueToStubAddYourUserDetailsPage().EnterNameAndContinue();
 
         internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
@@ -60,7 +60,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal AddAPAYESchemePage CreateAnotherUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage) => CreateUserAccount(indexPage, _registrationDataHelper.AnotherRandomEmail);
 
         internal AddAPAYESchemePage CreateUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
-            RegisterUserAccount(indexPage, email).ContinueToGetApprenticeshipFunding();
+            RegisterUserAccount(indexPage, email);
 
         internal HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage) =>
             homePage
