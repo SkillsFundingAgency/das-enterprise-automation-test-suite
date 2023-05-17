@@ -15,6 +15,7 @@ public class AANDataHelpers
     public string Standard_ActuaryLevel7 { get; init; } = "Actuary (Level 7)";
     public string PostCode { get; init; } = "Tw14 9py";
     public string Website { get; init; } = "www.company.co.uk";
+    public string JobTitle { get; init; } = "SoftwareTESTER";
     public string UpdatedWebsite { get; init; } = "www.123company.co.uk";
     public string ContactWebsite { get; init; } = "www.companycontact.co.uk";
     public string ContactNumber { get; init; } = RandomDataGenerator.GenerateRandomNumber(12);

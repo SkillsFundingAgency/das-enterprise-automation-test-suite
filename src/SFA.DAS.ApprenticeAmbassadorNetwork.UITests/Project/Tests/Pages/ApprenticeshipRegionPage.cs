@@ -10,22 +10,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class RegionsPage : CurrentJobTitlePage
+    public class ApprenticeshipRegionPage : CurrentJobTitlePage
     {
-        protected override string PageTitle => pageTitle;
+        protected override string PageTitle => "This is a regulated standard";
 
-        private readonly string pageTitle;
+        private static By YesRadio => By.Id("SelectedRegionId");
+        public ApprenticeshipRegionPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        private static By YesRadio => By.id("SelectedRegionId");
-
-        public RegionsPage ClickConfirmAndContinueButton()
+        public TermsAndConditionsPage ClickConfirmAndContinueButton()
         {
-            clickContinueButton By.Id("continue-button");
-            return new RegionsPage(context);
+            Continue();
+            return new TermsAndConditionsPage(context);
         }
-
         
     }
 }

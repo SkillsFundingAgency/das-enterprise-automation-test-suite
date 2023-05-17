@@ -10,16 +10,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class EmployerDetailsPage : SearchEmployerNamePage
+    public class EmployerDetailsPage : AanBasePage
     {
         protected override string PageTitle => "Check your employer's name and address";
 
         private By AddressFound = By.Id("AddressLine1");
-        private By EmployerName = By.Id("EmployerName")
-        public EmployerDetailsPage(ScenarioContext context) : base(context) { }
+        private By EmployerName = By.Id("EmployerName");
+       public EmployerDetailsPage(ScenarioContext context) : base(context) { }
 
-        public AddressDetailsPage ChooseTheAddressAndContinue()
+        public CurrentJobTitlePage EnterAddressAndContinue()
         {
+            formCompletionHelper.EnterText(EmployerName, aanDataHelpers.VenueName);
             Continue();
             return new CurrentJobTitlePage(context);
         }

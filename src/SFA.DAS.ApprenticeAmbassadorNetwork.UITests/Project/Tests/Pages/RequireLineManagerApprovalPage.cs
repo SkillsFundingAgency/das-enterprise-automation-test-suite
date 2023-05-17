@@ -10,28 +10,21 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class RequiresLineManagerApprovalPage : TermsAndConditionsPage
+    public class RequiresLineManagerApprovalPage : AanBasePage
     {
-        protected override string PageTitle => pageTitle;
+        protected override string PageTitle => "This is a regulated standard";
 
-        private readonly string pageTitle;
+        private static By YesRadio => By.Id("yes");
 
-        private static By YesRadio => By.id("yes");
+        public RequiresLineManagerApprovalPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public RequiresLineManagerApprovalPage(ScenarioContext context, string requireslinemanagersapproval) : base(context, false)
+        public SearchEmployerNamePage YesStandardIsCorrectAndContinue()
         {
-            pageTitle = requireslinemanagersapproval;
-
-            VerifyPage();
+            formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
+            Continue();
+            return new SearchEmployerNamePage(context);
         }
-
-        public YourContactInformationForThisStandardPage YesStandardIsCorrectAndContinue()
-        {
-        formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
-        Continue();
-        return new SearchEmployerNamePage(context);
-        }
-        
+    }    
 }
         
 

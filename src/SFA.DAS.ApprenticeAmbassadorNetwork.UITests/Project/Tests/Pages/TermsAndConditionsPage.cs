@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class TermsAndConditionsPage : BeforeYouStartPage
+    public class TermsAndConditionsPage : AanBasePage
     {
         protected override string PageTitle => "Terms and Conditions";
 
@@ -18,17 +18,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void ClickConfirmAndContinueButton()
+        public RequiresLineManagerApprovalPage ClickConfirmAndContinueButton()
         {
-            formCompletionHelper.Click(ConfirmAndButton);
+            formCompletionHelper.Click(ConfirmAndContinueButton);
+            return new RequiresLineManagerApprovalPage(context);
         }
-
-        public TermsAndConditionsPage ClickConfirmAndContinueButton()
-        {
-            clickConfirmAndContinueButton();
-            return new RequireLineManagersApprovalPage(context);
-        }
-
     }
 }
 
