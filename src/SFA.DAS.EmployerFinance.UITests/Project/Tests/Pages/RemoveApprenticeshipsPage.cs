@@ -7,9 +7,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Remove apprenticeship";
 
-        private By RemoveLabel => By.CssSelector("label[for='radio-1']");
+        private static By RemoveLabel => By.CssSelector("label[for='radio-1']");
 
-        private By SaveButton => By.CssSelector(".button[type='submit']");
+        private static By SaveButton => By.CssSelector("button.govuk-button[type='submit']");
 
         public RemoveApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
 

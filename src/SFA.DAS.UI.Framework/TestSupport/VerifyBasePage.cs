@@ -121,7 +121,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
             {
                 string counter = GetTitle();
-                ScreenshotHelper.TakeScreenShot(GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
+                ScreenshotHelper.TakeScreenShot(GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
             }
         }
 
