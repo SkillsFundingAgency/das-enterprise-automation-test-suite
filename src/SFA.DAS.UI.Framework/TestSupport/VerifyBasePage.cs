@@ -5,8 +5,6 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
 using SFA.DAS.ConfigurationBuilder;
-using System.IO;
-using Polly;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -32,8 +30,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
-
-            if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
         }
 
         protected bool IsAccessibilityTesting() => frameworkConfig.IsAccessibilityTesting;
@@ -107,7 +103,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
             int counter = GetCounter();
             try
             {
-                var result = func(); TakeScreenShot(); return result;
+                var result = func(); 
+                
+                TakeScreenShot();
+
+                if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
+
+                return result;
             }
             catch (Exception)
             {
