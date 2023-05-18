@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YouveLoggedOutPage : RegistrationBasePage
     {
-        protected override string PageTitle => "You've logged out";
+        protected override string PageTitle => EnvironmentConfig.IsTestEnvironment ? "You've signed out" : "You've logged out";
 
         protected override bool TakeFullScreenShot => false;
 
