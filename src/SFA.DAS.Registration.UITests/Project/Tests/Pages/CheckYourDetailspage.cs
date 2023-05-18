@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         
         #region Locators
         protected override By ContinueButton => By.Id("continue");
-        private By YesContinueButton => By.CssSelector("input.button");
+        private By YesContinueButton => By.CssSelector("input.button, input.govuk-button");
         private By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
         private By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
         private By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public OrganisationHasBeenAddedPage ClickYesContinueButton()
         {
-            javaScriptHelper.ClickElement(YesContinueButton);
+            formCompletionHelper.ClickElement(YesContinueButton);
             return new OrganisationHasBeenAddedPage(context);
         }
 
