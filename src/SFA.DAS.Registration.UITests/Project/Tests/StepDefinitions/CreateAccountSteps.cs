@@ -422,24 +422,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .EnterDetailsAndClickUnlockButton(_loginEmail)
             .Login(_objectContext.GetLoginCredentials());
 
-        [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
-        public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()
-        {
-            _accountCreationStepsHelper.RelaunchApplication();
-
-            new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage()
-                .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
-        }
-
-        [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
-        public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
-        {
-            _accountCreationStepsHelper.RelaunchApplication();
-
-            new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword()
-                .LoginWithResetPassword(_objectContext.GetRegisteredEmail(), _registrationDataHelper.NewPassword);
-        }
-
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();

@@ -14,11 +14,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public EnterYourResetCodePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public ChangePasswordPage EnterConfirmationCode()
-        {
-            formCompletionHelper.EnterText(EnterCodeTextBox, config.RE_ConfirmCode);
-            Continue();
-            return new ChangePasswordPage(context);
-        }
     }
 }

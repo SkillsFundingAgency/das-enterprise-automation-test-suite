@@ -37,11 +37,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public string GetErrorFromSigninPage() => pageInteractionHelper.GetText(errorMsg).ToString();
 
-        public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
-        {
-            EnterLoginDetailsAndClickSignIn(userName, password);
-            return new ConfirmYourIdentityPage(context, userName, password);
-        }
 
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(EasAccountUser loginUser)
         {
@@ -66,24 +61,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             formCompletionHelper.EnterText(EmailAddressInput, userName);
             formCompletionHelper.EnterText(PasswordInput, password);
             formCompletionHelper.ClickElement(SignInButton);
-        }
-
-        public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
-        {
-            VerifyElement(HeaderInformationMessage, info);
-            return this;
-        }
-
-        public PasswordResetCodePage ClickForgottenYourPasswordLink()
-        {
-            formCompletionHelper.Click(ForgottenYourPasswordLink);
-            return new PasswordResetCodePage(context);
-        }
-
-        public AddAPAYESchemePage LoginWithResetPassword(string userName, string password)
-        {
-            EnterLoginDetailsAndClickSignIn(userName, password);
-            return new AddAPAYESchemePage(context);
         }
     }
 }

@@ -96,8 +96,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal void UpdateOrganisationName(OrgType orgType) => _objectContext.UpdateOrganisationName(GetOrgName(orgType));
 
-        internal void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(UrlConfig.EmployerApprenticeshipService_BaseUrl, "EAS");
-
         private string GetOrgName(OrgType orgType)
         {
             return orgType switch
