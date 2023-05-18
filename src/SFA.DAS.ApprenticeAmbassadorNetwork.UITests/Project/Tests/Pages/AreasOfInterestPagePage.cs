@@ -10,13 +10,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class JoinTheNetworkReasonPage : BeforeYouStartPage
+    public class AreasOfInterestPagePage : BeforeYouStartPage
     {
         protected override string PageTitle => pageTitle;
 
         private readonly string pageTitle;
 
-        public JoinTheNetworkReasonPage(ScenarioContext context) : base(context) => VerifyPage();
+        public AreasOfInterestPagePage(ScenarioContext context) : base(context) => VerifyPage();
 
         
     }

@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public BeforeYouStartPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public TermsAndConditionsPage ClickStartButton()
+        public TermsAndConditionsPage StartAANJourney()
         {
             formCompletionHelper.Click(StartButton);
             return new TermsAndConditionsPage(context);

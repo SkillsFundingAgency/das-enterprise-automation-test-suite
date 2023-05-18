@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public RequiresLineManagerApprovalPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public SearchEmployerNamePage YesStandardIsCorrectAndContinue()
+        public SearchEmployerNamePage YesHaveApprovalFromMaanagerAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
             Continue();

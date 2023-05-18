@@ -10,20 +10,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class ApprenticeshipRegionPage : CurrentJobTitlePage
+    public class ApprenticeshipRegionPage : AanBasePage
     {
         protected override string PageTitle => "This is a regulated standard";
 
-        private static By YesRadio => By.Id("SelectedRegionId");
         public ApprenticeshipRegionPage(ScenarioContext context) : base(context) => VerifyPage();
 
 
-        public TermsAndConditionsPage ClickConfirmAndContinueButton()
+        public WhyDoYouWantToJoinNetworkPage ClickConfirmAndContinueButton()
         {
+            formCompletionHelper.SelectRadioOptionByText("London");
             Continue();
-            return new TermsAndConditionsPage(context);
-        }
-        
+            return new WhyDoYouWantToJoinNetworkPage(context);
+        }      
     }
 }
 

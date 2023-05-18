@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private By EmployerName = By.Id("EmployerName");
        public EmployerDetailsPage(ScenarioContext context) : base(context) { }
 
-        public CurrentJobTitlePage EnterAddressAndContinue()
+        public CurrentJobTitlePage EnterEmployersDetailsAndContinue()
         {
             formCompletionHelper.EnterText(EmployerName, aanDataHelpers.VenueName);
             Continue();

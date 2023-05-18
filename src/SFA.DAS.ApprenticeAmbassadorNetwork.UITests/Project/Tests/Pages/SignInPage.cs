@@ -13,11 +13,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void SubmitValidUserDetails(string username, string password)
+        public BeforeYouStartPage SubmitValidUserDetails(string username, string password)
         {
             formCompletionHelper.EnterText(EnterUsername, username);
             formCompletionHelper.EnterText(EnterPassword, password);
             Continue();
+            return new BeforeYouStartPage(context);
         }
 
     }

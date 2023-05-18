@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public RequiresLineManagerApprovalPage ClickConfirmAndContinueButton()
+        public RequiresLineManagerApprovalPage AcceptTermsAndConditions()
         {
             formCompletionHelper.Click(ConfirmAndContinueButton);
             return new RequiresLineManagerApprovalPage(context);
