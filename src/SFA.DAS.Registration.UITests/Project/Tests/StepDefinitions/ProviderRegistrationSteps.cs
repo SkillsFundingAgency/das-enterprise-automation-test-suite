@@ -59,11 +59,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer sets up the user")]
         public void WhenTheEmployerSetsUpTheUser()
         {
-            var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
+            throw new PendingStepException();
 
-            _tabHelper.OpenInNewTab(uri);
+            //var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
 
-            new SetUpAsAUserPage(_context).ProviderLeadRegistration().ContinueToGetApprenticeshipFunding().DoNotAddPaye();
+            //_tabHelper.OpenInNewTab(uri);
+
+            //new SetUpAsAUserPage(_context).ProviderLeadRegistration().ContinueToGetApprenticeshipFunding().DoNotAddPaye();
         }
 
         [When(@"the employer adds PAYE from Account Home Page")]

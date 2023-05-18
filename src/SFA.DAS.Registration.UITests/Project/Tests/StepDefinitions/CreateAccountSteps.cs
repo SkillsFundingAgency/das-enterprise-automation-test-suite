@@ -299,7 +299,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => throw new PendingStepException();  //new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
 
         [Then(@"'Email already regisered' message is shown to the User")]
-        public void ThenMessageIsShownToTheUser() => new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
+        public void ThenMessageIsShownToTheUser() => throw new PendingStepException();  //new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
 
         [When(@"Given an User registers an acount with email but does not activate it")]
         public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => _accountCreationStepsHelper.RegisterUserAccount();

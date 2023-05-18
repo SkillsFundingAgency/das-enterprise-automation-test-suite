@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
 
-        public HomePage ReLogin() => new SignInPage(_context).Login(GetLoginCredentials());
+        public HomePage ReLogin() => new StubSignInPage(_context).Login(GetLoginCredentials()).ContinueToHomePage();
 
         public SignInPage FailedLogin() => new SignInPage(_context).FailedLogin(GetLoginCredentials());
 
