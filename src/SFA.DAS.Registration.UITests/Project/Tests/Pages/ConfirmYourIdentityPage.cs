@@ -33,13 +33,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AddAPAYESchemePage(context);
         }
 
-        public InvitationsPage ContinueToInvitationsPage()
-        {
-            EnterAccessCodeAndContinue();
-
-            return new InvitationsPage(context);
-        }
-
-        private void EnterAccessCodeAndContinue() { formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode); Continue(); }
+        private void EnterAccessCodeAndContinue() { formCompletionHelper.EnterText(AccessCodeInput, string.Empty); Continue(); }
     }
 }

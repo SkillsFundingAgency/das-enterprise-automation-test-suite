@@ -8,20 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public abstract class RegistrationBasePage : VerifyBasePage
     {
         #region Helpers and Context
-        protected readonly RegistrationConfig config;
-        protected readonly RegistrationDataHelper registrationDataHelper;
-        
+        protected readonly RegistrationDataHelper registrationDataHelper;       
         #endregion
 
         #region Locators
         private static By SignOutLink => By.LinkText("Sign out");
         #endregion
 
-        protected RegistrationBasePage(ScenarioContext context) : base(context)
-        {   
-            config = context.GetRegistrationConfig<RegistrationConfig>();
-            registrationDataHelper = context.Get<RegistrationDataHelper>();
-        }
+        protected RegistrationBasePage(ScenarioContext context) : base(context) => registrationDataHelper = context.Get<RegistrationDataHelper>();
 
         public HomePage GoToHomePage() => new HomePage(context, true);
 

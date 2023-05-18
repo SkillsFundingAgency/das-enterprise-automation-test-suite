@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignInPage EnterDetailsAndClickUnlockButton(string email)
         {
             formCompletionHelper.EnterText(EmailTextBox, email);
-            formCompletionHelper.EnterText(UnlockCodeTextBox, config.RE_ConfirmCode);
+            formCompletionHelper.EnterText(UnlockCodeTextBox, string.Empty);
             formCompletionHelper.ClickElement(UnlockAccountButton);
             return new SignInPage(context);
         }
