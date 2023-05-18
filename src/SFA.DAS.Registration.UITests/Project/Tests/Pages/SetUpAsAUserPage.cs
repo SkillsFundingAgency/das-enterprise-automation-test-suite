@@ -22,8 +22,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SetMeUpButton => By.Id("button-register");
         private By ErrorTextAboveEmailTextBox => By.Id("error-email");
         private By EmailErrorTextAtheader => By.CssSelector(".danger");
-        private By SigninLink => By.LinkText("sign in");
-        private By TermsAndConditionsLink => By.LinkText("terms of use");
         #endregion
 
         public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = registrationDataHelper.Password; }
@@ -40,51 +38,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return GoToConfirmYourIdentityPage(email);
         }
 
-        public ConfirmYourIdentityPage Register(string email = null)
-        {
-            email = string.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
-
-            EnterRegistrationDetailsAndContinue(email);
-
-            return GoToConfirmYourIdentityPage(email);
-        }
-
-        public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
-
         public void VerifyEmailAlreadyRegisteredErrorMessage()
         {
             pageInteractionHelper.VerifyText(EmailErrorTextAtheader, ExpectedEmailErrorText);
             pageInteractionHelper.VerifyText(ErrorTextAboveEmailTextBox, ExpectedEmailErrorText);
-        }
-
-        public StubSignInPage SignIn()
-        {
-            formCompletionHelper.ClickElement(SigninLink);
-            return new StubSignInPage(context);
-        }
-
-        public TermsAndConditionsPage ClickTermsAndConditionsLink()
-        {
-            tabHelper.OpenInNewTab(() => formCompletionHelper.Click(TermsAndConditionsLink));
-            return new TermsAndConditionsPage(context);
-        }
-
-        private SetUpAsAUserPage EnterFirstName()
-        {
-            formCompletionHelper.EnterText(FirstNameInput(), registrationDataHelper.FirstName);
-            return this;
-        }
-
-        private SetUpAsAUserPage EnterlastName()
-        {
-            formCompletionHelper.EnterText(LastNameInput(), registrationDataHelper.LastName);
-            return this;
-        }
-
-        private SetUpAsAUserPage EnterEmail(string email)
-        {
-            formCompletionHelper.EnterText(EmailInput(), email);
-            return this;
         }
 
         private SetUpAsAUserPage EnterPassword()
