@@ -37,9 +37,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             if (verifyPage)
             {
-                VerifyPage(PageHeader, PageTitle, () => 
+                try
                 {
-                    // Pages are logging out due to longer test run, so need to re login
+                    VerifyPage();
+                }
+                catch (Exception)
+                {
                     if (IsAccessibilityTesting())
                     {
                         if (new CheckEsfaSignInPage(context).IsPageDisplayed())
@@ -47,9 +50,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
                             var (username, password) = objectContext.GetEsfaAdminLoginCreds();
 
                             new EsfaSignInPage(context, false).SubmitValidLoginDetails(username, password);
+
+                            VerifyPage();
                         }
                     }
-                });
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
         }
 
