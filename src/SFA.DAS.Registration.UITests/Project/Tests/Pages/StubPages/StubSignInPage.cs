@@ -31,6 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
         public StubYouHaveSignedInPage Login(EasAccountUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
+
             return new StubYouHaveSignedInPage(context, loginUser.Username, loginUser.IdOrUserRef, false);
         }
 

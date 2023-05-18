@@ -28,6 +28,16 @@ namespace SFA.DAS.Registration.UITests.Project
             objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, IdOrUserRef = idOrUserRef, OrganisationName = organisationName });
         }
 
+        internal static void UpdateLoginIdOrUserRef(this ObjectContext objectContext, string loginusername, string idOrUserRef)
+        {
+            var loggedInAccountUser = objectContext.GetLoginCredentials();
+
+            if (loggedInAccountUser.Username == loginusername)
+            {
+                loggedInAccountUser.IdOrUserRef = idOrUserRef;
+            }
+        }
+
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void ReplaceTransferSenderOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferSenderOrganisationNameKey, organisationName);
