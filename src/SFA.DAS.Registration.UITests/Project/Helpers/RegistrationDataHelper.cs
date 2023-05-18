@@ -6,13 +6,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress, string password, AornDataHelper aornDataHelper )
+        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper )
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
             AornNumber = aornDataHelper.AornNumber;
-            Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
@@ -31,7 +30,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }
-        public string Password { get; }
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }

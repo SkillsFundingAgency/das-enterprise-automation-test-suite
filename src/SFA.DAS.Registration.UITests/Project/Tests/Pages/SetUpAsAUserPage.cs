@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -24,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By EmailErrorTextAtheader => By.CssSelector(".danger");
         #endregion
 
-        public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = registrationDataHelper.Password; }
+        public SetUpAsAUserPage(ScenarioContext context) : base(context) { VerifyPage(); _password = string.Empty; }
 
         public ConfirmYourIdentityPage ProviderLeadRegistration()
         {

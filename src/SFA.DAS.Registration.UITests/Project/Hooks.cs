@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var aornDataHelper = new AornDataHelper();
 
-            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", string.Empty, aornDataHelper);
+            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", aornDataHelper);
 
             _context.Set(registrationDatahelpers);
 
