@@ -76,11 +76,14 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             string expectedEstimatedTotalFundsText = _financePage.ExpectedEstimatedTotalFundsLabel;
             string expectedEstimatedPlannedSpendingText = _financePage.ExpectedEstimatedPlannedSpendingLabel;
 
-            Assert.AreEqual(expectedCurrentFundsLabel, _financePage.GetCurrentFundsLabel());
-            Assert.AreEqual(expectedFundsSpentLabel, _financePage.GetFundsSpentLabel());
-            Assert.AreEqual(expectedEstimatesLabel, _financePage.GetEstimatesLabel());
-            Assert.AreEqual(expectedEstimatedTotalFundsText, _financePage.GetEstimatedTotalFundsText());
-            Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.GetEstimatedPlannedSpendingText());
+            Assert.Multiple(() => 
+            {
+                Assert.AreEqual(expectedCurrentFundsLabel, _financePage.GetCurrentFundsLabel());
+                Assert.AreEqual(expectedFundsSpentLabel, _financePage.GetFundsSpentLabel());
+                Assert.AreEqual(expectedEstimatesLabel, _financePage.GetEstimatesLabel());
+                Assert.AreEqual(expectedEstimatedTotalFundsText, _financePage.GetEstimatedTotalFundsText());
+                Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.GetEstimatedPlannedSpendingText());
+            });
         }
 
         [Then(@"Employer can add, edit and remove apprenticeship funding projection")]
