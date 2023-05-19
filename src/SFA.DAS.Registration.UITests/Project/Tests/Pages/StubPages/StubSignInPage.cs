@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
             EnterLoginDetailsAndClickSignIn(email, email);
 
-            return new StubYouHaveSignedInPage(context, email, email, true);
+            return GoToStubYouHaveSignedInPage(email, email, true);
         }
 
         public StubYouHaveSignedInPage Login(EasAccountUser loginUser) => Login(loginUser.Username, loginUser.IdOrUserRef);
@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
         {
             EnterLoginDetailsAndClickSignIn(Username, IdOrUserRef);
 
-            return new StubYouHaveSignedInPage(context, Username, IdOrUserRef, false);
+            return GoToStubYouHaveSignedInPage(Username, IdOrUserRef, false);
         }
 
         private void EnterLoginDetailsAndClickSignIn(string email, string userref)
@@ -43,5 +43,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             formCompletionHelper.EnterText(EmailInput, email);
             formCompletionHelper.ClickElement(SignInButton);
         }
+
+        private StubYouHaveSignedInPage GoToStubYouHaveSignedInPage(string username, string idOrUserRef, bool newUser) => new(context, username, idOrUserRef, newUser);
     }
 }

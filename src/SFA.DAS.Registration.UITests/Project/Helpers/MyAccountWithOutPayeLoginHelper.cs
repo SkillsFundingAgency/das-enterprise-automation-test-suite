@@ -10,6 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public MyAccountWithOutPayeLoginHelper(ScenarioContext context) : base(context) => _context = context;
 
-        public new MyAccountWithOutPayePage ReLogin() => new SignInPage(_context).LoginToMyAccountWithOutPaye(loginCredentialsHelper.GetLoginCredentials());
+        public new MyAccountWithOutPayePage ReLogin() => new StubSignInPage(_context).Login(loginCredentialsHelper.GetLoginCredentials()).ContinueToMyAccountWithOutPaye();
     }
 }

@@ -25,29 +25,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public SignInPage FailedLogin(EasAccountUser loginUser)
         {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
+            formCompletionHelper.EnterText(EmailAddressInput, loginUser.Username);
+            formCompletionHelper.EnterText(PasswordInput, loginUser.IdOrUserRef);
+            formCompletionHelper.ClickElement(SignInButton);
             return this;
         }
 
         public string GetErrorFromSigninPage() => pageInteractionHelper.GetText(errorMsg).ToString();
-
-        public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(EasAccountUser loginUser)
-        {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
-            return new MyAccountWithOutPayePage(context);
-        }
-
-        public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(EasAccountUser loginUser)
-        {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
-            return new MyAccountTransferFundingPage(context);
-        }
-
-        public void EnterLoginDetailsAndClickSignIn(string userName, string password)
-        {
-            formCompletionHelper.EnterText(EmailAddressInput, userName);
-            formCompletionHelper.EnterText(PasswordInput, password);
-            formCompletionHelper.ClickElement(SignInButton);
-        }
     }
 }
