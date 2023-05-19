@@ -39,11 +39,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             }
         }
 
-        public SignInPage ApplyForTransferFunds()
+        public StubSignInPage ApplyForTransferFunds()
         {
             SelectYesAndContinue();
 
-            return new SignInPage(context);
+            return new StubSignInPage(context);
         }
 
         public CreateATransfersApplicationPage ApplyForTransferFundsAfterLogin()

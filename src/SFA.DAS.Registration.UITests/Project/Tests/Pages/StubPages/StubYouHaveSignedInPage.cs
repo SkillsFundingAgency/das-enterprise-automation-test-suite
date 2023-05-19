@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
@@ -37,6 +38,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
                 objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, username);
             }
+        }
+
+        public MyAccountTransferFundingPage ContinueToMyAccountTransferFundingPage()
+        {
+            Continue();
+            return new MyAccountTransferFundingPage(context);
         }
 
         public YourAccountsPage ContinueToYourAccountsPage()

@@ -257,7 +257,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             UpdateOrganisationName(_receiver);
 
-            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(receiver.Username, receiver.IdOrUserRef);
+            page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef);
 
             return _receiver;
         }
@@ -373,7 +373,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
-        private SignInPage ApplyForTransferFunds()
+        private StubSignInPage ApplyForTransferFunds()
         {
             SignOutAndGoToTransferMacthingApplyUrl();
 
