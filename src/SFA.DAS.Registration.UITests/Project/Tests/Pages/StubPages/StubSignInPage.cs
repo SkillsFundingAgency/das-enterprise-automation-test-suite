@@ -28,11 +28,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             return new StubYouHaveSignedInPage(context, email, email, true);
         }
 
-        public StubYouHaveSignedInPage Login(EasAccountUser loginUser)
-        {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
+        public StubYouHaveSignedInPage Login(EasAccountUser loginUser) => Login(loginUser.Username, loginUser.IdOrUserRef);
 
-            return new StubYouHaveSignedInPage(context, loginUser.Username, loginUser.IdOrUserRef, false);
+        public StubYouHaveSignedInPage Login(string Username, string IdOrUserRef)
+        {
+            EnterLoginDetailsAndClickSignIn(Username, IdOrUserRef);
+
+            return new StubYouHaveSignedInPage(context, Username, IdOrUserRef, false);
         }
 
         private void EnterLoginDetailsAndClickSignIn(string email, string userref)

@@ -36,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
-        private SignInPage _signInPage;
+        private StubSignInPage _signInPage;
         private string _loginEmail;
 
         public CreateAccountSteps(ScenarioContext context)
@@ -408,7 +408,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Account is locked with 3 incorrect password attempts")]
         public void ThenTheEmployerAccountIsLockedWithIncorrectPasswordAttempts()
         {
-            _signInPage = _accountCreationStepsHelper.SignOut().ClickSignInLinkOnIndexPage();
+            _signInPage = _accountCreationStepsHelper.SignOut().GoToStubSignInPage();
 
             _loginEmail = _loginCredentialsHelper.GetLoginCredentials().Username;
             const string password = "InvalidPassword";
@@ -420,7 +420,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Unlock the Account")]
         public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
             .EnterDetailsAndClickUnlockButton(_loginEmail)
-            .Login(_objectContext.GetLoginCredentials());
+            .Login(_objectContext.GetLoginCredentials()).ContinueToHomePage();
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
@@ -449,7 +449,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
 
-        private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
+        private void AttemptLogin(string loginId, string password) => _signInPage.Login(loginId, password);
 
         private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 

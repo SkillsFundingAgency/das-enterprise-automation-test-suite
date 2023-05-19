@@ -39,6 +39,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             }
         }
 
+        public YourAccountsPage ContinueToYourAccountsPage()
+        {
+            Continue();
+            return new YourAccountsPage(context);
+        }
+
         public HomePage ContinueToHomePage()
         {
             Continue();

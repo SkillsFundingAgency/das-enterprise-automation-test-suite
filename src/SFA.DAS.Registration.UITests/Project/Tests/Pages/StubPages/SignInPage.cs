@@ -23,12 +23,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public HomePage Login(EasAccountUser loginUser)
-        {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
-            return new HomePage(context);
-        }
-
         public SignInPage FailedLogin(EasAccountUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
@@ -37,17 +31,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public string GetErrorFromSigninPage() => pageInteractionHelper.GetText(errorMsg).ToString();
 
-
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(EasAccountUser loginUser)
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
             return new MyAccountWithOutPayePage(context);
-        }
-
-        public YourAccountsPage MultipleAccountLogin(EasAccountUser loginUser)
-        {
-            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.IdOrUserRef);
-            return new YourAccountsPage(context);
         }
 
         public MyAccountTransferFundingPage GoToMyAccountTransferFundingPage(EasAccountUser loginUser)

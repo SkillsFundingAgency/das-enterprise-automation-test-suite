@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -17,26 +18,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public StubSignInPage GoToStubSignInPage()
-        {
-            formCompletionHelper.ClickElement(SigninLink);
-            return StubSignInPage();
-        }
+        public StubSignInPage GoToStubSignInPage() => StubSignInPage(() => formCompletionHelper.ClickElement(SigninLink));
 
-        public SignInPage ClickSignInLinkOnIndexPage()
-        {
-            formCompletionHelper.ClickElement(SigninLink);
-            return new SignInPage(context);
-        }
+        public StubSignInPage CreateAccount() => StubSignInPage(() => formCompletionHelper.ClickElement(CreateAccountLink));
 
-        public StubSignInPage CreateAccount()
+        private StubSignInPage StubSignInPage(Action action)
         {
-            formCompletionHelper.ClickElement(CreateAccountLink);
-            return StubSignInPage();
-        }
+            action();
 
-        private StubSignInPage StubSignInPage()
-        {
             return new StubSignInPage(context);
         }
     }

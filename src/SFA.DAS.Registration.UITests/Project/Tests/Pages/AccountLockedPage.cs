@@ -17,12 +17,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public AccountLockedPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public SignInPage EnterDetailsAndClickUnlockButton(string email)
+        public StubSignInPage EnterDetailsAndClickUnlockButton(string email)
         {
             formCompletionHelper.EnterText(EmailTextBox, email);
             formCompletionHelper.EnterText(UnlockCodeTextBox, string.Empty);
             formCompletionHelper.ClickElement(UnlockAccountButton);
-            return new SignInPage(context);
+            return new StubSignInPage(context);
         }
     }
 }
