@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
 
-        public bool IsSignInPageDisplayed() => new CheckSignInPage(_context).IsPageDisplayed();
+        public bool IsSignInPageDisplayed() => new CheckStubSignInPage(_context).IsPageDisplayed();
 
         public bool IsIndexPageDisplayed() => new CheckIndexPage(_context).IsPageDisplayed();
 
