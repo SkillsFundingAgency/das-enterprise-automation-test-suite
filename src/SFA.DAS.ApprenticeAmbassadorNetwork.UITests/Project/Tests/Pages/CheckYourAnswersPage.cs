@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+
+public class CheckYourAnswersPage : AanBasePage
 {
-    public class CheckYourAnswersPage : BeforeYouStartPage
-    {
-        protected override string PageTitle => pageTitle;
+    protected override string PageTitle => "Check the information you have provided before submitting your application";
 
-        private readonly string pageTitle;
+    private readonly string pageTitle;
 
-        public CheckYourAnswersPage(ScenarioContext context) : base(context) => VerifyPage();
+    public CheckYourAnswersPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        
-    }
+    
 }
 
-        
+    
 

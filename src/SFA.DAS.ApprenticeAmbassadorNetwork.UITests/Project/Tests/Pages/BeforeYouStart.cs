@@ -7,20 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+
+public class BeforeYouStartPage : AanBasePage
 {
-    public class BeforeYouStartPage : SignInPage
+    protected override string PageTitle => "Before you start";
+
+    private By StartButton => By.Id("start-now");
+
+    public BeforeYouStartPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public TermsAndConditionsPage StartAANJourney()
     {
-        protected override string PageTitle => "Before you start";
-
-        private By StartButton => By.Id("start-now");
-
-        public BeforeYouStartPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public TermsAndConditionsPage StartAANJourney()
-        {
-            formCompletionHelper.Click(StartButton);
-            return new TermsAndConditionsPage(context);
-        }
+        formCompletionHelper.Click(StartButton);
+        return new TermsAndConditionsPage(context);
     }
 }

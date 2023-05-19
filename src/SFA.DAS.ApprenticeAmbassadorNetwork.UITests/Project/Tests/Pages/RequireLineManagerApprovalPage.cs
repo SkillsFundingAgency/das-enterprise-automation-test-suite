@@ -8,23 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+
+public class RequiresLineManagerApprovalPage : AanBasePage
 {
-    public class RequiresLineManagerApprovalPage : AanBasePage
+    protected override string PageTitle => "This is a regulated standard";
+
+    private static By YesRadio => By.Id("yes");
+
+    public RequiresLineManagerApprovalPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public EmployerSearchPage YesHaveApprovalFromMaanagerAndContinue()
     {
-        protected override string PageTitle => "This is a regulated standard";
-
-        private static By YesRadio => By.Id("yes");
-
-        public RequiresLineManagerApprovalPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public SearchEmployerNamePage YesHaveApprovalFromMaanagerAndContinue()
-        {
-            formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
-            Continue();
-            return new SearchEmployerNamePage(context);
-        }
-    }    
-}
-        
+        formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
+        Continue();
+        return new EmployerSearchPage(context);
+    }
+}    
+    
 

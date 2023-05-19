@@ -9,15 +9,20 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
 
-public class PreviousEngagementPage : AanBasePage
+public class AreasOfInterestPage : AanBasePage
 {
     protected override string PageTitle => "Are you joining because you have engaged with an ambassador in the network?";
 
     private readonly string pageTitle;
 
-    public PreviousEngagementPage(ScenarioContext context) : base(context) => VerifyPage();
+    public AreasOfInterestPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    
+    public PreviousEngagementPage EnterInformationToJoinNetwork()
+    {
+        formCompletionHelper.Click(ContinueButton);
+        Continue();
+        return new PreviousEngagementPage(context);
+    }
 }
 
     

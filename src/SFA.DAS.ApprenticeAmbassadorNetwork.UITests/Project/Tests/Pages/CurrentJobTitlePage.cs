@@ -8,25 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+
+public class CurrentJobTitlePage : AanBasePage
 {
-    public class CurrentJobTitlePage : AanBasePage
+    protected override string PageTitle => "";
+
+
+    private By CurrentJobTitle = By.Id("JobTitle");
+
+    public CurrentJobTitlePage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public RegionsPage ConfirmJobtitleAndContinueButton()
     {
-        protected override string PageTitle => "";
-
-
-        private By CurrentJobTitle = By.Id("JobTitle");
-
-        public CurrentJobTitlePage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public ApprenticeshipRegionPage ConfirmJobtitleAndContinueButton()
-        {
-            formCompletionHelper.EnterText(CurrentJobTitle, aanDataHelpers.JobTitle);
-            Continue();
-            return new ApprenticeshipRegionPage(context);
-        }
+        formCompletionHelper.EnterText(CurrentJobTitle, aanDataHelpers.JobTitle);
+        Continue();
+        return new RegionsPage(context);
     }
 }
 
-        
+    
 
