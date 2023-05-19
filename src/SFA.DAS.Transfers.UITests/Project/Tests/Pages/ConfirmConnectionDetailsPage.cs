@@ -10,7 +10,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => EnvironmentConfig.IsTestEnvironment ? By.CssSelector("#main-content button.govuk-button[type='submit']") : By.CssSelector(".button");
 
-        private By ConnectWithReceivingEmpoyerOptions => EnvironmentConfig.IsTestEnvironment ? By.CssSelector(".govuk-radios") : By.CssSelector(".selection-button-radio");
+        private By ConnectWithReceivingEmpoyerOptions => EnvironmentConfig.IsTestEnvironment ? By.CssSelector(".govuk-radios .govuk-radios__item") : By.CssSelector(".selection-button-radio");
 
         public ConfirmConnectionDetailsPage(ScenarioContext context) : base(context) { }
 
