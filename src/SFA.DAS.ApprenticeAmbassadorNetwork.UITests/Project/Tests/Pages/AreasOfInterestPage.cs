@@ -13,8 +13,6 @@ public class AreasOfInterestPage : AanBasePage
 {
     protected override string PageTitle => "Are you joining because you have engaged with an ambassador in the network?";
 
-    private readonly string pageTitle;
-
     public AreasOfInterestPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public PreviousEngagementPage EnterInformationToJoinNetwork()

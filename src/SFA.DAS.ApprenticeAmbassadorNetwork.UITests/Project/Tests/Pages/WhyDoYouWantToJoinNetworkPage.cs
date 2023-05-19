@@ -15,14 +15,11 @@ public class WhyDoYouWantToJoinNetworkPage : AanBasePage
 
     private static By ReasonForJoining => By.Id("ReasonForJoiningTheNetwork");
 
-    private static By ContinueButton => By.Id("continue");
-
     public WhyDoYouWantToJoinNetworkPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public AreasOfInterestPage EnterInformationToJoinNetwork()
     {
         formCompletionHelper.EnterText(ReasonForJoining,aanDataHelpers.UpdateProviderDescriptionText);
-        formCompletionHelper.Click(ContinueButton);
         Continue();
         return new AreasOfInterestPage(context);
     }

@@ -20,8 +20,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         public void GivenTheProviderLogsIntoAANPortal()
         {
             context.Get<TabHelper>().GoToUrl(UrlConfig.AAN_BaseUrl);
-            new SignInPage(context).SubmitValidUserDetails(config.AANUserName,config.AANPassword);
-
+            new SignInPage(context).SubmitValidUserDetails(config.AANUserName, config.AANPassword);
         }
     }
 }

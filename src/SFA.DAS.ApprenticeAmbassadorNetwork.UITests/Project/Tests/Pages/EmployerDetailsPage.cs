@@ -21,7 +21,6 @@ public class EmployerDetailsPage : AanBasePage
     public CurrentJobTitlePage EnterEmployersDetailsAndContinue()
     {
         formCompletionHelper.EnterText(EmployerName, aanDataHelpers.VenueName);
-        formCompletionHelper.EnterText(AddressFound, aanDataHelpers.VenueName);
         Continue();
         return new CurrentJobTitlePage(context);
     }

@@ -1,25 +1,25 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
-
-public class SignInPage : AanBasePage
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    protected override string PageTitle => "Sign in to My apprenticeship";
-
-    private By UsernameField => By.Id("Username");
-
-    private By PasswordField => By.Id("Password");
-
-    private By SignInButton => By.XPath("//button[@value='Sign in']");
-
-    public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
-
-    public void SubmitValidUserDetails(string username, string password)
+    public class SignInPage : AanBasePage
     {
-        formCompletionHelper.EnterText(UsernameField, username);
-        formCompletionHelper.EnterText(PasswordField, password);
-        formCompletionHelper.ClickElement(SignInButton);
-    }
+        protected override string PageTitle => "Sign in to My apprenticeship";
 
+        private By EnterUsername => By.Id("Username");
+
+        private By EnterPassword => By.Id("Password");
+
+        public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
+
+        public BeforeYouStartPage SubmitValidUserDetails(string username, string password)
+        {
+            formCompletionHelper.EnterText(EnterUsername, username);
+            formCompletionHelper.EnterText(EnterPassword, password);
+            Continue();
+            return new BeforeYouStartPage(context);
+        }
+
+    }
 }

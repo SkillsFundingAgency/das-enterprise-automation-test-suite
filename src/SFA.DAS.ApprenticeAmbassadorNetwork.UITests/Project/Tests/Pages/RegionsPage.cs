@@ -16,7 +16,7 @@ public class RegionsPage : AanBasePage
     public RegionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
 
-    public WhyDoYouWantToJoinNetworkPage ClickConfirmAndContinueButton()
+    public WhyDoYouWantToJoinNetworkPage SelectLondonAndContinue()
     {
         formCompletionHelper.SelectRadioOptionByText("London");
         Continue();
