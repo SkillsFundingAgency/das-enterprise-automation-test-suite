@@ -257,7 +257,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             UpdateOrganisationName(_receiver);
 
-            page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef);
+            page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef).Continue();
 
             return _receiver;
         }
