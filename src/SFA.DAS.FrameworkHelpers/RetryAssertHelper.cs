@@ -28,7 +28,7 @@ namespace SFA.DAS.FrameworkHelpers
                  .Or<MultipleAssertException>()
                  .WaitAndRetry(longerTimeout == true ? RetryTimeOut.LongerTimeout() : RetryTimeOut.DefaultTimeout(), (exception, timeSpan, retryCount, context) =>
                  {
-                     new RetryLogging(objectContext).Report(retryCount, exception, _title, null);
+                     new RetryLogging(objectContext, "RetryOnNUnitException").Report(retryCount, exception, _title, null);
                  })
                  .Execute(() =>
                  {

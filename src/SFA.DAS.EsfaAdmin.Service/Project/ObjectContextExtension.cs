@@ -6,6 +6,7 @@ public static class ObjectContextExtension
     private const string ProviderNameKey = "providernamekey";
     private const string OrganisationTypeKey = "organisationtypekey";
     private const string UkprnKey = "ukprnkey";
+    private const string EsfaAdminLoginCreds = "esfaadminlogincreds";
     #endregion
 
     public static void SetProviderName(this ObjectContext objectContext, string providername) => objectContext.Replace(ProviderNameKey, providername);
@@ -15,4 +16,8 @@ public static class ObjectContextExtension
     public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
     public static string GetOrganisationType(this ObjectContext objectContext) => objectContext.Get(OrganisationTypeKey);
     public static string GetUkprn(this ObjectContext objectContext) => objectContext.Get(UkprnKey);
+
+    public static void SetEsfaAdminLoginCreds(this ObjectContext objectContext, (string username, string password) value) => objectContext.Replace(EsfaAdminLoginCreds, value);
+
+    public static (string username, string password) GetEsfaAdminLoginCreds(this ObjectContext objectContext) => objectContext.Get<(string, string)>(EsfaAdminLoginCreds);
 }
