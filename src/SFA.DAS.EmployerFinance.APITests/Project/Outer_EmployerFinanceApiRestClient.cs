@@ -36,18 +36,6 @@ namespace SFA.DAS.EmployerFinance.APITests.Project
             return Execute($"/Projections/{accountId}", expectedResponse);
         }
 
-        public RestResponse GetProviders(HttpStatusCode expectedResponse)
-        {
-            return Execute($"/Providers", expectedResponse);
-        }
-
-        public RestResponse GetProvidersById(HttpStatusCode expectedResponse)
-        {
-            var response = Execute($"/Providers", expectedResponse);
-            var result = JsonConvert.DeserializeObject<ProviderSummary>(response.Content);
-            return Execute($"/Providers/{result.Providers.ToList()[0].Ukprn}", expectedResponse);
-        }
-
         public RestResponse GetTrainingCoursesFrameworks(HttpStatusCode expectedResponse)
         {
             return Execute($"/TrainingCourses/frameworks", expectedResponse);
