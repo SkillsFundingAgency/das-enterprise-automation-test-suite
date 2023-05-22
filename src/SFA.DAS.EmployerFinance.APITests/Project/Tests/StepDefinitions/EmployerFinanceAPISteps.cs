@@ -63,18 +63,6 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
             _employerFinanceOuterApiHelper.GetProjections(long.Parse(accountId));
         }
 
-        [Then(@"endpoint /Providers can be accessed")]
-        public void ThenEndpointProvidersCanBeAccessed()
-        {
-            _employerFinanceOuterApiHelper.GetProviders();
-        }
-
-        [Then(@"endpoint /Profiders/\{id} can be accessed")]
-        public void ThenEndpointProfidersIdCanBeAccessed()
-        {
-            _employerFinanceOuterApiHelper.GetProvidersById();
-        }
-
         [Then(@"endpoint /TrainingCourses/frameworks can be accessed")]
         public void ThenEndpointTrainingCoursesFrameworksCanBeAccessed()
         {
