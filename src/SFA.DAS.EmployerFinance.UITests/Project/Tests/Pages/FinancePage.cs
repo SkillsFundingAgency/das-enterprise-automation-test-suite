@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         private By TransfersLink() => By.LinkText("Transfers");
         private By CurrentFundsLabel => By.Id("lbl-current-funds");
         private By FundsSpentLabel => By.Id("lbl-current-spent-funds");
-        private By EstimatesLabel => By.Id("lbl-estimates-all-funds");
+        private By EstimatesLabel => By.CssSelector(".app-finance-figure__title");         //By.Id("lbl-estimates-all-funds");
         private By EstimatedTotalFundingText => By.Id("lbl-estimated-future-funding");
         private By EstimatedPlannedSpendingText => By.Id("lbl-estimated-spending");
         #endregion
