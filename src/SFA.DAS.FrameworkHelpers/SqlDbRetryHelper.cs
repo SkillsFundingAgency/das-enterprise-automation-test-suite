@@ -15,7 +15,7 @@ namespace SFA.DAS.FrameworkHelpers
                 .Handle<Exception>((x) => x.Message.Contains(exception))
                  .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
                  {
-                     Logging.Report(retryCount, exception, title);
+                     Logging.Report(retryCount, exception, "SqlDbRetryHelper", title);
                  })
                  .Execute(func);
         }

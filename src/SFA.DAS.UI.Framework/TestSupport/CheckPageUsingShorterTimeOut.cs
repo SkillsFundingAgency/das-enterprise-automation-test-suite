@@ -5,7 +5,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class CheckPageUsingShorterTimeOut : CheckPage
     {
-        private readonly CheckPageInteractionHelper checkPageInteractionHelper;
+        protected readonly CheckPageInteractionHelper checkPageInteractionHelper;
 
         public CheckPageUsingShorterTimeOut(ScenarioContext context) : base(context) => checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
 
