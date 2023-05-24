@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features.Outer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmpFin_Api_09_AccountTransfersCount")]
-    public partial class EmpFin_Api_09_AccountTransfersCountFeature
+    [NUnit.Framework.DescriptionAttribute("EmpFin_Api_09_AccountTransfersFinancialBreakdown")]
+    public partial class EmpFin_Api_09_AccountTransfersFinancialBreakdownFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EmpFin_Api_09_AccountTransfersCount.feature"
+#line 1 "EmpFin_Api_09_AccountTransfersFinancialBreakdown.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Outer", "EmpFin_Api_09_AccountTransfersCount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Outer", "EmpFin_Api_09_AccountTransfersFinancialBreakdown", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features.Outer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EmpFin_Api_09_AccountTransfersCount")]
+        [NUnit.Framework.DescriptionAttribute("EmpFin_Api_09_AccountTransfersFinancialBreakdown")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("employerfinanceapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void EmpFin_Api_09_AccountTransfersCount()
+        public void EmpFin_Api_09_AccountTransfersFinancialBreakdown()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features.Outer
                     "outerapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmpFin_Api_09_AccountTransfersCount", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmpFin_Api_09_AccountTransfersFinancialBreakdown", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("endpoint /Transfers/{accountId}/counts can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("endpoint /Transfers/{accountId}/financial-breakdown can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
