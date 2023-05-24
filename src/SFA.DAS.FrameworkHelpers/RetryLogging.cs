@@ -7,9 +7,16 @@ namespace SFA.DAS.FrameworkHelpers
     {
         private readonly ObjectContext objectContext;
 
-        public RetryLogging(ObjectContext objectContext) => this.objectContext = objectContext;
+        private readonly string uniqueIdentifier;
 
-        public void Report(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null) => objectContext.SetRetryInformation(Logging.Message(retryCount, exception, scenarioTitle, retryAction));
+        public RetryLogging(ObjectContext objectContext, string uniqueIdentifier) 
+        {
+            this.objectContext = objectContext;
+
+            this.uniqueIdentifier = uniqueIdentifier;
+        }
+
+        public void Report(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null) => objectContext.SetRetryInformation(Logging.Message(retryCount, exception, scenarioTitle, uniqueIdentifier, retryAction));
 
     }
 }
