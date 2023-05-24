@@ -37,19 +37,19 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var javaScriptHelper = new JavaScriptHelper(webDriver, iFrameHelper);
             _context.Replace(javaScriptHelper);
 
-            _context.Replace(new TabHelper(webDriver));
+            _context.Replace(new TabHelper(webDriver, objectContext));
 
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
 
             var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext);
 
-            var pageInteractionHelper = new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper);
+            var pageInteractionHelper = new PageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
             _context.Replace(pageInteractionHelper);
 
-            var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
+            var formCompletionHelper = new FormCompletionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
             _context.Replace(formCompletionHelper);
 
-            _context.Replace(new CheckPageInteractionHelper(webDriver, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext)));
+            _context.Replace(new CheckPageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext)));
 
             _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
 
