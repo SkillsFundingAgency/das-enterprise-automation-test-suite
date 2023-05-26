@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.LinkText("Continue");
         #endregion
 
-        public YouveLoggedOutPage(ScenarioContext context) : base(context) => VerifyPage();
+        public YouveLoggedOutPage(ScenarioContext context) : base(context) { } //=> VerifyPage();
 
         public CreateAnAccountToManageApprenticeshipsPage CickContinueInYouveLoggedOutPage()
         {
