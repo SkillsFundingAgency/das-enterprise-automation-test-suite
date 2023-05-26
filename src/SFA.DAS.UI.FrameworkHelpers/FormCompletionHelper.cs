@@ -1,7 +1,9 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -10,12 +12,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
+        private readonly ObjectContext _objectContext;
 
-        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
+        public FormCompletionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
             _retryHelper = retryHelper;
+            _objectContext = objectContext;
         }
 
         public void RetryClickOnException(Func<IWebElement> element) => _retryHelper.RetryClickOnException(element);
@@ -36,6 +40,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             element.Clear();
             element.SendKeys(text);
+            _objectContext.SetDebugInformation($"Entered text '{text}'");
         }
 
         public void EnterText(By locator, string text)
