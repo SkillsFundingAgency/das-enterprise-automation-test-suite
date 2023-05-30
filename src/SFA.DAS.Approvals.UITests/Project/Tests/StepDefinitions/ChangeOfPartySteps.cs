@@ -10,7 +10,6 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service.Project.Helpers;
-using Polly;
 using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
