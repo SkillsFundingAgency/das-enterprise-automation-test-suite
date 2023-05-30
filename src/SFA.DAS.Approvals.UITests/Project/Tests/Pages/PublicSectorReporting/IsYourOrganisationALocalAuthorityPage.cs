@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class IsYourOrganisationALocalAuthorityPage : PublicSectorReportingBasePage
     {
-        protected override By PageHeader => By.CssSelector(".heading-medium");
+        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
         protected override string PageTitle => "Is your organisation a local authority";
         protected override By ContinueButton => By.CssSelector("#SubmitSelectOptionForm");
         private By YesRadioButton => By.CssSelector("#islocalauthority-action-yes");

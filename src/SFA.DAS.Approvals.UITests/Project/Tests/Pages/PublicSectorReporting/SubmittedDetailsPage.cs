@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class SubmittedDetailsPage : PublicSectorReportingBasePage
     {
-        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         protected override string PageTitle => "Submitted details";
 

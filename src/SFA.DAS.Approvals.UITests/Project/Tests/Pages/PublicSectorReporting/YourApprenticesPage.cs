@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private By NoOfApprentices2019 => By.CssSelector("#z0__Answer");
         private By NoOfApprentices2020 => By.CssSelector("#z1__Answer");
         private By NoOfApprentices => By.CssSelector("#z2__Answer");
-
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         public YourApprenticesPage(ScenarioContext context) : base(context)  { }
 
