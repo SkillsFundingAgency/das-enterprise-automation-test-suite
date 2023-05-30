@@ -10,7 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class TotalNumberOfEmployeesPage : PublicSectorReportingBasePage
     {
-        protected override By PageHeader => By.CssSelector(".heading-medium");
         protected override string PageTitle => "Total number of employees";
         protected override By ContinueButton => By.CssSelector("#SubmitSelectOptionForm");
         private By YesRadioButton => By.CssSelector("#totalemployees-action-yes");
