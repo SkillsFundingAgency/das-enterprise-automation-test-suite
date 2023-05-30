@@ -35,6 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public string GetNewcohortReference(string ULN, string title)
         {
+            waitForResults = true;
+
             string query = $@"SELECT Reference FROM Commitment cmt
                                 INNER JOIN Apprenticeship app
                                 ON cmt.id = app.CommitmentId
@@ -42,7 +44,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query));
+            //return Convert.ToString(TryGetDataAsObject(query));
+
+            var data = GetData(query);
+            return Convert.ToString(data[0]);
         }
 
         public string GetApprenticeshipULN(string reference)
