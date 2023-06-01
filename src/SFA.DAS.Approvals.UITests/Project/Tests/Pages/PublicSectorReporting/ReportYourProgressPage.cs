@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
     {
         protected override string PageTitle => "Reporting your progress towards the public sector apprenticeship target";
 
-        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         #region Question Links
         private static string OrganisationName => "Your organisation's name";

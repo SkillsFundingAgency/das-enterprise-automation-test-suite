@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataExport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
+        private readonly ObjectContext _objectContext;
 
-        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
+        public PageInteractionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
             _retryHelper = retryHelper;
+            _objectContext = objectContext;
         }
 
         public void RefreshPage() => _webDriver.Navigate().Refresh();
@@ -44,7 +47,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 var actual = elements().Select(x => x.Text).ToList();
 
-                if (actual.Any(x => x.Contains(expected))) return true;
+                if (actual.Any(x => x.Contains(expected)))
+                {
+                    SetDebugInformation($"Verifed page header - '{expected}'"); return true;
+                }
 
                 throw new Exception("Page verification failed:"
                     + "\n Expected: " + expected + " page"
@@ -60,7 +66,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 var actual = GetText(element, retryAction);
 
-                if (expected.Any(x => actual.Contains(x))) return true;
+                if (expected.Any(x => actual.Contains(x)))
+                {
+                    SetDebugInformation($"Verifed page header - '{string.Join("/",expected)}'"); return true;
+                }
 
                 throw new Exception("Page verification failed:"
                 + "\n Expected: " + string.Join(" OR ", expected) + " page"
@@ -76,7 +85,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 var actual = GetText(element, retryAction);
 
-                if (actual.Contains(expected)) return true;
+                if (actual.Contains(expected))
+                {
+                    SetDebugInformation($"Verifed page header - '{expected}'"); return true;
+                }
 
                 throw new Exception("Page verification failed:"
                 + "\n Expected: " + expected + " page"
@@ -99,7 +111,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public bool VerifyText(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
-                return true;
+            {
+                SetDebugInformation($"Verifed text - '{expected1}/{expected2}'"); return true;
+            }
 
             throw new Exception("Text verification failed: "
                 + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
@@ -109,7 +123,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public bool VerifyText(string actual, string expected)
         {
             if (actual.Contains(expected))
-                return true;
+                SetDebugInformation($"Verifed text - '{expected}'"); return true;
 
             throw new Exception("Text verification failed: "
                 + "\n Expected: " + expected
@@ -259,7 +273,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return () =>
             {
                 if (FindElements(locator).Count > 0)
-                    return true;
+                {
+                    SetDebugInformation($"Verifed locator - '{locator}'"); return true;
+                }
                 throw new Exception($"Page verification failed:{locator} is not found");
             };
         }
@@ -281,5 +297,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             _retryHelper.RetryOnWebDriverException(() => func(element));
         }
+
+        private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
     }
 }

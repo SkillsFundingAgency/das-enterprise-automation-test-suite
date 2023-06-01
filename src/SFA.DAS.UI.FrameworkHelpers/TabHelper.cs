@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataExport;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,8 +10,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class TabHelper
     {
         private IWebDriver _webDriver;
+        private readonly ObjectContext _objectContext;
 
-        public TabHelper(IWebDriver webDriver) => _webDriver = webDriver;
+        public TabHelper(IWebDriver webDriver, ObjectContext objectContext)
+        {
+            _webDriver = webDriver;
+
+            _objectContext = objectContext;
+        }
         
         public void OpenInNewTab(Action action)
         {
@@ -33,7 +40,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void OpenInNewTab(string url) { OpenNewTab(); GoToUrl(url); }
 
-        public void GoToUrl(string url) => _webDriver.Navigate().GoToUrl(url);
+        public void GoToUrl(string url)
+        {
+            _webDriver.Navigate().GoToUrl(url);
+
+            _objectContext.SetDebugInformation($"Navigated to {url}");
+        }
 
         public void NavigateBrowserBack() => _webDriver.Navigate().Back();
 

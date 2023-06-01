@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private By NoOfApprentices2022 => By.CssSelector("#z1__Answer");
         private By NoOfApprentices => By.CssSelector("#z2__Answer");
 
-
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         public YourSchoolApprenticesPage(ScenarioContext context) : base(context)  { }
 
         public ReportYourProgressPage EnterSchoolApprenticeDetails()
