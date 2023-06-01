@@ -22,7 +22,9 @@ public class CheckIdamsPage: CheckPageUsingShorterTimeOut
 public class IdamsPage : IdamsLoginBasePage
 {
     protected override string PageTitle => "Sign in using your account on:";
-    
+
+    protected override bool CanAnalyzePage => false;
+
     public IdamsPage(ScenarioContext context) : base(context, false) => VerifyPageAfterRefresh(PireanPreprod);
 
     public void LoginToAccess1Staff() => formCompletionHelper.Click(IdamsPageSelector.Access1Staff);

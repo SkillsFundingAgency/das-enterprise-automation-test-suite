@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;

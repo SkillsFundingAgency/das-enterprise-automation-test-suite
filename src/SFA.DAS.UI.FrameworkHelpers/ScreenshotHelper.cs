@@ -73,32 +73,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private static void AddTestAttachment(string screenshotPath, string imageName) => TestContext.AddTestAttachment(screenshotPath, imageName);
 
         private static (string screenshotPath, string imageName) GetScreenShotDetails(string screenshotsDirectory, string scenarioTitle)
-        {
-            int limitedWinChar = 255;
-            
+        {           
             var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
 
-            var screenshotPath = Combine(screenshotsDirectory, imageName);
+            (string screenshotPath, string fileName) = new WindowsFileHelper().GetFileDetails(screenshotsDirectory, imageName);
 
-            var noOfChar = screenshotPath.Length;
-
-            if (noOfChar > limitedWinChar)
-            {
-                int excessChar = noOfChar - (limitedWinChar - 4);
-
-                imageName = $"{imageName.Substring(0, imageName.Length - excessChar)}.png";
-
-                screenshotPath = Combine(screenshotsDirectory, imageName);
-            }
-
-            return (screenshotPath, imageName);
+            return (screenshotPath, fileName);
         }
 
-        private static string Combine(string screenshotsDirectory, string imageName)
-        {
-            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
-
-            return Path.GetFullPath(screenshotPath);
-        }
     }
 } 
