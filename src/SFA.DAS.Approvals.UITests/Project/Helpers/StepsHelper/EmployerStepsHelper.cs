@@ -205,7 +205,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
-                  .EmployerSelectsASStandardInFlexiJobJourney()
+                  .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
@@ -213,7 +213,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return ConfirmProviderDetailsAreCorrect()
                   .EmployerAddsApprentices()
-                  .EmployerSelectsASStandardInFlexiJobJourney()
+                  .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                   .EmployerSelectRegularDeliveryModelAndContinue();
         }
 
@@ -224,7 +224,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EnterUkprnForPortableFlexiJobPilotProvider()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
-                .EmployerSelectsAPortableFlexiJobCourse()
+                .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .SelectPortableFlexiJobDeliveryModelAndContinue();
         }
 

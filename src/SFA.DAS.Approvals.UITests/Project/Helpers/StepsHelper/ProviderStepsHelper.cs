@@ -205,7 +205,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var providerAddApprenticeDetailsPage = CurrentCohortDetails();
 
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
-                .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
+                .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
         }
 
@@ -214,7 +214,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var providerAddApprenticeDetailsPage = CurrentCohortDetails();
 
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
-                .ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage()
+                .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .SelectRegularDeliveryModelAndContinue()
                 .SubmitValidApprenticeDetails()
                 .SubmitSendToEmployerToReview();

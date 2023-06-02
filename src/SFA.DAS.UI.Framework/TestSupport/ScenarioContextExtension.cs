@@ -23,7 +23,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string PerfTestProviderPermissionsConfigKey = "perftestproviderpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string ChangeOfPartyConfigKey = "changeofpartyconfigkey";
-        private const string LimitingStandardConfigKey = "limitingstandardconfigKey";
         private const string ARProjectConfigKey = "arprojectconfigkey";
         private const string EIProjectConfigKey = "eiprojectconfigkey";
         private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
@@ -44,7 +43,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetPerfTestProviderPermissionsConfig<T>(this ScenarioContext context, T value) => Set(context, value, PerfTestProviderPermissionsConfigKey);
         public static void SetTransfersConfig<T>(this ScenarioContext context, T value) => Set(context, value, TransfersProjectConfigKey);
         public static void SetChangeOfPartyConfig<T>(this ScenarioContext context, T value) => Set(context, value, ChangeOfPartyConfigKey);
-        public static void SetLimitingStandardConfig<T>(this ScenarioContext context, T value) => Set(context, value, LimitingStandardConfigKey);
         public static void SetPortableFlexiJobProviderConfig<T>(this ScenarioContext context, T value) => Set(context, value, PortableFlexiJobProviderConfigKey);
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value) => Set(context, value, SupportConsoleProjectConfigKey);
         public static void ReplaceSupportConsoleConfig<T>(this ScenarioContext context, T value) => Replace(context, value, SupportConsoleProjectConfigKey);
@@ -71,7 +69,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetProviderConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderConfigKey);
         public static T GetProviderPermissionConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderPermissionConfigKey);
         public static T GetChangeOfPartyConfig<T>(this ScenarioContext context) => Get<T>(context, ChangeOfPartyConfigKey);
-        public static T GetLimitingStandardConfig<T>(this ScenarioContext context) => Get<T>(context, LimitingStandardConfigKey);
         public static T GetPortableFlexiJobProviderConfig<T>(this ScenarioContext context) => Get<T>(context, PortableFlexiJobProviderConfigKey);
         public static T GetPerfTestProviderPermissionsConfig<T>(this ScenarioContext context) => Get<T>(context, PerfTestProviderPermissionsConfigKey);
         public static T GetTransfersConfig<T>(this ScenarioContext context) => Get<T>(context, TransfersProjectConfigKey);

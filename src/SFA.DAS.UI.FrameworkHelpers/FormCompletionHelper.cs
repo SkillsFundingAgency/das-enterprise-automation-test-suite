@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.TestDataExport;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -40,7 +41,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             element.Clear();
             element.SendKeys(text);
-            _objectContext.SetDebugInformation($"Entered text '{text}'");
+            SetDebugInformation($"Entered text '{text}'");
         }
 
         public void EnterText(By locator, string text)
@@ -71,9 +72,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private void SelectByIndex(IWebElement element, int index) => SelectElement(element).SelectByIndex(index);
 
-        private void SelectFromDropDownByValue(IWebElement element, string value) => SelectElement(element).SelectByValue(value);
+        private void SelectFromDropDownByValue(IWebElement element, string value) { SelectElement(element).SelectByValue(value); SetDebugInformation($"Selected '{value}'"); }
 
-        private void SelectFromDropDownByText(IWebElement element, string text) => SelectElement(element).SelectByText(text);
+        private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
 
         public void SelectCheckbox(IWebElement element)
         {
@@ -135,5 +136,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void ClickButtonByText(string text) => ClickElementByText(ButtonCssSelector, text);
 
         public void ClickButtonByText(By locator, string text) => ClickElementByText(locator, text);
+
+        private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
     }
 }

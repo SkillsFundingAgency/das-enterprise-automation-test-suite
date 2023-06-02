@@ -38,8 +38,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
 
-            _context.SetLimitingStandardConfig(_configSection.GetConfigSection<LimitingStandardConfig>());
-
             _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
         }
     }
