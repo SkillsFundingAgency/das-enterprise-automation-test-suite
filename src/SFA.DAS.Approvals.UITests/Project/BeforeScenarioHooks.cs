@@ -43,23 +43,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
 
-            var apprenticeDataHelper = GetApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>());
+            var apprenticeDataHelper = new ApprenticeDataHelper(_context.Get<ApprenticePPIDataHelper>(), _objectcontext, commitmentsdatahelper);
 
             _context.Set(apprenticeDataHelper);
 
             _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
-            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig);
-
             _context.Set(new RofjaaDbSqlHelper(_dbConfig));
 
-            string ukprn = _tags.Contains("limitingstandards") ? _context.GetLimitingStandardConfig<LimitingStandardConfig>()?.Ukprn : _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn;
-
-            var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, ukprn, _tags);
-
             var apprenticeCourseDataHelper = GetApprenticeCourseDataHelper(apprenticeStatus);
-
-            _context.Set(randomCoursehelper);
 
             _context.Set(apprenticeCourseDataHelper);
 
@@ -73,17 +65,32 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
 
-            _context.Set(new List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>
+            ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags), _objectcontext, commitmentsdatahelper);
+
+            ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_dbConfig, _tags.Contains("selectstandardwithmultipleoptions")), apprenticeStatus);
+
+            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = new();
+
+            if (_tags.Contains("portableflexijob"))
             {
-                (apprenticeDataHelper, apprenticeCourseDataHelper),
+                var larsCode = new RoatpV2SqlDataHelper(_dbConfig).GetPortableFlexiJobLarsCode(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
 
-                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(ApprenticeStatus.Live))
-            });
+                listOfApprentices.Add((GetApprenticeDataHelper(), new(new RandomCourseDataHelper(_dbConfig, larsCode), apprenticeStatus)));
+            }
+            else if (_tags.Contains("limitingstandards"))
+            {
+                var larsCode = new RoatpV2SqlDataHelper(_dbConfig).GetCourseProviderDeosNotOffer(_context.GetLimitingStandardConfig<LimitingStandardConfig>()?.Ukprn);
 
-            ApprenticeDataHelper GetApprenticeDataHelper(ApprenticePPIDataHelper dataHelper) => new(dataHelper, _objectcontext, commitmentsdatahelper);
+                listOfApprentices.Add((GetApprenticeDataHelper(), new(new RandomCourseDataHelper(_dbConfig, larsCode), apprenticeStatus)));
+            }
+            else
+            {
+                listOfApprentices.Add((apprenticeDataHelper, apprenticeCourseDataHelper));
 
-            ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus) => 
-                new(randomCoursehelper, apprenticeStatus);
+                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(ApprenticeStatus.Live)));
+            }
+
+            _context.Set(listOfApprentices);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public class RandomCourseDataHelper
     {
         private readonly List<CourseDetails> _availableCourses;
-
-        private readonly List<CourseDetails> _providerCourses;
         
         public RandomCourseDataHelper() 
         {
             _availableCourses = AvailableCourses.GetAvailableCourses();
-            _providerCourses = AvailableCourses.GetAvailableCourses();
         }
 
-        public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string ukprn, string[] tags)
+        public RandomCourseDataHelper(DbConfig dbConfig, bool x)
         {
+            var crsSqlhelper = new CrsSqlhelper(dbConfig);
+
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
             {
-                tags.Contains("selectstandardwithmultipleoptions") ? crsSqlhelper.GetSqlQueryWithMultipleOptions() : crsSqlhelper.GetSqlQueryWithNoOptions(),
-                crsSqlhelper.GetSqlQueryWithNoOptions(tags.Contains("limitingstandards") ? roatpV2SqlDataHelper.GetCourseProviderDeosNotOffer(ukprn) : roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode(ukprn))
+                x ? crsSqlhelper.GetSqlQueryWithMultipleOptions() : crsSqlhelper.GetSqlQueryWithNoOptions()
             });
 
             _availableCourses = multiqueryResult[0];
-
-            _providerCourses = multiqueryResult[1];
         }
 
-        public CourseDetails RandomProviderCourse() => SelectACourseExcept(_providerCourses, null);
+        public RandomCourseDataHelper(DbConfig dbConfig, List<string> larsCode)
+        {
+            var crsSqlhelper = new CrsSqlhelper(dbConfig);
+
+            var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
+            {
+                crsSqlhelper.GetSqlQueryWithNoOptions(larsCode)
+            });
+
+            _availableCourses = multiqueryResult[0];
+        }
 
         public CourseDetails RandomCourse() => SelectACourseExcept(_availableCourses, null);
 

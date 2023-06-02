@@ -41,10 +41,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
 
-
         public SelectDeliveryModelPage EmployerSelectsAPortableFlexiJobCourse()
         {
-            SelectStandard(apprenticeCourseDataHelper.ProviderCourses.Course.larsCode);
+            SelectStandard(apprenticeCourseDataHelper.CourseLarsCode);
             Continue();
             return new SelectDeliveryModelPage(context);
         }
@@ -86,8 +85,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             availableCourses = availableCourses.Where(x => !x.ContainsCompareCaseInsensitive(selectedCourseName) && x.Contains("Level")).ToList();
             return RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
         }
-
-        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
