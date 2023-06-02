@@ -49,13 +49,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
-            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig, _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
+            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig);
 
             _context.Set(new RofjaaDbSqlHelper(_dbConfig));
 
-            var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, _tags);
+            string ukprn = _tags.Contains("limitingstandards") ? _context.GetLimitingStandardConfig<LimitingStandardConfig>()?.Ukprn : _context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn;
 
-            var apprenticeCourseDataHelper = GetApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
+            var randomCoursehelper = new RandomCourseDataHelper(new CrsSqlhelper(_dbConfig), roatpV2SqlDataHelper, ukprn, _tags);
+
+            var apprenticeCourseDataHelper = GetApprenticeCourseDataHelper(apprenticeStatus);
 
             _context.Set(randomCoursehelper);
 
@@ -73,17 +75,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>
             {
-                (_context.Get<ApprenticeDataHelper>(), _context.Get<ApprenticeCourseDataHelper>()),
+                (apprenticeDataHelper, apprenticeCourseDataHelper),
 
-                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(new RandomCourseDataHelper(GetRandomCourses()), ApprenticeStatus.Live))
+                (GetApprenticeDataHelper(new ApprenticePPIDataHelper(_tags)), GetApprenticeCourseDataHelper(ApprenticeStatus.Live))
             });
 
             ApprenticeDataHelper GetApprenticeDataHelper(ApprenticePPIDataHelper dataHelper) => new(dataHelper, _objectcontext, commitmentsdatahelper);
 
-            ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus) => 
-                new(randomCourseHelper, apprenticeStatus);
-
-            (List<CourseDetails>, List<CourseDetails>) GetRandomCourses() => randomCoursehelper.GetRandomCourses();
+            ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus) => 
+                new(randomCoursehelper, apprenticeStatus);
         }
     }
 }

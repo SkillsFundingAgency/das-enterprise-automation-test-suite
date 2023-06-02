@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -38,6 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             });
 
             _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
+
+            _context.SetLimitingStandardConfig(_configSection.GetConfigSection<LimitingStandardConfig>());
 
             _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
         }

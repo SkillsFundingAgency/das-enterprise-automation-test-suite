@@ -44,12 +44,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             CourseLarsCode = CourseDetails.Course.larsCode;
             OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
             OtherCourseLarsCode = OtherCourseDetails.Course.larsCode;
-            PortableFlexiJobCourseDetails = randomCourseHelper.GetPortableFlexiJobCourseDetails();
+            ProviderCourses = randomCourseHelper.RandomProviderCourse();
         }
 
         internal ApprenticeStatus GetApprenticeStatus() => _apprenticeStatus;
 
-        public CourseDetails PortableFlexiJobCourseDetails { get; private set; }
+        public CourseDetails ProviderCourses { get; private set; }
 
         public CourseDetails CourseDetails { get; private set; }
 
