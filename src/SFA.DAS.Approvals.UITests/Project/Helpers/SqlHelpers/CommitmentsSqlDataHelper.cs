@@ -44,8 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 
-            //return Convert.ToString(TryGetDataAsObject(query));
-
             var data = GetData(query);
             return Convert.ToString(data[0]);
         }
