@@ -5,13 +5,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class FilteredManageYourApprenticesPage : ManageYourApprenticesPage
+    public class FilteredManageYourApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Manage your apprentices";
 
         protected override bool TakeFullScreenShot => true;
 
+        private static By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
+
         public FilteredManageYourApprenticesPage(ScenarioContext context) : base(context) { }
+
+        public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
 
     }
 
@@ -29,7 +33,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NextPageLink => By.PartialLinkText("Next");
         private static By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private static By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
-        private static By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
         public ManageYourApprenticesPage(ScenarioContext context): base(context)  { }
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
@@ -76,6 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ApprenticeDetailsPage SelectFromRow(string apprenticesFirstName, string status)
         {
             tableRowHelper.SelectRowFromTable(apprenticesFirstName, status);
+
             return new ApprenticeDetailsPage(context);
         }
 
@@ -84,20 +88,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ManageYourApprenticesPage Filter(string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+
             formCompletionHelper.ClickElement(ApplyFilter);
+
             return new ManageYourApprenticesPage(context);
         }
 
         internal ApprenticeDetailsPage SelectApprentices(string status)
         {
             SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
+
             tableRowHelper.SelectRowFromTable(apprenticeDataHelper.ApprenticeFullName, status);
+
             return new ApprenticeDetailsPage(context);
         }
 
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
-
-        public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
 
         private void VerifyApprenticeExists(string name)
         {
