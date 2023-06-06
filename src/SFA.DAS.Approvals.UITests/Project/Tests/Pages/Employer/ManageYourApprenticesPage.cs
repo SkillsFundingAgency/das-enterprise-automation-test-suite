@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
-            SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
+            VerifyApprenticeExists(apprenticeDataHelper.ApprenticeFullName);
 
             var apprenticeRows = pageInteractionHelper.FindElements(ApprenticeInfoRow);
             var detailsLinks = pageInteractionHelper.FindElement(ViewApprenticeFullName(apprenticeDataHelper.ApprenticeFullName));
@@ -79,17 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(context);
         }
 
-        public void VerifyApprenticeExists()
-        {
-            pageInteractionHelper.InvokeAction(() => 
-            {
-                var name = editedApprenticeDataHelper.ApprenticeEditedFullName;
-
-                SearchForApprentice(name);
-
-                pageInteractionHelper.FindElement(ViewApprenticeFullName(name));
-            });
-        }
+        public void VerifyApprenticeExists() => VerifyApprenticeExists(editedApprenticeDataHelper.ApprenticeEditedFullName);
 
         public ManageYourApprenticesPage Filter(string filterText)
         {
@@ -108,6 +98,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
 
         public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
+
+        private void VerifyApprenticeExists(string name)
+        {
+            pageInteractionHelper.InvokeAction(() =>
+            {
+                SearchForApprentice(name);
+
+                pageInteractionHelper.FindElement(ViewApprenticeFullName(name));
+            });
+        }
     }
 }
 
