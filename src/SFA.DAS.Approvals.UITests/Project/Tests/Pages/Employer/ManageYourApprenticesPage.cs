@@ -21,15 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ApprenticeSearchField => By.Id("searchTerm");
-        private By SearchButton => By.ClassName("das-search-form__button");
-        private By SelectFilterDropdown => By.Id("selectedStatus");
-        private By ApplyFilter => By.CssSelector("#main-content .govuk-button");
-        private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
-        private By NextPageLink => By.PartialLinkText("Next");
-        private By ApprenticeInfoRow => By.CssSelector("tbody tr");
-        private By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
-        private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
+        private static By ApprenticeSearchField => By.Id("searchTerm");
+        private static By SearchButton => By.ClassName("das-search-form__button");
+        private static By SelectFilterDropdown => By.Id("selectedStatus");
+        private static By ApplyFilter => By.CssSelector("#main-content .govuk-button");
+        private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
+        private static By NextPageLink => By.PartialLinkText("Next");
+        private static By ApprenticeInfoRow => By.CssSelector("tbody tr");
+        private static By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
+        private static By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
         public ManageYourApprenticesPage(ScenarioContext context): base(context)  { }
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
