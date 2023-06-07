@@ -8,8 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Details updated";
         
         #region Locators
-        protected override By PageHeader => By.CssSelector(".bold-large");
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By PageHeader => By.CssSelector(".das-notification__heading");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private By GoToHomePageRadioButton => By.CssSelector("input[value='homepage']");
         #endregion
 
