@@ -10,15 +10,15 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         protected override string PageTitle => "Finance";
 
         #region Locators
-        private static By ViewTransactionsLink() => By.LinkText("View transactions");
-        private static By DownloadTransactionsLink() => By.LinkText("Download transactions");
-        private static By FundingProjectionLink() => By.LinkText("Funding projection");
-        private static By TransfersLink() => By.LinkText("Transfers");
-        private static By CurrentFundsLabel => By.Id("lbl-current-funds");
-        private static By FundsSpentLabel => By.Id("lbl-current-spent-funds");
-        private static By EstimatesLabel => By.Id("lbl-estimates-all-funds");
-        private static By EstimatedTotalFundingText => By.Id("lbl-estimated-future-funding");
-        private static By EstimatedPlannedSpendingText => By.Id("lbl-estimated-spending");
+        private By ViewTransactionsLink() => By.LinkText("View transactions");
+        private By DownloadTransactionsLink() => By.LinkText("Download transactions");
+        private By FundingProjectionLink() => By.LinkText("Funding projection");
+        private By TransfersLink() => By.LinkText("Transfers");
+        private By CurrentFundsLabel => By.Id("lbl-current-funds");
+        private By FundsSpentLabel => By.Id("lbl-current-spent-funds");
+        private By EstimatesLabel => By.CssSelector("h2.app-finance-figure__title");
+        private By EstimatedTotalFundingText => By.Id("lbl-estimated-future-funding");
+        private By EstimatedPlannedSpendingText => By.Id("lbl-estimated-spending");
         #endregion
 
         #region Constants

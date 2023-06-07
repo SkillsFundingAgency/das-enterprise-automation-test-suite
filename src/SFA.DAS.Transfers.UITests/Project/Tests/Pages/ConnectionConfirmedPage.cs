@@ -8,17 +8,17 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Connection confirmed";
 
-        protected override By PageHeader => By.ClassName("bold-large");
+        protected override By PageHeader => By.Id("govuk-notification-banner-title");
 
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
-        private By GoToHomePageRadioButton => By.CssSelector(".selection-button-radio");
+        private By GoToHomePageRadioButton => By.CssSelector(".govuk-radios__label");
 
         public ConnectionConfirmedPage(ScenarioContext context) : base(context) { }
 
         public HomePage GoToHomePage()
         {
-            formCompletionHelper.SelectRadioOptionByText(GoToHomePageRadioButton, "Go back to the homepage");
+            formCompletionHelper.SelectRadioOptionByText(GoToHomePageRadioButton, "Go to the homepage");
             Continue();
             return new HomePage(context);
         }
