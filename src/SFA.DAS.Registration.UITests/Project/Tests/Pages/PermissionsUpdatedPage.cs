@@ -6,9 +6,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class PermissionsUpdatedPage : RegistrationBasePage
     {
         protected override string PageTitle => "You've successfully changed";
-        protected override By PageHeader => By.CssSelector(".govuk-notification-banner__heading");
+        protected override By PageHeader => By.CssSelector($".govuk-notification-banner__heading, {PageHeaderSelector}");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        protected By HomeLink => By.XPath("(//li[@class='das-navigation__list-item'])[1]");
+        protected static By HomeLink => By.XPath("(//li[@class='das-navigation__list-item'])[1]");
 
         #region Helpers and Context
         
