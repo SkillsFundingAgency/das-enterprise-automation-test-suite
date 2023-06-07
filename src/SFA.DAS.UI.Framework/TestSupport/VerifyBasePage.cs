@@ -15,7 +15,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private bool _takescreenshot;
         #endregion
 
-        public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle);
+        public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle).Item1;
 
         protected virtual bool CaptureUrl => true;
 

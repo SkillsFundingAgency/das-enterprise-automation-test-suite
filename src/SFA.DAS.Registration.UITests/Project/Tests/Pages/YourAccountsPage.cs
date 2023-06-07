@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage ClickAccountLink(string orgName)
         {
-            formCompletionHelper.Click(AccountLink(orgName));
+            tableRowHelper.SelectRowFromTable("Open", orgName);
             objectContext.UpdateOrganisationName(orgName);
             return new HomePage(context);
         }

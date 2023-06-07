@@ -5,7 +5,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
     public class ConnectWithReceivingEmployerPage : TransfersBasePage
     {
-        protected override By PageHeader => By.CssSelector(".flash-card .heading-medium");
         protected override string PageTitle => "Connect with a receiving employer";
 
         private By ContinueToConnect => By.LinkText("Continue");
