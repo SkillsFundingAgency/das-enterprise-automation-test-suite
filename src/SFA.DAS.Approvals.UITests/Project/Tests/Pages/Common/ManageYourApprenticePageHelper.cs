@@ -26,14 +26,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             List<IWebElement> apprentices = new();
 
-            context.Get<RetryAssertHelper>().RetryOnNUnitExceptionWithLongerTimeOut(() => 
+            context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
                 SearchForApprentice(name);
 
-                apprentices = pageInteractionHelper.FindElements(ViewApprenticeFullName(name)).ToList();
+                if (!(pageInteractionHelper.IsElementDisplayedAfterPageLoad(ViewApprenticeFullName(name))))
+                {
+                    Assert.Fail("Apprentice '" + name + "' is not found");
+                }
 
-                if (apprentices.Count == 0) Assert.Fail("Apprentice with - " + name + " - name is not found");
-            });
+                apprentices = pageInteractionHelper.FindElements(ViewApprenticeFullName(name)).ToList();
+            }, 
+            RetryTimeOut.GetTimeSpan(new int[] { 8, 13, 21, 34 }));
 
             return apprentices.Count > 0;
         }
