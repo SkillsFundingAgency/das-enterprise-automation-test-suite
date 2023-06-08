@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
                 apprentices = pageInteractionHelper.FindElements(ViewApprenticeFullName(name)).ToList();
             }, 
-            RetryTimeOut.GetTimeSpan(new int[] { 8, 13, 21, 34 }));
+            RetryTimeOut.GetTimeSpan(new int[] { 10, 20, 30, 60, 120, 180 }));
 
             return apprentices.Count > 0;
         }
