@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected By SubmitButton => By.CssSelector("#submit-button");
 
-        private By VacancyQALink => By.LinkText("Vacancy QA");
+        private By VacancyQALink => By.LinkText("Apprenticeship service vacancy QA");
 
         public ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
         

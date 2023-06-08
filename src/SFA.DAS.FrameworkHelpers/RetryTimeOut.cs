@@ -4,12 +4,25 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static class RetryTimeOut
     {
-        internal static TimeSpan[] LongerTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(13) };
+        internal static TimeSpan[] LongerTimeout() => GetTimeSpan(5, 8, 13);
 
-        public static TimeSpan[] DefaultTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
+        public static TimeSpan[] DefaultTimeout() => GetTimeSpan(1, 2, 3);
 
-        public static TimeSpan[] ShorterTimeout() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1) };
+        public static TimeSpan[] ShorterTimeout() => GetTimeSpan(1, 1, 1);
 
         internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
+
+        internal static TimeSpan[] GetTimeSpan(int a, int b, int c) => GetTimeSpan(new int[] { a, b, c });
+
+        public static TimeSpan[] GetTimeSpan(int[] x)
+        {
+            TimeSpan[] result = new TimeSpan[x.Length];
+
+            for (int i = 0; i < result.Length; i++) result[i] = TimeSpan.FromSeconds(x[i]);
+            
+            return result;
+        }
+
+        
     }
 }

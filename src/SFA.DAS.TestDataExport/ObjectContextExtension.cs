@@ -45,7 +45,7 @@ namespace SFA.DAS.TestDataExport
 
         private static void SetDebugInformations(this ObjectContext objectContext) => objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
-        public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> DebugInformation: {value}");
+        public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> {DateTime.UtcNow:dd/MM HH:mm:ss}: {value}");
         
         private static FrameworkList<string> GetDebugInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(DebugInformations);
         #endregion
