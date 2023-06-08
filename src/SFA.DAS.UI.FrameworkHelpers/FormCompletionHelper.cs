@@ -32,7 +32,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void ClickElement(By locator)
         {
             _webDriverWaitHelper.WaitForElementToBeClickable(locator);
+
             ClickElement(_webDriver.FindElement(locator));
+
+            SetDebugInformation($"Clicked '{locator}'");
         }
 
         public void Click(By locator) => ClickElement(locator);
@@ -40,13 +43,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
+
             element.SendKeys(text);
-            SetDebugInformation($"Entered text '{text}'");
+
+            SetDebugInformation($"Entered '{text}'");
         }
 
         public void EnterText(By locator, string text)
         {
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+
             EnterText(_webDriver.FindElement(locator), text);
         }
 
@@ -57,47 +63,47 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void SendKeys(By locator, string Key)
         {
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+
             _webDriver.FindElement(locator).SendKeys(Key);
+
+            SetDebugInformation($"Entered '{Key}'");
         }
 
         public void EnterText(By locator, int text) => EnterText(locator, text.ToString());
 
         public void EnterText(IWebElement element, int value) => EnterText(element, value.ToString());
 
-        public void SelectByIndex(By @by, int index) => SelectByIndex(_webDriver.FindElement(by), index);
-
         public void SelectFromDropDownByValue(By @by, string value) => SelectFromDropDownByValue(_webDriver.FindElement(by), value);
 
         public void SelectFromDropDownByText(By @by, string text) => SelectFromDropDownByText(_webDriver.FindElement(by), text);
-
-        private void SelectByIndex(IWebElement element, int index) => SelectElement(element).SelectByIndex(index);
 
         private void SelectFromDropDownByValue(IWebElement element, string value) { SelectElement(element).SelectByValue(value); SetDebugInformation($"Selected '{value}'"); }
 
         private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
 
+
         public void SelectCheckbox(IWebElement element)
         {
-            if (!element.Selected)
-                element.Click();
+            if (!element.Selected) element.Click();
         }
 
         public void UnSelectCheckbox(IWebElement element)
         {
-            if (element.Selected)
-                element.Click();
+            if (element.Selected) element.Click();
         }
 
         public void UnSelectCheckbox(By locator)
         {
-            IWebElement element = _webDriver.FindElement(locator);
-            UnSelectCheckbox(element);
+            UnSelectCheckbox(_webDriver.FindElement(locator));
+
+            SetDebugInformation($"Unchecked '{locator}'");
         }
 
         public void SelectCheckbox(By locator)
         {
-            IWebElement element = _webDriver.FindElement(locator);
-            SelectCheckbox(element);
+            SelectCheckbox(_webDriver.FindElement(locator));
+
+            SetDebugInformation($"Checked '{locator}'");
         }
 
         public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
@@ -107,10 +113,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
         {
             IList<IWebElement> radios = _webDriver.FindElements(locator);
+
             var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
 
-            if (radioToSelect != null)
-                ClickElement(radioToSelect);
+            if (radioToSelect != null) { ClickElement(radioToSelect); SetDebugInformation($"Clicked 'for='{forAttribute}''"); } 
         }
 
         public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
@@ -121,7 +127,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
-        private void ClickElementByText(By locator, string text) => ClickElement(() => GetElementByText(locator, text));
+        private void ClickElementByText(By locator, string text) { ClickElement(() => GetElementByText(locator, text)); SetDebugInformation($"Clicked '{text}'"); }
 
         public void ClickLinkByText(By locator, string text) => ClickElementByText(locator, text);
 
@@ -130,6 +136,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void ClickButtonByText(params string[] buttons)
         {
             string text = buttons.First(x => GetElementByText(ButtonCssSelector, x) != null);
+
             ClickElementByText(ButtonCssSelector, text);
         }
 
