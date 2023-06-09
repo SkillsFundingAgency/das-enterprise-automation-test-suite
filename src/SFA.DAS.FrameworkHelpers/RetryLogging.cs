@@ -16,7 +16,7 @@ namespace SFA.DAS.FrameworkHelpers
             this.uniqueIdentifier = uniqueIdentifier;
         }
 
-        public void Report(int retryCount, Exception exception, string scenarioTitle, Action retryAction = null) => objectContext.SetRetryInformation(Logging.Message(retryCount, exception, scenarioTitle, uniqueIdentifier, retryAction));
+        public void Report(int retryCount, TimeSpan timeSpan, Exception exception, string scenarioTitle, Action retryAction = null) => objectContext.SetRetryInformation(Logging.Message(retryCount, timeSpan, exception, scenarioTitle, uniqueIdentifier, retryAction));
 
     }
 }
