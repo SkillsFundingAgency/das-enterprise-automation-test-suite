@@ -55,19 +55,17 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
 
 
-            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = new();
-
-            (ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper, bool additionaldata) = SetProviderSpecificCourse(apprenticeStatus);
-
-            listOfApprentices.Add((apprenticeDataHelper, apprenticeCourseDataHelper));
-
-            if (additionaldata) listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(ApprenticeStatus.Live)));
+            List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> listOfApprentices = SetProviderSpecificCourse(apprenticeStatus);
 
             _context.Set(listOfApprentices);
+
+            var apprenticeDataHelper = listOfApprentices.FirstOrDefault().apprenticeDataHelper;
 
             _context.Set(apprenticeDataHelper);
 
             _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
+
+            var apprenticeCourseDataHelper = listOfApprentices.FirstOrDefault().apprenticeCourseDataHelper;
 
             _context.Set(apprenticeCourseDataHelper);
 
@@ -75,29 +73,39 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         }
 
-        private (ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper, bool additionalApprentice) SetProviderSpecificCourse(ApprenticeStatus apprenticeStatus)
+        private List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> SetProviderSpecificCourse(ApprenticeStatus apprenticeStatus)
         {
+            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = new();
+
+            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig);
+
             if (_tags.Contains("portableflexijob"))
             {
-                var larsCode = new RoatpV2SqlDataHelper(_dbConfig).GetPortableFlexiJobLarsCode(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
+                var larsCode = roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
 
-                return (GetApprenticeDataHelper(), new(new RandomCourseDataHelper(_dbConfig, larsCode), apprenticeStatus), false);
+                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
 
             }
             else if (_tags.Contains("limitingstandards"))
             {
-                var larsCode = new RoatpV2SqlDataHelper(_dbConfig).GetCourseProviderDeosNotOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+                var larsCode = roatpV2SqlDataHelper.GetCoursesthatProviderDeosNotOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
 
-                return (GetApprenticeDataHelper(), new(new RandomCourseDataHelper(_dbConfig, larsCode), apprenticeStatus), false);
+                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
             }
             else
             {
-                return (GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(apprenticeStatus), true);
+                var larsCode = roatpV2SqlDataHelper.GetCoursesThatProviderDeosOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+
+                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
+
+                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
             }
+
+            return listOfApprentices;
         }
 
         private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags), _objectcontext, commitmentsdatahelper);
 
-        private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_dbConfig, _tags.Contains("selectstandardwithmultipleoptions")), apprenticeStatus);
+        private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_dbConfig, larsCode, _tags.Contains("selectstandardwithmultipleoptions")), apprenticeStatus);
     }
 }
