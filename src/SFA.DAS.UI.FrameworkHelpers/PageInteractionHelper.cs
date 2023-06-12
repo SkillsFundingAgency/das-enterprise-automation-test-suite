@@ -54,7 +54,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 if (actual.Any(x => x.Contains(expected)))
                 {
-                    SetDebugInformation($"Verifed page header - '{expected}'"); return true;
+                    SetDebugInformation($"Verified page - '{expected}'"); return true;
                 }
 
                 throw new Exception("Page verification failed:"
@@ -73,7 +73,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 if (expected.Any(x => actual.Contains(x)))
                 {
-                    SetDebugInformation($"Verifed page header - '{string.Join("/",expected)}'"); return true;
+                    SetDebugInformation($"Verified page - '{string.Join("/",expected)}'"); return true;
                 }
 
                 throw new Exception("Page verification failed:"
@@ -92,7 +92,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 if (actual.Contains(expected))
                 {
-                    SetDebugInformation($"Verifed page header - '{expected}'"); return true;
+                    SetDebugInformation($"Verified page - '{expected}'"); return true;
                 }
 
                 throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", expected, actual));
