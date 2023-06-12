@@ -63,6 +63,8 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(apprenticeDataHelper);
 
+            _context.Set(apprenticeDataHelper.apprenticePPIDataHelper);
+
             _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
             var apprenticeCourseDataHelper = listOfApprentices.FirstOrDefault().apprenticeCourseDataHelper;
