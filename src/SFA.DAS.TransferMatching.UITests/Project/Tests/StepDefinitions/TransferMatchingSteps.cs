@@ -96,7 +96,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the non levy employer cannot exceed the available pledge funding")]
         public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
-            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
+            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "Cost of training exceeds the amount remaining in this pledge");
 
         [Then(@"the levy employer can download excel file")]
         public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
