@@ -8,11 +8,11 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Request sent";
 
-        protected override By PageHeader => By.ClassName("bold-large");
+        protected override By PageHeader => By.CssSelector("#govuk-notification-banner-title");
 
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
-        private By GoToHomePageRadioButton => By.CssSelector(".selection-button-radio");
+        private By GoToHomePageRadioButton => By.CssSelector(".govuk-radios__label");
 
         public RequestSentConfirmPage(ScenarioContext context) : base(context) { }
 

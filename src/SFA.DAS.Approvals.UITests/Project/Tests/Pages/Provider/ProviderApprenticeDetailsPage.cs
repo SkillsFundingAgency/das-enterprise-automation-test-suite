@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderApprenticeDetailsPage : ApprovalsBasePage
     {
-        protected override string PageTitle => apprenticeDataHelper.ApprenticeFullName;
+        protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");

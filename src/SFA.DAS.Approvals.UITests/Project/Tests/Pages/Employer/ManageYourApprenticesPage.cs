@@ -1,113 +1,63 @@
-﻿using System;
-using System.Linq;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class FilteredManageYourApprenticesPage : ManageYourApprenticesPage
-    {
-        protected override string PageTitle => "Manage your apprentices";
-
-        protected override bool TakeFullScreenShot => true;
-
-        public FilteredManageYourApprenticesPage(ScenarioContext context) : base(context) { }
-
-    }
-
     public class ManageYourApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Manage your apprentices";
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ApprenticeSearchField => By.Id("searchTerm");
-        private By SearchButton => By.ClassName("das-search-form__button");
-        private By SelectFilterDropdown => By.Id("selectedStatus");
-        private By ApplyFilter => By.CssSelector("#main-content .govuk-button");
-        private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
-        private By NextPageLink => By.PartialLinkText("Next");
-        private By ApprenticeInfoRow => By.CssSelector("tbody tr");
-        private By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
-        private By Status => By.CssSelector("td.govuk-table__cell[data-label='Status']");
-        public ManageYourApprenticesPage(ScenarioContext context): base(context)  { }
+        private static By SelectFilterDropdown => By.Id("selectedStatus");
+
+        private static By ApplyFilter => By.CssSelector("#main-content .govuk-button");
+
+        private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
+
+        private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper;
+
+        public ManageYourApprenticesPage(ScenarioContext context) : base(context) => manageYourApprenticePageHelper = new ManageYourApprenticePageHelper(context);
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
-            SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
-
-            var apprenticeRows = pageInteractionHelper.FindElements(ApprenticeInfoRow);
-            var detailsLinks = pageInteractionHelper.FindElement(ViewApprenticeFullName(apprenticeDataHelper.ApprenticeFullName));
-
-            int i = 0;
-            foreach (IWebElement apprenticeRow in apprenticeRows)
-            {
-                if (apprenticeRow.Text.Contains(apprenticeDataHelper.ApprenticeFullName))
-                {
-                    formCompletionHelper.ClickElement(detailsLinks);
-                    return new ApprenticeDetailsPage(context);
-                }
-                i++;
-            }
-            if (pageInteractionHelper.IsElementDisplayed(NextPageLink))
-            {
-                formCompletionHelper.ClickElement(NextPageLink);
-            }
-            else
-            {
-                throw new Exception("Apprentice with - " + apprenticeDataHelper.ApprenticeFullName + " - name is not found");
-            }
+            manageYourApprenticePageHelper.SelectViewCurrentApprenticeDetails(apprenticeDataHelper.ApprenticeFullName);
 
             return new ApprenticeDetailsPage(context);
         }
 
         public FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
-            // Search bar will not be displayed if there are less than 10 apprentice in the table
-            if (pageInteractionHelper.IsElementDisplayed(ApprenticeSearchField))
-            {
-                formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
-                formCompletionHelper.ClickElement(SearchButton);
-            }
+            DoesApprenticeExists(apprenticeName);
 
             return new FilteredManageYourApprenticesPage(context);
         }
 
-        public ApprenticeDetailsPage SelectFromRow(string apprenticesFirstName, string status)
-        {
-            tableRowHelper.SelectRowFromTable(apprenticesFirstName, status);
-            return new ApprenticeDetailsPage(context);
-        }
-
-        public void VerifyApprenticeExists()
-        {
-            pageInteractionHelper.InvokeAction(() => 
-            {
-                var name = editedApprenticeDataHelper.ApprenticeEditedFullName;
-
-                SearchForApprentice(name);
-
-                pageInteractionHelper.FindElement(ViewApprenticeFullName(name));
-            });
-        }
+        public void VerifyApprenticeExists() => DoesApprenticeExists(editedApprenticeDataHelper.ApprenticeEditedFullName);
 
         public ManageYourApprenticesPage Filter(string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+
             formCompletionHelper.ClickElement(ApplyFilter);
+
             return new ManageYourApprenticesPage(context);
         }
 
         internal ApprenticeDetailsPage SelectApprentices(string status)
         {
             SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
+
             tableRowHelper.SelectRowFromTable(apprenticeDataHelper.ApprenticeFullName, status);
+
             return new ApprenticeDetailsPage(context);
         }
 
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
 
-        public string GetStatus(string rowIdentifier) => pageInteractionHelper.GetText(() => tableRowHelper.GetColumn(rowIdentifier, Status));
+        private bool DoesApprenticeExists(string name) => manageYourApprenticePageHelper.DoesApprenticeExists(name);
+
     }
 }
 

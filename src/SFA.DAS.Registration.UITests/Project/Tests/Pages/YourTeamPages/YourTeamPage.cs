@@ -8,8 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
     {
         #region Locators
         private By InviteANewMemberButton => By.Id("addNewUser");
-        private By ViewMemberLink(string email) => By.XPath($"//div[text()='{email}']/../..//td[@class='link-right']/a");
-        private By InvitationActionHeader => By.CssSelector(".bold-large");
+        private By InvitationActionHeader => By.CssSelector(".das-notification__heading");
         #endregion
 
         public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
@@ -28,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 
         public ViewTeamMemberPage ClickViewMemberLink(string email)
         {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ViewMemberLink(email)));
+            tableRowHelper.SelectRowFromTable("View", email);
             return new ViewTeamMemberPage(context);
         }
 

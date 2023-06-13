@@ -5,8 +5,6 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using Selenium.Axe;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -14,11 +12,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Helpers and Context
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
-        private readonly string _directory;
         private bool _takescreenshot;
         #endregion
 
-        public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle);
+        public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle).Item1;
 
         protected virtual bool CaptureUrl => true;
 
@@ -29,13 +26,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;
+
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
-            _directory = objectContext.GetDirectory();
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
-
-            if (frameworkConfig.IsAccessibilityTesting && CanAnalyzePage) AnalyzePage();
         }
+
+        protected bool IsAccessibilityTesting() => frameworkConfig.IsAccessibilityTesting;
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
         {
@@ -106,7 +103,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
             int counter = GetCounter();
             try
             {
-                var result = func(); TakeScreenShot(); return result;
+                var result = func(); 
+                
+                TakeScreenShot();
+
+                if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
+
+                return result;
             }
             catch (Exception)
             {
@@ -120,32 +123,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
             {
-                string counter = GetTitle();
-                ScreenshotHelper.TakeScreenShot(GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
+                string counter = _screenShotTitleGenerator.GetTitle();
+
+                ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), objectContext.GetDirectory(), $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
             }
         }
-
-        private void AnalyzePage()
-        {
-            string fileName = $"{RegexHelper.TrimAnySpace(PageTitle)}_{GetTitle()}.html";
-
-            AxeResult axeResult = null;
-
-            TestAttachmentHelper.AddTestAttachment(_directory, fileName, (x) =>
-            {
-                IWebDriver webDriver = GetWebDriver();
-
-                axeResult = new AxeBuilder(webDriver).Analyze();
-
-                webDriver.CreateAxeHtmlReport(axeResult, x, ReportTypes.Violations);
-            });
-
-            if (axeResult.Violations.Any(x => x.Impact.ContainsCompareCaseInsensitive("CRITICAL")))
-                throw new Exception($"{axeResult.Violations.Length} CRITICAL violation's is/are found in the url: {axeResult.Url}");
-        }
-
-        private string GetTitle() => _screenShotTitleGenerator.GetTitle();
-
-        private IWebDriver GetWebDriver() => context.GetWebDriver();
     }
 }

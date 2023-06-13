@@ -17,18 +17,18 @@ namespace SFA.DAS.FrameworkHelpers
             this.objectContext = objectContext;
         }
 
-        public void RetryOnNUnitException(Action action) => RetryOnNUnitException(action, false);
+        public void RetryOnNUnitException(Action action) => RetryOnNUnitException(action, RetryTimeOut.DefaultTimeout());
 
-        public void RetryOnNUnitExceptionWithLongerTimeOut(Action action) => RetryOnNUnitException(action, true);
+        public void RetryOnNUnitExceptionWithLongerTimeOut(Action action) => RetryOnNUnitException(action, RetryTimeOut.LongerTimeout());
 
-        private void RetryOnNUnitException(Action action, bool longerTimeout)
+        public void RetryOnNUnitException(Action action, TimeSpan[] timespan)
         {
             Policy
                  .Handle<AssertionException>()
                  .Or<MultipleAssertException>()
-                 .WaitAndRetry(longerTimeout == true ? RetryTimeOut.LongerTimeout() : RetryTimeOut.DefaultTimeout(), (exception, timeSpan, retryCount, context) =>
+                 .WaitAndRetry(timespan, (exception, timeSpan, retryCount, context) =>
                  {
-                     new RetryLogging(objectContext).Report(retryCount, exception, _title, null);
+                     new RetryLogging(objectContext, "RetryOnNUnitException").Report(retryCount, timeSpan, exception, _title, null);
                  })
                  .Execute(() =>
                  {

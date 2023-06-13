@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features.Outer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmpFin_Api_06_GetProviders")]
-    public partial class EmpFin_Api_06_GetProvidersFeature
+    [NUnit.Framework.DescriptionAttribute("EmpFin_Api_07_GetTrainingCoursesStandards")]
+    public partial class EmpFin_Api_07_GetTrainingCoursesStandardsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EmpFin_Api_06_GetProviders.feature"
+#line 1 "EmpFin_Api_07_GetTrainingCoursesStandards.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Outer", "EmpFin_Api_06_GetProviders", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Outer", "EmpFin_Api_07_GetTrainingCoursesStandards", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features.Outer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EmpFin_Api_06_GetProviders")]
+        [NUnit.Framework.DescriptionAttribute("EmpFin_Api_07_GetTrainingCoursesStandards")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("employerfinanceapi")]
         [NUnit.Framework.CategoryAttribute("outerapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void EmpFin_Api_06_GetProviders()
+        public void EmpFin_Api_07_GetTrainingCoursesStandards()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
@@ -87,7 +87,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.Features.Outer
                     "outerapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmpFin_Api_06_GetProviders", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EmpFin_Api_07_GetTrainingCoursesStandards", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,10 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Then("endpoint /Providers can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
- testRunner.And("endpoint /Profiders/{id} can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("endpoint /TrainingCourses/standards can be accessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

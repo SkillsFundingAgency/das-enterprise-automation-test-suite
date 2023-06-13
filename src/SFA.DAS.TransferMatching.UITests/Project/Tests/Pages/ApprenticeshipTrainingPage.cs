@@ -75,7 +75,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             RetryAction();
 
-            VerifyElement(PanelEstimateSelector, "your apprenticeship training will cost:", RetryAction);
+            VerifyElement(PanelEstimateSelector, "Estimated cost of training will be", RetryAction);
         }
     }
 }

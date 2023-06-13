@@ -9,13 +9,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         
         protected override By PageHeader => By.Id("jsChgTitle");
         private By UKProviderReferenceNumberText => By.Id("Ukprn");
+        private By FirstOption => By.CssSelector("#Ukprn__option--0");
         protected override By ContinueButton => By.Id("Ukprn-button");
 
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage(ScenarioContext context) : base(context)  { }
 
         internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider(string ukprn)
         {
-            formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn);
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
             return new ConfirmTrainingProviderUnderPermissionsPage(context);
         }
