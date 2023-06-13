@@ -13,9 +13,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage, bool throwException)
         {
-            string screenshotPath, imageName;
-
-            (screenshotPath, imageName) = GetScreenShotDetails(screenshotsDirectory, scenarioTitle);
+            (string screenshotPath, string imageName) = GetScreenShotDetails(screenshotsDirectory, scenarioTitle);
 
             if (isFullpage) TakeFullPageScreenShot(webDriver, imageName, screenshotPath, throwException);
             else TakeNormalScreenShot(webDriver, imageName, screenshotPath, throwException);
@@ -50,12 +48,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 TestContext.Progress.WriteLine(GetMessage("Full", imageName, screenshotPath, exception));
 
-                TakeDesktopScreenShot(imageName, screenshotPath, throwException);
+                TakeNormalScreenShot(webDriver, imageName, screenshotPath, throwException);
             }
         }
 
-        private static void TakeDesktopScreenShot(string imageName, string screenshotPath, bool throwException)
+        public static void TakeDesktopScreenShot(string screenshotsDirectory, string scenarioTitle)
         {
+            (string screenshotPath, string imageName) = GetScreenShotDetails(screenshotsDirectory, scenarioTitle);
+
             try
             {
                 using var bitmap = new Bitmap(1920, 1080);
@@ -64,17 +64,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     g.CopyFromScreen(0, 0, 0, 0,
                     bitmap.Size, CopyPixelOperation.SourceCopy);
                 }
-                bitmap.Save("filename.jpg", ImageFormat.Jpeg);
+                bitmap.Save(screenshotPath, ImageFormat.Png);
+
+                AddTestAttachment(screenshotPath, imageName);
             }
             catch (Exception exception)
             {
-                var message = GetMessage("Desktop", imageName, screenshotPath, exception);
-
-                if (throwException) throw new Exception(message);
-
-                else TestContext.Progress.WriteLine(message);
+                throw new Exception(GetMessage("Desktop", imageName, screenshotPath, exception));
             }
-            
         }
 
         private static void TakeNormalScreenShot(IWebDriver webDriver, string imageName, string screenshotPath, bool throwException)

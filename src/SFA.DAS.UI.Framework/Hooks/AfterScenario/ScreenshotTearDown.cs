@@ -30,7 +30,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                 var webDriver = _context.GetWebDriver();
                 var directory = _objectContext.GetDirectory();
 
-                ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true, true);
+                ScreenshotHelper.TakeDesktopScreenShot(directory, scenarioTitle);
             });
         }
     }
