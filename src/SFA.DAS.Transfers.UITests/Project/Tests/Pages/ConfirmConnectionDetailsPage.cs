@@ -7,9 +7,9 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Confirm details";
 
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
-        private By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".selection-button-radio");
+        private By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".govuk-radios__label");
 
         public ConfirmConnectionDetailsPage(ScenarioContext context) : base(context) { }
 

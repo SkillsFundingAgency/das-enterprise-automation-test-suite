@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetRecentlyAddedOrganisationName() + " has been added";
 
-        protected override By PageHeader => By.CssSelector("h1");
+        protected override By PageHeader => By.CssSelector(".das-notification__heading");
 
         public OrganisationHasBeenAddedPage(ScenarioContext context) : base(context, false) { }
     }

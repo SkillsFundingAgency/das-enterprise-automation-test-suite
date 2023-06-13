@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
     public class RegisterInterestPage : CampaingnsVerifyLinks
     {
-        protected override string PageTitle => "Sign up to stay connected";
+        protected override string PageTitle => "Sign up to receive our employer skills newsletter";
 
         private By FirstNameField => By.Id("FirstName");
 

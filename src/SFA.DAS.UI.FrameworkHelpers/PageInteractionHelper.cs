@@ -8,6 +8,11 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
+    public static class ExceptionMessageHelper
+    {
+        public static string GetExceptionMessage(string x, string expected, string actual) => $"{x} verification failed:{Environment.NewLine}Expected: {expected} page {Environment.NewLine}Found: {actual} page";
+    }
+
     public class PageInteractionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
@@ -49,7 +54,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 if (actual.Any(x => x.Contains(expected)))
                 {
-                    SetDebugInformation($"Verifed page header - '{expected}'"); return true;
+                    SetDebugInformation($"Verified page - '{expected}'"); return true;
                 }
 
                 throw new Exception("Page verification failed:"
@@ -68,7 +73,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 if (expected.Any(x => actual.Contains(x)))
                 {
-                    SetDebugInformation($"Verifed page header - '{string.Join("/",expected)}'"); return true;
+                    SetDebugInformation($"Verified page - '{string.Join("/",expected)}'"); return true;
                 }
 
                 throw new Exception("Page verification failed:"
@@ -87,12 +92,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                 if (actual.Contains(expected))
                 {
-                    SetDebugInformation($"Verifed page header - '{expected}'"); return true;
+                    SetDebugInformation($"Verified page - '{expected}'"); return true;
                 }
 
-                throw new Exception("Page verification failed:"
-                + "\n Expected: " + expected + " page"
-                + "\n Found: " + actual + " page");
+                throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", expected, actual));
             }
 
             return VerifyPage(func, retryAction);
@@ -136,10 +139,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyText(actual, expected);
         }
 
-        public bool CheckText(By locator, string expected)
+        public (bool, string) CheckText(By locator, string expected)
         {
             var actual = GetText(locator);
-            return actual.Contains(expected);
+            return (actual.Contains(expected), actual);
         }
 
         public string GetTextFromElementsGroup(By locator)

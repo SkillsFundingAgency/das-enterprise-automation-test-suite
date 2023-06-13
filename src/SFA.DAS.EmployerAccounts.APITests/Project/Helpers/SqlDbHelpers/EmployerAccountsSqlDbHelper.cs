@@ -75,7 +75,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
         public string GetUserEmail()
         {
             return GetDataAsString("SELECT TOP 1 Email" +
-                " FROM [employer_account].[User] ORDER BY Id DESC");
+                " FROM [employer_account].[User] WHERE email NOT LIKE '%+%' ORDER BY Id DESC");
         }
     }
 }
