@@ -3,6 +3,8 @@ using OpenQA.Selenium;
 using Polly;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -46,10 +48,33 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             catch (Exception exception)
             {
-                TestContext.Progress.WriteLine($"Exception occurred while taking full screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
+                TestContext.Progress.WriteLine(GetMessage("Full", imageName, screenshotPath, exception));
 
-                TakeNormalScreenShot(webDriver, imageName, screenshotPath, throwException);
+                TakeDesktopScreenShot(imageName, screenshotPath, throwException);
             }
+        }
+
+        private static void TakeDesktopScreenShot(string imageName, string screenshotPath, bool throwException)
+        {
+            try
+            {
+                using var bitmap = new Bitmap(1920, 1080);
+                using (var g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(0, 0, 0, 0,
+                    bitmap.Size, CopyPixelOperation.SourceCopy);
+                }
+                bitmap.Save("filename.jpg", ImageFormat.Jpeg);
+            }
+            catch (Exception exception)
+            {
+                var message = GetMessage("Desktop", imageName, screenshotPath, exception);
+
+                if (throwException) throw new Exception(message);
+
+                else TestContext.Progress.WriteLine(message);
+            }
+            
         }
 
         private static void TakeNormalScreenShot(IWebDriver webDriver, string imageName, string screenshotPath, bool throwException)
@@ -63,12 +88,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             catch (Exception exception)
             {
-                var message = $"Exception occurred while taking screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception;
+                var message = GetMessage("Normal", imageName, screenshotPath, exception);
 
                 if (throwException) throw new Exception(message);
+
                 else TestContext.Progress.WriteLine(message);
             }
         }
+
+        private static string GetMessage(string x, string imageName, string screenshotPath, Exception exception) => $"Exception occurred while taking {x} screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception;
 
         private static void AddTestAttachment(string screenshotPath, string imageName) => TestContext.AddTestAttachment(screenshotPath, imageName);
 
