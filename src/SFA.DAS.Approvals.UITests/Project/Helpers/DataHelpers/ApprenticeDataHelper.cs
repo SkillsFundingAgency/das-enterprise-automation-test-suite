@@ -10,8 +10,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public class ApprenticeDataHelper
     {
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
+        
         private readonly ObjectContext _objectContext;
-        private readonly ApprenticePPIDataHelper _apprenticePPIDataHelper;
+
+        public readonly ApprenticePPIDataHelper apprenticePPIDataHelper;
 
         public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) 
             : this(apprenticePPIDataHelper, objectContext, commitmentsdataHelper, string.Empty) { }
@@ -19,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost)
         {
             _objectContext = objectContext;
-            _apprenticePPIDataHelper = apprenticePPIDataHelper;
+            this.apprenticePPIDataHelper = apprenticePPIDataHelper;
             _commitmentsdataHelper = commitmentsdataHelper;
             ApprenticeFirstname = apprenticePPIDataHelper.ApprenticeFirstname;
             ApprenticeLastname = apprenticePPIDataHelper.ApprenticeLastname;
@@ -38,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
 
-        public string ApprenticeEmail => _apprenticePPIDataHelper.ApprenticeEmail;
+        public string ApprenticeEmail => apprenticePPIDataHelper.ApprenticeEmail;
 
         public int DateOfBirthDay { get; set; }
 

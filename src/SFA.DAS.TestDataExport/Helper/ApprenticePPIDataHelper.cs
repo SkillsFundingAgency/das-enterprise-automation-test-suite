@@ -63,10 +63,14 @@ namespace SFA.DAS.TestDataExport.Helper
 
         public string ApprenticeLastname { get; set; }
 
+        public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
+
         public int DateOfBirthDay { get; set; }
 
         public int DateOfBirthMonth { get; set; }
 
         public int DateOfBirthYear { get; set; }
+
+        public DateTime ApprenticeDob => new(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
     }
 }

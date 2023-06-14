@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.API.Framework;
 using SFA.DAS.API.Framework.Configs;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
@@ -26,9 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var a = new ApprenticeCommitmentsDataHelper(_context.Get<ApprenticePPIDataHelper>());
-
-            _context.Set(a);
+            var a = _context.Get<ApprenticePPIDataHelper>();
 
             _objectContext.SetApprenticeDetail(a.ApprenticeFirstname, a.ApprenticeLastname, a.ApprenticeDob, a.ApprenticeEmail);
 

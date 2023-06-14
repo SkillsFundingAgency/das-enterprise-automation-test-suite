@@ -150,7 +150,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             foreach (var apprentice in apprenticeList)
             {
-                var actualStatus = providerManageYourApprenticesPage.SearchForApprentice(apprentice.ULN).GetStatus(apprentice.ULN);
+                var actualStatus = providerManageYourApprenticesPage.SearchForApprentice(apprentice.FullName).GetStatus(apprentice.ULN);
                 Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper() || actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
             }
 

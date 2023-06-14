@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
-            formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level");
+            formCompletionHelper.EnterText(TrainingCourseContainer, apprenticeCourseDataHelper.CourseDetails.Course.title);
             formCompletionHelper.ClickElement(StandardCourseOption);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
