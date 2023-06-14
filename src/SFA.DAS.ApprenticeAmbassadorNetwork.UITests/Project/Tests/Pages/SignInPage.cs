@@ -20,6 +20,19 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             Continue();
             return new BeforeYouStartPage(context);
         }
-
+        public AccessDeniedPage NonPrivateBetaUserDetails(string password)
+        {
+            formCompletionHelper.EnterText(EnterUsername, aanDataHelpers.Non_PrivatebetaApprenticeEmail);
+            formCompletionHelper.EnterText(EnterPassword, password);
+            Continue();
+            return new AccessDeniedPage(context);
+        }
+        public NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(string username, string password)
+        {
+            formCompletionHelper.EnterText(EnterUsername, username);
+            formCompletionHelper.EnterText(EnterPassword, password);
+            Continue();
+            return new NetworkHubPage(context);
+        }
     }
 }

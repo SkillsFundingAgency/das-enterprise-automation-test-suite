@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using System.Threading;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
@@ -16,13 +17,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static By FirstAddress => By.Id("SearchTerm__option--0");
 
         private static By PostCodeField = By.Id("SearchTerm");
+       
         public SearchEmployerNamePage(ScenarioContext context) : base(context) { }
 
         public EmployerDetailsPage EnterPostcodeAndContinue()
         {
             formCompletionHelper.EnterText(PostCodeField, aanDataHelpers.PostCode);
+            //pageInteractionHelper.WaitForElementToBeDisplayed(FirstAddress);
+            Thread.Sleep(TimeSpan.FromSeconds(5));
             formCompletionHelper.Click(FirstAddress);
             Continue();
+            return new EmployerDetailsPage(context);
+        }
+
+        public EmployerDetailsPage EnterAddressManually()
+        {
+            formCompletionHelper.ClickLinkByText("Enter address manually");
             return new EmployerDetailsPage(context);
         }
     }

@@ -5,6 +5,7 @@ global using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
@@ -35,6 +36,6 @@ public class AANHooks
     //[BeforeScenario(Order = 32)]
     //public void SetApprovedByRegulatorToNull()
     //{
-    //    if (_tags.Any(x => x == "aan")) _aANSqlDataHelper.ClearRegulation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
+    //    if (_tags.Any(x => x == "resetApprenticeOnboardignJourney")) _aANSqlDataHelper.ResetApprenticeOnboardingJourney(_dataHelper.ApprenticeEmail);
     //}
 }

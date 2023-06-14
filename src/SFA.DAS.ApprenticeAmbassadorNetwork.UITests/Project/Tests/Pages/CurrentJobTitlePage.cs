@@ -12,18 +12,24 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
     public class CurrentJobTitlePage : AanBasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => "What is your current job title?";
 
 
         private By CurrentJobTitle = By.Id("JobTitle");
 
         public CurrentJobTitlePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public ApprenticeshipRegionPage ConfirmJobtitleAndContinueButton()
+        public ApprenticeshipRegionPage ConfirmJobtitleAndContinue()
         {
             formCompletionHelper.EnterText(CurrentJobTitle, aanDataHelpers.JobTitle);
             Continue();
             return new ApprenticeshipRegionPage(context);
+        }
+        public CheckYourAnswersPage ChangeJobtitleAndContinue()
+        {
+            formCompletionHelper.EnterText(CurrentJobTitle, aanDataHelpers.NewJobTitle);
+            Continue();
+            return new CheckYourAnswersPage(context);
         }
     }
 }

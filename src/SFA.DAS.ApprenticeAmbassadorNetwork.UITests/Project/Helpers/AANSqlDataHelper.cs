@@ -4,7 +4,16 @@ public class AANSqlDataHelper : SqlDbHelper
 {
     public AANSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AANDbConnectionString) { }
 
-    public void ClearRegulation(string ukprn, string larsCode) => ExecuteSqlCommand($"update providercourse set IsApprovedByRegulator = NULL " +
-        $"where LarsCode = '{larsCode}' and providerid = (select Id from provider where ukprn = {ukprn})");
+    public void ResetApprenticeOnboardingJourney(string email) => ExecuteSqlCommand
+         ($"DECLARE @MemberId VARCHAR(36);" +
+         $"SELECT @MemberId = Id from Member where email = '{email}'" +
+         $"BEGIN TRANSACTION;" +
+         $"DELETE FROM EventGuest where CalendarEventId in (Select CalendarEventId from Apprentice WHERE MemberId = @MemberId);" +
+         $"DELETE FROM Apprentice WHERE MemberId = @MemberId;" +
+         $"DELETE FROM MemberProfile WHERE MemberId = @MemberId;" +
+         $"DELETE FROM Attendance WHERE MemberId = @MemberId;" +
+         $"DELETE FROM Notification WHERE MemberId = @MemberId;" +
+         $"DELETE FROM Member WHERE Id = @MemberId;" +
+         $"COMMIT;");
 
 }
