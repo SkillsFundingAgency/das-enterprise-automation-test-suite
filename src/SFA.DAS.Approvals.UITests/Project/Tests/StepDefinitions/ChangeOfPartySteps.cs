@@ -277,7 +277,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             else _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }

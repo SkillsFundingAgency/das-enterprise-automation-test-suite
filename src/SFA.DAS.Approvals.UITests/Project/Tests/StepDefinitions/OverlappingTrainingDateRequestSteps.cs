@@ -55,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
             var date = sixMonthsOldDateTime.ToString("01-MM-yyyy");
             _objectContext.SetStartDate(date);
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }
@@ -114,7 +114,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetStartDate(courseStartDate.ToString("dd-MM-yyyy", null));
             _objectContext.SetEndDate(courseEndDate.ToString("dd-MM-yyyy", null));
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }

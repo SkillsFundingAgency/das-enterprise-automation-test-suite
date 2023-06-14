@@ -12,7 +12,7 @@ public class RoatpV2SqlDataHelper : SqlDbHelper
 
     internal List<string> GetCoursesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT LarsCode FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
 
-    internal List<string> GetCoursesThatProviderDeosOffer(string ukprn) => GetCourses(ProviderCourseQuery(ukprn));
+    internal List<string> GetCoursesThatProviderDeosOffer(string ukprn) => GetCourses($"{ProviderCourseQuery(ukprn)} order by NEWID();");
     
     private List<string> GetCourses(string query) 
     {
@@ -23,5 +23,5 @@ public class RoatpV2SqlDataHelper : SqlDbHelper
         return data.ListOfArrayToList(0);
     }
 
-    private string ProviderCourseQuery(string ukprn) => $"SELECT LarsCode FROM [dbo].[ProviderCourse] WHERE ProviderId = (SELECT id FROM [Provider] WHERE ukprn = {ukprn}) order by NEWID();";
+    private string ProviderCourseQuery(string ukprn) => $"SELECT LarsCode FROM [dbo].[ProviderCourse] WHERE ProviderId = (SELECT id FROM [Provider] WHERE ukprn = {ukprn})";
 }

@@ -75,7 +75,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_LS_01_Limiting Standards In Edit Cohort Journey")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("limitingstandards")]
@@ -84,11 +83,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
-                    "limitingstandards",
-                    "ignore"};
+                    "limitingstandards"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_LS_01_Limiting Standards In Edit Cohort Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,11 +96,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 7
 testRunner.Given("Provider does not offer Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 8
 testRunner.And("Provider receives a cohort that contains Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+testRunner.When("provider opens the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -24,7 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By CohortApproveOptions => RadioLabels;
         private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
         private By FlashMessage => By.ClassName("govuk-panel__title");
-        private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
+        private static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
+
         private static By ApproveRadioButton => By.Id("radio-approve");
 
         public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
@@ -180,20 +181,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 formCompletionHelper.ClickElement(PireanPreprod);
         }
 
-        public string GetBannerHeading() => pageInteractionHelper.GetText(NotificationBannerHeading);
-
-        public ProviderApproveApprenticeDetailsPage ValidateProviderCannotApproveCohort()
+        public void ValidateProviderCannotApproveCohort()
         {
-            string bannerHeading = "is no longer on the Register of Flexi-Job Apprenticeship Agencies";
-
-            if (!pageInteractionHelper.IsElementDisplayed(NotificationBannerHeading))
+            if (!pageInteractionHelper.IsElementDisplayed(NotificationBanner))
                 throw new Exception("Notification banner is not displayed");
-            if (!GetBannerHeading().Contains(bannerHeading))
-                throw new Exception($"Expected: {bannerHeading} but actual was: {GetBannerHeading()}");
+
+            VerifyPage(NotificationBanner, "is no longer on the Register of Flexi-Job Apprenticeship Agencies");
+
             if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton))
                 throw new Exception("The approve radio button is displayed to the user");
-
-            return this;
         }
     }
 }

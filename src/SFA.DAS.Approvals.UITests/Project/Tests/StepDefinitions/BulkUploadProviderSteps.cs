@@ -58,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var secondOrganisationName = GetOrgName(employerUser.SecondOrganisationName);
             var thirdOrganisationName = GetOrgName(employerUser.ThirdOrganisationName);
 
-            _providerStepsHelper.NavigateToUploadCsvFilePage()
+            _providerStepsHelper.UsingFileUpload()
                 .CreateApprenticeshipsForAlreadyCreatedCohorts(numberOfApprentices)
                 .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, firstOrganisationName)
                 .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, secondOrganisationName)
