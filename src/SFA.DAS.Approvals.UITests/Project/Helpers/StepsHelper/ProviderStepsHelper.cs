@@ -178,8 +178,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             .UploadFile();
         }
 
-        public ProviderBulkUploadCsvFilePage UploadApprenticeRecordToValidate(List<BulkUploadApprenticeDetails> apprenticeDetails) => UsingFileUpload().CreateACsvFile(apprenticeDetails).UploadFile();
-
         public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference) => UsingFileUpload().CreateACsvFileWithCohortReference(cohortReference, 1).UploadFile();
 
         public ProviderBulkUploadCsvFilePage UsingFileUpload() => GoToProviderHomePage().GotoSelectJourneyPage().SelectBulkUpload().ContinueToUploadCsvFilePage();

@@ -10,6 +10,10 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using System;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -30,6 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage;
 
+        private (ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper) apprentice;
+
         public LimitingStandardsSteps(ScenarioContext context)
         {
             _context = context;
@@ -43,15 +49,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(context);
 
             _cohortReferenceHelper = new CohortReferenceHelper(context);
-
         }
 
         [Given(@"provider does not offer Standard-X")]
         public void GivenProviderDoesNotOfferStandard_X()
         {
-            var listOfApprentices = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
+            apprentice = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().FirstOrDefault();
 
-            var course = listOfApprentices.FirstOrDefault().Item2.CourseDetails;
+            var course = apprentice.apprenticeCourseDataHelper.CourseDetails;
 
             _objectContext.SetDebugInformation($"Provider deos not offer {course.Course.larsCode} - '{course.Course.title}' course ");
         }
@@ -81,7 +86,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"provider can not upload file using Standard-X")]
         public void ThenProviderCanNotUploadFileUsingStandard_X()
         {
-            _providerStepsHelper.UsingFileUpload();
+            var employerUser = _context.GetUser<EmployerWithMultipleAccountsUser>();
+
+            var employerName = string.Concat(employerUser.OrganisationName.AsSpan(0, 3), "%");
+
+            var agreementId = _context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+
+            apprentice = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().FirstOrDefault();
+
+            var apprenticeList = new List<BulkUploadApprenticeDetails>()
+            {
+                new BulkUploadApprenticeDetails(apprentice.apprenticeDataHelper, apprentice.apprenticeCourseDataHelper, agreementId)
+            };
+
+            _providerStepsHelper.UsingFileUpload().CreateACsvFile(apprenticeList).UploadFile();
+
+            new BulkCsvUploadValidateErrorMsghelper(_context).VerifyErrorMessage("Enter a valid standard code. You have not told us that you deliver this training course. You must assign the course to your account");
 
         }
 

@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
+﻿using Polly;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
+
+        private readonly BulkCsvUploadValidateErrorMsghelper bulkCsvUploadValidateErrorMsghelper;
         #endregion
 
         public BulkUploadProviderErrorMsgSteps(ScenarioContext context)
@@ -25,24 +28,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            bulkCsvUploadValidateErrorMsghelper = new BulkCsvUploadValidateErrorMsghelper(context);
         }
 
         [Then(@"Non Editable Cohorts error message is displayed")]
         public void ThenNonEditableCohortsErrorMessageIsDisplayed()
         {
-            VerifyErrorMessage("You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.");
+            bulkCsvUploadValidateErrorMsghelper.VerifyErrorMessage("You cannot add apprentices to this cohort, as it is with the employer. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.");
         }
 
         [Then(@"Transfer Sender Cohorts error message is displayed")]
         public void ThenTransferSenderCohortsErrorMessageIsDisplayed()
         {
-            VerifyErrorMessage("You cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.");
+            bulkCsvUploadValidateErrorMsghelper.VerifyErrorMessage("You cannot add apprentices to this cohort, as it is with the transfer sending employer. You need to add this learner to a different or new cohort.\r\nThis cohort is not empty. You need to add this learner to a different or new cohort.");
         }
 
         [Then(@"an error message is displayed")]
         public void ThenAnErrorMessageIsDisplayed()
         {
-            VerifyErrorMessage("You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.");
+            bulkCsvUploadValidateErrorMsghelper.VerifyErrorMessage("You cannot add apprentices to this cohort. You need to add this learner to a different or new cohort.This cohort is not empty. You need to add this learner to a different or new cohort.");
         }
 
         [When(@"Provider add an apprentice uses details from below to create bulkupload")]
@@ -99,25 +103,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
                 //upload
                 if (i == 1) // first time start from provider home page 
-                    _providerStepsHelper.UploadApprenticeRecordToValidate(ApprenticeList);
+                    _providerStepsHelper.UsingFileUpload().CreateACsvFile(ApprenticeList).UploadFile();
                 else // next time onwards upload directly from the error page              
                     new ProviderFileUploadValidationErrorsPage(_context).CreateACsvFile(ApprenticeList).UploadFile();
 
-                VerifyErrorMessage(item.ErrorMessage, item.Category);
+                new BulkCsvUploadValidateErrorMsghelper(_context).VerifyErrorMessage(item.ErrorMessage, item.Category);
             }
-        }
-
-        private ProviderFileUploadValidationErrorsPage VerifyErrorMessage(string expectedMessage, string title = null)
-        {
-            expectedMessage = expectedMessage.RemoveSpace();
-
-            string actualMessage = new ProviderFileUploadValidationErrorsPage(_context).GetErrorMessage();
-
-            int index = expectedMessage.Length < 80 ? expectedMessage.Length : 80;
-
-            StringAssert.Contains(expectedMessage.Substring(0, index), actualMessage, string.IsNullOrEmpty(title) ? string.Empty : $"Scenario : {title}");
-
-            return new ProviderFileUploadValidationErrorsPage(_context);
         }
     }
 }
