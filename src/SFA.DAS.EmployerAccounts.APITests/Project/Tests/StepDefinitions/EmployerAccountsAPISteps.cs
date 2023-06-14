@@ -52,7 +52,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             var payeschemeRef = _objectContext.GetPayeSchemeRefId();
             var encodepayeschemeRef = HttpUtility.UrlEncode(payeschemeRef);
             var doubleEncodeencodepayeschemeRef = HttpUtility.UrlEncode(encodepayeschemeRef);            
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/{doubleEncodeencodepayeschemeRef}", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/scheme?payeSchemeRef={doubleEncodeencodepayeschemeRef}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts can be accessed")]
