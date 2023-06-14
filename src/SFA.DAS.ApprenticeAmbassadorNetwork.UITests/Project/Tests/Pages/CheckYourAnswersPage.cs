@@ -30,15 +30,15 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(ChangelinkJobtitle);
             return new CurrentJobTitlePage(context);
         }
-        public ApprenticeshipRegionPage AccessChangeCurrentRegionAndContinue()
+        public RegionsPage AccessChangeCurrentRegionAndContinue()
         {
             formCompletionHelper.ClickElement(ChangelinkRegions);
-            return new ApprenticeshipRegionPage(context);
+            return new RegionsPage(context);
         }
-        public AreasOfInterestPagePage AccessChangeCurrentAreasOfInterestAndContinue()
+        public AreasOfInterestPage AccessChangeCurrentAreasOfInterestAndContinue()
         {
             formCompletionHelper.ClickElement(ChangelinkAreasOfInterest);
-            return new AreasOfInterestPagePage(context);
+            return new AreasOfInterestPage(context);
         }
         public EngagedWithAmbassadorPage AccessChangePreviousEngagementToNoAndContinue()
         {

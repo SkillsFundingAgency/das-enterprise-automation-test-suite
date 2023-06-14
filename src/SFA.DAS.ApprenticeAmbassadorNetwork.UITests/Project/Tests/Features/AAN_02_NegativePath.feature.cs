@@ -77,14 +77,14 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("User details are not in Staged Apprentice Record")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aan05")]
-        [NUnit.Framework.CategoryAttribute("resetApprenticeOnboardignJourney")]
+        [NUnit.Framework.CategoryAttribute("aanResetApprenticeOnboardignJourney")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void UserDetailsAreNotInStagedApprenticeRecord()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aan05",
-                    "resetApprenticeOnboardignJourney",
+                    "aanResetApprenticeOnboardignJourney",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User details are not in Staged Apprentice Record", null, tagsOfScenario, argumentsOfScenario, featureTags);

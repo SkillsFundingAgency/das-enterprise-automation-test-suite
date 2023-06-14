@@ -78,14 +78,14 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
             " the Hub page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aan01")]
-        [NUnit.Framework.CategoryAttribute("resetApprenticeOnboardignJourney")]
+        [NUnit.Framework.CategoryAttribute("aanResetApprenticeOnboardignJourney")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN01AUserSuccessfullyCompletesTheApprenticeOnboardingProcessAndVerifiesTheHubPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aan01",
-                    "resetApprenticeOnboardignJourney",
+                    "aanResetApprenticeOnboardignJourney",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01A User successfully completes the Apprentice onboarding process and verifies" +
@@ -120,14 +120,14 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("AAN01B User without manager permission encounters a shutter page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aan02")]
-        [NUnit.Framework.CategoryAttribute("resetApprenticeOnboardignJourney")]
+        [NUnit.Framework.CategoryAttribute("aanResetApprenticeOnboardignJourney")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN01BUserWithoutManagerPermissionEncountersAShutterPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aan02",
-                    "resetApprenticeOnboardignJourney",
+                    "aanResetApprenticeOnboardignJourney",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01B User without manager permission encounters a shutter page", null, tagsOfScenario, argumentsOfScenario, featureTags);
@@ -159,14 +159,14 @@ this.ScenarioInitialize(scenarioInfo);
             " Your Answer\" page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aan03")]
-        [NUnit.Framework.CategoryAttribute("resetApprenticeOnboardignJourney")]
+        [NUnit.Framework.CategoryAttribute("aanResetApprenticeOnboardignJourney")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN01CUserCompletesAllOnboardingDetailsAndCanModifyAnswersOnTheCheckYourAnswerPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aan03",
-                    "resetApprenticeOnboardignJourney",
+                    "aanResetApprenticeOnboardignJourney",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01C User completes all onboarding details and can modify answers on the \"Check" +
@@ -205,14 +205,14 @@ this.ScenarioInitialize(scenarioInfo);
             "ing in")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aan04")]
-        [NUnit.Framework.CategoryAttribute("resetApprenticeOnboardignJourney")]
+        [NUnit.Framework.CategoryAttribute("aanResetApprenticeOnboardignJourney")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN01DUserCompletesOnboardingProcessAndLandsOnTheAANHubPageAfterSigningIn()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aan04",
-                    "resetApprenticeOnboardignJourney",
+                    "aanResetApprenticeOnboardignJourney",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01D User completes onboarding process and lands on the AAN Hub page after sign" +

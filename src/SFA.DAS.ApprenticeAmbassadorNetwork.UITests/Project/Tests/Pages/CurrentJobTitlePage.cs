@@ -19,11 +19,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public CurrentJobTitlePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public ApprenticeshipRegionPage ConfirmJobtitleAndContinue()
+        public RegionsPage ConfirmJobtitleAndContinue()
         {
             formCompletionHelper.EnterText(CurrentJobTitle, aanDataHelpers.JobTitle);
             Continue();
-            return new ApprenticeshipRegionPage(context);
+            return new RegionsPage(context);
         }
         public CheckYourAnswersPage ChangeJobtitleAndContinue()
         {
