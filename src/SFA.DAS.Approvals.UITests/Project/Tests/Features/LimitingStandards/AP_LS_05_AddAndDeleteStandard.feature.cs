@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_LS_01_Limiting Standards Add and delete Standard")]
+        [NUnit.Framework.DescriptionAttribute("AP_LS_05_Limiting Standards Add and delete Standard")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("limitingstandards")]
-        public void AP_LS_01_LimitingStandardsAddAndDeleteStandard()
+        public void AP_LS_05_LimitingStandardsAddAndDeleteStandard()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
                     "limitingstandards"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_LS_01_Limiting Standards Add and delete Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_LS_05_Limiting Standards Add and delete Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

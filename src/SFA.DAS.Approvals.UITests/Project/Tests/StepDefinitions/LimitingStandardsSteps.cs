@@ -31,6 +31,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ProviderStepsHelper _providerStepsHelper;
 
+        private readonly ProviderAddStandardStepsHelper _providerAddStandardStepsHelper;
+
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
         private readonly CohortReferenceHelper _cohortReferenceHelper;
@@ -53,6 +55,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerStepsHelper = new ProviderStepsHelper(context);
 
+            _providerAddStandardStepsHelper = new ProviderAddStandardStepsHelper(context);
+
             _cohortReferenceHelper = new CohortReferenceHelper(context);
         }
 
@@ -69,7 +73,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the provider can add and delete Standard-X")]
         public void GivenTheProviderCanAddAndDeleteStandard_X()
         {
-            throw new PendingStepException();
+            var page = _providerAddStandardStepsHelper.GoToManageStandardPage();
+
+            _providerAddStandardStepsHelper.AddStandard(page, false);
+
+
         }
 
 

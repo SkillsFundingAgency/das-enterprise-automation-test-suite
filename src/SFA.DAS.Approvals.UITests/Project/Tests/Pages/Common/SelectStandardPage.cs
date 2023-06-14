@@ -23,11 +23,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public SelectStandardPage(ScenarioContext context) : base(context) { }
 
         //this method is used to add test data (standard) to the provider. Should not be used in the regression tests
-        public ProviderAddStandardGenericPage AddStandard()
+        public ProviderAddStandardGenericPage AddFirstStandard()
         {
             formCompletionHelper.Click(AddStandardsDDL);
             formCompletionHelper.Click(FirstItemInTheList);
             Continue();
+            return new ProviderAddStandardGenericPage(context);
+        }
+
+        public ProviderAddStandardGenericPage AddStandard()
+        {
+            SelectStandardAndContinue();
+
             return new ProviderAddStandardGenericPage(context);
         }
 
