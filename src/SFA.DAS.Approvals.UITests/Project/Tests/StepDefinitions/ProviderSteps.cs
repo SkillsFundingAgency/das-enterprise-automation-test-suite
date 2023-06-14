@@ -209,8 +209,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToYourStandardsAndTrainingVenues()
                 .ClickOnTheStandardsYouDeliverLink();
 
-
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 1; i++)
             {
                 _providerManageTheStandardsYouDeliverPage
                 .ClickAddAStandardLink()

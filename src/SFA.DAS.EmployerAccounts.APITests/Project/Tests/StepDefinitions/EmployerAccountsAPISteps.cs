@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,13 +47,13 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/\{payeSchemeRef} can be accessed")]
+        [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/scheme?ref=\{payeSchemeRef} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesPayeSchemeRefCanBeAccessed()
         {           
             var hashedAccountId = _objectContext.GetHashedAccountId();
             var payeschemeRef = _objectContext.GetPayeSchemeRefId();
-            var encodepayeschemeRef = HttpUtility.UrlEncode(payeschemeRef);
-            var doubleEncodeencodepayeschemeRef = HttpUtility.UrlEncode(encodepayeschemeRef);            
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/scheme?payeSchemeRef={doubleEncodeencodepayeschemeRef}", HttpStatusCode.OK);
+            var encodepayeschemeRef = Uri.EscapeDataString(payeschemeRef);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/scheme?ref={encodepayeschemeRef}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts can be accessed")]

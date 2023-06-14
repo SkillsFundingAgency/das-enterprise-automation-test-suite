@@ -7,7 +7,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Which employer are you connecting with?";
 
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.XPath("//button[text()='Continue']");
         private By ReceivingEmployer => By.Id("ReceiverAccountPublicHashedId");
 
         public WhichEmployerAreYouConnectingWithPage(ScenarioContext context) : base(context) { }

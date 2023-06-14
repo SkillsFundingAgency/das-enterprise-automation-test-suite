@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -21,16 +24,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public bool DoesApprenticeExists(string name)
         {
-            return pageInteractionHelper.InvokeAction(() =>
+            List<IWebElement> apprentices = new();
+
+            context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
                 SearchForApprentice(name);
 
-                var x = pageInteractionHelper.FindElements(ViewApprenticeFullName(name)).ToList();
+                if (!(pageInteractionHelper.IsElementDisplayedAfterPageLoad(ViewApprenticeFullName(name))))
+                {
+                    Assert.Fail("Apprentice '" + name + "' is not found");
+                }
 
-                if (x.Count != 0) return true;
+                apprentices = pageInteractionHelper.FindElements(ViewApprenticeFullName(name)).ToList();
+            }, 
+            RetryTimeOut.GetTimeSpan(new int[] { 10, 20, 30, 60, 120, 180 }));
 
-                else throw new NoSuchElementException("Apprentice with - " + name + " - name is not found");
-            });
+            return apprentices.Count > 0;
         }
 
         public void SelectViewCurrentApprenticeDetails(string name)

@@ -37,7 +37,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     logging.Report(retryCount, exception, _title, retryAction);
+                     logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                      retryAction?.Invoke();
                  })
                  .Execute(() =>
@@ -58,7 +58,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<Exception>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    logging.Report(retryCount, exception, _title);
+                    logging.Report(retryCount, timeSpan, exception, _title);
                 })
                .Execute(() =>
                {
@@ -77,7 +77,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>((ex) => !ex.Message.ContainsCompareCaseInsensitive("The HTTP request to the remote WebDriver server for URL"))
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    logging.Report(retryCount, exception, _title, retryAction);
+                    logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                .Execute(() =>
@@ -97,7 +97,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    logging.Report(retryCount, exception, _title, retryAction);
+                    logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -118,7 +118,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    logging.Report(retryCount, exception, _title, retryAction);
+                    logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -142,7 +142,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     logging.Report(retryCount, exception, _title, beforeAction);
+                     logging.Report(retryCount, timeSpan, exception, _title, beforeAction);
 
                      switch (true)
                      {
