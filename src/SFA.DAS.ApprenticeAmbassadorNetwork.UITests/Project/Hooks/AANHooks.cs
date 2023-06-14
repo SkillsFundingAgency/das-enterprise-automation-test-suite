@@ -17,7 +17,6 @@ public class AANHooks
     private AANDataHelpers _dataHelper;
     protected readonly DbConfig _dbConfig;
     private readonly ScenarioContext _context;
-    private readonly AANConfig _config;
 
     public AANHooks(ScenarioContext context)
     {
