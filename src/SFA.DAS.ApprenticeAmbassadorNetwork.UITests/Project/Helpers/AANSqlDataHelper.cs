@@ -5,7 +5,7 @@ public class AANSqlDataHelper : SqlDbHelper
     public AANSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AANDbConnectionString) { }
 
     public void ResetApprenticeOnboardingJourney(string email) => ExecuteSqlCommand
-         ($"IF EXISTS(select * from Member where email = '{email}'" +
+         ($"IF EXISTS(select * from Member where email = '{email}')" +
          $" BEGIN " +
          $"DECLARE @MemberId VARCHAR(36);" +
          $"SELECT @MemberId = Id from Member where email = '{email}'" +
