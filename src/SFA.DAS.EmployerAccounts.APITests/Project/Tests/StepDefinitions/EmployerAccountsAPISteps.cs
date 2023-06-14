@@ -53,7 +53,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             var hashedAccountId = _objectContext.GetHashedAccountId();
             var payeschemeRef = _objectContext.GetPayeSchemeRefId();
             var encodepayeschemeRef = Uri.EscapeDataString(payeschemeRef);
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/scheme?ref={encodepayeschemeRef}", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/scheme?payeSchemeRef={encodepayeschemeRef}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts can be accessed")]
