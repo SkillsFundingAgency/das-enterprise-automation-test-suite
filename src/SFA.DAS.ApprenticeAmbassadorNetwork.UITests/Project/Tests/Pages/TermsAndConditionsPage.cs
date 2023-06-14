@@ -8,23 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+
+public class TermsAndConditionsPage : AanBasePage
 {
-    public class TermsAndConditionsPage : AanBasePage
+    protected override string PageTitle => "Terms and Conditions";
+
+    private By ConfirmAndContinueButton => By.Id("confirm-and-continue");
+
+    public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public RequiresLineManagerApprovalPage AcceptTermsAndConditions()
     {
-        protected override string PageTitle => "Terms and Conditions";
-
-        private By ConfirmAndContinueButton => By.Id("confirm-and-continue");
-
-        public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public RequiresLineManagerApprovalPage AcceptTermsAndConditions()
-        {
-            formCompletionHelper.Click(ConfirmAndContinueButton);
-            return new RequiresLineManagerApprovalPage(context);
-        }
+        formCompletionHelper.Click(ConfirmAndContinueButton);
+        return new RequiresLineManagerApprovalPage(context);
     }
 }
 
-        
+    
 
