@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_LS_01_LimitingStandardsInEditCohortJourney")]
-    public partial class AP_LS_01_LimitingStandardsInEditCohortJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("AP_LS_02_LimitingStandardsInCreateCohort")]
+    public partial class AP_LS_02_LimitingStandardsInCreateCohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_LS_01_LimitingStandardsInEditCohortJourney.feature"
+#line 1 "AP_LS_02_LimitingStandardsInCreateCohort.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/LimitingStandards", "AP_LS_01_LimitingStandardsInEditCohortJourney", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/LimitingStandards", "AP_LS_02_LimitingStandardsInCreateCohort", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_LS_01_Limiting Standards In Edit Cohort Journey")]
+        [NUnit.Framework.DescriptionAttribute("AP_LS_02_Limiting Standards In Create Cohort")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("limitingstandards")]
-        public void AP_LS_01_LimitingStandardsInEditCohortJourney()
+        public void AP_LS_02_LimitingStandardsInCreateCohort()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
                     "limitingstandards"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_LS_01_Limiting Standards In Edit Cohort Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_LS_02_Limiting Standards In Create Cohort", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,16 +97,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-testRunner.Given("Provider does not offer Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("provider does not offer Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-testRunner.And("Provider receives a apprentice request that contains Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("provider should not see Standard-X in add apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
-testRunner.When("provider opens apprentice requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
-testRunner.Then("Provider see warning messages about limiting standards", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("provider can not upload file using Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

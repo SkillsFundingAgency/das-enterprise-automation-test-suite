@@ -46,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         }
 
-        [Given(@"Provider does not offer Standard-X")]
+        [Given(@"provider does not offer Standard-X")]
         public void GivenProviderDoesNotOfferStandard_X()
         {
             var listOfApprentices = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetDebugInformation($"Provider deos not offer {course.Course.larsCode} - '{course.Course.title}' course ");
         }
 
-        [Given(@"Provider receives a apprentice request that contains Standard-X")]
+        [Given(@"provider receives a apprentice request that contains Standard-X")]
         public void GivenProviderReceivesAApprenticeRequestThatContainsStandard_X()
         {
             _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
@@ -69,12 +69,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider opens apprentice requests")]
         public void WhenProviderOpensApprenticeRequests() => providerApproveApprenticeDetailsPage = _providerStepsHelper.ViewCurrentCohortDetails();
 
-        [Then(@"Provider see warning messages about limiting standards")]
-        public void ThenProviderSeeWarningMessagesAboutLimitingStandards()
+        [Then(@"provider see warning messages about limiting standards")]
+        public void ThenProviderSeeWarningMessagesAboutLimitingStandards() => providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();
+
+        [Then(@"provider should not see Standard-X in add apprentice details page")]
+        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage()
         {
-            providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();
+            _providerStepsHelper.ChooseALevyEmployer().ConfirmEmployer().AssertStandardIsNotAvailable();
         }
 
+        [Then(@"provider can not upload file using Standard-X")]
+        public void ThenProviderCanNotUploadFileUsingStandard_X()
+        {
+            _providerStepsHelper.UsingFileUpload();
+
+        }
 
     }
 }

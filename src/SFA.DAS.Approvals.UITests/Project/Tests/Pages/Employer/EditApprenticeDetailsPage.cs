@@ -45,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
+        protected void EditCourse() => ClickEditCourseLink().EmployerSelectsAnotherCourse();
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {

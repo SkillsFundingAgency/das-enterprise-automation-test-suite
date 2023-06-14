@@ -46,10 +46,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider add an apprentice uses details from below to create bulkupload")]
-        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table) => ValidateApprenticeRecord(table.CreateSet<MapApprenticeDetails>());
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateBulkupload(Table table) => ValidateApprenticeRecord(table);
 
-        public void ValidateApprenticeRecord(IEnumerable<MapApprenticeDetails> apprenticeRecords)
+        public void ValidateApprenticeRecord(Table table)
         {
+            var apprenticeRecords = table.CreateSet<MapApprenticeDetails>();
+
             var apprenticeCourseDataHelper = _context.Get<ApprenticeCourseDataHelper>();
 
             var cohortRef = _objectContext.GetCohortReference();
@@ -65,21 +67,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             foreach (var item in apprenticeRecords)
             {
                 i++;
-                var ApprenticeList = new List<ApprenticeDetails>();
+                var ApprenticeList = new List<BulkUploadApprenticeDetails>();
 
-                var result = new ApprenticeDetails(courseCode.ToString())
+                var result = new BulkUploadApprenticeDetails(courseCode, agreementId, datahelper.ApprenticeDob, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
                 {
                     CohortRef = cohortRef,
                     ULN = datahelper.Uln(),
                     FamilyName = datahelper.ApprenticeLastname,
                     GivenNames = datahelper.ApprenticeFirstname,
-                    DateOfBirth = datahelper.ApprenticeDob.ToString("yyyy-MM-dd"),
-                    StartDate = apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
-                    EndDate = apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM"),
                     TotalPrice = datahelper.TrainingCost,
                     ProviderRef = datahelper.EmployerReference,
-                    EmailAddress = datahelper.ApprenticeEmail,
-                    AgreementId = agreementId
+                    EmailAddress = datahelper.ApprenticeEmail
                 };
 
                 static bool IsNotValid(string x) => x != "valid";

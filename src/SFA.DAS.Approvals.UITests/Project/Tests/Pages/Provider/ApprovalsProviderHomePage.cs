@@ -31,13 +31,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetailsEntryMothod GotoSelectJourneyPage()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAddApprenticeDetailsEntryMothod(context);
         }
 
         public ProviderAccessDeniedPage GotoSelectJourneyPageGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -67,7 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -82,5 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickLinkByText("Your standards and training venues");
             return new ProviderYourStandardsAndTrainingVenuesPage(context);
         }
+
+        private void AddNewApprentices() => formCompletionHelper.ClickElement(AddNewApprenticesLink);
     }
 }

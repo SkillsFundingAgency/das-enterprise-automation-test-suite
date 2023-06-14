@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
 
-            List<ApprenticeDetails> ApprenticeList = new List<ApprenticeDetails>();
+            List<BulkUploadApprenticeDetails> ApprenticeList = new List<BulkUploadApprenticeDetails>();
             
             for (int i = 0; i < numberOfApprentices; i++) ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
 
@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        private ApprenticeDetails SetApprenticeDetails(int courseCode, bool isNonLevy = false)
+        private BulkUploadApprenticeDetails SetApprenticeDetails(int courseCode, bool isNonLevy = false)
         {
             var employerUser = context.GetUser<LevyUser>();
             var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 endDate = DateTime.UtcNow.AddYears(1);
             }
             
-            return new ApprenticeDetails(courseCode, dateOfBirth, startDate, endDate)
+            return new BulkUploadApprenticeDetails(courseCode, agreementId, dateOfBirth, startDate, endDate)
             {
                 CohortRef = objectContext.GetCohortReference(),
                 ULN = apprenticeDataHelper.Uln(),
@@ -68,8 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 GivenNames = apprenticeDataHelper.ApprenticeFirstname,
                 TotalPrice = apprenticeDataHelper.TrainingCost,
                 ProviderRef = apprenticeDataHelper.EmployerReference,
-                EmailAddress = emailAddress,
-                AgreementId = agreementId
+                EmailAddress = emailAddress
             };
         }
     }
