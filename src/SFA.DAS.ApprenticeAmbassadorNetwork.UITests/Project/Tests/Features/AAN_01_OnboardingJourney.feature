@@ -2,7 +2,7 @@
 
 @aan
 @aan01
-@aanResetApprenticeOnboardignJourney
+@aanreset
 @regression
 Scenario: AAN01A User successfully completes the Apprentice onboarding process and verifies the Hub page
 	Given the provider logs into AAN portal
@@ -13,7 +13,7 @@ Scenario: AAN01A User successfully completes the Apprentice onboarding process a
 
 @aan
 @aan02
-@aanResetApprenticeOnboardignJourney
+@aanreset
 @regression
 Scenario:AAN01B User without manager permission encounters a shutter page
     Given the provider logs into AAN portal
@@ -22,7 +22,7 @@ Scenario:AAN01B User without manager permission encounters a shutter page
 
 @aan
 @aan03
-@aanResetApprenticeOnboardignJourney
+@aanreset
 @regression
 Scenario:AAN01C User completes all onboarding details and can modify answers on the "Check Your Answer" page
 	Given the provider logs into AAN portal
@@ -33,7 +33,7 @@ Scenario:AAN01C User completes all onboarding details and can modify answers on 
 
 @aan
 @aan04
-@aanResetApprenticeOnboardignJourney
+@aanreset
 @regression
 Scenario:AAN01D User completes onboarding process and lands on the AAN Hub page after signing in
     Given the provider logs into AAN portal

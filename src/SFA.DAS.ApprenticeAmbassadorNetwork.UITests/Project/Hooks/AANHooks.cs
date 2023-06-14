@@ -36,6 +36,6 @@ public class AANHooks
     [BeforeScenario(Order = 32)]
     public void SetApprovedByRegulatorToNull()
     {
-        if (_tags.Any(x => x == "aanResetApprenticeOnboardignJourney")) _aANSqlDataHelper.ResetApprenticeOnboardingJourney(_dataHelper.ApprenticeEmail);
+        if (_tags.Any(x => x == "aanreset")) _aANSqlDataHelper.ResetApprenticeOnboardingJourney(_dataHelper.ApprenticeEmail);
     }
 }
