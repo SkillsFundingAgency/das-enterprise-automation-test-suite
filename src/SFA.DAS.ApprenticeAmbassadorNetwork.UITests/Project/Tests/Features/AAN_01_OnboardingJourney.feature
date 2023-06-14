@@ -40,4 +40,4 @@ Scenario:AAN01D User completes onboarding process and lands on the AAN Hub page 
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
     When the user signs back in to the AAN platform
-    Then the user should be redirected to the AAN Hub page
+    Then the user should land on AAN Hub page

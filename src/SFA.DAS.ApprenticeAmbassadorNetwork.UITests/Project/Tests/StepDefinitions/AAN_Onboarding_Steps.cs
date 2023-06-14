@@ -16,6 +16,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         {
             this.context = context;
             config = context.GetAANConfig<AANConfig>();
+           _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
         [Given(@"the provider logs into AAN portal")]
@@ -101,6 +102,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         {
             _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_BaseUrl, "AANbaseurl");
             new SignInPage(context).SubmitUserDetails_OnboardingJourneyComplete(config.AANUserName, config.AANPassword);
+        }
+        [Then(@"the user should land on AAN Hub page")]
+        public void ThenUserShouldLandOnAANHubPage()
+        {
+
         }
     }
 }

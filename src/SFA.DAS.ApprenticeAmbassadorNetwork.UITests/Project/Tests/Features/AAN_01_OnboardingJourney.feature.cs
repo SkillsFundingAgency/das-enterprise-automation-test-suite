@@ -240,7 +240,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.When("the user signs back in to the AAN platform", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 43
-    testRunner.Then("the user should be redirected to the AAN Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the user should land on AAN Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
