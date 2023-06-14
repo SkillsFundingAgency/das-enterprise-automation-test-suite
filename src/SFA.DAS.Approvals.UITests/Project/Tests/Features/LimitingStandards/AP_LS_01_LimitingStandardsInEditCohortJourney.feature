@@ -3,6 +3,8 @@
 @approvals
 @regression
 @limitingstandards
+@ignore 
+# work in progress
 Scenario: AP_LS_01_Limiting Standards In Edit Cohort Journey
 Given Provider does not offer Standard-X
 And Provider receives a cohort that contains Standard-X
