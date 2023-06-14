@@ -7,6 +7,8 @@ public class AANSqlDataHelper : SqlDbHelper
     public void ResetApprenticeOnboardingJourney(string email) => ExecuteSqlCommand
          ($"DECLARE @MemberId VARCHAR(36);" +
          $"SELECT @MemberId = Id from Member where email = '{email}'" +
+         $"IF EXISTS(select * from Member where email = 'Sudhakar.chinoor+AANHUB@digital.education.gov.uk')" +
+         $" BEGIN " +
          $"BEGIN TRANSACTION;" +
          $"DELETE FROM EventGuest where CalendarEventId in (Select CalendarEventId from Apprentice WHERE MemberId = @MemberId);" +
          $"DELETE FROM Apprentice WHERE MemberId = @MemberId;" +
@@ -14,6 +16,7 @@ public class AANSqlDataHelper : SqlDbHelper
          $"DELETE FROM Attendance WHERE MemberId = @MemberId;" +
          $"DELETE FROM Notification WHERE MemberId = @MemberId;" +
          $"DELETE FROM Member WHERE Id = @MemberId;" +
-         $"COMMIT;");
+         $"COMMIT;"+
+         $" END ");
 
 }

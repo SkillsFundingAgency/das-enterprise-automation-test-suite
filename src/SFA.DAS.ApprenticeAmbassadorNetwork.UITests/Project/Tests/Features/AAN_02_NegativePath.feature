@@ -2,7 +2,7 @@
 
 @aan
 @aan05
-@resetApprenticeOnboardignJourney
+@aanResetApprenticeOnboardignJourney
 @regression
   Scenario: User details are not in Staged Apprentice Record
    	Given the non Private beta provider logs into AAN portal

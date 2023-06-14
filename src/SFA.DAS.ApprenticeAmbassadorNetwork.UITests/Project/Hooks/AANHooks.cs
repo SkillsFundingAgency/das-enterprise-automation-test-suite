@@ -17,6 +17,7 @@ public class AANHooks
     private AANDataHelpers _dataHelper;
     protected readonly DbConfig _dbConfig;
     private readonly ScenarioContext _context;
+    private readonly AANConfig _config;
 
     public AANHooks(ScenarioContext context)
     {
@@ -33,9 +34,9 @@ public class AANHooks
         _context.Set(_dataHelper = new AANDataHelpers());
     }
 
-    //[BeforeScenario(Order = 32)]
-    //public void SetApprovedByRegulatorToNull()
-    //{
-    //    if (_tags.Any(x => x == "resetApprenticeOnboardignJourney")) _aANSqlDataHelper.ResetApprenticeOnboardingJourney(_dataHelper.ApprenticeEmail);
-    //}
+    [BeforeScenario(Order = 32)]
+    public void SetApprovedByRegulatorToNull()
+    {
+        if (_tags.Any(x => x == "aanResetApprenticeOnboardignJourney")) _aANSqlDataHelper.ResetApprenticeOnboardingJourney(_dataHelper.ApprenticeEmail);
+    }
 }
