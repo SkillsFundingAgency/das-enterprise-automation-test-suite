@@ -14,10 +14,13 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using System;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
+using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
+using Polly;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
-    [Binding, Scope(Tag = "limitingstandards")]
+    [Binding]
     public class LimitingStandardsSteps
     {
         private readonly ScenarioContext _context;
@@ -62,13 +65,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"provider receives a apprentice request that contains Standard-X")]
-        public void GivenProviderReceivesAApprenticeRequestThatContainsStandard_X()
+        public void GivenProviderReceivesAApprenticeRequestThatContainsStandard_X() => EmployerApproveAndSendToProvider();
+        
+        [Given(@"employer edits an apprentice with Standard-X post approval")]
+        public void GivenEmployerEditsAnApprenticeWithStandard_XPostApproval()
         {
-            _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
+            EmployerApproveAndSendToProvider();
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
+            _providerStepsHelper.Approve();
 
-            _cohortReferenceHelper.SetCohortReference(cohortReference);
+            var larsCode = _context.Get<RoatpV2SqlDataHelper>().GetCoursesthatProviderDeosNotOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+
+            var randomLarsCode = RandomDataGenerator.GetRandomElementFromListOfElements(larsCode);
+
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval().EditCourse(randomLarsCode).AcceptChangesAndSubmit();
+
         }
 
         [When(@"provider opens apprentice requests")]
@@ -103,6 +114,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             new BulkCsvUploadValidateErrorMsghelper(_context).VerifyErrorMessage("Enter a valid standard code. You have not told us that you deliver this training course. You must assign the course to your account");
 
+        }
+
+        private void EmployerApproveAndSendToProvider()
+        {
+            _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
+
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
+
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
 
     }

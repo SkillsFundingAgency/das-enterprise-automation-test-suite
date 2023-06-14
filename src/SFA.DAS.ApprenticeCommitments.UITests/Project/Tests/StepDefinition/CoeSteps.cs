@@ -39,6 +39,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _multipleAccountsLoginHelper.Login(_changeOfEmployerLevyUser, true);
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
+
             _cohortReferenceHelper.SetCohortReference(cohortReference);
 
             _providerStepsHelper.Approve();

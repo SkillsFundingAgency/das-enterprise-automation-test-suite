@@ -70,13 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse()
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string LarsCode)
         {
-            SelectStandardAndContinue(apprenticeCourseDataHelper.OtherCourseLarsCode);
+            SelectStandardAndContinue(LarsCode);
 
             return new EditApprenticeDetailsPage(context);
         }
 
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseLarsCode);
+        
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
             SelectStandardAndContinue();

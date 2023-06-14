@@ -1,4 +1,4 @@
-﻿Feature: AP_LS_03_LimitingStandardsInBulkUpload
+﻿Feature: AP_LS_03_BulkUpload
 
 @approvals
 @regression

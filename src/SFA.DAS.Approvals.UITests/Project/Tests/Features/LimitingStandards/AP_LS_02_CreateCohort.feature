@@ -1,4 +1,4 @@
-﻿Feature: AP_LS_02_LimitingStandardsInCreateCohort
+﻿Feature: AP_LS_02_CreateCohort
 
 @approvals
 @regression

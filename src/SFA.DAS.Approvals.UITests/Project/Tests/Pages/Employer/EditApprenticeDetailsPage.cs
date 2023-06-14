@@ -45,12 +45,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        protected void EditCourse() => ClickEditCourseLink().EmployerSelectsAnotherCourse();
-
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
            base.formCompletionHelper.ClickElement(DeleteButton);
             return new ConfirmApprenticeDeletionPage(context);
+        }
+
+        public ConfirmChangesPage EditCourse(string larsCode)
+        {
+            ClickEditCourseLink().EmployerSelectsAnotherCourse(larsCode);
+
+            Update();
+
+            return ConfirmChangesPage();
         }
 
         public ConfirmChangesPage EditCostCourseAndReference()

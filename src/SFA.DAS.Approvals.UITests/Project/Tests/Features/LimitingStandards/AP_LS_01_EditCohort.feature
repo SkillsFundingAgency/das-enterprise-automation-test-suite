@@ -1,4 +1,4 @@
-﻿Feature: AP_LS_01_LimitingStandardsInEditCohort
+﻿Feature: AP_LS_01_EditCohort
 
 @approvals
 @regression

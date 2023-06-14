@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_LS_02_LimitingStandardsInCreateCohort")]
-    public partial class AP_LS_02_LimitingStandardsInCreateCohortFeature
+    [NUnit.Framework.DescriptionAttribute("AP_LS_02_CreateCohort")]
+    public partial class AP_LS_02_CreateCohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_LS_02_LimitingStandardsInCreateCohort.feature"
+#line 1 "AP_LS_02_CreateCohort.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/LimitingStandards", "AP_LS_02_LimitingStandardsInCreateCohort", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/LimitingStandards", "AP_LS_02_CreateCohort", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
