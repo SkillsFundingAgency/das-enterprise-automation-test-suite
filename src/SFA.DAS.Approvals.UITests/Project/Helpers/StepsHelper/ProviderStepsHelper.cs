@@ -67,7 +67,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public void ApproveChangesAndSubmit() => SelectViewCurrentApprenticeDetails().ClickReviewChanges().SelectApproveChangesAndSubmit();
+        public ProviderReviewChangesPage ReviewChanges() => SelectViewCurrentApprenticeDetails().ClickReviewChanges();
+
+        public void ApproveChangesAndSubmit() => ReviewChanges().SelectApproveChangesAndSubmit();
 
         public ProviderMakingChangesPage ProviderMakeReservation(ApprovalsProviderHomePage approvalsProviderHomePage)
         {

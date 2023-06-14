@@ -106,7 +106,7 @@ testRunner.And("provider receives a apprentice request that contains Standard-X"
 testRunner.When("provider opens apprentice requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
-testRunner.Then("provider see warning messages about limiting standards", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("provider see warning messages in approve apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
