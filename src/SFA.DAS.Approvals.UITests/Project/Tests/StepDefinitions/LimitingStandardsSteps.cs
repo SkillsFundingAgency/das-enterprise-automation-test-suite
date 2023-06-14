@@ -9,6 +9,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -26,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
         private readonly CohortReferenceHelper _cohortReferenceHelper;
+
+        private ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage;
 
         public LimitingStandardsSteps(ScenarioContext context)
         {
@@ -53,8 +56,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetDebugInformation($"Provider deos not offer {course.Course.larsCode} - '{course.Course.title}' course ");
         }
 
-        [Given(@"Provider receives a cohort that contains Standard-X")]
-        public void GivenProviderReceivesACohortThatContainsStandard_X()
+        [Given(@"Provider receives a apprentice request that contains Standard-X")]
+        public void GivenProviderReceivesAApprenticeRequestThatContainsStandard_X()
         {
             _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
 
@@ -63,12 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
 
-        [When(@"provider opens the cohort")]
-        public void WhenProviderOpensTheCohort()
-        {
-            _providerStepsHelper.SelectViewCurrentApprenticeDetails();
-        }
+        [When(@"provider opens apprentice requests")]
+        public void WhenProviderOpensApprenticeRequests() => providerApproveApprenticeDetailsPage = _providerStepsHelper.ViewCurrentCohortDetails();
 
+        [Then(@"Provider see warning messages about limiting standards")]
+        public void ThenProviderSeeWarningMessagesAboutLimitingStandards()
+        {
+            providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();
+        }
 
 
     }

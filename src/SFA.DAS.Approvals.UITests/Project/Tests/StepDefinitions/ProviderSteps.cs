@@ -37,10 +37,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the provider will no longer be able to change the email address")]
-        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerStepsHelper.VerifyReadOnlyEmail();
+        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerStepsHelper.ProviderEditApprentice().VerifyReadOnlyEmail();
 
         [Given(@"the provider update the email address")]
-        public void GivenTheProviderUpdateTheEmailAddress() => _providerStepsHelper.AddEmailAndSentToEmployerForApproval();
+        public void GivenTheProviderUpdateTheEmailAddress() => _providerStepsHelper.ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
         [Then(@"the provider approves the cohorts")]
         public void ThenTheProviderApprovesTheCohorts() => _providerStepsHelper.CurrentCohortDetails().SubmitApprove();

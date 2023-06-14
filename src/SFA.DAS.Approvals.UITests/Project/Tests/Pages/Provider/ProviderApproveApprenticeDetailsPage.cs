@@ -12,19 +12,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
-        private By PireanPreprod => Selectors.PireanPreprod;
-        private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
-        private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
+        private static By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
+        private static By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
-        private By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
-        private By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
-        private By MessageBox => By.Name("sendmessage");
+        private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
+        private static By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
+        private static By MessageBox => By.Name("sendmessage");
         private By CohortApproveOptions => RadioLabels;
-        private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
-        private By FlashMessage => By.ClassName("govuk-panel__title");
+        private static By SaveAndExitCohort => By.Id("save-and-exit-cohort");
+        private static By FlashMessage => By.ClassName("govuk-panel__title");
         private static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
+
+        private static By InsertText => By.CssSelector(".govuk-inset-text");
 
         private static By ApproveRadioButton => By.Id("radio-approve");
 
@@ -177,19 +178,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void ClickIfPirenIsDisplayed()
         {
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
-                formCompletionHelper.ClickElement(PireanPreprod);
+            var by = Selectors.PireanPreprod;
+
+            if (pageInteractionHelper.IsElementDisplayed(by)) formCompletionHelper.ClickElement(by);
+        }
+
+        public void VerifyLimitingStandardRestriction()
+        {
+            VerifyPage(NotificationBanner, "One or more training courses is not on your declared list");
+
+            VerifyPage(() => pageInteractionHelper.FindElements(InsertText), "This training course has not been declared. You can change it or add it ");
+
+            VerifyProviderCanNotApprove();
         }
 
         public void ValidateProviderCannotApproveCohort()
         {
-            if (!pageInteractionHelper.IsElementDisplayed(NotificationBanner))
-                throw new Exception("Notification banner is not displayed");
-
             VerifyPage(NotificationBanner, "is no longer on the Register of Flexi-Job Apprenticeship Agencies");
 
-            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton))
-                throw new Exception("The approve radio button is displayed to the user");
+            VerifyProviderCanNotApprove();
+        }
+
+        private void VerifyProviderCanNotApprove()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton)) throw new Exception("The approve radio button is displayed to the user");
         }
     }
 }
