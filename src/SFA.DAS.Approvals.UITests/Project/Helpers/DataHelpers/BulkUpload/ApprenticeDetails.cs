@@ -22,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
         public string ULN { get; set; }
         public string FamilyName { get; set; }
         public string GivenNames { get; set; }
+        public string FullName => $"{GivenNames} {FamilyName}";
         public string DateOfBirth { get; set; }
         public string StdCode { get; set; }
         public string StartDate { get; set; }

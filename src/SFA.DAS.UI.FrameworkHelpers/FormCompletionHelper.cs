@@ -80,6 +80,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
 
+
         public void SelectCheckbox(IWebElement element)
         {
             if (!element.Selected) element.Click();
