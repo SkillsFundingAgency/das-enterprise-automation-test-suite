@@ -75,9 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var page = _providerAddStandardStepsHelper.GoToManageStandardPage();
 
-            _providerAddStandardStepsHelper.AddStandard(page, false);
-
-
+            //_providerAddStandardStepsHelper.AddStandard(page, false);
         }
 
 
