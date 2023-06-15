@@ -26,7 +26,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string EIProjectConfigKey = "eiprojectconfigkey";
         private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
         private const string PortableFlexiJobProviderConfigKey = "portableflexijobproviderconfigkey";
-        private const string AANProjectConfigKey = "aANProjectConfigKey";
         #endregion
 
         #region Setters
@@ -34,7 +33,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public static void SetEsfaAdminConfig<T>(this ScenarioContext context, T value) => Set(context, value, EsfaAdminProjectConfigKey);
         public static void SetRoatpConfig<T>(this ScenarioContext context, T value) => Set(context, value, RoatpProjectConfigKey);
-        public static void SetAANConfig<T>(this ScenarioContext context, T value) => Set(context, value, AANProjectConfigKey);
+
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprovalsProjectConfigKey);
         public static void SetProviderConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderConfigKey);
         public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderPermissionConfigKey);
@@ -58,10 +57,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         #region Getters
         public static T GetManagingStandardsConfig<T>(this ScenarioContext context) => Get<T>(context, ManagingStandatdsProjectConfigKey);
-
         public static T GetEsfaAdminConfig<T>(this ScenarioContext context) => Get<T>(context, EsfaAdminProjectConfigKey);
         public static T GetRoatpConfig<T>(this ScenarioContext context) => Get<T>(context, RoatpProjectConfigKey);
-        public static T GetAANConfig<T>(this ScenarioContext context) => Get<T>(context, AANProjectConfigKey);
         public static T GetApprovalsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprovalsProjectConfigKey);
         public static T GetProviderConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderConfigKey);
         public static T GetProviderPermissionConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderPermissionConfigKey);

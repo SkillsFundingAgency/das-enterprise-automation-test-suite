@@ -8,6 +8,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public abstract class LoginUser
     {
         public string Username { get; set; }
+
+        public override string ToString() => $"Username:'{Username}'";
     }
 
     #region SingleAccountUser
@@ -82,6 +84,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public abstract class NonEasAccountUser : LoginUser
     {
         public string Password { get; set; }
+
+        public override string ToString() => $"{base.ToString()}, Password:'{Password}'";
     }
 
     public class EPAOStandardApplyUser : NonEasAccountUser { }
@@ -112,6 +116,12 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public class SupportToolsSCPUser : NonEasAccountUser { }
 
     public class SupportToolsSCSUser : NonEasAccountUser { }
+
+    public abstract class AanBaseUser : NonEasAccountUser { }
+
+    public class AanUser : AanBaseUser { }
+
+    public class AanBetaUser : AanBaseUser { }
 
     #endregion
 

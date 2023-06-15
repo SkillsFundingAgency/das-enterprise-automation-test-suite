@@ -1,18 +1,19 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+public abstract class AanBasePage : VerifyBasePage
 {
-    public abstract class AanBasePage : VerifyBasePage
+    protected readonly AANDataHelpers aanDataHelpers;
+    protected override By PageHeader => By.TagName("h1");
+
+    protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+
+
+    public AanBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
-        protected override By PageHeader => By.TagName("h1");
+        aanDataHelpers = context.Get<AANDataHelpers>();
 
-        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
-
-        protected AanBasePage(ScenarioContext context) : base(context) { }
-
+        if (verifyPage) VerifyPage();
     }
+
 }
+
