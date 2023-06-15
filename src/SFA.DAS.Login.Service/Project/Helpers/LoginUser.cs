@@ -108,6 +108,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class SupportToolsSCSUser : NonAccountUser { }
 
+    public class AanUser : NonAccountUser { }
+
+    public class AanBetaUser : NonAccountUser { }
+
     #endregion
 
 }

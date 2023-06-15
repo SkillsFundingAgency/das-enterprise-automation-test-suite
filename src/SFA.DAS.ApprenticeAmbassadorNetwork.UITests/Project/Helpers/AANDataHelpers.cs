@@ -10,13 +10,10 @@ public record AANTestData
 public class AANDataHelpers
 {
     public const string LocationName = "Test Demo Automation Venue";
-    public string EmailAddress { get; init; } = "ManagingStandardstest.demo@digital.education.gov.uk";
     public string VenueName { get; init; } = LocationName;
     public string NewVenueName { get; init; } = "New Venue Test Demo Automation Venue";
     public string Standard_ActuaryLevel7 { get; init; } = "Actuary (Level 7)";
     public string PostCode { get; init; } = "Tw14 9py";
-    public string ApprenticeEmail { get; init; } = "sudhakar.chinoor+aanhub@digital.education.gov.uk";
-    public string Non_PrivatebetaApprenticeEmail { get; init; } = "sudhakar.chinoor+nonPrivateBeta@digital.education.gov.uk";
     public string Website { get; init; } = "www.company.co.uk";
     public string JobTitle { get; init; } = "SoftwareTESTER";
     public string NewJobTitle { get; init; } = "AutomationSoftwareTESTER";
@@ -27,6 +24,5 @@ public class AANDataHelpers
     public string County { get; init; } = "Automation Address County";
     public string Town { get; init; } = "Automation Address Town";
     public string ContactNumber { get; init; } = RandomDataGenerator.GenerateRandomNumber(12);
-    public AANTestData StandardsTestData { get; init; } = new AANTestData { LarsCode = "203", StandardName = "Teacher (Level 6)", Venue = LocationName };
     public string UpdateProviderDescriptionText { get; init; } = RandomDataGenerator.GenerateRandomAlphanumericString(20);
 }

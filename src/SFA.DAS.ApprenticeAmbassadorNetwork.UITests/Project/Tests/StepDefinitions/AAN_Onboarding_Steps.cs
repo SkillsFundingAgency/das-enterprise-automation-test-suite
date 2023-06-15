@@ -1,7 +1,5 @@
-﻿using NUnit.Framework;
-using Polly;
-using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
 {
@@ -9,29 +7,26 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
     public class AAN_Onboarding_Steps
     {
         private readonly ScenarioContext context;
-        private readonly AANConfig config;
+
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
 
         public AAN_Onboarding_Steps(ScenarioContext context)
         {
             this.context = context;
-            config = context.GetAANConfig<AANConfig>();
+
            _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
         [Given(@"the provider logs into AAN portal")]
         public void GivenTheProviderLogsIntoAANPortal()
         {
-            context.Get<TabHelper>().GoToUrl(UrlConfig.AAN_BaseUrl);
-            new SignInPage(context).SubmitValidUserDetails(config.AANUserName, config.AANPassword);
+            GetSignInPage().SubmitValidUserDetails(context.Get<AanUser>());
         }
 
         [Given(@"the non Private beta provider logs into AAN portal")]
         public void GivenThNonPrivateBetaProviderLogsIntoAANPortal()
         {
-            context.Get<TabHelper>().GoToUrl(UrlConfig.AAN_BaseUrl);
-            new SignInPage(context).NonPrivateBetaUserDetails(config.AANPassword);
-
+            GetSignInPage().NonPrivateBetaUserDetails(context.Get<AanBetaUser>());
         }
 
         [When(@"the user provides all the required details for the onboarding journey")]
@@ -101,12 +96,14 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         public void WhenUserSignsBackInToAANPlatform()
         {
             _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_BaseUrl, "AANbaseurl");
-            new SignInPage(context).SubmitUserDetails_OnboardingJourneyComplete(config.AANUserName, config.AANPassword);
+
+            GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(context.Get<AanUser>());
         }
         [Then(@"the user should land on AAN Hub page")]
         public void ThenUserShouldLandOnAANHubPage()
         {
-
         }
+
+        private SignInPage GetSignInPage() => new(context);
     }
 }
