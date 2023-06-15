@@ -1,14 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
     public class ShutterPage : AanBasePage
     {
@@ -16,7 +6,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public ShutterPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void  VerifyApprenticePortalLink()
+        public void VerifyApprenticePortalLink()
         {
             formCompletionHelper.ClickLinkByText("Back to the apprenticeship portal");
         }
@@ -24,5 +14,5 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
     }
 }
 
-        
+
 

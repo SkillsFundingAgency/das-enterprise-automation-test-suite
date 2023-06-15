@@ -7,8 +7,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project
     {
         private const string LoggedInUser = "loggedinuser";
 
-        internal static void SetLoginCredentials(this ObjectContext objectContext, NonAccountUser value) => objectContext.Set(LoggedInUser, value);
+        internal static void SetLoginCredentials(this ObjectContext objectContext, AanBaseUser value) => objectContext.Set(LoggedInUser, value);
 
-        public static NonAccountUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<NonAccountUser>(LoggedInUser);
+        public static AanBaseUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<AanBaseUser>(LoggedInUser);
     }
 }

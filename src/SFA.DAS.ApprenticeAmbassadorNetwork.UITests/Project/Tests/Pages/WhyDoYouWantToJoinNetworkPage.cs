@@ -1,13 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
 
 public class WhyDoYouWantToJoinNetworkPage : AanBasePage
 {
@@ -19,11 +10,11 @@ public class WhyDoYouWantToJoinNetworkPage : AanBasePage
 
     public AreasOfInterestPage EnterInformationToJoinNetwork()
     {
-        formCompletionHelper.EnterText(ReasonForJoining,aanDataHelpers.UpdateProviderDescriptionText);
+        formCompletionHelper.EnterText(ReasonForJoining, aanDataHelpers.UpdateProviderDescriptionText);
         Continue();
         return new AreasOfInterestPage(context);
     }
 }
 
-    
+
 

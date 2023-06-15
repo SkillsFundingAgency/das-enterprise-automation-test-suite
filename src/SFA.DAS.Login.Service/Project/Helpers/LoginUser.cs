@@ -10,6 +10,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string Username { get; set; }
 
         public string Password { get; set; }
+
+        public override string ToString() => $"Username:'{Username}', Password:'{Password}'";
     }
 
     #region SingleAccountUser
@@ -108,9 +110,11 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class SupportToolsSCSUser : NonAccountUser { }
 
-    public class AanUser : NonAccountUser { }
+    public abstract class AanBaseUser : LoginUser  { }
 
-    public class AanBetaUser : NonAccountUser { }
+    public class AanUser : AanBaseUser { }
+
+    public class AanBetaUser : AanBaseUser { }
 
     #endregion
 

@@ -12,36 +12,39 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public BeforeYouStartPage SubmitValidUserDetails(NonAccountUser user)
+        public BeforeYouStartPage SubmitValidUserDetails(AanBaseUser user)
         {
-            SubmitUserDetails(user);
-            
+            SubmitUserDetails(user, true);
+
             return new BeforeYouStartPage(context);
         }
 
-        public AccessDeniedPage NonPrivateBetaUserDetails(NonAccountUser user)
+        public AccessDeniedPage NonPrivateBetaUserDetails(AanBaseUser user)
         {
-            SubmitUserDetails(user);
+            SubmitUserDetails(user, true);
 
             return new AccessDeniedPage(context);
         }
 
-        public NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(NonAccountUser user)
+        public NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(AanBaseUser user)
         {
-            SubmitUserDetails(user);
+            SubmitUserDetails(user, false);
 
             return new NetworkHubPage(context);
         }
 
-        private void SubmitUserDetails(NonAccountUser user)
+        private void SubmitUserDetails(AanBaseUser user, bool firstlogin)
         {
             formCompletionHelper.EnterText(EnterUsername, user.Username);
 
             formCompletionHelper.EnterText(EnterPassword, user.Password);
 
-            if (tags.Any(x => x == "aanreset")) context.Get<AANSqlDataHelper>().ResetApprenticeOnboardingJourney(user.Username);
+            if (firstlogin)
+            {
+                if (tags.Any(x => x == "aanreset")) context.Get<AANSqlDataHelper>().ResetApprenticeOnboardingJourney(user.Username);
 
-            objectContext.SetLoginCredentials(user);
+                objectContext.SetLoginCredentials(user);
+            }
 
             Continue();
         }
