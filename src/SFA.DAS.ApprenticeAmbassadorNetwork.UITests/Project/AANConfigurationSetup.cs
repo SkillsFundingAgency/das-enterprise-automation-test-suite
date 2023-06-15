@@ -1,4 +1,7 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
+﻿using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
 
 [Binding]
 public class AANConfigurationSetup
@@ -13,5 +16,10 @@ public class AANConfigurationSetup
     }
 
     [BeforeScenario(Order = 2)]
-    public void SetUpAANConfigConfiguration() => _context.SetAANConfig(_configSection.GetConfigSection<AANConfig>());
+    public void SetUpAANConfigConfiguration()
+    {
+        _context.SetNonEasLoginUser(_configSection.GetConfigSection<AanUser>());
+
+        _context.SetNonEasLoginUser(_configSection.GetConfigSection<AanBetaUser>());
+    }
 }

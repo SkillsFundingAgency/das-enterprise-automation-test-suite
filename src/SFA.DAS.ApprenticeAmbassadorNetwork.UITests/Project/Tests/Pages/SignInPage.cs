@@ -1,24 +1,52 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.RoatpApply
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
     public class SignInPage : AanBasePage
     {
         protected override string PageTitle => "Sign in to My apprenticeship";
 
-        private By EnterUsername => By.Id("Username");
+        private static By EnterUsername => By.Id("Username");
 
-        private By EnterPassword => By.Id("Password");
+        private static By EnterPassword => By.Id("Password");
 
         public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void SubmitValidUserDetails(string username, string password)
+        public BeforeYouStartPage SubmitValidUserDetails(AanBaseUser user)
         {
-            formCompletionHelper.EnterText(EnterUsername, username);
-            formCompletionHelper.EnterText(EnterPassword, password);
-            Continue();
+            SubmitUserDetails(user, true);
+
+            return new BeforeYouStartPage(context);
         }
 
+        public AccessDeniedPage NonPrivateBetaUserDetails(AanBaseUser user)
+        {
+            SubmitUserDetails(user, true);
+
+            return new AccessDeniedPage(context);
+        }
+
+        public NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(AanBaseUser user)
+        {
+            SubmitUserDetails(user, false);
+
+            return new NetworkHubPage(context);
+        }
+
+        private void SubmitUserDetails(AanBaseUser user, bool firstlogin)
+        {
+            formCompletionHelper.EnterText(EnterUsername, user.Username);
+
+            formCompletionHelper.EnterText(EnterPassword, user.Password);
+
+            if (firstlogin)
+            {
+                if (tags.Any(x => x == "aanreset")) context.Get<AANSqlDataHelper>().ResetApprenticeOnboardingJourney(user.Username);
+
+                objectContext.SetLoginCredentials(user);
+            }
+
+            Continue();
+        }
     }
 }

@@ -74,19 +74,23 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_01_OnboardingJourney_HappyPath")]
+        [NUnit.Framework.DescriptionAttribute("AAN01A User successfully completes the Apprentice onboarding process and verifies" +
+            " the Hub page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aan01")]
+        [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_01_OnboardingJourney_HappyPath()
+        public void AAN01AUserSuccessfullyCompletesTheApprenticeOnboardingProcessAndVerifiesTheHubPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aan01",
+                    "aanreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_01_OnboardingJourney_HappyPath", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01A User successfully completes the Apprentice onboarding process and verifies" +
+                    " the Hub page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,8 +100,147 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+    testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+    testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN01B User without manager permission encounters a shutter page")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aan02")]
+        [NUnit.Framework.CategoryAttribute("aanreset")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN01BUserWithoutManagerPermissionEncountersAShutterPage()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aan02",
+                    "aanreset",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01B User without manager permission encounters a shutter page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 18
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 19
+    testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 20
+    testRunner.When("the user does not have manager permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
+    testRunner.Then("a shutter page should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN01C User completes all onboarding details and can modify answers on the \"Check" +
+            " Your Answer\" page")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aan03")]
+        [NUnit.Framework.CategoryAttribute("aanreset")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN01CUserCompletesAllOnboardingDetailsAndCanModifyAnswersOnTheCheckYourAnswerPage()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aan03",
+                    "aanreset",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01C User completes all onboarding details and can modify answers on the \"Check" +
+                    " Your Answer\" page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 28
+ testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 29
+ testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+    testRunner.And("the user should be able to modify any of the provided answers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 31
+    testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 32
+    testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN01D User completes onboarding process and lands on the AAN Hub page after sign" +
+            "ing in")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aan04")]
+        [NUnit.Framework.CategoryAttribute("aanreset")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN01DUserCompletesOnboardingProcessAndLandsOnTheAANHubPageAfterSigningIn()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aan04",
+                    "aanreset",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01D User completes onboarding process and lands on the AAN Hub page after sign" +
+                    "ing in", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 38
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 39
+    testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 40
+ testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 41
+    testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 42
+    testRunner.When("the user signs back in to the AAN platform", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
+    testRunner.Then("the user should land on AAN Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
