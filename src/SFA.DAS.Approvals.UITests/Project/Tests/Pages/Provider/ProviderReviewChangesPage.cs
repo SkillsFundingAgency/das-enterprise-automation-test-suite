@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By ErrorMsg => By.CssSelector(".govuk-error-summary");
 
-        private static By IsValidCourseErrorMsg => By.CssSelector(".error-message-IsValidCourseCode");
+        private static By IsValidCourseErrorMsg => By.CssSelector("#error-message-IsValidCourseCode");
 
         protected override By ContinueButton => By.CssSelector("#continue-button");        
 
