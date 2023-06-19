@@ -15,8 +15,6 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using System;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
-using Polly;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -30,8 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
 
         private readonly ProviderStepsHelper _providerStepsHelper;
-
-        private readonly ProviderAddStandardStepsHelper _providerAddStandardStepsHelper;
 
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
@@ -55,8 +51,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerStepsHelper = new ProviderStepsHelper(context);
 
-            _providerAddStandardStepsHelper = new ProviderAddStandardStepsHelper(context);
-
             _cohortReferenceHelper = new CohortReferenceHelper(context);
         }
 
@@ -69,17 +63,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetDebugInformation($"Provider deos not offer {course.Course.larsCode} - '{course.Course.title}' course ");
         }
-
-        [Given(@"the provider can add and delete Standard-X")]
-        public void GivenTheProviderCanAddAndDeleteStandard_X()
-        {
-            var page = _providerAddStandardStepsHelper.GoToManageStandardPage();
-
-            page = _providerAddStandardStepsHelper.AddStandard(page, false);
-
-
-        }
-
 
         [Given(@"provider receives a apprentice request that contains Standard-X")]
         public void GivenProviderReceivesAApprenticeRequestThatContainsStandard_X() => EmployerApproveAndSendToProvider();

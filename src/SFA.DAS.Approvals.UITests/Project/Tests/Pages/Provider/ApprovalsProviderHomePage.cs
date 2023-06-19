@@ -77,12 +77,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeshipIndicativeEarningsReportPage(context);
         }
 
-        public ProviderYourStandardsAndTrainingVenuesPage GoToYourStandardsAndTrainingVenues()
-        {
-            formCompletionHelper.ClickElement(YourStandardsAndTrainingVenues);
-            return new ProviderYourStandardsAndTrainingVenuesPage(context);
-        }
-
         private void AddNewApprentices() => formCompletionHelper.ClickElement(AddNewApprenticesLink);
     }
 }
