@@ -79,7 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderYourStandardsAndTrainingVenuesPage GoToYourStandardsAndTrainingVenues()
         {
-            formCompletionHelper.ClickLinkByText("Your standards and training venues");
+            formCompletionHelper.ClickElement(YourStandardsAndTrainingVenues);
             return new ProviderYourStandardsAndTrainingVenuesPage(context);
         }
 
