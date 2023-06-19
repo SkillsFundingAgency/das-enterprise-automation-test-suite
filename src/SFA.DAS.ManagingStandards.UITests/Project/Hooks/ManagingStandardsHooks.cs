@@ -6,13 +6,12 @@ global using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 global using SFA.DAS.ProviderLogin.Service;
 global using SFA.DAS.ProviderLogin.Service.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;
-global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "managingstandards")]
+    [Binding]
     public class ManagingStandardsHooks
     {
         private readonly string[] _tags;
