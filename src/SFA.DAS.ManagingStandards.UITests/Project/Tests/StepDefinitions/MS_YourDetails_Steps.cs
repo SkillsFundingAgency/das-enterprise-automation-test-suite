@@ -7,21 +7,15 @@ public class MS_YourDetails_Steps
 
     public MS_YourDetails_Steps(ScenarioContext context) => _context = context;
 
-    [Given(@"the provider logs into employer portal")]
-    public void GivenTheProviderLogsIntoEmployerPortal() => new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(false);
-
-    [When(@"the provider navigates to Review your details")]
-    public void WhenTheProviderNavigatesToReviewYourDetails()
-    {
-        StepsHelper stepsHelper = new(_context);
-        stepsHelper.NavigateToReviewYourDetails();
-    }
+    [Given(@"the provider logs into portal")]
+    public void GivenTheProviderLogsIntoPortal() => new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(false);
 
     [Then(@"the provider verifies organisation details")]
     public void ThenTheProviderVerifiesOrganisationDetails()
     {
-        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
-        reviewYourDetailsPage.AccessTrainingLocations()
+        new ManagingStandardsProviderHomePage(_context)
+            .NavigateToYourStandardsAndTrainingVenuesPage()
+            .AccessTrainingLocations()
             .NavigateBackToReviewYourDetails()
             .AccessStandards();
     }
@@ -29,20 +23,17 @@ public class MS_YourDetails_Steps
     [Then(@"the provider verifies provider overview")]
     public void ThenTheProviderVerifiesProviderOverview()
     {
-        ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new(_context);
-        manageTheStandardsYouDeliverPage
+        new ManageTheStandardsYouDeliverPage(_context)
             .ReturnToYourStandardsAndTrainingVenues()
             .AccessProviderOverview()
             .NavigateBackToReviewYourDetails()
             .AccessStandards();
     }
 
-
     [Then(@"the provider updates contact details")]
     public void ThenTheProviderUpdatesContactDetails()
     {
-        ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new(_context);
-        manageTheStandardsYouDeliverPage
+        new ManageTheStandardsYouDeliverPage(_context)
             .AccessTeacherLevel6()
             .UpdateTheseContactDetails()
             .UpdateContactInformation();
@@ -51,8 +42,9 @@ public class MS_YourDetails_Steps
     [When(@"the provider is able to approve regulated standard")]
     public void WhenTheProviderIsAbleToApproveRegulatedStandard()
     {
-        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
-        reviewYourDetailsPage.AccessStandards()
+        new ManagingStandardsProviderHomePage(_context)
+            .NavigateToYourStandardsAndTrainingVenuesPage()
+            .AccessStandards()
             .AccessRegulatorApprovalLinkFromTheSTandardsTable()
             .ApproveStandard_FromStandardsPage()
             .AccessTeacherLevel6();
@@ -61,8 +53,8 @@ public class MS_YourDetails_Steps
     [Then(@"the provider is able to disapprove regulated standard")]
     public void ThenTheProviderIsAbleToDisapproveRegulatedStandard()
     {
-        ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
-        manageAStandard_TeacherPage.AccessApprovedByRegulationOrNot()
+        new ManageAStandard_TeacherPage(_context)
+            .AccessApprovedByRegulationOrNot()
             .DisApproveStandard()
             .ContinueToTeacher_ManageStandardPage();
     }
@@ -71,8 +63,8 @@ public class MS_YourDetails_Steps
     public void WhenTheProviderIsAbleToChangeTheStandardDeliveredInOneOfTheTrainingLocations()
     {
 
-        ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
-        manageAStandard_TeacherPage.AccessWhereYouWillDeliverThisStandard()
+        new ManageAStandard_TeacherPage(_context)
+            .AccessWhereYouWillDeliverThisStandard()
             .ConfirmAtOneofYourTrainingLocations()
             .ConfirmVenueDetailsAndDeliveryMethod_AtOneOFYourTrainingLocation();
     }
@@ -80,8 +72,8 @@ public class MS_YourDetails_Steps
     [When(@"the provider is able to add the training locations")]
     public void WhenTheProviderIsAbleToAddTheTrainingLocations()
     {
-        ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
-        manageAStandard_TeacherPage.AccessEditTrainingLocations()
+        new ManageAStandard_TeacherPage(_context)
+            .AccessEditTrainingLocations()
             .AccessSeeTrainingVenue()
             .ChooseTheVenueDeliveryAndContinue()
             .NavigateBackToStandardPage();
@@ -92,8 +84,8 @@ public class MS_YourDetails_Steps
     public void WhenTheProviderIsAbleToChangeTheStandardDeliveredAtAnEmployersLocationNationalProvider()
     {
 
-        ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
-        manageAStandard_TeacherPage.AccessWhereYouWillDeliverThisStandard()
+        new ManageAStandard_TeacherPage(_context)
+            .AccessWhereYouWillDeliverThisStandard()
             .ConfirmAtAnEmployersLocation()
             .YesDeliverAnyWhereInEngland();
     }
@@ -101,8 +93,9 @@ public class MS_YourDetails_Steps
     [When(@"the provider is able to change the standard delivered in both not a national provider")]
     public void WhenTheProviderIsAbleToChangeTheStandardDeliveredInBothNotANationalProvider()
     {
-        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
-        reviewYourDetailsPage.AccessStandards()
+        new ManagingStandardsProviderHomePage(_context)
+            .NavigateToYourStandardsAndTrainingVenuesPage()
+            .AccessStandards()
             .AccessTeacherLevel6()
             .AccessWhereYouWillDeliverThisStandard()
             .ConfirmStandardWillDeliveredInBoth()
@@ -111,64 +104,15 @@ public class MS_YourDetails_Steps
             .SelectDerbyRutlandRegionsAndConfirm();
     }
 
-    [When(@"the provider is able to add the standard delivered in one of the training locations")]
-    public void WhenTheProviderIsAbleToAddTheStandardDeliveredInOneOfTheTrainingLocations()
-    {
-        var standardName = "Actuary (Level 7)";
-
-        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
-        reviewYourDetailsPage.AccessStandards()
-            .AccessAddStandard()
-            .SelectAStandardAndContinue(standardName)
-            .YesStandardIsCorrectAndContinue()
-            .Add_ContactInformation()
-            .ConfirmAtOneofYourTrainingLocations_AddStandard()
-            .AccessSeeANewTrainingVenue_AddStandard()
-            .ChooseTheVenueDeliveryAndContinue()
-            .Save_NewTrainingVenue_Continue(standardName)
-            .Save_NewStandard_Continue();
-    }
-
-    [When(@"the provider is able to delete the standard")]
-    public void WhenTheProviderIsAbleToDeleteTheStandard()
-    {
-        ManageTheStandardsYouDeliverPage manageTheStandardsYouDeliverPage = new ManageTheStandardsYouDeliverPage(_context);
-        manageTheStandardsYouDeliverPage.AccessActuaryLevel7()
-            .ClickDeleteAStandard()
-            .DeleteStandard();
-    }
-
     [When(@"the provider is able to edit the regions")]
     public void WhenTheProviderIsAbleToEditTheRegions()
     {
-        ManageAStandard_TeacherPage manageAStandard_TeacherPage = new(_context);
-        manageAStandard_TeacherPage.AccessWhereYouWillDeliverThisStandard()
+        new ManageAStandard_TeacherPage(_context)
+            .AccessWhereYouWillDeliverThisStandard()
             .ConfirmAtAnEmployersLocation()
             .NoDeliverAnyWhereInEngland()
             .SelectDerbyRutlandRegionsAndConfirm()
             .AccessEditTheseRegions()
             .EditRegionsAddLutonEssexAndConfirm();
-    }
-
-    [Then(@"the provider is able to add a new training venue")]
-    public void ThenTheProviderIsAbleToAddANewTrainingVenue()
-    {
-       
-        YourStandardsAndTrainingVenuesPage reviewYourDetailsPage = new(_context);
-        reviewYourDetailsPage.AccessTrainingLocations()
-            .AccessAddANewTrainingVenue()
-            .EnterPostcodeAndContinue()
-            .ChooseTheAddressAndContinue()
-            .AddVenueDetailsAndSubmit(); 
-    }
-
-    [Then(@"the provider is able to update the new training venuw")]
-    public void ThenTheProviderIsAbleToUpdateTheNewTrainingVenuw()
-    {
-        TrainingVenuesPage trainingVenuesPage = new(_context);
-        trainingVenuesPage
-            .AccessNewTrainingVenue_Added()
-            .Click_UpdateContactDetails()
-            .UpdateVenueDetailsAndSubmit();
-    }
+    } 
 }

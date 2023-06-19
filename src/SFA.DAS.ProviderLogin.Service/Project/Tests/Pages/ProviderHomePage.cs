@@ -27,6 +27,8 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected static By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
 
+        protected static By YourStandardsAndTrainingVenues => By.LinkText("Your standards and training venues");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
         
     }

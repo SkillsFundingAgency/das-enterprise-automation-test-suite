@@ -7,6 +7,7 @@ public class SelectAStandardPage : ManagingStandardsBasePage
     private static By SearchField => By.CssSelector("#SelectedLarsCode");
 
     private static By FirstStandard => By.CssSelector("ul#SelectedLarsCode__listbox > li");
+
     public SelectAStandardPage(ScenarioContext context) : base(context) { }
 
     public AddAstandardPage SelectAStandardAndContinue(string standardName)

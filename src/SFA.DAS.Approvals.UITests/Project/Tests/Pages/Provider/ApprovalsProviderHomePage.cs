@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage : ProviderHomePage
     {
-        protected By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
+        protected static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
 
         public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)  { }
 
