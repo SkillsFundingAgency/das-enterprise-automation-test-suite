@@ -67,7 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             throw new Exception("No cohorts available with employers");
         }
 
-        public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
+        public ProviderApproveApprenticeDetailsPage ViewCurrentCohortDetails()
         {
             tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
             return new ProviderApproveApprenticeDetailsPage(context);

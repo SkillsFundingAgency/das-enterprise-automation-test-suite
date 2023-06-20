@@ -6,5 +6,11 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
     {
         public ManagingStandardsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
+        public YourStandardsAndTrainingVenuesPage NavigateToYourStandardsAndTrainingVenuesPage()
+        {
+            formCompletionHelper.ClickElement(YourStandardsAndTrainingVenues);
+            return new YourStandardsAndTrainingVenuesPage(context);
+        }
+
     }
 }

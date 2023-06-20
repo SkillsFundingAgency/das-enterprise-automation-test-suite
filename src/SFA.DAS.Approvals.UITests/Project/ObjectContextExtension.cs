@@ -33,9 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         #endregion Constants
 
-        internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<ApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
+        internal static void SetBulkuploadApprentices(this ObjectContext objectContext, List<BulkUploadApprenticeDetails> list) => objectContext.Replace(BulkuploadApprentices, list);
 
-        internal static List<ApprenticeDetails> GetBulkuploadApprentices(this ObjectContext objectContext) => objectContext.Get<List<ApprenticeDetails>>(BulkuploadApprentices);
+        internal static List<BulkUploadApprenticeDetails> GetBulkuploadApprentices(this ObjectContext objectContext) => objectContext.Get<List<BulkUploadApprenticeDetails>>(BulkuploadApprentices);
 
         internal static void SetUpdateDynamicPauseGlobalRule(this ObjectContext objectContext) =>
             objectContext.Set(UpdateDynamicPauseGlobalRule, true);

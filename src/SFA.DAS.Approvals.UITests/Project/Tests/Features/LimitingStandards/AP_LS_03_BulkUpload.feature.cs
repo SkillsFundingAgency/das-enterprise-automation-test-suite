@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Features
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.LimitingStandards
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("MS_05_Accessibility")]
-    public partial class MS_05_AccessibilityFeature
+    [NUnit.Framework.DescriptionAttribute("AP_LS_03_BulkUpload")]
+    public partial class AP_LS_03_BulkUploadFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "MS_05_Accessibility.feature"
+#line 1 "AP_LS_03_BulkUpload.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "MS_05_Accessibility", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/LimitingStandards", "AP_LS_03_BulkUpload", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MS_05_Accessibility_Test")]
-        [NUnit.Framework.CategoryAttribute("managingstandards")]
-        [NUnit.Framework.CategoryAttribute("managingstandards05")]
-        [NUnit.Framework.CategoryAttribute("accessibility")]
-        public void MS_05_Accessibility_Test()
+        [NUnit.Framework.DescriptionAttribute("AP_LS_03_Limiting Standards In Bulk Upload")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("limitingstandards")]
+        public void AP_LS_03_LimitingStandardsInBulkUpload()
         {
             string[] tagsOfScenario = new string[] {
-                    "managingstandards",
-                    "managingstandards05",
-                    "accessibility"};
+                    "approvals",
+                    "regression",
+                    "limitingstandards"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_05_Accessibility_Test", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_LS_03_Limiting Standards In Bulk Upload", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,14 +97,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("the provider logs into portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("provider does not offer Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("the provider is able to add the standard delivered in one of the training locatio" +
-                        "ns", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.And("the provider is able to delete the standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("provider can not upload file using Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

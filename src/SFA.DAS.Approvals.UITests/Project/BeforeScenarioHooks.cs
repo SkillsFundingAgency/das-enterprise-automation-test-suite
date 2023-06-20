@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         private CommitmentsSqlDataHelper commitmentsdatahelper;
+        private RoatpV2SqlDataHelper roatpV2SqlDataHelper;
         private readonly DbConfig _dbConfig;
         private readonly string[] _tags;
 
@@ -47,6 +48,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new RofjaaDbSqlHelper(_dbConfig));
 
             _context.Set(new AccountsDbSqlHelper(_dbConfig));
+
+            _context.Set(roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig));
 
             _context.Set(new PublicSectorReportingDataHelper());
 
@@ -78,8 +81,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         private List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> SetProviderSpecificCourse(ApprenticeStatus apprenticeStatus)
         {
             List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = new();
-
-            var roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig);
 
             if (_tags.Contains("portableflexijob"))
             {

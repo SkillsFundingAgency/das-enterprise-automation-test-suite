@@ -32,18 +32,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can create reservation")]
-        public void ThenTheUserCanCreateReservation()
-        {
-            _providerStepsHelper
-                .ProviderMakeReservationThenGotoHomePage();
-        }
+        public void ThenTheUserCanCreateReservation() => _providerStepsHelper.ProviderMakeReservation(new ApprovalsProviderHomePage(_context)).GoToHomePage();
 
         [Then(@"the user can delete reservation")]
-        public void ThenTheUserCanDeleteReservation()
-        {
-            _providerStepsHelper
-                .ProviderDeleteReservationThenGotoHomePage();
-        }
+        public void ThenTheUserCanDeleteReservation() => _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToManageYourFunding()
+                .DeleteTheReservedFunding()
+                .YesDeleteThisReservation()
+                .GoToHomePage();
 
         [Then(@"the user can add an apprentice")]
         public void ThenTheUserCanAddAnApprentice()
