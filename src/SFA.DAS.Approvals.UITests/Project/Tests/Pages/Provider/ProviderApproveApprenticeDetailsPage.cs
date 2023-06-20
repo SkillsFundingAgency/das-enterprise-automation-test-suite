@@ -12,19 +12,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
-        private By PireanPreprod => Selectors.PireanPreprod;
-        private By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
-        private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
+        private static By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
+        private static By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
         private new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
-        private By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
-        private By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
-        private By MessageBox => By.Name("sendmessage");
+        private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
+        private static By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
+        private static By MessageBox => By.Name("sendmessage");
         private By CohortApproveOptions => RadioLabels;
-        private By SaveAndExitCohort => By.Id("save-and-exit-cohort");
-        private By FlashMessage => By.ClassName("govuk-panel__title");
-        private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
+        private static By SaveAndExitCohort => By.Id("save-and-exit-cohort");
+        private static By FlashMessage => By.ClassName("govuk-panel__title");
+        private static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
+
+        private static By InsertText => By.CssSelector(".govuk-inset-text");
+
         private static By ApproveRadioButton => By.Id("radio-approve");
 
         public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
@@ -176,24 +178,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void ClickIfPirenIsDisplayed()
         {
-            if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
-                formCompletionHelper.ClickElement(PireanPreprod);
+            var by = Selectors.PireanPreprod;
+
+            if (pageInteractionHelper.IsElementDisplayed(by)) formCompletionHelper.ClickElement(by);
         }
 
-        public string GetBannerHeading() => pageInteractionHelper.GetText(NotificationBannerHeading);
-
-        public ProviderApproveApprenticeDetailsPage ValidateProviderCannotApproveCohort()
+        public void VerifyLimitingStandardRestriction()
         {
-            string bannerHeading = "is no longer on the Register of Flexi-Job Apprenticeship Agencies";
+            VerifyPage(NotificationBanner, "One or more training courses is not on your declared list");
 
-            if (!pageInteractionHelper.IsElementDisplayed(NotificationBannerHeading))
-                throw new Exception("Notification banner is not displayed");
-            if (!GetBannerHeading().Contains(bannerHeading))
-                throw new Exception($"Expected: {bannerHeading} but actual was: {GetBannerHeading()}");
-            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton))
-                throw new Exception("The approve radio button is displayed to the user");
+            VerifyPage(() => pageInteractionHelper.FindElements(InsertText), "This training course has not been declared. You can change it or add it ");
 
-            return this;
+            VerifyProviderCanNotApprove();
+        }
+
+        public void ValidateProviderCannotApproveCohort()
+        {
+            VerifyPage(NotificationBanner, "is no longer on the Register of Flexi-Job Apprenticeship Agencies");
+
+            VerifyProviderCanNotApprove();
+        }
+
+        private void VerifyProviderCanNotApprove()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton)) throw new Exception("The approve radio button is displayed to the user");
         }
     }
 }

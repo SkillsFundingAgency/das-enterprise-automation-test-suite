@@ -16,6 +16,13 @@ public class AnyWhereInEnglandPage : ManagingStandardsBasePage
         return new ManageAStandard_TeacherPage(context);
     }
 
+    public AddAstandardPage YesDeliverAnyWhereInEngland(string standardName)
+    {
+        formCompletionHelper.SelectRadioOptionByLocator(YesRadio);
+        Continue();
+        return new AddAstandardPage(context, standardName);
+    }
+
     public WhereCanYouDeliverTrainingPage NoDeliverAnyWhereInEngland()
     {
         formCompletionHelper.SelectRadioOptionByLocator(NoRadio);

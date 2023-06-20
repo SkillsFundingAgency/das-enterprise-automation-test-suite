@@ -164,7 +164,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
                 _objectContext.SetIsSameApprentice();
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
 
             if (!(_objectContext.IsSameApprentice()))
                 _cohortReferenceHelper.SetCohortReference(cohortReference);

@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage : ProviderHomePage
     {
-        protected By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
+        protected static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
 
         public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)  { }
 
@@ -31,13 +31,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAddApprenticeDetailsEntryMothod GotoSelectJourneyPage()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAddApprenticeDetailsEntryMothod(context);
         }
 
         public ProviderAccessDeniedPage GotoSelectJourneyPageGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -67,7 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -77,10 +77,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeshipIndicativeEarningsReportPage(context);
         }
 
-        public ProviderYourStandardsAndTrainingVenuesPage GoToYourStandardsAndTrainingVenues()
-        {
-            formCompletionHelper.ClickLinkByText("Your standards and training venues");
-            return new ProviderYourStandardsAndTrainingVenuesPage(context);
-        }
+        private void AddNewApprentices() => formCompletionHelper.ClickElement(AddNewApprenticesLink);
     }
 }
