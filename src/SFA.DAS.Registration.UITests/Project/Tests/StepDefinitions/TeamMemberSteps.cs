@@ -14,6 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationDataHelper _registrationDataHelper;
         private YourTeamPage _yourTeamPage;
         private readonly AccountSignOutHelper _accountSignOutHelper;
+        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private string _invitedMemberEmailId;
 
         public TeamMemberSteps(ScenarioContext context)
@@ -22,6 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
+            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
         [Then(@"Employer is able to invite a team member with Viewer access")]
@@ -65,15 +67,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the invited team member is able to accept the invite and login to the Employer account")]
         public void ThenTheInvitedTeamMemberIsAbleToAcceptTheInviteAndLoginToTheEmployerAccount()
         {
-            throw new PendingStepException();
+            ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
 
-            //ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
-
-            //SignOut()
-            //    .CreateAccount()
-            //    .Register(_invitedMemberEmailId)
-            //    .ContinueToInvitationsPage()
-            //    .ClickAcceptInviteLink();
+            _accountCreationStepsHelper.AcceptUserInvite(SignOut(), _invitedMemberEmailId);
         }
 
         [Then(@"Employer is able to Remove the team member from the account")]

@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -38,7 +39,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
         internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
-            indexPage.CreateAccount().Register(email).ContinueToStubAddYourUserDetailsPage().EnterNameAndContinue();
+            RegisterStubUserAccount(indexPage, email).EnterNameAndGoToAddAPAYESchemePage();
+
+        internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            RegisterStubUserAccount(indexPage, email).EnterNameAndGoToInvitationsPage().ClickAcceptInviteLink();
+
+        private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            indexPage.CreateAccount().Register(email).ContinueToStubAddYourUserDetailsPage();
 
         internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);

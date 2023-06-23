@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
@@ -13,13 +14,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public AddAPAYESchemePage EnterNameAndContinue()
+        public AddAPAYESchemePage EnterNameAndGoToAddAPAYESchemePage()
+        {
+            EnterNameAndContinue();
+            return new AddAPAYESchemePage(context);
+        }
+
+        public InvitationsPage EnterNameAndGoToInvitationsPage()
+        {
+            EnterNameAndContinue();
+            return new InvitationsPage(context);
+        }
+
+        private void EnterNameAndContinue()
         {
             formCompletionHelper.EnterText(FirstNameInput, registrationDataHelper.FirstName);
             formCompletionHelper.EnterText(LastNameInput, registrationDataHelper.LastName);
             Continue();
-            return new AddAPAYESchemePage(context);
         }
-
     }
 }
