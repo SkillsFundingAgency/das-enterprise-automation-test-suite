@@ -95,7 +95,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void GivenEmployerAddsApprenticesToTheCohortWithTheFollowingDetails(Table table) => _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));
 
         [Given(@"Pilot Provider adds apprentices to the cohort witht the following details")]
-        public void GivenPilotProviderAddsApprenticesToTheCohortWithtTheFollowingDetails(Table table) => _providerStepsHelper.ProviderAddApprentice(ReadApprenticeData(table));
+        public void GivenPilotProviderAddsApprenticesToTheCohortWithtTheFollowingDetails(Table table) => _providerStepsHelper.PilotProviderAddApprentice(ReadApprenticeData(table));
 
         [When(@"employer reviews and approves the cohort")]
         public void WhenEmployerReviewsAndApprovesTheCohort()

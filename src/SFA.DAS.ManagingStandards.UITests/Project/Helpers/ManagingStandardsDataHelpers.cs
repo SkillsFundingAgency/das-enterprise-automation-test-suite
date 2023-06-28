@@ -18,6 +18,7 @@ public class ManagingStandardsDataHelpers
     public string UpdatedWebsite { get; init; } = "www.123company.co.uk";
     public string ContactWebsite { get; init; } = "www.companycontact.co.uk";
     public string ContactNumber { get; init; } = RandomDataGenerator.GenerateRandomNumber(12);
-    public StandardsTestData StandardsTestData { get; init; } = new StandardsTestData {LarsCode = "203", StandardName = "Teacher (Level 6)", Venue = LocationName };
+    public static StandardsTestData StandardsTestData => new() { LarsCode = "203", StandardName = "Teacher (Level 6)", Venue = LocationName };
     public string UpdateProviderDescriptionText { get; init; } = RandomDataGenerator.GenerateRandomAlphanumericString(20);
 }
+
