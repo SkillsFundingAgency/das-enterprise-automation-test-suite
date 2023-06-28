@@ -1,7 +1,6 @@
 ﻿@resetapplyuserorganisationid
 Feature: EPAO_AP_01
 #disabling this test as the apply journey has been disabled but a new journey is planned for later
-@epao
 @epaoapply
 Scenario: EPAO_AP_01A - Apply to become Assessor Happy path
 	Given the Apply User is logged into Assessment Service Application
