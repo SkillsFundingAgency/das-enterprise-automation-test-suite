@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -15,52 +14,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        private By TrainingCourseContainer => By.Id("CourseCode");
+        private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
+
+        private static By AddStandardsDDL => By.CssSelector("#SelectedLarsCode");
+
+        private static By FirstItemInTheList => By.CssSelector("#SelectedLarsCode__option--0");
 
         public SelectStandardPage(ScenarioContext context) : base(context) { }
 
         public AddApprenticeDetailsPage EmployerSelectsAStandard()
         {
             SelectStandardAndContinue();
+
             return new AddApprenticeDetailsPage(context);
         }
-
-        public SelectDeliveryModelPage EmployerSelectsASStandardInFlexiJobJourney() => NavigatesToSelectDeliveryModelPage();
 
         public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
         {
             SelectStandardAndContinue();
+
             return new ProviderAddApprenticeDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPaymentsPilot(bool isPilot = false)
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPaymentsPilot()
         {
             SelectStandardAndContinue();
-            return new ProviderAddApprenticeDetailsPage(context, isPilot);
+
+            return new ProviderAddApprenticeDetailsPage(context, true);
         }
 
-        public SelectDeliveryModelPage ProviderSelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
-
-
-        public SelectDeliveryModelPage EmployerSelectsAPortableFlexiJobCourse()
-        {
-            SelectStandard(apprenticeCourseDataHelper.PortableFlexiJobCourseDetails.Course.larsCode);
-            Continue();
-            return new SelectDeliveryModelPage(context);
-        }
+        public SelectDeliveryModelPage SelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
 
         public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetails()
         {
-            SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
-            Continue();
-            return new ProviderEditApprenticeDetailsPage(context);
-        }
+            SelectStandardAndContinue(apprenticeCourseDataHelper.OtherCourseLarsCode);
 
-        public EditApprenticeDetailsPage EmployerSelectsAStandardForEditApprenticeDetailsPath()
-        {
-            SelectStandard(apprenticeCourseDataHelper.OtherCourseLarsCode);
-            Continue();
-            return new EditApprenticeDetailsPage(context);
+            return new ProviderEditApprenticeDetailsPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
@@ -72,42 +61,43 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse()
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string LarsCode)
         {
-            var selectedCourse = formCompletionHelper.GetSelectedOption(TrainingCourseContainer);
-            formCompletionHelper.SelectFromDropDownByText(TrainingCourseContainer, GetAnyStandardCourse(selectedCourse));
-            Continue();
+            SelectStandardAndContinue(LarsCode);
+
             return new EditApprenticeDetailsPage(context);
         }
 
-        private string GetAnyStandardCourse(string selectedCourseName)
-        {
-            var availableCourses = new List<string> { "Abattoir worker, Level: 2", "Actuary, Level: 7", "Software tester, Level: 4" };
-            availableCourses = availableCourses.Where(x => !x.ContainsCompareCaseInsensitive(selectedCourseName) && x.Contains("Level")).ToList();
-            return RandomDataGenerator.GetRandomElementFromListOfElements(availableCourses);
-        }
-
-        private ProviderEditApprenticeDetailsPage GoToProviderEditApprenticeDetailsPage() => new ProviderEditApprenticeDetailsPage(context);
-
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseLarsCode);
+        
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
             SelectStandardAndContinue();
+
             return new SelectDeliveryModelPage(context);
         }
 
-        private void SelectStandardAndContinue()
+        private void SelectStandardAndContinue() => SelectStandardAndContinue(apprenticeCourseDataHelper.CourseLarsCode);
+
+        private void SelectStandardAndContinue(string courseLarsCode)
         {
-            SelectStandard(apprenticeCourseDataHelper.CourseLarsCode);
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, courseLarsCode);
+
             Continue();
         }
 
-        private void SelectStandard(string courseLarsCode) => formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, courseLarsCode);
+        public void AssertStandardIsNotAvailable()
+        {
+            var courseDetails = apprenticeCourseDataHelper.CourseDetails;
 
-        private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.False(GetAllTrainingCourses().All(x => x.Contains("(Framework)")));
+            Assert.That(formCompletionHelper.GetAllDropDownValue(TrainingCourseContainer).Any(x=> x == courseDetails.Course.larsCode), Is.False, $"{courseDetails.Course.larsCode}, {courseDetails.Course.title} is available for the provider");
+        }
+
+        private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.That(GetAllTrainingCourses().All(x => x.Contains("(Framework)")), Is.False);
 
         private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
-            Assert.True(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")));
+            Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")), Is.True);
             Continue();
             return new AddApprenticeDetailsPage(context);
         }

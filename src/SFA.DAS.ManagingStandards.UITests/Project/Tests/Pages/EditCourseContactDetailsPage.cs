@@ -16,21 +16,24 @@ public class YourContactInformationForThisStandardPage : ManagingStandardsBasePa
 
     public ManageAStandard_TeacherPage UpdateContactInformation()
     {
-        formCompletionHelper.EnterText(EmailAddressTextBox, managingStandardsDataHelpers.EmailAddress);
-        formCompletionHelper.EnterText(TelephoneNumberTextBox, managingStandardsDataHelpers.ContactNumber);
-        formCompletionHelper.EnterText(ContactPageTextBox, managingStandardsDataHelpers.ContactWebsite);
-        formCompletionHelper.EnterText(YourWebsitePageTextBox, managingStandardsDataHelpers.Website);
-        formCompletionHelper.Click(SaveAndContinueButton);
+        CompleteContactInfo();
+
         return new ManageAStandard_TeacherPage(context);
     }
 
     public WhereWillThisStandardBeDeliveredPage Add_ContactInformation()
+    {
+        CompleteContactInfo();
+
+        return new WhereWillThisStandardBeDeliveredPage(context);
+    }
+
+    private void CompleteContactInfo()
     {
         formCompletionHelper.EnterText(EmailAddressTextBox, managingStandardsDataHelpers.EmailAddress);
         formCompletionHelper.EnterText(TelephoneNumberTextBox, managingStandardsDataHelpers.ContactNumber);
         formCompletionHelper.EnterText(ContactPageTextBox, managingStandardsDataHelpers.ContactWebsite);
         formCompletionHelper.EnterText(YourWebsitePageTextBox, managingStandardsDataHelpers.Website);
         formCompletionHelper.Click(SaveAndContinueButton);
-        return new WhereWillThisStandardBeDeliveredPage(context);
     }
 }

@@ -11,19 +11,23 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected override string Linktext => "Home";
 
-        protected By AddNewApprenticesLink => By.LinkText("Add new apprentices");
+        protected static By AddNewApprenticesLink => By.LinkText("Add new apprentices");
 
-        protected By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+        protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
-        protected By GetFundingLink => By.LinkText("Get funding for non-levy employers");
+        protected static By GetFundingLink => By.LinkText("Get funding for non-levy employers");
 
-        protected By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
+        protected static By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
 
-        protected By ManageEmployerInvitations => By.LinkText("Manage employer invitations");
+        protected static By ManageEmployerInvitations => By.LinkText("Manage employer invitations");
 
-        protected By InviteEmployers => By.LinkText("Send invitation to employer");
-        protected By RecruitTrainees => By.LinkText("Recruit trainees");
-        protected By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
+        protected static By InviteEmployers => By.LinkText("Send invitation to employer");
+
+        protected static By RecruitTrainees => By.LinkText("Recruit trainees");
+
+        protected static By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
+
+        protected static By YourStandardsAndTrainingVenues => By.LinkText("Your standards and training venues");
 
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
         

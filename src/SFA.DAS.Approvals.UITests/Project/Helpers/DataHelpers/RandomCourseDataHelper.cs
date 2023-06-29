@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -9,51 +10,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public class RandomCourseDataHelper
     {
         private readonly List<CourseDetails> _availableCourses;
-
-        private readonly List<CourseDetails> _portableFlexiJobAvailableCourses;
-
-        public RandomCourseDataHelper((List<CourseDetails>, List<CourseDetails>) courses)
+        
+        public RandomCourseDataHelper() 
         {
-            _availableCourses = courses.Item1;
-            _portableFlexiJobAvailableCourses = courses.Item2;
+            _availableCourses = AvailableCourses.GetAvailableCourses();
         }
 
-        public RandomCourseDataHelper() : this((AvailableCourses.GetAvailableCourses(), AvailableCourses.GetAvailableCourses())) { }
-
-        public RandomCourseDataHelper(CrsSqlhelper crsSqlhelper, RoatpV2SqlDataHelper roatpV2SqlDataHelper, string[] tags)
+        public RandomCourseDataHelper(DbConfig dbConfig, List<string> larsCode, bool isMultipleOptionStandard)
         {
+            var crsSqlhelper = new CrsSqlhelper(dbConfig);
+
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
             {
-                tags.Contains("selectstandardwithmultipleoptions") ? crsSqlhelper.GetSqlQueryWithMultipleOptions() : crsSqlhelper.GetSqlQueryWithNoOptions(),
-
-                crsSqlhelper.GetSqlQueryWithNoOptions(roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode())
+                isMultipleOptionStandard ? crsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : crsSqlhelper.GetSqlQueryWithNoOptions(larsCode)
             });
 
             _availableCourses = multiqueryResult[0];
-
-            _portableFlexiJobAvailableCourses = multiqueryResult[1];
         }
 
-        internal (List<CourseDetails>, List<CourseDetails>) GetRandomCourses() => (_availableCourses, _portableFlexiJobAvailableCourses);
 
-        public CourseDetails GetPortableFlexiJobCourseDetails() => RandomDataGenerator.GetRandomElementFromListOfElements(_portableFlexiJobAvailableCourses);
+        public CourseDetails RandomCourse() => SelectACourseExcept(_availableCourses, null);
 
-        public CourseDetails RandomCourse() => SelectACourse(null);
+        public CourseDetails RandomCourse(string selectedCourse) => SelectACourseExcept(_availableCourses, selectedCourse);
 
-        public CourseDetails RandomCourse(string selectedCourse) => SelectACourse(selectedCourse);
+        public CourseDetails SelectASpecificCourse(string courseToSelect) => SelectSpecificCourse(_availableCourses, courseToSelect);
 
-        public CourseDetails SelectASpecificCourse(string CoourseToSelect) => SelectSpecificCourse(CoourseToSelect);
+        private static CourseDetails SelectACourseExcept(List<CourseDetails> courses, string except) => Func(courses, except, (x, y) => x != y);
 
-        private CourseDetails SelectACourse(string except)
+        private static CourseDetails SelectSpecificCourse(List<CourseDetails> courses, string larsCode) => Func(courses, larsCode, (x, y) => x == y);
+
+        private static CourseDetails Func(List<CourseDetails> courses, string larsCode, Func<string ,string, bool> func)
         {
-            var newlist = _availableCourses.Where(x => x.Course.larsCode != except).ToList();
-
-            return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
-        }
-
-        private CourseDetails SelectSpecificCourse(string larsCode)
-        {
-            var newlist = _availableCourses.Where(x => x.Course.larsCode == larsCode).ToList();
+            var newlist = courses.Where(x => func(x.Course.larsCode, larsCode)).ToList();
 
             return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
         }

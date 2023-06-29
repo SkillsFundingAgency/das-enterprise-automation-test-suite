@@ -5,36 +5,27 @@ global using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using TechTalk.SpecFlow;
+global using System.Linq;
+global using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
 [Binding, Scope(Tag = "aan")]
 public class AANHooks
 {
-    private readonly string[] _tags;
-    private AANSqlDataHelper _aANSqlDataHelper;
-    private AANDataHelpers _dataHelper;
-    protected readonly DbConfig _dbConfig;
     private readonly ScenarioContext _context;
-
-    public AANHooks(ScenarioContext context)
-    {
-        _tags = context.ScenarioInfo.Tags;
-        _context = context;
-        _dbConfig = context.Get<DbConfig>();
-    }
+    
+    public AANHooks(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 31)]
+    public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.AAN_BaseUrl);
+
+    [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {
-        _context.Set(_aANSqlDataHelper = new AANSqlDataHelper(_dbConfig));
+        _context.Set(new AANSqlDataHelper(_context.Get<DbConfig>()));
 
-        _context.Set(_dataHelper = new AANDataHelpers());
+        _context.Set(new AANDataHelpers());
     }
 
-    //[BeforeScenario(Order = 32)]
-    //public void SetApprovedByRegulatorToNull()
-    //{
-    //    if (_tags.Any(x => x == "aan")) _aANSqlDataHelper.ClearRegulation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
-    //}
 }

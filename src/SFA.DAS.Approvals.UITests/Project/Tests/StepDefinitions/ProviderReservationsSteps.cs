@@ -17,11 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderReservationStepsHelper _providerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
         private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private ApprovalsProviderHomePage _approvalsProviderHomePage;
 
         public ProviderReservationsSteps(ScenarioContext context)
         {
@@ -30,6 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _config = context.GetProviderConfig<ProviderConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
+            _providerReservationStepsHelper = new ProviderReservationStepsHelper();
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
@@ -46,24 +49,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Provider with create reservation permission logs in")]
-        public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _providerStepsHelper.Login(_login);
+        public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerStepsHelper.Login(_login, true);
 
         [When(@"the Provider creates a reservation")]
-        public void WhenThenProviderCreatesAReservation() => _providerStepsHelper.StartCreateReservationAndGoToStartTrainingPage();
+        public void WhenThenProviderCreatesAReservation() => _providerReservationStepsHelper.StartCreateReservationAndGoToStartTrainingPage(_approvalsProviderHomePage);
 
         [Then(@"the Provider is told that funding can be reserved from (.*)")]
         public void ThenTheEmployerIsPresentedWithFirstMonthSecondMonthAndThirdMonthForTheApprenticeshipStart(string monthReserveFrom) =>
-            _providerStepsHelper.VerifyReserveFromMonth(ParseMonth(monthReserveFrom));
+            _providerReservationStepsHelper.VerifyReserveFromMonth(ParseMonth(monthReserveFrom));
 
         [Then(@"the Provider is given options (.*), (.*) and (.*) to select start date")]
         public void ThenGivenOptionsToSelectStartDate(string firstMonth, string secondMonth, string thirdMonth) =>
-            _providerStepsHelper.VerifySuggestedStartMonthOptions(ParseMonth(firstMonth), ParseMonth(secondMonth), ParseMonth(thirdMonth));
+            _providerReservationStepsHelper.VerifySuggestedStartMonthOptions(ParseMonth(firstMonth), ParseMonth(secondMonth), ParseMonth(thirdMonth));
 
         [Then(@"the Provider is (able|not able) to reserve funding for an apprenticeship course")]
         public void ThenTheEmployerCanOrCannotReserveFundingForAnApprenticeshipCourse(string ableOrNotAble)
         {
-            if (ableOrNotAble == "able") _providerStepsHelper.CompleteCreateReservationFromStartTrainingPage();
-            else if (ableOrNotAble == "not able")_providerStepsHelper.VerifyCreateReservationCannotBeCompleted();
+            if (ableOrNotAble == "able") _providerReservationStepsHelper.CompleteCreateReservationFromStartTrainingPage();
+            else if (ableOrNotAble == "not able") _providerReservationStepsHelper.VerifyCreateReservationCannotBeCompleted();
         }
 
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
@@ -74,16 +77,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Provider can make a reservation")]
-        public void ThenProviderCanMakeAReservation() => _providerAddApprenticeDetailsPage = _providerStepsHelper
-                .ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
+        public void ThenProviderCanMakeAReservation() => _providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
 
         [Then(@"Provider can add an apprentice")]
-        public void ThenProviderCanAddAnApprentice() => _providerApproveApprenticeDetailsPage = _providerStepsHelper
-            .AddApprentice(_providerAddApprenticeDetailsPage, 1);
+        public void ThenProviderCanAddAnApprentice() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
 
         [Then(@"Provider can edit an apprentice")]
-        public void ThenProviderCanEditAnApprentice() => _providerApproveApprenticeDetailsPage = _providerStepsHelper
-            .EditApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderCanEditAnApprentice() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider can delete an apprentice")]
         public void ThenProviderCanDeleteAnApprentice() => _providerStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);

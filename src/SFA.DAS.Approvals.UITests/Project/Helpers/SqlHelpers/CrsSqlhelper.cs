@@ -9,13 +9,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class CrsSqlhelper : SqlDbHelper
     {
+        private static string MultipleOptionPredicate => "Options NOT like '%core%' and Options like '%,%' and Options NOT like '%N/A%'";
+
+        private static string NoOptionPredicate => "Options like '%core%'";
+
         public CrsSqlhelper(DbConfig dbConfig) : base(dbConfig.CRSDbConnectionString) { }
+        
+        public string GetSqlQueryWithMultipleOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {MultipleOptionPredicate}");
 
-        public string GetSqlQueryWithMultipleOptions() => GetSqlQuery("Options NOT like '%core%' and Options like '%,%' and Options NOT like '%N/A%'");
-
-        public string GetSqlQueryWithNoOptions() => GetSqlQuery("Options like '%core%'");
-
-        public string GetSqlQueryWithNoOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQueryWithNoOptions() : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and Options like '%core%'");
+        public string GetSqlQueryWithNoOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(NoOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {NoOptionPredicate}");
 
         public List<List<CourseDetails>> GetApprenticeCourse(List<string> sqlQuery)
         {
