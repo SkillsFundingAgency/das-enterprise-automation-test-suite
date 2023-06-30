@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Check your details";
         
         #region Locators
-        protected override By ContinueButton => By.Id("continue");
+        protected override By ContinueButton => By.Id("continue-check-details");
         private By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
         private By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
         private By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
@@ -22,10 +22,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public WhenDoYouWantToViewEmpAgreementPage ContinueToAboutYourAgreementPage()
+        public CreateYourEmployerAccountPage ContinueToSetAccountName()
         {
             Continue();
-            return new WhenDoYouWantToViewEmpAgreementPage(context);
+            return new CreateYourEmployerAccountPage(context);
         }
 
         public OrganisationHasBeenAddedPage ClickYesContinueButton()

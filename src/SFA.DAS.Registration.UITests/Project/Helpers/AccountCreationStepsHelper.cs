@@ -38,8 +38,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal AddAPAYESchemePage RegisterUserAccount() => 
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
-        internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
-            RegisterStubUserAccount(indexPage, email).EnterNameAndGoToAddAPAYESchemePage();
+        internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            RegisterStubUserAccount(indexPage, email).EnterName().GoToAddPayeLink().SelectOptionLessThan3Million();
 
         internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
             RegisterStubUserAccount(indexPage, email).EnterNameAndGoToInvitationsPage().ClickAcceptInviteLink();
@@ -93,8 +93,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SignInTo(index)
             .SearchForAnOrganisation(orgType)
             .SelectYourOrganisation(orgType)
-            .ContinueToAboutYourAgreementPage()
-            .SelectViewAgreementNowAndContinue()
+            .ContinueToSetAccountName()
+            .GoToSetYourAccountNameLink()
+            .SelectoptionNo()
+            .ContinueToAcknowledge()
+            .GoToAcceptTheAgreementLink()
+            .ClickViewAgreementLink()
+            .GoToViewAgreement()
+            .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
             .SignAgreement()
             .ClickOnViewYourAccountButton();
 

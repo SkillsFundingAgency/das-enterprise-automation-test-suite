@@ -14,9 +14,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         private By SigninLink => By.LinkText("sign in");
         private By CreateAccountLink => By.Id("service-start");
+        private By AcceptAllCookies => By.XPath("//button[text()='Accept all cookies']");
         #endregion
 
-        public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
+        public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+            ClickIfDisplayed(AcceptAllCookies);
+        }
 
         public StubSignInPage GoToStubSignInPage() => StubSignInPage(() => formCompletionHelper.ClickElement(SigninLink));
 

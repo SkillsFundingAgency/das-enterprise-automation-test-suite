@@ -78,8 +78,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo(0)
                 .SearchForAnOrganisation(EnumHelper.OrgType.Company)
                 .SelectYourOrganisation(EnumHelper.OrgType.Company)
-                .ContinueToAboutYourAgreementPage()
-                .SelectViewItLaterAndContinue();
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .SelectGoToYourEmployerAccountHomepage();
         }
 
         [When(@"the employer signs the agreement")]

@@ -3,20 +3,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class UsingYourGovtGatewayDetailsPage : RegistrationBasePage
+    public  class AddPayeSchemeUsingGGDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Add a PAYE scheme using your Government Gateway details";
-        
-        #region Locators
         protected override By ContinueButton => By.Id("agree_and_continue");
-        #endregion
 
-        public UsingYourGovtGatewayDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+        public AddPayeSchemeUsingGGDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public GgSignInPage ContinueToGGSignIn()
+        public GgSignInPage AgreeAndContinue()
         {
-            Continue();
+            formCompletionHelper.ClickElement(ContinueButton);
             return new GgSignInPage(context);
         }
+
     }
 }

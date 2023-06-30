@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         private static By SearchInput => By.Id("searchTerm");
-        private static By SearchButton => By.CssSelector("input.govuk-button");
+        private static By SearchButton => By.CssSelector("#submit-search-organisation");
         #endregion
 
         protected override By PageHeader => By.CssSelector("#main-content");

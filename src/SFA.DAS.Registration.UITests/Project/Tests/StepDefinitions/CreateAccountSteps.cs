@@ -74,7 +74,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _checkYourDetailsPage.ContinueToAboutYourAgreementPage().SelectViewAgreementNowAndContinue();
+            _signAgreementPage 
+                = _checkYourDetailsPage
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .GoToAcceptTheAgreementLink()
+                .ClickViewAgreementLink()
+                .GoToViewAgreement()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -94,8 +103,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _signAgreementPage = _searchForYourOrganisationPage
                 .SearchForAnOrganisation(orgType)
                 .SelectYourOrganisation(orgType)
-                .ContinueToAboutYourAgreementPage()
-                .SelectViewAgreementNowAndContinue();
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .GoToAcceptTheAgreementLink()
+                .ClickViewAgreementLink()
+                .GoToViewAgreement()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()

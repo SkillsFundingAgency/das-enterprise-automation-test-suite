@@ -14,10 +14,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public AddAPAYESchemePage EnterNameAndGoToAddAPAYESchemePage()
+        public CreateYourEmployerAccountPage EnterName()
         {
             EnterNameAndContinue();
-            return new AddAPAYESchemePage(context);
+            return new CreateYourEmployerAccountPage(context);
         }
 
         public InvitationsPage EnterNameAndGoToInvitationsPage()
