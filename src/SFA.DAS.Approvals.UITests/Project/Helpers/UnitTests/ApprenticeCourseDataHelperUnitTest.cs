@@ -36,12 +36,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             //Arrange 
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
 
+            var nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
+
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
+
+            Console.WriteLine($"{apprentice.CourseStartDate} > {DateTime.Now.Date} & if {apprentice.CourseStartDate.Month == DateTime.Now.Month} then {apprentice.CourseStartDate.Year} != {DateTime.Now.Year} & {apprentice.CourseLarsCode} < {nextAcademicYearStartDate}");
 
             //Assert
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(apprentice.CourseStartDate > DateTime.Now.Date && (apprentice.CourseStartDate.Month != DateTime.Now.Month ? true : apprentice.CourseStartDate.Year != DateTime.Now.Year) && apprentice.CourseStartDate < AcademicYearDatesHelper.GetNextAcademicYearStartDate());
+                Assert.IsTrue(apprentice.CourseStartDate > DateTime.Now.Date && (apprentice.CourseStartDate.Month != DateTime.Now.Month ? true : apprentice.CourseStartDate.Year != DateTime.Now.Year) && apprentice.CourseStartDate < nextAcademicYearStartDate);
 
                 Assert.IsTrue(AvailableCourses.GetAvailableCourses().Any(x => x.Course.larsCode == apprentice.CourseDetails.Course.larsCode));
             });
