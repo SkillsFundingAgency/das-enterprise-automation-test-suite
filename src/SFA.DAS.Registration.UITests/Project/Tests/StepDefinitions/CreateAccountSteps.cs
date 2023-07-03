@@ -34,6 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
+        private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -203,12 +204,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on 'Use different details' button")]
         [Then(@"'AddPayeSchemeUsingGGDetails' page is displayed when Employer clicks on 'Use different details' button")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnUseDifferentDetailsButton() =>
-            _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
+            _addPayeSchemeUsingGGDetailsPage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() =>
-            _addAPAYESchemePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage).CickBackLinkInTheseDetailsAreAlreadyInUsePage();
-
+        _enterYourPAYESchemeDetailsPage = _addPayeSchemeUsingGGDetailsPage.ClickBackButton().CickBackLinkInTheseDetailsAreAlreadyInUsePage().ReEnterTheSameAornDetailsAndContinue().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
+        
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
         {

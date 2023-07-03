@@ -19,10 +19,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AddPayeSchemeUsingGGDetailsPage(context);
         }
 
-        public AddAPAYESchemePage CickBackLinkInTheseDetailsAreAlreadyInUsePage()
+        public EnterYourPAYESchemeDetailsPage CickBackLinkInTheseDetailsAreAlreadyInUsePage()
         {
             NavigateBack();
-            return new AddAPAYESchemePage(context);
+            return new EnterYourPAYESchemeDetailsPage(context);
         }
     }
 }

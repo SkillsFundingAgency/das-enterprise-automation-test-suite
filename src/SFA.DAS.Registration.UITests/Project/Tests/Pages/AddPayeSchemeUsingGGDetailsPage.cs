@@ -7,6 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add a PAYE scheme using your Government Gateway details";
         protected override By ContinueButton => By.Id("agree_and_continue");
+        private By BackButton => By.ClassName("govuk-back-link");
 
         public AddPayeSchemeUsingGGDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -14,6 +15,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(ContinueButton);
             return new GgSignInPage(context);
+        }
+
+        public TheseDetailsAreAlreadyInUsePage ClickBackButton()
+        {
+            formCompletionHelper.ClickElement(BackButton);
+            return new TheseDetailsAreAlreadyInUsePage(context);
         }
 
     }
