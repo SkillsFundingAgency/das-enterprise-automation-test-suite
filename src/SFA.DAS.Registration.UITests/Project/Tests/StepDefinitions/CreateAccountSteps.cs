@@ -308,8 +308,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"an Employer creates an Account by skipping the add PAYE part")]
         public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
         {
-            AnUserAccountIsCreated();
-            _myAccountWithOutPayePage = _addAPAYESchemePage.DoNotAddPaye();
+            //AnUserAccountIsCreated();
+            //_myAccountWithOutPayePage = _addAPAYESchemePage.DoNotAddPaye();
+
+            new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register().ContinueToStubAddYourUserDetailsPage().EnterName();
         }
 
         [When(@"the Employer chooses to add PAYE from Account Home Page")]

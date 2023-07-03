@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
         private By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
         private By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
-        private By PayeScheme => By.XPath("//th[contains(text(),'PAYE scheme')]/following-sibling::td//dt");   
+        private By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");   
         private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
         private By AornChangeLink => By.XPath($"//td[contains(text(), '{registrationDataHelper.AornNumber}')]/..//a");
         private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td/a");
