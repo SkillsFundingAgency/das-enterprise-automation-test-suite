@@ -38,8 +38,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal AddAPAYESchemePage RegisterUserAccount() => 
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
-        internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
-            RegisterStubUserAccount(indexPage, email).EnterNameAndGoToAddAPAYESchemePage();
+        internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            RegisterStubUserAccount(indexPage, email).EnterName().GoToAddPayeLink().SelectOptionLessThan3Million();
 
         internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
             RegisterStubUserAccount(indexPage, email).EnterNameAndGoToInvitationsPage().ClickAcceptInviteLink();
@@ -86,17 +86,28 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SelectYesRadioButtonAndContinue()
             .VerifyPayeSchemeRemovedInfoMessage();
 
-        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) => 
-            addAPAYESchemePage
+        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) =>
+            GoToSignAgreementPage(addAPAYESchemePage
             .AddPaye()
             .ContinueToGGSignIn()
             .SignInTo(index)
             .SearchForAnOrganisation(orgType)
-            .SelectYourOrganisation(orgType)
-            .ContinueToAboutYourAgreementPage()
-            .SelectViewAgreementNowAndContinue()
+            .SelectYourOrganisation(orgType))
             .SignAgreement()
             .ClickOnViewYourAccountButton();
+
+        internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
+        {
+            return checkYourDetailsPage
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .GoToAcceptTheAgreementLink()
+                .ClickViewAgreementLink()
+                .GoToViewAgreement()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+        }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
             homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();

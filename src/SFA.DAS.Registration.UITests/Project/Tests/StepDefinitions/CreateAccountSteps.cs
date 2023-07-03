@@ -34,6 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
+        private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -74,7 +75,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _checkYourDetailsPage.ContinueToAboutYourAgreementPage().SelectViewAgreementNowAndContinue();
+            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -90,12 +91,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType) =>
-            _signAgreementPage = _searchForYourOrganisationPage
-                .SearchForAnOrganisation(orgType)
-                .SelectYourOrganisation(orgType)
-                .ContinueToAboutYourAgreementPage()
-                .SelectViewAgreementNowAndContinue();
+        public void AddOrganisationTypeDetails(OrgType orgType) => 
+            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -205,13 +202,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on 'Use different details' button")]
+        [Then(@"'AddPayeSchemeUsingGGDetails' page is displayed when Employer clicks on 'Use different details' button")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnUseDifferentDetailsButton() =>
-            _addAPAYESchemePage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
+            _addPayeSchemeUsingGGDetailsPage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() =>
-            _addAPAYESchemePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage).CickBackLinkInTheseDetailsAreAlreadyInUsePage();
-
+        _enterYourPAYESchemeDetailsPage = _addPayeSchemeUsingGGDetailsPage.ClickBackButton().CickBackLinkInTheseDetailsAreAlreadyInUsePage().ReEnterTheSameAornDetailsAndContinue().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
+        
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
         {
@@ -293,8 +291,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"an Employer creates an Account by skipping the add PAYE part")]
         public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
         {
-            AnUserAccountIsCreated();
-            _myAccountWithOutPayePage = _addAPAYESchemePage.DoNotAddPaye();
+            new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register().ContinueToStubAddYourUserDetailsPage().EnterName();
         }
 
         [When(@"the Employer chooses to add PAYE from Account Home Page")]

@@ -3,6 +3,7 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -59,13 +60,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer sets up the user")]
         public void WhenTheEmployerSetsUpTheUser()
         {
-            throw new PendingStepException();
+            var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
+            
+            _tabHelper.OpenInNewTab(uri);
 
-            //var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
-
-            //_tabHelper.OpenInNewTab(uri);
-
-            //new SetUpAsAUserPage(_context).ProviderLeadRegistration().ContinueToGetApprenticeshipFunding().DoNotAddPaye();
+            new StubAddYourUserDetailsPage(_context).DoNotEnterNameAndContinue();
         }
 
         [When(@"the employer adds PAYE from Account Home Page")]
@@ -78,8 +77,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo(0)
                 .SearchForAnOrganisation(EnumHelper.OrgType.Company)
                 .SelectYourOrganisation(EnumHelper.OrgType.Company)
-                .ContinueToAboutYourAgreementPage()
-                .SelectViewItLaterAndContinue();
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .SelectGoToYourEmployerAccountHomepage();
         }
 
         [When(@"the employer signs the agreement")]
