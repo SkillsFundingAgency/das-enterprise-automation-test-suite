@@ -54,7 +54,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private SearchForYourOrganisationPage Search()
         {
-            formCompletionHelper.ClickElement(SearchButton);
+            formCompletionHelper.ClickButtonByText(SearchButton, "Search");
             return this;
         }
 
