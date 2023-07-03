@@ -32,5 +32,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             formCompletionHelper.EnterText(LastNameInput, registrationDataHelper.LastName);
             Continue();
         }
+
+        public CreateYourEmployerAccountPage DoNotEnterNameAndContinue()
+        {
+            Continue();
+            return new CreateYourEmployerAccountPage(context);
+        }
     }
 }
