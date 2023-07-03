@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class EnterYourPAYESchemeDetailsPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Enter your PAYE scheme details";
+        protected override string PageTitle => "Add PAYE details";
 
         #region Locators
         private By AornTextBox => By.Id("aorn");
