@@ -65,8 +65,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _tabHelper.OpenInNewTab(uri);
 
             new StubAddYourUserDetailsPage(_context).DoNotEnterNameAndContinue();
-
-            //new SetUpAsAUserPage(_context).ProviderLeadRegistration().ContinueToGetApprenticeshipFunding().DoNotAddPaye();
         }
 
         [When(@"the employer adds PAYE from Account Home Page")]
