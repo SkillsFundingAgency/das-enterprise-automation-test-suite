@@ -74,16 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage 
-                = _checkYourDetailsPage
-                .ContinueToSetAccountName()
-                .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
-                .ContinueToAcknowledge()
-                .GoToAcceptTheAgreementLink()
-                .ClickViewAgreementLink()
-                .GoToViewAgreement()
-                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -99,18 +90,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType) =>
-            _signAgreementPage = _searchForYourOrganisationPage
-                .SearchForAnOrganisation(orgType)
-                .SelectYourOrganisation(orgType)
-                .ContinueToSetAccountName()
-                .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
-                .ContinueToAcknowledge()
-                .GoToAcceptTheAgreementLink()
-                .ClickViewAgreementLink()
-                .GoToViewAgreement()
-                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+        public void AddOrganisationTypeDetails(OrgType orgType) => 
+            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -309,9 +290,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"an Employer creates an Account by skipping the add PAYE part")]
         public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
         {
-            //AnUserAccountIsCreated();
-            //_myAccountWithOutPayePage = _addAPAYESchemePage.DoNotAddPaye();
-
             new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register().ContinueToStubAddYourUserDetailsPage().EnterName();
         }
 

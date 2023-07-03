@@ -86,23 +86,28 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SelectYesRadioButtonAndContinue()
             .VerifyPayeSchemeRemovedInfoMessage();
 
-        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) => 
-            addAPAYESchemePage
+        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) =>
+            GoToSignAgreementPage(addAPAYESchemePage
             .AddPaye()
             .ContinueToGGSignIn()
             .SignInTo(index)
             .SearchForAnOrganisation(orgType)
-            .SelectYourOrganisation(orgType)
-            .ContinueToSetAccountName()
-            .GoToSetYourAccountNameLink()
-            .SelectoptionNo()
-            .ContinueToAcknowledge()
-            .GoToAcceptTheAgreementLink()
-            .ClickViewAgreementLink()
-            .GoToViewAgreement()
-            .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
+            .SelectYourOrganisation(orgType))
             .SignAgreement()
             .ClickOnViewYourAccountButton();
+
+        internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
+        {
+            return checkYourDetailsPage
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .GoToAcceptTheAgreementLink()
+                .ClickViewAgreementLink()
+                .GoToViewAgreement()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+        }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
             homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
