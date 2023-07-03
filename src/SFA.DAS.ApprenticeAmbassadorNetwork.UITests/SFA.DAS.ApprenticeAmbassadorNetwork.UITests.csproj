@@ -27,6 +27,15 @@
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	</ItemGroup>
   
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\AAN_03_Events.feature.cs">
+      <Visible>true</Visible>
+      <DependentUpon>AAN_03_Events.feature</DependentUpon>
+      <DesignTime>true</DesignTime>
+      <AutoGen>true</AutoGen>
+    </Compile>
+  </ItemGroup>
+  
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -41,6 +50,13 @@
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\AAN_03_Events.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 
 </Project>
