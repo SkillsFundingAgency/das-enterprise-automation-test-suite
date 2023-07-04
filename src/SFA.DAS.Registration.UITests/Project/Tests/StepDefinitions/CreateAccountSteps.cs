@@ -279,38 +279,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context).ClickAddViaGGLink();
         }
 
-        [Then(@"Employer is able to complete registration through GG route")]
-        public void ThenEmployerIsAbleToCompleteRegistrationThroughGGRoute()
-        {
-            _searchForYourOrganisationPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo(0);
-            AddOrganisationDetails();
-            SignTheAgreement();
-        }
-
-        [When(@"an Employer creates an Account by skipping the add PAYE part")]
-        [Given(@"an Employer creates an Account by skipping the add PAYE part")]
-        public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
-        {
-            new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().Register().ContinueToStubAddYourUserDetailsPage().EnterName();
-        }
-
-        [When(@"the Employer chooses to add PAYE from Account Home Page")]
-        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.AddYourPAYEScheme();
-
-        [Then(@"the Employer is able to add PAYE and Organisation to the Account")]
-        public void ThenTheEmployerIsAbleToAddPAYEAndOrganisationToTheAccount() => AddPayeAndOrgAndSignAgreement();
-
-        [Given(@"an Employer creates an Account by skipping to add PAYE details after choosing AORN route")]
-        public void GivenAnEmployerCreatesAnAccountBySkippingToAddPAYEDetailsAfterChoosingAORNRoute()
-        {
-            AnUserAccountIsCreated();
-            _myAccountWithOutPayePage = _addAPAYESchemePage.AddAORN().ClickSkipThisStepForNowLink();
-        }
-
-        [Then(@"the Employer is able to add AORN details attached to a SingleOrg to the Account")]
-        public void ThenTheEmployerIsAbleToAddAORNDetailsAttachedToASingleOrgToTheAccount() =>
-            WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute("SingleOrg");
-
         [Then(@"the Employer is able to rename the Account")]
         public void ThenTheEmployerIsAbleToRenameTheAccount()
         {
@@ -390,13 +358,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             AnUserAccountIsCreated();
             return AddPayeDetails();
-        }
-
-        private void AddPayeAndOrgAndSignAgreement()
-        {
-            AddPayeDetails();
-            AddOrganisationTypeDetails(OrgType.Company);
-            SignTheAgreement();
         }
 
         private SearchForYourOrganisationPage AddPayeDetails(int payeIndex) =>
