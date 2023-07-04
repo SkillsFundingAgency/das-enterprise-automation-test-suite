@@ -279,6 +279,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context).ClickAddViaGGLink();
         }
 
+        [Then(@"Employer is able to complete registration through GG route")]
+        public void ThenEmployerIsAbleToCompleteRegistrationThroughGGRoute()
+        {
+            _searchForYourOrganisationPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo(0);
+            AddOrganisationDetails();
+            SignTheAgreement();
+        }
+
         [Then(@"the Employer is able to rename the Account")]
         public void ThenTheEmployerIsAbleToRenameTheAccount()
         {
