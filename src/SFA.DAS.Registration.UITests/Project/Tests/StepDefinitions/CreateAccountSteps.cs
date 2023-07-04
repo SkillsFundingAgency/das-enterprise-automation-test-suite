@@ -1,12 +1,8 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -32,7 +28,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
-        private MyAccountWithOutPayePage _myAccountWithOutPayePage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
         private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
 
@@ -91,7 +86,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType) => 
+        public void AddOrganisationTypeDetails(OrgType orgType) =>
             _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
 
         [When(@"enters an Invalid Company number for Org search")]
@@ -161,7 +156,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
-        public void EmployerCreatesALevyAccountAndSignsTheAgreement() => 
+        public void EmployerCreatesALevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
 
         [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
@@ -209,7 +204,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() =>
         _enterYourPAYESchemeDetailsPage = _addPayeSchemeUsingGGDetailsPage.ClickBackButton().CickBackLinkInTheseDetailsAreAlreadyInUsePage().ReEnterTheSameAornDetailsAndContinue().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
-        
+
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
         {
