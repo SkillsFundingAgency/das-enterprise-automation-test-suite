@@ -78,8 +78,6 @@ public class StepsHelper
     private SignInPage GoToSignInPage()
     {
         new ApprenticeshipServiceEmployerSupportToolPage(_context).ClickStartNowButton().LoginToAccess1Staff();
-        //new IdamsPage(_context).LoginToAccess1Staff();
-
         return new(_context);
     }
 }
