@@ -32,13 +32,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private static string VacancyDetailshref => "account/apprenticeshipvacancydetails/";
 
-        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context, false) => pageInteractionHelper.Verify(() =>
-        {
-            var result = pageInteractionHelper.CheckText(PageHeader, PageTitle);
-
-            return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
-
-        }, null);
+        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context, false) => VerifyWithoutRefresh();
 
         public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {

@@ -57,6 +57,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
         // VerifyPage methods are used to verify that the application landed on the expected page
         protected bool VerifyPage() => VerifyPage(() => VerifyElement());
 
+        protected bool VerifyWithoutRefresh() => VerifyPage(() => pageInteractionHelper.Verify(() => 
+        {
+            var result = pageInteractionHelper.CheckText(PageHeader, PageTitle);
+
+            return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
+
+        }, null));
+
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(func, PageTitle);
