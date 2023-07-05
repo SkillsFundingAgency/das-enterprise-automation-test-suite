@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+using Polly;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -29,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage ReLogin() => new StubSignInPage(_context).Login(GetLoginCredentials()).ContinueToHomePage();
 
-        public SignInPage FailedLogin() => new SignInPage(_context).FailedLogin(GetLoginCredentials());
+        public AccountUnavailablePage FailedLogin1() => new StubSignInPage(_context).Login(GetLoginCredentials()).GoToAccountUnavailablePage();
 
         protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToHomePage();
 

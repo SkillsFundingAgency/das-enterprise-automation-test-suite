@@ -63,6 +63,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             return new HomePage(context);
         }
 
+        public AccountUnavailablePage GoToAccountUnavailablePage()
+        {
+            Continue();
+            return new AccountUnavailablePage(context);
+        }
+
         public StubAddYourUserDetailsPage ContinueToStubAddYourUserDetailsPage()
         {
             Continue();
