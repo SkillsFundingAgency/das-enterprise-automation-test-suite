@@ -19,6 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly TabHelper _tabHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
+        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private readonly PregSqlDataHelper _pregSqlDataHelper;
 
         public ProviderRegistrationSteps(ScenarioContext context)
@@ -29,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _pregSqlDataHelper = context.Get<PregSqlDataHelper>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
+            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
         [Given(@"the provider invites an employer")]
@@ -60,11 +62,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer sets up the user")]
         public void WhenTheEmployerSetsUpTheUser()
         {
-            var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
+            string email = _objectContext.GetRegisteredEmail();
+
+            var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(email)}").AbsoluteUri;
             
             _tabHelper.OpenInNewTab(uri);
 
-            new StubAddYourUserDetailsPage(_context).DoNotEnterNameAndContinue();
+            _accountCreationStepsHelper.RegisterUserAccount(new StubSignInPage(_context), email).DoNotEnterNameAndContinue();
         }
 
         [When(@"the employer adds PAYE from Account Home Page")]
