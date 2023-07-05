@@ -38,7 +38,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
             return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
 
-        }, () => pageInteractionHelper.WaitUntilAnyElements(FindAnApprenticeshipLink));
+        }, null);
 
         public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {
