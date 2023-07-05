@@ -36,13 +36,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new HomePage(_context, !openInNewTab);
         }
 
-        public SignInPage ValidateUnsuccessfulLogon()
+        public AccountUnavailablePage ValidateUnsuccessfulLogon()
         {
             GoToEmployerLoginPage(true);
 
-            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.FailedLogin();
+            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.FailedLogin1();
 
-            return new SignInPage(_context);
+            return new AccountUnavailablePage(_context);
         }
 
         public MyAccountWithOutPayePage GotoEmployerHomePage(MyAccountWithOutPayeLoginHelper loginHelper)
