@@ -10,27 +10,27 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My applications";
 
-        private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
+        private static By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
 
-        private By FindTraineeshipLink => By.Id("find-traineeship-link");
+        private static By FindTraineeshipLink => By.Id("find-traineeship-link");
 
-        private By NotificationText => By.ClassName("info-summary");
+        private static By NotificationText => By.ClassName("info-summary");
 
-        private By DismissNotification => By.LinkText("Dismiss this message");
+        private static By DismissNotification => By.LinkText("Dismiss this message");
 
-        private By ReadFeedbackLink => By.LinkText("Read feedback");
+        private static By ReadFeedbackLink => By.LinkText("Read feedback");
 
-        private By Settings => By.LinkText("Settings");
+        private static By Settings => By.LinkText("Settings");
 
-        private By DraftVacancyDeletionInfoText => By.Id("VacancyDeletedInfoMessageText");
+        private static By DraftVacancyDeletionInfoText => By.Id("VacancyDeletedInfoMessageText");
 
-        private By VacancyDeletedLink => By.Id("vacancyDeletedLink");
+        private static By VacancyDeletedLink => By.Id("vacancyDeletedLink");
 
-        private By SavedVacancy => By.CssSelector($"tr a[href*='{VacancyDetailshref}']");
+        private static By SavedVacancy => By.CssSelector($"tr a[href*='{VacancyDetailshref}']");
 
-        private By DeleteVacancy(string id) => By.CssSelector($"tr a.delete-draft[href*='/apprenticeship/delete/{id}']");
+        private static By DeleteVacancy(string id) => By.CssSelector($"tr a.delete-draft[href*='/apprenticeship/delete/{id}']");
 
-        private string VacancyDetailshref => "account/apprenticeshipvacancydetails/";
+        private static string VacancyDetailshref => "account/apprenticeshipvacancydetails/";
 
         public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context, false) => pageInteractionHelper.Verify(() =>
         {
