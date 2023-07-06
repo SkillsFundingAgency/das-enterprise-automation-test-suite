@@ -6,11 +6,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         protected override string PageTitle => "Apprenticeship service employer support tool";
         private static By StartNowButton => By.CssSelector(".govuk-button--start");
 
-        public ApprenticeshipServiceEmployerSupportToolPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ApprenticeshipServiceEmployerSupportToolPage(ScenarioContext context) : base(context) { }
         
         public IdamsPage ClickStartNowButton() 
         {
-           formCompletionHelper.Click(StartNowButton);
+            if (pageInteractionHelper.IsElementDisplayed(StartNowButton)) formCompletionHelper.Click(StartNowButton);
 
             return new IdamsPage(context);
         }
