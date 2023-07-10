@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YourAccountNameHasBeenChangedPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Your account name has been changed";
+        protected override string PageTitle => "Your account name has been set";
         protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
 
         public YourAccountNameHasBeenChangedPage(ScenarioContext context) : base(context) => VerifyPage();
