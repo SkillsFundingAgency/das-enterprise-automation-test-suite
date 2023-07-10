@@ -74,29 +74,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _accountCreationStepsHelper.RegisterUserAccount(new StubSignInPage(_context), email).DoNotEnterNameAndContinue();
         }
 
-        [When(@"the employer adds PAYE from Account Home Page")]
-        public void WhenTheEmployerAddsPAYEFromAccountHomePage()
-        {
-            _homePageStepsHelper.GotoEmployerHomePage(new MyAccountWithOutPayeLoginHelper(_context))
-                .AddYourPAYEScheme()
-                .AddPaye()
-                .ContinueToGGSignIn()
-                .SignInTo(0)
-                .SearchForAnOrganisation(EnumHelper.OrgType.Company)
-                .SelectYourOrganisation(EnumHelper.OrgType.Company)
-                .ContinueToSetAccountName()
-                .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
-                .ContinueToAcknowledge()
-                .SelectGoToYourEmployerAccountHomepage();
-        }
-
         [When(@"the employer adds PAYE from TaskList Page")]
         public void WhenTheEmployerAddsPAYEFromTaskListPage()
         {     
-            _homePageStepsHelper.GoToCreateYourEmployerAccountPage();
-
-            new CreateYourEmployerAccountPage(_context)
+            _homePageStepsHelper.GoToCreateYourEmployerAccountPage()
             .GoToAddPayeLink()
             .SelectOptionLessThan3Million()
             .AddPaye()
@@ -107,8 +88,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .ContinueToSetAccountName()
             .GoToSetYourAccountNameLink()
             .SelectoptionNo()
-            .ContinueToAcknowledge();
-
+            .ContinueToAcknowledge()
+            .SelectGoToYourEmployerAccountHomepage();
         }
 
 

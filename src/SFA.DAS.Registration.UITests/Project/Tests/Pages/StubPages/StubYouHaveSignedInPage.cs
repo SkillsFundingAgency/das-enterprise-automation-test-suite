@@ -39,12 +39,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             }
         }
 
-        public MyAccountWithOutPayePage ContinueToMyAccountWithOutPaye()
-        {
-            Continue();
-            return new MyAccountWithOutPayePage(context);
-        }
-
         public MyAccountTransferFundingPage ContinueToMyAccountTransferFundingPage()
         {
             Continue();

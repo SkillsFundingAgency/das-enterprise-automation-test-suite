@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Employer account created";
         protected override By ContinueButton => By.CssSelector("#accept");
-        private By GoToYourEmployerAccountHomepage => By.XPath("//button[text()='Go to your employer account homepage']"); 
+        private static By GoToYourEmployerAccountHomepage => By.LinkText("Go to your employer account homepage"); 
 
         public EmployerAccountCreatedPage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -17,11 +17,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourOrganisationsAndAgreementsPage(context);
         }
 
-        public YourOrganisationsAndAgreementsPage SelectGoToYourEmployerAccountHomepage()
+        public HomePage SelectGoToYourEmployerAccountHomepage()
         {
             formCompletionHelper.Click(GoToYourEmployerAccountHomepage);
-            return new YourOrganisationsAndAgreementsPage(context);
+            return new HomePage(context);
         }
-
     }
 }
