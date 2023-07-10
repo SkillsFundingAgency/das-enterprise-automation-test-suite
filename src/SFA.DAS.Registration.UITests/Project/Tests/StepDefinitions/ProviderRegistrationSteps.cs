@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -8,6 +10,7 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -71,22 +74,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _accountCreationStepsHelper.RegisterUserAccount(new StubSignInPage(_context), email).DoNotEnterNameAndContinue();
         }
 
-        [When(@"the employer adds PAYE from Account Home Page")]
-        public void WhenTheEmployerAddsPAYEFromAccountHomePage()
-        {
-            _homePageStepsHelper.GotoEmployerHomePage(new MyAccountWithOutPayeLoginHelper(_context))
-                .AddYourPAYEScheme()
-                .AddPaye()
-                .ContinueToGGSignIn()
-                .SignInTo(0)
-                .SearchForAnOrganisation(EnumHelper.OrgType.Company)
-                .SelectYourOrganisation(EnumHelper.OrgType.Company)
-                .ContinueToSetAccountName()
-                .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
-                .ContinueToAcknowledge()
-                .SelectGoToYourEmployerAccountHomepage();
+        [When(@"the employer adds PAYE from TaskList Page")]
+        public void WhenTheEmployerAddsPAYEFromTaskListPage()
+        {     
+            _homePageStepsHelper.GoToCreateYourEmployerAccountPage()
+            .GoToAddPayeLink()
+            .SelectOptionLessThan3Million()
+            .AddPaye()
+            .ContinueToGGSignIn()
+            .SignInTo(0)
+            .SearchForAnOrganisation(EnumHelper.OrgType.Company)
+            .SelectYourOrganisation(EnumHelper.OrgType.Company)
+            .ContinueToSetAccountName()
+            .GoToSetYourAccountNameLink()
+            .SelectoptionNo()
+            .ContinueToAcknowledge()
+            .SelectGoToYourEmployerAccountHomepage();
         }
+
 
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()

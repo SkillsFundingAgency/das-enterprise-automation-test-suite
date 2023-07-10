@@ -126,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("view status \"Legal agreement accepted:\" is \"Legal agreement not accepted\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.When("the employer adds PAYE from Account Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the employer adds PAYE from TaskList Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
  testRunner.Then("the invited employer status is \"PAYE scheme added\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

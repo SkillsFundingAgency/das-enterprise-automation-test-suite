@@ -9,6 +9,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper )
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
+            var randomPersonNameHelper = new RandomPersonNameHelper();
+
+            FirstName = randomPersonNameHelper.FirstName;
+            LastName = randomPersonNameHelper.LastName;
+
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
             AornNumber = aornDataHelper.AornNumber;
@@ -24,8 +29,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             SetAccountNameAsOrgName = true;
         }
 
-        public string FirstName { get; set; } = "AutoFirstName";
-        public string LastName { get; set; } = "AutoLastName";
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string FullName => $"{FirstName } {LastName}";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
