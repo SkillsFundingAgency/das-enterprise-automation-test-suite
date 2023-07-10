@@ -36,6 +36,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new HomePage(_context, !openInNewTab);
         }
 
+        public CreateYourEmployerAccountPage GoToCreateYourEmployerAccountPage()
+        {
+            GoToEmployerLoginPage(true);
+            return new CreateYourEmployerAccountPage(_context);
+        }
+
         public AccountUnavailablePage ValidateUnsuccessfulLogon()
         {
             GoToEmployerLoginPage(true);

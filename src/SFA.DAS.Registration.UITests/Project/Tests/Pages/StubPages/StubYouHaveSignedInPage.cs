@@ -75,6 +75,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             return new StubAddYourUserDetailsPage(context);
         }
 
+        public CreateYourEmployerAccountPage ContinueToCreateYourEmployerAccountPage()
+        {
+            Continue();
+            return new CreateYourEmployerAccountPage(context);
+        }
+
         public new void Continue() => base.Continue();
 
     }

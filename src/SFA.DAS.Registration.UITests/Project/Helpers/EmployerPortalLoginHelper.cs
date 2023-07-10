@@ -47,7 +47,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             return homePage;
         }
-
+        
         public HomePage Login(LevyUser nonLevyUser) => Login(nonLevyUser, true);
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
