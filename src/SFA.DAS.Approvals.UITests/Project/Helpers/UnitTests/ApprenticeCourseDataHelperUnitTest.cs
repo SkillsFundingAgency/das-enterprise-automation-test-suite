@@ -7,7 +7,6 @@ using SFA.DAS.FrameworkHelpers;
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
     [TestFixture]
-    [Ignore("got to fix it later")]
     [Category("Unittests")]
     public class ApprenticeCourseDataHelperUnitTest
     {
