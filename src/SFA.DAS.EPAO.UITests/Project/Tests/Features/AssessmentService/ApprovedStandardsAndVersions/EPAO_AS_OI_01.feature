@@ -1,8 +1,7 @@
 ﻿Feature: EPAO_AS_OI_01
 
-@epao
+#disabling this test as the apply journey has been disabled but a new journey is planned for later
 @assessmentservice
-@regression
 @deleteorganisationstandardversion
 Scenario: EPAO_AS_OI_01 - Apply Opt In Standard For New Version
 	Given the Assessor User is logged into Assessment Service Application
