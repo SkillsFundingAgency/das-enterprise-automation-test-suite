@@ -6,7 +6,7 @@
 
         public EventsHubPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        private By FirstEventInCalendarLink = By.CssSelector("a.app-calendar__event:nth-of-type(1)");
+        private By FirstEventInCalendarLink = By.CssSelector("a.app-calendar__event");
 
         public SearchNetworkEventsPage AccessAllNetworkEvents()
         {
