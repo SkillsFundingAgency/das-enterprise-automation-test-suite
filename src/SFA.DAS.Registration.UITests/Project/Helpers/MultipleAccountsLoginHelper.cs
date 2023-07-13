@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
@@ -18,11 +19,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) => 
-            loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.Password, OrganisationName, isLevy); 
-        
-        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
+            loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, OrganisationName, isLevy);
 
-        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(SignInPage signInPage) => signInPage.GoToMyAccountTransferFundingPage(GetLoginCredentials());
+        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToYourAccountsPage().GoToHomePage(objectContext.GetOrganisationName());
+
+        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(StubSignInPage signInPage) => signInPage.Login(GetLoginCredentials()).ContinueToMyAccountTransferFundingPage();
 
         public new HomePage ReLogin() => Login(GetLoginCredentials());
     }

@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -12,20 +14,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         private By SigninLink => By.LinkText("sign in");
         private By CreateAccountLink => By.Id("service-start");
+        private By AcceptAllCookies => By.XPath("//button[text()='Accept all cookies']");
         #endregion
 
-        public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public SignInPage ClickSignInLinkOnIndexPage()
+        public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context)
         {
-            formCompletionHelper.ClickElement(SigninLink);
-            return new SignInPage(context);
+            VerifyPage();
+            ClickIfDisplayed(AcceptAllCookies);
         }
 
-        public SetUpAsAUserPage CreateAccount()
+        public StubSignInPage GoToStubSignInPage() => StubSignInPage(() => formCompletionHelper.ClickElement(SigninLink));
+
+        public StubSignInPage CreateAccount() => StubSignInPage(() => formCompletionHelper.ClickElement(CreateAccountLink));
+
+        private StubSignInPage StubSignInPage(Action action)
         {
-            formCompletionHelper.ClickElement(CreateAccountLink);
-            return new SetUpAsAUserPage(context);
+            action();
+
+            return new StubSignInPage(context);
         }
     }
 }

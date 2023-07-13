@@ -7,6 +7,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector(".bold-large");
 
-        public FAA_ApplicationSubmittedPage(ScenarioContext context) : base(context) { }
+        public FAA_ApplicationSubmittedPage(ScenarioContext context) : base(context, false) => VerifyWithoutRefresh();
     }
 }

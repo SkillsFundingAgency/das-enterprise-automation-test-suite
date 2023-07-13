@@ -43,11 +43,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         private RAAV2EmployerUser GetRaav2EmployerUser(string email)
         {
-            var _config = _context.GetRegistrationConfig<RegistrationConfig>();
-
             var legalEntities = _context.GetAccountLegalEntities(new List<string>() { email });
 
-            return new RAAV2EmployerUser { Username = email, Password = _config.RE_AccountPassword, LegalEntities = legalEntities[0] };
+            return new RAAV2EmployerUser { Username = email, IdOrUserRef = legalEntities[0].idOrUserRef, LegalEntities = legalEntities[0].listoflegalEntities };
         }
     }
 }

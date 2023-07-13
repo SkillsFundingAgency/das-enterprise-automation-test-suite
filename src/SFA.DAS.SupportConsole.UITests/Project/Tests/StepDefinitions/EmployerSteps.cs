@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 {
@@ -36,7 +37,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerUserCanLoginToEAS() => _employerHomePageStepsHelper.GotoEmployerHomePage();
 
         [Then(@"the employer user cannot login to EAS")]
-        public void ThenTheEmployerUserCannotLoginToEAS() 
-            => StringAssert.Contains("There was a problem logging into your account", _employerHomePageStepsHelper.ValidateUnsuccessfulLogon().GetErrorFromSigninPage());
+        public void ThenTheEmployerUserCannotLoginToEAS() => _employerHomePageStepsHelper.ValidateUnsuccessfulLogon();
     }
 }

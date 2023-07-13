@@ -8,8 +8,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_PhoneNumberVerificationPage : FAABasePage
     {
         protected override string PageTitle => "Verify your mobile number";
-        private By EnterCode => By.Id("VerifyMobileCode");
-        private By VerifyNumber => By.Id("verify-code-button");
+        private static By EnterCode => By.Id("VerifyMobileCode");
+        private static By VerifyNumber => By.Id("verify-code-button");
 
         public FAA_PhoneNumberVerificationPage(ScenarioContext context) : base(context, false)
         {

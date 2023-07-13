@@ -20,12 +20,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return now >= cutoff ? cutoff : new DateTime(now.Year - 1, StartMonth, StartDay);
         }
 
-        public static DateTime GetAcademicYearEndDate() => GetAcademicYearEndDate(_currentAcademicYearStartDate);
-
-        public static DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new(academicYearStartDate.Year + 1, EndMonth, EndDay);
+        public static DateTime GetCurrentAcademicYearEndDate() => GetAcademicYearEndDate(_currentAcademicYearStartDate);
 
         public static DateTime GetNextAcademicYearStartDate() => new(_currentAcademicYearStartDate.Year + 1, StartMonth, StartDay);
 
+        public static DateTime GetNextAcademicYearEndDate() => GetAcademicYearEndDate(GetNextAcademicYearStartDate());
+
         public static int GetCurrentAcademicYear() => Convert.ToInt32(_currentAcademicYearStartDate.ToString("yy") + _currentAcademicYearStartDate.AddYears(1).ToString("yy"));
+
+        private static DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new(academicYearStartDate.Year + 1, EndMonth, EndDay);
     }
 }
