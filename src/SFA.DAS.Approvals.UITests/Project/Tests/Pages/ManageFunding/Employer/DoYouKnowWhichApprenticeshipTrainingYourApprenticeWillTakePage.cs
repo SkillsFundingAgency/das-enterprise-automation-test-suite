@@ -9,10 +9,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
-        private By TrainingCourseContainer => By.Id("SelectedCourseId");
+        private static By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
+        private static By TrainingCourseContainer => By.Id("SelectedCourseId");
 
-        private By StandardCourseOption => By.Id("SelectedCourseId__option--0");
+        private static By StandardCourseOption => By.Id("SelectedCourseId__option--0");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context)  { }

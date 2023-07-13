@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -25,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
-        public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount().ContinueToGetApprenticeshipFunding(), 0);
+        public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount(), 0);
 
         public HomePage AddNewAccount(HomePage homePage, int index, OrgType orgType = OrgType.Default)
         {
@@ -34,11 +35,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
 
-        internal ConfirmYourIdentityPage RegisterUserAccount() => 
+        internal AddAPAYESchemePage RegisterUserAccount() => 
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
-        internal ConfirmYourIdentityPage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => 
-            indexPage.CreateAccount().Register(email);
+        internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            RegisterStubUserAccount(indexPage, email).EnterName().GoToAddPayeLink().SelectOptionLessThan3Million();
+
+        internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
+            RegisterStubUserAccount(indexPage, email).EnterNameAndGoToInvitationsPage().ClickAcceptInviteLink();
+
+        internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
+
+        private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => RegisterUserAccount(indexPage.CreateAccount(), email);
 
         internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
@@ -60,7 +68,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal AddAPAYESchemePage CreateAnotherUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage) => CreateUserAccount(indexPage, _registrationDataHelper.AnotherRandomEmail);
 
         internal AddAPAYESchemePage CreateUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
-            RegisterUserAccount(indexPage, email).ContinueToGetApprenticeshipFunding();
+            RegisterUserAccount(indexPage, email);
 
         internal HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage) =>
             homePage
@@ -79,24 +87,33 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SelectYesRadioButtonAndContinue()
             .VerifyPayeSchemeRemovedInfoMessage();
 
-        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) => 
-            addAPAYESchemePage
+        internal HomePage AddNewAccount(AddAPAYESchemePage addAPAYESchemePage, int index, OrgType orgType = OrgType.Default) =>
+            GoToSignAgreementPage(addAPAYESchemePage
             .AddPaye()
             .ContinueToGGSignIn()
             .SignInTo(index)
             .SearchForAnOrganisation(orgType)
-            .SelectYourOrganisation(orgType)
-            .ContinueToAboutYourAgreementPage()
-            .SelectViewAgreementNowAndContinue()
+            .SelectYourOrganisation(orgType))
             .SignAgreement()
             .ClickOnViewYourAccountButton();
+
+        internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
+        {
+            return checkYourDetailsPage
+                .ContinueToSetAccountName()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge()
+                .GoToAcceptTheAgreementLink()
+                .ClickViewAgreementLink()
+                .GoToViewAgreement()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+        }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
             homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
 
         internal void UpdateOrganisationName(OrgType orgType) => _objectContext.UpdateOrganisationName(GetOrgName(orgType));
-
-        internal void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(UrlConfig.EmployerApprenticeshipService_BaseUrl, "EAS");
 
         private string GetOrgName(OrgType orgType)
         {

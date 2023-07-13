@@ -11,7 +11,7 @@ public class EPAOConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
-        _context.SetNonEasLoginUser(new List<NonAccountUser>
+        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
             configSection.GetConfigSection<EPAOStandardApplyUser>(),
             configSection.GetConfigSection<EPAOAssessorUser>(),
