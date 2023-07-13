@@ -9,9 +9,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public string Username { get; set; }
 
-        public string Password { get; set; }
-
-        public override string ToString() => $"Username:'{Username}', Password:'{Password}'";
+        public override string ToString() => $"Username:'{Username}'";
     }
 
     #region SingleAccountUser
@@ -21,6 +19,9 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
+
+        public string IdOrUserRef { get; set; }
+
     }
 
     public class EmployerFeedbackUser : EasAccountUser { }
@@ -78,39 +79,45 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #endregion
 
-    #region NonAccountUser
-    public abstract class NonAccountUser : LoginUser { }
+    #region NonEasAccountUser
 
-    public class EPAOStandardApplyUser : NonAccountUser { }
+    public abstract class NonEasAccountUser : LoginUser
+    {
+        public string Password { get; set; }
 
-    public class EPAOAssessorUser : NonAccountUser { }
+        public override string ToString() => $"{base.ToString()}, Password:'{Password}'";
+    }
 
-    public class EPAODeleteAssessorUser : NonAccountUser { }
+    public class EPAOStandardApplyUser : NonEasAccountUser { }
 
-    public class EPAOWithdrawalUser : NonAccountUser { }
+    public class EPAOAssessorUser : NonEasAccountUser { }
 
-    public class EPAOManageUser : NonAccountUser { }
+    public class EPAODeleteAssessorUser : NonEasAccountUser { }
 
-    public class EPAOApplyUser : NonAccountUser
+    public class EPAOWithdrawalUser : NonEasAccountUser { }
+
+    public class EPAOManageUser : NonEasAccountUser { }
+
+    public class EPAOApplyUser : NonEasAccountUser
     {
         public string FullName { get; set; }
     }
 
-    public class EPAOStageTwoStandardCancelUser : NonAccountUser { }
+    public class EPAOStageTwoStandardCancelUser : NonEasAccountUser { }
 
-    public class EPAOE2EApplyUser : NonAccountUser { }
+    public class EPAOE2EApplyUser : NonEasAccountUser { }
 
-    public class EPAOAdminUser : NonAccountUser { }
+    public class EPAOAdminUser : NonEasAccountUser { }
 
-    public class SupportConsoleTier1User : NonAccountUser { }
+    public class SupportConsoleTier1User : NonEasAccountUser { }
 
-    public class SupportConsoleTier2User : NonAccountUser { }
+    public class SupportConsoleTier2User : NonEasAccountUser { }
 
-    public class SupportToolsSCPUser : NonAccountUser { }
+    public class SupportToolsSCPUser : NonEasAccountUser { }
 
-    public class SupportToolsSCSUser : NonAccountUser { }
+    public class SupportToolsSCSUser : NonEasAccountUser { }
 
-    public abstract class AanBaseUser : LoginUser  { }
+    public abstract class AanBaseUser : NonEasAccountUser { }
 
     public class AanUser : AanBaseUser { }
 

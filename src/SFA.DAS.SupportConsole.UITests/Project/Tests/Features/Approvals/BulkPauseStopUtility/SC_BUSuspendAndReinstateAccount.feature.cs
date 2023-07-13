@@ -74,18 +74,18 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.BulkPa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Bulk Suspend and Reinstate Employer User Accounts")]
+        [NUnit.Framework.DescriptionAttribute("SC_Bulk Suspend and Reinstate Employer User Accounts")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
-        public void BulkSuspendAndReinstateEmployerUserAccounts()
+        public void SC_BulkSuspendAndReinstateEmployerUserAccounts()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Bulk Suspend and Reinstate Employer User Accounts", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Bulk Suspend and Reinstate Employer User Accounts", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

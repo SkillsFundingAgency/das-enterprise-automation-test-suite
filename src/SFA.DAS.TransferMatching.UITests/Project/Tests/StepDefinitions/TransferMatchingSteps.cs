@@ -15,6 +15,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project;
 using Polly;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -256,7 +257,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             UpdateOrganisationName(_receiver);
 
-            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(receiver.Username, receiver.Password);
+            page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef).Continue();
 
             return _receiver;
         }
@@ -372,7 +373,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
-        private SignInPage ApplyForTransferFunds()
+        private StubSignInPage ApplyForTransferFunds()
         {
             SignOutAndGoToTransferMacthingApplyUrl();
 

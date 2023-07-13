@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         protected override bool TakeFullScreenShot => false;
 
         #region Locators
-        private By AcceptInviteLink => By.Id("invitationId");
+        private static By AcceptInviteLink => By.Id("invitationId");
         #endregion
 
         public InvitationsPage(ScenarioContext context) : base(context) => VerifyPage();

@@ -14,7 +14,5 @@ Scenario: AP_Nav_01_Navigate to EAS sub sites from Apprentice Page
 	And the employer can navigate to your organisation and agreement page
 	And the employer can navigate to account settings page
 	And the employer can navigate to rename account settings page
-	And the employer can navigate to change your password settings page
-	And the employer can navigate to change your email address settings page
 	And the employer can navigate to notification settings page
 	And the employer can navigate to help settings page

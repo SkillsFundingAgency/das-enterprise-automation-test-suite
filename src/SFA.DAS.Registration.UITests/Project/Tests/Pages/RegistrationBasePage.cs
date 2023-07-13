@@ -8,23 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public abstract class RegistrationBasePage : VerifyBasePage
     {
         #region Helpers and Context
-        protected readonly RegistrationConfig config;
-        protected readonly RegistrationDataHelper registrationDataHelper;
-        
+        protected readonly RegistrationDataHelper registrationDataHelper;       
         #endregion
 
         #region Locators
-        private By SettingsLink => By.LinkText("Settings");
-        private By ChangePasswordLink => By.LinkText("Change your password");
-        private By ChangeEmailAddressLink => By.LinkText("Change your email address");
-        private By SignOutLink => By.LinkText("Sign out");
+        private static By SignOutLink => By.LinkText("Sign out");
         #endregion
 
-        protected RegistrationBasePage(ScenarioContext context) : base(context)
-        {   
-            config = context.GetRegistrationConfig<RegistrationConfig>();
-            registrationDataHelper = context.Get<RegistrationDataHelper>();
-        }
+        protected RegistrationBasePage(ScenarioContext context) : base(context) => registrationDataHelper = context.Get<RegistrationDataHelper>();
 
         public HomePage GoToHomePage() => new HomePage(context, true);
 
@@ -32,20 +23,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             NavigateBack();
             return new HomePage(context);
-        }
-
-        public ChangeYourPasswordPage GoToChangeYourPasswordPage()
-        {
-            formCompletionHelper.ClickElement(SettingsLink);
-            formCompletionHelper.ClickElement(ChangePasswordLink);
-            return new ChangeYourPasswordPage(context);
-        }
-
-        public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
-        {
-            formCompletionHelper.ClickElement(SettingsLink);
-            formCompletionHelper.ClickElement(ChangeEmailAddressLink);
-            return new ChangeYourEmailAddressPage(context);
         }
 
         public YouveLoggedOutPage SignOut()
