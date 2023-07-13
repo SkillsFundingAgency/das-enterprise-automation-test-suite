@@ -24,8 +24,6 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRegistrationConfigConfiguration()
         {
-            _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
-
             _context.SetEasLoginUser(new List<EasAccountUser>() 
             {
                 _configSection.GetConfigSection<AuthTestUser>(),

@@ -6,23 +6,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class EnterYourPAYESchemeDetailsPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Enter your PAYE scheme details";
+        protected override string PageTitle => "Add PAYE details";
 
         #region Locators
-        private By AornTextBox => By.Id("aorn");
-        private By PayeRefTextBox => By.Id("payeRef");
-        private By ErrorMessgeAboveAornTextBox => By.Id("error-message-aorn");
-        private By ErrorMessgeAbovePayeTextBox => By.Id("error-message-payeRef");
-        private By InvalidAornAndPayeErrorMessage => By.CssSelector(".govuk-error-message");
-        private By SkipThisStepForNowLink => By.LinkText("Skip this step for now");
+        private static By AornTextBox => By.Id("aorn");
+        private static By PayeRefTextBox => By.Id("payeRef");
+        private static By ErrorMessgeAboveAornTextBox => By.Id("error-message-aorn");
+        private static By ErrorMessgeAbovePayeTextBox => By.Id("error-message-payeRef");
+        private static By InvalidAornAndPayeErrorMessage => By.CssSelector(".govuk-error-message");
         protected override By ContinueButton => By.Id("submit-aorn-details");
         #endregion
 
         #region Constants
-        public string BlankAornFieldErrorMessage => "Enter your reference number to continue";
-        public string AornInvalidFormatErrorMessage => "Enter an accounts office reference number in the correct format";
-        public string BlankPayeFieldErrorMessage => "Enter your PAYE scheme to continue";
-        public string PayeInvalidFormatErrorMessage => "Enter a PAYE scheme number in the correct format";
+        public string BlankAornFieldErrorMessage => "You need to enter your Accounts Office reference in the correct format for example 123PX00123456 or 123PX0012345X";
+        public string AornInvalidFormatErrorMessage => "You need to enter your Accounts Office reference in the correct format for example 123PX00123456 or 123PX0012345X";
+        public string BlankPayeFieldErrorMessage => "You need to enter your PAYE in the correct format for example 123/AB456";
+        public string PayeInvalidFormatErrorMessage => "You need to enter your PAYE in the correct format for example 123/AB456";
         public string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE scheme and accounts office reference";
         public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
         #endregion
@@ -67,11 +66,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string GetErrorMessageAbovePayeTextBox() => pageInteractionHelper.GetText(ErrorMessgeAbovePayeTextBox);
 
         public string GetInvalidAornAndPayeErrorMessage() => pageInteractionHelper.GetText(InvalidAornAndPayeErrorMessage);
-
-        public MyAccountWithOutPayePage ClickSkipThisStepForNowLink()
-        {
-            formCompletionHelper.Click(SkipThisStepForNowLink);
-            return new MyAccountWithOutPayePage(context);
-        }
     }
 }

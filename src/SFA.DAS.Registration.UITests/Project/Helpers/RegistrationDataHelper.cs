@@ -6,13 +6,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress, string password, AornDataHelper aornDataHelper )
+        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper )
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
+            var randomPersonNameHelper = new RandomPersonNameHelper();
+
+            FirstName = randomPersonNameHelper.FirstName;
+            LastName = randomPersonNameHelper.LastName;
+
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
             AornNumber = aornDataHelper.AornNumber;
-            Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
@@ -25,14 +29,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             SetAccountNameAsOrgName = true;
         }
 
-        public string FirstName { get; set; } = "AutoFirstName";
-        public string LastName { get; set; } = "AutoLastName";
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string FullName => $"{FirstName } {LastName}";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }
-        public string Password { get; }
-        public string NewPassword => "Test1234";
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }

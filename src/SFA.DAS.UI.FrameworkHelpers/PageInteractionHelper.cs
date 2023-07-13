@@ -107,7 +107,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPageAfterRefresh(By locator) => _retryHelper.RetryOnException(Func(locator), WaitForPageToLoad, RefreshPage);
 
-        public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
+        public bool Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
         private bool VerifyPage(Func<bool> func, Action retryAction = null) => _retryHelper.RetryOnException(func, WaitForPageToLoad, retryAction);
 

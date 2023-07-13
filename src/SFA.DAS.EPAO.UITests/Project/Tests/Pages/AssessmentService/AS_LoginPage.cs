@@ -11,19 +11,19 @@ public class AS_LoginPage : EPAO_BasePage
 
     public AS_LoginPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    public AS_LoggedInHomePage SignInWithValidDetails(LoginUser loginUser)
+    public AS_LoggedInHomePage SignInWithValidDetails(NonEasAccountUser loginUser)
     {
         EnterLoginDetails(loginUser);
         return new(context);
     }
 
-    public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(LoginUser loginUser)
+    public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(NonEasAccountUser loginUser)
     {
         EnterLoginDetails(loginUser);
         return new(context);
     }
 
-    private void EnterLoginDetails(LoginUser loginUser)
+    private void EnterLoginDetails(NonEasAccountUser loginUser)
     {
         var username = loginUser.Username;
         formCompletionHelper.EnterText(EmailAddressTextBox, username);

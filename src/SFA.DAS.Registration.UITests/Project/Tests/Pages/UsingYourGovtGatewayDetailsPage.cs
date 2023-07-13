@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class UsingYourGovtGatewayDetailsPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Using your Government Gateway details";
+        protected override string PageTitle => "Add a PAYE scheme using your Government Gateway details";
         
         #region Locators
         protected override By ContinueButton => By.Id("agree_and_continue");
