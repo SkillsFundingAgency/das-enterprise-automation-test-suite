@@ -22,5 +22,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.Click(GoToYourEmployerAccountHomepage);
             return new HomePage(context);
         }
+
+        public CreateYourEmployerAccountPage SelectGoToCreateYourEmployerAccountpage()
+        {
+            formCompletionHelper.Click(GoToYourEmployerAccountHomepage);
+            return new CreateYourEmployerAccountPage(context);
+        }
     }
 }

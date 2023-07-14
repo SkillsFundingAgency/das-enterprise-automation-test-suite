@@ -22,10 +22,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public CreateYourEmployerAccountPage ContinueToSetAccountName()
+        public YouHaveAddedYourOrgAndPAYEScheme ContinueToSetAccountName()
         {
             Continue();
-            return new CreateYourEmployerAccountPage(context);
+            return new YouHaveAddedYourOrgAndPAYEScheme(context);
         }
 
         public OrganisationHasBeenAddedPage ClickYesContinueButton()
