@@ -101,6 +101,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             return checkYourDetailsPage
                 .ContinueToSetAccountName()
+                .ContinueToConfirmationPage()
+                .SelectGoToCreateYourEmployerAccountpage()
                 .GoToSetYourAccountNameLink()
                 .SelectoptionNo()
                 .ContinueToAcknowledge()

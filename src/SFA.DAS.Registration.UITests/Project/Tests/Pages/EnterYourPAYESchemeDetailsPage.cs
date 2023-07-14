@@ -18,10 +18,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         #region Constants
-        public string BlankAornFieldErrorMessage => "You need to enter your Accounts Office reference in the correct format for example 123PX00123456 or 123PX0012345X";
-        public string AornInvalidFormatErrorMessage => "You need to enter your Accounts Office reference in the correct format for example 123PX00123456 or 123PX0012345X";
-        public string BlankPayeFieldErrorMessage => "You need to enter your PAYE in the correct format for example 123/AB456";
-        public string PayeInvalidFormatErrorMessage => "You need to enter your PAYE in the correct format for example 123/AB456";
+        public string BlankAornFieldErrorMessage => "Enter your Accounts Office reference in the correct format";
+        public string AornInvalidFormatErrorMessage => "Enter your Accounts Office reference in the correct format";
+        public string BlankPayeFieldErrorMessage => "Enter your PAYE reference in the correct format";
+        public string PayeInvalidFormatErrorMessage => "Enter your PAYE reference in the correct format";
         public string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE scheme and accounts office reference";
         public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
         #endregion
