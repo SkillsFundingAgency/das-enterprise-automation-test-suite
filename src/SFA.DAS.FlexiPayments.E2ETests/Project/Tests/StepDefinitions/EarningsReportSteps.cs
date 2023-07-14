@@ -31,7 +31,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void GivenTheProviderLogsIntoTheirAccount() => _providerStepsHelper.GoToProviderHomePage(false);
 
         [When(@"provider is on Apprenticeship indicative earnings report page")]
-        public void WhenProviderIsOnApprenticeshipIndicativeEarningsReportPage() => _providerStepsHelper.GoToApprenticeshipIndicativeEarningsReportPage();
+        public void WhenProviderIsOnApprenticeshipIndicativeEarningsReportPage() => _providerStepsHelper.GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
 
         [Then(@"validate correct earnings numbers are displayed")]
         public void ThenValidateCorrectEarningsNumbersAreReported()

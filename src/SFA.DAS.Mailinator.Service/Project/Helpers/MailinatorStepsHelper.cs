@@ -17,8 +17,6 @@ public class MailinatorStepsHelper
         _email = email;
     }
 
-    public void VerifyAccessCode(string code) => OpenEmail().VerifyAccessCode(code);
-
     public void OpenLink(string linktext)
     {
         var page = OpenEmail();

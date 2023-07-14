@@ -17,7 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
         private readonly DbConfig _dbConfig;
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
@@ -26,7 +25,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
             _dbConfig = context.Get<DbConfig>();
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
@@ -50,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var aornDataHelper = new AornDataHelper();
 
-            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", _config?.RE_AccountPassword, aornDataHelper);
+            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", aornDataHelper);
 
             _context.Set(registrationDatahelpers);
 

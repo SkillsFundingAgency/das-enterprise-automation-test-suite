@@ -2,7 +2,7 @@
 
 public class AO_InDevelopmentStandardDetailsPage : EPAO_BasePage
 {
-    protected override string PageTitle => "Journeyman bookbinder";
+    protected override string PageTitle => "Grip";
 
     public AO_InDevelopmentStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 

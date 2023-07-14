@@ -17,11 +17,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public EmailAddressPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public EnterYourResetCodePage EnterResetCode()
-        {
-            formCompletionHelper.EnterText(EmailAddressTextField, objectContext.GetRegisteredEmail());
-            Continue();
-            return new EnterYourResetCodePage(context);
-        }
     }
 }

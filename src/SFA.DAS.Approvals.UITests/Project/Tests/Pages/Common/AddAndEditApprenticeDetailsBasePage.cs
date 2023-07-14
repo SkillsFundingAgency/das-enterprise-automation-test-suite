@@ -138,6 +138,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
         }
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
+
         public void EditCostCourseAndReference(string reference)
         {
             EditCourse();
@@ -190,7 +191,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return this;
         }
 
-        private void EditCourse() => ClickEditCourseLink().EmployerSelectsAStandardForEditApprenticeDetailsPath();
+        private void EditCourse() => ClickEditCourseLink().EmployerSelectsAnotherCourse();
 
         private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingCost);
 

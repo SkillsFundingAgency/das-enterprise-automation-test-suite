@@ -24,8 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #endregion
 
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
-        private ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage;
         private readonly RetryAssertHelper _assertHelper;
+        private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
         public ProviderSteps(ScenarioContext context)
         {
@@ -37,10 +37,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the provider will no longer be able to change the email address")]
-        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerStepsHelper.VerifyReadOnlyEmail();
+        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerStepsHelper.ProviderEditApprentice().VerifyReadOnlyEmail();
 
         [Given(@"the provider update the email address")]
-        public void GivenTheProviderUpdateTheEmailAddress() => _providerStepsHelper.AddEmailAndSentToEmployerForApproval();
+        public void GivenTheProviderUpdateTheEmailAddress() => _providerStepsHelper.ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
         [Then(@"the provider approves the cohorts")]
         public void ThenTheProviderApprovesTheCohorts() => _providerStepsHelper.CurrentCohortDetails().SubmitApprove();
@@ -52,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderAddsApprenticesApprovesThemAndSendsToEmployerToApprove(int numberOfApprentices) => _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(numberOfApprentices);
 
         [When(@"the provider selects Flexi-job agency radio button on Select Delivery Model screen")]
-        public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerStepsHelper.AddFlexiJobApprentice();
+        public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerAddApprenticeDetailsPage = _providerStepsHelper.AddApprenticeAndSelectFlexiJobAgencyDeliveryModel();
 
         [When(@"the provider opts (.*) learner into the pilot")]
         public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, true);
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();
 
         [Then(@"provider validate Flexi-job agency content on Add Apprentice Details page and submit valid details")]
-        public void ThenProviderValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails() => _providerStepsHelper.ValidateFlexiJobAgencyContentAndAddApprenticeDetails();
+        public void ThenProviderValidateFlexi_JobAgencyContentOnAddApprenticeDetailsPageAndSubmitValidDetails() => _providerStepsHelper.ValidateFlexiJobContentAndSendToEmployerForApproval(_providerAddApprenticeDetailsPage).ValidateFlexiJobTagAndSubmitApprove();
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts() => _providerStepsHelper.Approve();
@@ -101,7 +101,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider adds (.*) apprentices and saves without sending to the employer")]
         public void WhenProviderAddsApprenticesAndSavesWithoutSendingToTheEmployer(int numberOfApprentices)
         {
-            _providerStepsHelper.AddApprenticeAndSavesWithoutSendingEmployerForApproval(numberOfApprentices);
+            _providerStepsHelper.AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
 
             _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditApprentice();
         }
@@ -165,7 +165,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Provider creates a new cohort")]
         public void GivenProviderCreatesANewCohort()
         {
-            providerAddApprenticeDetailsViaSelectJourneyPage = _providerStepsHelper
+            _providerStepsHelper
                .GoToProviderHomePage(true)
                .GotoSelectJourneyPage()
                .SelectAddManually();
@@ -180,10 +180,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
 
         [Then(@"provider navigates to Approve Apprentice page and deletes Cohort before approval")]
-        public void ThenProviderNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _providerStepsHelper.NavigateToApproveApprenticeDetailsAndDeleteCohort();
+        public void ThenProviderNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _providerStepsHelper.ViewCurrentCohortDetails().SelectDeleteCohort().ConfirmDeleteAndSubmit();
 
         [Then(@"the provider can no longer approve the draft cohort")]
-        public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerStepsHelper.ValidateProviderCanNoLongerApproveCohort();
+        public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerStepsHelper.ViewCurrentCohortDetails().ValidateProviderCannotApproveCohort();
 
         [Then(@"provider can edit delivery model and approve")]
         public void ThenProviderCanEditDeliveryModelAndApprove() => _providerStepsHelper.ProviderEditsDeliveryModelAndApprovesAfterFJAARemoval();
@@ -199,29 +199,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Provider edits the Delivery Model to Flexi in Post Approvals and submits changes")]
         public void WhenTheProviderEditsTheDeliveryModelToFlexiInPostApprovalsAndSubmitsChanges() => _providerStepsHelper.ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval();
-        
-        [Given(@"Provider can add standards to its list of standards offered")]
-        public void GivenProviderCanAddStandardsToItsListOfStandardsOffered()
-        {
-            var _providerManageTheStandardsYouDeliverPage
-                = _providerStepsHelper
-                .GoToProviderHomePage()
-                .GoToYourStandardsAndTrainingVenues()
-                .ClickOnTheStandardsYouDeliverLink();
-
-            for (int i = 0; i < 1; i++)
-            {
-                _providerManageTheStandardsYouDeliverPage
-                .ClickAddAStandardLink()
-                .AddStandard()
-                .ConfirmStandard()
-                .AddContactInfo()
-                .SelectOptionAtEmployerLocation()
-                .SelectOptionICanDeliverAnywhereInEngland()
-                .SaveStandard();
-            }
-        }
-
+         
     }
 }
-

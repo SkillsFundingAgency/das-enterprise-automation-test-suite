@@ -15,8 +15,15 @@ public class SearchHomePage : SupportConsoleBasePage
 
     private static string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
     private static string UserSearchHint => "Enter name or email address";
+    private By StartNowButton => By.CssSelector(".govuk-button--start");
 
-    public SearchHomePage(ScenarioContext context) : base(context) => VerifyPage();
+    public SearchHomePage(ScenarioContext context) : base(context)
+    {
+        if (pageInteractionHelper.IsElementPresent(StartNowButton))
+            formCompletionHelper.Click(StartNowButton);
+        
+        VerifyPage();
+    }
 
     public UserInformationOverviewPage SearchByNameAndView() => SearchAndViewUserInformation(config.Name);
 

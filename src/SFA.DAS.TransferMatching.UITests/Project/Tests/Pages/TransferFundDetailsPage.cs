@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -39,11 +39,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             }
         }
 
-        public SignInPage ApplyForTransferFunds()
+        public StubSignInPage ApplyForTransferFunds()
         {
             SelectYesAndContinue();
 
-            return new SignInPage(context);
+            return new StubSignInPage(context);
         }
 
         public CreateATransfersApplicationPage ApplyForTransferFundsAfterLogin()

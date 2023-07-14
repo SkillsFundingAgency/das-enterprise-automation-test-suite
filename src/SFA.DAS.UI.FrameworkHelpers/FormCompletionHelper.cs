@@ -55,7 +55,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             EnterText(_webDriver.FindElement(locator), text);
         }
 
-        public List<string> GetAllDropDownOptions(By bySelect) => SelectElement(bySelect).Options.Where(x => !string.IsNullOrEmpty(x.GetAttribute("value"))).Select(x => x.Text).ToList();
+        public List<string> GetAllDropDownOptions(By bySelect) => GetAllDropDown(bySelect, (x) => x.Text); 
+
+        public List<string> GetAllDropDownValue(By bySelect) => GetAllDropDown(bySelect, (x) => x.GetAttribute("value"));
+
+        private List<string> GetAllDropDown(By bySelect, Func<IWebElement, string> func) => SelectElement(bySelect).Options.Where(x => !string.IsNullOrEmpty(x.GetAttribute("value"))).Select(x => func(x)).ToList();
 
         public string GetSelectedOption(By bySelect) => SelectElement(bySelect).SelectedOption.Text;
 

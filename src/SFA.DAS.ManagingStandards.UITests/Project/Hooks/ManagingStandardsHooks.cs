@@ -6,18 +6,16 @@ global using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 global using SFA.DAS.ProviderLogin.Service;
 global using SFA.DAS.ProviderLogin.Service.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;
-global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "managingstandards")]
+    [Binding]
     public class ManagingStandardsHooks
     {
         private readonly string[] _tags;
         private ManagingStandardsSqlDataHelper _managingStandardsSqlDataHelper;
-        private ManagingStandardsDataHelpers _dataHelper;
         protected readonly DbConfig _dbConfig;
         private readonly ScenarioContext _context;
         private readonly ProviderConfig _config;
@@ -34,25 +32,25 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
         public void SetUpDataHelpers()
         {
             _context.Set(_managingStandardsSqlDataHelper = new ManagingStandardsSqlDataHelper(_dbConfig));
-            _context.Set(_dataHelper = new ManagingStandardsDataHelpers());
+            _context.Set(new ManagingStandardsDataHelpers());
         }
 
         [BeforeScenario(Order = 32)]
         public void SetApprovedByRegulatorToNull()
         {
-            if (_tags.Any(x => x == "managingstandards02")) _managingStandardsSqlDataHelper.ClearRegulation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
+            if (_tags.Any(x => x == "managingstandards02")) _managingStandardsSqlDataHelper.ClearRegulation(_config.Ukprn, ManagingStandardsDataHelpers.StandardsTestData.LarsCode);
         }
 
         [BeforeScenario(Order = 33)]
         public void ClearDownProviderCourseLocationData()
         {
-            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderCourseLocation(_config.Ukprn, _dataHelper.StandardsTestData.LarsCode);
+            if (_tags.Any(x => x == "managingstandards03")) _managingStandardsSqlDataHelper.AddSingleProviderCourseLocation(_config.Ukprn, ManagingStandardsDataHelpers.StandardsTestData.LarsCode);
         }
 
         [BeforeScenario(Order = 34)]
         public void ClearDownProviderLocationData()
         {
-            if (_tags.Any(x => x == "managingstandards04")) _managingStandardsSqlDataHelper.ClearProviderLocation(_config.Ukprn, _dataHelper.StandardsTestData.Venue);
+            if (_tags.Any(x => x == "managingstandards04")) _managingStandardsSqlDataHelper.ClearProviderLocation(_config.Ukprn, ManagingStandardsDataHelpers.StandardsTestData.Venue);
         }
     }
 }

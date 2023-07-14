@@ -14,7 +14,7 @@ Scenario: RE_PR_02 Provider Lead Registration
 	And view status "Account creation started:" is "today"
 	And view status "PAYE scheme added:" is "PAYE scheme not added"
 	And view status "Legal agreement accepted:" is "Legal agreement not accepted"
-	When the employer adds PAYE from Account Home Page
+	When the employer adds PAYE from TaskList Page
 	Then the invited employer status is "PAYE scheme added"
 	And view status "Account creation started:" is "today"
 	And view status "PAYE scheme added:" is "today"

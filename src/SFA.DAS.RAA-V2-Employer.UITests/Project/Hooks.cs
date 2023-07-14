@@ -12,6 +12,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project
         public Hooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 34)]
-        public void SetUpHelpers() => _context.Set(new ProviderPermissionsSqlDbHelper(_context.Get<DbConfig>()));
+        public void SetUpHelpers()
+        {
+            _context.Set(new ProviderPermissionsSqlDbHelper(_context.Get<DbConfig>()));
+
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
+
+            _context.Set(apprenticeCourseDataHelper);
+        }
     }
 }

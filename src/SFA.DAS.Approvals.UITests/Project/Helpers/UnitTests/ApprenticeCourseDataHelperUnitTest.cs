@@ -32,17 +32,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(19)]
         public void WaitingTostartApprentice(int i)
         {
+            bool IsItJuly() => DateTime.Now.Month == 7;
+
             //Arrange 
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
 
-            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
+            var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate(): AcademicYearDatesHelper.GetNextAcademicYearStartDate();
+
+            var courseStartDate = apprentice.CourseStartDate;
+
+            Console.WriteLine($"CourseStartDate : {courseStartDate}, Course {apprentice.CourseLarsCode}");
 
             //Assert
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(apprentice.CourseStartDate > DateTime.Now.Date && (apprentice.CourseStartDate.Month != DateTime.Now.Month ? true : apprentice.CourseStartDate.Year != DateTime.Now.Year) && apprentice.CourseStartDate < AcademicYearDatesHelper.GetNextAcademicYearStartDate());
+                Assert.That(courseStartDate, Is.GreaterThan(DateTime.Now.Date), $"Course start date - {courseStartDate} is not greater than today date - {DateTime.Now.Date}");
 
-                Assert.IsTrue(AvailableCourses.GetAvailableCourses().Any(x => x.Course.larsCode == apprentice.CourseDetails.Course.larsCode));
+                if (courseStartDate.Month == DateTime.Now.Month)
+                {
+                    Assert.IsTrue(courseStartDate.Year != DateTime.Now.Year, 
+                        $"if Course start month ({courseStartDate.Month}) == this month ({DateTime.Now.Month}) then Course Start Year ({courseStartDate.Year}) should not be equal to this year ({DateTime.Now.Year})");
+                }
+
+                Assert.That(courseStartDate, Is.LessThan(nextAcademicYear), $"Course start date ({courseStartDate}) is not less than {(IsItJuly() ? "NextAcademicYearEndDate" : "NextAcademicYearStartDate")} ({nextAcademicYear})");
+
+                Assert.IsTrue(AvailableCourses.GetAvailableCourses().Any(x => x.Course.larsCode == apprentice.CourseDetails.Course.larsCode),
+                    $"lars code {apprentice.CourseDetails.Course.larsCode} is not available from {string.Join(",", AvailableCourses.GetAvailableCourses().Select(x => x.Course.larsCode).ToList())}");
             });
         }
 

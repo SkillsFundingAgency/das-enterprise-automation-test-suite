@@ -2,9 +2,18 @@
 
 public class ManageAStandard_TeacherPage : ManagingStandardsBasePage
 {
-    protected override string PageTitle => managingStandardsDataHelpers.StandardsTestData.StandardName;
+    protected override string PageTitle => _pageTitle;
 
-    public ManageAStandard_TeacherPage(ScenarioContext context) : base(context) { }
+    private readonly string _pageTitle;
+
+    public ManageAStandard_TeacherPage(ScenarioContext context) : this(context, ManagingStandardsDataHelpers.StandardsTestData.StandardName) { }
+
+    public ManageAStandard_TeacherPage(ScenarioContext context, string standardName) : base(context, false)
+    {
+        _pageTitle = standardName;
+
+        VerifyPage();
+    }
 
     public RegulatedStandardPage AccessApprovedByRegulationOrNot()
     {
