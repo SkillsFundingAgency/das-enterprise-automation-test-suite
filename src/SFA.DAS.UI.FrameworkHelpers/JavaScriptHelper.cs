@@ -15,12 +15,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("interactive");
 
-        public string GetTextUsingJavaScript(By iFrameBodyLocator)
-        {
-            var text = ((IJavaScriptExecutor)_webDriver).ExecuteScript($"return arguments[0].innerHTML", _webDriver.FindElement(iFrameBodyLocator));
-            return (string)text;
-        }
-
         public void SetTextUsingJavaScript(By locator, string text)
         {
             ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].value='{text}'", _webDriver.FindElement(locator));
