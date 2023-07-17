@@ -3,7 +3,10 @@
     internal static class RPLDataHelper
     {
         internal static string RecognisePriorLearning => "true";
-        internal static string PriceReducedBy => "200";
+        internal static string TrainingTotalHours => "1500";
+        internal static string DurationReducedByHours => "100";
         internal static string DurationReducedBy => "2";
+        internal static string PriceReducedBy => "2000";
+
     }
 }
