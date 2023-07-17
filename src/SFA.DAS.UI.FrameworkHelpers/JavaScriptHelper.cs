@@ -13,7 +13,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _iframeHelper = iframeHelper;
         }
 
-        public bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");
+        public bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("interactive");
 
         public string GetTextUsingJavaScript(By iFrameBodyLocator)
         {
