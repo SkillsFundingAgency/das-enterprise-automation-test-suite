@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using System;
 using System.Linq;
@@ -68,7 +67,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public void VerifyTaskCount(string taskType, int expectedNumberOfTasks)
         {
             int currentNumberOfTasks = GetTaskCount(taskType);
-            
+
             if (currentNumberOfTasks != expectedNumberOfTasks)
                 throw new Exception($"The task type {taskType} was expected to have {expectedNumberOfTasks} tasks but currently has {currentNumberOfTasks} task");
         }
@@ -83,8 +82,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                         pageInteractionHelper.FindElements(taskList, ApprenticeChangeToReviewTaskLink(true), true).FirstOrDefault(), true); ;
 
                 case "CohortRequestReadyForApproval":
-                    return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, CohortRequestReadyForApprovalTaskLink(false), true).FirstOrDefault() ?? 
-                        pageInteractionHelper.FindElements(taskList, CohortRequestReadyForApprovalTaskLink(true), true).FirstOrDefault(), true);;
+                    return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, CohortRequestReadyForApprovalTaskLink(false), true).FirstOrDefault() ??
+                        pageInteractionHelper.FindElements(taskList, CohortRequestReadyForApprovalTaskLink(true), true).FirstOrDefault(), true); ;
 
                 case "ReviewConnectionRequest":
                     return GetCurrentNumberOfTasks(pageInteractionHelper.FindElements(taskList, ReviewConnectionRequestTaskLink(false), true).FirstOrDefault() ??
@@ -99,12 +98,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private int GetCurrentNumberOfTasks(IWebElement taskLink, bool hasItemsDueCount)
         {
-            if(taskLink != null && hasItemsDueCount)
+            if (taskLink != null && hasItemsDueCount)
             {
                 var match = Regex.Match(taskLink.Text, "^(\\d+).*\r?$", RegexOptions.Multiline);
                 return match.Success && match.Groups.Count > 0 ? int.Parse(match.Groups[1].Value) : 0;
             }
-            else if(taskLink != null)
+            else if (taskLink != null)
             {
                 return 1;
             }

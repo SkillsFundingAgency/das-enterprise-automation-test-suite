@@ -9,23 +9,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
-        private By ViewChangesLink => By.LinkText("View changes");
-        private By ReviewChangesLink => By.LinkText("Review changes");
-        private By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
-        private By EditApprenticeStatusLink => By.LinkText("Edit status");
-        private By EditStopDateLink => By.LinkText("Edit");
-        private By EditEndDateLink => By.Id("edit-end-date-link"); 
-        private By EditApprenticeDetailsLink => By.CssSelector("#edit-apprentice-link");
-        private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
-        private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
-        private By CompletionDate => By.Id("completionDate");
-        private By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
-        private By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
+        private static By ViewChangesLink => By.LinkText("View changes");
+        private static By ReviewChangesLink => By.LinkText("Review changes");
+        private static By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
+        private static By EditApprenticeStatusLink => By.LinkText("Edit status");
+        private static By EditStopDateLink => By.LinkText("Edit");
+        private static By EditEndDateLink => By.Id("edit-end-date-link"); 
+        private static By EditApprenticeDetailsLink => By.CssSelector("#edit-apprentice-link");
+        private static By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
+        private static By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
+        private static By CompletionDate => By.Id("completionDate");
+        private static By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
+        private static By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
         private By FlashMsgBox => PanelTitle;
 
-        private By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
+        private static By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
 
-        private By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
+        private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
