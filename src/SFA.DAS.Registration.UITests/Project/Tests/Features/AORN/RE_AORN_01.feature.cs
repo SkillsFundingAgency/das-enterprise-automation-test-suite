@@ -112,8 +112,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "to register the account with the same Aorn and Paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And("\'Add a PAYE Scheme\' page is displayed when Employer clicks on \'Use different deta" +
-                        "ils\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'AddPayeSchemeUsingGGDetails\' page is displayed when Employer clicks on \'Use diff" +
+                        "erent details\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.And("\'Add a PAYE Scheme\' page is displayed when Employer clicks on Back link on the \'P" +

@@ -38,11 +38,11 @@ public class EPAOHomePageHelper
         return new StaffDashboardPage(_context);
     }
 
-    public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
+    public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
 
-    public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
+    public AS_LoggedInHomePage LoginInAsNonApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
 
-    public AS_LoggedInHomePage LoginInAsStandardApplyUser(LoginUser loginUser, string standardcode, string organisationId)
+    public AS_LoggedInHomePage LoginInAsStandardApplyUser(NonEasAccountUser loginUser, string standardcode, string organisationId)
     {
         _ePAOSqlDataHelper.DeleteStandardApplicication(standardcode, organisationId, loginUser.Username);
 
@@ -61,5 +61,5 @@ public class EPAOHomePageHelper
         if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
     }
 
-    public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
+    public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
 }

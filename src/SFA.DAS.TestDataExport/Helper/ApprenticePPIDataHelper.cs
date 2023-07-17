@@ -46,8 +46,10 @@ namespace SFA.DAS.TestDataExport.Helper
 
         private void CreatePPIData(string nameprefix, DateTime dateOfBirth)
         {
-            var firstName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
-            var lastName = RandomDataGenerator.GenerateRandomAlphabeticString(10);
+            var randomPersonNameHelper = new RandomPersonNameHelper();
+
+            var firstName = randomPersonNameHelper.FirstName;
+            var lastName = randomPersonNameHelper.LastName;
 
             ApprenticeFirstname = $"{nameprefix}F_{firstName}";
             ApprenticeLastname = $"{nameprefix}L_{lastName}";

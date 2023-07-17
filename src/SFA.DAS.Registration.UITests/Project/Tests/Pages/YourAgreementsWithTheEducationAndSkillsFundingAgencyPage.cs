@@ -14,10 +14,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private static By ExpandButton => By.CssSelector(".govuk-accordion__section-button");
 
-        private static By AgreementId => By.CssSelector("h3.govuk-heading-l");
+        private static By AgreementId => By.CssSelector("h3.govuk-heading-l");  
+        
+        private By ViewAgreementButton => By.XPath("//*[@id='main-content']/form/input");     //By.XPath("//input[contains(text(),'View agreement')]");
         #endregion
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context, Action action) : base(context) => VerifyPage(PageHeader, PageTitle, action);
+
+        public AboutYourAgreementPage GoToViewAgreement()
+        {
+            formCompletionHelper.ClickElement(ViewAgreementButton);
+            return new AboutYourAgreementPage(context);
+        }
+
 
         public ReviewYourDetailsPage ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
         {

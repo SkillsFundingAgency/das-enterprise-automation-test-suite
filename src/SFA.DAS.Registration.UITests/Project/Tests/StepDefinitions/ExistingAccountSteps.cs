@@ -45,8 +45,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
                 .GoToYourAccountsPage().OpenAccount().GoToHomePage()
                 .GoToRenameAccountPage().GoToHomePage()
-                .GoToChangeYourPasswordPage().ClickBackLink()
-                .GoToChangeYourEmailAddressPage().ClickBackLink()
                 .GoToNotificationSettingsPage().ClickBackLink();
 
         [Then(@"Employer is able to navigate to Help Page")]

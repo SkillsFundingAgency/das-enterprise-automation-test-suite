@@ -1,6 +1,5 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
@@ -11,9 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
     public abstract class InterimEmployerBasePage : Navigate
     {
-        #region Helpers and Context
-        protected readonly RegistrationConfig config;
-        #endregion
 
         #region Locators
         private By SettingsLink => By.LinkText("Settings");
@@ -30,13 +26,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
         {
-            config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }
 
         protected InterimEmployerBasePage(ScenarioContext context, Action navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
         {            
-            config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }
 
@@ -62,18 +56,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         {
             NavigateToSettings(RenameAccountLink);
             return new RenameAccountPage(context);
-        }
-
-        public ChangeYourPasswordPage GoToChangeYourPasswordPage()
-        {
-            NavigateToSettings(ChangePasswordLink);
-            return new ChangeYourPasswordPage(context);
-        }
-
-        public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
-        {
-            NavigateToSettings(ChangeEmailAddressLink);
-            return new ChangeYourEmailAddressPage(context);
         }
 
         public NotificationSettingsPage GoToNotificationSettingsPage()
