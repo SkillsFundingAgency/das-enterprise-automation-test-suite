@@ -86,6 +86,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .SearchForAnOrganisation(EnumHelper.OrgType.Company)
             .SelectYourOrganisation(EnumHelper.OrgType.Company)
             .ContinueToSetAccountName()
+            .ContinueToConfirmationPage()
+            .SelectGoToCreateYourEmployerAccountpage()
             .GoToSetYourAccountNameLink()
             .SelectoptionNo()
             .ContinueToAcknowledge()
