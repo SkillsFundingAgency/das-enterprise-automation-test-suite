@@ -43,7 +43,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
 
-        internal void WaitForPageToLoad() => _pagenavigationWait.Until(driver => _javaScriptHelper.IsDocumentReady(driver));
+        internal void WaitForPageToLoad() => _pagenavigationWait.Until(_javaScriptHelper.IsDocumentReady);
 
         internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
 
