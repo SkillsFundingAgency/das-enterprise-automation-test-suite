@@ -179,12 +179,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [StepDefinition(@"a new live apprentice record is created")]
         public void ANewLiveApprenticeRecordIsCreated() => _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
 
-        [Then(@"the apprenticeship status changes to completed")]
-        public void ThenTheApprenticeshipStatusChangesToCompleted() => _employerStepsHelper.ValidateCompletionStatus();
-
-        [Then(@"Apprentice status and details cannot be changed except the planned training finish date")]
-        public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
-
         [Then(@"the user can add an apprentices")]
         public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
 

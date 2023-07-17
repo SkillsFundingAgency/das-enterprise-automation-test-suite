@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -21,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By CompletionDate => By.Id("completionDate");
         private static By ChangeTrainingProviderLink => By.Id("change-training-provider-link");
         private static By AlertBox => By.CssSelector("p.govuk-body-s, p.govuk-notification-banner__heading");
-        private By FlashMsgBox => PanelTitle;
+        private static By FlashMsgBox => PanelTitle;
 
         private static By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
 
@@ -61,6 +63,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             else
                 return true;
         }
+
+        public void VerifyApprenticeshipStatus(string status) => VerifyPage(ApprenticeshipStatus, status, pageInteractionHelper.RefreshPage);
 
         public string GetApprenticeshipStatus() => pageInteractionHelper.GetText(ApprenticeshipStatus);
         public string GetStatusDateTitle() => pageInteractionHelper.GetText(StatusDateTitle);

@@ -207,8 +207,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"employer can start CoP Process")]
         public void ThenEmployerCanStartCoPProcess()
         {
-            Assert.IsTrue(_employerStepsHelper.ViewCurrentApprenticeDetails().GetApprenticeshipStatus() == "LIVE");
-            Assert.IsTrue(new ApprenticeDetailsPage(_context).IsChangeOfProviderLinkDisplayed());
+            var apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails();
+
+            apprenticeDetailsPage.VerifyApprenticeshipStatus("LIVE");
+
+            Assert.IsTrue(apprenticeDetailsPage.IsChangeOfProviderLinkDisplayed());
         }
 
         [Then(@"stop apprentice record during CoP journey")]
