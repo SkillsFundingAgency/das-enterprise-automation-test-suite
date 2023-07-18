@@ -337,13 +337,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge()
+            .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName);
 
-        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() => 
+        private PledgeAmountPage GoToEnterPlegeAmountPage() => 
             NavigateToTransferMatchingPage()
             .GotoCreateTransfersPledgePage()
             .StartCreatePledge()
-            .GoToPledgeAmountAndOptionPage()
+            .GoToPledgeAmountPage()
             .CaptureAvailablePledgeAmount();
 
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();

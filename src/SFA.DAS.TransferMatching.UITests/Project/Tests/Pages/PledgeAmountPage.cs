@@ -5,19 +5,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class PledgeAmountAndOptionToHideOrganisastionNamePage : TransferMatchingBasePage
+    public class PledgeAmountPage : TransferMatchingBasePage
     {
-        protected override string PageTitle => "Pledge amount and option to hide organisation name";
+        protected override string PageTitle => "Pledge amount";
 
-        private By AvailablePledgeAmount => By.CssSelector(".app-highlight__figure");
+        private By AvailablePledgeAmount => By.CssSelector("#remaining-transfer-balance");
 
         private By AmountCssSelector => By.CssSelector("#Amount");
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
-        public PledgeAmountAndOptionToHideOrganisastionNamePage(ScenarioContext context) : base(context) { }
+        public PledgeAmountPage(ScenarioContext context) : base(context) { }
 
-        public PledgeAmountAndOptionToHideOrganisastionNamePage CaptureAvailablePledgeAmount()
+        public PledgeAmountPage CaptureAvailablePledgeAmount()
         {
             var amount = pageInteractionHelper.GetText(AvailablePledgeAmount);
 
@@ -28,31 +28,27 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return this;
         }
 
-        public PledgeAmountAndOptionToHideOrganisastionNamePage EnterInValidAmount()
+        public PledgeAmountPage EnterInValidAmount()
         {
-            EnterAmountAndOrgName(true, true);
+            EnterAmount(true);
 
-            return new PledgeAmountAndOptionToHideOrganisastionNamePage(context);
+            return new PledgeAmountPage(context);
         }
 
-        public CreateATransferPledgePage EnterValidAmountAndOrgName(bool showOrg)
+        public CreateATransferPledgePage EnterInValidAmountForCreateAPledge()
         {
-            EnterAmountAndOrgName(showOrg, false);
+            EnterAmount(false);
 
             return new CreateATransferPledgePage(context);
         }
 
-        private void EnterAmountAndOrgName(bool showOrg, bool exceedMaxFunding)
+        private void EnterAmount(bool exceedMaxFunding)
         {
             int amount = objectContext.GetEmployerTotalPledgeAmount();
 
             int randomAmount = exceedMaxFunding ? tMDataHelper.GenerateRandomNumberMoreThanMaxAmount(amount) : ValidatePledgeAmount(amount);
             
             formCompletionHelper.EnterText(AmountCssSelector, randomAmount);
-
-            string radioOption = showOrg ? "Yes" : "No, I'd like our organisation to be anonymous";
-
-            formCompletionHelper.SelectRadioOptionByText(radioOption);
 
             Continue();
 

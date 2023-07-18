@@ -23,10 +23,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public CreateATransferPledgePage(ScenarioContext context) : base(context) { }
 
-        public PledgeAmountAndOptionToHideOrganisastionNamePage GoToPledgeAmountAndOptionPage()
+        public PledgeAmountPage GoToPledgeAmountPage()
         {
             formCompletionHelper.ClickLinkByText("Amount you want to pledge");
-            return new PledgeAmountAndOptionToHideOrganisastionNamePage(context);
+            return new PledgeAmountPage(context);
+        }
+        
+        public PledgeOrganisationNameOptionPage GoToPledgeOrganisationNamePageOptionPage()
+        {
+            formCompletionHelper.ClickLinkByText("Show or hide your organisation's name");
+            return new PledgeOrganisationNameOptionPage(context);
         }
 
         public AddtheLocationPage GoToAddtheLocationPage()
@@ -64,7 +70,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public string GetAmount(string key) => GetValue(key, 0);
 
-        public string GetCriteriaValue(string key) => GetValue(key, 1);
+        public string GetCriteriaValue(string key) => GetValue(key, 2);
 
         private string GetValue(string key, int tableposition) => tableRowHelper.GetColumn(key, ColumnIdentifier, TableIdentifier, TableRowIdentifier, tableposition).Text;
     }
