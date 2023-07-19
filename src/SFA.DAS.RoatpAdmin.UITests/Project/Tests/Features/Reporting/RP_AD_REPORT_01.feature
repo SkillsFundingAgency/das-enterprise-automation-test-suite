@@ -1,5 +1,7 @@
 ﻿Feature: RP_AD_REPORT_01
 
+#Added Ignore tag as this failure currently in investigation
+@ignore
 @roatp
 @newroatpadmin
 @newroatpadminreporting

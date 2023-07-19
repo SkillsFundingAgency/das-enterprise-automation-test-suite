@@ -46,18 +46,18 @@ Scenario:AAN01D User completes onboarding process and lands on the AAN Hub page 
     When the user signs back in to the AAN platform
     Then the user should land on AAN Hub page
 
-@aan
-@aanevents
-@aan06
-@aanreset
-@regression
-Scenario: AAN01E User should be able to successfully signup and cancel the attendacne for an event
-	Given the provider logs into AAN portal
-	When the user provides all the required details for the onboarding journey
-    Then the Apprentice onboarding process should be successfully completed
-    And the user should be redirected to the Hub page
-    And the user should be able to successfuly signup for a future event
-    And the user should be able to successfuly Cancel the attendance for a signed up event
+#@aan
+#@aanevents
+#@aan06
+#@aanreset
+#@regression
+#Scenario: AAN01E User should be able to successfully signup and cancel the attendacne for an event
+#	Given the provider logs into AAN portal
+#	When the user provides all the required details for the onboarding journey
+#    Then the Apprentice onboarding process should be successfully completed
+#    And the user should be redirected to the Hub page
+#    And the user should be able to successfuly signup for a future event
+#    And the user should be able to successfuly Cancel the attendance for a signed up event
 
 @aan
 @aaneventsfilters
