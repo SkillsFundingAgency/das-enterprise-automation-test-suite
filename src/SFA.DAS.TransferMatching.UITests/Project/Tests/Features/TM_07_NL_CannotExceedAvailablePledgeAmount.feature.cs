@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the levy employer can create pledge using minimal funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
  testRunner.And("the non levy employer cannot exceed the available pledge funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

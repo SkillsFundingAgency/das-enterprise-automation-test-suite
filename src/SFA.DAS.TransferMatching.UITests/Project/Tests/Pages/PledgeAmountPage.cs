@@ -35,17 +35,20 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new PledgeAmountPage(context);
         }
 
-        public CreateATransferPledgePage EnterInValidAmountForCreateAPledge()
+        public CreateATransferPledgePage EnterInValidAmountForCreateAPledge(bool useMinimalFunding = false)
         {
-            EnterAmount(false);
+            EnterAmount(false, useMinimalFunding);
 
             return new CreateATransferPledgePage(context);
         }
 
-        private void EnterAmount(bool exceedMaxFunding)
+        private void EnterAmount(bool exceedMaxFunding, bool useMinimalFunding = false)
         {
             int amount = objectContext.GetEmployerTotalPledgeAmount();
-
+            if (exceedMaxFunding == false && useMinimalFunding && amount > tMDataHelper.MinimalPledgeAmount)
+            {
+                amount = tMDataHelper.MinimalPledgeAmount;
+            }
             int randomAmount = exceedMaxFunding ? tMDataHelper.GenerateRandomNumberMoreThanMaxAmount(amount) : ValidatePledgeAmount(amount);
             
             formCompletionHelper.EnterText(AmountCssSelector, randomAmount);

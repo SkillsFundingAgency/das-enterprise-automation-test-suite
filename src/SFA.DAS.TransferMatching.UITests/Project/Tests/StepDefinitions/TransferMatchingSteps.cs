@@ -176,6 +176,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             SetPledgeDetail();
         }
+        
+        [Given(@"the levy employer can create pledge using minimal funding")]
+        [Then(@"the levy employer can create pledge using minimal funding")]
+        public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
+        {
+            var page = CreateATransferPledge(true, true);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();
+        }
 
         [Then(@"the levy employer can create anonymous pledge using non default criteria")]
         public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
@@ -337,7 +353,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge()
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool useMinimalFunding = false) => GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding)
             .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName);
 
         private PledgeAmountPage GoToEnterPlegeAmountPage() => 
