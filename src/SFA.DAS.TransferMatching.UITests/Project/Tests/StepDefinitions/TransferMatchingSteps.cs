@@ -154,7 +154,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
         [Then(@"the levy employer cannot exceed the maximum funding available")]
-        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
+        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "You need to enter an amount greater than");
 
         [Then(@"the viewer cannot create pledge")]
         public void TheViewerCannotCreatePledge()
@@ -166,6 +166,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
             var page = CreateATransferPledge(true);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();
+        }
+        
+        [Given(@"the levy employer can create pledge using minimal funding")]
+        [Then(@"the levy employer can create pledge using minimal funding")]
+        public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
+        {
+            var page = CreateATransferPledge(true, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -337,13 +353,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool useMinimalFunding = false) => GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding)
+            .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName);
 
-        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() => 
+        private PledgeAmountPage GoToEnterPlegeAmountPage() => 
             NavigateToTransferMatchingPage()
             .GotoCreateTransfersPledgePage()
             .StartCreatePledge()
-            .GoToPledgeAmountAndOptionPage()
+            .GoToPledgeAmountPage()
             .CaptureAvailablePledgeAmount();
 
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
