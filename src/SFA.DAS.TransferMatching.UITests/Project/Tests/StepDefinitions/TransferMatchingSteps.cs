@@ -154,7 +154,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
         [Then(@"the levy employer cannot exceed the maximum funding available")]
-        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
+        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "You need to enter an amount greater than");
 
         [Then(@"the viewer cannot create pledge")]
         public void TheViewerCannotCreatePledge()
