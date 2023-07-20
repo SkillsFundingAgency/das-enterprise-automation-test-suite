@@ -99,7 +99,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
             {
                 this.ScenarioStart();
 #line 8
-    testRunner.Given("the non Private beta provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("the non Private beta apprentice logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
     testRunner.Then("an Access Denied page should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

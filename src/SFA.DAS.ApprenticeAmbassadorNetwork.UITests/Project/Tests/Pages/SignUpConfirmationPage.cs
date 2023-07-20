@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class NetworkHubPage : SignInPage
+    public class SignUpConfirmationPage : SignInPage
     {
-        protected override string PageTitle => "Your network hub";
+        protected override string PageTitle => "You have successfully signed up to this event";
 
-        public NetworkHubPage(ScenarioContext context) : base(context) => VerifyPage();
+        public SignUpConfirmationPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public EventsHubPage AccessEventsHub()
         {
