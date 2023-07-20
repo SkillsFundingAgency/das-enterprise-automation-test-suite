@@ -1,6 +1,6 @@
 ﻿Feature: RP_AD_DP_01
 
-#Added Ignore tag as this failure currently in investigation
+#Bug raised CSP-920 Will remove the tag once the bug is fixed
 @ignore
 @roatp
 @oldroatpadmin
