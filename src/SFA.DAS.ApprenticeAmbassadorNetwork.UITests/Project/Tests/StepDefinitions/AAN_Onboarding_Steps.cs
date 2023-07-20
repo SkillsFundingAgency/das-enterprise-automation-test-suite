@@ -30,8 +30,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
            _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
-        [Given(@"the provider logs into AAN portal")]
-        public void GivenTheProviderLogsIntoAANPortal()
+        [Given(@"an apprentice logs into the AAN portal")]
+        public void GivenAnApprenticeLogsIntoTheAANPortal()
         {
             beforeYouStartPage = GetSignInPage().SubmitValidUserDetails(context.Get<AanUser>());
         }
@@ -55,10 +55,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         public void ThenApprenticeOnboardingProcessShouldBeCompleted() => applicationSubmittedPage = checkYourAnswersPage.AcceptAndSubmitApplication();
 
         [Then(@"the user should be redirected to the Hub page")]
-        public void ThenUserShouldBeRedirectedToHubPage()
-        {
-            applicationSubmittedPage.ContinueToAmbassadorHub();
-        }
+        public void ThenUserShouldBeRedirectedToHubPage() => applicationSubmittedPage.ContinueToAmbassadorHub();
 
         [When(@"the user does not have manager permission")]
         public void WhenUserDoesNotHaveManagerPermission()
@@ -85,18 +82,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                 .NoHaveEngagedWithAnAmbassadaorAndContinue();
         }
 
-
-
-        [When(@"the user signs back in to the AAN platform")]
-        public void WhenUserSignsBackInToAANPlatform()
+        [Then(@"the user can sign back in to the AAN platform")]
+        public void ThenTheUserCanSignBackInToTheAANPlatform()
         {
             _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_BaseUrl, "AANbaseurl");
 
             GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
-        }
-        [Then(@"the user should land on AAN Hub page")]
-        public void ThenUserShouldLandOnAANHubPage()
-        {
         }
 
         private SignInPage GetSignInPage() => new(context);

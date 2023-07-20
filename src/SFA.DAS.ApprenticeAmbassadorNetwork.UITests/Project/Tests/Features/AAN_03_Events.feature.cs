@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

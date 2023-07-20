@@ -103,7 +103,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -146,7 +146,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 21
-    testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 22
     testRunner.When("the user does not have manager permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -188,7 +188,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 31
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 32
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -236,7 +236,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 43
-    testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 44
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -245,10 +245,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 46
-    testRunner.When("the user signs back in to the AAN platform", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 47
-    testRunner.Then("the user should land on AAN Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the user can sign back in to the AAN platform", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -275,7 +272,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01E User should be able to successfully signup and cancel the attendacne for a" +
                     "n event", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 55
+#line 54
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -285,22 +282,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 56
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 55
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 57
+#line 56
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 58
+#line 57
     testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 59
+#line 58
     testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 60
+#line 59
     testRunner.And("the user should be able to successfuly signup for a future event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 61
+#line 60
     testRunner.And("the user should be able to successfuly Cancel the attendance for a signed up even" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -325,7 +322,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01F User should be able to successfully Filter Events by date", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 68
+#line 67
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -335,19 +332,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 69
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 68
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 70
+#line 69
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 71
+#line 70
     testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 72
+#line 71
     testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 73
+#line 72
     testRunner.And("the user should be able to successfuly filter events by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -371,7 +368,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01G User should be able to successfully Filter Events by Type", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 81
+#line 80
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -381,19 +378,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 82
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 81
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 83
+#line 82
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 84
+#line 83
     testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 85
+#line 84
     testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 86
+#line 85
     testRunner.And("the user should be able to successfuly filter events by event format", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -417,7 +414,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01H User should be able to successfully Filter Events by Event type", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 94
+#line 93
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -427,19 +424,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 95
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 94
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 96
+#line 95
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 97
+#line 96
     testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 98
+#line 97
     testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 99
+#line 98
     testRunner.And("the user should be able to successfuly filter events by event type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -465,7 +462,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01I User should be able to successfully Filter Events by multiple combination " +
                     "of filters", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 107
+#line 106
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -475,19 +472,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 108
- testRunner.Given("the provider logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 107
+    testRunner.Given("an apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 109
+#line 108
  testRunner.When("the user provides all the required details for the onboarding journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 110
+#line 109
     testRunner.Then("the Apprentice onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 111
+#line 110
     testRunner.And("the user should be redirected to the Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 112
+#line 111
     testRunner.And("the user should be able to successfuly filter events by multiple combination of f" +
                         "ilters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

@@ -5,7 +5,7 @@
 @aan07
 @regression
 Scenario: AAN03_1A User should be able to successfully Filter Events by date 
-	Given the provider logs into AAN portal
+    Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
     And the user should be redirected to the Hub page
