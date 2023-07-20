@@ -121,7 +121,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class AanUser : AanBaseUser { }
 
-    public class AanBetaUser : AanBaseUser { }
+    public class AanNonBetaUser : AanBaseUser { }
 
     #endregion
 
