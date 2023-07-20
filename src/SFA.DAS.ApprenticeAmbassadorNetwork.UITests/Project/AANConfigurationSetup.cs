@@ -20,6 +20,6 @@ public class AANConfigurationSetup
     {
         _context.SetNonEasLoginUser(_configSection.GetConfigSection<AanUser>());
 
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<AanBetaUser>());
+        _context.SetNonEasLoginUser(_configSection.GetConfigSection<AanNonBetaUser>());
     }
 }
