@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
@@ -7,14 +8,14 @@ public class ServiceStartPage : IdamsLoginBasePage
 {
     protected override string PageTitle => "ESFA admin services";
 
-    private By StartNowCssSelector => By.CssSelector(".govuk-button--start");
+    private static By StartNowCssSelector => IdamsPageSelector.StartNowButton;
 
     public ServiceStartPage(ScenarioContext context) : base(context) { }
 
-    public IdamsPage StartNow()
+    public PreProdDIGBEADFSPage StartNow()
     {
         ClickStartNowButton();
-        return new IdamsPage(context);
+        return new PreProdDIGBEADFSPage(context);
     }
 
     public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowCssSelector);

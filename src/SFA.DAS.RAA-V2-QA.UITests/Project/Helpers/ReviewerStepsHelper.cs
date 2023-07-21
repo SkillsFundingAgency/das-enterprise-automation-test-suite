@@ -40,11 +40,9 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
                 _tabHelper.OpenInNewTab(_raav2qaBaseUrl);
             }
 
-            new IdamsPage(_context)
-               .LoginToAccess1Staff();
+            new PreProdDIGBEADFSPage(_context).LoginToAccess1Staff();
 
-            return new SignInPage(_context)
-                .SubmitReviewerLoginDetails();
+            return new SignInPage(_context).SubmitReviewerLoginDetails();
         }
 
         public void VerifyEmployerNameAndApprove(bool restart) => ReviewVacancy(restart).VerifyEmployerName().Approve();
