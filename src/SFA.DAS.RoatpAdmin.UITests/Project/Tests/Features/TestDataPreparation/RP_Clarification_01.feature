@@ -2,15 +2,15 @@
 
 TestDataPreparation for RP_AD_CLA_01_ExistingProvider
 
-@roatpfulle2eviaadmintestdataprep
 @roatpadmintestdataprep
 @roatpadminclatestdataprep
 @donottakescreenshot
 @rpadcla01
 Scenario: RP_Clarification_01_TestDataPreparation-For_RP_AD_CLA_01_ExistingProvider
-	Given the Provider is added to the register as Main provider
+	Given the provider naviagate to Admin
+	And the Provider is added to the register as Main provider
 	And the provider naviagate to Apply 
-	Given the provider completes the Apply Journey as Main Provider Route For Existing Provider
+	And the provider completes the Apply Journey as Main Provider Route For Existing Provider
 	And the GateWay user assess the application by confirming Gateway outcome as Pass
 	And the Asssesssors assess the application and marks the application as Ready for Moderation
 	And the Moderation user assess the application and marks every section as Fail and outcome As Clarification

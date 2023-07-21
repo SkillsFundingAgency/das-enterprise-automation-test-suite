@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -16,7 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
         private readonly DbConfig _dbConfig;
         private readonly ObjectContext _objectContext;
         private readonly TryCatchExceptionHelper _tryCatch;
@@ -25,7 +25,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
             _dbConfig = context.Get<DbConfig>();
             _objectContext = context.Get<ObjectContext>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
@@ -44,9 +43,12 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" : "dasautomation.com";
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" :
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("testinator")) ? GetDomainName() : "dasautomation.com";
 
-            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword);
+            var aornDataHelper = new AornDataHelper();
+
+            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", aornDataHelper);
 
             _context.Set(registrationDatahelpers);
 
@@ -56,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(new RegistrationSqlDataHelper(_dbConfig));
 
-            _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, registrationDatahelpers));
+            _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
@@ -68,5 +70,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
+
+        private string GetDomainName() => _context.Get<MailinatorApiHelper>().GetDomainName();
     }
 }

@@ -29,18 +29,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal UserCreds(string emailaddress, string password, int userIndex)
         {
             EmailAddress = emailaddress;
-            Password = password;
+            IdOrUserRef = password;
             UserIndex = userIndex;
             AccountDetails = new List<AccountDetails>();
         }
 
         public string EmailAddress { get; private set; }
-        public string Password { get; private set; }
+        public string IdOrUserRef { get; private set; }
         internal int UserIndex { get; private set; }
 
         public List<AccountDetails> AccountDetails { get; private set; }
 
-        public override string ToString() => $"Email address:'{EmailAddress}', Password:'{Password}'{GetAccountDetails()}";
+        public override string ToString() => $"Email address:'{EmailAddress}', IdOrUserRef:'{IdOrUserRef}'{GetAccountDetails()}";
 
         private string GetAccountDetails() => AccountDetails.Count == 0 ? string.Empty : $",{Environment.NewLine}{string.Join(Environment.NewLine, AccountDetails.Select(a => a.ToString()))}";
     }

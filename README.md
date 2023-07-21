@@ -36,9 +36,6 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 2. Add nuget depedencies ( you can edit the csproj file or you can choose to add it via nuget package manager either way make sure you add the same version as other projects)
 	- Microsoft.NET.Test.Sdk
 	- NUnit3TestAdapter
-	- Selenium.WebDriver.ChromeDriver
-	- SpecFlow.Tools.MsBuild.Generation
-	- SpecFlow.NUnit
 	
 3. Copy the below code to .csproj file to add link to nunitconfiguration.cs and specflow.json files
 ```text
@@ -204,6 +201,7 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 	@donotexecuteinparallel 
 	Feature: FeatureName
 	```
+	- ```@testinator```(to use mailinator api to verify notification email content)
 4. Reserved tags (these reserved tags are used to create test data)
 	- ```@addtransferslevyfunds``` (to create a levy account which makes sender eligible to transfer funds), ```@addlevyfunds``` (to create a levy funds), ```@donottakescreenshot, @donotuserandomorgname``` (in registration and in its depenedent projects)
 	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse, @changeOfEmployer, @changeOfProvider``` (in approvals (including transfers), apprenticecommitments)

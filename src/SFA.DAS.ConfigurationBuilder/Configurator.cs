@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.IO;
 
 namespace SFA.DAS.ConfigurationBuilder
@@ -42,22 +43,39 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static IConfigurationRoot InitializeConfig()
         {
-            return ConfigurationBuilder()
-            .AddJsonFile("appsettings.DbConfig.json", true)
-            .AddJsonFile("appsettings.TimeOutConfig.json", true)
-            .AddJsonFile("appsettings.NServiceBusConfig.json",true)
-            .AddJsonFile("appsettings.BrowserStack.json", true)
-            .AddJsonFile("appsettings.ApiFramework.json",true)
-            .AddJsonFile("appsettings.Project.json", true)
-            .AddJsonFile("appsettings.Project.BrowserStack.json", true)
-            .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
-            .AddJsonFile("appsettings.TestExecution.json", true)
-            .AddUserSecrets("BrowserStackSecrets")
-            .AddUserSecrets($"{ProjectName}_Secrets")
-            .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
-            .AddUserSecrets("MongoDbSecrets")
-            .AddUserSecrets("TestExecutionSecrets")
-            .Build();
+            var builder = ConfigurationBuilder()
+                .AddOptionalJsonFiles(new List<string> 
+                { 
+                    "appsettings.DbConfig.json", 
+                    "appsettings.TimeOutConfig.json", 
+                    "appsettings.NServiceBusConfig.json", 
+                    "appsettings.BrowserStack.json", 
+                    "appsettings.Mailinator.json", 
+                    "appsettings.ApiFramework.json", 
+                    "appsettings.Project.json", 
+                    "appsettings.Project.BrowserStack.json", 
+                    $"appsettings.{EnvironmentName}.json", 
+                    "appsettings.TestExecution.json" 
+                });
+
+            if (!IsVstsExecution)
+            {
+                builder
+                    .AddUserSecrets("BrowserStackSecrets")
+                    .AddUserSecrets($"{ProjectName}_Secrets")
+                    .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
+                    .AddUserSecrets("MongoDbSecrets")
+                    .AddUserSecrets("TestExecutionSecrets");
+            }
+
+            return builder.Build();
+        }
+
+        private static IConfigurationBuilder AddOptionalJsonFiles(this IConfigurationBuilder builder, List<string> paths)
+        {
+            foreach (var path in paths) builder.AddJsonFile(path, true);
+
+            return builder;
         }
 
         private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
@@ -72,7 +90,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 
-        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("RELEASE_ENVIRONMENTNAME") : GetHostingConfigSection("local_EnvironmentName");
+        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
 
         private static string GetProjectName() => GetHostingConfigSection("ProjectName");
 

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -62,9 +62,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _loginCredentialsHelper = _context.Get<LoginCredentialsHelper>();
 
-            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password, registrationDatahelpers.CompanyTypeOrg);
-
-            _objectContext.SetOrUpdateUserCreds(registrationDatahelpers.RandomEmail, registrationDatahelpers.Password);
+            _loginCredentialsHelper.SetLoginCredentials(registrationDatahelpers.RandomEmail, string.Empty, registrationDatahelpers.CompanyTypeOrg);
 
             AddFunds(mongoDbDataGenerator, fundType);
         }

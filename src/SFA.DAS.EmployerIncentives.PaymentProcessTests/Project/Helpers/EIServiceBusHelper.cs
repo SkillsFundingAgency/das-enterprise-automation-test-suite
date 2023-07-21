@@ -15,6 +15,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             var endpointConfiguration = new EndpointConfiguration("SFA.DAS.EmployerIncentives.Functions.DomainMessageHandlers")
                 .UseMessageConventions()
+                .UseSendOnly()
                 .UseNewtonsoftJsonSerializer();
 
             if (config.EI_ServiceBusConnectionString.Equals("UseLearningEndpoint=true", StringComparison.CurrentCultureIgnoreCase))
@@ -27,11 +28,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             else
             {
                 var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-                var ruleNameShortener = new RuleNameShortener();
-
                 transport.ConnectionString(config.EI_ServiceBusConnectionString);
                 transport.Routing().AddRouting();
-                transport.RuleNameShortener(ruleNameShortener.Shorten);
+                transport.SubscriptionRuleNamingConvention(RuleNameShortener.Shorten);
                 transport.Transactions(TransportTransactionMode.ReceiveOnly);
             }
 

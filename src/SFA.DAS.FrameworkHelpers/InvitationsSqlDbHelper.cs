@@ -10,6 +10,10 @@ namespace SFA.DAS.FrameworkHelpers
 
         public void DeleteUser(string email) => ExecuteSqlCommand($"DELETE FROM [IdentityServer].[aspnetusers] where email = '{email}'");
 
-        public string DeleteUserLogs(string email) => GetNullableData($"DELETE [LoginService].[UserLogs] where email = '{email}'");
+        public void DeleteAspNetUsersTableDataForCMAD(string apprenticeId) => ExecuteSqlCommand($"DELETE FROM [IdentityServer].[aspnetusers] where ApprenticeId = '{apprenticeId}'");
+
+        public string DeleteUserLogsTableData(string email) => GetNullableData($"DELETE [LoginService].[UserLogs] where email = '{email}'");
+
+        public string GetApprenticeIdFromAspNetUsersTable(string email) => GetDataAsString($"SELECT ApprenticeId FROM [IdentityServer].[AspNetUsers] WHERE Email = '{email}'");
     }
 }

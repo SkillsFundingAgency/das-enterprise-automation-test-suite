@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
@@ -15,11 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerWithMultipleAccountsUser _employerWithMultipleAccountsUser;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         public EmployerWithMultipleAccountsUserSteps(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _employerWithMultipleAccountsUser);
         }
@@ -31,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployer2LogIns()
         {
             _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.SecondOrganisationName);
-            _employerStepsHelper.GoToEmployerApprenticesHomePage();
+            _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
         }
 
         [Given(@"the Employer3 logins")]
@@ -39,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployer3LogIns()
         {
             _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.ThirdOrganisationName);
-            _employerStepsHelper.GoToEmployerApprenticesHomePage();
+            _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
         }
     }
 }

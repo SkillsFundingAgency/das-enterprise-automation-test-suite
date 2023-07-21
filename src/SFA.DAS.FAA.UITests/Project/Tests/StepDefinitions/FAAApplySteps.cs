@@ -14,6 +14,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"the Applicant can apply for a Vacancy in FAA")]
         public void WhenTheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
 
+        [Then("the Applicant can apply for the Vacancy in FAT")]
+        [When("the Applicant can apply for the Vacancy in FAT")]
+        public void ThenTheApplicatCanApplyForTheVacancyInFAT() => _faaStepsHelper.ApplyForTraineeship();
+
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse) =>
             _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse);

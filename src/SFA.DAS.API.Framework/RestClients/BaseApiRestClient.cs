@@ -1,71 +1,79 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework.Helpers;
-using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
-using System.Net;
+﻿using SFA.DAS.API.FrameworkHelpers;
 
-namespace SFA.DAS.API.Framework.RestClients
+namespace SFA.DAS.API.Framework.RestClients;
+
+public abstract class BaseApiRestClient
 {
-    public abstract class BaseApiRestClient
+    protected RestClient restClient;
+
+    protected RestRequest restRequest;
+
+    protected readonly ObjectContext objectContext;
+
+    public BaseApiRestClient(ObjectContext objectContext)
     {
-        protected RestClient restClient;
+        this.objectContext = objectContext;
 
-        protected RestRequest restRequest;
+        CreateApiClient();
+    }
 
-        protected abstract void AddResource(string resource);
+    protected abstract string ApiBaseUrl { get; }
 
-        protected abstract void AddAuthHeaders();
+    protected abstract void AddResource(string resource);
 
-        protected virtual void AddParameter() { }
+    protected abstract void AddAuthHeaders();
 
-        public void CreateRestRequest(Method method, string resource, string payload)
+    protected virtual void AddParameter() { }
+
+    public void CreateRestRequest(Method method, string resource, string payload)
+    {
+        restRequest.Method = method;
+
+        AddResource(resource);
+
+        foreach (var item in restRequest.Parameters.GetParameters(ParameterType.RequestBody)) restRequest.Parameters.RemoveParameter(item);
+
+        AddParameter();
+
+        AddAuthHeaders();
+
+        AddPayload(payload);
+    }
+
+    public RestResponse Execute(HttpStatusCode expectedResponse) => Execute(expectedResponse, string.Empty);
+
+    public RestResponse Execute(HttpStatusCode expectedResponse, string resourceContent) => new ApiAssertHelper(objectContext).ExecuteAndAssertResponse(expectedResponse, resourceContent, restClient, restRequest);
+
+    protected RestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
+    {
+        CreateRestRequest(method, resource, JsonHelper.Serialize(payload));
+
+        return Execute(expectedResponse);
+    }
+
+    protected RestResponse Execute(string resource, HttpStatusCode expectedResponse) => Execute(Method.Get, resource, string.Empty, expectedResponse);
+
+    protected void Addheader(string key, string value) => restRequest.AddHeader(key, value);
+
+    protected void Addheaders(Dictionary<string, string> dictionary)
+    {
+        foreach (var item in dictionary) Addheader(item.Key, item.Value);
+    }
+
+    private void AddPayload(string payload)
+    {
+        if (restRequest.Method == Method.Get || string.IsNullOrEmpty(payload)) return;
+        else
         {
-            restRequest.Method = method;
-
-            AddResource(resource);
-
-            restRequest.Parameters.Clear();
-
-            AddParameter();
-
-            AddAuthHeaders();
-
-            AddPayload(payload);
+            if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
+            else restRequest.AddJsonBody(payload);
         }
+    }
 
-        public IRestResponse Execute(HttpStatusCode expectedResponse)
-        {
-            var restResponse = restClient.Execute(restRequest);
+    private void CreateApiClient()
+    {
+        restClient = new RestClient(ApiBaseUrl);
 
-            AssertHelper.AssertResponse(expectedResponse, restResponse);
-
-            return restResponse;
-        }
-
-        protected IRestResponse Execute<T>(Method method, string resource, T payload, HttpStatusCode expectedResponse)
-        {
-            CreateRestRequest(method, resource, JsonHelper.Serialize(payload));
-
-            return Execute(expectedResponse);
-        }
-
-        protected IRestResponse Execute(string resource, HttpStatusCode expectedResponse) => Execute(Method.GET, resource, string.Empty, expectedResponse);
-
-        protected void Addheader(string key, string value) => restRequest.AddHeader(key, value);
-
-        protected void Addheaders(Dictionary<string, string> dictionary)
-        {
-            foreach (var item in dictionary) Addheader(item.Key, item.Value);
-        }
-
-        private void AddPayload(string payload)
-        {
-            if (string.IsNullOrEmpty(payload)) restRequest.Body = null;
-            else
-            {
-                if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
-                else restRequest.AddJsonBody(payload);
-            }
-        }
+        restRequest = new RestRequest();
     }
 }

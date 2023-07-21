@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private NotificationSettingsPage _employerNotification;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderNotificationSettingsPage _providerNotification;
-        
+
         public AccountSettingsSteps(ScenarioContext context)
         {
             _context = context;
@@ -40,12 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Employer should be able to navigate to Rename account page")]
         public void EmployerShouldBeAbleToNavigateToRenameAccountPage() => _apprenticesHomePage.GoToRenameAccountPage();
-
-        [Then(@"Employer should be able to navigate to Change your password page")]
-        public void EmployerShouldBeAbleToNavigateToChangeYourPasswordPage() => _apprenticesHomePage.GoToChangeYourPasswordPage();
-
-        [Then(@"Employer should be able to navigate to Change your email address page")]
-        public void EmployerShouldBeAbleToNavigateToChangeYourEmailAddressPage() => _apprenticesHomePage.GoToChangeYourEmailAddressPage();
 
         [When(@"Employer navigates to notification settings page")]
         public void EmployerNavigatesToNotificationSettingsPage() => _employerNotification = _apprenticesHomePage.GoToNotificationSettingsPage();

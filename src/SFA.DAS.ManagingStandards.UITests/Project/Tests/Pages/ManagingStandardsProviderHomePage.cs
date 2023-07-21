@@ -1,13 +1,16 @@
-﻿
-using SFA.DAS.ProviderLogin.Service.Pages;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.ProviderLogin.Service.Pages;
 
-namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Provider
+namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages
 {
     public class ManagingStandardsProviderHomePage : ProviderHomePage
     {
-
         public ManagingStandardsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
+
+        public YourStandardsAndTrainingVenuesPage NavigateToYourStandardsAndTrainingVenuesPage()
+        {
+            formCompletionHelper.ClickElement(YourStandardsAndTrainingVenues);
+            return new YourStandardsAndTrainingVenuesPage(context);
+        }
 
     }
 }

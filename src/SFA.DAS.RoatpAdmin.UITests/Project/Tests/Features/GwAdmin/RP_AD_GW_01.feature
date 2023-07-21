@@ -7,6 +7,7 @@
 @rpgateway
 @rpadgw01
 @regression
+@accessibility
 Scenario: RP_AD_GW_01_MainRoute_Company
 	Given the admin lands on the Dashboard
 	When the admin access the application from GatewayApplications

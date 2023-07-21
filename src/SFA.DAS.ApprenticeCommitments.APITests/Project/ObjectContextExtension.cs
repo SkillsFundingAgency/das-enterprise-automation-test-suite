@@ -1,5 +1,6 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
@@ -17,6 +18,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         private const string TrainingNameKey = "trainingname";
         private const string EmployerAccountLegalEntityIdKey = "employeraccountlegalentityid";
         private const string EmailKey = "emailkey";
+        private const string ChangedEmailKey = "changedemailkey";
         private const string PasswordKey = "passwordKey";
         private const string ProviderNameKey = "providername";
         private const string EmployerNameKey = "employername";
@@ -42,6 +44,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             objectContext.SetApprenticeEmail(email);
         }
         public static void SetApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Replace(EmailKey, value);
+        public static void SetApprenticeChangedEmail(this ObjectContext objectContext, string value) => objectContext.Replace(ChangedEmailKey, value);
         public static void SetApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Replace(PasswordKey, value);
         internal static void SetProviderName(this ObjectContext objectContext, string value) => objectContext.Replace(ProviderNameKey, value);
         internal static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Replace(EmployerNameKey, value);
@@ -49,6 +52,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetTrainingEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingEndDateKey, value);
         internal static string GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get(CommitmentsApprenticeshipIdKey);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
+        public static string GetApprenticeChangedEmail(this ObjectContext objectContext) => objectContext.Get(ChangedEmailKey);
         public static string GetApprenticePassword(this ObjectContext objectContext) => objectContext.Get(PasswordKey);
         public static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);
         public static string GetLastName(this ObjectContext objectContext) => objectContext.Get(LastNameKey);
@@ -56,7 +60,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public static string GetApprenticeId(this ObjectContext objectContext) => objectContext.Get(ApprenticeIdKey);
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerNameKey);
-        public static string GetTrainingName(this ObjectContext objectContext) => objectContext.Get(TrainingNameKey);
+        public static List<string> GetExpectedTrainingTitles(this ObjectContext objectContext) => new() { objectContext.GetTrainingTitle(), objectContext.GetTrainingTitle().ToFirstLetterCaps() };
+        public static string GetTrainingLevel(this ObjectContext objectContext) => objectContext.GetTrainingName().Split(':')[1];
         public static string GetTrainingStartDate(this ObjectContext objectContext) => objectContext.Get(TrainingStartDateKey);
+        private static string GetTrainingTitle(this ObjectContext objectContext) => objectContext.GetTrainingName().Split(',')[0];
+        private static string GetTrainingName(this ObjectContext objectContext) => objectContext.Get(TrainingNameKey);
     }
 }

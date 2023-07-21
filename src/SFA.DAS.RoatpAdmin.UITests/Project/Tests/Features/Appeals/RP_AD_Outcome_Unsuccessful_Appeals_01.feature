@@ -8,6 +8,7 @@
 @oldroatpadmin
 @newroatpadmin
 @regression
+@accessibility
 Scenario: RP_AD_OUTCOME_Appeals_01A Existing provider Complete Outcome of a Company type Application via Main provider route Appeal_Successful_Already_Active Journey	
 Given the Main provider is already on the RoATP register as Active
 And the admin navigates to the Dashboard

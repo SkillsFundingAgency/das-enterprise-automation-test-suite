@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -6,15 +7,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
     public class TMDataHelper
     {
-        public TMDataHelper()
+        public TMDataHelper(CourseDetails courseDetails)
         {
-            var randomCourse = RandomDataGenerator.GetRandomElementFromListOfElements(Courses);
-            Course = randomCourse.Course;
-            Cost = randomCourse.Cost;
+            Course = courseDetails.Course.title;
+            Cost = courseDetails.Course.proposedMaxFunding / 5;
             NoOfApprentice = 1;
             CourseStartDate = DateTime.Now;
         }
-
 
         public string ApprenticeshipMoreDetails => RandomDataGenerator.GenerateRandomAlphabeticString(25);
 
@@ -33,6 +32,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         public int NoOfApprentice { get; set; }
 
         public int MinAmount => Cost * NoOfApprentice;
+        
+        public int MinimalPledgeAmount => Cost * (NoOfApprentice + 1);
 
         public DateTime CourseStartDate { get; set; }
 
@@ -50,14 +51,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             "Cheam, Greater London",
             "Worcester, Worcestershire"
         };
-
-        private List<(string Course, int Cost)> Courses => new List<(string, int)>()
-        {
-            ("Abattoir worker" ,1500),
-            ("Software tester" ,3000),
-            ("Software developer",3000)
-        };
     }
-
 }
 

@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername, string hashedid)
         {
-            _hashedid = hashedid; 
+            _hashedid = hashedid;
 
             return CreateANewVacancy(employername);
         }
@@ -49,19 +49,36 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
         {
-            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA);
+            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA, true);
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool isApplicationMethodFAA)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
+        {
+            return createAdvertPage
+                .EmployerName()
+                .ChooseEmployerNameForEmployerJourney(employername)
+                .EnterEmployerDescriptionAndGoToContactDetailsPage(disabilityConfidence, optionalFields)
+                .EnterProviderContactDetails(optionalFields)
+                .SelectApplicationMethod_Provider(isApplicationMethodFAA);
+        }
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        {
+            return createAdvertPage
+            .EnterAdditionalQuestionsForApplicants()
+            .CompleteAllAdditionalQuestionsForApplicants();
+        } 
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
+            string employername)
         {
             return createAdvertPage
                 .EmployerName()
                 .ChooseEmployerNameForEmployerJourney(employername)
                 .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
-                .EnterProviderContactDetails(optionalFields)
-                .SelectApplicationMethod_Provider(isApplicationMethodFAA)
+                .EnterProviderContactDetailsTraineeship(optionalFields)
                 .BackToTaskList();
         }
+
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
             createAdvertPage
@@ -72,15 +89,20 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             .EnterFutureProspect()
             .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, bool disabilityConfidence, string wageType)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType)
         {
             return createAdvertPage
                 .ImportantDates()
-                .EnterImportantDates(false)
+                .EnterImportantDates()
                 .EnterDuration()
                 .ChooseWage(wageType)
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+        }
+
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
+        {
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)

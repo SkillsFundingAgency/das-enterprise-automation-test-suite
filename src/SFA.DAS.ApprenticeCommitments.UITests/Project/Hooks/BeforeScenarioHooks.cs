@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -16,7 +16,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Hooks
         public void SetUpHelpers()
         {
             var config = _context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
+
             _context.Get<ObjectContext>().SetApprenticePassword(config.AC_AccountPassword);
+
         }
     }
 }

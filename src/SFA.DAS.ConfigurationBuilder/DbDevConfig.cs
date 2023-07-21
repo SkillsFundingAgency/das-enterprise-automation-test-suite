@@ -6,12 +6,14 @@
         public string ConnectionDetails { get; set; }
         public string UserID { get; set; }
         public string Password { get; set; }
+        public string DatamartDbName { get; set; }
         public string AccountsDbName { get; set; }
         public string FinanceDbName { get; set; }
         public string FcastDbName { get; set; }
         public string CommitmentsDbName { get; set; }
         public string ApprenticeCommitmentLoginDbName { get; set; }
         public string ApprenticeCommitmentDbName { get; set; }
+        public string ApprenticeCommitmentAccountsDbName { get; set; }
         public string RoatpDatabaseName { get; set; }
         public string ApplyDatabaseName { get; set; }
         public string QnaDatabaseName { get; set; }
@@ -29,5 +31,10 @@
         public string TMDbName { get; set; }
         public string CrsDbName { get; set; }
         public string EmploymentCheckDbName { get; set; }
+        public string ManagingStandardsDbName { get; set; }
+        public string EarningsDbName { get; set; }
+        public string ApprenticeshipsDbName { get; set; }
+        public string RofjaaDbName { get; set; }
+        public string AANDbName { get; set; }
     }
 }

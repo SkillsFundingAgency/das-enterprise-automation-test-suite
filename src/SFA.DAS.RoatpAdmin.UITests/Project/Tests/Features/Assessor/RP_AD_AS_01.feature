@@ -5,6 +5,7 @@
 @roatpassessoradmin
 @newroatpadmin
 @regression
+@accessibility
 Scenario: RP_AD_AS_01 Assess a Company type Application via Main provider route existing provider
 	When the Assessor1 is on the RoATP assessor applications dashboard
 	And selects the Main Provider Route For Existing Provider application

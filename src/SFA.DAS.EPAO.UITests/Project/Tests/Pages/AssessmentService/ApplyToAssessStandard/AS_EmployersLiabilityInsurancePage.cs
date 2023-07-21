@@ -11,4 +11,10 @@ public class AS_EmployersLiabilityInsurancePage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+
+    public AS_HowManyAssessorsPage NHEIUploadEmployersLiabilityInsurance()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

@@ -8,11 +8,14 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project;
+using Polly;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -23,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
+        private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
         private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
@@ -34,12 +37,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private EmployerStepsHelper _employerStepsHelper;
         private readonly UseTransferFundsPage _useTransferFundsPage;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
             _isAnonymousPledge = false;
-            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(context);
+            _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
             _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
@@ -47,6 +51,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _useTransferFundsPage = new UseTransferFundsPage(context);
             _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -91,7 +96,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the non levy employer cannot exceed the available pledge funding")]
         public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
-            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "There is not enough funding to support this many apprentices");
+            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "Cost of training exceeds the amount remaining in this pledge");
 
         [Then(@"the levy employer can download excel file")]
         public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
@@ -149,7 +154,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
         [Then(@"the levy employer cannot exceed the maximum funding available")]
-        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "Enter a number between");
+        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "You need to enter an amount greater than");
 
         [Then(@"the viewer cannot create pledge")]
         public void TheViewerCannotCreatePledge()
@@ -161,6 +166,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
             var page = CreateATransferPledge(true);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();
+        }
+        
+        [Given(@"the levy employer can create pledge using minimal funding")]
+        [Then(@"the levy employer can create pledge using minimal funding")]
+        public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
+        {
+            var page = CreateATransferPledge(true, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -227,7 +248,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
-            var apprenticeDetailsApprovedPage = _useTransferFundsPage.ClickOnStartNowButton()
+            var apprenticeDetailsApprovedPage = new UseTransferFundsPage(_context).ClickOnStartNowButton()
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
@@ -236,13 +257,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EmployerFirstApproveAndNotifyTrainingProvider();
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
-
-            string pledgeApplicationId = _commitmentsSqlDataHelper.getPledgeApplicationId(cohortReference);
-
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(pledgeApplicationId));
-
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
         }
-
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
@@ -256,7 +273,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             UpdateOrganisationName(_receiver);
 
-            page.ApplyForTransferFunds().EnterLoginDetailsAndClickSignIn(receiver.Username, receiver.Password);
+            page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef).Continue();
 
             return _receiver;
         }
@@ -336,13 +353,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName) => GoToEnterPlegeAmountPage().EnterValidAmountAndOrgName(showOrgName);
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool useMinimalFunding = false) => GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding)
+            .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName);
 
-        private PledgeAmountAndOptionToHideOrganisastionNamePage GoToEnterPlegeAmountPage() => 
+        private PledgeAmountPage GoToEnterPlegeAmountPage() => 
             NavigateToTransferMatchingPage()
             .GotoCreateTransfersPledgePage()
             .StartCreatePledge()
-            .GoToPledgeAmountAndOptionPage()
+            .GoToPledgeAmountPage()
             .CaptureAvailablePledgeAmount();
 
         private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
@@ -372,7 +390,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
-        private SignInPage ApplyForTransferFunds()
+        private StubSignInPage ApplyForTransferFunds()
         {
             SignOutAndGoToTransferMacthingApplyUrl();
 
@@ -425,5 +443,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             _receiver = login.SecondOrganisationName;
         }
+
+        [Then(@"Verify a new live apprenticeship record is created")]
+        public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
+        {
+            UpdateOrganisationName(_receiver);
+
+            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
+
+            manageYourApprenticePage.VerifyApprenticeExists();
+        }
+
     }
 }

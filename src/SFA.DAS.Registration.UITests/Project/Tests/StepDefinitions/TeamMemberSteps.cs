@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
@@ -14,6 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationDataHelper _registrationDataHelper;
         private YourTeamPage _yourTeamPage;
         private readonly AccountSignOutHelper _accountSignOutHelper;
+        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private string _invitedMemberEmailId;
 
         public TeamMemberSteps(ScenarioContext context)
@@ -22,6 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
+            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
         [Then(@"Employer is able to invite a team member with Viewer access")]
@@ -67,19 +69,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             ThenEmployerIsAbleToInviteATeamMemberWithViewerAccess();
 
-            SignOut()
-                .CreateAccount()
-                .Register(_invitedMemberEmailId)
-                .ContinueToInvitationsPage()
-                .ClickAcceptInviteLink();
+            _accountCreationStepsHelper.AcceptUserInvite(SignOut(), _invitedMemberEmailId);
         }
 
         [Then(@"Employer is able to Remove the team member from the account")]
         public void ThenEmployerIsAbleToRemoveTheTeamMemberFromTheAccount()
         {
             SignOut()
-                .ClickSignInLinkOnIndexPage()
+                .GoToStubSignInPage()
                 .Login(_objectContext.GetLoginCredentials())
+                .ContinueToHomePage()
                 .GotoYourTeamPage()
                 .ClickViewMemberLink(_invitedMemberEmailId)
                 .ClickRemoveTeamMemberButton()

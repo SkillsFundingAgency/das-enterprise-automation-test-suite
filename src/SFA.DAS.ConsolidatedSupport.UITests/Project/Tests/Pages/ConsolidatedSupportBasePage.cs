@@ -12,13 +12,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         protected readonly ConsolidatedSupportConfig config;
         protected readonly ConsolidateSupportDataHelper dataHelper;
 
-        private By CloseButton => By.CssSelector("[data-test-id='close-button']");
+        private static By CloseButton => By.CssSelector("[data-test-id='close-button']");
+
+        private static By MainNavigationButton => By.CssSelector("#main_navigation button");
 
         public ConsolidatedSupportBasePage(ScenarioContext context) : base(context)
         {
             config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
             dataHelper = context.Get<ConsolidateSupportDataHelper>();
         }
+
+        protected void ClickHomeButton() => formCompletionHelper.ClickButtonByText(MainNavigationButton, "Home");
+
+        protected void ClickOrganisationsButton() => formCompletionHelper.ClickButtonByText(MainNavigationButton, "Organisations");
 
         protected void NavigateTo(string url) => tabHelper.GoToUrl($"{UrlConfig.ConsolidatedSupport_WebBaseUrl}/users/{objectContext.GetUserId()}/{url}");
 

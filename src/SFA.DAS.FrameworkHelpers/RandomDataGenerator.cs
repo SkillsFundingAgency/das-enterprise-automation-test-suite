@@ -67,7 +67,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static string GenerateRandomUln()
         {
-            String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString() + DateTime.Now.ToString("ssffffff");
+            System.String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString() + DateTime.Now.ToString("ssffffff");
 
             for (int i = 1; i < 30; i++)
             {
@@ -76,24 +76,6 @@ namespace SFA.DAS.FrameworkHelpers
                 randomUln = (long.Parse(randomUln) + 1).ToString();
             }
             throw new Exception("Unable to generate ULN");
-        }
-
-        public static string GenerateRandomFirstName()
-        {
-            var names = new string[] { "Oliver", "George", "Noah", "Arthur", "Harry", "Jack", "Charlie", "Henry",
-            "Michael", "Ethan", "Thomas", "Freddie", "William", "James", "Edward", "Scarlett", "Daisy", "Phoebe",
-            "Isabella", "Evelyn", "Lily", "Mia", "Emily", "Charlotte", "Rosie", "Amelia", "Olivia", "Eva", "Sophia", "Grace"};
-
-            return names[new Random().Next(names.Length)];
-        }
-
-        public static string GenerateRandomLastName()
-        {
-            var names = new string[] { "Cox", "Jones", "Taylor", "Williams", "Brown", "White", "Harris", "Martin",
-            "Davies", "Wilson", "Cooper", "Evans", "King", "Baker", "Green", "Wright", "Clark", "Webb",
-            "Robinson", "Hall", "Young", "Turner", "Hill", "Collins", "Allen", "Moore", "Knight", "Walker", "Wood", "Bennett"};
-
-            return names[new Random().Next(names.Length)];
         }
 
         private static bool IsValidCheckSum(string uln)
@@ -113,6 +95,6 @@ namespace SFA.DAS.FrameworkHelpers
             return checkSumValue % 11 == 10;
         }
 
-        private static string GenerateRandomString(string characters, int length) => new string(Enumerable.Repeat(characters, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
+        private static string GenerateRandomString(string characters, int length) => new(Enumerable.Repeat(characters, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
     }
 }

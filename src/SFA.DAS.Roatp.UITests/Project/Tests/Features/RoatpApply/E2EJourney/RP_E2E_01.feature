@@ -5,6 +5,7 @@
 @roatp
 @roatpfulle2eviaadmin
 @regression
+@accessibility
 Scenario: RP_E2E_01_MainRoute-Company_ExistingProvider
 	Given the Provider is added to the register as Main provider
 	And the provider naviagate to Apply 

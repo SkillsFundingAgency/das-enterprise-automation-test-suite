@@ -1,11 +1,8 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -17,12 +14,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
-        private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -33,11 +28,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
-        private MyAccountWithOutPayePage _myAccountWithOutPayePage;
-        private SetUpAsAUserPage _setUpAsAUserPage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
-        private SignInPage _signInPage;
-        private string _loginEmail;
+        private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -45,15 +37,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
-            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
-            _tabHelper = context.Get<TabHelper>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+        public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
         [When("the User initiates Account creation")]
         public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
@@ -80,7 +70,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _checkYourDetailsPage.ContinueToAboutYourAgreementPage().SelectViewAgreementNowAndContinue();
+            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -97,11 +87,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
         public void AddOrganisationTypeDetails(OrgType orgType) =>
-            _signAgreementPage = _searchForYourOrganisationPage
-                .SearchForAnOrganisation(orgType)
-                .SelectYourOrganisation(orgType)
-                .ContinueToAboutYourAgreementPage()
-                .SelectViewAgreementNowAndContinue();
+            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -170,7 +156,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
-        public void EmployerCreatesALevyAccountAndSignsTheAgreement() => 
+        public void EmployerCreatesALevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
 
         [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
@@ -205,18 +191,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
 
-            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
             _theseDetailsAreAlreadyInUsePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage);
         }
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on 'Use different details' button")]
+        [Then(@"'AddPayeSchemeUsingGGDetails' page is displayed when Employer clicks on 'Use different details' button")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnUseDifferentDetailsButton() =>
-            _addAPAYESchemePage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
+            _addPayeSchemeUsingGGDetailsPage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() =>
-            _addAPAYESchemePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage).CickBackLinkInTheseDetailsAreAlreadyInUsePage();
+        _enterYourPAYESchemeDetailsPage = _addPayeSchemeUsingGGDetailsPage.ClickBackButton().CickBackLinkInTheseDetailsAreAlreadyInUsePage().ReEnterTheSameAornDetailsAndContinue().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
 
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
@@ -295,50 +282,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SignTheAgreement();
         }
 
-        [When(@"an User tries to regiser an Account with an Email already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
-
-        [Then(@"'Email already regisered' message is shown to the User")]
-        public void ThenMessageIsShownToTheUser() => new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
-
-        [When(@"Given an User registers an acount with email but does not activate it")]
-        public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => _accountCreationStepsHelper.RegisterUserAccount();
-
-        [When(@"the User tries to regiser another Account with the same Email that is pending activation")]
-        public void WhenTheUserTriesToRegiserAnotherAccountWithTheSameEmailThatIsPendingActivation()
-        {
-            VisitEmployerApprenticeshipSite();
-            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
-        }
-
-        [Then(@"the User is allowed to activate the account and continue with registration")]
-        public void ThenTheUserIsAllowedToActivateTheAccountAndContinueWithRegistration() => AddPayeAndOrgAndSignAgreement();
-
-        [When(@"an Employer creates an Account by skipping the add PAYE part")]
-        [Given(@"an Employer creates an Account by skipping the add PAYE part")]
-        public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
-        {
-            AnUserAccountIsCreated();
-            _myAccountWithOutPayePage = _addAPAYESchemePage.DoNotAddPaye();
-        }
-
-        [When(@"the Employer chooses to add PAYE from Account Home Page")]
-        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.AddYourPAYEScheme();
-
-        [Then(@"the Employer is able to add PAYE and Organisation to the Account")]
-        public void ThenTheEmployerIsAbleToAddPAYEAndOrganisationToTheAccount() => AddPayeAndOrgAndSignAgreement();
-
-        [Given(@"an Employer creates an Account by skipping to add PAYE details after choosing AORN route")]
-        public void GivenAnEmployerCreatesAnAccountBySkippingToAddPAYEDetailsAfterChoosingAORNRoute()
-        {
-            AnUserAccountIsCreated();
-            _myAccountWithOutPayePage = _addAPAYESchemePage.AddAORN().ClickSkipThisStepForNowLink();
-        }
-
-        [Then(@"the Employer is able to add AORN details attached to a SingleOrg to the Account")]
-        public void ThenTheEmployerIsAbleToAddAORNDetailsAttachedToASingleOrgToTheAccount() =>
-            WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute("SingleOrg");
-
         [Then(@"the Employer is able to rename the Account")]
         public void ThenTheEmployerIsAbleToRenameTheAccount()
         {
@@ -405,63 +348,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             OpenAccount(_objectContext.GetAdditionalOrganisationName(1));
         }
 
-        [Then(@"the Employer Account is locked with 3 incorrect password attempts")]
-        public void ThenTheEmployerAccountIsLockedWithIncorrectPasswordAttempts()
-        {
-            _signInPage = _accountCreationStepsHelper.SignOut().ClickSignInLinkOnIndexPage();
-
-            _loginEmail = _loginCredentialsHelper.GetLoginCredentials().Username;
-            const string password = "InvalidPassword";
-            AttemptLogin(_loginEmail, password);
-            AttemptLogin(_loginEmail, password);
-            AttemptLogin(_loginEmail, password);
-        }
-
-        [Then(@"Employer is able to Unlock the Account")]
-        public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
-            .EnterDetailsAndClickUnlockButton(_loginEmail)
-            .Login(_objectContext.GetLoginCredentials());
-
-        [When(@"the User is on the 'Set up as a user' page")]
-        public void WhenTheUserIsOnTheSetUpAsAUserPage() => _setUpAsAUserPage = new CreateAnAccountToManageApprenticeshipsPage(_context).CreateAccount();
-
-        [Then(@"the User is able to navigate to 'Terms and conditions' page")]
-        public void ThenTheUserIsAbleToNavigateToTermsAndConditionsPage() => _setUpAsAUserPage.ClickTermsAndConditionsLink();
-
-        [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
-        public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()
-        {
-            _accountCreationStepsHelper.RelaunchApplication();
-
-            new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage()
-                .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
-        }
-
-        [Then(@"the User is able to change the registered Email")]
-        public void ThenTheUserIsAbleToChangeTheRegisteredEmail()
-        {
-            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourEmailAddressPage()
-            .ChangeEmail().EnterSecurityCodeDetailsDuringAccountCreationJourney();
-
-            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.Password);
-        }
-
-        [Then(@"the User is able to change the account Password")]
-        public void ThenTheUserIsAbleToChangeTheAccountPassword()
-        {
-            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourPasswordPage().ChangePasswordDuringAccountCreationJourney();
-            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
-        }
-
-        [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
-        public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
-        {
-            _accountCreationStepsHelper.RelaunchApplication();
-
-            new CreateAnAccountToManageApprenticeshipsPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToReset().EnterResetCode().EnterConfirmationCode().ResetPassword()
-                .LoginWithResetPassword(_objectContext.GetRegisteredEmail(), _registrationDataHelper.NewPassword);
-        }
-
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
@@ -469,7 +355,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private void EnterInvalidAornAndPaye() =>
-            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
+            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(AornDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
         private SearchForYourOrganisationPage CreateAnUserAcountAndAddPaye()
         {
@@ -477,24 +363,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             return AddPayeDetails();
         }
 
-        private void AddPayeAndOrgAndSignAgreement()
-        {
-            AddPayeDetails();
-            AddOrganisationTypeDetails(OrgType.Company);
-            SignTheAgreement();
-        }
-
         private SearchForYourOrganisationPage AddPayeDetails(int payeIndex) =>
             _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
 
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
 
-        private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
-
-        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
-
-        private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
-            addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
-            .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), password);
     }
 }

@@ -8,9 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Add a PAYE Scheme";
 
         #region Locators
-        private By AddPayeRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme]");
-        private By DoNotAddPayeRadioButton => By.CssSelector("label[for=do-not-want-to-add-paye-scheme]");
-        private By UseAORNRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme-aorn]");
+        private static By AddPayeRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme]");
+        private static By UseAORNRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme-aorn]");
         protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
         #endregion
 
@@ -30,13 +29,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new EnterYourPAYESchemeDetailsPage(context);
         }
 
-        public MyAccountWithOutPayePage DoNotAddPaye()
-        {
-            SelectDoNotAddPaye().Continue();
-
-            return new MyAccountWithOutPayePage(context);
-        }
-
         private AddAPAYESchemePage SelectAddPaye()
         {
             formCompletionHelper.ClickElement(AddPayeRadioButton);
@@ -46,12 +38,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private AddAPAYESchemePage SelectAORN()
         {
             formCompletionHelper.ClickElement(UseAORNRadioButton);
-            return this;
-        }
-
-        private AddAPAYESchemePage SelectDoNotAddPaye()
-        {
-            formCompletionHelper.ClickElement(DoNotAddPayeRadioButton);
             return this;
         }
     }

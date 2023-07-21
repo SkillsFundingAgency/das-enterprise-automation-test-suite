@@ -16,10 +16,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public PasswordResetCodePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public EmailAddressPage EnterEmailToReset()
-        {
-            Continue();
-            return new EmailAddressPage(context);
-        }
     }
 }

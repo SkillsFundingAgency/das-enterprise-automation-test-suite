@@ -33,12 +33,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to rename account settings page")]
         public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => GoToInterimApprenticesHomePage().GoToRenameAccountPage();
 
-        [Then(@"the employer can navigate to change your password settings page")]
-        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => GoToInterimApprenticesHomePage().GoToChangeYourPasswordPage();
-
-        [Then(@"the employer can navigate to change your email address settings page")]
-        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => GoToInterimApprenticesHomePage().GoToChangeYourEmailAddressPage();
-
         [Then(@"the employer can navigate to notification settings page")]
         public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => GoToInterimApprenticesHomePage().GoToNotificationSettingsPage();
 
@@ -81,8 +75,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        private ApprenticesHomePage GoToApprenticesHomePage() => new ApprenticesHomePage(_context);
+        private ApprenticesHomePage GoToApprenticesHomePage() => new(_context);
 
-        private InterimApprenticesHomePage GoToInterimApprenticesHomePage() => new InterimApprenticesHomePage(_context, true);
+        private InterimApprenticesHomePage GoToInterimApprenticesHomePage() => new(_context, true);
     }
 }

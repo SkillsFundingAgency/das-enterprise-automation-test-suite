@@ -1,18 +1,22 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using System;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress, string password)
+        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper )
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
+            var randomPersonNameHelper = new RandomPersonNameHelper();
+
+            FirstName = randomPersonNameHelper.FirstName;
+            LastName = randomPersonNameHelper.LastName;
+
             RandomEmail = emailaddress;
             AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
-            AornNumber = $"A{GetDateTimeValue()}";
-            Password = password;
+            AornNumber = aornDataHelper.AornNumber;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
@@ -25,14 +29,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             SetAccountNameAsOrgName = true;
         }
 
-        public string FirstName => "AutoFirstName";
-        public string LastName => "AutoLastName";
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string FullName => $"{FirstName } {LastName}";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }
-        public string Password { get; }
-        public string NewPassword => "Test1234";
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
@@ -48,12 +50,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Name => CharityTypeOrg2.Name;
         public string CharityTypeOrg2Address => CharityTypeOrg2.Address;
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
-        public string InvalidAornNumber => $"A{GetDateTimeValue()}";
 
         private CharityTypeOrg CharityTypeOrg1 { get; }
         private CharityTypeOrg CharityTypeOrg2 { get; }
         private string RandomAlphaNumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => RandomDataGenerator.GenerateRandomNumber(length);
-        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
     }
 }

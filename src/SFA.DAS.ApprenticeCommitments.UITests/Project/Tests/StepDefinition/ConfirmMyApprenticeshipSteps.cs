@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -8,11 +9,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     public class ConfirmMyApprenticeshipSteps : BaseSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
 
-        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context) => _context = context;
+        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _objectContext = _context.Get<ObjectContext>();
+        }
 
         [Then(@"the coc notification should not be displayed")]
         public void ThenTheCocNotificationShouldNotBeDisplayed() => _apprenticeOverviewPage = ApprenticeOverviewPage().VerifyCoCNotificationIsNotDisplayed();
@@ -21,47 +27,47 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenOnlyTheLatestApprenticeshipShouldBeVisible()
         {
             var invitation = createAccountStepsHelper.OpenLatestInvitation(2);
-            _apprenticeOverviewPage = invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage().NavigateToOverviewPageFromLinkOnTheHomePage();
-            _apprenticeOverviewPage.VerifyDaysToConfirmWarning();
+            _apprenticeOverviewPage = invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage()
+                .NavigateToOverviewPageWithCmadLinkOnTheHomePage().VerifyDaysToConfirmWarning();
         }
 
-        [Given(@"the apprentice completed confirm my apprenticeship details")]
-        public void GivenTheApprenticeCompletedConfirmMyApprenticeshipDetails() => createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
+        [Given(@"the apprentice creates the account and confirms the apprenticeship details")]
+        public void GivenTheApprenticeCreatesTheAccountAndConfirmsTheApprenticeshipDetails() => createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
 
         [Then(@"the apprentice is able to confirm the Employer")]
-        public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheEmployer() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Training Provider")]
-        public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheTrainingProvider() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourTrainingProvider(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm the Apprenticeship details")]
-        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmApprenticeshipDetails(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmTheApprenticeshipDetails() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(OverviewPageHelper.InComplete, isRegularApp: true);
 
         [Then(@"the apprentice is able to confirm 'How the apprenticeship will be delivered' section")]
-        public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmHowTheApprenticeshipWillBeDeliveredSection() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmHowYourApprenticeshipWillBeDelivered(OverviewPageHelper.InComplete);
 
         [Then(@"the apprentice is able to confirm Roles and responsibilities by checking Negative flows")]
-        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilitiesByCheckingNegativeFlows() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmRolesAndResponsibilitiesWithNegativeFlows(StatusHelper.InComplete);
+        public void ThenTheApprenticeIsAbleToConfirmRolesAndResponsibilitiesByCheckingNegativeFlows() => _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmRolesAndResponsibilitiesWithNegativeFlows(OverviewPageHelper.InComplete);
 
         [Then(@"confirmed employer already page is displayed for trying to confirm again")]
         public void ThenConfirmedEmployerAlreadyPageIsDisplayedForTryingToConfirmAgain()
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ContinueToCMADOverviewPage();
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.Complete);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(OverviewPageHelper.Complete);
         }
 
         [Then(@"the apprentice is able to change the answer and choose to confirm the Employer details as Incorrect")]
         public void ThenTheApprenticeIsAbleToChangeTheAnswerAndChooseToConfirmTheEmployerDetailsAsIncorrect()
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedEmployerPage().ChangeMyAnswerAction().SelectNoToConfirmEmployerPostChangingAnswer().ReturnToApprenticeOverviewPage();
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.WaitingForCorrection);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(OverviewPageHelper.WaitingForCorrection);
         }
 
         [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm employer page")]
         public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmEmployerPage()
         {
             _apprenticeOverviewPage.GoToConfirmYourEmployerPage().ClickOnConfirmButton().VerifyErrorSummaryBoxAndErrorFieldText().SelectYesAndContinueToOverviewPage();
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(StatusHelper.Complete);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection1Status(OverviewPageHelper.Complete);
         }
 
         [Then(@"confirmed training provider already page is displayed for trying to confirm again")]
@@ -72,14 +78,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenTheApprenticeIsAbleToChangeTheAnswerAndChooseToConfirmTheProviderDetailsAsIncorrect()
         {
             _apprenticeOverviewPage.GoToAlreadyConfirmedTrainingProviderPage().ChangeMyAnswerAction().SelectNoToConfirmTrainingProviderPostChangingAnswer().ReturnToApprenticeOverviewPage();
-            confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.WaitingForCorrection);
+            confirmMyApprenticeshipStepsHelper.AssertSection2Status(OverviewPageHelper.WaitingForCorrection);
         }
 
         [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm provider page")]
         public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmProviderPage()
         {
             _apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().ClickOnConfirmButton().VerifyErrorSummaryBoxAndErrorFieldText().SelectYesAndContinueToOverviewPage();
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection2Status(StatusHelper.Complete);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection2Status(OverviewPageHelper.Complete);
         }
 
         [Then(@"confirmed apprenticeship already page is displayed for trying to confirm again")]
@@ -102,14 +108,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _alreadyConfirmedApprenticeshipDetailsPage = _apprenticeOverviewPage.GoToAlreadyConfirmedApprenticeshipDetailsPage().ChangeMyAnswerAction();
             confirmMyApprenticeshipStepsHelper.VerifyApprenticeshipDataDisplayedInAlreadyConfirmedPage(_alreadyConfirmedApprenticeshipDetailsPage);
             _alreadyConfirmedApprenticeshipDetailsPage.SelectNoToConfirmYourDetailsPostChangingAnswer().ReturnToApprenticeOverviewPage();
-            confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.WaitingForCorrection);
+            confirmMyApprenticeshipStepsHelper.AssertSection3Status(OverviewPageHelper.WaitingForCorrection);
         }
 
         [Then(@"an appropriate error displayed when the apprentice chooses CTA without making a selection on Confirm details page")]
         public void ThenAnAppropriateErrorDisplayedWhenTheApprenticeChoosesCTAWithoutMakingASelectionOnConfirmDetailsPage()
         {
             _apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().ClickOnConfirmButton().VerifyErrorSummaryBoxAndErrorFieldText().SelectYesAndContinueToOverviewPage();
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection3Status(StatusHelper.Complete);
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection3Status(OverviewPageHelper.Complete);
         }
 
         [Then(@"confirmed 'How the apprenticeship will be delivered' section page is displayed for trying to confirm again")]
@@ -125,25 +131,42 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
                 .NavigateBackToCMADOverviewPage();
         }
 
-        [Then(@"the apprentice confirms all the sections and the overall apprenticeship")]
-        public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship()
+        [Then(@"the apprentice confirms all the sections and the overall (Regular|Portable) apprenticeship")]
+        public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship(string appType)
         {
-            _apprenticeOverviewPage = new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
+            new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
 
-            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndApprenticeship().VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
+            confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship(IsRegularApp(appType)).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
 
-            _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
-                .VerifyCMADSectionStatusToBeCompleteOnHomePage();
+            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.AssertSection6Status(OverviewPageHelper.Complete);
+
+            VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
         [Then(@"the apprentice confirms the overall apprenticeship")]
         public void ThenTheApprenticeConfirmsTheOverallApprenticeship()
         {
-            _apprenticeOverviewPage.ConfirmYourApprenticeshipFromTheTopBannerOnOverviewPage().NavigateBackToOverviewPage();
-            _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
-            .VerifyCMADSectionStatusToBeCompleteOnHomePage();
+            _apprenticeOverviewPage.VerifyTopBannerOnOverviewPageBeforeOverallConfirmation().ConfirmOverallApprenticeship().NavigateBackToOverviewPage();
+            VerifyOverviewPageAndHomePageAfterOVerallConfirmation();
         }
 
-        private ApprenticeOverviewPage ApprenticeOverviewPage() => new ApprenticeOverviewPage(_context);
+        [Then(@"the apprentice can navigate to CMAD Details confirmation page and confirm their apprenticeship is flexijob")]
+        public void ThenTheApprenticeCanNavigateToCMADDetailsConfirmationPageAndConfirmTheirApprenticeshipIsFlexijob()
+        {
+            confirmMyApprenticeshipStepsHelper.NavigateAndVerifyFlexijobApprenticeshipDetails();
+        }
+
+        [Then(@"the apprentice verifies the (Regular|Portable) apprenticeship information displayed on the fully confirmed overview page")]
+        public void ThenTheApprenticeVerifiesTheApprenticeshipInformationDisplayedOnTheFullyConfirmedOverviewPage(string appType)
+        {
+             confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedAppOverviewPageDetails(IsRegularApp(appType)).NavigateToHomePageFromTopNavigationLink();
+        }
+
+        private static bool IsRegularApp(string appType) => appType.CompareToIgnoreCase("Regular");
+
+        private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
+
+        private ApprenticeHomePage VerifyOverviewPageAndHomePageAfterOVerallConfirmation() => _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
+            .VerifyCMADCardOnHomePageOnceFullyConfirmed();
     }
 }

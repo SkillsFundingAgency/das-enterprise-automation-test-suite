@@ -9,7 +9,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public string Username { get; set; }
 
-        public string Password { get; set; }
+        public override string ToString() => $"Username:'{Username}'";
     }
 
     #region SingleAccountUser
@@ -19,9 +19,13 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
+
+        public string IdOrUserRef { get; set; }
+
     }
 
     public class EmployerFeedbackUser : EasAccountUser { }
+
     public class AuthTestUser : EasAccountUser { }
 
     public class RAAV2EmployerUser : EasAccountUser { }
@@ -50,6 +54,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class ASListedLevyUser : EasAccountUser { }
 
+    public class FlexiJobUser : MultipleEasAccountUser { }
+
+    public class EmployerConnectedToPortableFlexiJobProvider : EasAccountUser { }
+
     #endregion
 
     #region MultipleAccountUser
@@ -64,41 +72,56 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class TransferMatchingUser : MultipleEasAccountUser { }
 
-    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser {
+    public class EmployerWithMultipleAccountsUser : MultipleEasAccountUser
+    {
         public string ThirdOrganisationName => LegalEntities?.ElementAtOrDefault(2);
     }
 
     #endregion
 
-    #region NonAccountUser
-    public abstract class NonAccountUser : LoginUser { }
+    #region NonEasAccountUser
 
-    public class EPAOStandardApplyUser : NonAccountUser { }
+    public abstract class NonEasAccountUser : LoginUser
+    {
+        public string Password { get; set; }
 
-    public class EPAOAssessorUser : NonAccountUser { }
+        public override string ToString() => $"{base.ToString()}, Password:'{Password}'";
+    }
 
-    public class EPAODeleteAssessorUser : NonAccountUser { }
+    public class EPAOStandardApplyUser : NonEasAccountUser { }
 
-    public class EPAOWithdrawalUser : NonAccountUser { }
+    public class EPAOAssessorUser : NonEasAccountUser { }
 
-    public class EPAOManageUser : NonAccountUser { }
+    public class EPAODeleteAssessorUser : NonEasAccountUser { }
 
-    public class EPAOApplyUser : NonAccountUser
+    public class EPAOWithdrawalUser : NonEasAccountUser { }
+
+    public class EPAOManageUser : NonEasAccountUser { }
+
+    public class EPAOApplyUser : NonEasAccountUser
     {
         public string FullName { get; set; }
     }
 
-    public class EPAOStageTwoStandardCancelUser : NonAccountUser { }
+    public class EPAOStageTwoStandardCancelUser : NonEasAccountUser { }
 
-    public class EPAOE2EApplyUser : NonAccountUser { }
+    public class EPAOE2EApplyUser : NonEasAccountUser { }
 
-    public class EPAOAdminUser : NonAccountUser { }
+    public class EPAOAdminUser : NonEasAccountUser { }
 
-    public class SupportToolsUser : NonAccountUser { }
+    public class SupportConsoleTier1User : NonEasAccountUser { }
 
-    public class SupportConsoleTier1User : NonAccountUser { }
+    public class SupportConsoleTier2User : NonEasAccountUser { }
 
-    public class SupportConsoleTier2User : NonAccountUser { }
+    public class SupportToolsSCPUser : NonEasAccountUser { }
+
+    public class SupportToolsSCSUser : NonEasAccountUser { }
+
+    public abstract class AanBaseUser : NonEasAccountUser { }
+
+    public class AanUser : AanBaseUser { }
+
+    public class AanNonBetaUser : AanBaseUser { }
 
     #endregion
 

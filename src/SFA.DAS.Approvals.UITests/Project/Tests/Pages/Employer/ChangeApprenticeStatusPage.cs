@@ -27,11 +27,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ResumeApprenticePage(context);
         }
 
-        internal ThisApprenticeshipTrainingStopPage SelectStopAndContinueForAStartedApprentice()
+        internal WhyDoYouWantToStopThisApprenticeshipPage SelectStopAndContinueForAStartedApprentice()
         {
             formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
-            return new ThisApprenticeshipTrainingStopPage(context);
+            return new WhyDoYouWantToStopThisApprenticeshipPage(context);
         }
 
         public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()

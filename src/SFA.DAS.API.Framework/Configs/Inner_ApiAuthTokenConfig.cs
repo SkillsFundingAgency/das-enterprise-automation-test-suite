@@ -1,19 +1,24 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.API.Framework.Configs;
 
-namespace SFA.DAS.API.Framework.Configs
+public class Inner_ApiAuthTokenConfig
 {
-    public abstract class Inner_ApiAuthTokenConfig
-    {
-        public string ClientId { get; set; }
+    public string ClientId { get; set; }
 
-        public string ClientSecrets { get; set; }
+    public string ClientSecrets { get; set; }
 
-        public string Tenant { get; set; }
+    public string Tenant { get; set; }
 
-        public string GrantType => "client_credentials";
+    public string TenantId { get; set; }
 
-        protected abstract string ApiName { get; }
+    public string ApprenticeAccountsAppServiceName { get; set; }
 
-        public string Resource => UriHelper.GetAbsoluteUri($"https://{Tenant}", ApiName);
-    }
+    public string CoursesAppServiceName { get; set; }
+
+    public string CommitmentsAppServiceName { get; set; }
+
+    public string EmployerFinanceAppServiceName { get; set; }
+
+    public string EmployerAccountsAppServiceName { get; set; }
+
+    public string EmployerAccountsLegacyAppServiceName { get; set; }
 }

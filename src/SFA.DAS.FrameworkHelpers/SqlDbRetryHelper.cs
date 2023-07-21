@@ -7,17 +7,15 @@ namespace SFA.DAS.FrameworkHelpers
     {
         protected T RetryOnException<T>(Func<T> func) => RetryOnException(func, "Exception occurred while executing SQL query", string.Empty);
 
-        protected T RetryOnIndexOutOfRangeException<T>(Func<T> func, string title) => RetryOnException(func, "Index was out of range", title, Logging.LongerTimeout());
-
         protected T RetryOnException<T>(Func<T> func, string exception, string title, TimeSpan[] timeSpans = null)
         {
-            timeSpans ??= Logging.Timeout();
+            timeSpans ??= RetryTimeOut.Timeout();
 
             return Policy
                 .Handle<Exception>((x) => x.Message.Contains(exception))
                  .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
                  {
-                     Logging.Report(retryCount, exception, title);
+                     Logging.Report(retryCount, timeSpan, exception, "SqlDbRetryHelper", title);
                  })
                  .Execute(func);
         }

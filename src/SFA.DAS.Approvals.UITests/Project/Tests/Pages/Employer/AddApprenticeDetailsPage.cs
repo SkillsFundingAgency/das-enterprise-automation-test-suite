@@ -1,76 +1,78 @@
-﻿using System;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class AddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
     {
-        protected override string PageTitle => "Add apprentice details";
+        private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
+        private static By DeliveryModelLabel => By.Id("delivery-model-label");
 
-        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
+        private static By DeliveryModelType => By.Id("delivery-model-value");
+
+        private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
+
+        protected override string PageTitle => "Add apprentice details";
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
-        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF, int apprenticeNo = 0)
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF)
         {
-            var courseStartDate = SetEIJourneyTestData(apprenticeNo);
+            SubmitValidPersonalDetails();
+            SubmitValidTrainingDetails(isMF);
 
+            return new ApproveApprenticeDetailsPage(context);
+        }
+
+        public void SubmitValidPersonalDetails()
+        {
             EnterApprenticeMandatoryValidDetails();
-
             EnterDob();
+        }
+
+        public void SubmitValidTrainingDetails(bool isMF)
+        {
+            var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
 
             if (isMF == false) EnterStartDate(courseStartDate);
 
-            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            SaveAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
-
-            return new ApproveApprenticeDetailsPage(context);
         }
 
-        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageAddValidApprenticeDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            SaveAndContinue();
 
             return new YouCantApproveThisApprenticeRequestUntilPage(context);
         }
 
-        private DateTime SetEIJourneyTestData(int apprenticeNo)
+        public void ValidateRegularContent() => DeliveryModelAssertions("Regular");
+
+        public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
+
+        public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
+
+        private void DeliveryModelAssertions(string delModelType)
         {
-            if (objectContext.IsEIJourney())
-            {
-                var eiApprenticeDetailList = objectContext.GetEIApprenticeDetailList();
+            pageInteractionHelper.WaitForElementToBeDisplayed(DeliveryModelLabel);
 
-                var eiApprenticeDetail = eiApprenticeDetailList[apprenticeNo];
-
-                objectContext.SetEIAgeCategoryAsOfAug2021(eiApprenticeDetail.AgeCategoryAsOfAug2021);
-                objectContext.SetEIStartMonth(eiApprenticeDetail.StartMonth);
-                objectContext.SetEIStartYear(eiApprenticeDetail.StartYear);
-
-                apprenticeDataHelper.DateOfBirthDay = 1;
-                apprenticeDataHelper.DateOfBirthMonth = 8;
-                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2021().Equals("Aged16to24")) ? 2005 : 1994;
-                apprenticeDataHelper.ApprenticeFirstname = RandomDataGenerator.GenerateRandomFirstName();
-                apprenticeDataHelper.ApprenticeLastname = RandomDataGenerator.GenerateRandomLastName();
-                apprenticeDataHelper.TrainingCost = "7500";
-
-                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
-            }
-
-            if (objectContext.IsSameApprentice()) apprenticeCourseDataHelper.CourseStartDate = apprenticeCourseDataHelper.GenerateCourseStartDate(Helpers.DataHelpers.ApprenticeStatus.WaitingToStart);
-
-            return apprenticeCourseDataHelper.CourseStartDate;
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeliveryModelLabel));
+            StringAssert.StartsWith(delModelType, pageInteractionHelper.GetText(DeliveryModelType), "Incorrect Delivery Model displayed");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink));
         }
+
+        private void SaveAndContinue() => formCompletionHelper.ClickElement(SaveAndContinueButton);
     }
 }

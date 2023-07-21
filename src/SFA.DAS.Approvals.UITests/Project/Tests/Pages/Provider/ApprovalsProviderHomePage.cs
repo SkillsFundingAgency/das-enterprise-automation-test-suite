@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage : ProviderHomePage
     {
-        protected By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
+        protected static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
 
         public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)  { }
 
@@ -29,15 +29,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderOrganisationsAndAgreementsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage GotoSelectJourneyPage()
+        public ProviderAddApprenticeDetailsEntryMothod GotoSelectJourneyPage()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
-            return new ProviderAddApprenticeDetailsPage(context);
+            AddNewApprentices();
+            return new ProviderAddApprenticeDetailsEntryMothod(context);
         }
 
         public ProviderAccessDeniedPage GotoSelectJourneyPageGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -67,8 +67,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(AddNewApprenticesLink);
+            AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
         }
+
+        public ProviderApprenticeshipIndicativeEarningsReportPage GoToApprenticeshipIndicativeEarningsReportPage()
+        {
+            formCompletionHelper.ClickElement(AppsIndicativeEarningsReport);
+            return new ProviderApprenticeshipIndicativeEarningsReportPage(context);
+        }
+
+        private void AddNewApprentices() => formCompletionHelper.ClickElement(AddNewApprenticesLink);
     }
 }

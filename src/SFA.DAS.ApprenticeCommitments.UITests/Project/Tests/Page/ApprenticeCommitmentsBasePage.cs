@@ -9,29 +9,34 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
         protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
-        protected By NotificationBanner => By.CssSelector(".govuk-notification-banner");
-        protected By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
-        protected By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
-        protected By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
-        protected By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
-        protected By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
-        protected By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
+        protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
+        protected static By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
+        protected static By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
+        protected static By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
+        protected static By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
+        protected static By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
+        protected static By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
-        protected By ConfirmButton => By.Id("employer-provider-confirm");
-        protected string ServiceName => "My apprenticeship";
-        protected By NonClickableServiceHeader => By.CssSelector(".das-header__span");
-        protected By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
-        protected By CMADTopNavigationLink => By.XPath("//a[text()='Confirm my apprenticeship details']");
-        protected By HelpTopNavigationLink => By.XPath("//a[text()='Help and support']");
-        private By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
-        private By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
-        private By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
-        private By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
-        private string SignOutLinkText => "Sign out";
-        protected By Password => By.CssSelector("#Password");
-        protected By ErrorSummaryTitle => By.Id("error-summary-title");
-        protected By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
-        protected By FieldValidtionError => By.CssSelector(".field-validation-error");
+        protected static By ConfirmButton => By.Id("employer-provider-confirm");
+        protected static string ServiceName => "My apprenticeship";
+        protected static By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
+        protected static By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'Confirm my apprenticeship details')]");
+        protected static By CMADTopNavigationLinkAfterFullyConfirmed => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'My apprenticeship details')]");
+        protected static By HelpTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Help and support']");
+        private static By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
+        private static By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
+        private static By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
+        private static By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
+        private static string SignOutLinkText => "Sign out";
+        protected static By Password => By.CssSelector("#Password");
+        protected static By ErrorSummaryTitle => By.Id("error-summary-title");
+        protected static By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
+        protected static By FieldValidtionError => By.CssSelector(".field-validation-error");
+        private static By ApprenticeshipLevelInfo => By.XPath("//th[text()='Level']/following-sibling::td");
+        private static By PlannedStartDateInfo => By.XPath("//th[text()='Planned start date for training']/following-sibling::td");
+        private static By PlannedStartDateInfoForPortable => By.XPath("//th[text()='Planned training start date']/following-sibling::td");
+        private static By PlannedEndDate => By.XPath("//th[text()='Planned training end date']/following-sibling::td");
+        private static By DeliveryModel => By.XPath("//th[text()='Delivery model']/following-sibling::td");
 
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
         {
@@ -70,6 +75,18 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeOverviewPage(context, false);
         }
 
+        public FullyConfirmedOverviewPage NavigateToOverviewPageFromTopNavigationLinkForDbConfirmedDetails()
+        {
+            formCompletionHelper.Click(CMADTopNavigationLink);
+            return new FullyConfirmedOverviewPage(context, false);
+        }
+
+        public FullyConfirmedOverviewPage NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
+        {
+            formCompletionHelper.Click(CMADTopNavigationLinkAfterFullyConfirmed);
+            return new FullyConfirmedOverviewPage(context);
+        }
+
         public HelpAndSupportPage NavigateToHelpPageFromTopNavigationLink()
         {
             formCompletionHelper.Click(HelpTopNavigationLink);
@@ -90,6 +107,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         }
 
         public void VerifyErrorSummaryTitle() => VerifyPage(ErrorSummaryTitle, "There is a problem");
+
+        public string GetApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfo);
+
+        public string GetPortableApprenticeshipPlannedStartDateInfo() => pageInteractionHelper.GetText(PlannedStartDateInfoForPortable);
+
+        public string GetApprenticeshipEndDateInfo() => pageInteractionHelper.GetText(PlannedEndDate);
+
+        public string GetApprenticeshipLevelInfo() => pageInteractionHelper.GetText(ApprenticeshipLevelInfo);
+
+        public string GetDeliveryModelInfo() => pageInteractionHelper.GetText(DeliveryModel);
 
         protected void AssertTopNavigationLinksNotToBePresent()
         {

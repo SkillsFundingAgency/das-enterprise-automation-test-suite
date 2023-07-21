@@ -76,7 +76,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_Gateway_01_TestDataPreparation-For_RP_AD_GW_01_MainRoute_Company_ExistingProvi" +
             "der")]
-        [NUnit.Framework.CategoryAttribute("roatpfulle2eviaadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmintestdataprep")]
         [NUnit.Framework.CategoryAttribute("roatpadmingwtestdataprep")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
@@ -84,7 +83,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
         public void RP_Gateway_01_TestDataPreparation_For_RP_AD_GW_01_MainRoute_Company_ExistingProvider()
         {
             string[] tagsOfScenario = new string[] {
-                    "roatpfulle2eviaadmintestdataprep",
                     "roatpadmintestdataprep",
                     "roatpadmingwtestdataprep",
                     "donottakescreenshot",
@@ -92,7 +90,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.TestDataPreparation
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_Gateway_01_TestDataPreparation-For_RP_AD_GW_01_MainRoute_Company_ExistingProvi" +
                     "der", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -102,15 +100,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 10
+ testRunner.Given("the provider naviagate to Admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 11
-    testRunner.Given("the Provider is added to the register as Main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.And("the Provider is added to the register as Main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.And("the provider naviagate to Apply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.Given("the provider completes the Apply Journey as Main Provider Route For Existing Prov" +
-                        "ider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("the provider completes the Apply Journey as Main Provider Route For Existing Prov" +
+                        "ider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

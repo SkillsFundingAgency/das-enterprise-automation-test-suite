@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System.Collections.Generic;
@@ -13,21 +13,36 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string AgreementIdKey = "agreementid";
         private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
+        private const string TransferSenderOrganisationNameKey = "transfersenderorganisationname";
+        private const string TransferReceiverOrganisationNameKey = "transferreceiverorganisationname";
         private const string RegisteredEmailAddress = "registeredemailaddress";
         private const string RecentlyAddedOrganisationName = "recentlyaddedorganisationname";
         private static string AdditionalOrganisation(int index) => $"additionalorganisationkey_{index}";
         
         #endregion
 
-        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword, string organisationName)
+        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string idOrUserRef, string organisationName)
         {
             objectContext.SetRegisteredEmail(loginusername);
             objectContext.UpdateOrganisationName(organisationName);
-            objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, Password = loginpassword, OrganisationName = organisationName });
+            objectContext.Replace(LoggedInUserObject, new LoggedInAccountUser { Username = loginusername, IdOrUserRef = idOrUserRef, OrganisationName = organisationName });
+        }
+
+        internal static void UpdateLoginIdOrUserRef(this ObjectContext objectContext, string loginusername, string idOrUserRef)
+        {
+            var loggedInAccountUser = objectContext.GetLoginCredentials();
+
+            if (loggedInAccountUser.Username == loginusername)
+            {
+                loggedInAccountUser.IdOrUserRef = idOrUserRef;
+            }
         }
 
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
+        public static void ReplaceTransferSenderOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferSenderOrganisationNameKey, organisationName);
+        public static void ReplaceTransferReceiverOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferReceiverOrganisationNameKey, organisationName);
+
         public static void SetRecentlyAddedOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(RecentlyAddedOrganisationName, organisationName);
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalOrganisation(index), secondAccountOrganisationName);
@@ -48,6 +63,8 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetDBAccountId(this ObjectContext objectContext) => objectContext.GetAllUserCreds()[0].AccountDetails[0].AccountId;
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
         public static string GetOrganisationName(this ObjectContext objectContext) => objectContext.Get(OrganisationNameKey);
+        public static string GetTransferSenderOrganisationName(this ObjectContext objectContext) => objectContext.Get(TransferSenderOrganisationNameKey);
+        public static string GetTransferReceiverOrganisationName(this ObjectContext objectContext) => objectContext.Get(TransferReceiverOrganisationNameKey);
         public static string GetRecentlyAddedOrganisationName(this ObjectContext objectContext) => objectContext.Get(RecentlyAddedOrganisationName);
         public static string GetAdditionalOrganisationName(this ObjectContext objectContext,int index) => objectContext.Get(AdditionalOrganisation(index));
         internal static LoggedInAccountUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoggedInAccountUser>(LoggedInUserObject);

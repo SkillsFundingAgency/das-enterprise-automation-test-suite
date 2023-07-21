@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
@@ -73,12 +73,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _end2EndStepsHelper.CompletesTheApplyJourney(_selectRouteStepsHelper, applicationRoute);
         }
 
+        [Given(@"the provider naviagate to Admin")]
+        public void GivenTheProviderNaviagateToAdmin() => _tabHelper.OpenInNewTab(UrlConfig.Admin_BaseUrl);
+
+        
         [Then(@"the provider naviagate to Apply")]
         [Given(@"the provider naviagate to Apply")]
-        public void GivenTheProviderNaviagateToApply()
-        {
-            _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
-        }
+        public void GivenTheProviderNaviagateToApply() => _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
+
 
         [When(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]
         [Then(@"verify the (Application unsuccessful|Application rejected|Application withdrawn) page is displayed with (External Fail comments|External Reject Comments|Withdraw Application External Comments) for the applicant")]

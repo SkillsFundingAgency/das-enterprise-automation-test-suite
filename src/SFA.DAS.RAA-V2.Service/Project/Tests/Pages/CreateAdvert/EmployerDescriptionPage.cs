@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         private By IsDisabilityConfident => By.CssSelector("#IsDisabilityConfident");
 
         public EmployerDescriptionPage(ScenarioContext context) : base(context) { }
-        
+
         public PreviewYourAdvertOrVacancyPage EnterEmployerDescription()
         {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
@@ -27,11 +27,39 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool optionalFields)
         {
+            EnterDetails(optionalFields);
+            return new ContactDetailsPage(context);
+        }
+
+        public CheckYourAnswersPage EnterEmployerDescriptionAndGoToCheckYourAnswersPage(bool optionalFields)
+        {
+            EnterDetails(optionalFields);
+            return new CheckYourAnswersPage(context);
+        }
+
+        private void EnterDetails(bool optionalFields)
+        {
+            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
+            if (optionalFields)
+            {
+                formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
+                if (!isRaaV2Employer)
+                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
+            }
+
+            Continue();
+        }
+        public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool disabilityConfidence, bool optionalFields)
+        {
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
             if (optionalFields)
             {
                 formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
                 if (!isRaaV2Employer) formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
+            }
+            else
+            {
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
             }
             Continue();
             return new ContactDetailsPage(context);

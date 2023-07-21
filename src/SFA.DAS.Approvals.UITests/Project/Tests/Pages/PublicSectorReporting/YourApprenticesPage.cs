@@ -5,18 +5,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class YourApprenticesPage : PublicSectorReportingBasePage
     {
-        protected override string PageTitle => "Your apprentices";
+        protected override string PageTitle => "Your apprentices - excluding maintained schools";
         private By NoOfApprentices2019 => By.CssSelector("#z0__Answer");
         private By NoOfApprentices2020 => By.CssSelector("#z1__Answer");
         private By NoOfApprentices => By.CssSelector("#z2__Answer");
-
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         public YourApprenticesPage(ScenarioContext context) : base(context)  { }
 
         public ReportYourProgressPage EnterApprenticeDetails()
         {
-            formCompletionHelper.EnterText(NoOfApprentices2019, publicSectorReportingDataHelper.NoofApprentices2019);
-            formCompletionHelper.EnterText(NoOfApprentices2020, publicSectorReportingDataHelper.NoofApprentices2020);
+            formCompletionHelper.EnterText(NoOfApprentices2019, publicSectorReportingDataHelper.NoofApprentices2021);
+            formCompletionHelper.EnterText(NoOfApprentices2020, publicSectorReportingDataHelper.NoofApprentices2022);
             formCompletionHelper.EnterText(NoOfApprentices, publicSectorReportingDataHelper.NoofNewApprentices);
             Continue();
             return new ReportYourProgressPage(context);

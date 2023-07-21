@@ -1,0 +1,19 @@
+parameters:
+  TestFilter:
+  TestDlls:
+
+stages:
+- stage: Deploy_PP
+  dependsOn: []
+  displayName: Run test suite on PP
+  variables:
+  - group: PreProd Shared Resources
+  - group: PreProd Automation Suite Variables
+  - group: PREPROD Automation Suite Variables (Db)
+  jobs:
+  - template: ../job/test-api.yml
+    parameters:
+      Environment: PP
+      ServiceConnection: SFA-DIG-PreProd-ARM
+      TestFilter: ${{ parameters.TestFilter }}
+      TestDlls: ${{ parameters.TestDlls }}

@@ -22,9 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
         protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
         protected readonly RegistrationDataHelper registrationDataHelper;
+        protected readonly PortableFlexiJobProviderConfig portableFlexiJobProviderConfig;
         #endregion
 
-        private By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
+        internal static By TrainingCourseEditLink => By.CssSelector("button[name='ChangeCourse']");
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
@@ -32,6 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
+            portableFlexiJobProviderConfig = context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>();
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             publicSectorReportingDataHelper = context.GetValue<PublicSectorReportingDataHelper>();
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();

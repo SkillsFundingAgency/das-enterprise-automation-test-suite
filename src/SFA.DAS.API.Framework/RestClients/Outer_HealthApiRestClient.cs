@@ -1,32 +1,23 @@
-﻿using RestSharp;
-using SFA.DAS.API.Framework.Helpers;
-using System.Net;
+﻿
+using SFA.DAS.API.FrameworkHelpers;
 
-namespace SFA.DAS.API.Framework.RestClients
+namespace SFA.DAS.API.Framework.RestClients;
+
+public class Outer_HealthApiRestClient
 {
-    public class Outer_HealthApiRestClient
+    private readonly string _baseUrl;
+
+    private readonly ObjectContext _objectContext;
+
+    public Outer_HealthApiRestClient(ObjectContext objectContext, string baseurl) 
     {
-        private readonly string _baseUrl;
-
-        public Outer_HealthApiRestClient(string baseurl) => _baseUrl = baseurl;
-
-        public IRestResponse Ping(HttpStatusCode expectedResponse) => Execute($"/ping", expectedResponse);
-
-        public IRestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
-
-        private IRestResponse Execute(string resource, HttpStatusCode expectedResponse)
-        {
-            var restResponse = new RestClient(_baseUrl)
-                .Execute(
-                new RestRequest
-                {
-                    Method = Method.GET,
-                    Resource = resource
-                });
-
-            AssertHelper.AssertResponse(expectedResponse, restResponse);
-
-            return restResponse;
-        }
+        _objectContext = objectContext;
+        _baseUrl = baseurl;
     }
+
+    public RestResponse Ping(HttpStatusCode expectedResponse) => Execute($"/ping", expectedResponse);
+
+    public RestResponse CheckHealth(HttpStatusCode expectedResponse) => Execute($"/health", expectedResponse);
+
+    private RestResponse Execute(string resource, HttpStatusCode expectedResponse) => new ApiAssertHelper(_objectContext).ExecuteAndAssertResponse(expectedResponse, new RestClient(_baseUrl), new RestRequest { Method = Method.Get, Resource = resource });
 }

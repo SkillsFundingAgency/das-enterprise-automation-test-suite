@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         
         #region Locators
         private By ResendInvitationButton => By.Id("resend_invitation");
-        private By CancelInvitationLink => By.LinkText("Cancel Invitation");
+        private By CancelInvitationLink => By.LinkText("Cancel invitation");
         private By RemoveTeamMemberButton => By.Id("delete_user");
         #endregion
 

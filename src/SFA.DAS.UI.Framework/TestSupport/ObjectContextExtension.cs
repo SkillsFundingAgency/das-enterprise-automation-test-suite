@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 
 namespace SFA.DAS.UI.Framework.TestSupport

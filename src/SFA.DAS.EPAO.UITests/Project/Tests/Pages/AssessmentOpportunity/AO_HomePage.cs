@@ -10,8 +10,8 @@ public class AO_HomePage : EPAO_BasePage
     private static By ProposedTab => By.Id("tab_proposed");
     private static By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
     private static By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
-    private static By JourneymanBookbinderInDevelopmentStandardLink => By.LinkText("Journeyman bookbinder");
-    private static By Nutritionist => By.LinkText("Nutritionist");
+    private static By GripInDevelopmentStandardLink => By.LinkText("Grip");
+    private static By AssistantFarmManager => By.LinkText("Assistant farm manager");
     #endregion
 
     public AO_HomePage(ScenarioContext context) : base(context)
@@ -40,7 +40,7 @@ public class AO_HomePage : EPAO_BasePage
 
     public AO_InDevelopmentStandardDetailsPage ClickOnInDevelopmentStandardLink()
     {
-        formCompletionHelper.Click(JourneymanBookbinderInDevelopmentStandardLink);
+        formCompletionHelper.Click(GripInDevelopmentStandardLink);
         return new(context);
     }
 
@@ -52,7 +52,7 @@ public class AO_HomePage : EPAO_BasePage
 
     public AO_ProposedStandardDetailsPage ClickOnAProposedStandard()
     {
-        formCompletionHelper.Click(Nutritionist);
+        formCompletionHelper.Click(AssistantFarmManager);
         return new(context);
     }
 }

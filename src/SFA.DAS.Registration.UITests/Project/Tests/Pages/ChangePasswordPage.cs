@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,13 +19,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ChangePasswordPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public SignInPage ResetPassword()
-        {
-            var newPassword = registrationDataHelper.NewPassword;
-            formCompletionHelper.EnterText(CreateNewPasswordTextField, newPassword);
-            formCompletionHelper.EnterText(ConfirmNewPasswordTextField, newPassword);
-            Continue();
-            return new SignInPage(context);
-        }
     }
 }

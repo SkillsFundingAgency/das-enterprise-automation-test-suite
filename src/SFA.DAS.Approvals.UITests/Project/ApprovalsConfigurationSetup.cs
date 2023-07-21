@@ -8,11 +8,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project
 {
     [Binding]
-    public class ApprovalsConfigurationSetup          
+    public class ApprovalsConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
-        
+
         public ApprovalsConfigurationSetup(ScenarioContext context)
         {
             _context = context;
@@ -31,10 +31,14 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
-                _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>()
+                _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>(),
+                _configSection.GetConfigSection<FlexiJobUser>(),
+                _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
             });
 
             _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
+
+            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
         }
     }
 }

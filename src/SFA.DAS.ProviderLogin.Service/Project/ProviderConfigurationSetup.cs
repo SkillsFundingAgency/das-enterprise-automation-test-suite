@@ -7,11 +7,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ProviderLogin.Service
 {
     [Binding]
-    public class ProviderConfigurationSetup          
+    public class ProviderConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
-        
+
         public ProviderConfigurationSetup(ScenarioContext context)
         {
             _context = context;

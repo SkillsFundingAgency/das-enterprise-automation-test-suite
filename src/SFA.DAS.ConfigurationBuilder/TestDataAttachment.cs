@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
@@ -8,6 +9,6 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public TestDataAttachment(ScenarioContext context) => _objectContext = context.Get<ObjectContext>();
 
-        public void AddTestDataAttachment() => new FrameworkHelpers.TestAttachmentHelper().AddTestDataAttachment(_objectContext.GetDirectory(), _objectContext.GetAll());
+        public void AddTestDataAttachment() => FrameworkHelpers.TestAttachmentHelper.AddTestDataAttachment(_objectContext.GetDirectory(), _objectContext.GetAll());
     }
 }

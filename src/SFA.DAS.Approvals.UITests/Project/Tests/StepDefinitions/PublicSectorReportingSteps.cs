@@ -1,8 +1,8 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -28,8 +28,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var reportYourProgressPage = new PublicSectorReportingHomePage(_context, true)
                 .CreateNewReport()
                 .Start()
+                .SelectYesAndContinue()
                 .GoToYourOrganisationNamePage()
-                .EnterNameOftheOrganisation();
+                .EnterNameOftheOrganisation()
+                .GoToTotalNumberOfEmployeesPage()
+                .SelectYesAndContinue();
 
             CreateOrAmendReport(reportYourProgressPage);
         }
@@ -53,16 +56,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .EnterEmployeesDetails()
                 .GoToYourApprenticesPage()
                 .EnterApprenticeDetails()
-                .GoToYourFullTimeEquivalentsPage()
-                .EnterFullTimeEmployeesDetails()
-                .GoToWhatActionsHaveYouTakenPage()
-                .EnterActionDetails()
-                .GoToWhatChallengesHaveYouFacedPage()
-                .EnterChallengesDetails()
-                .GoToHowAreYouPlanningToMeetTheTargetPage()
-                .EnterPlanningDetails()
-                .GoToDoYouHaveAnythingToTellUsPage()
-                .EnterCommentsDetails()
+                .GoToYourSchoolEmployeesPage()
+                .EnterSchoolEmployeesDetails()
+                .GoToYourSchoolApprenticesPage()
+                .EnterSchoolApprenticeDetails()
                 .GoToReviewPage()
                 .GoToConfirmationPage()
                 .Confirm();

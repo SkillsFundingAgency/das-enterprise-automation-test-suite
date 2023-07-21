@@ -18,7 +18,11 @@ public class ApprenticeFeedbackHooks : BaseHooks
     public void NavigateToApprenticePortal() => _context.Get<TabHelper>().GoToUrl(UrlConfig.Apprentice_BaseUrl);
 
     [BeforeScenario(Order = 32)]
-    public void SetUpHelpers() => _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
+    public void SetUpHelpers()
+    {
+        _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
+        _context.Set(new ApprenticeCommitmentsAccountsSqlDbHelper(_dbConfig));
+    } 
 
     [AfterScenario(Order = 33)]
     public void ClearDownEmployerFeedbackResult() => 

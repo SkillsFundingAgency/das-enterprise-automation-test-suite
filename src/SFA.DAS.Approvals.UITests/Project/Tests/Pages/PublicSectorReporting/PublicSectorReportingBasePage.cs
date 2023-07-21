@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public abstract class PublicSectorReportingBasePage : ApprovalsBasePage
     {
-        protected override By PageHeader => By.CssSelector("#content .heading-large");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
         protected By Textarea => By.CssSelector("textarea");
 

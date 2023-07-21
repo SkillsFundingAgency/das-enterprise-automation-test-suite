@@ -43,6 +43,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             
             var list = _scenarioTitles.Select(x => $"FullyQualifiedName~{x}|").ToList().ToString("").TrimEnd('|');
 
+            list = $"({list})&FullyQualifiedName!~TestDataPreparation";
+
             AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { list }, _directoryPath, "FailedScenarios");
         }
     }

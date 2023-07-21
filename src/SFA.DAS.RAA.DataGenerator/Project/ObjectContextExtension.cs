@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA.DataGenerator.Project
 {
@@ -20,6 +20,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         #endregion
 
         public static void SetApprenticeshipVacancyType(this ObjectContext objectContext) => objectContext.Set(VacancyType, true);
+        public static void SetTraineeshipVacancyType(this ObjectContext objectContext) => objectContext.Set(VacancyType, false);
 
         public static void SetFAALogin(this ObjectContext objectContext, string username, string password, string firstname, string lastname)
         {

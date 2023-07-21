@@ -12,4 +12,11 @@ public class AS_AssessmentAdministrationPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
+    
+    public AS_AssessmentProductsAndToolsPage NHEI_EnterAssessmentAdministration()
+    {
+        formCompletionHelper.EnterText(TextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));
+        Continue();
+        return new(context);
+    }
 }

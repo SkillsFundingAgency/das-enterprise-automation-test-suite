@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EsfaAdmin.Service.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
@@ -7,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "What is your organisation's UK provider reference number (UKPRN)?";
 
-        private By UkprnField => By.CssSelector("#UKPRN, #Ukprn");
+        private static By UkprnField => By.CssSelector("#UKPRN, #Ukprn");
 
         public EnterUkprnPage(ScenarioContext context) : base(context) => VerifyPage();
 

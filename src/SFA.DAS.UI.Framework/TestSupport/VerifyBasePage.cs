@@ -12,22 +12,27 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Helpers and Context
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
-        private readonly string _directory;
         private bool _takescreenshot;
         #endregion
+
+        public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle).Item1;
 
         protected virtual bool CaptureUrl => true;
 
         protected virtual bool TakeFullScreenShot => true;
 
+        protected virtual bool CanAnalyzePage => true;
+
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
             _takescreenshot = true;
+
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
-            _directory = objectContext.GetDirectory();
 
             if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
         }
+
+        protected bool IsAccessibilityTesting() => frameworkConfig.IsAccessibilityTesting;
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
         {
@@ -50,8 +55,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         #region VerifyPage
         // VerifyPage methods are used to verify that the application landed on the expected page
-
         protected bool VerifyPage() => VerifyPage(() => VerifyElement());
+
+        protected bool VerifyWithoutRefresh() => VerifyPage(() => pageInteractionHelper.Verify(() => 
+        {
+            var result = pageInteractionHelper.CheckText(PageHeader, PageTitle);
+
+            return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
+
+        }, null));
 
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
@@ -99,7 +111,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
             int counter = GetCounter();
             try
             {
-                var result = func(); TakeScreenShot(); return result;
+                var result = func(); 
+                
+                TakeScreenShot();
+
+                if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
+
+                return result;
             }
             catch (Exception)
             {
@@ -111,12 +129,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private void TakeScreenShot()
         {
-            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
+            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
             {
                 string counter = _screenShotTitleGenerator.GetTitle();
-                ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), _directory, $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot());
+
+                ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), objectContext.GetDirectory(), $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
             }
-                
         }
     }
 }

@@ -1,21 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
 	  <PackageId>SFA.DAS.FrameworkHelpers</PackageId>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CsvHelper" Version="27.2.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.4.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="CsvHelper" Version="30.0.1" />
 		<PackageReference Include="Dapper.Contrib" Version="2.0.78" />
 		<PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.6.2" />
-		<PackageReference Include="RestSharp" Version="106.12.0" />
+		<PackageReference Include="RestSharp" Version="108.0.3" />
 		<PackageReference Include="Dapper" Version="2.0.123" />
-		<PackageReference Include="NUnit" Version="3.13.2" />
 		<PackageReference Include="Polly" Version="7.1.0" />
-		<PackageReference Include="SpecFlow" Version="3.9.58" />
-		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+		<PackageReference Include="SpecFlow" Version="3.9.74" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
 	</ItemGroup>
 
 </Project>

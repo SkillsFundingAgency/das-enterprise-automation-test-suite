@@ -147,6 +147,57 @@ this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
 #line hidden
         }
         
+        public virtual void VerifyFatV2ApiCourse(string testCaseId, string method, string endpoint, string payload, string responseStatus, string responseContent, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "api",
+                    "fatv2api",
+                    "regression"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            argumentsOfScenario.Add("ResponseContent", responseContent);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api course", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
+ testRunner.Then(string.Format("a {0}, {1} response is received", responseStatus, responseContent), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api course: Fatv2004")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("fatv2api")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyFatV2ApiCourse_Fatv2004()
+        {
+#line 19
+this.VerifyFatV2ApiCourse("Fatv2004", "GET", "/epaos/EPA0241/courses", "", "OK", "EPA0241", ((string[])(null)));
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api EPAO")]
         [NUnit.Framework.CategoryAttribute("api")]
@@ -160,7 +211,7 @@ this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api EPAO", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -170,10 +221,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 31
  testRunner.When("the user sends GET request to /epaos without payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 32
  testRunner.Then("a OK response is received", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

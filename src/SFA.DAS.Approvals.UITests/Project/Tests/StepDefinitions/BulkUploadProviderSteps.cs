@@ -3,6 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
@@ -57,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var secondOrganisationName = GetOrgName(employerUser.SecondOrganisationName);
             var thirdOrganisationName = GetOrgName(employerUser.ThirdOrganisationName);
 
-            _providerStepsHelper.NavigateToUploadCsvFilePage()
+            _providerStepsHelper.UsingFileUpload()
                 .CreateApprenticeshipsForAlreadyCreatedCohorts(numberOfApprentices)
                 .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, firstOrganisationName)
                 .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, secondOrganisationName)
@@ -71,6 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerUser = _context.GetUser<NonLevyUser>();
             var employerName = GetOrgName(employerUser.OrganisationName);
+            _objectContext.SetNoOfApprentices(numberOfApprentices);
             _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
         }
 
@@ -88,7 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderReviewApprenticeDetailsBulkUploadPage(_context)
                 .SelectToApproveAllAndSendToEmployer()
                 .VerifyCorrectInformationIsDisplayed(apprenticeList);
-        }        
+        }
 
         [Given(@"User selects to upload an amended file")]
         [When(@"User selects to upload an amended file")]
@@ -148,7 +150,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             foreach (var apprentice in apprenticeList)
             {
-                var actualStatus = providerManageYourApprenticesPage.SearchForApprenntice(apprentice.ULN).GetStatus(apprentice.ULN);
+                var actualStatus = providerManageYourApprenticesPage.SearchForApprentice(apprentice.FullName).GetStatus(apprentice.ULN);
                 Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper() || actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
             }
 
@@ -185,7 +187,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()
-        {            
+        {
             var apprenticeList = _objectContext.GetBulkuploadApprentices();
             var groupedByEmployers = apprenticeList.GroupBy(x => x.AgreementId);
             var result = new List<FileUploadReviewEmployerDetails>();

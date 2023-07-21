@@ -46,12 +46,8 @@
         [Then(@"verify application has moved from new to feedback tab")]
         public void VerifyApplicationMovedFromNewToFeedbackTab() => _ePAOWithdrawalHelper.VerifyApplicationMovedFromNewToFeedback();
 
-        [Then(@"the application is added to the feedback tab")]
-        public void ThenTheApplicationIsMovedToTheFeedbackTab() => _ePAOWithdrawalHelper.VerifyApplicationMovedToFeedback();
-
         [Then(@"Verify the application is moved to Approved tab")]
         public void VerifyApplicationIsMovedToApprovedTab() => _ePAOWithdrawalHelper.VerifyApplicationIsMovedToApprovedTab();
-
 
         [Then(@"the withdrawal user returns to dashboard")]
         [Then(@"the assessor user returns to dashboard")]

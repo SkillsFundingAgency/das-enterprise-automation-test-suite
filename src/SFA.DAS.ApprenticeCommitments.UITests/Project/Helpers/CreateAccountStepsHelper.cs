@@ -3,7 +3,6 @@ using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -43,7 +42,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             RetryGetRegistrationId(() =>
             {
                 var registrationIds = _aComtSqlDbHelper.GetRegistrationIds(email);
+
                 Assert.IsTrue(registrationIds.All(x => !string.IsNullOrEmpty(x)), $"Registration Id can not be found for email {email}");
+
                 Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
             });
 
@@ -58,11 +59,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
 
-        public ApprenticeOverviewPage CreateAccountViaUIAndConfirmApprenticeshipViaDb()
+        public FullyConfirmedOverviewPage CreateAccountViaUIAndConfirmApprenticeshipViaDb()
         {
             var page = ConfirmIdentityAndGoToApprenticeHomePage();
             _aComtSqlDbHelper.ConfirmApprenticeship(GetApprenticeEmail());
-            return page.NavigateToOverviewPageFromTopNavigationLink();
+            return page.NavigateToOverviewPageFromTopNavigationLinkForDbConfirmedDetails();
         }
 
         public ApprenticeHomePage CreateAccountViaApi()
@@ -103,7 +104,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new StartPage(_context);
         }
 
-        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(action);
+        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 10 }));
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }

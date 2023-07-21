@@ -11,4 +11,10 @@ public class AS_SafeguardingPolicyPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
+
+    public AS_PreventAgendaPolicyPage NHEI_UploadSafeguardingPolicy()
+    {
+        UploadFile();
+        return new(context);
+    }
 }

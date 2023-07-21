@@ -1,11 +1,11 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
@@ -135,6 +135,11 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.AnswerAdditionalQuestions();
                 applicationFormPage.SubmitTraineeshipApplication();
             }
+        }
+
+        public void ApplyForTraineeship()
+        {
+            ApplyForAVacancy(string.Empty, string.Empty, string.Empty, false);
         }
 
         public void CheckNationWideVacancies()

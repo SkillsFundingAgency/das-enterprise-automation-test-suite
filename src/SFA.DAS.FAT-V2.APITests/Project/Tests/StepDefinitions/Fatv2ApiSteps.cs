@@ -1,7 +1,5 @@
 ﻿using RestSharp;
 using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Helpers;
-using SFA.DAS.API.Framework.RestClients;
 using System.Net;
 using TechTalk.SpecFlow;
 
@@ -22,6 +20,9 @@ namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
 
         [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted) response is received")]
         public void AResponseIsReceived(HttpStatusCode responsecode) => _restClient.Execute(responsecode);
+
+        [Then(@"a (OK|BadRequest|Unauthorized|Forbidden|NotFound|Accepted), (.*) response is received")]
+        public void ThenAOKResponseIsReceived(HttpStatusCode responsecode, string responseContent) => _restClient.Execute(responsecode, responseContent);
 
         private void CreateRestRequest(Method method, string endppoint, string payload) => _restClient.CreateRestRequest(method, endppoint, payload);
     }

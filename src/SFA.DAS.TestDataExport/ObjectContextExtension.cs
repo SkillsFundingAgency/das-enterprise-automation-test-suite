@@ -1,7 +1,7 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataCleanup;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.TestDataExport
 {
@@ -11,11 +11,13 @@ namespace SFA.DAS.TestDataExport
         private const string AfterStepInformations = "afterstepinformations";
         private const string AfterScenarioExceptions = "afterscenarioexceptions";
         private const string DebugInformations = "testdebuginformations";
+        private const string AccessibilityInformations = "accessibilityinformations";
         #endregion
 
         internal static void SetTestDataList(this ObjectContext objectContext)
         {
             objectContext.SetDebugInformations();
+            objectContext.SetAccessibilityInformations();
             objectContext.SetAfterStepInformations();
             objectContext.SetAfterScenarioExceptions();
             objectContext.SetAfterScenarioTestDataTearDown();
@@ -23,11 +25,11 @@ namespace SFA.DAS.TestDataExport
 
         #region AfterStepInformations
 
-        private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new FrameworkList<string>() { $"{string.Empty}" });
+        private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new List<string>() { $"{string.Empty}" });
 
         internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
-        private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
+        private static List<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<List<string>>(AfterStepInformations);
         #endregion
 
         #region AfterScenarioExceptions
@@ -43,9 +45,18 @@ namespace SFA.DAS.TestDataExport
 
         private static void SetDebugInformations(this ObjectContext objectContext) => objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
-        public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> DebugInformation: {value}");
+        public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> {DateTime.UtcNow:dd/MM HH:mm:ss}: {value}");
         
         private static FrameworkList<string> GetDebugInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(DebugInformations);
+        #endregion
+
+        #region AccessibilityInformations
+
+        private static void SetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Set(AccessibilityInformations, new FrameworkList<string>() { $"{string.Empty}" });
+
+        public static void SetAccessibilityInformation(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityInformations().Add($"-> {value}");
+
+        public static FrameworkList<string> GetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityInformations);
         #endregion
 
     }

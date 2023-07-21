@@ -16,6 +16,7 @@ namespace SFA.DAS.Login.Service
         {
             foreach (T item in value) SetUser(context, item);
         }
+
         public static void SetEasLoginUser(this ScenarioContext context, List<EasAccountUser> users)
         {
             var notNullUsers = users.Where(x => x != null).ToList();
@@ -26,7 +27,9 @@ namespace SFA.DAS.Login.Service
 
             for (int i = 0; i < notNullUsers.Count; i++)
             {
-                notNullUsers[i].LegalEntities = legalentities[i];
+                notNullUsers[i].IdOrUserRef = legalentities[i].idOrUserRef;
+
+                notNullUsers[i].LegalEntities = legalentities[i].listoflegalEntities;
 
                 SetUser(context, notNullUsers[i]);
             }
@@ -34,11 +37,11 @@ namespace SFA.DAS.Login.Service
 
         public static T GetUser<T>(this ScenarioContext context) => context.Get<T>(Key<T>());
 
-        public static List<List<string>> GetAccountLegalEntities(this ScenarioContext context, List<string> username)
+        public static List<(List<string> listoflegalEntities, string idOrUserRef)>  GetAccountLegalEntities(this ScenarioContext context, List<string> username)
         {
-            var legalEntities = new LegalEntitiesSqlDataHelper(context.Get<DbConfig>()).GetAccountLegalEntities(username);
+            var accountDetails = new EasAccountsSqlDataHelper(context.Get<DbConfig>()).GetAccountDetails(username);
 
-            return legalEntities.Select(x => x.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList()).ToList();
+            return accountDetails.Select(x => (x.listoflegalEntities.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList(), x.idOrUserRef)).ToList();
         }
 
         private static void SetUser<T>(ScenarioContext context, T data) => context.Set(data, data == null ? Key<T>() : Key(data.GetType()));

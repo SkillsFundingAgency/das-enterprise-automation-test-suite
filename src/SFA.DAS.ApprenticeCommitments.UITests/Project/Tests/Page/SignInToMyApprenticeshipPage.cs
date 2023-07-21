@@ -7,7 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class SignIntoMyApprenticeshipPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Sign in to {ServiceName}";
-        protected override By ServiceHeader => NonClickableServiceHeader;
         private By Username => By.CssSelector("#Username");
         private By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
@@ -24,6 +23,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             SignIn();
             return new ApprenticeHomePage(context);
+        }
+
+        public FullyConfirmedOverviewPage SignInWithUpdatedEmail()
+        {
+            formCompletionHelper.EnterText(Username, objectContext.GetApprenticeChangedEmail());
+            formCompletionHelper.EnterText(Password, objectContext.GetApprenticePassword());
+            formCompletionHelper.Click(SignInButton);
+            return new FullyConfirmedOverviewPage(context);
         }
 
         public ApprenticeOverviewPage GoToApprenticeOverviewPage(bool verifypage)

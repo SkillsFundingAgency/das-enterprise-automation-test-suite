@@ -1,7 +1,8 @@
 ﻿using SFA.DAS.API.Framework;
-using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers;
+using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
@@ -24,9 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var a = new ApprenticeCommitmentsDataHelper(_context.Get<ApprenticePPIDataHelper>());
-
-            _context.Set(a);
+            var a = _context.Get<ApprenticePPIDataHelper>();
 
             _objectContext.SetApprenticeDetail(a.ApprenticeFirstname, a.ApprenticeLastname, a.ApprenticeDob, a.ApprenticeEmail);
 
@@ -36,7 +35,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 
             _context.Set(new ApprenticeCommitmentsSqlDbHelper(_dbConfig));
 
-            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_context.GetInner_CommitmentsApiAuthTokenConfig()));
+            _context.Set(new ApprenticeCommitmentsAccountsSqlDbHelper(_dbConfig));
+
+            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
         }
     }
 }

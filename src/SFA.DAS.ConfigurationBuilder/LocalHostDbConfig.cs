@@ -19,12 +19,14 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             return new DbConfig
             {
+                DatamartDbConnectionString = GetConnectionString(_dbDevConfig.DatamartDbName),
                 AccountsDbConnectionString = GetConnectionString(_dbDevConfig.AccountsDbName),
                 FinanceDbConnectionString = GetConnectionString(_dbDevConfig.FinanceDbName),
                 FcastDbConnectionString = GetConnectionString(_dbDevConfig.FcastDbName),
                 CommitmentsDbConnectionString = GetConnectionString(_dbDevConfig.CommitmentsDbName),
                 ApprenticeCommitmentDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentDbName),
                 ApprenticeCommitmentLoginDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentLoginDbName),
+                ApprenticeCommitmentAccountsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentAccountsDbName),
                 ApplyDatabaseConnectionString = GetConnectionString(_dbDevConfig.ApplyDatabaseName),
                 LoginDatabaseConnectionString = GetConnectionString(_dbDevConfig.LoginDatabaseName),
                 QnaDatabaseConnectionString = GetConnectionString(_dbDevConfig.QnaDatabaseName),
@@ -41,7 +43,12 @@ namespace SFA.DAS.ConfigurationBuilder
                 UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName),
                 TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName),
                 CRSDbConnectionString = GetConnectionString(_dbDevConfig.CrsDbName),
-                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName)
+                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName),
+                ManagingStandardsDbConnectionString = GetConnectionString(_dbDevConfig.ManagingStandardsDbName),
+                EarningsDbConnectionString = GetConnectionString(_dbDevConfig.EarningsDbName),
+                ApprenticeshipsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeshipsDbName),
+                RofjaaDbConnectionString = GetConnectionString(_dbDevConfig.RofjaaDbName),
+                AANDbConnectionString = GetConnectionString(_dbDevConfig.AANDbName)
             };
         }
 
@@ -51,7 +58,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
             var x = $"Server={_dbDevConfig.Server};{GetDbName()}={dbName};{_dbDevConfig.ConnectionDetails};";
 
-            return Regex.Replace(x, "{environmentname}", EnvironmentConfig.EnvironmentName.ToLower());
+            return EnvironmentConfig.ReplaceEnvironmentName(x);
         }
     }
 }

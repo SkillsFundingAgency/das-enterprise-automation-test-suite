@@ -2,35 +2,32 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Mailinator.Service.Project.Helpers
+namespace SFA.DAS.Mailinator.Service.Project.Helpers;
+
+public class MailinatorStepsHelper
 {
-    public class MailinatorStepsHelper
+    private readonly ScenarioContext _context;
+    private readonly TabHelper _tabHelper;
+    private readonly string _email;
+
+    public MailinatorStepsHelper(ScenarioContext context, string email)
     {
-        private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
-        private readonly string _email;
+        _context = context;
+        _tabHelper = context.Get<TabHelper>();
+        _email = email;
+    }
 
-        public MailinatorStepsHelper(ScenarioContext context, string email)
-        {
-            _context = context;
-            _tabHelper = context.Get<TabHelper>();
-            _email = email;
-        }
+    public void OpenLink(string linktext)
+    {
+        var page = OpenEmail();
 
-        public void VerifyAccessCode(string code) => OpenEmail().VerifyAccessCode(code);
+        _tabHelper.OpenInNewTab(() => page.OpenLink(linktext));
+    }
 
-        public void OpenLink(string linktext)
-        {
-            var page = OpenEmail();
+    private MailinatorEmailPage OpenEmail()
+    {
+        _tabHelper.OpenInNewTab("https://www.mailinator.com/");
 
-            _tabHelper.OpenInNewTab(() => page.OpenLink(linktext));
-        }
-
-        private MailinatorEmailPage OpenEmail()
-        {
-            _tabHelper.OpenInNewTab("https://www.mailinator.com/");
-
-            return new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_email).OpenEmail();
-        }
+        return new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_email).OpenEmail();
     }
 }
