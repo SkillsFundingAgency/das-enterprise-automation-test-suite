@@ -6,14 +6,12 @@ public class SupportToolsSteps
     private readonly ScenarioContext _context;
     private readonly ObjectContext _objectContext;
     private readonly StepsHelper _stepsHelper;
-    private readonly ToolsCommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
     public SupportToolsSteps(ScenarioContext context)
     {
         _context = context;
         _objectContext = context.Get<ObjectContext>();
         _stepsHelper = new StepsHelper(context);
-        _commitmentsSqlDataHelper = context.Get<ToolsCommitmentsSqlDataHelper>();
     }
 
     [Given(@"Opens the Pause Utility")]
@@ -128,7 +126,7 @@ public class SupportToolsSteps
     [When(@"that account is suspended using bulk utility")]
     public void WhenThatAccountIsSuspendedUsingBulkUtility()
     {
-        var status = _stepsHelper.ValidUserLogsinToSupportSCPTools(false)
+        var status = _stepsHelper.ValidUserLogsinToSupportSCPTools(true)
                             .ClickSuspendUserAccountsLink()
                             .EnterHashedAccountId(GetHashedAccountId())
                             .ClickSubmitButton()
@@ -163,6 +161,8 @@ public class SupportToolsSteps
 
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
+
+        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_context.Get<DbConfig>());
         int i = 0;
         foreach (var uln in UlnList)
         {
