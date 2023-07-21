@@ -1,8 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.IdamsLogin.Service.Project.Helpers;
+﻿namespace SFA.DAS.IdamsLogin.Service.Project.Helpers;
 
 public class LoginToAccess1StaffHelper
 {

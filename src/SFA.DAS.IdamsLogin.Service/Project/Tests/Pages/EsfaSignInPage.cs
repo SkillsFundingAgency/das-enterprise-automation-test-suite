@@ -1,9 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
 public class EsfaSignInPage : SignInBasePage
 {

@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace SFA.DAS.IdamsLogin.Service.Project.Helpers;
+﻿namespace SFA.DAS.IdamsLogin.Service.Project.Helpers;
 
 public static class IdamsPageSelector
 {

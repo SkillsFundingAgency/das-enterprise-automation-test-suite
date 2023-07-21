@@ -49,11 +49,11 @@ public class EPAOHomePageHelper
         return LoginInAsNonApplyUser(loginUser);
     }
 
-    private ServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
+    private EsfaAdminServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
     {
         OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
-        return new ServiceStartPage(_context);
+        return new EsfaAdminServiceStartPage(_context);
     }
 
     private void OpenUrl(string url, bool openInNewTab)

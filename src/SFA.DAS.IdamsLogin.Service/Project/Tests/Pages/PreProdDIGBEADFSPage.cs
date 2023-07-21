@@ -1,11 +1,6 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
-namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-
-public class CheckPreProdDIGBEADFSPage: CheckPageUsingShorterTimeOut
+public class CheckPreProdDIGBEADFSPage : CheckPageUsingShorterTimeOut
 {
     protected override string PageTitle { get; }
 
