@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Xml.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
@@ -16,6 +17,8 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         private static By Standard => By.CssSelector("ul#choose-apprenticeship__listbox > li");
 
         private static By NoOfApprentice => By.CssSelector("input#no-of-app");
+
+        private static By NoOfMonths => By.CssSelector("input#apprenticeship-length");
 
         private static By StartDateMonth => By.CssSelector("input#startDateMonth");
 
@@ -35,6 +38,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(NoOfApprentice, 1);
             formCompletionHelper.EnterText(StartDateMonth, date.Month);
             formCompletionHelper.EnterText(StartDateYear, date.Year);
+
+            pageInteractionHelper.FocusTheElement(NoOfApprentice);
+            formCompletionHelper.SendKeys(NoOfApprentice, Keys.Tab);
+            pageInteractionHelper.WaitForElementToChange(NoOfMonths, "value", "12");
+            pageInteractionHelper.FocusTheElement(NoOfMonths);
+            formCompletionHelper.SendKeys(NoOfMonths, Keys.Tab);
+
             formCompletionHelper.Click(SaveButton);
             return new EstimatedCostsPage(context);
         }
