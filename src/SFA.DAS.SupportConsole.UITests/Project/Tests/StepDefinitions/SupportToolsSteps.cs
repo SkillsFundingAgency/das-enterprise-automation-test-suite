@@ -33,11 +33,13 @@ public class SupportToolsSteps
     [Then(@"following filters should return the expected number of TotalRecords")]
     public void ThenFollowingFiltersShouldReturnTheExpectedNumberOfTotalRecords(Table table)
     {
-        var filters = table.CreateSet<Filters>();
+        var filters = table.CreateSet<Filters>().ToList();
         int row = 1;
 
         foreach (var item in filters)
         {
+            _objectContext.Set($"FilterCriteria_{row}", item);
+
             new SearchForApprenticeshipPage(_context, false)
                    .EnterEmployerName(item.EmployerName)
                    .EnterProviderName(item.ProviderName)
