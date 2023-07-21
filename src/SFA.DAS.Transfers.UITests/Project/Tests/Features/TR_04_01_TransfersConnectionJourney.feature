@@ -1,7 +1,6 @@
 ﻿Feature: TR_04_01_TransfersConnectionJourney
 
 @regression
-@approvals
 @transfers
 @addtransferslevyfunds
 @addsecondlevyfunds
