@@ -165,7 +165,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
-            var page = CreateATransferPledge(true);
+            var page = CreateATransferPledge(true, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -198,7 +198,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _isAnonymousPledge = true;
 
-            _pledgeVerificationPage = CreateATransferPledge(false)
+            _pledgeVerificationPage = CreateATransferPledge(false, true)
                  .GoToAddtheLocationPage().EnterLocation()
                  .GoToChoosetheSectorPage().SelectSetorAndContinue()
                  .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
@@ -353,8 +353,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool useMinimalFunding = false) => GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding)
-            .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName);
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool immediateMatch, bool useMinimalFunding = false) => 
+            GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding)
+            .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName)
+            .GoToPledge100PercentMatchPage().EnterValidMatchChoice(immediateMatch);
 
         private PledgeAmountPage GoToEnterPlegeAmountPage() => 
             NavigateToTransferMatchingPage()
@@ -413,7 +415,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             LoginAsSender(login);
 
-            CreateATransferPledge(true).ContinueToPledgeVerificationPage().SetPledgeDetail();
+            CreateATransferPledge(true, true).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
         private void LoginAsReceiver(EasAccountUser login)
