@@ -1,29 +1,25 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project;
+﻿using SFA.DAS.ConfigurationBuilder;
+
+namespace SFA.DAS.SupportConsole.UITests.Project;
 
 [Binding]
 public class SupportConsoleConfigurationSetup
 {
     private readonly ScenarioContext _context;
-    private readonly IConfigSection _configSection;
 
-    public SupportConsoleConfigurationSetup(ScenarioContext context)
-    {
-        _context = context;
-        _configSection = context.Get<IConfigSection>();
-    }
+    public SupportConsoleConfigurationSetup(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 2)]
     public void SetUpSupportConsoleProjectConfiguration()
     {
-        _context.SetSupportConsoleConfig(_configSection.GetConfigSection<SupportConsoleConfig>());
+        var configSection = _context.Get<IConfigSection>();
 
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
+        _context.SetSupportConsoleConfig(configSection.GetConfigSection<SupportConsoleConfig>());
 
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
-
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsSCPUser>());
-
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<SupportToolsSCSUser>());
-
+        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        {
+            configSection.GetConfigSection<SupportConsoleTier1User>(),
+            configSection.GetConfigSection<SupportConsoleTier2User>(),
+        });
     }
 }

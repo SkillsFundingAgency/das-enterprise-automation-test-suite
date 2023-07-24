@@ -135,7 +135,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MailinatorAPI.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeAmbassadorNetwork.UITests", "SFA.DAS.ApprenticeAmbassadorNetwork.UITests\SFA.DAS.ApprenticeAmbassadorNetwork.UITests.csproj", "{D440F170-4FA4-4809-99F8-E36E0B51D606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.EsfaAdmin.Service", "SFA.DAS.EsfaAdmin.Service\SFA.DAS.EsfaAdmin.Service.csproj", "{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EsfaAdmin.Service", "SFA.DAS.EsfaAdmin.Service\SFA.DAS.EsfaAdmin.Service.csproj", "{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.SupportTools.UITests", "SFA.DAS.SupportTools.UITests\SFA.DAS.SupportTools.UITests.csproj", "{51F174A5-F65F-4737-802B-430500ACF864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -480,6 +482,12 @@ Global
 		{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F174A5-F65F-4737-802B-430500ACF864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F174A5-F65F-4737-802B-430500ACF864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F174A5-F65F-4737-802B-430500ACF864}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F174A5-F65F-4737-802B-430500ACF864}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{51F174A5-F65F-4737-802B-430500ACF864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F174A5-F65F-4737-802B-430500ACF864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
