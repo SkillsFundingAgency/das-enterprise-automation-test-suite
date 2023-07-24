@@ -2,29 +2,31 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public class SearchNetworkEventsPage : SignInPage
+    public class SearchNetworkEventsPage : AanBasePage
     {
         protected override string PageTitle => "Search network events";
 
-        private By FromDateField = By.Id("fromDate");
-        private By ToDateField = By.Id("toDate");
-        private By ApplyFilterButton = By.Id("filters-submit");
-        private By FirstEventLink = By.CssSelector("li.das-search-results__list-item a");
-        private By InpersonCheckBox = By.XPath("//input[contains(@value,'InPerson')]");
-        private By OnlineCheckBox = By.XPath("//input[contains(@value,'Online')]");
-        private By HybridCheckBox = By.XPath("//input[contains(@value,'Hybrid')]");
-        private By InpersonSelectedFilter = By.XPath("//a[contains(@title,'In person')]");
-        private By TrainingEventSelectedFilter = By.XPath("//a[contains(@title,'Training event')]");
-        private By HybridSelectedFilter = By.XPath("//a[contains(@title,'Hybrid')]");
-        private By OnlineSelectedFilter = By.XPath("//a[contains(@title,'Online')]");
-        private By TrainingEventCheckbox = By.XPath("//input[contains(@value,'6')]");
+        private static By FromDateField => By.Id("fromDate");
+        private static By ToDateField => By.Id("toDate");
+        private static By ApplyFilterButton => By.Id("filters-submit");
+        private static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
+        private static By InpersonCheckBox => By.XPath("//input[contains(@value,'InPerson')]");
+        private static By OnlineCheckBox => By.XPath("//input[contains(@value,'Online')]");
+        private static By HybridCheckBox => By.XPath("//input[contains(@value,'Hybrid')]");
+        private static By InpersonSelectedFilter => By.XPath("//a[contains(@title,'In person')]");
+        private static By TrainingEventSelectedFilter => By.XPath("//a[contains(@title,'Training event')]");
+        private static By HybridSelectedFilter => By.XPath("//a[contains(@title,'Hybrid')]");
+        private static By OnlineSelectedFilter => By.XPath("//a[contains(@title,'Online')]");
+        private static By TrainingEventCheckbox => By.XPath("//input[contains(@value,'6')]");
+
+        private static string DateFormat => Configurator.IsVstsExecution ? "MM-dd-yyyy" : "dd-MM-yyyy";
 
         public SearchNetworkEventsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchNetworkEventsPage FilterEventByTomorrow()
         {
             DateTime tomorrow = DateTime.Now.AddDays(1);
-            string formattedDate = tomorrow.ToString("dd-MM-yyyy");
+            string formattedDate = tomorrow.ToString(DateFormat);
             formCompletionHelper.EnterText(FromDateField,formattedDate);
             formCompletionHelper.ClickElement(ApplyFilterButton);
             return this;
@@ -32,11 +34,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public SearchNetworkEventsPage FilterEventByOneMonth()
         {
-            DateTime startDate = DateTime.Now.AddDays(1);
-            string formattedDate = startDate.ToString("dd-MM-yyyy");
+            string formattedDate= DateTime.Now.AddDays(1).ToString(DateFormat);
 
-            DateTime endDate = DateTime.Now.AddDays(30);
-            string formattedEndDate = endDate.ToString("dd-MM-yyyy");
+            string formattedEndDate = DateTime.Now.AddDays(30).ToString(DateFormat);
 
             formCompletionHelper.EnterText(FromDateField, formattedDate);
             formCompletionHelper.EnterText(ToDateField, formattedEndDate);
