@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features.BulkPauseStopUtility
+namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features.BulkPauseStopUtili
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ST_03_StopApprenticeSCSRole")]
-    public partial class ST_03_StopApprenticeSCSRoleFeature
+    [NUnit.Framework.DescriptionAttribute("ST_04_SuspendAndReinstateAccount")]
+    public partial class ST_04_SuspendAndReinstateAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "ST_03_StopApprenticeSCSRole.feature"
+#line 1 "ST_04_SuspendAndReinstateAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkPauseStopUtility", "ST_03_StopApprenticeSCSRole", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "ST_04_SuspendAndReinstateAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features.BulkPauseStopUtili
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ST_03_Stop Apprentice SCS Role")]
+        [NUnit.Framework.DescriptionAttribute("ST_04_Suspend and Reinstate Employer User Accounts")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
-        public void ST_03_StopApprenticeSCSRole()
+        public void ST_04_SuspendAndReinstateEmployerUserAccounts()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ST_03_Stop Apprentice SCS Role", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ST_04_Suspend and Reinstate Employer User Accounts", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,38 +97,19 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-  testRunner.Given("the SCS User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the employer user can login to EAS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-  testRunner.And("User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("that account is suspended using bulk utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
-  testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the employer user cannot login to EAS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "EmployerName",
-                            "ProviderName",
-                            "Ukprn",
-                            "EndDate",
-                            "Uln",
-                            "Status",
-                            "TotalRecords"});
-                table4.AddRow(new string[] {
-                            "COMPLIANCE LIMITED",
-                            "",
-                            "10005310",
-                            "",
-                            "",
-                            "",
-                            "25"});
 #line 11
-  testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table4, "And ");
+ testRunner.When("that account is reinstated using bulk utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
-  testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
-  testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.Then("the employer user can login to EAS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

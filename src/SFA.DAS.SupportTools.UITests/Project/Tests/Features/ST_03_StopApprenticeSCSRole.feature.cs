@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features.BulkPauseStopUtility
+namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features.BulkPauseStopUtili
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ST_02_StopApprenticeRecords")]
-    public partial class ST_02_StopApprenticeRecordsFeature
+    [NUnit.Framework.DescriptionAttribute("ST_03_StopApprenticeSCSRole")]
+    public partial class ST_03_StopApprenticeSCSRoleFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "ST_02_StopApprenticeRecords.feature"
+#line 1 "ST_03_StopApprenticeSCSRole.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BulkPauseStopUtility", "ST_02_StopApprenticeRecords", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "ST_03_StopApprenticeSCSRole", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,19 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features.BulkPauseStopUtili
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ST_02_Stop Apprentice Records")]
+        [NUnit.Framework.DescriptionAttribute("ST_03_Stop Apprentice SCS Role")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
-        public void ST_02_StopApprenticeRecords()
+        public void ST_03_StopApprenticeSCSRole()
         {
             string[] tagsOfScenario = new string[] {
                     "supportconsole",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ST_02_Stop Apprentice Records", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ST_03_Stop Apprentice SCS Role", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,13 +96,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("the SCP User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
- testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.Given("the SCS User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+#line 9
+  testRunner.And("User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+  testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "EmployerName",
                             "ProviderName",
                             "Ukprn",
@@ -110,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Uln",
                             "Status",
                             "TotalRecords"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "COMPLIANCE LIMITED",
                             "",
                             "10005310",
@@ -118,14 +121,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "25"});
-#line 9
- testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table3, "And ");
-#line hidden
-#line 13
- testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+  testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table4, "And ");
 #line hidden
 #line 14
- testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 15
+  testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
