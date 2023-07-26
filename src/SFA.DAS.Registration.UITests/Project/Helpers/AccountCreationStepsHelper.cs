@@ -100,9 +100,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
         {
             return checkYourDetailsPage
-                .ContinueToSetAccountName()
+                //.ContinueToSetAccountName()
+                .ClickYesThisIsMyOrg()
                 .ContinueToConfirmationPage()
-                .SelectGoToCreateYourEmployerAccountpage()
+                //.SelectGoToCreateYourEmployerAccountpage()
                 .GoToSetYourAccountNameLink()
                 .SelectoptionNo()
                 .ContinueToAcknowledge()

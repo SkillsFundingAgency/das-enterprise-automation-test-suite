@@ -11,6 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         protected override By ContinueButton => By.Id("continue-check-details");
         private By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
+        private By IsOrganisationWithCorrectAddressRadioButton => By.Name("isOrganisationWithCorrectAddress");
         private By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
         private By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
         private By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
@@ -32,6 +33,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(YesContinueButton);
             return new OrganisationHasBeenAddedPage(context);
+        }
+
+        public YouHaveAddedYourOrgAndPAYEScheme ClickYesThisIsMyOrg()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Yes, this is my organisation");
+            Continue();
+            return new YouHaveAddedYourOrgAndPAYEScheme(context);
         }
 
         public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
