@@ -1,7 +1,6 @@
 ﻿Feature: TR_01_TransfersApprovalJourney
 
 @regression
-@approvals
 @transfers
 @liveapprentice
 @addtransferslevyfunds
