@@ -181,7 +181,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
         {
-            var page = CreateATransferPledge(true, true);
+            var page = CreateATransferPledge(true, true, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
