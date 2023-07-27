@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ManageYourApprenticesPage(ScenarioContext context) : base(context) => manageYourApprenticePageHelper = new ManageYourApprenticePageHelper(context);
 
-        internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
+        public ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
             manageYourApprenticePageHelper.SelectViewCurrentApprenticeDetails(apprenticeDataHelper.ApprenticeFullName);
 

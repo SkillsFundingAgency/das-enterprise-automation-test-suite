@@ -10,26 +10,23 @@ namespace SFA.DAS.ProviderLogin.Service
     public class ProviderConfigurationSetup
     {
         private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
 
-        public ProviderConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        public ProviderConfigurationSetup(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 2)]
         public void SetUpProviderConfiguration()
         {
-            _context.SetProviderConfig(_configSection.GetConfigSection<ProviderConfig>());
+            var configSection = _context.Get<IConfigSection>();
 
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
+            _context.SetProviderConfig(configSection.GetConfigSection<ProviderConfig>());
 
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
+            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderViewOnlyUser>());
 
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
+            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderContributorUser>());
 
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderAccountOwnerUser>());
+            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
+
+            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderAccountOwnerUser>());
         }
     }
 }

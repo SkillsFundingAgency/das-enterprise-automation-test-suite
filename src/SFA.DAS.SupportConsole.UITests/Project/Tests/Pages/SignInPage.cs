@@ -11,10 +11,4 @@ public class SignInPage : EsfaSignInPage
         return new (context);
     }
 
-    public ToolSupportHomePage SignIntoToolSupportWithValidDetails(NonEasAccountUser usercreds)
-    {
-        SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
-
-        return new (context);
-    }
 }

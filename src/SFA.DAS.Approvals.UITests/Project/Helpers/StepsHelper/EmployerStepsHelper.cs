@@ -137,28 +137,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             Assert.AreEqual(actualStatus.ToUpper(), expectedStatus.ToUpper(), "Validate status on Manage Your Apprentices page");
         }
 
-        internal void ValidateCompletionStatus()
-        {
-            string expectedCompletionDate = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year;
-
-            ApprenticeDetailsPage apprenticeDetailsPage =
-                new ManageYourApprenticesPage(_context)
-                .SelectViewCurrentApprenticeDetails();
-
-            Assert.AreEqual("COMPLETED", apprenticeDetailsPage.GetApprenticeshipStatus(), "Validate Status of the apprenticeship");
-            Assert.AreEqual("Completion payment month", apprenticeDetailsPage.GetStatusDateTitle(), "Validate Completion Date Title");
-            Assert.AreEqual(expectedCompletionDate, apprenticeDetailsPage.GetCompletionDate(), "Validate Completion Date");
-        }
-
-        internal void ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate()
-        {
-            ApprenticeDetailsPage apprenticeDetailsPage = new ApprenticeDetailsPage(_context);
-
-            Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeStatusLinkVisible());
-            Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeDetailsLinkVisible());
-            Assert.True(apprenticeDetailsPage.IsEditEndDateLinkVisible());
-        }
-
         public ChangeOfTrainingProviderRequestedPage StartChangeofNewTrainingProvider()
         {
             return _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()

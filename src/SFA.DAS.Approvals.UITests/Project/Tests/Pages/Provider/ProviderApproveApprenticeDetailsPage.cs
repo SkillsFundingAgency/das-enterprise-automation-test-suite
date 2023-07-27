@@ -178,7 +178,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void ClickIfPirenIsDisplayed()
         {
-            var by = Selectors.PireanPreprod;
+            var by = IdamsPageSelector.PireanPreprod;
 
             if (pageInteractionHelper.IsElementDisplayed(by)) formCompletionHelper.ClickElement(by);
         }

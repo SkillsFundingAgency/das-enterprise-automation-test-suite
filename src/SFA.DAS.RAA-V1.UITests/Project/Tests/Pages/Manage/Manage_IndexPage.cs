@@ -13,10 +13,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public Manage_IndexPage(ScenarioContext context) : base(context) { }
 
-        public IdamsPage ClickAgencyButton()
+        public PreProdDIGBEADFSPage ClickAgencyButton()
         {
             formCompletionHelper.Click(AgencyButton);
-            return new IdamsPage(context);
+            return new PreProdDIGBEADFSPage(context);
         }
     }
 }
