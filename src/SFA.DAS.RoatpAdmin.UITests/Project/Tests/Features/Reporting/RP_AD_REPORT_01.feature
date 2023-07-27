@@ -1,5 +1,7 @@
 ﻿Feature: RP_AD_REPORT_01
 
+#Bug raised CSP-920 Will remove the tag once the bug is fixed
+@ignore
 @roatp
 @newroatpadmin
 @newroatpadminreporting

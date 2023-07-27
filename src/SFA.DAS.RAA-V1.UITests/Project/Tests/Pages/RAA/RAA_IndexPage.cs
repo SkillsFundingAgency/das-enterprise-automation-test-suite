@@ -13,10 +13,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_IndexPage(ScenarioContext context) : base(context) { }
 
-        public IdamsPage ClickOnSignInButton()
+        public PreProdDIGBEADFSPage ClickOnSignInButton()
         {
             formCompletionHelper.Click(SignInButton);
-            return new IdamsPage(context);
+            return new PreProdDIGBEADFSPage(context);
         }
 
         new public RAA_IndexPage AcceptCookies()

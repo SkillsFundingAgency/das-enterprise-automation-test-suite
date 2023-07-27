@@ -15,7 +15,7 @@ public class EsfaAdminLoginStepsHelper
 
     public void SubmitValidLoginDetails(string username, string password)
     {
-        new ServiceStartPage(_context).StartNow().LoginToAccess1Staff();
+        new EsfaAdminServiceStartPage(_context).StartNow().LoginToAccess1Staff();
 
         new EsfaSignInPage(_context).SubmitValidLoginDetails(username, password);
 

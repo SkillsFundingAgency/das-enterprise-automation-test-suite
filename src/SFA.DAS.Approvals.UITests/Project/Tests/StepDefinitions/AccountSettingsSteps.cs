@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private NotificationSettingsPage _employerNotification;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderNotificationSettingsPage _providerNotification;
-        
+
         public AccountSettingsSteps(ScenarioContext context)
         {
             _context = context;

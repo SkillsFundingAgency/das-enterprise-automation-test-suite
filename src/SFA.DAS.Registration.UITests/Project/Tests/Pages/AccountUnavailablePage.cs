@@ -1,5 +1,4 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {

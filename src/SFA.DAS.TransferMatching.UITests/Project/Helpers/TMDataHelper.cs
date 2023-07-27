@@ -32,6 +32,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         public int NoOfApprentice { get; set; }
 
         public int MinAmount => Cost * NoOfApprentice;
+        
+        public int MinimalPledgeAmount => Cost * (NoOfApprentice + 1);
 
         public DateTime CourseStartDate { get; set; }
 

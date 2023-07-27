@@ -9,7 +9,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         protected override string PageTitle { get; }
 
-        protected override By Identifier => Selectors.PireanPreprod;
+        protected override By Identifier => IdamsPageSelector.PireanPreprod;
 
         public By PireanPreprod => Identifier;
 

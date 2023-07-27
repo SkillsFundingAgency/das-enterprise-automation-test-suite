@@ -6,7 +6,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class BasePage : InitialiseBasePage
     {
-        protected string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading";
+        protected static string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading";
         protected virtual By PageHeader => By.CssSelector(PageHeaderSelector);
         protected virtual By PageCaptionXl => By.CssSelector(".govuk-caption-xl");
         protected virtual By ContinueButton => By.CssSelector(".govuk-button");
@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
 
-        protected By PanelTitle => By.CssSelector(".govuk-panel__title");
+        protected static By PanelTitle => By.CssSelector(".govuk-panel__title");
 
         protected abstract string PageTitle { get; }
 
