@@ -34,6 +34,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationHasBeenAddedPage(context);
         }
 
+        public YouHaveAddedYourOrgAndPAYEScheme ClickYesThisIsMyOrg()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Yes, this is my organisation");
+            Continue();
+            return new YouHaveAddedYourOrgAndPAYEScheme(context);
+        }
+
         public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(YesContinueButton);
