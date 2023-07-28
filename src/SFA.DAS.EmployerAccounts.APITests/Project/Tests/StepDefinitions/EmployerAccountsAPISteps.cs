@@ -138,13 +138,6 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint($"/api/User?email={userEmail}", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /accounts/\{hashedAccountId}/levy can be accessed")]
-        public void ThenEndpointAccountsHashedAccountIdLevyCanBeAccessed()
-        {
-            var hashedAccountId = _objectContext.GetHashedAccountId();
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy", HttpStatusCode.OK);
-        }
-
         [Then(@"endpoint /accounts/\{hashedAccountId}/transactions  can be accessed")]
         public void ThenEndpointAccountsHashedAccountIdTransactionsCanBeAccessed()
         {
@@ -159,15 +152,6 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions");            
             var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);            
             _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
-        }
-
-        [Then(@"endpoint accounts/\{hashedAccountId}/levy/\{payrollYear}/\{payrollMonth} can be accessed")]
-        public void ThenEndpointAccountsHashedAccountIdLevyPayrollYearPayrollMonthCanBeAccessed()
-        {
-            var hashedAccountId = _objectContext.GetHashedAccountId();
-            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy");
-            var result = JsonConvert.DeserializeObject<ICollection<LevyDeclaration>>(response.Content);
-            _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/levy/{result.FirstOrDefault().PayrollYear}/{result.FirstOrDefault().PayrollMonth}", HttpStatusCode.OK);
         }
 
         [Then(@"das-employer-accounts-api /ping endpoint can be accessed")]
