@@ -19,10 +19,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YouHaveAddedYourOrgAndPAYEScheme(ScenarioContext context) : base(context) => VerifyPage();
 
-        public EmployerAccountCreatedPage ContinueToConfirmationPage()
+        public CreateYourEmployerAccountPage ContinueToConfirmationPage()
         {
             Continue();
-            return new EmployerAccountCreatedPage(context);
+            return new CreateYourEmployerAccountPage(context);
         }
             
 
