@@ -35,7 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apply", "EPAO_AP_04_StageTwoCancelStandard", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apply", "EPAO_AP_04_StageTwoCancelStandard", "//ignoring this for now as its not needed due to new apply changes", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,6 +75,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AP_04_StageTwo_CancelStandard")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
         [NUnit.Framework.CategoryAttribute("epaostagetwostdcancellation")]
@@ -83,6 +84,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         public void EPAO_AP_04_StageTwo_CancelStandard()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "epao",
                     "epaoapply",
                     "epaostagetwostdcancellation",
@@ -90,7 +92,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
                     "cancelstandard"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_04_StageTwo_CancelStandard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,13 +102,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 12
  testRunner.Given("Stage one approved EPAO logs in to apply for a first standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 13
  testRunner.When("Starts the journey to apply for the first standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 14
  testRunner.Then("EPAO cancels the standard using cancel link as incorrect standard selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
