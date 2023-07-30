@@ -1,5 +1,8 @@
 ﻿Feature: EPAO_AP_04_StageTwoCancelStandard
-	
+
+//ignoring this for now as its not needed due to new apply changes
+
+@ignore
 @epao
 @epaoapply
 @epaostagetwostdcancellation
