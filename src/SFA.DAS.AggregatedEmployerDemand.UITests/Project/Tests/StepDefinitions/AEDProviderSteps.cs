@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.ProviderLogin.Service.Project;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class AedProviderSteps

@@ -9,9 +9,9 @@ public abstract class SignInBasePage : IdamsLoginBasePage
     protected override string PageTitle => "Sign in";
 
     #region Locators
-    protected By UsernameField => By.Id("username");
-    protected By PasswordField => By.Id("password");
-    protected By SignInButton => By.XPath("//button[@value='Log in']");
+    protected static By UsernameField => By.Id("username");
+    protected static By PasswordField => By.Id("password");
+    protected virtual By SignInButton => By.XPath("//button[@value='Log in']");
     #endregion
 
     protected SignInBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }

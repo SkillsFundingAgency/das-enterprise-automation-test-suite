@@ -11,23 +11,23 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private readonly IWebDriver _webDriver;
 
-        protected By LinkCssSelector => By.CssSelector("a");
+        protected static By LinkCssSelector => By.CssSelector("a");
 
-        protected By InputCssSelector => By.CssSelector(".govuk-input");
+        protected static By InputCssSelector => By.CssSelector(".govuk-input");
 
-        protected By ButtonCssSelector => By.CssSelector(".button");
+        protected static By ButtonCssSelector => By.CssSelector(".button");
 
-        protected By RadioButtonInputCssSelector => By.CssSelector("input.govuk-radios__input");
+        protected static By RadioButtonInputCssSelector => By.CssSelector("input.govuk-radios__input");
 
-        protected By RadioButtonLabelCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
+        protected static By RadioButtonLabelCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
 
-        protected By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
+        protected static By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
 
         protected WebElementInteractionHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
         public List<IWebElement> GetElementsByText(By locator, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
 
-        protected IWebElement GetElementByText(By locator, string expectedvalue) => GetElementsByText(locator, expectedvalue).FirstOrDefault();
+        public IWebElement GetElementByText(By locator, string expectedvalue) => GetElementsByText(locator, expectedvalue).FirstOrDefault();
 
         protected IWebElement GetElementByAttribute(By locator, string attribute, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.GetAttribute(attribute)).FirstOrDefault();
 

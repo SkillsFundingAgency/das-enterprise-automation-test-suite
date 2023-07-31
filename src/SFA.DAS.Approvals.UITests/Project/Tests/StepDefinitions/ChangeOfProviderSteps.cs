@@ -2,8 +2,8 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;

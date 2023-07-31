@@ -1,54 +1,53 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Helpers
+namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
+
+public class ProviderHomePageStepsHelper
 {
-    public class ProviderHomePageStepsHelper
+    private readonly ScenarioContext _context;
+
+    public ProviderHomePageStepsHelper(ScenarioContext context) => _context = context;
+
+    public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_context.GetProviderConfig<ProviderConfig>(), newTab);
+
+    public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
     {
-        private readonly ScenarioContext _context;
+        var objectContext = _context.Get<ObjectContext>();
 
-        public ProviderHomePageStepsHelper(ScenarioContext context) => _context = context;
+        var tabHelper = _context.Get<TabHelper>();
 
-        public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_context.GetProviderConfig<ProviderConfig>(), newTab);
+        if (newTab) tabHelper.OpenNewTab();
 
-        public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
-        {
-            var objectContext = _context.Get<ObjectContext>();
+        tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
 
-            var tabHelper = _context.Get<TabHelper>();
+        objectContext.SetUkprn(login.Ukprn);
 
-            if (newTab) tabHelper.OpenNewTab();
+        return GoToProviderHomePage(login);
+    }
 
-            tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+    public ProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
+    {
+        var loginUser = new ProviderLoginUser { UserId = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
 
-            objectContext.SetUkprn(login.Ukprn);
+        return GoToProviderHomePage(loginUser, newTab);
+    }
 
-            return GoToProviderHomePage(login);
-        }
+    private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
+    {
+        var loginHelper = new ProviderPortalLoginHelper(_context);
 
-        public ProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
-        {
-            var loginUser = new ProviderLoginUser { UserId = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
+        if (loginHelper.IsIndexPageDisplayed()) return loginHelper.Login(login);
 
-            return GoToProviderHomePage(loginUser, newTab);
-        }
+        if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
 
-        private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
-        {
-            var loginHelper = new ProviderPortalLoginHelper(_context);
+        if (loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
 
-            if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
-
-            if (loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
-
-            if (loginHelper.IsIndexPageDisplayed()) return loginHelper.Login(login);
-
-            return new ProviderHomePage(_context);
-        }
+        return new ProviderHomePage(_context);
     }
 }

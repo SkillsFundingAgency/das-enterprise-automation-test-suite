@@ -8,6 +8,7 @@ global using SFA.DAS.ProviderLogin.Service.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using SFA.DAS.ProviderLogin.Service.Project;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
 {

@@ -3,25 +3,24 @@ using SFA.DAS.IdamsLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Pages
+namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+
+public class CheckProviderPireanPreprodPage : CheckPageUsingShorterTimeOut
 {
-    public class CheckProviderPireanPreprodPage : CheckPageUsingShorterTimeOut
-    {
-        protected override string PageTitle { get; }
+    protected override string PageTitle { get; }
 
-        protected override By Identifier => IdamsPageSelector.PireanPreprod;
+    protected override By Identifier => IdamsPageSelector.PireanPreprod;
 
-        public By PireanPreprod => Identifier;
+    public By PireanPreprod => Identifier;
 
-        public CheckProviderPireanPreprodPage(ScenarioContext context) : base(context) { }
-    }
+    public CheckProviderPireanPreprodPage(ScenarioContext context) : base(context) { }
+}
 
-    public class CheckProviderHomePage : CheckPageUsingShorterTimeOut
-    {
-        protected override string PageTitle { get; }
+public class CheckProviderHomePage : CheckPageUsingShorterTimeOut
+{
+    protected override string PageTitle { get; }
 
-        protected override By Identifier => By.Id("account-home");
+    protected override By Identifier => By.Id("account-home");
 
-        public CheckProviderHomePage(ScenarioContext context) : base(context) { }
-    }
+    public CheckProviderHomePage(ScenarioContext context) : base(context) { }
 }

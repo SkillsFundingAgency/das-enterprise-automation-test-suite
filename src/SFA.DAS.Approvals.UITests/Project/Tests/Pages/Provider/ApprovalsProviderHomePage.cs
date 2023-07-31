@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider

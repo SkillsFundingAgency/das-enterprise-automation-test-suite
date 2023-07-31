@@ -1,9 +1,8 @@
 ﻿using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Pages;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Helpers
+namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 {
     internal class ProviderPortalLoginHelper : IReLoginHelper
     {
@@ -17,10 +16,10 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         public bool IsYourProviderAccountPageDisplayed() => new CheckProviderHomePage(_context).IsPageDisplayed();
 
-        internal ProviderHomePage ReLogin(ProviderLoginUser login) => Login(new ProviderSiginPage(_context), login);
+        internal ProviderHomePage ReLogin(ProviderLoginUser login) => Login(new ProviderSignInPage(_context), login);
 
         internal ProviderHomePage Login(ProviderLoginUser login) => Login(new ProviderIndexPage(_context).StartNow(), login);
-        
-        private ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login);
+
+        private ProviderHomePage Login(ProviderSignInPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login).SelectOrganisation(login.Ukprn);
     }
 }

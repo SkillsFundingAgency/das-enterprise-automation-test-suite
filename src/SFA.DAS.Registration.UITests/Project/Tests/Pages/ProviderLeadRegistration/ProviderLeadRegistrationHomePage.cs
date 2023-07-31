@@ -1,5 +1,5 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {

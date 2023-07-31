@@ -1,9 +1,8 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ProviderLogin.Service.Helpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
