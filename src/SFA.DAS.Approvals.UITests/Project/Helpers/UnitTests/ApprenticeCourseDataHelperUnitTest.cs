@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(17)]
         [TestCase(18)]
         [TestCase(19)]
-        public void WaitingTostartApprentice(int i)
+        public void WaitingTostartApprentice(int _)
         {
             bool IsItJuly() => DateTime.Now.Month == 7;
 
@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(17)]
         [TestCase(18)]
         [TestCase(19)]
-        public void LiveApprentice(int x)
+        public void LiveApprentice(int _)
         {
             //Arrange 
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.Live);
@@ -97,12 +97,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             });
         }
 
-        [TestCase(2022, 8, 2, 12, ApprenticeStatus.Live)]
-        [TestCase(2023, 8, 2, 12, ApprenticeStatus.WaitingToStart)]
-        public void SpecficlarsCode(int year, int month, int day, int durationInMonths, ApprenticeStatus apprenticeStatus)
+        [TestCase(ApprenticeStatus.Live)]
+        [TestCase(ApprenticeStatus.WaitingToStart)]
+        public void SpecficlarsCode(ApprenticeStatus apprenticeStatus)
         {
             //Arrange 
-            var startDate = new DateTime(year, month, day);
+            int durationInMonths = 12;
+            var startDate = new DateTime(apprenticeStatus == ApprenticeStatus.Live ? DateTime.Now.Year : DateTime.Now.Year + 1, 8, 2);
             var courseDetails = RandomDataGenerator.GetRandomElementFromListOfElements(AvailableCourses.GetAvailableCourses());
             var expectedLarsCode = courseDetails.Course.larsCode;
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), startDate, durationInMonths, expectedLarsCode);
@@ -111,13 +112,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
             //Assert
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
-                Assert.IsTrue(apprentice.CourseStartDate == startDate);
-                Assert.IsTrue(apprentice.CourseDetails.Course.larsCode == expectedLarsCode);
-                Assert.IsTrue(apprentice.CourseDurationInMonths == durationInMonths);
-                Assert.IsTrue(apprentice.CourseEndDate == apprentice.CourseStartDate.AddMonths(durationInMonths));
-                Assert.IsTrue(apprentice.GetApprenticeStatus() == apprenticeStatus);
+                Assert.That(apprentice.CourseStartDate, Is.EqualTo(startDate), "Apprentice course start date is not equal");
+                Assert.That(apprentice.CourseDetails.Course.larsCode, Is.EqualTo(expectedLarsCode), "Apprentice course lars code is not equal");
+                Assert.That(apprentice.CourseDurationInMonths, Is.EqualTo(durationInMonths), "Apprentice course suration month is not equal");
+                Assert.That(apprentice.CourseEndDate, Is.EqualTo(apprentice.CourseStartDate.AddMonths(durationInMonths)), "Apprentice course end date is not equal");
+                Assert.That(apprentice.GetApprenticeStatus(), Is.EqualTo(apprenticeStatus), "Apprentice status is not equal");
             });
         }
 
