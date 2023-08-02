@@ -1,30 +1,16 @@
 ﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using System.Diagnostics.Tracing;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
 {
-
     [Binding]
     public class AAN_Events_Steps
     {
         private readonly ScenarioContext context;
 
-        private readonly ObjectContext objectContext;
-
         private NetworkHubPage networkHubPage;
         private EventPage eventPage;
-        private SignUpConfirmationPage signUpConfirmationPage;
 
-
-        public AAN_Events_Steps(ScenarioContext context)
-        {
-            this.context = context;
-
-            objectContext = context.Get<ObjectContext>();
-
-        }
+        public AAN_Events_Steps(ScenarioContext context) => this.context = context;
 
         [Then(@"the user should be able to successfuly signup for a future event")]
         public void ThenTheUserShouldBeAbleToSuccessfulySignupForAFutureEvent()

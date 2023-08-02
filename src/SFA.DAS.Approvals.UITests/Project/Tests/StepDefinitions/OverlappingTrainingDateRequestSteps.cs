@@ -1,22 +1,22 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -150,7 +150,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _cohortReferenceHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
         }
-     
+
         private void SetContextStartAnEndDates(int startDateDurationInMonths, int endDateDurationInMonths)
         {
             var courseStartDate = DateTime.Now.AddMonths(startDateDurationInMonths);
@@ -236,24 +236,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider selects to edit the draft apprenticeship")]
         public void WhenProviderSelectsToEditTheDraftApprenticeship()
         {
-          var providerApproveApprenticeDetailsPage =  new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context).IWillAddAnotherApprentice();
-          providerApproveApprenticeDetailsPage.SelectEditApprentice(0);
+            var providerApproveApprenticeDetailsPage = new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context).IWillAddAnotherApprentice();
+            providerApproveApprenticeDetailsPage.SelectEditApprentice(0);
         }
 
         [When(@"provider deletes start and end date from Draft cohort")]
         public void WhenProviderDeletesStartAndEndDateFromDraftCohort()
         {
-           new ProviderEditApprenticeDetailsPage(_context)
-                .EditStartDate("", "")
-                .EditEndDate("","")
-                .ClickSave();
+            new ProviderEditApprenticeDetailsPage(_context)
+                 .EditStartDate("", "")
+                 .EditEndDate("", "")
+                 .ClickSave();
         }
 
         [Then(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
         [When(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
         public void ThenOverlappingTrainingDateRequestIsResolvedInDatabaseWithStatusAndResolutionType(int status, int resolutionType)
         {
-          var result =  _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(GetUlnForOLTD());
+            var result = _commitmentsSqlDataHelper.GetOverlappingTrainingDateRequestDetailsForUln(GetUlnForOLTD());
             Assert.AreEqual(resolutionType, result.resolutionType);
             Assert.AreEqual(status, result.status);
         }
@@ -262,8 +262,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenProviderUpdatesTheDraftApprenticeWhichCreatesAnOverlap()
         {
             var startDate = _objectContext.GetStartDate();
-            var endDate =  startDate.AddMonths(36);
-            
+            var endDate = startDate.AddMonths(36);
+
             var providerEditApprenticeDetailsPage = new ProviderApproveApprenticeDetailsPage(_context).SelectEditApprentice(0);
             providerEditApprenticeDetailsPage
                 .EditStartDate(startDate.Month.ToString(), startDate.Year.ToString())
@@ -370,7 +370,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
-            
+
             apprenticeDetailsPage
                 .ClickEndDateLink()
                 .EditEndDate(threeMonthOldStartDate.Month.ToString(), threeMonthOldStartDate.Year.ToString());

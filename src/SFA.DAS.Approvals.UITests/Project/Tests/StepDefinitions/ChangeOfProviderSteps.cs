@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework;
@@ -32,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
- 
+
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
         {
@@ -146,7 +145,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Prevent employer from requesting CoP on the original apprenticeship")]
         public void ThenPreventEmployerFromRequestingCoPOnTheOriginalApprenticeship()
         {
-            bool IsChangeOfProviderLinkDisplayed 
+            bool IsChangeOfProviderLinkDisplayed
                 = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()
                 .SelectApprentices("STOPPED")
                 .IsChangeOfProviderLinkDisplayed();
@@ -168,9 +167,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         public void ValidatePreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP()
-        {                  
+        {
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_oldProviderLoginDetails, false);
-              
+
             Assert.IsFalse(SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed(), "Validate that CoE link is not available for the old provider after successful CoP");
         }
 
@@ -191,7 +190,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                     .GetAllEditBoxes();
 
 
-            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");            
+            Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
         }
 
         private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
@@ -206,7 +205,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                     .ClickReviewTheApprenticeDetailsToUpdateLink()
                                                     .SelectEditApprentice();
 
-            ValidateOnlyEditableApprenticeDetails(editApprenticePage);     
+            ValidateOnlyEditableApprenticeDetails(editApprenticePage);
         }
 
         private void ValidateOnlyEditableApprenticeDetails(EditApprenticeDetailsPage editApprenticePage)

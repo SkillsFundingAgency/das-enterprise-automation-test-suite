@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+
+namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class MS_YourDetails_Steps
