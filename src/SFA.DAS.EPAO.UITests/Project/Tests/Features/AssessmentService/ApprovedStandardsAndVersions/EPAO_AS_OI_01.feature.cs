@@ -75,16 +75,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.Approved
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_OI_01 - Apply Opt In Standard For New Version")]
+        [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("deleteorganisationstandardversion")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void EPAO_AS_OI_01_ApplyOptInStandardForNewVersion()
         {
             string[] tagsOfScenario = new string[] {
+                    "epao",
                     "assessmentservice",
-                    "deleteorganisationstandardversion"};
+                    "deleteorganisationstandardversion",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_OI_01 - Apply Opt In Standard For New Version", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
  testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
  testRunner.And("the User should be able to Opt In for the new version of the Standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
