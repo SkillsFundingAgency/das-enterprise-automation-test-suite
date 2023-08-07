@@ -171,8 +171,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private void SelectOption(string option, bool sendMessageToEmployer = true)
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
-            if (sendMessageToEmployer)
-                formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);            
+
+            if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
+                
             Continue();
         }
 

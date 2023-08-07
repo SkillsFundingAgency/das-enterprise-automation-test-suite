@@ -31,9 +31,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        public ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider(int apprenticeNumber)
+        public ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider()
         {
-            EnterUlnForFlexiPayments(apprenticeNumber);
+            EnterUln();
             EnterApprenticeMandatoryValidDetails();
             EnterDob();
 
@@ -72,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private void SubmitValidPersonalDetails()
         {
             if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
-            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.ApprenticeULN);
 
             EnterApprenticeMandatoryValidDetails();
 
@@ -146,13 +146,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
         }
 
-        private void EnterUlnForFlexiPayments(int apprenticeNumber)
-        {
-            if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
-                formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));
-            else
-                formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
-        }
+        private void EnterUln() => formCompletionHelper.EnterText(Uln, apprenticeDataHelper.ApprenticeULN);
 
         private void AddPlannedEndDateDay(DateTime dateTime) => formCompletionHelper.EnterText(EndDateDay, dateTime.Day);
     }
