@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private readonly ManageFundingEmployerStepsHelper _employerReservationStepsHelper;
         private readonly ScenarioContext _context;
-        
+
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
 
         public NonLevyReservationStepsHelper(ScenarioContext context)
@@ -30,25 +29,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 _context.Replace(apprentice.Item1);
                 _context.Replace(apprentice.Item2);
             }
-            var firstApprentice = listOfApprentice.First();
 
-            ReplaceInContext(firstApprentice);
+            int noOfApprentice = listOfApprentice.Count;
 
-            var startAddingApprenticesPage = NonLevyEmployerAddsProviderDetails();
+            AddApprenticeDetailsPage addApprenticeDetailsPage;
 
-            var addPersonalDetailsPage = startAddingApprenticesPage.EmployerAddsApprentices().EmployerSelectsAStandard();
-
-            foreach (var apprentice in listOfApprentice)
+            for (int i = 0; i < noOfApprentice; i++)
             {
-                ReplaceInContext(apprentice);
+                ReplaceInContext(listOfApprentice[i]);
 
-                _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addPersonalDetailsPage, shouldConfirmOnlyStandardCoursesSelectable);
+                if (i == 0)
+                {
+                    addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails().EmployerAddsApprentices().EmployerSelectsAStandard();
+                }
+                else
+                {
+                    addApprenticeDetailsPage = AddAnotherApprentice(_approveApprenticeDetailsPage);
+                }
 
-                bool IslastItem = listOfApprentice.IndexOf(apprentice) == listOfApprentice.Count - 1;
-
-                if (!IslastItem) addPersonalDetailsPage = AddAnotherApprentice(_approveApprenticeDetailsPage);
+                _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, shouldConfirmOnlyStandardCoursesSelectable);
             }
-            
+
+
             return SetApprenticeDetails(listOfApprentice.Count);
         }
 
