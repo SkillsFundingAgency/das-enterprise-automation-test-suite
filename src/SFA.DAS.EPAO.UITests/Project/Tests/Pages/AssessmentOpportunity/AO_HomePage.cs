@@ -10,7 +10,7 @@ public class AO_HomePage : EPAO_BasePage
     private static By ProposedTab => By.Id("tab_proposed");
     private static By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
     private static By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
-    private static By GripInDevelopmentStandardLink => By.LinkText("Grip");
+    private static By GripInDevelopmentStandardLink => By.LinkText("Junior grip");
     private static By AssistantFarmManager => By.LinkText("Assistant farm manager");
     #endregion
 

@@ -2,7 +2,7 @@
 
 public class AO_InDevelopmentStandardDetailsPage : EPAO_BasePage
 {
-    protected override string PageTitle => "Grip";
+    protected override string PageTitle => "Junior grip";
 
     public AO_InDevelopmentStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
