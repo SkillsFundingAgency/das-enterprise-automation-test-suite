@@ -60,13 +60,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string MessageToEmployer => $"Added {ApprenticeULN} uln, {MessageToProvider}";
 
-        public int ApprenticeshipId(string title) => _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner(title) : _apprenticeid;
+        public int ApprenticeshipId() => _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner() : _apprenticeid;
 
         private int _apprenticeid;
 
-        private int GetApprenticeshipIdForCurrentLearner(string title)
+        private int GetApprenticeshipIdForCurrentLearner()
         {
-            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(ApprenticeULN, title);
+            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(ApprenticeULN);
             _objectContext.SetApprenticeId(_apprenticeid);
             return _apprenticeid;
         }

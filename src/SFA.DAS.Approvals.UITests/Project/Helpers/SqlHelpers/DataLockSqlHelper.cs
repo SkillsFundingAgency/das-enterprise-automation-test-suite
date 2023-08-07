@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         {
             string sqlQueryFromFile = FileHelper.GetSql(type);
 
-            _apprenticeshipId = _dataHelper.ApprenticeshipId(_title);
+            _apprenticeshipId = _dataHelper.ApprenticeshipId();
 
             bool DoesRecordExistOnDataLockStatusTable = (ExistingRecordOnDataLockStatusTable(_apprenticeshipId) == "") ? false : true;
             

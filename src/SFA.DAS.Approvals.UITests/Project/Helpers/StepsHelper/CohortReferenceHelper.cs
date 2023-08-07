@@ -31,11 +31,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             string ULN = Convert.ToString(_dataHelper.ApprenticeULN);
 
-            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN, _context.ScenarioInfo.Title);
+            var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReference(ULN);
 
             UpdateCohortReference(cohortRef);
         }
-
-
     }
 }
