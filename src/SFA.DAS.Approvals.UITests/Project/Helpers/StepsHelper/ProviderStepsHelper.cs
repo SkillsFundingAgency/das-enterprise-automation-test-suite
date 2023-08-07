@@ -245,14 +245,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                var ulnFields = providerApproveApprenticeDetailsPage.ApprenticeUlns().Reverse<IWebElement>();
-                int j = ulnFields.Count() - 1;
-
-                foreach (IWebElement uln in ulnFields)
+                foreach (var uln in providerApproveApprenticeDetailsPage.ApprenticeUlns().ToList())
                 {
                     if (uln.Text.Equals("-"))
                     {
-                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j, isPilotLearner);
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i, isPilotLearner);
 
                         _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
@@ -262,7 +259,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
                         break;
                     }
-                    j--;
                 }
             }
 
@@ -336,12 +332,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void ViewApprentices()
         {
             ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new(_context);
+            
             int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
-            for (int i = 0; i < totalApprentices; i++)
-            {
-                _providerViewYourCohortPage.SelectViewApprentice(i)
-                    .SelectReturnToCohortView();
-            }
+
+            for (int i = 0; i < totalApprentices; i++) _providerViewYourCohortPage.SelectViewApprentice(i).SelectReturnToCohortView();
         }
 
         private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int numberOfApprentices)
