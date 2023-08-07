@@ -31,8 +31,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ExistingAccountSteps _existingAccountSteps;
         private readonly FlexiPaymentProviderSteps _flexiPaymentProviderSteps;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-        private List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices;
-
 
         public FlexiPaymentsSteps(ScenarioContext context)
         {
