@@ -95,12 +95,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void GivenPilotProviderAddsApprenticesToTheCohortWithtTheFollowingDetails(Table table) => _providerStepsHelper.PilotProviderAddApprentice(ReadApprenticeData(table));
 
         [When(@"employer reviews and approves the cohort")]
-        public void WhenEmployerReviewsAndApprovesTheCohort()
-        {
-            new EmployerStepsHelper(_context)
-               .EmployerReviewCohort()
-               .EmployerDoesSecondApproval();
-        }
+        public void WhenEmployerReviewsAndApprovesTheCohort() => new EmployerStepsHelper(_context).EmployerReviewCohort().EmployerDoesSecondApproval();
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
         public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(ReadApprenticeData(table), false);
@@ -113,12 +108,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputCommitmentData = table.Rows[i].CreateInstance<FlexiPaymentsCommitmentsDataModel>();
 
-                var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(_objectContext.Get($"ULN{inputCommitmentData.ULNKey}"));
+                var (isPilot, fromDate, toDate, cost) = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(_objectContext.Get($"ULN{inputCommitmentData.ULNKey}"));
 
-                Assert.That(Boolean.Parse(commitmentDbData.isPilot), Is.EqualTo(inputCommitmentData.IsPilot), "Incorrect Pilot status found in commitments db");
-                Assert.That(DataHelpers.TryParseDate(commitmentDbData.fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), "Incorrect PriceEpisode From Date found in commitments db");
-                Assert.That(DataHelpers.TryParseDate(commitmentDbData.toDate), Is.EqualTo(inputCommitmentData.PriceEpisodeToDate), "Incorrect PriceEpisode To Date found in commitments db");
-                Assert.That(double.Parse(commitmentDbData.cost), Is.EqualTo(inputCommitmentData.PriceEpisodeCost), "Incorrect PriceEpisode Cost found in commitments db");
+                Assert.Multiple(() => 
+                {
+                    Assert.That(Boolean.Parse(isPilot), Is.EqualTo(inputCommitmentData.IsPilot), "Incorrect Pilot status found in commitments db");
+                    Assert.That(DataHelpers.TryParseDate(fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), "Incorrect PriceEpisode From Date found in commitments db");
+                    Assert.That(DataHelpers.TryParseDate(toDate), Is.EqualTo(inputCommitmentData.PriceEpisodeToDate), "Incorrect PriceEpisode To Date found in commitments db");
+                    Assert.That(double.Parse(cost), Is.EqualTo(inputCommitmentData.PriceEpisodeCost), "Incorrect PriceEpisode Cost found in commitments db");
+                });
             }
         }
 
@@ -129,11 +127,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputEarningsData = table.Rows[i].CreateInstance<FlexiPaymentsEarningDataModel>();
 
-                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"), true);
+                var (monthlyOnProgramPayment, totalOnProgramPayment, numberOfDeliveryMonths) = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"), true);
 
-                Assert.That(Math.Round(double.Parse(earningsDbData.totalOnProgramPayment)), Is.EqualTo(inputEarningsData.TotalOnProgramPayment), "Incorrect total on-program payment found in earnings db");
-                Assert.That(Math.Round(double.Parse(earningsDbData.monthlyOnProgramPayment)), Is.EqualTo(inputEarningsData.MonthlyOnProgramPayment), "Incorrect monthly on-program payment found in earnings db");
-                Assert.That(Int32.Parse(earningsDbData.numberOfDeliveryMonths), Is.EqualTo(inputEarningsData.NumberOfDeliveryMonths), "Incorrect number of delivery months found in earnings db");
+                Assert.Multiple(() => 
+                {
+                    Assert.That(Math.Round(double.Parse(totalOnProgramPayment)), Is.EqualTo(inputEarningsData.TotalOnProgramPayment), "Incorrect total on-program payment found in earnings db");
+                    Assert.That(Math.Round(double.Parse(monthlyOnProgramPayment)), Is.EqualTo(inputEarningsData.MonthlyOnProgramPayment), "Incorrect monthly on-program payment found in earnings db");
+                    Assert.That(Int32.Parse(numberOfDeliveryMonths), Is.EqualTo(inputEarningsData.NumberOfDeliveryMonths), "Incorrect number of delivery months found in earnings db");
+                });
             }
         }
 
@@ -166,11 +167,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             {
                 var inputEarningsData = table.Rows[i].CreateInstance<FlexiPaymentsEarningDataModel>();
 
-                var earningsDbData = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"), false);
+                var (monthlyOnProgramPayment, totalOnProgramPayment, numberOfDeliveryMonths) = _earningsSqlDbHelper.GetEarnings(_objectContext.Get($"ULN{inputEarningsData.ULNKey}"), false);
 
-                Assert.IsEmpty(earningsDbData.totalOnProgramPayment, "Incorrect total on-program payment found in earnings db");
-                Assert.IsEmpty(earningsDbData.monthlyOnProgramPayment, "Incorrect total on-program payment found in earnings db");
-                Assert.IsEmpty(earningsDbData.numberOfDeliveryMonths, "Incorrect total on-program payment found in earnings db");
+                Assert.Multiple(() => 
+                {
+                    Assert.IsEmpty(totalOnProgramPayment, "Incorrect total on-program payment found in earnings db");
+                    Assert.IsEmpty(monthlyOnProgramPayment, "Incorrect total on-program payment found in earnings db");
+                    Assert.IsEmpty(numberOfDeliveryMonths, "Incorrect total on-program payment found in earnings db");
+                });
             }
         }
 
