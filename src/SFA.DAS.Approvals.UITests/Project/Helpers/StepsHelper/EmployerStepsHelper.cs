@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
         protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
         private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
-
+        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
@@ -34,6 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -150,23 +151,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private ApproveApprenticeDetailsPage AddApprentices(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
         {
-            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
-            {
-                _context.Replace(apprentice.Item1);
-                _context.Replace(apprentice.Item2);
-            }
-
-            var firstApprentice = listOfApprentice[0];
-
-            ReplaceInContext(firstApprentice);
+            _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(0);
 
             var employerReviewYourCohortPage = EmployerAddApprenticeFromHomePage();
 
             for (int i = 1; i < listOfApprentice.Count; i++)
             {
-                var apprentice = listOfApprentice[i];
-
-                ReplaceInContext(apprentice);
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
                 employerReviewYourCohortPage = SubmitValidTrainingDetails(employerReviewYourCohortPage);
             }

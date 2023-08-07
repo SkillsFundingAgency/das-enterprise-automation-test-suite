@@ -55,10 +55,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderSelectsFlexi_JobAgencyRadioButtonOnSelectDeliveryModelScreen() => _providerAddApprenticeDetailsPage = _providerStepsHelper.AddApprenticeAndSelectFlexiJobAgencyDeliveryModel();
 
         [When(@"the provider opts (.*) learner into the pilot")]
-        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, true);
+        public void WhenTheProviderOptsLearnerIntoThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(numberOfApprentices);
 
         [When(@"the provider opts (.*) learner out of the pilot")]
-        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprenticeForFlexiPaymentsProvider(numberOfApprentices, false);
+        public void WhenTheProviderOptsLearnerOutOfThePilot(int numberOfApprentices) => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(numberOfApprentices);
 
         [When(@"the provider sends the cohort to employer to approve")]
         public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();

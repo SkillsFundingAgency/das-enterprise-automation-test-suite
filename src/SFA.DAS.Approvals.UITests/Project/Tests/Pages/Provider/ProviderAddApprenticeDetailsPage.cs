@@ -69,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
         }
 
-        public void SubmitValidPersonalDetails()
+        private void SubmitValidPersonalDetails()
         {
             if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
             else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());

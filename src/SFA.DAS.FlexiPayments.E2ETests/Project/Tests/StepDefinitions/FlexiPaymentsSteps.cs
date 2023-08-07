@@ -33,6 +33,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ApprenticeDetailsPage _apprenticeDetailsPage;
         private List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices;
 
+
         public FlexiPaymentsSteps(ScenarioContext context)
         {
             _context = context;
@@ -102,8 +103,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                .EmployerReviewCohort()
                .EmployerDoesSecondApproval();
         }
-
-
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
         public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(ReadApprenticeData(table), false);
@@ -180,9 +179,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"Employer searches learner (.*) on Manage your apprentices page")]
         public void WhenEmployerSearchesLearnerOnManageYourApprenticesPage(int learnerNumber)
         {
-            listOfApprentices = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>();
-
-            _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
+            _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(learnerNumber);
 
             _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
         }
@@ -190,11 +187,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenEmployerCannotMakeChangesToFullyApprovedLearner(string action, int learnerNumber)
         {
-            _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(listOfApprentices, learnerNumber);
+            _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(learnerNumber);
 
             _apprenticeDetailsPage.ValidateEmployerEditApprovedApprentice(action == "can");
         }
-
 
         public List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
         {

@@ -14,29 +14,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ScenarioContext _context;
 
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
+        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
 
         public NonLevyReservationStepsHelper(ScenarioContext context)
         {
             _context = context;
             _employerReservationStepsHelper = new ManageFundingEmployerStepsHelper(_context);
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
+            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
         }
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
-            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
-            {
-                _context.Replace(apprentice.Item1);
-                _context.Replace(apprentice.Item2);
-            }
-
             int noOfApprentice = listOfApprentice.Count;
 
             AddApprenticeDetailsPage addApprenticeDetailsPage;
 
             for (int i = 0; i < noOfApprentice; i++)
             {
-                ReplaceInContext(listOfApprentice[i]);
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
                 if (i == 0)
                 {
