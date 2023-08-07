@@ -69,10 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return uln;
         }
 
-        public int ApprenticeshipId(string title)
-        {
-            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner(title) : _apprenticeid;
-        }
+        public int ApprenticeshipId(string title) => _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner(title) : _apprenticeid;
 
         private int _apprenticeid;
 

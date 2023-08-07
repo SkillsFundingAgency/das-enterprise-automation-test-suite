@@ -286,9 +286,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerApproveApprenticeDetailsPage;
         }
 
-        public ProviderApproveApprenticeDetailsPage EditFlexiPilotLeaner(bool isPilotLearner) => EditFlexiPaymentsPilotApprentice(CurrentCohortDetails(), isPilotLearner);
-
-        public ProviderApproveApprenticeDetailsPage ApproveFlexiPilotCohort(bool isPilotLearner) => EditFlexiPilotLeaner(isPilotLearner);
+        public ProviderApproveApprenticeDetailsPage ApproveFlexiPilotCohort(bool isPilotLearner) => EditFlexiPaymentsPilotApprentice(CurrentCohortDetails(), isPilotLearner);
 
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {

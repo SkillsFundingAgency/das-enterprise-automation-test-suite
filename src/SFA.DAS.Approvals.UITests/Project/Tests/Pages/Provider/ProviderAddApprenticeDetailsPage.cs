@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
-        protected By AddButton => By.XPath("//button[contains(text(),'Add')]");
+        private static By AddButton => By.XPath("//button[contains(text(),'Add')]");
         private static By DeliveryModelLabel => By.Id("delivery-model-label");
         private static By DeliveryModelType => By.Id("delivery-model-value");
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");

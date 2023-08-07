@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
 
-        public void UpdateNewCohortReference()
+        public void UpdateCohortReference()
         {
             string ULN = Convert.ToString(_dataHelper.Ulns.First());
 

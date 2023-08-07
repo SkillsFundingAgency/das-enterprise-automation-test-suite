@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 var result = new BulkUploadApprenticeDetails(courseCode, agreementId, datahelper.ApprenticeDob, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
                 {
                     CohortRef = cohortRef,
-                    ULN = datahelper.Uln(),
+                    ULN = RandomDataGenerator.GenerateRandomUln(),
                     FamilyName = datahelper.ApprenticeLastname,
                     GivenNames = datahelper.ApprenticeFirstname,
                     TotalPrice = datahelper.TrainingCost,

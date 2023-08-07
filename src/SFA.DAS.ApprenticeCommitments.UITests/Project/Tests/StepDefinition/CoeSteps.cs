@@ -46,7 +46,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
             _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.LeftEmployer);
             _providerStepsHelper.StartChangeOfEmployerJourney();
-            _cohortReferenceHelper.UpdateNewCohortReference();
+            _cohortReferenceHelper.UpdateCohortReference();
 
             _objectContext.UpdateOrganisationName(_changeOfEmployerLevyUser.SecondOrganisationName);
             _employerStepsHelper.Approve();

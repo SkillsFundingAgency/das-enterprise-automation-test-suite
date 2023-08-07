@@ -1,4 +1,5 @@
-﻿using SFA.DAS.MongoDb.DataGenerator.Helpers;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
@@ -28,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
 
         public BulkUploadApprenticeDetails(ApprenticeDataHelper x, ApprenticeCourseDataHelper y, string agreementId) : this(int.Parse(y.CourseLarsCode), agreementId, x.ApprenticeDob, y.CourseStartDate, y.CourseEndDate)
         {
-            ULN = x.Uln();
+            ULN = RandomDataGenerator.GenerateRandomUln();
             FamilyName = x.ApprenticeLastname;
             GivenNames = x.ApprenticeFirstname;
             TotalPrice = x.TrainingCost;

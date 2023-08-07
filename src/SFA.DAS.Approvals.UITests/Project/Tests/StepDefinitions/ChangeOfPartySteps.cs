@@ -285,7 +285,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.Approve();
         }
 
-        private void UpdateNewCohortReference() => _cohortReferenceHelper.UpdateNewCohortReference();
+        private void UpdateNewCohortReference() => _cohortReferenceHelper.UpdateCohortReference();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }
