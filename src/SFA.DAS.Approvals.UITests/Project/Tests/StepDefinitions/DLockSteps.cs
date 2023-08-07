@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
@@ -29,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider submit an ILR with price mismatch")]
         [When(@"the provider submit another ILR with price mismatch")]
         public void WhenTheProviderSubmitAnILRWithPriceMismatch() => _dlockDataHelper.SubmitILRWithPriceMismatch();
-        
+
         [When(@"the provider submit an ILR with course mismatch")]
         [When(@"the provider submit another ILR with course mismatch")]
         public void WhenTheProviderSubmitAnILRWithCourseMismatch() => _dlockDataHelper.SubmitILRWithCourseMismatch();
@@ -63,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var rows = GetRowCountForMismatch();
 
-            Assert.IsTrue(rows["CourseMismatchRows"] == 0, "validate no course mismatch row is displayed");  
+            Assert.IsTrue(rows["CourseMismatchRows"] == 0, "validate no course mismatch row is displayed");
             Assert.IsTrue(rows["PriceMismatchRows"] == 4, "validate 1 price mismatch row is displayed");        //1 row is split b/w 2 grids
         }
 
@@ -78,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer can stop the live apprentice")]
-        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.Withdrawn); 
+        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.Withdrawn);
 
         [Then(@"the Employer can stop the waiting to start apprentice")]
         public void ThenTheEmployerCanStopTheWaitingToStartApprentice()
@@ -112,14 +111,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ConfirmIlrismatch()
         {
-                SelectViewCurrentApprenticeDetails()
-                .ClickViewIlrMismatchDetails()
-                .RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
-                .ConfirmRequestToFixILRMismatch()
-                .ConfirmChangeRequestPendingMessage();
+            SelectViewCurrentApprenticeDetails()
+            .ClickViewIlrMismatchDetails()
+            .RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
+            .ConfirmRequestToFixILRMismatch()
+            .ConfirmChangeRequestPendingMessage();
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => 
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
             _providerStepsHelper.GoToProviderHomePage(false).GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
         private Dictionary<string, int?> GetRowCountForMismatch() => SelectViewCurrentApprenticeDetails().ClickViewIlrMismatchDetails().GetRowCountForMismatch();
