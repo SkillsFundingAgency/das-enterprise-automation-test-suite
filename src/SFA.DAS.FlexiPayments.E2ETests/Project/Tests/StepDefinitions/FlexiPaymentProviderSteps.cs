@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Polly;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Transfers.UITests.Project.Helpers;

@@ -201,14 +201,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                var ulnFields = providerApproveApprenticeDetailsPage.ApprenticeUlns().Reverse<IWebElement>();
-                int j = ulnFields.Count() - 1;
-
-                foreach (IWebElement uln in ulnFields)
+                foreach (IWebElement uln in providerApproveApprenticeDetailsPage.ApprenticeUlns().ToList())
                 {
                     if (uln.Text.Equals("-"))
                     {
-                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(j);
+                        var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
+
+                        _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
                         if (shouldCheckCoursesAreStandards)
                             providerEditApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
@@ -216,24 +215,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                         providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
                     }
-                    j--;
                 }
             }
-            return providerApproveApprenticeDetailsPage;
-        }
-
-        public ProviderApproveApprenticeDetailsPage EditApprenticeForRPL()
-        {
-            ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage = CurrentCohortDetails();
-
-            var totalNoOfApprentices = providerApproveApprenticeDetailsPage.TotalNoOfApprentices();
-
-            for (int i = 0; i < totalNoOfApprentices; i++)
-            {
-                var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
-                providerEditApprenticeDetailsPage.EnterUlnAndSave();
-            }
-
             return providerApproveApprenticeDetailsPage;
         }
 
