@@ -146,7 +146,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCohortApprovedPage ValidateFlexiJobTagAndSubmitApprove()
         {
-            validateFlexiJobAgencyTag();
+            ValidateFlexiJobAgencyTag();
             return SubmitApprove();
         }
 

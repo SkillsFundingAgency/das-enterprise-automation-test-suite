@@ -91,7 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
 
-        private void ValidateFlexiJobAgencyTag() => _approveApprenticeDetailsPage.validateFlexiJobAgencyTag();
+        private void ValidateFlexiJobAgencyTag() => _approveApprenticeDetailsPage.ValidateFlexiJobAgencyTag();
 
         private void SetCohortReference(string cohortReference) { _cohortReferenceHelper.SetCohortReference(cohortReference); _objectContext.SetNoOfApprentices(1); }
     }
