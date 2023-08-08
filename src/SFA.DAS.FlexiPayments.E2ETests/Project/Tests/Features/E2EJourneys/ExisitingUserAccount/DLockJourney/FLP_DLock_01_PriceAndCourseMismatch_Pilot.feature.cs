@@ -21,14 +21,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FLP_DLock_01_PriceAndCourseMismatch_Pilot")]
-    [NUnit.Framework.CategoryAttribute("flexi-payments")]
     public partial class FLP_DLock_01_PriceAndCourseMismatch_PilotFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "flexi-payments"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "FLP_DLock_01_PriceAndCourseMismatch_Pilot.feature"
 #line hidden
@@ -80,12 +78,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("dlockscenarios")]
+        [NUnit.Framework.CategoryAttribute("flexi-payments")]
         public void FLP_DLock_01_PriceAndCourseMismatch_Pilot_DisplayPilotDLockMessage()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "liveapprentice",
-                    "dlockscenarios"};
+                    "dlockscenarios",
+                    "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_DLock_01_PriceAndCourseMismatch_Pilot - Display Pilot DLock Message", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7

@@ -10,10 +10,8 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -53,7 +51,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void GivenFullyApprovedApprenticesWithTheBelowData(Table table)
         {
             _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount("Levy");
-            
+
             _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));
 
             _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
@@ -213,7 +211,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
 
-            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
+            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(_context.ScenarioInfo.Tags, inputData.DateOfBirth), _objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
 
