@@ -1,8 +1,8 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {

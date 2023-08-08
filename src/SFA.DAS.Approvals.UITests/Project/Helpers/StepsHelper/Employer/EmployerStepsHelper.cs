@@ -9,8 +9,9 @@ using SFA.DAS.TestDataExport;
 using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class EmployerStepsHelper
     {
@@ -165,7 +166,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return SetApprenticeDetails(employerReviewYourCohortPage, listOfApprentice.Count);
         }
 
-        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices) 
+        private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices)
             => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
             => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);

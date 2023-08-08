@@ -5,11 +5,12 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FlexiJobSteps
+    public class FlexiEmployerSteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -20,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
 
-        public FlexiJobSteps(ScenarioContext context)
+        public FlexiEmployerSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();

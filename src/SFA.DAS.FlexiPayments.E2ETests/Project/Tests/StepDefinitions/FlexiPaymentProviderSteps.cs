@@ -30,7 +30,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [Given(@"the provider adds Ulns and opts the learners out of the pilot")]
         [When(@"the provider adds Ulns and opts the learners out of the pilot")]
-        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(false);
+        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditFlexiPilotApprentice(false);
 
         [When(@"Provider successfully approves the cohort")]
         [Then(@"Provider successfully approves the cohort")]
@@ -38,7 +38,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [Given(@"the provider adds Ulns and Opt the learners into the pilot")]
         [When(@"the provider adds Ulns and Opt the learners into the pilot")]
-        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.ApproveFlexiPilotCohort(true);
+        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditFlexiPilotApprentice(true);
 
         [Given(@"the provider adds Uln and Opt learner (.*) into the pilot")]
         public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);

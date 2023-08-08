@@ -11,6 +11,8 @@ using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {

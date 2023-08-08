@@ -17,6 +17,8 @@ using TechTalk.SpecFlow.Assist;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {

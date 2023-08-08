@@ -15,6 +15,8 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using System;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
