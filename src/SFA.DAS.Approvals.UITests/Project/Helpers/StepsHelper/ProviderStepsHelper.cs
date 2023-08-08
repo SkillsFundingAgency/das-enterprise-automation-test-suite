@@ -8,7 +8,6 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -261,7 +260,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .EnterUlnAndSave();
         }
 
-  
+
         public ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
             _setApprenticeDetailsHelper.SetApprenticeDetails(providerApproveApprenticeDetailsPage);
@@ -319,7 +318,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void ViewApprentices()
         {
             ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new(_context);
-            
+
             int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
 
             for (int i = 0; i < totalApprentices; i++) _providerViewYourCohortPage.SelectViewApprentice(i).SelectReturnToCohortView();
