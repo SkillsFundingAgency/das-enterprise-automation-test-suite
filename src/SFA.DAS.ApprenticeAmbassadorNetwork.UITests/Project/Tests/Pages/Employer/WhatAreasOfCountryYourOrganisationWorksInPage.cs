@@ -37,6 +37,13 @@
             return new LocalAreaToEngage(context);
         }
 
+        public PrimarilyEnagageWithinNetworkPage Add1MoreRegionsAndContinue()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(EastMidlandsRadio);
+            Continue();
+            return new PrimarilyEnagageWithinNetworkPage(context);
+        }
+
         public PrimarilyEnagageWithinNetworkPage UserSelectMoreThan4Regions()
         {
             formCompletionHelper.SelectRadioOptionByLocator(EastMidlandsRadio);
