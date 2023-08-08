@@ -267,7 +267,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderApproveApprenticeDetailsPage EditSpecificFlexiPaymentsPilotApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int learnerToEdit, bool isPilotLearner)
         {
-            var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(learnerToEdit - 1);
+            int apprentice = learnerToEdit - 1;
+
+            _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(apprentice);
+
+            var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(apprentice);
 
             return providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
                 .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
