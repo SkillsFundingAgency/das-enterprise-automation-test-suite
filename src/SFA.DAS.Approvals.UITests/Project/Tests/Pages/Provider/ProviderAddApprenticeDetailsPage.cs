@@ -18,20 +18,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
         private static By Uln => By.Id("Uln");
 
-        public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context) 
+        public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
         {
             _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
         }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
-        {
-            SubmitValidPersonalDetails();
-            SubmitValidTrainingDetails();
-
-            return new ProviderApproveApprenticeDetailsPage(context);
-        }
-
-        public ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider()
         {
             EnterUln();
             EnterApprenticeMandatoryValidDetails();
@@ -44,13 +36,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SubmitValidTrainingDetails()
         {
-            if (objectContext.HasStartDate()) EnterTrainingStartDate(objectContext.GetStartDate());
-            else EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
-
+            EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers() && !_isFlexiPaymentPilotLearner) EnterStartDate(DateTime.Now);
 
-            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             if (_isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
@@ -71,8 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SubmitValidPersonalDetails()
         {
-            if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
-            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.ApprenticeULN);
+            EnterUln();
 
             EnterApprenticeMandatoryValidDetails();
 
@@ -81,12 +69,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
         {
-            SubmitValidPersonalDetails();
+            EnterUln(objectContext.GetUlnForOLTD());
 
-            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
+            EnterApprenticeName();
+
+            EnterApprenticeEmail($"NEW_{apprenticeDataHelper.ApprenticeEmail}");
+
+            EnterDob();
+
             EnterStartDate(objectContext.GetStartDate());
 
-            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
@@ -146,7 +139,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
         }
 
-        private void EnterUln() => formCompletionHelper.EnterText(Uln, apprenticeDataHelper.ApprenticeULN);
+        private void EnterUln() => EnterUln(apprenticeDataHelper.ApprenticeULN);
+
+        private void EnterUln(string uln) => formCompletionHelper.EnterText(Uln, uln);
 
         private void AddPlannedEndDateDay(DateTime dateTime) => formCompletionHelper.EnterText(EndDateDay, dateTime.Day);
     }

@@ -34,7 +34,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
         private int _oldCost;
 
         public OverlappingTrainingDateRequestSteps(ScenarioContext context)
@@ -48,7 +47,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _homePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
         }
 
         [Given(@"Employer and provider approve an apprentice")]
@@ -71,8 +69,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             SetUlnForOLTD();
 
             _objectContext.SetStartDate(twoMonthsOldDateTime.ToString("01-MM-yyyy"));
-
-            _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(1);
 
             ProviderSelectsAStandard(false).SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }

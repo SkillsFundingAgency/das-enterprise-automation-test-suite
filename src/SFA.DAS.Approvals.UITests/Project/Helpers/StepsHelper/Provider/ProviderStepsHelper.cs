@@ -317,15 +317,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         private ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails(ProviderApproveApprenticeDetailsPage providerReviewYourCohortPage)
             => providerReviewYourCohortPage.SelectAddAnApprenticeForFlexiPaymentsProvider()
                 .MakePaymentsPilotSelectionAndContinueToSelectStandardPage(true)
-                .ProviderSelectsAStandardForFlexiPaymentsPilot()
-                .SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider();
+                .ProviderSelectsAStandard()
+                .SubmitValidApprenticeDetails();
 
         private ProviderApproveApprenticeDetailsPage PilotProviderAddApprentice()
           => ChooseALevyEmployer()
             .ConfirmEmployerForFlexiTrainingProvider()
             .MakePaymentsPilotSelectionAndContinueToSelectStandardPage(true)
-            .ProviderSelectsAStandardForFlexiPaymentsPilot()
-            .SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider();
+            .ProviderSelectsAStandard()
+            .SubmitValidApprenticeDetails();
 
 
         private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage approvePage, int numberOfApprentices) => _providerCommonStepsHelper.SetApprenticeDetails(approvePage, numberOfApprentices);
