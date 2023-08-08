@@ -60,14 +60,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
 
-            int index = 0;
+            int i = 1;
 
             foreach (var row in table.Rows)
             {
-                index++;
                 var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
-                if (inputData.PilotStatus) _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerIntoThePilot(index);
-                else _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerOutOfThePilot(index);
+
+                ProviderAddsUln(inputData.PilotStatus, i++);
             }
 
             _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
@@ -84,12 +83,16 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
 
-            if (pilotStatus == "Pilot") _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerIntoThePilot(1);
-            else _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerOutOfThePilot(1);
+            ProviderAddsUln(pilotStatus == "Pilot", 1);
 
             _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
         }
 
+        private void ProviderAddsUln(bool isPilot, int i)
+        {
+            if (isPilot) _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerIntoThePilot(i);
+            else _flexiPaymentProviderSteps.ProviderAddsUlnAndOptLearnerOutOfThePilot(i);
+        }
 
         [Given(@"Employer adds apprentices to the cohort with the following details")]
         public void GivenEmployerAddsApprenticesToTheCohortWithTheFollowingDetails(Table table) => _employerStepsHelper.EmployerAddApprentice(ReadApprenticeData(table));
