@@ -16,12 +16,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => $"Give feedback to {rAAV2DataHelper.CandidateFullName}";
 
-        public ProviderAreYouSureYouWantToMakeUnSuccessful FeedbackForUnsuccessful()
+        public ProviderAreYouSureUnSuccessfulPage FeedbackForUnsuccessful()
         {
             var messsage = rAAV2DataHelper.OptionalMessage;
             formCompletionHelper.EnterText(CandidateFeedback, messsage);
             formCompletionHelper.Click(ConfirmButton);
-            return new ProviderAreYouSureYouWantToMakeUnSuccessful(context, messsage);
+            return new ProviderAreYouSureUnSuccessfulPage(context, messsage);
         }
     }
 }

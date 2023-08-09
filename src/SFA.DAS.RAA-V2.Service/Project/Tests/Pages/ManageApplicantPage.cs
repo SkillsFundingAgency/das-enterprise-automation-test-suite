@@ -15,9 +15,20 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
         {
-            SelectRadioOptionByForAttribute("outcome-successful");
-            formCompletionHelper.Click(SaveStatus);
+            Outcomesuccessful();
             return new ConfirmApplicantSucessfulPage(context);
+        }
+
+        public ProviderAreYouSureSuccessfulPage ProviderMakeApplicantSucessful()
+        {
+            Outcomesuccessful();
+            return new ProviderAreYouSureSuccessfulPage(context);
+        }
+
+        private void Outcomesuccessful()
+        {
+            SelectRadioOptionByForAttribute("outcome-successful");
+            SaveAndContinue();
         }
 
         public ConfirmApplicantUnsuccessfulPage MakeApplicantUnsucessful()
@@ -35,7 +46,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private void OutcomeUnsuccessful()
         {
             SelectRadioOptionByForAttribute("outcome-unsuccessful");
-            formCompletionHelper.Click(SaveStatus);
+            SaveAndContinue();
         }
+
+        private new void SaveAndContinue() => formCompletionHelper.Click(SaveStatus);
     }
 }

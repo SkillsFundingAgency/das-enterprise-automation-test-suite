@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             => providerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
 
         public void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
-            => providerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+            => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantSucessful().ConfirmSuccessful();
 
         public void ApplicantUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantUnsucessful().FeedbackForUnsuccessful().ConfirmUnsuccessful();
