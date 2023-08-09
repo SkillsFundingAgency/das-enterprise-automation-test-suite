@@ -1,6 +1,8 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
@@ -183,7 +185,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ProviderEditsCostAndCourse() => ProviderEditApprentice().EditCostCourseAndReference().AcceptChangesAndSubmit();
 
-        private void SetHasHadDataLockSuccessTrue() => _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
+        private void SetHasHadDataLockSuccessTrue() => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(_dataHelper.ApprenticeULN);
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
                 _providerStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();

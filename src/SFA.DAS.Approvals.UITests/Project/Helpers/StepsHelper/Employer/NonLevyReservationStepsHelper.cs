@@ -1,54 +1,52 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class NonLevyReservationStepsHelper
     {
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private readonly ManageFundingEmployerStepsHelper _employerReservationStepsHelper;
         private readonly ScenarioContext _context;
-        
+
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
+        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
 
         public NonLevyReservationStepsHelper(ScenarioContext context)
         {
             _context = context;
             _employerReservationStepsHelper = new ManageFundingEmployerStepsHelper(_context);
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
+            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
         }
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
-            void ReplaceInContext((ApprenticeDataHelper, ApprenticeCourseDataHelper) apprentice)
+            int noOfApprentice = listOfApprentice.Count;
+
+            AddApprenticeDetailsPage addApprenticeDetailsPage;
+
+            for (int i = 0; i < noOfApprentice; i++)
             {
-                _context.Replace(apprentice.Item1);
-                _context.Replace(apprentice.Item2);
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
+
+                if (i == 0)
+                {
+                    addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails().EmployerAddsApprentices().EmployerSelectsAStandard();
+                }
+                else
+                {
+                    addApprenticeDetailsPage = AddAnotherApprentice(_approveApprenticeDetailsPage);
+                }
+
+                _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, shouldConfirmOnlyStandardCoursesSelectable);
             }
-            var firstApprentice = listOfApprentice.First();
 
-            ReplaceInContext(firstApprentice);
 
-            var startAddingApprenticesPage = NonLevyEmployerAddsProviderDetails();
-
-            var addPersonalDetailsPage = startAddingApprenticesPage.EmployerAddsApprentices().EmployerSelectsAStandard();
-
-            foreach (var apprentice in listOfApprentice)
-            {
-                ReplaceInContext(apprentice);
-
-                _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addPersonalDetailsPage, shouldConfirmOnlyStandardCoursesSelectable);
-
-                bool IslastItem = listOfApprentice.IndexOf(apprentice) == listOfApprentice.Count - 1;
-
-                if (!IslastItem) addPersonalDetailsPage = AddAnotherApprentice(_approveApprenticeDetailsPage);
-            }
-            
             return SetApprenticeDetails(listOfApprentice.Count);
         }
 

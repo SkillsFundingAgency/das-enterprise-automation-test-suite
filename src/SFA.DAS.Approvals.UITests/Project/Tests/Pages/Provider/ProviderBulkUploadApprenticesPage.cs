@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System;
@@ -14,9 +15,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderBulkUploadApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Bulk upload apprentices";
-        private By ChooseFileButton => By.Id("files-upload");
-        private By UploadFileButton => By.Id("submit-upload-apprentices");
-        private By TableCells => By.ClassName("govuk-table__row");
+        private static By ChooseFileButton => By.Id("files-upload");
+        private static By UploadFileButton => By.Id("submit-upload-apprentices");
+        private static By TableCells => By.ClassName("govuk-table__row");
 
         public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) { }
 
@@ -37,8 +38,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             for (int i = 0; i < numberOfApprentices; i++)
             {
-                Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(apprenticeDataHelper.Ulns[i]),
-                    $"Unable to locate ULN: {apprenticeDataHelper.Ulns[i]} on 'Approve apprentices details' page");
+                string uln = ApprenticeList[i].ULN;
+
+                Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(uln), $"Unable to locate ULN: {uln} on 'Approve apprentices details' page");
             }
             
             return new ProviderApproveApprenticeDetailsPage(context);
@@ -63,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new BulkUploadApprenticeDetails(courseCode, agreementId, dateOfBirth, startDate, endDate)
             {
                 CohortRef = objectContext.GetCohortReference(),
-                ULN = apprenticeDataHelper.Uln(),
+                ULN = RandomDataGenerator.GenerateRandomUln(),
                 FamilyName = apprenticeDataHelper.ApprenticeLastname,
                 GivenNames = apprenticeDataHelper.ApprenticeFirstname,
                 TotalPrice = apprenticeDataHelper.TrainingCost,

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Documents.SystemFunctions;
 using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.FrameworkHelpers;

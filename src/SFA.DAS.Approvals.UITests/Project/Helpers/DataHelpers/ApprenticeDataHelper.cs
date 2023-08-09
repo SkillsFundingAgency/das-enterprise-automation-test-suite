@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
+using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class ApprenticeDataHelper
     {
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
-        
+
         private readonly ObjectContext _objectContext;
 
         public readonly ApprenticePPIDataHelper apprenticePPIDataHelper;
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper) 
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper)
             : this(apprenticePPIDataHelper, objectContext, commitmentsdataHelper, string.Empty) { }
 
         public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost)
@@ -30,9 +28,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
             TrainingCost = trainingCost == string.Empty ? "1" + RandomDataGenerator.GenerateRandomNumber(3) : trainingCost;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
-            Ulns = new List<string>();
+            ApprenticeULN = RandomDataGenerator.GenerateRandomUln();
             _apprenticeid = 0;
         }
+
+        public string ApprenticeULN { get; set; }
 
         public string ApprenticeFirstname { get; set; }
 
@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public int DateOfBirthYear { get; set; }
 
-        public DateTime ApprenticeDob => new DateTime(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
+        public DateTime ApprenticeDob => new(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
 
         public string TrainingCost { get; set; }
 
@@ -58,27 +58,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
-        public string MessageToEmployer => $"Added {Ulns.ToString(",")} ulns, {MessageToProvider}";
+        public string MessageToEmployer => $"Added {ApprenticeULN} uln, {MessageToProvider}";
 
-        public List<string> Ulns { get; private set; }
-
-        public string Uln()
-        {
-            var uln = RandomDataGenerator.GenerateRandomUln();
-            Ulns.Add(uln);
-            return uln;
-        }
-
-        public int ApprenticeshipId(string title)
-        {
-            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner(title) : _apprenticeid;
-        }
+        public int ApprenticeshipId() => _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner() : _apprenticeid;
 
         private int _apprenticeid;
 
-        private int GetApprenticeshipIdForCurrentLearner(string title)
+        private int GetApprenticeshipIdForCurrentLearner()
         {
-            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single(), title);
+            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(ApprenticeULN);
             _objectContext.SetApprenticeId(_apprenticeid);
             return _apprenticeid;
         }

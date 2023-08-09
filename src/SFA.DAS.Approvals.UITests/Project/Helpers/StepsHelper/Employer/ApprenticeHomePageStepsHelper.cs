@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class ApprenticeHomePageStepsHelper
     {
