@@ -37,7 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
                                    _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
-                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
+                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
+                                   _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow: ApprenticeStatus.Random;
 
             commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
