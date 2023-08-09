@@ -202,9 +202,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
+
                 var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
-                providerApproveApprenticeDetailsPage =
-                    providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
+
+                providerApproveApprenticeDetailsPage = providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
                     .ProviderSelectsAStandardForEditApprenticeDetails()
                     .ClickSave();
