@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.RAA_V2_QA.UITests.Project
+﻿namespace SFA.DAS.RAA.DataGenerator.Project.Config
 {
     public class RAAV2QAConfig
     {

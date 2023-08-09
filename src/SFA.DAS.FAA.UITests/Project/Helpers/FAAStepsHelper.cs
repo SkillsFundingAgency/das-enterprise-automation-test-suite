@@ -69,7 +69,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
         {
-            accountCreationPage.SubmitAccountCreationDetails()
+            accountCreationPage.CreateAccount()
                 .EnterActivationCode()
                 .ClickSaveAndContinue()
                 .VerifyPhoneNumberVerificationText()
@@ -80,7 +80,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         public void CreateFAAAccountWithNoActivation(FAA_CreateAnAccountPage accountCreationPage)
         {
             var (username, password, _, _) = _objectContext.GetFAALogin();
-            accountCreationPage.SubmitAccountCreationDetails()
+            accountCreationPage.CreateAccount()
                 .ClickSignOut()
                 .SubmitUnactivatedLoginDetails(username, password);
         }

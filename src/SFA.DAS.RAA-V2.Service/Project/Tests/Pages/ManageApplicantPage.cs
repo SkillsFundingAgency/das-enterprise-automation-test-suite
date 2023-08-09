@@ -9,9 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "About you";
 
-        private By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
-
-        private By CandidateFeedback => By.CssSelector("#CandidateFeedback");
+        private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 
         public ManageApplicantPage(ScenarioContext context) : base(context) { }
 
@@ -22,12 +20,22 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ConfirmApplicantSucessfulPage(context);
         }
 
-        public ConfirmApplicantUnsucessfulPage MakeApplicantUnsucessful()
+        public ConfirmApplicantUnsuccessfulPage MakeApplicantUnsucessful()
+        {
+            OutcomeUnsuccessful();
+            return new ConfirmApplicantUnsuccessfulPage(context);
+        }
+
+        public ProviderGiveFeedbackPage ProviderMakeApplicantUnsucessful()
+        {
+            OutcomeUnsuccessful();
+            return new ProviderGiveFeedbackPage(context);
+        }
+
+        private void OutcomeUnsuccessful()
         {
             SelectRadioOptionByForAttribute("outcome-unsuccessful");
-            formCompletionHelper.EnterText(CandidateFeedback, rAAV2DataHelper.OptionalMessage);
             formCompletionHelper.Click(SaveStatus);
-            return new ConfirmApplicantUnsucessfulPage(context);
         }
     }
 }

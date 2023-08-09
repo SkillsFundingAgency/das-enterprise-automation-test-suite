@@ -16,7 +16,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             => providerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
         public void ApplicantUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
-            => providerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+            => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantUnsucessful().FeedbackForUnsuccessful().ConfirmUnsuccessful();
+
         public void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
         public void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
