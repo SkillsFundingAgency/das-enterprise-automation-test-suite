@@ -11,10 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     {
         private readonly List<CourseDetails> _availableCourses;
         
-        public RandomCourseDataHelper() 
-        {
-            _availableCourses = AvailableCourses.GetAvailableCourses();
-        }
+        public RandomCourseDataHelper() => _availableCourses = AvailableCourses.GetAvailableCourses();
 
         public RandomCourseDataHelper(DbConfig dbConfig, List<string> larsCode, bool isMultipleOptionStandard)
         {

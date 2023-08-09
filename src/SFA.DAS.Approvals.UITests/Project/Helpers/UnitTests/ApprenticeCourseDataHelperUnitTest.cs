@@ -97,6 +97,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             });
         }
 
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        [TestCase(10)]
+        [TestCase(11)]
+        [TestCase(12)]
+        [TestCase(13)]
+        [TestCase(14)]
+        [TestCase(15)]
+        [TestCase(16)]
+        [TestCase(17)]
+        [TestCase(18)]
+        [TestCase(19)]
+        public void StartDateIsFewMonthsBeforeNow(int _)
+        {
+            //Arrange 
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.StartDateIsFewMonthsBeforeNow);
+
+            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
+
+            //Assert
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date.AddMonths(-1) && apprentice.CourseStartDate.Date >= DateTime.Now.Date.AddMonths(-1).AddDays(-210));
+
+                Assert.IsTrue(AvailableCourses.GetAvailableCourses().Any(x => x.Course.larsCode == apprentice.CourseDetails.Course.larsCode));
+            });
+        }
+
         [TestCase(ApprenticeStatus.Live)]
         [TestCase(ApprenticeStatus.WaitingToStart)]
         public void SpecficlarsCode(ApprenticeStatus apprenticeStatus)
