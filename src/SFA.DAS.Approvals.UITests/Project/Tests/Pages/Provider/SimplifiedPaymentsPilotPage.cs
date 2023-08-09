@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -17,24 +12,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public SimplifiedPaymentsPilotPage(ScenarioContext context) : base(context) { }
 
-        public SelectStandardPage MakePaymentsPilotSelectionAndContinueToSelectStandardPage (bool OptIn)
+        public SelectStandardPage MakePaymentsPilotSelectionAndContinueToSelectStandardPage(bool OptIn)
         {
-            if (OptIn) SelectRadioOptionByForAttribute("confirm-Pilot");
-            else SelectRadioOptionByForAttribute("confirm-NonPilot");
-
-            formCompletionHelper.Click(ContinueButton);
+            SelectAndContinue(OptIn);
 
             return new SelectStandardPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(bool OptIn)
         {
+            SelectAndContinue(OptIn);
+
+            return new ProviderEditApprenticeDetailsPage(context, OptIn);
+        }
+
+        private void SelectAndContinue(bool OptIn)
+        {
             if (OptIn) SelectRadioOptionByForAttribute("confirm-Pilot");
             else SelectRadioOptionByForAttribute("confirm-NonPilot");
 
             formCompletionHelper.Click(ContinueButton);
-
-            return new ProviderEditApprenticeDetailsPage(context, OptIn);
         }
     }
 }

@@ -42,7 +42,6 @@ public static class WaitConfigurationHelper
     }
 }
 
-
 public static class SqlDatabaseConnectionHelper
 {
     public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
@@ -73,7 +72,9 @@ public static class SqlDatabaseConnectionHelper
         }
     }
 
-    public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, bool mustFindresult = false) => ReadDataFromDataBase(queryToExecute, connectionString, null, mustFindresult).data;
+    public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => ReadDataFromDataBase(queryToExecute, connectionString, false);
+
+    public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, bool mustFindresult) => ReadDataFromDataBase(queryToExecute, connectionString, null, mustFindresult).data;
 
     public static (List<object[]> data, int noOfColumns) ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters, bool mustFindresult) =>
         ReadMultipleDataFromDataBase(new List<string> { queryToExecute }, connectionString, parameters, mustFindresult).FirstOrDefault();

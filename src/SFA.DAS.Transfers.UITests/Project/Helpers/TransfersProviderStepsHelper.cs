@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers

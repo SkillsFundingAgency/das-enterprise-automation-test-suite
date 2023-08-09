@@ -57,14 +57,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public List<IWebElement> ApprenticeUlns() => pageInteractionHelper.FindElements(ApprenticeUlnField);
 
-        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0, bool isFlexiPaymentPilotLearner = false)
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice() => SelectEditApprentice(0, false);
+
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber) => SelectEditApprentice(apprenticeNumber, false);
+
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber, bool isFlexiPaymentPilotLearner)
         {
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
-            
+
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            
+
             ClickIfPirenIsDisplayed();
-            
+
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
@@ -142,7 +146,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCohortApprovedPage ValidateFlexiJobTagAndSubmitApprove()
         {
-            validateFlexiJobAgencyTag();
+            ValidateFlexiJobAgencyTag();
             return SubmitApprove();
         }
 
@@ -171,8 +175,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private void SelectOption(string option, bool sendMessageToEmployer = true)
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
-            if (sendMessageToEmployer)
-                formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);            
+
+            if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
+                
             Continue();
         }
 

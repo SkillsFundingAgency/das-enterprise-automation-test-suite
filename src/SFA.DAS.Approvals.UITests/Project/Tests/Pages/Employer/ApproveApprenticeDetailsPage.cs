@@ -109,7 +109,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeDetailsApprovedPage ValidateFlexiJobTagAndApprove()
         {
-            validateFlexiJobAgencyTag();
+            ValidateFlexiJobAgencyTag();
             return EmployerDoesSecondApproval();
         }
 

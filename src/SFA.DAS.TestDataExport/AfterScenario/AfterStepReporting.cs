@@ -17,7 +17,13 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             var stepInfo = _context.StepContext.StepInfo;
 
-            _context.Get<ObjectContext>().SetAfterStepInformation($"-> {StepOutcome()}: {stepInfo.StepDefinitionType} {stepInfo.Text}");
+            var objectContext = _context.Get<ObjectContext>();
+
+            var message = $"-> {StepOutcome()}: {stepInfo.StepDefinitionType} {stepInfo.Text}";
+
+            objectContext.SetAfterStepInformation(message);
+
+            objectContext.SetDebugInformation(message);
         }
     }
 }

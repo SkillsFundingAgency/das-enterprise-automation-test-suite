@@ -5,6 +5,7 @@ A Non Levy Provider reserves funding for an apprenticeship course when dymamic p
 @approvals
 @regression
 @reservefunds
+@reservation
 Scenario Outline: AP_MF_NLP_02 Non Levy Provider reserves funding when dynamic pause rule exists
 	Given An Employer has given create reservation permission to a provider
 	And the Provider with create reservation permission logs in

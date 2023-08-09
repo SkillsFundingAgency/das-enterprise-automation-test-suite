@@ -1,7 +1,7 @@
-﻿@approvals
-Feature: AP_DO_01_ULN Overlap_Provider
+﻿Feature: AP_DO_01_ULN Overlap_Provider
 OLTD release 2 (overlapping regression)
 
+@approvals
 @regression
 @liveapprentice
 Scenario: AP_DO_01_ULN Overlap_Provider
