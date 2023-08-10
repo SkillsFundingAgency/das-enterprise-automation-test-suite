@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.RAA.DataGenerator.Project.Config;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 

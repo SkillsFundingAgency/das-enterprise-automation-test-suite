@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator.Project.Config;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {

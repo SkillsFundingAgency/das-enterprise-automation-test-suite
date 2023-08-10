@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ConfirmApplicantUnsucessfulPage : ConfirmApplicantStatusBasePage
+    public class ConfirmApplicantUnsuccessfulPage : ConfirmApplicantStatusBasePage
     {
-        public ConfirmApplicantUnsucessfulPage(ScenarioContext context) : base(context, "have not been accepted?") { }
+        public ConfirmApplicantUnsuccessfulPage(ScenarioContext context) : base(context, "have not been accepted?") { }
 
         public new ApplicationUnsuccessfulPage NotifyApplicant()
         {

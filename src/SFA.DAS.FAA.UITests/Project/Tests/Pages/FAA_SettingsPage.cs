@@ -8,15 +8,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Settings";
 
-        private By UsernameField => By.CssSelector("#EmailAddress");
-        private By PasswordField => By.CssSelector("#Password");
-        private By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
-        private By DeleteYourAccountLink => By.LinkText("Delete your account");
-        private By DeleteAccountButton => By.Id("delete-account-button");
-        private By PhoneNumberField => By.Id("PhoneNumber");
-        private By Postcode_Address => By.Id("Address_Postcode");
-        private By ChangeEmailIdLink => By.Id("settings-change-username");
-        private By UpdateDetailsButton => By.Id("update-details-button");
+        private static By UsernameField => By.CssSelector("#EmailAddress");
+        private static By PasswordField => By.CssSelector("#Password");
+        private static By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
+        private static By DeleteYourAccountLink => By.LinkText("Delete your account");
+        private static By DeleteAccountButton => By.Id("delete-account-button");
+        private static By PhoneNumberField => By.Id("PhoneNumber");
+        private static By Postcode_Address => By.Id("Address_Postcode");
+        private static By ChangeEmailIdLink => By.Id("settings-change-username");
+        private static By UpdateDetailsButton => By.Id("update-details-button");
 
         public FAA_SettingsPage(ScenarioContext context) : base(context) { }
 
