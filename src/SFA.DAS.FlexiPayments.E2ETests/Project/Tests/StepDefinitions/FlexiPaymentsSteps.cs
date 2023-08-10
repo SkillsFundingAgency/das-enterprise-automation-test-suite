@@ -15,7 +15,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly FlexiProviderStepsHelper _providerStepsHelper;
         private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper;
 
         private readonly ExistingAccountSteps _existingAccountSteps;
@@ -27,7 +27,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _context = context;
             _employerStepsHelper = new EmployerStepsHelper(_context);
-            _providerStepsHelper = new ProviderStepsHelper(_context);
+            _providerStepsHelper = new FlexiProviderStepsHelper (_context);
             _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(_context);
 
             _existingAccountSteps = new ExistingAccountSteps(_context);
