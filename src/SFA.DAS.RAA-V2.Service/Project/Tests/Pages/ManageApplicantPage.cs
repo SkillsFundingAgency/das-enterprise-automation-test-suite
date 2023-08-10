@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -19,10 +20,22 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ConfirmApplicantSucessfulPage(context);
         }
 
+        public ConfirmApplicantUnsuccessfulPage MakeApplicantUnsucessful()
+        {
+            OutcomeUnsuccessful(() => formCompletionHelper.EnterText(CandidateFeedback, rAAV2DataHelper.OptionalMessage));
+            return new ConfirmApplicantUnsuccessfulPage(context);
+        }
+
         public ProviderAreYouSureSuccessfulPage ProviderMakeApplicantSucessful()
         {
             Outcomesuccessful();
             return new ProviderAreYouSureSuccessfulPage(context);
+        }
+
+        public ProviderGiveFeedbackPage ProviderMakeApplicantUnsucessful()
+        {
+            OutcomeUnsuccessful(null);
+            return new ProviderGiveFeedbackPage(context);
         }
 
         private void Outcomesuccessful()
@@ -31,21 +44,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             SaveAndContinue();
         }
 
-        public ConfirmApplicantUnsuccessfulPage MakeApplicantUnsucessful()
-        {
-            OutcomeUnsuccessful();
-            return new ConfirmApplicantUnsuccessfulPage(context);
-        }
 
-        public ProviderGiveFeedbackPage ProviderMakeApplicantUnsucessful()
-        {
-            OutcomeUnsuccessful();
-            return new ProviderGiveFeedbackPage(context);
-        }
-
-        private void OutcomeUnsuccessful()
+        private void OutcomeUnsuccessful(Action action)
         {
             SelectRadioOptionByForAttribute("outcome-unsuccessful");
+
+            action?.Invoke();
+
             SaveAndContinue();
         }
 
