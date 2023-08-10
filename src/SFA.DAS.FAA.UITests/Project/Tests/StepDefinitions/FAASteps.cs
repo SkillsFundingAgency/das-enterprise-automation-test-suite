@@ -43,7 +43,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Applicant should be told that Email is already registered")]
-        public void ThenTheApplicantShouldBeToldThatEmailIsAlreadyRegistered() => accountCreationPage.SubmitAccountCreationDetailsWithRegisteredEmail();
+        public void ThenTheApplicantShouldBeToldThatEmailIsAlreadyRegistered() => accountCreationPage.CreateAccountWithRegisteredEmail();
 
         [Then(@"the candidate is able to dismiss the Notifications in FAA '(Successful|Unsuccessful)'")]
         public void ThenTheCandidateIsAbleToDismissTheNotificationsInFAA(string expectedStatus) => _faaStepsHelper.DismissNotification(expectedStatus);

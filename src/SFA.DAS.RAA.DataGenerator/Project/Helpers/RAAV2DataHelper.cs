@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator.Project.Config;
 using System;
 using System.Collections.Generic;
 
@@ -8,9 +9,11 @@ namespace SFA.DAS.RAA.DataGenerator
     {
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public RAAV2DataHelper(VacancyTitleDatahelper vacancyTitleDatahelper)
+        public RAAV2DataHelper(FAAConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
+            CandidateFirstName = faaConfig.FAAFirstName;
+            CandidateLastName = faaConfig.FAALastName;
             EmployerName = $"{RandomAlphabeticString(10)}_EmployerName";
             EmployerDescription = $"{RandomAlphabeticString(10)}_EmployerDescription";
             EmployerReason = RandomAlphabeticString(10);
@@ -30,6 +33,10 @@ namespace SFA.DAS.RAA.DataGenerator
             DesiredQualificationsSubject = RandomAlphabeticString(8);
             OptionalMessage = RandomAlphabeticString(30);
         }
+
+        public string CandidateFirstName { get; }
+        public string CandidateLastName { get; }
+        public string CandidateFullName => $"{CandidateFirstName} {CandidateLastName}";
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
         public string TraineeshipVacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} traineeship";
