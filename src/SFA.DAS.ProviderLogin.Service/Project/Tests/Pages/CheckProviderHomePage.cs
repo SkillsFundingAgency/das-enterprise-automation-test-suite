@@ -20,7 +20,9 @@ public class CheckProviderHomePage : CheckPageUsingShorterTimeOut
 {
     protected override string PageTitle { get; }
 
-    protected override By Identifier => By.Id("account-home");
+        protected override By Identifier => ProviderHomePage.Identifier;
 
-    public CheckProviderHomePage(ScenarioContext context) : base(context) { }
+        public CheckProviderHomePage(ScenarioContext context) : base(context) { }
+
+        public bool IsPageDisplayed(string ukprn) => IsPageDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier, ukprn));
 }

@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
@@ -7,7 +6,6 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourApprenticesPage;
@@ -295,40 +293,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         public bool FindLearnerBySimplifiedPaymentsPilotFilter(SimplifiedPaymentsPilot status) => GoToProviderHomePage().GoToProviderManageYourApprenticePage().IsPaymentsPilotLearnerDisplayed(status);
 
         public void ValidateProviderEditApprovedApprentice(bool isDisplayed) => new ProviderManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(isDisplayed);
-
-        public ProviderApproveApprenticeDetailsPage PilotProviderAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
-        {
-            _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(0);
-
-            var providerReviewYourCohortPage = PilotProviderAddApprentice();
-
-            int numberOfApprentices = listOfApprentice.Count;
-
-            for (int i = 1; i < numberOfApprentices; i++)
-            {
-                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
-
-                providerReviewYourCohortPage = SubmitValidTrainingDetails(providerReviewYourCohortPage);
-            }
-
-            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
-        }
-
-        public ProviderConfirmEmployerPage ChooseALevyEmployer() => GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseAnEmployer("Levy");
-
-        private ProviderApproveApprenticeDetailsPage SubmitValidTrainingDetails(ProviderApproveApprenticeDetailsPage providerReviewYourCohortPage)
-            => providerReviewYourCohortPage.SelectAddAnApprenticeForFlexiPaymentsProvider()
-                .MakePaymentsPilotSelectionAndContinueToSelectStandardPage(true)
-                .ProviderSelectsAStandard()
-                .SubmitValidApprenticeDetails();
-
-        private ProviderApproveApprenticeDetailsPage PilotProviderAddApprentice()
-          => ChooseALevyEmployer()
-            .ConfirmEmployerForFlexiTrainingProvider()
-            .MakePaymentsPilotSelectionAndContinueToSelectStandardPage(true)
-            .ProviderSelectsAStandard()
-            .SubmitValidApprenticeDetails();
-
 
         private ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage approvePage, int numberOfApprentices) => _providerCommonStepsHelper.SetApprenticeDetails(approvePage, numberOfApprentices);
 

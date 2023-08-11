@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
@@ -7,11 +9,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
     {
         private readonly ScenarioContext _context;
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
 
         public FlexiProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
+        }
+
+        public ProviderApproveApprenticeDetailsPage PilotProviderAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
+        {
+            ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(SimplifiedPaymentsPilotPage page) => page.MakePaymentsPilotSelectionAndContinueToSelectStandardPage().ProviderSelectsAStandardForFlexiPilotLearner().SubmitValidApprenticeDetails();
+
+            _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(0);
+
+            var providerReviewYourCohortPage = SubmitValidApprenticeDetails(_providerCommonStepsHelper.ChooseALevyEmployer().ConfirmEmployerForFlexiTrainingProvider());
+
+            int numberOfApprentices = listOfApprentice.Count;
+
+            for (int i = 1; i < numberOfApprentices; i++)
+            {
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
+
+                providerReviewYourCohortPage = SubmitValidApprenticeDetails(providerReviewYourCohortPage.SelectAddAnApprenticeForFlexiPaymentsProvider());
+            }
+
+            return _providerCommonStepsHelper.SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
         }
 
         public ProviderApproveApprenticeDetailsPage ValidateFlexiJobContentAndSendToEmployerForApproval(ProviderAddApprenticeDetailsPage providerAddApprenticeDetailsPage)
@@ -31,7 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
         }
-
 
         public ProviderApproveApprenticeDetailsPage ProviderEditsDeliveryModelAndApprovesAfterFJAARemoval()
         {

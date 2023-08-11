@@ -9,6 +9,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport;
@@ -31,6 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ProviderStepsHelper _providerStepsHelper;
 
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
         private readonly CohortReferenceHelper _cohortReferenceHelper;
@@ -52,6 +55,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
 
             _providerStepsHelper = new ProviderStepsHelper(context);
+
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
 
             _cohortReferenceHelper = new CohortReferenceHelper(context);
         }
@@ -96,10 +101,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderSeeWarningMessagesInApproveApprenticePage() => providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();
 
         [Then(@"provider should not see Standard-X in add apprentice details page")]
-        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage()
-        {
-            _providerStepsHelper.ChooseALevyEmployer().ConfirmEmployer().AssertStandardIsNotAvailable();
-        }
+        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage() => _providerCommonStepsHelper.ChooseALevyEmployer().ConfirmEmployer().AssertStandardIsNotAvailable();
 
         [Then(@"provider can not upload file using Standard-X")]
         public void ThenProviderCanNotUploadFileUsingStandard_X()
@@ -131,6 +133,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
-
     }
 }

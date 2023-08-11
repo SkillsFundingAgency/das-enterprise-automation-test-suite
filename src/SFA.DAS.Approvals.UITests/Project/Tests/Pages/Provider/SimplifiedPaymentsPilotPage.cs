@@ -12,9 +12,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public SimplifiedPaymentsPilotPage(ScenarioContext context) : base(context) { }
 
-        public SelectStandardPage MakePaymentsPilotSelectionAndContinueToSelectStandardPage(bool OptIn)
+        public SelectStandardPage MakePaymentsPilotSelectionAndContinueToSelectStandardPage()
         {
-            SelectAndContinue(OptIn);
+            SelectAndContinue(true);
 
             return new SelectStandardPage(context);
         }

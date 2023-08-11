@@ -14,7 +14,7 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 
         public bool IsIndexPageDisplayed() => new CheckProviderIndexPage(_context).IsPageDisplayed();
 
-        public bool IsYourProviderAccountPageDisplayed() => new CheckProviderHomePage(_context).IsPageDisplayed();
+        public bool IsProviderHomePageDisplayed(string ukprn) => new CheckProviderHomePage(_context).IsPageDisplayed(ukprn);
 
         internal ProviderHomePage ReLogin(ProviderLoginUser login) => Login(new ProviderSignInPage(_context), login);
 

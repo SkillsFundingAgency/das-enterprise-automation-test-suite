@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private static By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
-        private new By EditApprenticeLink => By.ClassName("edit-apprentice");
+        private static new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
         private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
@@ -33,24 +33,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
             return new ProviderChooseAReservationPage(context);
         }
 
         internal SelectStandardPage SelectAddAnApprentice()
         {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
 
-            ClickIfPirenIsDisplayed();
-            
             return new SelectStandardPage(context);
         }
 
         internal SimplifiedPaymentsPilotPage SelectAddAnApprenticeForFlexiPaymentsProvider()
         {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
-
-            ClickIfPirenIsDisplayed();
+            AddAnApprentice();
 
             return new SimplifiedPaymentsPilotPage(context);
         }
@@ -179,6 +175,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
                 
             Continue();
+        }
+
+        private void AddAnApprentice()
+        {
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+
+            ClickIfPirenIsDisplayed();
         }
 
         private void ClickIfPirenIsDisplayed()

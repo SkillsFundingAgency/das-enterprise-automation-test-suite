@@ -41,12 +41,12 @@ public class ProviderHomePageStepsHelper
     {
         var loginHelper = new ProviderPortalLoginHelper(_context);
 
-        if (loginHelper.IsIndexPageDisplayed()) return loginHelper.Login(login);
+            if (loginHelper.IsProviderHomePageDisplayed(login.Ukprn)) return new ProviderHomePage(_context);
 
-        if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
+            if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
 
-        if (loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
+            if (loginHelper.IsIndexPageDisplayed()) return loginHelper.Login(login);
 
-        return new ProviderHomePage(_context);
+            return new ProviderHomePage(_context);
     }
 }

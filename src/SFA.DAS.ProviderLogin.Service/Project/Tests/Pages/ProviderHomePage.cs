@@ -5,9 +5,11 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
 public class ProviderHomePage : InterimProviderBasePage
 {
+    public static By Identifier => By.CssSelector("#content, #main-content");
+
     protected override string PageTitle => ukprn;
 
-    protected override By PageHeader => By.CssSelector("#main-content .govuk-hint");
+    protected override By PageHeader => Identifier;
 
     protected override string Linktext => "Home";
 
