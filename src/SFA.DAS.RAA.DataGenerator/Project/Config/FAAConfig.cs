@@ -1,6 +1,4 @@
-﻿using SFA.DAS.UI.Framework;
-
-namespace SFA.DAS.FAA.UITests.Project
+﻿namespace SFA.DAS.RAA.DataGenerator.Project.Config
 {
     public class FAAConfig
     {

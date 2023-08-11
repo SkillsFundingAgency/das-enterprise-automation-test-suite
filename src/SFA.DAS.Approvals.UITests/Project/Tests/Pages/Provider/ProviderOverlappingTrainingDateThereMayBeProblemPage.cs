@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        protected override string PageTitle => "";
+        protected override string PageTitle => "There may be a problem with the proposed training details";
 
         protected override bool TakeFullScreenShot => false;
 

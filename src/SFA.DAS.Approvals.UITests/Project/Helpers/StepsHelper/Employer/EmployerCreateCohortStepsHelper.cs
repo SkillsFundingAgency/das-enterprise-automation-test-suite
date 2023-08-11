@@ -2,17 +2,18 @@
 using TechTalk.SpecFlow;
 using System;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class EmployerCreateCohortStepsHelper
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        
+
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
-        
+
 
         public EmployerCreateCohortStepsHelper(ScenarioContext context)
         {

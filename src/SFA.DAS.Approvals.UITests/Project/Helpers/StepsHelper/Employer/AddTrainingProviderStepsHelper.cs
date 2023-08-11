@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using System;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class AddTrainingProviderStepsHelper
     {

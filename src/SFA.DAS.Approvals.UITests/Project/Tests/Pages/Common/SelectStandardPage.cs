@@ -36,13 +36,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new ProviderAddApprenticeDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPaymentsPilot()
-        {
-            SelectStandardAndContinue();
-
-            return new ProviderAddApprenticeDetailsPage(context, true);
-        }
-
         public SelectDeliveryModelPage SelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
 
         public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetails()
