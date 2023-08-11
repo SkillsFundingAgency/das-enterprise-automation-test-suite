@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
@@ -19,6 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(_context);
         }
+
+        public ProviderConfirmEmployerPage ChooseALevyEmployer() => GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseAnEmployer("Levy");
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
         {
