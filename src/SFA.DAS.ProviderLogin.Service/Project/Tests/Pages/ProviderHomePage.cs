@@ -7,7 +7,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         protected override string PageTitle => ukprn;
 
-        protected override By PageHeader => By.CssSelector("#content .grey-text");
+        protected override By PageHeader => By.CssSelector("#content, #main-content");
 
         protected override string Linktext => "Home";
 
