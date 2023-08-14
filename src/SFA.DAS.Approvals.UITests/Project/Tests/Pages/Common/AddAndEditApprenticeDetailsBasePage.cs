@@ -97,7 +97,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
         }
 
-        protected void EnterApprenticeEmail() => formCompletionHelper.EnterText(EmailField, apprenticeDataHelper.ApprenticeEmail);
+        protected void EnterApprenticeEmail() => EnterApprenticeEmail(apprenticeDataHelper.ApprenticeEmail);
+
+        protected void EnterApprenticeEmail(string email) => formCompletionHelper.EnterText(EmailField, email);
 
         protected void EnterApprenticeMandatoryValidDetails()
         {
@@ -137,6 +139,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             ValidateOltdErrorMessage(StartDateErrorMessagelLink, displayStartDateError);
             ValidateOltdErrorMessage(EndDateErrorMessagelLink, displayEndDateError);
         }
+
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
 
         public void EditCostCourseAndReference(string reference)

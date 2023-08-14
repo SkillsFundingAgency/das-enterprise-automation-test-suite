@@ -2,14 +2,14 @@
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
     public class ConfirmProviderDetailsHelper
     {
         private readonly ScenarioContext _context;
 
         public ConfirmProviderDetailsHelper(ScenarioContext context) => _context = context;
-    
+
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(bool isTransferReceiverEmployer, Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> func)
         {
             var addAnApprenticePage = new ApprenticesHomePage(_context).AddAnApprentice();

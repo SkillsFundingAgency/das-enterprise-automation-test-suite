@@ -29,19 +29,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new AddApprenticeDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard()
-        {
-            SelectStandardAndContinue();
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard() => ProviderSelectsAStandard(false);
 
-            return new ProviderAddApprenticeDetailsPage(context);
-        }
-
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPaymentsPilot()
-        {
-            SelectStandardAndContinue();
-
-            return new ProviderAddApprenticeDetailsPage(context, true);
-        }
+        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPilotLearner() => ProviderSelectsAStandard(true);
 
         public SelectDeliveryModelPage SelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
 
@@ -76,6 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             return new SelectDeliveryModelPage(context);
         }
+
+        private ProviderAddApprenticeDetailsPage ProviderSelectsAStandard(bool isFlexiPaymentPilotLearner)
+        {
+            SelectStandardAndContinue();
+
+            return new ProviderAddApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
+        }
+
 
         private void SelectStandardAndContinue() => SelectStandardAndContinue(apprenticeCourseDataHelper.CourseLarsCode);
 

@@ -1,13 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -16,20 +14,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Edit apprentice details";
-        private By ChangeDeliveryModelLink => By.Name("ChangeDeliveryModel");
-        private By UpdateDetailsBtn => By.Id("continue-button");
-        private By DeliveryModelType => By.Id("delivery-model-value");
-        private By TrainingName => By.XPath("//*[@id='trainingName']");
-        private By Uln => By.Id("Uln");
-        private By DeleteButton => By.LinkText("Delete");
-        private By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
-        private By ActualStartDateDay => By.Id("ActualStartDay");
-        public By ActualStartDateMonth => By.Id("ActualStartMonth");
-        public By ActualStartDateYear => By.Id("ActualStartYear");
-        private By TrainingCost => By.Id("Cost");
-        private By EmployerReference => By.Id("Reference");
-        private By ChangeSimplifiedPaymentsPilotLink => By.Id("change-pilot-status-link");
-        protected By SaveButton => By.XPath("//button[contains(text(),'Save')]");
+        private static By ChangeDeliveryModelLink => By.Name("ChangeDeliveryModel");
+        private static By UpdateDetailsBtn => By.Id("continue-button");
+        private static By DeliveryModelType => By.Id("delivery-model-value");
+        private static By Uln => By.Id("Uln");
+        private static By DeleteButton => By.LinkText("Delete");
+        private static By InputBox => By.ClassName("govuk-input"); //By.TagName("input");
+        private static By ActualStartDateDay => By.Id("ActualStartDay");
+        public static By ActualStartDateMonth => By.Id("ActualStartMonth");
+        public static By ActualStartDateYear => By.Id("ActualStartYear");
+        private static By TrainingCost => By.Id("Cost");
+        private static By EmployerReference => By.Id("Reference");
+        private static By ChangeSimplifiedPaymentsPilotLink => By.Id("change-pilot-status-link");
+        private static By SaveButton => By.XPath("//button[contains(text(),'Save')]");
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
         {
@@ -59,21 +56,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
         {
             EnterUln();
-            return CheckRPLConditionAndSave();
-        }
-
-        public ProviderApproveApprenticeDetailsPage EnterUlnAndTrainingStartEndDaysThenSave(int apprenticeNumber)
-        {
-            EnterUlnForFlexiPayments(apprenticeNumber);
 
             return CheckRPLConditionAndSave();
         }
-
 
         public SelectDeliveryModelPage EnterUlnAndSelectEditDeliveryModel()
         {
             EnterUln();
+
             formCompletionHelper.ClickElement(ChangeDeliveryModelLink);
+
             return new SelectDeliveryModelPage(context);
         }
 
@@ -84,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
-            
+
             EnterUln();
 
             formCompletionHelper.ClickElement(StartDateMonth);
@@ -230,19 +222,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void EnterUln()
         {
-            var uln = apprenticeDataHelper.Uln();
+            var uln = apprenticeDataHelper.ApprenticeULN;
 
-            if (objectContext.IsSameApprentice() && apprenticeDataHelper.Ulns.Count == 1) uln = apprenticeDataHelper.Ulns.First();
+            if (objectContext.IsSameApprentice()) uln = context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().ToList().First().Item1.ApprenticeULN;
 
-            formCompletionHelper.EnterText(Uln, uln);
-        }
-
-        private void EnterUlnForFlexiPayments(int apprenticeNumber)
-        {
-            if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
-                formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));
-            else
-                formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            EnterText(Uln, uln);
         }
 
         private void AddActualStartDateDay(DateTime dateTime) => formCompletionHelper.EnterText(ActualStartDateDay, dateTime.Day);
@@ -260,6 +244,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
-
     }
 }

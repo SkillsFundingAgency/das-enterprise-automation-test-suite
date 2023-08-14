@@ -42,9 +42,9 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         {
             var loginHelper = new ProviderPortalLoginHelper(_context);
 
-            if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
+            if (loginHelper.IsProviderHomePageDisplayed(login.Ukprn)) return new ProviderHomePage(_context);
 
-            if (loginHelper.IsYourProviderAccountPageDisplayed()) return new ProviderHomePage(_context);
+            if (loginHelper.IsSignInPageDisplayed()) return loginHelper.ReLogin(login);
 
             if (loginHelper.IsIndexPageDisplayed()) return loginHelper.Login(login);
 

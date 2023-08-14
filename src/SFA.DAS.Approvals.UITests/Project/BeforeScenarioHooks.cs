@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service;
@@ -37,7 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
                                    _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
-                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
+                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
+                                   _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow: ApprenticeStatus.Random;
 
             commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
 
@@ -74,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(apprenticeCourseDataHelper);
 
-            _context.Set(new DataLockSqlHelper(_dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper, _context.ScenarioInfo.Title));
+            _context.Set(new DataLockSqlHelper(_dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper));
 
         }
 

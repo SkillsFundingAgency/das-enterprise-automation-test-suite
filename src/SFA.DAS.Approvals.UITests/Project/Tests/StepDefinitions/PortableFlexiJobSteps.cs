@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;

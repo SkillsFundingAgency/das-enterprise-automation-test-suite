@@ -2,8 +2,8 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 var result = new BulkUploadApprenticeDetails(courseCode, agreementId, datahelper.ApprenticeDob, apprenticeCourseDataHelper.CourseStartDate, apprenticeCourseDataHelper.CourseEndDate)
                 {
                     CohortRef = cohortRef,
-                    ULN = datahelper.Uln(),
+                    ULN = RandomDataGenerator.GenerateRandomUln(),
                     FamilyName = datahelper.ApprenticeLastname,
                     GivenNames = datahelper.ApprenticeFirstname,
                     TotalPrice = datahelper.TrainingCost,
