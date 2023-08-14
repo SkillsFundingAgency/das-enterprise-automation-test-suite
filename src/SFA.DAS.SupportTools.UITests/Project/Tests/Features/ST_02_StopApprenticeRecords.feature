@@ -1,6 +1,6 @@
 ﻿Feature: ST_02_StopApprenticeRecords
 	
-@supportconsole
+@supporttools
 @approvalssupportconsole
 @BulkUtility
 Scenario: ST_02_Stop Apprentice Records
