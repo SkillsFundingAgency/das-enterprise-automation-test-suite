@@ -5,7 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class EmployerPermissionsStepsHelper
     {
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public HomePage SetRecruitApprenticesPermission(string ukprn, string orgName) => SetProviderPermissions(ukprn, orgName, AddApprenticePermissions.Allow, RecruitApprenticePermissions.Allow);
 
-        private HomePage SetProviderPermissions(string ukprn, string orgName,  AddApprenticePermissions addApprenticePermissions, RecruitApprenticePermissions recruitApprenticePermissions)
+        private HomePage SetProviderPermissions(string ukprn, string orgName, AddApprenticePermissions addApprenticePermissions, RecruitApprenticePermissions recruitApprenticePermissions)
         {
             return OpenProviderPermissions()
                  .SelectAddANewTrainingProvider()
@@ -81,11 +81,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private void RemovePermissionsInCosmosDatabase(ProviderPermissionsConfig providerPermissionConfig) =>
             CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(providerPermissionConfig.PermissionsCosmosUrl, providerPermissionConfig.PermissionsCosmosDBKey, providerPermissionConfig.PermissionsCosmosDatabaseName, providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(providerPermissionConfig.Ukprn));
-        
+
 
         private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
 
-        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(YourOrganisationsAndAgreementsPage page, string orgName) => 
+        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(YourOrganisationsAndAgreementsPage page, string orgName) =>
             string.IsNullOrEmpty(orgName) ? page.ClickViewAgreementLink() : page.ClickViewAgreementLink(orgName);
 
     }

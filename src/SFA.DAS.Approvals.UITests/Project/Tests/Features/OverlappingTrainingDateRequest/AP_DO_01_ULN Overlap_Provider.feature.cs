@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_DO_01_ULN Overlap_Provider")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_DO_01_ULNOverlap_ProviderFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_DO_01_ULN Overlap_Provider.feature"
 #line hidden
@@ -77,11 +75,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.OverlappingTrainingDa
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_DO_01_ULN Overlap_Provider")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public void AP_DO_01_ULNOverlap_Provider()
         {
             string[] tagsOfScenario = new string[] {
+                    "approvals",
                     "regression",
                     "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

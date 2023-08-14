@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
@@ -197,7 +198,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new BulkUploadApprenticeDetails(courseCode, agreementId, datahelper.ApprenticeDob, startDate, endDate)
             {
                 CohortRef = cohortRef,
-                ULN = datahelper.Uln(),
+                ULN = RandomDataGenerator.GenerateRandomUln(),
                 FamilyName = datahelper.ApprenticeLastname,
                 GivenNames = datahelper.ApprenticeFirstname,
                 TotalPrice = datahelper.TrainingCost,
@@ -235,7 +236,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new BulkUploadApprenticeDetails(courseCode, agreementId, datahelper.ApprenticeDob, startDate, endDate)
             {
                 CohortRef = cohortRef,
-                ULN = datahelper.Uln(),
+                ULN = RandomDataGenerator.GenerateRandomUln(),
                 FamilyName = datahelper.ApprenticeLastname,
                 GivenNames = datahelper.ApprenticeFirstname,
                 TotalPrice = datahelper.TrainingCost,

@@ -7,14 +7,14 @@ using SFA.DAS.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class ManageFundingEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ReservationsSqlDataHelper _reservationsSqlDataHelper;
-        
+
         private WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage;
 
         public ManageFundingEmployerStepsHelper(ScenarioContext context)
@@ -54,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void RemoveDynamicPauseGlobalRule() { if (_objectContext.IsUpdateDynamicPauseGlobalRule()) _reservationsSqlDataHelper.UpdateDynamicPauseGlobalRule(Convert.ToDateTime("2022-01-01"), Convert.ToDateTime("2022-01-01")); }
 
         public SuccessfullyReservedFundingPage CreateReservation() => CreateReservation(GoToReserveFunding());
-        
+
         public void StartCreateReservationAndGoToStartTrainingPage()
         {
             _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage = GoToReserveFunding()

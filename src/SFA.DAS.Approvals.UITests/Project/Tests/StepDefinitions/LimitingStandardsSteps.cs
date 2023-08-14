@@ -1,20 +1,22 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using SFA.DAS.TestDataExport;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using System.Collections.Generic;
-using System.Linq;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using System;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.TestDataExport;
+using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -28,6 +30,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
 
         private readonly ProviderStepsHelper _providerStepsHelper;
+
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
 
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
@@ -51,6 +55,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerStepsHelper = new ProviderStepsHelper(context);
 
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+
             _cohortReferenceHelper = new CohortReferenceHelper(context);
         }
 
@@ -66,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"provider receives a apprentice request that contains Standard-X")]
         public void GivenProviderReceivesAApprenticeRequestThatContainsStandard_X() => EmployerApproveAndSendToProvider();
-        
+
         [Given(@"employer edits an apprentice with Standard-X post approval")]
         public void GivenEmployerEditsAnApprenticeWithStandard_XPostApproval()
         {
@@ -94,10 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderSeeWarningMessagesInApproveApprenticePage() => providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();
 
         [Then(@"provider should not see Standard-X in add apprentice details page")]
-        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage()
-        {
-            _providerStepsHelper.ChooseALevyEmployer().ConfirmEmployer().AssertStandardIsNotAvailable();
-        }
+        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage() => _providerCommonStepsHelper.ChooseALevyEmployer().ConfirmEmployer().AssertStandardIsNotAvailable();
 
         [Then(@"provider can not upload file using Standard-X")]
         public void ThenProviderCanNotUploadFileUsingStandard_X()
@@ -129,6 +132,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
-
     }
 }

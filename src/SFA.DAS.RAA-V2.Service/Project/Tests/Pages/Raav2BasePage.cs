@@ -21,7 +21,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected virtual By SaveAndContinueButton => By.ClassName("govuk-button");
 
-        private By CancelLink => By.LinkText("Cancel");
+        private static By CancelLink => By.LinkText("Cancel");
+
+        protected static By CandidateFeedback => By.CssSelector("#CandidateFeedback");
 
         public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
