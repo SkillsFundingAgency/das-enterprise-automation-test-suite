@@ -1,6 +1,6 @@
 ﻿Feature: ST_05_ValidateCombinationoffilters
 
-@supportconsole
+@supporttools
 @approvalssupportconsole
 @BulkUtility
 Scenario: ST_05_Validate Combination of filters
@@ -13,6 +13,3 @@ Scenario: ST_05_Validate Combination of filters
 		| ESFA LTD			 |									| 10005310	|				|			 | Waiting to Start	|   80			| 
 		|					 |									|			| 01//12//2024	|			 | Any				|   400			| 
 		| COMPLIANCE LIMITED |									| 10005310	|				| 8305402974 | Live				|   0			| 
-
-
-

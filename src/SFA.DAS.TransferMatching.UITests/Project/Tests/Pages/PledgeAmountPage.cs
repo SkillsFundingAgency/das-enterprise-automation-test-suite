@@ -45,7 +45,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private void EnterAmount(bool exceedMaxFunding, bool useMinimalFunding = false)
         {
             int amount = objectContext.GetEmployerTotalPledgeAmount();
-            if (exceedMaxFunding == false && useMinimalFunding && amount > tMDataHelper.MinimalPledgeAmount)
+            if (!exceedMaxFunding && useMinimalFunding && amount > tMDataHelper.MinimalPledgeAmount)
             {
                 amount = tMDataHelper.MinimalPledgeAmount;
             }

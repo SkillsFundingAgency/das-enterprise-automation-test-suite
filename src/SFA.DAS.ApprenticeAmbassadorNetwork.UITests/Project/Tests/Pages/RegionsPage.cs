@@ -3,8 +3,8 @@
     public class RegionsPage : AanBasePage
     {
         protected override string PageTitle => "Tell us what area of the country you work in as an apprentice";
-        private static By LondonRadio => By.CssSelector("#SelectedRegionId[value='3']");
-        private static By NorthEasstRadio => By.CssSelector("#SelectedRegionId[value='4']");
+        private static By LondonRadio => By.Id("region-London");
+        private static By NorthEasstRadio => By.Id("region-North-East");
 
         public RegionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
