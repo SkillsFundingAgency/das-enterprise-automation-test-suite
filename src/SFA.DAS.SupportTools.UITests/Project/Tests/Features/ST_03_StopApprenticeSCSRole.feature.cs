@@ -75,13 +75,13 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("ST_03_Stop Apprentice SCS Role")]
-        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("supporttools")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
         public void ST_03_StopApprenticeSCSRole()
         {
             string[] tagsOfScenario = new string[] {
-                    "supportconsole",
+                    "supporttools",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
