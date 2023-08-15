@@ -85,7 +85,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         [Then(@"the user can sign back in to the AAN platform")]
         public void ThenTheUserCanSignBackInToTheAANPlatform()
         {
-            _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_BaseUrl, "AANbaseurl");
+            _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_Apprentice_BaseUrl, "AANbaseurl");
 
             GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
         }

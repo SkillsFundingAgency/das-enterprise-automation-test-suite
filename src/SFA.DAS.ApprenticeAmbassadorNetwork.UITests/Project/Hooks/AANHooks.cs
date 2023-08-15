@@ -10,15 +10,15 @@ global using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
-[Binding, Scope(Tag = "aan")]
+[Binding]
 public class AANHooks
 {
     private readonly ScenarioContext _context;
     
     public AANHooks(ScenarioContext context) => _context = context;
 
-    [BeforeScenario(Order = 31)]
-    public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.AAN_BaseUrl);
+    [BeforeScenario(Order = 31), Scope(Tag = "@aanaprentice")]
+    public void Navigate_Apprentice() => _context.Get<TabHelper>().GoToUrl(UrlConfig.AAN_Apprentice_BaseUrl);
 
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()

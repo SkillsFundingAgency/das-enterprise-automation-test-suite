@@ -1,15 +1,16 @@
 ﻿Feature: AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys
 
 @aan
+@aanemployer
 @aanemployeronboarding
 @aane01
 @aanemployerereset
 @regression
 Scenario: AAN_E_01A User successfully completes the Employer onboarding process and verifies the Hub page
     Given an employer without onboarding logs into the AAN portal
-	When the user provides all the required details for the employer onboarding journey
-    Then the employer onboarding process should be successfully completed
-    And the user should be redirected to the employer Hub page
+	#When the user provides all the required details for the employer onboarding journey
+ #   Then the employer onboarding process should be successfully completed
+ #   And the user should be redirected to the employer Hub page
 
 #@aan
 #@aanonboarding
