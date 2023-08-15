@@ -1,5 +1,5 @@
 ﻿@approvals
-Feature: 01_FJAA_DLock_Emp_EditDeliveryModel_FlexiToRegular
+Feature: FJAA_DLock_01_Emp_EditDeliveryModel_FlexiToRegular
 
 In this test, an FJAA Employer logs into their account and navigates to the 'Manage your apprentices' page. 
 Employer then edits an apprentice record that has been successfully data locked
@@ -9,7 +9,7 @@ Training Provider then views changes and approves, later verifying that changes 
 @regression
 @flexi-job
 @e2escenarios
-Scenario: 01_FJAA_DLock_Emp_EditDeliveryModel_FlexiToRegular
+Scenario: FJAA_DLock_01_Emp_EditDeliveryModel_FlexiToRegular
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When the Employer create a cohort and send to provider to add apprentices
 	And the provider selects Flexi-job agency radio button on Select Delivery Model screen 
