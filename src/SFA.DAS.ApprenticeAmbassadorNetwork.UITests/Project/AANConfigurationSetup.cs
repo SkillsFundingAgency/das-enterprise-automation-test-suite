@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service;
+﻿using SFA.DAS.EsfaAdmin.Service.Project;
+using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
@@ -31,5 +32,9 @@ public class AANConfigurationSetup
             configSection.GetConfigSection<AanUser>(),
             configSection.GetConfigSection<AanNonBetaUser>(),
         });
+
+        _context.SetAanEsfaAdminConfig(configSection.GetConfigSection<AanEsfaAdminConfig>());
+
+        _context.SetAanEsfaSuperAdminConfig(configSection.GetConfigSection<AanEsfaSuperAdminConfig>());
     }
 }

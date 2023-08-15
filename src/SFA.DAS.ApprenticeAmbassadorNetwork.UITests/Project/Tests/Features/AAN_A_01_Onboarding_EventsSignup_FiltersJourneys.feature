@@ -2,6 +2,7 @@
 
 @aan
 @aanonboarding
+@aanaprentice
 @aan01
 @aanreset
 @regression
@@ -13,6 +14,7 @@ Scenario: AAN_A_01A User successfully completes the Apprentice onboarding proces
 
 @aan
 @aanonboarding
+@aanaprentice
 @aan02
 @aanreset
 @regression
@@ -23,6 +25,7 @@ Scenario:AAN_A_01B User without manager permission encounters a shutter page
 
 @aan
 @aanonboarding
+@aanaprentice
 @aan03
 @aanreset
 @regression
@@ -35,6 +38,7 @@ Scenario:AAN01C User completes all onboarding details and can modify answers on 
 
 @aan
 @aanonboarding
+@aanaprentice
 @aan04
 @aanreset
 @regression
@@ -50,6 +54,7 @@ Scenario:AAN01D User completes onboarding process and lands on the AAN Hub page 
 @aan06
 @aanreset
 @regression
+@aanaprentice
 Scenario: AAN01E User should be able to successfully signup and cancel the attendacne for an event
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
@@ -63,6 +68,7 @@ Scenario: AAN01E User should be able to successfully signup and cancel the atten
 @aan07
 @aanreset
 @regression
+@aanaprentice
 Scenario: AAN01F User should be able to successfully Filter Events by date 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
@@ -76,6 +82,7 @@ Scenario: AAN01F User should be able to successfully Filter Events by date
 @aan08
 @aanreset
 @regression
+@aanaprentice
 Scenario: AAN01G User should be able to successfully Filter Events by Type 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
@@ -89,6 +96,7 @@ Scenario: AAN01G User should be able to successfully Filter Events by Type
 @aan09
 @aanreset
 @regression
+@aanaprentice
 Scenario: AAN01H User should be able to successfully Filter Events by Event type 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
@@ -102,6 +110,7 @@ Scenario: AAN01H User should be able to successfully Filter Events by Event type
 @aan10
 @aanreset
 @regression
+@aanaprentice
 Scenario: AAN01I User should be able to successfully Filter Events by multiple combination of filters
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey

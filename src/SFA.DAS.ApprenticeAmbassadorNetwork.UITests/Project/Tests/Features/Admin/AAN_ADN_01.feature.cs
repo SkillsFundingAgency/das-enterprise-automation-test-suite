@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Admin
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "AAN_ADN_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Admin", "AAN_ADN_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_01A User successfully logs in")]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_01 admin successfully logs in")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadn01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_01AUserSuccessfullyLogsIn()
+        public void AAN_ADN_01AdminSuccessfullyLogsIn()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
                     "aanadn01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_01A User successfully logs in", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_01 admin successfully logs in", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,9 +100,6 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 8
     testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.Given("an super admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

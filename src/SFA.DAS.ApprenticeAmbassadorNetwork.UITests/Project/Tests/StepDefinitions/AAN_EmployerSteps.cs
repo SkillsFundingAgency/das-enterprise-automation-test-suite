@@ -16,10 +16,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         }
 
         [Given(@"an employer without onboarding logs into the AAN portal")]
-        public void GivenAnEmployerWithoutOnboardingLogsIntoTheAANPortal()
+        public void AnEmployerWithoutOnboardingLogsIntoTheAANPortal()
         {
-            _context.Get<TabHelper>().OpenInNewTab(UrlConfig.AAN_Emp_Baseurl);
-
             new StubSignInPage(_context).Login(_context.GetUser<AanEWOUser>()).Continue();
 
             _ = new EmployerAmbassadorApplicationPage(_context);
