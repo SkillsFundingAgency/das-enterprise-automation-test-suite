@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Login.Service.Project.Helpers;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
     public class SignInPage : AanBasePage
     {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerAmbassadorApplicationPage : SignInPage
+    public class EmployerAmbassadorApplicationPage : AanBasePage
     {
         protected override string PageTitle => "Apply to become an employer ambassador for a";
 

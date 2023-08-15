@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
     public class SearchEmployerNamePage : AanBasePage
     {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
     public class PrimarilyEnagageWithinNetworkPage : AanBasePage
     {
@@ -13,7 +7,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
         private By LocallyRadio => By.Id("IsLocalOrganisation");
         private By MultiRegionalOrganisationRadio => By.Id("multiRegionalOrganisation");
 
-    public PrimarilyEnagageWithinNetworkPage(ScenarioContext context) : base(context) => VerifyPage();
+        public PrimarilyEnagageWithinNetworkPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public LocalAreaToEngage ConfirmLocallyAndContinue()
         {

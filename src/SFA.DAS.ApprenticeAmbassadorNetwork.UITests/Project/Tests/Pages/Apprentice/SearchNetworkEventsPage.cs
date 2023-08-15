@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
     public class SearchNetworkEventsPage : AanBasePage
     {
@@ -27,14 +27,14 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         {
             DateTime tomorrow = DateTime.Now.AddDays(1);
             string formattedDate = tomorrow.ToString(DateFormat);
-            formCompletionHelper.EnterText(FromDateField,formattedDate);
+            formCompletionHelper.EnterText(FromDateField, formattedDate);
             formCompletionHelper.ClickElement(ApplyFilterButton);
             return this;
         }
 
         public SearchNetworkEventsPage FilterEventByOneMonth()
         {
-            string formattedDate= DateTime.Now.AddDays(1).ToString(DateFormat);
+            string formattedDate = DateTime.Now.AddDays(1).ToString(DateFormat);
 
             string formattedEndDate = DateTime.Now.AddDays(30).ToString(DateFormat);
 
@@ -59,7 +59,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public SearchNetworkEventsPage FilterEventByEventType_InPerson()
         {
-            formCompletionHelper.SelectCheckbox(InpersonCheckBox);  
+            formCompletionHelper.SelectCheckbox(InpersonCheckBox);
             formCompletionHelper.ClickElement(ApplyFilterButton);
             return this;
         }

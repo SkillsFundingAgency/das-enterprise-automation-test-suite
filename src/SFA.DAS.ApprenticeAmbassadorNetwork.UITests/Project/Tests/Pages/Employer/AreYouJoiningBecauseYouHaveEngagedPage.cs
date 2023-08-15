@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenQA.Selenium;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class AreYouJoiningBecauseYouHaveEngagedPage : SignInPage
+    public class AreYouJoiningBecauseYouHaveEngagedPage : AanBasePage
     {
         protected override string PageTitle => "Are you joining because you have engaged with an ambassador in the network?";
 

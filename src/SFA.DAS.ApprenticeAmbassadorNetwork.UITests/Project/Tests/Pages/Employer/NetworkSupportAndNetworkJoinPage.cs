@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-using OpenQA.Selenium;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class NetworkSupportAndNetworkJoinPage : SignInPage
+    public class NetworkSupportAndNetworkJoinPage : AanBasePage
     {
         protected override string PageTitle => "Why do you want to join the network?";
 
