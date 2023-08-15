@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys")]
-    public partial class AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneysFeature
+    [NUnit.Framework.DescriptionAttribute("AAAN_A_01_Onboarding_EventsSignup_FiltersJourneys")]
+    public partial class AAAN_A_01_Onboarding_EventsSignup_FiltersJourneysFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys.feature"
+#line 1 "AAN_A_01_Onboarding_EventsSignup_FiltersJourneys.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "AAAN_A_01_Onboarding_EventsSignup_FiltersJourneys", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,14 +74,14 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01A User successfully completes the Apprentice onboarding process and verifies" +
-            " the Hub page")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01A User successfully completes the Apprentice onboarding process and verif" +
+            "ies the Hub page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanonboarding")]
         [NUnit.Framework.CategoryAttribute("aan01")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN01AUserSuccessfullyCompletesTheApprenticeOnboardingProcessAndVerifiesTheHubPage()
+        public void AAN_A_01AUserSuccessfullyCompletesTheApprenticeOnboardingProcessAndVerifiesTheHubPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -90,8 +90,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
                     "aanreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01A User successfully completes the Apprentice onboarding process and verifies" +
-                    " the Hub page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01A User successfully completes the Apprentice onboarding process and verif" +
+                    "ies the Hub page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -119,13 +119,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01B User without manager permission encounters a shutter page")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01B User without manager permission encounters a shutter page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanonboarding")]
         [NUnit.Framework.CategoryAttribute("aan02")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN01BUserWithoutManagerPermissionEncountersAShutterPage()
+        public void AAN_A_01BUserWithoutManagerPermissionEncountersAShutterPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -134,7 +134,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "aanreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01B User without manager permission encounters a shutter page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01B User without manager permission encounters a shutter page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

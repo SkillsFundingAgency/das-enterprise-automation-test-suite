@@ -1,11 +1,11 @@
-﻿Feature: AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys
+﻿Feature: AAAN_A_01_Onboarding_EventsSignup_FiltersJourneys
 
 @aan
 @aanonboarding
 @aan01
 @aanreset
 @regression
-Scenario: AAN01A User successfully completes the Apprentice onboarding process and verifies the Hub page
+Scenario: AAN_A_01A User successfully completes the Apprentice onboarding process and verifies the Hub page
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
@@ -16,7 +16,7 @@ Scenario: AAN01A User successfully completes the Apprentice onboarding process a
 @aan02
 @aanreset
 @regression
-Scenario:AAN01B User without manager permission encounters a shutter page
+Scenario:AAN_A_01B User without manager permission encounters a shutter page
     Given an apprentice logs into the AAN portal
     When the user does not have manager permission
     Then a shutter page should be displayed
