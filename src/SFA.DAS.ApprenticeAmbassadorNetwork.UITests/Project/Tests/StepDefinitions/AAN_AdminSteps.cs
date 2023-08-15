@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+using SFA.DAS.EsfaAdmin.Service.Project;
 using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
@@ -21,8 +22,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(_context.GetAanEsfaAdminConfig<AanEsfaAdminConfig>());
 
         [Given(@"a super admin logs into the AAN portal")]
-        public void ASuperAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(_context.GetAanEsfaAdminConfig<AanEsfaSuperAdminConfig>());
+        public void ASuperAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(_context.GetAanEsfaSuperAdminConfig<AanEsfaSuperAdminConfig>());
 
-        private void SubmitValidLoginDetails(EsfaAdminConfig config) => _esfaAdminLoginStepsHelper.SubmitValidLoginDetails(config);
+        private void SubmitValidLoginDetails(EsfaAdminConfig config)
+        {
+            _esfaAdminLoginStepsHelper.SubmitValidLoginDetails(config);
+
+            _ = new AdminAdministratorHubPage(_context);
+        }
     }
 }
