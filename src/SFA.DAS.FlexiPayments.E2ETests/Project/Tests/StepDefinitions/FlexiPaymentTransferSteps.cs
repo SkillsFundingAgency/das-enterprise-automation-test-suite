@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -20,10 +22,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly TransfersUser _transfersUser;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private readonly FlexiPaymentsSteps _flexiPaymentsSteps;
 
         private readonly string _sender;
         private readonly string _receiver;
+
+        private readonly ReadApprenticeDataHelper readApprenticeDataHelper;
 
         public FlexiPaymentTransferSteps(ScenarioContext context)
         {
@@ -36,7 +39,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
-            _flexiPaymentsSteps = new FlexiPaymentsSteps(context);
+            readApprenticeDataHelper = new ReadApprenticeDataHelper(context);
         }
 
         [Given(@"Receiver sends an approved cohort with (.*) apprentices to the provider")]
@@ -54,7 +57,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             LoginAsReceiver();
 
-            _flexiPaymentsSteps.ReadApprenticeData(table);
+            readApprenticeDataHelper.ReadApprenticeData(table);
 
             var cohortReference = _transferEmployerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
 

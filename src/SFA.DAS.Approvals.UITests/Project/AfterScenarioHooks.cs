@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
@@ -26,9 +26,6 @@ namespace SFA.DAS.Approvals.UITests.Project
             context.TryGetValue(out _manageFundingEmployerStepsHelper);
             tags = context.ScenarioInfo.Tags;
         }
-
-        [AfterScenario(Order = 10)]
-        public void AddUln() => _tryCatch.AfterScenarioException(() => _datahelper?.Ulns.ForEach((x) => _objectContext.SetUln(x)));
 
         [AfterScenario(Order = 11)]
         public void RemoveDynamicPauseGlobalRule() => _manageFundingEmployerStepsHelper.RemoveDynamicPauseGlobalRule();

@@ -1,7 +1,7 @@
 ﻿Feature: ST_04_SuspendAndReinstateAccount
 
 
-@supportconsole
+@supporttools
 @approvalssupportconsole
 @BulkUtility
 Scenario: ST_04_Suspend and Reinstate Employer User Accounts

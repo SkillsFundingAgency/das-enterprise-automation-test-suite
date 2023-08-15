@@ -9,51 +9,51 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected override string PageTitle => "Create an account";
 
         #region Locators
-        private By FirstName => By.Id("Firstname");
-        private By LastName => By.Id("Lastname");
-        private By DOB_Day => By.Id("DateOfBirth_Day");
-        private By DOB_Month => By.Id("DateOfBirth_Month");
-        private By DOB_Year => By.Id("DateOfBirth_Year");
-        private By PostCode => By.Id("postcode-search");
-        private By PostCodeAutoSuggestResults => By.CssSelector(".ui-menu-item");
-        private By EmailId => By.Id("EmailAddress");
-        private By PhoneNumber => By.Id("PhoneNumber");
-        private By Password => By.Id("Password");
-        private By ConfirmPassword => By.Id("ConfirmPassword");
-        private By AcceptTermsAndConditions => By.CssSelector("input#HasAcceptedTermsAndConditions");
-        private By CreateAccountButton => By.Id("create-account-btn");
-        private By RegisteredEmailErrorMessage => By.ClassName("error-summary-list");
+        private static By FirstName => By.Id("Firstname");
+        private static By LastName => By.Id("Lastname");
+        private static By DOB_Day => By.Id("DateOfBirth_Day");
+        private static By DOB_Month => By.Id("DateOfBirth_Month");
+        private static By DOB_Year => By.Id("DateOfBirth_Year");
+        private static By PostCode => By.Id("postcode-search");
+        private static By PostCodeAutoSuggestResults => By.CssSelector(".ui-menu-item");
+        private static By EmailId => By.Id("EmailAddress");
+        private static By PhoneNumber => By.Id("PhoneNumber");
+        private static By Password => By.Id("Password");
+        private static By ConfirmPassword => By.Id("ConfirmPassword");
+        private static By AcceptTermsAndConditions => By.CssSelector("input#HasAcceptedTermsAndConditions");
+        private static By CreateAccountButton => By.Id("create-account-btn");
+        private static By RegisteredEmailErrorMessage => By.ClassName("error-summary-list");
 
         #endregion
 
         public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) { }
 
-        public FAA_ActivateYourAccountPage SubmitAccountCreationDetails()
+        public FAA_ActivateYourAccountPage CreateAccount()
         {
-            formCompletionHelper.EnterText(FirstName, faaDataHelper.FirstName);
-            formCompletionHelper.EnterText(LastName, faaDataHelper.LastName);
-            formCompletionHelper.EnterText(DOB_Day, faaDataHelper.DOB_Day);
-            formCompletionHelper.EnterText(DOB_Month, faaDataHelper.DOB_Month);
-            formCompletionHelper.EnterText(DOB_Year, faaDataHelper.DOB_Year);
-            SelectAddress();
-            formCompletionHelper.EnterText(EmailId, faaDataHelper.EmailId);
-            formCompletionHelper.EnterText(PhoneNumber, faaDataHelper.PhoneNumber);
-            formCompletionHelper.EnterText(Password, faaDataHelper.Password);
-            formCompletionHelper.EnterText(ConfirmPassword, faaDataHelper.Password);
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
-            formCompletionHelper.Click(CreateAccountButton);
+            CreateAccount(faaDataHelper.EmailId);
+
             pageInteractionHelper.WaitforURLToChange("activation");
+
             return new FAA_ActivateYourAccountPage(context);
         }
 
         public void SelectAddress()
         {
             formCompletionHelper.EnterText(PostCode, faaDataHelper.PostCode);
+
             pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
+
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
 
-        public void SubmitAccountCreationDetailsWithRegisteredEmail()
+        public void CreateAccountWithRegisteredEmail()
+        {
+            CreateAccount(faaConfig.FAAUserName);
+
+            CheckTheValidationMessagesForAlreadyRegisteredEmail();
+        }
+
+        private void CreateAccount(string email)
         {
             formCompletionHelper.EnterText(FirstName, faaDataHelper.FirstName);
             formCompletionHelper.EnterText(LastName, faaDataHelper.LastName);
@@ -61,18 +61,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(DOB_Month, faaDataHelper.DOB_Month);
             formCompletionHelper.EnterText(DOB_Year, faaDataHelper.DOB_Year);
             SelectAddress();
-            formCompletionHelper.EnterText(EmailId, faaConfig.FAAUserName);
+            formCompletionHelper.EnterText(EmailId, email);
             formCompletionHelper.EnterText(PhoneNumber, faaDataHelper.PhoneNumber);
             formCompletionHelper.EnterText(Password, faaDataHelper.Password);
             formCompletionHelper.EnterText(ConfirmPassword, faaDataHelper.Password);
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
             formCompletionHelper.Click(CreateAccountButton);
-            CheckTheValidationMessagesForAlreadyRegisteredEmail();
         }
 
-        public void CheckTheValidationMessagesForAlreadyRegisteredEmail()
-        {
-            pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, faaDataHelper.CreateAccountWithRegisteredEmailErrorMessage);            
-        }
+        public void CheckTheValidationMessagesForAlreadyRegisteredEmail() => pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, faaDataHelper.CreateAccountWithRegisteredEmailErrorMessage);
     }
 }

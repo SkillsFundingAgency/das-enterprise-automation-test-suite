@@ -70,8 +70,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetReservationId(this ObjectContext objectContext, string value) => objectContext.Replace(ReservationId, value);
 
-        internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
-
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) =>
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
 
