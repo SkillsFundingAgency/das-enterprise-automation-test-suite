@@ -3,14 +3,13 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers.CSSSelectors;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Pages
+namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+
+public class CheckProviderIndexPage : CheckPageUsingShorterTimeOut
 {
-    public class CheckProviderIndexPage : CheckPageUsingShorterTimeOut
-    {
-        protected override string PageTitle { get; }
+    protected override string PageTitle { get; }
 
-        protected override By Identifier => ProviderCSSSelectors.ProviderIndexStartSelector;
+    protected override By Identifier => ProviderCSSSelectors.ProviderIndexStartSelector;
 
-        public CheckProviderIndexPage(ScenarioContext context) : base(context) { }
-    }
+    public CheckProviderIndexPage(ScenarioContext context) : base(context) { }
 }

@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ProviderLogin.Service.Project;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages;
 
 public abstract class AedBasePage : VerifyBasePage
 {

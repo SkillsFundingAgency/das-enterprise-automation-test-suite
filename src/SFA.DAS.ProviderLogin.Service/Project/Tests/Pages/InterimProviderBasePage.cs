@@ -3,33 +3,31 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Pages
+namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+
+public abstract class InterimProviderBasePage : Navigate
 {
-    public abstract class InterimProviderBasePage : Navigate
+    #region Helpers and Context
+    protected readonly string ukprn;
+    #endregion
+
+    protected static By NotificationSettingsLink => By.LinkText("Notification settings");
+    protected static By OrganisationsAndAgreementsLink => By.LinkText("Organisations and agreements");
+    private static By SignOutLink => By.LinkText("Sign out");
+    protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
+
+    public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
     {
-        #region Helpers and Context
-        protected readonly string ukprn;
-        #endregion
+        ukprn = context.Get<ObjectContext>().GetUkprn();
+        VerifyElement();
+    }
 
+    public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
 
-        protected By NotificationSettingsLink => By.LinkText("Notification settings");
-        protected By OrganisationsAndAgreementsLink => By.LinkText("Organisations and agreements");
-        private By SignOutLink => By.LinkText("Sign out");
-        protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
-        
-        public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            ukprn = context.Get<ObjectContext>().GetUkprn();
-            VerifyElement();
-        }
+    protected void ClickIfPirenIsDisplayed()
+    {
+        var checkPage = new CheckProviderPireanPreprodPage(context);
 
-        public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
-
-        protected void ClickIfPirenIsDisplayed()
-        {
-            var checkPage = new CheckProviderPireanPreprodPage(context);
-
-            if (checkPage.IsPageDisplayed()) formCompletionHelper.ClickElement(checkPage.PireanPreprod);
-        }
+        if (checkPage.IsPageDisplayed()) formCompletionHelper.ClickElement(checkPage.PireanPreprod);
     }
 }

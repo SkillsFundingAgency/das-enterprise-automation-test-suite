@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Login.Service;
-using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
@@ -11,6 +10,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
