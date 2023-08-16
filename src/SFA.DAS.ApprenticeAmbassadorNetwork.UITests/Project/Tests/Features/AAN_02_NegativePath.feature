@@ -1,6 +1,7 @@
 ﻿Feature: AAN_02_NegativePath
 
 @aan
+@aanaprentice
 @aan05
 @aanreset
 @regression

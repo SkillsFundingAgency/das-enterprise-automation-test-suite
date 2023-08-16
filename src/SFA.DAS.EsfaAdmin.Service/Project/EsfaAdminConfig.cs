@@ -5,3 +5,7 @@ public class EsfaAdminConfig
     public string AdminUserName { get; set; }
     public string AdminPassword { get; set; }
 }
+
+public class AanEsfaAdminConfig : EsfaAdminConfig { }
+
+public class AanEsfaSuperAdminConfig : EsfaAdminConfig { }

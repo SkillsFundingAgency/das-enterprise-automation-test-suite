@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,11 +6,6 @@
     <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AAN_E_01_Onboarding - Copy.feature.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
@@ -26,20 +21,12 @@
   </ItemGroup>
   
   <ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.EsfaAdmin.Service\SFA.DAS.EsfaAdmin.Service.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
-	    <ProjectReference Include="..\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj" />
+	    <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	</ItemGroup>
-  
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\AAN_ADN_01.feature.cs">
-      <DependentUpon>AAN_ADN_01.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\AAN_E_01_Onboarding.feature.cs">
-      <DependentUpon>AAN_E_01_Onboarding.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
 	
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
@@ -57,15 +44,4 @@
 	  </None>
 	</ItemGroup>
 	
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\AAN_ADN_01.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\AAN_E_01_Onboarding.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	</ItemGroup>
-
 </Project>

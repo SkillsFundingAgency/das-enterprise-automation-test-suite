@@ -2,6 +2,7 @@
 
 @ignore
 @aan
+@aanaprentice
 @aan07
 @regression
 Scenario: AAN03_1A User should be able to successfully Filter Events by date 

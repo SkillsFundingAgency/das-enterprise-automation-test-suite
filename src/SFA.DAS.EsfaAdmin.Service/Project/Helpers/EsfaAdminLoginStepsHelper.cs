@@ -17,8 +17,20 @@ public class EsfaAdminLoginStepsHelper
     {
         new EsfaAdminServiceStartPage(_context).StartNow().LoginToAccess1Staff();
 
+        Login(username, password);
+    }
+
+    public void SubmitValidLoginDetails(EsfaAdminConfig esfaAdminConfig)
+    {
+        new PreProdDIGBEADFSPage(_context).LoginToAccess1Staff();
+
+        Login(esfaAdminConfig.AdminUserName, esfaAdminConfig.AdminPassword);
+    }
+
+    private void Login(string username, string password)
+    {
         new EsfaSignInPage(_context).SubmitValidLoginDetails(username, password);
 
-        _context.Get<ObjectContext>().SetEsfaAdminLoginCreds((username,password));
+        _context.Get<ObjectContext>().SetEsfaAdminLoginCreds((username, password));
     }
 }

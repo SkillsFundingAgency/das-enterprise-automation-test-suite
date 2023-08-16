@@ -58,6 +58,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EmployerConnectedToPortableFlexiJobProvider : EasAccountUser { }
 
+    public class AanEWOUser : EasAccountUser { }
+
     #endregion
 
     #region MultipleAccountUser
