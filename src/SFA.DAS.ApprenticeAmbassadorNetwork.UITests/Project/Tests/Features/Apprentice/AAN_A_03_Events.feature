@@ -1,11 +1,11 @@
-﻿Feature: AAN_03_Events_Filters
+﻿Feature: AAN_A_03_Events
 
 @ignore
 @aan
 @aanaprentice
 @aan07
 @regression
-Scenario: AAN03_1A User should be able to successfully Filter Events by date 
+Scenario: AAN_A_03_1A User should be able to successfully Filter Events by date 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed

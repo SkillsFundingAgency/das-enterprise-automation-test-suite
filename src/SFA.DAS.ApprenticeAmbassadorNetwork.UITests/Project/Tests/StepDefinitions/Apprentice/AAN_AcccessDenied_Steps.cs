@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 using SFA.DAS.Login.Service.Project.Helpers;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice
 {
     [Binding]
     public class AAN_AcccessDenied_Steps

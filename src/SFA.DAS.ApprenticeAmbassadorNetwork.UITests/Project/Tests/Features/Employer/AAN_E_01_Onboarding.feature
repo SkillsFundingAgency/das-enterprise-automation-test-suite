@@ -1,4 +1,4 @@
-﻿Feature: AAN_01_ApprenticeOnboarding_EventsSignup_FiltersJourneys
+﻿Feature: AAN_E_01_Onboarding
 
 @aan
 @aanemployer

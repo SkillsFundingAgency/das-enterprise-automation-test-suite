@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Apprentice
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "AAAN_A_01_Onboarding_EventsSignup_FiltersJourneys", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apprentice", "AAAN_A_01_Onboarding_EventsSignup_FiltersJourneys", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -163,15 +163,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01C User completes all onboarding details and can modify answers on the \"Check" +
-            " Your Answer\" page")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01C User completes all onboarding details and can modify answers on the \"Ch" +
+            "eck Your Answer\" page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanonboarding")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
         [NUnit.Framework.CategoryAttribute("aan03")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN01CUserCompletesAllOnboardingDetailsAndCanModifyAnswersOnTheCheckYourAnswerPage()
+        public void AAN_A_01CUserCompletesAllOnboardingDetailsAndCanModifyAnswersOnTheCheckYourAnswerPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -181,8 +181,8 @@ this.ScenarioInitialize(scenarioInfo);
                     "aanreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01C User completes all onboarding details and can modify answers on the \"Check" +
-                    " Your Answer\" page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01C User completes all onboarding details and can modify answers on the \"Ch" +
+                    "eck Your Answer\" page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -213,15 +213,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01D User completes onboarding process and lands on the AAN Hub page after sign" +
-            "ing in")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01D User completes onboarding process and lands on the AAN Hub page after s" +
+            "igning in")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanonboarding")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
         [NUnit.Framework.CategoryAttribute("aan04")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN01DUserCompletesOnboardingProcessAndLandsOnTheAANHubPageAfterSigningIn()
+        public void AAN_A_01DUserCompletesOnboardingProcessAndLandsOnTheAANHubPageAfterSigningIn()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -231,8 +231,8 @@ this.ScenarioInitialize(scenarioInfo);
                     "aanreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01D User completes onboarding process and lands on the AAN Hub page after sign" +
-                    "ing in", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01D User completes onboarding process and lands on the AAN Hub page after s" +
+                    "igning in", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 45
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -260,8 +260,8 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01E User should be able to successfully signup and cancel the attendacne for a" +
-            "n event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01E User should be able to successfully signup and cancel the attendacne fo" +
+            "r an event")]
         [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanevents")]
@@ -269,7 +269,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
-        public void AAN01EUserShouldBeAbleToSuccessfullySignupAndCancelTheAttendacneForAnEvent()
+        public void AAN_A_01EUserShouldBeAbleToSuccessfullySignupAndCancelTheAttendacneForAnEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "ignore",
@@ -280,8 +280,8 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression",
                     "aanaprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01E User should be able to successfully signup and cancel the attendacne for a" +
-                    "n event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01E User should be able to successfully signup and cancel the attendacne fo" +
+                    "r an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 58
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -316,14 +316,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01F User should be able to successfully Filter Events by date")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01F User should be able to successfully Filter Events by date")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aaneventsfilters")]
         [NUnit.Framework.CategoryAttribute("aan07")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
-        public void AAN01FUserShouldBeAbleToSuccessfullyFilterEventsByDate()
+        public void AAN_A_01FUserShouldBeAbleToSuccessfullyFilterEventsByDate()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -333,7 +333,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression",
                     "aanaprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01F User should be able to successfully Filter Events by date", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01F User should be able to successfully Filter Events by date", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 72
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -364,14 +364,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01G User should be able to successfully Filter Events by Type")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01G User should be able to successfully Filter Events by Type")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aaneventsfilters")]
         [NUnit.Framework.CategoryAttribute("aan08")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
-        public void AAN01GUserShouldBeAbleToSuccessfullyFilterEventsByType()
+        public void AAN_A_01GUserShouldBeAbleToSuccessfullyFilterEventsByType()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -381,7 +381,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression",
                     "aanaprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01G User should be able to successfully Filter Events by Type", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01G User should be able to successfully Filter Events by Type", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 86
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -412,14 +412,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01H User should be able to successfully Filter Events by Event type")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01H User should be able to successfully Filter Events by Event type")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aaneventsfilters")]
         [NUnit.Framework.CategoryAttribute("aan09")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
-        public void AAN01HUserShouldBeAbleToSuccessfullyFilterEventsByEventType()
+        public void AAN_A_01HUserShouldBeAbleToSuccessfullyFilterEventsByEventType()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -429,7 +429,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression",
                     "aanaprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01H User should be able to successfully Filter Events by Event type", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01H User should be able to successfully Filter Events by Event type", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 100
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -460,15 +460,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN01I User should be able to successfully Filter Events by multiple combination " +
-            "of filters")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_01I User should be able to successfully Filter Events by multiple combinati" +
+            "on of filters")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aaneventsfilters")]
         [NUnit.Framework.CategoryAttribute("aan10")]
         [NUnit.Framework.CategoryAttribute("aanreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
-        public void AAN01IUserShouldBeAbleToSuccessfullyFilterEventsByMultipleCombinationOfFilters()
+        public void AAN_A_01IUserShouldBeAbleToSuccessfullyFilterEventsByMultipleCombinationOfFilters()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -478,8 +478,8 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression",
                     "aanaprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN01I User should be able to successfully Filter Events by multiple combination " +
-                    "of filters", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_01I User should be able to successfully Filter Events by multiple combinati" +
+                    "on of filters", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 114
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

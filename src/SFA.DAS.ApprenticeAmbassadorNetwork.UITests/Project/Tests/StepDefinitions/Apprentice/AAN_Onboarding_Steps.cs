@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 using SFA.DAS.Login.Service.Project.Helpers;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice
 {
 
     [Binding]
@@ -27,7 +27,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 
             objectContext = context.Get<ObjectContext>();
 
-           _restartWebDriverHelper = new RestartWebDriverHelper(context);
+            _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
 
         [Given(@"an apprentice logs into the AAN portal")]
@@ -48,7 +48,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                 .ConfirmRegionAndContinue()
                 .EnterInformationToJoinNetwork()
                 .SelectEventsAndPromotions()
-                .YesHaveEngagedWithAnAmbassadaorAndContinue();             
+                .YesHaveEngagedWithAnAmbassadaorAndContinue();
         }
 
         [Then(@"the Apprentice onboarding process should be successfully completed")]

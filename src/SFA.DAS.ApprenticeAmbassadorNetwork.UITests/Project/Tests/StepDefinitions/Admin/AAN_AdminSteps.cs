@@ -2,7 +2,7 @@
 using SFA.DAS.EsfaAdmin.Service.Project;
 using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin
 {
     [Binding]
     public class AAN_AdminSteps

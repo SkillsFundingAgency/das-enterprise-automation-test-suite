@@ -29,7 +29,7 @@ Scenario:AAN_A_01B User without manager permission encounters a shutter page
 @aan03
 @aanreset
 @regression
-Scenario:AAN01C User completes all onboarding details and can modify answers on the "Check Your Answer" page
+Scenario:AAN_A_01C User completes all onboarding details and can modify answers on the "Check Your Answer" page
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     And the user should be able to modify any of the provided answers
@@ -42,7 +42,7 @@ Scenario:AAN01C User completes all onboarding details and can modify answers on 
 @aan04
 @aanreset
 @regression
-Scenario:AAN01D User completes onboarding process and lands on the AAN Hub page after signing in
+Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub page after signing in
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
@@ -55,7 +55,7 @@ Scenario:AAN01D User completes onboarding process and lands on the AAN Hub page 
 @aanreset
 @regression
 @aanaprentice
-Scenario: AAN01E User should be able to successfully signup and cancel the attendacne for an event
+Scenario: AAN_A_01E User should be able to successfully signup and cancel the attendacne for an event
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
@@ -69,7 +69,7 @@ Scenario: AAN01E User should be able to successfully signup and cancel the atten
 @aanreset
 @regression
 @aanaprentice
-Scenario: AAN01F User should be able to successfully Filter Events by date 
+Scenario: AAN_A_01F User should be able to successfully Filter Events by date 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
@@ -83,7 +83,7 @@ Scenario: AAN01F User should be able to successfully Filter Events by date
 @aanreset
 @regression
 @aanaprentice
-Scenario: AAN01G User should be able to successfully Filter Events by Type 
+Scenario: AAN_A_01G User should be able to successfully Filter Events by Type 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
@@ -97,7 +97,7 @@ Scenario: AAN01G User should be able to successfully Filter Events by Type
 @aanreset
 @regression
 @aanaprentice
-Scenario: AAN01H User should be able to successfully Filter Events by Event type 
+Scenario: AAN_A_01H User should be able to successfully Filter Events by Event type 
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
@@ -111,7 +111,7 @@ Scenario: AAN01H User should be able to successfully Filter Events by Event type
 @aanreset
 @regression
 @aanaprentice
-Scenario: AAN01I User should be able to successfully Filter Events by multiple combination of filters
+Scenario: AAN_A_01I User should be able to successfully Filter Events by multiple combination of filters
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed

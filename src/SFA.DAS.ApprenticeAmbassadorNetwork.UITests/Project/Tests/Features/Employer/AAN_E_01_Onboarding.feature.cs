@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_02_NegativePath")]
-    public partial class AAN_02_NegativePathFeature
+    [NUnit.Framework.DescriptionAttribute("AAN_E_01_Onboarding")]
+    public partial class AAN_E_01_OnboardingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_02_NegativePath.feature"
+#line 1 "AAN_E_01_Onboarding.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "AAN_02_NegativePath", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AAN_E_01_Onboarding", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,24 +74,28 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_02_NegativePath User details are not in Staged Apprentice Record")]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_01A User successfully completes the Employer onboarding process and verifie" +
+            "s the Hub page")]
         [NUnit.Framework.CategoryAttribute("aan")]
-        [NUnit.Framework.CategoryAttribute("aanaprentice")]
-        [NUnit.Framework.CategoryAttribute("aan05")]
-        [NUnit.Framework.CategoryAttribute("aanreset")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
+        [NUnit.Framework.CategoryAttribute("aanemployeronboarding")]
+        [NUnit.Framework.CategoryAttribute("aane01")]
+        [NUnit.Framework.CategoryAttribute("aanemployerereset")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_02_NegativePathUserDetailsAreNotInStagedApprenticeRecord()
+        public void AAN_E_01AUserSuccessfullyCompletesTheEmployerOnboardingProcessAndVerifiesTheHubPage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
-                    "aanaprentice",
-                    "aan05",
-                    "aanreset",
+                    "aanemployer",
+                    "aanemployeronboarding",
+                    "aane01",
+                    "aanemployerereset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_02_NegativePath User details are not in Staged Apprentice Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
-  this.ScenarioInitialize(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_01A User successfully completes the Employer onboarding process and verifie" +
+                    "s the Hub page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -100,11 +104,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features
             else
             {
                 this.ScenarioStart();
-#line 9
-    testRunner.Given("the non Private beta apprentice logs into AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 10
-    testRunner.Then("an Access Denied page should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Given("an employer without onboarding logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
