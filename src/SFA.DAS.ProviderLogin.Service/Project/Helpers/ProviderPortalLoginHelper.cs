@@ -20,6 +20,9 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 
         internal ProviderHomePage Login(ProviderLoginUser login) => Login(new ProviderIndexPage(_context).StartNow(), login);
 
-        private ProviderHomePage Login(ProviderSignInPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login).SelectOrganisation(login.Ukprn);
+        //pas login changes
+        //private ProviderHomePage Login(ProviderSignInPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login).SelectOrganisation(login.Ukprn);
+
+        private static ProviderHomePage Login(ProviderSignInPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login);
     }
 }

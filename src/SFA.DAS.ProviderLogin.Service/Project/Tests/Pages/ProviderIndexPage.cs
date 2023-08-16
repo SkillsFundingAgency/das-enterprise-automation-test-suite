@@ -6,7 +6,10 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
 public class ProviderIndexPage : IdamsLoginBasePage
 {
-    protected override string PageTitle => "Apprenticeship service for training providers: sign in or register for an account";
+    //pas login changes
+    //protected override string PageTitle => "Apprenticeship service for training providers: sign in or register for an account";
+
+    protected override string PageTitle => "Manage apprenticeships on behalf of employers";
 
     public ProviderIndexPage(ScenarioContext context) : base(context) { }
 

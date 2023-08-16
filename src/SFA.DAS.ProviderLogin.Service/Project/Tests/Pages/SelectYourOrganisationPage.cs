@@ -1,8 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
+//pas login changes (do not remove this class)
 public class SelectYourOrganisationPage : ProviderLoginBasePage
 {
     private static By Organisaitons => By.CssSelector("#organisation .govuk-radios__item");

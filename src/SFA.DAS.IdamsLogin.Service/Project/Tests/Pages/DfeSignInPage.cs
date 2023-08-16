@@ -1,5 +1,6 @@
 ﻿namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
+//pas login changes (do not remove this class)
 public class DfeSignInPage : SignInBasePage
 {
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
