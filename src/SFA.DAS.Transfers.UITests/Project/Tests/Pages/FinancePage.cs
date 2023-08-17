@@ -6,7 +6,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
     public class FinancePage : InterimFinanceHomePage
     {
-        private By TransferLink => By.LinkText("Transfers");
+        private static By TransferLink => By.LinkText("Transfers");
 
         public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
