@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FJAA_E2E_09_DeliveryModelNotDisplayedForNonFJAAEmp")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class FJAA_E2E_09_DeliveryModelNotDisplayedForNonFJAAEmpFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "FJAA_E2E_09_DeliveryModelNotDisplayedForNonFJAAEmp.feature"
 #line hidden
@@ -80,17 +78,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FJAA_E2E_09_DeliveryModelNotDisplayedForNonFJAAEmp")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("flexi-job")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        [NUnit.Framework.CategoryAttribute("flexijobapprenticeshipagency")]
+        [NUnit.Framework.CategoryAttribute("fjaae2escenarios")]
         public void FJAA_E2E_09_DeliveryModelNotDisplayedForNonFJAAEmp()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "flexi-job",
-                    "e2escenarios"};
+                    "flexijobapprenticeshipagency",
+                    "fjaae2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_09_DeliveryModelNotDisplayedForNonFJAAEmp", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,19 +98,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 11
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 12
  testRunner.When("the Employer adds 1 apprentices and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 13
  testRunner.And("the provider adds Ulns and approves the cohorts and sends to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 14
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 15
  testRunner.And("the employer confirms Delivery Model is not displayed on Apprentice Details Scree" +
                         "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

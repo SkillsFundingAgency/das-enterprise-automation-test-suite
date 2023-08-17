@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class FJAA_E2E_04_Employer_Pre_ApprovalEmployerChangesDMFromRegularToFlexiFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi.feature"
 #line hidden
@@ -83,17 +81,17 @@ and sends back to Provider for Approval.", ProgrammingLanguage.CSharp, featureTa
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("flexi-job")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        [NUnit.Framework.CategoryAttribute("flexijobapprenticeshipagency")]
+        [NUnit.Framework.CategoryAttribute("fjaae2escenarios")]
         public void FJAA_E2E_04_Employer_Pre_ApprovalEmployerChangesDMFromRegularToFlexi()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "flexi-job",
-                    "e2escenarios"};
+                    "flexijobapprenticeshipagency",
+                    "fjaae2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 15
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -103,22 +101,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 14
  testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 15
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 16
  testRunner.And("the provider adds an apprentice on the Regular Delivery Model and sends to Employ" +
                         "er for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 17
  testRunner.Then("the Employer changes the Delivery Model from Regular to Flexi and sends back to p" +
                         "rovider to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
+#line 18
  testRunner.And("the provider validates flexi-job content and approves cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

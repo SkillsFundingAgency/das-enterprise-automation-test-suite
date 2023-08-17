@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortalsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals.feature"
 #line hidden
@@ -80,17 +78,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("flexi-job")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        [NUnit.Framework.CategoryAttribute("flexijobapprenticeshipagency")]
+        [NUnit.Framework.CategoryAttribute("fjaae2escenarios")]
         public void FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "flexi-job",
-                    "e2escenarios"};
+                    "flexijobapprenticeshipagency",
+                    "fjaae2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,29 +98,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 11
  testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 12
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 13
  testRunner.And("the provider selects Flexi-job agency radio button on Select Delivery Model scree" +
                         "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 14
  testRunner.Then("provider validate Flexi-job agency content on Add Apprentice Details page and sub" +
                         "mit valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 15
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 17
+#line 16
  testRunner.And("the employer confirms Delivery Model is displayed as \"Flexi-job agency\" on Appren" +
                         "tice Details and Edit Apprentice screens", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 17
  testRunner.And("the provider confirms Delivery Model is displayed as \"Flexi-job agency\" on Appren" +
                         "tice Details and Edit Apprentice screens", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

@@ -1,6 +1,4 @@
-﻿@approvals
-@donotexecuteinparallel
-Feature: FJAA_RMR_PJ_03_EditLiveApprenticeAfterRemoval
+﻿Feature: FJAA_RMR_PJ_03_EditLiveApprenticeAfterRemoval
 
 In this test, an Training Provider, 
 has active apprentices on the "Flexi-job agency" delivery model. 
@@ -10,9 +8,10 @@ the provider edits the delivery model,
 then the delivery model can no longer be edited.
 
 @regression
-@flexi-job
-@e2escenarios
+@flexijobapprenticeshipagency
+@fjaae2escenarios
 @rofjaadb
+@donotexecuteinparallel
 Scenario: FJAA_RMR_PJ_03_EditLiveApprenticeAfterRemoval
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When the Employer create a cohort and send to provider to add apprentices

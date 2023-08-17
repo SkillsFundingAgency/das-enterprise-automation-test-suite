@@ -1,13 +1,12 @@
-﻿@approvals
-Feature: FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals
+﻿Feature: FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals
 
 In this test, an FJAA employer and Training Provider 
 both confirm that the Delivery Model sections are displayed on their respective portal pages
 when a Flexi Job Delivery model is chosen for an apprentice.
 
 @regression
-@flexi-job
-@e2escenarios
+@flexijobapprenticeshipagency
+@fjaae2escenarios
 Scenario: FJAA_E2E_08_DeliveryModelDisplayedOnEmployerAndProviderPortals
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When the Employer create a cohort and send to provider to add apprentices
