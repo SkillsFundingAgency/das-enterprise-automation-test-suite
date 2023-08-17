@@ -9,6 +9,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderBulkUploadStepsHelper(ScenarioContext context) => _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
 
+        public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices)
+        {
+            return _providerCommonStepsHelper.CurrentCohortDetails()
+                .SelectBulkUploadApprentices()
+                .UploadFileAndConfirmSuccessful(numberOfApprentices, false)
+                .SubmitApprove();
+        }
+
         public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference) => UsingFileUpload().CreateACsvFileWithCohortReference(cohortReference, 1).UploadFile();
 
         public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2ForLegalEntity(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef, string email, string name)

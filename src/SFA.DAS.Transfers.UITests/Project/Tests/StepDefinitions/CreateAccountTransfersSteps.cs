@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -26,6 +27,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
 
         private readonly Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
         private HomePage _homePage;
@@ -43,6 +45,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
 
             _accountDetails = new Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)>();
         }
@@ -115,7 +118,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void WhenProviderAddsAnApprenticesApprovesTheCohort() => _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
 
         [When(@"Provider approves the cohort")]
-        public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();
+        public void WhenProviderApprovesTheCohort() => _providerApproveStepsHelper.EditAndApprove();
 
         [When(@"Receiver (First|Second|Third) approves the cohort")]
         public void WhenReceiverApprovesTheCohort(string receiver)

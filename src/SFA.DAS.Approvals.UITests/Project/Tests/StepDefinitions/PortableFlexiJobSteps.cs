@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
         #endregion
 
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"an Employer initiates a portable flexi-job apprenticeship creation")]
@@ -58,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Provider validates Portable flexi-job content and approves the cohort")]
-        public void TheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort() => _providerStepsHelper.ValidatePortableFlexiJobContentAndApproveCohort();
+        public void TheProviderValidatesPortableFlexi_JobContentAndApprovesTheCohort() => _providerApproveStepsHelper.ValidatePortableFlexiJobContentAndApproveCohort();
 
         [Given(@"the Employer creates a Portable flexi-job apprenticeship and the Provider approves it")]
         public void GivenTheEmployerCreatesAPortableFlexi_JobApprenticeshipAndTheProviderApprovesIt()

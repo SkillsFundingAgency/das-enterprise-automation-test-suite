@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -33,6 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ProviderBulkUploadStepsHelper _providerBulkUploadStepsHelper;
 
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
+
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
 
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
@@ -62,6 +65,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _cohortReferenceHelper = new CohortReferenceHelper(context);
 
             _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
+
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"provider does not offer Standard-X")]
@@ -82,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             EmployerApproveAndSendToProvider();
 
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
 
             var larsCode = _context.Get<RoatpV2SqlDataHelper>().GetCoursesthatProviderDeosNotOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
 
@@ -98,7 +103,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderSeeWarningMessagesInReviewChangesPage() => providerReviewChangesPage.VerifyLimitingStandardRestriction();
 
         [When(@"provider opens apprentice requests")]
-        public void WhenProviderOpensApprenticeRequests() => providerApproveApprenticeDetailsPage = _providerStepsHelper.ViewCurrentCohortDetails();
+        public void WhenProviderOpensApprenticeRequests() => providerApproveApprenticeDetailsPage = _providerCommonStepsHelper.ViewCurrentCohortDetails();
 
         [Then(@"provider see warning messages in approve apprentice page")]
         public void ThenProviderSeeWarningMessagesInApproveApprenticePage() => providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();

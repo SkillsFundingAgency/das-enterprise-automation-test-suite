@@ -23,7 +23,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
         private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
@@ -40,6 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
@@ -49,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"the provider has an apprentice with stopped status")]
@@ -111,7 +115,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider Approves the Cohort")]
         public void ThenProviderApprovesTheCohort()
         {
-            _providerStepsHelper
+            _providerCommonStepsHelper
                 .GoToProviderHomePage(false)
                 .GoToApprenticeRequestsPage()
                 .GoToCohortsToReviewPage()
@@ -272,7 +276,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => _providerStepsHelper
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => _providerCommonStepsHelper
                                 .GoToProviderHomePage()
                                 .GoToProviderManageYourApprenticePage()
                                 .SelectViewCurrentApprenticeDetails();
@@ -285,7 +289,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
         }
 
         private void UpdateNewCohortReference() => _cohortReferenceHelper.UpdateCohortReference();

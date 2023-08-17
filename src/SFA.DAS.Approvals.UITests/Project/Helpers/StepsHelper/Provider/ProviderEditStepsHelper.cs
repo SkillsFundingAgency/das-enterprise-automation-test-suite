@@ -23,6 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
         }
 
+        public ProviderEditApprenticeCoursePage ProviderEditApprentice() => _providerCommonStepsHelper.CurrentApprenticeDetails().EditApprentice();
+
         public ProviderApproveApprenticeDetailsPage CheckCoursesAreStandardsAndEditApprentice() => EditApprentice(CurrentCohortDetails(), true);
 
         public ProviderApproveApprenticeDetailsPage EditApprentice() => EditApprentice(CurrentCohortDetails());

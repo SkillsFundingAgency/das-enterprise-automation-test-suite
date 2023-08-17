@@ -19,6 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
         private readonly ProviderEditStepsHelper _providerEditStepsHelper;
         private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
@@ -33,20 +35,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _assertHelper = context.Get<RetryAssertHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _providerEditStepsHelper = new ProviderEditStepsHelper(context);
             _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
         }
 
         [Then(@"the provider will no longer be able to change the email address")]
-        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerStepsHelper.ProviderEditApprentice().VerifyReadOnlyEmail();
+        public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerEditStepsHelper.ProviderEditApprentice().VerifyReadOnlyEmail();
 
         [Given(@"the provider update the email address")]
-        public void GivenTheProviderUpdateTheEmailAddress() => _providerStepsHelper.ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
+        public void GivenTheProviderUpdateTheEmailAddress() => _providerEditStepsHelper.ProviderEditApprentice().AddValidEmailAndContinue().AcceptChangesAndSubmit();
 
         [Then(@"the provider approves the cohorts")]
-        public void ThenTheProviderApprovesTheCohorts() => _providerStepsHelper.CurrentCohortDetails().SubmitApprove();
+        public void ThenTheProviderApprovesTheCohorts() => _providerApproveStepsHelper.Approve();
 
         [When(@"the provider adds (.*) apprentices and sends to employer to review")]
         public void WhenTheProviderAddsApprenticesAndSendsToEmployerToReview(int numberOfApprentices) => _providerStepsHelper.AddApprentice(numberOfApprentices).SubmitSendToEmployerToReview();
@@ -64,10 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderSendsTheCohortToEmployerToApprove() => _providerApproveApprenticeDetailsPage.SubmitSendToEmployerToReview();
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
-        public void TheProviderAddsUlnsAndApprovesTheCohorts() => _providerStepsHelper.Approve();
-
-        [Then(@"the provider validates Flexi-job content, adds Uln and approves the cohorts")]
-        public void ThenTheProviderValidatesFlexi_JobContentAddsUlnAndApprovesTheCohorts() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+        public void TheProviderAddsUlnsAndApprovesTheCohorts() => _providerApproveStepsHelper.EditAndApprove();
 
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer() => _providerEditStepsHelper.EditApprentice().SubmitApprove();
@@ -81,13 +82,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to view the cohort with employer")]
         public void ThenProviderIsAbleToViewTheCohortWithEmployer()
         {
-            _providerStepsHelper.GoToProviderHomePage();
+            _providerCommonStepsHelper.GoToProviderHomePage();
 
             new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithEmployers().SelectViewCurrentCohortDetails();
         }
 
         [Then(@"Provider is able to view all apprentice details when the cohort with employer")]
-        public void ThenProviderIsAbleToViewAllApprenticeDetailsWhenTheCohortWithEmployer() => _providerStepsHelper.ViewApprentices();
+        public void ThenProviderIsAbleToViewAllApprenticeDetailsWhenTheCohortWithEmployer()
+        {
+            ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new(_context);
+
+            int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
+
+            for (int i = 0; i < totalApprentices; i++) _providerViewYourCohortPage.SelectViewApprentice(i).SelectReturnToCohortView();
+        }
 
         [When(@"Provider adds (.*) apprentices and saves without sending to the employer")]
         public void WhenProviderAddsApprenticesAndSavesWithoutSendingToTheEmployer(int numberOfApprentices)
@@ -106,17 +114,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to delete the cohort before approval")]
         public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => _providerDeleteStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
 
-        [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
-        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
-
-        [When(@"Provider add (.*) apprentice details using bulk upload and sends to non-levy employer for approval")]
-        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToNonLevyEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
-
         [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
 
         [Given(@"the Provider navigates to Choose a cohort page via the Home page")]
-        public void GivenTheProviderNavigatesToChooseACohortPageViaTheHomePage() => _providerStepsHelper.GoToProviderHomePage(false).GotoSelectJourneyPage().SelectAddManually().SelectOptionAddToAnExistingCohort();
+        public void GivenTheProviderNavigatesToChooseACohortPageViaTheHomePage() => _providerCommonStepsHelper.GoToProviderHomePage(false).GotoSelectJourneyPage().SelectAddManually().SelectOptionAddToAnExistingCohort();
 
         [Then(@"the Provider should only see apprentices with status Draft or Ready to review excluding apprentices related to change of party")]
         public void ThenTheProviderShouldOnlySeeApprenticesWithStatusDraftOrReadyToReviewExcludingApprenticesRelatedToChangeOfParty()
@@ -154,10 +156,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider creates a new cohort")]
-        public void GivenProviderCreatesANewCohort() => _providerStepsHelper.GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually();
+        public void GivenProviderCreatesANewCohort() => _providerCommonStepsHelper.GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually();
 
         [Then(@"the provider validates flexi-job content and approves cohort")]
-        public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
+        [Then(@"the provider validates Flexi-job content, adds Uln and approves the cohorts")]
+        public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerApproveStepsHelper.ValidateFlexiJobContentAndApproveCohort();
 
         [When(@"the provider adds an apprentice on the Regular Delivery Model and sends to Employer for approval")]
         public void WhenTheProviderAddsAnApprenticeOnTheRegularDeliveryModelAndSendsToEmployerForApproval() => _providerStepsHelper.AddApprenticeAndSelectRegularDeliveryModel();
@@ -165,10 +168,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private int? GetProvidersDraftAndReadyForReviewCohortsCount() => _commitmentsSqlDataHelper.GetProvidersDraftAndReadyForReviewCohortsCount(_providerConfig.Ukprn);
 
         [Then(@"provider navigates to Approve Apprentice page and deletes Cohort before approval")]
-        public void ThenProviderNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _providerStepsHelper.ViewCurrentCohortDetails().SelectDeleteCohort().ConfirmDeleteAndSubmit();
+        public void ThenProviderNavigatesToApproveApprenticePageAndDeletesCohortBeforeApproval() => _providerCommonStepsHelper.ViewCurrentCohortDetails().SelectDeleteCohort().ConfirmDeleteAndSubmit();
 
         [Then(@"the provider can no longer approve the draft cohort")]
-        public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerStepsHelper.ViewCurrentCohortDetails().ValidateProviderCannotApproveCohort();
+        public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerCommonStepsHelper.ViewCurrentCohortDetails().ValidateProviderCannotApproveCohort();
 
     }
 }

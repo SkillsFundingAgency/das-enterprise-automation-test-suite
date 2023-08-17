@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
         protected readonly ProviderConfig _providerConfig;
         protected readonly ApprovalsConfig approvalsConfig;
         protected readonly PageInteractionHelper pageInteractionHelper;
@@ -35,13 +35,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
         }
+
+
+        [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
+        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices) => _providerBulkUploadStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
+
+        [When(@"Provider add (.*) apprentice details using bulk upload and sends to non-levy employer for approval")]
+        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToNonLevyEmployerForApproval(int numberOfApprentices) => _providerBulkUploadStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
 
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
@@ -156,7 +163,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             string expectedStatus1 = "LIVE";
             string expectedStatus2 = "WAITING TO START";
 
-            ProviderManageYourApprenticesPage providerManageYourApprenticesPage = _providerStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage();
+            ProviderManageYourApprenticesPage providerManageYourApprenticesPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage();
 
             foreach (var apprentice in apprenticeList)
             {

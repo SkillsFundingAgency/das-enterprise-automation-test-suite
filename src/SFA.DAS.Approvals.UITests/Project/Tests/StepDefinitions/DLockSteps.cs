@@ -15,14 +15,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly DataLockSqlHelper _dlockDataHelper;
 
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
 
         private readonly EmployerStepsHelper _employerStepsHelper;
 
         public DLockSteps(ScenarioContext context)
         {
             _dlockDataHelper = context.Get<DataLockSqlHelper>();
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
 
@@ -120,7 +120,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
-            _providerStepsHelper.GoToProviderHomePage(false).GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+            _providerCommonStepsHelper.GoToProviderHomePage(false).GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
         private Dictionary<string, int?> GetRowCountForMismatch() => SelectViewCurrentApprenticeDetails().ClickViewIlrMismatchDetails().GetRowCountForMismatch();
 
