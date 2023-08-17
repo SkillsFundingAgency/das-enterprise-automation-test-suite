@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private static By VacancyConfirmationSelector => By.CssSelector(".govuk-panel--confirmation");
 
-        protected By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
+        protected static By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
 
         public VacancyReferencePage(ScenarioContext context) : base(context) { }
 

@@ -9,13 +9,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         public VacancyDatesBasePage(ScenarioContext context) : base(context) { }
 
-        protected By ClosingDay => By.Id("ClosingDay");
-        protected By ClosingMonth => By.Id("ClosingMonth");
-        protected By ClosingYear => By.Id("ClosingYear");
-        protected By StartDateDay => By.Id("StartDay");
-        protected By StartDateMonth => By.Id("StartMonth");
-        protected By StartDateYear => By.Id("StartYear");
-        protected By IsDisabilityConfident => By.Id("IsDisabilityConfident");
+        protected static By ClosingDay => By.Id("ClosingDay");
+        protected static By ClosingMonth => By.Id("ClosingMonth");
+        protected static By ClosingYear => By.Id("ClosingYear");
+        protected static By StartDateDay => By.Id("StartDay");
+        protected static By StartDateMonth => By.Id("StartMonth");
+        protected static By StartDateYear => By.Id("StartYear");
+        protected static By IsDisabilityConfident => By.Id("IsDisabilityConfident");
 
         protected void ClosingDate(DateTime date) => EditDates(date, ClosingDay, ClosingMonth, ClosingYear);
 

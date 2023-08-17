@@ -14,9 +14,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected readonly ApprenticeDataHelper datahelper;
         #endregion
 
-        protected By NonDefaulCheckboxSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
+        protected static By NonDefaulCheckboxSelector => By.CssSelector(".govuk-checkboxes .govuk-checkboxes__input");
 
-        protected By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
+        protected static By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
 
         private static By ApplicaitonStatusSelector => By.CssSelector("#main-content .application-status-one");
 

@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Tell us who's responsible for maintaining these expectations for quality and high standards in apprenticeship training";
 
-        protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
+        protected static By LabelCssSelector => By.CssSelector(".govuk-form-group");
 
         public WhoIsResposibleToMaintainExpectationsPage(ScenarioContext context) : base(context) => VerifyPage();
 

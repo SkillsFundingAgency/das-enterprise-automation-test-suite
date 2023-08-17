@@ -18,7 +18,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 
         private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
         protected static By RecruitTraineesLink => By.LinkText("Recruit trainees");
-        protected By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
+        protected static By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
 
         public TraineeshipRecruitHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 

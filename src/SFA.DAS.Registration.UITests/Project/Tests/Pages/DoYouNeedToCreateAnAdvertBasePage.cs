@@ -10,8 +10,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By PageHeader => By.Id("heading-continue-setup-create-advert");
 
         protected override By ContinueButton => By.Id("accept");
-        protected By NoRadioButtonOption => By.Id("choice2-no");
-        protected By YesRadioButtonOption => By.Id("choice1-yes");
+        protected static By NoRadioButtonOption => By.Id("choice2-no");
+        protected static By YesRadioButtonOption => By.Id("choice1-yes");
 
         public DoYouNeedToCreateAnAdvertBasePage(ScenarioContext context) : base(context) => VerifyPage();
     }

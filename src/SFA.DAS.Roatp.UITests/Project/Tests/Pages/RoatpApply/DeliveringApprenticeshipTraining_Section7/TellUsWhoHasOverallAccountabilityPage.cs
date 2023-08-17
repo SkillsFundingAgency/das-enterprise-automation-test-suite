@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Tell us who has overall accountability for apprenticeships in your organisation";
 
-        protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
+        protected static By LabelCssSelector => By.CssSelector(".govuk-form-group");
 
         public TellUsWhoHasOverallAccountabilityPage(ScenarioContext context) : base(context) => VerifyPage();
 
