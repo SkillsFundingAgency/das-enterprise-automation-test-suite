@@ -157,7 +157,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
-            var page = CreateATransferPledge(true, true, false);
+            var page = CreateATransferPledge(true, false, false);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -173,7 +173,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
         {
-            var page = CreateATransferPledge(true, true, true);
+            var page = CreateATransferPledge(true, false, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -190,7 +190,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _isAnonymousPledge = true;
 
-            _pledgeVerificationPage = CreateATransferPledge(false, true, false)
+            _pledgeVerificationPage = CreateATransferPledge(false, false, false)
                  .GoToAddtheLocationPage().EnterLocation()
                  .GoToChoosetheSectorPage().SelectSetorAndContinue()
                  .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
@@ -407,7 +407,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             LoginAsSender(login);
 
-            CreateATransferPledge(true, true, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
+            CreateATransferPledge(true, false, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
         private void LoginAsReceiver(EasAccountUser login)
