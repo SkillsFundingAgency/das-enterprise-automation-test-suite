@@ -15,8 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private static string TotalNumberOfEmployees => "Total number of employees";
         private static string Employees => "Number of employees who work in England";
         private static string Apprentices => "Number of apprentices who work in England";
-        private By SchoolEmployees => By.CssSelector("a[href*='SchoolsEmployees']");
-        private By SchoolApprentices => By.CssSelector("a[href*='SchoolsApprentices']");
+        private static By SchoolEmployees => By.CssSelector("a[href*='SchoolsEmployees']");
+        private static By SchoolApprentices => By.CssSelector("a[href*='SchoolsApprentices']");
         private static string Review => "Review and submit answers";
         #endregion
 

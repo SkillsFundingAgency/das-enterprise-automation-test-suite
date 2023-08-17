@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
     {
         protected override string PageTitle => "Are you setting up an apprenticeship for an existing employee?";
 
-        private By ClickYesContinue => By.Id("apprentice-for-existing-employee-button");
+        private static By ClickYesContinue => By.Id("apprentice-for-existing-employee-button");
 
         public AreYouSettingUpAnApprenticeshipForAnExistingEmployeePage(ScenarioContext context) : base(context)  { }
 

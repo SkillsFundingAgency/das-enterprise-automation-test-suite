@@ -7,8 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Confirm apprentice deletion";
 
-        private By ConfirmDeleteOptions => By.Id("confirm-true");
-        private By SaveAndContinueButton => By.Id("saveBtn");
+        private static By ConfirmDeleteOptions => By.Id("confirm-true");
+        private static By SaveAndContinueButton => By.Id("saveBtn");
 
         public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context)  { }
 

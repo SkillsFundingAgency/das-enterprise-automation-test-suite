@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override bool TakeFullScreenShot => false;
 
         protected override By PageHeader => PanelTitle;
-        private By DynamicHomeLink => By.CssSelector(".das-navigation__list-item");
+        private static By DynamicHomeLink => By.CssSelector(".das-navigation__list-item");
         
         public NotificationSentToTrainingProviderPage(ScenarioContext context) : base(context)  { }
         

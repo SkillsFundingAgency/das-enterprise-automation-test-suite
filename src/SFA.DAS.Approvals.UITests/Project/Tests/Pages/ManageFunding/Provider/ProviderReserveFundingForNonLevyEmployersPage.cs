@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     public class ProviderReserveFundingForNonLevyEmployersPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Reserve funding for non-levy employers";
-        private By ReserveFundingButton => By.LinkText("Reserve funding");
+        private static By ReserveFundingButton => By.LinkText("Reserve funding");
 
         protected override By AcceptCookieButton => By.CssSelector(".govuk-button");
 

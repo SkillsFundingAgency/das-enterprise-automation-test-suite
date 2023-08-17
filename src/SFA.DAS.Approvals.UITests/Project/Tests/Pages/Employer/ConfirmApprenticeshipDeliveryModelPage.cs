@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Confirm the apprenticeship delivery model";
 
-        private By ContinueBtn => By.XPath("//*[@id='selectDeliveryModel']/button");
+        private static By ContinueBtn => By.XPath("//*[@id='selectDeliveryModel']/button");
 
         public ConfirmApprenticeshipDeliveryModelPage(ScenarioContext context) : base(context) { }
 

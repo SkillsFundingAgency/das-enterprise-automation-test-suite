@@ -7,8 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Rejected transfer requests";
 
-        private By CohortInfoRow => By.CssSelector("tbody tr");
-        private By CohortEditLink => By.LinkText("Edit");
+        private static By CohortInfoRow => By.CssSelector("tbody tr");
+        private static By CohortEditLink => By.LinkText("Edit");
 
         public RejectedTransferRequestsPage(ScenarioContext context) : base(context)  { }
 

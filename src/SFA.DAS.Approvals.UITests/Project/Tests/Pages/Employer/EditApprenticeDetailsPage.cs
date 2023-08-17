@@ -16,14 +16,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         #endregion
 
-        private By EditDateOfBirthDay => By.Id("BirthDay");
-        private By EditDateOfBirthMonth => By.Id("BirthMonth");
-        private By EditDateOfBirthYear => By.Id("BirthYear");
-        private By EditTrainingCost => By.Id("Cost");
-        private By EditEmployerReference => By.Id("Reference");
-        private By SaveButton => By.XPath("//button[text()='Save']");
-        private By DeleteButton => By.LinkText("Delete");
-        private By InputBox(string identifier) => By.CssSelector(identifier);
+        private static By EditDateOfBirthDay => By.Id("BirthDay");
+        private static By EditDateOfBirthMonth => By.Id("BirthMonth");
+        private static By EditDateOfBirthYear => By.Id("BirthYear");
+        private static By EditTrainingCost => By.Id("Cost");
+        private static By EditEmployerReference => By.Id("Reference");
+        private static By SaveButton => By.XPath("//button[text()='Save']");
+        private static By DeleteButton => By.LinkText("Delete");
+        private static By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => GetEditDeliveryModelLink();
         private By DeliveryModelValue => GetDeliveryModelValue();
 
@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
-           base.formCompletionHelper.ClickElement(DeleteButton);
+            base.formCompletionHelper.ClickElement(DeleteButton);
             return new ConfirmApprenticeDeletionPage(context);
         }
 
@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditDateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
 
             AddValidEndDate();
-            
+
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(SaveButton);
@@ -114,7 +114,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        private ConfirmChangesPage ConfirmChangesPage() => new ConfirmChangesPage(context);
+        private ConfirmChangesPage ConfirmChangesPage() => new(context);
 
         public SelectDeliveryModelPage ClickEditDeliveryModelLink()
         {

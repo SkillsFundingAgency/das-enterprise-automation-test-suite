@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        private By OrganisatiponNameInput => By.CssSelector("#Report_OrganisationName");
+        private static By OrganisatiponNameInput => By.CssSelector("#Report_OrganisationName");
 
         public YourOrganisationNamePage(ScenarioContext context) : base(context)  { }
         

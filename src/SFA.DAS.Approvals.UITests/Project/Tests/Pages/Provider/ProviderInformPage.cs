@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ChangeTheEmployerButton => By.Id("change-the-employer-button");
+        private static By ChangeTheEmployerButton => By.Id("change-the-employer-button");
 
         public ProviderInformPage(ScenarioContext context) : base(context)  { }
 
