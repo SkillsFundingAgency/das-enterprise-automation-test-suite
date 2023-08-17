@@ -19,8 +19,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
+        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        protected readonly ProviderConfig _providerConfig;
+        private readonly ProviderConfig _providerConfig;
         #endregion
 
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
@@ -31,6 +33,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _assertHelper = context.Get<RetryAssertHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerEditStepsHelper = new ProviderEditStepsHelper(context);
+            _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
         }
@@ -66,13 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheProviderValidatesFlexi_JobContentAddsUlnAndApprovesTheCohorts() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
 
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
-        public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer() => _providerStepsHelper.EditApprentice().SubmitApprove();
+        public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer() => _providerEditStepsHelper.EditApprentice().SubmitApprove();
 
         [When(@"the provider adds Ulns confirms courses are standards and approves the cohorts and sends to employer")]
-        public void WhenTheProviderAddsUlnsConfirmsCoursesAreStandardsAndApprovesTheCohortsAndSendsToEmployer() => _providerStepsHelper.CheckCoursesAreStandardsAndEditApprentice().SubmitApprove();
+        public void WhenTheProviderAddsUlnsConfirmsCoursesAreStandardsAndApprovesTheCohortsAndSendsToEmployer() => _providerEditStepsHelper.CheckCoursesAreStandardsAndEditApprentice().SubmitApprove();
 
         [When(@"the provider adds Ulns")]
-        public void WhenTheProviderAddsUlns() => _providerStepsHelper.EditApprentice();
+        public void WhenTheProviderAddsUlns() => _providerEditStepsHelper.EditApprentice();
 
         [Then(@"Provider is able to view the cohort with employer")]
         public void ThenProviderIsAbleToViewTheCohortWithEmployer()
@@ -90,17 +94,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.AddApprentice(numberOfApprentices).SubmitSaveButDontSendToEmployer();
 
-            _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditApprentice();
+            _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditApprentice();
         }
 
         [Then(@"Provider is able to edit all apprentices before approval")]
-        public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditAllDetailsOfApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditAllDetailsOfApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider is able to delete all apprentices before approval")]
-        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerDeleteStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider is able to delete the cohort before approval")]
-        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => _providerStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => _providerDeleteStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
 
         [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
         public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
@@ -112,7 +116,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
 
         [Given(@"the Provider navigates to Choose a cohort page via the Home page")]
-        public void GivenTheProviderNavigatesToChooseACohortPageViaTheHomePage() => _providerStepsHelper.NavigateToChooseACohortPage();
+        public void GivenTheProviderNavigatesToChooseACohortPageViaTheHomePage() => _providerStepsHelper.GoToProviderHomePage(false).GotoSelectJourneyPage().SelectAddManually().SelectOptionAddToAnExistingCohort();
 
         [Then(@"the Provider should only see apprentices with status Draft or Ready to review excluding apprentices related to change of party")]
         public void ThenTheProviderShouldOnlySeeApprenticesWithStatusDraftOrReadyToReviewExcludingApprenticesRelatedToChangeOfParty()
@@ -140,7 +144,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             if (existingapprentices > 0)
             {
                 _context.Get<ObjectContext>().SetNoOfApprentices(Convert.ToInt32(existingapprentices));
-                _providerStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
+                _providerDeleteStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
             }
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
