@@ -13,18 +13,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         protected override string PageTitle => "Enter the employer details";
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
-        
-        private By EmailCannotBeEditedWarning = By.CssSelector(".govuk-inset-text p");
 
-        private By FormGroup = By.CssSelector(".govuk-form-group");
+        private static By FormGroup = By.CssSelector(".govuk-form-group");
 
-        private By EmployerOrganisation(string value = null) => By.CssSelector($"#EmployerOrganisation{value}");
+        private static By EmployerOrganisation(string value = null) => By.CssSelector($"#EmployerOrganisation{value}");
 
-        private By EmployerFirstName(string value = null) => By.CssSelector($"#EmployerFirstName{value}");
+        private static By EmployerFirstName(string value = null) => By.CssSelector($"#EmployerFirstName{value}");
 
-        private By EmployerLastName(string value = null) => By.CssSelector($"#EmployerLastName{value}");
+        private static By EmployerLastName(string value = null) => By.CssSelector($"#EmployerLastName{value}");
 
-        private By EmployerEmailAddress(string value = null) => By.CssSelector($"#EmployerEmailAddress{value}");
+        private static By EmployerEmailAddress(string value = null) => By.CssSelector($"#EmployerEmailAddress{value}");
 
         private string OrganisationName => registrationDataHelper.CompanyTypeOrg;
         private string FirstName => registrationDataHelper.FirstName;

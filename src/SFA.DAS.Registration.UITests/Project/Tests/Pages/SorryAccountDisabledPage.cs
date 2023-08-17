@@ -10,8 +10,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Sorry";
 
         #region Locators
-        private By AddViaGGLink => By.LinkText("Try adding your PAYE scheme via Government Gateway");
-        private By AccountDisabledInfo => By.CssSelector(".govuk-body");
+        private static By AddViaGGLink => By.LinkText("Try adding your PAYE scheme via Government Gateway");
+        private static By AccountDisabledInfo => By.CssSelector(".govuk-body");
         #endregion
 
         #region Constants

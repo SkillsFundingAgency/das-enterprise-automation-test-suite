@@ -7,8 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
     public class YourTeamPage : InterimYourTeamPage
     {
         #region Locators
-        private By InviteANewMemberButton => By.Id("addNewUser");
-        private By InvitationActionHeader => By.CssSelector(".das-notification__heading");
+        private static By InviteANewMemberButton => By.Id("addNewUser");
+        private static By InvitationActionHeader => By.CssSelector(".das-notification__heading");
         #endregion
 
         public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }

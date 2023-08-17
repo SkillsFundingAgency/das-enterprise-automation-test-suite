@@ -10,26 +10,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class HomePage : InterimHomeBasePage
     {
         #region Locators
-        protected By StartNowButton => By.LinkText("Start now");
-        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected By YourTransfersLink => By.LinkText("Your transfers");
-        private By PublicAccountIdLocator => By.CssSelector(".das-definition-list__definition");
-        private By SucessSummary => By.CssSelector(".das-notification");
-        private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
-        private By ContinueTo => By.LinkText("Continue");
-        private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        protected By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
-        protected By YourFinancesLink => By.LinkText("Your finances");
+        protected static By StartNowButton => By.LinkText("Start now");
+        protected static By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        protected static By YourTransfersLink => By.LinkText("Your transfers");
+        private static By SucessSummary => By.CssSelector(".das-notification");
+        private static By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
+        private static By ContinueTo => By.LinkText("Continue");
+        private static By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
+        protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
+        protected static By YourFinancesLink => By.LinkText("Your finances");
 
-        private By TaskList => By.XPath("//div[@id='tasks']");
-        private By StartAddingApprenticesNowTaskLink => By.PartialLinkText("Start adding apprentices now");
+        private static By TaskList => By.XPath("//div[@id='tasks']");
+        private static By StartAddingApprenticesNowTaskLink => By.PartialLinkText("Start adding apprentices now");
 
-        private By ApprenticeChangeToReviewTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'apprentice change{(multiple ? "s" : string.Empty)} to review')]");
-        private By CohortRequestReadyForApprovalTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'cohort request{(multiple ? "s" : string.Empty)} ready for approval')]");
+        private static By ApprenticeChangeToReviewTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'apprentice change{(multiple ? "s" : string.Empty)} to review')]");
+        private static By CohortRequestReadyForApprovalTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'cohort request{(multiple ? "s" : string.Empty)} ready for approval')]");
 
-        private By ReviewConnectionRequestTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'connection request{(multiple ? "s" : string.Empty)} to review')]");
+        private static By ReviewConnectionRequestTaskLink(bool multiple) => By.XPath($"//ul/li/span[contains(.,'connection request{(multiple ? "s" : string.Empty)} to review')]");
 
-        private By TransferRequestReceivedTaskLink => By.XPath("//ul/li/span[contains(.,'Transfer request received')]");
+        private static By TransferRequestReceivedTaskLink => By.XPath("//ul/li/span[contains(.,'Transfer request received')]");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
