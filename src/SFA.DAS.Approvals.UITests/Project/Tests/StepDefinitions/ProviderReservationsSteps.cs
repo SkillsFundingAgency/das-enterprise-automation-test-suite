@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Provider with create reservation permission logs in")]
-        public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerStepsHelper.Login(_login, true);
+        public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerStepsHelper.GoToProviderHomePage(_login, true);
 
         [When(@"the Provider creates a reservation")]
         public void WhenThenProviderCreatesAReservation() => _providerReservationStepsHelper.StartCreateReservationAndGoToStartTrainingPage(_approvalsProviderHomePage);

@@ -27,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         protected readonly ApprovalsConfig approvalsConfig;
         protected readonly PageInteractionHelper pageInteractionHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly ProviderBulkUploadStepsHelper _providerBulkUploadStepsHelper;
+
         #endregion
 
         public BulkUploadProviderSteps(ScenarioContext context)
@@ -38,16 +40,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
+        }
+
+
+        [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort")]
+        public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoA_ExistingCohort(int numberOfApprentices)
+        {
+            _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
         }
 
         [When(@"Provider add (.*) apprentice details using bulkupload and sends to employer for approval")]
-        public void ProviderAddApprenticeDetailsUsingBulkUploadAndSend(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
+        public void ProviderAddApprenticeDetailsUsingBulkUploadAndSend(int numberOfApprentices) => _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
 
         [When(@"Provider add (.*) apprentice details using bulkupload")]
-        public void ProviderAddApprenticeDetailsUsingV2BulkUpload(int numberOfApprentices) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
+        public void ProviderAddApprenticeDetailsUsingV2BulkUpload(int numberOfApprentices) => _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices);
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort")]
-        public void ProviderUsesBulkUpload(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef) => _providerStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
+        public void ProviderUsesBulkUpload(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef) => _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2(numberOfApprentices, numberOfApprenticesWithoutCohortRef);
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details into existing cohort and (.*) apprentice details into a non-existing cohort for all employers")]
         public void WhenProviderUsesBulkUploadToAddApprenticeDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohortForAllEmployers(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
@@ -58,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var secondOrganisationName = GetOrgName(employerUser.SecondOrganisationName);
             var thirdOrganisationName = GetOrgName(employerUser.ThirdOrganisationName);
 
-            _providerStepsHelper.UsingFileUpload()
+            _providerBulkUploadStepsHelper.UsingFileUpload()
                 .CreateApprenticeshipsForAlreadyCreatedCohorts(numberOfApprentices)
                 .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, firstOrganisationName)
                 .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, employerUser.Username, secondOrganisationName)
@@ -73,7 +83,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var employerUser = _context.GetUser<NonLevyUser>();
             var employerName = GetOrgName(employerUser.OrganisationName);
             _objectContext.SetNoOfApprentices(numberOfApprentices);
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
+            _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(0, numberOfApprentices, employerUser.Username, employerName);
         }
 
         [Given(@"Correct Information is displayed on review apprentices details page")]
@@ -176,14 +186,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the provider tries a bulk upload file to add apprentices in that cohort")]
-        public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
+        public void WhenTheProviderTriesABulkUploadFileToAddApprenticesInThatCohort() => _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2WithCohortReference(_objectContext.GetCohortReference());
 
         [When(@"Provider uses BulkUpload to add (.*) apprentice details for levy account into existing cohort and (.*) apprentice details into a non-existing cohort")]
         public void WhenProviderUsesBulkUploadToAddApprenticeForLevyAccountDetailsIntoExistingCohortAndApprenticeDetailsIntoANon_ExistingCohort(int numberOfApprentices, int numberOfApprenticesWithoutCohortRef)
         {
             var employerUser = _context.GetUser<LevyUser>();
             var employerName = GetOrgName(employerUser.OrganisationName);
-            _providerStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(numberOfApprentices, numberOfApprenticesWithoutCohortRef, employerUser.Username, employerName);
+            _providerBulkUploadStepsHelper.AddApprenticeViaBulkUploadV2ForLegalEntity(numberOfApprentices, numberOfApprenticesWithoutCohortRef, employerUser.Username, employerName);
         }
 
         public List<FileUploadReviewEmployerDetails> GetBulkuploadData()

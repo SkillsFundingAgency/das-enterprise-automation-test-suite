@@ -9,7 +9,6 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport;
@@ -31,6 +30,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
 
         private readonly ProviderStepsHelper _providerStepsHelper;
+
+        private readonly ProviderBulkUploadStepsHelper _providerBulkUploadStepsHelper;
 
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
 
@@ -59,6 +60,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
 
             _cohortReferenceHelper = new CohortReferenceHelper(context);
+
+            _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
         }
 
         [Given(@"provider does not offer Standard-X")]
@@ -119,7 +122,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 new BulkUploadApprenticeDetails(apprentice.apprenticeDataHelper, apprentice.apprenticeCourseDataHelper, agreementId)
             };
 
-            _providerStepsHelper.UsingFileUpload().CreateACsvFile(apprenticeList).UploadFile();
+            _providerBulkUploadStepsHelper.UsingFileUpload().CreateACsvFile(apprenticeList).UploadFile();
 
             new BulkCsvUploadValidateErrorMsghelper(_context).VerifyErrorMessage("Enter a valid standard code. You have not told us that you deliver this training course. You must assign the course to your account");
 

@@ -49,8 +49,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab) => _providerCommonStepsHelper.GoToProviderHomePage(newTab);
 
-        public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage() => _providerCommonStepsHelper.GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
-
         public ProviderReviewChangesPage ReviewChanges() => SelectViewCurrentApprenticeDetails().ClickReviewChanges();
 
         public void ApproveChangesAndSubmit() => ReviewChanges().SelectApproveChangesAndSubmit();
@@ -69,11 +67,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                    .VerifySucessMessage();
         }
 
-        public ApprovalsProviderHomePage Login(ProviderLoginUser login, bool newTab) => GoToProviderHomePage(login, newTab);
-
         public ProviderAddApprenticeDetailsPage ProviderMakeReservationThenGotoAddApprenticeDetails(ProviderLoginUser login)
         {
-            return ProviderMakeReservation(Login(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
+            return ProviderMakeReservation(GoToProviderHomePage(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
         }
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices) => AddApprentice(numberOfApprentices).SubmitApprove();
@@ -130,24 +126,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 .SubmitApprove();
         }
 
-        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef = 0) =>
-            UsingFileUpload().CreateACsvFile(numberOfApprenticesPerCohort, numberOfApprenticesWithoutCohortRef).UploadFile();
-
-
-        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2ForLegalEntity(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef, string email, string name)
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetailsForPortableFlexiJobProvider()
         {
-            return UsingFileUpload()
-            .CreateApprenticeshipsForAlreadyCreatedCohorts(numberOfApprenticesPerCohort)
-            .CreateApprenticeshipsForEmptyCohorts(numberOfApprenticesWithoutCohortRef, email, name)
-            .WriteApprenticeshipRecordsToCsvFile()
-            .UploadFile();
+            var providerHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
+
+            return _providerCommonStepsHelper.CurrentCohortDetails(providerHomePage);
         }
-
-        public ProviderBulkUploadCsvFilePage AddApprenticeViaBulkUploadV2WithCohortReference(string cohortReference) => UsingFileUpload().CreateACsvFileWithCohortReference(cohortReference, 1).UploadFile();
-
-        public ProviderBulkUploadCsvFilePage UsingFileUpload() => GoToProviderHomePage().GotoSelectJourneyPage().SelectBulkUpload().ContinueToUploadCsvFilePage();
-
-        public ProviderApproveApprenticeDetailsPage CurrentCohortDetailsForPortableFlexiJobProvider() => _providerCommonStepsHelper.CurrentCohortDetails(GoToPortableFlexiJobProviderHomePage());
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => _providerCommonStepsHelper.CurrentCohortDetails();
 
