@@ -129,14 +129,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"a banner is displayed for provider with a link to ""(.*)"" cohort")]
         public void ThenABannerIsDisplayedForProviderWithALinkToCohort(string status)
         {
-            bool editable = status == "editable" ? true : false;
+            bool editable = status == "editable";
 
-            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = SelectViewCurrentApprenticeDetails(editable);
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = SelectViewCurrentApprenticeDetails();
 
-            if (editable)
-                 ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
-            else
-                ValidateBannerWithLinkToNonEditableCohort(providerApprenticeDetailsPage);
+            if (editable) ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
+
+            else ValidateBannerWithLinkToNonEditableCohort(providerApprenticeDetailsPage);
         }
 
         [When(@"Validate that old Employer cannot request CoP during in-flight CoE")]
@@ -162,7 +161,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"previous Provider should not be able to start CoE on the old record when CoP is inflight")]
         public void ThenPreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordWhenCoPIsInflight()
         {
-            var CoELinkDisplayed = SelectViewCurrentApprenticeDetails(true).IsCoELinkDisplayed();
+            var CoELinkDisplayed = SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed();
 
             Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider during inflight CoP");
         }
@@ -271,8 +270,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(bool newTab) => _providerStepsHelper
-                                .GoToProviderHomePage(newTab)
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => _providerStepsHelper
+                                .GoToProviderHomePage()
                                 .GoToProviderManageYourApprenticePage()
                                 .SelectViewCurrentApprenticeDetails();
 

@@ -45,7 +45,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ApprovalsProviderHomePage NavigateToProviderHomePage() => _providerCommonStepsHelper.NavigateToProviderHomePage();
 
-        public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab = true) => _providerCommonStepsHelper.GoToProviderHomePage(newTab);
+        public ApprovalsProviderHomePage GoToProviderHomePage() => GoToProviderHomePage(true);
+
+        public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab) => _providerCommonStepsHelper.GoToProviderHomePage(newTab);
 
         public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage() => _providerCommonStepsHelper.GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
 

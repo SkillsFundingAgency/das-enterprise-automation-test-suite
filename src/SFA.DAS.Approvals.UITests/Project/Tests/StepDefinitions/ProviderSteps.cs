@@ -156,13 +156,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider creates a new cohort")]
-        public void GivenProviderCreatesANewCohort()
-        {
-            _providerStepsHelper
-               .GoToProviderHomePage(true)
-               .GotoSelectJourneyPage()
-               .SelectAddManually();
-        }
+        public void GivenProviderCreatesANewCohort() => _providerStepsHelper.GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually();
 
         [Then(@"the provider validates flexi-job content and approves cohort")]
         public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerStepsHelper.ValidateFlexiJobContentAndApproveCohort();
