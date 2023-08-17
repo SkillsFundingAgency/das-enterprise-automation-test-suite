@@ -18,7 +18,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
 
-        private By ApplicaitonStatusSelector => By.CssSelector("#main-content .application-status-one");
+        private static By ApplicaitonStatusSelector => By.CssSelector("#main-content .application-status-one");
 
         protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {

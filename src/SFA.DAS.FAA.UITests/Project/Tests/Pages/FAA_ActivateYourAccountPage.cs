@@ -7,9 +7,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Activate your account";
 
-        private By ActivationCode => By.Id("ActivationCode");
-        private By ActivateAccount => By.Id("activate-button");
-        private By SignOut => By.Id("signout-link");
+        private static By ActivationCode => By.Id("ActivationCode");
+        private static By ActivateAccount => By.Id("activate-button");
+        private static By SignOut => By.Id("signout-link");
         
         public FAA_ActivateYourAccountPage(ScenarioContext context) : base(context) { }
 

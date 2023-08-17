@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         protected override string PageTitle => "How many employees will deliver training ";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
-        private By NumberOfEmployees => By.CssSelector(".govuk-input");
+        private static By NumberOfEmployees => By.CssSelector(".govuk-input");
 
         public HowManyEmployeesWillDeliverTrainingPage(ScenarioContext context) : base(context) => VerifyPage();
 

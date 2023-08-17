@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Pledge and transfer your levy funds";
 
-        private By StartCreatePledgesSelector => By.CssSelector("[href*='/pledges/create?']");
+        private static By StartCreatePledgesSelector => By.CssSelector("[href*='/pledges/create?']");
 
         public PledgeAndTransferYourLevyFundsPage(ScenarioContext context) : base(context) { }
 

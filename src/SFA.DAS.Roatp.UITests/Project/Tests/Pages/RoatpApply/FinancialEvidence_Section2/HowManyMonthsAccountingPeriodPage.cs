@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         protected override string PageTitle => "How many months does the accounting period cover for the financial information you are submitting?";
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        private By MonthBox => By.CssSelector("input[type='number']");
+        private static By MonthBox => By.CssSelector("input[type='number']");
 
         public HowManyMonthsAccountingPeriodPage(ScenarioContext context) : base(context) => VerifyPage();
 

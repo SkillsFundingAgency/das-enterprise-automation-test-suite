@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Xml.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
@@ -10,7 +8,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add apprenticeships to estimate cost";
 
-        private By ApprenticeshipCombobox => By.CssSelector(".govuk-checkboxes__label[for='IsTransferFunded']");
+        private static By ApprenticeshipCombobox => By.CssSelector(".govuk-checkboxes__label[for='IsTransferFunded']");
 
         private static By SearchField => By.CssSelector("#choose-apprenticeship");
 

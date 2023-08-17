@@ -4,7 +4,7 @@ public class TermsAndConditionsPage : AanBasePage
 {
     protected override string PageTitle => "Terms and Conditions";
 
-    private By ConfirmAndContinueButton => By.Id("confirm-and-continue");
+    private static By ConfirmAndContinueButton => By.Id("confirm-and-continue");
 
     public TermsAndConditionsPage(ScenarioContext context) : base(context) => VerifyPage();
 

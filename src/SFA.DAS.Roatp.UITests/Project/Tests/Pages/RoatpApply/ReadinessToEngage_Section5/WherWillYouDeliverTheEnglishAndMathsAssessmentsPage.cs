@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
     {
         protected override string PageTitle => "Where will you deliver the assessments in English and maths?";
 
-        private By DigitalWorkPlaceAssessmentRadio => By.CssSelector("input[type='checkbox'][value='Digital workplace assessment']");
+        private static By DigitalWorkPlaceAssessmentRadio => By.CssSelector("input[type='checkbox'][value='Digital workplace assessment']");
 
         public WherWillYouDeliverTheEnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context) => VerifyPage();
 

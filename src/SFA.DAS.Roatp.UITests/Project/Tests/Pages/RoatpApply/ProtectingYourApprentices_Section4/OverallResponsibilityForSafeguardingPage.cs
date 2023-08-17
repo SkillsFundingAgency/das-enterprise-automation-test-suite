@@ -7,11 +7,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
     {
         protected override string PageTitle => "Tell us who has overall responsibility for safeguarding in your organisation";
 
-        private By FullName => By.Id("PYA-45");
+        private static By FullName => By.Id("PYA-45");
 
-        private By Email => By.Id("PYA-46");
+        private static By Email => By.Id("PYA-46");
 
-        private By ContactNumber => By.Id("PYA-47");
+        private static By ContactNumber => By.Id("PYA-47");
 
         public OverallResponsibilityForSafeguardingPage(ScenarioContext context) : base(context) => VerifyPage();
 

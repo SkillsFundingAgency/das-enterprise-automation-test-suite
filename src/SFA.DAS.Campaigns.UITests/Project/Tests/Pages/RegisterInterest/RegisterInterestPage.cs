@@ -7,15 +7,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
     {
         protected override string PageTitle => "Sign up to receive our employer skills newsletter";
 
-        private By FirstNameField => By.Id("FirstName");
+        private static By FirstNameField => By.Id("FirstName");
 
-        private By LastNameField => By.Id("LastName");
+        private static By LastNameField => By.Id("LastName");
 
-        private By EmailField => By.Id("Email");
+        private static By EmailField => By.Id("Email");
 
-        private By IncludeInUserResearch => By.Id("IncludeInUR");
+        private static By IncludeInUserResearch => By.Id("IncludeInUR");
 
-        private By Signup => By.CssSelector("#btn-register-interest-complete");
+        private static By Signup => By.CssSelector("#btn-register-interest-complete");
 
         public RegisterInterestPage(ScenarioContext context) : base(context)  { }
 

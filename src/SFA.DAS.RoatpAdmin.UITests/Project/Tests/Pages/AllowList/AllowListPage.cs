@@ -13,11 +13,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "UKPRN allow list";
 
-        private By StartDate => By.Id("StartDate");
-        private By EndDate => By.Id("EndDate");
-        private By UkprnField => By.Id("Ukprn");
+        private static By StartDate => By.Id("StartDate");
+        private static By EndDate => By.Id("EndDate");
+        private static By UkprnField => By.Id("Ukprn");
 
-        private By ErrorText => By.CssSelector(".govuk-list.govuk-error-summary__list");
+        private static By ErrorText => By.CssSelector(".govuk-list.govuk-error-summary__list");
 
         public AllowListPage(ScenarioContext context) : base(context) => VerifyPage();
 

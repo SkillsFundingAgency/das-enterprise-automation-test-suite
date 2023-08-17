@@ -10,20 +10,20 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
-        private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
-        private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
-        private By Qualifications => By.CssSelector("a[data-automation= 'link-qualifications']");
-        private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
-        private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
-        private By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
-        private By EmployerContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
-        private By ProviderContactDetails => By.CssSelector("a[data-automation='link-provider-contact-details']");
-        private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
-        private By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
-        private By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
-        private By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
-        private By ApplicationWebAddress => By.Id("ApplicationUrl");
+        private static By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
+        private static By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
+        private static By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
+        private static By Qualifications => By.CssSelector("a[data-automation= 'link-qualifications']");
+        private static By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
+        private static By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
+        private static By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
+        private static By EmployerContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
+        private static By ProviderContactDetails => By.CssSelector("a[data-automation='link-provider-contact-details']");
+        private static By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
+        private static By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
+        private static By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
+        private static By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
+        private static By ApplicationWebAddress => By.Id("ApplicationUrl");
 
         public PreviewYourAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
 

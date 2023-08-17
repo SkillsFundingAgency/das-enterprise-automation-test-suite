@@ -7,9 +7,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
     {
         protected override string PageTitle => "outcome saved";
 
-        private By ConfirmationMessage => By.CssSelector(".govuk-panel__body");
+        private static By ConfirmationMessage => By.CssSelector(".govuk-panel__body");
 
-        private By GoToRoATPApplicationOutcomeLink => By.LinkText("Go to RoATP application outcomes");
+        private static By GoToRoATPApplicationOutcomeLink => By.LinkText("Go to RoATP application outcomes");
 
         public OversightAssessmentCompletePage(ScenarioContext context, string outcome) : base(context)
         {

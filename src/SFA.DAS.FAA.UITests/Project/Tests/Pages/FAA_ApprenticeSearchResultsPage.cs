@@ -9,10 +9,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search results";
 
-        private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
-        private By NationwideVacanciesText => By.Id("result-message");
+        private static By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By VacancyLink => By.LinkText(vacancyTitleDataHelper.VacancyTitle);
-        private By SearchAgainLink => By.Id("start-again-link");
+        private static By SearchAgainLink => By.Id("start-again-link");
 
         public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) { }
 

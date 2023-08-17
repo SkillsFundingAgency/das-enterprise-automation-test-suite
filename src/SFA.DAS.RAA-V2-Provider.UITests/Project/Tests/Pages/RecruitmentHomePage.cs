@@ -17,8 +17,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         #endregion
 
         private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
-        private By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
-        protected By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
+        private static By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
+        protected static By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
 
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 

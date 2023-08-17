@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected string validPassword;
         protected override string PageTitle { get; }
-        private By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
+        private static By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
         protected By ConfirmPassword => By.CssSelector("#ConfirmPassword");
 
         public CreatePasswordBasePage(ScenarioContext context) : base(context)

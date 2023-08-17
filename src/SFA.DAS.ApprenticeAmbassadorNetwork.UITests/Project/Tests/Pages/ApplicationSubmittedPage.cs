@@ -4,7 +4,7 @@ public class ApplicationSubmittedPage : SignInPage
 {
     protected override string PageTitle => "Application submitted";
 
-    private By NetworkHubLink => By.CssSelector("a[href='/network-hub ']");
+    private static By NetworkHubLink => By.CssSelector("a[href='/network-hub ']");
 
     public ApplicationSubmittedPage(ScenarioContext context) : base(context) => VerifyPage();
 

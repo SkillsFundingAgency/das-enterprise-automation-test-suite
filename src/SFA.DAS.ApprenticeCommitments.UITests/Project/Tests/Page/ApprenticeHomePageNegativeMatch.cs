@@ -9,10 +9,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePageNegativeMatch : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Check your details";
-        private By InsetText => By.CssSelector(".govuk-inset-text");
-        private By FirstName => By.XPath("(//td[@class='govuk-table__cell'])[1]");
-        private By LastName => By.XPath("(//td[@class='govuk-table__cell'])[2]");
-        private By DOB => By.XPath("(//td[@class='govuk-table__cell'])[3]");
+        private static By InsetText => By.CssSelector(".govuk-inset-text");
+        private static By FirstName => By.XPath("(//td[@class='govuk-table__cell'])[1]");
+        private static By LastName => By.XPath("(//td[@class='govuk-table__cell'])[2]");
+        private static By DOB => By.XPath("(//td[@class='govuk-table__cell'])[3]");
 
         public ApprenticeHomePageNegativeMatch(ScenarioContext context) : base(context)
         {

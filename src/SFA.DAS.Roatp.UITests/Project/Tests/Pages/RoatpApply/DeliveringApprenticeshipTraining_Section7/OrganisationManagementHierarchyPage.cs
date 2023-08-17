@@ -7,15 +7,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Who is in your organisation's management hierarchy for apprenticeships?";
 
-        private By FirstName => By.CssSelector("#FirstName");
-        private By LastName => By.CssSelector("#LastName");
-        private By JobRole => By.CssSelector("#JobRole");
-        private By TimeInRoleYears => By.CssSelector("#TimeInRoleYears");
-        private By TimeInRoleMonths => By.CssSelector("#TimeInRoleMonths");
-        private By DateOfBirthMonth => By.CssSelector("#DobMonth");
-        private By DateOfBirthYear => By.CssSelector("#DobYear");
-        private By Email => By.CssSelector("#Email");
-        public By ContactNumber => By.CssSelector("#ContactNumber");
+        private static By FirstName => By.CssSelector("#FirstName");
+        private static By LastName => By.CssSelector("#LastName");
+        private static By JobRole => By.CssSelector("#JobRole");
+        private static By TimeInRoleYears => By.CssSelector("#TimeInRoleYears");
+        private static By TimeInRoleMonths => By.CssSelector("#TimeInRoleMonths");
+        private static By DateOfBirthMonth => By.CssSelector("#DobMonth");
+        private static By DateOfBirthYear => By.CssSelector("#DobYear");
+        private static By Email => By.CssSelector("#Email");
+        private static By ContactNumber => By.CssSelector("#ContactNumber");
 
         public OrganisationManagementHierarchyPage(ScenarioContext context) : base(context) => VerifyPage();
 

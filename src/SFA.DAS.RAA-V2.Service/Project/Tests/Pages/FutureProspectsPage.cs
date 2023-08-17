@@ -7,8 +7,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => IsTraineeship ? "What is the expected career progression after this traineeship?" : "What is the expected career progression after this apprenticeship?";
 
-        private By IframeBody => By.CssSelector(".mce-content-body ");
-        private By FutureProspect => By.Id("FutureProspects_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body ");
+        private static By FutureProspect => By.Id("FutureProspects_ifr");
         
         public FutureProspectsPage(ScenarioContext context) : base(context) { }
 

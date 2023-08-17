@@ -12,9 +12,9 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".sender-info");
 
         #region Locators
-        private By EmailBodyFrame => By.CssSelector("#html_msg_body");
+        private static By EmailBodyFrame => By.CssSelector("#html_msg_body");
 
-        private By EmailLink(string linktext) => By.XPath($"//a[contains(text(), '{linktext}')]");
+        private static By EmailLink(string linktext) => By.XPath($"//a[contains(text(), '{linktext}')]");
 
         #endregion
 

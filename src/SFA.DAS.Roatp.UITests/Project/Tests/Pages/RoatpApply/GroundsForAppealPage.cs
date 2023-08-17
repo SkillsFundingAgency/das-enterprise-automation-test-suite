@@ -8,8 +8,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Tell us about the grounds for your appeal";
 
-        private By AppealOnPolicyOrProcessesTextBox => By.Id("HowFailedOnPolicyOrProcesses");
-        private By AppealOnEvidenceSubmittedTextBox => By.Id("HowFailedOnEvidenceSubmitted");
+        private static By AppealOnPolicyOrProcessesTextBox => By.Id("HowFailedOnPolicyOrProcesses");
+        private static By AppealOnEvidenceSubmittedTextBox => By.Id("HowFailedOnEvidenceSubmitted");
 
         public GroundForAppealPage(ScenarioContext context) : base(context) => VerifyPage();
 

@@ -5,13 +5,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
     public abstract class InfluencersBasePage : HubBasePage
     {
-        private By HowDoTheyWork => By.CssSelector("a[href= '/influencers/how-apprenticeships-work']");
+        private static By HowDoTheyWork => By.CssSelector("a[href= '/influencers/how-apprenticeships-work']");
 
-        private By RequestSupport => By.CssSelector("a[href= '/influencers/request-ask-support']");
+        private static By RequestSupport => By.CssSelector("a[href= '/influencers/request-ask-support']");
 
-        private By ResourceHub => By.CssSelector("a[href= '/influencers/resource-hub']");
+        private static By ResourceHub => By.CssSelector("a[href= '/influencers/resource-hub']");
 
-        private By BecomeAnAmbassador => By.CssSelector("a[href= '/influencers/become-an-ambassador']");
+        private static By BecomeAnAmbassador => By.CssSelector("a[href= '/influencers/become-an-ambassador']");
 
         public InfluencersBasePage(ScenarioContext context) : base(context)  { }
 
