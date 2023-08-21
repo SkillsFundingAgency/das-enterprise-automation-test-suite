@@ -10,7 +10,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         public TMDataHelper(CourseDetails courseDetails)
         {
             Course = courseDetails.Course.title;
-            Cost = courseDetails.Course.proposedMaxFunding / 5;
+            Cost = courseDetails.Course.proposedMaxFunding;
+            Duration = courseDetails.Course.proposedTypicalDuration;
             NoOfApprentice = 1;
             CourseStartDate = DateTime.Now;
         }
@@ -30,6 +31,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         public int Cost { get; set; }
 
         public int NoOfApprentice { get; set; }
+
+        public int Duration { get; set; }
 
         public int MinAmount => Cost * NoOfApprentice;
         
@@ -51,6 +54,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             "Cheam, Greater London",
             "Worcester, Worcestershire"
         };
+
+        public string GetEstimatedCostOfTrainingForApplicationDetail()
+        {
+            var totalCost = Cost * NoOfApprentice;
+            var firstYear = ((totalCost * .8) / Duration) * 12;
+            return firstYear.ToString("N0");
+        }
     }
 }
 

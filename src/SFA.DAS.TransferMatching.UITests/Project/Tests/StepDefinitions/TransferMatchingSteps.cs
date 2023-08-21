@@ -32,12 +32,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
+        private bool _isImmediateAutoApprovalPledge;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
             _isAnonymousPledge = false;
+            _isImmediateAutoApprovalPledge = false;
             _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
             _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
@@ -157,7 +159,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
-            var page = CreateATransferPledge(true, true, false);
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -169,11 +171,29 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeDetail();
         }
 
+
+        [Given(@"the levy employer can create pledge using non default criteria and immediate approval")]
+        [Then(@"the levy employer can create pledge using non default criteria and immediate approval")]
+        public void TheLevyEmployerCanCreatePledgeUsingNonDefaultCriteriaWithImmediateApproval()
+        {
+            _isImmediateAutoApprovalPledge = true;
+            _isAnonymousPledge = true;
+
+            _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
+                .GoToAddtheLocationPage().EnterLocation()
+                .GoToChoosetheSectorPage().SelectSetorAndContinue()
+                .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
+                .GoToChooseTheLevelPage().SelectLevelAndContinue()
+                .ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();           
+        }
+
         [Given(@"the levy employer can create pledge using minimal funding")]
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
         {
-            var page = CreateATransferPledge(true, true, true);
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -190,7 +210,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _isAnonymousPledge = true;
 
-            _pledgeVerificationPage = CreateATransferPledge(false, true, false)
+            _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
                  .GoToAddtheLocationPage().EnterLocation()
                  .GoToChoosetheSectorPage().SelectSetorAndContinue()
                  .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
@@ -199,7 +219,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             SetPledgeDetail();
         }
-
+      
         [Then(@"the levy employer can sort the pledges")]
         public void TheLevyEmployerCanSortThePledges() => SortApplications();
 
@@ -236,7 +256,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the levy employer can view pleged amount")]
         public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
-
+   
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
@@ -365,7 +385,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _transferMatchingStepsHelper.SubmitApplication(page);
 
-            return OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication(_isImmediateAutoApprovalPledge? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
         }
 
         private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
@@ -407,7 +427,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             LoginAsSender(login);
 
-            CreateATransferPledge(true, true, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
+            CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
         private void LoginAsReceiver(EasAccountUser login)

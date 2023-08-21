@@ -74,8 +74,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             }
 
             RetryAction();
-
+           
             VerifyElement(PanelEstimateSelector, "Estimated cost of training will be", RetryAction);
+            VerifyElement(AmountEstimateSelector, tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail(), RetryAction);
         }
     }
 }
