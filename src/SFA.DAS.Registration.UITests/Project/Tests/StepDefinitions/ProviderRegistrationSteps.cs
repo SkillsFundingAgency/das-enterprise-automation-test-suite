@@ -85,7 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .SignInTo(0)
             .SearchForAnOrganisation(EnumHelper.OrgType.Company)
             .SelectYourOrganisation(EnumHelper.OrgType.Company)
-            .ContinueToSetAccountName()
+            .ClickYesThisIsMyOrg()
             .ContinueToConfirmationPage()
             .GoToSetYourAccountNameLink()
             .SelectoptionNo()
@@ -103,7 +103,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ProviderLeadRegistrationSignAgreement()
                 .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
                 .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-                .ConfirmYesTrainingProviderPermissions();
+                .ConfirmProviderLeadRegistrationPermissions();
         }
 
         [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
