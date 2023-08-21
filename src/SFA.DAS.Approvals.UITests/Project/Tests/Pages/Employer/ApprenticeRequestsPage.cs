@@ -10,10 +10,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By NumberOfReadyForReview => By.CssSelector("span[id='Review'] span[class*='das-tabs-boxes__figure']");
-        private By NumberOfWithTrainingProviders => By.CssSelector("a[id='WithProvider'] span[class*='das-tabs-boxes__figure']");
-        private By NumberOfDrafts => By.CssSelector("a[id='Draft'] span[class*='das-tabs-boxes__figure']");
-        private By NumberOfWithTransferSendingEmployers => By.CssSelector("a[id='WithTransferSender'] span[class*='das-tabs-boxes__figure']");
+        private static By NumberOfReadyForReview => By.CssSelector("span[id='Review'] span[class*='das-tabs-boxes__figure']");
+        private static By NumberOfWithTrainingProviders => By.CssSelector("a[id='WithProvider'] span[class*='das-tabs-boxes__figure']");
+        private static By NumberOfDrafts => By.CssSelector("a[id='Draft'] span[class*='das-tabs-boxes__figure']");
+        private static By NumberOfWithTransferSendingEmployers => By.CssSelector("a[id='WithTransferSender'] span[class*='das-tabs-boxes__figure']");
 
         public ApprenticeRequestsPage(ScenarioContext context) : base(context)  { }
 

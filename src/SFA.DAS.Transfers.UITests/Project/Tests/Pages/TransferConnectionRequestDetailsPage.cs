@@ -7,7 +7,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Connection request details";
 
-        private By DoYouWishToConnectToThisEmpoyerOptions => By.CssSelector(".govuk-radios__label");
+        private static By DoYouWishToConnectToThisEmpoyerOptions => By.CssSelector(".govuk-radios__label");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
         public TransferConnectionRequestDetailsPage(ScenarioContext context) : base(context) { }

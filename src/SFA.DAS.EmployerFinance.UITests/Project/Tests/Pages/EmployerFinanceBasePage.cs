@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
     public abstract class EmployerFinanceBasePage : VerifyBasePage
     {
-        private By FinanceLink => By.LinkText("Finance");
+        private static By FinanceLink => By.LinkText("Finance");
 
         protected EmployerFinanceBasePage(ScenarioContext context) : base(context) { }
 

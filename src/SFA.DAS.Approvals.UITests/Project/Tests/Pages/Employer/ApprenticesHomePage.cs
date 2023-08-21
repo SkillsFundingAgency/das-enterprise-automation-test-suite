@@ -7,21 +7,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApprenticesHomePage : InterimApprenticesHomePage
     {
-        private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
-        private By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
-        private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
-        private By SetPaymentOrder => By.LinkText("Set payment order");
-        private By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
-        private By Help => By.LinkText("Help");
-        private By Feedback => By.LinkText("Feedback");
-        private By Privacy => By.LinkText("Privacy");
-        private By Cookies => By.LinkText("Cookies");
-        private By BuiltBy => By.LinkText("Education and Skills Funding Agency");
-        private By CrownCopyright => By.LinkText("© Crown copyright");
-        private By CookiesAcceptButton => By.Id("btn-cookie-accept");
-        private By CookiesSettingsButton => By.Id("btn-cookie-settings");
-        private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
-        private By ZenHelpWidgetScript2 => By.Id("co-snippet");
+        private static By AddAnApprenticeLink => By.LinkText("Add an apprentice");
+        private static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
+        private static By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+        private static By SetPaymentOrder => By.LinkText("Set payment order");
+        private static By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
+        private static By Help => By.LinkText("Help");
+        private static By Feedback => By.LinkText("Feedback");
+        private static By Privacy => By.LinkText("Privacy");
+        private static By Cookies => By.LinkText("Cookies");
+        private static By BuiltBy => By.LinkText("Education and Skills Funding Agency");
+        private static By CrownCopyright => By.LinkText("© Crown copyright");
+        private static By CookiesAcceptButton => By.Id("btn-cookie-accept");
+        private static By CookiesSettingsButton => By.Id("btn-cookie-settings");
+        private static By ZenHelpWidgetScript1 => By.Id("ze-snippet");
+        private static By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
         public ApprenticesHomePage(ScenarioContext context) : base(context, false) {  }
 

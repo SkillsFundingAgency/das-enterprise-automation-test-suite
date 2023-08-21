@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
-            manageYourApprenticePageHelper.SelectViewCurrentApprenticeDetails(apprenticeDataHelper.ApprenticeFullName);
+            manageYourApprenticePageHelper.SelectViewLiveApprenticeDetails(apprenticeDataHelper.ApprenticeFullName);
 
             return new ProviderApprenticeDetailsPage(context);
         }

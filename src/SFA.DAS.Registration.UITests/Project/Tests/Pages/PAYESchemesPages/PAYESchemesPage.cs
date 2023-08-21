@@ -7,11 +7,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
 {
     public class PAYESchemesPage : InterimPAYESchemesPage
     {
-        
+
         #region Locators
-        private By AddNewSchemeButton => By.Id("addNewPaye");
+        private static By AddNewSchemeButton => By.Id("addNewPaye");
         private By PayeDetailsLink => By.XPath($"//td[contains(text(),'{SecondPaye}')]/following-sibling::td//a");
-        private By PAYERemovedHeaderInfo => By.CssSelector("h3.das-notification__heading");
+        private static By PAYERemovedHeaderInfo => By.CssSelector("h3.das-notification__heading");
         private string SecondPaye => objectContext.GetGatewayPaye(1);
         #endregion
 

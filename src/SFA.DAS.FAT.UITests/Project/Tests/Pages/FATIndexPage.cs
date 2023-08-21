@@ -8,7 +8,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected override string PageTitle => "Find apprenticeship training";
 
         #region Locators
-        private By StartButton => By.Id("start-button");
+        private static By StartButton => By.Id("start-button");
         #endregion
 
         public FATIndexPage(ScenarioContext context) : base(context) => VerifyPage();

@@ -8,7 +8,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected override string PageTitle => "Find apprenticeship training";
 
         #region Locators
-        private By SearchTrainingProviderLink => By.CssSelector("span[id='search-training-provider'] a");
+        private static By SearchTrainingProviderLink => By.CssSelector("span[id='search-training-provider'] a");
         #endregion
 
         public FindApprenticeshipTrainingSearchPage(ScenarioContext context) : base(context) => VerifyPage();

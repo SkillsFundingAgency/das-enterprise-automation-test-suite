@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
@@ -26,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ProviderStepsHelper _providerStepsHelper;
 
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+
         private readonly CommitmentsSqlDataHelper _commitmentsDataHelper;
 
         private readonly ApprenticeDataHelper _dataHelper;
@@ -35,6 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly CohortReferenceHelper _cohortReferenceHelper;
 
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
 
 
         public CoCSteps(ScenarioContext context)
@@ -46,9 +51,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"the listed employer has approved apprentice")]
@@ -173,7 +180,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
                 _cohortReferenceHelper.UpdateCohortReference(cohortReference);
 
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
         }
 
         private void EmployerEditsCostAndCourse()
@@ -188,7 +195,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void SetHasHadDataLockSuccessTrue() => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(_dataHelper.ApprenticeULN);
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
-                _providerStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+                _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
         private ProviderEditApprenticeCoursePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().EditApprentice();
     }

@@ -10,7 +10,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public FindATrainingProviderPage(ScenarioContext context) : base(context) => VerifyPage();
 
         #region Locators
-        private By PostCodeTextBox => By.Id("search-box");
+        private static By PostCodeTextBox => By.Id("search-box");
         protected override By SearchButton => By.CssSelector(".button.Postcode-search-button");
         #endregion
 

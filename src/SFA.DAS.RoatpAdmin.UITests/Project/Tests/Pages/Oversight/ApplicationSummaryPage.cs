@@ -7,25 +7,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
     {
         protected override string PageTitle => "Application summary";
 
-        private By ApproveGatewayOutcome => By.CssSelector("label[for='ApproveGateway']");
-        private By OverturnGatewayOutcome => By.CssSelector("label[for='OptionApproveGatewayNo']");
-        private By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
-        private By OverturnModerationOutcome => By.CssSelector("label[for='OptionApproveModerationNo']");
-        private By OversightSuccessful => By.CssSelector("label[for='OversightStatus']");
-        private By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OversightStatus']");
-        private By OversightSuccessfullFitnessForFunding => By.CssSelector("label[for='OptionSuccessfulFitnessForFunding']");
-        private By OversightUnSuccessful => By.CssSelector("label[for='OptionUnsuccessful']");
-        private By OversightInProgress => By.CssSelector("label[for='OptionInProgress']");
-        private By SuccessfulText => By.Id("SuccessfulText");
-        private By SuccessfulAlreadyActiveText => By.Id("SuccessfulAlreadyActiveText");
-        private By SuccessfullFitnessForFundingText => By.Id("SuccessfulFitnessForFundingText");
-        private By UnSuccessfulInternalText => By.Id("UnsuccessfulText");
-        private By UnSuccessfulExternalText => By.Id("UnsuccessfulExternalText");
-        private By InProgressInternalText => By.Id("InProgressInternalText");
-        private By InProgressExternalText => By.Id("InProgressExternalText");
-        private By AppealOversightSuccessfulAlreadyActive => By.CssSelector("label[for= 'AppealStatus']");
-        private By AppealOversightSuccessfulAlreadyActiveTextBox => By.Id("SuccessfulAlreadyActiveText");
-        private By AppealOversightSuccessful => By.CssSelector("label[for= 'AppealStatus']");
+        private static By ApproveGatewayOutcome => By.CssSelector("label[for='ApproveGateway']");
+        private static By OverturnGatewayOutcome => By.CssSelector("label[for='OptionApproveGatewayNo']");
+        private static By ApproveModertionOutcome => By.CssSelector("label[for='ApproveModeration']");
+        private static By OverturnModerationOutcome => By.CssSelector("label[for='OptionApproveModerationNo']");
+        private static By OversightSuccessful => By.CssSelector("label[for='OversightStatus']");
+        private static By OversightSuccessfulAlreadyActive => By.CssSelector("label[for='OversightStatus']");
+        private static By OversightSuccessfullFitnessForFunding => By.CssSelector("label[for='OptionSuccessfulFitnessForFunding']");
+        private static By OversightUnSuccessful => By.CssSelector("label[for='OptionUnsuccessful']");
+        private static By OversightInProgress => By.CssSelector("label[for='OptionInProgress']");
+        private static By SuccessfulText => By.Id("SuccessfulText");
+        private static By SuccessfulAlreadyActiveText => By.Id("SuccessfulAlreadyActiveText");
+        private static By SuccessfullFitnessForFundingText => By.Id("SuccessfulFitnessForFundingText");
+        private static By UnSuccessfulInternalText => By.Id("UnsuccessfulText");
+        private static By UnSuccessfulExternalText => By.Id("UnsuccessfulExternalText");
+        private static By InProgressInternalText => By.Id("InProgressInternalText");
+        private static By InProgressExternalText => By.Id("InProgressExternalText");
+        private static By AppealOversightSuccessfulAlreadyActive => By.CssSelector("label[for= 'AppealStatus']");
+        private static By AppealOversightSuccessfulAlreadyActiveTextBox => By.Id("SuccessfulAlreadyActiveText");
+        private static By AppealOversightSuccessful => By.CssSelector("label[for= 'AppealStatus']");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button");
 

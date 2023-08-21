@@ -1,6 +1,4 @@
-﻿@approvals
-@donotexecuteinparallel
-Feature: FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice
+﻿Feature: FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice
 
 In this test, a Training Provider, 
 has draft apprentices on the "Flexi-job agency" delivery model. 
@@ -8,9 +6,10 @@ Then the FJAA employer is removed from the Flexi-Job register,
 and the Provider is prevented from approving the cohort until delivery model is changed to Regular. 
 
 @regression
-@flexi-job
-@e2escenarios
+@flexijobapprenticeshipagency
+@fjaae2escenarios
 @rofjaadb
+@donotexecuteinparallel
 Scenario: FJAA_RMR_PJ_01_Provider_RemovalWithDraftApprentice
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When employer selects Flexi-job agency radio button on Select Delivery Model screen 

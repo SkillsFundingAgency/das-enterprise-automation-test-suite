@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
     {
         protected override string PageTitle => "Have you chosen a training provider to deliver the apprenticeship training?";
 
-        private By ClickYesContinue => By.Id("have-you-chosen-a-training-provider-button");
+        private static By ClickYesContinue => By.Id("have-you-chosen-a-training-provider-button");
 
         public HaveYouChosenATrainingProviderToDeliverTheApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 

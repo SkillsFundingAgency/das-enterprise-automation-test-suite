@@ -11,10 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string Linktext => "Apprentice requests";
 
-        private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-tabs-boxes__figure");
-        private By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-tabs-boxes__figure");
-        private By NumberOfDraftCohorts => By.CssSelector("#Draft span.das-tabs-boxes__figure");
-        private By NumberOfCohortsWithTransferSendingEmployers => By.CssSelector("#WithTransferSender span.das-tabs-boxes__figure");
+        private static By NumberOfCohortsForReview => By.CssSelector("#Review span.das-tabs-boxes__figure");
+        private static By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-tabs-boxes__figure");
+        private static By NumberOfDraftCohorts => By.CssSelector("#Draft span.das-tabs-boxes__figure");
+        private static By NumberOfCohortsWithTransferSendingEmployers => By.CssSelector("#WithTransferSender span.das-tabs-boxes__figure");
 
         public ProviderApprenticeRequestsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
 

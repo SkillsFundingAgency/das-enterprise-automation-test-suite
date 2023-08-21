@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Application overview";
 
-        private By ApplicationDetailsSelector => By.CssSelector(".govuk-summary-list__row");
+        private static By ApplicationDetailsSelector => By.CssSelector(".govuk-summary-list__row");
 
         protected override By TaskLists => By.CssSelector(".app-task-list > li");
 

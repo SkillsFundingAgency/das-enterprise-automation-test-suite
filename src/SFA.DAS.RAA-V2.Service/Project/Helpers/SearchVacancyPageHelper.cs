@@ -15,11 +15,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
-        private By SearchInput => By.CssSelector("#search-input");
+        private static By SearchInput => By.CssSelector("#search-input");
 
-        private By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
+        private static By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
-        private By Manage => By.CssSelector("[data-label='Action']");
+        private static By Manage => By.CssSelector("[data-label='Action']");
 
         public SearchVacancyPageHelper(ScenarioContext context)
         {

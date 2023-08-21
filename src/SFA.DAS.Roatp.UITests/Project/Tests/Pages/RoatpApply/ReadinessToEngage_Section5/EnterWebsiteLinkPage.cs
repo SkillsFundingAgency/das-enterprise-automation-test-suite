@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        private By WebsiteField => By.Id("RTE-31");
+        private static By WebsiteField => By.Id("RTE-31");
 
         public EnterWebsiteLinkPage(ScenarioContext context) : base(context) => VerifyPage();
 

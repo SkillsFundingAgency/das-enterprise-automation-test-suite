@@ -14,11 +14,11 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
         private List<(string hashedid, string value)> values = new();
         protected override string PageTitle => "Which employer do you want to create a vacancy for?";
 
-        private By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
+        private static By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
 
-        private By ListItem(string value) => By.CssSelector($".govuk-table .das-button--inline-link[value='{value}']");
+        private static By ListItem(string value) => By.CssSelector($".govuk-table .das-button--inline-link[value='{value}']");
 
-        private By SelectedEmployerYes => By.Id("confirm-yes");
+        private static By SelectedEmployerYes => By.Id("confirm-yes");
 
         public SelectEmployersPage(ScenarioContext context) : base(context) { }
 

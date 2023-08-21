@@ -14,9 +14,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        private By ReservationResumeFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
-
-        private By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
+        private static By ReservationResumeFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
+                
+        private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 

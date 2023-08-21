@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => IsTraineeship ? "What skills and personal qualities would you like applicants to have?" : "What skills and personal qualities do applicants need to have?";
 
-        private By Skills => By.CssSelector("label.govuk-checkboxes__label");
+        private static By Skills => By.CssSelector("label.govuk-checkboxes__label");
 
         protected override By ContinueButton => By.CssSelector(".save-button[data-automation='btn-continue']");
 

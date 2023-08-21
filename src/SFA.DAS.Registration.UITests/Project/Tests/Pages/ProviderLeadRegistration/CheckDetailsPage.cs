@@ -10,9 +10,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         #region locators
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
-        private By EmployerOrganisationChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
-        private By EmployerFirstNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
-        private By EmployerLastNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        private static By EmployerOrganisationChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        private static By EmployerFirstNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+        private static By EmployerLastNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
         #endregion
 
         public CheckDetailsPage(ScenarioContext context) : base(context) { }

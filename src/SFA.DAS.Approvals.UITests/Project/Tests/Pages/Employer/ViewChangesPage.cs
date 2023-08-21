@@ -9,13 +9,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ProviderReviewingTheRequestLink => By.LinkText("reviewing the request");
+        private static By ProviderReviewingTheRequestLink => By.LinkText("reviewing the request");
         
-        private By ReviewRequestedChangesLink=> By.Id("review-requested-changes-link");
+        private static By ReviewRequestedChangesLink => By.Id("review-requested-changes-link");
 
-        private By UndoChangesSelector => By.CssSelector("#UndoChanges");
+        private static By UndoChangesSelector => By.CssSelector("#UndoChanges");
 
-        private By ContinueUndoChangesSelector => By.CssSelector("#continue-button");
+        private static By ContinueUndoChangesSelector => By.CssSelector("#continue-button");
 
         public ViewChangesPage(ScenarioContext context) : base(context)  { }
 

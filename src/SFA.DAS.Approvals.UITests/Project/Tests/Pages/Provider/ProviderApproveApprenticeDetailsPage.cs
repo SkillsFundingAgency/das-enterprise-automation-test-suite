@@ -20,7 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
         private static By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
         private static By MessageBox => By.Name("sendmessage");
-        private By CohortApproveOptions => RadioLabels;
         private static By SaveAndExitCohort => By.Id("save-and-exit-cohort");
         private static By FlashMessage => By.ClassName("govuk-panel__title");
         private static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
@@ -170,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SelectOption(string option, bool sendMessageToEmployer = true)
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, option);
 
             if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
                 

@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
@@ -18,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderBulkUploadStepsHelper _providerBulkUploadStepsHelper;
 
         private readonly BulkCsvUploadValidateErrorMsghelper bulkCsvUploadValidateErrorMsghelper;
         #endregion
@@ -27,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
             bulkCsvUploadValidateErrorMsghelper = new BulkCsvUploadValidateErrorMsghelper(context);
         }
 
@@ -103,7 +102,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
                 //upload
                 if (i == 1) // first time start from provider home page 
-                    _providerStepsHelper.UsingFileUpload().CreateACsvFile(ApprenticeList).UploadFile();
+                    _providerBulkUploadStepsHelper.UsingFileUpload().CreateACsvFile(ApprenticeList).UploadFile();
                 else // next time onwards upload directly from the error page              
                     new ProviderFileUploadValidationErrorsPage(_context).CreateACsvFile(ApprenticeList).UploadFile();
 

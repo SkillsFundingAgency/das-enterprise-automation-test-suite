@@ -3,11 +3,11 @@
     public class CheckYourAnswersPage : AanBasePage
     {
         protected override string PageTitle => "Check the information you have provided before submitting your application";
-        private By ChangelinkEmployer = By.CssSelector("a[href='/onboarding/employer-search']");
-        private By ChangelinkJobtitle = By.CssSelector("a[href='/onboarding/current-job-title']");
-        private By ChangelinkRegions = By.CssSelector("a[href='/onboarding/regions']");
-        private By ChangelinkAreasOfInterest = By.CssSelector("a[href='/onboarding/areas-of-interest']");
-        private By ChangelinkPreviousEngagement = By.CssSelector("a[href='/onboarding/previous-engagement']");
+        private static By ChangelinkEmployer => By.CssSelector("a[href='/onboarding/employer-search']");
+        private static By ChangelinkJobtitle => By.CssSelector("a[href='/onboarding/current-job-title']");
+        private static By ChangelinkRegions => By.CssSelector("a[href='/onboarding/regions']");
+        private static By ChangelinkAreasOfInterest => By.CssSelector("a[href='/onboarding/areas-of-interest']");
+        private static By ChangelinkPreviousEngagement => By.CssSelector("a[href='/onboarding/previous-engagement']");
         public CheckYourAnswersPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchEmployerNamePage AccessChangeCurrentEmployerAndContinue()

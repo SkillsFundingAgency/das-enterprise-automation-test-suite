@@ -6,9 +6,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class ReviewYourDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Review your details";
-        
+
         #region Locators
-        private By InfoText => By.CssSelector("h1 + p");
+        private static By InfoText => By.CssSelector("h1 + p");
         protected override By RadioLabels => By.CssSelector("label");
         protected override By ContinueButton => By.Id("accept");
         #endregion

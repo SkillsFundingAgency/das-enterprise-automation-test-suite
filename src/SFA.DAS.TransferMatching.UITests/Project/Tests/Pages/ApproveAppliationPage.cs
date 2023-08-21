@@ -9,9 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected override string PageTitle => objectContext.GetOrganisationName();
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        private By EstimatedCostText => By.CssSelector("#main-content > div:nth-child(3) > p:nth-child(7)");
-        private By ApproveDisclaimerText => By.CssSelector("#approval-content");
-        private By DateAppliedSelector => By.LinkText("Date applied");
+        private static By EstimatedCostText => By.CssSelector("#main-content > div:nth-child(3) > p:nth-child(7)");
+        private static By ApproveDisclaimerText => By.CssSelector("#approval-content");
+        private static By DateAppliedSelector => By.LinkText("Date applied");
 
         public ApproveAppliationPage(ScenarioContext context) : base(context) { }
 
@@ -19,7 +19,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.IsElementDisplayed(EstimatedCostText);
             pageInteractionHelper.IsElementDisplayed(DateAppliedSelector);
-            SelectRadioOptionByText("Approve the application"); 
+            SelectRadioOptionByText("Approve the application");
             pageInteractionHelper.IsElementDisplayed(ApproveDisclaimerText);
             Continue();
             return new ApprovingTheApprenticeshipDetailsPage(context);

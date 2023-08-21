@@ -13,8 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #region Helpers and Context
         private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
@@ -24,8 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _config = context.GetProviderConfig<ProviderConfig>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
@@ -42,9 +40,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"The TrainingProvider approves apprentice by adding further details")]
         public void ThenTheTrainingProviderApprovesApprenticeByAddingFurtherDetails()
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage(_login, true);
+            var approvalsProviderHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_login, true);
 
-            _providerStepsHelper.DynamicHomePageProviderApproval();
+            approvalsProviderHomePage.GoToApprenticeRequestsPage().GoToCohortsToReviewPage().SelectViewCurrentCohortDetails().SelectEditApprentice(0).EnterUlnAndSave().SubmitApprove();
         }
 
         [Then(@"The NonLevyEmployer Reviews and Approves the apprentice")]

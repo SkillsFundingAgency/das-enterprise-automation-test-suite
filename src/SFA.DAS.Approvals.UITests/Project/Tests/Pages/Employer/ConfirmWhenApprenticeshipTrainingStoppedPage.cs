@@ -11,8 +11,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override bool TakeFullScreenShot => false;
 
         protected override By ContinueButton => By.CssSelector("#submit-status-change");
-        protected By DateIsCorrectRadionButton => By.CssSelector("#IsCorrectStopDate");
-        protected By DateIsWrongRadioButton => By.CssSelector("#IsCorrectStopDate-no");
+        protected static By DateIsCorrectRadionButton => By.CssSelector("#IsCorrectStopDate");
+        protected static By DateIsWrongRadioButton => By.CssSelector("#IsCorrectStopDate-no");
 
 
         public ConfirmWhenApprenticeshipTrainingStoppedPage(ScenarioContext context) : base(context) { }

@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        private By IcoNumberField => By.Id("YO-30");
+        private static By IcoNumberField => By.Id("YO-30");
 
         public IcoRegistrationNumberPage(ScenarioContext context) : base(context) => VerifyPage();
 

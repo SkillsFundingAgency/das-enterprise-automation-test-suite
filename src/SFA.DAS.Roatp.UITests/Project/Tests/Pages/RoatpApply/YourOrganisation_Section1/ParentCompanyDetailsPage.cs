@@ -7,9 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Enter your organisation's UK ultimate parent company details";
 
-        private By CompanyNumberField => By.Id("YO-21");
+        private static By CompanyNumberField => By.Id("YO-21");
 
-        private By CompanyNameField => By.Id("YO-22");
+        private static By CompanyNameField => By.Id("YO-22");
 
         public ParentCompanyDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 

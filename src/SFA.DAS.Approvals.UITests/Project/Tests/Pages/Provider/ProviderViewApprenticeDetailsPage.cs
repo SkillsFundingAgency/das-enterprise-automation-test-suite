@@ -8,9 +8,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "View apprentice details";
 
-        private By ReturnToCohortViewLink => By.LinkText("Return to cohort view");
+        private static By ReturnToCohortViewLink => By.LinkText("Return to cohort view");
 
-        private By InputBox => By.TagName("input");
+        private static By InputBox => By.TagName("input");
 
         public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
 

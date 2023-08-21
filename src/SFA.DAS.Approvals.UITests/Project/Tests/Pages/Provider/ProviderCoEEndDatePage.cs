@@ -10,8 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override bool TakeFullScreenShot => false;
 
-        private By EndDateMonth => By.Name("EndMonth");
-        private By EndDateYear => By.Name("EndYear");
+        private static By EndDateMonth => By.Name("EndMonth");
+        private static By EndDateYear => By.Name("EndYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
         public ProviderCoEEndDatePage(ScenarioContext context) : base(context)  { }

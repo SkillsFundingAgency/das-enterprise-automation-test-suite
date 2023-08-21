@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Does your organisation have a website?";
 
-        private By MainWebsiteField => By.Id("YO-41");
+        private static By MainWebsiteField => By.Id("YO-41");
 
         public WebsitePage(ScenarioContext context) : base(context) => VerifyPage();
 

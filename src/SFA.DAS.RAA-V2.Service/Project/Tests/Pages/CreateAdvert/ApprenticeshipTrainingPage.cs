@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => "What training course will the apprentice take?";
 
-        private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
+        private static By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 

@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "What teaching methods will your organisation use to deliver 20% off the job training?";
 
-        private By LearningSupportAndWrittenAssignmentsChekbox => By.Id("option_2");
+        private static By LearningSupportAndWrittenAssignmentsChekbox => By.Id("option_2");
 
         public WhatTeachingMethodsPage(ScenarioContext context) : base(context) => VerifyPage();
 

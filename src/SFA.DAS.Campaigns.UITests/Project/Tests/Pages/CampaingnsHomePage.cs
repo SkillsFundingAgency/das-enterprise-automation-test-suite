@@ -9,9 +9,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".fiu-header");
 
-        private By CookieButton => By.Id("fiu-cb-button-accept");
+        private static By CookieButton => By.Id("fiu-cb-button-accept");
 
-        private By CloseCookieButton => By.Id("fiu-cb-close-accept");
+        private static By CloseCookieButton => By.Id("fiu-cb-close-accept");
 
 
         public CampaingnsHomePage(ScenarioContext context) : base(context)  { }

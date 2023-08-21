@@ -7,11 +7,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => SubPageHeader;
 
-        protected By AreTheyRightForYou => By.CssSelector("a[href='/employers/are-they-right-for-you-employers']");
+        protected static By AreTheyRightForYou => By.CssSelector("a[href='/employers/are-they-right-for-you-employers']");
 
-        protected By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work-for-employers']");
+        protected static By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work-for-employers']");
 
-        protected By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
+        protected static By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
 
         protected EmployerBasePage(ScenarioContext context) : base(context)  { }
 

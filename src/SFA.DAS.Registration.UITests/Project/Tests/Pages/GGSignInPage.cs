@@ -14,10 +14,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
         #region Locators
-        private By UserIdInput => By.Id("userId");
-        private By PasswordInput => By.Id("password");
-        private By SignInButton => By.CssSelector("input.button");
-        private By ErrorMessageText => By.Id("errors");
+        private static By UserIdInput => By.Id("userId");
+        private static By PasswordInput => By.Id("password");
+        private static By SignInButton => By.CssSelector("input.button");
+        private static By ErrorMessageText => By.Id("errors");
         #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context) => VerifyPage();

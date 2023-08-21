@@ -36,9 +36,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By SaveButtonSelector => GetFormSubmitButton(); 
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
-        private By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
-        private By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
-        private By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
+        private static By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
+        private static By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
+        private static By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
         public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
         {

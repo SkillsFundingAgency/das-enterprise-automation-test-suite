@@ -7,11 +7,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => IsTraineeship ? "Where is the work experience placement" : "Where will the apprentice work?";
 
-        private By AddressLine1 => By.CssSelector("#AddressLine1");
+        private static By Postcode => By.CssSelector("#Postcode");
 
-        private By Postcode => By.CssSelector("#Postcode");
-
-        private By MenuItems => By.CssSelector(".ui-menu-item");
+        private static By MenuItems => By.CssSelector(".ui-menu-item");
 
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context) { }
 

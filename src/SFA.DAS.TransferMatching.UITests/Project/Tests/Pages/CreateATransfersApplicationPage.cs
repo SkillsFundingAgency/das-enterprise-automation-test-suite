@@ -11,7 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-apply-submit");
 
-        private By CompletedStatusSelector => By.TagName("govuk-tag app-task-list__group-header-tag");
+        private static By CompletedStatusSelector => By.TagName("govuk-tag app-task-list__group-header-tag");
         public CreateATransfersApplicationPage(ScenarioContext context) : base(context) { }
 
         public ApplicationSubmittedPage SubmitApplication()

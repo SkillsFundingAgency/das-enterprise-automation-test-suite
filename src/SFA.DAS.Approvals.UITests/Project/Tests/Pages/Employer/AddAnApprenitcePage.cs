@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By StartNowButton => By.CssSelector(".govuk-button--start");
+        private static By StartNowButton => By.CssSelector(".govuk-button--start");
 
         public AddAnApprenitcePage(ScenarioContext context) : base(context) { }
 

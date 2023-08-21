@@ -1,8 +1,7 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -17,19 +16,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper = new ProviderStepsHelper(context);
             _dataHelper = context.Get<ApprenticeDataHelper>();
-            _providerRoleApprenticeDataHelper = new ProviderRoleApprenticeDataHelper();            
+            _providerRoleApprenticeDataHelper = new ProviderRoleApprenticeDataHelper();
         }
 
         [When(@"the user clicks on manage apprentice link from homepage or manage apprentices link")]
         public void WhenTheUserClicksOnManageApprenticeLinkFormHomepageOrManageApprenticesLink() => GoToProviderManageYourApprenticePage();
-
-        [Then(@"the user can download csv file")]
-        public void ThenTheUserCanDownloadCsvFile()
-        {
-            var linkDisplayed = _providerStepsHelper.VerifyDownloadAllLinkIsDisplayed();
-
-            Assert.IsTrue(linkDisplayed, "Download all data");
-        }
 
         [Then(@"the user can view details of the apprenticeship on apprenticeship details page")]
         public void ThenTheUserCanViewDetailsOfTheApprenticeshipOnApprenticeshipDetailsPage()
@@ -43,15 +34,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanViewChangesViaViewChangesLinkInTheBanner()
         {
             UpdateApprenticeName("ChangesForReviewApprentice");
-            
-             SelectViewCurrentApprenticeDetails();
+
+            SelectViewCurrentApprenticeDetails();
         }
 
         [Then(@"the user can view details of ILR mismatch via view details link in the ILR data mismatch banner")]
         public void ThenTheUserCanViewDetailsOfILRMismatchViaViewDetailsLinkInTheILRDataMismatchBanner()
         {
             UpdateApprenticeName("ILRDataMisMatchRequestDetails");
-            
+
             SelectViewCurrentApprenticeDetails().ClickViewDetails();
         }
 
@@ -59,8 +50,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanViewDetailsOfILRMismatchRequestRestartViaViewDetailsLinkInTheILRDataMismatchBanner()
         {
             UpdateApprenticeName("ILRDataMisMatchAskEmployerToFix");
-            
-            SelectViewCurrentApprenticeDetails().ClickViewDetails();                
+
+            SelectViewCurrentApprenticeDetails().ClickViewDetails();
         }
 
 
@@ -68,7 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanViewReviewChangesViaReviewDetailsLinkInTheBanner()
         {
             UpdateApprenticeName("ChangesForReviewApprentice");
-                      
+
             SelectViewCurrentApprenticeDetails().ClickReviewChanges();
         }
 
@@ -77,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
 
             UpdateApprenticeName("ChangesPendingApprentice");
-            
+
             SelectViewCurrentApprenticeDetails().ClickViewChanges();
         }
 
@@ -85,14 +76,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanCanAccessApprenticeRequestPageViaApprenticeRequestsLinkOnHomepageOrFromApprenticeRequestsMenuBar()
         {
             _providerStepsHelper.NavigateToProviderHomePage().GoToApprenticeRequestsPage();
-        }       
+        }
 
         [Then(@"the user cannot trigger change of employer journey using change link against the employer field")]
         public void ThenTheUserCannotTriggerChangeOfEmployerJourneyUsingChangeLinkAgainstTheEmployerField()
         {
             UpdateApprenticeName("StoppedApprentice");
-            
-            SelectViewCurrentApprenticeDetails().ClickChangeEmployerLinkGoesToAccessDenied().GoBackToTheServiceHomePage();            
+
+            SelectViewCurrentApprenticeDetails().ClickChangeEmployerLinkGoesToAccessDenied().GoBackToTheServiceHomePage();
         }
 
         [Then(@"the user cannot edit an existing apprenticeship record by selecting edit apprentice link under manage appreciates")]
@@ -107,7 +98,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCannotTakeActionOnDetailsOfILRMismatchPageBySelectingAnyRadioButtonsOnThePage()
         {
             UpdateApprenticeName("ILRDataMisMatchRequestDetails");
-            
+
             SelectViewCurrentApprenticeDetails().ClickViewDetails()
              .ClickContinueNavigateToProviderAccessDeniedPage()
              .GoBackToTheServiceHomePage();
@@ -138,7 +129,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCannotTakeActionOnViewChangesOnNonCoEPage()
         {
             UpdateApprenticeName("ChangesPendingApprentice");
-            
+
             SelectViewCurrentApprenticeDetails().ClickViewChanges()
            .ClickContinueNavigateToProviderAccessDeniedPage()
            .GoBackToTheServiceHomePage();
@@ -159,7 +150,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             .GotoSelectJourneyPage()
             .SelectAddManually()
             .SelectOptionCreateNewCohort()
-            .ChooseAnEmployer("Levy")
+            .ChooseLevyEmployer()
             .ConfirmEmployer()
             .ProviderSelectsAStandard();
         }
@@ -169,8 +160,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             UpdateApprenticeName("StoppedApprentice");
 
-            SelectViewCurrentApprenticeDetails().ClickChangeEmployerLink().SelectChangeTheEmployer();   
-                                         
+            SelectViewCurrentApprenticeDetails().ClickChangeEmployerLink().SelectChangeTheEmployer();
+
         }
 
         [Then(@"the user can edit an existing apprenticeship record by selecting edit apprentice link under manage apprentices")]
@@ -178,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             UpdateApprenticeName("LiveApprentice");
 
-            SelectViewCurrentApprenticeDetails().EditApprentice();                                                  
+            SelectViewCurrentApprenticeDetails().EditApprentice();
         }
 
         [Then(@"the user can take action on details of ILR mismatch page by selecting any radio buttons on the page")]
@@ -202,7 +193,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             UpdateApprenticeName("ChangesPendingApprentice");
 
-            SelectViewCurrentApprenticeDetails().ClickViewChanges().SelectViewChangesOptions();                                         
+            SelectViewCurrentApprenticeDetails().ClickViewChanges().SelectViewChangesOptions();
         }
         private void UpdateApprenticeName(string key)
         {

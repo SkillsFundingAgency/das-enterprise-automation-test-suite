@@ -8,8 +8,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Who's the most experienced employee";
 
-        protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
-        protected By MontYearCssSelector => By.CssSelector(".govuk-form-group .govuk-form-group");
+        protected static By LabelCssSelector => By.CssSelector(".govuk-form-group");
+        protected static By MontYearCssSelector => By.CssSelector(".govuk-form-group .govuk-form-group");
      
 
         public MostExperiencedEmployeePage(ScenarioContext context) : base(context) => VerifyPage();

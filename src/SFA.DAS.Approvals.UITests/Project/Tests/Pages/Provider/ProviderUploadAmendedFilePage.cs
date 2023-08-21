@@ -8,8 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By ContinueButton => By.Id("continueBtn");
 
-        protected By ConfirmTrueRadioButton => By.Id("confirm-true");
-        protected By ConfirmFalseRadioButton => By.Id("confirm-false");
+        protected static By ConfirmTrueRadioButton => By.Id("confirm-true");
+        protected static By ConfirmFalseRadioButton => By.Id("confirm-false");
 
         protected override string PageTitle => "Are you sure you want to upload an amended file?";
 

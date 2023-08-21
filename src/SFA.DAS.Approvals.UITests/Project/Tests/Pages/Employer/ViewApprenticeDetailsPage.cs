@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             }
         }
 
-        private By InputBox => By.TagName("input");
+        private static By InputBox => By.TagName("input");
 
         private static By CohortStatus => By.Id("cohortStatus");
 

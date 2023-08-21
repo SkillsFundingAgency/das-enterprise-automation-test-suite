@@ -8,9 +8,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         protected override string PageTitle => "Create an account";
 
         #region Locators
-        private By GivenNameTextbox => By.Id("GivenName");
-        private By FamilyNameTextbox => By.Id("FamilyName");
-        private By EmailAddressTextbox => By.Id("Email");
+        private static By GivenNameTextbox => By.Id("GivenName");
+        private static By FamilyNameTextbox => By.Id("FamilyName");
+        private static By EmailAddressTextbox => By.Id("Email");
         #endregion
 
         public CreateAnAccountPage(ScenarioContext context) : base(context) => VerifyPage();

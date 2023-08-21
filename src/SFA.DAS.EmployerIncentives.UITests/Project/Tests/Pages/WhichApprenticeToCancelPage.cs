@@ -7,7 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Which apprentices do you want to cancel an application for?";
 
-        private By CancelApprenticeshipSelector => By.CssSelector("input[id*='cancel-apprenticeships']");
+        private static By CancelApprenticeshipSelector => By.CssSelector("input[id*='cancel-apprenticeships']");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 

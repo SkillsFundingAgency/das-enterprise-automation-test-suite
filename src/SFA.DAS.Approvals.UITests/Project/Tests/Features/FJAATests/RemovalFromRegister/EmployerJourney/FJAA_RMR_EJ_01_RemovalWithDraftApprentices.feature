@@ -1,6 +1,4 @@
-﻿@approvals
-@donotexecuteinparallel
-Feature: FJAA_RMR_EJ_01_RemovalWithDraftApprentices
+﻿Feature: FJAA_RMR_EJ_01_RemovalWithDraftApprentices
 
 In this test, a levy employer, who is on Flexi-job register, 
 has draft apprentices on the "Flexi-job agency" delivery model. 
@@ -8,9 +6,10 @@ Then the employer is removed from the Flexi-Job register,
 and they are prevented from approving the cohort until delivery model is changed to Regular. 
 
 @regression
-@flexi-job
-@e2escenarios
+@flexijobapprenticeshipagency
+@fjaae2escenarios
 @rofjaadb
+@donotexecuteinparallel
 Scenario: FJAA_RMR_EJ_01_RemovalWithDraftApprentices
 	Given an employer who is on Flexi-job agency register logins using exisiting Levy Account
 	When the Employer create a cohort and send to provider to add apprentices
@@ -21,5 +20,3 @@ Scenario: FJAA_RMR_EJ_01_RemovalWithDraftApprentices
 	And the previously registered FJAA employer can no longer approve the draft cohort
 	And the previously registered FJAA employer can edit delivery model and then approve
 	
-
-

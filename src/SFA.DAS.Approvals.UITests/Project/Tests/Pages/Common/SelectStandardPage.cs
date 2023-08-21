@@ -16,10 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
 
-        private static By AddStandardsDDL => By.CssSelector("#SelectedLarsCode");
-
-        private static By FirstItemInTheList => By.CssSelector("#SelectedLarsCode__option--0");
-
         public SelectStandardPage(ScenarioContext context) : base(context) { }
 
         public AddApprenticeDetailsPage EmployerSelectsAStandard()
