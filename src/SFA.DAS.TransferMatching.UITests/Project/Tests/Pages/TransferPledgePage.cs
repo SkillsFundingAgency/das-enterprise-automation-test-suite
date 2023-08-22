@@ -15,7 +15,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private static By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
         private static By PledgedFunds => By.LinkText("Pledged funds for 2023/24");
         private static By RemainingFunds => By.LinkText("Remaining funds for 2023/24");
-        private static By EstimatedCost => By.LinkText("Estimated cost");
+        private static By EstimatedCost => By.LinkText("Estimated yearly cost");
         private static By Applicant => By.LinkText("Applicant");
         private static By TypicalDuration => By.LinkText("Typical duration");
         private static By Criteria => By.LinkText("Criteria");
