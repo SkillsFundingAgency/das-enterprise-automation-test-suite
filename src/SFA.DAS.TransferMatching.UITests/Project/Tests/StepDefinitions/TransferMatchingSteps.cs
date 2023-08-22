@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -26,6 +27,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
         private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
+        private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly AccountSignOutHelper _accountSignOutHelper;
@@ -46,6 +48,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _tabHelper = context.Get<TabHelper>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(context.Get<DbConfig>());
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -115,6 +118,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
+
+        [Then(@"the non levy employer can open approved pledge application")]
+        public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication() => OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
 
         [Then(@"the non levy employer can withdraw funding before approval")]
         public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
@@ -273,6 +279,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext.SetNoOfApprentices(1);
         }
 
+        [Then(@"wait for 6 weeks")]
+        public void ApplicationIsApprovedAfter6Weeks()
+        {
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToToday(_objectContext.GetPledgeDetail().PledgeId);
+            
+            // we now need to http trigger the web job.
+        }
+       
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -383,7 +397,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            _transferMatchingStepsHelper.SubmitApplication(page);
+            _transferMatchingStepsHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge? "": _objectContext.GetPledgeDetail().PledgeId);
 
             return OpenPledgeApplication(_isImmediateAutoApprovalPledge? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
         }

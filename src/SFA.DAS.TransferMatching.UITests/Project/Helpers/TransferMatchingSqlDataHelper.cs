@@ -24,5 +24,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
                 ExecuteSqlCommand(sqlQueryFromFile, connectionString);
             }
         }
+
+        public void UpdateCreatedDateForApplicationToToday(string details)
+        {
+            string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationCreatedDate");
+
+            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Details__", details);
+
+            ExecuteSqlCommand(sqlQueryFromFile, connectionString);
+        }
     }
 }
