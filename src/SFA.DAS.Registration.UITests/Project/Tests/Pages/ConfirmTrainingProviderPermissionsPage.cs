@@ -26,6 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage ConfirmProviderLeadRegistrationPermissions()
         {
+            javaScriptHelper.ClickElement(SelectYesConfirmChange);
             Continue();
             return new HomePage(context);
         }
