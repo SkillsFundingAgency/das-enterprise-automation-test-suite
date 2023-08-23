@@ -207,7 +207,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
 
-        public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
+        public ApprenticeRequestsPage GoToApprenticeRequestsPage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickApprenticeRequestsLink();
 
         public void EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable()
         {
