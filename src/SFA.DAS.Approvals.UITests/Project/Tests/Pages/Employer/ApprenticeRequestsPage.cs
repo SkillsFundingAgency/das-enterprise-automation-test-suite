@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -17,52 +19,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeRequestsPage(ScenarioContext context) : base(context)  { }
 
-        public ApprenticeRequestsReadyForReviewPage GoToReadyToReview()
+        public ApprenticeRequestsReadyForReviewPage GoToReadyToReview() => AssertPage<ApprenticeRequestsReadyForReviewPage>(NumberOfReadyForReview, "Ready to review", () => new(context));
+
+        public ApprenticeRequestsWithTrainingProvidersPage GoToWithTrainingProviders() => AssertPage<ApprenticeRequestsWithTrainingProvidersPage>(NumberOfWithTrainingProviders, "With training providers", () => new(context));
+
+        public ApprenticeRequestDraftsPage GoToDrafts() => AssertPage<ApprenticeRequestDraftsPage>(NumberOfDrafts, "Drafts", () => new(context));
+
+        public ApprenticeRequestsWithTransferSendingEmployersPage GoToWithTransferSendingEmployers() => AssertPage<ApprenticeRequestsWithTransferSendingEmployersPage>(NumberOfWithTransferSendingEmployers, "With transfer sending employers", () => new(context));
+
+        private T AssertPage<T>(By by, string columnName, Func<T> returnfunc)
         {
-            var employerReadyForReviewCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfReadyForReview));
-            if (employerReadyForReviewCohorts > 0)
+            context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
-                formCompletionHelper.ClickElement(NumberOfReadyForReview);
-                return new ApprenticeRequestsReadyForReviewPage(context);
-            }
+                Assert.That(Convert.ToInt32(pageInteractionHelper.GetText(by)) > 0, $"No cohorts available in '{columnName}' column");
 
-            throw new Exception("No cohorts available in Ready to review");
-        }
+                formCompletionHelper.ClickElement(by);
+            },
+            RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 13, 20, 30}), () => pageInteractionHelper.RefreshPage());
 
-        public ApprenticeRequestsWithTrainingProvidersPage GoToWithTrainingProviders()
-        {
-            var employerWithTrainingProviders = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfWithTrainingProviders));
-            if (employerWithTrainingProviders > 0)
-            {
-                formCompletionHelper.ClickElement(NumberOfWithTrainingProviders);
-                return new ApprenticeRequestsWithTrainingProvidersPage(context);
-            }
-
-            throw new Exception("No cohorts available in With training providers");
-        }
-
-        public ApprenticeRequestDraftsPage GoToDrafts()
-        {
-            var employerDraftCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfDrafts));
-            if (employerDraftCohorts > 0)
-            {
-                formCompletionHelper.ClickElement(NumberOfDrafts);
-                return new ApprenticeRequestDraftsPage(context);
-            }
-
-            throw new Exception("No cohorts available in Drafts");
-        }
-
-        public ApprenticeRequestsWithTransferSendingEmployersPage GoToWithTransferSendingEmployers()
-        {
-            var employerWithTransferSendingEmployersCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfWithTransferSendingEmployers));
-            if (employerWithTransferSendingEmployersCohorts > 0)
-            {
-                formCompletionHelper.ClickElement(NumberOfWithTransferSendingEmployers);
-                return new ApprenticeRequestsWithTransferSendingEmployersPage(context);
-            }
-
-            throw new Exception("No cohorts available in With transfer sending employers");
+            return returnfunc();
         }
     }
 }

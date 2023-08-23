@@ -21,7 +21,9 @@ namespace SFA.DAS.FrameworkHelpers
 
         public void RetryOnNUnitExceptionWithLongerTimeOut(Action action) => RetryOnNUnitException(action, RetryTimeOut.LongerTimeout());
 
-        public void RetryOnNUnitException(Action action, TimeSpan[] timespan)
+        public void RetryOnNUnitException(Action action, TimeSpan[] timespan) => RetryOnNUnitException(action, timespan, null);
+        
+        public void RetryOnNUnitException(Action action, TimeSpan[] timespan, Action retryaction)
         {
             Policy
                  .Handle<AssertionException>()
@@ -29,6 +31,7 @@ namespace SFA.DAS.FrameworkHelpers
                  .WaitAndRetry(timespan, (exception, timeSpan, retryCount, context) =>
                  {
                      new RetryLogging(objectContext, "RetryOnNUnitException").Report(retryCount, timeSpan, exception, _title, null);
+                     retryaction?.Invoke();
                  })
                  .Execute(() =>
                  {
