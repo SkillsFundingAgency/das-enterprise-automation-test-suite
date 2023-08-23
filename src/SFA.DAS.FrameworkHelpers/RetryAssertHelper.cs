@@ -22,7 +22,9 @@ namespace SFA.DAS.FrameworkHelpers
         public void RetryOnNUnitExceptionWithLongerTimeOut(Action action) => RetryOnNUnitException(action, RetryTimeOut.LongerTimeout());
 
         public void RetryOnNUnitException(Action action, TimeSpan[] timespan) => RetryOnNUnitException(action, timespan, null);
-        
+
+        public void RetryOnNUnitException(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 13, 20, 30 }), retryaction);
+
         public void RetryOnNUnitException(Action action, TimeSpan[] timespan, Action retryaction)
         {
             Policy

@@ -34,8 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 Assert.That(Convert.ToInt32(pageInteractionHelper.GetText(by)) > 0, $"No cohorts available in '{columnName}' column");
 
                 formCompletionHelper.ClickElement(by);
-            },
-            RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 13, 20, 30}), () => pageInteractionHelper.RefreshPage());
+            }, () => pageInteractionHelper.RefreshPage());
 
             return returnfunc();
         }
