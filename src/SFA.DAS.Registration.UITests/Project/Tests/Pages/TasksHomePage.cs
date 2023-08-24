@@ -23,10 +23,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Tasks";
 
-        public TasksHomePage(ScenarioContext context) : base(context)
-        {
-                
-        }
+        protected override bool CanVerifyPage => false;
+
+        public TasksHomePage(ScenarioContext context) : base(context) => VerifyPageAfterRefresh(PageHeader, PageTitle);
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyElement(StartAddingApprenticesNowTaskLink);
 

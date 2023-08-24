@@ -23,7 +23,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public void RetryOnNUnitException(Action action, TimeSpan[] timespan) => RetryOnNUnitException(action, timespan, null);
 
-        public void RetryOnNUnitException(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 13, 20, 30 }), retryaction);
+        public void RetryOnNUnitException(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 13, 20, 30, 30, 30 }), retryaction);
 
         public void RetryOnNUnitException(Action action, TimeSpan[] timespan, Action retryaction)
         {
@@ -32,7 +32,7 @@ namespace SFA.DAS.FrameworkHelpers
                  .Or<MultipleAssertException>()
                  .WaitAndRetry(timespan, (exception, timeSpan, retryCount, context) =>
                  {
-                     new RetryLogging(objectContext, "RetryOnNUnitException").Report(retryCount, timeSpan, exception, _title, null);
+                     new RetryLogging(objectContext, "RetryOnNUnitException").Report(retryCount, timeSpan, exception, _title, retryaction);
                      retryaction?.Invoke();
                  })
                  .Execute(() =>

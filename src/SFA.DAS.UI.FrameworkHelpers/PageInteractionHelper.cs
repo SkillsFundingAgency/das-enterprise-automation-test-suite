@@ -28,7 +28,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _objectContext = objectContext;
         }
 
-        public void RefreshPage() => _webDriver.Navigate().Refresh();
+        public void RefreshPage()
+        {
+            _webDriver.Navigate().Refresh();
+
+            SetDebugInformation($"Refreshed page...");
+        }
 
         public string GetUrl() => _webDriver.Url;
 
