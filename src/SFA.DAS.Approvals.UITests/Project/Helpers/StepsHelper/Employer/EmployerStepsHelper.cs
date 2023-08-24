@@ -127,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return new DynamicHomePages(context).CheckReadyToReviewStatus()
                 .ApproveAndNotifyTrainingProvider()
                 .ClickHome()
-                .VerifyYourFundingReservationsLink();
+                .VerifyViewApprenticeDetailsLink();
         }
 
         internal void ValidateStatusOnManageYourApprenticesPage(string expectedStatus)
