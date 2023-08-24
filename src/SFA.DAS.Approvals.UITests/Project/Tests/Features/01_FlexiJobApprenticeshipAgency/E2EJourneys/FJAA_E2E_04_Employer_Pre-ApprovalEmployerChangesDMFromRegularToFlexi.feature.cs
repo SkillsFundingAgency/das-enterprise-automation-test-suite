@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._01_FlexiJobApprenticeshipAgency.E2EJourneys
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,27 +20,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi")]
-    public partial class FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexiFeature
+    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi")]
+    public partial class FJAA_E2E_04_Employer_Pre_ApprovalEmployerChangesDMFromRegularToFlexiFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi.feature"
+#line 1 "FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi", @"In this test, an FJAA Employer,logs in to their account. 
-Employer adds apprentice details and selects 'Regular' as delivery model,
-and submits apprentice details for Training Provider to review.
-Training Provider logs into their account, finds the cohort.
-Training Provider then changes DM from Regular to Flexi 
-and sends back to Employer for Approval.", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/01_FlexiJobApprenticeshipAgency/E2EJourneys", "FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi", @"In this test, a Training Provider,logs in to their account. 
+Training Provider adds an apprentice details and selects 'Regular' as delivery model,
+and submits apprentice details for flexi employer to review.
+Flexi Employer logs into their account, finds the cohort.
+Flexi Employer then changes DM from Regular to Flexi 
+and sends back to Provider for Approval.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,18 +79,18 @@ and sends back to Employer for Approval.", ProgrammingLanguage.CSharp, featureTa
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexijobapprenticeshipagency")]
         [NUnit.Framework.CategoryAttribute("fjaae2escenarios")]
-        public void FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi()
+        public void FJAA_E2E_04_Employer_Pre_ApprovalEmployerChangesDMFromRegularToFlexi()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexijobapprenticeshipagency",
                     "fjaae2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_06_Provider_PreApprovalProviderChangesDMFromRegularToFlexi", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_04_Employer_Pre-ApprovalEmployerChangesDMFromRegularToFlexi", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -106,21 +106,18 @@ this.ScenarioInitialize(scenarioInfo);
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.When("employer selects Regular radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("validate Regular content on Add Apprentice Details page and submit valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the provider adds an apprentice on the Regular Delivery Model and sends to Employ" +
+                        "er for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("validate Flexi-job agency tag is not displayed on Approve Apprentice Details page" +
-                        " and send cohort to provider for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Employer changes the Delivery Model from Regular to Flexi and sends back to p" +
+                        "rovider to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
- testRunner.And("the Provider changes the Delivery Model from Regular to Flexi and sends back to e" +
-                        "mployer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
- testRunner.And("the employer validates Flexi-Job content and approves", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider validates flexi-job content and approves cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

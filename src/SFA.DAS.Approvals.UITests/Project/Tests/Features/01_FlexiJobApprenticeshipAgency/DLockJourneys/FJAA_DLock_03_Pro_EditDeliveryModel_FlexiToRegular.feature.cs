@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._01_FlexiJobApprenticeshipAgency.DLockJourneys
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,24 +20,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.FJAATests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegular")]
-    public partial class FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegularFeature
+    [NUnit.Framework.DescriptionAttribute("FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegular")]
+    public partial class FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegularFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegular.feature"
+#line 1 "FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegular.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FJAATests", "FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegular", @"In this test, a Training Provider logs into their account and navigates to the 'Manage your apprentices' page. 
-Provider then edits an apprentice record changing DM from Flexi to Regular
-and submits changes for approval.
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/01_FlexiJobApprenticeshipAgency/DLockJourneys", "FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegular", @"In this test, a Training Provider logs into their account and navigates to the 'Manage your apprentices' page. 
+Provider then edits an apprentice record that has been successfully data locked
+changing DM from Flexi to Regular and submits changes for approval.
 FJAA Employer then views changes and approves, later verifying that changes have been saved.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -77,18 +77,18 @@ FJAA Employer then views changes and approves, later verifying that changes have
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegular")]
+        [NUnit.Framework.DescriptionAttribute("FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegular")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexijobapprenticeshipagency")]
         [NUnit.Framework.CategoryAttribute("fjaae2escenarios")]
-        public void FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegular()
+        public void FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegular()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexijobapprenticeshipagency",
                     "fjaae2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_E2E_07_Provider_PostApprovalProviderChangesDMFromFlexiToRegular", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_DLock_03_Pro_EditDeliveryModel_FlexiToRegular", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -118,19 +118,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
+ testRunner.Given("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 18
  testRunner.When("the Provider edits the Delivery Model to Regular in Post Approvals and submits ch" +
                         "anges", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
- testRunner.Then("the employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 19
- testRunner.And("the employer confirms Delivery Model is displayed as \"Regular\" on Apprentice Deta" +
-                        "ils and Edit Apprentice screens", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 20
- testRunner.And("the provider confirms Delivery Model is displayed as \"Regular\" on Apprentice Deta" +
-                        "ils and Edit Apprentice screens", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
