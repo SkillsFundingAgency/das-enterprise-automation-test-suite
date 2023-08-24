@@ -9,12 +9,15 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+using SFA.DAS.TransferMatching.APITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
+using System;
+using System.Threading;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -36,6 +39,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private bool _isAnonymousPledge;
         private bool _isImmediateAutoApprovalPledge;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
+        private readonly TransferMatchingJobsHelper _transferMatchingJobsHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
@@ -48,7 +53,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _tabHelper = context.Get<TabHelper>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(context);
             _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(context.Get<DbConfig>());
+            _transferMatchingJobsHelper = new TransferMatchingJobsHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -282,11 +289,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"wait for 6 weeks")]
         public void ApplicationIsApprovedAfter6Weeks()
         {
+            //update created on date to 6 weeks later
             _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToToday(_objectContext.GetPledgeDetail().PledgeId);
-            
-            // we now need to http trigger the web job.
+            Thread.Sleep(TimeSpan.FromSeconds(10));
+            // trigger autoapproval job
+            _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
+
+            _employerHomePageStepsHelper.GotoEmployerHomePage();
         }
-       
+        
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
