@@ -12,10 +12,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
 
         public EmployerAmbassadorApplicationPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public TermsAndConditionsPage StartEmployerAmbassadorApplication()
+        public TermsAndConditionsOfEmployerPage StartEmployerAmbassadorApplication()
         {
             formCompletionHelper.Click(StartButton);
-            return new TermsAndConditionsPage(context);
+            return new TermsAndConditionsOfEmployerPage(context);
         }
     }
 }

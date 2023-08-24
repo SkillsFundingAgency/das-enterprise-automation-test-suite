@@ -78,7 +78,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
         [NUnit.Framework.CategoryAttribute("aan05")]
-        [NUnit.Framework.CategoryAttribute("aanreset")]
+        [NUnit.Framework.CategoryAttribute("aanapprenticeonboardingreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN_A_02_NegativePathUserDetailsAreNotInStagedApprenticeRecord()
         {
@@ -86,7 +86,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
                     "aan",
                     "aanaprentice",
                     "aan05",
-                    "aanreset",
+                    "aanapprenticeonboardingreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_02_NegativePath User details are not in Staged Apprentice Record", null, tagsOfScenario, argumentsOfScenario, featureTags);

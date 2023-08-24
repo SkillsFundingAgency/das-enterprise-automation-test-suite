@@ -3,7 +3,7 @@
 @aan
 @aanaprentice
 @aan05
-@aanreset
+@aanapprenticeonboardingreset
 @regression
   Scenario: AAN_A_02_NegativePath User details are not in Staged Apprentice Record
    	Given the non Private beta apprentice logs into AAN portal

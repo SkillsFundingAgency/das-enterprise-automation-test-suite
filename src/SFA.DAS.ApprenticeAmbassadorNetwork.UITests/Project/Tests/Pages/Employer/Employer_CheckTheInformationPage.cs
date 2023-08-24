@@ -7,10 +7,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
         protected override string PageTitle => "Check the information you have provided before submitting your application";
 
         private By SubmitButton => By.Id("continue-button");
-        private By ChangeLinkToWhatAreas => By.CssSelector("a[href='/accounts/v6gr7d/onboarding/regions']");
-        private By ChangeLinkToReasonsForApply => By.CssSelector("a[href='/accounts/v6gr7d/onboarding/reason-to-join']");
-        private By ChangeLinkToSupportNeeded => By.CssSelector("a[href='/accounts/v6gr7d/onboarding/support-needed']");
-        private By ChangeLinkToPreviousEngagement => By.CssSelector("a[href='/accounts/v6gr7d/onboarding/previous-engagement']");
+        private By ChangeLinkToWhatAreas => By.XPath("(//a[text()='Change'])[1]");
+        private By ChangeLinkToReasonsForApply => By.XPath("(//a[text()='Change'])[2]");
+        private By ChangeLinkToSupportNeeded => By.XPath("(//a[text()='Change'])[3]");
+        private By ChangeLinkToPreviousEngagement => By.XPath("(//a[text()='Change'])[4]");
 
         public Employer_CheckTheInformationPage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -38,9 +38,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
             return new AreYouJoiningBecauseYouHaveEngagedPage(context);
         }
 
-        public void SubmitApplication()
+        public ApplicationSubmitted_EmployerPage SubmitApplication()
         {
             formCompletionHelper.Click(SubmitButton);
+            return new ApplicationSubmitted_EmployerPage(context);
         }
     }
 }

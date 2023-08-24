@@ -8,10 +8,10 @@ public class ApplicationSubmittedPage : SignInPage
 
     public ApplicationSubmittedPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    public NetworkHubPage ContinueToAmbassadorHub()
+    public Apprentice_NetworkHubPage ContinueToAmbassadorHub()
     {
         formCompletionHelper.Click(NetworkHubLink);
 
-        return new NetworkHubPage(context);
+        return new Apprentice_NetworkHubPage(context);
     }
 }

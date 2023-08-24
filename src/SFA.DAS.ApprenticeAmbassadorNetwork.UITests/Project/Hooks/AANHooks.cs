@@ -26,15 +26,15 @@ public class AANHooks
     public void Navigate_Apprentice() => _tabHelper.GoToUrl(UrlConfig.AAN_Apprentice_BaseUrl);
 
     [BeforeScenario(Order = 31), Scope(Tag = "@aanemployer")]
-    public void Navigate_Employer() => _tabHelper.GoToUrl("https://employer-aan.test-eas.apprenticeships.education.gov.uk/accounts/ddff");
+    public void Navigate_Employer() => _tabHelper.GoToUrl("https://employer-aan.pp-eas.apprenticeships.education.gov.uk/accounts/ddff");
 
     [BeforeScenario(Order = 31), Scope(Tag = "@aanadmin")]
-    public void Navigate_Admin() => _tabHelper.GoToUrl("https://test-adminaan.apprenticeships.education.gov.uk/");
+    public void Navigate_Admin() => _tabHelper.GoToUrl("https://pp-adminaan.apprenticeships.education.gov.uk/");
 
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {
-        _context.Set(new AANSqlDataHelper(_context.Get<DbConfig>()));
+        _context.Set(new AANSqlHelper(_context.Get<DbConfig>()));
 
         _context.Set(new AANDataHelpers());
     }

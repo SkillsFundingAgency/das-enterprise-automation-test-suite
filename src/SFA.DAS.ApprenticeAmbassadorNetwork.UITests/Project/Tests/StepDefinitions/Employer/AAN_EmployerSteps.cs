@@ -8,19 +8,75 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
     [Binding]
     public class AAN_EmployerSteps
     {
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext context;
+        private readonly ObjectContext objectContext;
+
+        private EmployerAmbassadorApplicationPage employerAmbassadorApplicationPage;
+        private Employer_CheckTheInformationPage employer_CheckTheInformationPage;
+        private ApplicationSubmitted_EmployerPage applicationSubmitted_EmployerPage;
+        private AANSqlHelper aANSqlHelper;
+
+
 
         public AAN_EmployerSteps(ScenarioContext context)
         {
-            _context = context;
+            this.context = context;
+
+            objectContext = context.Get<ObjectContext>();
+            aANSqlHelper = context.Get<AANSqlHelper>();
         }
 
         [Given(@"an employer without onboarding logs into the AAN portal")]
         public void AnEmployerWithoutOnboardingLogsIntoTheAANPortal()
         {
-            new StubSignInPage(_context).Login(_context.GetUser<AanEWOUser>()).Continue();
+            var username = (context.GetUser<AanEWOUser>());
+            aANSqlHelper.ResetEmployerOnboardingJourney(username.Username);
+            new StubSignInPage(context).Login(username).Continue();
 
-            _ = new EmployerAmbassadorApplicationPage(_context);
+            employerAmbassadorApplicationPage = new EmployerAmbassadorApplicationPage(context);
+        }
+
+        [When(@"the employer provides all the required details for the employer onboarding journey")]
+        public void WhenTheEmployerProvidesAllTheRequiredDetailsForTheEmployerOnboardingJourney()
+        {
+            employer_CheckTheInformationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
+                .AcceptTermsAndConditions()
+                .ConfirmAreasOfWorkAndContinue()
+                .SelectMeetOtherEmployerAmbassador_BuildProfileAndContinue()
+                .YesHaveEngagedWithAmbassadorAndContinue();
+        }
+
+        [Then(@"the employer onboarding process should be successfully completed")]
+        public void ThenTheEmployerOnboardingProcessShouldBeSuccessfullyCompleted()
+        {
+            applicationSubmitted_EmployerPage = employer_CheckTheInformationPage.SubmitApplication();
+        }
+
+        [Then(@"the employer should be redirected to the employer Hub page")]
+        public void ThenTheEmployerShouldBeRedirectedToTheEmployerHubPage()
+        {
+            applicationSubmitted_EmployerPage.ContinueToAmbassadorHub();
+        }
+
+        [When(@"the employer should be able to modify any of the provided answers")]
+        public void WhenTheEmployerShouldBeAbleToModifyAnyOfTheProvidedAnswers()
+        {
+            employer_CheckTheInformationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
+                .AcceptTermsAndConditions()
+                .ConfirmAreasOfWorkAndContinue()
+                .SelectMeetOtherEmployerAmbassador_BuildProfileAndContinue()
+                .YesHaveEngagedWithAmbassadorAndContinue()
+                .ChangeRegionLocationAndPreferences()
+                .Add3MoreRegionsAndContinue()
+                .ChangeJourney_ConfirmLocalAsNorthEastAndContinue()
+                .ChangeReasonsForApply()
+                .Add_IncreasingEngagementWithSchoolsAndCollegesAndContinue()
+                .ChangeSupportNeeded()
+                .Add_ProjectManageAndContinue()
+                .ChangePreviousEngagement()
+                .NoHaveEngagedWithAmbassadorAndContinue();
+
+
         }
 
     }

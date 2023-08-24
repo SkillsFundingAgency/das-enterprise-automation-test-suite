@@ -4,7 +4,7 @@
 @aanonboarding
 @aanaprentice
 @aan01
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 Scenario: AAN_A_01A User successfully completes the Apprentice onboarding process and verifies the Hub page
     Given an apprentice logs into the AAN portal
@@ -16,7 +16,7 @@ Scenario: AAN_A_01A User successfully completes the Apprentice onboarding proces
 @aanonboarding
 @aanaprentice
 @aan02
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 Scenario:AAN_A_01B User without manager permission encounters a shutter page
     Given an apprentice logs into the AAN portal
@@ -27,7 +27,7 @@ Scenario:AAN_A_01B User without manager permission encounters a shutter page
 @aanonboarding
 @aanaprentice
 @aan03
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 Scenario:AAN_A_01C User completes all onboarding details and can modify answers on the "Check Your Answer" page
     Given an apprentice logs into the AAN portal
@@ -40,7 +40,7 @@ Scenario:AAN_A_01C User completes all onboarding details and can modify answers 
 @aanonboarding
 @aanaprentice
 @aan04
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub page after signing in
     Given an apprentice logs into the AAN portal
@@ -48,11 +48,10 @@ Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub pa
     Then the Apprentice onboarding process should be successfully completed
     Then the user can sign back in to the AAN platform
 
-@ignore
 @aan
 @aanevents
 @aan06
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 @aanaprentice
 Scenario: AAN_A_01E User should be able to successfully signup and cancel the attendacne for an event
@@ -66,7 +65,7 @@ Scenario: AAN_A_01E User should be able to successfully signup and cancel the at
 @aan
 @aaneventsfilters
 @aan07
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 @aanaprentice
 Scenario: AAN_A_01F User should be able to successfully Filter Events by date 
@@ -80,7 +79,7 @@ Scenario: AAN_A_01F User should be able to successfully Filter Events by date
 @aan
 @aaneventsfilters
 @aan08
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 @aanaprentice
 Scenario: AAN_A_01G User should be able to successfully Filter Events by Type 
@@ -94,7 +93,7 @@ Scenario: AAN_A_01G User should be able to successfully Filter Events by Type
 @aan
 @aaneventsfilters
 @aan09
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 @aanaprentice
 Scenario: AAN_A_01H User should be able to successfully Filter Events by Event type 
@@ -108,7 +107,7 @@ Scenario: AAN_A_01H User should be able to successfully Filter Events by Event t
 @aan
 @aaneventsfilters
 @aan10
-@aanreset
+@aanapprenticeonboardingreset
 @regression
 @aanaprentice
 Scenario: AAN_A_01I User should be able to successfully Filter Events by multiple combination of filters

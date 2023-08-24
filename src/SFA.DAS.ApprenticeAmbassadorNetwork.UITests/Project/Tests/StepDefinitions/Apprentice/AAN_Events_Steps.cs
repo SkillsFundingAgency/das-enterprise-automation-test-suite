@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 public class AAN_Events_Steps
 {
     private readonly ScenarioContext context;
-    private NetworkHubPage networkHubPage;
+    private Apprentice_NetworkHubPage networkHubPage;
     private EventPage eventPage;
 
     public AAN_Events_Steps(ScenarioContext context) => this.context = context;
@@ -15,7 +15,7 @@ public class AAN_Events_Steps
     [Then(@"the user should be able to successfuly signup for a future event")]
     public void ThenTheUserShouldBeAbleToSuccessfulySignupForAFutureEvent()
     {
-        networkHubPage = new NetworkHubPage(context);
+        networkHubPage = new Apprentice_NetworkHubPage(context);
         networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
              .FilterEventByTomorrow()
@@ -36,7 +36,7 @@ public class AAN_Events_Steps
     [Then(@"the user should be able to successfuly filter events by date")]
     public void ThenTheUserShouldBeAbleToSuccessfulyFilterEventsByDate()
     {
-        networkHubPage = new NetworkHubPage(context);
+        networkHubPage = new Apprentice_NetworkHubPage(context);
         networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
              .FilterEventByOneMonth()
@@ -46,7 +46,7 @@ public class AAN_Events_Steps
     [Then(@"the user should be able to successfuly filter events by event format")]
     public void EventFormat()
     {
-        networkHubPage = new NetworkHubPage(context);
+        networkHubPage = new Apprentice_NetworkHubPage(context);
         networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
              .FilterEventByEventType_InPerson()
@@ -64,7 +64,7 @@ public class AAN_Events_Steps
     public void ThenTheUserShouldBeAbleToSuccessfulyFilterEventsByEventType()
     {
 
-        networkHubPage = new NetworkHubPage(context);
+        networkHubPage = new Apprentice_NetworkHubPage(context);
         networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
              .FilterEventByEventType_TrainingEvent()
@@ -75,7 +75,7 @@ public class AAN_Events_Steps
     [Then(@"the user should be able to successfuly filter events by multiple combination of filters")]
     public void ThenTheUserShouldBeAbleToSuccessfulyFilterEventsByMultipleCombinationOfFilters()
     {
-        networkHubPage = new NetworkHubPage(context);
+        networkHubPage = new Apprentice_NetworkHubPage(context);
         networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
              .FilterEventByEventType_InPerson()

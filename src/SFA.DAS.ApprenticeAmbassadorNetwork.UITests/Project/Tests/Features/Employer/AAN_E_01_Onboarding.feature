@@ -4,35 +4,26 @@
 @aanemployer
 @aanemployeronboarding
 @aane01
-@aanemployerereset
+@aanemployeronboardingreset
 @regression
 Scenario: AAN_E_01A User successfully completes the Employer onboarding process and verifies the Hub page
     Given an employer without onboarding logs into the AAN portal
-	#When the user provides all the required details for the employer onboarding journey
- #   Then the employer onboarding process should be successfully completed
- #   And the user should be redirected to the employer Hub page
+	When the employer provides all the required details for the employer onboarding journey
+    Then the employer onboarding process should be successfully completed
+    And the employer should be redirected to the employer Hub page
 
-#@aan
-#@aanonboarding
-#@aan02
-#@aanreset
-#@regression
-#Scenario:AAN01B User without manager permission encounters a shutter page
-#    Given an apprentice logs into the AAN portal
-#    When the user does not have manager permission
-#    Then a shutter page should be displayed
-#
-#@aan
-#@aanonboarding
-#@aan03
-#@aanreset
-#@regression
-#Scenario:AAN01C User completes all onboarding details and can modify answers on the "Check Your Answer" page
-#    Given an apprentice logs into the AAN portal
-#	When the user provides all the required details for the onboarding journey
-#    And the user should be able to modify any of the provided answers
-#    Then the Apprentice onboarding process should be successfully completed
-#    And the user should be redirected to the Hub page
+
+@aan
+@aanemployer
+@aanemployeronboarding
+@aane02
+@aanemployeronboardingreset
+@regression
+Scenario:AAN_E_01B User completes all onboarding details and can modify answers on the "Check Your Answer" page
+    Given an employer without onboarding logs into the AAN portal
+    When the employer should be able to modify any of the provided answers
+   Then the employer onboarding process should be successfully completed
+    And the employer should be redirected to the employer Hub page
 #
 #@aan
 #@aanonboarding

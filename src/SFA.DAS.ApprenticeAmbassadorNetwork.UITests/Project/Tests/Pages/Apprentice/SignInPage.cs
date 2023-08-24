@@ -26,11 +26,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
             return new AccessDeniedPage(context);
         }
 
-        public NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(AanBaseUser user)
+        public Apprentice_NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(AanBaseUser user)
         {
             SubmitUserDetails(user, false);
 
-            return new NetworkHubPage(context);
+            return new Apprentice_NetworkHubPage(context);
         }
 
         private void SubmitUserDetails(AanBaseUser user, bool firstlogin)
@@ -41,8 +41,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
 
             if (firstlogin)
             {
-                if (tags.Any(x => x == "aanreset")) context.Get<AANSqlDataHelper>().ResetApprenticeOnboardingJourney(user.Username);
-
+                if (tags.Any(x => x == "aanapprenticeonboardingreset")) context.Get<AANSqlHelper>().ResetApprenticeOnboardingJourney(user.Username);
                 objectContext.SetLoginCredentials(user);
             }
 
