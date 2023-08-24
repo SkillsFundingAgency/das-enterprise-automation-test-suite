@@ -129,6 +129,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the non levy employer can open approved pledge application")]
         public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication() => OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
 
+        [Then(@"the non levy employer can open awaiting approval pledge application")]
+        public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication() => OpenPledgeApplication("AWAITING APPROVAL");
+
         [Then(@"the non levy employer can withdraw funding before approval")]
         public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
         {
@@ -201,7 +204,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             SetPledgeDetail();           
         }
-
+      
         [Given(@"the levy employer can create pledge using minimal funding")]
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
