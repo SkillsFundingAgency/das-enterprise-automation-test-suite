@@ -16,7 +16,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public CreateATransfersApplicationPage EnterMoreDetailsAndContinue(string pledgeId)
         {
-            formCompletionHelper.EnterText(MoreDetailsSelector, pledgeId ?? tMDataHelper.ApprenticeshipMoreDetails);
+            formCompletionHelper.EnterText(MoreDetailsSelector, !string.IsNullOrEmpty(pledgeId) ? pledgeId: tMDataHelper.ApprenticeshipMoreDetails);
 
             Continue();
 

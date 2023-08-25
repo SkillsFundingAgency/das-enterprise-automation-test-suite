@@ -98,6 +98,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [When(@"the non levy employer applies for the pledge")]
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
+        [Then(@"the non levy employer can apply for the pledge but is not immediately autoapproved")]
+        public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
+        {
+            _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
+            _transferMatchingStepsHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
+            OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+        }
+
         [Then(@"the non levy employer cannot exceed the available pledge funding")]
         public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
             => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "Cost of training exceeds the amount remaining in this pledge");
@@ -127,10 +135,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
 
         [Then(@"the non levy employer can open approved pledge application")]
-        public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication() => OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+        public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication()
+        {
+            _employerHomePageStepsHelper.GotoEmployerHomePage();
+            OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+        }
 
         [Then(@"the non levy employer can open awaiting approval pledge application")]
-        public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication() => OpenPledgeApplication("AWAITING APPROVAL");
+        public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication()
+        {
+            _employerHomePageStepsHelper.GotoEmployerHomePage();
+            OpenPledgeApplication("AWAITING APPROVAL");
+        }
 
         [Then(@"the non levy employer can withdraw funding before approval")]
         public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
@@ -175,6 +191,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();
+        }
+
+        [Given(@"the levy employer can create pledge for immediate approval using default criteria")]
+        [Then(@"the levy employer can create pledge for immediate approval using default criteria")]
+        public void TheLevyEmployerCanCreatePledgeForImmediateApprovalUsingDefaultCriteria()
+        {
+            _isImmediateAutoApprovalPledge = true;
+
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
@@ -297,8 +331,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             Thread.Sleep(TimeSpan.FromSeconds(10));
             // trigger autoapproval job
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
-
-            _employerHomePageStepsHelper.GotoEmployerHomePage();
         }
         
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
