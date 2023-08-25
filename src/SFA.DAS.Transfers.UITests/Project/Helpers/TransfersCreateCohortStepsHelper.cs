@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using System;
@@ -26,19 +25,9 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ApproveTransfersRequest() => OpenTransferRequestDetailsPage().ApproveTransferRequest();
 
-        public void ValidateWithTransferSendingEmployersCohortStatus(string status)
-        {
-            var apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
-            var approveApprenticeDetailsPage = apprenticeRequestsPage.GoToWithTransferSendingEmployers().SelectViewCurrentCohortDetails();
-            approveApprenticeDetailsPage.ValidateCohortStatus(status);
-        }
+        public void ValidateWithTransferSendingEmployersCohortStatus(string status) => GoToApprenticeRequestsPage().GoToWithTransferSendingEmployers().SelectViewCurrentCohortDetails().ValidateCohortStatus(status);
 
-        public void ValidateReadyToReviewCohortStatus(string status)
-        {
-            var apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
-            var approveApprenticeDetailsPage = apprenticeRequestsPage.GoToReadyToReview().SelectViewCurrentCohortDetails();
-            approveApprenticeDetailsPage.ValidateCohortStatus(status);
-        }
+        public void ValidateReadyToReviewCohortStatus(string status) => GoToApprenticeRequestsPage().GoToReadyToReview().SelectViewCurrentCohortDetails().ValidateCohortStatus(status);
 
         protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsUsingTransfersFunc();
 
@@ -50,5 +39,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
                 .OpenTransfers()
                 .OpenPendingCohortRequestAsFundingEmployer();
         }
+
+        private ApprenticeRequestsPage GoToApprenticeRequestsPage() => _employerStepsHelper.GoToApprenticeRequestsPage();
     }
 }

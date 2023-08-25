@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
     public abstract class InterimEmployerBasePage : Navigate
     {
-
         #region Locators
         private static By SettingsLink => By.LinkText("Settings");
         private static By YourAccountsLink => By.LinkText("Your accounts");
@@ -19,6 +18,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         private static By NotificationSettingsLink => By.PartialLinkText("Notification");
         private static By SignOutLink => By.LinkText("Sign out");
         #endregion
+
+        protected virtual bool CanVerifyPage => true;
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
 
@@ -31,6 +32,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         {
             VerifyPage();
         }
+
+        private new void VerifyPage() { if (CanVerifyPage) base.VerifyPage(); }
 
         private static string GoToUrl(bool gotourl) => gotourl ? UrlConfig.EmployerApprenticeshipService_BaseUrl : string.Empty;
 

@@ -182,7 +182,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenSignsTheAgreementFromAccountHomePagePanel() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
-        public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
+        public void ThenTaskLinkIsDisplayedUnderTasksPane() => new TasksHomePage(_context).VerifyStartAddingApprenticesNowTaskLink();
 
         [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
         public void ThenPageIsDisplayedWhenAnotherEmployerTriesToRegisterTheAccountWithTheSameAornAndPayeDetails()

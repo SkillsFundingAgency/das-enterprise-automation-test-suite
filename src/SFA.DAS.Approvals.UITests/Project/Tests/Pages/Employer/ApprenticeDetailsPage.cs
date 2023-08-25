@@ -62,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return true;
         }
 
-        public void VerifyApprenticeshipStatus(string status) => VerifyPage(ApprenticeshipStatus, status, pageInteractionHelper.RefreshPage);
+        public void VerifyApprenticeshipStatus(string status) => VerifyPageAfterRefresh(ApprenticeshipStatus, status);
 
         public string GetApprenticeshipStatus() => pageInteractionHelper.GetText(ApprenticeshipStatus);
         public string GetStatusDateTitle() => pageInteractionHelper.GetText(StatusDateTitle);

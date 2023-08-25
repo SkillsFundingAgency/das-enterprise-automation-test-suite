@@ -185,63 +185,56 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Receiver (First|Second|Third) has '(.*) apprentice change to review' task link")]
         [Then(@"Receiver (First|Second|Third) has '(.*) apprentice changes to review' task link")]
-        public void ThenApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks)
-        {
-            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.VerifyApprenticeChangeToReviewTaskLink(numberOfTasks);
-        }
+        public void ThenApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks) => AssertApprenticeChangeToReviewTaskLink(receiver, numberOfTasks);
 
         [Then(@"Receiver (First|Second|Third) has no '... apprentice change\(s\) to review' task link")]
-        public void ThenNoApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver)
-        {
-            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.VerifyApprenticeChangeToReviewTaskLink(0);
-        }
+        public void ThenNoApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver) => AssertApprenticeChangeToReviewTaskLink(receiver, 0);
 
         [Then(@"Receiver (First|Second|Third) has '(.*) cohort request ready for approval' task link")]
         [Then(@"Receiver (First|Second|Third) has '(.*) cohort requests ready for approval' task link")]
-        public void ThenCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks)
-        {
-            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.VerifyCohortRequestReadyForApprovalTaskLink(numberOfTasks);
-        }
+        public void ThenCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks) => AssertCohortRequestReadyForApprovalTaskLink(receiver, numberOfTasks);
 
         [Then(@"Receiver (First|Second|Third) has no '... cohort request\(s\) ready for approval' task link")]
-        public void ThenNoCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver)
-        {
-            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.VerifyCohortRequestReadyForApprovalTaskLink(0);
-        }
+        public void ThenNoCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver) => AssertCohortRequestReadyForApprovalTaskLink(receiver, 0);
 
         [Then(@"(First|Second|Third) account has '(.*) connection request to review' task link")]
         [Then(@"(First|Second|Third) account has '(.*) connection requests to review' task link")]
-        public void ThenConnectionRequestsToReviewTaskLinkIsDisplayedUnderTasksPaneForTheAccount(string account, int numberOfTasks)
-        {
-            UpdateOrganisationName(GetAccountDetails(account).orgName);
-            _employerStepsHelper.VerifyReviewConnectionRequestTaskLink(numberOfTasks);
-        }
+        public void ThenConnectionRequestsToReviewTaskLinkIsDisplayedUnderTasksPaneForTheAccount(string account, int numberOfTasks) => AssertReviewConnectionRequestTaskLink(account, numberOfTasks);
 
         [Then(@"(First|Second|Third) account has no '... connection'")]
         [Then(@"(First|Second|Third) account has no '... connection request\(s\) to review' task link")]
-        public void ThenNoConnectionRequestsToReviewTaskLinksIsDisplayedUnderTasksPaneForTheAccount(string account)
-        {
-            UpdateOrganisationName(GetAccountDetails(account).orgName);
-            _employerStepsHelper.VerifyReviewConnectionRequestTaskLink(0);
-        }
+        public void ThenNoConnectionRequestsToReviewTaskLinksIsDisplayedUnderTasksPaneForTheAccount(string account) => AssertReviewConnectionRequestTaskLink(account, 0);
 
         [Then(@"'Transfer request received' task link is displayed under Tasks pane for the Sender (First|Second|Third) account")]
-        public void ThenTransferRequestsReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
-        {
-            UpdateOrganisationName(GetAccountDetails(sender).orgName);
-            _employerStepsHelper.VerifyTransferRequestReceivedTaskLink(1);
-        }
+        public void ThenTransferRequestsReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender) => AssertTransferRequestReceivedTaskLink(sender, 1);
 
         [Then(@"No 'Transfer request received' task link is displayed under Tasks pane for the Sender (First|Second|Third) account")]
-        public void ThenNoTransferRequestsReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender)
+        public void ThenNoTransferRequestsReceivedTaskLinkIsDisplayedUnderTasksPaneForTheSenderAccount(string sender) => AssertTransferRequestReceivedTaskLink(sender, 0);
+
+        private void AssertApprenticeChangeToReviewTaskLink(string receiver, int numberOfTasks)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.AssertApprenticeChangeToReviewTaskLink(numberOfTasks);
+        }
+
+        private void AssertCohortRequestReadyForApprovalTaskLink(string receiver, int numberOfTasks)
+        {
+            UpdateOrganisationName(GetAccountDetails(receiver).orgName);
+            _employerStepsHelper.AssertCohortRequestReadyForApprovalTaskLink(numberOfTasks);
+        }
+
+        private void AssertReviewConnectionRequestTaskLink(string account, int numberOfTasks)
+        {
+            UpdateOrganisationName(GetAccountDetails(account).orgName);
+            _employerStepsHelper.AssertReviewConnectionRequestTaskLink(numberOfTasks);
+        }
+
+        private void AssertTransferRequestReceivedTaskLink(string sender, int numberOfTasks)
         {
             UpdateOrganisationName(GetAccountDetails(sender).orgName);
-            _employerStepsHelper.VerifyTransferRequestReceivedTaskLink(0);
+            _employerStepsHelper.AssertTransferRequestReceivedTaskLink(numberOfTasks);
         }
+
 
         [When(@"Provider approves the cohort and sends to recevier for approval")]
         public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval() => _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
