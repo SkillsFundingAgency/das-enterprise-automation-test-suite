@@ -1,7 +1,8 @@
-﻿@approvals
-Feature: AP_Pro_01_ProviderAddsApprenticesToACohort
+﻿Feature: AP_Pro_01_ProviderAddsApprenticesToACohort
 
+@approvals
 @regression
+@provideraddapprentice
 Scenario: AP_Pro_01 Provider adds apprentices and views cohort details when the cohort is with the employer
 	Given the Employer logins using existing Levy Account
 	When the Employer create a cohort and send to provider to add apprentices

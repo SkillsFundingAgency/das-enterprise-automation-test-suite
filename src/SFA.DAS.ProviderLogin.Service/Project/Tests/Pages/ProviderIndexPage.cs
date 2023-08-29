@@ -1,24 +1,24 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers.CSSSelectors;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Pages
+namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+
+public class ProviderIndexPage : IdamsLoginBasePage
 {
-    public class ProviderIndexPage : IdamsLoginBasePage
-	{
-        protected override string PageTitle => EnvironmentConfig.IsTestEnvironment ? "Apprenticeship service for training providers: sign in or register for an account" : "Manage apprenticeships on behalf of employers";
+    //pas login changes
+    //protected override string PageTitle => "Apprenticeship service for training providers: sign in or register for an account";
 
-        public ProviderIndexPage(ScenarioContext context) : base(context) { }
+    protected override string PageTitle => "Manage apprenticeships on behalf of employers";
 
-        public ProviderSiginPage StartNow()
-        {
-			formCompletionHelper.ClickElement(ProviderCSSSelectors.ProviderIndexStartSelector);
-			
-			ClickIfPirenIsDisplayed();
-			
-			return new ProviderSiginPage(context);
-		}
+    public ProviderIndexPage(ScenarioContext context) : base(context) { }
+
+    public ProviderSignInPage StartNow()
+    {
+        formCompletionHelper.ClickElement(ProviderCSSSelectors.ProviderIndexStartSelector);
+
+        ClickIfPirenIsDisplayed();
+
+        return new ProviderSignInPage(context);
     }
 }

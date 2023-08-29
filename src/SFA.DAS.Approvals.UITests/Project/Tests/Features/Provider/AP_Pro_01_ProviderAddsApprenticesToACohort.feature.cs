@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_Pro_01_ProviderAddsApprenticesToACohort")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_Pro_01_ProviderAddsApprenticesToACohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_Pro_01_ProviderAddsApprenticesToACohort.feature"
 #line hidden
@@ -78,15 +76,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Pro_01 Provider adds apprentices and views cohort details when the cohort is w" +
             "ith the employer")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
         public void AP_Pro_01ProviderAddsApprenticesAndViewsCohortDetailsWhenTheCohortIsWithTheEmployer()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression"};
+                    "approvals",
+                    "regression",
+                    "provideraddapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_01 Provider adds apprentices and views cohort details when the cohort is w" +
                     "ith the employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,19 +98,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("Provider is able to view the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("Provider is able to view all apprentice details when the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

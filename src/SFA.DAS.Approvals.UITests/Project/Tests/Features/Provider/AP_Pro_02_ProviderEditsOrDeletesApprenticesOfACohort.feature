@@ -1,7 +1,8 @@
-﻿@approvals
-Feature: AP_Pro_02_ProviderEditsOrDeletesApprenticesOfACohort
+﻿Feature: AP_Pro_02_ProviderEditsOrDeletesApprenticesOfACohort
 
+@approvals
 @regression
+@provideraddapprentice
 Scenario: AP_Pro_02 Provider Edits, Deletes Apprentices and Deletes Cohort that is not sent to a Employer
 	Given the Employer logins using existing Levy Account
 	When the Employer create a cohort and send to provider to add apprentices

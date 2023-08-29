@@ -1,10 +1,11 @@
-﻿@approvals
-Feature: AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice
+﻿Feature: AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice
 	As a valid provider user 
 	I want to be able to get funding for a non-levy employer
 	So that provider can book courses for a certain training period
 
-@regression 
+@approvals
+@regression
+@provideraddapprentice 
 @nonlevyproviderscenarios
 Scenario: AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-levy employer
 	Given An Employer has given create reservation permission to a provider

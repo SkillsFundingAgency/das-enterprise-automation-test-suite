@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
