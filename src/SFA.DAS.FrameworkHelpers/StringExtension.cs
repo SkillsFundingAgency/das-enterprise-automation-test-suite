@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -24,5 +25,26 @@ namespace SFA.DAS.FrameworkHelpers
         public static int ToInt(this string s) => int.Parse(s);
 
         public static string ToFirstLetterCaps(this string s) => string.IsNullOrEmpty(s) ? s : $"{s[0..1].ToUpperInvariant()}{s[1..].ToLowerInvariant()}";
+
+        public static int? CurrencyStringToInt(this string s)
+        {
+            if (s == null)
+            {
+                return null;
+            }
+
+            // Remove currency symbol and comma
+            string cleanedString = s.Replace("£", "").Replace(",", "");
+
+            // Parse the cleaned string to an integer
+            if (int.TryParse(cleanedString, NumberStyles.Currency, CultureInfo.InvariantCulture, out int amount))
+            {
+                return amount;
+            }
+            else
+            {
+                return null; // Parsing failed
+            }
+        }
     }
 }

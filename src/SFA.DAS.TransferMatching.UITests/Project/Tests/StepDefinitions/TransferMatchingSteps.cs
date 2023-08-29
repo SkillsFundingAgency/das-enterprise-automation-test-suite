@@ -122,6 +122,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can approve the application")]
         public void ThenTheLevyEmployerCanApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
 
+        [Then(@"the levy employer can approve the application and verify costing model")]
+        public void ThenTheLevyEmployerCanApproveTheApplicationAndVerifyCostingModel() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication().ClickBackButton().VerifyCostingModel();
+
         [Then(@"the levy employer can auto approve the application")]
         public void ThenTheLevyEmployerCanAutoApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().AutoApproveApplication();
 
@@ -305,7 +308,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
 
         [Then(@"the levy employer can view pleged amount")]
-        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
+        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();              
    
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()

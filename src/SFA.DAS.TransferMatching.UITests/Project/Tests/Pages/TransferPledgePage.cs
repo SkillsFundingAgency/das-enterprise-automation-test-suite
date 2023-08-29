@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -16,8 +17,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By ClosePLedgeSelector => By.Id("close-pledge-button");
         private By RejectContinueSelector => By.CssSelector("#applications-action");
         private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
-        private By PledgedFunds => By.LinkText("Pledged funds for 2023/24");
-        private By RemainingFunds => By.LinkText("Remaining funds for 2023/24");
+        private By PledgedFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(1) > div > p.govuk-heading-l.app-data__figure\r\n");
+        private By EstimatedRemainingFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(2) > div > p.govuk-heading-l.app-data__figure");
+
+        private By PledgedFunds => By.LinkText("Pledged funds");
+        private By RemainingFunds => By.LinkText("Remaining funds");
         private By EstimatedCost => By.LinkText("Estimated cost");
         private By Applicant => By.LinkText("Applicant");
         private By TypicalDuration => By.LinkText("Typical duration");
@@ -30,6 +34,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.IsElementDisplayed(PledgedFunds);
             pageInteractionHelper.IsElementDisplayed(RemainingFunds);
+            return new TransferPledgePage(context);
+        }
+
+        public TransferPledgePage VerifyCostingModel()
+        {
+            var estimatedcost = tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail().CurrencyStringToInt();
+            var pledgedFunds = pageInteractionHelper.GetText(PledgedFundsSelector).CurrencyStringToInt();
+            var remainingFunds = pageInteractionHelper.GetText(EstimatedRemainingFundsSelector).CurrencyStringToInt();
+
+            Assert.That(estimatedcost, Is.EqualTo(pledgedFunds - remainingFunds));
+
             return new TransferPledgePage(context);
         }
         public ClosePledgePage ClosePledge()
