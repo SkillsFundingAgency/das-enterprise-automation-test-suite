@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
     public class EmployerStepsHelper
     {
         private readonly ObjectContext _objectContext;
-        private readonly ScenarioContext _context;
+        protected readonly ScenarioContext context;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public EmployerStepsHelper(ScenarioContext context)
         {
-            _context = context;
+            this.context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _rofjaaDbSqlHelper = context.Get<RofjaaDbSqlHelper>();
@@ -124,10 +124,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public DynamicHomePages DynamicHomePageFinishToAddApprenticeJourney()
         {
-            return new DynamicHomePages(_context).CheckReadyToReviewStatus()
+            return new DynamicHomePages(context).CheckReadyToReviewStatus()
                 .ApproveAndNotifyTrainingProvider()
                 .ClickHome()
-                .VerifyYourFundingReservationsLink();
+                .VerifyViewApprenticeDetailsLink();
         }
 
         internal void ValidateStatusOnManageYourApprenticesPage(string expectedStatus)
@@ -167,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         }
 
         private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices)
-            => AddApprentices(_context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
+            => AddApprentices(context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
             => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
@@ -191,7 +191,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
-            return new ApprenticesHomePage(_context).AddAnApprentice()
+            return new ApprenticesHomePage(context).AddAnApprentice()
                 .StartNowToAddTrainingProvider()
                 .EnterUkprnForPortableFlexiJobPilotProvider()
                 .ConfirmProviderDetailsAreCorrect()
@@ -202,12 +202,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public void EmployerFirstApproveCohortAndNotifyProvider()
         {
-            var cohortReference = new ApproveApprenticeDetailsPage(_context).EmployerFirstApproveAndNotifyTrainingProvider().CohortReferenceFromUrl();
+            var cohortReference = new ApproveApprenticeDetailsPage(context).EmployerFirstApproveAndNotifyTrainingProvider().CohortReferenceFromUrl();
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
 
-        public ApprenticeRequestsPage GoToApprenticeRequestsPage(bool openInNewTab = true) => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(openInNewTab).ClickApprenticeRequestsLink();
+        public ApprenticeRequestsPage GoToApprenticeRequestsPage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickApprenticeRequestsLink();
 
         public void EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable()
         {
@@ -303,7 +303,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public ApproveApprenticeDetailsPage RemovedFJAEmployerEditsDeliveryModelAndApproves()
         {
-            return new ApproveApprenticeDetailsPage(_context)
+            return new ApproveApprenticeDetailsPage(context)
                 .SelectEditApprenticeLink()
                 .ClickEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()

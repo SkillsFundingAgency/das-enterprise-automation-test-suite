@@ -6,10 +6,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
     {
         protected override string PageTitle => "";
 
-        private By CancelAttendanceLink = By.XPath("//button[text()='Cancel your attendance']");
-        private By InPersonEventTag = By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--InPerson')]");
-        private By OnlineEventTag = By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Online')]");
-        private By HybridEventTag = By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Hybrid')]");
+        private static By CancelAttendanceLink => By.XPath("//button[text()='Cancel your attendance']");
+        private static By InPersonEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--InPerson')]");
+        private static By OnlineEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Online')]");
+        private static By HybridEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Hybrid')]");
 
         public EventPage(ScenarioContext context) : base(context) => VerifyPage();
 

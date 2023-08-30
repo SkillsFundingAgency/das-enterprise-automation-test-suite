@@ -7,12 +7,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
     public abstract class FAA_SearchVacancyBasePage : FAABasePage
     {
-        protected By NoSearchResults => By.Id("search-no-results-title");
-        protected By Search => By.Id("search-button");
-        protected By VacanciesList => By.ClassName("vacancy-link");
-        protected By DisplayResults => By.Id("results-per-page");
-        protected By SortResults => By.Id("sort-results");
-        protected By DistanceFilter => By.Id("loc-within");
+        protected static By NoSearchResults => By.Id("search-no-results-title");
+        protected static By Search => By.Id("search-button");
+        protected static By VacanciesList => By.ClassName("vacancy-link");
+        protected static By DisplayResults => By.Id("results-per-page");
+        protected static By SortResults => By.Id("sort-results");
+        protected static By DistanceFilter => By.Id("loc-within");
 
         protected FAA_SearchVacancyBasePage(ScenarioContext context) : base(context) { }
 

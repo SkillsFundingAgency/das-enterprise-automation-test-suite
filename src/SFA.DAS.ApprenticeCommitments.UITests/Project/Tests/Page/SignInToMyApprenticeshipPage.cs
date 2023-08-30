@@ -7,8 +7,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class SignIntoMyApprenticeshipPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Sign in to {ServiceName}";
-        private By Username => By.CssSelector("#Username");
-        private By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
+        private static By Username => By.CssSelector("#Username");
+        private static By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
         public SignIntoMyApprenticeshipPage(ScenarioContext context) : base(context)  { }
 

@@ -8,11 +8,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "What qualifications would you like the applicant to have?";
 
-        private By QualificationType => By.CssSelector("#QualificationType");
+        private static By QualificationType => By.CssSelector("#QualificationType");
 
-        private By Subject => By.CssSelector("#Subject");
+        private static By Subject => By.CssSelector("#Subject");
 
-        private By Grade => By.CssSelector("#Grade");
+        private static By Grade => By.CssSelector("#Grade");
        
         public QualificationsPage(ScenarioContext context) : base(context) { }
 

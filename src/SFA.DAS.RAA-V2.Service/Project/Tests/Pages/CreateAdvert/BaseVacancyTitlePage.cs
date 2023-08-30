@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public abstract class BaseVacancyTitlePage : Raav2BasePage
     {
-        private By Title => By.CssSelector("#Title");
+        private static By Title => By.CssSelector("#Title");
 
         public BaseVacancyTitlePage(ScenarioContext context) : base(context) { }
 

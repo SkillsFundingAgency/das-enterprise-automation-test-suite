@@ -9,12 +9,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "EMPLOYERS";
 
         protected override By PageHeader => PageHeaderTag;
-        
-        protected By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
+        protected static By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
+        protected static By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
+
+        protected static By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
         public EmployerHubPage(ScenarioContext context) : base(context)  { }
 

@@ -9,7 +9,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => string.Empty;
 
-        private By DasHighlight => By.CssSelector(".das-highlight");
+        private static By DasHighlight => By.CssSelector(".das-highlight");
 
         protected override By ContinueButton => By.CssSelector("#apply-application-continue");
 

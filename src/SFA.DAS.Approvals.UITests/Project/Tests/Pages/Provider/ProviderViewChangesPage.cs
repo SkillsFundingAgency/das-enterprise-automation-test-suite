@@ -6,10 +6,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderViewChangesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "View changes";
-        private By ReviewNewDetails => By.LinkText("reviewing the new details");
-        private By ReviewNewDetailsToUpdate => By.LinkText("Review the apprentice details to update");
+        private static By ReviewNewDetails => By.LinkText("reviewing the new details");
+        private static By ReviewNewDetailsToUpdate => By.LinkText("Review the apprentice details to update");
         protected override By ContinueButton => By.CssSelector("#submit-undo-changes, #continue-button");
-        private By ViewChangesOptions => By.CssSelector(".selection-button-radio");
+        private static By ViewChangesOptions => By.CssSelector(".selection-button-radio");
 
         public ProviderViewChangesPage(ScenarioContext context) : base(context)  { }
         

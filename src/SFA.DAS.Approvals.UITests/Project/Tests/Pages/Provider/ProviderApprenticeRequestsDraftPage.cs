@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {   
         protected override string PageTitle => "Apprentice requests";
         protected override bool TakeFullScreenShot => false;
-        private By SortByDateReceivedLink => By.PartialLinkText("Date created");
+        private static By SortByDateReceivedLink => By.PartialLinkText("Date created");
 
         public ProviderApprenticeRequestsDraftPage(ScenarioContext context) : base(context)  
         {

@@ -5,11 +5,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public class SignInToRegisterPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Sign in to Register of apprenticeship training providers service";
+        protected override string PageTitle => "Sign in to Apprenticeship provider and assessment register service";
 
-        private By EnterUsername => By.Id("Username");
+        private static By EnterUsername => By.Id("Username");
 
-        private By EnterPassword => By.Id("Password");
+        private static By EnterPassword => By.Id("Password");
 
         public SignInToRegisterPage(ScenarioContext context) : base(context) => VerifyPage();
 

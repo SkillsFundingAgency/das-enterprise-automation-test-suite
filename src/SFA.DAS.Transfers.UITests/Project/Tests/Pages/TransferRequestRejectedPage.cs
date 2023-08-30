@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransferRequestRejectedPage : TransferRequest
+    public class TransferRequestRejectedPage : TransfersBasePage
     {
         public TransferRequestRejectedPage(ScenarioContext context) : base(context) { }
 

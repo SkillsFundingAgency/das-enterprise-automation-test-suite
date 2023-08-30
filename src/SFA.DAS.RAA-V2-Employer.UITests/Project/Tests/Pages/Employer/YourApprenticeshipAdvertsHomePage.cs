@@ -15,10 +15,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
-        private By CreateAnAdvertButton => By.LinkText("Create an advert");
-        private By SettingsLink => By.LinkText("Settings");
-        private By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
-        private By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
+        private static By CreateAnAdvertButton => By.LinkText("Create an advert");
+        private static By SettingsLink => By.LinkText("Settings");
+        private static By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
+        private static By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
 
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
 

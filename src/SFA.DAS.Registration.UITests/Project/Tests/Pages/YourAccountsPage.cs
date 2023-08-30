@@ -8,9 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Your accounts";
         
         #region Locators
-        private By AddNewAccountButton => By.Id("add_new_account");
-        private By OpenLink() => By.CssSelector("table a");
-        private By AccountLink(string orgName) => By.XPath($"//span[@class='vh' and contains(text(), '{orgName}')]");
+        private static By AddNewAccountButton => By.Id("add_new_account");
+        private static By OpenLink() => By.CssSelector("table a");
 
         #endregion
 

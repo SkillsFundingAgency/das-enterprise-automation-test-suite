@@ -23,6 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerWithMultipleAccountsUser _changeOfEmployerLevyUser;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
 
         public CoeSteps(ScenarioContext context) : base(context)
         {
@@ -32,6 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
             _context = context;
         }
 
@@ -44,7 +46,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
 
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
             createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
             _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.LeftEmployer);
             _providerStepsHelper.StartChangeOfEmployerJourney();

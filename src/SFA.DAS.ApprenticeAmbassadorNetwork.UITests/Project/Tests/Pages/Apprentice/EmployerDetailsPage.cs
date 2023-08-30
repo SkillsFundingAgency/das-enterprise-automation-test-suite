@@ -4,12 +4,12 @@
     {
         protected override string PageTitle => "your employer's name and address";
 
-        private By AddressLine1 = By.Id("AddressLine1");
-        private By EmployerName = By.Id("EmployerName");
-        private By AddressLine2 = By.Id("AddressLine2");
-        private By County = By.Id("County");
-        private By Town = By.Id("Town");
-        private By Postcode = By.Id("Postcode");
+        private static By AddressLine1 => By.Id("AddressLine1");
+        private static By EmployerName => By.Id("EmployerName");
+        private static By AddressLine2 => By.Id("AddressLine2");
+        private static By County => By.Id("County");
+        private static By Town => By.Id("Town");
+        private static By Postcode => By.Id("Postcode");
         public EmployerDetailsPage(ScenarioContext context) : base(context) { }
 
         public CurrentJobTitlePage EnterEmployersDetailsAndContinue()

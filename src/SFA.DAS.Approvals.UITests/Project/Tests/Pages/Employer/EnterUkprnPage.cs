@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.Id("Ukprn-button");
 
-        private By InvalidProivderErrorMessage => By.LinkText("Select another training provider - you cannot select the current training provider as the new training provider");
+        private static By InvalidProivderErrorMessage => By.LinkText("Select another training provider - you cannot select the current training provider as the new training provider");
 
         #region Helpers and Context
         
@@ -23,8 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ProviderConfig _providerConfig;
         #endregion
 
-        private By TrainingProviderSearch => By.CssSelector("#Ukprn");
-        private By FirstOption => By.CssSelector("#Ukprn__option--0");
+        private static By TrainingProviderSearch => By.CssSelector("#Ukprn");
+        private static By FirstOption => By.CssSelector("#Ukprn__option--0");
 
 
         public EnterUkprnPage(ScenarioContext context) : base(context)

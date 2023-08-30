@@ -4,29 +4,28 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service
+namespace SFA.DAS.ProviderLogin.Service.Project;
+
+[Binding]
+public class ProviderConfigurationSetup
 {
-    [Binding]
-    public class ProviderConfigurationSetup
+    private readonly ScenarioContext _context;
+
+    public ProviderConfigurationSetup(ScenarioContext context) => _context = context;
+
+    [BeforeScenario(Order = 2)]
+    public void SetUpProviderConfiguration()
     {
-        private readonly ScenarioContext _context;
+        var configSection = _context.Get<IConfigSection>();
 
-        public ProviderConfigurationSetup(ScenarioContext context) => _context = context;
+        _context.SetProviderConfig(configSection.GetConfigSection<ProviderConfig>());
 
-        [BeforeScenario(Order = 2)]
-        public void SetUpProviderConfiguration()
-        {
-            var configSection = _context.Get<IConfigSection>();
+        _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderViewOnlyUser>());
 
-            _context.SetProviderConfig(configSection.GetConfigSection<ProviderConfig>());
+        _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderContributorUser>());
 
-            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderViewOnlyUser>());
+        _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
 
-            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderContributorUser>());
-
-            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
-
-            _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderAccountOwnerUser>());
-        }
+        _context.SetNonEasLoginUser(configSection.GetConfigSection<ProviderAccountOwnerUser>());
     }
 }

@@ -14,10 +14,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
         #endregion
 
-        private By Password => By.CssSelector("#Password");
-        private By ConfirmPassword => By.CssSelector("#ConfirmPassword");
-
-        private By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
+        private static By Password => By.CssSelector("#Password");
+        private static By ConfirmPassword => By.CssSelector("#ConfirmPassword");
+        private static By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
 
         public CreatePasswordPage(ScenarioContext context) : base(context)
         {

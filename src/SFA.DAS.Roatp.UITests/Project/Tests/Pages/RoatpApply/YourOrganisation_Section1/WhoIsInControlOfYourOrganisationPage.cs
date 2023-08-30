@@ -7,10 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Who is in control of your organisation?";
 
-        private By FullNameField => By.Id("PersonInControlName");
-
-        private By MonthField => By.CssSelector("#PersonInControlDobMonth");
-        private By YearField => By.CssSelector("#PersonInControlDobYear");
+        private static By FullNameField => By.Id("PersonInControlName");
+        private static By MonthField => By.CssSelector("#PersonInControlDobMonth");
+        private static By YearField => By.CssSelector("#PersonInControlDobYear");
 
         public WhoIsInControlOfYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 

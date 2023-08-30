@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override string PageTitle => "Confirm my apprenticeship details";
         protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
-        private By StartNowButton => By.CssSelector(".govuk-button");
+        private static By StartNowButton => By.CssSelector(".govuk-button");
 
         public StartPage(ScenarioContext context) : base(context) => AcceptCookies();
 

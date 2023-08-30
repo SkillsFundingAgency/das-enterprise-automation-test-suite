@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Application ";
 
-        protected By InternalComments => By.CssSelector("p.govuk-body.das-multiline-text");
+        protected static By InternalComments => By.CssSelector("p.govuk-body.das-multiline-text");
 
         public ApplicationOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 

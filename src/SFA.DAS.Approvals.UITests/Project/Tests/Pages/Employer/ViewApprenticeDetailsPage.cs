@@ -5,18 +5,20 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ViewApprenticeDetailsPage : ViewYourCohort
+    public class ViewApprenticeDetailsPage : CohortReferenceBasePage
     {
+        protected static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
+
         protected override string PageTitle
         {
             get
             {
-                int noOfApprentice = TotalNoOfApprentices();
+                int noOfApprentice = pageInteractionHelper.FindElements(ViewApprenticeLink).Count;
                 return noOfApprentice < 2 ? "View apprentice details" : $"View {noOfApprentice} apprentices' details";
             }
         }
 
-        private By InputBox => By.TagName("input");
+        private static By InputBox => By.TagName("input");
 
         private static By CohortStatus => By.Id("cohortStatus");
 

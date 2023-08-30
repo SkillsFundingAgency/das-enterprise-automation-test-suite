@@ -9,8 +9,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search results";
 
-        private By LocationTextBox => By.Id("Location");
-        private By DistanceDropDown => By.Id("loc-within");
+        private static By LocationTextBox => By.Id("Location");
+        private static By DistanceDropDown => By.Id("loc-within");
 
         public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context) { }
 

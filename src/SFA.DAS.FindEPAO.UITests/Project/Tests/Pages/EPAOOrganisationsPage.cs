@@ -13,7 +13,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
 
         public EPAOOrganisationsPage(ScenarioContext context) : base(context) { }
 
-        private By BackButton => By.ClassName("govuk-back-link");
+        private static By BackButton => By.ClassName("govuk-back-link");
 
         public EPAOOrganisationDetailsPage SelectFirstEPAOOrganisationFromList()
         {

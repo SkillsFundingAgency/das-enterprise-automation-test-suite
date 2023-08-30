@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
        protected override string PageTitle => "Approve apprentice details";
 
-        private By ApproveApprenticeSaveAndSubmit => By.Id("continue-button");
+        private static By ApproveApprenticeSaveAndSubmit => By.Id("continue-button");
         protected override By ContinueButton => By.Id("continue-button");
 
         public AfterEditApproveApprenticeDetailsPage(ScenarioContext context) : base(context) { }

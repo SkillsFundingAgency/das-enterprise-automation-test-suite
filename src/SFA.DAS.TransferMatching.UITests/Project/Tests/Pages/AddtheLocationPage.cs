@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add the locations you'd like to fund";
 
-        protected By Location => By.CssSelector("#Locations_0_");
+        protected static By Location => By.CssSelector("#Locations_0_");
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 

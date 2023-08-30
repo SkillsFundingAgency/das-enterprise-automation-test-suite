@@ -9,9 +9,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        private By AccountingReferenceDay => By.Id("FH-420");
-        private By AccountingReferenceMonth => By.Id("FH-420_Month");
-        private By AccountingReferenceYear => By.Id("FH-420_Year");
+        private static By AccountingReferenceDay => By.Id("FH-420");
+        private static By AccountingReferenceMonth => By.Id("FH-420_Month");
+        private static By AccountingReferenceYear => By.Id("FH-420_Year");
 
         public AccountingReferenceDatePage(ScenarioContext context) : base(context) => VerifyPage();
 

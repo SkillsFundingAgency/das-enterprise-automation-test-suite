@@ -9,9 +9,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         #region Locators
         protected override By PageHeader => By.CssSelector("h1");
-        private By Username => By.CssSelector("input[name='username']");
-        private By Password => By.CssSelector("input[name='password']");
-        private By SignInButton => By.CssSelector("button.primary[type='submit']");
+        private static By Username => By.CssSelector("input[name='username']");
+        private static By Password => By.CssSelector("input[name='password']");
+        private static By SignInButton => By.CssSelector("button.primary[type='submit']");
         #endregion
 
         public VRFLoginPage(ScenarioContext context) : base(context)  { }

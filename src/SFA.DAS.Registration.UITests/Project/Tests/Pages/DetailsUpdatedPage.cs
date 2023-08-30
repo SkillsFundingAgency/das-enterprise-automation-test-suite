@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         protected override By PageHeader => By.CssSelector(".das-notification__heading");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        private By GoToHomePageRadioButton => By.CssSelector("input[value='homepage']");
+        private static By GoToHomePageRadioButton => By.CssSelector("input[value='homepage']");
         #endregion
 
         public DetailsUpdatedPage(ScenarioContext context) : base(context) => VerifyPage();

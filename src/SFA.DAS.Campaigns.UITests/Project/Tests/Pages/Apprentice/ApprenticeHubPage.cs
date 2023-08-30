@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected override By PageHeader => PageHeaderTag;
 
-        protected By SetUpService => By.CssSelector("a[href*='create-account']"); 
+        protected static By SetUpService => By.CssSelector("a[href*='create-account']"); 
 
         public ApprenticeHubPage(ScenarioContext context) : base(context)  { }
 

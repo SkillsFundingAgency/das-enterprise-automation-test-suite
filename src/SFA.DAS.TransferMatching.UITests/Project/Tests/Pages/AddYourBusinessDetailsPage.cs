@@ -7,11 +7,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Add your business details";
 
-        private By AdditionalLocationSelector => By.CssSelector("#AdditionalLocation");
+        private static By AdditionalLocationSelector => By.CssSelector("#AdditionalLocation");
 
-        private By AdditionalLocationTextSelector => By.CssSelector("#AdditionalLocationText");
+        private static By AdditionalLocationTextSelector => By.CssSelector("#AdditionalLocationText");
 
-        private By SpecificLocationSelector => By.CssSelector("#SpecificLocation");
+        private static By SpecificLocationSelector => By.CssSelector("#SpecificLocation");
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 

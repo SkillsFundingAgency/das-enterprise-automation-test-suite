@@ -11,9 +11,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private readonly EISqlHelper _eISqlHelper;
 
         #region Locators
-        private By OrganisationName => By.CssSelector("#supplier_name");
-        private By TelephoneNumber => By.CssSelector("#supplier_tel");
-        private By VendorNumber => By.CssSelector("#vendor_number");
+        private static By OrganisationName => By.CssSelector("#supplier_name");
+        private static By TelephoneNumber => By.CssSelector("#supplier_tel");
+        private static By VendorNumber => By.CssSelector("#vendor_number");
         #endregion
 
         public VRFOrgDetailsTabPage(ScenarioContext context) : base(context, false)

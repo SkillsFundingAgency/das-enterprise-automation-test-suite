@@ -7,9 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "What type of apprenticeship training will your organisation offer?";
 
-        private By StandardsCheckBox => By.Id("option_0");
-        private By FrameworksCheckBox => By.Id("option_1");
-        private By FunctionalSkills => By.Id("option_2");
+        private static By StandardsCheckBox => By.Id("option_0");
+        private static By FrameworksCheckBox => By.Id("option_1");
+        private static By FunctionalSkills => By.Id("option_2");
 
         public TypeOfApprenticeshipTrainingPage(ScenarioContext context) : base(context) => VerifyPage();
 

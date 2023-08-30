@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;

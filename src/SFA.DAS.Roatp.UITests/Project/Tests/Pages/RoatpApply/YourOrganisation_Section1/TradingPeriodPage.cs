@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "How long has your organisation been actively trading?";
 
-        private By TradingRadioInputs => By.CssSelector(".govuk-radios__input");
+        private static By TradingRadioInputs => By.CssSelector(".govuk-radios__input");
 
         public TradingPeriodPage(ScenarioContext context) : base(context) => VerifyPage();
 

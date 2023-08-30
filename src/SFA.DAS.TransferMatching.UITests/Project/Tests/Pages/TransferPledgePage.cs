@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -9,20 +8,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"Transfer pledge {GetPledgeId()}";
 
-        private By PledgeApplicationSelector => By.CssSelector($"[href='applications/{objectContext.GetPledgeApplication(GetPledgeId())}]");
+        private static By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
 
-        private By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
-
-        private By ClosePLedgeSelector => By.Id("close-pledge-button");
-        private By RejectContinueSelector => By.CssSelector("#applications-action");
-        private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
-        private By PledgedFunds => By.LinkText("Pledged funds for 2023/24");
-        private By RemainingFunds => By.LinkText("Remaining funds for 2023/24");
-        private By EstimatedCost => By.LinkText("Estimated cost");
-        private By Applicant => By.LinkText("Applicant");
-        private By TypicalDuration => By.LinkText("Typical duration");
-        private By Criteria => By.LinkText("Criteria");
-        private By Status => By.LinkText("Status");
+        private static By ClosePLedgeSelector => By.Id("close-pledge-button");
+        private static By RejectContinueSelector => By.CssSelector("#applications-action");
+        private static By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
+        private static By PledgedFunds => By.LinkText("Pledged funds for 2023/24");
+        private static By RemainingFunds => By.LinkText("Remaining funds for 2023/24");
+        private static By EstimatedCost => By.LinkText("Estimated yearly cost");
+        private static By Applicant => By.LinkText("Applicant");
+        private static By TypicalDuration => By.LinkText("Typical duration");
+        private static By Criteria => By.LinkText("Criteria");
+        private static By Status => By.LinkText("Status");
 
         public TransferPledgePage(ScenarioContext context) : base(context) { }
 

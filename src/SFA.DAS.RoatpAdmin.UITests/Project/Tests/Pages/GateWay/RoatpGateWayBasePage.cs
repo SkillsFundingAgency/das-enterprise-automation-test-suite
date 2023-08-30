@@ -8,9 +8,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public abstract class RoatpGateWayBasePage : RoatpNewAdminBasePage
     {
-        private By ApplicationActions => By.CssSelector(".govuk-link--no-visited-state");
+        private static By ApplicationActions => By.CssSelector(".govuk-link--no-visited-state");
 
-        private By ClarificationText => By.Id("OptionClarificationText");
+        private static By ClarificationText => By.Id("OptionClarificationText");
 
         protected RoatpGateWayBasePage(ScenarioContext context) : base(context) { }
 

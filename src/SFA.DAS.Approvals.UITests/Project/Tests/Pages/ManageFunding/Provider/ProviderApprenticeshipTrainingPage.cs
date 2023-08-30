@@ -11,13 +11,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Apprenticeship training";
 
-        private By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
+        private static By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
 
-        private By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
+        private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
-        private By ReservationStartFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
+        private static By ReservationStartFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
 
-        private By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
+        private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
         public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApprenticeshipTrainingPage AddTrainingCourse()

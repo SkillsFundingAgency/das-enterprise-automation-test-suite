@@ -4,11 +4,11 @@ public class FinancialHealthEvaluationPage : EPAOAdmin_BasePage
 {
     protected override string PageTitle => "Financial health evaluation";
 
-    private By DayLabel => By.CssSelector("label[for='GoodFinancialDueDate.Day']");
-    private By MonthLabel => By.CssSelector("label[for='GoodFinancialDueDate.Month']");
-    private By YearLabel => By.CssSelector("label[for='GoodFinancialDueDate.Year']");
-    private By ParentElement => By.XPath("..");
-    private By InputElement => By.CssSelector("input");
+    private static By DayLabel => By.CssSelector("label[for='GoodFinancialDueDate.Day']");
+    private static By MonthLabel => By.CssSelector("label[for='GoodFinancialDueDate.Month']");
+    private static By YearLabel => By.CssSelector("label[for='GoodFinancialDueDate.Year']");
+    private static By ParentElement => By.XPath("..");
+    private static By InputElement => By.CssSelector("input");
 
     public FinancialHealthEvaluationPage(ScenarioContext context) : base(context) => VerifyPage();
 

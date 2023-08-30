@@ -10,8 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override bool TakeFullScreenShot => false;
 
         protected override By ContinueButton => By.Id("save-button");
-        private By NewMonth => By.Id("EndMonth");
-        private By NewYear => By.Id("EndYear");
+        private static By NewMonth => By.Id("EndMonth");
+        private static By NewYear => By.Id("EndYear");
 
         public ThisApprenticeshipEndDatePage(ScenarioContext context) : base(context)  { }
 

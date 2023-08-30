@@ -7,8 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderAddApprenticeDetailsViaSelectJourneyPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
-        private By AddToAnExistingCohortRadio => By.XPath("//label[contains(text(),'Add to an existing cohort')]");
-        private By CreateANewCohort => By.XPath("//label[contains(text(),'Create a new cohort')]");
+        private static By AddToAnExistingCohortRadio => By.XPath("//label[contains(text(),'Add to an existing cohort')]");
+        private static By CreateANewCohort => By.XPath("//label[contains(text(),'Create a new cohort')]");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         public ProviderAddApprenticeDetailsViaSelectJourneyPage(ScenarioContext context) : base(context) { }

@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Confirm permissions";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        protected By SelectYesConfirmChange => By.Id("confirmation-yes");
+        protected static By SelectYesConfirmChange => By.Id("confirmation-yes");
 
         public ConfirmTrainingProviderPermissionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -26,6 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage ConfirmProviderLeadRegistrationPermissions()
         {
+            javaScriptHelper.ClickElement(SelectYesConfirmChange);
             Continue();
             return new HomePage(context);
         }

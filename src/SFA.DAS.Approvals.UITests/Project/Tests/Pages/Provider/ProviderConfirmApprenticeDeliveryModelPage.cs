@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -8,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Select the apprenticeship delivery model";
 
-        private By ContinueBtn => By.XPath("//*[@id='selectDeliveryModel']/button");
+        private static By ContinueBtn => By.XPath("//*[@id='selectDeliveryModel']/button");
 
         public ProviderConfirmApprenticeDeliveryModelPage(ScenarioContext context) : base(context) { }
 

@@ -8,15 +8,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "experience in the";
 
-        private By NoOption => RadioLabels;
-
         public ExperienceInTheSectorPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WhatTypeOfTrainingDeliveredPage EnterExperienceDetails()
         {
             SelectRadioOptionByText("No experience");
 
-            var options = pageInteractionHelper.FindElements(NoOption).Where(x => x.Text.Contains("No"));
+            var options = pageInteractionHelper.FindElements(RadioLabels).Where(x => x.Text.Contains("No"));
 
             foreach (var item in options)
             {

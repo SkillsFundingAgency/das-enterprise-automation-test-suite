@@ -10,13 +10,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
-        protected By EmployerContactName => By.CssSelector("#EmployerContactName");
-        protected By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
-        protected By EmployerContactPhone => By.CssSelector("#EmployerContactPhone");
+        protected static By EmployerContactName => By.CssSelector("#EmployerContactName");
+        protected static By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
+        protected static By EmployerContactPhone => By.CssSelector("#EmployerContactPhone");
 
-        protected By ProviderContactName => By.CssSelector("#ProviderContactName");
-        protected By ProviderContactEmail => By.CssSelector("#ProviderContactEmail");
-        protected By ProviderContactPhone => By.CssSelector("#ProviderContactPhone");
+        protected static By ProviderContactName => By.CssSelector("#ProviderContactName");
+        protected static By ProviderContactEmail => By.CssSelector("#ProviderContactEmail");
+        protected static By ProviderContactPhone => By.CssSelector("#ProviderContactPhone");
 
         public ContactDetailsPage(ScenarioContext context) : base(context) { }
 

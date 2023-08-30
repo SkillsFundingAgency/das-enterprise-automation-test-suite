@@ -6,7 +6,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
     public class FinancialHealthAssesmentCompletedPage : RoatpNewAdminBasePage
     {
         protected override string PageTitle => "Financial health assessment completed";
-        private By GoToRoATPFinancialApplicationsLink => By.LinkText("Back to RoATP financial applications");
+        private static By GoToRoATPFinancialApplicationsLink => By.LinkText("Back to RoATP financial applications");
 
         public FinancialHealthAssesmentCompletedPage(ScenarioContext context) : base(context) => VerifyPage();
 

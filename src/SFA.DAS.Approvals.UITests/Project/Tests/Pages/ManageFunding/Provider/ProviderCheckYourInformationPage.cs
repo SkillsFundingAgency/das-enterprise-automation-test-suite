@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Check your information";
 
-        private By ConfirmButton => By.XPath("//button[contains(text(),'Confirm')]");
+        private static By ConfirmButton => By.XPath("//button[contains(text(),'Confirm')]");
 
         public ProviderCheckYourInformationPage(ScenarioContext context) : base(context)  { }
 

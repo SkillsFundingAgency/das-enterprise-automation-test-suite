@@ -10,11 +10,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         
         #region Locators
         protected override By ContinueButton => By.Id("continue-check-details");
-        private By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
-        private By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
-        private By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
-        private By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
-        private By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");   
+        private static By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
+        private static By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
+        private static By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
+        private static By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
+        private static By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");   
         private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
         private By AornChangeLink => By.XPath($"//td[contains(text(), '{registrationDataHelper.AornNumber}')]/..//a");
         private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td/a");

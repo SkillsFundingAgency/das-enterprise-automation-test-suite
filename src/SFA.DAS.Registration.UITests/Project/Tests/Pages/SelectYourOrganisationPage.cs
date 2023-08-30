@@ -9,9 +9,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Select your organisation";
         
         #region Locators
-        private By OrganisationLink => By.CssSelector("button[type=submit]");
-        private By SearchResultsText => By.XPath("//h2[@class='govuk-heading-m']");
-        private By TextBelowOrgNameInResults(string orgName) => By.XPath($"(//h3[text()='{orgName}']//following-sibling::p)[1]");
+        private static By OrganisationLink => By.CssSelector("button[type=submit]");
+        private static By SearchResultsText => By.XPath("//h2[@class='govuk-heading-m']");
+        private static By TextBelowOrgNameInResults(string orgName) => By.XPath($"(//h3[text()='{orgName}']//following-sibling::p)[1]");
         #endregion
 
         public SelectYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();

@@ -11,8 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         
         #region Locators
         protected override By ContinueButton => By.LinkText("View your account");
-        private By DownloadYourAcceptedAgreementLink => By.LinkText("Download your accepted agreement");
-        private By ReviewAndAcceptYourOtherAgreementsLink => By.LinkText("review and accept your other agreements");
+        private static By DownloadYourAcceptedAgreementLink => By.LinkText("Download your accepted agreement");
+        private static By ReviewAndAcceptYourOtherAgreementsLink => By.LinkText("review and accept your other agreements");
         #endregion
 
         public YouHaveAcceptedTheEmployerAgreementPage(ScenarioContext context) : base(context)

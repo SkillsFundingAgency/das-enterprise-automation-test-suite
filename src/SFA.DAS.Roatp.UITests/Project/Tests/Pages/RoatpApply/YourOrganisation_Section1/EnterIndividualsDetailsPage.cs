@@ -6,8 +6,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class EnterIndividualsDetailsPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Enter the individual's details";
-        
-        private By IndividualsDetails => By.CssSelector(".govuk-input[type='text']"); 
+
+        private static By IndividualsDetails => By.CssSelector(".govuk-input[type='text']"); 
 
         public EnterIndividualsDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 

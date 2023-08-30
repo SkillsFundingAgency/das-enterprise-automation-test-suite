@@ -11,7 +11,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public ZeroAssessmentOrganisationsPage(ScenarioContext context) : base(context) { }
 
         #region Locators
-        private By ContactESFAButton => By.LinkText("Contact ESFA");
+        private static By ContactESFAButton => By.LinkText("Contact ESFA");
         #endregion
 
         public bool IsContactESFAButtonDisplayed() => pageInteractionHelper.IsElementDisplayed(ContactESFAButton);

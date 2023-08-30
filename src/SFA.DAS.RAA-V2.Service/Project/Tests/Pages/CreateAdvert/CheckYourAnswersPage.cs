@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => isRaaV2Employer ? "Check your answers" : "Check your answers before submitting your vacancy";
 
-        private By BackToTaskSelector => By.CssSelector("[data-automation='link-back']");
+        private static By BackToTaskSelector => By.CssSelector("[data-automation='link-back']");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 

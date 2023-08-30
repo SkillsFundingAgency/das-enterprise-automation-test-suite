@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-3");
 
-        private By OnTheJob => By.CssSelector("input[value='On the job']");
+        private static By OnTheJob => By.CssSelector("input[value='On the job']");
 
         public HowHaveTheyDeliveredTrainingToApprenticesPage(ScenarioContext context) : base(context) => VerifyPage();
 

@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
     {
         protected override string PageTitle => "Set up an apprenticeship for an existing employee";
 
-        private By ClickReserveFunding => By.Id("reserve-funding");
+        private static By ClickReserveFunding => By.Id("reserve-funding");
 
         public SetUpAnApprenticeshipForAnExistingEmployeePage(ScenarioContext context) : base(context)  { }
 

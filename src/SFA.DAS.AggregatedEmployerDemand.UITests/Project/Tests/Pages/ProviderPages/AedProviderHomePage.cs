@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
+﻿using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
 public class AedProviderHomePage : ProviderHomePage
 {

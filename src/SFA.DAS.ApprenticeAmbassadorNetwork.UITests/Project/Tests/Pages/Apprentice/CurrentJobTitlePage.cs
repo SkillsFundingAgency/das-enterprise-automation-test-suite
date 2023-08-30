@@ -5,7 +5,7 @@
         protected override string PageTitle => "What is your current job title?";
 
 
-        private By CurrentJobTitle = By.Id("JobTitle");
+        private static By CurrentJobTitle => By.Id("JobTitle");
 
         public CurrentJobTitlePage(ScenarioContext context) : base(context) => VerifyPage();
 

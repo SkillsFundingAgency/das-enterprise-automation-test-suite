@@ -9,13 +9,13 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected override string PageTitle => "Search results";
 
         #region Locators
-        private By FilterResultsPanel => By.CssSelector(".filters.filters-accordion");
-        private By LevelCheckBox(string level) => By.Id($"SelectedLevels_{level}");
-        private By SortByDropDownField => By.Id("select-order");
-        private By LevelText => By.CssSelector("dd.level");
-        private By UpdateResultsButton => By.CssSelector(".button[value='Update results']");
-        private By SortByDropDown => By.Id("select-order");
-        private By LevelInfoText => By.ClassName("level");
+        private static By FilterResultsPanel => By.CssSelector(".filters.filters-accordion");
+        private static By LevelCheckBox(string level) => By.Id($"SelectedLevels_{level}");
+        private static By SortByDropDownField => By.Id("select-order");
+        private static By LevelText => By.CssSelector("dd.level");
+        private static By UpdateResultsButton => By.CssSelector(".button[value='Update results']");
+        private static By SortByDropDown => By.Id("select-order");
+        private static By LevelInfoText => By.ClassName("level");
         #endregion
 
         public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
