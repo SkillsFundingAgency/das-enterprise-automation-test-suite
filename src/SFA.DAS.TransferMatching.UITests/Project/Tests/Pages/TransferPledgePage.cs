@@ -12,9 +12,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected override string PageTitle => $"Transfer pledge {GetPledgeId()}";
 
         private static By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
-
-        private By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
-
         private By ClosePLedgeSelector => By.Id("close-pledge-button");
         private By RejectContinueSelector => By.CssSelector("#applications-action");
         private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
