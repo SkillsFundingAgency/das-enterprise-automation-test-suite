@@ -22,7 +22,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private By PledgedFunds => By.LinkText("Pledged funds");
         private By RemainingFunds => By.LinkText("Remaining funds");
-        private By EstimatedCost => By.LinkText("Estimated cost");
+        private By EstimatedCost => By.LinkText("Estimated yearly cost");
         private By Applicant => By.LinkText("Applicant");
         private By TypicalDuration => By.LinkText("Typical duration");
         private By Criteria => By.LinkText("Criteria");

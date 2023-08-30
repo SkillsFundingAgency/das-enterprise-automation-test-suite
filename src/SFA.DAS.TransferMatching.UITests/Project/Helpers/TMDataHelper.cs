@@ -58,7 +58,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         public string GetEstimatedCostOfTrainingForApplicationDetail()
         {
             var totalCost = Cost * NoOfApprentice;
-            var firstYear = ((totalCost * .8) / Duration) * 12;
+
+            if (Duration <= 12)
+            {
+                return totalCost.ToString("N0");
+            }
+
+            var firstYear = (totalCost * 0.8) / Duration * 12;
             return firstYear.ToString("N0");
         }
     }
