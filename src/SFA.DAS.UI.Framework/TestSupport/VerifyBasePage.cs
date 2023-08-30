@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using System.Linq;
+﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -36,7 +36,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
         {
-            return VerifyPage(() => 
+            return VerifyPage(() =>
             {
                 _takescreenshot = false;
 
@@ -57,13 +57,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
         // VerifyPage methods are used to verify that the application landed on the expected page
         protected bool VerifyPage() => VerifyPage(() => VerifyElement());
 
-        protected bool VerifyWithoutRefresh() => VerifyPage(() => pageInteractionHelper.Verify(() => 
+        protected bool VerifyWithoutRefresh() => VerifyPage(() => pageInteractionHelper.Verify(() =>
         {
             var result = pageInteractionHelper.CheckText(PageHeader, PageTitle);
 
             return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
-
         }, null));
+
+        protected bool VerifyPageAfterRefresh(By locator, string text) => VerifyPage(() => VerifyElement(locator, text, pageInteractionHelper.RefreshPage));
 
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
@@ -111,8 +112,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             int counter = GetCounter();
             try
             {
-                var result = func(); 
-                
+                var result = func();
+
                 TakeScreenShot();
 
                 if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);

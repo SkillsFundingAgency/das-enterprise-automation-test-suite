@@ -13,11 +13,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         protected readonly RoatpApplyCreateUserDataHelpers applyCreateUserDataHelpers;
         #endregion
 
-        private By Dob => By.CssSelector("#dob");
-        
-        protected By Month => By.CssSelector("input[id*='Month']");
+        private static By Dob => By.CssSelector("#dob");
 
-        protected By Year => By.CssSelector("input[id*='Year']");
+        protected static By Month => By.CssSelector("input[id*='Month']");
+
+        protected static By Year => By.CssSelector("input[id*='Year']");
 
         protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea, .govuk-textarea");
 

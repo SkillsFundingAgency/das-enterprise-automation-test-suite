@@ -1,8 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRemove
@@ -11,9 +8,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.WithdrawlAndRem
     {
         protected override string PageTitle => "Are you sure you want to withdraw this application?";
 
-        private By InternalComments => By.Id("OptionYesText");
+        private static By InternalComments => By.Id("OptionYesText");
 
-        public WithdrawConfirmPage (ScenarioContext context) : base(context) => VerifyPage();
+        public WithdrawConfirmPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public WithDrawOutcomePage YesSureWithdrawThisApplication()
         {

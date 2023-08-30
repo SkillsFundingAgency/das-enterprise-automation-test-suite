@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "Tell us who's the overall manager for this team";
 
-        private By FullName => By.CssSelector(".govuk-input[type='text']");
+        private static By FullName => By.CssSelector(".govuk-input[type='text']");
 
         public TellUsWhoIsTheManagerPage(ScenarioContext context) : base(context) => VerifyPage();
 

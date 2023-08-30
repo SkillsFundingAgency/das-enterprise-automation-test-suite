@@ -10,9 +10,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Apprenticeship stopped";        
         protected override By PageHeader => By.CssSelector("h1.govuk-panel__title");
-        private By EditLink => By.PartialLinkText("Edit");
-        private By StopDateTextBox => By.Id("stopDate");
-        private By MadeRedundantTextBox => By.Id("madeRedundant");
+        private static By EditLink => By.PartialLinkText("Edit");
+        private static By StopDateTextBox => By.Id("stopDate");
+        private static By MadeRedundantTextBox => By.Id("madeRedundant");
         
 
         private readonly ApprenticeDataHelper _dataHelper;

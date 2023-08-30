@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class YourTrainingProvidersLinkHomePage : HomePage
     {
-        private By YourTrainingProvidersLink => By.LinkText("Your training providers");
+        private static By YourTrainingProvidersLink => By.LinkText("Your training providers");
 
         public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context)  { }
 

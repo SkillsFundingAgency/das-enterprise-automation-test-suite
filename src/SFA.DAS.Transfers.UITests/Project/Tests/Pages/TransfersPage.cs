@@ -14,12 +14,11 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ConnectToReceivingEmployer => By.LinkText("Connect to a receiving employer");
-        private By ConnectionsSendRows => By.CssSelector("#connections-send tbody tr");
-        private By ConnectionsReceiveRows => By.CssSelector("#connections-receive tbody tr");
-        private By TransfersSendRows => By.CssSelector("#transfers-send tbody tr");
-        private By TransferReceiveRows => By.CssSelector("#transfers-receive tbody tr");
-        private By DetailsLink => By.PartialLinkText("Details");
+        private static By ConnectToReceivingEmployer => By.LinkText("Connect to a receiving employer");
+        private static By ConnectionsSendRows => By.CssSelector("#connections-send tbody tr");
+        private static By ConnectionsReceiveRows => By.CssSelector("#connections-receive tbody tr");
+        private static By TransfersSendRows => By.CssSelector("#transfers-send tbody tr");
+        private static By DetailsLink => By.PartialLinkText("Details");
 
         public TransfersPage(ScenarioContext context) : base(context) { }
 

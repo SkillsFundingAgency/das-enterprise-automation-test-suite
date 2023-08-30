@@ -15,9 +15,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         #region Locators
         private By ResendInvitationLink => By.Id($"resendInvitation-{objectContext.GetRegisteredEmail().ToLower()}");
         private By ViewStatusLink => By.Id($"viewStatus-{objectContext.GetRegisteredEmail().ToLower()}");
-        private By TRows => By.CssSelector("tbody tr");
-        private By THeader => By.CssSelector("thead th");
-        private By TData => By.CssSelector("td");
+        private static By TRows => By.CssSelector("tbody tr");
+        private static By THeader => By.CssSelector("thead th");
+        private static By TData => By.CssSelector("td");
         #endregion
 
         public void VerifyStatus(string status)

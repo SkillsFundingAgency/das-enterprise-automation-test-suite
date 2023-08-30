@@ -9,11 +9,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        private By EditClosingDate => By.CssSelector("a[data-automation='edit-closing-date']");
+        private static By EditClosingDate => By.CssSelector("a[data-automation='edit-closing-date']");
 
-        private By EditStartDate => By.CssSelector("a[data-automation='edit-start-date']");
+        private static By EditStartDate => By.CssSelector("a[data-automation='edit-start-date']");
 
-        private By Publish => By.CssSelector(".govuk-button.save-button");
+        private static By Publish => By.CssSelector(".govuk-button.save-button");
 
         public EditVacancyPage(ScenarioContext context) : base(context) { }
 

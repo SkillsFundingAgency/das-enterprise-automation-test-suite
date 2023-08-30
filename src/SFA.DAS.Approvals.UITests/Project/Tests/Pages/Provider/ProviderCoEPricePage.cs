@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override bool TakeFullScreenShot => false;
 
-        private By Price => By.Id("Price");
+        private static By Price => By.Id("Price");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
         public ProviderCoEPricePage(ScenarioContext context) : base(context)  { }

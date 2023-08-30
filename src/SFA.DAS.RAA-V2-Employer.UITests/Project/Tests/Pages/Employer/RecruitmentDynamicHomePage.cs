@@ -16,11 +16,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
         private readonly RAAV2DataHelper _raaV2DataHelper;
         #endregion
-       
-        private By AddApprenticeDetails => By.LinkText("Add apprentice details");
-        private By TRows => By.CssSelector("tr");
-        private By THeader => By.CssSelector("th");
-        private By TData => By.CssSelector("td");
+
+        private static By AddApprenticeDetails => By.LinkText("Add apprentice details");
+        private static By TRows => By.CssSelector("tr");
+        private static By THeader => By.CssSelector("th");
+        private static By TData => By.CssSelector("td");
 
         public RecruitmentDynamicHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {

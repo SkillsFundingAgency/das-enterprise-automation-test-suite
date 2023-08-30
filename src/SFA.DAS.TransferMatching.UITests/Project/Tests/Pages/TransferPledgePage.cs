@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.FrameworkHelpers;
+
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -10,7 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"Transfer pledge {GetPledgeId()}";
 
-        private By PledgeApplicationSelector => By.CssSelector($"[href='applications/{objectContext.GetPledgeApplication(GetPledgeId())}]");
+        private static By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
 
         private By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
 
@@ -27,6 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By TypicalDuration => By.LinkText("Typical duration");
         private By Criteria => By.LinkText("Criteria");
         private By Status => By.LinkText("Status");
+
 
         public TransferPledgePage(ScenarioContext context) : base(context) { }
 

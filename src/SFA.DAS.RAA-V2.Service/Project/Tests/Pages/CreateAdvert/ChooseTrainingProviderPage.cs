@@ -7,9 +7,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => "Have you found a training provider?";
 
-        private By TrainingProviderSearch => By.CssSelector("#TrainingProviderSearch");
+        private static By TrainingProviderSearch => By.CssSelector("#TrainingProviderSearch");
 
-        private By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
+        private static By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
 

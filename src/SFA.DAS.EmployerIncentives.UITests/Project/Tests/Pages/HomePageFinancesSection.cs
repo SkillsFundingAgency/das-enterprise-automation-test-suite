@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class HomePageFinancesSection_EI : HomePage
     {
-        private By EIHubLink => By.LinkText("Your hire a new apprentice payments");
+        private static By EIHubLink => By.LinkText("Your hire a new apprentice payments");
 
         public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
 

@@ -1,19 +1,66 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
     public class ProviderReservationStepsHelper
     {
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
+
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
 
-        public void StartCreateReservationAndGoToStartTrainingPage(ApprovalsProviderHomePage approvalsProviderHomePage)
+        public ProviderReservationStepsHelper(ScenarioContext context)
         {
-            _providerApprenticeshipTrainingPage = approvalsProviderHomePage
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+
+            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
+        }
+
+        public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
+        {
+            var providerApproveApprenticeDetailsPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
+
+            for (int i = 1; i < numberOfApprentices; i++)
+            {
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
+
+                var page = providerApproveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().CreateANewReservation();
+
+                var page1 = VerifySucessMessage(page);
+
+                providerApproveApprenticeDetailsPage = page1.GoToSelectStandardPage().ProviderSelectsAStandard().SubmitValidApprenticeDetails();
+
+            }
+
+            return _providerCommonStepsHelper.SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
+        }
+
+        public ProviderMakingChangesPage ProviderMakeReservation(ApprovalsProviderHomePage approvalsProviderHomePage)
+        {
+            return VerifySucessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
+        }
+
+        private ProviderMakingChangesPage VerifySucessMessage(ProviderApprenticeshipTrainingPage page)
+        {
+            return page.AddTrainingCourse().SelectDate().ClickSaveAndContinueButton().ConfirmReserveFunding().VerifySucessMessage();
+        }
+
+        public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
+        {
+            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
+        }
+
+        public ProviderApprenticeshipTrainingPage StartCreateReservationAndGoToStartTrainingPage(ApprovalsProviderHomePage approvalsProviderHomePage)
+        {
+            return _providerApprenticeshipTrainingPage = approvalsProviderHomePage
                    .GoToProviderGetFunding()
                    .StartReservedFunding()
-                   .ChooseAnEmployer("NonLevy")
+                   .ChooseNonLevyEmployer()
                    .ConfirmNonLevyEmployer();
         }
 
@@ -27,15 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             _providerApprenticeshipTrainingPage.VerifySuggestedStartMonthOptions(firstMonth, secondMonth, thirdMonth);
         }
 
-        public void CompleteCreateReservationFromStartTrainingPage()
-        {
-            _providerApprenticeshipTrainingPage
-                .AddTrainingCourse()
-                .SelectDate()
-                .ClickSaveAndContinueButton()
-                .ConfirmReserveFunding()
-                .VerifySucessMessage();
-        }
+        public void CompleteCreateReservationFromStartTrainingPage() => VerifySucessMessage(_providerApprenticeshipTrainingPage);
 
         public void VerifyCreateReservationCannotBeCompleted()
         {

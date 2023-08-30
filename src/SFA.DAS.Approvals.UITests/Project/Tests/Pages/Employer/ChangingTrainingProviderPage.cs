@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
 
-        private By WarningText => By.TagName("strong");
+        private static By WarningText => By.TagName("strong");
 
         public ChangingTrainingProviderPage(ScenarioContext context) : base(context)  { }
 

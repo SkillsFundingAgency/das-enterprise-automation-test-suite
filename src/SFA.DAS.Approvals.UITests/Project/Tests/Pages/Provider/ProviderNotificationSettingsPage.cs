@@ -9,9 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Update')]");
 
-        private By NotificationOptions => By.CssSelector(".selection-button-radio");
+        private static By NotificationOptions => By.CssSelector(".selection-button-radio");
         
-        private By Alert => By.CssSelector(".green-box-alert");
+        private static By Alert => By.CssSelector(".green-box-alert");
 
         public ProviderNotificationSettingsPage(ScenarioContext context) : base(context) { }
 

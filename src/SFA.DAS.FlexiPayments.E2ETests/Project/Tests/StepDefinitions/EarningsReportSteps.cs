@@ -11,22 +11,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
         private readonly EarningsSqlDbHelper _earningsSqlDbHelper;
 
         public EarningsReportSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _providerStepsHelper = new ProviderStepsHelper(_context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(_context);
             _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
         }
 
         [Given(@"the provider logs into their account")]
-        public void GivenTheProviderLogsIntoTheirAccount() => _providerStepsHelper.GoToProviderHomePage(false);
+        public void GivenTheProviderLogsIntoTheirAccount() => _providerCommonStepsHelper.GoToProviderHomePage(false);
 
         [When(@"provider is on Apprenticeship indicative earnings report page")]
-        public void WhenProviderIsOnApprenticeshipIndicativeEarningsReportPage() => _providerStepsHelper.GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
+        public void WhenProviderIsOnApprenticeshipIndicativeEarningsReportPage() => _providerCommonStepsHelper.GoToProviderHomePage(false).GoToApprenticeshipIndicativeEarningsReportPage();
 
         [Then(@"validate correct earnings numbers are displayed")]
         public void ThenValidateCorrectEarningsNumbersAreReported()

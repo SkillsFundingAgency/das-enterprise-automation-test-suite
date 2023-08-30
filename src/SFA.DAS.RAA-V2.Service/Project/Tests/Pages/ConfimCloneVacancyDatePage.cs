@@ -8,8 +8,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Advert succesfully cloned";
 
-        private By Info => By.CssSelector(".govuk-notification-banner__heading");
-        private By ChangeTitle => By.CssSelector("a[data-automation='change-title']");        
+        private static By Info => By.CssSelector(".govuk-notification-banner__heading");
+        private static By ChangeTitle => By.CssSelector("a[data-automation='change-title']");        
 
         public ConfimCloneVacancyDatePage(ScenarioContext context) : base(context, false) => VerifyPage(() => pageInteractionHelper.FindElements(Info));
 

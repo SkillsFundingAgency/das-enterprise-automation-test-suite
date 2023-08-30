@@ -11,7 +11,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) { } 
 
         #region Locators
-        private By BackButton => By.ClassName("govuk-back-link");
+        private static By BackButton => By.ClassName("govuk-back-link");
         #endregion
 
         public EPAOOrganisationsPage SearchForApprenticeshipStandardInSearchApprenticeshipTrainingCoursePage(string searchTerm)

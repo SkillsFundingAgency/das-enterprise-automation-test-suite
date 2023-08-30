@@ -10,8 +10,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         protected override bool TakeFullScreenShot => false;
 
         #region Locators
-        private By YesCancelInvitationButton => By.Id("cancel_invitation");
-        private By NoDontCancelInvitationLink => By.LinkText("No, don't cancel invitation");
+        private static By YesCancelInvitationButton => By.Id("cancel_invitation");
+        private static By NoDontCancelInvitationLink => By.LinkText("No, don't cancel invitation");
         #endregion
 
         public CancelInvitationPage(ScenarioContext context) : base(context) => VerifyPage();

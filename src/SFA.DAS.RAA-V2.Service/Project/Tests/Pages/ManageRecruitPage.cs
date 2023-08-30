@@ -9,8 +9,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ManageRecruitPage(ScenarioContext context) : base(context) { }
 
-        private By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
-
         public CloneVacancyDatesPage CloneAdvert()
         {
             formCompletionHelper.ClickLinkByText("Clone advert");

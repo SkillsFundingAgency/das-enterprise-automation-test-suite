@@ -22,11 +22,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");
         protected override string PageTitle => "Set permissions";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        protected By ApprenticeAllowRadioOption => By.Id("operation-0-yes");
-        protected By RecruitAllowRadioOption => By.Id("operation-1-yes");
-        protected By RecruitAllowConditionalRadioOption => By.Id("operation-1-conditional");
-        protected By ApprenticeDoNotAllowRadioOption => By.Id("operation-0-no");
-        protected By RecruitDoNotAllowRadioOption => By.Id("operation-1-no");
+        protected static By ApprenticeAllowRadioOption => By.Id("operation-0-yes");
+        protected static By RecruitAllowRadioOption => By.Id("operation-1-yes");
+        protected static By RecruitAllowConditionalRadioOption => By.Id("operation-1-conditional");
+        protected static By ApprenticeDoNotAllowRadioOption => By.Id("operation-0-no");
+        protected static By RecruitDoNotAllowRadioOption => By.Id("operation-1-no");
 
         #region Helpers and Context
         

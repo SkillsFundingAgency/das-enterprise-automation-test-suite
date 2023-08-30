@@ -12,9 +12,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override bool TakeFullScreenShot => false;
 
         #region Locators
-        private By SigninLink => By.LinkText("sign in");
-        private By CreateAccountLink => By.Id("service-start");
-        private By AcceptAllCookies => By.XPath("//button[text()='Accept all cookies']");
+        private static By SigninLink => By.LinkText("sign in");
+        private static By CreateAccountLink => By.Id("service-start");
+        private static By AcceptAllCookies => By.XPath("//button[text()='Accept all cookies']");
         #endregion
 
         public CreateAnAccountToManageApprenticeshipsPage(ScenarioContext context) : base(context)

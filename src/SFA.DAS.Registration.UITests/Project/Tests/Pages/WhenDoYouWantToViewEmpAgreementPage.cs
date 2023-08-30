@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
         protected override By ContinueButton => By.Id("submit-when-do-you-want-to-view-button");
-        private By ViewItNowRadionButton => By.CssSelector("label");
+        private static By ViewItNowRadionButton => By.CssSelector("label");
         #endregion
 
         public WhenDoYouWantToViewEmpAgreementPage(ScenarioContext context) : base(context) { VerifyPage(); var email = objectContext.GetRegisteredEmail(); objectContext.SetOrUpdateUserCreds(email, string.Empty, context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email)); }

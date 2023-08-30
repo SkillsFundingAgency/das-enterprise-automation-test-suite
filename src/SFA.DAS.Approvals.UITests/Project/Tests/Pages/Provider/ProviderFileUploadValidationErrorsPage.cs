@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         
         protected override string PageTitle => "There is a problem with your CSV file";
 
-        private By FileUploadErrorMessage => By.XPath("(//td[@class='govuk-table__cell'])[4]");
+        private static By FileUploadErrorMessage => By.XPath("(//td[@class='govuk-table__cell'])[4]");
 
         public ProviderFileUploadValidationErrorsPage(ScenarioContext context) : base(context) { }
 

@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
-        private By Status => By.CssSelector(".govuk-tag");
+        private static By Status => By.CssSelector(".govuk-tag");
         private string AppStatusTableIdentifier => ".govuk-list.app-status-list";
         private string AppStatusRowIdentifier => ".app-status-list__list-item";
 

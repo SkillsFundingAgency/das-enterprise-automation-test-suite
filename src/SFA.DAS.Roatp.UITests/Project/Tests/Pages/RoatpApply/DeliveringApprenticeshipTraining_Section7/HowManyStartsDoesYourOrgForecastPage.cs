@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
         protected override string PageTitle => "How many starts does your organisation forecast ";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
-        private By NumberOfStart => By.CssSelector(".govuk-input");
+        private static By NumberOfStart => By.CssSelector(".govuk-input");
 
         public HowManyStartsDoesYourOrgForecastPage(ScenarioContext context) : base(context) => VerifyPage();
 

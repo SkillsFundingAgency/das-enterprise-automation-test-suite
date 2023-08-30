@@ -6,9 +6,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class DescribeYourOrganisationPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "How would you describe your organisation?";
-         
-        private By PublicServiceMutualRadio => By.CssSelector("input[type='checkbox'][value='A public service mutual']");
-        private By ShelteredWorkshopRadio => By.CssSelector("input[type='checkbox'][value='A sheltered workshop']");
+
+        private static By PublicServiceMutualRadio => By.CssSelector("input[type='checkbox'][value='A public service mutual']");
+        private static By ShelteredWorkshopRadio => By.CssSelector("input[type='checkbox'][value='A sheltered workshop']");
 
         public DescribeYourOrganisationPage(ScenarioContext context) : base(context) => VerifyPage();
 

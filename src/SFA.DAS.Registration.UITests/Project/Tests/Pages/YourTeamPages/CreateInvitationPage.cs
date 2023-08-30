@@ -8,10 +8,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         protected override string PageTitle => "Create invitation";
 
         #region Locators
-        private By SendInvitationButton => By.Id("send_invitation");
-        private By EmailTextBox => By.Id("Email");
-        private By FullNameTextBox => By.Id("Name");
-        private By ViewerAccessRadioButton => By.Id("radio1");
+        private static By SendInvitationButton => By.Id("send_invitation");
+        private static By EmailTextBox => By.Id("Email");
+        private static By FullNameTextBox => By.Id("Name");
+        private static By ViewerAccessRadioButton => By.Id("radio1");
         #endregion
 
         public CreateInvitationPage(ScenarioContext context) : base(context) => VerifyPage();

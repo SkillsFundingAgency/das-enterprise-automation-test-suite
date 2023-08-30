@@ -9,11 +9,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => $"Information about {objectContext.GetEmployerName()}";
 
-        private By EmployerDescription => By.CssSelector("#EmployerDescription");
+        private static By EmployerDescription => By.CssSelector("#EmployerDescription");
 
-        private By EmployerWebsiteUrl => By.CssSelector("#EmployerWebsiteUrl");
+        private static By EmployerWebsiteUrl => By.CssSelector("#EmployerWebsiteUrl");
 
-        private By IsDisabilityConfident => By.CssSelector("#IsDisabilityConfident");
+        private static By IsDisabilityConfident => By.CssSelector("#IsDisabilityConfident");
 
         public EmployerDescriptionPage(ScenarioContext context) : base(context) { }
 

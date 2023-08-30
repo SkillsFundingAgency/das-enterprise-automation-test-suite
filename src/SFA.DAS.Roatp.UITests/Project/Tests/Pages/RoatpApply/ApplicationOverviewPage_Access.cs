@@ -13,9 +13,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public partial class ApplicationOverviewPage : RoatpApplyBasePage
     {
-        private By ChangeUkprn => By.CssSelector("a[href*='change-ukprn?']");
+        private static By ChangeUkprn => By.CssSelector("a[href*='change-ukprn?']");
 
-        private By ChangeRoute => By.CssSelector("a[href*='ChangeRoute?']");
+        private static By ChangeRoute => By.CssSelector("a[href*='ChangeRoute?']");
 
         #region Section9
 

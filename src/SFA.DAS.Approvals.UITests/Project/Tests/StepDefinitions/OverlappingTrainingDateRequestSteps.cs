@@ -28,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ApprenticeHomePageStepsHelper _homePageStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
@@ -41,12 +43,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _homePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"Employer and provider approve an apprentice")]
@@ -58,7 +62,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetStartDate(date);
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
         }
 
         [When(@"provider creates a draft apprentice which has an overlap")]
@@ -108,9 +112,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ProviderAddApprenticeDetailsPage ProviderSelectsAStandard(bool login)
         {
-            var homepage = login ? _providerStepsHelper.GoToProviderHomePage() : _providerStepsHelper.NavigateToProviderHomePage();
+            var homepage = login ? _providerCommonStepsHelper.GoToProviderHomePage() : _providerStepsHelper.NavigateToProviderHomePage();
 
-            return homepage.GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseAnEmployer("Levy").ConfirmEmployer().ProviderSelectsAStandard();
+            return homepage.GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer().ConfirmEmployer().ProviderSelectsAStandard();
         }
 
         [When(@"provider selects to contact the employer themselves")]
@@ -149,7 +153,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
         }
 
         private void SetContextStartAnEndDates(int startDateDurationInMonths, int endDateDurationInMonths)
