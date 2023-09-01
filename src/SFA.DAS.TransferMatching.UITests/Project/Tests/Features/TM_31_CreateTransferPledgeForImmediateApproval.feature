@@ -7,3 +7,4 @@ Scenario: TM_31_Create Transfer Pledge For Immediate Approval
 	Then the levy employer can create pledge for immediate approval using default criteria
 	And the levy employer can view pledges from verification page
 	When the receiver levy employer applies for the pledge
+	Then the levy employer can view the approved application

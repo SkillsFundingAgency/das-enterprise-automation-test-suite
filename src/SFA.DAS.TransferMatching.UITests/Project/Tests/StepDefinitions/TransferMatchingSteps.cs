@@ -131,6 +131,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can reject the application")]
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
+        [Then(@"the levy employer can view the approved application")]
+        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING ACCEPTANCE BY APPLICANT");
+
+        [Then(@"the levy employer can view the awaiting your approval application")]
+        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
+
         [Then(@"the non levy employer can accept funding")]
         public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
 

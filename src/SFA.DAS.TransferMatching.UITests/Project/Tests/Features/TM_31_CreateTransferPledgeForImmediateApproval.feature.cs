@@ -107,6 +107,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("the receiver levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 10
+ testRunner.Then("the levy employer can view the approved application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

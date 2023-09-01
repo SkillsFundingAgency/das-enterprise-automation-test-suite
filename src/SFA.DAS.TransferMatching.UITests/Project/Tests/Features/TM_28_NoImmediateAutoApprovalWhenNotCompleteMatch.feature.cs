@@ -108,6 +108,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the non levy employer can apply for the pledge but is not immediately autoapprove" +
                         "d", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 10
+ testRunner.And("the levy employer can view the awaiting your approval application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

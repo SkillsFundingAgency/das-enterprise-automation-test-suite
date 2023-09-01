@@ -17,6 +17,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
         private By PledgedFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(1) > div > p.govuk-heading-l.app-data__figure\r\n");
         private By EstimatedRemainingFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(2) > div > p.govuk-heading-l.app-data__figure");
+        private By ApplicationStatusSelector => By.CssSelector("#ApplicationsToReject > fieldset > table > tbody > tr > td:nth-child(6) > strong");
 
         private By PledgedFunds => By.LinkText("Pledged funds");
         private By RemainingFunds => By.LinkText("Remaining funds");
@@ -25,7 +26,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By TypicalDuration => By.LinkText("Typical duration");
         private By Criteria => By.LinkText("Criteria");
         private By Status => By.LinkText("Status");
-
 
         public TransferPledgePage(ScenarioContext context) : base(context) { }
 
@@ -55,6 +55,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public TransferPledgePage DownloadExcel()
         {
             formCompletionHelper.Click(DownloadSelector);
+            return new TransferPledgePage(context);
+        }
+
+        public TransferPledgePage ConfirmApplicationStatus(string expected)
+        {
+            Assert.AreEqual(expected, pageInteractionHelper.GetText(ApplicationStatusSelector), "Expected Application Status not found");
             return new TransferPledgePage(context);
         }
 
