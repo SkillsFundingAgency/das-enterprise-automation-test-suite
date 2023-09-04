@@ -24,9 +24,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         internal void AnalyzePage(string actualPageTitle)
         {
-            if (!ShouldAnalyzePage()) return;
+            //Do not remove this commented code
+            //if (!ShouldAnalyzePage()) return;
 
             string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? "NoPageTitle" : actualPageTitle;
+
+            if (ShouldNotAnalyzePageCheckUsingPageTitle(pageTitle)) return;
 
             string counter = _context.Get<ScreenShotTitleGenerator>().GetTitle();
 
@@ -51,8 +54,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in {counter} - '{pageTitle}' page - url: {axeResult.Url}");
             }
+
+            SetAccessibilityPageTitle(pageTitle);
+
         }
 
+        private bool ShouldNotAnalyzePageCheckUsingPageTitle(string pageTitle) => _objectContext.GetAccessibilityPageTitles().Any(x => x == pageTitle);
+
+        //Do not delete this method please.
         private bool ShouldAnalyzePage()
         {
             var analyzedPages = _objectContext.GetAccessibilityInformations();
@@ -69,5 +78,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         }
 
         private void SetAccessibilityInformation(string x) => _objectContext.SetAccessibilityInformation(x);
+
+        private void SetAccessibilityPageTitle(string x) => _objectContext.SetAccessibilityPageTitle(x);
     }
 }

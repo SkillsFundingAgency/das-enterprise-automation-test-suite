@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual bool TakeFullScreenShot => true;
 
         protected virtual bool CanAnalyzePage => true;
+
+        protected virtual string AccessibilityPageTitle => PageTitle;
 
         protected VerifyBasePage(ScenarioContext context) : base(context)
         {
@@ -116,7 +119,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
                 TakeScreenShot();
 
-                if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(PageTitle);
+                if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(AccessibilityPageTitle);
 
                 return result;
             }
