@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By WarningMessage => By.TagName("strong");
+        private static By WarningMessage => By.TagName("strong");
 
         public StopApprenticeshipPage(ScenarioContext context) : base(context)  { }
 

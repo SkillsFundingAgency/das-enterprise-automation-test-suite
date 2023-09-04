@@ -10,19 +10,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Find an apprenticeship";
 
-        private By SearchField => By.Id("SearchField");
-        protected By KeyWord => By.Id("Keywords");
-        private By Location => By.Id("Location");
-        private By Distance => By.Id("loc-within");
-        private By ApprenticeshipLevel => By.Id("apprenticeship-level");
-        private By VerifyPhoneNumberText => By.Id("InfoMessageText");
-        private By Browse => By.LinkText("Browse");
-        private By Category => By.Id("category-ssat1.ahr");
-        private By BrowseButton => By.Id("browse-button");
-        private By KeywordsDropDownField => By.Id("SearchField");
-        private By KeywordsTextField => By.Id("Keywords");
-        private By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
-        private By DisabilityConfidentCheckBox => By.CssSelector("label.block-label");
+        private static By SearchField => By.Id("SearchField");
+        private static By KeyWord => By.Id("Keywords");
+        private static By Location => By.Id("Location");
+        private static By Distance => By.Id("loc-within");
+        private static By ApprenticeshipLevel => By.Id("apprenticeship-level");
+        private static By VerifyPhoneNumberText => By.Id("InfoMessageText");
+        private static By Browse => By.LinkText("Browse");
+        private static By Category => By.Id("category-ssat1.ahr");
+        private static By BrowseButton => By.Id("browse-button");
+        private static By KeywordsDropDownField => By.Id("SearchField");
+        private static By KeywordsTextField => By.Id("Keywords");
+        private static By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
+        private static By DisabilityConfidentCheckBox => By.CssSelector("label.block-label");
 
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context) { }
 

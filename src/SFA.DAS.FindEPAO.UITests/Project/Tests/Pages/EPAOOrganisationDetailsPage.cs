@@ -11,8 +11,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) { }
 
         #region Locators
-        private By BackButton => By.ClassName("govuk-back-link");
-        private By ViewOtherEndPointOrganisations => By.LinkText("View the other end-point assessment organisations");
+        private static By BackButton => By.ClassName("govuk-back-link");
+        private static By ViewOtherEndPointOrganisations => By.LinkText("View the other end-point assessment organisations");
 
         #endregion
 

@@ -1,7 +1,7 @@
 ﻿Feature: ST_03_StopApprenticeSCSRole
 
 
-@supportconsole
+@supporttools
 @approvalssupportconsole
 @BulkUtility
 Scenario: ST_03_Stop Apprentice SCS Role

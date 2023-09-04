@@ -12,7 +12,7 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector("#inbox_pane");
 
         #region Locators
-        private By EmailSubjectField => By.CssSelector(".jambo_table tr .ng-binding");
+        private static By EmailSubjectField => By.CssSelector(".jambo_table tr .ng-binding");
         #endregion
 
         internal MailinatorInboxPage(ScenarioContext context) : base(context) { }

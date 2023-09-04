@@ -10,9 +10,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"What is the start date with {changeOfPartyConfig.NewProviderName}?";
 
-        private By NewStartMonthInput => By.Id("new-start-month");
-        private By NewStartYearInput => By.Id("new-start-year");
-        private By ContinueBtn => By.Id("continue-button");
+        private static By NewStartMonthInput => By.Id("new-start-month");
+        private static By NewStartYearInput => By.Id("new-start-year");
+        private static By ContinueBtn => By.Id("continue-button");
 
         public WhatIsTheNewStartDatePage(ScenarioContext context) : base(context)  { }
 

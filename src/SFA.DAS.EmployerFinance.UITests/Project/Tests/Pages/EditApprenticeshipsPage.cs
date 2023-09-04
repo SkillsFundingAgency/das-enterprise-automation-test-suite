@@ -7,11 +7,11 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Edit apprenticeships in your current estimate";
 
-        private By NoOfApprentice => By.CssSelector("input#no-of-app");
+        private static By NoOfApprentice => By.CssSelector("input#no-of-app");
 
-        private By SaveButton => By.CssSelector("#save");
+        private static By SaveButton => By.CssSelector("#save");
 
-        private By TotalFundingCost => By.CssSelector("#total-funding-cost");
+        private static By TotalFundingCost => By.CssSelector("#total-funding-cost");
 
         public EditApprenticeshipsPage(ScenarioContext context) : base(context) => VerifyPage();
 

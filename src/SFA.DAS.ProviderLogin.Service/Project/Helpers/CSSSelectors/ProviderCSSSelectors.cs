@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 
-namespace SFA.DAS.ProviderLogin.Service.Project.Helpers.CSSSelectors
+namespace SFA.DAS.ProviderLogin.Service.Project.Helpers.CSSSelectors;
+
+public static class ProviderCSSSelectors
 {
-    public static class ProviderCSSSelectors
-    {
-        internal static By ProviderIndexStartSelector => EnvironmentConfig.IsTestEnvironment ? By.CssSelector("a.govuk-button.govuk-button--start[aria-label='Start now']") : By.CssSelector(".button-start");
-    }
+    //pas login changes
+    //internal static By ProviderIndexStartSelector => By.CssSelector("a.govuk-button.govuk-button--start[aria-label='Start now']");
+
+    internal static By ProviderIndexStartSelector => By.CssSelector(".button-start");
 }

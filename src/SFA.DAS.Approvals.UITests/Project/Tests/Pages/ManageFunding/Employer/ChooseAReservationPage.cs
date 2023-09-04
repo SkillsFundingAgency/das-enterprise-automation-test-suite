@@ -11,9 +11,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
+        private static By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        private By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
+        private static By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
         
         public ChooseAReservationPage(ScenarioContext context) : base(context)  { }
 

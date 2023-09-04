@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.CssSelector("#submitCohort button");
 
-        private By DraftSaveAndSubmit => By.Id("continue-button");
+        private static By DraftSaveAndSubmit => By.Id("continue-button");
 
         public YouCantApproveThisApprenticeRequestUntilPage (ScenarioContext context) : base(context)  { }
         

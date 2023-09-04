@@ -75,13 +75,13 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("ST_01A_Pause Apprentice Records")]
-        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("supporttools")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
         public void ST_01A_PauseApprenticeRecords()
         {
             string[] tagsOfScenario = new string[] {
-                    "supportconsole",
+                    "supporttools",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -133,13 +133,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("ST_01B_Resume Apprentice Records")]
-        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("supporttools")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
         public void ST_01B_ResumeApprenticeRecords()
         {
             string[] tagsOfScenario = new string[] {
-                    "supportconsole",
+                    "supporttools",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.Id("continue-button");
 
-        private By UkprnField => By.CssSelector(".govuk-input");
+        private static By UkprnField => By.CssSelector(".govuk-input");
 
         public AddTrainingProviderDetailsPage(ScenarioContext context) : base(context) { }
 

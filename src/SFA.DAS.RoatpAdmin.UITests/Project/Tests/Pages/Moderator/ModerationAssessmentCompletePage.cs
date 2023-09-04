@@ -9,7 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         protected override By PageHeader => By.CssSelector(".govuk-panel__body");
 
-        private By GoToRoATPAssessorApplicationsLink => By.LinkText("Go to RoATP assessor applications");
+        private static By GoToRoATPAssessorApplicationsLink => By.LinkText("Go to RoATP assessor applications");
 
         public ModerationAssessmentCompletePage(ScenarioContext context) : base(context) { }
 

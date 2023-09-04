@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Transfers.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
@@ -12,25 +13,31 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly TransfersProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
         protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
 
         public FlexiPaymentProviderSteps(ScenarioContext context)
         {
             _context = context;
             _providerStepsHelper = new TransfersProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+            _providerEditStepsHelper = new ProviderEditStepsHelper(context);
             _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"provider logs in to review the cohort")]
-        public void GivenProviderLogsInToReviewTheCohort() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.CurrentCohortDetails();
+        public void GivenProviderLogsInToReviewTheCohort() => _providerApproveApprenticeDetailsPage = _providerCommonStepsHelper.CurrentCohortDetails();
 
         [When(@"the Provider approves the cohort")]
-        public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();
+        public void WhenProviderApprovesTheCohort() => _providerApproveStepsHelper.EditAndApprove();
 
         [Given(@"the provider adds Ulns and opts the learners out of the pilot")]
         [When(@"the provider adds Ulns and opts the learners out of the pilot")]
-        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditFlexiPilotApprentice(false);
+        public void WhenTheProviderAddsUlnsAndOptsTheLearnersOutOfThePilot() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditFlexiPilotApprentice(false);
 
         [When(@"Provider successfully approves the cohort")]
         [Then(@"Provider successfully approves the cohort")]
@@ -38,13 +45,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [Given(@"the provider adds Ulns and Opt the learners into the pilot")]
         [When(@"the provider adds Ulns and Opt the learners into the pilot")]
-        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditFlexiPilotApprentice(true);
+        public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditFlexiPilotApprentice(true);
 
         [Given(@"the provider adds Uln and Opt learner (.*) into the pilot")]
-        public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
+        public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
 
         [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
-        public void ProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
+        public void ProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
 
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
@@ -56,7 +63,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             SimplifiedPaymentsPilot filterValue = filter == "yes" ? SimplifiedPaymentsPilot.True : filter == "no" ? SimplifiedPaymentsPilot.False : SimplifiedPaymentsPilot.All;
 
-            Assert.IsTrue(_providerStepsHelper.FindLearnerBySimplifiedPaymentsPilotFilter(filterValue));
+            Assert.IsTrue(_providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().IsPaymentsPilotLearnerDisplayed(filterValue));
         }
 
         [Then(@"Provider (can|cannot) make changes to fully approved learner (.*)")]
@@ -64,13 +71,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             SetApprenticeDetailsInContext(learnerNumber);
 
-            _providerStepsHelper.ValidateProviderEditApprovedApprentice(action == "can");
+            new ProviderManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
         }
 
         [Then(@"validate provider (can|cannot) view Pilot DataLock message")]
         public void ThenValidateProviderCanViewPilotDataLockMessage(string action)
         {
-            _providerStepsHelper.GoToProviderHomePage(false)
+            _providerCommonStepsHelper.GoToProviderHomePage(false)
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateFlexiPaymentDataLockMessageDisplayed(action == "can");

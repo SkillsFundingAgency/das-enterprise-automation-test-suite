@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By WhoWillEnterTheNewCourseDatesAndPriceContinueBtn => By.XPath("//button[@class='govuk-button']");
+        private static By WhoWillEnterTheNewCourseDatesAndPriceContinueBtn => By.XPath("//button[@class='govuk-button']");
 
         public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context): base(context) { }
 

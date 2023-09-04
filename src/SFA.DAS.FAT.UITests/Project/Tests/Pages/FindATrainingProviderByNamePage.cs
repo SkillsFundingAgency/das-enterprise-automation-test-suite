@@ -9,8 +9,8 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         
         #region Locators
         protected override By FirstResultLink => By.CssSelector("#provider-search-results a");
-        private By SearchTextBox => By.Id("searchTerm");
-        private By SearchOption => By.Id("submit-keywords");
+        private static By SearchTextBox => By.Id("searchTerm");
+        private static By SearchOption => By.Id("submit-keywords");
         #endregion
 
         public FindATrainingProviderByNamePage(ScenarioContext context) : base(context) => VerifyPage();

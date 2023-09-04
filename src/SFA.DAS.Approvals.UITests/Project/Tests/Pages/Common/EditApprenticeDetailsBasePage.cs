@@ -1,26 +1,21 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
+﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class EditApprenticeDetailsBasePage : EditApprentinceNameDobAndReferenceBasePage
     {
-        private By TrainingCost => By.CssSelector("#Cost, #cost");
+        private static By TrainingCost => By.CssSelector("#Cost, #cost");
 
-        protected By TrainingCourseContainer => By.CssSelector("#trainingCourse");
+        private static By EmailField => By.CssSelector("#Email,#email");
 
-        private By EmailField => By.CssSelector("#Email,#email");
+        private static By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
 
-        private By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
+        private static By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
 
-        private By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
-
-        private By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
+        private static By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
         protected EditApprenticeDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
@@ -39,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             EditCourse();
 
             EditCost();
-            
+
             EditApprenticeNameDobAndReference(reference);
         }
 

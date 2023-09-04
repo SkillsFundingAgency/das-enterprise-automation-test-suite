@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Qualifications";
 
-        private By Preview => By.PartialLinkText("Preview");
+        private static By Preview => By.PartialLinkText("Preview");
 
         public ConfirmQualificationsPage(ScenarioContext context) : base(context) { }
 

@@ -12,7 +12,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         private List<string> ExpectedPageTitles => new List<string> { PageTitle, ExpectedPageTitle };
 
-        protected By ViewApplicationsSelector => By.CssSelector("#main-content .govuk-button");
+        protected static By ViewApplicationsSelector => By.CssSelector("#main-content .govuk-button");
 
         public ApplicationCancelledPage(ScenarioContext context) : base(context, false) => VerifyPage(() => pageInteractionHelper.FindElement(PageHeader), ExpectedPageTitles);
 

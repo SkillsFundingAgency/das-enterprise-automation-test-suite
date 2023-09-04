@@ -1,5 +1,7 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using Polly;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project
@@ -8,20 +10,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project
     public class BeforeScenarioHooks
     {
         private readonly ScenarioContext _context;
-        private readonly DbConfig _dbConfig;
-
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _dbConfig = context.Get<DbConfig>();
-        }
-
+        
+        public BeforeScenarioHooks(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 40)]
         public void SetUpHelpers()
         {
-            _context.Set(new EarningsSqlDbHelper(_dbConfig));
-            _context.Set(new ApprenticeshipsSqlDbHelper(_dbConfig));
+            var dbConfig = _context.Get<DbConfig>();
+
+            _context.Set(new EarningsSqlDbHelper(dbConfig));
+
+            _context.Set(new ApprenticeshipsSqlDbHelper(dbConfig));
+
+            _context.Get<ObjectContext>().SetTestDataList();
         }
     }
 }

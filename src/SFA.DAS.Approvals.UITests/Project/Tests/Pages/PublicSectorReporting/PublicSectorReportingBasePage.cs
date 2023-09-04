@@ -7,8 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
-        protected By Textarea => By.CssSelector("textarea");
-
         protected override By ContinueButton => By.CssSelector("button.button[type='submit']");
 
         protected PublicSectorReportingBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }

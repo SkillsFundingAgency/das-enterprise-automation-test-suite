@@ -8,24 +8,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
-        private By ReviewChangesLink => By.LinkText("Review changes");
-        private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
-        private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
-        private By ChangeEmployerLink => By.Id("change-employer-link");
-        private By ChangeRequestHeading => By.XPath("//h2[contains(text(),'Changes to this apprenticeship')]");
-        private By ChangeRequestMessage => By.CssSelector("p.govuk-body");
-        private By Name => By.Id("apprentice-name");
-        private By DateOfBirth => By.Id("apprentice-dob");
-        private By Reference => By.Id("apprentice-reference");
-        private By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        private By ViewChanges => By.Id("change-employer-link");
-        private By ViewChangesLink => By.LinkText("View changes");
-        private By ViewDetailsLink => By.LinkText("View details");
-        private By TriageLinkRestartLink => By.LinkText("View course mismatch");
-        private By TriageLinkUpdateLink => By.LinkText("View price mismatch");
-        private By DeliveryModel => By.Id("apprentice-deliverymodel");
-        private By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
-        private string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
+        private static By ReviewChangesLink => By.LinkText("Review changes");
+        private static By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
+        private static By ViewIlrMismatchDetailsLink => By.LinkText("View details");
+        private static By ChangeEmployerLink => By.Id("change-employer-link");
+        private static By ChangeRequestHeading => By.XPath("//h2[contains(text(),'Changes to this apprenticeship')]");
+        private static By ChangeRequestMessage => By.CssSelector("p.govuk-body");
+        private static By Name => By.Id("apprentice-name");
+        private static By DateOfBirth => By.Id("apprentice-dob");
+        private static By Reference => By.Id("apprentice-reference");
+        private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
+        private static By ViewChanges => By.Id("change-employer-link");
+        private static By ViewChangesLink => By.LinkText("View changes");
+        private static By ViewDetailsLink => By.LinkText("View details");
+        private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
+        private static By TriageLinkUpdateLink => By.LinkText("View price mismatch");
+        private static By DeliveryModel => By.Id("apprentice-deliverymodel");
+        private static By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 

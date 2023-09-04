@@ -2,6 +2,7 @@
 
 @approvals
 @regression
+@provideraddapprentice
 Scenario: AP_Pro_04 Provider Selects Filter And Pagination
 	Given A Provider has navigated to Manage your apprentice page
 	When the provider filters by 'Live'

@@ -12,7 +12,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
-        private By GoToHomePageRadioButton => By.CssSelector(".govuk-radios__label");
+        private static By GoToHomePageRadioButton => By.CssSelector(".govuk-radios__label");
 
         public RequestSentConfirmPage(ScenarioContext context) : base(context) { }
 

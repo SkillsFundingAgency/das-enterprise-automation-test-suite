@@ -9,9 +9,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => "How much will the apprentice be paid?";
 
-        private By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
+        private static By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
 
-        private By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
+        private static By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
 
         public WageTypePage(ScenarioContext context) : base(context) { }
 

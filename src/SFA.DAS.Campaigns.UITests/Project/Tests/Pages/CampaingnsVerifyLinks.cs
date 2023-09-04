@@ -6,9 +6,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class CampaingnsVerifyLinks : CampaingnsBasePage
     {
-        private By Links => By.CssSelector("a");
+        private static By Links => By.CssSelector("a");
 
-        private By VideoLinks => By.CssSelector("a[data-module='videoPlayer']");
+        private static By VideoLinks => By.CssSelector("a[data-module='videoPlayer']");
 
         protected override string PageTitle => "";
 

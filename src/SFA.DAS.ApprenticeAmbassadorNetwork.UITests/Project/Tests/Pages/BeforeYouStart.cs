@@ -4,7 +4,7 @@
     {
         protected override string PageTitle => "Apply to become an Apprenticeship Ambassador";
 
-        private By StartButton => By.Id("start-now");
+        private static By StartButton => By.Id("start-now");
 
         public BeforeYouStartPage(ScenarioContext context) : base(context) => VerifyPage();
 

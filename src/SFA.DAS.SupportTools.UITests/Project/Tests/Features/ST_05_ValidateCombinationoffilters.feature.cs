@@ -75,13 +75,13 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("ST_05_Validate Combination of filters")]
-        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("supporttools")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
         public void ST_05_ValidateCombinationOfFilters()
         {
             string[] tagsOfScenario = new string[] {
-                    "supportconsole",
+                    "supporttools",
                     "approvalssupportconsole",
                     "BulkUtility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

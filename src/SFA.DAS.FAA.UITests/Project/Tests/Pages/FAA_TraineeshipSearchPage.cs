@@ -7,8 +7,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_TraineeshipSearchPage : FAA_SearchVacancyBasePage
     {
         protected override string PageTitle => "Find a traineeship";
-        private By Location => By.Id("Location");
-        private By ReferenceNumber => By.Id("ReferenceNumber");
+        private static By Location => By.Id("Location");
+        private static By ReferenceNumber => By.Id("ReferenceNumber");
 
         public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context) { }
 

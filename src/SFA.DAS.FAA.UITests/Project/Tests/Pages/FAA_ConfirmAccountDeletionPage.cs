@@ -7,7 +7,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Confirm account deletion";
 
-        private By DeleteAccountButton => By.Id("DeleteAccountAction");
+        private static By DeleteAccountButton => By.Id("DeleteAccountAction");
 
         public FAA_ConfirmAccountDeletionPage(ScenarioContext context) : base(context) { }
 

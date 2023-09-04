@@ -7,8 +7,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         protected override string PageTitle => "Make an appeal";
 
-        private By AppealOnPolicyOrProcessesRadio => By.Id("AppealOnPolicyOrProcesses");
-        private By AppealOnEvidenceSubmittedRadio => By.Id("AppealOnEvidenceSubmitted");
+        private static By AppealOnPolicyOrProcessesRadio => By.Id("AppealOnPolicyOrProcesses");
+        private static By AppealOnEvidenceSubmittedRadio => By.Id("AppealOnEvidenceSubmitted");
 
         public MakeAnAppealPage(ScenarioContext context) : base(context) => VerifyPage();
 

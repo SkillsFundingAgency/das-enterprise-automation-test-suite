@@ -12,9 +12,9 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public ProviderSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         #region Locators
-        private By EmployerSatisfactionPercentageInfo => By.CssSelector("dd.employer-satisfaction");
-        private By LearnerSatisfactionPercentageInfo => By.CssSelector("dd.learner-satisfaction");
-        private By AchievementRatePercentageInfo => By.CssSelector("dd.achievement-rate");
+        private static By EmployerSatisfactionPercentageInfo => By.CssSelector("dd.employer-satisfaction");
+        private static By LearnerSatisfactionPercentageInfo => By.CssSelector("dd.learner-satisfaction");
+        private static By AchievementRatePercentageInfo => By.CssSelector("dd.achievement-rate");
         #endregion
 
         public string GetEmployerSatisfactionPercentageInfo() => pageInteractionHelper.GetText(EmployerSatisfactionPercentageInfo);

@@ -5,10 +5,10 @@ public class GetHelpWithFindingATrainingProviderPage : AedBasePage
     protected override string PageTitle => "Get help with finding a training provider";
 
     #region Locators
-    private By NumberOfApprenticesTextBox => By.CssSelector("#NumberOfApprentices");
-    private By ApprenticeshipLocationTextBox => By.CssSelector("#search-location");
-    private By OrganisationNameTextBox => By.CssSelector("#OrganisationName");
-    private By OrganisationEmailAddressTextBox => By.CssSelector("#ContactEmailAddress");
+    private static By NumberOfApprenticesTextBox => By.CssSelector("#NumberOfApprentices");
+    private static By ApprenticeshipLocationTextBox => By.CssSelector("#search-location");
+    private static By OrganisationNameTextBox => By.CssSelector("#OrganisationName");
+    private static By OrganisationEmailAddressTextBox => By.CssSelector("#ContactEmailAddress");
     #endregion
 
     public GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : base(context) { }

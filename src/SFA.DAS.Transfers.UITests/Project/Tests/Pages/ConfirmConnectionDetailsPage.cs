@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
@@ -10,7 +9,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
-        private By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".govuk-radios__label");
+        private static By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".govuk-radios__label");
 
         public ConfirmConnectionDetailsPage(ScenarioContext context) : base(context) { }
 

@@ -7,10 +7,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => IsTraineeship ? "What training will you give the trainee" : (isRaaV2Employer ? "Tasks and training details" : "Tasks and training details");
 
-        private By IframeBody => By.CssSelector(".mce-content-body ");
-        private By OutcomeDescription => By.Id("OutcomeDescription_ifr");
-        private By TrainingDescription => By.Id("TrainingDescription_ifr");
-        private By VacancyDescription => By.Id("VacancyDescription_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body ");
+        private static By OutcomeDescription => By.Id("OutcomeDescription_ifr");
+        private static By TrainingDescription => By.Id("TrainingDescription_ifr");
+        private static By VacancyDescription => By.Id("VacancyDescription_ifr");
 
         public DescriptionPage(ScenarioContext context) : base(context) { }
 

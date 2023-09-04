@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         protected override By PageHeader => By.CssSelector(".govuk-caption-xl");
 
         #region Locators
-        private By RemovePAYESchemeButton => By.LinkText("Remove PAYE scheme");
+        private static By RemovePAYESchemeButton => By.LinkText("Remove PAYE scheme");
         #endregion
 
         public PAYESchemeDetailsPage(ScenarioContext context) : base(context) => VerifyPage();

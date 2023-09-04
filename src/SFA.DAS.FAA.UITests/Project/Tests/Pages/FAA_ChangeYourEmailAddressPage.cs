@@ -7,12 +7,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Change your email address";
 
-        private By EmailAddress => By.Id("EmailAddress");
-        private By SendCodeButton => By.Id("btn-sendcode");
-        private By SuccessMessageText => By.Id("SuccessMessageText");
-        private By VerificationCode => By.Id("PendingUsernameCode");
-        private By VerifyEmailButton => By.Id("verify-email-button");
-        private By VerifyPassword => By.Id("VerifyPassword");
+        private static By EmailAddress => By.Id("EmailAddress");
+        private static By SendCodeButton => By.Id("btn-sendcode");
+        private static By SuccessMessageText => By.Id("SuccessMessageText");
+        private static By VerificationCode => By.Id("PendingUsernameCode");
+        private static By VerifyEmailButton => By.Id("verify-email-button");
+        private static By VerifyPassword => By.Id("VerifyPassword");
 
         public FAA_ChangeYourEmailAddressPage(ScenarioContext context) : base(context) { }
 

@@ -7,11 +7,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
     {
         protected override string PageTitle => "Tell us who's responsible for managing relationships with employers";
 
-        private By FullName => By.Id("RTE-22-1");
+        private static By FullName => By.Id("RTE-22-1");
 
-        private By Email => By.Id("RTE-22-2");
+        private static By Email => By.Id("RTE-22-2");
 
-        private By ContactNumber => By.Id("RTE-22-3");
+        private static By ContactNumber => By.Id("RTE-22-3");
 
         public ResponsibleForManagingRelationshipsPage(ScenarioContext context) : base(context) => VerifyPage();
 

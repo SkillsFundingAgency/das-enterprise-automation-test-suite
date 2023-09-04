@@ -12,7 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context)  { }
 
-        internal ProviderConfirmEmployerPage ChooseAnEmployer(string employerType)
+        internal ProviderConfirmEmployerPage ChooseLevyEmployer() => ChooseAnEmployer("Levy");
+
+        internal ProviderConfirmEmployerPage ChooseNonLevyEmployer() => ChooseAnEmployer("NonLevy");
+
+        private ProviderConfirmEmployerPage ChooseAnEmployer(string employerType)
         {
             var employerUser = employerType == "Levy" ? context.GetUser<LevyUser>() : (EasAccountUser)context.GetUser<NonLevyUser>();
 

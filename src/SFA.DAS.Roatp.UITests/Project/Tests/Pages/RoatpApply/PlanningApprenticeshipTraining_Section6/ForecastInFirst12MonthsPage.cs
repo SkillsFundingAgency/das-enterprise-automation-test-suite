@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
     {
         protected override string PageTitle => "How many starts does your organisation forecast in the first 12 months of joining the RoATP?";
 
-        private By OneTo49CheckRadio => By.Id("PAT-650");
+        private static By OneTo49CheckRadio => By.Id("PAT-650");
 
         public ForecastInFirst12MonthsPage(ScenarioContext context) : base(context) => VerifyPage();
 

@@ -8,8 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Notification settings";
 
         #region Locators
-        private By NotificationOptions => By.CssSelector(".selection-button-radio");
-        private By UpdateButton => By.CssSelector(".button");
+        private static By NotificationOptions => By.CssSelector(".selection-button-radio");
+        private static By UpdateButton => By.CssSelector(".button");
         #endregion
 
         public NotificationSettingsPage(ScenarioContext context) : base(context) => VerifyPage();

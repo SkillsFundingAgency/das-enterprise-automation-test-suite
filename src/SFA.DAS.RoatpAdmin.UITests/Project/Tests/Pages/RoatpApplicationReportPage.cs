@@ -8,8 +8,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Download the RoATP application report";
 
-        private By FromDate => By.Id("FromDate");
-        private By ToDate => By.Id("ToDate");
+        private static By FromDate => By.Id("FromDate");
+        private static By ToDate => By.Id("ToDate");
 
         public RoatpApplicationReportPage(ScenarioContext context) : base(context) => VerifyPage();
 

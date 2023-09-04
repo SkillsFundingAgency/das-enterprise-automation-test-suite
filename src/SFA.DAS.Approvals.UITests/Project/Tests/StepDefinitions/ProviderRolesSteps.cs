@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ProviderLogin.Service.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -11,15 +10,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-        
+        private readonly ProviderReservationStepsHelper _providerReservationStepsHelper;
+
         private ProviderNotificationSettingsPage _providerNotification;
 
         public ProviderRolesSteps(ScenarioContext context)
         {
             _context = context;
             _providerStepsHelper = new ProviderStepsHelper(_context);
-            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
+            _providerReservationStepsHelper = new ProviderReservationStepsHelper(_context);
         }
 
         [Given(@"a reservation exists")]
@@ -32,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can create reservation")]
-        public void ThenTheUserCanCreateReservation() => _providerStepsHelper.ProviderMakeReservation(new ApprovalsProviderHomePage(_context)).GoToHomePage();
+        public void ThenTheUserCanCreateReservation() => _providerReservationStepsHelper.ProviderMakeReservation(new ApprovalsProviderHomePage(_context)).GoToHomePage();
 
         [Then(@"the user can delete reservation")]
         public void ThenTheUserCanDeleteReservation() => _providerStepsHelper.NavigateToProviderHomePage()

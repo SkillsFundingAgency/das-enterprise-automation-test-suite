@@ -7,8 +7,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your feedback";
 
-        private By FeedbackText => By.CssSelector(".sfa-inset-yellow");
-        private By SignOutLink => By.Id("signout-link");
+        private static By FeedbackText => By.CssSelector(".sfa-inset-yellow");
+        private static By SignOutLink => By.Id("signout-link");
 
         public FAA_YourFeedbackPage(ScenarioContext context) : base(context) { }
 

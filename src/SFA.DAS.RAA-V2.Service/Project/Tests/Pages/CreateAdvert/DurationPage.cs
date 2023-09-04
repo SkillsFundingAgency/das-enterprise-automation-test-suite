@@ -7,11 +7,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => IsTraineeship ? "Duration and weekly hours" : "Duration and working hours";
 
-        private By Duration => By.Id("Duration");
+        private static By Duration => By.Id("Duration");
 
-        private By WorkingWeekDescription => By.Id("WorkingWeekDescription");
+        private static By WorkingWeekDescription => By.Id("WorkingWeekDescription");
 
-        private By WeeklyHours => By.Id("WeeklyHours");
+        private static By WeeklyHours => By.Id("WeeklyHours");
 
         public DurationPage(ScenarioContext context) : base(context) { }
 

@@ -1,8 +1,7 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.ProviderLogin.Service.Helpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
@@ -20,6 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(_context);
         }
 
+        public ProviderConfirmEmployerPage ChooseALevyEmployer() => GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer();
+
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(login, newTab);
@@ -32,21 +33,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new(_context, true);
-
         public ApprovalsProviderHomePage GoToProviderHomePage(bool newTab = true)
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(newTab);
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public ApprovalsProviderHomePage GoToPortableFlexiJobProviderHomePage()
-        {
-            _providerHomePageStepsHelper.GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
-            return new ApprovalsProviderHomePage(_context);
-        }
-
-        internal ProviderApproveApprenticeDetailsPage ViewCurrentCohortDetails() => GoToProviderHomePage().GoToApprenticeRequestsPage().ViewCurrentCohortDetails();
+        public ProviderApproveApprenticeDetailsPage ViewCurrentCohortDetails() => GoToProviderHomePage().GoToApprenticeRequestsPage().ViewCurrentCohortDetails();
 
         internal ProviderApproveApprenticeDetailsPage SetApprenticeDetails(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int numberOfApprentices)
         {
@@ -57,11 +50,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => CurrentCohortDetails(GoToProviderHomePage());
 
-        private ProviderApproveApprenticeDetailsPage CurrentCohortDetails(ApprovalsProviderHomePage _)
-        {
-            return new ProviderApprenticeRequestsPage(_context, true)
-                .GoToCohortsToReviewPage()
-                .SelectViewCurrentCohortDetails();
-        }
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails(ApprovalsProviderHomePage _) => new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage().SelectViewCurrentCohortDetails();
+
+        public ProviderApprenticeDetailsPage CurrentApprenticeDetails() => GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         #region Locators
         protected override By PageHeader => By.CssSelector(".das-notification__heading");
         protected override By ContinueButton => By.CssSelector("button#accept");
-        private By ContinueAccountSetupRadioButton => By.Id("choice3");
+        private static By ContinueAccountSetupRadioButton => By.Id("choice3");
         #endregion
 
         public PAYESchemeAddedPage(ScenarioContext context) : base(context) => VerifyPage();

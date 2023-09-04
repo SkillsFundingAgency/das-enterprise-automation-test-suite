@@ -11,13 +11,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         private string _employerName;
 
-        private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
+        private static By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
-        private By NewTradingName => By.CssSelector("#NewTradingName");
+        private static By NewTradingName => By.CssSelector("#NewTradingName");
 
-        private By EmployerDescription => By.CssSelector("#AnonymousName");
+        private static By EmployerDescription => By.CssSelector("#AnonymousName");
 
-        private By EmployerReason => By.CssSelector("#AnonymousReason");
+        private static By EmployerReason => By.CssSelector("#AnonymousReason");
 
         public EmployerNameBasePage(ScenarioContext context) : base(context) => _employerName = rAAV2DataHelper.EmployerName;
 

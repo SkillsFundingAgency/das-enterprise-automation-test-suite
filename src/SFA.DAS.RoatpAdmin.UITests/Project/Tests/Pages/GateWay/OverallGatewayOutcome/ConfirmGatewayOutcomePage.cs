@@ -10,10 +10,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OverallGatewayO
     {
         protected override string PageTitle => "Confirm gateway outcome";
 
-        private By InternalFailComments => By.Id("OptionFailedText");
-        private By ExternalFailComments => By.Id("OptionFailedExternalText");
-        private By InternalRejectComments => By.Id("OptionRejectedText");
-        private By ExternalRejectComments => By.Id("OptionExternalRejectedText");
+        private static By InternalFailComments => By.Id("OptionFailedText");
+        private static By ExternalFailComments => By.Id("OptionFailedExternalText");
+        private static By InternalRejectComments => By.Id("OptionRejectedText");
+        private static By ExternalRejectComments => By.Id("OptionExternalRejectedText");
 
         public ConfirmGatewayOutcomePage(ScenarioContext context) : base(context) => VerifyPage();
 

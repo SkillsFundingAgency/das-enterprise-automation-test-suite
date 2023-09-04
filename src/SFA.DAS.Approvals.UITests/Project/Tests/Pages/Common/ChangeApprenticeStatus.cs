@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class ChangeApprenticeStatus : ApprovalsBasePage
     {
-        private By ConfirmButton => By.Id("submit-status-change");
+        private static By ConfirmButton => By.Id("submit-status-change");
 
         protected ChangeApprenticeStatus(ScenarioContext context) : base(context) { }
         

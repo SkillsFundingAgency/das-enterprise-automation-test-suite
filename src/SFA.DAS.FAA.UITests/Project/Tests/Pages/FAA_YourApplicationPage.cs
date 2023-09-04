@@ -6,8 +6,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_YourApplicationPage : FAABasePage
     {
         protected override string PageTitle => "Your application";
-         
-        private By Status => By.CssSelector(".inl-block");
+
+        private static By Status => By.CssSelector(".inl-block");
 
         public FAA_YourApplicationPage(ScenarioContext context) : base(context) { }
 

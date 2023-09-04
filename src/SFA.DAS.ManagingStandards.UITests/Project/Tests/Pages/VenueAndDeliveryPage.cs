@@ -4,9 +4,9 @@ public class VenueAndDeliveryPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => "Venue and delivery";
 
-    private By ChooseVenue = By.Id("TrainingVenueNavigationId");
-    private By DayRelease = By.Id("HasDayReleaseDeliveryOption");
-    private By BlockRelease = By.Id("HasBlockReleaseDeliveryOption");
+    private static By ChooseVenue => By.Id("TrainingVenueNavigationId");
+    private static By DayRelease => By.Id("HasDayReleaseDeliveryOption");
+    private static By BlockRelease =>By.Id("HasBlockReleaseDeliveryOption");
     public VenueAndDeliveryPage(ScenarioContext context) : base(context) { }
 
     public TrainingVenuesPage ChooseTheVenueDeliveryAndContinue()

@@ -7,7 +7,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Hire a new apprentice payment applications";
 
-        private By Links => By.CssSelector("#main-content a");
+        private static By Links => By.CssSelector("#main-content a");
 
         public ViewApplicationsPage(ScenarioContext context) : base(context)  { }
 
