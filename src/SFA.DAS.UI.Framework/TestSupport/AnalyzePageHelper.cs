@@ -61,7 +61,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool ShouldNotAnalyzePageCheckUsingPageTitle(string pageTitle)
         {
-            var x =  _objectContext.GetAccessibilityPageTitles().Any(x => x == pageTitle);
+            var x = _objectContext.GetAccessibilityPageTitles().Contains(pageTitle);
 
             var message = x ? $"'{pageTitle}' already analyzed." : $"'{pageTitle}' not analyzed.";
 
