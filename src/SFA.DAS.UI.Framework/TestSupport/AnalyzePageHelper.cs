@@ -65,6 +65,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var message = x ? $"'{pageTitle}' already analyzed." : $"'{pageTitle}' not analyzed.";
 
+            _objectContext.SetDebugInformation(message);
+
             return x;
         }
 
