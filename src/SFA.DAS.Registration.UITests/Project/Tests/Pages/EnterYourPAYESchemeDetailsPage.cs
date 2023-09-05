@@ -22,8 +22,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string AornInvalidFormatErrorMessage => "Enter your Accounts Office reference in the correct format";
         public string BlankPayeFieldErrorMessage => "Enter your PAYE reference in the correct format";
         public string PayeInvalidFormatErrorMessage => "Enter your PAYE reference in the correct format";
-        public string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE scheme and accounts office reference";
-        public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
+        public string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE and accounts office reference";
+        public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE and accounts office reference";
         #endregion
 
         public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
