@@ -133,7 +133,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private void TakeScreenShot()
         {
-            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
+            if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot)
             {
                 string counter = _screenShotTitleGenerator.GetTitle();
 
