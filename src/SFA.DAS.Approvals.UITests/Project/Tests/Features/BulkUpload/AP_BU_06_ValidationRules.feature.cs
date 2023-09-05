@@ -102,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Category",
                             "CohortRef",
                             "AgreementId",
@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "EPAOrgID",
                             "ProviderRef",
                             "ErrorMessage"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "CohortRef length > 20",
                             "ABC999",
                             "valid",
@@ -134,7 +134,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter a valid Cohort Ref"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "ULN < 10",
                             "valid",
                             "valid",
@@ -150,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter a 10-digit unique learner number"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "ULN-9999999999",
                             "valid",
                             "valid",
@@ -166,7 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "The unique learner number of 9999999999 isn\'t valid"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "AgreementID < 6",
                             "valid",
                             "MK123",
@@ -182,7 +182,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter a valid Agreement ID"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "EmailAddress",
                             "valid",
                             "valid",
@@ -198,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter a valid email address"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "DateOfBirth < 15",
                             "valid",
                             "valid",
@@ -215,7 +215,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "The apprentice\'s date of birth must show that they are at least 15 years old at t" +
                                 "he start of their training"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "DateOfBirth > 115",
                             "valid",
                             "valid",
@@ -232,7 +232,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "The apprentice\'s date of birth must show that they are not older than 115 years o" +
                                 "ld at the start of their training"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "StartDate",
                             "valid",
                             "valid",
@@ -248,7 +248,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "The start date must not be earlier than May 2017"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "EndDate",
                             "valid",
                             "valid",
@@ -264,7 +264,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter an end date that is after the start date"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "EndDateFormat",
                             "valid",
                             "valid",
@@ -280,7 +280,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter the end date using the format yyyy-mm, for example 2019-02"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "TotalPriceWithPence",
                             "valid",
                             "valid",
@@ -296,7 +296,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter the total cost of training in whole pounds using numbers only"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "ProviderRef > 20",
                             "valid",
                             "valid",
@@ -312,7 +312,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "012345678901234567890",
                             "The Provider Ref must not be longer than 20 characters"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "StdCodeInValid",
                             "valid",
                             "valid",
@@ -328,7 +328,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter a valid standard code"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "StartDateFormat",
                             "valid",
                             "valid",
@@ -344,7 +344,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter the start date using the format yyyy-mm-dd, for example 2017-09-01"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "CohortUlnEmailDoB",
                             "9XZY99",
                             "valid",
@@ -361,7 +361,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "Enter a valid Cohort Ref\nEnter a 10-digit unique learner number\nEnter a valid ema" +
                                 "il address\nEnter an end date that is after the start date"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "GivenNameEmpty",
                             "valid",
                             "valid",
@@ -377,7 +377,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Last name must be entered"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "FamilyNameEmpty",
                             "valid",
                             "valid",
@@ -393,7 +393,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "First name must be entered"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "GivenName > 100",
                             "valid",
                             "valid",
@@ -410,7 +410,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Enter a last name that is not longer than 100 characters"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "FamilyName > 100",
                             "valid",
                             "valid",
@@ -428,7 +428,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "Enter a last name that is not longer than 100 characters"});
 #line 9
- testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table1, "When ");
+ testRunner.When("Provider add an apprentice uses details from below to create bulkupload", ((string)(null)), table3, "When ");
 #line hidden
             }
             this.ScenarioCleanup();
