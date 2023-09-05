@@ -79,14 +79,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccountNav
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("captureurl")]
-        [NUnit.Framework.CategoryAttribute("govukstub")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
         public void RE_EAN_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "registration",
                     "captureurl",
-                    "govukstub"};
+                    "accessibility"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EAN_01_Verify Login for Existing Levy Account and Navigation to Saved favourit" +
                     "es, Help and all Settings pages", null, tagsOfScenario, argumentsOfScenario, featureTags);

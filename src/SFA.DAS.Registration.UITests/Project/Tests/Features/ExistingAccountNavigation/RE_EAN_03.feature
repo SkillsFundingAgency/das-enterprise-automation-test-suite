@@ -2,6 +2,7 @@
 
 @regression
 @registration
+@accessibility
 Scenario: RE_EAN_03_Verify Login for Existing View user
 	Given the Employer logins using existing view user account
 	Then the user can not add an organisation
