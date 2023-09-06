@@ -3,7 +3,6 @@
 @regression
 @approvals
 @managefundingnavigation
-@accessibility
 Scenario: AP_Nav_02_Navigate to EAS sub sites from Manage Funding Page
 	Given the Employer logins using existing NonLevy Account
 	When the Employer navigates to 'Manage Funding' Page
