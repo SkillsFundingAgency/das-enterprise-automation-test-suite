@@ -65,7 +65,7 @@ namespace SFA.DAS.TestDataExport
 
         private static void SetAccessibilityPageTitles(this ObjectContext objectContext) => objectContext.Set(AccessibilityPageTitle, new FrameworkList<string>());
 
-        public static void SetAccessibilityPageTitle(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityInformations().Add(value);
+        public static void SetAccessibilityPageTitle(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityPageTitles().Add(value);
 
         public static FrameworkList<string> GetAccessibilityPageTitles(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityPageTitle);
         #endregion
