@@ -6,6 +6,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using Selenium.Axe;
 using SFA.DAS.TestDataExport;
+using System;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -27,7 +28,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             //Do not remove this commented code
             //if (!ShouldAnalyzePage()) return;
 
-            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? "NoPageTitle" : actualPageTitle;
+            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? $"NoPageTitle_{DateTime.Now:HH-mm-ss-fffff}" : actualPageTitle;
 
             if (ShouldNotAnalyzePageCheckUsingPageTitle(pageTitle)) return;
 
