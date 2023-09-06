@@ -18,6 +18,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected static By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
+        protected override string AccessibilityPageTitle => "Employer Home Page";
+
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
 
         public HomePage(ScenarioContext context) : this(context, false) { }
