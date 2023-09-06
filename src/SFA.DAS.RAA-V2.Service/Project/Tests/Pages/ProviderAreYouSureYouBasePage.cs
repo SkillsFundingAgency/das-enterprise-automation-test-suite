@@ -18,6 +18,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => $"Are you sure you want to make {rAAV2DataHelper.CandidateFullName}'s application {_status}?";
 
+        protected override string AccessibilityPageTitle => "Are you sure you want to make candidate application page";
+
         protected void Confirm()
         {
             SelectRadioOptionByForAttribute("notify-candidate-yes");

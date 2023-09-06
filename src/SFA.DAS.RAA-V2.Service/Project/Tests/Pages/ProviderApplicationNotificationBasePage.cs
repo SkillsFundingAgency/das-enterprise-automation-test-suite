@@ -19,6 +19,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
 
         protected override string PageTitle => $"{rAAV2DataHelper.CandidateFullName}'s application made {_status}.";
+
+        protected override string AccessibilityPageTitle => "Candidate application made page";
     }
 
     public class ProviderApplicationSuccessfulPage : ProviderApplicationNotificationBasePage

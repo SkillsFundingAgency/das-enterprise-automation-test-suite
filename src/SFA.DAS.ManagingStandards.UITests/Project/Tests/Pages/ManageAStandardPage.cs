@@ -4,6 +4,9 @@ public class ManageAStandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => _pageTitle;
 
+    protected override string AccessibilityPageTitle => "Manage a standard page";
+
+
     private readonly string _pageTitle;
 
     public ManageAStandardPage(ScenarioContext context, string standardName) : base(context, false)

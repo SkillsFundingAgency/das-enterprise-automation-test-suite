@@ -8,6 +8,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"Transfer pledge {GetPledgeId()}";
 
+        protected override string AccessibilityPageTitle => "Transfer pledge page";
+
         private static By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
 
         private static By ClosePLedgeSelector => By.Id("close-pledge-button");

@@ -7,6 +7,8 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetTrainingCourseName();
 
+        protected override string AccessibilityPageTitle => "Training course name Page";
+
         #region Locators
         private static By FindTrainingProvidersButton => By.LinkText("Find training providers");
         #endregion
