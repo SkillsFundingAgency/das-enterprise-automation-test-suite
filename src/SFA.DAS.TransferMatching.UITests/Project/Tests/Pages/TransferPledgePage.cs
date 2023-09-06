@@ -60,7 +60,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public TransferPledgePage ConfirmApplicationStatus(string expected)
         {
-            Assert.AreEqual(expected, pageInteractionHelper.GetText(ApplicationStatusSelector), "Expected Application Status not found");
+            Assert.That(pageInteractionHelper.GetText(ApplicationStatusSelector), Is.EqualTo(expected), "Expected Application Status not found");
+
             return new TransferPledgePage(context);
         }
 

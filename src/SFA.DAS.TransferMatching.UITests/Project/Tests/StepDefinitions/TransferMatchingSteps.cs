@@ -388,13 +388,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
 
-        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+        private void CanApplyForTransferOppurtunity(bool canApply)
+        {
+            Assert.That(NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), Is.EqualTo(canApply), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+        }
 
         private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
         {
             if (navigate) new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
 
-            Assert.AreEqual(canCreateTransferPledge, NavigateToTransferMatchingPage().CanCreateTransferPledge(), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
+            Assert.That(NavigateToTransferMatchingPage().CanCreateTransferPledge(), Is.EqualTo(canCreateTransferPledge), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
         }
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();

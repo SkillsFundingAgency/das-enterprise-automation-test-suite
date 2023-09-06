@@ -1,8 +1,6 @@
-﻿namespace SFA.DAS.TransferMatching.APITests.Project
+﻿namespace SFA.DAS.TransferMatching.APITests.Project;
+
+public class TransferMatchingJobsConfig
 {
-    public class TransferMatchingJobsConfig
-    {
-        public string ApplicationsWithAutomaticApproval_Code { get; set; } 
-        
-    }
+    public string? ApplicationsWithAutomaticApprovalCode { get; set; } 
 }
