@@ -6,8 +6,7 @@ public abstract class RequestAndResponseCollectionHelper
     protected readonly RestResponse _response;
     protected readonly RestRequest _request;
     protected readonly RestClient _client;
-    protected string _requestUri;
-
+    
     public RequestAndResponseCollectionHelper(RestClient client, RestRequest request, RestResponse response)
     {
         _client = client;
@@ -29,7 +28,7 @@ public abstract class RequestAndResponseCollectionHelper
 
     private string GetResponseUri() => $"ResponseUri: {GetAbsoluteUri(_response.ResponseUri?.AbsoluteUri)}{Environment.NewLine}";
 
-    private string GetRequestUri() => $"RequestUri: {_requestUri = _client.BuildUri(_request).AbsoluteUri}{Environment.NewLine}";
+    private string GetRequestUri() => $"RequestUri: {GetAbsoluteUri(_client.BuildUri(_request).AbsoluteUri)}{Environment.NewLine}";
 
     protected string GetResponseContent() => GetBody(_response.Content);
 
