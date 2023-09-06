@@ -28,7 +28,7 @@ public abstract class RequestAndResponseCollectionHelper
 
     private string GetResponseUri() => $"ResponseUri: {GetAbsoluteUri(_response.ResponseUri?.AbsoluteUri)}{Environment.NewLine}";
 
-    private string GetRequestUri() => $"RequestUri: {GetAbsoluteUri(_client.BuildUri(_request).AbsoluteUri)}{Environment.NewLine}";
+    private string GetRequestUri() => $"RequestUri: {(_client.BuildUri(_request).AbsoluteUri)}{Environment.NewLine}";
 
     protected string GetResponseContent() => GetBody(_response.Content);
 
