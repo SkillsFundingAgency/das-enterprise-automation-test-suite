@@ -10,6 +10,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
+        protected override string AccessibilityPageTitle => "FAA vacancy title page";
+
         private static By ApplyButton => By.Id("apply-button");
 
         private static By ViewApplicationLink => By.Id("view-application-link");

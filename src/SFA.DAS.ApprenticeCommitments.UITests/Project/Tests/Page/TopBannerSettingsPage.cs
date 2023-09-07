@@ -10,6 +10,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By NavigationSubLink => By.CssSelector(".app-user-header a.das-user-navigation__sub-menu-link");
         protected override string PageTitle => string.Empty;
 
+        protected override string AccessibilityPageTitle => "Apprentice top banner settings page";
+
         public TopBannerSettingsPage(ScenarioContext context) : base(context)  { }
 
         public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()

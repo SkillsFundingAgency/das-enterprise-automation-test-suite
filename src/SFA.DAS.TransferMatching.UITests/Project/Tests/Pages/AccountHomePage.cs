@@ -6,8 +6,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class AccountHomePage : TransferMatchingBasePage
     {
-       protected override string PageTitle => objectContext.GetOrganisationName();
-        
+        protected override string PageTitle => objectContext.GetOrganisationName();
+
+        protected override string AccessibilityPageTitle => "Employer home page";
+
         public AccountHomePage(ScenarioContext context) : base(context) { }
 
         private static By TaskSelector => By.CssSelector("#application-approval-task > a");

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._01_FlexiJobApprenticeshipAgency.RemovalFromRegister.Provider
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,26 +20,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._01_FlexiJobApprentic
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister")]
-    public partial class FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegisterFeature
+    [NUnit.Framework.DescriptionAttribute("TM_29_CreateDelayedTransferPledgeApprovedAfter6Weeks")]
+    public partial class TM_29_CreateDelayedTransferPledgeApprovedAfter6WeeksFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister.feature"
+#line 1 "TM_29_CreateDelayedTransferPledgeApprovedAfter6Weeks.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/01_FlexiJobApprenticeshipAgency/RemovalFromRegister/Provid" +
-                    "er", "FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister", @"In this test, a Training Provider holds a draft cohort with apprentices on
-the Flexi-Job Agency delivery model.
-Before the cohort is approved, the employer is removed from the FJAA register
-and we confirm that the provider is still able to delete cohort", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_29_CreateDelayedTransferPledgeApprovedAfter6Weeks", @"//this test cannot be run locally against preprod environment! It is due to additional security restrictions in place which prevents your machine to access Azure function.
+//Additional whitelisting has been added in the pipeline so that remote test agent's ip address is whitelisted to access this function", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,23 +75,19 @@ and we confirm that the provider is still able to delete cohort", ProgrammingLan
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister")]
+        [NUnit.Framework.DescriptionAttribute("TM_29_Create Delayed Transfer Pledge and Approve After 6 Weeks")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("flexijobapprenticeshipagency")]
-        [NUnit.Framework.CategoryAttribute("fjaae2escenarios")]
-        [NUnit.Framework.CategoryAttribute("rofjaadb")]
-        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
-        public void FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister()
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
+        [NUnit.Framework.CategoryAttribute("ignorelocalexecutioninpp")]
+        public void TM_29_CreateDelayedTransferPledgeAndApproveAfter6Weeks()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "flexijobapprenticeshipagency",
-                    "fjaae2escenarios",
-                    "rofjaadb",
-                    "donotexecuteinparallel"};
+                    "transfermatching",
+                    "ignorelocalexecutioninpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FJAA_RMR_PJ_02_DeleteCohortAfterRemovalFromFJAARegister", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_29_Create Delayed Transfer Pledge and Approve After 6 Weeks", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,26 +97,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 10
+ testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 11
+ testRunner.Then("the levy employer can create pledge using default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.When("the receiver levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 14
- testRunner.Given("an employer who is on Flexi-job agency register logins using exisiting Levy Accou" +
-                        "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("wait for 6 weeks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.When("employer selects Flexi-job agency radio button on Select Delivery Model screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
- testRunner.Then("validate Flexi-job agency content on Add Apprentice Details page and submit valid" +
-                        " details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 17
- testRunner.And("validate Flexi-job agency tag on Approve Apprentice Details page and send cohort " +
-                        "to Provider for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
- testRunner.Then("the employer is removed from the Flexi-job agency register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 19
- testRunner.And("provider navigates to Approve Apprentice page and deletes Cohort before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the non levy employer can open approved pledge application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

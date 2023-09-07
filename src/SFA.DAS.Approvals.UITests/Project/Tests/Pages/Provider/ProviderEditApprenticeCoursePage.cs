@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => _pageTitle;
 
+        protected override string AccessibilityPageTitle => "Provider edit apprentice details";
+
         #region Helpers and Context
         private readonly string _pageTitle;
         #endregion

@@ -7,6 +7,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => $"The vacancy dates for “{rAAV2DataHelper.VacancyTitle}” have been updated.";
 
+        protected override string AccessibilityPageTitle => "The vacancy dates for vacancy title have been updated";
+
         private static By Info => By.CssSelector(".info-summary");
 
         public EditVacancyConfirmationPage(ScenarioContext context) : base(context, false) => VerifyPage(() => pageInteractionHelper.FindElements(Info));

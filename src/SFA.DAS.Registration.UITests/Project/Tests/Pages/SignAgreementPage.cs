@@ -7,6 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
 
+        protected override string AccessibilityPageTitle => "Sign an agreement page";
+
         protected override bool TakeFullScreenShot => false;
 
         #region Locators

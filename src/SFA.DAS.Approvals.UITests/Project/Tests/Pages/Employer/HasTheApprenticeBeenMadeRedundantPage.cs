@@ -10,6 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"Has {apprenticeDataHelper.ApprenticeFullName} been made redundant?";
 
+        protected override string AccessibilityPageTitle => "Has apprentice been made redundant";
+
         protected override bool TakeFullScreenShot => false;
 
         #region Helpers and Context

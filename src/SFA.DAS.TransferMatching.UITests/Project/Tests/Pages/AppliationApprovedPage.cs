@@ -10,5 +10,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
 
         public AppliationApprovedPage(ScenarioContext context) : base(context) { }
+
+        public TransferPledgePage ClickBackButton()
+        {
+            NavigateBack();
+            return new TransferPledgePage(context);
+        }
     }
 }

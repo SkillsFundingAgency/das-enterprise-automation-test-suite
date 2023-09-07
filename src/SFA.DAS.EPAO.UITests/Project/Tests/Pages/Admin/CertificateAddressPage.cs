@@ -4,6 +4,8 @@ public class CertificateAddressPage : EPAOAdmin_BasePage
 {
     protected override string PageTitle => $"{PageTitlePrefix} the address that you'd like us to send the certificate to";
 
+    protected override string AccessibilityPageTitle => "the address that you'd like us to send the certificate to";
+
     private string PageTitlePrefix { get; set; }
 
     #region Helpers and Context

@@ -9,6 +9,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
+
+        protected override string AccessibilityPageTitle => "Employer view apprentice full name";
         private static By ViewChangesLink => By.LinkText("View changes");
         private static By ReviewChangesLink => By.LinkText("Review changes");
         private static By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");

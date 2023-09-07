@@ -5,6 +5,8 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
 public class ProviderHomePage : InterimProviderBasePage
 {
+    protected override string AccessibilityPageTitle => "Provider home page";
+
     public static By Identifier => By.CssSelector("#content, #main-content");
 
     protected override string PageTitle => ukprn;
