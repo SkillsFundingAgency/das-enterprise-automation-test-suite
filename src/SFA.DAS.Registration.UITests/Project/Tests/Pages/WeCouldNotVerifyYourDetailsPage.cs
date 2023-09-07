@@ -5,20 +5,20 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class SorryAccountDisabledPage : RegistrationBasePage
+    public class WeCouldNotVerifyYourDetailsPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Sorry";
+        protected override string PageTitle => "We could not verify your details";
 
         #region Locators
         private static By AddViaGGLink => By.LinkText("Try adding your PAYE scheme via Government Gateway");
-        private static By AccountDisabledInfo => By.CssSelector(".govuk-body");
+        private static By AccountDisabledInfo => By.CssSelector(".govuk-inset-text");
         #endregion
 
         #region Constants
-        public const string AccountDisabledInfoMessage = "Due to incorrect attempts, this has been disabled for 30 minutes.";
+        public const string AccountDisabledInfoMessage = "You have attempted to sign in to HMRC with the wrong details too many times.";
         #endregion
 
-        public SorryAccountDisabledPage(ScenarioContext context) : base(context)
+        public WeCouldNotVerifyYourDetailsPage(ScenarioContext context) : base(context)
         {
             MultipleVerifyPage(new List<Func<bool>>
             {
