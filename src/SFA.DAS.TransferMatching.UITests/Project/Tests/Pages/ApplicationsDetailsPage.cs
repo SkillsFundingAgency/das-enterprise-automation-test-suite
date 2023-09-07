@@ -7,6 +7,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     public class ApplicationsDetailsPage : TransferMatchingBasePage
     {
         protected override string PageTitle => $"({GetPledgeId()}) application details";
+
+        protected override string AccessibilityPageTitle => "Pledge application details page";
         protected override By ContinueButton => By.CssSelector("#fund-transfer-accept");
 
         private static By InformationSelector => By.CssSelector("#TruthfulInformation");

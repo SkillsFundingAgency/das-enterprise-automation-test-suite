@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"Confirm details and send request to {changeOfPartyConfig.NewProviderName}";
 
+        protected override string AccessibilityPageTitle => "Confirm details and send request to new provider";
+
         private static By ChangeStartDateLink => By.Id("change-start-date-link");
         private static By ChangeEndDateLink => By.Id("change-end-date-link");
         private static By ChangePriceLink => By.Id("change-price-link");

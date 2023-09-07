@@ -8,6 +8,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
 
+        protected override string AccessibilityPageTitle => "Approve applicaiton page";
+
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By EstimatedCostText => By.CssSelector("#main-content > div:nth-child(3) > p:nth-child(7)");
         private static By ApproveDisclaimerText => By.CssSelector("#approval-content");
