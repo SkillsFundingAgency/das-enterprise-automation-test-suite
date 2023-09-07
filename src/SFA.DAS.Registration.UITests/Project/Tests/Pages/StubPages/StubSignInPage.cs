@@ -11,6 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         protected override bool TakeFullScreenShot => false;
 
+        protected override bool CanAnalyzePage => false;
+
         #region Locators
         private static By IdInput => By.CssSelector(".govuk-input[id='Id']");
         private static By EmailInput => By.CssSelector(".govuk-input[id='Email']");

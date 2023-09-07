@@ -4,6 +4,8 @@ public class TrainingCourseSummaryPage : FATV2BasePage
 {
     protected override string PageTitle => objectContext.GetTrainingCourseName();
 
+    protected override string AccessibilityPageTitle => "Training course name Page";
+
     #region Locators
     private static By LocationTextBox => By.Id("search-location");
     private static By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");

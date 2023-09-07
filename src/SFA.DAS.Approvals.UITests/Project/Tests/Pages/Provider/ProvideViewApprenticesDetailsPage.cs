@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         private static By ViewApprenticeLink => By.PartialLinkText("View");
 
+        protected override string AccessibilityPageTitle => "Provider view apprentice details";
 
         public ProvideViewApprenticesDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "View apprentice details" : $"View {x} apprentices' details") { }
 

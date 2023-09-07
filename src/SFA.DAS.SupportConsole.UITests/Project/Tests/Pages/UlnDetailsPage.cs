@@ -4,6 +4,8 @@ public class UlnDetailsPage : SupportConsoleBasePage
 {
     protected override string PageTitle => cohortDetails.UlnName;
 
+    protected override string AccessibilityPageTitle => "Uln detail page";
+
     protected override By PageHeader => By.CssSelector(".heading-large");
 
     private readonly CohortDetails cohortDetails;

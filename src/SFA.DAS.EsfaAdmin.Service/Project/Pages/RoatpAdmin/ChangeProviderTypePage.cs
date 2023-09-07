@@ -4,6 +4,8 @@ public class ChangeProviderTypePage : ChangeBasePage
 {
     protected override string PageTitle => $"Change provider type for {objectContext.GetProviderName()}";
 
+    protected override string AccessibilityPageTitle => "Change provider type for provider";
+
     private static By OrganisationTypeIdEmployer => By.Id("OrganisationTypeIdEmployer");
 
     public ChangeProviderTypePage(ScenarioContext context) : base(context) { }
