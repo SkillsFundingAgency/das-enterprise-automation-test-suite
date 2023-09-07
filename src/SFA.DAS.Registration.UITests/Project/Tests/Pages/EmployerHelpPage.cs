@@ -9,6 +9,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector("body");
 
+        protected override bool CanAnalyzePage => false;
+
         public EmployerHelpPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader);
     }
 }

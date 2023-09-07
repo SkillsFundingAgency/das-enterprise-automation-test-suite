@@ -4,6 +4,8 @@ public class ChangeOrganisationTypePage : ChangeBasePage
 {
     protected override string PageTitle => $"Change organisation type for {objectContext.GetProviderName()}";
 
+    protected override string AccessibilityPageTitle => "Change organisation type for provider";
+
     public ChangeOrganisationTypePage(ScenarioContext context) : base(context) { }
 
     public ResultsFoundPage ConfirmNewOrganisationType()

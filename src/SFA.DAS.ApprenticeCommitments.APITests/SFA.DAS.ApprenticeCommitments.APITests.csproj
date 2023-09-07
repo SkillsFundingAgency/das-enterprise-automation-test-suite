@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
 	  <RootNamespace>SFA.DAS.ApprenticeCommitments.APITests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
-    <IsPackable>false</IsPackable>
+      <IsPackable>false</IsPackable>
   </PropertyGroup>
 
 	<ItemGroup>

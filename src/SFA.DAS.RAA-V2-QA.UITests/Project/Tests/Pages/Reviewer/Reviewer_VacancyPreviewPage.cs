@@ -7,6 +7,8 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
+        protected override string AccessibilityPageTitle => "QA vacancy title page";
+
         protected override By EmployerName => By.ClassName("govuk-caption-xl");
 
         protected override By EmployerNameInAboutTheEmployerSection => By.XPath("//div[@id='EmployerName']/p");

@@ -6,7 +6,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
     public class ViewTeamMemberPage : RegistrationBasePage
     {
         protected override string PageTitle => registrationDataHelper.FullName;
-        
+
+        protected override string AccessibilityPageTitle => "View team member page";
+
         #region Locators
         private static By ResendInvitationButton => By.Id("resend_invitation");
         private static By CancelInvitationLink => By.LinkText("Cancel invitation");

@@ -14,6 +14,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
     {
         protected override string PageTitle => "You've signed in";
 
+        protected override bool CanAnalyzePage => false;
+
         private static By MainContent => By.CssSelector("[id='main-content']");
 
         protected override By ContinueButton => By.CssSelector("a.govuk-button");

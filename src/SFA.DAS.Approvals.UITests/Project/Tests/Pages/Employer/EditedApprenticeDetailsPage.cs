@@ -6,6 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class EditedApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => editedApprenticeDataHelper.ApprenticeEditedFullName;
+
+        protected override string AccessibilityPageTitle => "Employer view apprentice full name";
+
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         public EditedApprenticeDetailsPage(ScenarioContext context) : base(context) { }
