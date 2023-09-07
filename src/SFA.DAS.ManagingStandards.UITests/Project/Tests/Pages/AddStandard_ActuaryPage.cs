@@ -4,6 +4,8 @@ public class AddAstandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => pageTitle;
 
+    protected override string AccessibilityPageTitle => "Add a standard page";
+
     private readonly string pageTitle;
 
     private static By YesRadio => By.CssSelector("#is-correct-standard-yes");

@@ -6,6 +6,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using Selenium.Axe;
 using SFA.DAS.TestDataExport;
+using System;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -24,9 +25,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         internal void AnalyzePage(string actualPageTitle)
         {
-            if (!ShouldAnalyzePage()) return;
+            //Do not remove this commented code
+            //if (!ShouldAnalyzePage()) return;
 
-            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? "NoPageTitle" : actualPageTitle;
+            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? $"NoPageTitle_{DateTime.Now:HH-mm-ss-fffff}" : actualPageTitle;
+
+            if (ShouldNotAnalyzePageCheckUsingPageTitle(pageTitle)) return;
 
             string counter = _context.Get<ScreenShotTitleGenerator>().GetTitle();
 
@@ -51,8 +55,23 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in {counter} - '{pageTitle}' page - url: {axeResult.Url}");
             }
+
+            SetAccessibilityPageTitle(pageTitle);
+
         }
 
+        private bool ShouldNotAnalyzePageCheckUsingPageTitle(string pageTitle)
+        {
+            var x = _objectContext.GetAccessibilityPageTitles().Contains(pageTitle);
+
+            var message = x ? $"'{pageTitle}' already analyzed." : $"'{pageTitle}' not analyzed.";
+
+            _objectContext.SetDebugInformation(message);
+
+            return x;
+        }
+
+        //Do not delete this method please.
         private bool ShouldAnalyzePage()
         {
             var analyzedPages = _objectContext.GetAccessibilityInformations();
@@ -69,5 +88,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         }
 
         private void SetAccessibilityInformation(string x) => _objectContext.SetAccessibilityInformation(x);
+
+        private void SetAccessibilityPageTitle(string x) => _objectContext.SetAccessibilityPageTitle(x);
     }
 }

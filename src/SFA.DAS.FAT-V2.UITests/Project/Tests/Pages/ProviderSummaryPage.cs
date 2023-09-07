@@ -4,6 +4,8 @@ public class ProviderSummaryPage : FATV2BasePage
 {
     protected override string PageTitle => objectContext.GetProviderName();
 
+    protected override string AccessibilityPageTitle => "Provider summary Page";
+
     #region Locators
     private static By LocationTextBox => By.Id("search-location");
     private static By ViewOtherTrainingProvidersButton => By.Id("btn-view-providers");

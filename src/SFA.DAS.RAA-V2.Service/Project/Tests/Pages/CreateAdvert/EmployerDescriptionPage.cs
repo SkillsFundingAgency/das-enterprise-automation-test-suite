@@ -9,6 +9,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     {
         protected override string PageTitle => $"Information about {objectContext.GetEmployerName()}";
 
+        protected override string AccessibilityPageTitle => "Information about employer page";
+
         private static By EmployerDescription => By.CssSelector("#EmployerDescription");
 
         private static By EmployerWebsiteUrl => By.CssSelector("#EmployerWebsiteUrl");

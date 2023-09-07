@@ -10,6 +10,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}";
+
+        protected override string AccessibilityPageTitle => "Apprentice home page";
+
         private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]");
         private static By UnConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]/..//following-sibling::p");
         private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.ConfirmedCmadSectionTitle}')]");
