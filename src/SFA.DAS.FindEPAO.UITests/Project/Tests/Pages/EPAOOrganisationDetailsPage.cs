@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
@@ -7,6 +6,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     public class EPAOOrganisationDetailsPage : FindEPAOBasePage
     {
         protected override string PageTitle => objectContext.GetEPAOOrganisationName();
+
+        protected override string AccessibilityPageTitle => "EPAO organisation name Page";
 
         public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) { }
 

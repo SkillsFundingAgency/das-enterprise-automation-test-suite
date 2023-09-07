@@ -14,6 +14,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => $"Give feedback to {rAAV2DataHelper.CandidateFullName}";
 
+        protected override string AccessibilityPageTitle => "Give feedback to candidate page";
+
         public ProviderAreYouSureUnSuccessfulPage FeedbackForUnsuccessful()
         {
             var messsage = rAAV2DataHelper.OptionalMessage;

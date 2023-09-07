@@ -271,7 +271,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(InvalidErrorMessage2ndAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
             EnterInvalidAornAndPaye();
 
-            _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context).ClickAddViaGGLink();
+            _usingYourGovtGatewayDetailsPage = new WeCouldNotVerifyYourDetailsPage(_context).ClickAddViaGGLink();
         }
 
         [Then(@"Employer is able to complete registration through GG route")]

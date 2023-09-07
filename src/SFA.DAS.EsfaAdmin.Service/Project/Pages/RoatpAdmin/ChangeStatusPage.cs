@@ -4,6 +4,8 @@ public class ChangeStatusPage : ChangeBasePage
 {
     protected override string PageTitle => $"Change status for {objectContext.GetProviderName()}";
 
+    protected override string AccessibilityPageTitle => "Change status for provider";
+
     private static By ActiveStatus => By.CssSelector("label[for='status-1']");
 
     private static By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");

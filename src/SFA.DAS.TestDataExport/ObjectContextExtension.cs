@@ -12,12 +12,14 @@ namespace SFA.DAS.TestDataExport
         private const string AfterScenarioExceptions = "afterscenarioexceptions";
         private const string DebugInformations = "testdebuginformations";
         private const string AccessibilityInformations = "accessibilityinformations";
+        private const string AccessibilityPageTitle = "accessibilitypagetitle";
         #endregion
 
         internal static void SetTestDataList(this ObjectContext objectContext)
         {
             objectContext.SetDebugInformations();
             objectContext.SetAccessibilityInformations();
+            objectContext.SetAccessibilityPageTitles();
             objectContext.SetAfterStepInformations();
             objectContext.SetAfterScenarioExceptions();
             objectContext.SetAfterScenarioTestDataTearDown();
@@ -57,6 +59,15 @@ namespace SFA.DAS.TestDataExport
         public static void SetAccessibilityInformation(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityInformations().Add($"-> {value}");
 
         public static FrameworkList<string> GetAccessibilityInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityInformations);
+        #endregion
+
+        #region AccessibilityPageTitle
+
+        private static void SetAccessibilityPageTitles(this ObjectContext objectContext) => objectContext.Set(AccessibilityPageTitle, new FrameworkList<string>());
+
+        public static void SetAccessibilityPageTitle(this ObjectContext objectContext, string value) => objectContext.GetAccessibilityPageTitles().Add(value);
+
+        public static FrameworkList<string> GetAccessibilityPageTitles(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AccessibilityPageTitle);
         #endregion
 
     }

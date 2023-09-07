@@ -8,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
+
+        protected override string AccessibilityPageTitle => "Provider view apprentice full name";
         private static By ReviewChangesLink => By.LinkText("Review changes");
         private static By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private static By ViewIlrMismatchDetailsLink => By.LinkText("View details");

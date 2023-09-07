@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
     {
         public SubmitApplicationHelper() { }
 
-        public HomePage SubmitApplication(CreateATransfersApplicationPage page)
+        public HomePage SubmitApplication(CreateATransfersApplicationPage page, string pledgeId = "")
         {
             return GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
@@ -16,7 +16,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
                 .EnterBusinessDetailsAndContinue()
                 .VerifyStatusIsComplete()
                 .GoToAboutYourApprenticeshipPage()
-                .EnterMoreDetailsAndContinue()
+                .EnterMoreDetailsAndContinue(pledgeId)
                 .VerifyStatusIsComplete()
                 .GoToContactDetailsPage()
                 .EnterContactDetailsAndContinue()

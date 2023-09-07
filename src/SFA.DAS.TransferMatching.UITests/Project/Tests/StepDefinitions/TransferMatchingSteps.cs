@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -8,12 +9,15 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+using SFA.DAS.TransferMatching.APITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
+using System;
+using System.Threading;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -26,24 +30,32 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
         private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
+        private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly AccountSignOutHelper _accountSignOutHelper;
         private string _sender;
         private string _receiver;
         private bool _isAnonymousPledge;
+        private bool _isImmediateAutoApprovalPledge;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
+        private readonly TransferMatchingJobsHelper _transferMatchingJobsHelper;
 
         public TransferMatchingSteps(ScenarioContext context)
         {
             _context = context;
             _isAnonymousPledge = false;
+            _isImmediateAutoApprovalPledge = false;
             _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
             _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _tabHelper = context.Get<TabHelper>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(context);
+            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(context.Get<DbConfig>());
+            _transferMatchingJobsHelper = new TransferMatchingJobsHelper(context);
         }
 
         [Given(@"the levy employer who are currently sending transfer funds login")]
@@ -86,6 +98,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [When(@"the non levy employer applies for the pledge")]
         public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
+        [Then(@"the non levy employer can apply for the pledge but is not immediately autoapproved")]
+        public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
+        {
+            _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
+            _transferMatchingStepsHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
+            OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+        }
+
         [Then(@"the non levy employer cannot exceed the available pledge funding")]
         public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
             => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "Cost of training exceeds the amount remaining in this pledge");
@@ -102,17 +122,40 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can approve the application")]
         public void ThenTheLevyEmployerCanApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
 
+        [Then(@"the levy employer can approve the application and verify costing model")]
+        public void ThenTheLevyEmployerCanApproveTheApplicationAndVerifyCostingModel() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication().ClickBackButton().VerifyCostingModel();
+
         [Then(@"the levy employer can auto approve the application")]
         public void ThenTheLevyEmployerCanAutoApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().AutoApproveApplication();
 
         [Then(@"the levy employer can reject the application")]
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
+        [Then(@"the levy employer can view the approved application")]
+        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING ACCEPTANCE BY APPLICANT");
+
+        [Then(@"the levy employer can view the awaiting your approval application")]
+        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
+
         [Then(@"the non levy employer can accept funding")]
         public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
 
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
+
+        [Then(@"the non levy employer can open approved pledge application")]
+        public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication()
+        {
+            _employerHomePageStepsHelper.GotoEmployerHomePage();
+            OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+        }
+
+        [Then(@"the non levy employer can open awaiting approval pledge application")]
+        public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication()
+        {
+            _employerHomePageStepsHelper.GotoEmployerHomePage();
+            OpenPledgeApplication("AWAITING APPROVAL");
+        }
 
         [Then(@"the non levy employer can withdraw funding before approval")]
         public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
@@ -157,7 +200,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
         {
-            var page = CreateATransferPledge(true, false, false);
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -169,11 +212,47 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeDetail();
         }
 
+        [Given(@"the levy employer can create pledge for immediate approval using default criteria")]
+        [Then(@"the levy employer can create pledge for immediate approval using default criteria")]
+        public void TheLevyEmployerCanCreatePledgeForImmediateApprovalUsingDefaultCriteria()
+        {
+            _isImmediateAutoApprovalPledge = true;
+
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();
+        }
+
+
+        [Given(@"the levy employer can create pledge using non default criteria and immediate approval")]
+        [Then(@"the levy employer can create pledge using non default criteria and immediate approval")]
+        public void TheLevyEmployerCanCreatePledgeUsingNonDefaultCriteriaWithImmediateApproval()
+        {
+            _isImmediateAutoApprovalPledge = true;
+            _isAnonymousPledge = true;
+
+            _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
+                .GoToAddtheLocationPage().EnterLocation()
+                .GoToChoosetheSectorPage().SelectSetorAndContinue()
+                .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
+                .GoToChooseTheLevelPage().SelectLevelAndContinue()
+                .ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();           
+        }
+      
         [Given(@"the levy employer can create pledge using minimal funding")]
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
         {
-            var page = CreateATransferPledge(true, false, true);
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, true);
 
             StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
             StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
@@ -190,7 +269,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _isAnonymousPledge = true;
 
-            _pledgeVerificationPage = CreateATransferPledge(false, false, false)
+            _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
                  .GoToAddtheLocationPage().EnterLocation()
                  .GoToChoosetheSectorPage().SelectSetorAndContinue()
                  .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
@@ -199,7 +278,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             SetPledgeDetail();
         }
-
+      
         [Then(@"the levy employer can sort the pledges")]
         public void TheLevyEmployerCanSortThePledges() => SortApplications();
 
@@ -235,8 +314,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
 
         [Then(@"the levy employer can view pleged amount")]
-        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
-
+        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();              
+   
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
@@ -253,6 +332,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext.SetNoOfApprentices(1);
         }
 
+        [Then(@"wait for 6 weeks")]
+        public void ApplicationIsApprovedAfter6Weeks()
+        {
+            //update created on date to 6 weeks later
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToToday(_objectContext.GetPledgeDetail().PledgeId);
+            Thread.Sleep(TimeSpan.FromSeconds(10));
+            // trigger autoapproval job
+            _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
+        }
+        
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -299,13 +388,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
 
-        private void CanApplyForTransferOppurtunity(bool canApply) => Assert.AreEqual(canApply, NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+        private void CanApplyForTransferOppurtunity(bool canApply)
+        {
+            Assert.That(NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), Is.EqualTo(canApply), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+        }
 
         private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
         {
             if (navigate) new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
 
-            Assert.AreEqual(canCreateTransferPledge, NavigateToTransferMatchingPage().CanCreateTransferPledge(), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
+            Assert.That(NavigateToTransferMatchingPage().CanCreateTransferPledge(), Is.EqualTo(canCreateTransferPledge), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
         }
 
         private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
@@ -363,9 +455,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            _transferMatchingStepsHelper.SubmitApplication(page);
+            _transferMatchingStepsHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge? "": _objectContext.GetPledgeDetail().PledgeId);
 
-            return OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication(_isImmediateAutoApprovalPledge? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
         }
 
         private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
@@ -407,7 +499,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             LoginAsSender(login);
 
-            CreateATransferPledge(true, false, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
+            CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
         }
 
         private void LoginAsReceiver(EasAccountUser login)
