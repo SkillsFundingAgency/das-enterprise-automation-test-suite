@@ -1,7 +1,11 @@
 ﻿Feature: TM_29_CreateDelayedTransferPledgeApprovedAfter6Weeks
 
+//this test cannot be run locally against preprod environment! It is due to additional security restrictions in place which prevents your machine to access Azure function.
+//Additional whitelisting has been added in the pipeline so that remote test agent's ip address is whitelisted to access this function
+
 @regression
 @transfermatching
+@ignorelocalexecutioninpp
 Scenario:TM_29_Create Delayed Transfer Pledge and Approve After 6 Weeks
 	Given the levy employer logins using existing transfer matching account
 	Then the levy employer can create pledge using default criteria

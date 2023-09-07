@@ -8,7 +8,7 @@ namespace SFA.DAS.TransferMatching.APITests.Project
 {
     public class TransferMatchingJobs_AutoApprovalClient : OuterJobs_BaseApiRestClient
     {
-        public TransferMatchingJobs_AutoApprovalClient(ObjectContext objectContext, TransferMatchingJobsConfig config) : base(objectContext, config.ApplicationsWithAutomaticApprovalCode) { }
+        public TransferMatchingJobs_AutoApprovalClient(ObjectContext objectContext, TransferMatchingJobsConfig config) : base(objectContext, config.ApplicationsWithAutomaticApproval_Code) { }
 
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.LevyTransferMatchingJobs_BaseUrl;
 
