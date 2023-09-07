@@ -6,7 +6,9 @@ public abstract class RequestAndResponseCollectionHelper
     protected readonly RestResponse _response;
     protected readonly RestRequest _request;
     protected readonly RestClient _client;
-    
+
+    protected static string HashedValue => "********";
+
     public RequestAndResponseCollectionHelper(RestClient client, RestRequest request, RestResponse response)
     {
         _client = client;
@@ -28,7 +30,7 @@ public abstract class RequestAndResponseCollectionHelper
 
     private string GetResponseUri() => $"ResponseUri: {GetAbsoluteUri(_response.ResponseUri?.AbsoluteUri)}{Environment.NewLine}";
 
-    private string GetRequestUri() => $"RequestUri: {(_client.BuildUri(_request).AbsoluteUri)}{Environment.NewLine}";
+    private string GetRequestUri() => $"RequestUri: {GetAbsoluteUri(_client.BuildUri(_request).AbsoluteUri)}{Environment.NewLine}";
 
     protected string GetResponseContent() => GetBody(_response.Content);
 
@@ -43,7 +45,8 @@ public abstract class RequestAndResponseCollectionHelper
         if (absoluteUri.ContainsCompareCaseInsensitive("code="))
         {
             var index = absoluteUri.IndexOf("=");
-            absoluteUri = absoluteUri[..(index + 1)];
+            absoluteUri = absoluteUri[..(index + 5)];
+            absoluteUri = $"{absoluteUri}{HashedValue}";
         }
 
         return absoluteUri;

@@ -35,7 +35,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_30_DelayedAutoApprovalNotFullMatch", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_30_DelayedAutoApprovalNotFullMatch", @"//this test cannot be run locally against preprod environment! It is due to additional security restrictions in place which prevents your machine to access Azure function.
+//Additional whitelisting has been added in the pipeline so that remote test agent's ip address is whitelisted to access this function", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,14 +78,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("TM_30_DelayedAutoApproval with non-100% match is not autoapproved")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfermatching")]
+        [NUnit.Framework.CategoryAttribute("ignorelocalexecutioninpp")]
         public void TM_30_DelayedAutoApprovalWithNon_100MatchIsNotAutoapproved()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "transfermatching"};
+                    "transfermatching",
+                    "ignorelocalexecutioninpp"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_30_DelayedAutoApproval with non-100% match is not autoapproved", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,22 +97,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 10
  testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 11
  testRunner.Then("the levy employer can create anonymous pledge using non default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 8
+#line 12
  testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 13
  testRunner.When("the receiver levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 14
  testRunner.Then("wait for 6 weeks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 15
  testRunner.And("the non levy employer can open awaiting approval pledge application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
