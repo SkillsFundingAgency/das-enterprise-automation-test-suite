@@ -2,5 +2,5 @@
 
 public class TransferMatchingJobsConfig
 {
-    public string ApplicationsWithAutomaticApprovalCode { get; set; } 
+    public string ApplicationsWithAutomaticApproval_Code { get; set; } 
 }
