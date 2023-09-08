@@ -20,13 +20,15 @@ public class AANConfigurationSetup
 
         _context.SetEasLoginUser(new List<EasAccountUser>
         {
-            configSection.GetConfigSection<AanEWOUser>()
+            configSection.GetConfigSection<AanEmployerUser>(),
+            configSection.GetConfigSection<AanEmployerOnBoardedUser>()
         });
 
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<AanUser>(),
-            configSection.GetConfigSection<AanNonBetaUser>(),
+            configSection.GetConfigSection<AanApprenticeUser>(),
+            configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
+            configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
         });
 
         _context.SetAanEsfaAdminConfig(configSection.GetConfigSection<AanEsfaAdminConfig>());

@@ -33,7 +33,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         [Given(@"an apprentice logs into the AAN portal")]
         public void GivenAnApprenticeLogsIntoTheAANPortal()
         {
-            beforeYouStartPage = GetSignInPage().SubmitValidUserDetails(context.Get<AanUser>());
+            beforeYouStartPage = GetSignInPage().SubmitValidUserDetails(context.Get<AanApprenticeUser>());
         }
 
         [When(@"the user provides all the required details for the onboarding journey")]

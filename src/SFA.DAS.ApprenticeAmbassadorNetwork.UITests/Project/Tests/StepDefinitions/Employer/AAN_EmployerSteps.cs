@@ -29,7 +29,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         [Given(@"an employer without onboarding logs into the AAN portal")]
         public void AnEmployerWithoutOnboardingLogsIntoTheAANPortal()
         {
-            var username = (context.GetUser<AanEWOUser>());
+            var username = (context.GetUser<AanEmployerUser>());
             aANSqlHelper.ResetEmployerOnboardingJourney(username.Username);
             new StubSignInPage(context).Login(username).Continue();
 

@@ -3,7 +3,6 @@
 @aan
 @aanonboarding
 @aanaprentice
-@aan01
 @aanapprenticeonboardingreset
 @regression
 Scenario: AAN_A_01A User successfully completes the Apprentice onboarding process and verifies the Hub page
@@ -15,7 +14,6 @@ Scenario: AAN_A_01A User successfully completes the Apprentice onboarding proces
 @aan
 @aanonboarding
 @aanaprentice
-@aan02
 @aanapprenticeonboardingreset
 @regression
 Scenario:AAN_A_01B User without manager permission encounters a shutter page
@@ -26,7 +24,6 @@ Scenario:AAN_A_01B User without manager permission encounters a shutter page
 @aan
 @aanonboarding
 @aanaprentice
-@aan03
 @aanapprenticeonboardingreset
 @regression
 Scenario:AAN_A_01C User completes all onboarding details and can modify answers on the "Check Your Answer" page
@@ -39,7 +36,6 @@ Scenario:AAN_A_01C User completes all onboarding details and can modify answers 
 @aan
 @aanonboarding
 @aanaprentice
-@aan04
 @aanapprenticeonboardingreset
 @regression
 Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub page after signing in
@@ -47,72 +43,3 @@ Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub pa
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
     Then the user can sign back in to the AAN platform
-
-@aan
-@aanevents
-@aan06
-@aanapprenticeonboardingreset
-@regression
-@aanaprentice
-Scenario: AAN_A_01E User should be able to successfully signup and cancel the attendacne for an event
-    Given an apprentice logs into the AAN portal
-	When the user provides all the required details for the onboarding journey
-    Then the Apprentice onboarding process should be successfully completed
-    And the user should be redirected to the Hub page
-    And the user should be able to successfuly signup for a future event
-    And the user should be able to successfuly Cancel the attendance for a signed up event
-
-@aan
-@aaneventsfilters
-@aan07
-@aanapprenticeonboardingreset
-@regression
-@aanaprentice
-Scenario: AAN_A_01F User should be able to successfully Filter Events by date 
-    Given an apprentice logs into the AAN portal
-	When the user provides all the required details for the onboarding journey
-    Then the Apprentice onboarding process should be successfully completed
-    And the user should be redirected to the Hub page
-    And the user should be able to successfuly filter events by date
-
-
-@aan
-@aaneventsfilters
-@aan08
-@aanapprenticeonboardingreset
-@regression
-@aanaprentice
-Scenario: AAN_A_01G User should be able to successfully Filter Events by Type 
-    Given an apprentice logs into the AAN portal
-	When the user provides all the required details for the onboarding journey
-    Then the Apprentice onboarding process should be successfully completed
-    And the user should be redirected to the Hub page
-    And the user should be able to successfuly filter events by event format
-
-
-@aan
-@aaneventsfilters
-@aan09
-@aanapprenticeonboardingreset
-@regression
-@aanaprentice
-Scenario: AAN_A_01H User should be able to successfully Filter Events by Event type 
-    Given an apprentice logs into the AAN portal
-	When the user provides all the required details for the onboarding journey
-    Then the Apprentice onboarding process should be successfully completed
-    And the user should be redirected to the Hub page
-    And the user should be able to successfuly filter events by event type
-
-   
-@aan
-@aaneventsfilters
-@aan10
-@aanapprenticeonboardingreset
-@regression
-@aanaprentice
-Scenario: AAN_A_01I User should be able to successfully Filter Events by multiple combination of filters
-    Given an apprentice logs into the AAN portal
-	When the user provides all the required details for the onboarding journey
-    Then the Apprentice onboarding process should be successfully completed
-    And the user should be redirected to the Hub page
-    And the user should be able to successfuly filter events by multiple combination of filters

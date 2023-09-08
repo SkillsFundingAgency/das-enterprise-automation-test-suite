@@ -11,6 +11,5 @@
             formCompletionHelper.ClickLinkByText("Events hub");
             return new EventsHubPage(context);
         }
-
     }
 }

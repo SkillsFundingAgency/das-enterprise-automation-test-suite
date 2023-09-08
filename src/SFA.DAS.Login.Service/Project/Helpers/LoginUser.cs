@@ -58,7 +58,9 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EmployerConnectedToPortableFlexiJobProvider : EasAccountUser { }
 
-    public class AanEWOUser : EasAccountUser { }
+    public class AanEmployerUser : EasAccountUser { }
+
+    public class AanEmployerOnBoardedUser : EasAccountUser { }
 
     #endregion
 
@@ -119,11 +121,17 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class SupportToolsSCSUser : NonEasAccountUser { }
 
+    #region AanApprenticeUser
+
     public abstract class AanBaseUser : NonEasAccountUser { }
 
-    public class AanUser : AanBaseUser { }
+    public class AanApprenticeUser : AanBaseUser { }
 
-    public class AanNonBetaUser : AanBaseUser { }
+    public class AanApprenticeNonBetaUser : AanBaseUser { }
+
+    public class AanApprenticeOnBoardedUser : AanBaseUser { }
+
+    #endregion
 
     #endregion
 
