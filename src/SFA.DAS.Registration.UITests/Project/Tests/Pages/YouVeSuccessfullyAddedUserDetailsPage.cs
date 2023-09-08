@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -11,6 +12,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Continue();
             return new CreateYourEmployerAccountPage(context);
+        }
+
+        public InvitationsPage ClickContinueToInvitationsPage()
+        {
+            Continue();
+            return new InvitationsPage(context);
         }
     }
 }

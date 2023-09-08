@@ -20,10 +20,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             return new ConfirmYourUserDetailsPage(context);
         }
 
-        public InvitationsPage EnterNameAndGoToInvitationsPage()
+        public YouVeSuccessfullyAddedUserDetailsPage InvitedUserEntersName()
         {
             EnterNameAndContinue();
-            return new InvitationsPage(context);
+            return new YouVeSuccessfullyAddedUserDetailsPage(context);
         }
 
         private void EnterNameAndContinue()
