@@ -47,8 +47,8 @@ Scenario:AAN_E_01B User completes all onboarding details and can modify answers 
 #	When the user provides all the required details for the onboarding journey
 #    Then the Apprentice onboarding process should be successfully completed
 #    And the user should be redirected to the Hub page
-#    And the user should be able to successfuly signup for a future event
-#    And the user should be able to successfuly Cancel the attendance for a signed up event
+#    And the user should be able to successfully signup for a future event
+#    And the user should be able to successfully Cancel the attendance for a signed up event
 #
 #@aan
 #@aaneventsfilters
@@ -60,7 +60,7 @@ Scenario:AAN_E_01B User completes all onboarding details and can modify answers 
 #	When the user provides all the required details for the onboarding journey
 #    Then the Apprentice onboarding process should be successfully completed
 #    And the user should be redirected to the Hub page
-#    And the user should be able to successfuly filter events by date
+#    And the user should be able to successfully filter events by date
 #
 #
 #@aan
@@ -73,7 +73,7 @@ Scenario:AAN_E_01B User completes all onboarding details and can modify answers 
 #	When the user provides all the required details for the onboarding journey
 #    Then the Apprentice onboarding process should be successfully completed
 #    And the user should be redirected to the Hub page
-#    And the user should be able to successfuly filter events by event format
+#    And the user should be able to successfully filter events by event format
 #
 #
 #@aan
@@ -86,7 +86,7 @@ Scenario:AAN_E_01B User completes all onboarding details and can modify answers 
 #	When the user provides all the required details for the onboarding journey
 #    Then the Apprentice onboarding process should be successfully completed
 #    And the user should be redirected to the Hub page
-#    And the user should be able to successfuly filter events by event type
+#    And the user should be able to successfully filter events by event type
 #
 #   
 #@aan
@@ -99,4 +99,4 @@ Scenario:AAN_E_01B User completes all onboarding details and can modify answers 
 #	When the user provides all the required details for the onboarding journey
 #    Then the Apprentice onboarding process should be successfully completed
 #    And the user should be redirected to the Hub page
-#    And the user should be able to successfuly filter events by multiple combination of filters
+#    And the user should be able to successfully filter events by multiple combination of filters

@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SignUpConfirmationPage : SignInPage
+    public class SignUpConfirmationPage : AanBasePage
     {
         protected override string PageTitle => "You have successfully signed up to this event";
 

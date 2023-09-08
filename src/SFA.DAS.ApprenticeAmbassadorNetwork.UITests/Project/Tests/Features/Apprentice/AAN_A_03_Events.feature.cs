@@ -74,13 +74,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_A_03_1 User should be able to successfully signup and cancel the attendance f" +
-            "or an event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_03_A Apprentice signup and cancel the attendance for an event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanevents")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_A_03_1UserShouldBeAbleToSuccessfullySignupAndCancelTheAttendanceForAnEvent()
+        public void AAN_A_03_AApprenticeSignupAndCancelTheAttendanceForAnEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -88,8 +87,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
                     "aanaprentice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03_1 User should be able to successfully signup and cancel the attendance f" +
-                    "or an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03_A Apprentice signup and cancel the attendance for an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -104,23 +102,23 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
-    testRunner.Then("the user should be able to successfuly signup for a future event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the user should be able to successfully signup for a future event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
-    testRunner.And("the user should be able to successfuly Cancel the attendance for a signed up even" +
-                        "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the user should be able to successfully Cancel the attendance for a signed up eve" +
+                        "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_A_03_2 User should be able to successfully Filter Events by date")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_03_B Apprentice filter events")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanevents")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_A_03_2UserShouldBeAbleToSuccessfullyFilterEventsByDate()
+        public void AAN_A_03_BApprenticeFilterEvents()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -128,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "aanaprentice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03_2 User should be able to successfully Filter Events by date", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03_B Apprentice filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -143,17 +141,20 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 19
-    testRunner.Then("the user should be able to successfuly filter events by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the user should be able to successfully filter events by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 20
-    testRunner.And("the user should be able to successfuly filter events by event format", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the user should be able to successfully filter events by event format", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
-    testRunner.And("the user should be able to successfuly filter events by event type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the user should be able to successfully filter events by event type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
-    testRunner.And("the user should be able to successfuly filter events by multiple combination of f" +
-                        "ilters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the user should be able to successfully filter events by regions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 23
+    testRunner.And("the user should be able to successfully filter events by multiple combination of " +
+                        "filters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

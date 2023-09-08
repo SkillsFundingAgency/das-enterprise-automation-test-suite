@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class EventsHubPage : SignInPage
+    public class EventsHubPage : AanBasePage
     {
         protected override string PageTitle => "Events hub";
 

@@ -5,26 +5,17 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Employer
 {
-    [Binding]
-    public class AAN_EmployerSteps
+
+    [Binding, Scope(Tag = "@aanemployer")]
+    public class AAN_EmployerSteps : AAN_E_BaseSteps
     {
-        private readonly ScenarioContext context;
-        private readonly ObjectContext objectContext;
-
         private EmployerAmbassadorApplicationPage employerAmbassadorApplicationPage;
+
         private Employer_CheckTheInformationPage employer_CheckTheInformationPage;
+
         private ApplicationSubmitted_EmployerPage applicationSubmitted_EmployerPage;
-        private AANSqlHelper aANSqlHelper;
 
-
-
-        public AAN_EmployerSteps(ScenarioContext context)
-        {
-            this.context = context;
-
-            objectContext = context.Get<ObjectContext>();
-            aANSqlHelper = context.Get<AANSqlHelper>();
-        }
+        public AAN_EmployerSteps(ScenarioContext context) : base(context) { }
 
         [Given(@"an employer without onboarding logs into the AAN portal")]
         public void AnEmployerWithoutOnboardingLogsIntoTheAANPortal()
@@ -75,9 +66,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                 .Add_ProjectManageAndContinue()
                 .ChangePreviousEngagement()
                 .NoHaveEngagedWithAmbassadorAndContinue();
-
-
         }
-
     }
 }

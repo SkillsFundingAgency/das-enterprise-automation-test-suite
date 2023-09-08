@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class EventPage : SignInPage
+    public class EventPage : AanBasePage
     {
         protected override string PageTitle => "";
 

@@ -1,50 +1,10 @@
-﻿using System;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SearchNetworkEventsPage : AanBasePage
+    public class SearchNetworkEventsPage : SearchEventsBasePage
     {
         protected override string PageTitle => "Search network events";
 
-        private static By FromDateField => By.Id("fromDate");
-        private static By ToDateField => By.Id("toDate");
-        private static By ApplyFilterButton => By.Id("filters-submit");
-        private static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
-        private static By InpersonCheckBox => By.XPath("//input[contains(@value,'InPerson')]");
-        private static By OnlineCheckBox => By.XPath("//input[contains(@value,'Online')]");
-        private static By HybridCheckBox => By.XPath("//input[contains(@value,'Hybrid')]");
-        private static By InpersonSelectedFilter => By.XPath("//a[contains(@title,'In person')]");
-        private static By TrainingEventSelectedFilter => By.XPath("//a[contains(@title,'Training event')]");
-        private static By HybridSelectedFilter => By.XPath("//a[contains(@title,'Hybrid')]");
-        private static By OnlineSelectedFilter => By.XPath("//a[contains(@title,'Online')]");
-        private static By TrainingEventCheckbox => By.XPath("//input[contains(@value,'6')]");
-
-        private static string DateFormat => Configurator.IsVstsExecution ? "MM-dd-yyyy" : "dd-MM-yyyy";
-
-        public SearchNetworkEventsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public SearchNetworkEventsPage FilterEventByTomorrow()
-        {
-            DateTime tomorrow = DateTime.Now.AddDays(1);
-            string formattedDate = tomorrow.ToString(DateFormat);
-            formCompletionHelper.EnterText(FromDateField, formattedDate);
-            formCompletionHelper.ClickElement(ApplyFilterButton);
-            return this;
-        }
-
-        public SearchNetworkEventsPage FilterEventByOneMonth()
-        {
-            string formattedDate = DateTime.Now.AddDays(1).ToString(DateFormat);
-
-            string formattedEndDate = DateTime.Now.AddDays(30).ToString(DateFormat);
-
-            formCompletionHelper.EnterText(FromDateField, formattedDate);
-            formCompletionHelper.EnterText(ToDateField, formattedEndDate);
-
-            formCompletionHelper.ClickElement(ApplyFilterButton);
-
-            return this;
-        }
+        public SearchNetworkEventsPage(ScenarioContext context) : base(context) { }
 
         public EventPage ClickOnFirstEventLink()
         {
@@ -52,62 +12,80 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
             return new EventPage(context);
         }
 
-        public string GetTextOfFirstEventLink()
+        public new SearchNetworkEventsPage FilterEventByTomorrow()
         {
-            return pageInteractionHelper.GetText(FirstEventLink);
-        }
-
-        public SearchNetworkEventsPage FilterEventByEventType_InPerson()
-        {
-            formCompletionHelper.SelectCheckbox(InpersonCheckBox);
-            formCompletionHelper.ClickElement(ApplyFilterButton);
-            return this;
-        }
-        public SearchNetworkEventsPage FilterEventByEventType_TrainingEvent()
-        {
-            formCompletionHelper.SelectCheckbox(TrainingEventCheckbox);
-            formCompletionHelper.ClickElement(ApplyFilterButton);
+            base.FilterEventByTomorrow();
             return this;
         }
 
-        public SearchNetworkEventsPage FilterEventByEventType_Online()
+        public new SearchNetworkEventsPage FilterEventByOneMonth()
         {
-            formCompletionHelper.SelectCheckbox(OnlineCheckBox);
-            formCompletionHelper.ClickElement(ApplyFilterButton);
+            base.FilterEventByOneMonth();
             return this;
         }
 
-        public SearchNetworkEventsPage FilterEventByEventType_Hybrid()
+        public new SearchNetworkEventsPage FilterEventByEventFormat_InPerson()
         {
-            formCompletionHelper.SelectCheckbox(HybridCheckBox);
-            formCompletionHelper.ClickElement(ApplyFilterButton);
+            base.FilterEventByEventFormat_InPerson();
             return this;
         }
 
-        public SearchNetworkEventsPage ClearAllFilters()
+        public new SearchNetworkEventsPage FilterEventByEventFormat_Online()
         {
-            formCompletionHelper.ClickLinkByText("Clear");
+            base.FilterEventByEventFormat_Online();
             return this;
         }
 
-        public SearchNetworkEventsPage VerifyEventType_Inperson_Filter()
+        public new SearchNetworkEventsPage FilterEventByEventFormat_Hybrid()
         {
-            pageInteractionHelper.IsElementDisplayed(InpersonSelectedFilter);
+            base.FilterEventByEventFormat_Hybrid();
             return this;
         }
-        public SearchNetworkEventsPage VerifyEventType_TrainingEvent_Filter()
+
+        public new SearchNetworkEventsPage FilterEventByEventType_TrainingEvent()
         {
-            pageInteractionHelper.IsElementDisplayed(TrainingEventSelectedFilter);
+            base.FilterEventByEventType_TrainingEvent();
             return this;
         }
-        public SearchNetworkEventsPage VerifyEventType_Online_Filter()
+
+        public new SearchNetworkEventsPage FilterEventByEventRegion_London()
         {
-            pageInteractionHelper.IsElementDisplayed(OnlineSelectedFilter);
+            base.FilterEventByEventRegion_London();
             return this;
         }
-        public SearchNetworkEventsPage VerifyEventType_Hybrid_Filter()
+
+        public new SearchNetworkEventsPage ClearAllFilters()
         {
-            pageInteractionHelper.IsElementDisplayed(HybridSelectedFilter);
+            base.ClearAllFilters();
+            return this;
+        }
+        public new SearchNetworkEventsPage VerifyEventType_TrainingEvent_Filter()
+        {
+            base.VerifyEventType_TrainingEvent_Filter();
+            return this;
+        }
+
+        public new SearchNetworkEventsPage VerifyEventFormat_Inperson_Filter()
+        {
+            base.VerifyEventFormat_Inperson_Filter();
+            return this;
+        }
+
+        public new SearchNetworkEventsPage VerifyEventFormat_Online_Filter()
+        {
+            base.VerifyEventFormat_Online_Filter();
+            return this;
+        }
+
+        public new SearchNetworkEventsPage VerifyEventFormat_Hybrid_Filter()
+        {
+            base.VerifyEventFormat_Hybrid_Filter();
+            return this;
+        }
+
+        public new SearchNetworkEventsPage VerifyEventRegion_London_Filter()
+        {
+            base.VerifyEventRegion_London_Filter();
             return this;
         }
 

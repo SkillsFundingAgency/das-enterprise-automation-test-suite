@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V114.Debugger;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport;
@@ -198,7 +199,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return IsElementDisplayed(locator);
         }
 
-        public bool IsElementDisplayed(By locator) => WithoutImplicitWaits(() => _webDriver.FindElement(locator).Displayed);
+        public bool IsElementDisplayed(By locator) => WithoutImplicitWaits(() => 
+        {
+            static string text(bool a) => a ? "displayed" : "not displayed";
+
+            var x = _webDriver.FindElement(locator).Displayed;
+
+            SetDebugInformation( $"Verified {locator} is {text(x)}");
+
+            return x;
+        });
 
         public T WithoutImplicitWaits<T>(Func<T> func)
         {

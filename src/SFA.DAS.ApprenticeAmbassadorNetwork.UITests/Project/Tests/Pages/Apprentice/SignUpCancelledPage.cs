@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SignUpCancelledPage : SignInPage
+    public class SignUpCancelledPage : AanBasePage
     {
         protected override string PageTitle => "You have successfully cancelled your attendance at this event";
 

@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 
-public class ApplicationSubmittedPage : SignInPage
+public class ApplicationSubmittedPage : AanBasePage
 {
     protected override string PageTitle => "Application submitted";
 

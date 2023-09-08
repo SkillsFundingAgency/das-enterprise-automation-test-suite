@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class BeforeYouStartPage : SignInPage
+    public class BeforeYouStartPage : AanBasePage
     {
         protected override string PageTitle => "Apply to become an Apprenticeship Ambassador";
 

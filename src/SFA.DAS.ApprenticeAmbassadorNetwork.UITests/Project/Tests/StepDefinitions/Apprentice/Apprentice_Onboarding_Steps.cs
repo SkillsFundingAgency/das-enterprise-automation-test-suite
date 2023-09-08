@@ -1,34 +1,11 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
-using SFA.DAS.Login.Service.Project.Helpers;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice
 {
-
-    [Binding]
-    public class AAN_Onboarding_Steps
+    [Binding, Scope(Tag = "@aanaprentice")]
+    public class Apprentice_Onboarding_Steps : Apprentice_BaseSteps
     {
-        private readonly ScenarioContext context;
-
-        private readonly ObjectContext objectContext;
-
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
-
-        private BeforeYouStartPage beforeYouStartPage;
-
-        private CheckYourAnswersPage checkYourAnswersPage;
-
-        private ApplicationSubmittedPage applicationSubmittedPage;
-
-        private ShutterPage shutterPage;
-
-        public AAN_Onboarding_Steps(ScenarioContext context)
-        {
-            this.context = context;
-
-            objectContext = context.Get<ObjectContext>();
-
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
-        }
+        public Apprentice_Onboarding_Steps(ScenarioContext context) : base(context) { }
 
         [Given(@"an apprentice logs into the AAN portal")]
         public void GivenAnApprenticeLogsIntoTheAANPortal()
@@ -89,7 +66,5 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 
             GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
         }
-
-        private SignInPage GetSignInPage() => new(context);
     }
 }
