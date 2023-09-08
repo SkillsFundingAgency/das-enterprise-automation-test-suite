@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("a User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
  testRunner.And("the User adds Invalid PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

@@ -33,10 +33,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
             Continue();
         }
 
-        public CreateYourEmployerAccountPage DoNotEnterNameAndContinue()
+        public ConfirmYourUserDetailsPage DoNotEnterNameAndContinue()
         {
             Continue();
-            return new CreateYourEmployerAccountPage(context);
+            return new ConfirmYourUserDetailsPage(context);
         }
     }
 }
