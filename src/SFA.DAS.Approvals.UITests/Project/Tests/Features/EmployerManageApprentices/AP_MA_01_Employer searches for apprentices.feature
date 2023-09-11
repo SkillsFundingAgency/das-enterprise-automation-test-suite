@@ -5,7 +5,6 @@
 
 @approvals
 @regression
-@accessibility
 Scenario: AP_MA_01_Employer searches for apprentices
 	Given An employer has navigated to Manage your apprentice page
 	When the employer filters by 'Live'
