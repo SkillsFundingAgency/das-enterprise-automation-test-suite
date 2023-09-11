@@ -5,28 +5,20 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 
 public abstract class AppEmp_BaseSteps : BaseSteps
 {
-    private EventPage eventPage;
-
-    private SearchNetworkEventsPage searchNetworkEventsPage;
-
     private int NoOfeventsFound;
-
-    private NetworkHubPage networkHubPage;
 
     public AppEmp_BaseSteps(ScenarioContext context) : base(context)
     {
 
     }
 
-    protected void SignupForAFutureEvent(NetworkHubPage networkHubPage)
+    protected EventPage SignupForAFutureEvent(NetworkHubPage networkHubPage)
     {
-        this.networkHubPage = networkHubPage;
-
         var page = networkHubPage.AccessEventsHub();
 
         NoOfeventsFound = page.NoOfEventsFoundInCalender();
 
-        eventPage = page.AccessAllNetworkEvents()
+        return page.AccessAllNetworkEvents()
              .FilterEventByTomorrow()
              .ClickOnFirstEventLink()
              .SignupForEvent()
@@ -34,26 +26,26 @@ public abstract class AppEmp_BaseSteps : BaseSteps
              .AccessSignedUpEventFromCalendar();
     }
 
-    protected void CancelTheAttendance()
+    protected void CancelTheAttendance(EventPage eventPage)
     {
         var actual = eventPage.CancelYourAttendance()
            .AccessEventsHubFromCancelledAttendancePage()
            .NoOfEventsFoundInCalender();
 
-        Assert.That(actual, Is.LessThan(NoOfeventsFound));
+        Assert.That(actual, Is.EqualTo(NoOfeventsFound));
     }
 
-    protected void FilterByDate()
+    protected SearchNetworkEventsPage FilterByDate(NetworkHubPage networkHubPage)
     {
-        searchNetworkEventsPage = networkHubPage.AccessEventsHub()
+        return networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
              .FilterEventByOneMonth()
              .ClearAllFilters();
     }
 
-    protected void FilterByEventFormat()
+    protected SearchNetworkEventsPage FilterByEventFormat(SearchNetworkEventsPage searchNetworkEventsPage)
     {
-        searchNetworkEventsPage = searchNetworkEventsPage
+        return searchNetworkEventsPage
            .FilterEventByEventFormat_InPerson()
            .VerifyEventFormat_Inperson_Filter()
            .ClearAllFilters()
@@ -65,25 +57,25 @@ public abstract class AppEmp_BaseSteps : BaseSteps
            .ClearAllFilters();
     }
 
-    protected void FilterByEventType()
+    protected SearchNetworkEventsPage FilterByEventType(SearchNetworkEventsPage searchNetworkEventsPage)
     {
-        searchNetworkEventsPage = searchNetworkEventsPage
+        return searchNetworkEventsPage
              .FilterEventByEventType_TrainingEvent()
              .VerifyEventType_TrainingEvent_Filter()
              .ClearAllFilters();
     }
 
-    protected void FilterByEventRegion()
+    protected SearchNetworkEventsPage FilterByEventRegion(SearchNetworkEventsPage searchNetworkEventsPage)
     {
-        searchNetworkEventsPage = searchNetworkEventsPage
+        return searchNetworkEventsPage
             .FilterEventByEventRegion_London()
             .VerifyEventRegion_London_Filter()
             .ClearAllFilters();
     }
 
-    protected void FilterByMultipleCombination()
+    protected SearchNetworkEventsPage FilterByMultipleCombination(SearchNetworkEventsPage searchNetworkEventsPage)
     {
-        searchNetworkEventsPage = searchNetworkEventsPage
+        return searchNetworkEventsPage
             .FilterEventByOneMonth()
             .FilterEventByEventFormat_InPerson()
             .FilterEventByEventFormat_Hybrid()
@@ -97,6 +89,4 @@ public abstract class AppEmp_BaseSteps : BaseSteps
             .VerifyEventRegion_London_Filter()
             .ClearAllFilters();
     }
-
-
 }

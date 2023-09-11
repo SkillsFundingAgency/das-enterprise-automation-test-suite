@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Emp
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_E_02_Events")]
-    public partial class AAN_E_02_EventsFeature
+    [NUnit.Framework.DescriptionAttribute("AAN_E_02_SignUpEvents")]
+    public partial class AAN_E_02_SignUpEventsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_E_02_Events.feature"
+#line 1 "AAN_E_02_SignUpEvents.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AAN_E_02_Events", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AAN_E_02_SignUpEvents", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Emp
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_E_02_A Employer signup and cancel the attendance for an event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_02_Employer signup and cancel the attendance for an event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanemployerevents")]
         [NUnit.Framework.CategoryAttribute("aanemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_E_02_AEmployerSignupAndCancelTheAttendanceForAnEvent()
+        public void AAN_E_02_EmployerSignupAndCancelTheAttendanceForAnEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Emp
                     "aanemployer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_02_A Employer signup and cancel the attendance for an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_02_Employer signup and cancel the attendance for an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,54 +107,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
     testRunner.And("the user should be able to successfully Cancel the attendance for a signed up eve" +
                         "nt", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_E_02_B Employer filter events")]
-        [NUnit.Framework.CategoryAttribute("aan")]
-        [NUnit.Framework.CategoryAttribute("aanemployerevents")]
-        [NUnit.Framework.CategoryAttribute("aanemployer")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_E_02_BEmployerFilterEvents()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "aan",
-                    "aanemployerevents",
-                    "aanemployer",
-                    "regression"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_02_B Employer filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 17
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 18
-    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 19
-    testRunner.Then("the user should be able to successfully filter events by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 20
-    testRunner.And("the user should be able to successfully filter events by event format", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 21
-    testRunner.And("the user should be able to successfully filter events by event type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
-    testRunner.And("the user should be able to successfully filter events by regions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
-    testRunner.And("the user should be able to successfully filter events by multiple combination of " +
-                        "filters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

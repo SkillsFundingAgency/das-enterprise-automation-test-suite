@@ -1,33 +1,38 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 
 [Binding, Scope(Tag = "@aanaprentice")]
 public class Apprentice_Events_Steps : Apprentice_BaseSteps
 {
+    private EventPage eventPage;
+
+    private SearchNetworkEventsPage searchNetworkEventsPage;
+
     public Apprentice_Events_Steps(ScenarioContext context) : base(context) { }
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
     public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(context.Get<AanApprenticeOnBoardedUser>());
 
     [Then(@"the user should be able to successfully signup for a future event")]
-    public void SignupForAFutureEvent() => SignupForAFutureEvent(networkHubPage);
+    public void SignupForAFutureEvent() => eventPage = SignupForAFutureEvent(networkHubPage);
 
     [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
-    public new void CancelTheAttendance() => base.CancelTheAttendance();
+    public void CancelTheAttendance() => CancelTheAttendance(eventPage);
 
     [Then(@"the user should be able to successfully filter events by date")]
-    public new void FilterByDate() => base.FilterByDate();
+    public void FilterByDate() => searchNetworkEventsPage = FilterByDate(networkHubPage);
 
     [Then(@"the user should be able to successfully filter events by event format")]
-    public new void FilterByEventFormat() => base.FilterByEventFormat();
+    public void FilterByEventFormat() => FilterByEventFormat(searchNetworkEventsPage);
 
     [Then(@"the user should be able to successfully filter events by event type")]
-    public new void FilterByEventType() => base.FilterByEventType();
+    public void FilterByEventType() => FilterByEventType(searchNetworkEventsPage);
 
     [Then(@"the user should be able to successfully filter events by regions")]
-    public new void FilterByEventRegion() => base.FilterByEventRegion();
+    public void FilterByEventRegion() => FilterByEventRegion(searchNetworkEventsPage);
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters")]
-    public new void FilterByMultipleCombination() => base.FilterByMultipleCombination();
+    public void FilterByMultipleCombination() => FilterByMultipleCombination(searchNetworkEventsPage);
 }
