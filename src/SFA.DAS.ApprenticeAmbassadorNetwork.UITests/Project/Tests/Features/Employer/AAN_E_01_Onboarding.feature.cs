@@ -78,8 +78,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Emp
             "s the Hub page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanemployer")]
-        [NUnit.Framework.CategoryAttribute("aanemployeronboarding")]
-        [NUnit.Framework.CategoryAttribute("aane01")]
         [NUnit.Framework.CategoryAttribute("aanemployeronboardingreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN_E_01AUserSuccessfullyCompletesTheEmployerOnboardingProcessAndVerifiesTheHubPage()
@@ -87,14 +85,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Emp
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aanemployer",
-                    "aanemployeronboarding",
-                    "aane01",
                     "aanemployeronboardingreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_01A User successfully completes the Employer onboarding process and verifie" +
                     "s the Hub page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -104,17 +100,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 8
     testRunner.Given("an employer without onboarding logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 9
  testRunner.When("the employer provides all the required details for the employer onboarding journe" +
                         "y", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 10
     testRunner.Then("the employer onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 11
     testRunner.And("the employer should be redirected to the employer Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -126,8 +122,6 @@ this.ScenarioInitialize(scenarioInfo);
             "eck Your Answer\" page")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanemployer")]
-        [NUnit.Framework.CategoryAttribute("aanemployeronboarding")]
-        [NUnit.Framework.CategoryAttribute("aane02")]
         [NUnit.Framework.CategoryAttribute("aanemployeronboardingreset")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN_E_01BUserCompletesAllOnboardingDetailsAndCanModifyAnswersOnTheCheckYourAnswerPage()
@@ -135,14 +129,12 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aanemployer",
-                    "aanemployeronboarding",
-                    "aane02",
                     "aanemployeronboardingreset",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_01B User completes all onboarding details and can modify answers on the \"Ch" +
                     "eck Your Answer\" page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -152,16 +144,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 19
     testRunner.Given("an employer without onboarding logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 20
     testRunner.When("the employer should be able to modify any of the provided answers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 21
    testRunner.Then("the employer onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
+#line 22
     testRunner.And("the employer should be redirected to the employer Hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

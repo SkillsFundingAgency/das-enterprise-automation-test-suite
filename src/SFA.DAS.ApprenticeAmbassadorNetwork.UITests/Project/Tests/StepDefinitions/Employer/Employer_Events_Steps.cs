@@ -1,14 +1,23 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Employer;
 
-[Binding, Scope(Tag = "@aanaprentice")]
-public class Apprentice_Events_Steps : Apprentice_BaseSteps
+[Binding, Scope(Tag = "@aanemployer")]
+public class Employer_Events_Steps : Employer_BaseSteps
 {
-    public Apprentice_Events_Steps(ScenarioContext context) : base(context) { }
+    public Employer_Events_Steps(ScenarioContext context) : base(context) { }
 
-    [Given(@"an onboarded apprentice logs into the AAN portal")]
-    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(context.Get<AanApprenticeOnBoardedUser>());
+    [Given(@"an onboarded employer logs into the AAN portal")]
+    public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
+    {
+        var user = context.GetUser<AanEmployerOnBoardedUser>();
+
+        EmployerSign(user);
+
+        networkHubPage = new Employer_NetworkHubPage(context);
+    }
 
     [Then(@"the user should be able to successfully signup for a future event")]
     public void SignupForAFutureEvent() => SignupForAFutureEvent(networkHubPage);

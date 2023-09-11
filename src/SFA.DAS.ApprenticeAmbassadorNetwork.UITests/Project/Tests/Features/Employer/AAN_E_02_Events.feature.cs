@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Apprentice
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_A_03_Events")]
-    public partial class AAN_A_03_EventsFeature
+    [NUnit.Framework.DescriptionAttribute("AAN_E_02_Events")]
+    public partial class AAN_E_02_EventsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_A_03_Events.feature"
+#line 1 "AAN_E_02_Events.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apprentice", "AAN_A_03_Events", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AAN_E_02_Events", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_A_03_A Apprentice signup and cancel the attendance for an event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_02_A Employer signup and cancel the attendance for an event")]
         [NUnit.Framework.CategoryAttribute("aan")]
-        [NUnit.Framework.CategoryAttribute("aanaprenticeevents")]
-        [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("aanemployerevents")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_A_03_AApprenticeSignupAndCancelTheAttendanceForAnEvent()
+        public void AAN_E_02_AEmployerSignupAndCancelTheAttendanceForAnEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
-                    "aanaprenticeevents",
-                    "aanaprentice",
+                    "aanemployerevents",
+                    "aanemployer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03_A Apprentice signup and cancel the attendance for an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_02_A Employer signup and cancel the attendance for an event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
-    testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
     testRunner.Then("the user should be able to successfully signup for a future event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -113,20 +113,20 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_A_03_B Apprentice filter events")]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_02_B Employer filter events")]
         [NUnit.Framework.CategoryAttribute("aan")]
-        [NUnit.Framework.CategoryAttribute("aanaprenticeevents")]
-        [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("aanemployerevents")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_A_03_BApprenticeFilterEvents()
+        public void AAN_E_02_BEmployerFilterEvents()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
-                    "aanaprenticeevents",
-                    "aanaprentice",
+                    "aanemployerevents",
+                    "aanemployer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03_B Apprentice filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_02_B Employer filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -138,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 18
-    testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 19
     testRunner.Then("the user should be able to successfully filter events by date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
