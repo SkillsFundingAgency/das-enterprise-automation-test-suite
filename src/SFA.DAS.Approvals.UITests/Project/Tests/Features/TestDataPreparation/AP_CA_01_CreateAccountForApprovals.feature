@@ -4,14 +4,14 @@
 
 @addlevyfunds
 Scenario: AP_CA_01_01 Create Levy Account For Approvals
-	Given an User Account is created
+	Given a User Account is created
 	When the User adds PAYE details
 	And adds Organisation details
 	Then the Employer is able to Sign the Agreement
 
 @addtransferslevyfunds
 Scenario: AP_CA_01_02 Create Agreement Not Signed Transfers Account For Approvals
-	Given an User Account is created
+	Given a User Account is created
 	When the User adds PAYE details
 	And adds Organisation details
 	Then the Employer does not sign the Agreement
