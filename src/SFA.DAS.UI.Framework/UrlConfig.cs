@@ -5,7 +5,9 @@ namespace SFA.DAS.UI.Framework
 {
     public static class UrlConfig
     {
+        public static string AAN_Employer_BaseUrl { get; set; }
         public static string AAN_Apprentice_BaseUrl => $"https://aan.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/onboarding/before-you-start";
+        public static string AAN_Admin_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-adminaan.apprenticeships.education.gov.uk/";
         public static string Admin_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-admin.apprenticeships.education.gov.uk/";
         public static string RoATPAssessor_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-roatp-assessor.apprenticeships.education.gov.uk/";
         public static string Apply_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apply.apprenticeships.education.gov.uk/";

@@ -59,10 +59,10 @@ public class Apprentice_Onboarding_Steps : Apprentice_BaseSteps
             .NoHaveEngagedWithAnAmbassadaorAndContinue();
     }
 
-    [Then(@"the user can sign back in to the AAN platform")]
-    public void ThenTheUserCanSignBackInToTheAANPlatform()
+    [Then(@"the user can sign back in to the AAN Apprentice platform")]
+    public void TheUserCanSignBackIn()
     {
-        _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_Apprentice_BaseUrl, "AANbaseurl");
+        _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_Apprentice_BaseUrl, "AAN_Apprentice_BaseUrl");
 
         GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
     }

@@ -1,12 +1,12 @@
 ﻿global using OpenQA.Selenium;
+global using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
+global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
-global using TechTalk.SpecFlow;
 global using System.Linq;
-global using SFA.DAS.UI.Framework;
+global using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
@@ -32,11 +32,13 @@ public class AANHooks
 
         if (_context.ScenarioInfo.Tags.Contains("aanemployeronboardingreset")) account = "n7kry6";
 
-        _tabHelper.GoToUrl($"https://employer-aan.pp-eas.apprenticeships.education.gov.uk/accounts/{account}");
+        UrlConfig.AAN_Employer_BaseUrl = $"https://employer-aan.pp-eas.apprenticeships.education.gov.uk/accounts/{account}";
+
+        _tabHelper.GoToUrl(UrlConfig.AAN_Employer_BaseUrl);
     }
 
     [BeforeScenario(Order = 31), Scope(Tag = "@aanadmin")]
-    public void Navigate_Admin() => _tabHelper.GoToUrl("https://pp-adminaan.apprenticeships.education.gov.uk/");
+    public void Navigate_Admin() => _tabHelper.GoToUrl(UrlConfig.AAN_Admin_BaseUrl);
 
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
@@ -45,5 +47,4 @@ public class AANHooks
 
         _context.Set(new AANDataHelpers());
     }
-
 }

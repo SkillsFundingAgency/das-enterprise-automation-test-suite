@@ -159,6 +159,50 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_01C User completes onboarding process and lands on the AAN Employer Hub pag" +
+            "e after signing in")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
+        [NUnit.Framework.CategoryAttribute("aanemployeronboardingreset")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_E_01CUserCompletesOnboardingProcessAndLandsOnTheAANEmployerHubPageAfterSigningIn()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanemployer",
+                    "aanemployeronboardingreset",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_01C User completes onboarding process and lands on the AAN Employer Hub pag" +
+                    "e after signing in", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 28
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 29
+    testRunner.Given("an employer without onboarding logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 30
+ testRunner.When("the employer provides all the required details for the employer onboarding journe" +
+                        "y", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 31
+    testRunner.Then("the employer onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 32
+    testRunner.Then("the user can sign back in to the AAN Employer platform to verify the hub page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

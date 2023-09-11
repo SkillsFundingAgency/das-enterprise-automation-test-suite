@@ -70,4 +70,16 @@ public class Employer_Steps : Employer_BaseSteps
             .ChangePreviousEngagement()
             .NoHaveEngagedWithAmbassadorAndContinue();
     }
+
+    [Then(@"the user can sign back in to the AAN Employer platform to verify the hub page")]
+    public void ThenTheUserCanSignBackInToTheAANEmployerPlatformToVerifyTheHubPage()
+    {
+        _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_Employer_BaseUrl, "AAN_Employer_BaseUrl");
+
+        var user = context.GetUser<AanEmployerUser>();
+
+        EmployerSign(user);
+
+        _ = new Employer_NetworkHubPage(context);
+    }
 }
