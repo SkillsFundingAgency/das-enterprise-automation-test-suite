@@ -39,10 +39,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
         internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
-            RegisterStubUserAccount(indexPage, email).EnterName().GoToAddPayeLink().SelectOptionLessThan3Million();
+            RegisterStubUserAccount(indexPage, email).EnterName().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge().GoToAddPayeLink().SelectOptionLessThan3Million();
 
         internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
-            RegisterStubUserAccount(indexPage, email).EnterNameAndGoToInvitationsPage().ClickAcceptInviteLink();
+            RegisterStubUserAccount(indexPage, email).EnterName().ConfirmNameAndContinue().ClickContinueToInvitationsPage().ClickAcceptInviteLink();
 
         internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
