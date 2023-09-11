@@ -26,7 +26,14 @@ public class AANHooks
     public void Navigate_Apprentice() => _tabHelper.GoToUrl(UrlConfig.AAN_Apprentice_BaseUrl);
 
     [BeforeScenario(Order = 31), Scope(Tag = "@aanemployer")]
-    public void Navigate_Employer() => _tabHelper.GoToUrl("https://employer-aan.pp-eas.apprenticeships.education.gov.uk/accounts/ddff");
+    public void Navigate_Employer()
+    {
+        var account = "mpbd6m";
+
+        if (_context.ScenarioInfo.Tags.Contains("aanemployeronboardingreset")) account = "n7kry6";
+
+        _tabHelper.GoToUrl($"https://employer-aan.pp-eas.apprenticeships.education.gov.uk/accounts/{account}");
+    }
 
     [BeforeScenario(Order = 31), Scope(Tag = "@aanadmin")]
     public void Navigate_Admin() => _tabHelper.GoToUrl("https://pp-adminaan.apprenticeships.education.gov.uk/");
