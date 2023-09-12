@@ -107,21 +107,27 @@ this.ScenarioInitialize(scenarioInfo);
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
-                            "agreed_price"});
+                            "agreed_price",
+                            "training_price",
+                            "endpoint_assessment_price"});
                 table11.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/01",
                             "2023/08/15",
                             "12",
-                            "15000"});
+                            "15000",
+                            "12000",
+                            "3000"});
                 table11.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/01",
                             "2023/09/30",
                             "12",
-                            "18000"});
+                            "18000",
+                            "14400",
+                            "3600"});
 #line 8
  testRunner.And("Pilot Provider adds apprentices to the cohort witht the following details", ((string)(null)), table11, "And ");
 #line hidden

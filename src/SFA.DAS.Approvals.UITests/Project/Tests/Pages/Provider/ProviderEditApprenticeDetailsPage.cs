@@ -251,6 +251,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void AddTrainingPrice(string trainingPrice) => formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
 
-        public void AddEndpointAssessmentPrice(string epa) => formCompletionHelper.EnterText(TrainingPrice, epa);
+        public void AddEndpointAssessmentPrice(string epa) => formCompletionHelper.EnterText(EndPointAssessmentPrice, epa);
     }
 }
