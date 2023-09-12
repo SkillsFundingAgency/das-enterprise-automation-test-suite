@@ -24,6 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public static By ActualStartDateMonth => By.Id("ActualStartMonth");
         public static By ActualStartDateYear => By.Id("ActualStartYear");
         private static By TrainingCost => By.Id("Cost");
+        private static By TrainingPrice => By.Id("TrainingPrice");
+        private static By EndPointAssessmentPrice => By.Id("EndPointAssessmentPrice");
         private static By EmployerReference => By.Id("Reference");
         private static By ChangeSimplifiedPaymentsPilotLink => By.Id("change-pilot-status-link");
         private static By SaveButton => By.XPath("//button[contains(text(),'Save')]");
@@ -120,6 +122,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             {
                 AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
                 AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
+                AddTrainingPrice(apprenticeDataHelper.TrainingPrice);
+                AddEndpointAssessmentPrice(apprenticeDataHelper.EndpointAssessmentPrice);
             }
 
             bool rpl = CheckRPLCondition(false);
@@ -244,5 +248,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
+
+        public void AddTrainingPrice(string trainingPrice) => formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
+
+        public void AddEndpointAssessmentPrice(string epa) => formCompletionHelper.EnterText(TrainingPrice, epa);
     }
 }

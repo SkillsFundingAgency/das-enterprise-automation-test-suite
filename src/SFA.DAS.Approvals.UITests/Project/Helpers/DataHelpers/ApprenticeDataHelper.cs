@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+﻿using RestSharp;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using System;
@@ -14,9 +15,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public readonly ApprenticePPIDataHelper apprenticePPIDataHelper;
 
         public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper)
-            : this(apprenticePPIDataHelper, objectContext, commitmentsdataHelper, string.Empty) { }
+            : this(apprenticePPIDataHelper, objectContext, commitmentsdataHelper, string.Empty, string.Empty, string.Empty) { }
 
-        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost)
+        public ApprenticeDataHelper(ApprenticePPIDataHelper apprenticePPIDataHelper, ObjectContext objectContext, CommitmentsSqlDataHelper commitmentsdataHelper, string trainingCost, string trainingPrice, string endpointAssessmentPrice)
         {
             _objectContext = objectContext;
             this.apprenticePPIDataHelper = apprenticePPIDataHelper;
@@ -26,7 +27,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthDay = apprenticePPIDataHelper.DateOfBirthDay;
             DateOfBirthMonth = apprenticePPIDataHelper.DateOfBirthMonth;
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
+            EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             TrainingCost = trainingCost == string.Empty ? "1" + RandomDataGenerator.GenerateRandomNumber(3) : trainingCost;
+            TrainingPrice = trainingPrice != string.Empty ? CalculateTrainingPrice(TrainingCost) : trainingPrice;
+            EndpointAssessmentPrice = endpointAssessmentPrice != string.Empty ? CalculateEndpointAssessmentPrice(TrainingCost) : endpointAssessmentPrice;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             ApprenticeULN = RandomDataGenerator.GenerateRandomUln();
             _apprenticeid = 0;
@@ -49,6 +53,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public int DateOfBirthYear { get; set; }
 
         public DateTime ApprenticeDob => new(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
+
+        public string TrainingPrice { get; set; }
+
+        public string EndpointAssessmentPrice { get; set; }
 
         public string TrainingCost { get; set; }
 
@@ -76,5 +84,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             ApprenticeFirstname = firstName;
             ApprenticeLastname = lastName;
         }
+
+        private string CalculateTrainingPrice(string trainingCost) => (int.Parse(trainingCost) * 0.8).ToString();
+        private string CalculateEndpointAssessmentPrice(string trainingCost) => (int.Parse(trainingCost) * 0.2).ToString();
     }
 }
