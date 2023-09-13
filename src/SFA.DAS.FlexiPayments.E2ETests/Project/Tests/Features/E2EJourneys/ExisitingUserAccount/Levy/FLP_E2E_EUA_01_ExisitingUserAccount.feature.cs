@@ -134,6 +134,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider adds Ulns and Opt the learners into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
+ testRunner.And("2 learners have Simplified Payments Pilot tag against them on Approve apprentice " +
+                        "details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -160,7 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "18000",
                             "14400",
                             "3600"});
-#line 18
+#line 19
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table4, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -190,7 +194,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "18000",
                             "0",
                             "18000"});
-#line 22
+#line 23
  testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table5, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -208,7 +212,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "14400",
                             "1200",
                             "12"});
-#line 26
+#line 27
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table6, "And ");
 #line hidden
             }
