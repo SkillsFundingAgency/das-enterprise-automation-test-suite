@@ -135,19 +135,25 @@ this.ScenarioInitialize(scenarioInfo);
                             "is_pilot",
                             "price_episode_from_date_str",
                             "price_episode_to_date_str",
-                            "price_episode_cost"});
+                            "price_episode_cost",
+                            "training_price",
+                            "endpoint_assessment_price"});
                 table21.AddRow(new string[] {
                             "1",
                             "false",
                             "2023/08/01",
                             "Null",
-                            "15000"});
+                            "15000",
+                            "12000",
+                            "3000"});
                 table21.AddRow(new string[] {
                             "2",
                             "false",
                             "2023/09/01",
                             "Null",
-                            "18000"});
+                            "18000",
+                            "14400",
+                            "3600"});
 #line 14
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table21, "Then ");
 #line hidden

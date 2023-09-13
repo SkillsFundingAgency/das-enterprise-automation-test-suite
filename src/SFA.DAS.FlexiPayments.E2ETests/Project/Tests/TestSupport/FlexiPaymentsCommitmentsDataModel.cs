@@ -15,5 +15,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
                     : DataHelpers.TryParseDate(value); } }
         public string PriceEpisodeToDateStr { set {PriceEpisodeToDate = DataHelpers.TryParseDate(value); } }
         public decimal PriceEpisodeCost { get; set; }
+        public decimal? TrainingPrice { get; set; }
+        public decimal? EndpointAssessmentPrice {  get; set; }
     }
 }

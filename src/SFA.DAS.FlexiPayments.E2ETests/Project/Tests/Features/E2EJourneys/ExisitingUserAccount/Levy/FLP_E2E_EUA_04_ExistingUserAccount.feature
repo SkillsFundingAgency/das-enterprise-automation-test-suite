@@ -12,9 +12,9 @@ Scenario: FLP_E2E_EUA_04 Provider sends cohort to employer for review then emplo
 	When pilot provider approves the cohort
 	And employer reviews and approves the cohort
 	Then validate the following data is created in the commitments database
-		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost |
-		| 1       | true     | 2023/08/15                  | Null                      | 15000              |
-		| 2       | true     | 2023/09/30                  | Null                      | 18000              |
+		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost | training_price | endpoint_assessment_price |
+		| 1       | true     | 2023/08/15                  | Null                      | 15000              | 12000          | 3000                      |
+		| 2       | true     | 2023/09/30                  | Null                      | 18000              | 14400          | 3600                      |
 	And validate the following data in Earnings Apprenticeship database
 		| ULN_Key | funding_platform | actual_start_date_str | start_date_str | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
 		| 1       | 1                | 2023/08/15            | 2023/08/01     | 2024/08/15           | 15000        | 0            | 15000                |
