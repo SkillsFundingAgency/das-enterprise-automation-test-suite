@@ -12,6 +12,7 @@ public class AANSqlHelper : SqlDbHelper
          $"DELETE FROM EventGuest where CalendarEventId in (Select CalendarEventId from Apprentice WHERE MemberId = @MemberId);" +
          $"DELETE FROM Apprentice WHERE MemberId = @MemberId;" +
          $"DELETE FROM MemberProfile WHERE MemberId = @MemberId;" +
+         $"DELETE FROM MemberPreference WHERE MemberId = @MemberId;" +
          $"DELETE FROM Attendance WHERE MemberId = @MemberId;" +
          $"DELETE FROM Notification WHERE MemberId = @MemberId;" +
          $"DELETE FROM Member WHERE Id = @MemberId;" +
@@ -25,6 +26,7 @@ public class AANSqlHelper : SqlDbHelper
      $"DELETE FROM EventGuest where CalendarEventId in (Select CalendarEventId from Apprentice WHERE MemberId = @MemberId);" +
      $"DELETE FROM Employer WHERE MemberId = @MemberId;" +
      $"DELETE FROM MemberProfile WHERE MemberId = @MemberId;" +
+     $"DELETE FROM MemberPreference WHERE MemberId = @MemberId;" +
      $"DELETE FROM Attendance WHERE MemberId = @MemberId;" +
      $"DELETE FROM Notification WHERE MemberId = @MemberId;" +
      $"DELETE FROM Member WHERE Id = @MemberId;" +
