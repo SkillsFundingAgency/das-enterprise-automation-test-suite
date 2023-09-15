@@ -1,20 +1,21 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions;
+
+public abstract class BaseSteps
 {
-    public abstract class BaseSteps
+    protected readonly ScenarioContext context;
+
+    protected readonly ObjectContext objectContext;
+
+    protected readonly RestartWebDriverHelper _restartWebDriverHelper;
+
+    public BaseSteps(ScenarioContext context)
     {
-        protected readonly ScenarioContext context;
+        this.context = context;
 
-        protected readonly ObjectContext objectContext;
+        objectContext = context.Get<ObjectContext>();
 
-        protected readonly RestartWebDriverHelper _restartWebDriverHelper;
-
-        public BaseSteps(ScenarioContext context)
-        {
-            this.context = context;
-
-            objectContext = context.Get<ObjectContext>();
-
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
-        }
+        _restartWebDriverHelper = new RestartWebDriverHelper(context);
     }
 }

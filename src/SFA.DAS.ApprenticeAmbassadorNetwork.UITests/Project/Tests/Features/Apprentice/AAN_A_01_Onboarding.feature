@@ -1,4 +1,4 @@
-﻿Feature: AAAN_A_01_Onboarding_EventsSignup_FiltersJourneys
+﻿Feature: AAAN_A_01_Onboarding
 
 @aan
 @aanonboarding
@@ -42,4 +42,4 @@ Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub pa
     Given an apprentice logs into the AAN portal
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
-    Then the user can sign back in to the AAN platform
+    Then the user can sign back in to the AAN Apprentice platform
