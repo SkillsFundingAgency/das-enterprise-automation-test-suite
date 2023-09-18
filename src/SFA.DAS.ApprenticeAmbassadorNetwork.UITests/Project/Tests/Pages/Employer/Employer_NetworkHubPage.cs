@@ -1,18 +1,10 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class Employer_NetworkHubPage : AanBasePage
+    public class Employer_NetworkHubPage : NetworkHubPage
     {
-        protected override string PageTitle => "Your network hub";
-
         public Employer_NetworkHubPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public EventsHubPage AccessEventsHub()
-        {
-            formCompletionHelper.ClickLinkByText("Events hub");
-            return new EventsHubPage(context);
-        }
 
     }
 }

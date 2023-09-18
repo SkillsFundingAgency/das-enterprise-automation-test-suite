@@ -1,15 +1,36 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using System.Linq;
+using Selenium.Axe;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using Selenium.Axe;
 using SFA.DAS.TestDataExport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
+    public static class AccessibilityPageTitleChecker
+    {
+        private static readonly List<string> pageTitles;
+
+        static AccessibilityPageTitleChecker()
+        {
+            pageTitles = new();
+        }
+
+        public static bool Contains(string title)
+        {
+            var x = pageTitles.Contains(title);
+
+            if (x == false) pageTitles.Add(title);
+
+            return x;
+        }
+    }
+
+
     public class AnalyzePageHelper
     {
         #region Helpers and Context
@@ -62,7 +83,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private bool ShouldNotAnalyzePageCheckUsingPageTitle(string pageTitle)
         {
-            var x = _objectContext.GetAccessibilityPageTitles().Contains(pageTitle);
+            var x = AccessibilityPageTitleChecker.Contains(pageTitle);
 
             var message = x ? $"'{pageTitle}' already analyzed." : $"'{pageTitle}' not analyzed.";
 
@@ -78,12 +99,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var url = _context.Get<PageInteractionHelper>().GetUrl();
 
-            if (analyzedPages.Any(x=> x.Contains(url))) return false;
+            if (analyzedPages.Any(x => x.Contains(url))) return false;
 
             var urlsplit = url.Split("?");
 
             if (urlsplit.Any() && analyzedPages.Any(x => x.Contains(urlsplit[0]))) return false;
-            
+
             return true;
         }
 
