@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
 {
     public class EmployerAmbassadorApplicationPage : AanBasePage
     {
-        protected override string PageTitle => "Apply to become an employer ambassador for a";
+        protected override string PageTitle => "Apply to become an employer ambassador for";
 
         private By StartButton => By.Id("start-now");
 
