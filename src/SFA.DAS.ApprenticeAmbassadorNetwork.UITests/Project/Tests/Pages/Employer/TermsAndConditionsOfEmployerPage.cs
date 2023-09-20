@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
 {
     public class TermsAndConditionsOfEmployerPage : AanBasePage
     {
-        protected override string PageTitle => "Terms and Conditions";
+        protected override string PageTitle => "Terms and conditions";
 
         private By ConfirmAndContinueButton => By.Id("confirm-continue");
 
