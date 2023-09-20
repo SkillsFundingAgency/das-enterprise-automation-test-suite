@@ -1,0 +1,47 @@
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Employer;
+
+[Binding, Scope(Tag = "@aanemployer")]
+public class Employer_Events_Steps : Employer_BaseSteps
+{
+    private EventPage eventPage;
+
+    private SearchNetworkEventsPage searchNetworkEventsPage;
+
+    public Employer_Events_Steps(ScenarioContext context) : base(context) { }
+
+    [Given(@"an onboarded employer logs into the AAN portal")]
+    public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
+    {
+        var user = context.GetUser<AanEmployerOnBoardedUser>();
+
+        EmployerSign(user);
+
+        networkHubPage = new Employer_NetworkHubPage(context);
+    }
+
+    [Then(@"the user should be able to successfully signup for a future event")]
+    public void SignupForAFutureEvent() => eventPage = SignupForAFutureEvent(networkHubPage);
+
+    [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
+    public void CancelTheAttendance() => CancelTheAttendance(eventPage);
+
+    [Then(@"the user should be able to successfully filter events by date")]
+    public void FilterByDate() => searchNetworkEventsPage = FilterByDate(networkHubPage);
+
+    [Then(@"the user should be able to successfully filter events by event format")]
+    public void FilterByEventFormat() => FilterByEventFormat(searchNetworkEventsPage);
+
+    [Then(@"the user should be able to successfully filter events by event type")]
+    public void FilterByEventType() => FilterByEventType(searchNetworkEventsPage);
+
+    [Then(@"the user should be able to successfully filter events by regions")]
+    public void FilterByEventRegion() => FilterByEventRegion(searchNetworkEventsPage);
+
+    [Then(@"the user should be able to successfully filter events by multiple combination of filters")]
+    public void FilterByMultipleCombination() => FilterByMultipleCombination(searchNetworkEventsPage);
+}
