@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected static By EditApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
         protected static By FlexiJobAgencyTag => By.CssSelector("span.govuk-tag");
         protected static By PortableFlexiJobDeliveryModelTag => By.XPath("//span[@class='govuk-tag' and (text()='Portable flexi-job' or text()='Portable flexi job')]");
-        protected static By SimplifiedPaymentsPilotTag => By.XPath("//span[text()='Simplified Payments Pilot']");
+        protected static By SimplifiedPaymentsPilotTag => By.XPath("//span[@class='govuk-tag' and (text()='Simplified Payments Pilot')]");
 
 
         protected ReviewYourCohort(ScenarioContext context, Func<int, string> func) : base(context, false)
