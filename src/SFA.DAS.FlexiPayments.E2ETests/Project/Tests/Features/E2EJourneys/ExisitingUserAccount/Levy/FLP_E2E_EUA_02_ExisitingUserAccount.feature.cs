@@ -148,16 +148,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "2022/08/01",
                             "Null",
                             "15000",
-                            "12000",
-                            "3000"});
+                            "",
+                            ""});
                 table8.AddRow(new string[] {
                             "2",
                             "false",
                             "2022/09/01",
                             "Null",
                             "18000",
-                            "14400",
-                            "3600"});
+                            "",
+                            ""});
 #line 15
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table8, "Then ");
 #line hidden

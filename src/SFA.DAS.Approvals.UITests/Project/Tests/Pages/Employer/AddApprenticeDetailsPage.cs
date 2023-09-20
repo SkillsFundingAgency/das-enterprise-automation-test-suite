@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -38,7 +39,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             ClickStartMonth();
 
-            if (isMF == false) EnterStartDate(courseStartDate);
+            if (isMF == false || pageInteractionHelper.GetText(StartDateMonth) != courseStartDate.Month.ToString()) 
+                EnterStartDate(courseStartDate);
 
             EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 

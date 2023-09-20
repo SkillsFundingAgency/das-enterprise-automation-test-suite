@@ -89,7 +89,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provider who opts" +
                     " first learner in the pilot and second out of the pilot", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
-this.ScenarioInitialize(scenarioInfo);
+ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -163,8 +163,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartCurrentMonth",
                             "Null",
                             "6000",
-                            "Null",
-                            "Null"});
+                            "",
+                            ""});
 #line 17
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table16, "Then ");
 #line hidden

@@ -41,8 +41,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 Assert.Multiple(() =>
                 {
                     Assert.That(Boolean.Parse(isPilot), Is.EqualTo(inputCommitmentData.IsPilot), ErrorMessage("Incorrect Pilot status found in commitments db", ulnKey));
-                    Assert.That(double.Parse(trainingPrice), Is.EqualTo(inputCommitmentData.TrainingPrice), ErrorMessage("Incorrect Training Price found in commitments db", ulnKey));
-                    Assert.That(double.Parse(endpointAssessmentPrice), Is.EqualTo(inputCommitmentData.EndpointAssessmentPrice), ErrorMessage("Incorrect Endpoint Assessment Price found in commitments db", ulnKey));
+                    Assert.That(trainingPrice, Is.EqualTo(inputCommitmentData.TrainingPrice), ErrorMessage("Incorrect Training Price found in commitments db", ulnKey));
+                    Assert.That(endpointAssessmentPrice, Is.EqualTo(inputCommitmentData.EndpointAssessmentPrice), ErrorMessage("Incorrect Endpoint Assessment Price found in commitments db", ulnKey));
                     Assert.That(DataHelpers.TryParseDate(fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), ErrorMessage("Incorrect PriceEpisode From Date found in commitments db", ulnKey));
                     Assert.That(DataHelpers.TryParseDate(toDate), Is.EqualTo(inputCommitmentData.PriceEpisodeToDate), ErrorMessage("Incorrect PriceEpisode To Date found in commitments db", ulnKey));
                     Assert.That(double.Parse(cost), Is.EqualTo(inputCommitmentData.PriceEpisodeCost), ErrorMessage("Incorrect PriceEpisode Cost found in commitments db", ulnKey));

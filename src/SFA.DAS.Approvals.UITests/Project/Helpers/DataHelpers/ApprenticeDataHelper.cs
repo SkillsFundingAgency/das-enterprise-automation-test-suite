@@ -29,8 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateOfBirthYear = apprenticePPIDataHelper.DateOfBirthYear;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             TrainingCost = trainingCost == string.Empty ? "1" + RandomDataGenerator.GenerateRandomNumber(3) : trainingCost;
-            TrainingPrice = trainingPrice != string.Empty ? CalculateTrainingPrice(TrainingCost) : trainingPrice;
-            EndpointAssessmentPrice = endpointAssessmentPrice != string.Empty ? CalculateEndpointAssessmentPrice(TrainingCost) : endpointAssessmentPrice;
+            TrainingPrice = TrainingCost != string.Empty ? CalculateTrainingPrice(TrainingCost) : trainingPrice;
+            EndpointAssessmentPrice = TrainingCost != string.Empty ? CalculateEndpointAssessmentPrice(TrainingCost) : endpointAssessmentPrice;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             ApprenticeULN = RandomDataGenerator.GenerateRandomUln();
             _apprenticeid = 0;
@@ -85,7 +85,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             ApprenticeLastname = lastName;
         }
 
-        private string CalculateTrainingPrice(string trainingCost) => (int.Parse(trainingCost) * 0.8).ToString();
-        private string CalculateEndpointAssessmentPrice(string trainingCost) => (int.Parse(trainingCost) * 0.2).ToString();
+        private string CalculateTrainingPrice(string trainingCost) => Math.Round(double.Parse(trainingCost) * 0.8).ToString();
+        private string CalculateEndpointAssessmentPrice(string trainingCost) => Math.Round(double.Parse(trainingCost) * 0.2).ToString();
     }
 }

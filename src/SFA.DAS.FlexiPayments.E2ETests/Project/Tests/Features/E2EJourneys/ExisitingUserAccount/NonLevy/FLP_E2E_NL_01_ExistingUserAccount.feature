@@ -3,7 +3,7 @@
 @regression
 @e2escenarios
 @flexi-payments
-Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provider who opts first learner in the pilot and second out of the pilot
+ Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provider who opts first learner in the pilot and second out of the pilot
 	Given the Employer logins using existing NonLevy Account
 	And the Employer uses the reservation to create and approve apprentices with the following details
 		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price |
@@ -17,7 +17,7 @@ Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provid
 	Then validate the following data is created in the commitments database
 		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost | training_price | endpoint_assessment_price |
 		| 1       | true     | Today                       | Null                      | 6000               | 4800           | 1200                      |
-		| 2       | false    | StartCurrentMonth           | Null                      | 6000               | Null           | Null                      |
+		| 2       | false    | StartCurrentMonth           | Null                      | 6000               |                |                           |
 	And validate the following data in Earnings Apprenticeship database
 		| ULN_Key | funding_platform | actual_start_date_str | start_date_str    | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
 		| 1       | 1                | Today                 | StartCurrentMonth | +24Months            | 6000         | 1            | 18000                |
