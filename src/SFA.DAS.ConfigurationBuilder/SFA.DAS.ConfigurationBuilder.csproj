@@ -11,6 +11,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="117.0.5938.8800" />
 		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />

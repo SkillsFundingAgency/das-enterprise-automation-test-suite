@@ -24,6 +24,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="117.0.5938.8800" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 	<ProjectReference Include="..\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj" />
   </ItemGroup>
