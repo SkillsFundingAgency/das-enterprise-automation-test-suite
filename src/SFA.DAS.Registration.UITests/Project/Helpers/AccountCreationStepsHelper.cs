@@ -108,10 +108,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .ContinueToAcknowledge()
                 .GoToEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
-                //.GoToAcceptTheAgreementLink()
-                //.ClickViewAgreementLink()
-                //.GoToViewAgreement()
-                //.ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
         }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>

@@ -90,20 +90,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .GoToSetYourAccountNameLink()
             .SelectoptionNo()
             .ContinueToAcknowledge();
-            //.SelectGoToYourEmployerAccountHomepage();
         }
 
 
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
-            _homePageStepsHelper.GotoEmployerHomePage()
-                .ClickAcceptYourAgreementLinkInHomePagePanel()
+            _homePageStepsHelper.GoToCreateYourEmployerAccountPage()
+                .GoToEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .ProviderLeadRegistrationSignAgreement()
                 .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
                 .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
                 .ConfirmProviderLeadRegistrationPermissions();
+
         }
 
         [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
