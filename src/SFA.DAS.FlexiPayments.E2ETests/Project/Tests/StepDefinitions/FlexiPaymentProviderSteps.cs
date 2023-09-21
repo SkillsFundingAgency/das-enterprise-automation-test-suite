@@ -51,7 +51,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
 
         [Given(@"(.*) learners have Simplified Payments Pilot tag against them on Approve apprentice details page")]
-        public void LearnerHasSimplifiedPaymentsPilotTagAgainstItOnApproveApprenticeDetailsPage(int numberOfLearners) => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTag(numberOfLearners, true);
+        public void LearnerHasSimplifiedPaymentsPilotTagAgainstItOnApproveApprenticeDetailsPage(int numberOfLearners) => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTag(true, numberOfLearners);
+
+        [Given(@"Simplified Payments Pilot tags are not displayed on Approve apprentice details page")]
+        public void GivenSimplifiedPaymentsPilotTagsAreNotDisplayedOnApproveApprenticeDetailsPage() => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTag(false);
+
 
         [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
         public void ProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
