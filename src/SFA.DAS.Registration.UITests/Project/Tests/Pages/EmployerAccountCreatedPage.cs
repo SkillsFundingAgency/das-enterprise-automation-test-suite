@@ -11,22 +11,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public EmployerAccountCreatedPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public YourOrganisationsAndAgreementsPage GoToAcceptTheAgreementLink()
-        {
-            formCompletionHelper.ClickLinkByText("accept the agreement");
-            return new YourOrganisationsAndAgreementsPage(context);
-        }
-
         public HomePage SelectGoToYourEmployerAccountHomepage()
         {
             formCompletionHelper.Click(GoToYourEmployerAccountHomepage);
             return new HomePage(context);
         }
 
-        public CreateYourEmployerAccountPage SelectGoToCreateYourEmployerAccountpage()
-        {
-            formCompletionHelper.Click(GoToYourEmployerAccountHomepage);
-            return new CreateYourEmployerAccountPage(context);
-        }
     }
 }

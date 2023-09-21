@@ -95,7 +95,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SearchForAnOrganisation(orgType)
             .SelectYourOrganisation(orgType))
             .SignAgreement()
-            .ClickOnViewYourAccountButton();
+            .ClickOnViewYourAccountButton()
+            .SelectGoToYourEmployerAccountHomepage();
 
         internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
         {
@@ -105,10 +106,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .GoToSetYourAccountNameLink()
                 .SelectoptionNo()
                 .ContinueToAcknowledge()
-                .GoToAcceptTheAgreementLink()
-                .ClickViewAgreementLink()
-                .GoToViewAgreement()
+                .GoToEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+                //.GoToAcceptTheAgreementLink()
+                //.ClickViewAgreementLink()
+                //.GoToViewAgreement()
+                //.ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
         }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>

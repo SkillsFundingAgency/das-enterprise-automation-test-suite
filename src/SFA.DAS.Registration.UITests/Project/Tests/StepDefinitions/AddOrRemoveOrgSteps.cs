@@ -72,10 +72,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddOrgToTheAccount(OrgType.Charity);
         }
 
-        [Then(@"the Sign Agreement journey from the Account home page shows Accepted Agreement page with link to review other pending agreements")]
-        public void ThenTheSignAgreementJourneyFromTheAccountHomePageShowsAcceptedAgreementPageWithLinkToReviewOtherPendingAgreements() =>
-            SignAgreementFromHomePage().ClickOnReviewAndAcceptYourOtherAgreementsLink();
-
         private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)
         {
             StringAssert.AreEqualIgnoringCase(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());

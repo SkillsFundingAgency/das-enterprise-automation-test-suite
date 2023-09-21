@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
  testRunner.Then("the Sign Agreement journey from the Account home page shows Accepted Agreement pa" +
-                        "ge with link to review other pending agreements", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

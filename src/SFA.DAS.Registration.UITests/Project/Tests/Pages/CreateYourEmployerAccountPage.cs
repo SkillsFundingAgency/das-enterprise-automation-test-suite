@@ -20,5 +20,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new SetYourEmployerAccountNamePage(context);
         }
 
+        public AboutYourAgreementPage GoToEmployerAgreementLink()
+        {
+            formCompletionHelper.ClickLinkByText("Your employer agreement");
+            return new AboutYourAgreementPage(context);
+        }
+
     }
 }

@@ -76,7 +76,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"the employer adds PAYE from TaskList Page")]
         public void WhenTheEmployerAddsPAYEFromTaskListPage()
-        {     
+        {
             _homePageStepsHelper.GoToCreateYourEmployerAccountPage()
             .GoToAddPayeLink()
             .SelectOptionLessThan3Million()
@@ -89,8 +89,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .ContinueToConfirmationPage()
             .GoToSetYourAccountNameLink()
             .SelectoptionNo()
-            .ContinueToAcknowledge()
-            .SelectGoToYourEmployerAccountHomepage();
+            .ContinueToAcknowledge();
+            //.SelectGoToYourEmployerAccountHomepage();
         }
 
 

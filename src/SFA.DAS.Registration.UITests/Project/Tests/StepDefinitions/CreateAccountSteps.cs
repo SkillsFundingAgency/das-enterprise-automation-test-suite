@@ -108,7 +108,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _homePage = _signAgreementPage
                 .SignAgreement()
-                .ClickOnViewYourAccountButton();
+                .ClickOnViewYourAccountButton()
+                .SelectGoToYourEmployerAccountHomepage();
 
             SetAgreementId(_homePage);
         }
