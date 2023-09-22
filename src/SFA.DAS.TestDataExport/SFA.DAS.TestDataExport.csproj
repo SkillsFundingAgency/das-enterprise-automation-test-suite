@@ -5,10 +5,6 @@
     <RootNamespace>SFA.DAS.TestDataExport</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="117.0.5938.8800" />
-  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
