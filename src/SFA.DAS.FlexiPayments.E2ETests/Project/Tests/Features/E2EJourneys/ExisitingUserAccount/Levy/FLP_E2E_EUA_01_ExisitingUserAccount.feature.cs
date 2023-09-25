@@ -134,8 +134,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider adds Ulns and Opt the learners into the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("2 learners have Simplified Payments Pilot tag against them on Approve apprentice " +
-                        "details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Simplified Payments Pilot tags and additional columns are displayed on Approve ap" +
+                        "prentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

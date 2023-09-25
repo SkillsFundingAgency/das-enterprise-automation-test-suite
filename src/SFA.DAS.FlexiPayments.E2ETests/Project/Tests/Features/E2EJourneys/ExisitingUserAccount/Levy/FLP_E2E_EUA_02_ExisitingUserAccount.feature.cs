@@ -132,8 +132,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("Simplified Payments Pilot tags are not displayed on Approve apprentice details pa" +
-                        "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Simplified Payments Pilot tags and additional columns are NOT displayed on Approv" +
+                        "e apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

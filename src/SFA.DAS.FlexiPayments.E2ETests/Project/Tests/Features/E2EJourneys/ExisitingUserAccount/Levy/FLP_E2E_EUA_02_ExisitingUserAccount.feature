@@ -11,7 +11,7 @@ Scenario: FLP_E2E_EUA_02 Employer adds two apprentices details to a cohort and P
 		| 2       | 91            | 2004/02/01    | 2022/09/01     | 11                 | 18000        |
 	And the Employer approves the cohort
 	And the provider adds Ulns and opts the learners out of the pilot
-	And Simplified Payments Pilot tags are not displayed on Approve apprentice details page
+	And Simplified Payments Pilot tags and additional columns are NOT displayed on Approve apprentice details page
 	When Provider successfully approves the cohort
 	Then validate the following data is created in the commitments database
 		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost | training_price | endpoint_assessment_price |

@@ -213,9 +213,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton)) throw new Exception("The approve radio button is displayed to the user");
         }
 
-        public ProviderApproveApprenticeDetailsPage VerifySimplifiedPaymentsPilotTag(bool isDisplayed, int numberOfLearners = 1)
+        public ProviderApproveApprenticeDetailsPage VerifySimplifiedPaymentsPilotTagAndColumns(bool isDisplayed)
         {
-            ValidateFlexiJobAgencyTag(numberOfLearners, isDisplayed);
+            ValidateSimplifiedPaymentsPilotTagAndColumns(isDisplayed);
             return this;
         }
     }

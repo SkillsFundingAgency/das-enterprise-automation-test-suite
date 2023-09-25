@@ -50,11 +50,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Given(@"the provider adds Uln and Opt learner (.*) into the pilot")]
         public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
 
-        [Given(@"(.*) learners have Simplified Payments Pilot tag against them on Approve apprentice details page")]
-        public void LearnerHasSimplifiedPaymentsPilotTagAgainstItOnApproveApprenticeDetailsPage(int numberOfLearners) => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTag(true, numberOfLearners);
+        [Given(@"Simplified Payments Pilot tags and additional columns are displayed on Approve apprentice details page")]
+        public void GivenSimplifiedPaymentsPilotTagsAndAdditionalColumnsAreDisplayedOnApproveApprenticeDetailsPage() => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTagAndColumns(true);
 
-        [Given(@"Simplified Payments Pilot tags are not displayed on Approve apprentice details page")]
-        public void GivenSimplifiedPaymentsPilotTagsAreNotDisplayedOnApproveApprenticeDetailsPage() => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTag(false);
+        [Given(@"Simplified Payments Pilot tags and additional columns are NOT displayed on Approve apprentice details page")]
+        public void GivenSimplifiedPaymentsPilotTagsAndAdditionalColumnsAreNOTDisplayedOnApproveApprenticeDetailsPage() => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTagAndColumns(false);
 
 
         [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
