@@ -1,9 +1,8 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
-using Polly;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -34,7 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToHomePage();
 
-        protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) 
+        protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy)
             => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, loginUser.OrganisationName, isLevy);
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
@@ -47,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             return homePage;
         }
-        
+
         public HomePage Login(LevyUser nonLevyUser) => Login(nonLevyUser, true);
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
