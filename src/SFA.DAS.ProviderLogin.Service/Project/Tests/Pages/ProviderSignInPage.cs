@@ -4,20 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class ProviderSignInPage : DfeSignInPage //SignInBasePage (pas login changes)
+public class ProviderSignInPage : DfeSignInPage
 {
     public ProviderSignInPage(ScenarioContext context) : base(context) { }
 
-    //pas login changes
-    public SelectYourOrganisationPage SubmitValidLoginDetails(ProviderLoginUser login)
-    {
-        SubmitValidLoginDetails(login.UserId, login.Password);
-        return new SelectYourOrganisationPage(context);
-    }
-
-    //public ProviderHomePage SubmitValidLoginDetails(ProviderLoginUser login)
-    //{
-    //    SubmitValidLoginDetails(login.UserId, login.Password);
-    //    return new ProviderHomePage(context);
-    //}
+    public void SubmitValidLoginDetails(ProviderLoginUser login) => SubmitValidLoginDetails(login.UserId, login.Password);
 }

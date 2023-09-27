@@ -10,12 +10,5 @@ public class ProviderIndexPage : IdamsLoginBasePage
 
     public ProviderIndexPage(ScenarioContext context) : base(context) { }
 
-    public ProviderSignInPage StartNow()
-    {
-        formCompletionHelper.ClickElement(ProviderCSSSelectors.ProviderIndexStartSelector);
-
-        ClickIfPirenIsDisplayed();
-
-        return new ProviderSignInPage(context);
-    }
+    public void StartNow() => formCompletionHelper.ClickElement(ProviderCSSSelectors.ProviderIndexStartSelector);
 }
