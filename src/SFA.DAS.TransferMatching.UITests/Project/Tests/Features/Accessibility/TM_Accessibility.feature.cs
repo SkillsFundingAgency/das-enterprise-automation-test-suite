@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,26 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TM_01_NL_CreateApplyApproveAndAcceptTransferPledge_AddApprentice")]
-    public partial class TM_01_NL_CreateApplyApproveAndAcceptTransferPledge_AddApprenticeFeature
+    [NUnit.Framework.DescriptionAttribute("TM_Accessibility")]
+    [NUnit.Framework.CategoryAttribute("accessibility")]
+    [NUnit.Framework.CategoryAttribute("transfermatching")]
+    public partial class TM_AccessibilityFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "accessibility",
+                "transfermatching"};
         
-#line 1 "TM_01_NL_CreateApplyAndApproveTransferPledge.feature"
+#line 1 "TM_Accessibility.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_01_NL_CreateApplyApproveAndAcceptTransferPledge_AddApprentice", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "TM_Accessibility", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +78,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TM_01_NL_Create Apply Approve and Accept transfer pledge - Add apprentice")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfermatching")]
-        public void TM_01_NL_CreateApplyApproveAndAcceptTransferPledge_AddApprentice()
+        [NUnit.Framework.DescriptionAttribute("TM_ACC_01 Create Apply Approve and Accept transfer pledge - Add apprentice")]
+        public void TM_ACC_01CreateApplyApproveAndAcceptTransferPledge_AddApprentice()
         {
-            string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "transfermatching"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_01_NL_Create Apply Approve and Accept transfer pledge - Add apprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_ACC_01 Create Apply Approve and Accept transfer pledge - Add apprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Accessibility
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,26 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Accessibility
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_Accessibility")]
-    public partial class SC_AccessibilityFeature
+    [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_Accessibility03")]
+    [NUnit.Framework.CategoryAttribute("accessibility")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_E2E_ACC_Accessibility03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "accessibility",
+                "approvals"};
         
-#line 1 "SC_Accessibility.feature"
+#line 1 "AP_Accessibility03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "SC_Accessibility", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/Accessibility", "AP_E2E_ACC_Accessibility03", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +78,21 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Accessibility
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("SC_ACC_01 Tier2Navigation")]
-        [NUnit.Framework.CategoryAttribute("accessibility")]
-        [NUnit.Framework.CategoryAttribute("supportconsole")]
-        [NUnit.Framework.CategoryAttribute("masupportconsole")]
-        public void SC_ACC_01Tier2Navigation()
+        [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_03 Non Levy Employer sends an approved cohort then provider approves t" +
+            "he cohort")]
+        [NUnit.Framework.CategoryAttribute("non-levy")]
+        [NUnit.Framework.CategoryAttribute("reservefunds")]
+        [NUnit.Framework.CategoryAttribute("reservation")]
+        public void AP_E2E_ACC_03NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
-                    "accessibility",
-                    "supportconsole",
-                    "masupportconsole"};
+                    "non-levy",
+                    "reservefunds",
+                    "reservation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_ACC_01 Tier2Navigation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_03 Non Levy Employer sends an approved cohort then provider approves t" +
+                    "he cohort", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,35 +102,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the Tier 2 User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 10
- testRunner.When("the user navigates to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.Then("the user is redirected to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer uses the reservation to create and approve 1 cohort and sends to pro" +
+                        "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.And("the user can view levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
- testRunner.When("the user navigates to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 14
- testRunner.Then("the user is redirected to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
- testRunner.And("the user can view transactions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
- testRunner.When("the user navigates to team members page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 17
- testRunner.Then("the user can view employer user information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

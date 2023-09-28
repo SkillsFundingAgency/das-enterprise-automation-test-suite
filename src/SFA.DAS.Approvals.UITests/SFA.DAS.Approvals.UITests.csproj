@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AP_EmpDC_01_EmployerDeleteCohort - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02 - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02 - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02 - Copy.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,8 +40,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility.feature.cs">
-      <DependentUpon>AP_Accessibility.feature</DependentUpon>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility03.feature.cs">
+      <DependentUpon>AP_Accessibility03.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility04.feature.cs">
+      <DependentUpon>AP_Accessibility04.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility05.feature.cs">
+      <DependentUpon>AP_Accessibility05.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02.feature.cs">
+      <DependentUpon>AP_Accessibility02.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility01.feature.cs">
+      <DependentUpon>AP_Accessibility01.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 	
@@ -76,7 +92,23 @@
   </ItemGroup>
 	
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility03.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility04.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility05.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility01.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

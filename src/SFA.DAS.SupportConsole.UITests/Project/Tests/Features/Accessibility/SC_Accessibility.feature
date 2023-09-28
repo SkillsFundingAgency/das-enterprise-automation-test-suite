@@ -1,10 +1,10 @@
 ﻿Feature: SC_Accessibility
 
 
-@regression
+@accessibility
 @supportconsole
 @masupportconsole
-Scenario: SC_ACC_01_Tier2Navigation
+Scenario: SC_ACC_01 Tier2Navigation
 	Given the Tier 2 User is logged into Support Console
 	And the User is on the Account details page
 	When the user navigates to finance page
