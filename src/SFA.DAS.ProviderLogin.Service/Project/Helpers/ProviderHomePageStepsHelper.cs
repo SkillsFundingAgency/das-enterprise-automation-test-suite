@@ -45,7 +45,7 @@ public class ProviderHomePageStepsHelper
 
         if (loginHelper.IsSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
 
-        if (loginHelper.IsSelectYourOrganisationDisplayed()) loginHelper.SelectOrganisation(login);
+        if (loginHelper.IsSelectYourOrganisationDisplayed()) return loginHelper.SelectOrganisation(login);
 
         if (loginHelper.IsProviderHomePageDisplayed(login.Ukprn)) return new ProviderHomePage(_context);
 

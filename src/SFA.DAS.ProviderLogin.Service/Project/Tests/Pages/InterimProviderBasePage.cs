@@ -19,7 +19,7 @@ public abstract class InterimProviderBasePage : Navigate
     public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
     {
         ukprn = context.Get<ObjectContext>().GetUkprn();
-        VerifyElement();
+        VerifyPage();
     }
 
     public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
