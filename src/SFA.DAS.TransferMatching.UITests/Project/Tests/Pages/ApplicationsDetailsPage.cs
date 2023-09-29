@@ -7,19 +7,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     public class ApplicationsDetailsPage : TransferMatchingBasePage
     {
         protected override string PageTitle => $"({GetPledgeId()}) application details";
+
+        protected override string AccessibilityPageTitle => "Pledge application details page";
         protected override By ContinueButton => By.CssSelector("#fund-transfer-accept");
 
-        private By InformationSelector => By.CssSelector("#TruthfulInformation");
+        private static By InformationSelector => By.CssSelector("#TruthfulInformation");
 
-        private By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
+        private static By ComplyWithRulesSelector => By.CssSelector("#ComplyWithRules");
 
-        private By WithdrawalConfirmedSelector => By.CssSelector("input#IsDeclineConfirmed");
+        private static By WithdrawalConfirmedSelector => By.CssSelector("input#IsDeclineConfirmed");
 
-        private By WithdrawFundingSelector => By.CssSelector("input#IsWithdrawalConfirmed");
+        private static By WithdrawFundingSelector => By.CssSelector("input#IsWithdrawalConfirmed");
 
-        private By ContinueSelector => By.CssSelector("#main-content > div > div.govuk-grid-column-two-thirds > form > div.govuk-button-group > button");
+        private static By ContinueSelector => By.CssSelector("#main-content > div > div.govuk-grid-column-two-thirds > form > div.govuk-button-group > button");
 
-        private By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
+        private static By ErrorTitle => By.CssSelector("#main-content .govuk-error-summary");
 
         public ApplicationsDetailsPage(ScenarioContext context, string applicationStatus) : base(context, false)
         {

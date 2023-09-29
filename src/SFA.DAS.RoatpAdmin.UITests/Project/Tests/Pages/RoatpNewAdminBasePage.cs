@@ -144,7 +144,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             }
         }
 
-        protected By StatusTextLocator(string linkText) =>
+        protected static By StatusTextLocator(string linkText) =>
                         By.XPath($"//span[contains(text(), '{linkText}')]/following-sibling::strong | //a[contains(text(),'{linkText}')]/../following-sibling::strong");
 
     }

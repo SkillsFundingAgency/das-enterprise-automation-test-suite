@@ -1,14 +1,36 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using System.Linq;
+using Selenium.Axe;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using Selenium.Axe;
 using SFA.DAS.TestDataExport;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
+    public static class AccessibilityPageTitleChecker
+    {
+        private static readonly List<string> pageTitles;
+
+        static AccessibilityPageTitleChecker()
+        {
+            pageTitles = new();
+        }
+
+        public static bool Contains(string title)
+        {
+            var x = pageTitles.Contains(title);
+
+            if (x == false) pageTitles.Add(title);
+
+            return x;
+        }
+    }
+
+
     public class AnalyzePageHelper
     {
         #region Helpers and Context
@@ -24,9 +46,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         internal void AnalyzePage(string actualPageTitle)
         {
-            if (!ShouldAnalyzePage()) return;
+            //Do not remove this commented code
+            //if (!ShouldAnalyzePage()) return;
 
-            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? "NoPageTitle" : actualPageTitle;
+            string pageTitle = string.IsNullOrEmpty(actualPageTitle) ? $"NoPageTitle_{DateTime.Now:HH-mm-ss-fffff}" : actualPageTitle;
+
+            if (ShouldNotAnalyzePageCheckUsingPageTitle(pageTitle)) return;
 
             string counter = _context.Get<ScreenShotTitleGenerator>().GetTitle();
 
@@ -51,23 +76,40 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 SetAccessibilityInformation($"{axeResult.Violations.Length} CRITICAL violation's is/are found in {counter} - '{pageTitle}' page - url: {axeResult.Url}");
             }
+
+            SetAccessibilityPageTitle(pageTitle);
+
         }
 
+        private bool ShouldNotAnalyzePageCheckUsingPageTitle(string pageTitle)
+        {
+            var x = AccessibilityPageTitleChecker.Contains(pageTitle);
+
+            var message = x ? $"'{pageTitle}' already analyzed." : $"'{pageTitle}' not analyzed.";
+
+            _objectContext.SetDebugInformation(message);
+
+            return x;
+        }
+
+        //Do not delete this method please.
         private bool ShouldAnalyzePage()
         {
             var analyzedPages = _objectContext.GetAccessibilityInformations();
 
             var url = _context.Get<PageInteractionHelper>().GetUrl();
 
-            if (analyzedPages.Any(x=> x.Contains(url))) return false;
+            if (analyzedPages.Any(x => x.Contains(url))) return false;
 
             var urlsplit = url.Split("?");
 
             if (urlsplit.Any() && analyzedPages.Any(x => x.Contains(urlsplit[0]))) return false;
-            
+
             return true;
         }
 
         private void SetAccessibilityInformation(string x) => _objectContext.SetAccessibilityInformation(x);
+
+        private void SetAccessibilityPageTitle(string x) => _objectContext.SetAccessibilityPageTitle(x);
     }
 }

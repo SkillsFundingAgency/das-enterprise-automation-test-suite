@@ -1,6 +1,8 @@
 ﻿using Polly;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
@@ -21,6 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerWithMultipleAccountsUser _changeOfEmployerLevyUser;
         private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
 
         public CoeSteps(ScenarioContext context) : base(context)
         {
@@ -30,6 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
             _context = context;
         }
 
@@ -42,11 +46,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _cohortReferenceHelper.SetCohortReference(cohortReference);
 
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
             createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
             _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.LeftEmployer);
             _providerStepsHelper.StartChangeOfEmployerJourney();
-            _cohortReferenceHelper.UpdateNewCohortReference();
+            _cohortReferenceHelper.UpdateCohortReference();
 
             _objectContext.UpdateOrganisationName(_changeOfEmployerLevyUser.SecondOrganisationName);
             _employerStepsHelper.Approve();

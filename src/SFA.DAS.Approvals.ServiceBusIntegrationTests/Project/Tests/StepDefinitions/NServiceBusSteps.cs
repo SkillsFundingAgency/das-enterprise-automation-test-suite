@@ -19,6 +19,6 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinit
         }
 
         [When(@"PaymentsCompletion event is received")]
-        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId(_context.ScenarioInfo.Title));
+        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
     }
 }

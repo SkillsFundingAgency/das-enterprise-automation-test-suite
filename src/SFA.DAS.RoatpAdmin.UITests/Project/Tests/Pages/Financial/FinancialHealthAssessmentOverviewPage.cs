@@ -8,16 +8,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
     {
         protected override string PageTitle => "Financial health assessment overview";
 
-        private By DayOutStandingField => By.Id("OutstandingFinancialDueDate.Day");
-        private By MonthOutStandingField => By.Id("OutstandingFinancialDueDate.Month");
-        private By YearOutStandingField => By.Id("OutstandingFinancialDueDate.Year");
-        private By ClarificationCommentBox => By.Id("ClarificationComments");
-        private By ClarificationResponseBox => By.Id("ClarificationResponse");
-        private By InadequateCommentBox => By.Id("InadequateComments");
-
-        private By InadequateExternalCommentsBox => By.Id("InadequateExternalComments");
-        private By UploadClarificationFileButton => By.CssSelector(".govuk-button--secondary");
-        private By RemoveClarificationFileButton => By.CssSelector("button[name='removeClarificationFile']");
+        private static By DayOutStandingField => By.Id("OutstandingFinancialDueDate.Day");
+        private static By MonthOutStandingField => By.Id("OutstandingFinancialDueDate.Month");
+        private static By YearOutStandingField => By.Id("OutstandingFinancialDueDate.Year");
+        private static By ClarificationCommentBox => By.Id("ClarificationComments");
+        private static By ClarificationResponseBox => By.Id("ClarificationResponse");
+        private static By InadequateCommentBox => By.Id("InadequateComments");
+        private static By InadequateExternalCommentsBox => By.Id("InadequateExternalComments");
+        private static By UploadClarificationFileButton => By.CssSelector(".govuk-button--secondary");
+        private static By RemoveClarificationFileButton => By.CssSelector("button[name='removeClarificationFile']");
 
         public FinancialHealthAssessmentOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
 

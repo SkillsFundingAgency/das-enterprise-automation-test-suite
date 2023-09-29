@@ -10,13 +10,15 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
+        protected override string AccessibilityPageTitle => "Employer and provider view vacancy page";
+
         protected override By EmployerName => By.CssSelector(".govuk-caption-xl");
 
         protected override By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
 
-        private By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
+        private static By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
 
-        private By EmployerWageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
+        private static By EmployerWageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
 
         protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 

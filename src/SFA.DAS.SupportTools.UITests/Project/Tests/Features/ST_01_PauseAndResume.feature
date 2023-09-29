@@ -1,6 +1,6 @@
 ﻿Feature: ST_01_PauseAndResume
 
-@supportconsole
+@supporttools
 @approvalssupportconsole
 @BulkUtility
 Scenario: ST_01A_Pause Apprentice Records
@@ -14,7 +14,7 @@ Scenario: ST_01A_Pause Apprentice Records
 	Then User should be able to pause all the live records
 
 
-@supportconsole
+@supporttools
 @approvalssupportconsole
 @BulkUtility
 Scenario: ST_01B_Resume Apprentice Records

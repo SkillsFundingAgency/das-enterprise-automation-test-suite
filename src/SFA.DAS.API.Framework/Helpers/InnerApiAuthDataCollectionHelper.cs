@@ -32,7 +32,5 @@ public class InnerApiAuthDataCollectionHelper : RequestAndResponseCollectionHelp
 
     protected override string GetResponseBody() => GetBody(EmptyJson);
 
-    private static string HashedValue => "********";
-
     private static string EmptyJson => "{" + HashedValue + "}";
 }

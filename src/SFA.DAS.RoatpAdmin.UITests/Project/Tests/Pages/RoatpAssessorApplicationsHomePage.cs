@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EsfaAdmin.Service.Project;
-using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Clarification;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
@@ -12,8 +11,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "RoATP assessor applications";
 
-        private By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
-        private By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
+        private static By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
+        private static By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
 
         public RoatpAssessorApplicationsHomePage(ScenarioContext context) : base(context) { }
 
@@ -49,7 +48,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new ApplicationAssessmentOverviewPage(context);
         }
 
-        private  IWebElement GetApplication(By columnIdentifier)
+        private IWebElement GetApplication(By columnIdentifier)
         {
             return tableRowHelper.GetColumn(objectContext.GetUkprn(), columnIdentifier);
         }

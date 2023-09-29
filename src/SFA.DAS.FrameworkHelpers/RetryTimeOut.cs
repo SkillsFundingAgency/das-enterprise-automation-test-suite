@@ -22,7 +22,5 @@ namespace SFA.DAS.FrameworkHelpers
             
             return result;
         }
-
-        
     }
 }

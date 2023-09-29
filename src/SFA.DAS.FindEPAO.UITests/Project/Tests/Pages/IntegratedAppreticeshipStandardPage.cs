@@ -7,9 +7,9 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "The training provider will carry out the end-point assessment";
 
-        public IntegratedAppreticeshipStandardPage(ScenarioContext context) : base(context) { } 
+        public IntegratedAppreticeshipStandardPage(ScenarioContext context) : base(context) { }
 
-        private By BackToSearchApprenticeshipTraining => By.ClassName("govuk-back-link");
+        private static By BackToSearchApprenticeshipTraining => By.ClassName("govuk-back-link");
 
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromIntegratedApprenticeshipsPage()
         {

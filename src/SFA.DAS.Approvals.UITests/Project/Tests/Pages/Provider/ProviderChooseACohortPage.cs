@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override bool TakeFullScreenShot => false;
 
-        private By CohortsTable => By.CssSelector(".govuk-table__row");
+        private static By CohortsTable => By.CssSelector(".govuk-table__row");
 
         public ProviderChooseACohortPage(ScenarioContext context) : base(context)  { }
 

@@ -8,17 +8,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Apprenticeship training";
 
-        private By JobRoleSelector => By.CssSelector("#SelectedStandardId");
+        private static By JobRoleSelector => By.CssSelector("#SelectedStandardId");
 
-        private By NoOfApprenticeSelector => By.CssSelector("#opportunity-application-apprentices");
+        private static By NoOfApprenticeSelector => By.CssSelector("#opportunity-application-apprentices");
 
-        private By StartMonth => By.CssSelector("#opportunity-application-start-month");
+        private static By StartMonth => By.CssSelector("#opportunity-application-start-month");
 
-        private By StartYear => By.CssSelector("#opportunity-application-start-year");
+        private static By StartYear => By.CssSelector("#opportunity-application-start-year");
 
-        private By PanelEstimateSelector => By.CssSelector("#panel-estimate");
+        private static By PanelEstimateSelector => By.CssSelector("#panel-estimate");
 
-        private By AmountEstimateSelector => By.CssSelector("#panel-estimate #field-estimate");
+        private static By AmountEstimateSelector => By.CssSelector("#panel-estimate #field-estimate");
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
@@ -74,8 +74,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             }
 
             RetryAction();
+            VerifyElement(PanelEstimateSelector, $"Estimated yearly cost for apprenticeship training:\r\n£{tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail()}", RetryAction);
 
-            VerifyElement(PanelEstimateSelector, "Estimated cost of training will be", RetryAction);
         }
     }
 }

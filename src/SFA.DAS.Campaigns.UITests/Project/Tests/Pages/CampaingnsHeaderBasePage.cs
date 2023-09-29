@@ -8,15 +8,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public abstract class CampaingnsHeaderBasePage : CampaingnsVerifyLinks
     {
-        protected By Apprentice => By.CssSelector("a[href*='apprentice']");
+        protected static By Apprentice => By.CssSelector("a[href*='apprentice']");
 
-        protected By Employer => By.CssSelector("a[href*='employers']");
+        protected static By Employer => By.CssSelector("a[href*='employers']");
 
-        protected By Influencers => By.CssSelector("a[href*='influencers']");
+        protected static By Influencers => By.CssSelector("a[href*='influencers']");
 
-        protected By SiteMap => By.CssSelector("#link-footer-sitemap");
+        protected static By SiteMap => By.CssSelector("#link-footer-sitemap");
 
-        public CampaingnsHeaderBasePage(ScenarioContext context) : base(context)  { }
+        public CampaingnsHeaderBasePage(ScenarioContext context) : base(context) { }
 
         public ApprenticeHubPage NavigateToApprenticeshipHubPage()
         {

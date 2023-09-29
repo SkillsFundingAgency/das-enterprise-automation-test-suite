@@ -8,9 +8,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
 
+        protected override string AccessibilityPageTitle => "Delete vacancy page";
+
         private string SubTitle => isRaaV2Employer ? "Are you sure you want to delete this advert?" : "Are you sure you want to delete the vacancy?";
 
-        private By SubHeader => By.CssSelector(".govuk-heading-l");
+        private static By SubHeader => By.CssSelector(".govuk-heading-l");
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 

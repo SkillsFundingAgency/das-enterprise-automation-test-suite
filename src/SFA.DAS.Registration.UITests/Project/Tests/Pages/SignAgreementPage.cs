@@ -7,12 +7,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
 
+        protected override string AccessibilityPageTitle => "Sign an agreement page";
+
         protected override bool TakeFullScreenShot => false;
 
         #region Locators
-        private By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
-        private By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
-        private By ContinueToYourAgreementButton => By.LinkText("Continue to your agreement");
+        private static By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
+        private static By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
+        private static By ContinueToYourAgreementButton => By.LinkText("Continue to your agreement");
         protected override By ContinueButton => By.CssSelector("input.govuk-button, input.button");
         #endregion
 

@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -10,13 +7,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => $"Confirm details and send request to {changeOfPartyConfig.NewProviderName}";
 
-        private By ChangeStartDateLink => By.Id("change-start-date-link");
-        private By ChangeEndDateLink => By.Id("change-end-date-link");
-        private By ChangePriceLink => By.Id("change-price-link");
-        private By ConfirmBtn => By.Id("confirm-and-send-button");
+        protected override string AccessibilityPageTitle => "Confirm details and send request to new provider";
 
-        public EmployerChangeOfProviderCheckYourAnswersPage(ScenarioContext context) : base(context)  { } 
-        
+        private static By ChangeStartDateLink => By.Id("change-start-date-link");
+        private static By ChangeEndDateLink => By.Id("change-end-date-link");
+        private static By ChangePriceLink => By.Id("change-price-link");
+        private static By ConfirmBtn => By.Id("confirm-and-send-button");
+
+        public EmployerChangeOfProviderCheckYourAnswersPage(ScenarioContext context) : base(context) { }
+
         public WhatIsTheNewStartDatePage ClickChangeStartDate()
         {
             formCompletionHelper.Click(ChangeStartDateLink);
@@ -37,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             return new WhatIsTheNewPricePage(context);
         }
-        
+
         public ChangeOfTrainingProviderRequestedPage ClickConfirmAndSend()
         {
             formCompletionHelper.Click(ConfirmBtn);

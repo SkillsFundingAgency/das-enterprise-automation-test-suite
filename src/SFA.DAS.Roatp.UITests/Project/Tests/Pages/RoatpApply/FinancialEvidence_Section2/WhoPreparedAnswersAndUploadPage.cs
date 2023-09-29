@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     {
         protected override string PageTitle => "Who prepared the answers and uploads in this section?";
 
-        private By AnEmployeeInYourOrganisationCheckbox => By.CssSelector("input[type='checkbox'][value='An employee in your organisation']");
+        private static By AnEmployeeInYourOrganisationCheckbox => By.CssSelector("input[type='checkbox'][value='An employee in your organisation']");
 
         public WhoPreparedAnswersAndUploadPage(ScenarioContext context) : base(context) => VerifyPage();
 

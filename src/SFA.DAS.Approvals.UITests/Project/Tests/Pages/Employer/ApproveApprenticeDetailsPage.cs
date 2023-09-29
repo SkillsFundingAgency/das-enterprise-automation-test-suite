@@ -18,6 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
+        protected override string AccessibilityPageTitle => "Employer approve apprentice details";
+
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
@@ -109,7 +111,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeDetailsApprovedPage ValidateFlexiJobTagAndApprove()
         {
-            validateFlexiJobAgencyTag();
+            ValidateFlexiJobAgencyTag();
             return EmployerDoesSecondApproval();
         }
 

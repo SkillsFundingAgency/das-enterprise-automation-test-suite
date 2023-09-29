@@ -7,13 +7,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     {
         protected override By PageHeader => SubPageHeader;
 
-        protected By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
+        protected static By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
 
-        protected By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
+        protected static By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
 
-        protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
+        protected static By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
 
-        protected By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
+        protected static By BrowseApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
         #region Helpers and Context
         

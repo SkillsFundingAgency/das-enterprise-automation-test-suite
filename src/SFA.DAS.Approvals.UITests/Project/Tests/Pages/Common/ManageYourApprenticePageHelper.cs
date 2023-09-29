@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return apprentices.Count > 0;
         }
 
-        public void SelectViewCurrentApprenticeDetails(string name)
+        public void SelectViewLiveApprenticeDetails(string name)
         {
             DoesApprenticeExists(name);
 

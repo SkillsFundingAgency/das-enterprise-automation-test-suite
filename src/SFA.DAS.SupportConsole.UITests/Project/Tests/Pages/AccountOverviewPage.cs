@@ -4,6 +4,8 @@ public class AccountOverviewPage : SupportConsoleBasePage
 {
     protected override string PageTitle => config.AccountName;
 
+    protected override string AccessibilityPageTitle => "Account overview page";
+
     #region Locators
     protected override By PageHeader => By.CssSelector(".heading-large");
     private static By PageHeaderWithAccountDetails => By.CssSelector(".heading-secondary");

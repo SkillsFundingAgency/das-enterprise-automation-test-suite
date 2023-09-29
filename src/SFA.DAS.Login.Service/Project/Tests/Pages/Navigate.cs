@@ -5,10 +5,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Login.Service.Project.Tests.Pages
 {
     public abstract class Navigate : NavigateBase
-    {       
-        protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
+    {
+        protected static By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
 
-        private By MoreLink => By.LinkText("More");
+        private static By MoreLink => By.LinkText("More");
 
         protected abstract string Linktext { get; }
 

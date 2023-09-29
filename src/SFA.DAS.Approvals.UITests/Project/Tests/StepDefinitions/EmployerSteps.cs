@@ -1,5 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerSteps 
+    public class EmployerSteps
     {
         #region context&Helpers
         private readonly ScenarioContext _context;
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             .StopApprenticeThisMonth(_apprenticeDetailsPage, StopApprentice.Withdrawn)
              .ValidateFlashMessage("Apprenticeship stopped");
         }
-        
+
         [Then(@"Employer is able to edit all apprentices before approval")]
         public void EmployerIsAbleToEditAllApprenticesBeforeApproval()
         {
@@ -134,7 +134,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();        
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
 
         [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
         [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
@@ -157,10 +157,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer sends new cohort to provider")]
-        public void WhenTheEmployerSendsCohortToProvider()
-        {         
-            _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview();
-        }
+        public void WhenTheEmployerSendsCohortToProvider() => _approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview();
 
         [Then(@"the Employer approves the cohorts")]
         public void ThenTheEmployerApprovesTheCohorts() => _employerStepsHelper.Approve();
@@ -169,11 +166,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerApprovesMultipleCohorts() => _employerStepsHelper.ApproveMultipleCohorts();
 
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
-        public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices) 
+        public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
             => SetCohortReference(_employerStepsHelper.EmployerApproveAndSendToProvider(NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false)));
 
         [When(@"the Employer uses the reservation and (.*) confirm only standard courses are selectable and adds (\d) cohort and sends to provider")]
-        public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(bool shouldConfirmOnlyStandardCoursesSelectable, int numberOfApprentices) 
+        public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(bool shouldConfirmOnlyStandardCoursesSelectable, int numberOfApprentices)
             => SetCohortReference(NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, shouldConfirmOnlyStandardCoursesSelectable).EmployerSendsToTrainingProviderForReview().CohortReference());
 
         [StepDefinition(@"a new live apprentice record is created")]
@@ -191,12 +188,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer sees the cohort in Draft with status of (.*)")]
         public void ThenTheCohortIsInDraftWithStatus(string status)
         {
-            if(!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
-            {
-                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
-            }
-
-            _approveApprenticeDetailsPage = _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
+            _approveApprenticeDetailsPage = GoToApprenticeRequestsPage().GoToDrafts().SelectViewCurrentCohortDetails();
 
             _approveApprenticeDetailsPage.ValidateCohortStatus(status);
         }
@@ -204,12 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer sees the cohort in With training providers with status of (.*)")]
         public void ThenTheCohortIsInWithTrainingProvidersWithStatus(string status)
         {
-            if (!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
-            {
-                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
-            }
-
-            _viewApprenticeDetailsPage = _apprenticeRequestsPage.GoToWithTrainingProviders().SelectViewCurrentCohortDetails();
+            _viewApprenticeDetailsPage = GoToApprenticeRequestsPage().GoToWithTrainingProviders().SelectViewCurrentCohortDetails();
 
             _viewApprenticeDetailsPage.ValidateCohortStatus(status);
         }
@@ -217,20 +204,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer sees the cohort in Ready to review with status of (.*)")]
         public void ThenTheCohortIsInReadyToReviewWithStatus(string status)
         {
-            if(!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
-            {
-                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
-            }
-
-            _approveApprenticeDetailsPage = _apprenticeRequestsPage.GoToReadyToReview().SelectViewCurrentCohortDetails();
+            _approveApprenticeDetailsPage = GoToApprenticeRequestsPage().GoToReadyToReview().SelectViewCurrentCohortDetails();
 
             _approveApprenticeDetailsPage.ValidateCohortStatus(status);
         }
-
-        private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition) 
-            => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);
-
-        public void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
 
         [Then(@"the employer is removed from the Flexi-job agency register")]
         public void ThenTheEmployerIsRemovedFromTheFlexi_JobAgencyRegister() => _employerStepsHelper.RemoveEmployerFromFlexiJobAgencyRegister();
@@ -259,8 +236,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the employer edits apprentice delivery model to Flexi in Post Approvals and Submits changes")]
         public void WhenTheEmployerEditsApprenticeDeliveryModelToFlexiInPostApprovalsAndSubmitsChanges() => _employerStepsHelper.EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval();
 
+        private ApprenticeRequestsPage GoToApprenticeRequestsPage()
+        {
+            if (!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
+            {
+                _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
+            }
 
+            return _apprenticeRequestsPage;
+        }
 
+        private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition)
+            => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);
 
+        private void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
     }
 }

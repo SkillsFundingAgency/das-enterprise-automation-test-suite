@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service;
+﻿using SFA.DAS.EsfaAdmin.Service.Project;
+using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System.Collections.Generic;
 
@@ -9,6 +10,7 @@ public class AANConfigurationSetup
 {
     private readonly ScenarioContext _context;
 
+
     public AANConfigurationSetup(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 2)]
@@ -16,10 +18,21 @@ public class AANConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
+        _context.SetEasLoginUser(new List<EasAccountUser>
+        {
+            configSection.GetConfigSection<AanEmployerUser>(),
+            configSection.GetConfigSection<AanEmployerOnBoardedUser>()
+        });
+
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<AanUser>(),
-            configSection.GetConfigSection<AanNonBetaUser>(),
+            configSection.GetConfigSection<AanApprenticeUser>(),
+            configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
+            configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
         });
+
+        _context.SetAanEsfaAdminConfig(configSection.GetConfigSection<AanEsfaAdminConfig>());
+
+        _context.SetAanEsfaSuperAdminConfig(configSection.GetConfigSection<AanEsfaSuperAdminConfig>());
     }
 }

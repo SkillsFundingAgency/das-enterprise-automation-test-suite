@@ -8,12 +8,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override string PageTitle => "Bank details";
 
         #region Locators
-        private By NameOfTheBank => By.CssSelector("#Name_of_bank");
-        private By AccountName => By.CssSelector("#Bank_account_name");
-        private By AccountNumber => By.CssSelector("#Account_number");
-        private By SortCode => By.CssSelector("#sort_code");
-        private By AddBankDetails => By.CssSelector("#exp_validate");
-        private By BankDetailsAcceptedMessage => By.CssSelector(".fieldContent strong");
+        private static By NameOfTheBank => By.CssSelector("#Name_of_bank");
+        private static By AccountName => By.CssSelector("#Bank_account_name");
+        private static By AccountNumber => By.CssSelector("#Account_number");
+        private static By SortCode => By.CssSelector("#sort_code");
+        private static By AddBankDetails => By.CssSelector("#exp_validate");
+        private static By BankDetailsAcceptedMessage => By.CssSelector(".fieldContent strong");
         #endregion
 
         public VRFBankDetailsTabPage(ScenarioContext context) : base(context, false) => frameHelper.SwitchFrameAndAction(() => VerifyPage());

@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ReserveFundingButton => By.LinkText("Reserve funding");
+        private static By ReserveFundingButton => By.LinkText("Reserve funding");
 
         public ReserveFundingToTrainAndAssessAnApprenticePage(ScenarioContext context) : base(context)  { }
 

@@ -13,13 +13,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
-        private By TransferStatus => By.CssSelector("p.govuk-body");
-        private By AddNewOrganisationButton => By.CssSelector(".govuk-button");
-        private By TableCells => By.XPath("//td");
-        private By ViewAgreementLink() => By.PartialLinkText("View all agreements");
-        private By ViewAgreementLink(string accountLegalEntityPublicHashedId) => By.CssSelector($"[href*='{accountLegalEntityPublicHashedId}/agreements']");
-        private By OrgRemovedMessageInHeader => By.XPath("//h3");
-        private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
+        private static By TransferStatus => By.CssSelector("p.govuk-body");
+        private static By AddNewOrganisationButton => By.CssSelector(".govuk-button");
+        private static By TableCells => By.XPath("//td");
+        private static By ViewAgreementLink() => By.PartialLinkText("View all agreements");
+        private static By ViewAgreementLink(string accountLegalEntityPublicHashedId) => By.CssSelector($"[href*='{accountLegalEntityPublicHashedId}/agreements']");
+        private static By OrgRemovedMessageInHeader => By.XPath("//h3");
+        private static By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();

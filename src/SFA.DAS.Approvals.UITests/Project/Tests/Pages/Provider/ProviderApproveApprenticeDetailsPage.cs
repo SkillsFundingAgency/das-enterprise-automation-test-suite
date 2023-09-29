@@ -14,13 +14,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By AddAnApprenticeButton => By.CssSelector(".govuk-link.add-apprentice");
         private static By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
-        private new By EditApprenticeLink => By.ClassName("edit-apprentice");
+        private static new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
         private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
         private static By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
         private static By MessageBox => By.Name("sendmessage");
-        private By CohortApproveOptions => RadioLabels;
         private static By SaveAndExitCohort => By.Id("save-and-exit-cohort");
         private static By FlashMessage => By.ClassName("govuk-panel__title");
         private static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
@@ -29,42 +28,44 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By ApproveRadioButton => By.Id("radio-approve");
 
+        protected override string AccessibilityPageTitle => "Provider approve apprentice details";
+
         public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
             return new ProviderChooseAReservationPage(context);
         }
 
         internal SelectStandardPage SelectAddAnApprentice()
         {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
 
-            ClickIfPirenIsDisplayed();
-            
             return new SelectStandardPage(context);
         }
 
         internal SimplifiedPaymentsPilotPage SelectAddAnApprenticeForFlexiPaymentsProvider()
         {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
-
-            ClickIfPirenIsDisplayed();
+            AddAnApprentice();
 
             return new SimplifiedPaymentsPilotPage(context);
         }
 
         public List<IWebElement> ApprenticeUlns() => pageInteractionHelper.FindElements(ApprenticeUlnField);
 
-        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0, bool isFlexiPaymentPilotLearner = false)
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice() => SelectEditApprentice(0, false);
+
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber) => SelectEditApprentice(apprenticeNumber, false);
+
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber, bool isFlexiPaymentPilotLearner)
         {
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
-            
+
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            
+
             ClickIfPirenIsDisplayed();
-            
+
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
@@ -142,7 +143,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderCohortApprovedPage ValidateFlexiJobTagAndSubmitApprove()
         {
-            validateFlexiJobAgencyTag();
+            ValidateFlexiJobAgencyTag();
             return SubmitApprove();
         }
 
@@ -170,10 +171,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SelectOption(string option, bool sendMessageToEmployer = true)
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
-            if (sendMessageToEmployer)
-                formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);            
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, option);
+
+            if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
+                
             Continue();
+        }
+
+        private void AddAnApprentice()
+        {
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+
+            ClickIfPirenIsDisplayed();
         }
 
         private void ClickIfPirenIsDisplayed()

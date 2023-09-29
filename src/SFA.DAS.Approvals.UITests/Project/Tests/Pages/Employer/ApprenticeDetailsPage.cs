@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -11,12 +9,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
+
+        protected override string AccessibilityPageTitle => "Employer view apprentice full name";
         private static By ViewChangesLink => By.LinkText("View changes");
         private static By ReviewChangesLink => By.LinkText("Review changes");
         private static By ReviewCopChangesLink => By.Id("change-of-party-review-changes-link");
         private static By EditApprenticeStatusLink => By.LinkText("Edit status");
         private static By EditStopDateLink => By.LinkText("Edit");
-        private static By EditEndDateLink => By.Id("edit-end-date-link"); 
+        private static By EditEndDateLink => By.Id("edit-end-date-link");
         private static By EditApprenticeDetailsLink => By.CssSelector("#edit-apprentice-link");
         private static By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
         private static By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
 
         private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
-        public ApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
+        public ApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return true;
         }
 
-        public void VerifyApprenticeshipStatus(string status) => VerifyPage(ApprenticeshipStatus, status, pageInteractionHelper.RefreshPage);
+        public void VerifyApprenticeshipStatus(string status) => VerifyPageAfterRefresh(ApprenticeshipStatus, status);
 
         public string GetApprenticeshipStatus() => pageInteractionHelper.GetText(ApprenticeshipStatus);
         public string GetStatusDateTitle() => pageInteractionHelper.GetText(StatusDateTitle);

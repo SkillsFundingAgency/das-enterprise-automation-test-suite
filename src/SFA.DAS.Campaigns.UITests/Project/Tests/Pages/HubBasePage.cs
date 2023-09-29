@@ -11,9 +11,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        protected By PageHeaderTag => By.CssSelector(".fiu-page-header__tag");
+        protected static By PageHeaderTag => By.CssSelector(".fiu-page-header__tag");
 
-        protected By SubPageHeader => By.CssSelector(".govuk-heading-xl");
+        protected static By SubPageHeader => By.CssSelector(".govuk-heading-xl");
 
         private static By FiuCard => By.CssSelector(".fiu-card");
 

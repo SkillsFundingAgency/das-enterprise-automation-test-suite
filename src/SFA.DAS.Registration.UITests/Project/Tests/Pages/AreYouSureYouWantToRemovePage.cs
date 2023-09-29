@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Are you sure you want to remove";
         
         #region Locators
-        private By YesRadioButton => By.Name("Remove");
+        private static By YesRadioButton => By.Name("Remove");
         protected override By ContinueButton => By.Id("can-remove-organisation-button");
         #endregion
 

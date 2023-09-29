@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_Pro_06_ProvideraAddsApprenticeToAnExistingCohort")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_Pro_06_ProvideraAddsApprenticeToAnExistingCohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_Pro_06_ProvideraAddsApprenticeToAnExistingCohort.feature"
 #line hidden
@@ -77,14 +75,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Pro_06_Provider Adds Apprentice To An Existing Cohort Journey")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
         public void AP_Pro_06_ProviderAddsApprenticeToAnExistingCohortJourney()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression"};
+                    "approvals",
+                    "regression",
+                    "provideraddapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_06_Provider Adds Apprentice To An Existing Cohort Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,17 +96,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the Provider has some apprentices in ready to review and draft status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("the Provider navigates to Choose a cohort page via the Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("the Provider should only see apprentices with status Draft or Ready to review exc" +
                         "luding apprentices related to change of party", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("User should be able to add or edit apprentice details on any cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

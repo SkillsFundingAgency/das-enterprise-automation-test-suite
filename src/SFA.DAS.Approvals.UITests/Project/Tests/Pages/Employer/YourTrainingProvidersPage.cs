@@ -8,9 +8,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Your training providers";
 
-        private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
-        private By SetPermissionsLink => By.PartialLinkText("Set permissions");
-        private By ChangePermissionsLink => By.PartialLinkText("Change permissions");
+        private static By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
+        private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
+        private static By ChangePermissionsLink => By.PartialLinkText("Change permissions");
 
         public YourTrainingProvidersPage(ScenarioContext context) : base(context)  { }
 

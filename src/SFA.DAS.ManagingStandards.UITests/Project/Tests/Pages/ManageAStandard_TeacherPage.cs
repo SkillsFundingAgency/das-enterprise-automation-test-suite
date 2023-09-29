@@ -6,6 +6,8 @@ public class ManageAStandard_TeacherPage : ManagingStandardsBasePage
 
     private readonly string _pageTitle;
 
+    protected override string AccessibilityPageTitle => "Manage a standard page";
+
     public ManageAStandard_TeacherPage(ScenarioContext context) : this(context, ManagingStandardsDataHelpers.StandardsTestData.StandardName) { }
 
     public ManageAStandard_TeacherPage(ScenarioContext context, string standardName) : base(context, false)

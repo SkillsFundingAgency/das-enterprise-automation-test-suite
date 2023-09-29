@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
 
-        private By ContinueButtonTo => By.XPath("//button[contains(text(),'Continue')]");
+        private static By ContinueButtonTo => By.XPath("//button[contains(text(),'Continue')]");
 
         public ProviderMakingChangesPage(ScenarioContext context) : base(context)  { }
 

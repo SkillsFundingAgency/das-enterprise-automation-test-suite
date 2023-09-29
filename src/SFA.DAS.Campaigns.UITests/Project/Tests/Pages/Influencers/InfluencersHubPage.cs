@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 
         protected override By PageHeader => PageHeaderTag;
 
-        private By BrowseApprentice => By.CssSelector("#fiu-panel-link-faa");
+        private static By BrowseApprentice => By.CssSelector("#fiu-panel-link-faa");
 
         public InfluencersHubPage(ScenarioContext context) : base(context)  { }
 

@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "You do not have permission to access this page";
 
-        private By SecureFundingGoBackToHomePage => By.LinkText("Go back to home page");
+        private static By SecureFundingGoBackToHomePage => By.LinkText("Go back to home page");
 
         public ProviderAccessDeniedPage(ScenarioContext context) : base(context) => VerifyPage();
 

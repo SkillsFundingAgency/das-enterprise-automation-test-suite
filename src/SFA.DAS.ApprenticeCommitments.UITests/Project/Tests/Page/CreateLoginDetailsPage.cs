@@ -7,8 +7,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class CreateLoginDetailsPage : CreatePasswordBasePage
     {
         protected override string PageTitle => "Create login details";
-        private By EmailAddress => By.Id("Email");
-        private By ConfirmEmail => By.Id("ConfirmEmail");
+        private static By EmailAddress => By.Id("Email");
+        private static By ConfirmEmail => By.Id("ConfirmEmail");
         
         public CreateLoginDetailsPage(ScenarioContext context) : base(context) => VerifyPage(PrivacyLinkInTheBody);
 

@@ -3,11 +3,10 @@ global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.ManagingStandards.UITests.Project.Helpers;
 global using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
-global using SFA.DAS.ProviderLogin.Service;
-global using SFA.DAS.ProviderLogin.Service.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using SFA.DAS.ProviderLogin.Service.Project;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
 {

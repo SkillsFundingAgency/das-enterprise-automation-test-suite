@@ -6,12 +6,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class VacancySearchResultPage : Raav2BasePage
     {
-        protected By Filter => By.CssSelector("#Filter");
+        protected static By Filter => By.CssSelector("#Filter");
 
-        protected By VacancyStatusSelector => By.CssSelector("[data-label='Status']");
+        protected static By VacancyStatusSelector => By.CssSelector("[data-label='Status']");
 
-        protected By VacancyActionSelector => By.CssSelector("[id^='manage']");
-        protected By RejectedVacancyActionSelector => By.CssSelector("[data-label='Action']");
+        protected static By VacancyActionSelector => By.CssSelector("[id^='manage']");
+        protected static By RejectedVacancyActionSelector => By.CssSelector("[data-label='Action']");
 
         public VacancySearchResultPage(ScenarioContext context) : base(context) { }
 

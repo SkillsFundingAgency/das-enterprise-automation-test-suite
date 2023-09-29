@@ -7,13 +7,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "";
 
-        private By NotificationBanner => By.CssSelector(".govuk-notification-banner__heading");
+        private static By NotificationBanner => By.CssSelector(".govuk-notification-banner__heading");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
 
-        private By ResubmitVacancyToEmployerButton => By.CssSelector("[data-automation='continue-button']");
+        private static By ResubmitVacancyToEmployerButton => By.CssSelector("[data-automation='continue-button']");
 
-        private By RejectedReason => By.CssSelector("textarea#RejectedReason");
+        private static By RejectedReason => By.CssSelector("textarea#RejectedReason");
 
         public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) { }
      

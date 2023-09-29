@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -12,9 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public RejectingTheApprenticeshipApplicationsPage(ScenarioContext context) : base(context) { }
 
-        private By ContinueSelector => By.CssSelector("#reject_application");
-        private By RejectSelector => By.CssSelector("#reject-application-reject");
-        private By CancelSelector => By.CssSelector("#reject-application-cancel");
+        private static By ContinueSelector => By.CssSelector("#reject_application");
+        private static By RejectSelector => By.CssSelector("#reject-application-reject");
+        private static By CancelSelector => By.CssSelector("#reject-application-cancel");
 
         public TransferPledgePage BulkReject()
         {

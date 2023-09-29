@@ -8,9 +8,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Browse apprenticeships before you apply";
 
-        private By Route => By.CssSelector("#Route");
+        private static By Route => By.CssSelector("#Route");
 
-        private By Postcode => By.CssSelector("#Postcode");
+        private static By Postcode => By.CssSelector("#Postcode");
 
         protected override By ContinueButton => By.CssSelector("#search-apprenticeship");
 

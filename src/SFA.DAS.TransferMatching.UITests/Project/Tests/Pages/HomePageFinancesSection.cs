@@ -8,7 +8,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         public HomePageFinancesSection_YourTransfers(ScenarioContext context) : base(context) { }
 
-        private By HomeButton => By.CssSelector("#navigation > li:nth-child(1) > a");
+        private static By HomeButton => By.CssSelector("#navigation > li:nth-child(1) > a");
         public ManageTransferMatchingPage NavigateToTransferMatchingPage()
         {
             formCompletionHelper.Click(YourTransfersLink);

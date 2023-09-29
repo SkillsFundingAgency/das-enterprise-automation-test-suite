@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
@@ -15,21 +15,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly DataLockSqlHelper _dlockDataHelper;
 
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
 
         private readonly EmployerStepsHelper _employerStepsHelper;
 
         public DLockSteps(ScenarioContext context)
         {
             _dlockDataHelper = context.Get<DataLockSqlHelper>();
-            _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
 
         [When(@"the provider submit an ILR with price mismatch")]
         [When(@"the provider submit another ILR with price mismatch")]
         public void WhenTheProviderSubmitAnILRWithPriceMismatch() => _dlockDataHelper.SubmitILRWithPriceMismatch();
-        
+
         [When(@"the provider submit an ILR with course mismatch")]
         [When(@"the provider submit another ILR with course mismatch")]
         public void WhenTheProviderSubmitAnILRWithCourseMismatch() => _dlockDataHelper.SubmitILRWithCourseMismatch();
@@ -63,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var rows = GetRowCountForMismatch();
 
-            Assert.IsTrue(rows["CourseMismatchRows"] == 0, "validate no course mismatch row is displayed");  
+            Assert.IsTrue(rows["CourseMismatchRows"] == 0, "validate no course mismatch row is displayed");
             Assert.IsTrue(rows["PriceMismatchRows"] == 4, "validate 1 price mismatch row is displayed");        //1 row is split b/w 2 grids
         }
 
@@ -78,7 +78,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer can stop the live apprentice")]
-        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.Withdrawn); 
+        public void ThenTheEmployerCanStopTheLiveApprentice() => _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.Withdrawn);
 
         [Then(@"the Employer can stop the waiting to start apprentice")]
         public void ThenTheEmployerCanStopTheWaitingToStartApprentice()
@@ -112,15 +112,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ConfirmIlrismatch()
         {
-                SelectViewCurrentApprenticeDetails()
-                .ClickViewIlrMismatchDetails()
-                .RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
-                .ConfirmRequestToFixILRMismatch()
-                .ConfirmChangeRequestPendingMessage();
+            SelectViewCurrentApprenticeDetails()
+            .ClickViewIlrMismatchDetails()
+            .RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
+            .ConfirmRequestToFixILRMismatch()
+            .ConfirmChangeRequestPendingMessage();
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => 
-            _providerStepsHelper.GoToProviderHomePage(false).GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
+            _providerCommonStepsHelper.GoToProviderHomePage(false).GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
 
         private Dictionary<string, int?> GetRowCountForMismatch() => SelectViewCurrentApprenticeDetails().ClickViewIlrMismatchDetails().GetRowCountForMismatch();
 

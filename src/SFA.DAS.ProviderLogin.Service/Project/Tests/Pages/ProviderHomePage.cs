@@ -1,35 +1,38 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ProviderLogin.Service.Pages
+namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+
+public class ProviderHomePage : InterimProviderBasePage
 {
-    public class ProviderHomePage : InterimProviderBasePage
-    {
-        protected override string PageTitle => ukprn;
+    protected override string AccessibilityPageTitle => "Provider home page";
 
-        protected override By PageHeader => By.CssSelector("#content .grey-text");
+    public static By Identifier => By.CssSelector("#content, #main-content");
 
-        protected override string Linktext => "Home";
+    protected override string PageTitle => ukprn;
 
-        protected static By AddNewApprenticesLink => By.LinkText("Add new apprentices");
+    protected override By PageHeader => Identifier;
 
-        protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+    protected override string Linktext => "Home";
 
-        protected static By GetFundingLink => By.LinkText("Get funding for non-levy employers");
+    protected static By AddNewApprenticesLink => By.LinkText("Add new apprentices");
 
-        protected static By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
+    protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
-        protected static By ManageEmployerInvitations => By.LinkText("Manage employer invitations");
+    protected static By GetFundingLink => By.LinkText("Get funding for non-levy employers");
 
-        protected static By InviteEmployers => By.LinkText("Send invitation to employer");
+    protected static By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
 
-        protected static By RecruitTrainees => By.LinkText("Recruit trainees");
+    protected static By ManageEmployerInvitations => By.LinkText("Manage employer invitations");
 
-        protected static By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
+    protected static By InviteEmployers => By.LinkText("Send invitation to employer");
 
-        protected static By YourStandardsAndTrainingVenues => By.LinkText("Your standards and training venues");
+    protected static By RecruitTrainees => By.LinkText("Recruit trainees");
 
-        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
-        
-    }
+    protected static By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
+
+    protected static By YourStandardsAndTrainingVenues => By.LinkText("Your standards and training venues");
+
+    public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
+
 }

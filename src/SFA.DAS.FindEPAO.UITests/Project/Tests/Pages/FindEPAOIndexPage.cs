@@ -8,7 +8,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         protected override string PageTitle => "Find an end-point assessment organisation for your apprentice";
 
         #region Locators
-        private By StartButton => By.LinkText("Start now");
+        private static By StartButton => By.LinkText("Start now");
         #endregion
 
         public FindEPAOIndexPage(ScenarioContext context) : base(context) { }

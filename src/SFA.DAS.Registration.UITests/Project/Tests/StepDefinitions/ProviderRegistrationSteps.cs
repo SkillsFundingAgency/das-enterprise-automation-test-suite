@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Login.Service;
-using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
@@ -11,6 +10,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -71,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             
             _tabHelper.OpenInNewTab(uri);
 
-            _accountCreationStepsHelper.RegisterUserAccount(new StubSignInPage(_context), email).DoNotEnterNameAndContinue();
+            _accountCreationStepsHelper.RegisterUserAccount(new StubSignInPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
         }
 
         [When(@"the employer adds PAYE from TaskList Page")]
@@ -85,7 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .SignInTo(0)
             .SearchForAnOrganisation(EnumHelper.OrgType.Company)
             .SelectYourOrganisation(EnumHelper.OrgType.Company)
-            .ContinueToSetAccountName()
+            .ClickYesThisIsMyOrg()
             .ContinueToConfirmationPage()
             .GoToSetYourAccountNameLink()
             .SelectoptionNo()
@@ -103,7 +103,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ProviderLeadRegistrationSignAgreement()
                 .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
                 .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-                .ConfirmYesTrainingProviderPermissions();
+                .ConfirmProviderLeadRegistrationPermissions();
         }
 
         [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]

@@ -7,11 +7,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class PersonalDetailsBasePage : ApprenticeCommitmentsBasePage
     {
-        private By FirstName => By.CssSelector("input#FirstName");
-        private By LastName => By.CssSelector("input#LastName");
-        private By DateOfBirth_Day => By.CssSelector("input#DateOfBirth_Day");
-        private By DateOfBirth_Month => By.CssSelector("input#DateOfBirth_Month");
-        private By DateOfBirth_Year => By.CssSelector("input#DateOfBirth_Year");
+        private static By FirstName => By.CssSelector("input#FirstName");
+        private static By LastName => By.CssSelector("input#LastName");
+        private static By DateOfBirth_Day => By.CssSelector("input#DateOfBirth_Day");
+        private static By DateOfBirth_Month => By.CssSelector("input#DateOfBirth_Month");
+        private static By DateOfBirth_Year => By.CssSelector("input#DateOfBirth_Year");
 
         public PersonalDetailsBasePage(ScenarioContext context) : base(context) { }
 

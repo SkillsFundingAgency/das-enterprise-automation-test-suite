@@ -8,7 +8,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     {
         #region Locators
         protected override By BackLink => By.CssSelector("a.link-back");
-        protected By SearchTextField => By.Id("SelectedCourseId");
+        protected static By SearchTextField => By.Id("SelectedCourseId");
         protected virtual By SearchButton => By.ClassName("govuk-button");
         protected virtual By FirstResultLink => By.ClassName("das-search-results__link");
         #endregion

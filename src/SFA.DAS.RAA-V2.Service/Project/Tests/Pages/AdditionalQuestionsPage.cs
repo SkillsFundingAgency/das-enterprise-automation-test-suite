@@ -11,8 +11,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public AdditionalQuestionsPage(ScenarioContext context) : base(context) { }
 
-        private By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
-        private By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
+        private static By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
+        private static By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
 
         public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants()
         {

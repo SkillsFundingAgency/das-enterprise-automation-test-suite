@@ -12,28 +12,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
-        protected By AddButton => By.XPath("//button[contains(text(),'Add')]");
+        private static By AddButton => By.XPath("//button[contains(text(),'Add')]");
         private static By DeliveryModelLabel => By.Id("delivery-model-label");
         private static By DeliveryModelType => By.Id("delivery-model-value");
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
         private static By Uln => By.Id("Uln");
 
-        public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context) 
+        public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
         {
             _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
         }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
-            SubmitValidPersonalDetails();
-            SubmitValidTrainingDetails();
-
-            return new ProviderApproveApprenticeDetailsPage(context);
-        }
-
-        public ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetailsForFlexiPaymentsPilotProvider(int apprenticeNumber)
-        {
-            EnterUlnForFlexiPayments(apprenticeNumber);
+            EnterUln();
             EnterApprenticeMandatoryValidDetails();
             EnterDob();
 
@@ -44,13 +36,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SubmitValidTrainingDetails()
         {
-            if (objectContext.HasStartDate()) EnterTrainingStartDate(objectContext.GetStartDate());
-            else EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
-
+            EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers() && !_isFlexiPaymentPilotLearner) EnterStartDate(DateTime.Now);
 
-            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             if (_isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
@@ -69,10 +58,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
         }
 
-        public void SubmitValidPersonalDetails()
+        private void SubmitValidPersonalDetails()
         {
-            if (objectContext.HasUlnForOLTD()) formCompletionHelper.EnterText(Uln, objectContext.GetUlnForOLTD());
-            else formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
+            EnterUln();
 
             EnterApprenticeMandatoryValidDetails();
 
@@ -81,12 +69,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
         {
-            SubmitValidPersonalDetails();
+            EnterUln(objectContext.GetUlnForOLTD());
 
-            EnterStartDate(objectContext.HasStartDate() ? objectContext.GetStartDate() : apprenticeCourseDataHelper.CourseStartDate);
+            EnterApprenticeName();
+
+            EnterApprenticeEmail($"NEW_{apprenticeDataHelper.ApprenticeEmail}");
+
+            EnterDob();
+
             EnterStartDate(objectContext.GetStartDate());
 
-            EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
+            EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
             EnterTrainingCostAndEmpReference();
 
@@ -146,13 +139,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EditDeliverModelLink), "Edit Delivery Model link not displayed");
         }
 
-        private void EnterUlnForFlexiPayments(int apprenticeNumber)
-        {
-            if (objectContext.KeyExists<string>($"ULN{apprenticeNumber}"))
-                formCompletionHelper.EnterText(Uln, objectContext.Get($"ULN{apprenticeNumber}"));
-            else
-                formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
-        }
+        private void EnterUln() => EnterUln(apprenticeDataHelper.ApprenticeULN);
+
+        private void EnterUln(string uln) => formCompletionHelper.EnterText(Uln, uln);
 
         private void AddPlannedEndDateDay(DateTime dateTime) => formCompletionHelper.EnterText(EndDateDay, dateTime.Day);
     }

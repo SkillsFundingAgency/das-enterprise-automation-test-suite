@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         OneMonthBeforeCurrentAcademicYearStartDate,
         CurrentAcademicYearStartDate,
         WaitingToStart,
+        StartDateIsFewMonthsBeforeNow,
         Random
     }
 
@@ -71,7 +72,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
                    apprenticeStatus == ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate ? GetOneMonthBeforeCurrentAcademicYearStartDate(randomStartDate) :
                    apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
-                   apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
+                   apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) :
+                   apprenticeStatus == ApprenticeStatus.StartDateIsFewMonthsBeforeNow ? GetStartDateFewMonthsBeforeNow() : randomStartDate;
         }
 
         private DateTime GenerateCourseStartDate() => GenerateCourseStartDate(_apprenticeStatus);
@@ -94,6 +96,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return dateTime.Date <= now.Date ? RandomStartDate() : IsThisMonthAndYear(dateTime) ? RandomStartDate() : dateTime;
         }
 
-        private bool IsThisMonthAndYear(DateTime dateTime) => dateTime.Month == DateTime.Now.Month && dateTime.Year == DateTime.Now.Year;
+        private static DateTime GetStartDateFewMonthsBeforeNow() => DateTime.Now.AddMonths(-1).AddDays(new Random().Next(-210, -1));
+
+        private static bool IsThisMonthAndYear(DateTime dateTime) => dateTime.Month == DateTime.Now.Month && dateTime.Year == DateTime.Now.Year;
     }
 }

@@ -10,19 +10,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
-        private By ApplyButton => By.Id("apply-button");
+        protected override string AccessibilityPageTitle => "FAA vacancy title page";
 
-        private By ViewApplicationLink => By.Id("view-application-link");
+        private static By ApplyButton => By.Id("apply-button");
 
-        private By EmployerName => By.Id("vacancy-subtitle-employer-name");
+        private static By ViewApplicationLink => By.Id("view-application-link");
 
-        private By EmployerNameInAboutTheEmployerSection => By.Id("vacancy-employer-name");
+        private static By EmployerName => By.Id("vacancy-subtitle-employer-name");
 
-        private By ClosingDate => By.Id("vacancy-closing-date");
+        private static By EmployerNameInAboutTheEmployerSection => By.Id("vacancy-employer-name");
 
-        private By StartDate => By.Id("vacancy-start-date");
+        private static By ClosingDate => By.Id("vacancy-closing-date");
 
-        private By VacancyWage => By.Id("vacancy-wage");
+        private static By StartDate => By.Id("vacancy-start-date");
+
+        private static By VacancyWage => By.Id("vacancy-wage");
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {

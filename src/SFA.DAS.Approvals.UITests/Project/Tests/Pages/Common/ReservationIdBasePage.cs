@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class ReservationIdBasePage : ApprovalsBasePage
     {
-        private By MessageLocator => By.TagName("body");
+        private static By MessageLocator => By.TagName("body");
 
         protected ReservationIdBasePage(ScenarioContext context) : base(context) { }
 

@@ -107,7 +107,7 @@ namespace SFA.DAS.FrameworkHelpers
         private List<(List<object[]> data, int noOfColumns)> TryReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString)
             => RetryOnException(() => ReadMultipleDataFromDataBase(queryToExecute, connectionString));
 
-        private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+        private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString, waitForResults);
 
         private List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadMultipleDataFromDataBase(queryToExecute, connectionString, null, waitForResults);
     }

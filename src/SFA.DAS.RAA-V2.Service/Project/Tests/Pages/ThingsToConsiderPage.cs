@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaV2Employer ? "What else would you like the applicant to consider? (optional)" : "What else do you want the applicant to consider? (optional)";
 
-        private By ThingsToConsider => By.CssSelector("#ThingsToConsider");
+        private static By ThingsToConsider => By.CssSelector("#ThingsToConsider");
 
         public ThingsToConsiderPage(ScenarioContext context) : base(context) { }
 

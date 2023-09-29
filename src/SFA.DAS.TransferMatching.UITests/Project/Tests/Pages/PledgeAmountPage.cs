@@ -9,9 +9,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Pledge amount";
 
-        private By AvailablePledgeAmount => By.CssSelector("#remaining-transfer-balance");
+        private static By AvailablePledgeAmount => By.CssSelector("#remaining-transfer-balance");
 
-        private By AmountCssSelector => By.CssSelector("#Amount");
+        private static By AmountCssSelector => By.CssSelector("#Amount");
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
@@ -45,7 +45,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private void EnterAmount(bool exceedMaxFunding, bool useMinimalFunding = false)
         {
             int amount = objectContext.GetEmployerTotalPledgeAmount();
-            if (exceedMaxFunding == false && useMinimalFunding && amount > tMDataHelper.MinimalPledgeAmount)
+            if (!exceedMaxFunding && useMinimalFunding && amount > tMDataHelper.MinimalPledgeAmount)
             {
                 amount = tMDataHelper.MinimalPledgeAmount;
             }

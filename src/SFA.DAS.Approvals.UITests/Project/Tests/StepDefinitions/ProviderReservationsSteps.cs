@@ -1,13 +1,13 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
-using SFA.DAS.Login.Service;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -17,6 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
+        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
         private readonly ProviderReservationStepsHelper _providerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
@@ -32,7 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _config = context.GetProviderConfig<ProviderConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
-            _providerReservationStepsHelper = new ProviderReservationStepsHelper();
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(_context);
+            _providerEditStepsHelper = new ProviderEditStepsHelper(_context);
+            _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(_context);
+            _providerReservationStepsHelper = new ProviderReservationStepsHelper(_context);
             _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
@@ -49,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Provider with create reservation permission logs in")]
-        public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerStepsHelper.Login(_login, true);
+        public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_login, true);
 
         [When(@"the Provider creates a reservation")]
         public void WhenThenProviderCreatesAReservation() => _providerReservationStepsHelper.StartCreateReservationAndGoToStartTrainingPage(_approvalsProviderHomePage);
@@ -72,21 +78,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
         public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove(int numberOfApprentices)
         {
-            _providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
-            _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices).SubmitApprove();
+            ProviderMakeReservation();
+
+            _providerReservationStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices).SubmitApprove();
         }
 
         [Then(@"Provider can make a reservation")]
-        public void ThenProviderCanMakeAReservation() => _providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservationThenGotoAddApprenticeDetails(_login);
+        public void ThenProviderCanMakeAReservation() => ProviderMakeReservation();
 
         [Then(@"Provider can add an apprentice")]
-        public void ThenProviderCanAddAnApprentice() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
+        public void ThenProviderCanAddAnApprentice() => _providerApproveApprenticeDetailsPage = _providerReservationStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
 
         [Then(@"Provider can edit an apprentice")]
-        public void ThenProviderCanEditAnApprentice() => _providerApproveApprenticeDetailsPage = _providerStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderCanEditAnApprentice() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider can delete an apprentice")]
-        public void ThenProviderCanDeleteAnApprentice() => _providerStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderCanDeleteAnApprentice() => _providerDeleteStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider can delete the funding")]
         public void ThenProvidercanDeleteTheFunding() => _providerStepsHelper
@@ -95,5 +102,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider can access Manage Funding Page to reserve more funding")]
         public void ThenTheProviderCanAccessManageFundingPageToReserveMoreFunding() => _providerStepsHelper
             .NavigateToProviderHomePage().GoToManageYourFunding().ClickReserveMoreFundingLink();
+
+        private void ProviderMakeReservation() => _providerAddApprenticeDetailsPage = _providerReservationStepsHelper.ProviderMakeReservation(_login);
     }
 }

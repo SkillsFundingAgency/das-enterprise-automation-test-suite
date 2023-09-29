@@ -1,8 +1,6 @@
-﻿using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.RAA_V2.Service.Project.Helpers;
+﻿using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
-using SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
@@ -47,7 +45,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
             return new VacancyReferencePage(_context);
         }
-        
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
         {
             return createAdvertPage
@@ -57,7 +55,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
                 .EnterProviderContactDetailsTraineeship(optionalFields)
                 .BackToTaskList();
         }
-        
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername)
         {
             return createAdvertPage
@@ -70,16 +68,16 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
         {
-            (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) = 
+            (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
                 new RecruitmentTraineeshipsProviderHomePageStepsHelper(_context)
                     .GoToTraineeshipRecruitmentProviderHomePage(_newTab)
                     .GoToViewAllVacancyPage()
                     .CreateVacancy()
                     .StartNow()
                     .SelectEmployer(_hashedid);
-        
+
             _isMultiOrg = isMultiOrg;
-        
+
             return createAdvertPage;
         }
 
@@ -107,7 +105,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
             return EnterVacancyTitle(NavigateToAdvertTitle(createAdvertPage))
                 .EnterTrainingTitle()
                 .EnterShortDescription()
-                .EnterTraineeshipTrainingDetails();                
+                .EnterTraineeshipTrainingDetails();
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()

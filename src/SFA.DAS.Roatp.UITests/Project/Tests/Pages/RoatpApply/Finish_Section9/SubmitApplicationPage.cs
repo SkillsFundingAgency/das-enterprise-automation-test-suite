@@ -7,11 +7,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
     {
         protected override string PageTitle => "Submit application on behalf of";
 
-        private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication"); 
-        private By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication"); 
-        private By ConfirmOrganisationSpecific => By.Id("ConfirmOrganisationSpecificSubmitApplication");
-        private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
-        private By ConfirmFurtherCommunicationSubmitApplication => By.Id("ConfirmFurtherCommunicationSubmitApplication");
+        private static By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication"); 
+        private static By ConfirmChangeOfOwnership => By.Id("ConfirmChangeOfOwnershipSubmitApplication"); 
+        private static By ConfirmOrganisationSpecific => By.Id("ConfirmOrganisationSpecificSubmitApplication");
+        private static By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
+        private static By ConfirmFurtherCommunicationSubmitApplication => By.Id("ConfirmFurtherCommunicationSubmitApplication");
 
         public SubmitApplicationPage(ScenarioContext context) : base(context) => VerifyPage();
 

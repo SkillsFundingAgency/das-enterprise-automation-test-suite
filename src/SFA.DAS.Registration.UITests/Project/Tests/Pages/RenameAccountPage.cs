@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Rename account";
 
         #region Locators
-        private By NewAccountNameTextBox => By.Id("NewName");
+        private static By NewAccountNameTextBox => By.Id("NewName");
         protected override By ContinueButton => By.Id("accept");
         #endregion
 

@@ -10,7 +10,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#pledge-create-submit");
 
-        private By ColumnIdentifier => By.CssSelector(".das-task-list__task-tag");
+        private static By ColumnIdentifier => By.CssSelector(".das-task-list__task-tag");
 
         private string TableIdentifier => ".das-task-list__items";
 
@@ -57,6 +57,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText(LevelLink);
             return new ChooseTheLevelPage(context);
+        }
+
+        public Pledge100PercentMatchPage GoToPledge100PercentMatchPage()
+        {
+            formCompletionHelper.ClickLinkByText("Approve or delay");
+            return new Pledge100PercentMatchPage(context);
         }
 
         public PledgeVerificationPage ContinueToPledgeVerificationPage()

@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => "View apprentice details";
 
-        private By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
+        private static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
         public ViewApprenticePage(ScenarioContext context) : base(context)  { }
 

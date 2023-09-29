@@ -41,9 +41,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
-        [Given(@"an User Account is created")]
-        [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
+        [Given(@"a User Account is created")]
+        [When(@"a User Account is created")]
+        public void AUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
         [When("the User initiates Account creation")]
         public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
@@ -182,7 +182,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenSignsTheAgreementFromAccountHomePagePanel() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
-        public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
+        public void ThenTaskLinkIsDisplayedUnderTasksPane() => new TasksHomePage(_context).VerifyStartAddingApprenticesNowTaskLink();
 
         [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
         public void ThenPageIsDisplayedWhenAnotherEmployerTriesToRegisterTheAccountWithTheSameAornAndPayeDetails()
@@ -271,7 +271,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(InvalidErrorMessage2ndAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
             EnterInvalidAornAndPaye();
 
-            _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context).ClickAddViaGGLink();
+            _usingYourGovtGatewayDetailsPage = new WeCouldNotVerifyYourDetailsPage(_context).ClickAddViaGGLink();
         }
 
         [Then(@"Employer is able to complete registration through GG route")]
@@ -359,7 +359,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private SearchForYourOrganisationPage CreateAnUserAcountAndAddPaye()
         {
-            AnUserAccountIsCreated();
+            AUserAccountIsCreated();
             return AddPayeDetails();
         }
 

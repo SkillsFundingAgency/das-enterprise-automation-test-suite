@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string PageTitle => "Your adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-        private By Applicant => By.CssSelector("a[data-label='application_review']");
+        private static By Applicant => By.CssSelector("a[data-label='application_review']");
 
         public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 

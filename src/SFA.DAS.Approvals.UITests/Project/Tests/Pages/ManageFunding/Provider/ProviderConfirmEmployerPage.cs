@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "Confirm employer";
 
-        private By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
+        private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 

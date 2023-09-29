@@ -11,6 +11,8 @@ using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -21,6 +23,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
@@ -37,6 +42,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+            _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
             _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
@@ -45,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _changeOfEmployerLevyUser);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
         }
 
         [Given(@"the provider has an apprentice with stopped status")]
@@ -107,7 +115,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider Approves the Cohort")]
         public void ThenProviderApprovesTheCohort()
         {
-            _providerStepsHelper
+            _providerCommonStepsHelper
                 .GoToProviderHomePage(false)
                 .GoToApprenticeRequestsPage()
                 .GoToCohortsToReviewPage()
@@ -119,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider deletes the Cohort")]
-        public void WhenProviderDeletesTheCohort() => _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
+        public void WhenProviderDeletesTheCohort() => _providerDeleteStepsHelper.DeleteCohort();
 
         [Then(@"provider can change employer again")]
         public void ThenProviderCanChangeEmployerAgain() => _providerStepsHelper.StartChangeOfEmployerJourney();
@@ -127,14 +135,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"a banner is displayed for provider with a link to ""(.*)"" cohort")]
         public void ThenABannerIsDisplayedForProviderWithALinkToCohort(string status)
         {
-            bool editable = status == "editable" ? true : false;
+            bool editable = status == "editable";
 
-            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = SelectViewCurrentApprenticeDetails(editable);
+            ProviderApprenticeDetailsPage providerApprenticeDetailsPage = SelectViewCurrentApprenticeDetails();
 
-            if (editable)
-                 ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
-            else
-                ValidateBannerWithLinkToNonEditableCohort(providerApprenticeDetailsPage);
+            if (editable) ValidateBannerWithLinkToEditableCohort(providerApprenticeDetailsPage);
+
+            else ValidateBannerWithLinkToNonEditableCohort(providerApprenticeDetailsPage);
         }
 
         [When(@"Validate that old Employer cannot request CoP during in-flight CoE")]
@@ -160,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"previous Provider should not be able to start CoE on the old record when CoP is inflight")]
         public void ThenPreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordWhenCoPIsInflight()
         {
-            var CoELinkDisplayed = SelectViewCurrentApprenticeDetails(true).IsCoELinkDisplayed();
+            var CoELinkDisplayed = SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed();
 
             Assert.IsFalse(CoELinkDisplayed, "Validate that CoE link is not available for the old provider during inflight CoP");
         }
@@ -269,8 +276,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails(bool newTab) => _providerStepsHelper
-                                .GoToProviderHomePage(newTab)
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => _providerCommonStepsHelper
+                                .GoToProviderHomePage()
                                 .GoToProviderManageYourApprenticePage()
                                 .SelectViewCurrentApprenticeDetails();
 
@@ -282,10 +289,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
             _cohortReferenceHelper.SetCohortReference(cohortReference);
-            _providerStepsHelper.Approve();
+            _providerApproveStepsHelper.EditAndApprove();
         }
 
-        private void UpdateNewCohortReference() => _cohortReferenceHelper.UpdateNewCohortReference();
+        private void UpdateNewCohortReference() => _cohortReferenceHelper.UpdateCohortReference();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }
