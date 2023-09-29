@@ -10,7 +10,7 @@ public class AO_HomePage : EPAO_BasePage
     private static By ProposedTab => By.Id("tab_proposed");
     private static By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
     private static By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
-    private static By GeoscientistStandardLink => By.LinkText("Geoscientist");
+    private static By EmbalmerStandardLink => By.LinkText("Embalmer");
     private static By TunnelEngineer => By.LinkText("Tunnel engineer");
     #endregion
 
@@ -40,7 +40,7 @@ public class AO_HomePage : EPAO_BasePage
 
     public AO_InDevelopmentStandardDetailsPage ClickOnInDevelopmentStandardLink()
     {
-        formCompletionHelper.Click(GeoscientistStandardLink);
+        formCompletionHelper.Click(EmbalmerStandardLink);
         return new(context);
     }
 
