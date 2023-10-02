@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.IdamsLogin.Service.Project.Helpers;
@@ -27,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By InsertText => By.CssSelector(".govuk-inset-text");
 
         private static By ApproveRadioButton => By.Id("radio-approve");
+        private static By ApproveRadioButtonLabel => By.CssSelector("label[for='radio-approve']");
 
         protected override string AccessibilityPageTitle => "Provider approve apprentice details";
 
@@ -208,15 +210,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyProviderCanNotApprove();
         }
 
-        public void VerifyProviderCanNotApprove()
-        {
-            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton)) throw new Exception("The approve radio button is displayed to the user");
-        }
-
         public ProviderApproveApprenticeDetailsPage VerifySimplifiedPaymentsPilotTagAndColumns(bool isDisplayed)
         {
             ValidateSimplifiedPaymentsPilotTagAndColumns(isDisplayed);
             return this;
+        }
+        public void VerifyRadioOptionToApproveCohortIsNotDisplayed() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(ApproveRadioButtonLabel), "Unexpected behavior - Option to approve the Cohort is displayed");
+
+        private void VerifyProviderCanNotApprove()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton)) throw new Exception("The approve radio button is displayed to the user");
         }
     }
 }

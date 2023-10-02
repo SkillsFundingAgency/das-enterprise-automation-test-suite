@@ -97,7 +97,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ThenValidateTrainingPriceAndEPAPriceHaveBeenResetWithBlueWarningMessageDisplayed() => _providerApproveApprenticeDetailsPage.ValidateTrainingPriceAndEPAValuesHaveBeenReset();
 
         [Then(@"verify training provider cannot approve the cohort")]
-        public void ThenValidateCohortCannotBeApproved() => _providerApproveApprenticeDetailsPage.VerifyProviderCanNotApprove();
+        public void ThenValidateCohortCannotBeApproved() => _providerApproveApprenticeDetailsPage.VerifyRadioOptionToApproveCohortIsNotDisplayed();
 
         internal void SetApprenticeDetailsInContext(int learnerNumber) => _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(learnerNumber - 1);
     }
