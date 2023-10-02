@@ -1,6 +1,8 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -22,9 +24,13 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
+            var dfeproviders = _context.Get<List<DfeProvider>>();
+
             _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
-            _context.SetProviderPermissionConfig(_configSection.GetConfigSection<ProviderPermissionsConfig>());
+            var providerPermissionsConfig = SetProviderCreds(dfeproviders, _configSection.GetConfigSection<ProviderPermissionsConfig>());
+
+            _context.SetProviderPermissionConfig(providerPermissionsConfig);
 
             _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
 
@@ -36,9 +42,18 @@ namespace SFA.DAS.Approvals.UITests.Project
                 _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
             });
 
-            _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
+            var changeOfPartyConfig = SetProviderCreds(dfeproviders, _configSection.GetConfigSection<ChangeOfPartyConfig>());
 
-            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
+            _context.SetChangeOfPartyConfig(changeOfPartyConfig);
+
+            var portableFlexiJobProviderConfig = SetProviderCreds(dfeproviders, _configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
+
+            _context.SetPortableFlexiJobProviderConfig(portableFlexiJobProviderConfig);
+        }
+
+        private static T SetProviderCreds<T>(List<DfeProvider> dfeProviderList, T t) where T : ProviderConfig
+        {
+            return SetProviderCredsHelper.SetProviderCreds(dfeProviderList, t);
         }
     }
 }

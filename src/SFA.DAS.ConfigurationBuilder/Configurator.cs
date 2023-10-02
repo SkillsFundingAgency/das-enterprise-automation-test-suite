@@ -46,12 +46,12 @@ namespace SFA.DAS.ConfigurationBuilder
             var builder = ConfigurationBuilder()
                 .AddOptionalJsonFiles(new List<string> 
                 { 
-                    "appsettings.DbConfig.json", 
+                    "appsettings.DbConfig.json",
                     "appsettings.TimeOutConfig.json", 
                     "appsettings.NServiceBusConfig.json", 
                     "appsettings.BrowserStack.json", 
                     "appsettings.Mailinator.json", 
-                    "appsettings.ApiFramework.json", 
+                    "appsettings.ApiFramework.json",
                     "appsettings.Project.json", 
                     "appsettings.Project.BrowserStack.json", 
                     $"appsettings.{EnvironmentName}.json", 
@@ -62,6 +62,7 @@ namespace SFA.DAS.ConfigurationBuilder
             {
                 builder
                     .AddUserSecrets("BrowserStackSecrets")
+                    .AddUserSecrets($"{EnvironmentName}_Secrets")
                     .AddUserSecrets($"{ProjectName}_Secrets")
                     .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
                     .AddUserSecrets("MongoDbSecrets")

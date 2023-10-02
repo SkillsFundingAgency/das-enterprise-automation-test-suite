@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
+﻿using SFA.DAS.ProviderLogin.Service.Project;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
 public class ProviderStepsHelper
 {
