@@ -22,9 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected static By FlexiJobAgencyTag => By.CssSelector("span.govuk-tag");
         protected static By PortableFlexiJobDeliveryModelTag => By.XPath("//span[@class='govuk-tag' and (text()='Portable flexi-job' or text()='Portable flexi job')]");
         protected static By SimplifiedPaymentsPilotTag => By.XPath("//span[@class='govuk-tag' and (text()='Simplified Payments Pilot')]");
-        protected static By TrainingPriceLabel => By.CssSelector("td[data-label='Training price']");
-        protected static By EndpointAssessmentPriceLabel => By.CssSelector("td[data-label='End-point assessment price']");
-        protected static By TotalPriceLabel => By.CssSelector("td[data-label='Total price']");
+        protected static By TrainingPriceValue => By.CssSelector("td[data-label='Training price']");
+        protected static By EndpointAssessmentPriceValue => By.CssSelector("td[data-label='End-point assessment price']");
+        protected static By TotalPriceValue => By.CssSelector("td[data-label='Total price']");
+        protected static By TrainingPriceAndEPABlueWarningMessage => By.XPath("//h3[contains(text(),'Training price and End-point assessment price are incomplete')]");
 
 
         protected ReviewYourCohort(ScenarioContext context, Func<int, string> func) : base(context, false)
@@ -53,19 +54,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             if (isDisplayed)
             {
                 Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(SimplifiedPaymentsPilotTag), "Simplified Payments Pilot Tag NOT displayed");
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(TrainingPriceLabel), "Training Price label NOT displayed");
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EndpointAssessmentPriceLabel), "Endpoint Assessment Price label NOT displayed");
-                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(TotalPriceLabel), "Total Price label NOT displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(TrainingPriceValue), "Training Price label NOT displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EndpointAssessmentPriceValue), "Endpoint Assessment Price label NOT displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(TotalPriceValue), "Total Price label NOT displayed");
             }
             else
             {
                 Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(SimplifiedPaymentsPilotTag), "Simplified Payments Pilot Tag is displayed");
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingPriceLabel), "Training Price label is displayed");
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EndpointAssessmentPriceLabel), "Endpoint Assessment Price label is displayed");
-                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TotalPriceLabel), "Total Price label is displayed");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingPriceValue), "Training Price label is displayed");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EndpointAssessmentPriceValue), "Endpoint Assessment Price label is displayed");
+                Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TotalPriceValue), "Total Price label is displayed");
             }
         }
-          
-
+        public void ValidateTrainingPriceAndEPAValuesHaveBeenReset()
+        {
+            Assert.AreEqual(pageInteractionHelper.GetText(TrainingPriceValue), "-");
+            Assert.AreEqual(pageInteractionHelper.GetText(EndpointAssessmentPriceValue), "-");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(TrainingPriceAndEPABlueWarningMessage));
+        }
     }
 }

@@ -208,7 +208,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyProviderCanNotApprove();
         }
 
-        private void VerifyProviderCanNotApprove()
+        public void VerifyProviderCanNotApprove()
         {
             if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton)) throw new Exception("The approve radio button is displayed to the user");
         }

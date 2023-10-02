@@ -90,6 +90,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"employer reviews and approves the cohort")]
         public void WhenEmployerReviewsAndApprovesTheCohort() => new EmployerStepsHelper(_context).EmployerReviewCohort().EmployerDoesSecondApproval();
 
+        [Given(@"Employer changes the Total Price then approve the cohort and sends it to the training provider")]
+        public void EmployerReviewsTheLearnersDetailsAndChangesTheTotalPrice() => new EmployerStepsHelper(_context).EmployerReviewCohort().SelectEditApprentice().UpdateTotalApprenticeshipPrice().EmployerSendsToTrainingProviderForReview();
+
+
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
         public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(readApprenticeDataHelper.ReadApprenticeData(table), false);
 
