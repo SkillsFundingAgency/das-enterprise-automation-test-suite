@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
@@ -8,5 +8,5 @@ public class DfeProvider
 
     public string Password { get; set; }
 
-    public List<int> Listofukprn { get; set; }
+    public FrameworkList<int> Listofukprn { get; set; }
 }

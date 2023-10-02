@@ -1,12 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using SFA.DAS.FrameworkHelpers;
+using System;
 using System.Linq;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 public static class SetProviderCredsHelper
 {
-    public static T SetProviderCreds<T>(List<DfeProvider> dfeProviderList, T t) where T : ProviderConfig
+    public static T SetProviderCreds<T>(FrameworkList<DfeProvider> dfeProviderList, T t) where T : ProviderConfig
     {
+        if (!(dfeProviderList.Any(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn))))
+        {
+            FrameworkList<string> message = new() {Environment.NewLine};  
+
+            foreach (var item in dfeProviderList) message.Add($"{item.UserId} [{string.Join(",", item.Listofukprn)}]");
+
+            throw new Exception($"Ukprn '{t.Ukprn}' is not found in list of dfeproviders {message}");
+        }
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
         t.UserId = provider.UserId;
