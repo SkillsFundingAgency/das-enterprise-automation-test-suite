@@ -6,9 +6,9 @@
 Scenario: FLP_E2E_EUA_04 Provider sends cohort to employer for review then employer approves then provider approves
 	Given the Employer logins using existing Levy Account
 	And Pilot Provider adds apprentices to the cohort witht the following details
-		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price | training_price | endpoint_assessment_price |
-		| 1       | 154           | 2004/06/01    | 2023/08/15     | 12                 | 15000        | 12000          | 3000                      |
-		| 2       | 91            | 2004/06/01    | 2023/09/30     | 12                 | 18000        | 14400          | 3600                      |
+		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price |
+		| 1       | 154           | 2004/06/01    | 2023/08/15     | 12                 | 15000        |
+		| 2       | 91            | 2004/06/01    | 2023/09/30     | 12                 | 18000        |
 	When pilot provider approves the cohort
 	And employer reviews and approves the cohort
 	Then validate the following data is created in the commitments database
