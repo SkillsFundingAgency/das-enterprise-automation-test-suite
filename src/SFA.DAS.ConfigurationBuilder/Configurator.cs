@@ -52,6 +52,7 @@ namespace SFA.DAS.ConfigurationBuilder
                     "appsettings.BrowserStack.json", 
                     "appsettings.Mailinator.json", 
                     "appsettings.ApiFramework.json",
+                    "appsettings.ProviderConfig.json",
                     "appsettings.Project.json", 
                     "appsettings.Project.BrowserStack.json", 
                     $"appsettings.{EnvironmentName}.json", 

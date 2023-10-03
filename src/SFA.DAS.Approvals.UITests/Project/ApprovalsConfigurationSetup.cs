@@ -42,6 +42,14 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.SetChangeOfPartyConfig(SetProviderCreds<ChangeOfPartyConfig>());
 
             _context.SetPortableFlexiJobProviderConfig(SetProviderCreds<PortableFlexiJobProviderConfig>());
+
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
+
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
+
+            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
+
+            _context.SetNonEasLoginUser(SetProviderCreds<ProviderAccountOwnerUser>());
         }
 
         private T SetProviderCreds<T>() where T : ProviderConfig => SetProviderCredsHelper.SetProviderCreds(_context.Get<FrameworkList<DfeProvider>>(), _configSection.GetConfigSection<T>());
