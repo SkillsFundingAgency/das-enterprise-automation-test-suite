@@ -9,4 +9,6 @@ public class DfeProvider
     public string Password { get; set; }
 
     public FrameworkList<int> Listofukprn { get; set; }
+
+    public override string ToString() => $"UserId:'{UserId}', Password:'{Password}', Listofukprn:'{Listofukprn}'";
 }

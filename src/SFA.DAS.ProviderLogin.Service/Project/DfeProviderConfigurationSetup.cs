@@ -30,6 +30,8 @@ public class DfeProviderConfigurationSetup
 
         foreach (var item in dfeProviderList)
         {
+            _context.Get<ObjectContext>().SetDebugInformation($"item - {item}");
+
             _context.Get<ObjectContext>().SetDebugInformation($"item.UserId -  {item.UserId}");
 
             _context.Get<ObjectContext>().SetDebugInformation($"item.Listofukprn -  {item.Listofukprn}");
