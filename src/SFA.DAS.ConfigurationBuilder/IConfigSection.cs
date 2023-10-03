@@ -5,7 +5,5 @@
         T GetConfigSection<T>();
 
         T GetConfigSection<T>(string sectionName);
-
-        string GetDebugView();
     }
 }

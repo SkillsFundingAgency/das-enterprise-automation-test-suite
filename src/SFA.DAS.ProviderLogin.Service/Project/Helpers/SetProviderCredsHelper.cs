@@ -16,6 +16,7 @@ public static class SetProviderCredsHelper
 
             throw new Exception($"Ukprn '{t.Ukprn}' is not found in list of dfeproviders {message}");
         }
+
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
         t.UserId = provider.UserId;
