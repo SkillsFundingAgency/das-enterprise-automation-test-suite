@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using Newtonsoft.Json;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.TestDataExport;
@@ -25,6 +26,13 @@ public class DfeProviderConfigurationSetup
         _context.Get<ObjectContext>().SetDebugInformation($"debug view  {debugview}");
 
         var dfeProviderList = configSection.GetConfigSection<List<DfeProvider>>("DfeProvidersConfig");
+
+        if (Configurator.IsVstsExecution)
+        {
+            var dfeProviderList1 = configSection.GetConfigSection<string>("DfeProvidersConfig");
+
+            dfeProviderList = JsonConvert.DeserializeObject<List<DfeProvider>>(dfeProviderList1);
+        }
 
         FrameworkList<string> message = new() { Environment.NewLine };
 
