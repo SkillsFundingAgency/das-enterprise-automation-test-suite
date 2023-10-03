@@ -20,6 +20,10 @@ public class DfeProviderConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
+        var debugview = configSection.GetDebugView();
+
+        _context.Get<ObjectContext>().SetDebugInformation($"debug view  {debugview}");
+
         var dfeProviderList = configSection.GetConfigSection<List<DfeProvider>>("DfeProvidersConfig");
 
         FrameworkList<string> message = new() { Environment.NewLine };
