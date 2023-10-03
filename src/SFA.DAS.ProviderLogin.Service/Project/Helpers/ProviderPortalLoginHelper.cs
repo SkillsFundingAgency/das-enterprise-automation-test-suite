@@ -16,13 +16,13 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 
         public bool IsProviderHomePageDisplayed(string ukprn) => new CheckProviderHomePage(_context).IsPageDisplayed(ukprn);
 
-        internal ProviderHomePage ReLogin(ProviderLoginUser login) => Login(new ProviderSignInPage(_context), login);
+        public bool IsSelectYourOrganisationDisplayed() => new CheckSelectYourOrganisationPage(_context).IsPageDisplayed();
 
-        internal ProviderHomePage Login(ProviderLoginUser login) => Login(new ProviderIndexPage(_context).StartNow(), login);
+        internal void StartNow() => new ProviderIndexPage(_context).StartNow();
 
-        //pas login changes
-        //private ProviderHomePage Login(ProviderSignInPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login).SelectOrganisation(login.Ukprn);
+        internal void SubmitValidLoginDetails(ProviderLoginUser login) => new ProviderSignInPage(_context).SubmitValidLoginDetails(login);
 
-        private static ProviderHomePage Login(ProviderSignInPage siginPage, ProviderLoginUser login) => siginPage.SubmitValidLoginDetails(login);
+        internal ProviderHomePage SelectOrganisation(ProviderLoginUser login) => new SelectYourOrganisationPage(_context).SelectOrganisation(login.Ukprn);
+
     }
 }
