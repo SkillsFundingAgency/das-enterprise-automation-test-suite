@@ -24,7 +24,16 @@ public class DfeProviderConfigurationSetup
 
         FrameworkList<string> message = new() { Environment.NewLine };
 
-        foreach (var item in dfeProviderList) message.Add($"{item.UserId} [{string.Join(",", item.Listofukprn)}]");
+        foreach (var item in dfeProviderList)
+        {
+            _context.Get<ObjectContext>().SetDebugInformation($"item.UserId -  {item.UserId}");
+
+            _context.Get<ObjectContext>().SetDebugInformation($"item.Listofukprn -  {item.Listofukprn}");
+
+            _context.Get<ObjectContext>().SetDebugInformation($"string join - {string.Join(",", item.Listofukprn)}");
+
+            message.Add($"{item.UserId} [{string.Join(",", item.Listofukprn)}]");
+        }
 
         _context.Get<ObjectContext>().SetDebugInformation($"dfeproviders {message}");
 
