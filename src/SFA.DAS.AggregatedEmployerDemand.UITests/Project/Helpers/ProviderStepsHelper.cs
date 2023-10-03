@@ -17,7 +17,7 @@ public class ProviderStepsHelper
 
     public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
 
-    public static WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) => 
+    public static WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) =>
         page.ContinueToProviderCheckYourAnswersPage()
         .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
 
