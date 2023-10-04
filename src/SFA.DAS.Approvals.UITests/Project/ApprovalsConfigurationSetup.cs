@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -27,10 +24,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
-            _context.SetProviderPermissionConfig(SetProviderCreds<ProviderPermissionsConfig>());
-
-            _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
-
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
@@ -38,20 +31,6 @@ namespace SFA.DAS.Approvals.UITests.Project
                 _configSection.GetConfigSection<FlexiJobUser>(),
                 _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
             });
-
-            _context.SetChangeOfPartyConfig(SetProviderCreds<ChangeOfPartyConfig>());
-
-            _context.SetPortableFlexiJobProviderConfig(SetProviderCreds<PortableFlexiJobProviderConfig>());
-
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderViewOnlyUser>());
-
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorUser>());
-
-            _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
-
-            _context.SetNonEasLoginUser(SetProviderCreds<ProviderAccountOwnerUser>());
         }
-
-        private T SetProviderCreds<T>() where T : ProviderConfig => SetProviderCredsHelper.SetProviderCreds(_context.Get<FrameworkList<DfeProvider>>(), _configSection.GetConfigSection<T>());
     }
 }

@@ -4,10 +4,12 @@ using System.Linq;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
-public static class SetProviderCredsHelper
+internal static class SetProviderCredsHelper
 {
-    public static T SetProviderCreds<T>(FrameworkList<DfeProvider> dfeProviderList, T t) where T : ProviderConfig
+    internal static T SetProviderCreds<T>(FrameworkList<DfeProvider> dfeProviderList, T t) where T : ProviderConfig
     {
+        if (string.IsNullOrEmpty(t.Ukprn)) return t;
+
         if (!(dfeProviderList.Any(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn))))
         {
             FrameworkList<string> message = new() {Environment.NewLine};  

@@ -1,10 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -31,14 +27,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 
                 _configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>()
             });
-
-            var x = _configSection.GetConfigSection<ProviderPermissionsConfig>();
-
-            _context.SetProviderPermissionConfig(x);
-
-            var providerConfig = new ProviderConfig { UserId = x.UserId, Password = x.Password, Ukprn = x.Ukprn };
-
-            _context.SetProviderConfig(providerConfig);
         }
     }
 }
