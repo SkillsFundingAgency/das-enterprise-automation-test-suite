@@ -11,6 +11,7 @@ public class Employer_Events_Steps : Employer_BaseSteps
     private EventPage eventPage;
 
     private SearchNetworkEventsPage searchNetworkEventsPage;
+    private NetworkDirectoryPage networkDirectoryPage;
 
     public Employer_Events_Steps(ScenarioContext context) : base(context) { }
 
@@ -44,4 +45,13 @@ public class Employer_Events_Steps : Employer_BaseSteps
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters")]
     public void FilterByMultipleCombination() => FilterByMultipleCombination(searchNetworkEventsPage);
+
+    [Then(@"the user should be able to successfully filter events by role Network Directory")]
+    public void FilterByRole_NetworkDirectory() => networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
+
+    [Then(@"the user should be able to successfully filter events by regions Network Directory")]
+    public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
+
+    [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
+    public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombination_NetworkCirectory(networkDirectoryPage);
 }
