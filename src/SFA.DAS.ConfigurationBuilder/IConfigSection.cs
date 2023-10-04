@@ -3,5 +3,7 @@
     public interface IConfigSection
     {
         T GetConfigSection<T>();
+
+        T GetConfigSection<T>(string sectionName);
     }
 }

@@ -66,9 +66,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new EmployerVacancySearchResultPage(_context);
         }
 
-        internal void SearchEmployerProviderPermissionVacancy() => SearchVacancy(false);
+        internal void SearchEmployerProviderPermissionVacancy() => SearchVacancy();
 
-        private void SearchVacancy(bool navigate = true)
+        private void SearchVacancy()
         {
             var vacRef = _objectContext.GetVacancyReference();
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
