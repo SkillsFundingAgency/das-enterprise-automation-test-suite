@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -20,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderLoginUser _newProviderLoginDetails;
         private readonly ProviderLoginUser _oldProviderLoginDetails;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private const int expectedEditableFields = 12;
 
         public ChangeOfProviderSteps(ScenarioContext context)
@@ -30,13 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _newProviderLoginDetails = new ProviderLoginUser { UserId = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
             _oldProviderLoginDetails = new ProviderLoginUser { UserId = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
 
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
+            _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, false);
 
             new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
@@ -52,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new provider approves the employer led change of provider cohort")]
         public void WhenNewProviderApprovesTheEmployerLedChangeOfProviderCohort()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, false);
+            _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, false);
 
             new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
@@ -85,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"a new live apprenticeship record is created with new Provider")]
         public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
+            _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
             SelectViewCurrentApprenticeDetails();
         }
@@ -103,7 +104,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new Provider sends the cohort back to employer to review")]
         public void WhenNewProviderSendsTheCohortBackToEmployerToReview()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
+            _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
             new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
@@ -130,7 +131,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new provider approves the changes")]
         public void WhenNewProviderApprovesTheChanges()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_newProviderLoginDetails, true);
+            _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
             new ProviderApprenticeRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
@@ -169,7 +170,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public void ValidatePreviousProviderShouldNotBeAbleToStartCoEOnTheOldRecordAfterSuccessfulCoP()
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_oldProviderLoginDetails, false);
+            _providerHomePageStepsHelper.GoToProviderHomePage(_oldProviderLoginDetails, false);
 
             Assert.IsFalse(SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed(), "Validate that CoE link is not available for the old provider after successful CoP");
         }

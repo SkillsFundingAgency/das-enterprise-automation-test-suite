@@ -11,7 +11,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static string Online => "Online";
         private static string Hybrid => "Hybrid";
         private static string London => "London";
-
+        private static string Apprentice => "Apprentice";
+        private static string Employer => "Employer";
+        private static string Regionalchair => "Regional chair";
 
         private static By FromDateField => By.CssSelector("#fromDate");
         private static By ToDateField => By.CssSelector("#toDate");
@@ -55,6 +57,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected void FilterEventByEventFormat_Hybrid() => ApplyFilter(Hybrid);
 
         protected void FilterEventByEventRegion_London() => ApplyFilter(London);
+        protected void FilterByRole_Apprentice() => ApplyFilter(Apprentice);
+
+        protected void FilterByRole_Employer() => ApplyFilter(Employer);
+
+        protected void FilterByRole_Regionalchair() => ApplyFilter(Regionalchair);
 
         protected void ClearAllFilters() => formCompletionHelper.ClickLinkByText("Clear");
 
@@ -68,6 +75,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected void VerifyEventFormat_Hybrid_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Hybrid));
 
         protected void VerifyEventRegion_London_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(London));
+        protected void VerifyRole_Apprentice_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Apprentice));
+        protected void VerifyRole_Employer_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Employer));
+
+        protected void VerifyRole_Regionalchair_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Regionalchair));
 
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }
 

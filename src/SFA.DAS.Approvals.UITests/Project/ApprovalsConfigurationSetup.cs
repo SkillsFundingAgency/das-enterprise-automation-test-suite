@@ -24,10 +24,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
-            _context.SetProviderPermissionConfig(_configSection.GetConfigSection<ProviderPermissionsConfig>());
-
-            _context.SetPerfTestProviderPermissionsConfig(_configSection.GetConfigSection<PerfTestProviderPermissionsConfig>());
-
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
@@ -35,10 +31,6 @@ namespace SFA.DAS.Approvals.UITests.Project
                 _configSection.GetConfigSection<FlexiJobUser>(),
                 _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
             });
-
-            _context.SetChangeOfPartyConfig(_configSection.GetConfigSection<ChangeOfPartyConfig>());
-
-            _context.SetPortableFlexiJobProviderConfig(_configSection.GetConfigSection<PortableFlexiJobProviderConfig>());
         }
     }
 }
