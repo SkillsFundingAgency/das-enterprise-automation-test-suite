@@ -89,4 +89,37 @@ public abstract class AppEmp_BaseSteps : BaseSteps
             .VerifyEventRegion_London_Filter()
             .ClearAllFilters();
     }
+
+    protected NetworkDirectoryPage FilterByEventRegionNetworkDirectory(NetworkDirectoryPage networkDirectoryPage)
+    {
+        return networkDirectoryPage.FilterEventByEventRegion_London()
+            .VerifyEventRegion_London_Filter()
+            .ClearAllFilters();
+    }
+    protected NetworkDirectoryPage FilterByEventRoleNetworkDirectory(NetworkHubPage networkHubPage)
+    {
+        return networkHubPage.AccessNetworkDirectory()
+            .FilterByRole_Apprentice()
+            .VerifyRole_Apprentice_Filter()
+            .ClearAllFilters()
+            .FilterByRole_Employer()
+            .VerifyRole_Employer_Filter()
+            .ClearAllFilters()
+            .FilterByRole_Regionalchair()
+            .VerifyRole_Regionalchair_Filter()
+            .ClearAllFilters();
+    }
+    protected NetworkDirectoryPage FilterByMultipleCombination_NetworkCirectory(NetworkDirectoryPage networkDirectoryPage)
+    {
+        return networkDirectoryPage
+            .FilterEventByEventRegion_London()
+            .FilterByRole_Apprentice()
+            .FilterByRole_Regionalchair()
+            .FilterByRole_Employer()
+            .VerifyEventRegion_London_Filter()
+            .VerifyRole_Apprentice_Filter()
+            .VerifyRole_Employer_Filter()
+            .VerifyRole_Regionalchair_Filter()
+            .ClearAllFilters();
+    }
 }

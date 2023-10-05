@@ -1,10 +1,21 @@
 ﻿
 using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-//pas login changes (do not remove this class)
+
+public class CheckSelectYourOrganisationPage : CheckPageUsingShorterTimeOut
+{
+    protected override string PageTitle => "Select your organisation";
+
+    protected override By Identifier => PageHeader;
+    public CheckSelectYourOrganisationPage(ScenarioContext context) : base(context) { }
+
+    public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
+}
+
 public class SelectYourOrganisationPage : ProviderLoginBasePage
 {
     private static By Organisaitons => By.CssSelector("#organisation .govuk-radios__item");
