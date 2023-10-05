@@ -11,4 +11,9 @@ public abstract class NetworkHubPage : AanBasePage
         formCompletionHelper.ClickLinkByText("Events hub");
         return new EventsHubPage(context);
     }
+    public NetworkDirectoryPage AccessNetworkDirectory()
+    {
+        formCompletionHelper.ClickLinkByText("Network directory");
+        return new NetworkDirectoryPage(context);
+    }
 }
