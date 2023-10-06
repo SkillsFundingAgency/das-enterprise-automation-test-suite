@@ -21,18 +21,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(true); RestartWebDriver(); }
                 else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
-                else if (IsUnsupportedIeDriverVersion()) { SetIeDriverLocation(true); RestartWebDriver(); }
                 else if (IsUnsupportedEdgeDriverVersion()) { SetEdgeDriverLocation(true); RestartWebDriver(); }
             }
         }
 
-        private bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && false; //objectContext.GetChromedriverVersion().StartsWith("100.0"); A temp fix whenever we have chromedriver issue.
+        private static bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && false; //objectContext.GetChromedriverVersion().StartsWith("100.0"); A temp fix whenever we have chromedriver issue.
 
-        private bool IsUnsupportedFirefoxDriverVersion() => _browser.IsFirefox() && false;
+        private static bool IsUnsupportedFirefoxDriverVersion() => _browser.IsFirefox() && false;
 
-        private bool IsUnsupportedIeDriverVersion() => _browser.IsIe() && false;
-
-        private bool IsUnsupportedEdgeDriverVersion() => _browser.IsEdge() && false;
+        private static bool IsUnsupportedEdgeDriverVersion() => _browser.IsEdge() && false;
 
         private void RestartWebDriver() => new RestartWebDriverHelper(context).RestartWebDriver();
     }

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Edge;
-using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
+using OpenQA.Selenium.Firefox;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -47,7 +46,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 _ when browser.IsFirefox() => FirefoxDriver(),
                 _ when browser.IsChrome() => ChromeDriver(new List<string>()),
                 _ when browser.IsEdge() => EdgeDriver(),
-                _ when browser.IsIe() => InternetExplorerDriver(),
                 _ when browser.IsZap() => InitialiseZapProxyChrome(),
                 _ when browser.IsChromeHeadless() => ChromeDriver(new List<string>() { "--headless" }),
                 _ when browser.IsCloudExecution() => SetUpBrowserStack(),
@@ -58,7 +56,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private IWebDriver SetUpBrowserStack()
         {
             _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-            
+
             return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
         }
 
@@ -77,15 +75,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
 
             AddChromeCapabilities(webdriver);
-
-            return webdriver;
-        }
-
-        private InternetExplorerDriver InternetExplorerDriver()
-        {
-            var webdriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
-
-            AddIeCapabilities(webdriver);
 
             return webdriver;
         }
@@ -111,17 +100,17 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private ChromeDriver ChromeDriver(List<string> arguments)
         {
             arguments.Add("no-sandbox");
-            
+
             arguments.Add("ignore-certificate-errors");
 
             var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
-            
+
             AddChromeCapabilities(webdriver);
 
             return webdriver;
         }
 
-        private ChromeOptions AddArguments(List<string> arguments)
+        private static ChromeOptions AddArguments(List<string> arguments)
         {
             var chromeOptions = new ChromeOptions();
             arguments.ForEach((x) => chromeOptions.AddArgument(x));

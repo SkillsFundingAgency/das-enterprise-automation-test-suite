@@ -39,7 +39,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             DriverOptions capabilities = true switch
             {
                 bool _ when browser.IsFirefox() => new FirefoxOptions(),
-                bool _ when browser.IsIe() => new InternetExplorerOptions(),
                 bool _ when browser.IsEdge() => new EdgeOptions(),
                 bool _ when browser.IsChrome() => new ChromeOptions(),
                 _ => throw new Exception("Browserstack : Driver name - " + browser + " does not match OR this framework does not support the webDriver specified"),
