@@ -8,115 +8,114 @@ using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.UI.Framework.TestSupport;
+
+public class WebDriverSetupHelper : WebdriverAddCapabilities
 {
-    public class WebDriverSetupHelper : WebdriverAddCapabilities
+    private readonly ScenarioContext _context;
+    private readonly ObjectContext _objectContext;
+    private readonly FrameworkConfig _frameworkConfig;
+
+    public WebDriverSetupHelper(ScenarioContext context) : base(context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly FrameworkConfig _frameworkConfig;
+        _context = context;
+        _objectContext = context.Get<ObjectContext>();
+        _frameworkConfig = context.Get<FrameworkConfig>();
+    }
 
-        public WebDriverSetupHelper(ScenarioContext context) : base(context)
+    public IWebDriver SetupWebDriver()
+    {
+        var WebDriver = GetWebDriver(_objectContext.GetBrowser());
+
+        WebDriver.Manage().Window.Maximize();
+        WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.ImplicitWait);
+        WebDriver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageLoad);
+        WebDriver.Manage().Cookies.DeleteAllCookies();
+
+        WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
+
+        _context.SetWebDriver(WebDriver);
+
+        return WebDriver;
+    }
+
+    private IWebDriver GetWebDriver(string browser)
+    {
+        return true switch
         {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _frameworkConfig = context.Get<FrameworkConfig>();
-        }
+            _ when browser.IsFirefox() => FirefoxDriver(),
+            _ when browser.IsChrome() => ChromeDriver(new List<string>()),
+            _ when browser.IsEdge() => EdgeDriver(),
+            _ when browser.IsZap() => InitialiseZapProxyChrome(),
+            _ when browser.IsChromeHeadless() => ChromeDriver(new List<string>() { "--headless" }),
+            _ when browser.IsCloudExecution() => SetUpBrowserStack(),
+            _ => throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified")
+        };
+    }
 
-        public IWebDriver SetupWebDriver()
+    private IWebDriver SetUpBrowserStack()
+    {
+        _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+
+        return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
+    }
+
+    private ChromeDriver InitialiseZapProxyChrome()
+    {
+        const string PROXY = "localhost:8080";
+        var chromeOptions = new ChromeOptions();
+        var proxy = new Proxy
         {
-            var WebDriver = GetWebDriver(_objectContext.GetBrowser());
+            HttpProxy = PROXY,
+            SslProxy = PROXY,
+            FtpProxy = PROXY
+        };
+        chromeOptions.Proxy = proxy;
 
-            WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.ImplicitWait);
-            WebDriver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageLoad);
-            WebDriver.Manage().Cookies.DeleteAllCookies();
+        var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
 
-            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
+        AddChromeCapabilities(webdriver);
 
-            _context.SetWebDriver(WebDriver);
+        return webdriver;
+    }
 
-            return WebDriver;
-        }
+    private FirefoxDriver FirefoxDriver()
+    {
+        var webdriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
 
-        private IWebDriver GetWebDriver(string browser)
-        {
-            return true switch
-            {
-                _ when browser.IsFirefox() => FirefoxDriver(),
-                _ when browser.IsChrome() => ChromeDriver(new List<string>()),
-                _ when browser.IsEdge() => EdgeDriver(),
-                _ when browser.IsZap() => InitialiseZapProxyChrome(),
-                _ when browser.IsChromeHeadless() => ChromeDriver(new List<string>() { "--headless" }),
-                _ when browser.IsCloudExecution() => SetUpBrowserStack(),
-                _ => throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified")
-            };
-        }
+        AddFireFoxCapabilities(webdriver);
 
-        private IWebDriver SetUpBrowserStack()
-        {
-            _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+        return webdriver;
+    }
 
-            return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
-        }
+    private EdgeDriver EdgeDriver()
+    {
+        var webdriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
 
-        private ChromeDriver InitialiseZapProxyChrome()
-        {
-            const string PROXY = "localhost:8080";
-            var chromeOptions = new ChromeOptions();
-            var proxy = new Proxy
-            {
-                HttpProxy = PROXY,
-                SslProxy = PROXY,
-                FtpProxy = PROXY
-            };
-            chromeOptions.Proxy = proxy;
+        AddEdgeCapabilities(webdriver);
 
-            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions);
+        return webdriver;
+    }
 
-            AddChromeCapabilities(webdriver);
+    private ChromeDriver ChromeDriver(List<string> arguments)
+    {
+        arguments.Add("no-sandbox");
 
-            return webdriver;
-        }
+        arguments.Add("ignore-certificate-errors");
 
-        private FirefoxDriver FirefoxDriver()
-        {
-            var webdriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
+        var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
 
-            AddFireFoxCapabilities(webdriver);
+        AddChromeCapabilities(webdriver);
 
-            return webdriver;
-        }
+        return webdriver;
+    }
 
-        private EdgeDriver EdgeDriver()
-        {
-            var webdriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
-
-            AddEdgeCapabilities(webdriver);
-
-            return webdriver;
-        }
-
-        private ChromeDriver ChromeDriver(List<string> arguments)
-        {
-            arguments.Add("no-sandbox");
-
-            arguments.Add("ignore-certificate-errors");
-
-            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
-
-            AddChromeCapabilities(webdriver);
-
-            return webdriver;
-        }
-
-        private static ChromeOptions AddArguments(List<string> arguments)
-        {
-            var chromeOptions = new ChromeOptions();
-            arguments.ForEach((x) => chromeOptions.AddArgument(x));
-            chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
-            chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
-            return chromeOptions;
-        }
+    private static ChromeOptions AddArguments(List<string> arguments)
+    {
+        var chromeOptions = new ChromeOptions();
+        arguments.ForEach((x) => chromeOptions.AddArgument(x));
+        chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
+        chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
+        return chromeOptions;
     }
 }
