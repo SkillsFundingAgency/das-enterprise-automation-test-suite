@@ -3,56 +3,55 @@ using System;
 using SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Support.UI;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.UI.FrameworkHelpers;
+
+public class WebDriverWaitHelper
 {
-    public class WebDriverWaitHelper
+    private readonly IWebDriver _webDriver;
+    private readonly JavaScriptHelper _javaScriptHelper;
+    private readonly TimeOutConfig _timeOutConfig;
+    private readonly WebDriverWait _implicitWait;
+    private readonly WebDriverWait _pagenavigationWait;
+    
+    public WebDriverWaitHelper(IWebDriver webDriver, JavaScriptHelper javaScriptHelper, TimeOutConfig timeOutConfig)
     {
-        private readonly IWebDriver _webDriver;
-        private readonly JavaScriptHelper _javaScriptHelper;
-        private readonly TimeOutConfig _timeOutConfig;
-        private readonly WebDriverWait _implicitWait;
-        private readonly WebDriverWait _pagenavigationWait;
-        
-        public WebDriverWaitHelper(IWebDriver webDriver, JavaScriptHelper javaScriptHelper, TimeOutConfig timeOutConfig)
-        {
-            _webDriver = webDriver;
-            _javaScriptHelper = javaScriptHelper;
-            _timeOutConfig = timeOutConfig;
-            _implicitWait = WebDriverWait(timeOutConfig.ImplicitWait);
-            _pagenavigationWait = WebDriverWait(timeOutConfig.PageLoad);
-        }
-
-        internal bool WaitUntil(Func<bool> condition)
-        {
-            var implicitWait = WebDriverWait(_timeOutConfig.ImplicitWait);
-
-            implicitWait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
-
-            bool result = false;
-
-            implicitWait.Until(driver =>
-            {
-                result = condition();
-                return result;
-            });
-
-            return result;
-        }
-
-        internal void WaitForElementToBeDisplayed(By locator) => _implicitWait.Until(ExpectedConditions.ElementIsVisible(locator));
-
-        internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
-
-        internal void WaitForPageToLoad() => _pagenavigationWait.Until(_javaScriptHelper.IsDocumentReady);
-
-        internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
-
-        internal void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
-
-        internal void TurnOnImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
-
-        internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
-
-        private WebDriverWait WebDriverWait(int timespan) => new WebDriverWait(new SystemClock(), _webDriver, TimeSpan.FromSeconds(timespan), TimeSpan.FromMilliseconds(1000));
+        _webDriver = webDriver;
+        _javaScriptHelper = javaScriptHelper;
+        _timeOutConfig = timeOutConfig;
+        _implicitWait = WebDriverWait(timeOutConfig.ImplicitWait);
+        _pagenavigationWait = WebDriverWait(timeOutConfig.PageLoad);
     }
+
+    internal bool WaitUntil(Func<bool> condition)
+    {
+        var implicitWait = WebDriverWait(_timeOutConfig.ImplicitWait);
+
+        implicitWait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
+
+        bool result = false;
+
+        implicitWait.Until(driver =>
+        {
+            result = condition();
+            return result;
+        });
+
+        return result;
+    }
+
+    internal void WaitForElementToBeDisplayed(By locator) => _implicitWait.Until(ExpectedConditions.ElementIsVisible(locator));
+
+    internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
+
+    internal void WaitForPageToLoad() => _pagenavigationWait.Until(_javaScriptHelper.IsDocumentReady);
+
+    internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
+
+    internal void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+
+    internal void TurnOnImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
+
+    internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
+
+    private WebDriverWait WebDriverWait(int timespan) => new WebDriverWait(new SystemClock(), _webDriver, TimeSpan.FromSeconds(timespan), TimeSpan.FromMilliseconds(1000));
 }

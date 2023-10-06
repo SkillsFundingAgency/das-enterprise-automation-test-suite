@@ -4,48 +4,45 @@ using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
 using SFA.DAS.CosmosDb;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.UI.FrameworkHelpers;
+
+public static class CosmosConnectionHelper
 {
-    public static class CosmosConnectionHelper
+    public static DocumentRepository<TDocument> CreateCosmosDbRepoHelper<TDocument>(string uri, string authKey, string databaseName,
+        string collectionName) where TDocument : class, IDocument
     {
-        public static DocumentRepository<TDocument> CreateCosmosDbRepoHelper<TDocument>(string uri, string authKey, string databaseName,
-            string collectionName) where TDocument : class, IDocument
-        {
-            var documentClient = CreateDocumentClient(uri, authKey);
-            return new DocumentRepository<TDocument>(documentClient, databaseName, collectionName);
-        }
+        var documentClient = CreateDocumentClient(uri, authKey);
+        return new DocumentRepository<TDocument>(documentClient, databaseName, collectionName);
+    }
 
-        public static IDocumentClient CreateDocumentClient(string uri, string authKey)
+    public static IDocumentClient CreateDocumentClient(string uri, string authKey)
+    {
+        var connectionPolicy = new ConnectionPolicy
         {
-            var connectionPolicy = new ConnectionPolicy
+            RetryOptions =
             {
-                RetryOptions =
-                {
-                    MaxRetryAttemptsOnThrottledRequests = 4,
-                    MaxRetryWaitTimeInSeconds = 10
-                }
-            };
+                MaxRetryAttemptsOnThrottledRequests = 4,
+                MaxRetryWaitTimeInSeconds = 10
+            }
+        };
 
-            return new DocumentClient(new Uri(uri), authKey, connectionPolicy);
-        }
+        return new DocumentClient(new Uri(uri), authKey, connectionPolicy);
     }
+}
 
-    public class Document : IDocument
+public class Document : IDocument
+{
+    [JsonProperty("id")]
+    public Guid Id { get; protected set; }
+
+    [JsonIgnore]
+    public string ETag { get; protected set; }
+
+    [JsonProperty("_etag")]
+    private string ReadOnlyETag { set => ETag = value; }
+
+    protected Document()
     {
-        [JsonProperty("id")]
-        public Guid Id { get; protected set; }
-
-        [JsonIgnore]
-        public string ETag { get; protected set; }
-
-        [JsonProperty("_etag")]
-        private string ReadOnlyETag { set => ETag = value; }
-
-        protected Document()
-        {
-        }
-
     }
-
 
 }
