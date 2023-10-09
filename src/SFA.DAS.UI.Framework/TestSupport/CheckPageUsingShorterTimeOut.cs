@@ -2,16 +2,15 @@
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.UI.Framework.TestSupport;
+
+public abstract class CheckPageUsingShorterTimeOut : CheckPage
 {
-    public abstract class CheckPageUsingShorterTimeOut : CheckPage
-    {
-        protected readonly CheckPageInteractionHelper checkPageInteractionHelper;
+    protected readonly CheckPageInteractionHelper checkPageInteractionHelper;
 
-        public CheckPageUsingShorterTimeOut(ScenarioContext context) : base(context) => checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
+    public CheckPageUsingShorterTimeOut(ScenarioContext context) : base(context) => checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
 
-        public override bool IsPageDisplayed() => IsPageDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier));
+    public override bool IsPageDisplayed() => IsPageDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier));
 
-        protected bool IsPageDisplayed(Func<bool> predicate) => checkPageInteractionHelper.WithoutImplicitWaits(predicate);
-    }
+    protected bool IsPageDisplayed(Func<bool> predicate) => checkPageInteractionHelper.WithoutImplicitWaits(predicate);
 }
