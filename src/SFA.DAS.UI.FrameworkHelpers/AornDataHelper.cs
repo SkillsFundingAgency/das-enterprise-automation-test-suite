@@ -1,15 +1,14 @@
 ﻿using System;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.UI.FrameworkHelpers;
+
+public class AornDataHelper
 {
-    public class AornDataHelper
-    {
-        public AornDataHelper() => AornNumber = $"A{GetDateTimeValue()}";
+    public AornDataHelper() => AornNumber = $"A{GetDateTimeValue()}";
 
-        public string AornNumber { get; }
+    public string AornNumber { get; }
 
-        public static string InvalidAornNumber => $"A{GetDateTimeValue()}";
+    public static string InvalidAornNumber => $"A{GetDateTimeValue()}";
 
-        private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
-    }
+    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
 }
