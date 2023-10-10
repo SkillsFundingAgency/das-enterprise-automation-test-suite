@@ -26,5 +26,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(context);
         }
 
+        public AddATrainingProviderPage GoToTrainingProviderLink()
+        {
+            formCompletionHelper.ClickLinkByText("Training provider");
+            return new AddATrainingProviderPage(context);
+        }
+
     }
 }

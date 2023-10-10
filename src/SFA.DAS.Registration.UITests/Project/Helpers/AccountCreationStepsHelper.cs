@@ -95,8 +95,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SearchForAnOrganisation(orgType)
             .SelectYourOrganisation(orgType))
             .SignAgreement()
-            .ClickOnViewYourAccountButton()
+            .GoToTrainingProviderLink()
+            .SelectoptionNo()
             .SelectGoToYourEmployerAccountHomepage();
+
 
         internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
         {
@@ -111,7 +113,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
-            homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
+            homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreementFromHomePage();
 
         internal void UpdateOrganisationName(OrgType orgType) => _objectContext.UpdateOrganisationName(GetOrgName(orgType));
 
