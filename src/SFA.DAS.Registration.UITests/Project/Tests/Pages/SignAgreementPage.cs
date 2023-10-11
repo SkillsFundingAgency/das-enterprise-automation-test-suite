@@ -20,13 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SignAgreementPage(ScenarioContext context) : base(context) => VerifyPage(WantToSignRadioButton);
 
-        public CreateYourEmployerAccountPage SignAgreement()
-        {
-            Sign();
-            return new CreateYourEmployerAccountPage(context);
-        }
-
-        public YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage()
+        public YouHaveAcceptedTheEmployerAgreementPage SignAgreement()
         {
             Sign();
             return new YouHaveAcceptedTheEmployerAgreementPage(context);

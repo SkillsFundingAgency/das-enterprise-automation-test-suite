@@ -104,12 +104,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to Sign the Agreement")]
         [When(@"the Employer Signs the Agreement")]
         [Then(@"the Employer Signs the Agreement")]
-        public void SignTheAgreementAndCompleteRegistration()
+        public void SignTheAgreement()
         {
             _homePage = _signAgreementPage
                 .SignAgreement()
-                .GoToTrainingProviderLink()
-                .SelectoptionNo()
+                .ClickOnViewYourAccountButton()
                 .SelectGoToYourEmployerAccountHomepage();
 
             SetAgreementId(_homePage);
@@ -145,7 +144,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _accountCreationStepsHelper.UpdateOrganisationName(orgType);
             CreateUserAccountAndAddOrg(orgType);
-            SignTheAgreementAndCompleteRegistration();
+            SignTheAgreement();
         }
 
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
@@ -281,7 +280,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _searchForYourOrganisationPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo(0);
             AddOrganisationDetails();
-            SignTheAgreementAndCompleteRegistration();
+            SignTheAgreement();
         }
 
         [Then(@"the Employer is able to rename the Account")]
