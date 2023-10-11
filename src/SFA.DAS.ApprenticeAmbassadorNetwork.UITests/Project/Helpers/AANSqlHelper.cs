@@ -32,4 +32,19 @@ public class AANSqlHelper : SqlDbHelper
      $"DELETE FROM Member WHERE Id = @MemberId;" +
      $" END ");
 
+
+    public string GetEventId(string eventTitle)
+    {
+        waitForResults = true;
+
+        return GetDataAsString($"select Id from CalendarEvent where title = '{eventTitle}'");
+    }
+
+    public void DeleteAdminCreatedEvent(string eventId) => ExecuteSqlCommand
+        ($"DECLARE @EventId VARCHAR(36) = '{eventId}' " +
+        $"IF EXISTS(select * from CalendarEvent where Id = @EventId) " +
+        $"BEGIN " +
+        $"DELETE FROM EventGuest where CalendarEventId = @EventId " +
+        $"DELETE FROM CalendarEvent WHERE Id = @EventId; " +
+        $"END");
 }

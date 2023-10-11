@@ -1,12 +1,18 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
 public class ManageEventsPage : SearchEventsBasePage
 {
+    private static By CreateEventButton => By.CssSelector("#create-event");
+
     protected override string PageTitle => "Manage events";
 
     public ManageEventsPage(ScenarioContext context) : base(context) { }
+
+    public EventFormatPage CreateEvent()
+    {
+        formCompletionHelper.Click(CreateEventButton);
+        return new (context);
+    }
 
     public new ManageEventsPage FilterEventByTomorrow()
     {
@@ -44,13 +50,12 @@ public class ManageEventsPage : SearchEventsBasePage
         return this;
     }
 
-    
+
     public new ManageEventsPage ClearAllFilters()
     {
         base.ClearAllFilters();
         return this;
     }
-
 
     public new ManageEventsPage VerifyEventStatus_Published_Filter()
     {

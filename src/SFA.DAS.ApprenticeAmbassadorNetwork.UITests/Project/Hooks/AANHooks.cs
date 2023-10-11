@@ -7,6 +7,7 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using SFA.DAS.TestDataExport.Helper;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
@@ -15,6 +16,7 @@ public class AANHooks
 {
     private readonly ScenarioContext _context;
     private readonly TabHelper _tabHelper;
+    private AANSqlHelper aANSqlHelper;
 
     public AANHooks(ScenarioContext context)
     {
@@ -43,8 +45,29 @@ public class AANHooks
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {
-        _context.Set(new AANSqlHelper(_context.Get<DbConfig>()));
+        aANSqlHelper = new AANSqlHelper(_context.Get<DbConfig>());
+
+        _context.Set(aANSqlHelper);
 
         _context.Set(new AANDataHelpers());
+
+        if (_context.ScenarioInfo.Tags.Contains("aanadmincreateevent"))
+        {
+            _context.Set(new AanAdminDatahelper());
+        }
+    }
+
+    [AfterScenario(Order = 30), Scope(Tag = "@aanadmin")]
+    public void DeleteAdminCreatedEvent() 
+    {
+        _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
+        {
+            if (_context.ScenarioInfo.Tags.Contains("aanadmincreateevent"))
+            {
+                var objectContext = _context.Get<ObjectContext>();
+
+                aANSqlHelper.DeleteAdminCreatedEvent(objectContext.GetAanAdminEventId());
+            }
+        });
     }
 }
