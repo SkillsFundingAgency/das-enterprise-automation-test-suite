@@ -14,7 +14,7 @@ public abstract class AanAdminBasePage : AanBasePage
 
     public AanAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage)
     {
-        aanAdminDatahelper = context.Get<AanAdminDatahelper>();
+        aanAdminDatahelper = context.GetValue<AanAdminDatahelper>();
     }
 
     protected void EnterAutoSelect(string text)
