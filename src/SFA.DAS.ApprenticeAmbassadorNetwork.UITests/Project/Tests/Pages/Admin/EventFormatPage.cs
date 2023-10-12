@@ -174,7 +174,7 @@ public class EventDatePage : AanAdminBasePage
 
         var endDate = aanAdminDatahelper.EventEndDateAndTime;
 
-        formCompletionHelper.EnterText(EventDateSelector, $"{startDate:ddMMyyyy}");
+        formCompletionHelper.EnterText(EventDateSelector, $"{startDate.ToString(DateFormat)}");
 
         formCompletionHelper.EnterText(StartHourSelector, $"{startDate:HH}");
 
