@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
-using System;
+﻿using System;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 
@@ -101,8 +100,8 @@ public class AanAdminDatahelper
     {
         return true switch
         {
-            bool _ when eventFormat == Tests.Pages.Admin.EventFormat.InPerson => "InPerson",
-            bool _ when eventFormat == Tests.Pages.Admin.EventFormat.Online => "Online",
+            bool _ when eventFormat == Helpers.EventFormat.InPerson => "InPerson",
+            bool _ when eventFormat == Helpers.EventFormat.Online => "Online",
             _ => "Hybrid",
         };
     }
