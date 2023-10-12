@@ -54,7 +54,9 @@ public class AanAdminDatahelper
 
         EventOnlineLink = $"https://www.{name}{domain}";
 
-        EventSchoolName = location;
+        var school = RandomDataGenerator.GetRandomElementFromListOfElements(new System.Collections.Generic.List<string> { "Church", "Grange", "Primary", "Academy", "Catholic" }); 
+
+        EventSchoolName = school;
 
         EventOrganiserName = name;
 

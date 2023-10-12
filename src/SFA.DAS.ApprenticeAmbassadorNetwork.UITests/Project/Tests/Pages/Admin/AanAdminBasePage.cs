@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+﻿using NUnit.Framework;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
 public abstract class AanAdminBasePage : AanBasePage
 {
@@ -17,33 +19,26 @@ public abstract class AanAdminBasePage : AanBasePage
         aanAdminDatahelper = context.GetValue<AanAdminDatahelper>();
     }
 
-    protected void EnterAutoSelect(string text)
+    protected void SelectAutoDropDown(string text)
     {
-        void WaitForElementToChange(string value) => pageInteractionHelper.WaitForElementToChange(SearchTerm, AttributeHelper.AriaExpanded, value);
+        formCompletionHelper.EnterText(SearchTerm, text);
+
+        context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
+        {
+            if (pageInteractionHelper.FindElements(SearchList).Count <= 1)
+            {
+                Assert.Fail($"Auto pop up not found for text : {text}");
+            }
+
+        }, RetryTimeOut.GetTimeSpan(new int[] { 10, 5, 5, 5 }));
 
         formCompletionHelper.ClickElement(() =>
         {
-            formCompletionHelper.EnterText(SearchTerm, text);
+            var element = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(SearchList));
 
-            WaitForElementToChange("true");
+            SetDebugInformation($"Clicked an auto dropdown element : '{element?.Text}'");
 
-            pageInteractionHelper.WaitUntilAnyElements(SearchList);
-
-            if (pageInteractionHelper.FindElements(SearchList).All(x => x.Text.Contains(text)))
-            {
-                throw new WebDriverException($"Auto pop up not found for text : {text}");
-            }
-
-            SetDebugInformation($"verified all elements : '{SearchList}' contains {text}'");
-
-            return RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(SearchList));
+            return element;
         });
-
-        SetDebugInformation($"Clicked an auto dropdown element using : {text}");
-
-        WaitForElementToChange("false");
-
-        formCompletionHelper.Click(SearchTerm);
     }
 }
-

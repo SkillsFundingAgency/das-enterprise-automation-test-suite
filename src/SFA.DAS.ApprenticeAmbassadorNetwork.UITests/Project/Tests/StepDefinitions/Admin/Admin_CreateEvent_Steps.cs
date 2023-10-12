@@ -21,7 +21,7 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
     public void TheUserShouldBeAbleToSuccessfullyCreateInpersonEvent() => SubmitInPersonEvent(true, false);
 
     [When(@"the user should be able to successfully create inperson school event")]
-    public void TheUserShouldBeAbleToSuccessfullyCreateInpersonSchoolEvent() => SubmitInPersonEvent(true, true);
+    public void TheUserShouldBeAbleToSuccessfullyCreateInpersonSchoolEvent() => SubmitInPersonEvent(false, true);
 
     [When(@"the user should be able to successfully create online event")]
     public void TheUserShouldBeAbleToSuccessfullyCreateOnlineEvent() => SubmitOnlineEvent(true);

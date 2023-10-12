@@ -45,7 +45,7 @@ public class InPersonOrOnlinePage : AanAdminBasePage
         return new(context);
     }
 
-    private void SubmitInPerson() => EnterAutoSelect(aanAdminDatahelper.EventInPersonLocation);
+    private void SubmitInPerson() => SelectAutoDropDown(aanAdminDatahelper.EventInPersonLocation);
 
     private void SubmitOnline() => formCompletionHelper.EnterText(LinkInput, aanAdminDatahelper.EventOnlineLink);
 }

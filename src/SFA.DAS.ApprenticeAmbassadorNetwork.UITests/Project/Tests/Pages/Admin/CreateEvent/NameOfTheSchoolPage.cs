@@ -8,7 +8,7 @@ public class NameOfTheSchoolPage : AanAdminBasePage
 
     public EventOrganiserNamePage SubmitSchoolName()
     {
-        EnterAutoSelect(aanAdminDatahelper.EventSchoolName);
+        SelectAutoDropDown(aanAdminDatahelper.EventSchoolName);
 
         Continue();
 
