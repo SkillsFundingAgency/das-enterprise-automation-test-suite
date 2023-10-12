@@ -2,8 +2,7 @@
 Feature: AP_MF_NLP_02_ReservesFundingDynamicPause
 A Non Levy Provider reserves funding for an apprenticeship course when dymamic pause rule exists
 
-@approvals
-@regression
+
 @reservefunds
 @reservation
 Scenario Outline: AP_MF_NLP_02 Non Levy Provider reserves funding when dynamic pause rule exists
