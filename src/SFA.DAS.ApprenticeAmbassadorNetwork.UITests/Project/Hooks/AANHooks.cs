@@ -62,11 +62,11 @@ public class AANHooks
     {
         _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
         {
-            if (_context.ScenarioInfo.Tags.Contains("aanadmincreateevent"))
-            {
-                var objectContext = _context.Get<ObjectContext>();
+            var eventId = _context.Get<ObjectContext>().GetAanAdminEventId();
 
-                aANSqlHelper.DeleteAdminCreatedEvent(objectContext.GetAanAdminEventId());
+            if (_context.ScenarioInfo.Tags.Contains("aanadmincreateevent") && !string.IsNullOrEmpty(eventId))
+            {
+                aANSqlHelper.DeleteAdminCreatedEvent(eventId);
             }
         });
     }
