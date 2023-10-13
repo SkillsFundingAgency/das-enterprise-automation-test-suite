@@ -13,6 +13,7 @@
     <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02 - Copy (2).feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02 - Copy (3).feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility02 - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility05 - Copy.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +46,15 @@
     </Compile>
     <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility04.feature.cs">
       <DependentUpon>AP_Accessibility04.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility07.feature.cs">
+      <DependentUpon>AP_Accessibility07.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility06.feature.cs">
+      <Visible>true</Visible>
+      <DependentUpon>AP_Accessibility06.feature</DependentUpon>
+      <DesignTime>true</DesignTime>
+      <AutoGen>true</AutoGen>
     </Compile>
     <Compile Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility05.feature.cs">
       <DependentUpon>AP_Accessibility05.feature</DependentUpon>
@@ -97,6 +107,14 @@
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility04.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility07.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\Accessibility\AP_Accessibility06.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
