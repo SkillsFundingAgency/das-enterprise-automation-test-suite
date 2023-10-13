@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
+﻿using SFA.DAS.ProviderLogin.Service.Project;
+
+namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
 public class ProviderStepsHelper
 {
@@ -15,7 +17,7 @@ public class ProviderStepsHelper
 
     public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
 
-    public static WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) => 
+    public static WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) =>
         page.ContinueToProviderCheckYourAnswersPage()
         .ContinueToWeveSharedYourContactDetailsWithEmployersPage();
 

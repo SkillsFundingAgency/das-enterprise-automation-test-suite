@@ -6,15 +6,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
     public class ProviderAccessDeniedPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "You do not have permission to access this page";
+        protected override string PageTitle => "You need a different service role to view this page";
 
-        private static By SecureFundingGoBackToHomePage => By.LinkText("Go back to home page");
+        private static By GoBackToHomePage => By.LinkText("homepage of this service.");
 
         public ProviderAccessDeniedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public ApprovalsProviderHomePage GoBackToTheServiceHomePage()
         {
-            formCompletionHelper.ClickElement(SecureFundingGoBackToHomePage);
+            formCompletionHelper.ClickElement(GoBackToHomePage);
             return new ApprovalsProviderHomePage(context);
         }
     }

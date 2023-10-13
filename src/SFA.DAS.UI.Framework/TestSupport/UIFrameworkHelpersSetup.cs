@@ -2,58 +2,57 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.UI.Framework.TestSupport;
+
+public class UIFrameworkHelpersSetup
 {
-    public class UIFrameworkHelpersSetup
+    private readonly ScenarioContext _context;
+
+    private readonly ObjectContext objectContext;
+
+
+    public UIFrameworkHelpersSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
+        _context = context;
 
-        private readonly ObjectContext objectContext;
+        objectContext = context.Get<ObjectContext>();
+    }
 
+    public void SetupUIFrameworkHelpers(bool restart)
+    {
+        SetupUIFrameworkHelpers();
 
-        public UIFrameworkHelpersSetup(ScenarioContext context)
-        {
-            _context = context;
+        _context.Replace(new ScreenShotTitleGenerator(restart ? _context.Get<ScreenShotTitleGenerator>().GetCounter() : 0));
+    }
 
-            objectContext = context.Get<ObjectContext>();
-        }
+    private void SetupUIFrameworkHelpers()
+    {
+        var webDriver = _context.GetWebDriver();
 
-        public void SetupUIFrameworkHelpers(bool restart)
-        {
-            SetupUIFrameworkHelpers();
+        var scenarioInfo = _context.ScenarioInfo;
 
-            _context.Replace(new ScreenShotTitleGenerator(restart ? _context.Get<ScreenShotTitleGenerator>().GetCounter() : 0));
-        }
+        var iFrameHelper = new IFrameHelper(webDriver);
+        _context.Replace(iFrameHelper);
 
-        private void SetupUIFrameworkHelpers()
-        {
-            var webDriver = _context.GetWebDriver();
+        var javaScriptHelper = new JavaScriptHelper(webDriver, iFrameHelper);
+        _context.Replace(javaScriptHelper);
 
-            var scenarioInfo = _context.ScenarioInfo;
+        _context.Replace(new TabHelper(webDriver, objectContext));
 
-            var iFrameHelper = new IFrameHelper(webDriver);
-            _context.Replace(iFrameHelper);
+        var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
 
-            var javaScriptHelper = new JavaScriptHelper(webDriver, iFrameHelper);
-            _context.Replace(javaScriptHelper);
+        var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext);
 
-            _context.Replace(new TabHelper(webDriver, objectContext));
+        var pageInteractionHelper = new PageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
+        _context.Replace(pageInteractionHelper);
 
-            var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
+        var formCompletionHelper = new FormCompletionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
+        _context.Replace(formCompletionHelper);
 
-            var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext);
+        _context.Replace(new CheckPageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext)));
 
-            var pageInteractionHelper = new PageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
-            _context.Replace(pageInteractionHelper);
+        _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
 
-            var formCompletionHelper = new FormCompletionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
-            _context.Replace(formCompletionHelper);
-
-            _context.Replace(new CheckPageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext)));
-
-            _context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
-
-            _context.Replace(new RetryAssertHelper(_context.ScenarioInfo, objectContext));
-        }
+        _context.Replace(new RetryAssertHelper(_context.ScenarioInfo, objectContext));
     }
 }
