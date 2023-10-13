@@ -2,8 +2,13 @@
 Feature: AP_MF_NLE_03_ReservesFundingDynamicPause
 A Non Levy Employer reserves funding for an apprenticeship course when dymamic pause rule exists
 
-@approvals
-@regression
+#Comments from QA
+# removing these tests from nightly execution as this feature has never been enabled in prod neither there are any plans to do it in near future.
+#Sadly the work done under following broke this functionality:
+#https://skillsfundingagency.atlassian.net/browse/MAC-303
+#Currently there are no plans to fix it hence removing pipeline execution tag from it
+
+
 @reservefunds
 Scenario Outline: AP_MF_NLE_03 Non Levy Employer reserves funding when dynamic pause rule exists
 	Given the Employer logins using existing NonLevy Account

@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
+using TechTalk.SpecFlow;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
@@ -22,6 +24,8 @@ public abstract class BasePage : InitialiseBasePage
 
     public BasePage(ScenarioContext context) : base(context) { }
 
+    protected void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
+
     protected static string EnvironmentName => EnvironmentConfig.EnvironmentName;
 
     protected string GetUrl() => pageInteractionHelper.GetUrl();
@@ -40,7 +44,18 @@ public abstract class BasePage : InitialiseBasePage
 
     protected void ClickIfDisplayed(By by)
     {
-        if (pageInteractionHelper.IsElementDisplayed(by)) 
+        if (pageInteractionHelper.IsElementDisplayed(by))
             formCompletionHelper.ClickElement(by);
+    }
+
+    protected void SelectRandomOption(string cssSelector)
+    {
+        By locator = By.CssSelector($"select{cssSelector}");
+
+        var options = formCompletionHelper.GetAllDropDownOptions(locator);
+
+        var x = RandomDataGenerator.GetRandomElementFromListOfElements(options);
+
+        formCompletionHelper.SelectFromDropDownByText(locator, x);
     }
 }
