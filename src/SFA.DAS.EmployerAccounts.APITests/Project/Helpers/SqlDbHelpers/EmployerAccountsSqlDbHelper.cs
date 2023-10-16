@@ -52,7 +52,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
 
         public List<object[]> GetAgreementInfo()
         {
-            var agreementId = GetListOfDataAsObject(
+            var agreementId = GetListOfData(
                 $"	SELECT ale.PublicHashedId as AccountLegalEntityPublicHashedId, ea.Id as EmployerAgreementId" +
                 $"  FROM [employer_account].[EmployerAgreement] ea" +
                 $"  JOIN [employer_account].[AccountLegalEntity] ale" +

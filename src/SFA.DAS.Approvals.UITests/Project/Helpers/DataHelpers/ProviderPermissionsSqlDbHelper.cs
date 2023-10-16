@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         {
             string sqlQueryToGetAccountId = $"SELECT AccountId from [AccountProviders] WHERE ProviderUkprn = {Convert.ToInt64(ukprn)}";
 
-            List<object[]> responseData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryToGetAccountId, connectionString);
+            List<object[]> responseData = GetListOfData(sqlQueryToGetAccountId);
 
             if (responseData.Count == 0)
                 return 0;

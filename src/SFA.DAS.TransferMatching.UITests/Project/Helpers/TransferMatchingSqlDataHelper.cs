@@ -21,7 +21,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
                 sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Amount__", pledge.Amount.ToString());
 
-                ExecuteSqlCommand(sqlQueryFromFile, connectionString);
+                ExecuteSqlCommand(sqlQueryFromFile);
             }
         }
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Details__", details);
 
-            ExecuteSqlCommand(sqlQueryFromFile, connectionString);
+            ExecuteSqlCommand(sqlQueryFromFile);
         }
     }
 }

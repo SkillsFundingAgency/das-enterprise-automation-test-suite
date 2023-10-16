@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
                                 HAVING al.SignedAgreementId IS NOT NULL AND al.Deleted IS NULL AND a.HashedId in ({hashedid.Select(x => $"'{x}'").ToString(",")}) ) t
                                 GROUP by t.HashedId";
 
-            return GetListOfDataAsObject(query);
+            return GetListOfData(query);
         }
     }
 }

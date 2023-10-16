@@ -29,6 +29,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 
             _objectContext.SetApprenticeDetail(a.ApprenticeFirstname, a.ApprenticeLastname, a.ApprenticeDob, a.ApprenticeEmail);
 
+            _context.Set(new CommitmentsSqlHelper(_objectContext, _dbConfig));
+
             _context.Set(new AccountsAndCommitmentsSqlHelper(_objectContext, _dbConfig));
 
             _context.Set(new ApprenticeLoginSqlDbHelper(_objectContext, _dbConfig));

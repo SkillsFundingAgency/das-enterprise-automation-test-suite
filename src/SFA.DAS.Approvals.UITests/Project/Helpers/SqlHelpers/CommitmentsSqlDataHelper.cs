@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
         }
 
-        public int GetApprenticeshipId(string uln) => Convert.ToInt32(TryGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
+        public int GetApprenticeshipId(string uln) => Convert.ToInt32(WaitAndGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
 
         public string GetNewcohortReference(string ULN)
         {
@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 WHERE cmt.Reference = '{reference}'
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query));
+            return Convert.ToString(WaitAndGetDataAsObject(query));
         }
 
         public int GetApprenticeshipCountFromULN(string ULN)
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             string query = $@"SELECT count(*) ID FROM Apprenticeship app
                                 WHERE app.ULN = '{ULN}'";
 
-            return Convert.ToInt32(TryGetDataAsObject(query));
+            return Convert.ToInt32(WaitAndGetDataAsObject(query));
         }
 
         public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query));
+            return Convert.ToString(WaitAndGetDataAsObject(query));
         }
 
         public List<decimal> GetExistingApprentices(string cohortRef)
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 WHERE cmt.reference = '{cohortRef}'                                
                                 ORDER BY app.CreatedOn DESC";
 
-            return GetListOfDataAsObject(query).Select(c => (decimal)c[0]).ToList();
+            return GetListOfData(query).Select(c => (decimal)c[0]).ToList();
         }
 
         public int? GetProvidersDraftAndReadyForReviewCohortsCount(string ukprn)
