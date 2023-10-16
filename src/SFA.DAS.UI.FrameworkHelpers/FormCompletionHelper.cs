@@ -83,7 +83,6 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
 
-
     public void SelectCheckbox(IWebElement element)
     {
         if (!element.Selected) element.Click();

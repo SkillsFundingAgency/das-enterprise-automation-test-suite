@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
-using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
