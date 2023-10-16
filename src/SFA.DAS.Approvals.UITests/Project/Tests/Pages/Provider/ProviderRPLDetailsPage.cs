@@ -16,10 +16,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void EnterRPLDataAndContinue()
         {
-            //formCompletionHelper.EnterText(TrainingTotalHoursTextBox, RPLDataHelper.TrainingTotalHours);
-            //formCompletionHelper.EnterText(DurationReducedByHoursTextBox, RPLDataHelper.DurationReducedByHours);
-            //formCompletionHelper.SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(DurationReducedByTextBox, RPLDataHelper.DurationReducedBy);
+            
             formCompletionHelper.EnterText(PriceReduced, RPLDataHelper.PriceReducedBy);
             
             Continue();
