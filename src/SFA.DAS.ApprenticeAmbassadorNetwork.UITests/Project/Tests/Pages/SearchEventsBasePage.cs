@@ -23,8 +23,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
 
-        private static string DateFormat => Configurator.IsVstsExecution ? "MM-dd-yyyy" : "dd-MM-yyyy";
-
         public SearchEventsBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void FilterEventByTomorrow()
