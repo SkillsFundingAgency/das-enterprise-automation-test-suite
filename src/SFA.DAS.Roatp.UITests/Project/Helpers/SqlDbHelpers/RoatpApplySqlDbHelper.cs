@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
     public class RoatpApplySqlDbHelper : SqlDbHelper
     {
-        public RoatpApplySqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApplyDatabaseConnectionString) { }
+        public RoatpApplySqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString) { }
 
         public void GateWayClearDownDataFromApply(string ukprn)
         {

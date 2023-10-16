@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class CommitmentsSqlDataHelper : SqlDbHelper
     {
-        public CommitmentsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.CommitmentsDbConnectionString) { }
+        public CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
 
         public (string apprenticeshipid, string dob, string fname, string lname, string startDate, string trainningName, string uln, string ukprn) GetDataFromComtDb(string accountid)
         {

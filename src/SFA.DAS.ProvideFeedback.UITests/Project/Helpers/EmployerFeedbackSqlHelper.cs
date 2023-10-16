@@ -3,7 +3,7 @@
 
 public class EmployerFeedbackSqlHelper : SqlDbHelper
 {
-    public EmployerFeedbackSqlHelper(DbConfig config) : base(config.EmployerFeedbackDbConnectionString) { }
+    public EmployerFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.EmployerFeedbackDbConnectionString) { }
 
     public (string uniqueSurveycode, string ukprn) GetTestData(string email)
     {

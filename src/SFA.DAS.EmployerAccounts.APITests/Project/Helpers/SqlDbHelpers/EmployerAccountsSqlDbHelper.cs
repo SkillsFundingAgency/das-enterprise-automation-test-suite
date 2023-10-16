@@ -8,7 +8,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
     {        
         private readonly ObjectContext _objectContext;
 
-        public EmployerAccountsSqlDbHelper(DbConfig dbConfig, ObjectContext objectContext) : base(dbConfig.AccountsDbConnectionString)
+        public EmployerAccountsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString)
         {
             _objectContext = objectContext;
         }

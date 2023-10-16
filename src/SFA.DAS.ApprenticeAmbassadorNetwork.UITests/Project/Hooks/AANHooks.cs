@@ -15,11 +15,13 @@ public class AANHooks
 {
     private readonly ScenarioContext _context;
     private readonly TabHelper _tabHelper;
+    private readonly ObjectContext _objectContext;
 
     public AANHooks(ScenarioContext context)
     {
         _context = context;
         _tabHelper = _context.Get<TabHelper>();
+        _objectContext = context.Get<ObjectContext>();
     }
 
     [BeforeScenario(Order = 31), Scope(Tag = "@aanaprentice")]
@@ -43,7 +45,7 @@ public class AANHooks
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {
-        _context.Set(new AANSqlHelper(_context.Get<DbConfig>()));
+        _context.Set(new AANSqlHelper(_objectContext, _context.Get<DbConfig>()));
 
         _context.Set(new AANDataHelpers());
     }

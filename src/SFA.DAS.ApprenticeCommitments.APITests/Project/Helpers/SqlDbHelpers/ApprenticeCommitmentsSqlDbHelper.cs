@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeCommitmentsSqlDbHelper : SqlDbHelper
     {
-        public ApprenticeCommitmentsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) { }
+        public ApprenticeCommitmentsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentDbConnectionString) { }
 
         public void DeleteRevisionAndApprenticeshipTableData(string apprenticeId, string email) => ExecuteSqlCommand(
             $"DELETE FROM Revision WHERE ApprenticeshipId in (SELECT ApprenticeshipId from Registration WHERE Email = '{email}')" +

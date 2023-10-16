@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
     public class EISqlHelper : SqlDbHelper
     {
-        public EISqlHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
+        public EISqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.IncentivesDbConnectionString) { }
 
         public void AddIncentiveApplication(AddApplicationData data)
         {

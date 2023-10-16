@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class ProviderPermissionsSqlDbHelper : SqlDbHelper
     {
-        public ProviderPermissionsSqlDbHelper(DbConfig config) : base(config.PermissionsDbConnectionString) { }
+        public ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.PermissionsDbConnectionString) { }
 
         public int GetAccountIdOfAProvider(string ukprn)
         {

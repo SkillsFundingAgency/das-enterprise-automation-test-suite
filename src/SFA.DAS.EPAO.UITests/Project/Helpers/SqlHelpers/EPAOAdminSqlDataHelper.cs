@@ -2,7 +2,7 @@
 
 public class EPAOAdminSqlDataHelper : SqlDbHelper
 {
-    public EPAOAdminSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
+    public EPAOAdminSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
 
     public string GetEPAOId(string email) => GetDataAsString($"SELECT EndPointAssessorOrganisationId from Organisations where id = (select OrganisationId from Contacts where Email = '{email}')");
 

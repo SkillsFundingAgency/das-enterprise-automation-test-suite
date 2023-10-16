@@ -5,8 +5,14 @@ public class TestdataCleanupWithAccountId
 {
     private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper;
     private readonly DbConfig _dbConfig;
+    private readonly ObjectContext _objectContext;
 
-    public TestdataCleanupWithAccountId(ScenarioContext context) { _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context); _dbConfig = context.Get<DbConfig>(); }
+    public TestdataCleanupWithAccountId(ScenarioContext context) 
+    {
+        _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context); 
+        _dbConfig = context.Get<DbConfig>(); 
+        _objectContext = context.Get<ObjectContext>();
+    }
 
     [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInComtDbs(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpComtTestData(greaterThan, lessThan);
@@ -33,10 +39,10 @@ public class TestdataCleanupWithAccountId
     public void ThenTheTestDataAreCleanedUpInLtmDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEasLtmTestData(greaterThan, lessThan);
 
     [Then(@"the test data are cleaned up in acomt db for accounts (.*)")]
-    public void ThenTheTestDataAreCleanedUpInAcomtDbForAccounts(string accountidsTodelete) => new TestDataCleanupAComtSqlDataHelper(_dbConfig).CleanUpAComtTestData(Split(accountidsTodelete));
+    public void ThenTheTestDataAreCleanedUpInAcomtDbForAccounts(string accountidsTodelete) => new TestDataCleanupAComtSqlDataHelper(_objectContext, _dbConfig).CleanUpAComtTestData(Split(accountidsTodelete));
 
     [Then(@"the test data are cleaned up in appfb db for accounts (.*)")]
-    public void ThenTheTestDataAreCleanedUpInappfbDbForAccounts(string accountidsTodelete) => new TestDataCleanupAppfbqlDataHelper(_dbConfig).CleanUpAppfbTestData(Split(accountidsTodelete));
+    public void ThenTheTestDataAreCleanedUpInappfbDbForAccounts(string accountidsTodelete) => new TestDataCleanupAppfbqlDataHelper(_objectContext, _dbConfig).CleanUpAppfbTestData(Split(accountidsTodelete));
 
     private static List<string> Split(string accountidsTodelete) => accountidsTodelete.Split(",").ToList();
 }

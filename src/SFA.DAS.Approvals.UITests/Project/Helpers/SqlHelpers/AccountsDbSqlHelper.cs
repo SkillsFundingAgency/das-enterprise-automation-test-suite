@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
     {
         private readonly DbConfig _dbConfig;
 
-        public AccountsDbSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
+        public AccountsDbSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
         public string GetAgreementId(string email, string name) => ReadDataFromDataBase(FileHelper.GetSql("GetAgreementId"), connectionString, new Dictionary<string, string> { { "@email", email }, { "@name", name } });
 

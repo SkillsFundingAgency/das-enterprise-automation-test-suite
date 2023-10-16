@@ -2,5 +2,5 @@
 
 public class AssessorDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public AssessorDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
+    public AssessorDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
 }

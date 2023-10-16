@@ -4,7 +4,7 @@ public class TestDataCleanUpPregDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanU
 {
     public override string SqlFileName => "EasPregTestDataCleanUp";
 
-    public TestDataCleanUpPregDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PregDbConnectionString) { }
+    public TestDataCleanUpPregDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.PregDbConnectionString) { }
 
     internal int CleanUpPregDbTestData(List<string> emailsToDelete) => CleanUpUsingEmail(emailsToDelete);
 }

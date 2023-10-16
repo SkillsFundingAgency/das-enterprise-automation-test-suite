@@ -4,7 +4,7 @@ public class TestDataCleanUpRsvrSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpS
 {
     public override string SqlFileName => "EasRsrvTestDataCleanUp";
 
-    public TestDataCleanUpRsvrSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ReservationsDbConnectionString) { }
+    public TestDataCleanUpRsvrSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ReservationsDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpRsvrTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
     {

@@ -6,11 +6,17 @@ public class TestDataCleanUpPsrDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUp
 
     public override string SqlFileName => "EasPsrTestDataCleanUp";
 
-    public TestDataCleanUpPsrDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PublicSectorReportingConnectionString) => _dbConfig = dbConfig;
+    private readonly ObjectContext _objectContext;
+
+    public TestDataCleanUpPsrDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.PublicSectorReportingConnectionString)
+    {
+        _dbConfig = dbConfig;
+        _objectContext = objectContext;
+    }
 
     internal int CleanUpPsrTestData(List<string> accountIdToDelete)
     {
-        var easaccounthashedids = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountHashedIds(accountIdToDelete);
+        var easaccounthashedids = new TestDataCleanUpEasAccDbSqlDataHelper(_objectContext, _dbConfig).GetAccountHashedIds(accountIdToDelete);
 
         if (easaccounthashedids.IsNoDataFound()) return 0;
 

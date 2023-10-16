@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_objectContext, context.Get<DbConfig>());
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _homePageStepsHelper = new ApprenticeHomePageStepsHelper(context);

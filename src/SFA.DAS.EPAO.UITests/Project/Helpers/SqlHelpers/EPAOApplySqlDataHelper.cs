@@ -2,7 +2,7 @@
 
 public class EPAOApplySqlDataHelper : SqlDbHelper
 {
-    public EPAOApplySqlDataHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
+    public EPAOApplySqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
 
     public void DeleteCertificate(string uln)
     {

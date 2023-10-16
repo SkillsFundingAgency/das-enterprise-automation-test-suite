@@ -36,7 +36,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             config = context.GetRoatpConfig<RoatpConfig>();
             _dbConfig = context.Get<DbConfig>();
             _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, _dbConfig);
-            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(_dbConfig);
+            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(_objectContext, _dbConfig);
             _roatpApplyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
             _roatpApplyTestDataPrepDataHelpers = new RoatpApplyTestDataPrepDataHelpers();
             _roatpApplyChangeUkprnDataHelpers = new RoatpApplyChangeUkprnDataHelpers();

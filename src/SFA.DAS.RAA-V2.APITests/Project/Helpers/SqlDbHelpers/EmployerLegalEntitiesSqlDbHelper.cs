@@ -1,11 +1,8 @@
-﻿using System.Security.Principal;
-using System.Xml.Linq;
-
-namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers;
+﻿namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers;
 
 public class EmployerLegalEntitiesSqlDbHelper : SqlDbHelper
 {
-    public EmployerLegalEntitiesSqlDbHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+    public EmployerLegalEntitiesSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
     public (string, string) GetEmployerAccountDetails()
     {

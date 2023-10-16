@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
     {
         private readonly DbConfig _dbConfig;
 
-        public AccountsAndCommitmentsSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
+        public AccountsAndCommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext,dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
         public (string legalName, string tradingName) GetProviderData(long providerId)
         {

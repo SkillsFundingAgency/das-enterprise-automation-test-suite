@@ -14,7 +14,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
         private int employmentCheckId;
         private Guid correlationId;
 
-        public EmploymentChecksSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EmploymentCheckDbConnectionString) { _dbConfig = dbConfig; }
+        public EmploymentChecksSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.EmploymentCheckDbConnectionString) { _dbConfig = dbConfig; }
 
         public async Task<int> InsertData(string checkType, long uln, long accountId, DateTime minDate, DateTime maxDate)
         {

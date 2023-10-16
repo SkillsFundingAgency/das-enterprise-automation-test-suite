@@ -56,7 +56,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetOrganisationName(registrationDatahelpers.CompanyTypeOrg);
 
-            _context.Set(new RegistrationSqlDataHelper(_dbConfig));
+            _context.Set(new RegistrationSqlDataHelper(_objectContext, _dbConfig));
 
             _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
@@ -65,7 +65,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [BeforeScenario(Order = 23)]
         [Scope(Tag = "providerleadregistration")]
-        public void SetUpProviderLeadRegistrationDataHelpers() => _context.Set(_pregSqlDataHelper = new PregSqlDataHelper(_dbConfig));
+        public void SetUpProviderLeadRegistrationDataHelpers() => _context.Set(_pregSqlDataHelper = new PregSqlDataHelper(_objectContext, _dbConfig));
 
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]

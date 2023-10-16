@@ -13,7 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         private string Emptyguid => Guid.Empty.ToString();
 
-        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(dbConfig.ApplyDatabaseConnectionString)
+        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString)
         {
             _objectContext = objectContext;
             _qnaDatabaseConnectionString = dbConfig.QnaDatabaseConnectionString;

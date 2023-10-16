@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         private int _apprenticeshipId;
 
-        public DataLockSqlHelper(DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(dBConfig.CommitmentsDbConnectionString)
+        public DataLockSqlHelper(ObjectContext objectContext, DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(objectContext, dBConfig.CommitmentsDbConnectionString)
         {
             _dataHelper = dataHelper;
             _coursedataHelper = coursedataHelper;

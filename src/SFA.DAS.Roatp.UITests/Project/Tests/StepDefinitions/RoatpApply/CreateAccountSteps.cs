@@ -27,7 +27,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _applydataHelpers = context.Get<RoatpApplyCreateUserDataHelpers>();
             _assertHelper = context.Get<RetryAssertHelper>();
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
-            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.Get<DbConfig>());
+            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(_objectContext, context.Get<DbConfig>());
         }
 
         [When(@"user submits the details to create an account")]

@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
     public class TransferMatchingSqlDataHelper : SqlDbHelper
     {
-        public TransferMatchingSqlDataHelper(DbConfig dbConfig) : base(dbConfig.TMDbConnectionString) { }
+        public TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TMDbConnectionString) { }
 
         public void DeletePledge(List<Pledge> pledges)
         {
