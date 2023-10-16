@@ -1,114 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.FrameworkHelpers
+public abstract class SqlDbHelper : SqlDbBaseHelper
 {
-    public abstract class SqlDbHelper : SqlDbRetryHelper
+    protected SqlDbHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString) { }
+
+    #region ExecuteSqlCommand
+
+    protected int ReTryExecuteSqlCommand(string queryToExecute) => SqlDbRetryHelper.RetryOnException(() => ExecuteSqlCommand(queryToExecute));
+
+    #endregion
+
+    protected List<string> GetData(string query) => GetData(query, connectionString);
+
+    protected List<string> GetData(string query, string connectionstring) => GetData(query, connectionstring, null);
+
+    protected List<string> GetData(string query, Dictionary<string, string> parameters) => GetData(query, connectionString, parameters);
+
+    protected List<string> GetData(string query, string connectionstring, Dictionary<string, string> parameters)
     {
-        protected readonly string connectionString;
+        (List<object[]> data, int noOfColumns) data = GetListOfData(query, connectionstring, parameters);
 
-        protected bool waitForResults = false;
+        var returnItems = new List<string>();
 
-        protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
-
-        protected List<string> GetData(string query) => GetData(query, connectionString);
-
-        protected List<string> GetData(string query, string connectionstring) => GetData(query, connectionstring, null);
-
-        protected List<string> GetData(string query, Dictionary<string, string> parameters) => GetData(query, connectionString, parameters);
-
-        protected List<string> GetData(string query, string connectionstring, Dictionary<string, string> parameters)
+        for (int i = 0; i < data.noOfColumns; i++)
         {
-            (List<object[]> data, int noOfColumns) data = SqlDatabaseConnectionHelper.ReadDataFromDataBase(query, connectionstring, parameters, waitForResults);
-
-            var returnItems = new List<string>();
-
-            for (int i = 0; i < data.noOfColumns; i++)
-            {
-                if (data.data.Count == 0) returnItems.Add(string.Empty);
-                else returnItems.Add(data.data[0][i].ToString());
-            }
-
-            return returnItems;
+            if (data.data.Count == 0) returnItems.Add(string.Empty);
+            else returnItems.Add(data.data[0][i].ToString());
         }
 
-        protected List<List<string[]>> GetListOfMultipleData(List<string> query, string connectionstring)
+        return returnItems;
+    }
+
+    protected List<string[]> GetMultipleData(string query) => GetListOfMultipleData(new List<string> { query }).FirstOrDefault();
+
+    protected List<List<string[]>> GetListOfMultipleData(List<string> query)
+    {
+        List<(List<object[]> data, int noOfColumns)> multidatas = SqlDbRetryHelper.RetryOnException(() => GetMultipleListOfData(query));
+
+        var multireturnItems = new List<List<string[]>>();
+
+        foreach (var (data, noOfColumns) in multidatas)
         {
-            List<(List<object[]> data, int noOfColumns)> multidatas = TryReadMultipleDataFromDataBase(query, connectionstring);
+            var returnItems = new List<string[]>();
 
-            var multireturnItems = new List<List<string[]>>();
+            var datalist = data;
 
-            foreach (var (data, noOfColumns) in multidatas)
+            var noOfRows = datalist.Count;
+
+            if (noOfRows == 0) returnItems.Add(new string[noOfColumns]);
+
+            for (int i = 0; i < noOfRows; i++)
             {
-                var returnItems = new List<string[]>();
+                var items = new string[datalist[i].Length];
 
-                var datalist = data;
-
-                var noOfRows = datalist.Count;
-
-                if (noOfRows == 0) returnItems.Add(new string[noOfColumns]);
-
-                for (int i = 0; i < noOfRows; i++)
+                for (int j = 0; j < items.Length; j++)
                 {
-                    var items = new string[datalist[i].Length];
+                    var item = datalist[i][j].ToString();
 
-                    for (int j = 0; j < items.Length; j++)
-                    {
-                        var item = datalist[i][j].ToString();
-
-                        items[j] = item;
-                    }
-                    returnItems.Add(items);
+                    items[j] = item;
                 }
-                multireturnItems.Add(returnItems);
+                returnItems.Add(items);
             }
-            return multireturnItems;
+            multireturnItems.Add(returnItems);
         }
+        return multireturnItems;
+    }
 
-        protected List<List<string[]>> GetListOfMultipleData(List<string> query) => GetListOfMultipleData(query, connectionString);
+    protected string GetNullableData(string queryToExecute)
+    {
+        var data = GetData(queryToExecute);
 
-        protected List<string[]> GetMultipleData(string query, string connectionstring) => GetListOfMultipleData(new List<string> { query }, connectionstring).FirstOrDefault();
+        if (data.Count == 0) return string.Empty;
 
-        protected List<string[]> GetMultipleData(string query) => GetMultipleData(query, connectionString);
+        else return data[0];
+    }
 
-        protected string GetNullableData(string queryToExecute)
-        {
-            var data = GetData(queryToExecute);
+    protected string GetDataAsString(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 
-            if (data.Count == 0)
-                return string.Empty;
-            else
-                return data[0];
-        }
+    protected object GetDataAsObject(string queryToExecute) => GetListOfData(queryToExecute)[0][0];
 
-        protected string GetDataAsString(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
+    protected object WaitAndGetDataAsObject(string queryToExecute)
+    {
+        waitForResults = true;
 
-        protected object GetDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
-
-        protected int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
-
-        protected List<object[]> GetListOfDataAsObject(string queryToExecute) => ReadDataFromDataBase(queryToExecute, connectionString);
-
-        protected int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null) 
-            => SqlDatabaseConnectionHelper.ExecuteSqlCommand(queryToExecute, connectionString, parameters);
-
-        protected int TryExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
-            => RetryOnException(() => ExecuteSqlCommand(queryToExecute, connectionString, parameters));
-
-        protected object TryGetDataAsObject(string queryToExecute)
-        {
-            waitForResults = true;
-
-            return GetDataAsObject(queryToExecute);
-        }
-
-
-        private List<(List<object[]> data, int noOfColumns)> TryReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString)
-            => RetryOnException(() => ReadMultipleDataFromDataBase(queryToExecute, connectionString));
-
-        private List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString, waitForResults);
-
-        private List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString) => SqlDatabaseConnectionHelper.ReadMultipleDataFromDataBase(queryToExecute, connectionString, null, waitForResults);
+        return GetDataAsObject(queryToExecute);
     }
 }

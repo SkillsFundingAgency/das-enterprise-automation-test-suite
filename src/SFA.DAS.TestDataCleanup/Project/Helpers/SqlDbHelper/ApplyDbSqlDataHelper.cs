@@ -2,5 +2,5 @@
 
 public class ApplyDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public ApplyDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ApplyDatabaseConnectionString) { }
+    public ApplyDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString) { }
 }

@@ -4,7 +4,13 @@ public class GetSupportDataHelper
 {
     private readonly DbConfig _dbConfig;
 
-    public GetSupportDataHelper(DbConfig dbConfig) => _dbConfig = dbConfig;
+    private readonly ObjectContext _objectContext;
 
-    internal List<string[]> GetApprenticeIds(List<string> accountidsTodelete) => new TestDataCleanupComtSqlDataHelper(_dbConfig).GetApprenticeIds(accountidsTodelete);
+    public GetSupportDataHelper(ObjectContext objectContext, DbConfig dbConfig)
+    {
+        _dbConfig = dbConfig;
+        _objectContext = objectContext;
+    }
+
+    internal List<string[]> GetApprenticeIds(List<string> accountidsTodelete) => new TestDataCleanupComtSqlDataHelper(_objectContext, _dbConfig).GetApprenticeIds(accountidsTodelete);
 }

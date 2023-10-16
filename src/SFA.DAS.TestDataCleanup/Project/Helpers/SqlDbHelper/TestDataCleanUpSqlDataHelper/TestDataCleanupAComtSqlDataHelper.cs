@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
 public class TestDataCleanupAComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
 {
@@ -6,9 +8,15 @@ public class TestDataCleanupAComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUp
 
     public override string SqlFileName => "EasAComtTestDataCleanUp";
 
-    public TestDataCleanupAComtSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) => _dbConfig = dbConfig;
+    private readonly ObjectContext _objectContext;
+
+    public TestDataCleanupAComtSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentDbConnectionString)
+    {
+        _dbConfig = dbConfig;
+        _objectContext = objectContext;
+    }
 
     internal int CleanUpAComtTestData(List<string[]> apprenticeIds) => CleanUpUsingCommtApprenticeshipIds(apprenticeIds);
 
-    internal int CleanUpAComtTestData(List<string> accountIdToDelete) => CleanUpAComtTestData(new GetSupportDataHelper(_dbConfig).GetApprenticeIds(accountIdToDelete));
+    internal int CleanUpAComtTestData(List<string> accountIdToDelete) => CleanUpAComtTestData(new GetSupportDataHelper(_objectContext, _dbConfig).GetApprenticeIds(accountIdToDelete));
 }

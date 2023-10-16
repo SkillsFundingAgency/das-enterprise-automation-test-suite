@@ -1,16 +1,22 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public static class InsertTprDataHelper
+public class InsertTprDataHelper : SqlDbHelper
 {
     private static readonly object _object = new();
 
-    public static string InsertSingleOrgTprData(string connectionString, string aornValue, string payescheme) 
-        => InsertTprData(connectionString, aornValue, payescheme, "SingleOrg");
+    public InsertTprDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TPRDbConnectionString)
+    {
+            
+    }
 
-    public static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
+    public string InsertSingleOrgTprData(string aornValue, string payescheme)
+        => InsertTprData(aornValue, payescheme, "SingleOrg");
+
+    public string InsertTprData(string aornValue, string payescheme, string orgType)
     {
         var datetime = DateTime.Now;
 
@@ -29,7 +35,7 @@ public static class InsertTprDataHelper
 
         lock (_object)
         {
-            return Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
+            return Convert.ToString(GetListOfData(queryToExecute)[0][0]);
         }
     }
 }

@@ -4,7 +4,7 @@ public class TestDataCleanUpPrelDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanU
 {
     public override string SqlFileName => "EasPrelTestDataCleanUp";
 
-    public TestDataCleanUpPrelDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.PermissionsDbConnectionString) { }
+    public TestDataCleanUpPrelDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.PermissionsDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpPrelTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
     {

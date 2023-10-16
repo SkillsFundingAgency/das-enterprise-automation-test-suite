@@ -33,6 +33,7 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text.RegularExpressions;
 global using TechTalk.SpecFlow;
+using Polly;
 
 
 namespace SFA.DAS.EPAO.UITests.Project;
@@ -57,11 +58,13 @@ public class Hooks
     [BeforeScenario(Order = 32)]
     public void SetUpHelpers()
     {
-        _ePAOApplySqlDataHelper = new EPAOApplySqlDataHelper(_config);
+        var objectContext = _context.Get<ObjectContext>();
+
+        _ePAOApplySqlDataHelper = new EPAOApplySqlDataHelper(objectContext, _config);
 
         _context.Set(_ePAOApplySqlDataHelper);
 
-        _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(_config);
+        _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(objectContext, _config);
 
         _context.Set(_ePAOAdminSqlDataHelper);
 
@@ -75,7 +78,7 @@ public class Hooks
 
         _context.Set(_ePAOAdminDataHelper);
 
-        _context.Set(new EPAOAdminCASqlDataHelper(_config));
+        _context.Set(new EPAOAdminCASqlDataHelper(objectContext, _config));
     }
 
     [BeforeScenario(Order = 33)]

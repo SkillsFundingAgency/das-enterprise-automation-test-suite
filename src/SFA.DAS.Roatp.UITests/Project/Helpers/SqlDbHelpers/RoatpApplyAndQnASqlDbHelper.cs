@@ -6,24 +6,53 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
+    public class RoatpQnASqlDbHelper : SqlDbHelper
+    {
+        private string Emptyguid => Guid.Empty.ToString();
+
+        public RoatpQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.QnaDatabaseConnectionString)
+        {
+                
+        }
+
+        public int ClearDownDataFromQna(string applicationId)
+        {
+            var deleteDataFromQnaQuery =
+                $"DELETE FROM ApplicationSections WHERE applicationid = '{applicationId}'" +
+                $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
+                $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
+
+            return applicationId == Emptyguid ? 0 : ExecuteSqlCommand(deleteDataFromQnaQuery);
+        }
+
+        public int OversightReviewClearDownFromQnA_ReApplyRecord(string ukprn)
+        {
+            var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
+            var deleteDataFromQnaQuery =
+                $"DELETE FROM ApplicationSections WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM ApplicationSequences WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM Applications WHERE Id = '{applicationId}'; ";
+
+            return applicationId == Emptyguid ? 0 : ExecuteSqlCommand(deleteDataFromQnaQuery);
+        }
+    }
+
     public class RoatpApplyAndQnASqlDbHelper : SqlDbHelper
     {
         private readonly ObjectContext _objectContext;
-        private readonly string _qnaDatabaseConnectionString;
 
         private string Emptyguid => Guid.Empty.ToString();
 
-        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(dbConfig.ApplyDatabaseConnectionString)
+        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString)
         {
             _objectContext = objectContext;
-            _qnaDatabaseConnectionString = dbConfig.QnaDatabaseConnectionString;
         }
 
         public string ClearDownDataUkprnFromApply(string ukprn)
         {
             var applicationIdQuery = $"SELECT ApplicationId from dbo.Apply where ukprn = {ukprn}";
 
-            var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(applicationIdQuery, connectionString);
+            var queryResult = GetListOfData(applicationIdQuery);
 
             return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownFullDataFromApply(queryResult);
         }
@@ -34,20 +63,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
                                            $"inner join Contacts c on a.OrganisationId = c.ApplyOrganisationID " +
                                            $"where c.Email ='{_objectContext.GetEmail()}' ";
 
-            var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(applicationIdQuery, connectionString);
+            var queryResult = GetListOfData(applicationIdQuery);
 
             return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownFullDataFromApply(queryResult);
         }
 
-        public int ClearDownDataFromQna(string applicationId)
-        {
-            var deleteDataFromQnaQuery =
-                $"DELETE FROM ApplicationSections WHERE applicationid = '{applicationId}'" +
-                $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
-                $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
 
-            return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(deleteDataFromQnaQuery, _qnaDatabaseConnectionString);
-        }
 
         public int AllowListProviders(string ukprn)
         {
@@ -97,16 +118,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
             return applicationId;
         }
-        public int OversightReviewClearDownFromQnA_ReApplyRecord(string ukprn)
-        {
-            var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
-            var deleteDataFromQnaQuery =
-                $"DELETE FROM ApplicationSections WHERE ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM ApplicationSequences WHERE ApplicationId = '{applicationId}'; " +
-                $"DELETE FROM Applications WHERE Id = '{applicationId}'; ";
 
-            return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(deleteDataFromQnaQuery, _qnaDatabaseConnectionString);
-        }
         public int OversightReviewClearDownFromApply_ReapplyRecord(string ukprn)
         {
             var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");

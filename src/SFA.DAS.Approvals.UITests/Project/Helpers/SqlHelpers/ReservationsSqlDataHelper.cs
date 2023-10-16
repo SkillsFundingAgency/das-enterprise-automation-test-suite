@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class ReservationsSqlDataHelper : SqlDbHelper
     {
-        public ReservationsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.ReservationsDbConnectionString) { }
+        public ReservationsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.ReservationsDbConnectionString) { }
 
         public void UpdateDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) => UpdateGlobalRule(activeFrom, activeTo, 1, 3);
 

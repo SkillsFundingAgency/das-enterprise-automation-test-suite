@@ -2,5 +2,5 @@
 
 public class ACommitmentLoginDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public ACommitmentLoginDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentLoginDbConnectionString) { }
+    public ACommitmentLoginDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentLoginDbConnectionString) { }
 }

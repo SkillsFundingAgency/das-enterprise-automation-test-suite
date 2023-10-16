@@ -2,5 +2,5 @@
 
 public class QnaDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public QnaDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.QnaDatabaseConnectionString) { }
+    public QnaDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.QnaDatabaseConnectionString) { }
 }

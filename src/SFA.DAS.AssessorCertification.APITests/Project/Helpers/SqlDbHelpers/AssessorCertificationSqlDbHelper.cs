@@ -5,7 +5,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
 {
     public class AssessorCertificationSqlDbHelper : SqlDbHelper
     {
-       public AssessorCertificationSqlDbHelper(DbConfig dbConfig) : base(dbConfig.AssessorDbConnectionString) { }
+       public AssessorCertificationSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
 
         public void DeleteCertificate(string uln) => ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE Uln = {uln}); DELETE FROM [Certificates] WHERE Uln = {uln};");
 
