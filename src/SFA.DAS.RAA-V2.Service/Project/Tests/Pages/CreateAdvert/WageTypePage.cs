@@ -25,13 +25,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             };
             ;
         }
-
-        private SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoOfPositions()
-        {
+        private SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoExtraPayInformation()
+        {  
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
-            return GoToSubmitNoOfPositionsPage();
+            return GoToExtraInformationPage();
         }
-
         private SubmitNoOfPositionsPage SelectFixedWageTypeAndGoToNoOfPositions()
         {
             SelectRadioOptionByForAttribute("wage-type-fixed");
@@ -49,6 +47,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         {
             Continue(); 
             return new SubmitNoOfPositionsPage(context);
+        }
+
+        private SubmitNoOfPositionsPage GoToExtraInformationPage()
+        {
+            Continue();
+            
+            return GoToSubmitNoOfPositionsPage();
         }
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()

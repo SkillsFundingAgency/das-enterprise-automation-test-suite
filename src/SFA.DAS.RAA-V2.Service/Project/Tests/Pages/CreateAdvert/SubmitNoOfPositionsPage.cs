@@ -9,8 +9,16 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         protected override string PageTitle => isRaaV2Employer ? "How many positions are there for this apprenticeship?" : "How many positions are available?";
 
         private static By NumberOfPositions => By.CssSelector("#NumberOfPositions");
+        private static By ExtraPayInformation => By.CssSelector("#WageAdditionalInformation");
 
         public SubmitNoOfPositionsPage(ScenarioContext context) : base(context) { }
+
+        public void ExtraInformationAboutPay(string urltext)
+        {
+            formCompletionHelper.EnterText(ExtraPayInformation, rAAV2DataHelper.OptionalMessage);
+            Continue();
+            pageInteractionHelper.WaitforURLToChange(urltext);
+        }
 
         public ChooseApprenticeshipLocationPage SubmitNoOfPositionsAndNavigateToChooseLocationPage()
         {
