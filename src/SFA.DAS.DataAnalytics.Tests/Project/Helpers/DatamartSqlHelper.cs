@@ -2,7 +2,7 @@
 
 public class DatamartSqlHelper : SqlDbHelper
 {
-    public DatamartSqlHelper(DbConfig dBConfig) : base(dBConfig.DatamartDbConnectionString) { }
+    public DatamartSqlHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.DatamartDbConnectionString) { }
 
     public List<string[]> GetPaymentsData() => GetMultipleData("select LearnerUln, ApprenticeshipId from StgPmts.Payment GROUP by LearnerUln, ApprenticeshipId");
 

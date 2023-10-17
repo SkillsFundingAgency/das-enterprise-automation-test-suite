@@ -2,7 +2,7 @@
 
 public class CommitmentsSqlDataHelper : SqlDbHelper
 {
-    public CommitmentsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.CommitmentsDbConnectionString) { }
+    public CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
 
     public List<string[]> GetCommtData(int count)
     {

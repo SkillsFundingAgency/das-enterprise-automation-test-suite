@@ -7,7 +7,7 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
-using SFA.DAS.TestDataExport.Helper;
+global using SFA.DAS.TestDataExport.Helper;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
@@ -45,7 +45,7 @@ public class AANHooks
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {
-        aANSqlHelper = new AANSqlHelper(_context.Get<DbConfig>());
+        aANSqlHelper = new AANSqlHelper(_context.Get<ObjectContext>(), _context.Get<DbConfig>());
 
         _context.Set(aANSqlHelper);
 
@@ -58,9 +58,9 @@ public class AANHooks
     }
 
     [AfterScenario(Order = 30), Scope(Tag = "@aanadmin")]
-    public void DeleteAdminCreatedEvent() 
+    public void DeleteAdminCreatedEvent()
     {
-        _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
+        _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
         {
             var eventId = _context.Get<ObjectContext>().GetAanAdminEventId();
 

@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataExport;
 using System;
 using System.Collections.Generic;
 using System.Linq;

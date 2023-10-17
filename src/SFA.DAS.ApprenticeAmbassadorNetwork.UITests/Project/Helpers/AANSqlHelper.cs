@@ -2,7 +2,7 @@
 
 public class AANSqlHelper : SqlDbHelper
 {
-    public AANSqlHelper(DbConfig dbConfig) : base(dbConfig.AANDbConnectionString) { }
+    public AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AANDbConnectionString) { }
 
     public void ResetApprenticeOnboardingJourney(string email) => ExecuteSqlCommand
          ($"IF EXISTS(select * from Member where email = '{email}')" +

@@ -2,7 +2,7 @@
 
 public class ApprenticeFeedbackSqlHelper : SqlDbHelper
 {
-    public ApprenticeFeedbackSqlHelper(DbConfig config) : base(config.ApprenticeFeedbackDbConnectionString) { }
+    public ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.ApprenticeFeedbackDbConnectionString) { }
 
     public void ClearDownApprenticeFeedbackResult(string apprenticeshipid, string ukprn)
     {

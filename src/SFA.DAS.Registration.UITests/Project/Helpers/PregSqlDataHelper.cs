@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal class PregSqlDataHelper : SqlDbHelper
     {
-        public PregSqlDataHelper(DbConfig config): base(config.PregDbConnectionString) { }
+        public PregSqlDataHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.PregDbConnectionString) { }
 
         public string GetReference(string email) => GetDataAsString($"SELECT [Reference] FROM [dbo].[Invitations] where EmployerEmail = '{email}'");
 

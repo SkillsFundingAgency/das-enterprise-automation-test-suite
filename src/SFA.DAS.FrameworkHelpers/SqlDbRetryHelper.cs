@@ -1,23 +1,21 @@
 ﻿using Polly;
-using System;
 
-namespace SFA.DAS.FrameworkHelpers
+namespace SFA.DAS.FrameworkHelpers;
+
+public class SqlDbRetryHelper
 {
-    public abstract class SqlDbRetryHelper
+    internal static T RetryOnException<T>(Func<T> func) => RetryOnException(func, "Exception occurred while executing SQL query", string.Empty);
+
+    private static T RetryOnException<T>(Func<T> func, string exception, string title, TimeSpan[] timeSpans = null)
     {
-        protected T RetryOnException<T>(Func<T> func) => RetryOnException(func, "Exception occurred while executing SQL query", string.Empty);
+        timeSpans ??= RetryTimeOut.Timeout();
 
-        protected T RetryOnException<T>(Func<T> func, string exception, string title, TimeSpan[] timeSpans = null)
-        {
-            timeSpans ??= RetryTimeOut.Timeout();
-
-            return Policy
-                .Handle<Exception>((x) => x.Message.Contains(exception))
-                 .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
-                 {
-                     Logging.Report(retryCount, timeSpan, exception, "SqlDbRetryHelper", title);
-                 })
-                 .Execute(func);
-        }
+        return Policy
+            .Handle<Exception>((x) => x.Message.Contains(exception))
+             .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
+             {
+                 Logging.Report(retryCount, timeSpan, exception, "SqlDbRetryHelper", title);
+             })
+             .Execute(func);
     }
 }

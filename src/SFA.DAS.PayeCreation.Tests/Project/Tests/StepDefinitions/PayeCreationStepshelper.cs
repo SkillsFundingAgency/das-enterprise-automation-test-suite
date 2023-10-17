@@ -42,7 +42,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
             {
                 var aornNumber = new AornDataHelper().AornNumber;
 
-                InsertTprDataHelper.InsertSingleOrgTprData(_dbConfig.TPRDbConnectionString, aornNumber, gatewaycred.Paye);
+                new InsertTprDataHelper(_objectContext, _dbConfig).InsertSingleOrgTprData(aornNumber, gatewaycred.Paye);
                 
                 _objectContext.UpdateAornNumber(aornNumber, gatewaycred.Index);
             }

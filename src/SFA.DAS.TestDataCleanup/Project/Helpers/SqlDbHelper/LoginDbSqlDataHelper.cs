@@ -2,5 +2,5 @@
 
 public class LoginDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public LoginDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.LoginDatabaseConnectionString) { }
+    public LoginDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.LoginDatabaseConnectionString) { }
 }

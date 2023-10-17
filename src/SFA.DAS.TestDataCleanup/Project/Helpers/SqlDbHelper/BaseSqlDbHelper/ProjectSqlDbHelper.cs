@@ -6,7 +6,7 @@ public abstract class ProjectSqlDbHelper : FrameworkHelpers.SqlDbHelper
 
     public virtual bool ExcludeEnvironments => false;
 
-    protected ProjectSqlDbHelper(string connectionString) : base(connectionString) => dbName = GetDbName();
+    protected ProjectSqlDbHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString) => dbName = GetDbName();
 
     public string GetTableCatalog() => GetDataAsString("select top 1 TABLE_CATALOG from INFORMATION_SCHEMA.TABLES");
 

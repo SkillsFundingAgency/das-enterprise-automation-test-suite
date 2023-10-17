@@ -54,7 +54,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _tabHelper = context.Get<TabHelper>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(context);
-            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(context.Get<DbConfig>());
+            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_objectContext, context.Get<DbConfig>());
             _transferMatchingJobsHelper = new TransferMatchingJobsHelper(context);
         }
 

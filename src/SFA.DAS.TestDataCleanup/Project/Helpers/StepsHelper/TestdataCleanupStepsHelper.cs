@@ -2,11 +2,13 @@
 
 public class TestdataCleanupStepsHelper : TestdataCleanupStepsHelperBase
 {
-    public TestdataCleanupStepsHelper(ScenarioContext context) : base(context) { }
+    private readonly ObjectContext _objectContext;
 
-    public void CleanUpAllDbTestData(HashSet<string> email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_dbConfig).CleanUpAllDbTestData(email.ToList()));
+    public TestdataCleanupStepsHelper(ScenarioContext context) : base(context) => _objectContext = context.Get<ObjectContext>();
 
-    public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_dbConfig).CleanUpAllDbTestData(email));
+    public void CleanUpAllDbTestData(HashSet<string> email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_objectContext, _dbConfig).CleanUpAllDbTestData(email.ToList()));
+
+    public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_objectContext, _dbConfig).CleanUpAllDbTestData(email));
 
     public void CleanUpComtTestData(int greaterThan, int lessThan) => ReportTestDataCleanUp(() => GetCleanUpHelper(greaterThan, lessThan).CleanUpComtTestData());
 

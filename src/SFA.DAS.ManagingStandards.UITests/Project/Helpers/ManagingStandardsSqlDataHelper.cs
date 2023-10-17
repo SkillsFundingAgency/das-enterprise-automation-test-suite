@@ -2,7 +2,7 @@
 
 public class ManagingStandardsSqlDataHelper : SqlDbHelper
 {
-    public ManagingStandardsSqlDataHelper(DbConfig dbConfig) : base(dbConfig.ManagingStandardsDbConnectionString) { }
+    public ManagingStandardsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ManagingStandardsDbConnectionString) { }
 
     public void ClearRegulation(string ukprn, string larsCode) => ExecuteSqlCommand($"update providercourse set IsApprovedByRegulator = NULL " +
         $"where LarsCode = '{larsCode}' and providerid = (select Id from provider where ukprn = {ukprn})");

@@ -2,7 +2,6 @@
 using Selenium.Axe;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
