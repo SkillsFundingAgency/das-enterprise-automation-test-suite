@@ -1,0 +1,12 @@
+﻿namespace SFA.DAS.FrameworkHelpers;
+
+public static class ScenarioTagsExtension
+{
+    public static bool IsWhiteListedProvider(this string[] tags) => tags.Contains("whitelistedprovider");
+
+    public static bool IsSelectStandardWithMultipleOptions(this string[] tags) => tags.Contains("selectstandardwithmultipleoptions");
+
+    public static bool IsPortableFlexiJob(this string[] tags) => tags.Contains("portableflexijob");
+
+    public static bool IsAsListedEmployer(this string[] tags) => tags.Contains("aslistedemployer");
+}
