@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         {
             return wageType switch
             {
-                RAAV2Const.NationalMinWages => SelectNationalMinimumWageAndGoToNoOfPositions(),
+                RAAV2Const.NationalMinWages => SelectNationalMinimumWageAndGoToNoExtraPayInformation(),
                 RAAV2Const.FixedWageType => SelectFixedWageTypeAndGoToNoOfPositions(),
                 _ => SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions(),
             };
