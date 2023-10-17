@@ -76,22 +76,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_05 Create Employer Whitelisted Provider sends cohort to employer for r" +
-            "eview then employer approves then provider approves")]
+        [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_05 Create Employer Rpl Whitelisted Provider sends cohort to employer f" +
+            "or review then employer approves then provider approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        [NUnit.Framework.CategoryAttribute("whitelistedprovider")]
-        public void AP_E2E_NUA_05CreateEmployerWhitelistedProviderSendsCohortToEmployerForReviewThenEmployerApprovesThenProviderApproves()
+        [NUnit.Framework.CategoryAttribute("rplwhitelistedprovider")]
+        public void AP_E2E_NUA_05CreateEmployerRplWhitelistedProviderSendsCohortToEmployerForReviewThenEmployerApprovesThenProviderApproves()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
                     "e2escenarios",
-                    "whitelistedprovider"};
+                    "rplwhitelistedprovider"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_05 Create Employer Whitelisted Provider sends cohort to employer for r" +
-                    "eview then employer approves then provider approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_05 Create Employer Rpl Whitelisted Provider sends cohort to employer f" +
+                    "or review then employer approves then provider approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

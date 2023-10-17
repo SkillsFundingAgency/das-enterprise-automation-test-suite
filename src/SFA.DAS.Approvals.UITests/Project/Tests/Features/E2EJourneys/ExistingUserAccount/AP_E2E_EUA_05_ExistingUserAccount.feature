@@ -3,8 +3,8 @@ Feature: AP_E2E_EUA_05_ExistingUserAccount
 
 @regression
 @e2escenarios
-@whitelistedprovider
-Scenario: AP_E2E_EUA_05 White listed provider sends cohort to employer for review then employer approves then provider approves
+@rplwhitelistedprovider
+Scenario: AP_E2E_EUA_05 Rpl White listed provider sends cohort to employer for review then employer approves then provider approves
 	Given the Employer logins using existing Levy Account
 	When the Employer create a cohort and send to provider to add apprentices
 	And the provider adds 2 apprentices and sends to employer to review

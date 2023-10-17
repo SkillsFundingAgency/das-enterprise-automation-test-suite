@@ -76,20 +76,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingU
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_05 White listed provider sends cohort to employer for review then empl" +
-            "oyer approves then provider approves")]
+        [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_05 Rpl White listed provider sends cohort to employer for review then " +
+            "employer approves then provider approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        [NUnit.Framework.CategoryAttribute("whitelistedprovider")]
-        public void AP_E2E_EUA_05WhiteListedProviderSendsCohortToEmployerForReviewThenEmployerApprovesThenProviderApproves()
+        [NUnit.Framework.CategoryAttribute("rplwhitelistedprovider")]
+        public void AP_E2E_EUA_05RplWhiteListedProviderSendsCohortToEmployerForReviewThenEmployerApprovesThenProviderApproves()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "e2escenarios",
-                    "whitelistedprovider"};
+                    "rplwhitelistedprovider"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_EUA_05 White listed provider sends cohort to employer for review then empl" +
-                    "oyer approves then provider approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_EUA_05 Rpl White listed provider sends cohort to employer for review then " +
+                    "employer approves then provider approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

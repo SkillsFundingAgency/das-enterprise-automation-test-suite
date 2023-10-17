@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderRPLDetailsPage(context);
         }
 
-        public WhitelistedProviderRPLDetailsPage SelectYesAndContinue_WhiteListed()
+        public WhitelistedProviderRPLDetailsPage SelectYesAndContinue_RplWhiteListed()
         {
             SelectYes();
             return new WhitelistedProviderRPLDetailsPage(context);

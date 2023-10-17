@@ -50,7 +50,7 @@ public class ProviderConfigurationSetup
     {
         var providerConfig = SetProviderCreds<ProviderConfig>();
 
-        if (_tags.IsWhiteListedProvider()) providerConfig = SetProviderCreds<WhiteListedProviderConfig>();
+        if (_tags.IsRplWhiteListedProvider()) providerConfig = SetProviderCreds<RplWhiteListedProviderConfig>();
 
         _context.SetProviderConfig(providerConfig);
     }

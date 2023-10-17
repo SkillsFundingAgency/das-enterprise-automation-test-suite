@@ -55,8 +55,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             {
                 var page = new ProviderRPLPage(context);
 
-                if (tags.IsWhiteListedProvider())
-                    page.SelectYesAndContinue_WhiteListed().EnterRPLDataAndContinue();
+                if (tags.IsRplWhiteListedProvider())
+                    page.SelectYesAndContinue_RplWhiteListed().EnterRPLDataAndContinue();
                 else
                     page.SelectYesAndContinue().EnterRPLDataAndContinue();
             }

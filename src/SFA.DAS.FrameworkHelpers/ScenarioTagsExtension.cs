@@ -2,7 +2,7 @@
 
 public static class ScenarioTagsExtension
 {
-    public static bool IsWhiteListedProvider(this string[] tags) => tags.Contains("whitelistedprovider");
+    public static bool IsRplWhiteListedProvider(this string[] tags) => tags.Contains("rplwhitelistedprovider");
 
     public static bool IsSelectStandardWithMultipleOptions(this string[] tags) => tags.Contains("selectstandardwithmultipleoptions");
 
