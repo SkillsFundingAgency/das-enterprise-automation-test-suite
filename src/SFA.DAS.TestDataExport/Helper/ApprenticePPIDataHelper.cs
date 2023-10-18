@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.TestDataExport.Helper;
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.TestDataExport.Helper;
 
 public class ApprenticePPIDataHelper
 {
@@ -66,7 +68,7 @@ public class ApprenticePPIDataHelper
     }
 
     private static bool IsApprenticeCommitments(string[] tags) => tags.Contains("apprenticecommitments");
-    private static bool IsAslistedemployer(string[] tags) => tags.Contains("aslistedemployer");
+    private static bool IsAslistedemployer(string[] tags) => tags.IsAsListedEmployer();
     private static bool IsFlexiPayments(string[] tags) => tags.Contains("flexi-payments");
     private static bool IsPerfTest(string[] tags) => tags.Contains("perftest");
 }
