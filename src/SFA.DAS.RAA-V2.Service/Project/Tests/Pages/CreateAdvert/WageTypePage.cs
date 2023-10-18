@@ -34,13 +34,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         {
             SelectRadioOptionByForAttribute("wage-type-fixed");
             formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
-            return GoToSubmitNoOfPositionsPage();
+            return GoToExtraInformationPage();
         }
 
         private SubmitNoOfPositionsPage SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
-            return GoToSubmitNoOfPositionsPage();
+            return GoToExtraInformationPage();
         }
 
         private SubmitNoOfPositionsPage GoToSubmitNoOfPositionsPage()
