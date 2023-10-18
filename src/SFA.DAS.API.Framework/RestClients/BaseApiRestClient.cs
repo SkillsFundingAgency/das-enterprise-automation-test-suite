@@ -1,4 +1,5 @@
-﻿using SFA.DAS.API.FrameworkHelpers;
+﻿using RestSharp.Authenticators;
+using SFA.DAS.API.FrameworkHelpers;
 
 namespace SFA.DAS.API.Framework.RestClients;
 
@@ -14,8 +15,18 @@ public abstract class BaseApiRestClient
     {
         this.objectContext = objectContext;
 
-        CreateApiClient();
+        var restOptions = new RestClientOptions(ApiBaseUrl);
+
+        if (HasAuthenticator) restOptions.Authenticator = GetAuthenticator();
+
+        restClient = new(restOptions);
+
+        restRequest = new RestRequest();
     }
+
+    protected virtual bool HasAuthenticator => false;
+
+    protected virtual IAuthenticator GetAuthenticator() => default;
 
     protected abstract string ApiBaseUrl { get; }
 
@@ -68,12 +79,5 @@ public abstract class BaseApiRestClient
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
             else restRequest.AddJsonBody(payload);
         }
-    }
-
-    private void CreateApiClient()
-    {
-        restClient = new RestClient(ApiBaseUrl);
-
-        restRequest = new RestRequest();
     }
 }
