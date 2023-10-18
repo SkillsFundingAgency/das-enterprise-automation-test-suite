@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationSqlDataHelper : SqlDbHelper
     {
-        public RegistrationSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        public RegistrationSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
         public string GetAccountApprenticeshipEmployerType(string email) => GetDataAsString($"SELECT ApprenticeshipEmployerType FROM [employer_account].[Account] WHERE Id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
 

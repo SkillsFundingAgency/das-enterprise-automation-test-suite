@@ -4,7 +4,7 @@ public class TestDataCleanUpEasAccDbSqlDataHelper : BaseSqlDbHelper.TestDataClea
 {
     public override string SqlFileName => "EasAccTestDataCleanUp";
 
-    public TestDataCleanUpEasAccDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+    public TestDataCleanUpEasAccDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
     internal List<string[]> GetAccountIds(List<string> userEmail) => GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where Email = {GetAccountIdsQuery(userEmail)})");
 

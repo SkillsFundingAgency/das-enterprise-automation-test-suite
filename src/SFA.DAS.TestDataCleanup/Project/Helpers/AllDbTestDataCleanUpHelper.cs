@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers;
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.TestDataCleanup.Project.Helpers;
 
 public class AllDbTestDataCleanUpHelper 
 {
@@ -12,7 +14,12 @@ public class AllDbTestDataCleanUpHelper
 
     private List<string[]> _apprenticeIds;
 
-    public AllDbTestDataCleanUpHelper(DbConfig dbConfig) => _dbConfig = dbConfig;
+    private readonly ObjectContext _objectContext;
+
+    public AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig dbConfig)
+    {
+        _objectContext = objectContext; _dbConfig = dbConfig;
+    }
 
     public (List<string>, List<string>) CleanUpAllDbTestData(string email) => CleanUpAllDbTestData(new List<string> { email });
 
@@ -39,7 +46,7 @@ public class AllDbTestDataCleanUpHelper
 
     private (TestDataCleanUpEasAccDbSqlDataHelper, List<string[]>) GetUserEmailList(List<string> email)
     {
-        var easAccDbSqlDataHelper = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig);
+        var easAccDbSqlDataHelper = new TestDataCleanUpEasAccDbSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(easAccDbSqlDataHelper);
 
@@ -99,7 +106,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpComtTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanupComtSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanupComtSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -108,7 +115,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpEasLtmTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpEasLtmcSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpEasLtmcSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -117,18 +124,18 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpAppfbTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanupAppfbqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanupAppfbqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
-        _apprenticeIds = new GetSupportDataHelper(_dbConfig).GetApprenticeIds(accountidsTodelete);
+        _apprenticeIds = new GetSupportDataHelper(_objectContext, _dbConfig).GetApprenticeIds(accountidsTodelete);
 
         return SetDebugMessage(() => helper.CleanUpAppfbTestData(_apprenticeIds));
     }
 
     private int CleanUpAComtTestData()
     {
-        var helper = new TestDataCleanupAComtSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanupAComtSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -137,7 +144,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpEmpIncTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpEmpIncSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpEmpIncSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -146,7 +153,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpEmpFinTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpEmpFinSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpEmpFinSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -155,7 +162,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpEmpFcastTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpEmpFcastSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpEmpFcastSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -164,7 +171,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpPfbeTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpPfbeDbSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpPfbeDbSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -173,7 +180,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpPsrTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpPsrDbSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpPsrDbSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -182,7 +189,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpPrelTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpPrelDbSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpPrelDbSqlDataHelper(_objectContext, _dbConfig);
 
         SetDetails(helper);
 
@@ -191,7 +198,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpRsvrTestData(List<string> accountidsTodelete)
     {
-        var helper = new TestDataCleanUpRsvrSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpRsvrSqlDataHelper(_objectContext, _dbConfig);
         
         SetDetails(helper);
 
@@ -200,7 +207,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpPregDbTestData(List<string> emailsToDelete)
     {
-        var helper = new TestDataCleanUpPregDbSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpPregDbSqlDataHelper(_objectContext, _dbConfig);
         
         SetDetails(helper);
         
@@ -209,7 +216,7 @@ public class AllDbTestDataCleanUpHelper
 
     private int CleanUpUsersDbTestData(List<string> emailsToDelete)
     {
-        var helper = new TestDataCleanUpUsersDbSqlDataHelper(_dbConfig);
+        var helper = new TestDataCleanUpUsersDbSqlDataHelper(_objectContext, _dbConfig);
         
         SetDetails(helper);
         

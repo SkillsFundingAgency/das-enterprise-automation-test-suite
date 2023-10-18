@@ -27,11 +27,13 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            _context.SetRestClient(new Outer_EmploymentCheckApiClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
+            var objectContext = _context.Get<ObjectContext>();
+
+            _context.SetRestClient(new Outer_EmploymentCheckApiClient(objectContext, _context.GetOuter_ApiAuthTokenConfig()));
 
             _context.Set(new EmploymentCheckOrchestrationHelper(_config));
             _context.Set(new Helper(_context));
-            _context.Set(new EmploymentChecksSqlDbHelper(_dbConfig));
+            _context.Set(new EmploymentChecksSqlDbHelper(objectContext, _dbConfig));
         }
            
     }

@@ -40,21 +40,21 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
                                    _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow: ApprenticeStatus.Random;
 
-            commitmentsdatahelper = new CommitmentsSqlDataHelper(_dbConfig);
+            commitmentsdatahelper = new CommitmentsSqlDataHelper(_objectcontext, _dbConfig);
 
             _context.Set(commitmentsdatahelper);
 
-            _context.Set(new ProviderPermissionsSqlDbHelper(_dbConfig));
+            _context.Set(new ProviderPermissionsSqlDbHelper(_objectcontext, _dbConfig));
 
-            _context.Set(new RofjaaDbSqlHelper(_dbConfig));
+            _context.Set(new RofjaaDbSqlHelper(_objectcontext, _dbConfig));
 
-            _context.Set(new AccountsDbSqlHelper(_dbConfig));
+            _context.Set(new AccountsDbSqlHelper(_objectcontext, _dbConfig));
 
-            _context.Set(roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_dbConfig));
+            _context.Set(roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_objectcontext, _dbConfig));
 
             _context.Set(new PublicSectorReportingDataHelper());
 
-            _context.Set(new PublicSectorReportingSqlDataHelper(_dbConfig));
+            _context.Set(new PublicSectorReportingSqlDataHelper(_objectcontext, _dbConfig));
 
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
 
@@ -75,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(apprenticeCourseDataHelper);
 
-            _context.Set(new DataLockSqlHelper(_dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper));
+            _context.Set(new DataLockSqlHelper(_objectcontext, _dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper));
 
         }
 
@@ -110,6 +110,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags), _objectcontext, commitmentsdatahelper);
 
-        private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_dbConfig, larsCode, _tags.Contains("selectstandardwithmultipleoptions")), apprenticeStatus);
+        private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_objectcontext, _dbConfig, larsCode, _tags.Contains("selectstandardwithmultipleoptions")), apprenticeStatus);
     }
 }

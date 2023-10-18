@@ -5,7 +5,6 @@ using mailinator_csharp_client.Models.Messages.Requests;
 using mailinator_csharp_client.Models.Responses;
 using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataExport;
 using System;
 using System.Collections.Generic;
 using System.Linq;

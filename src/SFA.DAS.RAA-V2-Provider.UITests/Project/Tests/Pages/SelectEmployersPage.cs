@@ -2,7 +2,6 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.TestDataExport;
 using System.Linq;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using System.Collections.Generic;

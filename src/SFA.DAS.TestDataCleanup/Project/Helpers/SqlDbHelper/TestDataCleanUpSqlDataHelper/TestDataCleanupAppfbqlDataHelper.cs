@@ -6,9 +6,15 @@ public class TestDataCleanupAppfbqlDataHelper : BaseSqlDbHelper.TestDataCleanUpS
 
     public override string SqlFileName => "EasAppfbTestDataCleanUp";
 
-    public TestDataCleanupAppfbqlDataHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeFeedbackDbConnectionString) => _dbConfig = dbConfig;
+    private readonly ObjectContext _objectContext;
+
+    public TestDataCleanupAppfbqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeFeedbackDbConnectionString)
+    {
+        _dbConfig = dbConfig;
+        _objectContext = objectContext;
+    }
 
     internal int CleanUpAppfbTestData(List<string[]> apprenticeIds) => CleanUpUsingCommtApprenticeshipIds(apprenticeIds);
 
-    internal int CleanUpAppfbTestData(List<string> accountIdToDelete) => CleanUpAppfbTestData(new GetSupportDataHelper(_dbConfig).GetApprenticeIds(accountIdToDelete));
+    internal int CleanUpAppfbTestData(List<string> accountIdToDelete) => CleanUpAppfbTestData(new GetSupportDataHelper(_objectContext, _dbConfig).GetApprenticeIds(accountIdToDelete));
 }

@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         protected readonly RetryAssertHelper _assertHelper;
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
-        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+        private readonly CommitmentsSqlHelper _commitmentsSqlHelper;
         protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
         protected readonly TabHelper tabHelper;
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             _assertHelper = context.Get<RetryAssertHelper>();
             _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
             appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
             tabHelper = context.Get<TabHelper>();
         }
@@ -89,7 +89,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
         {
-            var (trainingName, trainingStartDate) = _accountsAndCommitmentsSqlHelper.GetTrainingNameAndStartDate(_objectContext.GetApprenticeEmail());
+            var (trainingName, trainingStartDate) = _commitmentsSqlHelper.GetTrainingNameAndStartDate(_objectContext.GetApprenticeEmail());
 
             _objectContext.SetTrainingName(trainingName);
             _objectContext.SetTrainingStartDate(trainingStartDate);

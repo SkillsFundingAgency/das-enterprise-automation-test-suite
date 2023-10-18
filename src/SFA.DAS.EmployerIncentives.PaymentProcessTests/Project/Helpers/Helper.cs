@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
@@ -27,7 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public Helper(ScenarioContext context)
         {
             _context = context;
-            context.Set(new EISqlHelper(context.Get<DbConfig>()));
+            context.Set(new EISqlHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()));
             context.Set(IEDataSnapper.Create(context.Get<DbConfig>()));
             context.Set(new StopWatchHelper());
             context.Set(new CollectionCalendarHelper(context));

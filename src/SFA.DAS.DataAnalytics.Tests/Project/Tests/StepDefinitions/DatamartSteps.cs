@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class DatamartSteps
@@ -9,9 +11,11 @@
 
         public DatamartSteps(ScenarioContext context)
         {
+            var objectContext = context.Get<ObjectContext>();
+
             _dbConfig = context.Get<DbConfig>();
-            _datamartSqlHelper = new DatamartSqlHelper(_dbConfig);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_dbConfig);
+            _datamartSqlHelper = new DatamartSqlHelper(objectContext, _dbConfig);
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(objectContext, _dbConfig);
         }
 
         [Given(@"I update Payments data in datamart")]

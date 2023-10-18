@@ -4,7 +4,7 @@ public class TestDataCleanUpEmpFcastSqlDataHelper : BaseSqlDbHelper.TestDataClea
 {
     public override string SqlFileName => "EasFcastTestDataCleanUp";
 
-    public TestDataCleanUpEmpFcastSqlDataHelper(DbConfig dbConfig) : base(dbConfig.FcastDbConnectionString) { }
+    public TestDataCleanUpEmpFcastSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.FcastDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpEmpFcastTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
     {

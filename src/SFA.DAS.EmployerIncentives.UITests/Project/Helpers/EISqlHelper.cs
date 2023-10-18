@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
     public class EISqlHelper : SqlDbHelper
     {
-        public EISqlHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
+        public EISqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.IncentivesDbConnectionString) { }
 
         public void AddIncentiveApplication(AddApplicationData data)
         {
@@ -33,6 +33,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public void ResetPeriodEndInProgress() => ExecuteSqlCommand("UPDATE incentives.CollectionCalendar SET PeriodEndInProgress = 0");
 
-        public int FetchAccountId(string email) => Convert.ToInt32(SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'", connectionString)[0][0]);
+        public int FetchAccountId(string email) => Convert.ToInt32(GetListOfData($"SELECT AccountId FROM [dbo].[IncentiveApplication] WHERE SubmittedByEmail = '{email}'")[0][0]);
     }
 }

@@ -5,7 +5,7 @@ namespace SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
 
 public class UsersSqlDataHelper : SqlDbHelper
 {
-    public UsersSqlDataHelper(DbConfig dbConfig) : base(dbConfig.UsersDbConnectionString) { }
+    public UsersSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.UsersDbConnectionString) { }
 
     public void ReinstateAccountInDb(string email) => ExecuteSqlCommand($"UPDATE [User] SET IsSuspended = 0, LastSuspendedDate = null WHERE Email = '{email}'");
 
