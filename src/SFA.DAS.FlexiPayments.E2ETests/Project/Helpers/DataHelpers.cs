@@ -35,12 +35,26 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return new DateTime(today.Year, today.Month, 1);
         }
 
+        public static DateTime GetFirstDateOfPreviousMonth()
+        {
+            DateTime today = DateTime.Today;
+            return new DateTime(today.Year, today.Month-1, 1);
+        }
+
         public static T ToEnum<T>(this string value, bool ignoreCase = true)
         {
             return (T)Enum.Parse(typeof(T), value, ignoreCase);
         }
 
-        internal static DateTime CalculateStartDate() => IsLastDayOfTheMonth(DateTime.Now) ? DateTime.Today.AddDays(-1) : DateTime.Today;
+        internal static DateTime CalculateStartDate(bool isStartInPreviousMonth = false)
+        {
+            DateTime date = DateTime.Today;
+
+            if (isStartInPreviousMonth) date = new DateTime(date.Year, date.Month-1, date.Day);
+
+            return IsLastDayOfTheMonth(date) ? date.AddDays(-1) : date;
+        }
+           
 
         private static bool IsLastDayOfTheMonth(DateTime date) => DateTime.DaysInMonth(date.Year, date.Month) == date.Day;
     }

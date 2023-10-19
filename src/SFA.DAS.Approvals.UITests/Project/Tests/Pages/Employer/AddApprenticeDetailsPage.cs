@@ -39,8 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             ClickStartMonth();
 
-            if (isMF == false || pageInteractionHelper.GetText(StartDateMonth) != courseStartDate.Month.ToString()) 
-                EnterStartDate(courseStartDate);
+            if (isMF == false) EnterStartDate(courseStartDate);
 
             EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 

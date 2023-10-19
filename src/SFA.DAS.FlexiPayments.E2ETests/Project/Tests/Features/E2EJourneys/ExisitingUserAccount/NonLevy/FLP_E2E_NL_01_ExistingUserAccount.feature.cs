@@ -89,7 +89,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provider who opts" +
                     " first learner in the pilot and second out of the pilot", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
- this.ScenarioInitialize(scenarioInfo);
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -112,14 +112,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
                             "1",
                             "131",
                             "2004/05/01",
-                            "Today",
+                            "StartPreviousMonth",
                             "24",
                             "6000"});
                 table15.AddRow(new string[] {
                             "2",
                             "131",
                             "2004/05/01",
-                            "Today",
+                            "StartPreviousMonth",
                             "24",
                             "6000"});
 #line 8
@@ -152,7 +152,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
                 table16.AddRow(new string[] {
                             "1",
                             "true",
-                            "Today",
+                            "StartPreviousMonth",
                             "Null",
                             "6000",
                             "4800",
@@ -160,7 +160,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
                 table16.AddRow(new string[] {
                             "2",
                             "false",
-                            "StartCurrentMonth",
+                            "StartFirstDayOfPreviousMonth",
                             "Null",
                             "6000",
                             "",
@@ -180,9 +180,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
                 table17.AddRow(new string[] {
                             "1",
                             "1",
-                            "Today",
-                            "StartCurrentMonth",
-                            "+24Months",
+                            "StartPreviousMonth",
+                            "StartFirstDayOfPreviousMonth",
+                            "+23Months",
                             "6000",
                             "1",
                             "18000"});
@@ -190,8 +190,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
                             "2",
                             "2",
                             "Null",
-                            "StartCurrentMonth",
-                            "+24Months",
+                            "StartFirstDayOfPreviousMonth",
+                            "+23Months",
                             "6000",
                             "1",
                             "18000"});
