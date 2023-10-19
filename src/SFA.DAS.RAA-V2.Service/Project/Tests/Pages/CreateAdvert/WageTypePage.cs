@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Helpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
@@ -6,6 +7,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
     public class WageTypePage : Raav2BasePage
     {
         protected override string PageTitle => "How much will the apprentice be paid?";
+
+        private static By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
+
+        private static By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
 
         public WageTypePage(ScenarioContext context) : base(context) { }
 
