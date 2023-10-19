@@ -57,7 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
 
-            if (tags.Contains("portableflexijob"))
+            if (tags.IsPortableFlexiJob())
                 formCompletionHelper.EnterText(EmploymentPrice, apprenticeDataHelper.TrainingCost.ToInt() - 50);
         }
 
@@ -83,7 +83,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(EndDateMonth, dateTime.Month);
             formCompletionHelper.EnterText(EndDateYear, dateTime.Year);
 
-            if (tags.Contains("portableflexijob"))
+            if (tags.IsPortableFlexiJob())
             {
                 formCompletionHelper.EnterText(EndDateYear, dateTime.Year + 2);
                 formCompletionHelper.EnterText(EmploymentEndMonth, dateTime.Month);
@@ -105,7 +105,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             EnterApprenticeName();
 
-            if (tags.Contains("aslistedemployer")) return;
+            if (tags.IsAsListedEmployer()) return;
 
             EnterApprenticeEmail();
         }
