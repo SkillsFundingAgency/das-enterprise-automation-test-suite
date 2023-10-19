@@ -9,20 +9,18 @@ public abstract class Inner_BaseApiRestClient : BaseApiRestClient
 
     protected abstract string AppServiceName { get; }
 
-    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext)
-    {
-        this.config = config;
+    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext) => this.config = config;
 
+    protected override void AddResource(string resource) => restRequest.Resource = resource;
+
+    protected override void AddAuthHeaders() 
+    {
         var options = GetClientOptions();
 
         options.Authenticator = GetAuthenticator();
 
         restClient = new(options);
     }
-
-    protected override void AddResource(string resource) => restRequest.Resource = resource;
-
-    protected override void AddAuthHeaders() { }
 
     private IAuthenticator GetAuthenticator() 
     {
