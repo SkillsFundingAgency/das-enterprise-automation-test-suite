@@ -161,7 +161,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .ImportantDates()
                 .EnterImportantDates()
                 .EnterDuration()
-                .ChooseWage(wageType)
+                .ChooseWage_Employer(wageType)
                 .SubmitExtraInformationAboutPay()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
