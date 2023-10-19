@@ -34,29 +34,28 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private void ChooseWage(string wageType)
         {
-            if (wageType == RAAV2Const.NationalMinWages) SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+            if (wageType == RAAV2Const.NationalMinWages) EnterNationalMinWages();
 
-            else if (wageType == RAAV2Const.FixedWageType) SelectRadioOptionByForAttribute("wage-type-fixed");
+            else if (wageType == RAAV2Const.FixedWageType) EnterFixedWageType();
 
-            else SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+            else EnterNationalMinimumWageForApprentices();
         }
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
-            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+            EnterNationalMinWages();
             return ContinueToPreviewYourVacancyPage();
         }
 
         public PreviewYourVacancyPage SelectNationalMinimumWageForApprentices()
         {
-            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+            EnterNationalMinimumWageForApprentices();
             return ContinueToPreviewYourVacancyPage();
         }
 
         public PreviewYourVacancyPage SelectFixedWageType()
         {
-            SelectRadioOptionByForAttribute("wage-type-fixed");
-            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
+            EnterFixedWageType();
             return ContinueToPreviewYourVacancyPage();
         }
 
@@ -66,6 +65,17 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             Continue();
             pageInteractionHelper.WaitforURLToChange("part1-complete");
             return new PreviewYourVacancyPage(context);
+        }
+
+        private void EnterNationalMinWages() => SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+
+        private void EnterNationalMinimumWageForApprentices() => SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+
+        private void EnterFixedWageType()
+        {
+            SelectRadioOptionByForAttribute("wage-type-fixed");
+            
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
         }
     }
 }
