@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public WageTypePage(ScenarioContext context) : base(context) { }
 
-        public SubmitNoOfPositionsPage ChooseWage(string wageType)
+        public ExtraInformationAboutPayPage ChooseWage(string wageType)
         {
             return wageType switch
             {
@@ -25,40 +25,36 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             };
             ;
         }
-        private SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoExtraPayInformation()
+
+        private ExtraInformationAboutPayPage SelectNationalMinimumWageAndGoToNoExtraPayInformation()
         {  
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
             return GoToExtraInformationPage();
         }
-        private SubmitNoOfPositionsPage SelectFixedWageTypeAndGoToNoOfPositions()
+        private ExtraInformationAboutPayPage SelectFixedWageTypeAndGoToNoOfPositions()
         {
             SelectRadioOptionByForAttribute("wage-type-fixed");
             formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
             return GoToExtraInformationPage();
         }
 
-        private SubmitNoOfPositionsPage SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions()
+        private ExtraInformationAboutPayPage SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
             return GoToExtraInformationPage();
         }
 
-        private SubmitNoOfPositionsPage GoToSubmitNoOfPositionsPage()
-        {
-            Continue(); 
-            return new SubmitNoOfPositionsPage(context);
-        }
-
-        private SubmitNoOfPositionsPage GoToExtraInformationPage()
+        private ExtraInformationAboutPayPage GoToExtraInformationPage()
         {
             Continue();
             
-            return GoToSubmitNoOfPositionsPage();
+            return new ExtraInformationAboutPayPage(context);
         }
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+
             return ContinueToPreviewYourVacancyPage();
         }
 
