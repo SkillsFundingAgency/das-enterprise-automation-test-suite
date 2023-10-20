@@ -17,6 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly TabHelper _tabHelper;
         protected readonly ObjectContext _objectContext;
         private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
+        private readonly RoatpQnASqlDbHelper _roatpQnASqlDbHelper;
         private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
         protected readonly RoatpConfig config;
         protected readonly DbConfig _dbConfig;
@@ -36,7 +37,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             config = context.GetRoatpConfig<RoatpConfig>();
             _dbConfig = context.Get<DbConfig>();
             _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, _dbConfig);
-            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(_dbConfig);
+            _roatpQnASqlDbHelper = new RoatpQnASqlDbHelper(_objectContext, _dbConfig);
+            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(_objectContext, _dbConfig);
             _roatpApplyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
             _roatpApplyTestDataPrepDataHelpers = new RoatpApplyTestDataPrepDataHelpers();
             _roatpApplyChangeUkprnDataHelpers = new RoatpApplyChangeUkprnDataHelpers();
@@ -58,13 +60,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             DeleteTrainingProvider();
         }
 
-        protected void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
+        protected void ClearDownApplyData() => _roatpQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
         protected void ClearDownApplyData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromApply_ReapplyRecord(ukprn);
 
-        protected void ClearDownQnAData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromQnA_ReApplyRecord(ukprn);
+        protected void ClearDownQnAData_ReappliedApplication(string ukprn) => _roatpQnASqlDbHelper.OversightReviewClearDownFromQnA_ReApplyRecord(ukprn);
 
-        protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
+        protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
 
         protected void AllowListProviders(string ukprn = null) => _roatpApplyAndQnASqlDbHelper.AllowListProviders(ukprn);
 

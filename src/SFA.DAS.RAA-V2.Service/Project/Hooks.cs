@@ -6,6 +6,7 @@ using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.RAA.DataGenerator.Project.Config;
+using Polly;
 
 namespace SFA.DAS.RAA_V2.Service.Project
 {
@@ -29,9 +30,11 @@ namespace SFA.DAS.RAA_V2.Service.Project
 
             var dbConfig = _context.Get<DbConfig>();
 
-            _context.Set(new ProviderCreateVacancySqlDbHelper(dbConfig));
+            var objectContext = _context.Get<ObjectContext>();
 
-            _context.Set(new RAAV2ProviderPermissionsSqlDbHelper(dbConfig));
+            _context.Set(new ProviderCreateVacancySqlDbHelper(objectContext, dbConfig));
+
+            _context.Set(new RAAV2ProviderPermissionsSqlDbHelper(objectContext, dbConfig));
         }
     }
 }

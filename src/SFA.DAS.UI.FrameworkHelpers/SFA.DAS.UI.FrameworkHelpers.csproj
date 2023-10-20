@@ -29,8 +29,8 @@
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="FluentAssertions" Version="6.6.0" />
     <PackageReference Include="Selenium.Axe" Version="4.0.*" />
-    <PackageReference Include="Selenium.Support" Version="4.12.*" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.12.*" />
+    <PackageReference Include="Selenium.Support" Version="4.13.*" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.13.*" />
     <PackageReference Include="SFA.DAS.CosmosDb" Version="1.0.47" />
 	<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="117.*" />
   </ItemGroup>

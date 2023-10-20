@@ -5,6 +5,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
     public class LoginInvitationsSqlDbHelper : InvitationsSqlDbHelper
     {
-        public LoginInvitationsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.LoginDatabaseConnectionString) { }
+        public LoginInvitationsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.LoginDatabaseConnectionString) { }
     }
 }

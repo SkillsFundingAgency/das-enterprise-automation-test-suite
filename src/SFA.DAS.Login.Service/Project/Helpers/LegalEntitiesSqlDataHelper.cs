@@ -7,7 +7,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 {
     internal class EasAccountsSqlDataHelper : SqlDbHelper
     {
-        public EasAccountsSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+        public EasAccountsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
         internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountDetails(List<string> emails)
         {

@@ -2,16 +2,15 @@
 
 # DAS-ENTERPRISE-AUTOMATION-TEST-SUITE
 
-This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core) in SpecFlow BDD methodology and Page Object Pattern.
+This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core 7.0) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Visual Studio (2022 with V17.2 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
-2. Download appropriate 'Dot Net Core 6.0.300' or [latest 6.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/6.0 "Download .NET 6.0") version matching Visual Studio version (If its not automatically installed as part of VS2022 installation). And make sure the sysytem has only one instance of Dotnet core. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
-3. Browsers (Chrome, Firefox, IE)
+1. Visual Studio (2022 with V17.7 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
+2. Download appropriate 'Dot Net Core 7.0.11' or [latest 7.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/7.0 "Download .NET 7.0") version matching Visual Studio version (If its not automatically installed as part of VS2022 installation). And make sure the sysytem has only one instance of Dotnet core.<br />NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
+3. Browsers (Chrome, Firefox, Edge)
 
 ## Set Up (UI):
-All other dependencies (ex: Selenium, drivers etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.
-
+All other dependencies (ex: Selenium, drivers etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.<br /><br />
 Note: This UI framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
 ## Set Up (DB connection using Azure Manage Identity):
@@ -171,7 +170,7 @@ Please follow existing folder structure, folder name and file name so that it wo
 
 ## How to use User secrets:
 1. Navigate to ```"%APPDATA%/Microsoft"``` then Create Directory ```"UserSecrets"``` if you don't find it.
-2. Create a ```<YourProjectName>_<EnvironmentName>_Secrets``` folder under ```"%APPDATA%/Microsoft/UserSecrets"```. You can get project name and environment name from the ```"appsettings.Environment.json"``` file under your respective project(s). ex: 
+2. Create a ```<YourProjectName>_<EnvironmentName>_Secrets``` (for project specific config) and ```<EnvironmentName>_Secrets``` (for environment specific config) folder under ```"%APPDATA%/Microsoft/UserSecrets"```. You can get project name and environment name from the ```"appsettings.Environment.json"``` file under your respective project(s). ex: 
 	For Registration project, the ```"appsettings.Environment.json"``` file will look like 
 ```json
 {
@@ -179,7 +178,7 @@ Please follow existing folder structure, folder name and file name so that it wo
   "ProjectName": "Registration"
 }
 ```
-so you need to create a folder as ```"Registration_PP_Secrets"``` (without the quotes) under ```"%APPDATA%/Microsoft/UserSecrets"``` folder 
+so you need to create a folder as ```Registration_PP_Secrets``` and ```PP_Secrets``` under ```"%APPDATA%/Microsoft/UserSecrets"``` folder 
 	
 3. Create a file named ```"secrets.json"``` and replace only those values you want to keep it as secrets (you can copy the structure from ```"appsettings.Project.json"``` file under your respective project(s)).
 4. Project secrets and framework secrets can be found in the Automation Test Data (https://skillsfundingagency.atlassian.net/wiki/spaces/DAS/pages/1875574959/Automation+Test+Data) confluence page
@@ -222,8 +221,9 @@ Acceptance Tests must be written in Feature files under ```/Project/Tests/Featur
 ## To Execute tests from your desktop :
 
 ### To Execute tests in your desktop :
-1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer" in ``secrets.json`` in your project specific secrets file (you can add the below section into it if it does not exist already).
-2. To execute tests through Zap Proxy, change the Browser value to "zapProxyChrome"
+1. Whitelist your IP address ```(use FcS account for PP, use CDS account for AT, TEST, TEST2 and DEMO)```
+2. To execute tests in your local, change the Browser value to "local" (will execute in chrome, ref to [Supported Browsers](https://github.com/SkillsFundingAgency/das-enterprise-automation-test-suite#supported-browsers) ) in ``secrets.json`` in your project specific secrets file (you can add the below section into it if it does not exist already).
+3. To execute tests through Zap Proxy, change the Browser value to "zapProxyChrome"
 ```json
 "TestExecutionConfig": {
     "Browser": "local"
@@ -237,7 +237,7 @@ To execute tests in BrowserStack, change the Browser value to "browserstack" or 
     "Browser": "cloud"
   }
 ```
-To mention BrowserStack login details, create a folder by name "BrowserStackSecrets" (without the quotes) under "%APPDATA%/Microsoft/UserSecrets", create a file names "secrets.json" and add below section with your BrowserStack username and key (You can get the Access Key from BrowserStack application).
+To mention BrowserStack login details, create a folder by name "BrowserStackSecrets" (without the quotes) under "%APPDATA%/Microsoft/UserSecrets", create a file names "secrets.json" and add below section with your BrowserStack username and key (You can get the Access Key from BrowserStack portal).
 ```json
 {
   "BrowserStackSetting:User": "XXX",
@@ -277,7 +277,8 @@ We use variable groups (library) to define and declare the variables, and the va
  2. TEST2 Automation Suite Variables - will hold variables for TEST2 environment
  3. PreProd Automation Suite Variables - will hold variables for PP environment
  4. Release Automation Suite Variables - will hold variables at Release Level
- 5. Release Automation Suite Variables (Db) - will hold DB variables at Release environment
+ 5. Release Automation Suite Variables (Db) - will hold DB variables at Release Level
+ 6. Provider Release Automation Suite Variables - will hold Provider variables at Release Level
 ```
 Any pipeline specfic variables like ```SQLServerAccountPassword, CosmosDBKey, ServiceBusAccessKey, Browser and TestCategory``` would be define and declare under pipeline private variables
 
@@ -295,13 +296,13 @@ If the variables are defined in more than one place then vsts will prioritize in
 The framework can currently work on the following browsers
 1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
 2. Firefox - use "firefox" or "mozillafirefox" as values for the Browser in appsettings
-3. Internet Explorer - use "ie" or "internetexplorer" as values for the Browser in appsettings
+3. Edge - use "edge" or "microsoftedge" as values for the Browser in appsettings
 3. Chrome Headless - use "headlessbrowser" or "headless" as values for the Browser in appsettings
 
 Note: Tests can be executed on different browsers versions using BrowserStack.
 
 ### Standards/Rules:
-1. The framework is designed using Page Object Model
+1. The framework is designed using custom Page Object Model
 2. Every class must implement single responsible principle. Where,
 	a. Every Page class is responsible for only one web page and identifying the elements within the page and implementing methods a user can do on that page
 	b. Every Test Class is responsible to access the methods from Page Classes and execute the test steps with required data

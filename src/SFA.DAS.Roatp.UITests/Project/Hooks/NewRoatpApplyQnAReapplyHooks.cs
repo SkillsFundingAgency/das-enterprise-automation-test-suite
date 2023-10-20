@@ -1,6 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using System;
-using System.Linq;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
@@ -10,19 +9,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     {
         private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
-        public NewRoatpApplyQnAReapplyHooks (ScenarioContext context) : base(context) => _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_dbConfig);
+        public NewRoatpApplyQnAReapplyHooks(ScenarioContext context) : base(context) => _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_objectContext, _dbConfig);
 
         [BeforeScenario(Order = 33)]
         public void OversightReviewClearDownFromApply() => _roatpApplyClearDownDataHelpers.OversightReviewClearDownFromApply_GatewayReject(GetUkprn());
 
         [AfterScenario(Order = 34)]
-        public void ClearDownTrainingProviderFromRegister() => DeleteTrainingProvider();        
-           
+        public void ClearDownTrainingProviderFromRegister() => DeleteTrainingProvider();
+
         [AfterScenario(Order = 35)]
-        public void ClearDownReappliedTrainingProviderData_Apply() 
+        public void ClearDownReappliedTrainingProviderData_Apply()
         {
-                ClearDownQnAData_ReappliedApplication(GetUkprn());
-                ClearDownApplyData_ReappliedApplication(GetUkprn());
+            ClearDownQnAData_ReappliedApplication(GetUkprn());
+            ClearDownApplyData_ReappliedApplication(GetUkprn());
         }
-    } 
+    }
 }

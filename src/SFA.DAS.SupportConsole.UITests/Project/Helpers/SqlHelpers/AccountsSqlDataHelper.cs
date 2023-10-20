@@ -2,7 +2,7 @@
 
 public class AccountsSqlDataHelper : SqlDbHelper
 {
-    public AccountsSqlDataHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { }
+    public AccountsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
     public (string name, DateTime createdDate, string hashedId, string email, string fName, string lName, string payeref) GetAccountDetails(string publicHashedId)
     {

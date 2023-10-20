@@ -14,7 +14,7 @@
             _context = context;
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(_context);
-            _usersSqlDataHelper = new UsersSqlDataHelper(_context.Get<DbConfig>());
+            _usersSqlDataHelper = new UsersSqlDataHelper(_context.Get<ObjectContext>(), _context.Get<DbConfig>());
             accountSignOutHelper = new AccountSignOutHelper(context);
         }
 

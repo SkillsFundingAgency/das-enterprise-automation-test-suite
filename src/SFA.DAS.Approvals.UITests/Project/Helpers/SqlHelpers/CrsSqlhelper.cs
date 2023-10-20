@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         private static string NoOptionPredicate => "Options like '%core%'";
 
-        public CrsSqlhelper(DbConfig dbConfig) : base(dbConfig.CRSDbConnectionString) { }
+        public CrsSqlhelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.CRSDbConnectionString) { }
         
         public string GetSqlQueryWithMultipleOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {MultipleOptionPredicate}");
 

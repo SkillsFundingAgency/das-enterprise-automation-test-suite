@@ -2,7 +2,7 @@
 
 public class EsfaAdminServiceStartPage : IdamsLoginBasePage
 {
-    protected override string PageTitle => "ESFA admin services";
+    protected override string PageTitle => "Apprenticeship service admin";
 
     private static By StartNowCssSelector => IdamsPageSelector.StartNowButton;
 

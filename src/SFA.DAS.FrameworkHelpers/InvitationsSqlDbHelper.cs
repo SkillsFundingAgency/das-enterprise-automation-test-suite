@@ -4,7 +4,7 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public abstract class InvitationsSqlDbHelper : SqlDbHelper
     {
-        public InvitationsSqlDbHelper(string connectionString) : base(connectionString) { }
+        public InvitationsSqlDbHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString) { }
 
         public string GetId(string email) => GetNullableData($"select Id FROM [LoginService].[Invitations] where email = '{email}'");
 

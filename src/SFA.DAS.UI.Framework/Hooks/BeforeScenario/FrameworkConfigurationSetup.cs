@@ -6,59 +6,58 @@ using System.Linq;
 using System.Collections.Generic;
 using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
+namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
+
+[Binding]
+public class FrameworkConfigurationSetup
 {
-    [Binding]
-    public class FrameworkConfigurationSetup
+    private readonly ScenarioContext _context;
+
+    private readonly IConfigSection _configSection;
+
+    private readonly ObjectContext _objectContext;
+
+    public FrameworkConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        private readonly IConfigSection _configSection;
-
-        private readonly ObjectContext _objectContext;
-
-        public FrameworkConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _configSection = context.Get<IConfigSection>();
-        }
-        
-        [BeforeScenario(Order = 2)]
-        public void SetUpFrameworkConfiguration()
-        {
-            var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
-
-            var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.ToList(",");
-
-            var fullscreenshotAdmin = testExecutionConfig.FullScreenShotAdmins.ToList(",");
-
-            _ = bool.TryParse(testExecutionConfig.CanTakeFullScreenShot, out bool canTakeFullScreenShot);
-
-            _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
-
-            bool IsVstsExecution = Configurator.IsVstsExecution;
-
-            var frameworkConfig = new FrameworkConfig
-            {
-                NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
-                TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
-                BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-                IsVstsExecution = IsVstsExecution,
-                CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
-                CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot,
-                IsAccessibilityTesting = isAccessibilityTesting
-            };
-
-            _context.Set(frameworkConfig);
-
-            _objectContext.SetBrowser(testExecutionConfig.Browser);
-
-            _context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
-
-            if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
-        }
-
-          private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
+        _context = context;
+        _objectContext = context.Get<ObjectContext>();
+        _configSection = context.Get<IConfigSection>();
     }
+    
+    [BeforeScenario(Order = 2)]
+    public void SetUpFrameworkConfiguration()
+    {
+        var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
+
+        var captureUrlAdmin = testExecutionConfig.CaptureUrlAdmins.ToList(",");
+
+        var fullscreenshotAdmin = testExecutionConfig.FullScreenShotAdmins.ToList(",");
+
+        _ = bool.TryParse(testExecutionConfig.CanTakeFullScreenShot, out bool canTakeFullScreenShot);
+
+        _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
+
+        bool IsVstsExecution = Configurator.IsVstsExecution;
+
+        var frameworkConfig = new FrameworkConfig
+        {
+            NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
+            TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
+            BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
+            IsVstsExecution = IsVstsExecution,
+            CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
+            CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot,
+            IsAccessibilityTesting = isAccessibilityTesting
+        };
+
+        _context.Set(frameworkConfig);
+
+        _objectContext.SetBrowser(testExecutionConfig.Browser);
+
+        _context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
+
+        if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
+    }
+
+      private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
 }

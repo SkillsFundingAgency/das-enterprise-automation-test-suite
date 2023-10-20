@@ -1,16 +1,12 @@
-﻿global using TechTalk.SpecFlow;
-global using SFA.DAS.ConfigurationBuilder;
-global using System.Collections.Generic;
-global using SFA.DAS.FrameworkHelpers;
-global using System.Linq;
+﻿global using SFA.DAS.FrameworkHelpers;
 global using System;
-global using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.BaseSqlDbHelper;
-global using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
-global using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
+global using System.Collections.Generic;
+global using System.Linq;
+global using TechTalk.SpecFlow;
 
-namespace SFA.DAS.TestDataCleanup;
+namespace SFA.DAS.FrameworkHelpers;
 
-public static class ObjectContextExtension
+public static class OC_TestDataTearDownExtension
 {
     #region Constants
     private const string AfterScenarioTestDataTearDown = "afterscenariotestdatateardown";

@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         private int _apprenticeshipId;
 
-        public DataLockSqlHelper(DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(dBConfig.CommitmentsDbConnectionString)
+        public DataLockSqlHelper(ObjectContext objectContext, DbConfig dBConfig, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper) : base(objectContext, dBConfig.CommitmentsDbConnectionString)
         {
             _dataHelper = dataHelper;
             _coursedataHelper = coursedataHelper;
@@ -46,14 +46,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             Dictionary<string, string> sqlParameters = new()
             {
-                { "@MaxDataLockEventId", Convert.ToString(DataLockEventIdSqlHelper.GetMaxDataLockEventId(connectionString)) },
+                { "@MaxDataLockEventId", Convert.ToString(new DataLockEventIdSqlHelper(objectContext, connectionString).GetMaxDataLockEventId()) },
                 { "@PriceEpisode", priceEpisodeIdentifier},
                 { "@CurrentApprenticeshipId", Convert.ToString(_apprenticeshipId) },
                 { "@StartDate", courseStartDate },
                 { "@TrainingPrice", price}
             };
 
-            SqlDatabaseConnectionHelper.ExecuteSqlCommand(sqlQueryFromFile, connectionString, sqlParameters);
+            ExecuteSqlCommand(sqlQueryFromFile, sqlParameters);
         }
     }
 }

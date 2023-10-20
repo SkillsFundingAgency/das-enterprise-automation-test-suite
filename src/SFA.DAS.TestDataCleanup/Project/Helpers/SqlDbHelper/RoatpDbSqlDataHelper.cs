@@ -2,5 +2,5 @@
 
 public class RoatpDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public RoatpDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.RoatpDatabaseConnectionString) { }
+    public RoatpDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.RoatpDatabaseConnectionString) { }
 }

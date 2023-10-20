@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeCommitmentsSqlDbHelper : SqlDbHelper
     {
-        public ApprenticeCommitmentsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.ApprenticeCommitmentDbConnectionString) { }
+        public ApprenticeCommitmentsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentDbConnectionString) { }
 
         public void DeleteRevisionAndApprenticeshipTableData(string apprenticeId, string email) => ExecuteSqlCommand(
             $"DELETE FROM Revision WHERE ApprenticeshipId in (SELECT ApprenticeshipId from Registration WHERE Email = '{email}')" +
@@ -42,6 +42,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE Id = (SELECT TOP 1 ApprenticeshipId from [Registration] WHERE Email = '{email}' order by ApprenticeshipId desc))";
 
-        private string GetDetails(string query, string scenarioTitle) => Convert.ToString(TryGetDataAsObject(query));
+        private string GetDetails(string query, string scenarioTitle) => Convert.ToString(WaitAndGetDataAsObject(query));
     }
 }

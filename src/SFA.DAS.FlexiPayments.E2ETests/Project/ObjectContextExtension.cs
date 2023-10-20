@@ -8,7 +8,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project
         private const string ULNKeyInformation = "ulnkeyinformation";
         #endregion
 
-        internal static void SetTestDataList(this ObjectContext objectContext)
+        internal static void SetFlexiPaymentsTestDataList(this ObjectContext objectContext)
         {
             objectContext.SetULNKeyInformations();
         }

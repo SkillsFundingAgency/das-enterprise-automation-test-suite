@@ -10,7 +10,6 @@ global using System;
 global using System.Collections.Generic;
 global using TechTalk.SpecFlow;
 using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
-using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project;
 

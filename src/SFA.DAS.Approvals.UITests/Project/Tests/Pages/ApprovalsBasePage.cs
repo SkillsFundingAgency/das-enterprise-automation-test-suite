@@ -48,6 +48,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             return new SelectStandardPage(context);
         }
 
-        protected bool IsSelectStandardWithMultipleOptions() => tags.Contains("selectstandardwithmultipleoptions");
+        protected bool IsSelectStandardWithMultipleOptions() => tags.IsSelectStandardWithMultipleOptions();
     }
 }

@@ -22,8 +22,10 @@ public class BeforeScenarioHooks
     [BeforeScenario(Order = 32)]
     public void SetUpHelpers()
     {
-        _context.SetRestClient(new Outer_RecruitApiClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
+        var objectContext = _context.Get<ObjectContext>();
 
-        _context.Set(new EmployerLegalEntitiesSqlDbHelper(_context.Get<DbConfig>()));
+        _context.SetRestClient(new Outer_RecruitApiClient(objectContext, _context.GetOuter_ApiAuthTokenConfig()));
+
+        _context.Set(new EmployerLegalEntitiesSqlDbHelper(objectContext, _context.Get<DbConfig>()));
     }
 }

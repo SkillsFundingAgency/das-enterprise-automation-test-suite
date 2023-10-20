@@ -12,7 +12,8 @@
     { "assembly": "SFA.DAS.Registration.UITests" },
     { "assembly": "SFA.DAS.FAA.UITests" },
     { "assembly": "SFA.DAS.RAA-V2.Service" },
-    { "assembly": "SFA.DAS.RAA-V2-QA.UITests" }
+    { "assembly": "SFA.DAS.RAA-V2-QA.UITests" },
+    { "assembly": "SFA.DAS.ProviderLogin.Service" }
   ],
   "generator": {
     "allowRowTests": false,
