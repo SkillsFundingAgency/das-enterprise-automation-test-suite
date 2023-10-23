@@ -23,8 +23,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to influencers Resource hub page")]
         public void GivenTheUserNavigatesToInfluencersResourceHubPage() => GoToInfluencersHubPage().NavigateToResourceHubPage().VerifySubHeadings();
 
-        [Given(@"the user navigates to influencers Become an ambassador page")]
-        public void GivenTheUserNavigatesToInfluencersBecomeAnAmbassadorPage() => GoToInfluencersHubPage().NavigateToBecomeAnAmbassadorPage().VerifyInfluencersBecomeAnAmbassadorPageSubHeadings();
+        [Given(@"the user navigates to influencers Apprentice ambassador network page")]
+        public void GivenTheUserNavigatesToInfluencersApprenticeAmbassadorNetworkPage() => GoToInfluencersHubPage().NavigateToApprenticeAmbassadorNetworkPage().VerifyInfluencersApprenticeAmbassadorNetworkPageSubHeadings();
 
         private InfluencersHubPage GoToInfluencersHubPage() => _stepsHelper.GoToInfluencersHubPage();
     }
