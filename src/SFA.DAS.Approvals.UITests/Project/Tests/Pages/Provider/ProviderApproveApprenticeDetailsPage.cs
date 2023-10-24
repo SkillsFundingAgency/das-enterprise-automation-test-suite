@@ -28,7 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By InsertText => By.CssSelector(".govuk-inset-text");
 
         private static By ApproveRadioButton => By.Id("radio-approve");
-        private static By ApproveRadioButtonLabel => By.CssSelector("label[for='radio-approve']");
 
         protected override string AccessibilityPageTitle => "Provider approve apprentice details";
 
@@ -215,7 +214,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             ValidateSimplifiedPaymentsPilotTagAndColumns(isDisplayed);
             return this;
         }
-        public void VerifyRadioOptionToApproveCohortIsNotDisplayed() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(ApproveRadioButtonLabel), "Unexpected behavior - Option to approve the Cohort is displayed");
+        public void VerifyRadioOptionToApproveCohortIsNotDisplayed() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(ApproveRadioButton), "Unexpected behavior - Option to approve the Cohort is displayed");
 
         private void VerifyProviderCanNotApprove()
         {
