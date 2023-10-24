@@ -9,8 +9,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         protected override string PageTitle => isRaaV2Employer ? "How many positions are there for this apprenticeship?" : "How many positions are available?";
 
         private static By NumberOfPositions => By.CssSelector("#NumberOfPositions");
-
+        
         public SubmitNoOfPositionsPage(ScenarioContext context) : base(context) { }
+
 
         public ChooseApprenticeshipLocationPage SubmitNoOfPositionsAndNavigateToChooseLocationPage()
         {
