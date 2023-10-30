@@ -45,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             if (_isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
 
-            EnterTrainingCostAndEmpReference();
+            EnterTrainingCostAndEmpReference(_isFlexiPaymentPilotLearner);
 
             bool rpl = CheckRPLCondition();
 
