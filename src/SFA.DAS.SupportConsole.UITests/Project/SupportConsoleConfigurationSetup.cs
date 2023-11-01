@@ -1,6 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-
-namespace SFA.DAS.SupportConsole.UITests.Project;
+﻿namespace SFA.DAS.SupportConsole.UITests.Project;
 
 [Binding]
 public class SupportConsoleConfigurationSetup
