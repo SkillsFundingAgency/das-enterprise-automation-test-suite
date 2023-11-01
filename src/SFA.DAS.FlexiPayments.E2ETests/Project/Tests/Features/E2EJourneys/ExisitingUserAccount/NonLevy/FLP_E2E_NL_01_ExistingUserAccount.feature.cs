@@ -112,14 +112,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "131",
                             "2004/05/01",
-                            "Today",
+                            "StartPreviousMonth",
                             "24",
                             "6000"});
                 table15.AddRow(new string[] {
                             "2",
                             "131",
                             "2004/05/01",
-                            "Today",
+                            "StartPreviousMonth",
                             "24",
                             "6000"});
 #line 8
@@ -146,19 +146,25 @@ this.ScenarioInitialize(scenarioInfo);
                             "is_pilot",
                             "price_episode_from_date_str",
                             "price_episode_to_date_str",
-                            "price_episode_cost"});
+                            "price_episode_cost",
+                            "training_price",
+                            "endpoint_assessment_price"});
                 table16.AddRow(new string[] {
                             "1",
                             "true",
-                            "Today",
+                            "StartPreviousMonth",
                             "Null",
-                            "6000"});
+                            "6000",
+                            "4800",
+                            "1200"});
                 table16.AddRow(new string[] {
                             "2",
                             "false",
-                            "StartCurrentMonth",
+                            "StartFirstDayOfPreviousMonth",
                             "Null",
-                            "6000"});
+                            "6000",
+                            "",
+                            ""});
 #line 17
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table16, "Then ");
 #line hidden
@@ -174,9 +180,9 @@ this.ScenarioInitialize(scenarioInfo);
                 table17.AddRow(new string[] {
                             "1",
                             "1",
-                            "Today",
-                            "StartCurrentMonth",
-                            "+24Months",
+                            "StartPreviousMonth",
+                            "StartFirstDayOfPreviousMonth",
+                            "+23Months",
                             "6000",
                             "1",
                             "18000"});
@@ -184,8 +190,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "2",
                             "2",
                             "Null",
-                            "StartCurrentMonth",
-                            "+24Months",
+                            "StartFirstDayOfPreviousMonth",
+                            "+23Months",
                             "6000",
                             "1",
                             "18000"});

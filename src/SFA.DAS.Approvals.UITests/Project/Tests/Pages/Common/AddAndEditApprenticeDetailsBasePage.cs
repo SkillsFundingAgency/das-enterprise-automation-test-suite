@@ -28,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public static By EndDateYear => By.Name("EndYear");
         private static By EmploymentEndMonth => By.Id("EmploymentEndMonth");
         private static By EmploymentEndYear => By.Id("EmploymentEndYear");
+        private static By TrainingPrice => By.Id("TrainingPrice");
+        private static By EndPointAssessmentPrice => By.Id("EndPointAssessmentPrice");
         private static By TrainingCost => By.Name("Cost");
         private static By EmploymentPrice => By.Id("EmploymentPrice");
         private static By EmployerReference => By.Id("Reference");
@@ -52,9 +54,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             });
         }
 
-        protected void EnterTrainingCostAndEmpReference()
+        protected void EnterTrainingCostAndEmpReference(bool isFlexiPaymentPilotLearner = false)
         {
-            formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingCost);
+            if (!isFlexiPaymentPilotLearner) formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingCost);
+            else
+            {
+                formCompletionHelper.EnterText(TrainingPrice, apprenticeDataHelper.TrainingPrice);
+                formCompletionHelper.EnterText(EndPointAssessmentPrice, apprenticeDataHelper.EndpointAssessmentPrice);
+            }
+
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
 
             if (tags.IsPortableFlexiJob())
