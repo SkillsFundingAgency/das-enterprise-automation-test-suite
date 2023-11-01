@@ -20,7 +20,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
             _configSection = new ConfigSection(_configurationRoot);
         }
 
-        [BeforeScenario(Order = 1)]
+        [BeforeScenario(Order = 0)]
         public void SetUpConfiguration()
         {
             _context.Set(_configSection);

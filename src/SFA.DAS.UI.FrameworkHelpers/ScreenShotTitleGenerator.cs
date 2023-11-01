@@ -1,17 +1,16 @@
 ﻿using System;
 
-namespace SFA.DAS.UI.FrameworkHelpers
+namespace SFA.DAS.UI.FrameworkHelpers;
+
+public class ScreenShotTitleGenerator
 {
-    public class ScreenShotTitleGenerator
-    {
-        private int _count;
+    private int _count;
 
-        public ScreenShotTitleGenerator(int start) => _count = start;
+    public ScreenShotTitleGenerator(int start) => _count = start;
 
-        public int GetCounter() => _count;
+    public int GetCounter() => _count;
 
-        public int GetNextCounter() => _count + 1;
+    public int GetNextCounter() => _count + 1;
 
-        public string GetTitle() => $"{++_count:D2}_{DateTime.Now:fffff}";
-    }
+    public string GetTitle() => $"{++_count:D2}_{DateTime.Now:fffff}";
 }

@@ -11,6 +11,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
@@ -46,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_objectContext, context.Get<DbConfig>());
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _homePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
@@ -319,14 +320,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"provider goes to its home page")]
-        public void WhenProviderGoesToItsHomePage()
-        {
-            var tabHelper = _context.Get<TabHelper>();
-            tabHelper.OpenNewTab();
-            tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
-
-            new ProviderHomePage(_context);
-        }
+        public void WhenProviderGoesToItsHomePage() => new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(true);
 
         [When(@"provider edits draft apprenitce start date which has an overlap")]
         public void WhenProviderEditsTheStartDate()

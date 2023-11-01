@@ -1,29 +1,25 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.TestDataExport.AfterScenario;
 
-namespace SFA.DAS.TestDataExport.AfterScenario
+[Binding]
+public class AfterStepReporting
 {
-    [Binding]
-    public class AfterStepReporting
+    private readonly ScenarioContext _context;
+
+    public AfterStepReporting(ScenarioContext context) => _context = context;
+
+    [AfterStep(Order = 10)]
+    public void AfterStep()
     {
-        private readonly ScenarioContext _context;
+        string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
 
-        public AfterStepReporting(ScenarioContext context) => _context = context;
+        var stepInfo = _context.StepContext.StepInfo;
 
-        [AfterStep(Order = 10)]
-        public void AfterStep()
-        {
-            string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
+        var objectContext = _context.Get<ObjectContext>();
 
-            var stepInfo = _context.StepContext.StepInfo;
+        var message = $"-> {StepOutcome()}: {stepInfo.StepDefinitionType} {stepInfo.Text}";
 
-            var objectContext = _context.Get<ObjectContext>();
+        objectContext.SetAfterStepInformation(message);
 
-            var message = $"-> {StepOutcome()}: {stepInfo.StepDefinitionType} {stepInfo.Text}";
-
-            objectContext.SetAfterStepInformation(message);
-
-            objectContext.SetDebugInformation(message);
-        }
+        objectContext.SetDebugInformation(message);
     }
 }

@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class CommitmentsSqlDataHelper : SqlDbHelper
     {
-        public CommitmentsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.CommitmentsDbConnectionString) { }
+        public CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
 
         public (string apprenticeshipid, string dob, string fname, string lname, string startDate, string trainningName, string uln, string ukprn) GetDataFromComtDb(string accountid)
         {
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
         }
 
-        public int GetApprenticeshipId(string uln) => Convert.ToInt32(TryGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
+        public int GetApprenticeshipId(string uln) => Convert.ToInt32(WaitAndGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
 
         public string GetNewcohortReference(string ULN)
         {
@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 WHERE cmt.Reference = '{reference}'
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query));
+            return Convert.ToString(WaitAndGetDataAsObject(query));
         }
 
         public int GetApprenticeshipCountFromULN(string ULN)
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             string query = $@"SELECT count(*) ID FROM Apprenticeship app
                                 WHERE app.ULN = '{ULN}'";
 
-            return Convert.ToInt32(TryGetDataAsObject(query));
+            return Convert.ToInt32(WaitAndGetDataAsObject(query));
         }
 
         public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 AND app.ContinuationOfId is null
                                 ORDER BY app.CreatedOn DESC";
 
-            return Convert.ToString(TryGetDataAsObject(query));
+            return Convert.ToString(WaitAndGetDataAsObject(query));
         }
 
         public List<decimal> GetExistingApprentices(string cohortRef)
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 WHERE cmt.reference = '{cohortRef}'                                
                                 ORDER BY app.CreatedOn DESC";
 
-            return GetListOfDataAsObject(query).Select(c => (decimal)c[0]).ToList();
+            return GetListOfData(query).Select(c => (decimal)c[0]).ToList();
         }
 
         public int? GetProvidersDraftAndReadyForReviewCohortsCount(string ukprn)
@@ -217,9 +217,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
         }
 
-        public (string isPilot, string fromDate, string toDate, string cost) GetFlexiPaymentsCommitmentData (string uln)
+        public (string isPilot, string trainingPrice, string endpointAssessmentPrice, string fromDate, string toDate, string cost) GetFlexiPaymentsCommitmentData (string uln)
         {
-            var query = $"SELECT app.IsOnFlexiPaymentPilot, pr.FromDate, pr.ToDate, pr.Cost " +
+            var query = $"SELECT app.IsOnFlexiPaymentPilot, app.TrainingPrice, app.EndPointAssessmentPrice, pr.FromDate, pr.ToDate, pr.Cost " +
                 $"FROM [dbo].[Apprenticeship] app " +
                 $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
                 $"WHERE ULN = '{uln}'";
@@ -228,7 +228,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             var data = GetData(query);
 
-            return (data[0], data[1], data[2], data[3]);
+            return (data[0], data[1], data[2], data[3], data[4], data[5]);
         }
 
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();

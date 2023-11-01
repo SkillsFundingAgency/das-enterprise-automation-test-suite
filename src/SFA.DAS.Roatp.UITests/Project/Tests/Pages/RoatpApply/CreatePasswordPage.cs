@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public CreatePasswordPage(ScenarioContext context) : base(context)
         {
-            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.Get<DbConfig>());
+            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(objectContext, context.Get<DbConfig>());
 
             VerifyPage(() =>
             {

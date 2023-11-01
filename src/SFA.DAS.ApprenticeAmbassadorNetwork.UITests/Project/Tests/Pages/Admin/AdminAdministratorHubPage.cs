@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
-public class AdminAdministratorHubPage : AanBasePage
+public class AdminAdministratorHubPage : AanAdminBasePage
 {
     protected override string PageTitle => "Administrator hub";
 

@@ -3,10 +3,12 @@
 public abstract class AanBasePage : VerifyBasePage
 {
     protected readonly AANDataHelpers aanDataHelpers;
+
     protected override By PageHeader => By.TagName("h1");
 
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
+    protected static string DateFormat => Configurator.IsVstsExecution ? "MM-dd-yyyy" : "dd-MM-yyyy";
 
     public AanBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
@@ -14,6 +16,5 @@ public abstract class AanBasePage : VerifyBasePage
 
         if (verifyPage) VerifyPage();
     }
-
 }
 

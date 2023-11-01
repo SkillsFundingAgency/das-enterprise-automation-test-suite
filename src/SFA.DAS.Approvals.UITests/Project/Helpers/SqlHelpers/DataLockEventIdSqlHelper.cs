@@ -1,18 +1,24 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    internal static class DataLockEventIdSqlHelper
+    internal class DataLockEventIdSqlHelper : SqlDbHelper
     {
-        static readonly object _object = new object();
+        public DataLockEventIdSqlHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString)
+        {
+                
+        }
 
-        internal static int GetMaxDataLockEventId(string connectionString)
+        static readonly object _object = new();
+
+        internal int GetMaxDataLockEventId()
         {
             lock (_object)
             {
-                List<object[]> responseData = SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]", connectionString);
+                List<object[]> responseData = GetListOfData($"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]");
 
                 return responseData.Count == 0 ? 0 : Convert.ToInt32(responseData[0][0]);
             }

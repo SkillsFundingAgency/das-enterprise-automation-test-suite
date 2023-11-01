@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _reservationsSqlDataHelper = new ReservationsSqlDataHelper(context.Get<DbConfig>());
+            _reservationsSqlDataHelper = new ReservationsSqlDataHelper(_objectContext, context.Get<DbConfig>());
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFundingHomePage().ClickReserveMoreFundingLink();

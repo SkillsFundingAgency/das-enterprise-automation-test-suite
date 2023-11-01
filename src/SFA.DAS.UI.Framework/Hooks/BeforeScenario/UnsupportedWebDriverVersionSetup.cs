@@ -3,37 +3,33 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 
-namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
+namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
+
+[Binding]
+public class UnsupportedWebDriverVersionSetup : WebDriverSetupBase
 {
-    [Binding]
-    public class UnsupportedWebDriverVersionSetup : WebDriverSetupBase
+    private static string _browser;
+
+    public UnsupportedWebDriverVersionSetup(ScenarioContext context) : base(context) { }
+
+    [BeforeScenario(Order = 5)]
+    public void SetupUnsupportedWebDriver()
     {
-        private static string _browser;
+        _browser = objectContext.GetBrowser();
 
-        public UnsupportedWebDriverVersionSetup(ScenarioContext context) : base(context) { }
-
-        [BeforeScenario(Order = 5)]
-        public void SetupUnsupportedWebDriver()
+        if (!_browser.IsCloudExecution() && frameworkConfig.IsVstsExecution)
         {
-            _browser = objectContext.GetBrowser();
-
-            if (!_browser.IsCloudExecution() && frameworkConfig.IsVstsExecution)
-            {
-                if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(true); RestartWebDriver(); }
-                else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
-                else if (IsUnsupportedIeDriverVersion()) { SetIeDriverLocation(true); RestartWebDriver(); }
-                else if (IsUnsupportedEdgeDriverVersion()) { SetEdgeDriverLocation(true); RestartWebDriver(); }
-            }
+            if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(true); RestartWebDriver(); }
+            else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
+            else if (IsUnsupportedEdgeDriverVersion()) { SetEdgeDriverLocation(true); RestartWebDriver(); }
         }
-
-        private bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && false; //objectContext.GetChromedriverVersion().StartsWith("100.0"); A temp fix whenever we have chromedriver issue.
-
-        private bool IsUnsupportedFirefoxDriverVersion() => _browser.IsFirefox() && false;
-
-        private bool IsUnsupportedIeDriverVersion() => _browser.IsIe() && false;
-
-        private bool IsUnsupportedEdgeDriverVersion() => _browser.IsEdge() && false;
-
-        private void RestartWebDriver() => new RestartWebDriverHelper(context).RestartWebDriver();
     }
+
+    private static bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && false; //objectContext.GetChromedriverVersion().StartsWith("100.0"); A temp fix whenever we have chromedriver issue.
+
+    private static bool IsUnsupportedFirefoxDriverVersion() => _browser.IsFirefox() && false;
+
+    private static bool IsUnsupportedEdgeDriverVersion() => _browser.IsEdge() && false;
+
+    private void RestartWebDriver() => new RestartWebDriverHelper(context).RestartWebDriver();
 }

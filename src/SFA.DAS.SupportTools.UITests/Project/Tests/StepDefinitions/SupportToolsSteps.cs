@@ -162,7 +162,7 @@ public class SupportToolsSteps
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
 
-        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_context.Get<DbConfig>());
+        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_objectContext, _context.Get<DbConfig>());
         int i = 0;
         foreach (var uln in UlnList)
         {

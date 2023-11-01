@@ -1,7 +1,6 @@
-﻿namespace SFA.DAS.UI.Framework.TestSupport
+﻿namespace SFA.DAS.UI.Framework.TestSupport;
+
+public static class UrlKeyHelper
 {
-    public static class UrlKeyHelper
-    {
-        public static string AuthUrlKey => "AuthUrlKey";
-    }
+    public static string AuthUrlKey => "AuthUrlKey";
 }

@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class RofjaaDbSqlHelper : SqlDbHelper
     {
-        public RofjaaDbSqlHelper(DbConfig dBConfig) : base(dBConfig.RofjaaDbConnectionString){}
+        public RofjaaDbSqlHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.RofjaaDbConnectionString) {}
 
         public string GetAccountLegalEntityId(string removalReason) => GetDataAsString($"SELECT LegalEntityId FROM Agency WHERE RemovalReason = '{removalReason}'");
 

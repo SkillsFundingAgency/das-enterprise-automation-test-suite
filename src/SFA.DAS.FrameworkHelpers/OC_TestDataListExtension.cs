@@ -1,11 +1,6 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataCleanup;
-using System;
-using System.Collections.Generic;
-
-namespace SFA.DAS.TestDataExport
+﻿namespace SFA.DAS.FrameworkHelpers
 {
-    public static class ObjectContextExtension
+    public static class OC_TestDataListExtension
     {
         #region Constants
         private const string AfterStepInformations = "afterstepinformations";
@@ -13,9 +8,11 @@ namespace SFA.DAS.TestDataExport
         private const string DebugInformations = "testdebuginformations";
         private const string AccessibilityInformations = "accessibilityinformations";
         private const string AccessibilityPageTitle = "accessibilitypagetitle";
+        private const string RetryInformations = "testretryinformations";
+
         #endregion
 
-        internal static void SetTestDataList(this ObjectContext objectContext)
+        public static void SetTestDataList(this ObjectContext objectContext)
         {
             objectContext.SetDebugInformations();
             objectContext.SetAccessibilityInformations();
@@ -23,13 +20,25 @@ namespace SFA.DAS.TestDataExport
             objectContext.SetAfterStepInformations();
             objectContext.SetAfterScenarioExceptions();
             objectContext.SetAfterScenarioTestDataTearDown();
+            objectContext.SetRetryInformations();
         }
+
+
+
+        #region RetryInformations
+
+        private static void SetRetryInformations(this ObjectContext objectContext) => objectContext.Set(RetryInformations, new FrameworkList<string>() { $"{string.Empty}" });
+
+        public static void SetRetryInformation(this ObjectContext objectContext, string value) => objectContext.GetRetryInformations().Add($"{value}");
+
+        private static FrameworkList<string> GetRetryInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(RetryInformations);
+        #endregion
 
         #region AfterStepInformations
 
         private static void SetAfterStepInformations(this ObjectContext objectContext) => objectContext.Set(AfterStepInformations, new List<string>() { $"{string.Empty}" });
 
-        internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
+        public static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
         private static List<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<List<string>>(AfterStepInformations);
         #endregion
@@ -48,7 +57,7 @@ namespace SFA.DAS.TestDataExport
         private static void SetDebugInformations(this ObjectContext objectContext) => objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
         public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> {DateTime.UtcNow:dd/MM HH:mm:ss}: {value}");
-        
+
         private static FrameworkList<string> GetDebugInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(DebugInformations);
         #endregion
 

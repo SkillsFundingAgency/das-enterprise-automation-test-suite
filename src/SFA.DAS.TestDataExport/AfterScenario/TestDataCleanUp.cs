@@ -1,38 +1,31 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
-using System.Collections.Generic;
+﻿using SFA.DAS.TestDataCleanup.Project.Helpers;
 using SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
-using System.Linq;
-using SFA.DAS.TestDataCleanup;
-using SFA.DAS.TestDataExport.Helper;
-using SFA.DAS.FrameworkHelpers;
 
-namespace SFA.DAS.TestDataExport.AfterScenario
+namespace SFA.DAS.TestDataExport.AfterScenario;
+
+[Binding]
+public class TestDataCleanUp
 {
-    [Binding]
-    public class TestDataCleanUp
+    private readonly ScenarioContext _context;
+
+    public TestDataCleanUp(ScenarioContext context) => _context = context;
+
+    [AfterScenario(Order = 98)]
+    public void CleanUpTestData()
     {
-        private readonly ScenarioContext _context;
-
-        public TestDataCleanUp(ScenarioContext context) => _context = context;
-
-        [AfterScenario(Order = 98)]
-        public void CleanUpTestData()
+        if (_context.TestError == null && _context.ScenarioInfo.Tags.Contains("regression"))
         {
-            if (_context.TestError == null && _context.ScenarioInfo.Tags.Contains("regression"))
+            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
             {
-                _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
-                {
-                    var dbNameToTearDown = _context.Get<ObjectContext>().GetDbNameToTearDown();
+                var dbNameToTearDown = _context.Get<ObjectContext>().GetDbNameToTearDown();
 
-                    if (dbNameToTearDown.Count > 0)
-                    {
-                        if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails)) 
-                        
-                            new TestdataCleanupStepsHelper(_context).CleanUpAllDbTestData(emails);
-                    }
-                });
-            }
+                if (dbNameToTearDown.Count > 0)
+                {
+                    if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails))
+
+                        new TestdataCleanupStepsHelper(_context).CleanUpAllDbTestData(emails);
+                }
+            });
         }
     }
 }
