@@ -6,10 +6,10 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.15.0" />
+    <PackageReference Include="AutoFixture" Version="4.18.0" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-    <PackageReference Include="ExcelMapper" Version="5.2.314" />
-    <PackageReference Include="FluentAssertions" Version="6.6.0" />
+    <PackageReference Include="ExcelMapper" Version="5.2.*" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="NServiceBus.UniformSession" Version="2.1.0" />
@@ -18,12 +18,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
-    <PackageReference Include="SFA.DAS.Api.Common" Version="1.0.8" />
+    <PackageReference Include="SFA.DAS.Api.Common" Version="1.0.28" />
     <PackageReference Include="SFA.DAS.Common.Domain" Version="1.4.283" />
-    <PackageReference Include="SFA.DAS.EmployerIncentives.Messages" Version="0.1.219-EI-1584-employment-check-receive-result.9-prerelease" />
-    <PackageReference Include="SFA.DAS.EmploymentCheck.Types" Version="1.1.72" />
+    <PackageReference Include="SFA.DAS.EmployerIncentives.Messages" Version="0.1.313" />
+    <PackageReference Include="SFA.DAS.EmploymentCheck.Types" Version="1.1.92" />
     <PackageReference Include="SFA.DAS.NServiceBus" Version="17.0.49" />
-	<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.8.1" />
+	<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.16.2" />
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>

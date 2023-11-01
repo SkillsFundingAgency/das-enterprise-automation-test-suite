@@ -25,7 +25,7 @@ public static class BrowserStackSetup
     {
         CheckBrowserStackLogin(options);
 
-        var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), GetDriverOptions(options));
+        var remoteWebDriver = new RemoteWebDriver(new Uri(BrowserStackSetting.ServerName), GetDriverOptions(options));
 
         if (remoteWebDriver is IAllowsFileDetection allowsDetection) allowsDetection.FileDetector = new LocalFileDetector();
 
@@ -65,7 +65,7 @@ public static class BrowserStackSetup
             { "sessionName", options.Name },
             { "debug", "true" },
             { "networkLogs", options.EnableNetworkLogs },
-            { "timezone", options.TimeZone },
+            { "timezone", BrowserStackSetting.TimeZone },
             { "consoleLogs", "info" },
             { "idleTimeout", "300" },
             { "autoWait", "35" },
