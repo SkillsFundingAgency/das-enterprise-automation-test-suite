@@ -9,6 +9,7 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using SFA.DAS.IdamsLogin.Service.Project;
 
 namespace SFA.DAS.EsfaAdmin.Service.Project;
 

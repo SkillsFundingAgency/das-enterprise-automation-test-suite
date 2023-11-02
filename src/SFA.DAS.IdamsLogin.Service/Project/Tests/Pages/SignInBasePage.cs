@@ -16,6 +16,11 @@ public abstract class SignInBasePage : IdamsLoginBasePage
 
     protected SignInBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
+    public void SubmitValidLoginDetails(DfeAdminConfig dfeAdminConfig)
+    {
+        SubmitValidLoginDetails(dfeAdminConfig.AdminUserName, dfeAdminConfig.AdminPassword);
+    }
+
     public void SubmitValidLoginDetails(string username, string password)
     {
         formCompletionHelper.EnterText(UsernameField, username);

@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.IdamsLogin.Service.Project;
+
+namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 public class EsfaAdminLoginStepsHelper
 {

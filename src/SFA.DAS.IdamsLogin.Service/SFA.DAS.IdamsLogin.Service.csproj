@@ -11,4 +11,10 @@
     <ProjectReference Include="..\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.AdminConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
