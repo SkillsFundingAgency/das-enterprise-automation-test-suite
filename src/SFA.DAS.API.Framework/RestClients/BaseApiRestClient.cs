@@ -1,4 +1,5 @@
-﻿using SFA.DAS.API.FrameworkHelpers;
+﻿using RestSharp;
+using SFA.DAS.API.FrameworkHelpers;
 
 namespace SFA.DAS.API.Framework.RestClients;
 
@@ -14,8 +15,12 @@ public abstract class BaseApiRestClient
     {
         this.objectContext = objectContext;
 
-        CreateApiClient();
+        restClient = new(GetClientOptions());
+
+        restRequest = new RestRequest();
     }
+
+    protected RestClientOptions GetClientOptions() => new(ApiBaseUrl);
 
     protected abstract string ApiBaseUrl { get; }
 
@@ -68,12 +73,5 @@ public abstract class BaseApiRestClient
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
             else restRequest.AddJsonBody(payload);
         }
-    }
-
-    private void CreateApiClient()
-    {
-        restClient = new RestClient(ApiBaseUrl);
-
-        restRequest = new RestRequest();
     }
 }

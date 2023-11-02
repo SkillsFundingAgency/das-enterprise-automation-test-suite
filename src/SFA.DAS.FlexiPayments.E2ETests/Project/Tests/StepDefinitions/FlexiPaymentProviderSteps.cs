@@ -30,6 +30,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Given(@"provider logs in to review the cohort")]
+        [When(@"provider logs in to review the cohort")]
         public void GivenProviderLogsInToReviewTheCohort() => _providerApproveApprenticeDetailsPage = _providerCommonStepsHelper.CurrentCohortDetails();
 
         [When(@"the Provider approves the cohort")]
@@ -47,12 +48,21 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"the provider adds Ulns and Opt the learners into the pilot")]
         public void ThenTheProviderAddsUlnsAndOptTheLearnersIntoThePilot() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditFlexiPilotApprentice(true);
 
+
         [Given(@"the provider adds Uln and Opt learner (.*) into the pilot")]
         public void ProviderAddsUlnAndOptLearnerIntoThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, true);
+
+        [Given(@"Simplified Payments Pilot tags and additional columns are displayed on Approve apprentice details page")]
+        public void GivenSimplifiedPaymentsPilotTagsAndAdditionalColumnsAreDisplayedOnApproveApprenticeDetailsPage() => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTagAndColumns(true);
+
+        [Given(@"Simplified Payments Pilot tags and additional columns are NOT displayed on Approve apprentice details page")]
+        public void GivenSimplifiedPaymentsPilotTagsAndAdditionalColumnsAreNOTDisplayedOnApproveApprenticeDetailsPage() => _providerApproveApprenticeDetailsPage.VerifySimplifiedPaymentsPilotTagAndColumns(false);
+
 
         [Given(@"the provider adds Uln and Opt learner (.*) out of the pilot")]
         public void ProviderAddsUlnAndOptLearnerOutOfThePilot(int learnerNumber) => _providerEditStepsHelper.EditSpecificFlexiPaymentsPilotApprentice(_providerApproveApprenticeDetailsPage, learnerNumber, false);
 
+        [Given(@"pilot provider approves the cohort")]
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
 
@@ -82,6 +92,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateFlexiPaymentDataLockMessageDisplayed(action == "can");
         }
+
+        [Then(@"validate Training Price and EPA price have been reset with blue warning message displayed")]
+        public void ThenValidateTrainingPriceAndEPAPriceHaveBeenResetWithBlueWarningMessageDisplayed() => _providerApproveApprenticeDetailsPage.ValidateTrainingPriceAndEPAValuesHaveBeenReset();
+
+        [Then(@"verify training provider cannot approve the cohort")]
+        public void ThenValidateCohortCannotBeApproved() => _providerApproveApprenticeDetailsPage.VerifyRadioOptionToApproveCohortIsNotDisplayed();
 
         internal void SetApprenticeDetailsInContext(int learnerNumber) => _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(learnerNumber - 1);
     }

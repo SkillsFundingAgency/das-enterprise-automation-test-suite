@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.IdamsLogin.Service.Project.Helpers;
@@ -207,6 +208,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             VerifyProviderCanNotApprove();
         }
+
+        public ProviderApproveApprenticeDetailsPage VerifySimplifiedPaymentsPilotTagAndColumns(bool isDisplayed)
+        {
+            ValidateSimplifiedPaymentsPilotTagAndColumns(isDisplayed);
+            return this;
+        }
+        public void VerifyRadioOptionToApproveCohortIsNotDisplayed() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(ApproveRadioButton), "Unexpected behavior - Option to approve the Cohort is displayed");
 
         private void VerifyProviderCanNotApprove()
         {

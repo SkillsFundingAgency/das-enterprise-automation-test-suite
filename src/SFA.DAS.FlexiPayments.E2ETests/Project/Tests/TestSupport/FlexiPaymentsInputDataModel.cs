@@ -10,8 +10,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         public int ULNKey { get; set; }
         public string TrainingCode { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string StartDateStr { set { StartDate = value == "Today" ? DataHelpers.CalculateStartDate() : DataHelpers.TryParse(value); } }
+        public string StartDateStr { set { StartDate = value == "Today" ? DataHelpers.CalculateStartDate()
+                    : value == "StartPreviousMonth" ? DataHelpers.CalculateStartDate(true)
+                    : DataHelpers.TryParse(value); } }
         public int DurationInMonths { get; set; }
+        public string TrainingPrice { get; set; }
+        public string EndpointAssessmentPrice { get ; set;}
         public string AgreedPrice { get; set; }
         public bool PilotStatus { get; set; } = false;
     }
