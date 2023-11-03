@@ -1,4 +1,5 @@
-﻿namespace SFA.DAS.SupportTools.UITests.Project.Helpers;
+﻿
+namespace SFA.DAS.SupportTools.UITests.Project.Helpers;
 
 public class StepsHelper
 {
@@ -6,7 +7,7 @@ public class StepsHelper
 
     public StepsHelper(ScenarioContext context) => _context = context;
 
-    public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolsSCPUser>(), reLogin);
+    public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolScpUser>(), reLogin);
 
     public ToolSupportHomePage ValidUserLogsinToSupportSCSTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolsSCSUser>(), reLogin);
 

@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project;
@@ -19,7 +19,7 @@ public class ProviderConfigurationSetup
     {
         _context = context;
         _tags = context.ScenarioInfo.Tags;
-        _configSection  = _context.Get<IConfigSection>();
+        _configSection = _context.Get<IConfigSection>();
     }
 
     [BeforeScenario(Order = 2)]
@@ -44,7 +44,7 @@ public class ProviderConfigurationSetup
         _context.SetNonEasLoginUser(_configSection.GetConfigSection<ProviderContributorWithApprovalUser>());
     }
 
-    private T SetProviderCreds<T>() where T : ProviderConfig => SetProviderCredsHelper.SetProviderCreds(_context.Get<FrameworkList<DfeProvider>>(), _configSection.GetConfigSection<T>());
+    private T SetProviderCreds<T>() where T : ProviderConfig => SetProviderCredsHelper.SetProviderCreds(_context.Get<FrameworkList<DfeProviderUsers>>(), _configSection.GetConfigSection<T>());
 
     private void SetProviderConfig()
     {

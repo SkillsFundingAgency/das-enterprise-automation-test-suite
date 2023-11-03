@@ -1,7 +1,8 @@
-﻿using Polly;
-using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 using SFA.DAS.IdamsLogin.Service.Project;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
 
@@ -16,12 +17,12 @@ public class Admin_Login_Steps : Admin_BaseSteps
     }
 
     [Given(@"an admin logs into the AAN portal")]
-    public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetAanEsfaAdminConfig<AanAdminConfig>());
+    public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetUser<AanAdminUser>());
 
     [Given(@"a super admin logs into the AAN portal")]
     public void ASuperAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetAanEsfaSuperAdminConfig<AanEsfaSuperAdminConfig>());
 
     private void SubmitValidLoginDetails(EsfaAdminConfig config) => _esfaAdminLoginStepsHelper.SubmitValidLoginDetails(config);
 
-    private void SubmitValidLoginDetails(DfeAdminConfig config) => new DfeSignInPage(context).SubmitValidLoginDetails(config);
+    private void SubmitValidLoginDetails(DfeAdminUser user) => new DfeSignInPage(context).SubmitValidLoginDetails(user);
 }

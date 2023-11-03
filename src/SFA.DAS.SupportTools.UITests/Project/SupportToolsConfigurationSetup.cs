@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.SupportTools.UITests.Project;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+
+namespace SFA.DAS.SupportTools.UITests.Project;
 
 [Binding]
 public class SupportToolsConfigurationSetup
@@ -14,8 +16,8 @@ public class SupportToolsConfigurationSetup
 
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<SupportToolsSCPUser>(),
             configSection.GetConfigSection<SupportToolsSCSUser>(),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new SupportToolScpUser())
         });
     }
 }

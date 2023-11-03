@@ -1,12 +1,10 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Linq;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.IdamsLogin.Service.Project.Helpers;
 
 public static class SetDfeAdminCredsHelper
 {
-    public static T SetDfeAdminCreds<T>(FrameworkList<DfeAdmin> dfeAdmins, T t) where T : DfeAdminConfig
+    public static T SetDfeAdminCreds<T>(FrameworkList<DfeAdminUsers> dfeAdmins, T t) where T : DfeAdminUser
     {
         if (string.IsNullOrEmpty(t.AdminServiceName)) return t;
 
@@ -14,16 +12,16 @@ public static class SetDfeAdminCredsHelper
         {
             FrameworkList<string> message = new() { Environment.NewLine };
 
-            foreach (var item in dfeAdmins) message.Add($"{item.UserId} [{string.Join(",", item.Listofservices)}]");
+            foreach (var item in dfeAdmins) message.Add($"{item.Username} [{string.Join(",", item.Listofservices)}]");
 
             throw new Exception($"Service '{t.AdminServiceName}' is not found in list of dfeadmins {message}");
         }
 
         var adminCreds = dfeAdmins.Single(x => x.Listofservices.Select(y => y.ToString()).Contains(t.AdminServiceName));
 
-        t.AdminUserName = adminCreds.UserId;
+        t.Username = adminCreds.Username;
 
-        t.AdminPassword = adminCreds.Password;
+        t.Password = adminCreds.Password;
 
         return t;
     }

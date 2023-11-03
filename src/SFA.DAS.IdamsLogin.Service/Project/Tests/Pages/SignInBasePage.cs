@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+
+namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
 public abstract class SignInBasePage : IdamsLoginBasePage
 {
@@ -16,9 +18,9 @@ public abstract class SignInBasePage : IdamsLoginBasePage
 
     protected SignInBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
-    public void SubmitValidLoginDetails(DfeAdminConfig dfeAdminConfig)
+    public void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser)
     {
-        SubmitValidLoginDetails(dfeAdminConfig.AdminUserName, dfeAdminConfig.AdminPassword);
+        SubmitValidLoginDetails(dfeAdminUser.Username, dfeAdminUser.Password);
     }
 
     public void SubmitValidLoginDetails(string username, string password)

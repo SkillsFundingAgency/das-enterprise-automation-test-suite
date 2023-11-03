@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -21,16 +21,16 @@ public class DfeProviderConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
-        var dfeProviderList = configSection.GetConfigSection<List<DfeProvider>>(DfeProvidersConfig);
+        var dfeProviderList = configSection.GetConfigSection<List<DfeProviderUsers>>(DfeProvidersConfig);
 
         if (Configurator.IsVstsExecution)
         {
             var dfeProviderList1 = configSection.GetConfigSection<string>(DfeProvidersConfig);
 
-            dfeProviderList = JsonConvert.DeserializeObject<List<DfeProvider>>(dfeProviderList1);
+            dfeProviderList = JsonConvert.DeserializeObject<List<DfeProviderUsers>>(dfeProviderList1);
         }
 
-        var dfeframeworkList = new FrameworkList<DfeProvider>();
+        var dfeframeworkList = new FrameworkList<DfeProviderUsers>();
 
         dfeframeworkList.AddRange(dfeProviderList);
 

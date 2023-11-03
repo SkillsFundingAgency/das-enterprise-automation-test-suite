@@ -20,3 +20,4 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using TechTalk.SpecFlow;
 global using TechTalk.SpecFlow.Assist;
+global using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;

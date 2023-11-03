@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.IdamsLogin.Service.Project;
 using SFA.DAS.IdamsLogin.Service.Project.Helpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System.Collections.Generic;
@@ -30,13 +31,9 @@ public class AANConfigurationSetup
             configSection.GetConfigSection<AanApprenticeUser>(),
             configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
             configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AanAdminUser())
         });
-
-        var aanAdmin = SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdmin>>(), new AanAdminConfig());
-
-        _context.SetAanEsfaAdminConfig(aanAdmin);
 
         _context.SetAanEsfaSuperAdminConfig(configSection.GetConfigSection<AanEsfaSuperAdminConfig>());
     }
-
 }

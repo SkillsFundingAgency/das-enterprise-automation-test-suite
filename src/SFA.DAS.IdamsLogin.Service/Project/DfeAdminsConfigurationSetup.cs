@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.IdamsLogin.Service.Project;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+
+namespace SFA.DAS.IdamsLogin.Service.Project;
 
 [Binding]
 public class DfeAdminsConfigurationSetup
@@ -10,5 +12,5 @@ public class DfeAdminsConfigurationSetup
     public DfeAdminsConfigurationSetup(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 1)]
-    public void SetUpDfeAdminsConfiguration() => new DfeSignConfigurationSetupHelper(_context).SetUpDfeSignConfiguration<DfeAdmin>(DfeAdminsConfig);
+    public void SetUpDfeAdminsConfiguration() => new DfeSignConfigurationSetupHelper(_context).SetUpDfeSignConfiguration<DfeAdminUsers>(DfeAdminsConfig);
 }
