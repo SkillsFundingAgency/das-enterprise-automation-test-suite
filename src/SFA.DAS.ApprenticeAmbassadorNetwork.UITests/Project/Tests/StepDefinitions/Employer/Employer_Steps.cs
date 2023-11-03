@@ -12,7 +12,7 @@ public class Employer_Steps : Employer_BaseSteps
 
     private Employer_CheckTheInformationPage employer_CheckTheInformationPage;
 
-    private ApplicationSubmitted_EmployerPage applicationSubmitted_EmployerPage;
+    private RegistrationComplete_EmployerPage applicationSubmitted_EmployerPage;
 
     protected readonly AANSqlHelper aANSqlHelper;
 
