@@ -12,7 +12,6 @@ public class AANConfigurationSetup
 {
     private readonly ScenarioContext _context;
 
-
     public AANConfigurationSetup(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 2)]
@@ -26,12 +25,16 @@ public class AANConfigurationSetup
             configSection.GetConfigSection<AanEmployerOnBoardedUser>()
         });
 
+        var aanAdminUser = SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AanAdminUser());
+
+        _context.Get<ObjectContext>().SetDebugInformation($"{aanAdminUser}");
+
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
             configSection.GetConfigSection<AanApprenticeUser>(),
             configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
             configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
-            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AanAdminUser())
+            aanAdminUser
         });
 
         _context.SetAanEsfaSuperAdminConfig(configSection.GetConfigSection<AanEsfaSuperAdminConfig>());
