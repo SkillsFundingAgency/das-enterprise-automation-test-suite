@@ -1,5 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers;
 
@@ -54,10 +53,10 @@ public class StepsHelper
 
     private void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
-    private SearchHomePage LoginToSupportConsole(NonEasAccountUser loginUser)
+    private SearchHomePage LoginToSupportConsole(DfeAdminUser loginUser)
     {
-        new LoginToAccess1StaffHelper(_context).LoginToAccess1Staff();
+        new DfeSignInPage(_context).SubmitValidLoginDetails(loginUser);
 
-        return new SignInPage(_context).SignInWithValidDetails(loginUser);
+        return new(_context);
     }
 }

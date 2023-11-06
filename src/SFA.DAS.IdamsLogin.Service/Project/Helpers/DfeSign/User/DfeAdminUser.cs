@@ -14,6 +14,16 @@ public class AanAdminUser : DfeAdminUser
     public AanAdminUser() : base("aanadmin") { }
 }
 
+public class AanSuperAdminUser : DfeAdminUser
+{
+    public AanSuperAdminUser() : base("aansuperadmin") { }
+}
+
+public class SupportConsoleTier1User : DfeAdminUser 
+{
+    public SupportConsoleTier1User() : base("supportconsoletier1") { }
+}
+
 public class SupportConsoleTier2User : DfeAdminUser
 {
     public SupportConsoleTier2User() : base("supportconsoletier2") { }
@@ -22,4 +32,9 @@ public class SupportConsoleTier2User : DfeAdminUser
 public class SupportToolScpUser : DfeAdminUser
 {
     public SupportToolScpUser() : base("supporttoolscpuser") { }
+}
+
+public class SupportToolScsUser : DfeAdminUser 
+{
+    public SupportToolScsUser() : base("supporttoolscsuser") { }
 }

@@ -17,10 +17,12 @@ public class SupportConsoleConfigurationSetup
 
         _context.SetSupportConsoleConfig(configSection.GetConfigSection<SupportConsoleConfig>());
 
+        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
+
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<SupportConsoleTier1User>(),
-            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new SupportConsoleTier2User())
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new SupportConsoleTier1User()),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new SupportConsoleTier2User())
         });
     }
 }

@@ -9,7 +9,7 @@ public class StepsHelper
 
     public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolScpUser>(), reLogin);
 
-    public ToolSupportHomePage ValidUserLogsinToSupportSCSTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolsSCSUser>(), reLogin);
+    public ToolSupportHomePage ValidUserLogsinToSupportSCSTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolScsUser>(), reLogin);
 
     private ToolSupportHomePage LoginToSupportTools(NonEasAccountUser loginUser, bool reLogin)
     {

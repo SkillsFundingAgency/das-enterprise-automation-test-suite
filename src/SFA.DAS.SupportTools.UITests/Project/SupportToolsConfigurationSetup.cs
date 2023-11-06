@@ -12,12 +12,12 @@ public class SupportToolsConfigurationSetup
     [BeforeScenario(Order = 2)]
     public void SetUpSupportConsoleProjectConfiguration()
     {
-        var configSection = _context.Get<IConfigSection>();
+        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
 
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<SupportToolsSCSUser>(),
-            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new SupportToolScpUser())
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new SupportToolScsUser()),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new SupportToolScpUser())
         });
     }
 }

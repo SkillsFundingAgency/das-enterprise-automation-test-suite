@@ -22,13 +22,6 @@ public class EsfaAdminLoginStepsHelper
         Login(username, password);
     }
 
-    public void SubmitValidLoginDetails(EsfaAdminConfig esfaAdminConfig)
-    {
-        new PreProdDIGBEADFSPage(_context).LoginToAccess1Staff();
-
-        Login(esfaAdminConfig.AdminUserName, esfaAdminConfig.AdminPassword);
-    }
-
     private void Login(string username, string password)
     {
         new EsfaSignInPage(_context).SubmitValidLoginDetails(username, password);

@@ -20,9 +20,7 @@ public class Admin_Login_Steps : Admin_BaseSteps
     public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetUser<AanAdminUser>());
 
     [Given(@"a super admin logs into the AAN portal")]
-    public void ASuperAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetAanEsfaSuperAdminConfig<AanEsfaSuperAdminConfig>());
-
-    private void SubmitValidLoginDetails(EsfaAdminConfig config) => _esfaAdminLoginStepsHelper.SubmitValidLoginDetails(config);
+    public void ASuperAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetUser<AanSuperAdminUser>());
 
     private void SubmitValidLoginDetails(DfeAdminUser user) => new DfeSignInPage(context).SubmitValidLoginDetails(user);
 }

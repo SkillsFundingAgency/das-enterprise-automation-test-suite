@@ -1,5 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers;
 using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -25,18 +24,15 @@ public class AANConfigurationSetup
             configSection.GetConfigSection<AanEmployerOnBoardedUser>()
         });
 
-        var aanAdminUser = SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AanAdminUser());
-
-        _context.Get<ObjectContext>().SetDebugInformation($"{aanAdminUser}");
+        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
 
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
             configSection.GetConfigSection<AanApprenticeUser>(),
             configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
             configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
-            aanAdminUser
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanAdminUser()),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanSuperAdminUser())
         });
-
-        _context.SetAanEsfaSuperAdminConfig(configSection.GetConfigSection<AanEsfaSuperAdminConfig>());
     }
 }
