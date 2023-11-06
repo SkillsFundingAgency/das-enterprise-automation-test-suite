@@ -11,9 +11,4 @@ public abstract class IdamsLoginBasePage : VerifyBasePage
 
     public void LoginToPireanPreprod() => formCompletionHelper.Click(PireanPreprod);
 
-    protected void ClickIfPirenIsDisplayed()
-    {
-        if (pageInteractionHelper.IsElementDisplayed(PireanPreprod))
-            LoginToPireanPreprod();
-    }
 }

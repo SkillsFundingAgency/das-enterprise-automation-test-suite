@@ -14,6 +14,13 @@ public class EsfaAdminServiceStartPage : IdamsLoginBasePage
         return new PreProdDIGBEADFSPage(context);
     }
 
+    public DfeSignInPage StartNowAndGoToDfeSignPage()
+    {
+        ClickStartNowButton();
+
+        return new DfeSignInPage(context);
+    }
+
     public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowCssSelector);
 
 }

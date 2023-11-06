@@ -11,10 +11,23 @@ public class StepsHelper
 
     public ToolSupportHomePage ValidUserLogsinToSupportSCSTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolScsUser>(), reLogin);
 
-    private ToolSupportHomePage LoginToSupportTools(NonEasAccountUser loginUser, bool reLogin)
+    private ToolSupportHomePage LoginToSupportTools(DfeAdminUser loginUser, bool reLogin)
     {
-        if (new LoginToAccess1StaffHelper(_context).LoginToAccess1Staff(UrlConfig.SupportTools_BaseUrl, reLogin)) new ToolsSignInPage(_context).SignIntoToolSupportWithValidDetails(loginUser);
+        if (LoginToDfeSignIn(reLogin)) new DfeSignInPage(_context).SubmitValidLoginDetails(loginUser);
 
         return new ToolSupportHomePage(_context);
+    }
+
+    public bool LoginToDfeSignIn(bool reLogin)
+    {
+        if (reLogin) _context.Get<TabHelper>().OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
+
+        var startNowPage = new SupportToolLandingPage(_context);
+
+        if (startNowPage.IsPageDisplayed()) startNowPage.ClickStartNowButton();
+
+        var dfePage = new CheckDfeSignInPage(_context);
+
+        return dfePage.IsPageDisplayed();
     }
 }

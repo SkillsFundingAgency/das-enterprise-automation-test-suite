@@ -1,12 +1,12 @@
-﻿namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
 
-public class CheckStartNowButtonPage : CheckPageUsingShorterTimeOut
+public class SupportToolLandingPage : CheckPageUsingShorterTimeOut
 {
     protected override string PageTitle => "Apprenticeship service employer support tool";
 
     protected override By Identifier => IdamsPageSelector.StartNowButton;
 
-    public CheckStartNowButtonPage(ScenarioContext context) : base(context) { }
+    public SupportToolLandingPage(ScenarioContext context) : base(context) { }
 
     public void ClickStartNowButton() => formCompletionHelper.Click(Identifier);
 }

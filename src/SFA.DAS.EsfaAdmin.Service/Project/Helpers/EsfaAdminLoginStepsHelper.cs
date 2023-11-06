@@ -19,11 +19,6 @@ public class EsfaAdminLoginStepsHelper
     {
         new EsfaAdminServiceStartPage(_context).StartNow().LoginToAccess1Staff();
 
-        Login(username, password);
-    }
-
-    private void Login(string username, string password)
-    {
         new EsfaSignInPage(_context).SubmitValidLoginDetails(username, password);
 
         _context.Get<ObjectContext>().SetEsfaAdminLoginCreds((username, password));

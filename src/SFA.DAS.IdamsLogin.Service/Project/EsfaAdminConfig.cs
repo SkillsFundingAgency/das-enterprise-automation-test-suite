@@ -6,4 +6,3 @@ public class EsfaAdminConfig
     public string AdminPassword { get; set; }
 }
 
-public class AanEsfaSuperAdminConfig : EsfaAdminConfig { }

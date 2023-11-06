@@ -9,6 +9,11 @@ public abstract class DfeAdminUser : NonEasAccountUser
     public override string ToString() => $"{base.ToString()}, ServiceName:'{AdminServiceName}'";
 }
 
+public class EsfaAdminUser : DfeAdminUser
+{
+    public EsfaAdminUser() : base("esfaadmin") { }
+}
+
 public class AanAdminUser : DfeAdminUser
 {
     public AanAdminUser() : base("aanadmin") { }
