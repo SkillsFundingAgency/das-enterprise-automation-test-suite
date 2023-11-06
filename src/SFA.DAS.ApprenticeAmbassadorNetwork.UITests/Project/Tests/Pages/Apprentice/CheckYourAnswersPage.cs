@@ -2,7 +2,7 @@
 {
     public class CheckYourAnswersPage : AanBasePage
     {
-        protected override string PageTitle => "Check the information you have provided before submitting your application";
+        protected override string PageTitle => "Check the information you have provided before completing your registration";
         private static By ChangelinkEmployer => By.CssSelector("a[href='/onboarding/employer-search']");
         private static By ChangelinkJobtitle => By.CssSelector("a[href='/onboarding/current-job-title']");
         private static By ChangelinkRegions => By.CssSelector("a[href='/onboarding/regions']");
@@ -35,10 +35,10 @@
             formCompletionHelper.ClickElement(ChangelinkPreviousEngagement);
             return new EngagedWithAmbassadorPage(context);
         }
-        public ApplicationSubmittedPage AcceptAndSubmitApplication()
+        public RegistrationCompletePage AcceptAndSubmitApplication()
         {
             Continue();
-            return new ApplicationSubmittedPage(context);
+            return new RegistrationCompletePage(context);
         }
     }
 }
