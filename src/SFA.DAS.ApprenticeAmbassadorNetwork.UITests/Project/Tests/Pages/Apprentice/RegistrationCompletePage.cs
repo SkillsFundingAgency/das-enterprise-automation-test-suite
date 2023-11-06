@@ -1,12 +1,12 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 
-public class ApplicationSubmittedPage : AanBasePage
+public class RegistrationCompletePage : AanBasePage
 {
-    protected override string PageTitle => "Application submitted";
+    protected override string PageTitle => "Registration complete";
 
     private static By NetworkHubLink => By.CssSelector("a[href='/network-hub ']");
 
-    public ApplicationSubmittedPage(ScenarioContext context) : base(context) => VerifyPage();
+    public RegistrationCompletePage(ScenarioContext context) : base(context) => VerifyPage();
 
     public Apprentice_NetworkHubPage ContinueToAmbassadorHub()
     {

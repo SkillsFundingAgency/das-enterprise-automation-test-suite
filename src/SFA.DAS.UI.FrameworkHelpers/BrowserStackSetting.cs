@@ -8,9 +8,9 @@ public class BrowserStackSetting
 
     public string Browser { get; set; }
 
-    public string ServerName => "https://hub-cloud.browserstack.com/wd/hub/";
+    public static string ServerName => "https://hub-cloud.browserstack.com/wd/hub/";
 
-    public string AutomateSessions => "https://www.browserstack.com/automate/sessions/";
+    public static string AutomateSessions => "https://www.browserstack.com/automate/sessions/";
 
     public string Build { get; set; }
 
@@ -28,5 +28,5 @@ public class BrowserStackSetting
 
     public bool EnableNetworkLogs { get; set; }
 
-    public string TimeZone => "London";
+    public static string TimeZone => "London";
 }
