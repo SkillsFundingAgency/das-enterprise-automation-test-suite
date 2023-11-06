@@ -2,7 +2,7 @@
 
 public class EmployerAmbassadorApplicationPage : AanBasePage
 {
-    protected override string PageTitle => "Apply to become an employer ambassador for";
+    protected override string PageTitle => "Register to become an employer ambassador for";
 
     private static By StartButton => By.Id("start-now");
 
