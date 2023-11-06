@@ -18,6 +18,12 @@
             Continue();
             return new ShutterPage(context);
         }
+        public AccessDeniedPage YesHaveApprovalFromMaanagerAndNonPrivateBetaUser()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Yes");
+            Continue();
+            return new AccessDeniedPage(context);
+        }
     }
 }
 

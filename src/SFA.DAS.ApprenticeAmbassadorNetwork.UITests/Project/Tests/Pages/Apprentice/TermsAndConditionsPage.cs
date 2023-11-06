@@ -2,7 +2,7 @@
 
 public class TermsAndConditionsPage : AanBasePage
 {
-    protected override string PageTitle => "Terms and Conditions";
+    protected override string PageTitle => "Terms and conditions";
 
     private static By ConfirmAndContinueButton => By.Id("confirm-and-continue");
 

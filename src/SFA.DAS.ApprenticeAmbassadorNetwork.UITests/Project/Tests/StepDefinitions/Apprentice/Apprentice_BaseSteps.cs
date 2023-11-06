@@ -8,7 +8,7 @@ public abstract class Apprentice_BaseSteps : AppEmp_BaseSteps
 
     protected CheckYourAnswersPage checkYourAnswersPage;
 
-    protected ApplicationSubmittedPage applicationSubmittedPage;
+    protected RegistrationCompletePage applicationSubmittedPage;
 
     protected ShutterPage shutterPage;
 

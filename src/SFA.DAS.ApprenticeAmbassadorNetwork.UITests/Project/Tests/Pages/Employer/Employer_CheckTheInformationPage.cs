@@ -4,7 +4,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
 {
     public class Employer_CheckTheInformationPage : AanBasePage
     {
-        protected override string PageTitle => "Check the information you have provided before submitting your application";
+        protected override string PageTitle => "Check the information you have provided before completing your registration";
 
         private By SubmitButton => By.Id("continue-button");
         private By ChangeLinkToWhatAreas => By.XPath("(//a[text()='Change'])[1]");
@@ -38,10 +38,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
             return new AreYouJoiningBecauseYouHaveEngagedPage(context);
         }
 
-        public ApplicationSubmitted_EmployerPage SubmitApplication()
+        public RegistrationComplete_EmployerPage SubmitApplication()
         {
             formCompletionHelper.Click(SubmitButton);
-            return new ApplicationSubmitted_EmployerPage(context);
+            return new RegistrationComplete_EmployerPage(context);
         }
     }
 }
