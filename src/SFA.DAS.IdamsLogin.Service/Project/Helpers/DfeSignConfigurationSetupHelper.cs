@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.IdamsLogin.Service.Project;
+﻿namespace SFA.DAS.IdamsLogin.Service.Project.Helpers;
 
 public class DfeSignConfigurationSetupHelper
 {
