@@ -32,8 +32,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);
             
-            ClickIfPirenIsDisplayed();
-            
             return new GetStartedWithRecruitmentAPIsPage(context);
         }
 

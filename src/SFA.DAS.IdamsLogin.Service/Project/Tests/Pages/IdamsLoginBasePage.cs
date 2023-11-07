@@ -2,7 +2,9 @@
 
 public abstract class IdamsLoginBasePage : VerifyBasePage
 {
-    protected static By PireanPreprod => IdamsPageSelector.PireanPreprod;
+    protected static By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+
+    public static By StartNowButton => By.CssSelector(".govuk-button--start");
 
     protected IdamsLoginBasePage(ScenarioContext context, bool verifypage = true) : base(context)
     {
@@ -11,7 +13,7 @@ public abstract class IdamsLoginBasePage : VerifyBasePage
 
     public void LoginToPireanPreprod() => formCompletionHelper.Click(PireanPreprod);
 
-    public void ClickStartNowButton() => formCompletionHelper.ClickElement(IdamsPageSelector.StartNowButton);
+    public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowButton);
 
     public DfeSignInPage StartNowAndGoToDfeSignPage()
     {

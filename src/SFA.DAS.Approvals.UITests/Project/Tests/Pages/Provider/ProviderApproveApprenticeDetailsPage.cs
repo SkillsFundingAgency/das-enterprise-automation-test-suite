@@ -65,8 +65,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
 
-            ClickIfPirenIsDisplayed();
-
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
@@ -179,19 +177,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
         }
 
-        private void AddAnApprentice()
-        {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
-
-            ClickIfPirenIsDisplayed();
-        }
-
-        private void ClickIfPirenIsDisplayed()
-        {
-            var by = IdamsPageSelector.PireanPreprod;
-
-            if (pageInteractionHelper.IsElementDisplayed(by)) formCompletionHelper.ClickElement(by);
-        }
+        private void AddAnApprentice() => formCompletionHelper.ClickElement(AddAnApprenticeButton);
 
         public void VerifyLimitingStandardRestriction()
         {
