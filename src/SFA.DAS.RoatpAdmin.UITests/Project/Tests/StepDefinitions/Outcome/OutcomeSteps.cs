@@ -22,7 +22,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         {
             RestartRoatpAdmin("RoATPAdmin");
 
-            new DfeAdminLoginStepsHelper(_context).LoginToASAdmin();
+            new DfeAdminLoginStepsHelper(_context).LoginToAsAdmin();
         }
 
         [Then(@"the appeal manager approves the appeal as SUCCESSFUl Already Active")]

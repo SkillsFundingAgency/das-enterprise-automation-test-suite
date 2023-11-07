@@ -211,7 +211,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             RestartRoatpAdmin(applicationName);
 
-            new DfeAdminLoginStepsHelper(_context).LoginToASAdmin();
+            new DfeAdminLoginStepsHelper(_context).LoginToAsAdmin();
 
             return new StaffDashboardPage(_context);
         }

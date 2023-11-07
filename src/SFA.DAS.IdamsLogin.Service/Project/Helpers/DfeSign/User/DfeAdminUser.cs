@@ -9,14 +9,24 @@ public abstract class DfeAdminUser : NonEasAccountUser
     public override string ToString() => $"{base.ToString()}, ServiceName:'{AdminServiceName}'";
 }
 
+public class AsAssessor1User : DfeAdminUser
+{
+    public AsAssessor1User() : base("asassessor1") { }
+}
+
+public class AsAssessor2User : DfeAdminUser
+{
+    public AsAssessor2User() : base("asassessor2") { }
+}
+
 public class VacancyQaUser : DfeAdminUser
 {
     public VacancyQaUser() : base("vacancyqauser") { }
 }
 
-public class EsfaAdminUser : DfeAdminUser
+public class AsAdminUser : DfeAdminUser
 {
-    public EsfaAdminUser() : base("esfaadmin") { }
+    public AsAdminUser() : base("asadmin") { }
 }
 
 public class AanAdminUser : DfeAdminUser

@@ -1,30 +1,22 @@
-﻿using SFA.DAS.Roatp.UITests.Project;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class AssessorLoginStepsHelper
     {
-        private readonly RoatpConfig _config;
         private readonly ScenarioContext _context;
+        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper;
 
         public AssessorLoginStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetRoatpConfig<RoatpConfig>();
+            _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(context);
         }
 
-        public RoatpAssessorApplicationsHomePage Assessor1Login() => AssessorLogin(_config.Assessor1UserName, _config.Assessor1Password);
+        public RoatpAssessorApplicationsHomePage Assessor1Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor1(); return new(_context); }
 
-        public RoatpAssessorApplicationsHomePage Assessor2Login() => AssessorLogin(_config.Assessor2UserName, _config.Assessor2Password);
-
-        private RoatpAssessorApplicationsHomePage AssessorLogin(string username, string password)
-        {
-            new AssessorSignInPage(_context).Login(username, password);
-            return new RoatpAssessorApplicationsHomePage(_context);
-        }
+        public RoatpAssessorApplicationsHomePage Assessor2Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor2(); return new(_context); }
     }
 }

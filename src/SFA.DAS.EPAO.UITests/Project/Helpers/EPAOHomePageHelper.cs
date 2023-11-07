@@ -51,11 +51,11 @@ public class EPAOHomePageHelper
         return LoginInAsNonApplyUser(loginUser);
     }
 
-    private ApprenticeshipServiceAdminLandingPage OpenAdminBaseUrl(bool openInNewTab)
+    private ASAdminLandingPage OpenAdminBaseUrl(bool openInNewTab)
     {
         OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
-        return new ApprenticeshipServiceAdminLandingPage(_context);
+        return new ASAdminLandingPage(_context);
     }
 
     private void OpenUrl(string url, bool openInNewTab)

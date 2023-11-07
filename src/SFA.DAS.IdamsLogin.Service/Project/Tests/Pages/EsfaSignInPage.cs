@@ -6,15 +6,3 @@ public class EsfaSignInPage : SignInBasePage
 
     public EsfaSignInPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 }
-
-
-public class CheckEsfaSignInPage : CheckPageUsingShorterTimeOut
-{
-    protected override string PageTitle => "ESFA Sign in";
-
-    protected override By Identifier => By.CssSelector(".pageTitle");
-
-    public CheckEsfaSignInPage(ScenarioContext context) : base(context) { }
-
-    public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
-}
