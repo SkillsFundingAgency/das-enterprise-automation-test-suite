@@ -1,4 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 using SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages.Moderation;
 
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions;

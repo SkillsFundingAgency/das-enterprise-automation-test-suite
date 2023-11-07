@@ -11,7 +11,7 @@
     { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.Roatp.UITests" },
     { "assembly": "SFA.DAS.RoatpAdmin.Service" },
-    { "assembly": "SFA.DAS.IdamsLogin.Service" }
+    { "assembly": "SFA.DAS.DfeAdmin.Service" }
   ],
   "generator": {
     "allowRowTests": false,

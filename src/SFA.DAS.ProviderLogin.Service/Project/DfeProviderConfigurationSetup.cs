@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 

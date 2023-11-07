@@ -53,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2.Service", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Roatp.UITests", "SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj", "{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.IdamsLogin.Service", "SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj", "{A0756E1D-EA78-40B2-8A50-B9CC0FDA4FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.DfeAdmin.Service", "SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj", "{A0756E1D-EA78-40B2-8A50-B9CC0FDA4FB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerFinance.UITests", "SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj", "{79AF36C8-C911-4D01-9554-C2AEB2744B3E}"
 EndProject

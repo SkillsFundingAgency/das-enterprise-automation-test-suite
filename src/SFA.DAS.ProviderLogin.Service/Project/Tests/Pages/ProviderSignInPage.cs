@@ -1,4 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;

@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;

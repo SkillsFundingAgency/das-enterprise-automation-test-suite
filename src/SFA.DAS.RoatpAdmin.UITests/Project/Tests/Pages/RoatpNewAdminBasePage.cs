@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using Polly;
 using SFA.DAS.RoatpAdmin.Service.Project;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages.LandingPage;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;

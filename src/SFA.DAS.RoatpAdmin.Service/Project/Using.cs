@@ -2,7 +2,7 @@
 global using SFA.DAS.RoatpAdmin.Service.Project.Helpers;
 global using SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+global using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;

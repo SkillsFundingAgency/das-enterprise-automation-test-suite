@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;

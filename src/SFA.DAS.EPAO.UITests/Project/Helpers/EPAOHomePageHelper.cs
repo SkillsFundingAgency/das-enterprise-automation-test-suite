@@ -1,4 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages.LandingPage;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
