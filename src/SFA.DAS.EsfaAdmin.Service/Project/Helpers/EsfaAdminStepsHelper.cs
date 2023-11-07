@@ -1,15 +1,12 @@
-﻿namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign;
+
+namespace SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 public abstract class EsfaAdminStepsHelper
 {
     private readonly ScenarioContext _context;
-    private readonly EsfaAdminLoginStepsHelper _loginStepsHelper;
-
-    public EsfaAdminStepsHelper(ScenarioContext context)
-    {
-        _context = context;
-        _loginStepsHelper = new EsfaAdminLoginStepsHelper(context);
-    }
+    
+    public EsfaAdminStepsHelper(ScenarioContext context) => _context = context;
 
     public SearchPage InitatesAnApplication(string providerType)
     {
@@ -25,7 +22,7 @@ public abstract class EsfaAdminStepsHelper
 
     public RoatpAdminHomePage GoToRoatpAdminHomePage()
     {
-        _loginStepsHelper.SubmitValidLoginDetails();
+        new DfeAdminLoginStepsHelper(_context).NavigateAndLoginToASAdmin();
         return new RoatpAdminHomePage(_context);
     }
 }

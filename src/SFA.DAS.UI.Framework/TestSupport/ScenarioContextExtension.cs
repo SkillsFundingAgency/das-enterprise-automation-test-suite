@@ -10,12 +10,10 @@ public static class ScenarioContextExtension
     private const string WebDriverKey = "webdriverkey";
     private const string ProviderConfigKey = "providerconfigkey";
     private const string RoatpProjectConfigKey = "roatpprojectconfigkey";
-    private const string EsfaAdminProjectConfigKey = "esfaadminprojectconfigkey";
     private const string ManagingStandatdsProjectConfigKey = "managingstandardsprojectconfigkey";
     private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
     private const string ConsolidatedSupportProjectConfigKey = "consolidatedsupportprojectconfigkey";
     private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
-    private const string RAAV2QAProjectConfigKey = "raav2qaprojectconfigkey";
     private const string ApprovalsProjectConfigKey = "approvalsprojectconfigkey";
     private const string FAAProjectConfigKey = "faaprojectconfigkey";
     private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
@@ -29,7 +27,6 @@ public static class ScenarioContextExtension
     #endregion
 
     #region Setters
-    public static void SetEsfaAdminConfig<T>(this ScenarioContext context, T value) => Set(context, value, EsfaAdminProjectConfigKey);
     public static void SetManagingStandardsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ManagingStandatdsProjectConfigKey);
     public static void SetRoatpConfig<T>(this ScenarioContext context, T value) => Set(context, value, RoatpProjectConfigKey);
     public static void SetApprovalsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprovalsProjectConfigKey);
@@ -43,7 +40,6 @@ public static class ScenarioContextExtension
     public static void ReplaceSupportConsoleConfig<T>(this ScenarioContext context, T value) => Replace(context, value, SupportConsoleProjectConfigKey);
     public static void SetConsolidatedSupportConfig<T>(this ScenarioContext context, T value) => Set(context, value, ConsolidatedSupportProjectConfigKey);
     public static void SetRAAV1Config<T>(this ScenarioContext context, T value) => Set(context, value, RAAV1ProjectConfigKey);
-    public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value) => Set(context, value, RAAV2QAProjectConfigKey);
     public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
     public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
     public static void SetEIConfig<T>(this ScenarioContext context, T value) => Set(context, value, EIProjectConfigKey);
@@ -54,7 +50,6 @@ public static class ScenarioContextExtension
     #endregion
 
     #region Getters
-    public static T GetEsfaAdminConfig<T>(this ScenarioContext context) => Get<T>(context, EsfaAdminProjectConfigKey);
     public static T GetManagingStandardsConfig<T>(this ScenarioContext context) => Get<T>(context, ManagingStandatdsProjectConfigKey);
     public static T GetRoatpConfig<T>(this ScenarioContext context) => Get<T>(context, RoatpProjectConfigKey);
     public static T GetApprovalsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprovalsProjectConfigKey);
@@ -65,7 +60,6 @@ public static class ScenarioContextExtension
     public static T GetPerfTestProviderPermissionsConfig<T>(this ScenarioContext context) => Get<T>(context, PerfTestProviderPermissionsConfigKey);
     public static T GetTransfersConfig<T>(this ScenarioContext context) => Get<T>(context, TransfersProjectConfigKey);
     public static T GetRAAV1Config<T>(this ScenarioContext context) => Get<T>(context, RAAV1ProjectConfigKey);
-    public static T GetRAAV2QAConfig<T>(this ScenarioContext context) => Get<T>(context, RAAV2QAProjectConfigKey);
     public static T GetFAAConfig<T>(this ScenarioContext context) => Get<T>(context, FAAProjectConfigKey);
     public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
     public static T GetConsolidatedSupportConfig<T>(this ScenarioContext context) => Get<T>(context, ConsolidatedSupportProjectConfigKey);

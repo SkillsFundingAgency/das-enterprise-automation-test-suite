@@ -1,6 +1,7 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RAA.DataGenerator.Project.Config;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.Login.Service;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project
@@ -9,20 +10,10 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project
     public class RAAV2QAConfigurationSetup
     {
         private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
 
-        public RAAV2QAConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        public RAAV2QAConfigurationSetup(ScenarioContext context) => _context = context;
 
         [BeforeScenario(Order = 2)]
-        public void SetUpRAAV2QAProjectConfiguration()
-        {
-            var config = _configSection.GetConfigSection<RAAV2QAConfig>();
-
-            _context.SetRAAV2QAConfig(config);
-        }
+        public void SetUpRAAV2QAProjectConfiguration() => _context.SetNonEasLoginUser(SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new VacancyQaUser()));
     }
 }

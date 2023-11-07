@@ -14,13 +14,5 @@ public class ManagingStandardsConfigurationSetup
     public ManagingStandardsConfigurationSetup(ScenarioContext context) => _context = context;
 
     [BeforeScenario(Order = 2)]
-    public void SetUpManagingStandardsProjectConfiguration()
-    {
-        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
-
-        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
-        {
-            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new EsfaAdminUser()),
-        });
-    }
+    public void SetUpManagingStandardsProjectConfiguration() => _context.SetNonEasLoginUser(SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new EsfaAdminUser()));
 }

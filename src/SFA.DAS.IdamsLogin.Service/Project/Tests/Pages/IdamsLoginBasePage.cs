@@ -11,4 +11,12 @@ public abstract class IdamsLoginBasePage : VerifyBasePage
 
     public void LoginToPireanPreprod() => formCompletionHelper.Click(PireanPreprod);
 
+    public void ClickStartNowButton() => formCompletionHelper.ClickElement(IdamsPageSelector.StartNowButton);
+
+    public DfeSignInPage StartNowAndGoToDfeSignPage()
+    {
+        ClickStartNowButton();
+
+        return new DfeSignInPage(context);
+    }
 }

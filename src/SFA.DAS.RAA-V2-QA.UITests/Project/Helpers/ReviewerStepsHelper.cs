@@ -1,48 +1,38 @@
-﻿using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
 {
     public class ReviewerStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly RestartWebDriverHelper _helper;
-        private readonly TabHelper _tabHelper;
-        private const string _applicationName = "Reviewer";
-        private readonly string _raav2qaBaseUrl;
-             
 
-        public ReviewerStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _helper = new RestartWebDriverHelper(context);
-            _tabHelper = context.Get<TabHelper>();
-            _raav2qaBaseUrl = UrlConfig.RAAV2QA_BaseUrl;
-        }
+        public ReviewerStepsHelper(ScenarioContext context) => _context = context;
 
         public Reviewer_HomePage GoToReviewerHomePage(bool restart)
         {
+            var applicationName = "Reviewer";
+            var raav2qaBaseUrl = UrlConfig.RAAV2QA_BaseUrl;
+
             if (restart)
             {
-                _helper.RestartWebDriver(_raav2qaBaseUrl, _applicationName);
+                new RestartWebDriverHelper(_context).RestartWebDriver(raav2qaBaseUrl, applicationName);
             }
             else
             {
-                _objectContext.SetCurrentApplicationName(_applicationName);
+                _context.Get<ObjectContext>().SetCurrentApplicationName(applicationName);
 
-                _tabHelper.OpenInNewTab(_raav2qaBaseUrl);
+                _context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
             }
 
-            new PreProdDIGBEADFSPage(_context).LoginToAccess1Staff();
+            new DfeAdminLoginStepsHelper(_context).LoginToASVacancyQa();
 
-            return new SignInPage(_context).SubmitReviewerLoginDetails();
+            return new Reviewer_HomePage(_context);
         }
 
         public void VerifyEmployerNameAndApprove(bool restart) => ReviewVacancy(restart).VerifyEmployerName().Approve();

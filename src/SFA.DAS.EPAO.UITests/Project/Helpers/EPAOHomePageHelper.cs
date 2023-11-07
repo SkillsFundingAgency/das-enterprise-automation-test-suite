@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages.LandingPage;
+
+namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
 public class EPAOHomePageHelper
 {
@@ -49,11 +51,11 @@ public class EPAOHomePageHelper
         return LoginInAsNonApplyUser(loginUser);
     }
 
-    private EsfaAdminServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
+    private ApprenticeshipServiceAdminLandingPage OpenAdminBaseUrl(bool openInNewTab)
     {
         OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
-        return new EsfaAdminServiceStartPage(_context);
+        return new ApprenticeshipServiceAdminLandingPage(_context);
     }
 
     private void OpenUrl(string url, bool openInNewTab)

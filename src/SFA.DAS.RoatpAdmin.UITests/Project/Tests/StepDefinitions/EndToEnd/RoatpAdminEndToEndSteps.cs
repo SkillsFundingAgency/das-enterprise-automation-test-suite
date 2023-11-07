@@ -1,5 +1,5 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.IdamsLogin.Service.Project.Helpers.DfeSign;
 using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
@@ -24,7 +24,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
-        private readonly EsfaAdminLoginStepsHelper _roatpAdminLoginStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
@@ -35,7 +34,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _roatpAdminLoginStepsHelper = new EsfaAdminLoginStepsHelper(context);
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(_context);
             _gatewayEndToEndStepsHelpers = new GatewayEndtoEndStepsHelpers();
             _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
@@ -213,8 +211,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             RestartRoatpAdmin(applicationName);
 
-            _roatpAdminLoginStepsHelper.SubmitValidLoginDetails();
-            
+            new DfeAdminLoginStepsHelper(_context).LoginToASAdmin();
+
             return new StaffDashboardPage(_context);
         }
 
@@ -233,13 +231,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            if (_applicationRoute == ApplicationRoute.MainProviderRoute || _applicationRoute == ApplicationRoute.MainProviderRouteForExistingProvider) 
+            if (_applicationRoute == ApplicationRoute.MainProviderRoute || _applicationRoute == ApplicationRoute.MainProviderRouteForExistingProvider)
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
 
             if (_applicationRoute == ApplicationRoute.EmployerProviderRoute || _applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
-                
-            if (_applicationRoute == ApplicationRoute.SupportingProviderRoute || _applicationRoute == ApplicationRoute.SupportingProviderRouteForExistingProvider) 
+
+            if (_applicationRoute == ApplicationRoute.SupportingProviderRoute || _applicationRoute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
                 gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
 
             return gwApplicationOverviewPage;
