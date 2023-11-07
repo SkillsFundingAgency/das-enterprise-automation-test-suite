@@ -17,7 +17,6 @@ public class DfeSignInPage : SignInBasePage
     protected override void ClickSignInButton() => formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
 }
 
-
 public class CheckDfeSignInPage : CheckPageUsingShorterTimeOut
 {
     protected override string PageTitle => DfeSignInPage.DfePageTitle;

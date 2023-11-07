@@ -1,4 +1,6 @@
 ﻿
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages.LandingPage;
+
 namespace SFA.DAS.SupportTools.UITests.Project.Helpers;
 
 public class StepsHelper
@@ -22,12 +24,8 @@ public class StepsHelper
     {
         if (reLogin) _context.Get<TabHelper>().OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
 
-        var startNowPage = new SupportToolLandingPage(_context);
+        if (new CheckASEmpSupportToolLandingPage(_context).IsPageDisplayed()) new ASEmpSupportToolLandingPage(_context).ClickStartNowButton();
 
-        if (startNowPage.IsPageDisplayed()) startNowPage.ClickStartNowButton();
-
-        var dfePage = new CheckDfeSignInPage(_context);
-
-        return dfePage.IsPageDisplayed();
+        return new CheckDfeSignInPage(_context).IsPageDisplayed();
     }
 }

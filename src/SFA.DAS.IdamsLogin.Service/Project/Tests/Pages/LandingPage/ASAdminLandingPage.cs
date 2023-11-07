@@ -18,15 +18,3 @@ public class ASAdminLandingPage : IdamsLoginBasePage
         return new PreProdDIGBEADFSPage(context);
     }
 }
-
-
-public class CheckASAdminLandingPage: CheckPageUsingShorterTimeOut
-{
-    protected override string PageTitle => ASAdminLandingPage.ASAdminPageTitle;
-
-    protected override By Identifier => ASAdminLandingPage.ASAdminPageheader;
-
-    public CheckASAdminLandingPage(ScenarioContext context) : base(context) { }
-
-    public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
-}
