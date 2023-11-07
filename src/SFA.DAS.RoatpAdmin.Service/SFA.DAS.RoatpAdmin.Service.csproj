@@ -2,7 +2,7 @@
 	
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<RootNamespace>SFA.DAS.EsfaAdmin.Service</RootNamespace>
+		<RootNamespace>SFA.DAS.RoatpAdmin.Service</RootNamespace>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 	</PropertyGroup>
 
