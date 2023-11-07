@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YouVeSuccessfullyAddedUserDetailsPage : RegistrationBasePage
     {
-        protected override string PageTitle => "You've successfully added user details";
+        protected override string PageTitle => "You have successfully added user details";
         public YouVeSuccessfullyAddedUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CreateYourEmployerAccountPage ClickContinueButtonToAcknowledge()
