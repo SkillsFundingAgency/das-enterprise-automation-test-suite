@@ -21,7 +21,7 @@ public class AsAssessor2User : DfeAdminUser
 
 public class VacancyQaUser : DfeAdminUser
 {
-    public VacancyQaUser() : base("vacancyqauser") { }
+    public VacancyQaUser() : base("vacancyqa") { }
 }
 
 public class AsAdminUser : DfeAdminUser
@@ -51,10 +51,10 @@ public class SupportConsoleTier2User : DfeAdminUser
 
 public class SupportToolScpUser : DfeAdminUser
 {
-    public SupportToolScpUser() : base("supporttoolscpuser") { }
+    public SupportToolScpUser() : base("supporttoolscp") { }
 }
 
 public class SupportToolScsUser : DfeAdminUser 
 {
-    public SupportToolScsUser() : base("supporttoolscsuser") { }
+    public SupportToolScsUser() : base("supporttoolscs") { }
 }
