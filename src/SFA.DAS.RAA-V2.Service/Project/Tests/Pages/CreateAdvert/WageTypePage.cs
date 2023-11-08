@@ -95,6 +95,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         private void EnterFixedWageType()
         {
             SelectRadioOptionByForAttribute("wage-type-fixed");
+            Continue();
             
             formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
         }
