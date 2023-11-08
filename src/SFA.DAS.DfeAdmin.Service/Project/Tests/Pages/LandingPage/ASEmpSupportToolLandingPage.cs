@@ -2,13 +2,11 @@
 
 public class ASEmpSupportToolLandingPage : ASLandingBasePage
 {
-    public static string ASEmpSupportToolPageTitle => "Apprenticeship service employer support tool";
+    public static string ASEmpSupportToolPageTitle => "Apprenticeship service bulk stop utility";
 
-    public static By ASEmpSupportToolPageheader => By.CssSelector(".govuk-heading-l");
+    public static By ASEmpSupportToolPageheader => ASLandingPageheader;
 
     protected override string PageTitle => ASEmpSupportToolPageTitle;
-
-    protected override By PageHeader => ASEmpSupportToolPageheader;
 
     public ASEmpSupportToolLandingPage(ScenarioContext context) : base(context) { }
 }

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers;
 
@@ -55,8 +56,8 @@ public class StepsHelper
 
     private SearchHomePage LoginToSupportConsole(DfeAdminUser loginUser)
     {
-        new DfeSignInPage(_context).SubmitValidLoginDetails(loginUser);
+        new DfeAdminLoginStepsHelper(_context).LoginToSupportConsole(loginUser);
 
-        return new(_context);
+        return new (_context);
     }
 }

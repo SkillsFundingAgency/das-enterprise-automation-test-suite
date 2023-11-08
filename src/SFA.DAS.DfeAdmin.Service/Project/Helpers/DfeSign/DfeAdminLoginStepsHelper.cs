@@ -31,6 +31,8 @@ public class DfeAdminLoginStepsHelper
 
     public void LoginToAsAdmin() => SubmitValidAsLoginDetails(_asAdminUser);
 
+    public void LoginToSupportConsole(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportConsoleLandingPage(_context), dfeAdminUser);
+
     public void SubmitValidAsLoginDetails(ASLandingBasePage landingPage) => SubmitValidLoginDetails(landingPage, _asAdminUser);
 
     public void LoginToASVacancyQa() => SubmitValidLoginDetails(new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
