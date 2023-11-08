@@ -9,14 +9,7 @@ public class DfeAdminLoginStepsHelper
 {
     private readonly ScenarioContext _context;
 
-    private readonly AsAdminUser _asAdminUser;
-
-    public DfeAdminLoginStepsHelper(ScenarioContext context)
-    {
-        _context = context;
-
-        _asAdminUser = context.GetUser<AsAdminUser>();
-    }
+    public DfeAdminLoginStepsHelper(ScenarioContext context) => _context = context;
 
     public void NavigateAndLoginToASAdmin()
     {
@@ -29,11 +22,11 @@ public class DfeAdminLoginStepsHelper
 
     public void LoginToAsAssessor2() => SubmitValidAsLoginDetails(_context.GetUser<AsAssessor2User>());
 
-    public void LoginToAsAdmin() => SubmitValidAsLoginDetails(_asAdminUser);
+    public void LoginToAsAdmin() => SubmitValidAsLoginDetails(GetAsAdminUser());
 
     public void LoginToSupportConsole(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportConsoleLandingPage(_context), dfeAdminUser);
 
-    public void SubmitValidAsLoginDetails(ASLandingBasePage landingPage) => SubmitValidLoginDetails(landingPage, _asAdminUser);
+    public void SubmitValidAsLoginDetails(ASLandingBasePage landingPage) => SubmitValidLoginDetails(landingPage, GetAsAdminUser());
 
     public void LoginToASVacancyQa() => SubmitValidLoginDetails(new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
 
@@ -45,4 +38,6 @@ public class DfeAdminLoginStepsHelper
 
         new DfeSignInPage(_context).SubmitValidLoginDetails(dfeAdminUser);
     }
+
+    private AsAdminUser GetAsAdminUser() => _context.GetUser<AsAdminUser>();
 }
