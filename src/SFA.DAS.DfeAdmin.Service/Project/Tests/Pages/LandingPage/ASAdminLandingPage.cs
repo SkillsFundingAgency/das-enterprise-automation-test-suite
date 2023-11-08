@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public class ASAdminLandingPage : IdamsLoginBasePage
+public class ASAdminLandingPage : ASLandingBasePage
 {
     public static string ASAdminPageTitle => "Apprenticeship service admin";
 

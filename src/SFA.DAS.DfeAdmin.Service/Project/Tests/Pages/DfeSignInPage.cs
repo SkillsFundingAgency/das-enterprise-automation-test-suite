@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+
+namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
 public class DfeSignInPage : SignInBasePage
 {
@@ -15,6 +17,11 @@ public class DfeSignInPage : SignInBasePage
     public DfeSignInPage(ScenarioContext context) : base(context) { }
 
     protected override void ClickSignInButton() => formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
+
+    public void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser)
+    {
+        SubmitValidLoginDetails(dfeAdminUser.Username, dfeAdminUser.Password);
+    }
 }
 
 public class CheckDfeSignInPage : CheckPageUsingShorterTimeOut

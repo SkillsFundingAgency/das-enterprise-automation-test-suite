@@ -1,4 +1,5 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
@@ -19,9 +20,9 @@ public class EPAOHomePageHelper
     {
         var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
 
-        serviceStartPage.StartNow().LoginToAccess1Staff();
+        new DfeAdminLoginStepsHelper(_context).SubmitValidAsLoginDetails(serviceStartPage);
 
-        return new SignInPage(_context).SignInWithValidDetails();
+        return new StaffDashboardPage(_context);
     }
 
     public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
@@ -36,6 +37,8 @@ public class EPAOHomePageHelper
     public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
     {
         OpenAdminBaseUrl(true).ClickStartNowButton();
+
+        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) { }
 
         return new StaffDashboardPage(_context);
     }

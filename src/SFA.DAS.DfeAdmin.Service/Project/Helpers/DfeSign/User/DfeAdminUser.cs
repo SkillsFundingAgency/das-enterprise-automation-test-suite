@@ -51,7 +51,7 @@ public class SupportConsoleTier2User : DfeAdminUser
 
 public class SupportToolScpUser : DfeAdminUser
 {
-    public SupportToolScpUser() : base("supporttoolscp") { }
+    public SupportToolScpUser() : base("supporttoolscp") { } 
 }
 
 public class SupportToolScsUser : DfeAdminUser 

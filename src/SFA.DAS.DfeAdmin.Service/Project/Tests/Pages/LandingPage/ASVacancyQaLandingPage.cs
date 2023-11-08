@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public class ASVacancyQaLandingPage : IdamsLoginBasePage
+public class ASVacancyQaLandingPage : ASLandingBasePage
 {
     protected override string PageTitle => "Apprenticeship service vacancy QA";
 

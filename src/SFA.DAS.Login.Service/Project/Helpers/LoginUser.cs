@@ -111,8 +111,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EPAOE2EApplyUser : NonEasAccountUser { }
 
-    public class EPAOAdminUser : NonEasAccountUser { }
-
     #region AanApprenticeUser
 
     public abstract class AanBaseUser : NonEasAccountUser { }

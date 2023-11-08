@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public class ASEmpSupportToolLandingPage : IdamsLoginBasePage
+public class ASEmpSupportToolLandingPage : ASLandingBasePage
 {
     public static string ASEmpSupportToolPageTitle => "Apprenticeship service employer support tool";
 
