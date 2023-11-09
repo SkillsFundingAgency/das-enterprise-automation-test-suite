@@ -19,11 +19,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
             return new BeforeYouStartPage(context);
         }
 
-        public AccessDeniedPage NonPrivateBetaUserDetails(AanBaseUser user)
+        public BeforeYouStartPage NonPrivateBetaUserDetails(AanBaseUser user)
         {
             SubmitUserDetails(user, true);
 
-            return new AccessDeniedPage(context);
+            return new BeforeYouStartPage(context);
         }
 
         public Apprentice_NetworkHubPage SubmitUserDetails_OnboardingJourneyComplete(AanBaseUser user)

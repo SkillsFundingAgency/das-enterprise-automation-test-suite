@@ -2,7 +2,7 @@
 {
     public class BeforeYouStartPage : AanBasePage
     {
-        protected override string PageTitle => "Apply to become an Apprenticeship Ambassador";
+        protected override string PageTitle => "Become an Apprentice Ambassador";
 
         private static By StartButton => By.Id("start-now");
 

@@ -24,7 +24,7 @@ public static class UrlConfig
     public static string Recruit_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
     public static string SupportConsole_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
     public static string SupportTools_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-support-tools.apprenticeships.education.gov.uk";
-    public static string ProviderFeedback_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-feedback.apprenticeships.education.gov.uk/";
+    public static string ProviderFeedback_BaseUrl => $"https://feedback.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/";
     public static string AR_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support.apprenticeships.education.gov.uk/";
     public static string AR_AdminBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support-admin.apprenticeships.education.gov.uk/";
     public static string FindEPAO_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-find-epao.apprenticeships.education.gov.uk/";

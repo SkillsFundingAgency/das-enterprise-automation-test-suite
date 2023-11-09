@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "About your agreement";
 
-        protected override By ContinueButton => By.CssSelector("input[value='Continue to your agreement']");
+        protected override By ContinueButton => By.CssSelector("input[value='Continue']");
 
         public AboutYourAgreementPage(ScenarioContext context) : base(context, false) { }
 
