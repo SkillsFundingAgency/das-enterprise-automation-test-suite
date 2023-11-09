@@ -61,7 +61,7 @@ public class SupportToolsSteps
     public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton() => SelectAllRecords().ClickStopButton();
 
     [Given(@"the SCS User is logged into Support Tools")]
-    public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools(false);
+    public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools();
 
     [Given(@"the SCP User is logged into Support Tools")]
     public void GivenTheSCPUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCPTools(false);
