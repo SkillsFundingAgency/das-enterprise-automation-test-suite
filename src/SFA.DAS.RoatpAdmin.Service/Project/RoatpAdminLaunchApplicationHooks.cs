@@ -15,7 +15,7 @@ public class RoatpAdminLaunchApplicationHooks
     }
 
     [BeforeScenario(Order = 40)]
-    public void EsfaAdminLaunchApplication()
+    public void RoatpAdminLaunchApplication()
     {
         if (_tags.Any(x => x == "oldroatpadmin" || x == "newroatpadmin" || x == "roatpfulle2eviaadmin")) _tabHelper.GoToUrl(UrlConfig.Admin_BaseUrl);
     }
