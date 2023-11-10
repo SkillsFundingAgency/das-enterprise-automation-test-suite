@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
     public class TransferMatchingSqlDataHelper : SqlDbHelper
     {
-        public TransferMatchingSqlDataHelper(DbConfig dbConfig) : base(dbConfig.TMDbConnectionString) { }
+        public TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TMDbConnectionString) { }
 
         public void DeletePledge(List<Pledge> pledges)
         {
@@ -21,7 +21,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
                 sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Amount__", pledge.Amount.ToString());
 
-                ExecuteSqlCommand(sqlQueryFromFile, connectionString);
+                ExecuteSqlCommand(sqlQueryFromFile);
             }
         }
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
             sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Details__", details);
 
-            ExecuteSqlCommand(sqlQueryFromFile, connectionString);
+            ExecuteSqlCommand(sqlQueryFromFile);
         }
     }
 }

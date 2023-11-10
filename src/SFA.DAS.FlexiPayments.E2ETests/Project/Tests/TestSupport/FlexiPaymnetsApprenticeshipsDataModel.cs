@@ -13,11 +13,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
         public int ULNKey { get; set; }
         public FundingPlatform FundingPlatform { get; set; }
         public string StartDateStr { set { StartDate = value == "Today" ? DataHelpers.CalculateStartDate()
+                    : value == "StartPreviousMonth" ? DataHelpers.CalculateStartDate(true)
+                    : value == "StartFirstDayOfPreviousMonth" ? DataHelpers.GetFirstDateOfPreviousMonth()
                     : value == "StartCurrentMonth" ? DataHelpers.GetFirstDateOfCurrentMonth()
                     : DataHelpers.TryParseDate(value); } }
         public string ActualStartDateStr { set { ActualStartDate = value == "Today" ? DataHelpers.CalculateStartDate()
+                    : value == "StartPreviousMonth" ? DataHelpers.CalculateStartDate(true)
                     : DataHelpers.TryParseDate(value); } }
-        public string PlannedEndDateStr { set { PlannedEndDate = value == "+24Months" ? DataHelpers.CalculatePlannedEndDate(DateTime.Today, value, FundingPlatform) 
+        public string PlannedEndDateStr { set { PlannedEndDate = value.Contains ("Months") ? DataHelpers.CalculatePlannedEndDate(DateTime.Today, value, FundingPlatform) 
                     : DataHelpers.TryParseDate(value); } }
         public double AgreedPrice { get; set; }
         public FundingType FundingType { get; set; }

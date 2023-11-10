@@ -12,7 +12,6 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;

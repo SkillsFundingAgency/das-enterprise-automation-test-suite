@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
     public class EISqlHelper : SqlDbHelper
     {
-        public EISqlHelper(DbConfig eIConfig) : base(eIConfig.IncentivesDbConnectionString) { }
+        public EISqlHelper(ObjectContext objectContext, DbConfig eIConfig) : base(objectContext, eIConfig.IncentivesDbConnectionString) { }
         public string ConnectionString => connectionString;
 
         public List<T> GetAllFromDatabase<T>() where T : class

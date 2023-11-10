@@ -9,7 +9,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
     {
         private static int _currentAcademicYear;
 
-        public EarningsSqlDbHelper(DbConfig dbConfig) : base(dbConfig.EarningsDbConnectionString)
+        public EarningsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.EarningsDbConnectionString)
         {
             _currentAcademicYear = AcademicYearDatesHelper.GetCurrentAcademicYear();
         }

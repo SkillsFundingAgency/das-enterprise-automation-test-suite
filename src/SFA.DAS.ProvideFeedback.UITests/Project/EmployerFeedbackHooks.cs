@@ -10,7 +10,7 @@ public class EmployerFeedbackHooks : BaseHooks
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        _employerFeedbackSqlHelper = new EmployerFeedbackSqlHelper(_context.Get<DbConfig>());
+        _employerFeedbackSqlHelper = new EmployerFeedbackSqlHelper(_objectContext, _context.Get<DbConfig>());
 
         _context.Set(_employerFeedbackSqlHelper);
     }

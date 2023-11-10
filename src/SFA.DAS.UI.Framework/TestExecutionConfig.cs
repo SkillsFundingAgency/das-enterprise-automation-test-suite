@@ -1,15 +1,14 @@
-﻿namespace SFA.DAS.UI.Framework
+﻿namespace SFA.DAS.UI.Framework;
+
+public class TestExecutionConfig
 {
-    public class TestExecutionConfig
-    {
-        public string Browser { get; set; }
+    public string Browser { get; set; }
 
-        public string CaptureUrlAdmins { get; set; }
+    public string CaptureUrlAdmins { get; set; }
 
-        public string FullScreenShotAdmins { get; set; }
+    public string FullScreenShotAdmins { get; set; }
 
-        public string CanTakeFullScreenShot { get; set; }
+    public string CanTakeFullScreenShot { get; set; }
 
-        public string IsAccessibilityTesting { get; init; }
-    }
+    public string IsAccessibilityTesting { get; init; }
 }

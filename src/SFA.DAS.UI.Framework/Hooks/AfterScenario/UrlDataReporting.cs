@@ -8,42 +8,41 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 
-namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
+namespace SFA.DAS.UI.Framework.Hooks.AfterScenario;
+
+[Binding]
+public class UrlDataReporting
 {
-    [Binding]
-    public class UrlDataReporting
+    private readonly ScenarioContext _context;
+    private static List<string> _urls;
+    private static string _directoryPath;
+
+    public UrlDataReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
+
+        [BeforeTestRun(Order = 10)]
+    public static void InitVariable() => _urls = new List<string>();
+
+    [AfterScenario(Order = 98)]
+    public void CollectUrlData()
     {
-        private readonly ScenarioContext _context;
-        private static List<string> _urls;
-        private static string _directoryPath;
+        var objectContext = _context.Get<ObjectContext>();
 
-        public UrlDataReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
-
-            [BeforeTestRun(Order = 10)]
-        public static void InitVariable() => _urls = new List<string>();
-
-        [AfterScenario(Order = 98)]
-        public void CollectUrlData()
+        _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
         {
-            var objectContext = _context.Get<ObjectContext>();
+            string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
-            {
-                string fileName = $"URLDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
+            var urldataset = objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
 
-                var urldataset = objectContext.GetAll().GetValue<List<string>>(UrlKeyHelper.AuthUrlKey);
+            if (urldataset == null || urldataset?.Count == 0) return;
 
-                if (urldataset == null || urldataset?.Count == 0) return;
+            List<string> distinctUrls = urldataset.ToHashSet().ToList();
 
-                List<string> distinctUrls = urldataset.ToHashSet().ToList();
+            lock (_urls) { _urls.AddRange(distinctUrls); }
 
-                lock (_urls) { _urls.AddRange(distinctUrls); }
-
-                TestAttachmentHelper.AddTestAttachment(objectContext.GetDirectory(), fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
-            });
-        }
-
-        [AfterTestRun(Order = 10)]
-        public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, _directoryPath, "UrlCollection");
+            TestAttachmentHelper.AddTestAttachment(objectContext.GetDirectory(), fileName, (x) => { File.WriteAllLines(x, distinctUrls); });
+        });
     }
+
+    [AfterTestRun(Order = 10)]
+    public static void ReportUrlCollection() => AfterTestRunReportHelper.ReportAfterTestRun(_urls, _directoryPath, "UrlCollection");
 }

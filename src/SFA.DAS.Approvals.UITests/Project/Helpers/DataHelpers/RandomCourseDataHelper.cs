@@ -13,9 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         
         public RandomCourseDataHelper() => _availableCourses = AvailableCourses.GetAvailableCourses();
 
-        public RandomCourseDataHelper(DbConfig dbConfig, List<string> larsCode, bool isMultipleOptionStandard)
+        public RandomCourseDataHelper(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, bool isMultipleOptionStandard)
         {
-            var crsSqlhelper = new CrsSqlhelper(dbConfig);
+            var crsSqlhelper = new CrsSqlhelper(objectContext, dbConfig);
 
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
             {

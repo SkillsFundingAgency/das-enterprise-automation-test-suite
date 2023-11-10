@@ -9,6 +9,8 @@ public class ProviderConfig
     public string Ukprn { get; set; }
 }
 
+public class RplWhiteListedProviderConfig : ProviderConfig { }
+
 public class ChangeOfPartyConfig : ProviderConfig
 {
     public string NewProviderName { get; set; }

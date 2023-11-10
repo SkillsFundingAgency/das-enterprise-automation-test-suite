@@ -2,7 +2,7 @@
 {
     public class AreYouJoiningBecauseYouHaveEngagedPage : AanBasePage
     {
-        protected override string PageTitle => "Are you joining because you have engaged with an ambassador in the network?";
+        protected override string PageTitle => "Did you previously engage with an ambassador before deciding to join the network?";
 
         public AreYouJoiningBecauseYouHaveEngagedPage(ScenarioContext context) : base(context) => VerifyPage();
 

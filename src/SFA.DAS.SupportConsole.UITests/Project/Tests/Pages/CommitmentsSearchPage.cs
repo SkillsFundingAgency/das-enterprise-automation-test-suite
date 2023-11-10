@@ -29,7 +29,7 @@ public class CommitmentsSearchPage : SupportConsoleBasePage
     public CommitmentsSearchPage(ScenarioContext context) : base(context)
     {
         VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
-        SqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+        SqlDataHelper = new CommitmentsSqlDataHelper(objectContext, context.Get<DbConfig>());
     }
 
     private void EnterTextInSearchBox(string searchText) => formCompletionHelper.EnterText(SearchTextBox, searchText);

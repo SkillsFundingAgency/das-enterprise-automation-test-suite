@@ -18,11 +18,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project
         {
             var dbConfig = _context.Get<DbConfig>();
 
-            _context.Set(new EarningsSqlDbHelper(dbConfig));
+            var objectContext = _context.Get<ObjectContext>();
 
-            _context.Set(new ApprenticeshipsSqlDbHelper(dbConfig));
+            _context.Set(new EarningsSqlDbHelper(objectContext, dbConfig));
 
-            _context.Get<ObjectContext>().SetTestDataList();
+            _context.Set(new ApprenticeshipsSqlDbHelper(objectContext, dbConfig));
+
+            objectContext.SetFlexiPaymentsTestDataList();
         }
     }
 }

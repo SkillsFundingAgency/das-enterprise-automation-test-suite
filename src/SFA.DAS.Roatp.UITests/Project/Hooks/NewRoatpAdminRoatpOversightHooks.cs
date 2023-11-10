@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         public NewRoatpAdminRoatpOversightHooks(ScenarioContext context) : base(context)
         {
             _tags = context.ScenarioInfo.Tags;
-            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_dbConfig);
+            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_objectContext, _dbConfig);
         }
 
         [BeforeScenario(Order = 33)]

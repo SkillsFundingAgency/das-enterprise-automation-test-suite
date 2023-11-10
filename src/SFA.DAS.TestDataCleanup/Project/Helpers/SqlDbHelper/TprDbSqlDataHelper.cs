@@ -2,5 +2,5 @@
 
 public class TprDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public TprDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.TPRDbConnectionString) { }
+    public TprDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TPRDbConnectionString) { }
 }

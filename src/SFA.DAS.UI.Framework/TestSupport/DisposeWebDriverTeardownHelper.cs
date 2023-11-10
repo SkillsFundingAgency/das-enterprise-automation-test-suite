@@ -3,40 +3,39 @@ using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.UI.Framework.TestSupport;
+
+public class DisposeWebDriverTeardownHelper
 {
-    public class DisposeWebDriverTeardownHelper
+    private readonly ScenarioContext _context;
+    private readonly ObjectContext _objectContext;
+    private readonly TryCatchExceptionHelper _tryCatch;
+
+    public DisposeWebDriverTeardownHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly TryCatchExceptionHelper _tryCatch;
+        _context = context;
+        _objectContext = context.Get<ObjectContext>();
+        _tryCatch = context.Get<TryCatchExceptionHelper>();
+    }
 
-        public DisposeWebDriverTeardownHelper(ScenarioContext context)
+    public void DisposeWebDriver()
+    {
+        _tryCatch.AfterScenarioException(() => 
         {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchExceptionHelper>();
-        }
+            var WebDriver = _context.GetWebDriver();
 
-        public void DisposeWebDriver()
-        {
-            _tryCatch.AfterScenarioException(() => 
+            if (DoNotDisposeWebDriver() == false)
             {
-                var WebDriver = _context.GetWebDriver();
+                WebDriver?.Quit();
+                WebDriver?.Dispose();
+            }
+        });
+    }
 
-                if (DoNotDisposeWebDriver() == false)
-                {
-                    WebDriver?.Quit();
-                    WebDriver?.Dispose();
-                }
-            });
-        }
-
-        private bool DoNotDisposeWebDriver()
-        {
-            //Browserstack will leave the tests as inconclusive if they are timed out 
-            //we wanted to leave the tests as inconclusive if for any reason Rest Api failed to update the results)
-            return _context.TestError != null && _objectContext.GetBrowser().IsCloudExecution() && _objectContext.FailedtoUpdateTestResultInBrowserStack();
-        }
+    private bool DoNotDisposeWebDriver()
+    {
+        //Browserstack will leave the tests as inconclusive if they are timed out 
+        //we wanted to leave the tests as inconclusive if for any reason Rest Api failed to update the results)
+        return _context.TestError != null && _objectContext.GetBrowser().IsCloudExecution() && _objectContext.FailedtoUpdateTestResultInBrowserStack();
     }
 }

@@ -34,11 +34,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project
 
             _context.Set(new TMDataHelper(courseDetails));
 
-            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_dbConfig);
+            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_objectContext, _dbConfig);
 
             _context.Set(_transferMatchingSqlDataHelper);
 
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_dbConfig);
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_objectContext, _dbConfig);
 
             _context.Set(_commitmentsSqlDataHelper);
 

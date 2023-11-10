@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.TestDataCleanup.Project.Helpers;
-using SFA.DAS.TestDataCleanup;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
             if (newUser)
             {
-                idOrUserRef = new UsersSqlDataHelper(context.Get<DbConfig>()).GetUserId(username);
+                idOrUserRef = new UsersSqlDataHelper(objectContext, context.Get<DbConfig>()).GetUserId(username);
 
                 objectContext.UpdateLoginIdOrUserRef(username, idOrUserRef);
 

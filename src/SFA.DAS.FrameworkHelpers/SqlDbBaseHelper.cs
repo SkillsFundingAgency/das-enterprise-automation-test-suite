@@ -1,51 +1,37 @@
-﻿using Dapper;
-using Dapper.Contrib.Extensions;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using static SFA.DAS.FrameworkHelpers.WaitConfigurationHelper;
 
 namespace SFA.DAS.FrameworkHelpers;
 
-public static class WaitConfigurationHelper
+public class SqlDbBaseHelper
 {
-    public class WaitHelper
+    protected bool waitForResults = false;
+
+    protected readonly string connectionString;
+
+    protected readonly ObjectContext objectContext;
+
+    public SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
     {
-        private static WaitConfiguration Config => new();
+       this.connectionString = connectionString;
 
-        public static async Task WaitForIt(Func<bool> lookForIt, string textMessage)
-        {
-            var endTime = DateTime.Now.Add(Config.TimeToWait);
-
-            int retryCount = 0;
-
-            while (DateTime.Now <= endTime)
-            {
-                if (lookForIt()) return;
-
-                TestContext.Progress.WriteLine($"Retry {retryCount++} - Waiting for the sql query to return valid data - '{textMessage}'");
-
-                await Task.Delay(Config.TimeToPoll(retryCount));
-            }
-        }
-
-        public class WaitConfiguration
-        {
-            public TimeSpan TimeToWait { get; set; } = TimeSpan.FromMinutes(5);
-            public TimeSpan TimeToPoll(int x) => TimeSpan.FromSeconds(5 * x);
-        }
+       this.objectContext = objectContext;
     }
-}
 
-public static class SqlDatabaseConnectionHelper
-{
-    public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
+    #region ExecuteSqlCommand
+
+    public int ExecuteSqlCommand(string queryToExecute) => ExecuteSqlCommand(queryToExecute, connectionString);
+
+    public int ExecuteSqlCommand(string queryToExecute, string connectionString) => ExecuteSqlCommand(queryToExecute, connectionString, null);
+
+    public int ExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters) => ExecuteSqlCommand(queryToExecute, connectionString, parameters);
+
+    public int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters) 
     {
+        SetDebugInformation($"ExecuteSqlCommand:{Environment.NewLine}{queryToExecute}");
+
         try
         {
             using (SqlConnection databaseConnection = GetSqlConnection(connectionString))
@@ -72,15 +58,20 @@ public static class SqlDatabaseConnectionHelper
         }
     }
 
-    public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString) => ReadDataFromDataBase(queryToExecute, connectionString, false);
+    #endregion
 
-    public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, bool mustFindresult) => ReadDataFromDataBase(queryToExecute, connectionString, null, mustFindresult).data;
+    protected List<object[]> GetListOfData(string queryToExecute) => GetListOfData(queryToExecute, connectionString, null).data;
 
-    public static (List<object[]> data, int noOfColumns) ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters, bool mustFindresult) =>
-        ReadMultipleDataFromDataBase(new List<string> { queryToExecute }, connectionString, parameters, mustFindresult).FirstOrDefault();
+    protected (List<object[]> data, int noOfColumns) GetListOfData(string queryToExecute, string connectionString, Dictionary<string, string> parameters) =>
+        GetMultipleListOfData(new List<string> { queryToExecute }, connectionString, parameters).FirstOrDefault();
 
-    public static List<(List<object[]> data, int noOfColumns)> ReadMultipleDataFromDataBase(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters, bool waitForResults)
+    protected List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute) =>
+        GetMultipleListOfData(queryToExecute, connectionString, null);
+
+    private List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
+        SetDebugInformation($"ReadDataFromDataBase:{Environment.NewLine}{string.Join(Environment.NewLine, queryToExecute)}");
+
         try
         {
             using (SqlConnection dbConnection = GetSqlConnection(connectionString))
@@ -150,31 +141,9 @@ public static class SqlDatabaseConnectionHelper
         return multiresult;
     }
 
-    public static int ExecuteSqlCommand(string queryToExecute, string connectionString)
-    {
-        using var connection = GetSqlConnection(connectionString);
-        return connection.Execute(queryToExecute);
-    }
+    private static SqlConnection GetSqlConnection(string connectionString) => GetSqlConnectionHelper.GetSqlConnection(connectionString);
 
-    public static async Task<int> Insert<T>(T entity, string connectionString) where T : class
-    {
-        await using var dbConnection = GetSqlConnection(connectionString);
-        return await dbConnection.InsertAsync(entity);
-    }
+    private static string WriteDebugMessage(string connectionString) => Regex.Replace(connectionString, @"Password=.*;Trusted_Connection", "Password=<*******>;Trusted_Connection");
 
-    public static async Task<T> Get<T>(object id, string connectionString) where T : class
-    {
-        await using var dbConnection = GetSqlConnection(connectionString);
-        return await dbConnection.GetAsync<T>(id);
-    }
-
-    private static SqlConnection GetSqlConnection(string connectionString)
-    {
-        return new() { ConnectionString = connectionString, AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken() };
-    }
-
-    private static string WriteDebugMessage(string connectionString)
-    {
-        return Regex.Replace(connectionString, @"Password=.*;Trusted_Connection", "Password=<*******>;Trusted_Connection");
-    }
+    private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
 }

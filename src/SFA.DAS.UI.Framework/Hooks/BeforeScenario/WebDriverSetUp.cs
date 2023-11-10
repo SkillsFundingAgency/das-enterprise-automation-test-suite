@@ -1,19 +1,18 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
+namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
+
+[Binding]
+public class WebDriverSetup : WebDriverSetupBase
 {
-    [Binding]
-    public class WebDriverSetup : WebDriverSetupBase
+    public WebDriverSetup(ScenarioContext context) : base(context) { }
+
+    [BeforeScenario(Order = 3)]
+    public void SetupWebDriver()
     {
-        public WebDriverSetup(ScenarioContext context) : base(context) { }
+        SetDriverLocation(false);
 
-        [BeforeScenario(Order = 3)]
-        public void SetupWebDriver()
-        {
-            SetDriverLocation(false);
-
-            webDriverSetupHelper.SetupWebDriver();
-        }
+        webDriverSetupHelper.SetupWebDriver();
     }
 }

@@ -1,34 +1,19 @@
 ﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
-using SFA.DAS.EsfaAdmin.Service.Project;
-using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin
 {
 
     [Binding, Scope(Tag = "@aanadmin")]
-    public class Admin_Events_Steps : Admin_BaseSteps
+    public class Admin_Events_Filter_Steps : Admin_BaseSteps
     {
-        private AdminAdministratorHubPage adminAdministratorHubPage;
-
         private ManageEventsPage manageEventsPage;
 
-        private readonly EsfaAdminLoginStepsHelper _esfaAdminLoginStepsHelper;
-
-        public Admin_Events_Steps(ScenarioContext context) : base(context)
-        {
-            _esfaAdminLoginStepsHelper = new EsfaAdminLoginStepsHelper(context);
-        }
-
-        [Given(@"an admin logs into the AAN portal")]
-        public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetAanEsfaAdminConfig<AanEsfaAdminConfig>());
-
-        [Given(@"a super admin logs into the AAN portal")]
-        public void ASuperAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetAanEsfaSuperAdminConfig<AanEsfaSuperAdminConfig>());
+        public Admin_Events_Filter_Steps(ScenarioContext context) : base(context) { }
 
         [Then(@"the user should be able to successfully filter events by date")]
         public void TheUserShouldBeAbleToSuccessfullyFilterEventsByDate()
         {
-            manageEventsPage = adminAdministratorHubPage.AccessManageEvents();
+            manageEventsPage = new AdminAdministratorHubPage(context).AccessManageEvents();
 
             manageEventsPage.FilterEventByOneMonth().ClearAllFilters();
         }
@@ -77,13 +62,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                  .VerifyEventRegion_London_Filter()
                  .ClearAllFilters();
 
-        }
-
-        private AdminAdministratorHubPage SubmitValidLoginDetails(EsfaAdminConfig config)
-        {
-            _esfaAdminLoginStepsHelper.SubmitValidLoginDetails(config);
-
-            return adminAdministratorHubPage = new AdminAdministratorHubPage(context);
         }
     }
 }
