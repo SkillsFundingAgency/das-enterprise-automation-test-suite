@@ -17,9 +17,9 @@ public class EPAOHomePageHelper
     {
         var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
 
-        serviceStartPage.StartNow().LoginToAccess1Staff();
+        serviceStartPage.ClickStartNowButton();
 
-        return new SignInPage(_context).SignInWithValidDetails();
+        return new EpaoDfeSignInPage(_context).SignInWithValidDetails();
     }
 
     public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
