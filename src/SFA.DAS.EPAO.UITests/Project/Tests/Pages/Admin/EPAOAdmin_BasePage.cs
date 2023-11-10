@@ -12,10 +12,10 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
 
     public EPAOAdmin_BasePage(ScenarioContext context) : base(context) { }
 
-    public SignedOutPage SignOut()
+    public EsfaAdminServiceStartPage SignOut()
     {
         formCompletionHelper.ClickElement(SignOutLink);
-        return new(context);
+        return new (context);
     }
 
     protected IWebElement GetData(string headerName)

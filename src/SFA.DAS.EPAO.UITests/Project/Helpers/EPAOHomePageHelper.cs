@@ -15,9 +15,9 @@ public class EPAOHomePageHelper
 
     public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
     {
-        var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
+        OpenAdminUrl(openInNewTab);
 
-        serviceStartPage.ClickStartNowButton();
+        new EsfaAdminServiceStartPage(_context).ClickStartNowButton();
 
         return new EpaoDfeSignInPage(_context).SignInWithValidDetails();
     }
@@ -33,7 +33,13 @@ public class EPAOHomePageHelper
 
     public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
     {
-        OpenAdminBaseUrl(true).ClickStartNowButton();
+        OpenAdminUrl(true);
+
+        var startNowPage = new CheckStartNowButtonPage(_context);
+
+        if (startNowPage.IsPageDisplayed()) startNowPage.ClickStartNowButton();
+
+        if (new CheckEpaoDfeSignInPage(_context).IsPageDisplayed()) new EpaoDfeSignInPage(_context).SignInWithValidDetails();
 
         return new StaffDashboardPage(_context);
     }
@@ -49,12 +55,7 @@ public class EPAOHomePageHelper
         return LoginInAsNonApplyUser(loginUser);
     }
 
-    private EsfaAdminServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
-    {
-        OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
-
-        return new EsfaAdminServiceStartPage(_context);
-    }
+    private void OpenAdminUrl(bool openInNewTab) => OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
     private void OpenUrl(string url, bool openInNewTab)
     {

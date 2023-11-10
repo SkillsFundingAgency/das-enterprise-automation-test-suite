@@ -2,7 +2,7 @@
 
 public class CheckStartNowButtonPage : CheckPageUsingShorterTimeOut
 {
-    protected override string PageTitle => "Apprenticeship service employer support tool";
+    protected override string PageTitle => "Apprenticeship service";
 
     protected override By Identifier => IdamsPageSelector.StartNowButton;
 
