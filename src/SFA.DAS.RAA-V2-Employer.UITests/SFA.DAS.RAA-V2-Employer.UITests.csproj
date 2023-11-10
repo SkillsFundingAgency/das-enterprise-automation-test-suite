@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\WageOptions\RV2_E_WO_03 - Copy.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -30,19 +26,13 @@
   <ItemGroup>
 	<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
-    <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+        <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 	<ProjectReference Include="..\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.RAA-V2-QA.UITests\SFA.DAS.RAA-V2-QA.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
-    <ProjectReference Include="..\SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj" />
+        <ProjectReference Include="..\SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj" />
 	<ProjectReference Include="..\SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\WageOptions\RV2_E_WO_04.feature.cs">
-      <DependentUpon>RV2_E_WO_04.feature</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -59,13 +49,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\WageOptions\RV2_E_WO_04.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
