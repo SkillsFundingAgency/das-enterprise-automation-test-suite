@@ -22,7 +22,7 @@ internal static class SetProviderCredsHelper
 
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
-        t.UserId = provider.Username;
+        t.Username = provider.Username;
 
         t.Password = provider.Password;
 

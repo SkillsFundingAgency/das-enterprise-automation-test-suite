@@ -7,5 +7,5 @@ public class ProviderSignInPage : DfeSignInPage
 {
     public ProviderSignInPage(ScenarioContext context) : base(context) { }
 
-    public void SubmitValidLoginDetails(ProviderLoginUser login) => SubmitValidLoginDetails(login.UserId, login.Password);
+    public void SubmitValidLoginDetails(ProviderLoginUser login) => SubmitValidLoginDetails(login.Username, login.Password);
 }
