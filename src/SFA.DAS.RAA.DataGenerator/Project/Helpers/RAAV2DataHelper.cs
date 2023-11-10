@@ -82,6 +82,8 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string NationalMinimumWageForApprentices => "£10,982.40";
 
+        public string SetAsCompetitive => "Competitive";
+
         public string FixedWageForApprentices => "£11,000";
 
         public DateTime EditedVacancyClosing { get; }
