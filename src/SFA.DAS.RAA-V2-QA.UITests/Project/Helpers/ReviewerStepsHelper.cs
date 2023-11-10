@@ -1,50 +1,48 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
+namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers;
+
+public class ReviewerStepsHelper
 {
-    public class ReviewerStepsHelper
+    private readonly ScenarioContext _context;
+
+    public ReviewerStepsHelper(ScenarioContext context) => _context = context;
+
+    public Reviewer_HomePage GoToReviewerHomePage(bool restart)
     {
-        private readonly ScenarioContext _context;
+        var applicationName = "Reviewer";
+        var raav2qaBaseUrl = UrlConfig.RAAV2QA_BaseUrl;
 
-        public ReviewerStepsHelper(ScenarioContext context) => _context = context;
-
-        public Reviewer_HomePage GoToReviewerHomePage(bool restart)
+        if (restart)
         {
-            var applicationName = "Reviewer";
-            var raav2qaBaseUrl = UrlConfig.RAAV2QA_BaseUrl;
+            new RestartWebDriverHelper(_context).RestartWebDriver(raav2qaBaseUrl, applicationName);
+        }
+        else
+        {
+            _context.Get<ObjectContext>().SetCurrentApplicationName(applicationName);
 
-            if (restart)
-            {
-                new RestartWebDriverHelper(_context).RestartWebDriver(raav2qaBaseUrl, applicationName);
-            }
-            else
-            {
-                _context.Get<ObjectContext>().SetCurrentApplicationName(applicationName);
-
-                _context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
-            }
-
-            new DfeAdminLoginStepsHelper(_context).CheckAndLoginToASVacancyQa();
-
-            return new Reviewer_HomePage(_context);
+            _context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
         }
 
-        public void VerifyEmployerNameAndApprove(bool restart) => ReviewVacancy(restart).VerifyEmployerName().Approve();
+        new DfeAdminLoginStepsHelper(_context).CheckAndLoginToASVacancyQa();
 
-        public void Refer(bool restart) => ReviewVacancy(restart).ReferTitle();
-
-        public void VerifyDisabilityConfidenceAndApprove(bool restart) => ReviewVacancy(restart).VerifyDisabilityConfident().Approve();
-
-        private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
+        return new Reviewer_HomePage(_context);
     }
+
+    public void VerifyEmployerNameAndApprove(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).VerifyEmployerName().Approve());
+
+    public void Refer(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).ReferTitle());
+
+    public void VerifyDisabilityConfidenceAndApprove(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).VerifyDisabilityConfident().Approve());
+
+    private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
+
+    private void RAAV2QASignOut(VerifyDetailsBasePage basePage) => basePage.RAAV2QASignOut();
 }
