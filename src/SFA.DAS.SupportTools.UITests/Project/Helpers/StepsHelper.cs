@@ -1,6 +1,5 @@
 ﻿
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
 namespace SFA.DAS.SupportTools.UITests.Project.Helpers;
 
@@ -16,19 +15,24 @@ public class StepsHelper
 
     private ToolSupportHomePage LoginToSupportTools(DfeAdminUser loginUser, bool reLogin)
     {
-        if (reLogin) ReLoginToDfeSignIn(loginUser);
-
-        else new DfeAdminLoginStepsHelper(_context).LoginToSupportTool(loginUser);
+        LoginToDfeSignIn(loginUser, reLogin);
 
         return new ToolSupportHomePage(_context);
     }
 
-    public void ReLoginToDfeSignIn(DfeAdminUser loginUser)
+    public void LoginToDfeSignIn(DfeAdminUser loginUser, bool reLogin)
     {
-        _context.Get<TabHelper>().OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
+        var helper = new DfeAdminLoginStepsHelper(_context);
 
-        if (new CheckASEmpSupportToolLandingPage(_context).IsPageDisplayed()) new ASEmpSupportToolLandingPage(_context).ClickStartNowButton();
+        if (reLogin)
+        {
+            _context.Get<TabHelper>().OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
 
-        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) new DfeSignInPage(_context).SubmitValidLoginDetails(loginUser);
+            helper.CheckAndLoginToSupportTool(loginUser);
+        }
+        else
+        {
+            helper.LoginToSupportTool(loginUser);
+        }
     }
 }

@@ -5,6 +5,10 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
 {
@@ -30,7 +34,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
                 _context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
             }
 
-            new DfeAdminLoginStepsHelper(_context).LoginToASVacancyQa();
+            new DfeAdminLoginStepsHelper(_context).CheckAndLoginToASVacancyQa();
 
             return new Reviewer_HomePage(_context);
         }

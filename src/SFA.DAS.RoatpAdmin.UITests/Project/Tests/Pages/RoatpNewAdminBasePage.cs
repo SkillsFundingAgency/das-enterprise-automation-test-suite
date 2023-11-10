@@ -48,12 +48,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
                 {
                     if (IsAccessibilityTesting())
                     {
-                        if (new CheckASAdminLandingPage(context).IsPageDisplayed())
-                        {
-                            new DfeAdminLoginStepsHelper(context).LoginToAsAdmin();
+                        new DfeAdminLoginStepsHelper(context).CheckAndLoginToAsAdmin();
 
-                            VerifyPage();
-                        }
+                        VerifyPage();
                     }
                     else
                     {

@@ -2,7 +2,9 @@
 
 public class ASVacancyQaLandingPage : ASLandingBasePage
 {
-    protected override string PageTitle => "Apprenticeship service vacancy QA";
+    public static string ASVacancyQaPageTitle => "Apprenticeship service vacancy QA";
+
+    protected override string PageTitle => ASVacancyQaPageTitle;
 
     public ASVacancyQaLandingPage(ScenarioContext context) : base(context) { }
 }

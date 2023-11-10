@@ -1,9 +1,9 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public abstract class CheckASLandingPage : CheckPageUsingShorterTimeOut
+public abstract class CheckASLandingBasePage : CheckPageUsingShorterTimeOut
 {
 
-    public CheckASLandingPage(ScenarioContext context) : base(context)
+    public CheckASLandingBasePage(ScenarioContext context) : base(context)
     {
 
     }

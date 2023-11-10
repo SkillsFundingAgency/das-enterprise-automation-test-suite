@@ -11,11 +11,4 @@ public abstract class ASLandingBasePage : IdamsLoginBasePage
     public ASLandingBasePage(ScenarioContext context) : base(context) { }
 
     public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowButton);
-
-    public DfeSignInPage StartNowAndGoToDfeSignPage()
-    {
-        ClickStartNowButton();
-
-        return new DfeSignInPage(context);
-    }
 }

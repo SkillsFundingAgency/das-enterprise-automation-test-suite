@@ -1,10 +1,10 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public class CheckASEmpSupportConsoleLandingPage : CheckASLandingPage
+public class CheckASEmpSupportConsoleLandingPage : CheckASLandingBasePage
 {
     protected override string PageTitle => ASEmpSupportConsoleLandingPage.ASEmpSupportConsolePageTitle;
 
-    protected override By Identifier => ASEmpSupportConsoleLandingPage.ASEmpSupportonsolePageheader;
+    protected override By Identifier => ASLandingBasePage.ASLandingPageheader;
 
     public CheckASEmpSupportConsoleLandingPage(ScenarioContext context) : base(context) { }
 }
