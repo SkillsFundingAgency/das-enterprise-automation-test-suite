@@ -6,5 +6,5 @@ public abstract class DfeSignUser
 
     public string Password { get; set; }
 
-    public override string ToString() => $"UserId:'{Username}', Password:'{Password}'";
+    public override string ToString() => $"Username:'{Username}', Password:'{Password}'";
 }
