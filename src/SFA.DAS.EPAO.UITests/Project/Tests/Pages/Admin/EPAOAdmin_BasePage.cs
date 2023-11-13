@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
 public abstract class EPAOAdmin_BasePage : EPAO_BasePage
 {
@@ -12,10 +14,10 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
 
     public EPAOAdmin_BasePage(ScenarioContext context) : base(context) { }
 
-    public SignedOutPage SignOut()
+    public ASAdminLandingPage SignOut()
     {
         formCompletionHelper.ClickElement(SignOutLink);
-        return new(context);
+        return new (context);
     }
 
     protected IWebElement GetData(string headerName)
