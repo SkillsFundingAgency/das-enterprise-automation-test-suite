@@ -1,28 +1,19 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.Roatp.UITests.Project;
-using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class RoatpAdminLoginSteps
     {
-        private readonly EsfaAdminLoginStepsHelper _loginStepsHelper;
-        private readonly RoatpConfig _config;
+        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper;
 
-        public RoatpAdminLoginSteps(ScenarioContext context)
-        {
-            _loginStepsHelper = new EsfaAdminLoginStepsHelper(context);
-            _config = context.GetRoatpConfig<RoatpConfig>();
-        }
+        public RoatpAdminLoginSteps(ScenarioContext context) => _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(context);
 
         [Given(@"the admin lands on the Dashboard as Assessor1")]
-        public void GivenTheAdminLandsOnTheDashboardAsAssessor() => _loginStepsHelper.SubmitValidLoginDetails(_config.Assessor1UserName, _config.Assessor1Password);
-
+        public void GivenTheAdminLandsOnTheDashboardAsAssessor() => _dfeAdminLoginStepsHelper.LoginToAsAssessor1();
 
         [Given(@"the admin lands on the Dashboard")]
-        public void GivenTheAdminLandsOnTheDashboard() => _loginStepsHelper.SubmitValidLoginDetails();
-
+        public void GivenTheAdminLandsOnTheDashboard() => _dfeAdminLoginStepsHelper.NavigateAndLoginToASAdmin();
     }
 }

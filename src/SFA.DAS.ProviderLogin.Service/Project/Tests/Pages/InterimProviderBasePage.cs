@@ -24,10 +24,4 @@ public abstract class InterimProviderBasePage : Navigate
 
     public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
 
-    protected void ClickIfPirenIsDisplayed()
-    {
-        var checkPage = new CheckProviderPireanPreprodPage(context);
-
-        if (checkPage.IsPageDisplayed()) formCompletionHelper.ClickElement(checkPage.PireanPreprod);
-    }
 }

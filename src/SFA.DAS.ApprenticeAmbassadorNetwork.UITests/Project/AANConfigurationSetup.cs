@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
 public class AANConfigurationSetup
 {
     private readonly ScenarioContext _context;
-
 
     public AANConfigurationSetup(ScenarioContext context) => _context = context;
 
@@ -24,15 +24,15 @@ public class AANConfigurationSetup
             configSection.GetConfigSection<AanEmployerOnBoardedUser>()
         });
 
+        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
+
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
             configSection.GetConfigSection<AanApprenticeUser>(),
             configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
             configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanAdminUser()),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanSuperAdminUser())
         });
-
-        _context.SetAanEsfaAdminConfig(configSection.GetConfigSection<AanEsfaAdminConfig>());
-
-        _context.SetAanEsfaSuperAdminConfig(configSection.GetConfigSection<AanEsfaSuperAdminConfig>());
     }
 }

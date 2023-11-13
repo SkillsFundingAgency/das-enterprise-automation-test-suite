@@ -20,7 +20,6 @@ public class EPAOConfigurationSetup
             configSection.GetConfigSection<EPAOApplyUser>(),
             configSection.GetConfigSection<EPAOE2EApplyUser>(),
             configSection.GetConfigSection<EPAOWithdrawalUser>(),
-            configSection.GetConfigSection<EPAOAdminUser>(),
             configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>()
         });
     }             

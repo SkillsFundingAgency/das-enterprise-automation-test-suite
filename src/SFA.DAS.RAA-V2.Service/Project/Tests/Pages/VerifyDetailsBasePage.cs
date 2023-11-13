@@ -22,5 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
 
         protected void VerifyDisabilityConfident() => VerifyElement(DisabilityConfident);
+
+        public void RAAV2QASignOut() => formCompletionHelper.ClickElement(By.CssSelector("#navigation a[data-automation='sign-out']"));
     }
 }

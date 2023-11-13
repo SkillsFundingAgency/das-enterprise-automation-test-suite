@@ -53,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2.Service", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Roatp.UITests", "SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj", "{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.IdamsLogin.Service", "SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj", "{A0756E1D-EA78-40B2-8A50-B9CC0FDA4FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.DfeAdmin.Service", "SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj", "{A0756E1D-EA78-40B2-8A50-B9CC0FDA4FB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerFinance.UITests", "SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj", "{79AF36C8-C911-4D01-9554-C2AEB2744B3E}"
 EndProject
@@ -135,11 +135,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MailinatorAPI.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeAmbassadorNetwork.UITests", "SFA.DAS.ApprenticeAmbassadorNetwork.UITests\SFA.DAS.ApprenticeAmbassadorNetwork.UITests.csproj", "{D440F170-4FA4-4809-99F8-E36E0B51D606}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EsfaAdmin.Service", "SFA.DAS.EsfaAdmin.Service\SFA.DAS.EsfaAdmin.Service.csproj", "{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RoatpAdmin.Service", "SFA.DAS.RoatpAdmin.Service\SFA.DAS.RoatpAdmin.Service.csproj", "{D54A446D-A87A-4BE5-95CD-FE7FEC23B354}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.SupportTools.UITests", "SFA.DAS.SupportTools.UITests\SFA.DAS.SupportTools.UITests.csproj", "{51F174A5-F65F-4737-802B-430500ACF864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TransferMatching.APITests", "SFA.DAS.TransferMatching.APITests\SFA.DAS.TransferMatching.APITests.csproj", "{A685DED7-44AA-4903-890B-B3C13C6F6963}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TransferMatching.APITests", "SFA.DAS.TransferMatching.APITests\SFA.DAS.TransferMatching.APITests.csproj", "{A685DED7-44AA-4903-890B-B3C13C6F6963}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

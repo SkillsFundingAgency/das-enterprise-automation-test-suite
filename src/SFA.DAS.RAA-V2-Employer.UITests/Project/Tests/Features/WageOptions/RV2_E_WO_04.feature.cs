@@ -74,19 +74,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.WageOptions
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_WO_01 - Employer verifies ‘Fixed Wage Type\' option also know as set wage yo" +
+        [NUnit.Framework.DescriptionAttribute("RV2_E_WO_04 - Employer verifies ‘Fixed Wage Type\' option also know as set wage yo" +
             "urself")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_E_WO_01_EmployerVerifiesFixedWageTypeOptionAlsoKnowAsSetWageYourself()
+        public void RV2_E_WO_04_EmployerVerifiesFixedWageTypeOptionAlsoKnowAsSetWageYourself()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
                     "raa-v2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_WO_01 - Employer verifies ‘Fixed Wage Type\' option also know as set wage yo" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_WO_04 - Employer verifies ‘Fixed Wage Type\' option also know as set wage yo" +
                     "urself", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
