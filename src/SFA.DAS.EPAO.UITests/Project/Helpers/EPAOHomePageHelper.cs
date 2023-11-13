@@ -18,7 +18,7 @@ public class EPAOHomePageHelper
 
     public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
     {
-        OpenAdminUrl(openInNewTab);
+        var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
 
         new DfeAdminLoginStepsHelper(_context).SubmitValidAsLoginDetails(serviceStartPage);
 
@@ -36,13 +36,7 @@ public class EPAOHomePageHelper
 
     public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
     {
-        OpenAdminUrl(true);
-
-        var startNowPage = new CheckStartNowButtonPage(_context);
-
-        if (startNowPage.IsPageDisplayed()) startNowPage.ClickStartNowButton();
-
-        if (new CheckEpaoDfeSignInPage(_context).IsPageDisplayed()) new EpaoDfeSignInPage(_context).SignInWithValidDetails();
+        OpenAdminBaseUrl(true).ClickStartNowButton();
 
         if (new CheckDfeSignInPage(_context).IsPageDisplayed()) { }
 
