@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -64,8 +64,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
 
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-
-            ClickIfPirenIsDisplayed();
 
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
@@ -179,19 +177,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
         }
 
-        private void AddAnApprentice()
-        {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
-
-            ClickIfPirenIsDisplayed();
-        }
-
-        private void ClickIfPirenIsDisplayed()
-        {
-            var by = IdamsPageSelector.PireanPreprod;
-
-            if (pageInteractionHelper.IsElementDisplayed(by)) formCompletionHelper.ClickElement(by);
-        }
+        private void AddAnApprentice() => formCompletionHelper.ClickElement(AddAnApprenticeButton);
 
         public void VerifyLimitingStandardRestriction()
         {

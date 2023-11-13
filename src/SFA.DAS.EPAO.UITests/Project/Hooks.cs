@@ -21,7 +21,7 @@ global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUs
 global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+global using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.TestDataExport.Helper;

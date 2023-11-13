@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _employerLoginHelper = new EmployerPortalLoginHelper(context);
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _providerLoginUser = new ProviderLoginUser { UserId = _providerPermissionConfig.UserId, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
+            _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionConfig.Username, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
         }
 
         [Given(@"Employer grant create cohort permission to a provider")]
@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.Ukprn);
 
-            _providerLoginUser = new ProviderLoginUser { UserId = _providerPermissionConfig.UserId, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
+            _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionConfig.Username, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
         }
 
         [When(@"Employer revoke create cohort permission to a provider")]

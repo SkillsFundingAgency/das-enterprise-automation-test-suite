@@ -1,9 +1,8 @@
-﻿using SFA.DAS.EsfaAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
@@ -14,24 +13,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
         private ApplicationSummaryPage _applicationSummaryPage;
-        private readonly TabHelper _tabhelper;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private readonly EsfaAdminLoginStepsHelper _loginStepsHelper;
 
-        public OutcomeSteps(ScenarioContext context)
-        { 
-            _context = context;
-            _tabhelper = _context.Get<TabHelper>();
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
-            _loginStepsHelper = new EsfaAdminLoginStepsHelper(context);
-        }
+        public OutcomeSteps(ScenarioContext context) => _context = context;
 
         [Given(@"the admin navigates to the Dashboard")]
         [Then(@"the admin navigates to the Dashboard")]
         public void TheAdminNavigatesToTheDashboard()
         {
             RestartRoatpAdmin("RoATPAdmin");
-            _loginStepsHelper.SubmitValidLoginDetails();
+
+            new DfeAdminLoginStepsHelper(_context).LoginToAsAdmin();
         }
 
         [Then(@"the appeal manager approves the appeal as SUCCESSFUl Already Active")]
@@ -67,7 +58,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         }
 
         [Then(@"the appeal manager approves the in progress appeal as SUCCESSFUl Already Active")]
-        public void ThenTheAppealManagerApprovesTheInProgressAppealAsSUCCESSFUlAlreadyActive ()
+        public void ThenTheAppealManagerApprovesTheInProgressAppealAsSUCCESSFUlAlreadyActive()
         {
             _staffDashboardPage = new StaffDashboardPage(_context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealOutcomeTab()
@@ -130,7 +121,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [When(@"the oversight user overturns gateway and moderation outcome")]
         public void WhenTheOversightUserOverturnsGatewayAndModerationOutcome()
         {
-            _applicationSummaryPage =  _applicationSummaryPage.OverTurnThisApplication(); 
+            _applicationSummaryPage = _applicationSummaryPage.OverTurnThisApplication();
         }
 
         [When(@"the oversight user selects the overall application outcome as Unsuccessful")]
@@ -199,7 +190,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
             return areYouSureSuccessfullPage.SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 
-        private void RestartWebDriver(string url, string applicationName) => _restartWebDriverHelper.RestartWebDriver(url, applicationName);
+        private void RestartWebDriver(string url, string applicationName) => new RestartWebDriverHelper(_context).RestartWebDriver(url, applicationName);
         private void RestartRoatpAdmin(string applicationName) => RestartWebDriver(UrlConfig.Admin_BaseUrl, applicationName);
     }
 }

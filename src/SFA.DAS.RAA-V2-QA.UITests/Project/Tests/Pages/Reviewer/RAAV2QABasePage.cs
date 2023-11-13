@@ -1,10 +1,10 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
     public abstract class RAAV2QABasePage : VerifyBasePage
     {
-        public RAAV2QABasePage(ScenarioContext context) : base(context) => VerifyPage(); 
+        public RAAV2QABasePage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }
