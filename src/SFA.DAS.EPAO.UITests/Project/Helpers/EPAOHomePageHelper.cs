@@ -8,19 +8,21 @@ public class EPAOHomePageHelper
     private readonly ScenarioContext _context;
     private readonly TabHelper _tabHelper;
     private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
+    private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper;
 
     public EPAOHomePageHelper(ScenarioContext context)
     {
         _context = context;
         _tabHelper = context.Get<TabHelper>();
         _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
+        _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(_context);
     }
 
     public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
     {
         var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
 
-        new DfeAdminLoginStepsHelper(_context).SubmitValidAsLoginDetails(serviceStartPage);
+        _dfeAdminLoginStepsHelper.SubmitValidAsLoginDetails(serviceStartPage);
 
         return new StaffDashboardPage(_context);
     }
@@ -38,7 +40,7 @@ public class EPAOHomePageHelper
     {
         OpenAdminBaseUrl(true).ClickStartNowButton();
 
-        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) { }
+        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) _dfeAdminLoginStepsHelper.LoginToAsAdmin();
 
         return new StaffDashboardPage(_context);
     }
