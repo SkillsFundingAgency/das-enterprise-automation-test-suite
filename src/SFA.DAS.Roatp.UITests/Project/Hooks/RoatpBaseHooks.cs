@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EsfaAdmin.Service.Project;
+using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
         private readonly RoatpQnASqlDbHelper _roatpQnASqlDbHelper;
         private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
-        protected readonly RoatpConfig config;
+        private readonly RoatpConfig config;
         protected readonly DbConfig _dbConfig;
 
         private readonly RoatpApplyUkprnDataHelpers _roatpApplyUkprnDataHelpers;

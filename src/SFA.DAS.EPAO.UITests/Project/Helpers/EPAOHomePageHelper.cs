@@ -1,4 +1,7 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+
+namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
 public class EPAOHomePageHelper
 {
@@ -17,9 +20,9 @@ public class EPAOHomePageHelper
     {
         OpenAdminUrl(openInNewTab);
 
-        new EsfaAdminServiceStartPage(_context).ClickStartNowButton();
+        new DfeAdminLoginStepsHelper(_context).SubmitValidAsLoginDetails(serviceStartPage);
 
-        return new EpaoDfeSignInPage(_context).SignInWithValidDetails();
+        return new StaffDashboardPage(_context);
     }
 
     public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
@@ -41,6 +44,8 @@ public class EPAOHomePageHelper
 
         if (new CheckEpaoDfeSignInPage(_context).IsPageDisplayed()) new EpaoDfeSignInPage(_context).SignInWithValidDetails();
 
+        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) { }
+
         return new StaffDashboardPage(_context);
     }
 
@@ -55,7 +60,12 @@ public class EPAOHomePageHelper
         return LoginInAsNonApplyUser(loginUser);
     }
 
-    private void OpenAdminUrl(bool openInNewTab) => OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
+    private ASAdminLandingPage OpenAdminBaseUrl(bool openInNewTab)
+    {
+        OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
+
+        return new ASAdminLandingPage(_context);
+    }
 
     private void OpenUrl(string url, bool openInNewTab)
     {

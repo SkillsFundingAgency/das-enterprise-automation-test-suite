@@ -15,7 +15,7 @@ public class AedProviderSteps
         _providerStepsHelper = new ProviderStepsHelper(context);
         
         var config = context.GetProviderConfig<ProviderConfig>();
-        _login = new ProviderLoginUser { UserId = config.UserId, Password = config.Password, Ukprn = config.Ukprn };
+        _login = new ProviderLoginUser { Username = config.Username, Password = config.Password, Ukprn = config.Ukprn };
     }
 
     [Given(@"the provider has provided their contact details")]

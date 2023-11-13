@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.EsfaAdmin.Service.Project;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+using Polly;
+using SFA.DAS.RoatpAdmin.Service.Project;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
@@ -45,14 +48,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
                 {
                     if (IsAccessibilityTesting())
                     {
-                        if (new CheckEsfaSignInPage(context).IsPageDisplayed())
-                        {
-                            var (username, password) = objectContext.GetEsfaAdminLoginCreds();
+                        new DfeAdminLoginStepsHelper(context).CheckAndLoginToAsAdmin();
 
-                            new EsfaSignInPage(context, false).SubmitValidLoginDetails(username, password);
-
-                            VerifyPage();
-                        }
+                        VerifyPage();
                     }
                     else
                     {

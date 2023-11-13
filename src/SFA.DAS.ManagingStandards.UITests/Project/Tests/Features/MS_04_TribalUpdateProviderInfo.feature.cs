@@ -77,16 +77,14 @@ namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("MS_04_TribalUpdateProviderInfo")]
         [NUnit.Framework.CategoryAttribute("managingstandards")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("esfaadmin")]
         public void MS_04_TribalUpdateProviderInfo()
         {
             string[] tagsOfScenario = new string[] {
                     "managingstandards",
-                    "regression",
-                    "esfaadmin"};
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MS_04_TribalUpdateProviderInfo", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,13 +94,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("the tribal user searches for provider with UKPRN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.When("the tribal user chooses to change the provider details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.Then("the tribal user is allowed to make the change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

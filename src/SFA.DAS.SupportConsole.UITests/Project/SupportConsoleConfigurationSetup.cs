@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.SupportConsole.UITests.Project;
 
@@ -16,10 +17,12 @@ public class SupportConsoleConfigurationSetup
 
         _context.SetSupportConsoleConfig(configSection.GetConfigSection<SupportConsoleConfig>());
 
+        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
+
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<SupportConsoleTier1User>(),
-            configSection.GetConfigSection<SupportConsoleTier2User>(),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new SupportConsoleTier1User()),
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new SupportConsoleTier2User())
         });
     }
 }

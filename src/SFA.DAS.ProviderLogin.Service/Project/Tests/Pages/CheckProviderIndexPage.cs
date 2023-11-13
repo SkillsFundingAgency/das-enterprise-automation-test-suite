@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers.CSSSelectors;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -9,7 +8,7 @@ public class CheckProviderIndexPage : CheckPageUsingShorterTimeOut
 {
     protected override string PageTitle { get; }
 
-    protected override By Identifier => ProviderCSSSelectors.ProviderIndexStartSelector;
+    protected override By Identifier => ProviderIndexPage.ProviderIndexStartSelector;
 
     public CheckProviderIndexPage(ScenarioContext context) : base(context) { }
 }

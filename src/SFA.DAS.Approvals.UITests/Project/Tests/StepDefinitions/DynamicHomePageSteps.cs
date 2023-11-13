@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             _config = context.GetProviderConfig<ProviderConfig>();
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
+            _login = new ProviderLoginUser { Username = _config.Username, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         [Then(@"The nonlevyemployer continues to add an apprentice for reserved funding")]
