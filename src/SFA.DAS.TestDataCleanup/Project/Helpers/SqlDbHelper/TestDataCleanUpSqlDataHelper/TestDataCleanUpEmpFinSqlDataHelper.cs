@@ -4,7 +4,7 @@ public class TestDataCleanUpEmpFinSqlDataHelper : BaseSqlDbHelper.TestDataCleanU
 {
     public override string SqlFileName => "EasFinTestDataCleanUp";
 
-    public TestDataCleanUpEmpFinSqlDataHelper(DbConfig dbConfig) : base(dbConfig.FinanceDbConnectionString) { }
+    public TestDataCleanUpEmpFinSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.FinanceDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpEmpFinTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
     {

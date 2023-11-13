@@ -50,5 +50,5 @@ public class BrowserStackReportingService
 
     private static RestRequest Request(string sessionId) => new($"{sessionId}.json", Method.Put) { RequestFormat = DataFormat.Json };
 
-    private static RestClient Client(BrowserStackSetting options) => new(options.AutomateSessions) { Authenticator = new HttpBasicAuthenticator(options.User, options.Key) };
+    private static RestClient Client(BrowserStackSetting options) => new(new RestClientOptions {BaseUrl = new Uri(BrowserStackSetting.AutomateSessions), Authenticator = new HttpBasicAuthenticator(options.User, options.Key) });
 }

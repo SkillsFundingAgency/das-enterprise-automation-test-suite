@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.TestDataExport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +42,12 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
-    public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);
+    public void WaitForElementToChange(By locator, string attribute, string value)
+    {
+        WaitForElementToChange(() => FindElement(locator), attribute, value);
+
+        SetDebugInformation($"waited for '{locator}' : attribute : '{attribute}' to change to : '{value}'");
+    }
 
     public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
 
@@ -271,7 +275,14 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
 
-    public bool WaitUntilAnyElements(By locator) => _webDriverWaitHelper.WaitUntil(() => FindElements(locator).Count > 0);
+    public bool WaitUntilAnyElements(By locator)
+    {
+        var result = _webDriverWaitHelper.WaitUntil(() => FindElements(locator).Count > 0);
+
+        SetDebugInformation($"wait until elements : '{locator}' count > 0, result '{result}'");
+
+        return result;
+    }
 
     public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 

@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
             return new QAReviewsPage(context);
         }
 
-        public void ReferTitle()
+        public ApproveVacancyBasePage ReferTitle()
         {
             formCompletionHelper.SelectCheckbox(pageInteractionHelper.FindElement(TitleFieldIdentifiers));
 
@@ -39,6 +39,8 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
             Submit();
 
             formCompletionHelper.Click(VacancyQALink);
+
+            return this;
         }
 
         private void Submit() => formCompletionHelper.Click(SubmitButton);

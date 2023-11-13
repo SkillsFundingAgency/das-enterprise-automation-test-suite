@@ -96,7 +96,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
             argumentsOfScenario.Add("ReserveFrom", reserveFrom);
             argumentsOfScenario.Add("ReserveAllowed", reserveAllowed);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLP_02 Non Levy Provider reserves funding when dynamic pause rule exists", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -106,25 +106,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 15
  testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 16
  testRunner.And("the Provider with create reservation permission logs in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 17
  testRunner.And(string.Format("a dynamic pause rule exists from {0} to {1}", monthActiveFrom, monthActiveTo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 18
  testRunner.When("the Provider creates a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 19
  testRunner.Then(string.Format("the Provider is told that funding can be reserved from {0}", reserveFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 20
  testRunner.And(string.Format("the Provider is given options {0}, {1} and {2} to select start date", firstMonth, secondMonth, thirdMonth), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 21
  testRunner.And(string.Format("the Provider is {0} to reserve funding for an apprenticeship course", reserveAllowed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -138,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("reservation")]
         public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_0()
         {
-#line 8
+#line 14
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("0", "3", "", "", "", "3", "not able", ((string[])(null)));
 #line hidden
         }
@@ -150,7 +150,7 @@ this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("0", "
         [NUnit.Framework.CategoryAttribute("reservation")]
         public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_1()
         {
-#line 8
+#line 14
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-1", "2", "2", "", "", "2", "able", ((string[])(null)));
 #line hidden
         }
@@ -162,7 +162,7 @@ this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-1", 
         [NUnit.Framework.CategoryAttribute("reservation")]
         public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_2()
         {
-#line 8
+#line 14
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-2", "1", "1", "2", "", "1", "able", ((string[])(null)));
 #line hidden
         }
@@ -174,7 +174,7 @@ this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-2", 
         [NUnit.Framework.CategoryAttribute("reservation")]
         public void AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists_3()
         {
-#line 8
+#line 14
 this.AP_MF_NLP_02NonLevyProviderReservesFundingWhenDynamicPauseRuleExists("-3", "0", "0", "1", "2", "", "able", ((string[])(null)));
 #line hidden
         }

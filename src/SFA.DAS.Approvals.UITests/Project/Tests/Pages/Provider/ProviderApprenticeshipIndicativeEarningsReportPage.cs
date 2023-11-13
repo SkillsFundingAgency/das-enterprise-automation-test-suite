@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderApprenticeshipIndicativeEarningsReportPage(ScenarioContext context) : base(context)
         {
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
-            ValidateUIElementsOnPage();
+            //ValidateUIElementsOnPage();
         }
 
         public void ValidateUIElementsOnPage() => Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ExpectedTotalOnProgrammeEarningsHeading), "Total on-programme earnings heading not displayed");

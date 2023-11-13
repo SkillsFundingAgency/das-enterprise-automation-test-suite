@@ -24,15 +24,9 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
-	  <PackageReference Include="RestEase" Version="1.5.0" />
+	  <PackageReference Include="RestEase" Version="1.6.4" />
 	  <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
-		<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
-		<PackageReference Include="Selenium.Support" Version="4.11.*">
-		  <NoWarn>NU1605</NoWarn>
-		</PackageReference>
-		<PackageReference Include="Selenium.WebDriver" Version="4.11.*">
-		  <NoWarn>NU1605</NoWarn>
-		</PackageReference>
+	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -40,7 +34,6 @@
 		<ProjectReference Include="..\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-		<ProjectReference Include="..\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

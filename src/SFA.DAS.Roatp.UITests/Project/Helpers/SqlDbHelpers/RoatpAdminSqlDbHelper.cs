@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
     public class RoatpAdminSqlDbHelper : SqlDbHelper
     {
-        public RoatpAdminSqlDbHelper(DbConfig dbConfig) : base(dbConfig.RoatpDatabaseConnectionString) { }
+        public RoatpAdminSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.RoatpDatabaseConnectionString) { }
 
         public void DeleteTrainingProvider(string ukprn) => ExecuteSqlCommand($"DELETE FROM Organisations WHERE UKPRN ='{ukprn}'");
     }

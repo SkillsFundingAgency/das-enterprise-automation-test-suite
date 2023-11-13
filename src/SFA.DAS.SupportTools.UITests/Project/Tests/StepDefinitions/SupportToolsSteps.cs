@@ -61,7 +61,7 @@ public class SupportToolsSteps
     public void WhenUserSelectsAllRecordsAndClickOnStopApprenticeshipButton() => SelectAllRecords().ClickStopButton();
 
     [Given(@"the SCS User is logged into Support Tools")]
-    public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools(false);
+    public void GivenTheSCSUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCSTools();
 
     [Given(@"the SCP User is logged into Support Tools")]
     public void GivenTheSCPUserIsLoggedIntoSupportTools() => _stepsHelper.ValidUserLogsinToSupportSCPTools(false);
@@ -162,7 +162,7 @@ public class SupportToolsSteps
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
 
-        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_context.Get<DbConfig>());
+        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_objectContext, _context.Get<DbConfig>());
         int i = 0;
         foreach (var uln in UlnList)
         {

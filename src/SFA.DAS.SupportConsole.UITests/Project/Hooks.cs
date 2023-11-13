@@ -1,8 +1,8 @@
 ﻿global using NUnit.Framework;
 global using OpenQA.Selenium;
 global using SFA.DAS.ConfigurationBuilder;
+global using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.SupportConsole.UITests.Project.Helpers;
@@ -33,9 +33,13 @@ public class Hooks
     {
         var config = _context.GetSupportConsoleConfig<SupportConsoleConfig>();
 
-        var accsqlHelper = new AccountsSqlDataHelper(_context.Get<DbConfig>());
+        var objectContext = _context.Get<ObjectContext>();
 
-        var comtsqlHelper = new CommitmentsSqlDataHelper(_context.Get<DbConfig>());
+        var dbConfig = _context.Get<DbConfig>();
+
+        var accsqlHelper = new AccountsSqlDataHelper(objectContext, dbConfig);
+
+        var comtsqlHelper = new CommitmentsSqlDataHelper(objectContext, dbConfig);
 
         var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
 

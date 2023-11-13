@@ -22,11 +22,11 @@ public abstract class TestdataCleanupStepsHelperBase
 
     protected TestdataCleanupWithAccountIdStepsHelper GetCleanUpHelper(int greaterThan, int lessThan)
     {
-        var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_dbConfig).GetAccountIds(greaterThan, lessThan);
+        var easAccountIds = new TestDataCleanUpEasAccDbSqlDataHelper(_objectContext, _dbConfig).GetAccountIds(greaterThan, lessThan);
 
         var easAccountsNotToDelete = easAccountIds.ListOfArrayToList(0);
 
-        return new TestdataCleanupWithAccountIdStepsHelper(_dbConfig, greaterThan, lessThan, easAccountsNotToDelete);
+        return new TestdataCleanupWithAccountIdStepsHelper(_objectContext, _dbConfig, greaterThan, lessThan, easAccountsNotToDelete);
     }
 
     private void TestCleanUpReport(List<string> usersdeleted, List<string> userswithconstraints)

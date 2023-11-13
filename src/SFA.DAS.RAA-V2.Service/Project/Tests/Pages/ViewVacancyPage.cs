@@ -34,6 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             {
                 RAAV2Const.NationalMinWages => rAAV2DataHelper.NationalMinimumWage,
                 RAAV2Const.FixedWageType => rAAV2DataHelper.FixedWageForApprentices,
+                RAAV2Const.SetAsCompetitive => rAAV2DataHelper.SetAsCompetitive,
                 _ => rAAV2DataHelper.NationalMinimumWageForApprentices,
             };
         }

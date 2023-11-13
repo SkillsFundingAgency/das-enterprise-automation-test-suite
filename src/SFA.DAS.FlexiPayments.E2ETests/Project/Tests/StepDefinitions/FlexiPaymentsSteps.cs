@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
@@ -17,7 +18,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly FlexiProviderStepsHelper _providerStepsHelper;
         private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper;
-
+        private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly ExistingAccountSteps _existingAccountSteps;
         private readonly FlexiPaymentProviderSteps _flexiPaymentProviderSteps;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
@@ -29,7 +30,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(_context);
             _providerStepsHelper = new FlexiProviderStepsHelper (_context);
             _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(_context);
-
+            _cohortReferenceHelper = new CohortReferenceHelper(context);
             _existingAccountSteps = new ExistingAccountSteps(_context);
             _flexiPaymentProviderSteps = new FlexiPaymentProviderSteps(_context);
             readApprenticeDataHelper = new ReadApprenticeDataHelper(context);
@@ -89,6 +90,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [When(@"employer reviews and approves the cohort")]
         public void WhenEmployerReviewsAndApprovesTheCohort() => new EmployerStepsHelper(_context).EmployerReviewCohort().EmployerDoesSecondApproval();
+
+        [Given(@"Employer changes the Total Price then approve the cohort and sends it to the training provider")]
+        public void EmployerReviewsTheLearnersDetailsAndChangesTheTotalPrice()
+        {
+            var cohortReference = new EmployerStepsHelper(_context).EmployerReviewCohort().SelectEditApprentice().UpdateTotalApprenticeshipPrice().EmployerSendsToTrainingProviderForReview().CohortReferenceFromUrl();
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
+        }
+
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
         public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(readApprenticeDataHelper.ReadApprenticeData(table), false);

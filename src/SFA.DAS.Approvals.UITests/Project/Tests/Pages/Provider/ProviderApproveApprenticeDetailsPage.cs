@@ -1,7 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using SFA.DAS.IdamsLogin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -63,8 +64,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
 
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-
-            ClickIfPirenIsDisplayed();
 
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
@@ -178,19 +177,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
         }
 
-        private void AddAnApprentice()
-        {
-            formCompletionHelper.ClickElement(AddAnApprenticeButton);
-
-            ClickIfPirenIsDisplayed();
-        }
-
-        private void ClickIfPirenIsDisplayed()
-        {
-            var by = IdamsPageSelector.PireanPreprod;
-
-            if (pageInteractionHelper.IsElementDisplayed(by)) formCompletionHelper.ClickElement(by);
-        }
+        private void AddAnApprentice() => formCompletionHelper.ClickElement(AddAnApprenticeButton);
 
         public void VerifyLimitingStandardRestriction()
         {
@@ -207,6 +194,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             VerifyProviderCanNotApprove();
         }
+
+        public ProviderApproveApprenticeDetailsPage VerifySimplifiedPaymentsPilotTagAndColumns(bool isDisplayed)
+        {
+            ValidateSimplifiedPaymentsPilotTagAndColumns(isDisplayed);
+            return this;
+        }
+        public void VerifyRadioOptionToApproveCohortIsNotDisplayed() => Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(ApproveRadioButton), "Unexpected behavior - Option to approve the Cohort is displayed");
 
         private void VerifyProviderCanNotApprove()
         {

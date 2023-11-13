@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -44,14 +45,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             if (_isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
 
-            EnterTrainingCostAndEmpReference();
+            EnterTrainingCostAndEmpReference(_isFlexiPaymentPilotLearner);
 
-            bool rpl = CheckRPLCondition(false);
+            bool rpl = CheckRPLCondition();
 
             formCompletionHelper.ClickElement(AddButton);
 
             if (rpl)
-                new ProviderRPLPage(context).SelectYesAndContinue().EnterRPLDataAndContinue();
+            {
+                var page = new ProviderRPLPage(context);
+
+                if (tags.IsRplWhiteListedProvider())
+                    page.SelectYesAndContinue_RplWhiteListed().EnterRPLDataAndContinue();
+                else
+                    page.SelectYesAndContinue().EnterRPLDataAndContinue();
+            }
             else
                 new ProviderRPLPage(context).SelectNoAndContinue();
 
@@ -99,13 +107,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             EnterApprenticeName();
 
-            if (tags.Contains("aslistedemployer")) return;
+            if (tags.IsAsListedEmployer()) return;
 
             EnterApprenticeEmail();
         }
 
-        private bool CheckRPLCondition(bool rpl = false)
+        private bool CheckRPLCondition()
         {
+            bool rpl = false;
             var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateYear : StartDateYear));
             var month = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateMonth : StartDateMonth));
 

@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.API.FrameworkHelpers;
-using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.API.Framework.Helpers;
 

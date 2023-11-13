@@ -1,6 +1,7 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 {
@@ -14,7 +15,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project
         [BeforeScenario(Order = 34)]
         public void SetUpHelpers()
         {
-            _context.Set(new ProviderPermissionsSqlDbHelper(_context.Get<DbConfig>()));
+            _context.Set(new ProviderPermissionsSqlDbHelper(_context.Get<ObjectContext>(), _context.Get<DbConfig>()));
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
 

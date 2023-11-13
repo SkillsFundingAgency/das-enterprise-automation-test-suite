@@ -176,6 +176,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
             return this;
         }
+        public ApproveApprenticeDetailsPage UpdateTotalApprenticeshipPrice()
+        {
+            formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice + 500);
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ApproveApprenticeDetailsPage(context);
+        }
 
         private By GetEditDeliveryModelLink()
         {

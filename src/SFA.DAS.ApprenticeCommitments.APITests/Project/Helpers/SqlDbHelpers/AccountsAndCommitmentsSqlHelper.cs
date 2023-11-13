@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
     {
         private readonly DbConfig _dbConfig;
 
-        public AccountsAndCommitmentsSqlHelper(DbConfig dbConfig) : base(dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
+        public AccountsAndCommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
 
         public (string legalName, string tradingName) GetProviderData(long providerId)
         {
@@ -53,17 +53,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 return (long.Parse(accountid), long.Parse(apprenticeshipid), apprenticeFirstName, apprenticeLastName, DateTime.Parse(dateOfBirth), apprenticeTrainingName, empNameData[0][0].ToString(), long.Parse(apprenticelegalEntityId), long.Parse(apprenticeProviderId), startDate, endDate, createdOn);
         }
 
-        public (string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
-        {
-            var query = $"SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";
-            var data = GetData(query, _dbConfig.CommitmentsDbConnectionString);
-            return (data[0], data[1]);
-        }
-
-        public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}", _dbConfig.CommitmentsDbConnectionString);
-
-        public void ResetEmailForApprenticeshipRecord(string email) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '{email}'", _dbConfig.CommitmentsDbConnectionString);
-
         public (string empName, string providerName) GetEmpAndProvNames(string email)
         {
             var apprenticeData = GetData($"SELECT C.EmployerAccountId, C.ProviderId FROM Apprenticeship App INNER JOIN Commitment C on App.CommitmentId = C.Id WHERE App.Email = '{email}'", _dbConfig.CommitmentsDbConnectionString);
@@ -74,6 +63,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         private string EmployerName(long accountId) => EmpNameData(accountId)[0][0].ToString();
 
-        private List<object[]> EmpNameData(long accountId) => SqlDatabaseConnectionHelper.ReadDataFromDataBase($"SELECT [NAME] from employer_account.Account WHERE id = {accountId}", connectionString);
+        private List<object[]> EmpNameData(long accountId) => GetListOfData($"SELECT [NAME] from employer_account.Account WHERE id = {accountId}");
     }
 }

@@ -10,5 +10,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project
         internal static void SetLoginCredentials(this ObjectContext objectContext, AanBaseUser value) => objectContext.Set(LoggedInUser, value);
 
         public static AanBaseUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<AanBaseUser>(LoggedInUser);
+
+
+        private const string AanAdminEventId = "aanadmineventid";
+
+        internal static void SetAanAdminEventId(this ObjectContext objectContext, string value) => objectContext.Set(AanAdminEventId, value);
+
+        public static string GetAanAdminEventId(this ObjectContext objectContext) => objectContext.Get(AanAdminEventId);
     }
 }

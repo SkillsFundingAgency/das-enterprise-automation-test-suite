@@ -11,8 +11,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 
         private static By ResourceHub => By.CssSelector("a[href= '/influencers/resource-hub']");
 
-        private static By BecomeAnAmbassador => By.CssSelector("a[href= '/influencers/become-an-ambassador']");
-
         public InfluencersBasePage(ScenarioContext context) : base(context)  { }
 
         public InfluencersHowTheyWorkPage NavigateToHowDoTheyWorkPage()
@@ -33,10 +31,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
             return new InfluencersResourceHubPage(context);
         }
 
-        public InfluencersBecomeAnAmbassadorPage NavigateToBecomeAnAmbassadorPage()
+        public InfluencersApprenticeAmbassadorNetworkPage NavigateToApprenticeAmbassadorNetworkPage()
         {
-            formCompletionHelper.ClickElement(BecomeAnAmbassador);
-            return new InfluencersBecomeAnAmbassadorPage(context);
+            formCompletionHelper.ClickLinkByText("Apprenticeship ambassador network");
+            return new InfluencersApprenticeAmbassadorNetworkPage(context);
         }
     }
 }

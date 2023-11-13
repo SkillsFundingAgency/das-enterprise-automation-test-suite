@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_objectContext, context.Get<DbConfig>());
             _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
         }
 

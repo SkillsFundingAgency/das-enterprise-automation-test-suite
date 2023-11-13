@@ -6,13 +6,16 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 [Binding, Scope(Tag = "@aanaprentice")]
 public class Apprentice_AcccessDenied_Steps : Apprentice_BaseSteps
 {
-    private AccessDeniedPage accessDeniedPage;
 
     public Apprentice_AcccessDenied_Steps(ScenarioContext context) : base(context) { }
 
     [Given(@"the non Private beta apprentice logs into AAN portal")]
-    public void GivenTheNonPrivateBetaApprenticeLogsIntoAANPortal() => accessDeniedPage = new SignInPage(context).NonPrivateBetaUserDetails(context.Get<AanApprenticeNonBetaUser>());
+    public void GivenTheNonPrivateBetaApprenticeLogsIntoAANPortal() =>  new SignInPage(context).NonPrivateBetaUserDetails(context.Get<AanApprenticeNonBetaUser>());
 
     [Then(@"an Access Denied page should be displayed")]
-    public void ThenAccessDeniedPageShouldBeDisplayed() => accessDeniedPage.VerifyHomeLink();
+    public void ThenAccessDeniedPageShouldBeDisplayed() =>
+     new BeforeYouStartPage(context).StartApprenticeOnboardingJourney()
+        .AcceptTermsAndConditions()
+        .YesHaveApprovalFromMaanagerAndNonPrivateBetaUser()
+        .VerifyHomeLink();
 }

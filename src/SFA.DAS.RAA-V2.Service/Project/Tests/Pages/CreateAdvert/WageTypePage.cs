@@ -2,7 +2,6 @@
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class WageTypePage : Raav2BasePage
@@ -15,67 +14,102 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public WageTypePage(ScenarioContext context) : base(context) { }
 
-        public SubmitNoOfPositionsPage ChooseWage(string wageType)
+        public ExtraInformationAboutPayPage ChooseWage_Employer(string wageType)
         {
-            return wageType switch
-            {
-                RAAV2Const.NationalMinWages => SelectNationalMinimumWageAndGoToNoOfPositions(),
-                RAAV2Const.FixedWageType => SelectFixedWageTypeAndGoToNoOfPositions(),
-                _ => SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions(),
-            };
-            ;
+            ChooseWage(wageType);
+
+            Continue();
+
+            return new ExtraInformationAboutPayPage(context);
         }
 
-        private SubmitNoOfPositionsPage SelectNationalMinimumWageAndGoToNoOfPositions()
+        public SubmitNoOfPositionsPage ChooseWage_Provider(string wageType)
         {
-            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
-            return GoToSubmitNoOfPositionsPage();
-        }
+            ChooseWage(wageType);
 
-        private SubmitNoOfPositionsPage SelectFixedWageTypeAndGoToNoOfPositions()
-        {
-            SelectRadioOptionByForAttribute("wage-type-fixed");
-            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
-            return GoToSubmitNoOfPositionsPage();
-        }
+            Continue();
 
-        private SubmitNoOfPositionsPage SelectNationalMinimumWageForApprenticesAndGoToNoOfPositions()
-        {
-            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
-            return GoToSubmitNoOfPositionsPage();
-        }
-
-        private SubmitNoOfPositionsPage GoToSubmitNoOfPositionsPage()
-        {
-            Continue(); 
             return new SubmitNoOfPositionsPage(context);
         }
+        private void ChooseWage(string wageType)
+        {
+            if (wageType == RAAV2Const.NationalMinWages) EnterNationalMinWages();
+
+            else if (wageType == RAAV2Const.FixedWageType) EnterFixedWageType();
+            else if (wageType == RAAV2Const.SetAsCompetitive)
+            {
+                EnterSetAsCompetitive();
+                ExtraInformationAboutWage();
+            }
+
+            else EnterNationalMinimumWageForApprentices();
+        }
+
+        public CompetitiveWagePage ExtraInformationAboutWage()
+        {
+            Continue();
+            SubmitYes();
+
+            return new CompetitiveWagePage(context);
+        }
+
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
-            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+            EnterNationalMinWages();
             return ContinueToPreviewYourVacancyPage();
         }
 
         public PreviewYourVacancyPage SelectNationalMinimumWageForApprentices()
         {
-            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+            EnterNationalMinimumWageForApprentices();
             return ContinueToPreviewYourVacancyPage();
         }
 
         public PreviewYourVacancyPage SelectFixedWageType()
         {
-            SelectRadioOptionByForAttribute("wage-type-fixed");
-            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
+            EnterFixedWageType();
             return ContinueToPreviewYourVacancyPage();
         }
 
+        public PreviewYourVacancyPage SelectSetAsCompetitive()
+        {
+            EnterSetAsCompetitive();
+            return ContinueToPreviewYourVacancyPage();
+        }
         private PreviewYourVacancyPage ContinueToPreviewYourVacancyPage()
         {
             formCompletionHelper.EnterText(WageAdditionalInformation, rAAV2DataHelper.OptionalMessage);
             Continue();
             pageInteractionHelper.WaitforURLToChange("part1-complete");
             return new PreviewYourVacancyPage(context);
+        }
+
+        private void EnterNationalMinWages() => SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+
+        private void EnterNationalMinimumWageForApprentices() => SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+
+        private void EnterSetAsCompetitive() => SelectRadioOptionByForAttribute("wage-type-set-as-competitive");
+
+
+        private void EnterFixedWageType()
+        {
+            SelectRadioOptionByForAttribute("wage-type-fixed");
+            Continue();
+            
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
+        }
+
+        private static By SelectYesRadioButton => By.CssSelector("#competitive-salary-type-national-minimum-wage-or-above");
+        public CompetitiveWagePage SubmitYes()
+        {
+            SelectYesIfSalaryIsAboveNationalMinWage();
+            return new CompetitiveWagePage(context);
+        }
+
+        private void SelectYesIfSalaryIsAboveNationalMinWage()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(SelectYesRadioButton);
         }
     }
 }

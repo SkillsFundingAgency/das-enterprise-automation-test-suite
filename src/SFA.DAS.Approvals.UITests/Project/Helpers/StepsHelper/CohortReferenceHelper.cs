@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<DbConfig>());
+            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_objectContext, context.Get<DbConfig>());
         }
 
         public void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
