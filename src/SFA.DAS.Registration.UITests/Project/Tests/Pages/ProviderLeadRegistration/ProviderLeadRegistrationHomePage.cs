@@ -15,9 +15,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         {
             formCompletionHelper.ClickElement(ManageEmployerInvitations);
 
-            ClickIfPirenIsDisplayed();
-
             formCompletionHelper.ClickElement(InviteEmployers);
+
             return new StartSettingUpEmployerPage(context);
         }
 

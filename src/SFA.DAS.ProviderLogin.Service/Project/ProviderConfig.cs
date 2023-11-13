@@ -1,12 +1,12 @@
-﻿namespace SFA.DAS.ProviderLogin.Service.Project;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
 
-public class ProviderConfig
+namespace SFA.DAS.ProviderLogin.Service.Project;
+
+public class ProviderConfig : NonEasAccountUser
 {
-    public string UserId { get; set; }
-
-    public string Password { get; set; }
-
     public string Ukprn { get; set; }
+
+    public override string ToString() => $"{base.ToString()}, ServiceName:'{Ukprn}'";
 }
 
 public class RplWhiteListedProviderConfig : ProviderConfig { }

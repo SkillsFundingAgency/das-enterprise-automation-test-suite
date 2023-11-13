@@ -27,8 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
             _oldProviderLogin = context.GetProviderConfig<ProviderConfig>();
-            _newProviderLoginDetails = new ProviderLoginUser { UserId = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
-            _oldProviderLoginDetails = new ProviderLoginUser { UserId = _oldProviderLogin.UserId, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
+            _newProviderLoginDetails = new ProviderLoginUser { Username = _changeOfPartyConfig.Username, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
+            _oldProviderLoginDetails = new ProviderLoginUser { Username = _oldProviderLogin.Username, Password = _oldProviderLogin.Password, Ukprn = _oldProviderLogin.Ukprn };
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");

@@ -10,7 +10,8 @@
     { "assembly": "SFA.DAS.ConfigurationBuilder" },
     { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.Roatp.UITests" },
-    { "assembly": "SFA.DAS.EsfaAdmin.Service" }
+    { "assembly": "SFA.DAS.RoatpAdmin.Service" },
+    { "assembly": "SFA.DAS.DfeAdmin.Service" }
   ],
   "generator": {
     "allowRowTests": false,
