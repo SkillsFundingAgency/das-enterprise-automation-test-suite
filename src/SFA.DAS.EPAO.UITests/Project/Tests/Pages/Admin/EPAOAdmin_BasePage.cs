@@ -14,6 +14,8 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
 
     public EPAOAdmin_BasePage(ScenarioContext context) : base(context) { }
 
+
+    // Clicking Sign out is redirecting to Admin landing page instead of SignedOutPage
     public ASAdminLandingPage SignOut()
     {
         formCompletionHelper.ClickElement(SignOutLink);
