@@ -1,8 +1,6 @@
-﻿namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers;
+
+public class NServiceBusConfig
 {
-    public class NServiceBusConfig
-    {
-        public string ServiceBusConnectionString { get; set; }
-        public string LearningTransportStorageDirectory { get; set; }
-    }
+    public string ServiceBusConnectionString { get; set; }
 }
