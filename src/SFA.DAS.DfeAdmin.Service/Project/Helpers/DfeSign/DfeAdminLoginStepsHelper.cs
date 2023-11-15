@@ -34,19 +34,19 @@ public class DfeAdminLoginStepsHelper
     #endregion
 
     #region CheckAndLogin
-    public void CheckAndLoginToAsAdmin() => CheckAndLoginTo(new CheckASAdminLandingPage(_context), new ASAdminLandingPage(_context), GetAsAdminUser());
+    public void CheckAndLoginToAsAdmin() => CheckAndLoginTo(new CheckASAdminLandingPage(_context), () => new ASAdminLandingPage(_context), GetAsAdminUser());
 
-    public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(_context), new ASEmpSupportToolLandingPage(_context), dfeAdminUser);
+    public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(_context), () => new ASEmpSupportToolLandingPage(_context), dfeAdminUser);
 
-    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(_context), new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
+    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(_context), () => new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
 
     #endregion
 
     private void SubmitValidAsLoginDetails(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASAdminLandingPage(_context), dfeAdminUser);
 
-    private void CheckAndLoginTo(CheckASLandingBasePage checkPage, ASLandingBasePage landingPage, DfeAdminUser dfeAdminUser)
+    private void CheckAndLoginTo(CheckASLandingBasePage checkPage, Func<ASLandingBasePage> landingPage, DfeAdminUser dfeAdminUser)
     {
-        if (checkPage.IsPageDisplayed()) landingPage.ClickStartNowButton();
+        if (checkPage.IsPageDisplayed()) landingPage().ClickStartNowButton();
 
         if (new CheckDfeSignInPage(_context).IsPageDisplayed()) SubmitValidLoginDetails(dfeAdminUser);
     }
