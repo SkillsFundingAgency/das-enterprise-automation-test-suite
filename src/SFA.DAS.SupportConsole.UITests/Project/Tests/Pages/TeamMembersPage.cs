@@ -19,7 +19,8 @@ public class TeamMembersPage : SupportConsoleBasePage
 
     public UserInformationOverviewPage GoToUserInformationOverviewPage()
     {
-        tableRowHelper.SelectRowFromTable(config.Name, config.EmailAddress);
+        formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(config.EmailAddress, By.CssSelector("[id='Name']")));
+
         return new (context);
     }
 }
