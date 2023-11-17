@@ -23,13 +23,21 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new ExtraInformationAboutPayPage(context);
         }
 
-        public SubmitNoOfPositionsPage ChooseWage_Provider(string wageType)
+        public SubmitNoOfPositionsPage ChooseWage_Provider1(string wageType)
         {
             ChooseWage(wageType);
 
             Continue();
 
             return new SubmitNoOfPositionsPage(context);
+        }
+        public ExtraInformationAboutPayPage ChooseWage_Provider(string wageType)
+        {
+            ChooseWage(wageType);
+
+            Continue();
+
+            return new ExtraInformationAboutPayPage(context);
         }
         private void ChooseWage(string wageType)
         {
