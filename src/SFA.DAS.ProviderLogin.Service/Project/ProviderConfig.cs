@@ -9,6 +9,11 @@ public class ProviderConfig : NonEasAccountUser
     public override string ToString() => $"{base.ToString()}, ServiceName:'{Ukprn}'";
 }
 
+public class DeleteCohortProviderConfig : ProviderConfig 
+{
+    public string NoOfCohortToDelete { get; set; }
+}
+
 public class RplWhiteListedProviderConfig : ProviderConfig { }
 
 public class ChangeOfPartyConfig : ProviderConfig

@@ -2,7 +2,7 @@
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -24,7 +24,9 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRegistrationConfigConfiguration()
         {
-            _context.SetEasLoginUser(new List<EasAccountUser>() 
+            if (new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration()) return;
+
+            _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<AuthTestUser>(),
                 _configSection.GetConfigSection<LevyUser>(),

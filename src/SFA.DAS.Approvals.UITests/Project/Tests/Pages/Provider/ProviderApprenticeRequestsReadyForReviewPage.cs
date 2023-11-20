@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApprenticeRequestsReadyForReviewPage : ApprovalsBasePage
+    public class ProviderApprenticeRequestsReadyForReviewPage : ProviderApprenticeRequestsSubPage
     {
         protected override string PageTitle => "Apprentice requests";
         protected override bool TakeFullScreenShot => false;
@@ -17,9 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {
-            javaScriptHelper.ScrollToTheBottom();
-            tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
+            SelectCurrentCohortDetailsFromTable();
+
             return new ProviderApproveApprenticeDetailsPage(context);
-        }        
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -22,6 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
+            if (new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration()) return;
+
             _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
             _context.SetEasLoginUser(new List<EasAccountUser>()
