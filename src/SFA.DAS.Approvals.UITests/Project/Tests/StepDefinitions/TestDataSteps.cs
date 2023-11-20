@@ -12,12 +12,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class TestDataSteps
     {
+        private static string ReadyForReviewKey => "Apprentice F";
+
         private readonly ScenarioContext _context;
 
         public TestDataSteps(ScenarioContext context) => _context = context;
 
         [Then(@"A list of cohorts ready for review can be deleted")]
-        public void ThenAListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), "Apprentice F");
+        public void ThenAListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), ReadyForReviewKey);
 
         [Then(@"A list of cohorts in draft can be deleted")]
         public void ThenAListOfCohortsInDraftCanBeDeleted() => DeleteCohort((x) => x.GoToDraftCohorts());
@@ -32,26 +34,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var list = new List<string>() { };
 
-            int noOfCohorts;
-
             if (string.IsNullOrEmpty(key))
             {
+                // use db query
                 list = _context.Get<CommitmentsSqlDataHelper>().GetCohortToDelete(config.Ukprn);
-
-                noOfCohorts = list.Count < defaultNoToDelete ? list.Count : defaultNoToDelete;
             }
             else
             {
                 for (int i = 0; i < defaultNoToDelete; i++) list.Add(key);
-
-                noOfCohorts = defaultNoToDelete;
             }
+
+            int noOfCohorts = list.Count < defaultNoToDelete ? list.Count : defaultNoToDelete;
 
             int count = 0;
 
             for (int i = 0; i < noOfCohorts; i++)
             {
-                if (string.IsNullOrEmpty(key)) key = list[i];
+                key = (key == ReadyForReviewKey) ? key : list[i];
 
                 if (func(providerApprenticeRequestsPage).ViewDraftOrReadyToReviewCohortDetails(key))
                 {
@@ -59,9 +58,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
                     count++;
                 }
+                else
+                {
+                    _context.Get<FormCompletionHelper>().SetDebugInformation($"'{key}' not found");
+                }
             }
 
-            _context.Get<FormCompletionHelper>().SetDebugInformation($"deleted {count} cohorts");
+            _context.Get<FormCompletionHelper>().SetDebugInformation($"deleted '{count}' cohorts");
         }
     }
 }
