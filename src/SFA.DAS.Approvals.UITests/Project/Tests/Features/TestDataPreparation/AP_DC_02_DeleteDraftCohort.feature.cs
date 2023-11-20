@@ -76,15 +76,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Delete Draft Cohort")]
         [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("testdatascenario")]
         public void AP_DeleteDraftCohort()
         {
             string[] tagsOfScenario = new string[] {
                     "deletecohortviaproviderportal",
+                    "donottakescreenshot",
                     "testdatascenario"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Delete Draft Cohort", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,7 +96,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Then("A list of cohorts in draft can be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -2,6 +2,7 @@
 #Do not add regression or approvals tag, as these tests are meant to create or delete data
 
 @deletecohortviaproviderportal
+@donottakescreenshot
 @testdatascenario
 Scenario: AP_Delete Ready to review Cohort
 	Then A list of cohorts ready for review can be deleted
