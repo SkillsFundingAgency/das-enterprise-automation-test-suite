@@ -260,13 +260,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return rowsEffected;
         }
 
-        internal List<string> GetCohortToDelete(string ukprn)
+        internal List<string> GetCohortToDelete(string ukprn, bool isDraft)
         {
+            int draftValue = isDraft ? 1 : 0;
+
             var sql = @$"SELECT distinct cmt.Reference FROM [Commitment] AS [cmt] INNER JOIN 
                         ( SELECT [ale].* FROM [AccountLegalEntities] AS [ale] WHERE [ale].[Deleted] IS NULL ) AS [t] ON [cmt].[AccountLegalEntityId] = [t].[Id]
                         INNER JOIN Apprenticeship app ON app.CommitmentId = cmt.id
                         Where ProviderId = '{ukprn}' AND cmt.EditStatus = 2 And cmt.WithParty = 2 AND IsDeleted = 0
-                        AND IsDraft = 1 --(0 = Ready For review | 1 = Draft)
+                        AND IsDraft = {draftValue} --(0 = Ready For review | 1 = Draft)
                         AND app.FirstName like 'F\_%' ESCAPE '\' AND app.LastName like 'L\_%' ESCAPE '\'";
 
             return GetListOfData(sql).Select(x => (string)x[0]).ToList();
