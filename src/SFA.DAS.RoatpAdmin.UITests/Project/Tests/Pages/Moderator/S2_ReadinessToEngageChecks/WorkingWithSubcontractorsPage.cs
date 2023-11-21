@@ -5,8 +5,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
 {
     public class WorkingWithSubcontractorsPage : ModeratorBasePage
     {
-        protected override string PageTitle => "Using subcontractors in the first 12 months of joining the RoATP";
-        
+        protected override string PageTitle => "Using subcontractors in the first 12 months of joining the APAR";
+
         public WorkingWithSubcontractorsPage(ScenarioContext context) : base(context) { }
 
         public DueDiligenceOnSubcontractorsPage SelectPassAndContinueInWorkingWithSubcontractorsPage() => SelectActionAndContinue(() => SelectPassAndContinueToSubSection());
@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
         public DueDiligenceOnSubcontractorsPage SelectFailAndContinueInWorkingWithSubcontractorsPage() => SelectActionAndContinue(() => SelectFailAndContinueToSubSection());
 
         public DueDiligenceOnSubcontractorsPage SelectContinueInWorkingWithSubcontractorsPage() => SelectActionAndContinue(() => Continue());
-        
+
         private DueDiligenceOnSubcontractorsPage SelectActionAndContinue(Action action)
         {
             action.Invoke();

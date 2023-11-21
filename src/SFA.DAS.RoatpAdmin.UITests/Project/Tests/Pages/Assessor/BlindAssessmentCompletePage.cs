@@ -7,7 +7,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
     {
         protected override string PageTitle => "Blind assessment complete";
 
-        private static By GoToRoATPAssessorApplicationsLink => By.LinkText("Go to RoATP assessor applications");
+        private static By GoToRoATPAssessorApplicationsLink => By.LinkText("Go to APAR assessor applications");
 
         public BlindAssessmentCompletePage(ScenarioContext context) : base(context) { }
 
