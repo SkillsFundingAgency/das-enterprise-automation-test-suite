@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 {
     public class RegisteredAndReceivedFundingPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Is your organisation registered and receiving funding from ESFA?";
+        protected override string PageTitle => "Is your organisation registered and receiving funding from DfE?";
 
         public RegisteredAndReceivedFundingPage(ScenarioContext context) : base(context) => VerifyPage();
 

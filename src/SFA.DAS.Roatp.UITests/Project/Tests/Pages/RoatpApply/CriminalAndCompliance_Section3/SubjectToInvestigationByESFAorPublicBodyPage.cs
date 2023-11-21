@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
 {
     public class SubjectToInvestigationByESFAorPublicBodyPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Is your organisation currently, or has within the last 5 years been, subject to an investigation by the ESFA or other public body or regulator?";
+        protected override string PageTitle => "Is your organisation currently, or has within the last 5 years been, subject to an investigation by the DfE or other public body or regulator?";
 
         public SubjectToInvestigationByESFAorPublicBodyPage(ScenarioContext context) : base(context) => VerifyPage();
 
