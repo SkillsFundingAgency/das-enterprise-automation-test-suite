@@ -269,7 +269,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                         INNER JOIN Apprenticeship app ON app.CommitmentId = cmt.id
                         Where ProviderId = '{ukprn}' AND cmt.EditStatus = 2 And cmt.WithParty = 2 AND IsDeleted = 0
                         AND IsDraft = {draftValue} --(0 = Ready For review | 1 = Draft)
-                        AND app.FirstName like 'F\_%' ESCAPE '\' AND app.LastName like 'L\_%' ESCAPE '\'";
+                        AND app.FirstName like 'F\_%' ESCAPE '\' AND app.LastName like 'L\_%' ESCAPE '\' order by cmt.Reference";
 
             return GetListOfData(sql).Select(x => (string)x[0]).ToList();
         }

@@ -12,6 +12,8 @@ public class ProviderConfig : NonEasAccountUser
 public class DeleteCohortProviderConfig : ProviderConfig 
 {
     public string NoOfCohortToDelete { get; set; }
+
+    public int DfeTimeOut { get; set; }
 }
 
 public class RplWhiteListedProviderConfig : ProviderConfig { }

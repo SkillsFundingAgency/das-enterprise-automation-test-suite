@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+﻿using Polly;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 

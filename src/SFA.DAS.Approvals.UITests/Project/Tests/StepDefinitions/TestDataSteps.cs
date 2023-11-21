@@ -2,6 +2,8 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -26,9 +28,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var config = _context.Get<DeleteCohortProviderConfig>();
 
+            ProviderApprenticeRequestsPage GoToApprenticeRequestsPage() => new ProviderCommonStepsHelper(_context).GoToProviderHomePage(config, false).GoToApprenticeRequestsPage();
+
+            DateTime SetdfeTimeout() => DateTime.Now.AddMinutes(config.DfeTimeOut);
+
+            var dfeTimeout = SetdfeTimeout();
+
             int noOfCohortToDelete = int.Parse(config.NoOfCohortToDelete);
 
-            var providerApprenticeRequestsPage = new ProviderCommonStepsHelper(_context).GoToProviderHomePage(config, false).GoToApprenticeRequestsPage();
+            var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
             func(providerApprenticeRequestsPage);
 
@@ -55,6 +63,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 else
                 {
                     _context.Get<FormCompletionHelper>().SetDebugInformation($"'{key}' not found");
+                }
+
+                if (DateTime.Now > dfeTimeout)
+                {
+                    providerApprenticeRequestsPage.SignsOut();
+
+                    new RestartWebDriverHelper(_context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Provider_BaseUrl");
+
+                    providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
+
+                    dfeTimeout = SetdfeTimeout();
                 }
             }
 
