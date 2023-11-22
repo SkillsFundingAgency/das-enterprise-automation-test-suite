@@ -14,6 +14,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
         private readonly ApprenticeCommitmentsAccountsSqlDbHelper _apprenticeCommitmentsAccountsSqlDbHelper;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+        private readonly CommitmentsSqlHelper _commitmentsSqlHelper;
         private readonly TryCatchExceptionHelper _tryCatch;
         protected readonly string[] tags;
 
@@ -24,6 +25,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
             _apprenticeCommitmentsAccountsSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
             _tryCatch = context.Get<TryCatchExceptionHelper>();
             tags = context.ScenarioInfo.Tags;
         }
@@ -39,7 +41,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             if (tags.Contains("deletecmaddatacreatedthroughapi_RegAndAppTablesOnly"))
             {
                 _aComtSqlDbHelper.DeleteRegistrationTableData(email); //acomt db
-                _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email); //Commitments db
+                _commitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email); //Commitments db
                 return;
             }
             else if (tags.Contains("deletecmaddatacreatedthroughapi"))
@@ -63,7 +65,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
                 _aComtSqlDbHelper.DeleteRegistrationTableData(email);
 
                 //Commitments db
-                _accountsAndCommitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email);
+                _commitmentsSqlHelper.ResetEmailForApprenticeshipRecord(email);
             }
         }
     }

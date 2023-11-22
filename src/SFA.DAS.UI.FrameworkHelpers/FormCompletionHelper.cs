@@ -3,7 +3,6 @@ using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
@@ -83,7 +82,6 @@ public class FormCompletionHelper : WebElementInteractionHelper
     private void SelectFromDropDownByValue(IWebElement element, string value) { SelectElement(element).SelectByValue(value); SetDebugInformation($"Selected '{value}'"); }
 
     private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
-
 
     public void SelectCheckbox(IWebElement element)
     {

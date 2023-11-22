@@ -4,7 +4,7 @@ public class TestDataCleanUpPfbeDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanU
 {
     public override string SqlFileName => "EasPfbeTestDataCleanUp";
 
-    public TestDataCleanUpPfbeDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.EmployerFeedbackDbConnectionString) { }
+    public TestDataCleanUpPfbeDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.EmployerFeedbackDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpPfbeTestData(int greaterThan, int lessThan, List<string> easaccountids)
     {

@@ -32,7 +32,7 @@ public class ProviderHomePageStepsHelper
 
     public ProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
     {
-        var loginUser = new ProviderLoginUser { UserId = login.UserId, Password = login.Password, Ukprn = login.Ukprn };
+        var loginUser = new ProviderLoginUser { Username = login.Username, Password = login.Password, Ukprn = login.Ukprn };
 
         return GoToProviderHomePage(loginUser, newTab);
     }

@@ -4,7 +4,7 @@ public class TestDataCleanUpUsersDbSqlDataHelper : BaseSqlDbHelper.TestDataClean
 {
     public override string SqlFileName => "EasUsersTestDataCleanUp";
 
-    public TestDataCleanUpUsersDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.UsersDbConnectionString) { }
+    public TestDataCleanUpUsersDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.UsersDbConnectionString) { }
 
     internal int CleanUpUsersDbTestData(List<string> emailsToDelete) => CleanUpUsingEmail(emailsToDelete);
 }

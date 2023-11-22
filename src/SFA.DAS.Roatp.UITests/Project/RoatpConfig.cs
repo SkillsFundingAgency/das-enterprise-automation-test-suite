@@ -3,8 +3,4 @@
 public class RoatpConfig
 {
     public string ApplyPassword { get; set; }
-    public string Assessor1UserName { get; set; }
-    public string Assessor1Password { get; set; }
-    public string Assessor2UserName { get; set; }
-    public string Assessor2Password { get; set; }
 }

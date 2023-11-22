@@ -2,7 +2,7 @@
 
 public class ToolsCommitmentsSqlDataHelper : SqlDbHelper
 {
-    public ToolsCommitmentsSqlDataHelper(DbConfig dBConfig) : base(dBConfig.CommitmentsDbConnectionString) { }
+    public ToolsCommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
 
     public void UpdateApprenticeshipStatus(string uln, int status)
     {

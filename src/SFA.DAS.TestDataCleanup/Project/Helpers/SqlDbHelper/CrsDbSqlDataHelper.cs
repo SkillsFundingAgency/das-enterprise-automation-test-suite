@@ -2,5 +2,5 @@
 
 public class CrsDbSqlDataHelper : ProjectSqlDbHelper
 {
-    public CrsDbSqlDataHelper(DbConfig dbConfig) : base(dbConfig.CRSDbConnectionString) { }
+    public CrsDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.CRSDbConnectionString) { }
 }

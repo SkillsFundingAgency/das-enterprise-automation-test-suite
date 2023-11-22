@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -39,7 +40,7 @@ namespace SFA.DAS.Login.Service
 
         public static List<(List<string> listoflegalEntities, string idOrUserRef)>  GetAccountLegalEntities(this ScenarioContext context, List<string> username)
         {
-            var accountDetails = new EasAccountsSqlDataHelper(context.Get<DbConfig>()).GetAccountDetails(username);
+            var accountDetails = new EasAccountsSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetAccountDetails(username);
 
             return accountDetails.Select(x => (x.listoflegalEntities.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList(), x.idOrUserRef)).ToList();
         }

@@ -22,7 +22,8 @@
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
     <ProjectReference Include="..\SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj" />
-	<ProjectReference Include="..\SFA.DAS.EsfaAdmin.Service\SFA.DAS.EsfaAdmin.Service.csproj" />
+	<ProjectReference Include="..\SFA.DAS.RoatpAdmin.Service\SFA.DAS.RoatpAdmin.Service.csproj" />
+	<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +38,6 @@
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.BrowserStack.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">

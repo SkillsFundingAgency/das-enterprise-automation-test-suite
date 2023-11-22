@@ -11,9 +11,7 @@ public class AedProviderHomePage : ProviderHomePage
     public FindEmployersThatNeedATrainingProviderPage FindEmployersThatNeedATrainingProvider()
     {
         formCompletionHelper.ClickElement(FindingEmployersThatNeedATrainingProviderLink);
-        
-        ClickIfPirenIsDisplayed();
-        
+               
         return new FindEmployersThatNeedATrainingProviderPage(context);
     }
 }

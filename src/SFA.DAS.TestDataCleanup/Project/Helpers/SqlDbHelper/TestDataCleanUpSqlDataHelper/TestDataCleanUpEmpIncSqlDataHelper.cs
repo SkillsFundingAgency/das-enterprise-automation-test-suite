@@ -6,7 +6,7 @@ public class TestDataCleanUpEmpIncSqlDataHelper : BaseSqlDbHelper.TestDataCleanU
 
     public override bool ExcludeEnvironments => EnvironmentConfig.IsDemoEnvironment;
 
-    public TestDataCleanUpEmpIncSqlDataHelper(DbConfig dbConfig) : base(dbConfig.IncentivesDbConnectionString) { }
+    public TestDataCleanUpEmpIncSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.IncentivesDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpEmpIncTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
     {

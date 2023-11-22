@@ -5,7 +5,7 @@ public class TestDataCleanupComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpS
 {
     public override string SqlFileName => "EasComtTestDataCleanUp";
 
-    public TestDataCleanupComtSqlDataHelper(DbConfig dbConfig) : base(dbConfig.CommitmentsDbConnectionString) { }
+    public TestDataCleanupComtSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.CommitmentsDbConnectionString) { }
 
     internal List<string[]> GetApprenticeIds(List<string> accountidsTodelete)
     {

@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerEditStepsHelper = new ProviderEditStepsHelper(_context);
             _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(_context);
             _providerReservationStepsHelper = new ProviderReservationStepsHelper(_context);
-            _login = new ProviderLoginUser { UserId = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
+            _login = new ProviderLoginUser { Username = _config.Username, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         [Given(@"An Employer has given create reservation permission to a provider")]

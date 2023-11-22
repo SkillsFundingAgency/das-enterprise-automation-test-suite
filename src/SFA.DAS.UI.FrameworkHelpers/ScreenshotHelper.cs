@@ -56,9 +56,8 @@ public class ScreenshotHelper
     {
         try
         {
-            ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
-            Screenshot screenshot = screenshotHandler.GetScreenshot();
-            screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+            (webDriver as ITakesScreenshot).GetScreenshot().SaveAsFile(screenshotPath);
+
             AddTestAttachment(screenshotPath, imageName);
         }
         catch (Exception exception)

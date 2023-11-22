@@ -17,21 +17,23 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         private readonly ApprenticeCommitmentsJobs_CreateApprenticeshipClient _apprenticeCommitmentsJobs_CreateApprenticeshipClient;
         private readonly Outer_ApprenticeCommitmentsHealthApiRestClient _outerHealthApiRestClient;
         private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+        private readonly CommitmentsSqlHelper _commitmentsSqlHelper;
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
         private readonly ApprenticeCommitmentsAccountsSqlDbHelper _appAccSqlDbHelper;
         private readonly ObjectContext _objectContext;
-        protected readonly FrameworkHelpers.RetryAssertHelper _assertHelper;
+        protected readonly RetryAssertHelper _assertHelper;
 
         internal Outer_ApprenticeCommitmentsApiHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _assertHelper = context.Get<FrameworkHelpers.RetryAssertHelper>();
+            _assertHelper = context.Get<RetryAssertHelper>();
             _outerAppCommtApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
             _inner_ApprenticeAccountsApiRestClient = new Inner_ApprenticeAccountsApiRestClient(_objectContext, (context.Get<Inner_ApiFrameworkConfig>()));
             _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
+            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();    
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
         }
@@ -141,7 +143,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _objectContext.SetTrainingStartDate(startDate);
             _objectContext.SetTrainingEndDate(endDate);
 
-            _accountsAndCommitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
+            _commitmentsSqlHelper.UpdateEmailForApprenticeshipRecord(email, apprenticeshipid);
 
             return (email, accountid, apprenticeshipid, firstname, lastname, trainingname, orgname, legalEntityId, providerId, startDate, endDate, createdOn);
         }

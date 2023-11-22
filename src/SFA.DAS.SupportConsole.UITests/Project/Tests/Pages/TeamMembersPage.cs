@@ -8,6 +8,8 @@ public class TeamMembersPage : SupportConsoleBasePage
 
     private static By TeamMembersTable => By.CssSelector("table.responsive");
 
+    private static By NameLink => By.CssSelector("[id='Name'] a");
+
     public TeamMembersPage(ScenarioContext context) : base(context)
     {
         MultipleVerifyPage(new List<Func<bool>>
@@ -19,7 +21,8 @@ public class TeamMembersPage : SupportConsoleBasePage
 
     public UserInformationOverviewPage GoToUserInformationOverviewPage()
     {
-        tableRowHelper.SelectRowFromTable(config.Name, config.EmailAddress);
+        formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(config.EmailAddress, NameLink));
+
         return new (context);
     }
 }

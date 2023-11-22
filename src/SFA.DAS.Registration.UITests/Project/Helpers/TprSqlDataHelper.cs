@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var aornNumber = _aornDataHelper.AornNumber;
             
-            var organisationName = InsertTprDataHelper.InsertTprData(_dbConfig.TPRDbConnectionString, aornNumber, _objectContext.GetGatewayPaye(0), orgType);
+            var organisationName = new InsertTprDataHelper(_objectContext, _dbConfig).InsertTprData(aornNumber, _objectContext.GetGatewayPaye(0), orgType);
             
             _objectContext.UpdateOrganisationName(organisationName);
             

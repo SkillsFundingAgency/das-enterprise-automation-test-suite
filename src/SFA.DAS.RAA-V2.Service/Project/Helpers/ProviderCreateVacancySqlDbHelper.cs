@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
     public class RAAV2ProviderPermissionsSqlDbHelper : SqlDbHelper
     {
-        public RAAV2ProviderPermissionsSqlDbHelper(DbConfig config) : base(config.PermissionsDbConnectionString) { }
+        public RAAV2ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.PermissionsDbConnectionString) { }
 
         public int GetNoOfValidOrganisations(string hashedid)
         {
@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
     public class ProviderCreateVacancySqlDbHelper : SqlDbHelper
     {
-        public ProviderCreateVacancySqlDbHelper(DbConfig config) : base(config.AccountsDbConnectionString) { }
+        public ProviderCreateVacancySqlDbHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.AccountsDbConnectionString) { }
 
         public List<object[]> GetValidHashedId(List<string> hashedid)
         {
@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
                                 HAVING al.SignedAgreementId IS NOT NULL AND al.Deleted IS NULL AND a.HashedId in ({hashedid.Select(x => $"'{x}'").ToString(",")}) ) t
                                 GROUP by t.HashedId";
 
-            return GetListOfDataAsObject(query);
+            return GetListOfData(query);
         }
     }
 }
