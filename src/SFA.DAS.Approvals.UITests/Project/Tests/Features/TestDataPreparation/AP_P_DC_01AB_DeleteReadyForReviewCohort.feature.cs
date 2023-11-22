@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_E_DC_01_DeleteReadyForReviewCohort")]
-    public partial class AP_E_DC_01_DeleteReadyForReviewCohortFeature
+    [NUnit.Framework.DescriptionAttribute("AP_P_DC_01AB_DeleteReadyForReviewCohort")]
+    public partial class AP_P_DC_01AB_DeleteReadyForReviewCohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_E_DC_01_DeleteReadyForReviewCohort.feature"
+#line 1 "AP_P_DC_01AB_DeleteReadyForReviewCohort.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "AP_E_DC_01_DeleteReadyForReviewCohort", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "AP_P_DC_01AB_DeleteReadyForReviewCohort", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_E_Delete_01 Ready to review Cohort using Key")]
-        [NUnit.Framework.CategoryAttribute("deletecohortviaemployerportal")]
+        [NUnit.Framework.DescriptionAttribute("AP_P_Delete_01AB Ready to review Cohort using Key")]
+        [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("testdatascenario")]
-        public void AP_E_Delete_01ReadyToReviewCohortUsingKey()
+        [NUnit.Framework.CategoryAttribute("testtoexecuteon22Nov")]
+        public void AP_P_Delete_01ABReadyToReviewCohortUsingKey()
         {
             string[] tagsOfScenario = new string[] {
-                    "deletecohortviaemployerportal",
+                    "deletecohortviaproviderportal",
                     "donottakescreenshot",
-                    "testdatascenario"};
+                    "testdatascenario",
+                    "testtoexecuteon22Nov"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E_Delete_01 Ready to review Cohort using Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_01AB Ready to review Cohort using Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,8 +98,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Then("A list of cohorts ready for review can be deleted using key \'Details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.Then("A 2 list of cohorts ready for review can be deleted using key \'Details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

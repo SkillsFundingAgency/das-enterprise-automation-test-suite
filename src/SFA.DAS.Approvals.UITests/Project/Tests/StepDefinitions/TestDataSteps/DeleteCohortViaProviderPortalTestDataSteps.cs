@@ -26,11 +26,14 @@ public class DeleteCohortViaProviderPortalTestDataSteps
         config = _context.Get<DeleteCohortProviderConfig>();
     }
 
+    [Then(@"A (1|2|3|4) list of cohorts ready for review can be deleted using key '([^']*)'")]
+    public void ThenAFirstListOfCohortsReadyForReviewCanBeDeletedUsingKey(int set, string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key, set);
+
     [Then(@"A list of cohorts ready for review can be deleted using key '([^']*)'")]
-    public void AListOfCohortsReadyForReviewCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key);
+    public void AListOfCohortsReadyForReviewCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key, 0);
 
     [Then(@"A list of cohorts in draft can be deleted using key '([^']*)'")]
-    public void AListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key);
+    public void AListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key, 0);
 
     [Then(@"A list of cohorts ready for review can be deleted")]
     public void AListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), false);
@@ -38,13 +41,26 @@ public class DeleteCohortViaProviderPortalTestDataSteps
     [Then(@"A list of cohorts in draft can be deleted")]
     public void AListOfCohortsInDraftCanBeDeleted() => DeleteCohort((x) => x.GoToDraftCohorts(), true);
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, string key)
+    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, string key, int set)
     {
         var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
         func(providerApprenticeRequestsPage);
 
         var listFromUi = func(providerApprenticeRequestsPage).GetAllCohorts(key);
+
+        if (set != 0)
+        {
+            var maxSet = listFromUi.Count / 5;
+
+            for (int i = 0; i < set - 1; i++)
+            {
+                listFromUi = listFromUi.Skip(maxSet).ToList();
+            }
+
+            listFromUi = listFromUi.Take(maxSet).ToList();
+        }
+
 
         DeleteCohort(func, providerApprenticeRequestsPage, listFromUi);
     }
