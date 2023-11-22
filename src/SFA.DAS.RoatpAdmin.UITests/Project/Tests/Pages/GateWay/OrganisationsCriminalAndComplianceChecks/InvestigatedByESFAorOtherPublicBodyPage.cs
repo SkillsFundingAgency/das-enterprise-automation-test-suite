@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationsCr
 {
     public class InvestigatedByESFAorOtherPublicBodyPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Investigated by the DfE or other public body or regulator check";
+        protected override string PageTitle => "Investigated by the ESFA or other public body or regulator check";
 
         public InvestigatedByESFAorOtherPublicBodyPage(ScenarioContext context) : base(context) => VerifyPage();
     }
