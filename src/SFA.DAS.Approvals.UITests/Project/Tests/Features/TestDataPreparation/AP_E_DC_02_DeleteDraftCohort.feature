@@ -4,6 +4,5 @@
 @deletecohortviaemployerportal
 @donottakescreenshot
 @testdatascenario
-@testtoexecuteon22Nov
 Scenario: AP_E_Delete_02 Draft Cohort using key
 	Then A list of cohorts in draft can be deleted using key 'Details'
