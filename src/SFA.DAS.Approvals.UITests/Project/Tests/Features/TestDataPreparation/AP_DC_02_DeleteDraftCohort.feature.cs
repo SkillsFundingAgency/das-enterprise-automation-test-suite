@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Delete Draft Cohort")]
+        [NUnit.Framework.DescriptionAttribute("AP_Delete_02A Draft Cohort using db")]
         [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("testdatascenario")]
-        public void AP_DeleteDraftCohort()
+        public void AP_Delete_02ADraftCohortUsingDb()
         {
             string[] tagsOfScenario = new string[] {
                     "deletecohortviaproviderportal",
                     "donottakescreenshot",
                     "testdatascenario"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Delete Draft Cohort", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Delete_02A Draft Cohort using db", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,6 +98,36 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 8
  testRunner.Then("A list of cohorts in draft can be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AP_Delete_02B Draft Cohort using key")]
+        [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("testdatascenario")]
+        public void AP_Delete_02BDraftCohortUsingKey()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "deletecohortviaproviderportal",
+                    "donottakescreenshot",
+                    "testdatascenario"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Delete_02B Draft Cohort using key", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 15
+ testRunner.Then("A list of cohorts in draft can be deleted using key \'Details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

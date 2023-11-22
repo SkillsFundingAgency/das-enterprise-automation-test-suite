@@ -1,5 +1,4 @@
-﻿using Dynamitey.DynamicObjects;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -8,11 +7,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public abstract class ProviderApprenticeRequestsSubPage : ApprovalsBasePage
     {
+        private static By TableRows => By.CssSelector(".govuk-table .govuk-table__body .govuk-table__row");
+
         private static By ReferenceSelector => By.CssSelector("[data-label=Reference]");
 
         public ProviderApprenticeRequestsSubPage(ScenarioContext context) : base(context)
         {
-                
+
         }
 
         protected void SelectCurrentCohortDetailsFromTable()
@@ -23,7 +24,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected void SelectCurrentCohortDetailsFromTable(string key) => tableRowHelper.SelectRowFromTable("Details", key);
 
-        public List<string> GetAllCohorts()=> pageInteractionHelper.FindElements(ReferenceSelector).Select(x => x.Text).ToList();
+        public List<string> GetAllCohorts() => pageInteractionHelper.FindElements(ReferenceSelector).Select(x => x.Text).ToList();
+
+        public List<string> GetAllCohorts(string key)
+        {
+            return pageInteractionHelper.FindElements(TableRows).Where(x=> x.Text.Contains(key)).ToList().Select(y => y.FindElement(ReferenceSelector).Text).ToList();
+        }
 
         internal bool ViewDraftOrReadyToReviewCohortDetails(string key)
         {

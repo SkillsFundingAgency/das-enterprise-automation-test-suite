@@ -1,11 +1,13 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -15,8 +17,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class TestDataSteps
     {
         private readonly ScenarioContext _context;
+        private readonly DeleteCohortProviderConfig config;
 
-        public TestDataSteps(ScenarioContext context) => _context = context;
+        public TestDataSteps(ScenarioContext context)
+        {
+            _context = context;
+
+            config = _context.Get<DeleteCohortProviderConfig>();
+        }
+
+        [Then(@"A list of cohorts ready for review can be deleted using key '([^']*)'")]
+        public void ThenAListOfCohortsReadyForReviewCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key);
+
+        [Then(@"A list of cohorts in draft can be deleted using key '([^']*)'")]
+        public void ThenAListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key);
 
         [Then(@"A list of cohorts ready for review can be deleted")]
         public void ThenAListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), false);
@@ -24,18 +38,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"A list of cohorts in draft can be deleted")]
         public void ThenAListOfCohortsInDraftCanBeDeleted() => DeleteCohort((x) => x.GoToDraftCohorts(), true);
 
+        private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ProviderApprenticeRequestsSubPage> func, string key)
+        {
+            var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
+
+            func(providerApprenticeRequestsPage);
+
+            var listFromUi = func(providerApprenticeRequestsPage).GetAllCohorts(key);
+
+            DeleteCohort(func, providerApprenticeRequestsPage, listFromUi);
+        }
+
+
         private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ProviderApprenticeRequestsSubPage> func, bool isDraft)
         {
-            var config = _context.Get<DeleteCohortProviderConfig>();
-
-            ProviderApprenticeRequestsPage GoToApprenticeRequestsPage() => new ProviderCommonStepsHelper(_context).GoToProviderHomePage(config, false).GoToApprenticeRequestsPage();
-
-            DateTime SetdfeTimeout() => DateTime.Now.AddMinutes(config.DfeTimeOut);
-
-            var dfeTimeout = SetdfeTimeout();
-
-            int noOfCohortToDelete = int.Parse(config.NoOfCohortToDelete);
-
             var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
             func(providerApprenticeRequestsPage);
@@ -46,7 +62,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var listOfCohortToDelete = listFromdb.Intersect(listFromUi).ToList();
 
-            noOfCohortToDelete = listOfCohortToDelete.Count > noOfCohortToDelete ? noOfCohortToDelete : listOfCohortToDelete.Count;
+            DeleteCohort(func, providerApprenticeRequestsPage, listOfCohortToDelete);
+        }
+
+        private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ProviderApprenticeRequestsSubPage> func, ProviderApprenticeRequestsPage providerApprenticeRequestsPage, List<string> listOfCohortToDelete)
+        {
+            var dfeTimeout = SetdfeTimeout();
+
+            int noOfCohortToDelete = Math.Min(int.Parse(config.NoOfCohortToDelete), listOfCohortToDelete.Count);
 
             int count = 0;
 
@@ -79,5 +102,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _context.Get<FormCompletionHelper>().SetDebugInformation($"deleted '{count}' cohorts");
         }
+
+        private ProviderApprenticeRequestsPage GoToApprenticeRequestsPage() => new ProviderCommonStepsHelper(_context).GoToProviderHomePage(config, false).GoToApprenticeRequestsPage();
+
+        private DateTime SetdfeTimeout() => DateTime.Now.AddMinutes(config.DfeTimeOut);
     }
 }
