@@ -4,6 +4,8 @@ public static class ScenarioTagsExtension
 {
     public static bool IsTestDataDeleteCohortViaProviderPortal(this string[] tags) => tags.Contains("deletecohortviaproviderportal");
 
+    public static bool IsTestDataDeleteCohortViaEmployerPortal(this string[] tags) => tags.Contains("deletecohortviaemployerportal");
+
     public static bool IsRplWhiteListedProvider(this string[] tags) => tags.Contains("rplwhitelistedprovider");
 
     public static bool IsSelectStandardWithMultipleOptions(this string[] tags) => tags.Contains("selectstandardwithmultipleoptions");

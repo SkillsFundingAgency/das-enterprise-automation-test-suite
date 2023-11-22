@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class ProviderApprenticeRequestsSubPage : ApprovalsBasePage
+    public abstract class ApprenticeRequestsSubPage : ApprovalsBasePage
     {
         private static By TableRows => By.CssSelector(".govuk-table .govuk-table__body .govuk-table__row");
 
         private static By ReferenceSelector => By.CssSelector("[data-label=Reference]");
 
-        public ProviderApprenticeRequestsSubPage(ScenarioContext context) : base(context)
+        public ApprenticeRequestsSubPage(ScenarioContext context) : base(context)
         {
 
         }
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public List<string> GetAllCohorts(string key)
         {
-            return pageInteractionHelper.FindElements(TableRows).Where(x=> x.Text.Contains(key)).ToList().Select(y => y.FindElement(ReferenceSelector).Text).ToList();
+            return pageInteractionHelper.FindElements(TableRows).Where(x => x.Text.Contains(key)).ToList().Select(y => y.FindElement(ReferenceSelector).Text).ToList();
         }
 
         internal bool ViewDraftOrReadyToReviewCohortDetails(string key)

@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework;
@@ -26,18 +27,18 @@ public class DeleteCohortViaProviderPortalTestDataSteps
     }
 
     [Then(@"A list of cohorts ready for review can be deleted using key '([^']*)'")]
-    public void ThenAListOfCohortsReadyForReviewCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key);
+    public void AListOfCohortsReadyForReviewCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key);
 
     [Then(@"A list of cohorts in draft can be deleted using key '([^']*)'")]
-    public void ThenAListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key);
+    public void AListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key);
 
     [Then(@"A list of cohorts ready for review can be deleted")]
-    public void ThenAListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), false);
+    public void AListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), false);
 
     [Then(@"A list of cohorts in draft can be deleted")]
-    public void ThenAListOfCohortsInDraftCanBeDeleted() => DeleteCohort((x) => x.GoToDraftCohorts(), true);
+    public void AListOfCohortsInDraftCanBeDeleted() => DeleteCohort((x) => x.GoToDraftCohorts(), true);
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ProviderApprenticeRequestsSubPage> func, string key)
+    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, string key)
     {
         var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
@@ -49,7 +50,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
     }
 
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ProviderApprenticeRequestsSubPage> func, bool isDraft)
+    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, bool isDraft)
     {
         var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
@@ -64,7 +65,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
         DeleteCohort(func, providerApprenticeRequestsPage, listOfCohortToDelete);
     }
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ProviderApprenticeRequestsSubPage> func, ProviderApprenticeRequestsPage providerApprenticeRequestsPage, List<string> listOfCohortToDelete)
+    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, ProviderApprenticeRequestsPage providerApprenticeRequestsPage, List<string> listOfCohortToDelete)
     {
         var dfeTimeout = SetdfeTimeout();
 

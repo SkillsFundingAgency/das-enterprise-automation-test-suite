@@ -4,6 +4,7 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -23,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
-            if (new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration()) return;
+            if (NoNeedToSetUpConfiguration()) return;
 
             _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
@@ -34,6 +35,16 @@ namespace SFA.DAS.Approvals.UITests.Project
                 _configSection.GetConfigSection<FlexiJobUser>(),
                 _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
             });
+        }
+
+        private bool NoNeedToSetUpConfiguration()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("deletecohortviaemployerportal"))
+            {
+                _context.SetEasLoginUser(new List<EasAccountUser>() { _configSection.GetConfigSection<DeleteCohortLevyUser>() });
+            }
+
+            return new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration();
         }
     }
 }

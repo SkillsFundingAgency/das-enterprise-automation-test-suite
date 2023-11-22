@@ -17,6 +17,6 @@ public class TestDataSetUpConfigurationHelper
 
     public bool NoNeedToSetUpConfiguration()
     {
-        return _tags.Contains("testdatascenario") && _tags.Contains("deletecohortviaproviderportal");
+        return _tags.Contains("testdatascenario") && (_tags.Contains("deletecohortviaproviderportal") || (_tags.Contains("deletecohortviaemployerportal")));
     }
 }

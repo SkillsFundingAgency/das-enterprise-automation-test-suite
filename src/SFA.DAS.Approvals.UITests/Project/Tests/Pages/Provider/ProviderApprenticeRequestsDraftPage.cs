@@ -1,10 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApprenticeRequestsDraftPage : ProviderApprenticeRequestsSubPage
+    public class ProviderApprenticeRequestsDraftPage : ApprenticeRequestsSubPage
     {   
         protected override string PageTitle => "Apprentice requests";
         protected override bool TakeFullScreenShot => false;
