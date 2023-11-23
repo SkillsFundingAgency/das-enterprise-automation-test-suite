@@ -26,7 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         [AfterScenario(Order = 35)]
         public void ClearDownReappliedTrainingProviderData_Apply()
         {
-            _tryCatch.AfterScenarioException(() => { ClearDownQnAData_ReappliedApplication(GetUkprn()); ClearDownApplyData_ReappliedApplication(GetUkprn()); });
+            _tryCatch.AfterScenarioException(() => ClearDownApplyAndQnAData_ReappliedApplication(GetUkprn()));
         }
     }
 }
