@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
 {
     public class ForecastingStartsPage : ModeratorBasePage
     {
-        protected override string PageTitle => "Forecasting starts in the first 12 months of joining the RoATP";
+        protected override string PageTitle => "Forecasting starts in the first 12 months of joining the APAR";
 
         public ForecastingStartsPage(ScenarioContext context) : base(context) { }
 
