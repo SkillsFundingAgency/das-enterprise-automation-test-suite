@@ -4,6 +4,5 @@
 @deletecohortviaproviderportal
 @donottakescreenshot
 @testdatascenario
-@testtoexecuteon22Nov
 Scenario: AP_P_Delete_01AC Ready to review Cohort using Key
 	Then A 3 list of cohorts ready for review can be deleted using key 'Details'

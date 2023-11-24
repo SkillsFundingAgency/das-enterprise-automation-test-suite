@@ -11,5 +11,6 @@ Scenario: AP_P_Delete_02A Draft Cohort using db
 @deletecohortviaproviderportal
 @donottakescreenshot
 @testdatascenario
+@testtoexecuteon24Nov
 Scenario: AP_P_Delete_02B Draft Cohort using key
 	Then A list of cohorts in draft can be deleted using key 'Details'
