@@ -78,14 +78,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
         [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("testdatascenario")]
-        [NUnit.Framework.CategoryAttribute("testtoexecuteon22Nov")]
+        [NUnit.Framework.CategoryAttribute("testtoexecuteon24Nov")]
         public void AP_P_Delete_01ABReadyToReviewCohortUsingKey()
         {
             string[] tagsOfScenario = new string[] {
                     "deletecohortviaproviderportal",
                     "donottakescreenshot",
                     "testdatascenario",
-                    "testtoexecuteon22Nov"};
+                    "testtoexecuteon24Nov"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_01AB Ready to review Cohort using Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
