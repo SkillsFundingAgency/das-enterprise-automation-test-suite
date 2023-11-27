@@ -29,11 +29,8 @@ public class DeleteCohortViaProviderPortalTestDataSteps
     [Then(@"A (1|2|3|4) list of cohorts ready for review can be deleted using key '([^']*)'")]
     public void ThenAFirstListOfCohortsReadyForReviewCanBeDeletedUsingKey(int set, string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key, set);
 
-    [Then(@"A list of cohorts ready for review can be deleted using key '([^']*)'")]
-    public void AListOfCohortsReadyForReviewCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToCohortsToReviewPage(), key, 0);
-
-    [Then(@"A list of cohorts in draft can be deleted using key '([^']*)'")]
-    public void AListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key, 0);
+    [Then(@"A (1|2|3|4) list of cohorts in draft can be deleted using key '([^']*)'")]
+    public void ThenAListOfCohortsInDraftCanBeDeletedUsingKey(int set, string key) => DeleteCohort((x) => x.GoToDraftCohorts(), key, set);
 
     [Then(@"A list of cohorts ready for review can be deleted")]
     public void AListOfCohortsReadyForReviewCanBeDeleted() => DeleteCohort((x) => x.GoToCohortsToReviewPage(), false);

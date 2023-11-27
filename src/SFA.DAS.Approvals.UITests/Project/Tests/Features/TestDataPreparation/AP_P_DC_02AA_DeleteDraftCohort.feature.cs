@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_P_DC_01AC_DeleteReadyForReviewCohort")]
-    public partial class AP_P_DC_01AC_DeleteReadyForReviewCohortFeature
+    [NUnit.Framework.DescriptionAttribute("AP_P_DC_02AA_DeleteDraftCohort")]
+    public partial class AP_P_DC_02AA_DeleteDraftCohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_P_DC_01AC_DeleteReadyForReviewCohort.feature"
+#line 1 "AP_P_DC_02AA_DeleteDraftCohort.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "AP_P_DC_01AC_DeleteReadyForReviewCohort", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "AP_P_DC_02AA_DeleteDraftCohort", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_P_Delete_01AC Ready to review Cohort using Key")]
+        [NUnit.Framework.DescriptionAttribute("AP_P_Delete_02AA Draft Cohort using key")]
         [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("testdatascenario")]
         [NUnit.Framework.CategoryAttribute("testtoexecuteon27Nov")]
-        public void AP_P_Delete_01ACReadyToReviewCohortUsingKey()
+        public void AP_P_Delete_02AADraftCohortUsingKey()
         {
             string[] tagsOfScenario = new string[] {
                     "deletecohortviaproviderportal",
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
                     "testdatascenario",
                     "testtoexecuteon27Nov"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_01AC Ready to review Cohort using Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_02AA Draft Cohort using key", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Then("A 3 list of cohorts ready for review can be deleted using key \'Details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("A 1 list of cohorts in draft can be deleted using key \'Details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

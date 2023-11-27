@@ -4,12 +4,5 @@
 @deletecohortviaproviderportal
 @donottakescreenshot
 @testdatascenario
-Scenario: AP_P_Delete_01A Ready to review Cohort using db
+Scenario: AP_P_Delete_01 Ready to review Cohort using db
 	Then A list of cohorts ready for review can be deleted
-
-
-@deletecohortviaproviderportal
-@donottakescreenshot
-@testdatascenario
-Scenario: AP_P_Delete_01B Ready to review Cohort using Key
-	Then A list of cohorts ready for review can be deleted using key 'Details'
