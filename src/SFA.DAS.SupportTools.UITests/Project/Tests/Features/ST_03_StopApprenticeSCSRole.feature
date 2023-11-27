@@ -4,6 +4,7 @@
 @supporttools
 @approvalssupportconsole
 @BulkUtility
+@donotexecuteinparallel
 Scenario: ST_03_Stop Apprentice SCS Role
   Given the SCS User is logged into Support Tools
   And User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities
