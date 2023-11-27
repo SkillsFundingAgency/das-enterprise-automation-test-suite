@@ -48,7 +48,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
 
         if (set != 0)
         {
-            var maxSet = listFromUi.Count / 5;
+            var maxSet = listFromUi.Count / 3;
 
             for (int i = 0; i < set - 1; i++)
             {
