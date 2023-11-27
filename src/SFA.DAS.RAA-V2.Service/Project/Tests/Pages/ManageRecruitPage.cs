@@ -4,8 +4,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ManageRecruitPage : Raav2BasePage
-    {
-        protected override string PageTitle => isRaaV2Employer ? "Manage advert" : "Manage vacancy";
+    { 
+        protected override string PageTitle => isRaaV2Employer ? vacancyTitleDataHelper.VacancyTitle : vacancyTitleDataHelper?.VacancyTitle + " apprenticeship";
 
         public ManageRecruitPage(ScenarioContext context) : base(context) { }
 

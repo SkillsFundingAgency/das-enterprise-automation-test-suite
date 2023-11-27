@@ -3,15 +3,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class ConfirmApplicantStatusBasePage : Raav2BasePage
+    public class ConfirmApplicantSuccessStatusPage : Raav2BasePage
     {
-        protected override string PageTitle => $"Are you sure you want to tell this applicant that they have not been accepted?";
+        protected override string PageTitle => $"Are you sure you want to make {rAAV2DataHelper.CandidateFullName}'s application {_message}"; 
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
         private readonly string _message;
 
-        public ConfirmApplicantStatusBasePage(ScenarioContext context, string message) : base(context, false)
+        public ConfirmApplicantSuccessStatusPage(ScenarioContext context, string message) : base(context, false)
         {
             _message = message;
 
