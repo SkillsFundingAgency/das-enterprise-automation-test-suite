@@ -114,28 +114,30 @@ namespace SFA.DAS.Registration.UITests.Project
                     if (_context.TryGetValue($"{typeof(DeclarationsDataGenerator).FullName}_{empRef}", out MongoDbHelper levyDecMongoDbHelper))
                     {
                         levyDecMongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {empRef}");
+                        SetDebugInformation($"Declarations Deleted for, EmpRef: {empRef}");
 
                         if (_context.TryGetValue($"{typeof(EnglishFractionDataGenerator).FullName}_{empRef}", out MongoDbHelper englishFractionMongoDbHelper))
                         {
                             englishFractionMongoDbHelper.AsyncDeleteData().Wait();
-                            TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {empRef}");
+                            SetDebugInformation($"English Fraction Deleted for, EmpRef: {empRef}");
                         }
                     }
 
                     if (_context.TryGetValue($"{typeof(EmpRefLinksDataGenerator).FullName}_{empRef}", out MongoDbHelper emprefMongoDbHelper))
                     {
                         emprefMongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {empRef}");
+                        SetDebugInformation($"EmpRef Links Deleted, EmpRef: {empRef}");
                     }
 
                     if (_context.TryGetValue($"{typeof(GatewayUserDataGenerator).FullName}_{empRef}", out MongoDbHelper gatewayusermongoDbHelper))
                     {
                         gatewayusermongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {empRef}");
+                        SetDebugInformation($"Gateway User Deleted, EmpRef: {empRef}");
                     }
                 }
             });
         }
+
+        private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
     }
 }
