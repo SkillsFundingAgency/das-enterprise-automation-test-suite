@@ -52,7 +52,7 @@ public class DeleteCohortViaEmployerPortalTestDataSteps
 
             if (apprenticeRequestsSubPage.ViewDraftOrReadyToReviewCohortDetails(refKey))
             {
-                employerApprenticeRequestsPage = new ApproveApprenticeDetailsPage(_context).SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
+                employerApprenticeRequestsPage = new ApproveApprenticeDetailsPage(_context, "Approve").SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
                 apprenticeRequestsSubPage = func(employerApprenticeRequestsPage);
 
