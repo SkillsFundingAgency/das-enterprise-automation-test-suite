@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -49,6 +51,15 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 27)]
         [Scope(Tag = "addthirdlevyfunds")]
         public void SetUpThirdLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund, 2);
+
+        [BeforeScenario(Order = 28)]
+        [Scope(Tag = "addmultiplelevyfunds")]
+        public void SetUpMultipleLevyPayeDetails()
+        {
+            int noOfPayeToAdd = int.Parse(_context.GetUser<AddMultiplePayeLevyUser>().NoOfPayeToAdd);
+
+            for (int i = 1; i < noOfPayeToAdd; i++) AddAnotherPayeDetails(FundType.LevyFund, i);
+        }
 
         private void AddPayeDetails(FundType fundType)
         {
