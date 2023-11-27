@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_P_Delete_01 Ready to review Cohort using db")]
+        [NUnit.Framework.DescriptionAttribute("AP_P_Delete_01A Ready to review Cohort using db")]
         [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         [NUnit.Framework.CategoryAttribute("testdatascenario")]
-        public void AP_P_Delete_01ReadyToReviewCohortUsingDb()
+        public void AP_P_Delete_01AReadyToReviewCohortUsingDb()
         {
             string[] tagsOfScenario = new string[] {
                     "deletecohortviaproviderportal",
                     "donottakescreenshot",
                     "testdatascenario"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_01 Ready to review Cohort using db", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_01A Ready to review Cohort using db", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,6 +98,36 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 8
  testRunner.Then("A list of cohorts ready for review can be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AP_P_Delete_01B Ready to review Cohort using Key")]
+        [NUnit.Framework.CategoryAttribute("deletecohortviaproviderportal")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("testdatascenario")]
+        public void AP_P_Delete_01BReadyToReviewCohortUsingKey()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "deletecohortviaproviderportal",
+                    "donottakescreenshot",
+                    "testdatascenario"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_P_Delete_01B Ready to review Cohort using Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 15
+ testRunner.Then("A 1 list of cohorts ready for review can be deleted using key \'Details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
