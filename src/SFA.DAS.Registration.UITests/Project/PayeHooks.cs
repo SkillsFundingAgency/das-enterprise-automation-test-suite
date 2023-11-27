@@ -135,6 +135,8 @@ namespace SFA.DAS.Registration.UITests.Project
                         SetDebugInformation($"Gateway User Deleted, EmpRef: {empRef}");
                     }
                 }
+
+                SetDebugInformation($"deleted '{empRefs.Count}' emprefs from Mongo db");
             });
         }
 
