@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
@@ -105,7 +104,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             if (!_isAddPayeDetails) { return; }
 
-            _tryCatch.AfterScenarioException(() => 
+            _tryCatch.AfterScenarioException(() =>
             {
                 var empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
 
