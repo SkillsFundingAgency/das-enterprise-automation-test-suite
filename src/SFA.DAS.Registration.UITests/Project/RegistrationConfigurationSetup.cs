@@ -34,14 +34,15 @@ namespace SFA.DAS.Registration.UITests.Project
                 _configSection.GetConfigSection<TransactorUser>(),
                 _configSection.GetConfigSection<ViewOnlyUser>(),
             });
-
-            _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
 
-        [BeforeScenario(Order = 2), Scope(Tag = "@addmultiplelevyfundstestdatascenario")]
-        public void SetUpRegistrationConfigConfigurationFortestdatascenario()
+        [BeforeScenario(Order = 2), Scope(Tag = "@addmultiplelevyfunds")]
+        public void SetUpRegistrationConfigConfigurationForAddMultipleLevyFunds()
         {
             _context.SetEasLoginUser(new List<EasAccountUser>() { _configSection.GetConfigSection<AddMultiplePayeLevyUser>()});
         }
+
+        [BeforeScenario(Order = 2)]
+        public void SetMongoDbConfig() => _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
     }
 }
