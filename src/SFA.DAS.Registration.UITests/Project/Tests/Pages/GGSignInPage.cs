@@ -25,13 +25,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SearchForYourOrganisationPage SignInTo(int index)
         {
             EnterGateWayCredentialsAndSignIn(index);
+
             return new SearchForYourOrganisationPage(context);
         }
 
         public ConfirmPAYESchemePage EnterPayeDetailsAndContinue(int index)
         {
-            EnterGateWayCredentialsAndSignIn(index);
-            return new ConfirmPAYESchemePage(context);
+            var gatewaydetails = EnterGateWayCredentialsAndSignIn(index);
+
+            return new ConfirmPAYESchemePage(context, gatewaydetails.Paye);
         }
 
         public GgSignInPage SignInWithInvalidDetails()
@@ -42,10 +44,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
 
-        private void EnterGateWayCredentialsAndSignIn(int index)
+        private GatewayCreds EnterGateWayCredentialsAndSignIn(int index)
         {
             var gatewaydetails = objectContext.GetGatewayCreds(index);
+
             SignInTo(gatewaydetails.GatewayId, gatewaydetails.GatewayPassword);
+
+            return gatewaydetails;
         }
 
         private void SignInTo(string id, string password)

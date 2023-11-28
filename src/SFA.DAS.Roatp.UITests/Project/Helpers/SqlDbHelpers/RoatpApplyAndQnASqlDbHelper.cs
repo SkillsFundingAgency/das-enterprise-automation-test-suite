@@ -25,9 +25,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             return applicationId == Emptyguid ? 0 : ExecuteSqlCommand(deleteDataFromQnaQuery);
         }
 
-        public int OversightReviewClearDownFromQnA_ReApplyRecord(string ukprn)
+        public int OversightReviewClearDownFromQnA_ReApplyRecord(string applicationId)
         {
-            var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
             var deleteDataFromQnaQuery =
                 $"DELETE FROM ApplicationSections WHERE ApplicationId = '{applicationId}'; " +
                 $"DELETE FROM ApplicationSequences WHERE ApplicationId = '{applicationId}'; " +
@@ -41,12 +40,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
     {
         private readonly ObjectContext _objectContext;
 
-        private string Emptyguid => Guid.Empty.ToString();
+        private static string Emptyguid => Guid.Empty.ToString();
 
         public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString)
         {
             _objectContext = objectContext;
         }
+
+        public string GetApplicationId(string ukprn) => GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
 
         public string ClearDownDataUkprnFromApply(string ukprn)
         {
@@ -119,12 +120,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             return applicationId;
         }
 
-        public int OversightReviewClearDownFromApply_ReapplyRecord(string ukprn)
-        {
-            var applicationId = GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
-            var deleteDataFromApplyQuery =
-                $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; ";
-            return applicationId == Emptyguid ? 0 : ExecuteSqlCommand(deleteDataFromApplyQuery);
-        }
+        public int OversightReviewClearDownFromApply_ReapplyRecord(string applicationId) => applicationId == Emptyguid ? 0 : ExecuteSqlCommand($"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; ");
     }
 }

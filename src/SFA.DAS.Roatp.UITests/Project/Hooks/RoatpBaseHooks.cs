@@ -1,9 +1,9 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers;
+using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
@@ -62,9 +62,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void ClearDownApplyData() => _roatpQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
-        protected void ClearDownApplyData_ReappliedApplication(string ukprn) => _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromApply_ReapplyRecord(ukprn);
+        protected void ClearDownApplyAndQnAData_ReappliedApplication(string ukprn)
+        {
+            var applicationId = _roatpApplyAndQnASqlDbHelper.GetApplicationId(ukprn);
 
-        protected void ClearDownQnAData_ReappliedApplication(string ukprn) => _roatpQnASqlDbHelper.OversightReviewClearDownFromQnA_ReApplyRecord(ukprn);
+            _roatpQnASqlDbHelper.OversightReviewClearDownFromQnA_ReApplyRecord(applicationId);
+
+            _roatpApplyAndQnASqlDbHelper.OversightReviewClearDownFromApply_ReapplyRecord(applicationId);
+        }
 
         protected void ClearDownDataUkprnFromApply(string ukprn) => _roatpQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataUkprnFromApply(ukprn));
 
@@ -102,7 +107,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         protected string GetUkprn() => _objectContext.GetUkprn();
 
         private void SetEmail(string email)
-        { 
+        {
             _objectContext.SetEmail(email);
 
             if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
