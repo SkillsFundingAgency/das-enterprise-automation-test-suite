@@ -37,5 +37,11 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
+
+        [BeforeScenario(Order = 2), Scope(Tag = "@addmultiplelevyfundstestdatascenario")]
+        public void SetUpRegistrationConfigConfigurationFortestdatascenario()
+        {
+            _context.SetEasLoginUser(new List<EasAccountUser>() { _configSection.GetConfigSection<AddMultiplePayeLevyUser>()});
+        }
     }
 }
