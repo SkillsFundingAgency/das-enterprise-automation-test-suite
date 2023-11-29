@@ -78,15 +78,17 @@ namespace SFA.DAS.SupportTools.UITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("supporttools")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         [NUnit.Framework.CategoryAttribute("BulkUtility")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
         public void ST_02_StopApprenticeRecords()
         {
             string[] tagsOfScenario = new string[] {
                     "supporttools",
                     "approvalssupportconsole",
-                    "BulkUtility"};
+                    "BulkUtility",
+                    "donotexecuteinparallel"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ST_02_Stop Apprentice Records", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the SCP User is logged into Support Tools", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("Opens the Stop Utility", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -118,13 +120,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "25"});
-#line 9
+#line 10
  testRunner.And("Search for Apprentices using following criteria", ((string)(null)), table3, "And ");
 #line hidden
-#line 13
+#line 14
  testRunner.When("User selects all records and click on Stop Apprenticeship button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("User should be able to stop all the records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
