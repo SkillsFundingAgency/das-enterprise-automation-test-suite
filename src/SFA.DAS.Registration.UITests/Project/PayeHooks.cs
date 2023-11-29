@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -50,6 +51,15 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "addthirdlevyfunds")]
         public void SetUpThirdLevyPayeDetails() => AddAnotherPayeDetails(FundType.LevyFund, 2);
 
+        [BeforeScenario(Order = 28)]
+        [Scope(Tag = "addmultiplelevyfunds")]
+        public void SetUpMultipleLevyPayeDetails()
+        {
+            int noOfPayeToAdd = int.Parse(_context.GetUser<AddMultiplePayeLevyUser>().NoOfPayeToAdd);
+
+            for (int i = 1; i < noOfPayeToAdd; i++) AddAnotherPayeDetails(FundType.LevyFund, i);
+        }
+
         private void AddPayeDetails(FundType fundType)
         {
             _isAddPayeDetails = true;
@@ -94,7 +104,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             if (!_isAddPayeDetails) { return; }
 
-            _tryCatch.AfterScenarioException(() => 
+            _tryCatch.AfterScenarioException(() =>
             {
                 var empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
 
@@ -103,28 +113,32 @@ namespace SFA.DAS.Registration.UITests.Project
                     if (_context.TryGetValue($"{typeof(DeclarationsDataGenerator).FullName}_{empRef}", out MongoDbHelper levyDecMongoDbHelper))
                     {
                         levyDecMongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {empRef}");
+                        SetDebugInformation($"Declarations Deleted for, EmpRef: {empRef}");
 
                         if (_context.TryGetValue($"{typeof(EnglishFractionDataGenerator).FullName}_{empRef}", out MongoDbHelper englishFractionMongoDbHelper))
                         {
                             englishFractionMongoDbHelper.AsyncDeleteData().Wait();
-                            TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {empRef}");
+                            SetDebugInformation($"English Fraction Deleted for, EmpRef: {empRef}");
                         }
                     }
 
                     if (_context.TryGetValue($"{typeof(EmpRefLinksDataGenerator).FullName}_{empRef}", out MongoDbHelper emprefMongoDbHelper))
                     {
                         emprefMongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {empRef}");
+                        SetDebugInformation($"EmpRef Links Deleted, EmpRef: {empRef}");
                     }
 
                     if (_context.TryGetValue($"{typeof(GatewayUserDataGenerator).FullName}_{empRef}", out MongoDbHelper gatewayusermongoDbHelper))
                     {
                         gatewayusermongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {empRef}");
+                        SetDebugInformation($"Gateway User Deleted, EmpRef: {empRef}");
                     }
                 }
+
+                SetDebugInformation($"deleted '{empRefs.Count}' emprefs from Mongo db");
             });
         }
+
+        private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
     }
 }

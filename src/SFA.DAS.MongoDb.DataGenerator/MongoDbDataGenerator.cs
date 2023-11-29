@@ -1,10 +1,9 @@
-﻿using NUnit.Framework;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.MongoDb.DataGenerator
 {
@@ -49,15 +48,15 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             _addGatewayUserData = new MongoDbHelper(_mongodbConnectionHelper, new GatewayUserDataGenerator(_mongoDbDataHelper));
 
-            TestContext.Progress.WriteLine($"Connecting to MongoDb Database : {_mongoDbDatabase}");
+            SetDebugInformation($"Connecting to MongoDb Database : {_mongoDbDatabase}");
 
             _addGatewayUserData.AsyncCreateData().Wait();
-            TestContext.Progress.WriteLine($"Gateway Id Created : {_gatewayId}");
-            TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {EmpRef}");
+            SetDebugInformation($"Gateway Id Created : {_gatewayId}");
+            SetDebugInformation($"Gateway User Created, EmpRef: {EmpRef}");
 
             _addempRefLinksData = new MongoDbHelper(_mongodbConnectionHelper, new EmpRefLinksDataGenerator(_mongoDbDataHelper));
             _addempRefLinksData.AsyncCreateData().Wait();
-            TestContext.Progress.WriteLine($"EmpRef Links Created, EmpRef: {EmpRef}");
+            SetDebugInformation($"EmpRef Links Created, EmpRef: {EmpRef}");
 
             _context.Set(_addGatewayUserData, $"{typeof(GatewayUserDataGenerator).FullName}_{EmpRef}");
             _context.Set(_addempRefLinksData, $"{typeof(EmpRefLinksDataGenerator).FullName}_{EmpRef}");
@@ -73,7 +72,7 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             mongoDbHelper.AsyncCreateData().Wait();
 
-            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {EmpRef}");
+            SetDebugInformation($"Declarations Created for, EmpRef: {EmpRef}");
 
             _context.Set(mongoDbHelper, $"{typeof(DeclarationsDataGenerator).FullName}_{EmpRef}");
 
@@ -86,9 +85,11 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             mongoDbHelper.AsyncCreateData().Wait();
 
-            TestContext.Progress.WriteLine($"English fraction Created for, EmpRef: {EmpRef}");
+            SetDebugInformation($"English fraction Created for, EmpRef: {EmpRef}");
 
             _context.Set(mongoDbHelper, $"{typeof(EnglishFractionDataGenerator).FullName}_{EmpRef}");
         }
+
+        private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
     }
 }
