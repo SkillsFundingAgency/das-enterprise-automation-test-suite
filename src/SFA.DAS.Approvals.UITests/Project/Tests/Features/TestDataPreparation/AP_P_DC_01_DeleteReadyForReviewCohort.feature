@@ -1,4 +1,4 @@
-﻿Feature: AP_P_DC_01_DeleteReadyForReviewCohort
+﻿#Feature: AP_P_DC_01_DeleteReadyForReviewCohort
 #Do not add regression or approvals tag, as these tests are meant to create or delete data
 #
 #@deletecohortviaproviderportal
