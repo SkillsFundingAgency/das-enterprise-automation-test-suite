@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ManageRecruitPage : Raav2BasePage
     { 
-        protected override string PageTitle => isRaaV2Employer ? vacancyTitleDataHelper.VacancyTitle : vacancyTitleDataHelper?.VacancyTitle + " apprenticeship";
+        protected override string PageTitle => isRaaV2Employer ? "Manage Advert" : "Manage vacancy";
 
         public ManageRecruitPage(ScenarioContext context) : base(context) { }
 
