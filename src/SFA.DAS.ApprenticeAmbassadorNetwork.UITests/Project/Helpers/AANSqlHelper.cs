@@ -1,8 +1,21 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
+﻿using System;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 
 public class AANSqlHelper : SqlDbHelper
 {
     public AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AANDbConnectionString) { }
+
+    public (string, DateTime) GetNextEventStartDate(string email)
+    {
+        var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
+        
+        var query = $"select Id, startdate from CalendarEvent where startdate > '{date}' and id not in (select CalendarEventId from Attendance where MemberId = (select Id from Member where email = '{email}')) order by StartDate";
+
+        var list = GetData(query);
+
+        return (list[0], DateTime.Parse(list[1]));
+    }
 
     public void ResetApprenticeOnboardingJourney(string email) => ExecuteSqlCommand
          ($"IF EXISTS(select * from Member where email = '{email}')" +

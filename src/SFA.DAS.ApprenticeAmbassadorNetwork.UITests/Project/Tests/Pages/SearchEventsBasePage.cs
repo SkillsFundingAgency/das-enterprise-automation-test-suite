@@ -25,13 +25,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public SearchEventsBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void FilterEventByTomorrow()
-        {
-            DateTime tomorrow = DateTime.Now.AddDays(1);
-            string formattedDate = tomorrow.ToString(DateFormat);
-            formCompletionHelper.EnterText(FromDateField, formattedDate);
-            ApplyFilter();
-        }
+        public void FilterEventByTomorrow() => FilterEventBy(DateTime.Now.AddDays(1));
 
         public void FilterEventByOneMonth()
         {
@@ -39,6 +33,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             string formattedEndDate = DateTime.Now.AddDays(30).ToString(DateFormat);
             formCompletionHelper.EnterText(FromDateField, formattedDate);
             formCompletionHelper.EnterText(ToDateField, formattedEndDate);
+            ApplyFilter();
+        }
+
+        protected void FilterEventBy(DateTime date)
+        {
+            string formattedDate = date.ToString(DateFormat);
+            formCompletionHelper.EnterText(FromDateField, formattedDate);
             ApplyFilter();
         }
 
