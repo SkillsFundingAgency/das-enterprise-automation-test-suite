@@ -44,6 +44,11 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
 
     private void SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
     {
+        CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
+    }
+
+    private CheckYourEventPage CheckYourEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
+    {
         EventOrganiserNamePage eventOrganiserNamePage;
 
         var page = new InPersonOrOnlinePage(context, SubmitEventDate(eventFormat, guestSpeakers));
@@ -54,7 +59,7 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
 
         else eventOrganiserNamePage = GetEventOrgNamePage(page.SubmitHybridDetails(), isSchoolEvent);
 
-        eventOrganiserNamePage.SubmitOrganiserName().SubmitEventAttendees().SubmitEvent();
+        return eventOrganiserNamePage.SubmitOrganiserName().SubmitEventAttendees();
     }
 
     private static EventOrganiserNamePage GetEventOrgNamePage(IsEventAtSchoolPage isEventAtSchoolPage, bool isSchoolEvent)

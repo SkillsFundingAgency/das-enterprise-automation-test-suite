@@ -12,4 +12,11 @@ public class CheckYourEventPage : AanAdminBasePage
 
         return new SucessfullyPublisedEventPage(context);
     }
+
+    public EventPreviewPage GoToEventPreviewPage(EventFormat eventFormat)
+    {
+        formCompletionHelper.ClickLinkByText("preview the event here");
+
+        return new EventPreviewPage(context, eventFormat);
+    }
 }
