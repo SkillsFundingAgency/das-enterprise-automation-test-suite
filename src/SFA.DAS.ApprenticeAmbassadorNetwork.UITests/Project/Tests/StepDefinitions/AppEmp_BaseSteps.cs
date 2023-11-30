@@ -13,14 +13,14 @@ public abstract class AppEmp_BaseSteps : BaseSteps
 
     }
 
-    protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage)
+    protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage, string email)
     {
         var page = networkHubPage.AccessEventsHub();
 
-        Event = _aanSqlHelper.GetNextEventStartDate();
+        Event = _aanSqlHelper.GetNextEventStartDate(email);
 
         return page.AccessAllNetworkEvents()
-             .ClickOnFirstEventLink(Event.startdate)
+             .ClickOnEvent(Event)
              .SignupForEvent()
              .AccessEventsHub();
     }

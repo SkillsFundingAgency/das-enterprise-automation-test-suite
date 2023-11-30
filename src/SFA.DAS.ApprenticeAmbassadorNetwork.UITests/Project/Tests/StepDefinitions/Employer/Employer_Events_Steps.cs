@@ -12,21 +12,19 @@ public class Employer_Events_Steps : Employer_BaseSteps
 
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
-
+    private AanEmployerOnBoardedUser user;
     public Employer_Events_Steps(ScenarioContext context) : base(context) { }
 
     [Given(@"an onboarded employer logs into the AAN portal")]
     public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
     {
-        var user = context.GetUser<AanEmployerOnBoardedUser>();
-
-        EmployerSign(user);
+        EmployerSign(user = context.GetUser<AanEmployerOnBoardedUser>());
 
         networkHubPage = new Employer_NetworkHubPage(context);
     }
 
     [Then(@"the user should be able to successfully signup for a future event")]
-    public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage);
+    public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);
 
     [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
     public void CancelTheAttendance() => CancelTheAttendance(eventsHubPage);

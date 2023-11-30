@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
-using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
@@ -10,14 +9,14 @@ public class Apprentice_Events_Steps : Apprentice_BaseSteps
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
     private EventsHubPage eventsHubPage;
-
+    private AanApprenticeOnBoardedUser user;
     public Apprentice_Events_Steps(ScenarioContext context) : base(context) { }
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
-    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(context.Get<AanApprenticeOnBoardedUser>());
+    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
 
     [Then(@"the user should be able to successfully signup for a future event")]
-    public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage);
+    public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);
 
     [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
     public void CancelTheAttendance() => CancelTheAttendance(eventsHubPage);
@@ -41,7 +40,7 @@ public class Apprentice_Events_Steps : Apprentice_BaseSteps
     public void FilterByRole_NetworkDirectory() => networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
 
     [Then(@"the user should be able to successfully filter events by regions Network Directory")]
-    public void FilterByEventRegion_NetworkDirectory() =>  FilterByEventRegionNetworkDirectory(networkDirectoryPage);
+    public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
     public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombination_NetworkCirectory(networkDirectoryPage);
