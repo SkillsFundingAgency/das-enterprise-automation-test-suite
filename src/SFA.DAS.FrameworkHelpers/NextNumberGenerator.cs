@@ -8,7 +8,7 @@
 
         static NextNumberGenerator()
         {
-            count = 100;
+            count = 300;
         }
 
         public static int GetNextCount()

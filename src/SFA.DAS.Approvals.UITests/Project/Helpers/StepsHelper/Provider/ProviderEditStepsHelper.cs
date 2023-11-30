@@ -70,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
+                _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i, (x) => { x.Item1.ApprenticeULN = RandomDataGenerator.GenerateRandomUln(); return x; });
 
                 var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
 

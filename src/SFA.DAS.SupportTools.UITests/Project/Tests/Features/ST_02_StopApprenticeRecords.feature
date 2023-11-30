@@ -3,6 +3,7 @@
 @supporttools
 @approvalssupportconsole
 @BulkUtility
+@donotexecuteinparallel
 Scenario: ST_02_Stop Apprentice Records
 	Given the SCP User is logged into Support Tools
 	And Opens the Stop Utility

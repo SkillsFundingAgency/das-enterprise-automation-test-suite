@@ -12,12 +12,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         protected override By ContinueButton => By.CssSelector("button#accept");
         #endregion
 
-        public ConfirmPAYESchemePage(ScenarioContext context) : base(context) => VerifyPage();
+        private readonly string _paye;
+
+        public ConfirmPAYESchemePage(ScenarioContext context, string paye) : base(context) { VerifyPage(); _paye = paye; }
 
         public PAYESchemeAddedPage ClickContinueInConfirmPAYESchemePage()
         {
             Continue();
-            return new PAYESchemeAddedPage(context);
+            return new PAYESchemeAddedPage(context, _paye);
         }
     }
 }

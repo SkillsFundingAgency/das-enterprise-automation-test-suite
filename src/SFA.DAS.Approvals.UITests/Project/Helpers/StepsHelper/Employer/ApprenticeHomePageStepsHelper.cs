@@ -1,8 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
@@ -27,12 +26,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
             return new ApprenticesHomePage(_context);
         }
-        public ApprovalsProviderHomePage GoToProviderApprenticesHomePage(bool openInNewTab = true)
-        {
-            GotoEmployerHomePage(openInNewTab);
-
-            return new ApprovalsProviderHomePage(_context);
-        }
-
     }
 }

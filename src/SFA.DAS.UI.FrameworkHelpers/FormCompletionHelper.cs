@@ -145,5 +145,5 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void ClickButtonByText(By locator, string text) => ClickElementByText(locator, text);
 
-    private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
+    public void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
 }

@@ -19,11 +19,11 @@ public class DfeAdminLoginStepsHelper
         LoginToAsAdmin();
     }
 
-    public void LoginToAsAssessor1() => SubmitValidAsLoginDetails(_context.GetUser<AsAssessor1User>());
+    public void LoginToAsAssessor1() => CheckAndLoginToAsAdmin(_context.GetUser<AsAssessor1User>());
 
-    public void LoginToAsAssessor2() => SubmitValidAsLoginDetails(_context.GetUser<AsAssessor2User>());
+    public void LoginToAsAssessor2() => CheckAndLoginToAsAdmin(_context.GetUser<AsAssessor2User>());
 
-    public void LoginToAsAdmin() => SubmitValidAsLoginDetails(GetAsAdminUser());
+    public void LoginToAsAdmin() => SubmitValidLoginDetails(new ASAdminLandingPage(_context), GetAsAdminUser());
 
     public void LoginToSupportConsole(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportConsoleLandingPage(_context), dfeAdminUser);
 
@@ -34,19 +34,20 @@ public class DfeAdminLoginStepsHelper
     #endregion
 
     #region CheckAndLogin
-    public void CheckAndLoginToAsAdmin() => CheckAndLoginTo(new CheckASAdminLandingPage(_context), new ASAdminLandingPage(_context), GetAsAdminUser());
 
-    public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(_context), new ASEmpSupportToolLandingPage(_context), dfeAdminUser);
+    public void CheckAndLoginToAsAdmin() => CheckAndLoginToAsAdmin(GetAsAdminUser());
 
-    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(_context), new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
+    public void CheckAndLoginToAsAdmin(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASAdminLandingPage(_context), () => new ASAdminLandingPage(_context), dfeAdminUser);
+
+    public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(_context), () => new ASEmpSupportToolLandingPage(_context), dfeAdminUser);
+
+    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(_context), () => new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
 
     #endregion
 
-    private void SubmitValidAsLoginDetails(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASAdminLandingPage(_context), dfeAdminUser);
-
-    private void CheckAndLoginTo(CheckASLandingBasePage checkPage, ASLandingBasePage landingPage, DfeAdminUser dfeAdminUser)
+    private void CheckAndLoginTo(CheckASLandingBasePage checkPage, Func<ASLandingBasePage> landingPage, DfeAdminUser dfeAdminUser)
     {
-        if (checkPage.IsPageDisplayed()) landingPage.ClickStartNowButton();
+        if (checkPage.IsPageDisplayed()) landingPage().ClickStartNowButton();
 
         if (new CheckDfeSignInPage(_context).IsPageDisplayed()) SubmitValidLoginDetails(dfeAdminUser);
     }

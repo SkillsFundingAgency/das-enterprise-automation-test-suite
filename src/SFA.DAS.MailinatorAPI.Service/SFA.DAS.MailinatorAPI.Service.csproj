@@ -8,10 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MailinatorApiClient" Version="1.0.2" />
-		<PackageReference Include="RestSharp" Version="108.0.*">
-			<NoWarn>NU1605</NoWarn>
-		</PackageReference>
+		<PackageReference Include="MailinatorApiClient" Version="1.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>

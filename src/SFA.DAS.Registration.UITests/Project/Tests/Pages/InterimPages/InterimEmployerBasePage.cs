@@ -16,7 +16,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         private static By HelpLink => By.LinkText("Help");
         private static By RenameAccountLink => By.LinkText("Rename account");
         private static By NotificationSettingsLink => By.PartialLinkText("Notification");
-        private static By SignOutLink => By.LinkText("Sign out");
         #endregion
 
         protected virtual bool CanVerifyPage => true;
@@ -67,7 +66,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public YouveLoggedOutPage SignOut()
         {
-            formCompletionHelper.Click(SignOutLink);
+            SignsOut();
             return new YouveLoggedOutPage(context);
         }
 
