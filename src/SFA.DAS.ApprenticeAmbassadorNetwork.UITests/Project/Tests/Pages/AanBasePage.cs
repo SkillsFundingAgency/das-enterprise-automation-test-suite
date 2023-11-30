@@ -4,8 +4,6 @@ public abstract class AanBasePage : VerifyBasePage
 {
     protected readonly AANDataHelpers aanDataHelpers;
 
-    private static By NetworkHubLink => By.CssSelector("a[href*='network-hub']");
-
     protected override By PageHeader => By.TagName("h1");
 
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -18,7 +16,5 @@ public abstract class AanBasePage : VerifyBasePage
 
         if (verifyPage) VerifyPage();
     }
-
-    public void ClickNetworkHubLink() => formCompletionHelper.Click(NetworkHubLink);
 }
 

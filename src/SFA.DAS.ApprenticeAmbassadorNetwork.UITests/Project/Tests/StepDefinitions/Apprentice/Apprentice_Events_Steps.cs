@@ -9,7 +9,7 @@ public class Apprentice_Events_Steps : Apprentice_BaseSteps
 {
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
-    
+    private EventsHubPage eventsHubPage;
 
     public Apprentice_Events_Steps(ScenarioContext context) : base(context) { }
 
@@ -17,10 +17,10 @@ public class Apprentice_Events_Steps : Apprentice_BaseSteps
     public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(context.Get<AanApprenticeOnBoardedUser>());
 
     [Then(@"the user should be able to successfully signup for a future event")]
-    public void SignupForAFutureEvent() => SignupForAFutureEvent(networkHubPage);
+    public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage);
 
     [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
-    public void CancelTheAttendance() => CancelTheAttendance(new Apprentice_NetworkHubPage(context));
+    public void CancelTheAttendance() => CancelTheAttendance(eventsHubPage);
 
     [Then(@"the user should be able to successfully filter events by date")]
     public void FilterByDate() => searchNetworkEventsPage = FilterByDate(networkHubPage);

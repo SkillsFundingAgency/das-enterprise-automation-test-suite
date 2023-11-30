@@ -13,22 +13,21 @@ public abstract class AppEmp_BaseSteps : BaseSteps
 
     }
 
-    protected void SignupForAFutureEvent(NetworkHubPage networkHubPage)
+    protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage)
     {
         var page = networkHubPage.AccessEventsHub();
 
         Event = _aanSqlHelper.GetNextEventStartDate();
 
-        page.AccessAllNetworkEvents()
+        return page.AccessAllNetworkEvents()
              .ClickOnFirstEventLink(Event.startdate)
              .SignupForEvent()
-             .AccessEventsHub()
-             .ClickNetworkHubLink();
+             .AccessEventsHub();
     }
 
-    protected void CancelTheAttendance(NetworkHubPage networkHubPage)
+    protected void CancelTheAttendance(EventsHubPage eventsHubPage)
     {
-        var page = networkHubPage.AccessEventsHub().GoToEventMonth(Event.startdate);
+        var page = eventsHubPage.GoToEventMonth(Event.startdate);
 
         var NoOfeventsFound = page.NoOfEventsFoundInCalender();
 

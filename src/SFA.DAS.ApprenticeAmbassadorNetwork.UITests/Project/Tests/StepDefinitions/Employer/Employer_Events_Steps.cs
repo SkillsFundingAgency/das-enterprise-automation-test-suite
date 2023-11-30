@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 [Binding, Scope(Tag = "@aanemployer")]
 public class Employer_Events_Steps : Employer_BaseSteps
 {
-    private EventPage eventPage;
+    private EventsHubPage eventsHubPage;
 
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
@@ -26,10 +26,10 @@ public class Employer_Events_Steps : Employer_BaseSteps
     }
 
     [Then(@"the user should be able to successfully signup for a future event")]
-    public void SignupForAFutureEvent() => SignupForAFutureEvent(networkHubPage);
+    public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage);
 
     [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
-    public void CancelTheAttendance() => CancelTheAttendance(new Employer_NetworkHubPage(context));
+    public void CancelTheAttendance() => CancelTheAttendance(eventsHubPage);
 
     [Then(@"the user should be able to successfully filter events by date")]
     public void FilterByDate() => searchNetworkEventsPage = FilterByDate(networkHubPage);
