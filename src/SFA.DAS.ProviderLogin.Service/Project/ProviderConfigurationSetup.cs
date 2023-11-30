@@ -52,6 +52,8 @@ public class ProviderConfigurationSetup
 
         if (_tags.IsRplWhiteListedProvider()) providerConfig = SetProviderCreds<RplWhiteListedProviderConfig>();
 
+        if (_tags.IsTestDataDeleteCohortViaProviderPortal()) _context.Set(SetProviderCreds<DeleteCohortProviderConfig>());
+
         _context.SetProviderConfig(providerConfig);
     }
 }
