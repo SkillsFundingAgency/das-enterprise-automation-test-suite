@@ -40,5 +40,4 @@ public class EventPage : AanBasePage
         pageInteractionHelper.IsElementDisplayed(HybridEventTag);
         return new EventPage(context);
     }
-
 }

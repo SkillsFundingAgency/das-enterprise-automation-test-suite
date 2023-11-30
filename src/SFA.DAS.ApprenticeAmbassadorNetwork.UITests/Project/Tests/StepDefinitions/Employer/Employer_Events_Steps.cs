@@ -26,10 +26,10 @@ public class Employer_Events_Steps : Employer_BaseSteps
     }
 
     [Then(@"the user should be able to successfully signup for a future event")]
-    public void SignupForAFutureEvent() => eventPage = SignupForAFutureEvent(networkHubPage);
+    public void SignupForAFutureEvent() => SignupForAFutureEvent(networkHubPage);
 
     [Then(@"the user should be able to successfully Cancel the attendance for a signed up event")]
-    public void CancelTheAttendance() => CancelTheAttendance(eventPage);
+    public void CancelTheAttendance() => CancelTheAttendance(new Employer_NetworkHubPage(context));
 
     [Then(@"the user should be able to successfully filter events by date")]
     public void FilterByDate() => searchNetworkEventsPage = FilterByDate(networkHubPage);

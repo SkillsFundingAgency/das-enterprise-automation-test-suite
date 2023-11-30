@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+﻿using System;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
 public class SearchNetworkEventsPage : SearchEventsBasePage
 {
@@ -6,16 +8,13 @@ public class SearchNetworkEventsPage : SearchEventsBasePage
 
     public SearchNetworkEventsPage(ScenarioContext context) : base(context) { }
 
-    public EventPage ClickOnFirstEventLink()
+    public EventPage ClickOnFirstEventLink(DateTime date)
     {
-        formCompletionHelper.ClickElement(FirstEventLink);
-        return new EventPage(context);
-    }
+        FilterEventBy(date);
 
-    public new SearchNetworkEventsPage FilterEventByTomorrow()
-    {
-        base.FilterEventByTomorrow();
-        return this;
+        formCompletionHelper.ClickElement(FirstEventLink);
+
+        return new EventPage(context);
     }
 
     public new SearchNetworkEventsPage FilterEventByOneMonth()
