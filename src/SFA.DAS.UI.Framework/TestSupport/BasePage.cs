@@ -2,7 +2,6 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
