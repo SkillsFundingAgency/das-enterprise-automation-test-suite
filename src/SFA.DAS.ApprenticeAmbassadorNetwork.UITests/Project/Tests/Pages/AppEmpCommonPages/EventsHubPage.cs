@@ -41,7 +41,7 @@ public class EventsHubPage : AanBasePage
         return new EventsHubPage(context);
     }
 
-    public EventPage AccessSignedUpEventFromCalendar(DateTime date)
+    public EventPage AccessFirstEventFromCalendar()
     {
         formCompletionHelper.ClickElement(EventInCalendarLinkSelector);
 

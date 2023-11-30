@@ -20,7 +20,8 @@ public abstract class AppEmp_BaseSteps : BaseSteps
         Event = _aanSqlHelper.GetNextEventStartDate(email);
 
         return page.AccessAllNetworkEvents()
-             .ClickOnEvent(Event)
+             .ClickOnFirstEvent()
+             .GoToEvent(Event)
              .SignupForEvent()
              .AccessEventsHub();
     }
@@ -31,7 +32,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
 
         var NoOfeventsFound = page.NoOfEventsFoundInCalender();
 
-        var actual = page.AccessSignedUpEventFromCalendar(Event.startdate).CancelYourAttendance()
+        var actual = page.AccessFirstEventFromCalendar().GoToEvent(Event).CancelYourAttendance()
            .AccessEventsHubFromCancelledAttendancePage()
            .GoToEventMonth(Event.startdate)
            .NoOfEventsFoundInCalender();

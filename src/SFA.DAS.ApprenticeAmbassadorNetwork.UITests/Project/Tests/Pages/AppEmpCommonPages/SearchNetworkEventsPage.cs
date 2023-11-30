@@ -8,19 +8,11 @@ public class SearchNetworkEventsPage : SearchEventsBasePage
 
     public SearchNetworkEventsPage(ScenarioContext context) : base(context) { }
 
-    public EventPage ClickOnEvent((string id, DateTime startdate) eventLink)
+    public EventPage ClickOnFirstEvent()
     {
-        FilterEventBy(eventLink.startdate);
+        FilterEventByTomorrow();
 
         formCompletionHelper.ClickElement(FirstEventLink);
-
-        var url = pageInteractionHelper.GetUrl();
-
-        var guid = url.Split('/').ToList().Single(x => x.Count(c => c == '-') == 4);
-
-        var eventUrl = url.Replace(guid, eventLink.id);
-
-        tabHelper.GoToUrl(eventUrl);
 
         return new EventPage(context);
     }
