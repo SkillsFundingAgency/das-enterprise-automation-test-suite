@@ -74,12 +74,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_CreateEvent_03 User should be able to successfully create Online event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_CreateEvent_03 User should be able to successfully create and cancel Onli" +
+            "ne event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadmincreateevent")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_CreateEvent_03UserShouldBeAbleToSuccessfullyCreateOnlineEvent()
+        public void AAN_ADN_CreateEvent_03UserShouldBeAbleToSuccessfullyCreateAndCancelOnlineEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -87,7 +88,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
                     "aanadmincreateevent",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_CreateEvent_03 User should be able to successfully create Online event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_CreateEvent_03 User should be able to successfully create and cancel Onli" +
+                    "ne event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -106,6 +108,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 10
      testRunner.Then("the system should confirm the event creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+     testRunner.And("the user should be able to successfully cancel event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+     testRunner.And("the system should confirm the event cancellation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

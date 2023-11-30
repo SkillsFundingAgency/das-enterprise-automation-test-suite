@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
 public class SearchNetworkEventsPage : SearchEventsBasePage
 {
@@ -10,7 +8,7 @@ public class SearchNetworkEventsPage : SearchEventsBasePage
 
     public EventPage ClickOnFirstEvent()
     {
-        FilterEventByTomorrow();
+        FilterEventFromTomorrow();
 
         formCompletionHelper.ClickElement(FirstEventLink);
 

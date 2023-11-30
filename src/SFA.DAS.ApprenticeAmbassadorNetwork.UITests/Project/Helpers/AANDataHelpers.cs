@@ -64,10 +64,14 @@ public class AanAdminDatahelper
 
         EventAttendeesNo = $"{RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(5, 50)}";
     }
-    
-    public string EventTitle { get; private set; }
 
     public (EventFormat eventFormatEnum, string eventFormat) EventFormat { get; private set; }
+
+    public string EventTitle { get; private set; }
+
+    public string EventType { get; private set; }
+
+    public string EventRegion { get; private set; }
 
     public DateTime EventStartDateAndTime { get; private set; }
 
@@ -98,7 +102,14 @@ public class AanAdminDatahelper
         EventFormat = (eventFormat, GetEventFormat(eventFormat));
     }
 
-    private static string GetEventFormat(EventFormat eventFormat)
+    public void SetEventTypeAndRegion(string type, string region)
+    {
+        EventType = type;
+
+        EventRegion = region;
+    }
+
+    public static string GetEventFormat(EventFormat eventFormat)
     {
         return true switch
         {

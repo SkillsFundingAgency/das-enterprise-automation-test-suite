@@ -50,7 +50,7 @@ public class AANSqlHelper : SqlDbHelper
     {
         waitForResults = true;
 
-        return GetDataAsString($"select Id from CalendarEvent where title = '{eventTitle}'");
+        return GetNullableData($"select Id from CalendarEvent where title = '{eventTitle}'");
     }
 
     public void DeleteAdminCreatedEvent(string eventId) => ExecuteSqlCommand

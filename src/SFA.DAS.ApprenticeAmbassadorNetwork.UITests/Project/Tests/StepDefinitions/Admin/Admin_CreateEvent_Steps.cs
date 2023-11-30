@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+﻿using NUnit.Framework;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
@@ -6,6 +7,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 [Binding, Scope(Tag = "@aanadmin")]
 public class Admin_CreateEvent_Steps : Admin_BaseSteps
 {
+    private SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
+    private AanAdminDatahelper aanAdminDatahelper;
+
     public Admin_CreateEvent_Steps(ScenarioContext context) : base(context)
     {
 
@@ -29,22 +33,44 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
     [Then(@"the system should confirm the event creation")]
     public void TheSystemShouldConfirmTheEventCreation()
     {
-        var data = context.Get<AanAdminDatahelper>();
+        aanAdminDatahelper = context.Get<AanAdminDatahelper>();
 
-        var id = context.Get<AANSqlHelper>().GetEventId(data.EventTitle);
+        var id = context.Get<AANSqlHelper>().GetEventId(GetEventTitle());
 
-        objectContext.SetAanAdminEventId(id);
+        SetAanAdminEventId(id);
     }
 
-    private void SubmitInPersonEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.InPerson, guestSpeakers, isSchoolEvent);
-
-    private void SubmitOnlineEvent(bool guestSpeakers) => SubmitEvent(EventFormat.Online, guestSpeakers, false);
-
-    private void SubmitHybridEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.Hybrid, guestSpeakers, isSchoolEvent);
-
-    private void SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
+    [Then(@"the user should be able to successfully cancel event")]
+    public void TheUserShouldBeAbleToSuccessfullyCancelEvent()
     {
-        CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
+        sucessfullyPublisedEventPage.AccessManageEvents().FilterEventBy(aanAdminDatahelper).CancelEvent().CancelEvent();
+    }
+
+    [Then(@"the system should confirm the event cancellation")]
+    public void TheSystemShouldConfirmTheEventCancellation()
+    {
+        var title = GetEventTitle();
+
+        var id = context.Get<AANSqlHelper>().GetEventId(title);
+
+        Assert.That(string.IsNullOrEmpty(id), $"'{id}', '{title}' is not removed from the database");
+
+        SetAanAdminEventId(id);
+    }
+
+    private string GetEventTitle() => aanAdminDatahelper.EventTitle;
+
+    private void SetAanAdminEventId(string id ) => objectContext.SetAanAdminEventId(id);
+
+    private SucessfullyPublisedEventPage SubmitInPersonEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.InPerson, guestSpeakers, isSchoolEvent);
+
+    private SucessfullyPublisedEventPage SubmitOnlineEvent(bool guestSpeakers) => SubmitEvent(EventFormat.Online, guestSpeakers, false);
+
+    private SucessfullyPublisedEventPage SubmitHybridEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.Hybrid, guestSpeakers, isSchoolEvent);
+
+    private SucessfullyPublisedEventPage SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
+    {
+        return sucessfullyPublisedEventPage = CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
     }
 
     private CheckYourEventPage CheckYourEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)

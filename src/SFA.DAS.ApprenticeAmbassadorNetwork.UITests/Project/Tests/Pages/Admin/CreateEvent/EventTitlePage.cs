@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 public class EventTitlePage : AanAdminBasePage
 {
@@ -12,9 +14,11 @@ public class EventTitlePage : AanAdminBasePage
     {
         formCompletionHelper.EnterText(EventTitleSelector, aanAdminDatahelper.EventTitle);
 
-        SelectRandomOption("#EventTypeId");
+        var eventType = SelectRandomOption("#EventTypeId");
 
-        SelectRandomOption("#EventRegionId");
+        var eventRegion = SelectRandomOption("#EventRegionId");
+
+        aanAdminDatahelper.SetEventTypeAndRegion(eventType, eventRegion);
 
         Continue();
 

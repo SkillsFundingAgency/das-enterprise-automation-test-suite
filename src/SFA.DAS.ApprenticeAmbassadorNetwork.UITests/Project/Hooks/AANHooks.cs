@@ -60,6 +60,8 @@ public class AANHooks
     [AfterScenario(Order = 30), Scope(Tag = "@aanadmin")]
     public void DeleteAdminCreatedEvent()
     {
+        if (_context.TestError != null) return;
+
         _context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
         {
             var eventId = _context.Get<ObjectContext>().GetAanAdminEventId();
