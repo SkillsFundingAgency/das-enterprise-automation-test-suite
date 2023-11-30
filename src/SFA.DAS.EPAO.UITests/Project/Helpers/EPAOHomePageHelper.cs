@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
@@ -18,11 +17,11 @@ public class EPAOHomePageHelper
         _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(_context);
     }
 
-    public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
+    public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab)
     {
-        var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
+        OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
-        _dfeAdminLoginStepsHelper.SubmitValidAsLoginDetails(serviceStartPage);
+        _dfeAdminLoginStepsHelper.CheckAndLoginToAsAdmin();
 
         return new StaffDashboardPage(_context);
     }
@@ -36,15 +35,6 @@ public class EPAOHomePageHelper
 
     public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginGoToApplyForAStandardPage();
 
-    public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
-    {
-        OpenAdminBaseUrl(true).ClickStartNowButton();
-
-        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) _dfeAdminLoginStepsHelper.LoginToAsAdmin();
-
-        return new StaffDashboardPage(_context);
-    }
-
     public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
 
     public AS_LoggedInHomePage LoginInAsNonApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
@@ -54,13 +44,6 @@ public class EPAOHomePageHelper
         _ePAOSqlDataHelper.DeleteStandardApplicication(standardcode, organisationId, loginUser.Username);
 
         return LoginInAsNonApplyUser(loginUser);
-    }
-
-    private ASAdminLandingPage OpenAdminBaseUrl(bool openInNewTab)
-    {
-        OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
-
-        return new ASAdminLandingPage(_context);
     }
 
     private void OpenUrl(string url, bool openInNewTab)

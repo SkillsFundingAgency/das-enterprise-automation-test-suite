@@ -108,7 +108,7 @@ public class AdminSteps : EPAOBaseSteps
     private CheckAndSubmitAssessmentDetailsPage EnterTicketRefeferenceAndSelectReason(ConfirmReasonBasePage page, string ticketReference, string reason) =>
          checkAndSubmitAssessmentDetailsPage = page.EnterTicketRefeferenceAndSelectReason(ticketReference, reason);
 
-    private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
+    private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage(false);
 
     private void SearchEpaoRegister(string value) { objectContext.SetOrganisationIdentifier(value); organisationDetailsPage = AdminStepshelper.SearchEpaoRegister(GoToEpaoAdminHomePage()); }
 }
