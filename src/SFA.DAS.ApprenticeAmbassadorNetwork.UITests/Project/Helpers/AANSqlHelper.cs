@@ -6,11 +6,11 @@ public class AANSqlHelper : SqlDbHelper
 {
     public AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AANDbConnectionString) { }
 
-    public (string, DateTime) GetNextEventStartDate(string email)
+    public (string, DateTime) GetNextActiveEventDetails(string email)
     {
         var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
         
-        var query = $"select Id, startdate from CalendarEvent where startdate > '{date}' and id not in (select CalendarEventId from Attendance where MemberId = (select Id from Member where email = '{email}')) order by StartDate";
+        var query = $"select Id, startdate from CalendarEvent where startdate > '{date}' and IsActive = 'True' and id not in (select CalendarEventId from Attendance where MemberId = (select Id from Member where email = '{email}')) order by StartDate";
 
         var list = GetData(query);
 
@@ -46,11 +46,13 @@ public class AANSqlHelper : SqlDbHelper
      $" END ");
 
 
-    public string GetEventId(string eventTitle)
+    public (string id, string isActive) GetEventId(string eventTitle)
     {
         waitForResults = true;
 
-        return GetDataAsString($"select Id from CalendarEvent where title = '{eventTitle}'");
+        var data =  GetData($"select Id, IsActive from CalendarEvent where title = '{eventTitle}'");
+
+        return (data[0], data[1]);
     }
 
     public void DeleteAdminCreatedEvent(string eventId) => ExecuteSqlCommand

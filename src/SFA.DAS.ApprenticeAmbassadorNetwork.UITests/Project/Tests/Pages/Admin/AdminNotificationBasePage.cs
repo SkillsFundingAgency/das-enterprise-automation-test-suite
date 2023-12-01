@@ -1,10 +1,11 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
-public class AdminAdministratorHubPage : AanAdminBasePage
+public abstract class AdminNotificationBasePage : AanAdminBasePage
 {
-    protected override string PageTitle => "Administrator hub";
+    public AdminNotificationBasePage(ScenarioContext context) : base(context)
+    {
 
-    public AdminAdministratorHubPage(ScenarioContext context) : base(context) => VerifyPage();
+    }
 
     public ManageEventsPage AccessManageEvents()
     {
