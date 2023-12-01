@@ -14,7 +14,7 @@ public class EventPreviewPage : AanAdminBasePage
         MultipleVerifyPage(new List<Func<bool>> 
         {
             () => VerifyPage(),
-            () => VerifyPage(EventTag, eventFormat.ToString())
+            () => VerifyPage(EventTag, GetEventTag(eventFormat))
         });
     }
 
@@ -24,4 +24,6 @@ public class EventPreviewPage : AanAdminBasePage
 
         return new CheckYourEventPage(context);
     }
+
+    private string GetEventTag(EventFormat eventFormat) => eventFormat == EventFormat.InPerson ? "In person" : eventFormat.ToString();
 }
