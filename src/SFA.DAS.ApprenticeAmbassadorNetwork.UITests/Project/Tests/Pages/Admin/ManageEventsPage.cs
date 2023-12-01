@@ -1,24 +1,46 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CancelEvent;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
 public class ManageEventsPage : SearchEventsBasePage
 {
+    private static By CancelEventLink(string id) => By.CssSelector($"a[href='/events/{id}/cancel']");
+
     private static By CreateEventButton => By.CssSelector("#create-event");
 
     protected override string PageTitle => "Manage events";
 
     public ManageEventsPage(ScenarioContext context) : base(context) { }
 
+
+
+    public CancelEventPage CancelEvent()
+    {
+        var eventId = context.Get<ObjectContext>().GetAanAdminEventId();
+
+        formCompletionHelper.ClickElement(CancelEventLink(eventId));
+
+        return new CancelEventPage(context);
+
+    }
+
+    public ManageEventsPage FilterEventBy(AanAdminDatahelper data)
+    {
+        FilterEventBy(data.EventStartDateAndTime, data.EventEndDateAndTime, data.EventType, data.EventRegion);
+
+        return this;
+    }
+
     public EventFormatPage CreateEvent()
     {
         formCompletionHelper.Click(CreateEventButton);
-        return new (context);
+        return new(context);
     }
 
-    public new ManageEventsPage FilterEventByTomorrow()
+    public new ManageEventsPage FilterEventFromTomorrow()
     {
-        base.FilterEventByTomorrow();
+        base.FilterEventFromTomorrow();
         return this;
     }
 

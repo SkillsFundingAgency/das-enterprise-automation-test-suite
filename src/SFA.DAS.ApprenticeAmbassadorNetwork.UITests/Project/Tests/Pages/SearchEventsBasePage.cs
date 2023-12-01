@@ -21,25 +21,26 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
 
+        protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
+
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
 
         public SearchEventsBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public void FilterEventByTomorrow() => FilterEventBy(DateTime.Now.AddDays(1));
+        public void FilterEventFromTomorrow() => FilterEventByDate(null);
 
-        public void FilterEventByOneMonth()
-        {
-            string formattedDate = DateTime.Now.AddDays(1).ToString(DateFormat);
-            string formattedEndDate = DateTime.Now.AddDays(30).ToString(DateFormat);
-            formCompletionHelper.EnterText(FromDateField, formattedDate);
-            formCompletionHelper.EnterText(ToDateField, formattedEndDate);
-            ApplyFilter();
-        }
+        public void FilterEventByOneMonth() => FilterEventByDate(DateTime.Now.AddDays(30));
 
-        protected void FilterEventBy(DateTime date)
+        protected void FilterEventBy(DateTime startDate, DateTime endDate, string type, string region)
         {
-            string formattedDate = date.ToString(DateFormat);
-            formCompletionHelper.EnterText(FromDateField, formattedDate);
+            EnterDate(startDate, FromDateField);
+
+            EnterDate(endDate, ToDateField);
+
+            SelectCheckBoxByText(type);
+
+            SelectCheckBoxByText(region);
+
             ApplyFilter();
         }
 
@@ -78,6 +79,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected void VerifyRole_Employer_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Employer));
 
         protected void VerifyRole_Regionalchair_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Regionalchair));
+
+        private void FilterEventByDate(DateTime? endDate)
+        {
+            EnterDate(DateTime.Now.AddDays(1), FromDateField);
+
+            if (endDate != null) EnterDate(endDate, ToDateField);
+
+            ApplyFilter();
+        }
+
+        private void EnterDate(DateTime? date, By by)
+        {
+            string formattedDate = date?.ToString(DateFormat);
+
+            formCompletionHelper.EnterText(by, formattedDate);
+        }
 
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }
 

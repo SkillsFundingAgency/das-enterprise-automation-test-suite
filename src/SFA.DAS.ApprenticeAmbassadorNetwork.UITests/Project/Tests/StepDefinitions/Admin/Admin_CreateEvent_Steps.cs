@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+﻿using NUnit.Framework;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
@@ -6,6 +7,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 [Binding, Scope(Tag = "@aanadmin")]
 public class Admin_CreateEvent_Steps : Admin_BaseSteps
 {
+    private SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
+    private AanAdminDatahelper aanAdminDatahelper;
+
     public Admin_CreateEvent_Steps(ScenarioContext context) : base(context)
     {
 
@@ -29,20 +33,47 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
     [Then(@"the system should confirm the event creation")]
     public void TheSystemShouldConfirmTheEventCreation()
     {
-        var data = context.Get<AanAdminDatahelper>();
+        aanAdminDatahelper = context.Get<AanAdminDatahelper>();
 
-        var id = context.Get<AANSqlHelper>().GetEventId(data.EventTitle);
-
-        objectContext.SetAanAdminEventId(id);
+        SetAanAdminEventId(AssertEventStatus(true));
     }
 
-    private void SubmitInPersonEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.InPerson, guestSpeakers, isSchoolEvent);
+    [Then(@"the user should be able to successfully cancel event")]
+    public void TheUserShouldBeAbleToSuccessfullyCancelEvent()
+    {
+        sucessfullyPublisedEventPage.AccessManageEvents().FilterEventBy(aanAdminDatahelper).CancelEvent().CancelEvent();
+    }
 
-    private void SubmitOnlineEvent(bool guestSpeakers) => SubmitEvent(EventFormat.Online, guestSpeakers, false);
+    [Then(@"the system should confirm the event cancellation")]
+    public void TheSystemShouldConfirmTheEventCancellation() => AssertEventStatus(false);
 
-    private void SubmitHybridEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.Hybrid, guestSpeakers, isSchoolEvent);
+    private string AssertEventStatus(bool status)
+    {
+        var expected = status ? "True" : "False";
 
-    private void SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
+        var (id, isActive) = context.Get<AANSqlHelper>().GetEventId(GetEventTitle());
+
+        Assert.That(isActive, Is.EqualTo(expected), $"'{id}', '{GetEventTitle()}' - event Active status is not set as '{expected}' - Actual : '{isActive}'");
+
+        return id;
+    }
+
+    private string GetEventTitle() => aanAdminDatahelper.EventTitle;
+
+    private void SetAanAdminEventId(string id ) => objectContext.SetAanAdminEventId(id);
+
+    private SucessfullyPublisedEventPage SubmitInPersonEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.InPerson, guestSpeakers, isSchoolEvent);
+
+    private SucessfullyPublisedEventPage SubmitOnlineEvent(bool guestSpeakers) => SubmitEvent(EventFormat.Online, guestSpeakers, false);
+
+    private SucessfullyPublisedEventPage SubmitHybridEvent(bool guestSpeakers, bool isSchoolEvent) => SubmitEvent(EventFormat.Hybrid, guestSpeakers, isSchoolEvent);
+
+    private SucessfullyPublisedEventPage SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
+    {
+        return sucessfullyPublisedEventPage = CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
+    }
+
+    private CheckYourEventPage CheckYourEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
     {
         EventOrganiserNamePage eventOrganiserNamePage;
 
@@ -54,7 +85,7 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
 
         else eventOrganiserNamePage = GetEventOrgNamePage(page.SubmitHybridDetails(), isSchoolEvent);
 
-        eventOrganiserNamePage.SubmitOrganiserName().SubmitEventAttendees().SubmitEvent();
+        return eventOrganiserNamePage.SubmitOrganiserName().SubmitEventAttendees();
     }
 
     private static EventOrganiserNamePage GetEventOrgNamePage(IsEventAtSchoolPage isEventAtSchoolPage, bool isSchoolEvent)

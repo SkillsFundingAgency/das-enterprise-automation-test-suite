@@ -47,7 +47,7 @@ public abstract class BasePage : InitialiseBasePage
             formCompletionHelper.ClickElement(by);
     }
 
-    protected void SelectRandomOption(string cssSelector)
+    protected string SelectRandomOption(string cssSelector)
     {
         By locator = By.CssSelector($"select{cssSelector}");
 
@@ -56,5 +56,7 @@ public abstract class BasePage : InitialiseBasePage
         var x = RandomDataGenerator.GetRandomElementFromListOfElements(options);
 
         formCompletionHelper.SelectFromDropDownByText(locator, x);
+
+        return x;
     }
 }
