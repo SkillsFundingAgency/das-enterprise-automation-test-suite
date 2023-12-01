@@ -46,11 +46,13 @@ public class AANSqlHelper : SqlDbHelper
      $" END ");
 
 
-    public string GetEventId(string eventTitle)
+    public (string id, string isActive) GetEventId(string eventTitle)
     {
         waitForResults = true;
 
-        return GetNullableData($"select Id from CalendarEvent where title = '{eventTitle}'");
+        var data =  GetData($"select Id, IsActive from CalendarEvent where title = '{eventTitle}'");
+
+        return (data[0], data[1]);
     }
 
     public void DeleteAdminCreatedEvent(string eventId) => ExecuteSqlCommand
