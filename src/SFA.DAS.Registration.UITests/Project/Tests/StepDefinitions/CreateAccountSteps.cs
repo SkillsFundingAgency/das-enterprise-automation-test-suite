@@ -136,7 +136,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer does not sign the Agreement")]
         [Then(@"the Employer does not sign the Agreement")]
-        public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
+        public void DoNotSignTheAgreement() => 
+            _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
+            .DoNotSignAgreement().GoToTrainingProviderLink()
+            .AddTrainingProviderLater()
+            .SelectGoToYourEmployerAccountHomepage();  //=> _homePage = _signAgreementPage.DoNotSignAgreement();
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
