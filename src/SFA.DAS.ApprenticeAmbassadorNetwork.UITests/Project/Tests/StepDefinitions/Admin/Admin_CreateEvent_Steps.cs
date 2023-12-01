@@ -35,7 +35,7 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
     {
         aanAdminDatahelper = context.Get<AanAdminDatahelper>();
 
-        SetAanAdminEventId(AssertEventStatus("1"));
+        SetAanAdminEventId(AssertEventStatus(true));
     }
 
     [Then(@"the user should be able to successfully cancel event")]
@@ -45,10 +45,12 @@ public class Admin_CreateEvent_Steps : Admin_BaseSteps
     }
 
     [Then(@"the system should confirm the event cancellation")]
-    public void TheSystemShouldConfirmTheEventCancellation() => AssertEventStatus("0");
+    public void TheSystemShouldConfirmTheEventCancellation() => AssertEventStatus(false);
 
-    private string AssertEventStatus(string expected)
+    private string AssertEventStatus(bool status)
     {
+        var expected = status ? "True" : "False";
+
         var (id, isActive) = context.Get<AANSqlHelper>().GetEventId(GetEventTitle());
 
         Assert.That(isActive, Is.EqualTo(expected), $"'{id}', '{GetEventTitle()}' - event Active status is not set as '{expected}' - Actual : '{isActive}'");
