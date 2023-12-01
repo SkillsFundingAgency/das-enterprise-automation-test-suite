@@ -6,7 +6,7 @@ public class AANSqlHelper : SqlDbHelper
 {
     public AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AANDbConnectionString) { }
 
-    public (string, DateTime) GetNextEventStartDate(string email)
+    public (string, DateTime) GetNextActiveEventDetails(string email)
     {
         var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
         

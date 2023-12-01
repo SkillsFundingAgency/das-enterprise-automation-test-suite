@@ -17,7 +17,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
     {
         var page = networkHubPage.AccessEventsHub();
 
-        Event = _aanSqlHelper.GetNextEventStartDate(email);
+        Event = _aanSqlHelper.GetNextActiveEventDetails(email);
 
         return page.AccessAllNetworkEvents()
              .ClickOnFirstEvent()
