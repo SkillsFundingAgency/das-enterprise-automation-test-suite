@@ -10,7 +10,7 @@ public class AANSqlHelper : SqlDbHelper
     {
         var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
         
-        var query = $"select Id, startdate from CalendarEvent where startdate > '{date}' and id not in (select CalendarEventId from Attendance where MemberId = (select Id from Member where email = '{email}')) order by StartDate";
+        var query = $"select Id, startdate from CalendarEvent where startdate > '{date}' and IsActive = 'True' and id not in (select CalendarEventId from Attendance where MemberId = (select Id from Member where email = '{email}')) order by StartDate";
 
         var list = GetData(query);
 
