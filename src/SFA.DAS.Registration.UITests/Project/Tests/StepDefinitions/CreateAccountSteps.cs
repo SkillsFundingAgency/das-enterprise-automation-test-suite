@@ -90,11 +90,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType)
-        {
-            //=> _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
-            _doYouAcceptTheEmployerAgreementOnBehalfOfPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
-        }
+        public void AddOrganisationTypeDetails(OrgType orgType) => _doYouAcceptTheEmployerAgreementOnBehalfOfPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
         
 
         [When(@"enters an Invalid Company number for Org search")]
@@ -119,7 +115,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoToTrainingProviderLink()
                 .AddTrainingProviderLater()
                 .SelectGoToYourEmployerAccountHomepage();
-                //.ClickOnViewYourAccountButton();
 
             SetAgreementId(_homePage);
         }
@@ -138,9 +133,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() => 
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-            .DoNotSignAgreement().GoToTrainingProviderLink()
+            .DoNotSignAgreement()
+            .GoToTrainingProviderLink()
             .AddTrainingProviderLater()
-            .SelectGoToYourEmployerAccountHomepage();  //=> _homePage = _signAgreementPage.DoNotSignAgreement();
+            .SelectGoToYourEmployerAccountHomepage();
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]

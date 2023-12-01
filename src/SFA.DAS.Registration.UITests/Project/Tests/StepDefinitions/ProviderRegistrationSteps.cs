@@ -77,26 +77,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer adds PAYE from TaskList Page")]
         public void WhenTheEmployerAddsPAYEFromTaskListPage()
         {
-            _homePageStepsHelper.GoToCreateYourEmployerAccountPage()
-            .GoToAddPayeLink()
-            .SelectOptionLessThan3Million()
-            .AddPaye()
-            .ContinueToGGSignIn()
-            .SignInTo(0)
-            .SearchForAnOrganisation(EnumHelper.OrgType.Company)
-            .SelectYourOrganisation(EnumHelper.OrgType.Company)
-            .ClickYesThisIsMyOrg()
-            .ContinueToConfirmationPage()
-            .GoToSetYourAccountNameLink()
-            .SelectoptionNo()
-            .ContinueToAcknowledge();
-            //.SelectGoToYourEmployerAccountHomepage();
+            _homePageStepsHelper
+                .GoToCreateYourEmployerAccountPage()
+                .GoToAddPayeLink()
+                .SelectOptionLessThan3Million()
+                .AddPaye()
+                .ContinueToGGSignIn()
+                .SignInTo(0)
+                .SearchForAnOrganisation(EnumHelper.OrgType.Company)
+                .SelectYourOrganisation(EnumHelper.OrgType.Company)
+                .ClickYesThisIsMyOrg()
+                .ContinueToConfirmationPage()
+                .GoToSetYourAccountNameLink()
+                .SelectoptionNo()
+                .ContinueToAcknowledge();
         }
 
 
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
+            /*
             _homePageStepsHelper.GotoEmployerHomePage()
                 .ClickAcceptYourAgreementLinkInHomePagePanel()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
@@ -104,6 +105,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
                 .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
                 .ConfirmProviderLeadRegistrationPermissions();
+            */
+            _homePageStepsHelper
+                .GoToCreateYourEmployerAccountPage()
+                .GoToYourEmployerAgreementLink()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
+                .ProviderLeadRegistrationSignAgreement()
+                .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
+                .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
+                .ConfirmProviderLeadRegistrationPermissions();
+
         }
 
         [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
