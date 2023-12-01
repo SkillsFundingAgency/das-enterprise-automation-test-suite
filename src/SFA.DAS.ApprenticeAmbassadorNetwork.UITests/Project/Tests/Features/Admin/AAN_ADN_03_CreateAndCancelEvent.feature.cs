@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_ADN_CreateEvent_03")]
-    public partial class AAN_ADN_CreateEvent_03Feature
+    [NUnit.Framework.DescriptionAttribute("AAN_ADN_03_CreateAndCancelEvent")]
+    public partial class AAN_ADN_03_CreateAndCancelEventFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_ADN_CreateEvent_03.feature"
+#line 1 "AAN_ADN_03_CreateAndCancelEvent.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Admin", "AAN_ADN_CreateEvent_03", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Admin", "AAN_ADN_03_CreateAndCancelEvent", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,13 +74,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_CreateEvent_03 User should be able to successfully create and cancel Onli" +
-            "ne event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_03 User should be able to successfully create and cancel Online event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadmincreateevent")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_CreateEvent_03UserShouldBeAbleToSuccessfullyCreateAndCancelOnlineEvent()
+        public void AAN_ADN_03UserShouldBeAbleToSuccessfullyCreateAndCancelOnlineEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -88,8 +87,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
                     "aanadmincreateevent",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_CreateEvent_03 User should be able to successfully create and cancel Onli" +
-                    "ne event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_03 User should be able to successfully create and cancel Online event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
