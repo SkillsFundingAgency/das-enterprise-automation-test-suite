@@ -18,6 +18,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+        //private readonly EmployerAccountRegistrationHelper _employerAccountRegistrationHelper;
+
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -30,6 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
         private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
+        private DoYouAcceptTheEmployerAgreementOnBehalfOfPage _doYouAcceptTheEmployerAgreementOnBehalfOfPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -39,6 +42,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
+            //_employerAccountRegistrationHelper = new EmployerAccountRegistrationHelper(context);
         }
 
         [Given(@"a User Account is created")]
@@ -70,7 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
+            _doYouAcceptTheEmployerAgreementOnBehalfOfPage = _accountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -86,8 +90,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType) =>
-            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
+        public void AddOrganisationTypeDetails(OrgType orgType)
+        {
+            //=> _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
+            _doYouAcceptTheEmployerAgreementOnBehalfOfPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
+        }
+        
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -106,9 +114,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
-            _homePage = _signAgreementPage
+            _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
                 .SignAgreement()
-                .ClickOnViewYourAccountButton();
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderLater()
+                .SelectGoToYourEmployerAccountHomepage();
+                //.ClickOnViewYourAccountButton();
 
             SetAgreementId(_homePage);
         }
