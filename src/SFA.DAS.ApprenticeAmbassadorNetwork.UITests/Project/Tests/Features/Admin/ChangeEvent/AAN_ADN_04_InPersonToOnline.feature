@@ -3,6 +3,7 @@
 @aan
 @aanadmin
 @aanadmincreateevent
+@aanadminchangeevent
 @regression
 Scenario: AAN_ADN_04 User should be able to successfully change In Person to Online event
 	 Given an admin logs into the AAN portal

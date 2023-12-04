@@ -25,7 +25,7 @@ public class ManageEventsPage : SearchEventsBasePage
 
     }
 
-    public ManageEventsPage FilterEventBy(AanAdminDatahelper data)
+    public ManageEventsPage FilterEventBy(AanAdminCreateEventDatahelper data)
     {
         FilterEventBy(data.EventStartDateAndTime, data.EventEndDateAndTime, data.EventType, data.EventRegion);
 

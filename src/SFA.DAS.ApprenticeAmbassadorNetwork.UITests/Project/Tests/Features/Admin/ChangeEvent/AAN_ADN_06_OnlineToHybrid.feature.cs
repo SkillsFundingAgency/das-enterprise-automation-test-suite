@@ -74,21 +74,25 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_05 User should be able to successfully change Online to Hybrid event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_05 User should be able to successfully change all the event and from Onli" +
+            "ne to Hybrid event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadmincreateevent")]
+        [NUnit.Framework.CategoryAttribute("aanadminchangeevent")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_05UserShouldBeAbleToSuccessfullyChangeOnlineToHybridEvent()
+        public void AAN_ADN_05UserShouldBeAbleToSuccessfullyChangeAllTheEventAndFromOnlineToHybridEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aanadmin",
                     "aanadmincreateevent",
+                    "aanadminchangeevent",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_05 User should be able to successfully change Online to Hybrid event", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_05 User should be able to successfully change all the event and from Onli" +
+                    "ne to Hybrid event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,17 +102,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
   testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
      testRunner.When("the user should be able to successfully enters all the details for an Online even" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
+     testRunner.And("changes all the event details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
      testRunner.And("changes the event to a hybrid event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 13
      testRunner.Then("the system should confirm the event creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

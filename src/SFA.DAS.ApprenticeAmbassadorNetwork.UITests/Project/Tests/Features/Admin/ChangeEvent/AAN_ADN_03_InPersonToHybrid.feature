@@ -3,6 +3,7 @@
 @aan
 @aanadmin
 @aanadmincreateevent
+@aanadminchangeevent
 @regression
 Scenario: AAN_ADN_03 User should be able to successfully change In Person to Hybrid event
 	 Given an admin logs into the AAN portal

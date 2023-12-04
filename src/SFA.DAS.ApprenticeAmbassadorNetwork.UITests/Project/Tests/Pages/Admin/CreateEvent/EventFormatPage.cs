@@ -9,18 +9,18 @@ public class EventFormatPage : AanAdminBasePage
 
     public EventTitlePage SubmitEventFormat(EventFormat eventFormat)
     {
-        aanAdminDatahelper.SetEventFormat(eventFormat);
+        aanAdminCreateEventDatahelper.SetEventFormat(eventFormat);
 
-        SelectEventFormatAndContinue(aanAdminDatahelper.EventFormat.eventFormat);
+        SelectEventFormatAndContinue(aanAdminCreateEventDatahelper.EventFormat.eventFormat);
 
         return new(context);
     }
 
     public void ChangeEventFormat(EventFormat eventFormat)
     {
-        aanAdminDatahelper.SetChangedEventFormat(eventFormat);
+        aanAdminUpdateEventDatahelper.SetEventFormat(eventFormat);
 
-        SelectEventFormatAndContinue(aanAdminDatahelper.ChangedEventFormat.eventFormat);
+        SelectEventFormatAndContinue(aanAdminUpdateEventDatahelper.EventFormat.eventFormat);
     }
 
     private void SelectEventFormatAndContinue(string value) { SelectRadioOptionByForAttribute(value); Continue(); }

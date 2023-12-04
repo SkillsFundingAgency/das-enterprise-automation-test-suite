@@ -7,7 +7,7 @@ public class EventPreviewPage : AanAdminBasePage
 {
     private static By EventTag => By.CssSelector(".govuk-tag.app-tag");
 
-    protected override string PageTitle => aanAdminDatahelper.EventTitle;
+    protected override string PageTitle => aanAdminCreateEventDatahelper.EventTitle;
 
     public EventPreviewPage(ScenarioContext context, EventFormat eventFormat) : base(context, false)
     {

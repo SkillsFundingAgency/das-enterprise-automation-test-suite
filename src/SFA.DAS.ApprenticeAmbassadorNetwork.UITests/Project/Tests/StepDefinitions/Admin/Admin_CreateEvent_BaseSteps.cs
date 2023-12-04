@@ -9,11 +9,11 @@ public class Admin_CreateEvent_BaseSteps : Admin_BaseSteps
 
     protected SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
 
-    protected AanAdminDatahelper aanAdminDatahelper;
+    protected AanAdminCreateEventDatahelper aanAdminDatahelper;
 
     public Admin_CreateEvent_BaseSteps(ScenarioContext context) : base(context)
     {
-        aanAdminDatahelper = context.Get<AanAdminDatahelper>();
+        aanAdminDatahelper = context.Get<AanAdminCreateEventDatahelper>();
     }
 
     protected string AssertEventStatus(bool status)

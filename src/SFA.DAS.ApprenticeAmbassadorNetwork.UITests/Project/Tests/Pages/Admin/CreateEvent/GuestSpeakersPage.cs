@@ -8,12 +8,7 @@ public class GuestSpeakersPage : AanAdminBasePage
 
     public EventDatePage AddAndDeleteGuestSpeakers(int add)
     {
-        for (int i = 1; i <= add; i++)
-        {
-            formCompletionHelper.ClickLinkByText("Add Speaker");
-
-            new GuestSpeakerDetailPage(context).AddGuestSpeaker(i);
-        }
+        AddGuestSpeakers(add);
 
         int delete = RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, add);
 
@@ -22,5 +17,24 @@ public class GuestSpeakersPage : AanAdminBasePage
         Continue();
 
         return new(context);
+    }
+
+    public CheckYourEventPage UpdateGuestSpeakers(int add)
+    {
+        AddGuestSpeakers(add);
+
+        Continue();
+
+        return new(context);
+    }
+
+    private void AddGuestSpeakers(int add)
+    {
+        for (int i = 1; i <= add; i++)
+        {
+            formCompletionHelper.ClickLinkByText("Add Speaker");
+
+            new GuestSpeakerDetailPage(context).AddGuestSpeaker(i);
+        }
     }
 }

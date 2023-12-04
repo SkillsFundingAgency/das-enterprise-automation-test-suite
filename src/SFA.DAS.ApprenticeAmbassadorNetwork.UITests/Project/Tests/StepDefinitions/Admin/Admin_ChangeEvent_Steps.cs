@@ -39,6 +39,18 @@ public class Admin_ChangeEvent_Steps : Admin_CreateEvent_BaseSteps
     [When(@"changes the event to an online event")]
     public void ChangesTheEventToAnOnlineEvent() => ChangesTheEventTo(EventFormat.Online);
 
+    [When(@"changes all the event details")]
+    public void ChangesAllTheEventDetails()
+    {
+        checkYourEventPage.ChangeEventType().UpdateEventTitle()
+            .ChangeEventDateandTime().UpdateEventDate()
+            .ChangeEventDescription().UpdateEventOutline()
+            .ChangeGuestSpeakers().SubmitGuestSpeakerAsYes().UpdateGuestSpeakers(3)
+            .ChangeEventOrganiser().UpdateOrganiserName()
+            .ChangeEventSchool().SubmitIsEventAtSchoolAsYes().UpdateSchoolName()
+            .ChangeEventAttendees().UpdateEventAttendees();
+    }
+
     private void ChangesTheEventTo(EventFormat eventFormat)
     {
         checkYourEventPage.ChangeEventFormat().ChangeEventFormat(eventFormat);

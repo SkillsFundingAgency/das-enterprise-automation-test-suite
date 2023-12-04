@@ -4,7 +4,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
 public abstract class AanAdminBasePage : AanBasePage
 {
-    protected readonly AanAdminDatahelper aanAdminDatahelper;
+    protected readonly AanAdminCreateEventDatahelper aanAdminCreateEventDatahelper;
+
+    protected readonly AanAdminUpdateEventDatahelper aanAdminUpdateEventDatahelper;
 
     protected override By ContinueButton => By.CssSelector("#continue");
 
@@ -16,7 +18,16 @@ public abstract class AanAdminBasePage : AanBasePage
 
     public AanAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage)
     {
-        aanAdminDatahelper = context.GetValue<AanAdminDatahelper>();
+        aanAdminCreateEventDatahelper = context.GetValue<AanAdminCreateEventDatahelper>();
+
+        aanAdminUpdateEventDatahelper = context.GetValue<AanAdminUpdateEventDatahelper>();
+    }
+
+    protected void EnterYesOrNoRadioOption(string x)
+    {
+        SelectRadioOptionByForAttribute(x);
+
+        Continue();
     }
 
     protected void SelectAutoDropDown(string text)
