@@ -1,38 +1,43 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+using System;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions;
 
 public abstract class AppEmp_BaseSteps : BaseSteps
 {
-    private int NoOfeventsFound;
+    private (string id, DateTime startdate) Event;
 
     public AppEmp_BaseSteps(ScenarioContext context) : base(context)
     {
 
     }
 
-    protected EventPage SignupForAFutureEvent(NetworkHubPage networkHubPage)
+    protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage, string email)
     {
         var page = networkHubPage.AccessEventsHub();
 
-        NoOfeventsFound = page.NoOfEventsFoundInCalender();
+        Event = _aanSqlHelper.GetNextActiveEventDetails(email);
 
         return page.AccessAllNetworkEvents()
-             .FilterEventByTomorrow()
-             .ClickOnFirstEventLink()
+             .ClickOnFirstEvent()
+             .GoToEvent(Event)
              .SignupForEvent()
-             .AccessEventsHub()
-             .AccessSignedUpEventFromCalendar();
+             .AccessEventsHub();
     }
 
-    protected void CancelTheAttendance(EventPage eventPage)
+    protected void CancelTheAttendance(EventsHubPage eventsHubPage)
     {
-        var actual = eventPage.CancelYourAttendance()
+        var page = eventsHubPage.GoToEventMonth(Event.startdate);
+
+        var NoOfeventsFound = page.NoOfEventsFoundInCalender();
+
+        var actual = page.AccessFirstEventFromCalendar().GoToEvent(Event).CancelYourAttendance()
            .AccessEventsHubFromCancelledAttendancePage()
+           .GoToEventMonth(Event.startdate)
            .NoOfEventsFoundInCalender();
 
-        Assert.That(actual, Is.EqualTo(NoOfeventsFound));
+        Assert.That(actual, Is.EqualTo(NoOfeventsFound - 1));
     }
 
     protected SearchNetworkEventsPage FilterByDate(NetworkHubPage networkHubPage)

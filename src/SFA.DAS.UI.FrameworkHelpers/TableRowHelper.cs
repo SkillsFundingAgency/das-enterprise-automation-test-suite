@@ -37,7 +37,11 @@ public class TableRowHelper
     {
         var element = FindElementInTable(byLinkText, new List<string> { byKey }, tableSelector);
 
+        var href = element?.GetAttribute("href");
+
         _formCompletionHelper.ClickElement(element);
+
+        SetDebugInformation($"{byLinkText} with href - '{href}", byKey);
     }
 
     public IWebElement FindElementInTable(string byLinkText, List<string> byKeys, string tableSelector = "table")
@@ -66,6 +70,9 @@ public class TableRowHelper
             if (tableRow.Text.Contains(byKey))
             {
                 _formCompletionHelper.ClickElement(links[i]);
+
+                SetDebugInformation(byLinkText, byKey);
+
                 return;
             }
             i--;
@@ -95,4 +102,7 @@ public class TableRowHelper
 
         SelectRowFromTable(byLinkText, byKey, tableSelector);
     }
+
+    private void SetDebugInformation(string x, string y ) => _formCompletionHelper.SetDebugInformation($"Clicked LinkText - '{x}' using Key - '{y}'");
+
 }

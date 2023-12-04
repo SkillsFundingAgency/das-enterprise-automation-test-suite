@@ -20,6 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override string AccessibilityPageTitle => "Employer approve apprentice details";
 
+        public ApproveApprenticeDetailsPage(ScenarioContext context, string pageTitle) : base(context, (x) => pageTitle) { }
+
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)

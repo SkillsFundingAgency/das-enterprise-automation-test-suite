@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "Your vacancies";
 
-        private static By Applicant => By.CssSelector(".responsive a, .das-table--responsive a");
+        private static By Applicant => By.CssSelector("tbody tr:nth-child(1) td:nth-child(1)");
 
         public ProviderVacancySearchResultPage(ScenarioContext context) : base(context) { }
         public ManageApplicantPage NavigateToManageApplicant()

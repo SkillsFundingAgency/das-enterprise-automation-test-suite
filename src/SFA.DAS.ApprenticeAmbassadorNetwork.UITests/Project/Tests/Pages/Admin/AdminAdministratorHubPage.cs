@@ -9,6 +9,7 @@ public class AdminAdministratorHubPage : AanAdminBasePage
     public ManageEventsPage AccessManageEvents()
     {
         formCompletionHelper.ClickLinkByText("Manage events");
+
         return new ManageEventsPage(context);
     }
 }

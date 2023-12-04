@@ -12,12 +12,24 @@ public class EventOrganiserNamePage : AanAdminBasePage
 
     public EventAttendeesPage SubmitOrganiserName()
     {
-        formCompletionHelper.EnterText(OrganiserName, aanAdminDatahelper.EventOrganiserName);
-
-        formCompletionHelper.EnterText(OrganiserEmail, aanAdminDatahelper.EventOrganiserEmail);
-
-        Continue();
+        EnterOrganiserName(aanAdminCreateEventDatahelper);
 
         return new(context);
+    }
+
+    public CheckYourEventPage UpdateOrganiserName()
+    {
+        EnterOrganiserName(aanAdminUpdateEventDatahelper);
+
+        return new(context);
+    }
+
+    private void EnterOrganiserName(AanAdminCreateEventBaseDatahelper datahelper)
+    {
+        formCompletionHelper.EnterText(OrganiserName, datahelper.EventOrganiserName);
+
+        formCompletionHelper.EnterText(OrganiserEmail, datahelper.EventOrganiserEmail);
+
+        Continue();
     }
 }

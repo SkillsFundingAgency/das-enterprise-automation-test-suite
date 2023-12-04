@@ -2,7 +2,6 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
@@ -48,7 +47,7 @@ public abstract class BasePage : InitialiseBasePage
             formCompletionHelper.ClickElement(by);
     }
 
-    protected void SelectRandomOption(string cssSelector)
+    protected string SelectRandomOption(string cssSelector)
     {
         By locator = By.CssSelector($"select{cssSelector}");
 
@@ -57,5 +56,7 @@ public abstract class BasePage : InitialiseBasePage
         var x = RandomDataGenerator.GetRandomElementFromListOfElements(options);
 
         formCompletionHelper.SelectFromDropDownByText(locator, x);
+
+        return x;
     }
 }
