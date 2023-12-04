@@ -74,14 +74,14 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_05 User should be able to successfully change all the event details and f" +
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_06 User should be able to successfully change all the event details and f" +
             "rom Online to Hybrid event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadmincreateevent")]
         [NUnit.Framework.CategoryAttribute("aanadminchangeevent")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_05UserShouldBeAbleToSuccessfullyChangeAllTheEventDetailsAndFromOnlineToHybridEvent()
+        public void AAN_ADN_06UserShouldBeAbleToSuccessfullyChangeAllTheEventDetailsAndFromOnlineToHybridEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -90,7 +90,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
                     "aanadminchangeevent",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_05 User should be able to successfully change all the event details and f" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_06 User should be able to successfully change all the event details and f" +
                     "rom Online to Hybrid event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
