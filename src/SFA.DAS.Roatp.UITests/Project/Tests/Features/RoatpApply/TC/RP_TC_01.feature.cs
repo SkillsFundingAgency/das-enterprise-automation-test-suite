@@ -79,16 +79,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.TC
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("govloginapplytests")]
         public void RP_TC_01_DoNotAcceptTheTermsAndConditions()
         {
             string[] tagsOfScenario = new string[] {
                     "rptc01",
                     "roatp",
                     "roatpapply",
-                    "regression"};
+                    "regression",
+                    "govloginapplytests"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TC_01_Do Not Accept the Terms and Conditions", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,7 +100,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Then("the provider do not accept the Terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
