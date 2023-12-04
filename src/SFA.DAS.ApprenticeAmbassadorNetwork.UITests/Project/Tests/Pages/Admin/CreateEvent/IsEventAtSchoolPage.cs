@@ -8,18 +8,14 @@ public class IsEventAtSchoolPage : AanAdminBasePage
 
     public NameOfTheSchoolPage SubmitIsEventAtSchoolAsYes()
     {
-        SelectRadioOptionByForAttribute("true");
-
-        Continue();
+        EnterYesOrNoRadioOption("true");
 
         return new(context);
     }
 
     public EventOrganiserNamePage SubmitIsEventAtSchoolAsNo()
     {
-        SelectRadioOptionByForAttribute("false");
-
-        Continue();
+        EnterYesOrNoRadioOption("false");
 
         return new(context);
     }

@@ -8,10 +8,22 @@ public class NameOfTheSchoolPage : AanAdminBasePage
 
     public EventOrganiserNamePage SubmitSchoolName()
     {
-        SelectAutoDropDown(aanAdminDatahelper.EventSchoolName);
-
-        Continue();
+        EnterSchoolName(aanAdminCreateEventDatahelper);
 
         return new(context);
+    }
+
+    public CheckYourEventPage UpdateSchoolName()
+    {
+        EnterSchoolName(aanAdminUpdateEventDatahelper);
+
+        return new(context);
+    }
+
+    private void EnterSchoolName(AanAdminCreateEventBaseDatahelper datahelper)
+    {
+        SelectAutoDropDown(datahelper.EventSchoolName);
+
+        Continue();
     }
 }
