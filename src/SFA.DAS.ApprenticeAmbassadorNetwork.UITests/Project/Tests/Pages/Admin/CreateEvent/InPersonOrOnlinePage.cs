@@ -45,8 +45,23 @@ public class InPersonOrOnlinePage : AanAdminBasePage
         return new(context);
     }
 
-    public CheckYourEventPage ContinueToCheckYourEventPage()
+    public CheckYourEventPage ContinueToCheckYourEventPage(EventFormat neweventFormat)
     {
+        if (neweventFormat == EventFormat.InPerson)
+        {
+            SubmitInPerson();
+        }
+        else if (neweventFormat == EventFormat.Online) 
+        {
+            SubmitOnline();
+        }
+        else
+        {
+            SubmitInPerson();
+
+            SubmitOnline();
+        }
+
         Continue();
 
         return new(context);
