@@ -5,7 +5,6 @@
 # causing the logic which determins whether the current applications are shown to be
 # subject to a race condition if the register and standard withdrawal scenarios are alloweed
 # to run in parallel
-#disabling this test as the apply journey has been disabled but a new journey is planned for later
 @epao
 @regression
 @assessmentservice

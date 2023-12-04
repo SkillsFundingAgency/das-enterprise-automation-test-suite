@@ -1,6 +1,9 @@
 ﻿Feature: EPAO_E2E_01
 #disabling this test because the apply journey is disabled but there is a new journey that will come after august.
+@ignore
+@epao
 @epaoapply
+@regression
 @e2e
 Scenario: EPAO_E2E_01 - Apply Approve and Add a standard
 Given the apply user submits an Assessment Service Application

@@ -1,6 +1,5 @@
 ﻿Feature: EPAO_AS_OI_01
 
-#disabling this test as the apply journey has been disabled but a new journey is planned for later
 @epao
 @assessmentservice
 @deleteorganisationstandardversion
