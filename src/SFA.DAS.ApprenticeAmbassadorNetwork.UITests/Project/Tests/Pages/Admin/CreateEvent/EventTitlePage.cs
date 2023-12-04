@@ -24,7 +24,11 @@ public class EventTitlePage : AanAdminBasePage
 
     private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper)
     {
-        formCompletionHelper.EnterText(EventTitleSelector, dataHelper.EventTitle);
+        string eventTitle = dataHelper.EventTitle;
+
+        formCompletionHelper.EnterText(EventTitleSelector, eventTitle);
+
+        objectContext.SetAanEventTitle(eventTitle);
 
         var eventType = SelectRandomOption("#EventTypeId");
 
