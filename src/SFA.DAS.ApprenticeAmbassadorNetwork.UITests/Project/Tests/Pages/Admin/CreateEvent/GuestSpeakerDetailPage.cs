@@ -12,9 +12,9 @@ public class GuestSpeakerDetailPage : AanAdminBasePage
 
     public GuestSpeakersPage AddGuestSpeaker(int i)
     {
-        formCompletionHelper.EnterText(Name, $"{i}_{aanAdminDatahelper.GuestSpeakerName}");
+        formCompletionHelper.EnterText(Name, $"{i}_{aanAdminCreateEventDatahelper.GuestSpeakerName}");
 
-        formCompletionHelper.EnterText(JobRoleAndOrganisation, $"{i}_{aanAdminDatahelper.GuestSpeakerRole}");
+        formCompletionHelper.EnterText(JobRoleAndOrganisation, $"{i}_{aanAdminCreateEventDatahelper.GuestSpeakerRole}");
 
         Continue();
 

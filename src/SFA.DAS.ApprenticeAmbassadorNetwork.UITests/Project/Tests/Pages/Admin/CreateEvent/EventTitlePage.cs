@@ -1,6 +1,4 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 public class EventTitlePage : AanAdminBasePage
 {
@@ -12,17 +10,32 @@ public class EventTitlePage : AanAdminBasePage
 
     public EventOutlinePage SubmitEventTitle()
     {
-        formCompletionHelper.EnterText(EventTitleSelector, aanAdminDatahelper.EventTitle);
+        EnterEventTitle(aanAdminCreateEventDatahelper);
+
+        return new(context);
+    }
+
+    public CheckYourEventPage UpdateEventTitle()
+    {
+        EnterEventTitle(aanAdminUpdateEventDatahelper);
+
+        return new(context);
+    }
+
+    private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper)
+    {
+        string eventTitle = dataHelper.EventTitle;
+
+        formCompletionHelper.EnterText(EventTitleSelector, eventTitle);
+
+        objectContext.SetAanEventTitle(eventTitle);
 
         var eventType = SelectRandomOption("#EventTypeId");
 
         var eventRegion = SelectRandomOption("#EventRegionId");
 
-        aanAdminDatahelper.SetEventTypeAndRegion(eventType, eventRegion);
+        dataHelper.SetEventTypeAndRegion(eventType, eventRegion);
 
         Continue();
-
-        return new(context);
     }
-
 }
