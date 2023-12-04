@@ -45,7 +45,29 @@ public class InPersonOrOnlinePage : AanAdminBasePage
         return new(context);
     }
 
-    private void SubmitInPerson() => SelectAutoDropDown(aanAdminDatahelper.EventInPersonLocation);
+    public CheckYourEventPage ContinueToCheckYourEventPage(EventFormat neweventFormat)
+    {
+        if (neweventFormat == EventFormat.InPerson)
+        {
+            SubmitInPerson();
+        }
+        else if (neweventFormat == EventFormat.Online) 
+        {
+            SubmitOnline();
+        }
+        else
+        {
+            SubmitInPerson();
 
-    private void SubmitOnline() => formCompletionHelper.EnterText(LinkInput, aanAdminDatahelper.EventOnlineLink);
+            SubmitOnline();
+        }
+
+        Continue();
+
+        return new(context);
+    }
+
+    private void SubmitInPerson() => SelectAutoDropDown(aanAdminCreateEventDatahelper.EventInPersonLocation);
+
+    private void SubmitOnline() => formCompletionHelper.EnterText(LinkInput, aanAdminCreateEventDatahelper.EventOnlineLink);
 }

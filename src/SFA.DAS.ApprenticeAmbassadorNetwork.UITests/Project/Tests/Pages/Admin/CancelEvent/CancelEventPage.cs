@@ -4,7 +4,7 @@ public class CancelEventPage : AanAdminBasePage
 {
     protected override By PageHeader => By.CssSelector(".govuk-heading-m");
 
-    protected override string PageTitle => aanAdminDatahelper.EventTitle;
+    protected override string PageTitle => aanAdminCreateEventDatahelper.EventTitle;
 
     private static By CancelButton => By.CssSelector("button[type='submit'][id='continue']");
 
