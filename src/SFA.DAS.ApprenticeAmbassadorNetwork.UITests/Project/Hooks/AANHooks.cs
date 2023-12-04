@@ -57,7 +57,7 @@ public class AANHooks
         }
     }
 
-    [AfterScenario(Order = 30), Scope(Tag = "@aanadmin")]
+    [AfterScenario(Order = 30), Scope(Tag = "@aanadmincreateevent")]
     public void DeleteAdminCreatedEvent()
     {
         if (_context.TestError != null) return;
@@ -66,10 +66,7 @@ public class AANHooks
         {
             var eventId = _context.Get<ObjectContext>().GetAanAdminEventId();
 
-            if (_context.ScenarioInfo.Tags.Contains("aanadmincreateevent") && !string.IsNullOrEmpty(eventId))
-            {
-                aANSqlHelper.DeleteAdminCreatedEvent(eventId);
-            }
+            if (!string.IsNullOrEmpty(eventId)) aANSqlHelper.DeleteAdminCreatedEvent(eventId);
         });
     }
 }

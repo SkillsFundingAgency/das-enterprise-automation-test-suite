@@ -67,6 +67,8 @@ public class AanAdminDatahelper
 
     public (EventFormat eventFormatEnum, string eventFormat) EventFormat { get; private set; }
 
+    public (EventFormat eventFormatEnum, string eventFormat) ChangedEventFormat { get; private set; }
+
     public string EventTitle { get; private set; }
 
     public string EventType { get; private set; }
@@ -97,10 +99,11 @@ public class AanAdminDatahelper
 
     public string GuestSpeakerRole => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
-    public void SetEventFormat(EventFormat eventFormat)
-    {
-        EventFormat = (eventFormat, GetEventFormat(eventFormat));
-    }
+    public void SetEventFormat(EventFormat eventFormat) => EventFormat = GetEventFormat(eventFormat);
+
+    public void SetChangedEventFormat(EventFormat eventFormat) => ChangedEventFormat = GetEventFormat(eventFormat);
+
+    private static (EventFormat, string) GetEventFormat(EventFormat eventFormat) => (eventFormat, EventFormatToString(eventFormat));
 
     public void SetEventTypeAndRegion(string type, string region)
     {
@@ -109,7 +112,7 @@ public class AanAdminDatahelper
         EventRegion = region;
     }
 
-    public static string GetEventFormat(EventFormat eventFormat)
+    public static string EventFormatToString(EventFormat eventFormat)
     {
         return true switch
         {

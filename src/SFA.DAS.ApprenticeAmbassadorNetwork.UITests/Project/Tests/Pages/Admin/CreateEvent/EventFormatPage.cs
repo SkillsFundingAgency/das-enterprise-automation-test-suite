@@ -11,10 +11,17 @@ public class EventFormatPage : AanAdminBasePage
     {
         aanAdminDatahelper.SetEventFormat(eventFormat);
 
-        SelectRadioOptionByForAttribute(aanAdminDatahelper.EventFormat.eventFormat);
-
-        Continue();
+        SelectEventFormatAndContinue(aanAdminDatahelper.EventFormat.eventFormat);
 
         return new(context);
     }
-}
+
+    public void ChangeEventFormat(EventFormat eventFormat)
+    {
+        aanAdminDatahelper.SetChangedEventFormat(eventFormat);
+
+        SelectEventFormatAndContinue(aanAdminDatahelper.ChangedEventFormat.eventFormat);
+    }
+
+    private void SelectEventFormatAndContinue(string value) { SelectRadioOptionByForAttribute(value); Continue(); }
+    }
