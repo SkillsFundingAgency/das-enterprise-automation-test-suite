@@ -18,7 +18,7 @@ public class Admin_CreateEvent_BaseSteps : Admin_BaseSteps
 
     protected string AssertEventStatus(bool status)
     {
-        string eventTitle =  aanAdminDatahelper.EventTitle;
+        string eventTitle = objectContext.GetAanEventTitle();
 
         var expected = status ? "True" : "False";
 
