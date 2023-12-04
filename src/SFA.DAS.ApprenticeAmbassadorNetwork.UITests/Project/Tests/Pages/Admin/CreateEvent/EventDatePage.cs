@@ -15,9 +15,21 @@ public class EventDatePage : AanAdminBasePage
 
     public void SubmitEventDate()
     {
-        var startDate = aanAdminDatahelper.EventStartDateAndTime;
+        EnterEventDate(aanAdminCreateEventDatahelper);
+    }
 
-        var endDate = aanAdminDatahelper.EventEndDateAndTime;
+    public CheckYourEventPage UpdateEventDate()
+    {
+        EnterEventDate(aanAdminUpdateEventDatahelper);
+
+        return new CheckYourEventPage(context);
+    }
+
+    private void EnterEventDate(AanAdminCreateEventBaseDatahelper datahelper)
+    {
+        var startDate = datahelper.EventStartDateAndTime;
+
+        var endDate = datahelper.EventEndDateAndTime;
 
         formCompletionHelper.EnterText(EventDateSelector, $"{startDate.ToString(DateFormat)}");
 

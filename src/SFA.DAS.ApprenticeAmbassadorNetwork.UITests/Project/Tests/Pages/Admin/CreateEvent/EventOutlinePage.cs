@@ -12,13 +12,25 @@ public class EventOutlinePage : AanAdminBasePage
 
     public IncludeGuestSpeakerPage SubmitEventOutline()
     {
-        formCompletionHelper.EnterText(EventOutlineText, aanAdminDatahelper.EventOutline);
-
-        formCompletionHelper.EnterText(EventSummaryText, aanAdminDatahelper.EventSummary);
-
-        Continue();
+        EnterEventOutline(aanAdminCreateEventDatahelper);
 
         return new(context);
+    }
+
+    public CheckYourEventPage UpdateEventOutline()
+    {
+        EnterEventOutline(aanAdminUpdateEventDatahelper);
+
+        return new(context);
+    }
+
+    private void EnterEventOutline(AanAdminCreateEventBaseDatahelper datahelper)
+    {
+        formCompletionHelper.EnterText(EventOutlineText, datahelper.EventOutline);
+
+        formCompletionHelper.EnterText(EventSummaryText, datahelper.EventSummary);
+
+        Continue();
     }
 
 }

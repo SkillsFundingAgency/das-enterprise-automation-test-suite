@@ -1,10 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApprenticeRequestsWithEmployerPage : ApprovalsBasePage
+    public class ProviderApprenticeRequestsWithEmployerPage : ApprenticeRequestsSubPage
     {
         protected override string PageTitle => "Apprentice requests";
 
@@ -18,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProvideViewApprenticesDetailsPage SelectViewCurrentCohortDetails()
         {
-            tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
+            SelectCurrentCohortDetailsFromTable();
             return new ProvideViewApprenticesDetailsPage(context);
         }
     }

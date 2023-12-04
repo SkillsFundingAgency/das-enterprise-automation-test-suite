@@ -8,18 +8,14 @@ public class IncludeGuestSpeakerPage : AanAdminBasePage
 
     public GuestSpeakersPage SubmitGuestSpeakerAsYes()
     {
-        SelectRadioOptionByForAttribute("true");
-
-        Continue();
+        EnterYesOrNoRadioOption("true");
 
         return new(context);
     }
 
     public EventDatePage SubmitGuestSpeakerAsNo()
     {
-        SelectRadioOptionByForAttribute("false");
-
-        Continue();
+        EnterYesOrNoRadioOption("false");
 
         return new(context);
     }

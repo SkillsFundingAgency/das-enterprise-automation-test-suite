@@ -4,6 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
@@ -31,15 +32,9 @@ namespace SFA.DAS.Approvals.UITests.Project
             _tags = context.ScenarioInfo.Tags;
         }
 
-        [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
+        [BeforeScenario(Order = 31)]
+        public void SetUpDbHelpers()
         {
-            var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
-                                   _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
-                                   _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
-                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
-                                   _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow: ApprenticeStatus.Random;
-
             commitmentsdatahelper = new CommitmentsSqlDataHelper(_objectcontext, _dbConfig);
 
             _context.Set(commitmentsdatahelper);
@@ -57,7 +52,18 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new PublicSectorReportingSqlDataHelper(_objectcontext, _dbConfig));
 
             _context.Set(new ManageFundingEmployerStepsHelper(_context));
+        }
 
+        [BeforeScenario(Order = 32)]
+        public void SetUpHelpers()
+        {
+            if (new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration()) return;
+
+            var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
+                                   _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
+                                   _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
+                                   _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
+                                   _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow: ApprenticeStatus.Random;
 
             List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> listOfApprentices = SetProviderSpecificCourse(apprenticeStatus);
 

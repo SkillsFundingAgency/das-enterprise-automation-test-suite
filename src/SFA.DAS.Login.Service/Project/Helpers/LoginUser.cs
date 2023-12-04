@@ -67,6 +67,11 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string NoOfPayeToAdd { get; set; }
     }
 
+    public class DeleteCohortLevyUser : EasAccountUser
+    {
+        public string NoOfCohortToDelete { get; set; }
+    }
+
     #endregion
 
     #region MultipleAccountUser

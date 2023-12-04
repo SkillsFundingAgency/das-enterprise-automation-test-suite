@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -173,7 +172,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, option);
 
             if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
-                
+
             Continue();
         }
 

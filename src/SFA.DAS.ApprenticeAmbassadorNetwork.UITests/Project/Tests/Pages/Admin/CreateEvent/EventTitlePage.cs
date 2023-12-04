@@ -10,15 +10,32 @@ public class EventTitlePage : AanAdminBasePage
 
     public EventOutlinePage SubmitEventTitle()
     {
-        formCompletionHelper.EnterText(EventTitleSelector, aanAdminDatahelper.EventTitle);
-
-        SelectRandomOption("#EventTypeId");
-
-        SelectRandomOption("#EventRegionId");
-
-        Continue();
+        EnterEventTitle(aanAdminCreateEventDatahelper);
 
         return new(context);
     }
 
+    public CheckYourEventPage UpdateEventTitle()
+    {
+        EnterEventTitle(aanAdminUpdateEventDatahelper);
+
+        return new(context);
+    }
+
+    private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper)
+    {
+        string eventTitle = dataHelper.EventTitle;
+
+        formCompletionHelper.EnterText(EventTitleSelector, eventTitle);
+
+        objectContext.SetAanEventTitle(eventTitle);
+
+        var eventType = SelectRandomOption("#EventTypeId");
+
+        var eventRegion = SelectRandomOption("#EventRegionId");
+
+        dataHelper.SetEventTypeAndRegion(eventType, eventRegion);
+
+        Continue();
+    }
 }
