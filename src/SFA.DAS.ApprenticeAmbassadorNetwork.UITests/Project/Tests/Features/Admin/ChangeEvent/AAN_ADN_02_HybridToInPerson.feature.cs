@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_02 User should be able to successfully change Hybrid to Online event")]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_02 User should be able to successfully change Hybrid to In Person event")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadmincreateevent")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_02UserShouldBeAbleToSuccessfullyChangeHybridToOnlineEvent()
+        public void AAN_ADN_02UserShouldBeAbleToSuccessfullyChangeHybridToInPersonEvent()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
                     "aanadmincreateevent",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_02 User should be able to successfully change Hybrid to Online event", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_02 User should be able to successfully change Hybrid to In Person event", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

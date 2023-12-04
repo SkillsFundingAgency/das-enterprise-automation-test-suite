@@ -24,6 +24,12 @@ public class Admin_ChangeEvent_Steps : Admin_CreateEvent_BaseSteps
         checkYourEventPage = CheckYourEvent(EventFormat.Hybrid, false, false);
     }
 
+    [When(@"the user should be able to successfully enters all the details for an Online event")]
+    public void TheUserShouldBeAbleToSuccessfullyEntersAllTheDetailsForAnOnlineEvent()
+    {
+        checkYourEventPage = CheckYourEvent(EventFormat.Online, false, false);
+    }
+
     [When(@"changes the event to a in person event")]
     public void ChangesTheEventToAInPersonEvent() => ChangesTheEventTo(EventFormat.InPerson);
 
