@@ -75,20 +75,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.E2E
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_E2E_01 - Apply Approve and Add a standard")]
-        [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2e")]
         public void EPAO_E2E_01_ApplyApproveAndAddAStandard()
         {
             string[] tagsOfScenario = new string[] {
-                    "epao",
                     "epaoapply",
-                    "regression",
                     "e2e"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_E2E_01 - Apply Approve and Add a standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,19 +94,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 6
 testRunner.Given("the apply user submits an Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 7
  testRunner.And("the admin appoves the assessor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 8
  testRunner.When("the apply user applies for a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 9
     testRunner.Then("the admin approves the standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 10
     testRunner.And("make the epao live", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
