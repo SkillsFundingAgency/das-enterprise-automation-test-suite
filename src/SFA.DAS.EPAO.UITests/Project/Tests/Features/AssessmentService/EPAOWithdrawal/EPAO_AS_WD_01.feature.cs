@@ -76,17 +76,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.EPAOWith
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_RWD_01A - Register Withdrawl")]
         [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("registerwithdrawal")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("resetregisterwithdrawal")]
         public void EPAO_AS_RWD_01A_RegisterWithdrawl()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
+                    "regression",
                     "assessmentservice",
                     "registerwithdrawal",
-                    "regression",
                     "resetregisterwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_RWD_01A - Register Withdrawl", null, tagsOfScenario, argumentsOfScenario, featureTags);
@@ -128,17 +128,17 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_RWD_01B - Register Withdrawl with feedback")]
         [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("registerwithdrawal")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("resetregisterwithdrawal")]
         public void EPAO_AS_RWD_01B_RegisterWithdrawlWithFeedback()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
+                    "regression",
                     "assessmentservice",
                     "registerwithdrawal",
-                    "regression",
                     "resetregisterwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_RWD_01B - Register Withdrawl with feedback", null, tagsOfScenario, argumentsOfScenario, featureTags);
@@ -192,15 +192,15 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_SWD_01A - Standard Withdrawl")]
         [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("resetstandardwithdrawal")]
         public void EPAO_AS_SWD_01A_StandardWithdrawl()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
-                    "assessmentservice",
                     "regression",
+                    "assessmentservice",
                     "resetstandardwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_SWD_01A - Standard Withdrawl", null, tagsOfScenario, argumentsOfScenario, featureTags);
@@ -236,15 +236,15 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_SWD_01B - Your Withdrawl status notifications check")]
         [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("resetstandardwithdrawal")]
         public void EPAO_AS_SWD_01B_YourWithdrawlStatusNotificationsCheck()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
-                    "assessmentservice",
                     "regression",
+                    "assessmentservice",
                     "resetstandardwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_SWD_01B - Your Withdrawl status notifications check", null, tagsOfScenario, argumentsOfScenario, featureTags);

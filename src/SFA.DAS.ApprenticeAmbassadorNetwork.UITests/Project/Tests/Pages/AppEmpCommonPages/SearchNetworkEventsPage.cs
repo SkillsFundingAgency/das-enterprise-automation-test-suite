@@ -6,16 +6,13 @@ public class SearchNetworkEventsPage : SearchEventsBasePage
 
     public SearchNetworkEventsPage(ScenarioContext context) : base(context) { }
 
-    public EventPage ClickOnFirstEventLink()
+    public EventPage ClickOnFirstEvent()
     {
-        formCompletionHelper.ClickElement(FirstEventLink);
-        return new EventPage(context);
-    }
+        FilterEventFromTomorrow();
 
-    public new SearchNetworkEventsPage FilterEventByTomorrow()
-    {
-        base.FilterEventByTomorrow();
-        return this;
+        formCompletionHelper.ClickElement(FirstEventLink);
+
+        return new EventPage(context);
     }
 
     public new SearchNetworkEventsPage FilterEventByOneMonth()

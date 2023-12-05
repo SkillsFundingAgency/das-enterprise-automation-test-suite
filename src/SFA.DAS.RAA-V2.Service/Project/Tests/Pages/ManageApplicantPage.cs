@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
-        protected override string PageTitle => "About you";
+        protected override string PageTitle => isRaaV2Employer? "About you":"Contact Details";
 
         private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 
@@ -26,6 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ConfirmApplicantUnsuccessfulPage(context);
         }
 
+        
         public ProviderAreYouSureSuccessfulPage ProviderMakeApplicantSucessful()
         {
             Outcomesuccessful();

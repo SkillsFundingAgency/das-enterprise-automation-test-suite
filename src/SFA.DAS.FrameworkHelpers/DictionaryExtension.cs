@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
     public static class DictionaryExtension
     {

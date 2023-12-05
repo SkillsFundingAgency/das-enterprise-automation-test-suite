@@ -9,7 +9,7 @@ public class AS_EditUserPermissionsPage : EPAO_BasePage
     private By ChangeOrganisationDetailsCheckBox => By.Id(Getid("Change organisation details"));
     private By ChangPipelineCheckBox => By.Id(Getid("Pipeline"));
     private By ChangeCompletedAssessmentsCheckBox => By.Id(Getid("Completed assessments"));
-    private By ChangeApplyForAStandardCheckBox => By.Id(Getid("Apply for a Standard"));
+    private By ChangeManageStandardsCheckBox => By.Id(Getid("Manage standards"));
     private By ChangeManageUsersCheckBox => By.Id(Getid("Manage users"));
     private By ChangeRecordGradesCheckBox => By.Id(Getid("Record grades and issue certificates"));
     #endregion
@@ -35,7 +35,7 @@ public class AS_EditUserPermissionsPage : EPAO_BasePage
         formCompletionHelper.SelectCheckbox(ChangeOrganisationDetailsCheckBox);
         formCompletionHelper.SelectCheckbox(ChangPipelineCheckBox);
         formCompletionHelper.SelectCheckbox(ChangeCompletedAssessmentsCheckBox);
-        formCompletionHelper.SelectCheckbox(ChangeApplyForAStandardCheckBox);
+        formCompletionHelper.SelectCheckbox(ChangeManageStandardsCheckBox);
         formCompletionHelper.SelectCheckbox(ChangeManageUsersCheckBox);
         formCompletionHelper.SelectCheckbox(ChangeRecordGradesCheckBox);
         return this;
@@ -46,7 +46,7 @@ public class AS_EditUserPermissionsPage : EPAO_BasePage
         formCompletionHelper.UnSelectCheckbox(ChangeOrganisationDetailsCheckBox);
         formCompletionHelper.UnSelectCheckbox(ChangPipelineCheckBox);
         formCompletionHelper.UnSelectCheckbox(ChangeCompletedAssessmentsCheckBox);
-        formCompletionHelper.UnSelectCheckbox(ChangeApplyForAStandardCheckBox);
+        formCompletionHelper.UnSelectCheckbox(ChangeManageStandardsCheckBox);
         formCompletionHelper.UnSelectCheckbox(ChangeManageUsersCheckBox);
         formCompletionHelper.UnSelectCheckbox(ChangeRecordGradesCheckBox);
         return this;

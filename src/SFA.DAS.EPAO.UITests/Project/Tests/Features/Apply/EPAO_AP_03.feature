@@ -1,5 +1,6 @@
 ﻿Feature: EPAO_AP_03
-
+#This test can be re-purposed for the managed standards journey coming in the future
+@ignore
 @epao
 @epaoapply
 @regression

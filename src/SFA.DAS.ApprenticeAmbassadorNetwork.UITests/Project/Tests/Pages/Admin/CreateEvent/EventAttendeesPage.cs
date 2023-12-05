@@ -10,10 +10,22 @@ public class EventAttendeesPage : AanAdminBasePage
 
     public CheckYourEventPage SubmitEventAttendees()
     {
-        formCompletionHelper.EnterText(NumberOfAttendees, aanAdminDatahelper.EventAttendeesNo);
-
-        Continue();
+        EnterEventAttendees(aanAdminCreateEventDatahelper);
 
         return new(context);
+    }
+
+    public CheckYourEventPage UpdateEventAttendees()
+    {
+        EnterEventAttendees(aanAdminUpdateEventDatahelper);
+
+        return new(context);
+    }
+
+    private void EnterEventAttendees(AanAdminCreateEventBaseDatahelper datahelper)
+    {
+        formCompletionHelper.EnterText(NumberOfAttendees, datahelper.EventAttendeesNo);
+
+        Continue();
     }
 }

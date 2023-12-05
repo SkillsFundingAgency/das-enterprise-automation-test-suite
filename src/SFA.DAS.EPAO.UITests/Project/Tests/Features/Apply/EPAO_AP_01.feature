@@ -1,6 +1,7 @@
 ﻿@resetapplyuserorganisationid
 Feature: EPAO_AP_01
-
+#disabling this test as the apply journey has been disabled but a new journey is planned for later
+@ignore
 @epao
 @epaoapply
 @regression
@@ -9,7 +10,7 @@ Scenario: EPAO_AP_01A - Apply to become Assessor Happy path
 	When the Apply User completes preamble journey
 	And the Apply User completes Organisation details section
 	And the Apply User completes the Declarations section
-	And the Apply User completes the FHA section
+	#And the Apply User completes the FHA section
 	Then the application is allowed to be submitted
 
 @epao

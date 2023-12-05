@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class SucessfullyPublisedEventPage : AanAdminBasePage
+public class SucessfullyPublisedEventPage : AdminNotificationBasePage
 {
     protected override string PageTitle => "You have successfully published a network event";
 
