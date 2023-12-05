@@ -5,11 +5,10 @@
 # causing the logic which determins whether the current applications are shown to be
 # subject to a race condition if the register and standard withdrawal scenarios are alloweed
 # to run in parallel
-
 @epao
+@regression
 @assessmentservice
 @registerwithdrawal
-@regression
 @resetregisterwithdrawal
 Scenario: EPAO_AS_RWD_01A - Register Withdrawl 
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
@@ -21,9 +20,9 @@ Scenario: EPAO_AS_RWD_01A - Register Withdrawl
 	And   Verify the application is moved to Approved tab
 
 @epao
+@regression
 @assessmentservice
 @registerwithdrawal
-@regression
 @resetregisterwithdrawal
 Scenario: EPAO_AS_RWD_01B - Register Withdrawl with feedback
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
@@ -39,8 +38,8 @@ Scenario: EPAO_AS_RWD_01B - Register Withdrawl with feedback
 	Then  Verify the application is moved to Approved tab
 
 @epao
-@assessmentservice
 @regression
+@assessmentservice
 @resetstandardwithdrawal
 Scenario: EPAO_AS_SWD_01A - Standard Withdrawl 
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
@@ -50,8 +49,8 @@ Scenario: EPAO_AS_SWD_01A - Standard Withdrawl
 	And   the admin user logs in to approve the standard withdrawal application
 
 @epao
-@assessmentservice
 @regression
+@assessmentservice
 @resetstandardwithdrawal
 Scenario: EPAO_AS_SWD_01B - Your Withdrawl status notifications check
 	Given the EPAO Withdrawal User is logged into Assessment Service Application

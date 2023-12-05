@@ -46,7 +46,7 @@ public class E2ESteps : EPAOBaseSteps
     }
 
     [Then(@"the admin approves the standard")]
-    public void ThenTheAdminApprovesTheStandard() => staffDashboardPage = AdminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
+    public void ThenTheAdminApprovesTheStandard() => staffDashboardPage = AdminStepshelper.ApproveAStandard(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
     [Then(@"make the epao live")]
     public void ThenMakeTheEpaoLive()

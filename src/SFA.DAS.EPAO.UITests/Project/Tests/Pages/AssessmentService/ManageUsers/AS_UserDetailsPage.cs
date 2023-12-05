@@ -11,7 +11,7 @@ public class AS_UserDetailsPage : EPAO_BasePage
     private static By ChangeOrganisationDetailsPersmission => By.XPath("//li[contains(text(),'Change organisation details')]");
     private static By PipelinePermission => By.XPath("//li[contains(text(),'Pipeline')]");
     private static By CompletedAssessmentsPermission => By.XPath("//li[contains(text(),'Completed assessments')]");
-    private static By ApplyForAStandardPermission => By.XPath("//li[contains(text(),'Apply for a Standard')]");
+    private static By ManageStandardsPermission => By.XPath("//li[contains(text(),'Manage standards')]");
     private static By ManageUsersPermission => By.XPath("//li[contains(text(),'Manage users')]");
     private static By RecordGradesPermission => By.XPath("//li[contains(text(),'Record grades and issue certificates')]");
     private static By RemoveThisUserLink => By.LinkText("Remove this user");
@@ -32,8 +32,8 @@ public class AS_UserDetailsPage : EPAO_BasePage
     public bool IsPipelinePermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(PipelinePermission);
 
     public bool IsCompletedAssessmentsPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(CompletedAssessmentsPermission);
-
-    public bool IsApplyForAStandardPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ApplyForAStandardPermission);
+    
+    public bool IsManageStandardsPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ManageStandardsPermission);
 
     public bool IsManageUsersPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ManageUsersPermission);
 
