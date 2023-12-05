@@ -97,15 +97,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
-            /*
-            _homePageStepsHelper.GotoEmployerHomePage()
-                .ClickAcceptYourAgreementLinkInHomePagePanel()
-                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .ProviderLeadRegistrationSignAgreement()
-                .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
-                .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-                .ConfirmProviderLeadRegistrationPermissions();
-            */
             _homePageStepsHelper
                 .GoToCreateYourEmployerAccountPage()
                 .GoToYourEmployerAgreementLink()

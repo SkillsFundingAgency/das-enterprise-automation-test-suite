@@ -77,14 +77,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AP_01A - Apply to become Assessor Happy path")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void EPAO_AP_01A_ApplyToBecomeAssessorHappyPath()
         {
             string[] tagsOfScenario = new string[] {
-                    "epaoapply"};
+                    "ignore",
+                    "epao",
+                    "epaoapply",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_01A - Apply to become Assessor Happy path", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,19 +100,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 9
  testRunner.Given("the Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 10
  testRunner.When("the Apply User completes preamble journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 11
  testRunner.And("the Apply User completes Organisation details section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 12
  testRunner.And("the Apply User completes the Declarations section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 14
  testRunner.Then("the application is allowed to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -126,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_01B - Validate SignIn and SignOut", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -136,13 +142,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 17
+#line 20
  testRunner.When("the Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 21
  testRunner.Then("the User Name is displayed in the Logged In Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 22
  testRunner.And("the Apply User is able to Signout from the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -162,7 +168,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_01C - Validate Organisation Search funcationality", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -172,10 +178,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 28
  testRunner.When("the Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 29
  testRunner.Then("no matches are shown for Organisation searches with Invalid search term", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

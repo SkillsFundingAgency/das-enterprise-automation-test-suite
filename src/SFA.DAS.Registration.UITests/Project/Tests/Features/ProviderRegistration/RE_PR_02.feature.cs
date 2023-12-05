@@ -101,6 +101,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Given("the provider invites an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 9
+ testRunner.Then("the invited employer status is \"Account creation not started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 10
  testRunner.When("the provider resends the invite after editing details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -110,8 +113,32 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.When("the employer sets up the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 13
+ testRunner.Then("the invited employer status is \"Account creation started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("view status \"Account creation started:\" is \"today\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("view status \"PAYE scheme added:\" is \"PAYE scheme not added\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And("view status \"Legal agreement accepted:\" is \"Legal agreement not accepted\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 17
  testRunner.When("the employer adds PAYE from TaskList Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 18
+ testRunner.Then("the invited employer status is \"PAYE scheme added\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 19
+ testRunner.And("view status \"Account creation started:\" is \"today\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
+ testRunner.And("view status \"PAYE scheme added:\" is \"today\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 21
+ testRunner.And("view status \"Legal agreement accepted:\" is \"Legal agreement not accepted\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
  testRunner.When("the employer signs the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

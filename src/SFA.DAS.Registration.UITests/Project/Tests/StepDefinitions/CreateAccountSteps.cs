@@ -18,8 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
-        //private readonly EmployerAccountRegistrationHelper _employerAccountRegistrationHelper;
-
+        
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -42,7 +41,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
-            //_employerAccountRegistrationHelper = new EmployerAccountRegistrationHelper(context);
         }
 
         [Given(@"a User Account is created")]
