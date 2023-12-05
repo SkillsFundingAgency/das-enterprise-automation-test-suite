@@ -13,5 +13,5 @@ public abstract class Employer_BaseSteps : AppEmp_BaseSteps
         
     }
 
-    protected void EmployerSign(EasAccountUser user) => new StubSignInPage(context).Login(user).Continue();
+    protected void EmployerSign(EasAccountUser user) => new StubSignInEmployerPage(context).Login(user).Continue();
 }

@@ -23,15 +23,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             ClickIfDisplayed(AcceptAllCookies);
         }
 
-        public StubSignInPage GoToStubSignInPage() => StubSignInPage(() => formCompletionHelper.ClickElement(SigninLink));
+        public StubSignInEmployerPage GoToStubSignInPage() => StubSignInPage(() => formCompletionHelper.ClickElement(SigninLink));
 
-        public StubSignInPage CreateAccount() => StubSignInPage(() => formCompletionHelper.ClickElement(CreateAccountLink));
+        public StubSignInEmployerPage CreateAccount() => StubSignInPage(() => formCompletionHelper.ClickElement(CreateAccountLink));
 
-        private StubSignInPage StubSignInPage(Action action)
+        private StubSignInEmployerPage StubSignInPage(Action action)
         {
             action();
 
-            return new StubSignInPage(context);
+            return new StubSignInEmployerPage(context);
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using Polly;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class SelectRouteStepsHelper
     {
-        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
+        private readonly ScenarioContext _context;
 
-        public SelectRouteStepsHelper(ScenarioContext context) => _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
+        public SelectRouteStepsHelper(ScenarioContext context) => _context = context;
 
         internal NotAcceptTermsConditionsPage DoNotAcceptTermsConditions() => ConfirmUkprn().SelectApplicationRouteAsMain().DoNotAcceptTermsConditions();
         public ApplicationOverviewPage CompleteProviderMainRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsMain());
@@ -22,9 +23,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         private AlreadyOnRoatpPage ConfirmUkprnForProviderOnRoatp() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinueForProviderOnRoatp();
         private ConfirmOrganisationsDetailsPage ConfirmOrganisationsDetailsPage()
         {
-            return _roatpApplyLoginHelpers.SignInToRegisterPage()
-                .SubmitValidUserDetailsEnterUkprnPage()
-                .EnterOrgTypeCompanyProvidersUkprn();
+            new RoatpApplyLoginHelpers(_context).SubmitValidUserDetails();
+
+            return new EnterUkprnPage(_context).EnterOrgTypeCompanyProvidersUkprn();
         }
     }
 }

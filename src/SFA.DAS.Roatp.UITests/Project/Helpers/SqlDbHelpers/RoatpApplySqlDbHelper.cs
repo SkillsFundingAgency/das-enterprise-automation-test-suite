@@ -105,8 +105,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public void Delete_AllowListProviders(string ukprn)
         {
-            var deleteAllowListProviderQuery =
-                 $"DELETE FROM AllowedProviders WHERE [UKPRN] = {ukprn}";
+            var deleteAllowListProviderQuery = $"DELETE FROM AllowedProviders WHERE [UKPRN] = {ukprn}";
             ExecuteSqlCommand(deleteAllowListProviderQuery);
         }
     }

@@ -19,13 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             return new EnterUkprnPage(context);
         }
 
-        public ApplicationOverviewPage SubmitValidUserDetailsApplicationOverviewPage()
-        {
-            SubmitValidUserDetails();
-            return new ApplicationOverviewPage(context);
-        }
-
-        public void  SubmitValidUserDetails()
+        public void SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
             formCompletionHelper.EnterText(EnterPassword, objectContext.GetPassword());

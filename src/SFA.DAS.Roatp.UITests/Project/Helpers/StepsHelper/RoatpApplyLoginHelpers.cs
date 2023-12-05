@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
@@ -9,10 +10,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         public RoatpApplyLoginHelpers(ScenarioContext context) => _context = context;
 
-        internal SignInToRegisterPage SignInToRegisterPage() => ApplyNow().SelectOptionToSignInToASAccountAndContinue();
+        internal void SubmitValidUserDetails() => ApplyNow().SubmitValidUserDetails().Continue();
 
         internal CreateAnAccountPage CreateAnAccountPage() => ApplyNow().SelectNoCreateAccountAndContinue();
 
-        private UsedThisServiceBeforePage ApplyNow() => new RoatpServiceStartPage(_context).ClickApplyNow();
+        private StubSignInApplyPage ApplyNow() => new RoatpServiceStartPage(_context).ClickApplyNow();
     }
 }

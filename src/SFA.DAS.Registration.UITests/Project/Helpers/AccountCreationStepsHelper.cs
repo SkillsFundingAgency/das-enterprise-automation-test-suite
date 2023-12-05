@@ -44,7 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
             RegisterStubUserAccount(indexPage, email).EnterName().ConfirmNameAndContinue().ClickContinueToInvitationsPage().ClickAcceptInviteLink();
 
-        internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
+        internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
         private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => RegisterUserAccount(indexPage.CreateAccount(), email);
 
