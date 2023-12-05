@@ -16,7 +16,7 @@ public class DeleteCohortProviderConfig : ProviderConfig
     public int DfeTimeOut { get; set; }
 }
 
-public class RplWhiteListedProviderConfig : ProviderConfig { }
+public class RplProviderConfig : ProviderConfig { }
 
 public class ChangeOfPartyConfig : ProviderConfig
 {

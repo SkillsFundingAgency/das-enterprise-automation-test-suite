@@ -50,7 +50,7 @@ public class ProviderConfigurationSetup
     {
         var providerConfig = SetProviderCreds<ProviderConfig>();
 
-        if (_tags.IsRplWhiteListedProvider()) providerConfig = SetProviderCreds<RplWhiteListedProviderConfig>();
+        if (_tags.IsAddRplDetails()) providerConfig = SetProviderCreds<RplProviderConfig>();
 
         if (_tags.IsTestDataDeleteCohortViaProviderPortal()) _context.Set(SetProviderCreds<DeleteCohortProviderConfig>());
 
