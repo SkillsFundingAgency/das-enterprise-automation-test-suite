@@ -12,7 +12,7 @@ public abstract class StubYouHaveSignedInBasePage : VerifyBasePage
 
     protected override bool CanAnalyzePage => false;
 
-    private static By MainContent => By.CssSelector("[id='main-content']");
+    protected virtual By MainContent => By.CssSelector("[id='main-content']");
 
     protected override By ContinueButton => By.CssSelector("a.govuk-button");
 
