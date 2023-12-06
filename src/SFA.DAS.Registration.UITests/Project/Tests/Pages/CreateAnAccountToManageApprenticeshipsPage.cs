@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public StubSignInEmployerPage GoToStubSignInPage() => StubSignInPage(() => formCompletionHelper.ClickElement(SigninLink));
 
-        public StubSignInEmployerPage CreateAccount() => StubSignInPage(() => formCompletionHelper.ClickElement(CreateAccountLink));
+        public StubSignInEmployerPage ClickOnCreateAccountLink() => StubSignInPage(() => formCompletionHelper.ClickElement(CreateAccountLink));
 
         private StubSignInEmployerPage StubSignInPage(Action action)
         {

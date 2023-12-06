@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var approvalsProviderHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_login, true);
 
-            approvalsProviderHomePage.GoToApprenticeRequestsPage().GoToCohortsToReviewPage().SelectViewCurrentCohortDetails().SelectEditApprentice(0).EnterUlnAndSave().SubmitApprove();
+            approvalsProviderHomePage.GoToApprenticeRequestsPage().GoToCohortsToReviewPage().SelectViewCurrentCohortDetails().SelectEditApprentice(0).EnterUlnAndSave(true).SubmitApprove();
         }
 
         [Then(@"The NonLevyEmployer Reviews and Approves the apprentice")]
