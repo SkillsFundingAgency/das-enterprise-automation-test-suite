@@ -4,6 +4,7 @@
 @aanadmin
 @aanadmincreateevent
 @regression
+@accessibility
 Scenario: AAN_ADN_01 User should be able to successfully create and cancel Online event
 	 Given an admin logs into the AAN portal
      When the user should be able to successfully create online event

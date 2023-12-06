@@ -4,6 +4,7 @@
 @aanemployerevents
 @aanemployer
 @regression
+@accessibility
 Scenario: AAN_E_04_Employer filter events Network Directory
     Given an onboarded employer logs into the AAN portal
     Then the user should be able to successfully filter events by role Network Directory

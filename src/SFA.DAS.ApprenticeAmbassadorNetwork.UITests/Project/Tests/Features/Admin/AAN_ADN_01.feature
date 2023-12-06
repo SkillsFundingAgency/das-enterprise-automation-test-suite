@@ -4,6 +4,7 @@
 @aanadmin
 @aanadn01
 @regression
+@accessibility
 Scenario: AAN_ADN_01 admin user filter events
     Given an admin logs into the AAN portal
     Then the user should be able to successfully filter events by date

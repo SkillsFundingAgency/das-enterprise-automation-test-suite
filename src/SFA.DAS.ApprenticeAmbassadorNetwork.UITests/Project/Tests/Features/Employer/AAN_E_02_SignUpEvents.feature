@@ -5,6 +5,7 @@
 @aanemployerevents
 @aanemployer
 @regression
+@accessibility
 Scenario: AAN_E_02_Employer signup and cancel the attendance for an event
     Given an onboarded employer logs into the AAN portal
     Then the user should be able to successfully signup for a future event
