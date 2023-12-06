@@ -46,8 +46,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
-        private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => RegisterUserAccount(indexPage.ClickOnCreateAccountLink(), email);
-
         internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
 
@@ -126,5 +124,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 _ => _registrationDataHelper.CharityTypeOrg1Name,
             };
         }
+
+        private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => RegisterUserAccount(indexPage.ClickOnCreateAccountLink(), email);
     }
 }
