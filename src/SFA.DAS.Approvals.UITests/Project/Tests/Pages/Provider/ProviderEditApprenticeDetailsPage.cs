@@ -55,11 +55,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public ProviderApproveApprenticeDetailsPage EnterUlnAndSave()
+        public ProviderApproveApprenticeDetailsPage EnterUlnAndSave(bool IsRplPageShown)
         {
             EnterUln();
 
-            return CheckRPLConditionAndSave();
+            if (_isFlexiPaymentPilotLearner)
+            {
+                AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
+                AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
+                AddTrainingPrice(apprenticeDataHelper.TrainingPrice);
+                AddEndpointAssessmentPrice(apprenticeDataHelper.EndpointAssessmentPrice);
+            }
+
+            formCompletionHelper.ClickElement(SaveButton);
+
+            if (IsRplPageShown) new ProviderRPLPage(context).SelectNoAndContinue();
+
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
+
+            return new ProviderApproveApprenticeDetailsPage(context);
         }
 
         public SelectDeliveryModelPage EnterUlnAndSelectEditDeliveryModel()
@@ -116,28 +130,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 return this;
         }
 
-        public ProviderApproveApprenticeDetailsPage CheckRPLConditionAndSave()
-        {
-            if (_isFlexiPaymentPilotLearner)
-            {
-                AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
-                AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
-                AddTrainingPrice(apprenticeDataHelper.TrainingPrice);
-                AddEndpointAssessmentPrice(apprenticeDataHelper.EndpointAssessmentPrice);
-            }
-
-            formCompletionHelper.ClickElement(SaveButton);
-
-            new ProviderRPLPage(context).SelectNoAndContinue();
-
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
-
-            return new ProviderApproveApprenticeDetailsPage(context);
-        }
-
         public ProviderApproveApprenticeDetailsPage SelectSaveAndUpdateRPLAsNo()
         {
-
             formCompletionHelper.ClickElement(SaveButton);
 
             new ProviderRPLPage(context).SelectNoAndContinue();
