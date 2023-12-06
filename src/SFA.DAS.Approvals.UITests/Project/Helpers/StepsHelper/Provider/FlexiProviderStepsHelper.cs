@@ -63,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 .SelectEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()
                 .ValidateDeliveryModelDisplayed("Regular")
-                .ClickSave();
+                .ClickSave(true);
         }
 
         public ProviderCohortApprovedPage ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
@@ -72,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 .SelectEditApprentice()
                 .EnterUlnAndSelectEditDeliveryModel()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
-                .ClickSave()
+                .ClickSave(true)
                 .ValidateFlexiJobTagAndSubmitApprove();
         }
 
