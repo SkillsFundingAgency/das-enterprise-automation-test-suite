@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.FrameworkHelpers;
 using System;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -47,21 +46,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             EnterTrainingCostAndEmpReference(_isFlexiPaymentPilotLearner);
 
-            bool rpl = CheckRPLCondition();
-
             formCompletionHelper.ClickElement(AddButton);
 
-            if (rpl)
-            {
-                var page = new ProviderRPLPage(context);
+            var page = new ProviderRPLPage(context);
 
-                if (tags.IsRplWhiteListedProvider())
-                    page.SelectYesAndContinue_RplWhiteListed().EnterRPLDataAndContinue();
-                else
-                    page.SelectYesAndContinue().EnterRPLDataAndContinue();
-            }
-            else
-                new ProviderRPLPage(context).SelectNoAndContinue();
+            if (tags.IsAddRplDetails()) page.SelectYesAndContinue().EnterRPLDataAndContinue();
+
+            else page.SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
         }
@@ -110,17 +101,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (tags.IsAsListedEmployer()) return;
 
             EnterApprenticeEmail();
-        }
-
-        private bool CheckRPLCondition()
-        {
-            bool rpl = false;
-            var year = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateYear : StartDateYear));
-            var month = Int32.Parse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateMonth : StartDateMonth));
-
-            if (month > 7 & year == 2022) rpl = true;
-            if (year > 2022) rpl = true;
-            return rpl;
         }
 
         private void EnterTrainingStartDate(DateTime date)

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class WhitelistedProviderRPLDetailsPage : ApprovalsBasePage
+    public class AddRPLDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add recognition of prior learning details";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DurationReducedByTextBox => By.Id("DurationReducedBy");
         private static By PriceReduced => By.Id("PriceReduced");
 
-        public WhitelistedProviderRPLDetailsPage(ScenarioContext context) : base(context) { }
+        public AddRPLDetailsPage(ScenarioContext context) : base(context) { }
 
         public void EnterRPLDataAndContinue()
         {
@@ -23,26 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DurationReducedByTextBox, RPLDataHelper.DurationReducedBy);
             formCompletionHelper.EnterText(PriceReduced, RPLDataHelper.PriceReducedBy);
 
-            Continue();
-        }
-    }
-
-    public class ProviderRPLDetailsPage : ApprovalsBasePage
-    {
-        protected override string PageTitle => "Provide recognition of prior learning (RPL) details";
-
-        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        private static By DurationReducedByTextBox => By.Id("ReducedDuration");
-        private static By PriceReduced => By.Id("ReducedPrice");
-        
-        public ProviderRPLDetailsPage(ScenarioContext context) : base(context) { }
-
-        public void EnterRPLDataAndContinue()
-        {
-            formCompletionHelper.EnterText(DurationReducedByTextBox, RPLDataHelper.DurationReducedBy);
-            
-            formCompletionHelper.EnterText(PriceReduced, RPLDataHelper.PriceReducedBy);
-            
             Continue();
         }
     }

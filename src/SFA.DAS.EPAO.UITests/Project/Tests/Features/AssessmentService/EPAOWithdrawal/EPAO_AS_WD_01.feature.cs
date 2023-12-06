@@ -90,7 +90,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.EPAOWith
                     "resetregisterwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_RWD_01A - Register Withdrawl", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 14
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,25 +100,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 14
  testRunner.Given("the EPAO Withdrawal User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 15
  testRunner.And("starts the journey to withdraw from the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 16
  testRunner.When("completes the Register withdrawal notification questions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 17
  testRunner.Then("application is submitted for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 18
  testRunner.And("the admin user logs in to approve the register withdrawal application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 19
  testRunner.And("the admin user returns to view withdrawal notifications table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 20
  testRunner.And("Verify the application is moved to Approved tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "resetregisterwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_RWD_01B - Register Withdrawl with feedback", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 28
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -152,37 +152,37 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 29
+#line 28
  testRunner.Given("the EPAO Withdrawal User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 29
  testRunner.And("starts the journey to withdraw from the register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 31
+#line 30
  testRunner.When("completes the Register withdrawal notification questions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 32
+#line 31
  testRunner.Then("application is submitted for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 33
+#line 32
  testRunner.And("the admin user logs in and adds feedback to an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 34
+#line 33
  testRunner.And("verify application has moved from new to feedback tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 35
+#line 34
  testRunner.And("the withdrawal user returns to dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 36
+#line 35
  testRunner.And("the withdrawal user reviews and ammends their application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 36
  testRunner.Given("the admin user returns and reviews the ammended withdrawal notification", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 38
+#line 37
  testRunner.Then("verify withdrawal from register approved and return to withdrawal applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 39
+#line 38
  testRunner.Then("Verify the application is moved to Approved tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -204,7 +204,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "resetstandardwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_SWD_01A - Standard Withdrawl", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 45
+#line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -214,19 +214,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 46
+#line 45
  testRunner.Given("the EPAO Withdrawal User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 47
+#line 46
  testRunner.And("starts the journey to withdraw a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 48
+#line 47
  testRunner.When("completes the standard withdrawal notification questions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 49
+#line 48
  testRunner.Then("application is submitted for review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 50
+#line 49
  testRunner.And("the admin user logs in to approve the standard withdrawal application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -248,7 +248,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "resetstandardwithdrawal"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_SWD_01B - Your Withdrawl status notifications check", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 56
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -258,19 +258,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 57
+#line 56
  testRunner.Given("the EPAO Withdrawal User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 58
+#line 57
  testRunner.And("starts the journey to withdraw a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 59
+#line 58
  testRunner.Then("the withdrawal user returns to dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 60
+#line 59
  testRunner.And("user verifies the different statuses of the standard withdrawl application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 61
+#line 60
  testRunner.And("user verifies view links navigate to the appropriate corresponding page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

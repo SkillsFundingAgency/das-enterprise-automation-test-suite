@@ -75,14 +75,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AP_03 - Apply Additional Standard")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void EPAO_AP_03_ApplyAdditionalStandard()
         {
             string[] tagsOfScenario = new string[] {
-                    "epaoapply"};
+                    "ignore",
+                    "epao",
+                    "epaoapply",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_03 - Apply Additional Standard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -92,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
  testRunner.Given("the Standard Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 9
  testRunner.Then("the user can apply to assess a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

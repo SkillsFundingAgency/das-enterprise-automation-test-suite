@@ -126,11 +126,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 AddEndpointAssessmentPrice(apprenticeDataHelper.EndpointAssessmentPrice);
             }
 
-            bool rpl = CheckRPLCondition(false);
-
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
@@ -139,11 +137,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage SelectSaveAndUpdateRPLAsNo()
         {
-            bool rpl = CheckRPLCondition(false);
 
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            new ProviderRPLPage(context).SelectNoAndContinue();
+
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
             return new ProviderApproveApprenticeDetailsPage(context);
@@ -160,11 +158,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(TrainingCost, "1" + editedApprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EmployerReference, editedApprenticeDataHelper.EmployerReference);
 
-            bool rpl = CheckRPLCondition(false);
-
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+            new ProviderRPLPage(context).SelectNoAndContinue();
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
@@ -208,9 +204,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage ClickSave()
         {
-            bool rpl = CheckRPLCondition(false);
             formCompletionHelper.ClickElement(SaveButton);
-            if (rpl) new ProviderRPLPage(context).SelectNoAndContinue();
+
+            new ProviderRPLPage(context).SelectNoAndContinue();
+
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
@@ -234,18 +231,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         private void AddActualStartDateDay(DateTime dateTime) => formCompletionHelper.EnterText(ActualStartDateDay, dateTime.Day);
+
         private void AddPlannedEndDateDay(DateTime dateTime) => formCompletionHelper.EnterText(EndDateDay, dateTime.Day);
-
-        private bool CheckRPLCondition(bool rpl = false)
-        {
-            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateYear : StartDateYear), out int year);
-
-            _ = int.TryParse(pageInteractionHelper.GetTextFromValueAttributeOfAnElement(_isFlexiPaymentPilotLearner ? ActualStartDateMonth : StartDateMonth), out int month);
-
-            if (month > 7 & year == 2022) rpl = true;
-            if (year > 2022) rpl = true;
-            return rpl;
-        }
 
         private void EnterText(By by, string text) => formCompletionHelper.EnterText(by, text);
 
