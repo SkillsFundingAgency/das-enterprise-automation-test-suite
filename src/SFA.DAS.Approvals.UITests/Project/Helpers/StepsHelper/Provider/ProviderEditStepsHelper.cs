@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 providerApproveApprenticeDetailsPage = providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
                     .ProviderSelectsAStandardForEditApprenticeDetails()
-                    .ClickSave();
+                    .ClickSave(true);
             }
             return providerApproveApprenticeDetailsPage;
         }
