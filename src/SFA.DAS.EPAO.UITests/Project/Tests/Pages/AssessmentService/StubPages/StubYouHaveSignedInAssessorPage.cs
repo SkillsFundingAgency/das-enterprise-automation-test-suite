@@ -7,7 +7,7 @@ public class StubYouHaveSignedInAssessorPage : StubYouHaveSignedInBasePage
 
     protected override By MainContent => By.CssSelector("[id='estimate-start-transfer']");
 
-    protected override By ContinueButton => By.CssSelector(".govuk-body a.govuk-button");
+    protected override By ContinueButton => By.CssSelector("[id='estimate-start-transfer'] a.govuk-button");
 
     public StubYouHaveSignedInAssessorPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context, username, idOrUserRef, newUser)
     {
