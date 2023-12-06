@@ -6,14 +6,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
 
-public class CheckSelectYourOrganisationPage : CheckPageUsingShorterTimeOut
+public class CheckSelectYourOrganisationPage : CheckPageUsingPageTitle
 {
     protected override string PageTitle => "Select your organisation";
 
     protected override By Identifier => PageHeader;
-    public CheckSelectYourOrganisationPage(ScenarioContext context) : base(context) { }
 
-    public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
+    public CheckSelectYourOrganisationPage(ScenarioContext context) : base(context) { }
 }
 
 public class SelectYourOrganisationPage : ProviderLoginBasePage

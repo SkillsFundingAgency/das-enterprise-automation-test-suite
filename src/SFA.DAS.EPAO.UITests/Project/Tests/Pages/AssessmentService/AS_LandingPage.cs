@@ -26,7 +26,8 @@ public class AS_LandingPage : EPAO_BasePage
 
     public AS_ApplyForAStandardPage AlreadyLoginGoToApplyForAStandardPage()
     {
-        formCompletionHelper.Click(StartNowButton);
+        CheckAndLogin();
+
         return new(context);
     }
 
@@ -38,7 +39,16 @@ public class AS_LandingPage : EPAO_BasePage
 
     public AS_LoggedInHomePage AlreadyLoginGoToLoggedInHomePage()
     {
-        formCompletionHelper.Click(StartNowButton);
+        CheckAndLogin();
+
         return new(context);
     }
+
+    private void CheckAndLogin()
+    {
+        formCompletionHelper.Click(StartNowButton);
+
+        if (new CheckStubSignInAssessorPage(context).IsPageDisplayed()) new StubSignInAssessorPage(context).SubmitValidUserDetails(context.Get<EPAOAssessorPortalLoggedInUser>()).Continue();
+    }
+    
 }

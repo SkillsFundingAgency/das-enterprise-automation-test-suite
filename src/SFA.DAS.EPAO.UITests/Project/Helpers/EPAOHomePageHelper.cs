@@ -59,5 +59,7 @@ public class EPAOHomePageHelper
         GoToEpaoAssessmentLandingPage().GoToStubSign().SubmitValidUserDetails(loginUser).Continue();
 
         _context.Get<EPAOAdminDataHelper>().LoginEmailAddress = loginUser.Username;
+
+        _context.Set(new EPAOAssessorPortalLoggedInUser { Username = loginUser.Username, IdOrUserRef = loginUser.IdOrUserRef });
     }
 }

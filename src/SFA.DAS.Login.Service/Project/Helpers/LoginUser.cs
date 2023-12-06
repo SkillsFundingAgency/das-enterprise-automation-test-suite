@@ -106,6 +106,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #region GovSignUser
 
+    public class EPAOAssessorPortalLoggedInUser : GovSignUser { }
+
     public class EPAOStandardApplyUser : GovSignUser { }
 
     public class EPAOAssessorUser : GovSignUser { }
