@@ -81,14 +81,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        [NUnit.Framework.CategoryAttribute("rplwhitelistedprovider")]
+        [NUnit.Framework.CategoryAttribute("addrpldetails")]
         public void AP_E2E_NUA_05CreateEmployerRplWhitelistedProviderSendsCohortToEmployerForReviewThenEmployerApprovesThenProviderApproves()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addlevyfunds",
                     "e2escenarios",
-                    "rplwhitelistedprovider"};
+                    "addrpldetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_05 Create Employer Rpl Whitelisted Provider sends cohort to employer f" +
                     "or review then employer approves then provider approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
