@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.StubPages;
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
 public class AS_LandingPage : EPAO_BasePage
 {
@@ -15,9 +17,10 @@ public class AS_LandingPage : EPAO_BasePage
         AcceptCookies();
     }
 
-    public AS_LoginPage GoToLoginPage()
+    public StubSignInAssessorPage GoToStubSign()
     {
         formCompletionHelper.Click(StartNowButton);
+
         return new(context);
     }
 

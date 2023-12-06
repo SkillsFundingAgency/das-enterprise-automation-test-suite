@@ -1,4 +1,5 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+﻿using Polly;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
@@ -35,11 +36,11 @@ public class EPAOHomePageHelper
 
     public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginGoToApplyForAStandardPage();
 
-    public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
+    public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(GovSignUser loginUser) { StubSign(loginUser); return new AP_PR1_SearchForYourOrganisationPage(_context); }
 
-    public AS_LoggedInHomePage LoginInAsNonApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
+    public AS_LoggedInHomePage LoginInAsNonApplyUser(GovSignUser loginUser) { StubSign(loginUser); return new AS_LoggedInHomePage(_context); }
 
-    public AS_LoggedInHomePage LoginInAsStandardApplyUser(NonEasAccountUser loginUser, string standardcode, string organisationId)
+    public AS_LoggedInHomePage LoginInAsStandardApplyUser(GovSignUser loginUser, string standardcode, string organisationId)
     {
         _ePAOSqlDataHelper.DeleteStandardApplicication(standardcode, organisationId, loginUser.Username);
 
@@ -51,5 +52,12 @@ public class EPAOHomePageHelper
         if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
     }
 
-    public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
+    public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(GovSignUser loginUser) => LoginInAsNonApplyUser(loginUser);
+
+    private void StubSign(GovSignUser loginUser)
+    {
+        GoToEpaoAssessmentLandingPage().GoToStubSign().SubmitValidUserDetails(loginUser).Continue();
+
+        _context.Get<EPAOAdminDataHelper>().LoginEmailAddress = loginUser.Username;
+    }
 }

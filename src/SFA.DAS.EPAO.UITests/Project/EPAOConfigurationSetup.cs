@@ -14,7 +14,7 @@ public class EPAOConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
-        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        _context.SetAssessorGovSignUser(new List<GovSignUser>
         {
             configSection.GetConfigSection<EPAOStandardApplyUser>(),
             configSection.GetConfigSection<EPAOAssessorUser>(),
@@ -24,6 +24,10 @@ public class EPAOConfigurationSetup
             configSection.GetConfigSection<EPAOE2EApplyUser>(),
             configSection.GetConfigSection<EPAOWithdrawalUser>(),
             configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>(),
+        });
+
+        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        {
             SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser())
         });
     }             
