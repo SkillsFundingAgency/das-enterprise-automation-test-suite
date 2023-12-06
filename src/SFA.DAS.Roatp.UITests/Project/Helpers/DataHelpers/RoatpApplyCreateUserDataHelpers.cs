@@ -1,31 +1,33 @@
-﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
+﻿using SFA.DAS.FrameworkHelpers;
+using System;
+
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpApplyCreateUserDataHelpers
     {
-        // This parameterless constructor is used to create instance from a specflow table
+        // This parameterless constructor is also used to create instance from a specflow table
         public RoatpApplyCreateUserDataHelpers()
         {
+            var randomPersonNameHelper = new RandomPersonNameHelper();
 
-        }
-        public RoatpApplyCreateUserDataHelpers(RoatpConfig config)
-        {
-            GivenName = "Test";
-            FamilyName = "CreateAccount";
+            GivenName = randomPersonNameHelper.FirstName;
+            FamilyName = $"{randomPersonNameHelper.LastName}+{DateTime.UtcNow.ToSeconds()}";
             CreateAccountEmail = $"{GivenName}.{FamilyName}@mailinator.com";
-            Password = config.ApplyPassword;
+            Password = new Guid().ToString();
         }
 
-        public string GivenName { get; set; }
-        public string FamilyName { get; set; }
-        public string CreateAccountEmail { get; set; }
-        public string Password { get; set; }
+        public string GivenName { get; private set; }
+        public string FamilyName { get; private set; }
+        public string CreateAccountEmail { get; private set; }
+        public string Password { get; private set; }
 
         public void UpdateData(RoatpApplyCreateUserDataHelpers data)
         {
             GivenName = data.GivenName;
-            var familyname = $"{data.FamilyName}";
-            FamilyName = familyname;
-            CreateAccountEmail = $"{data.GivenName}{familyname}@digital.education.gov.uk";
+
+            FamilyName = $"{data.FamilyName}";
+
+            CreateAccountEmail = $"{GivenName}{FamilyName}@digital.education.gov.uk";
         }
     }
 }

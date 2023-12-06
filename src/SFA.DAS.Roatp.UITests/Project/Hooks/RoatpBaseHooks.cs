@@ -29,6 +29,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly NewRoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
         private readonly OldRoatpAdminUkprnDataHelpers _roatpOldAdminUkprnDataHelpers;
         private readonly RoatpFullUkprnDataHelpers _roatpFullUkprnDataHelpers;
+        private RoatpApplyCreateUserDataHelpers _roatpApplyCreateUserDataHelpers;
 
         public RoatpBaseHooks(ScenarioContext context)
         {
@@ -52,7 +53,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers());
 
-        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers());
+        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(_roatpApplyCreateUserDataHelpers = new RoatpApplyCreateUserDataHelpers());
 
         protected void ClearDownApplyDataAndTrainingProvider()
         {
@@ -113,7 +114,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
             if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
             {
-                _objectContext.SetPassword(new Guid().ToString());
+                _objectContext.SetPassword(_roatpApplyCreateUserDataHelpers.Password);
             }
             else
             {

@@ -12,7 +12,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal void SubmitValidUserDetails() => ApplyNow().SubmitValidUserDetails().Continue();
 
-        internal CreateAnAccountPage CreateAnAccountPage() => ApplyNow().SelectNoCreateAccountAndContinue();
+        internal void CreateAnAccountPage()
+        {
+            ApplyNow().CreateAccount().Continue();
+
+            new StubAddYourUserDetailsPage(_context).EnterNameAndContinue();
+        }
 
         private StubSignInApplyPage ApplyNow() => new RoatpServiceStartPage(_context).ClickApplyNow();
     }

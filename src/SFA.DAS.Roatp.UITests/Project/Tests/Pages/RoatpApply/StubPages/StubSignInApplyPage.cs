@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages
@@ -17,14 +18,25 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages
 
             EnterLoginDetailsAndClickSignIn(email, idOrUserRef);
 
-            return new StubYouHaveSignedInApplyPage(context, email, idOrUserRef, false);
+            return GoToStubYouHaveSignedInApplyPage(email, idOrUserRef, false);
         }
 
-        public CreateAnAccountPage SelectNoCreateAccountAndContinue()
+        public StubYouHaveSignedInApplyPage CreateAccount()
         {
-            SelectRadioOptionByForAttribute("FirstTimeSignin-Yes");
-            Continue();
-            return new CreateAnAccountPage(context);
+            var user = context.Get<RoatpApplyCreateUserDataHelpers>();
+
+            var email = user.CreateAccountEmail;
+
+            //var idOrUserRef = user.Password;
+
+            return GoToStubYouHaveSignedInApplyPage(email, email, true);
+        }
+
+        private StubYouHaveSignedInApplyPage GoToStubYouHaveSignedInApplyPage(string email, string idOrUserRef, bool newUser)
+        {
+            EnterLoginDetailsAndClickSignIn(email, idOrUserRef);
+
+            return new StubYouHaveSignedInApplyPage(context, email, idOrUserRef, newUser);
         }
     }
 }
