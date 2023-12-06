@@ -44,9 +44,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
             RegisterStubUserAccount(indexPage, email).EnterName().ConfirmNameAndContinue().ClickContinueToInvitationsPage().ClickAcceptInviteLink();
 
-        internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
+        internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInPage stubSignInPage, string email) => stubSignInPage.RegisterUser(email).ContinueToStubAddYourUserDetailsPage();
 
-        private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => RegisterUserAccount(indexPage.CreateAccount(), email);
+        private StubAddYourUserDetailsPage RegisterStubUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) => RegisterUserAccount(indexPage.ClickOnCreateAccountLink(), email);
 
         internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
@@ -95,9 +95,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SearchForAnOrganisation(orgType)
             .SelectYourOrganisation(orgType))
             .SignAgreement()
-            .ClickOnViewYourAccountButton();
+            .GoToTrainingProviderLink()
+            .AddTrainingProviderLater()
+            .SelectGoToYourEmployerAccountHomepage();
 
-        internal SignAgreementPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
+
+        internal DoYouAcceptTheEmployerAgreementOnBehalfOfPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
         {
             return checkYourDetailsPage
                 .ClickYesThisIsMyOrg()
@@ -105,10 +108,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .GoToSetYourAccountNameLink()
                 .SelectoptionNo()
                 .ContinueToAcknowledge()
-                .GoToAcceptTheAgreementLink()
-                .ClickViewAgreementLink()
-                .GoToViewAgreement()
-                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage();
+                .GoToYourEmployerAgreementLink()
+                .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage();
         }
 
         internal YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
