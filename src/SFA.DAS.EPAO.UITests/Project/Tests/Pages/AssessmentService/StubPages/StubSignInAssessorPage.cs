@@ -22,7 +22,7 @@ public class StubSignInAssessorPage : StubSignInBasePage
 
     public StubYouHaveSignedInAssessorPage SubmitValidUserDetails(GovSignUser loginUser)
     {
-        return new StubYouHaveSignedInAssessorPage(context, loginUser.Username, loginUser.IdOrUserRef, false);
+        return GoToStubYouHaveSignedInAssessorPage(loginUser.Username, loginUser.IdOrUserRef, false);
     }
 
     public StubYouHaveSignedInAssessorPage CreateAccount(string email) => GoToStubYouHaveSignedInAssessorPage(email, email, true);
