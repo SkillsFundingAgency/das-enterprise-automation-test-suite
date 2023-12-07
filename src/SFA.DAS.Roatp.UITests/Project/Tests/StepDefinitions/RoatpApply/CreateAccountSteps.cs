@@ -31,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [When(@"user submits the details to create an account")]
-        public void UserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccountPage();
+        public void UserSubmitsTheDetailsToCreateAnAccount() => _roatpApplyLoginHelpers.CreateAnAccount();
 
         [When(@"user submits the details to create an account")]
         public void WhenUserSubmitsTheDetailsToCreateAnAccount(Table table)

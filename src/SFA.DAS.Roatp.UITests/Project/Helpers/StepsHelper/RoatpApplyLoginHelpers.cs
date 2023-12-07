@@ -13,7 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         internal void SubmitValidUserDetails() => ApplyNow().SubmitValidUserDetails().Continue();
 
-        internal void CreateAnAccountPage()
+        internal void CreateAnAccount()
         {
             var datahelper = _context.Get<RoatpApplyCreateUserDataHelper>();
 
