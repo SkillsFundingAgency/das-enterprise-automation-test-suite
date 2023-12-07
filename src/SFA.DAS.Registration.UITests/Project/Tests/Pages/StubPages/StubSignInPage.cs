@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
         public StubSignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public StubYouHaveSignedInPage Register(string email = null)
+        public StubYouHaveSignedInPage RegisterUser(string email = null)
         {
             email = string.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
 

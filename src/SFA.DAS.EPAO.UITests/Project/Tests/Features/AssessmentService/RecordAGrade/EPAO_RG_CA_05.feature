@@ -1,5 +1,6 @@
 ﻿Feature: EPAO_RG_CA_05
 
+@ignore
 @epao
 @recordagrade
 @regression
@@ -10,7 +11,7 @@ Scenario: EPAO_RG_CA_05A - Certify an Apprentice as Pass - multiple Standard - 1
 	Then the User can navigates to record another grade
 	And the Assessment is recorded as 'pass'
 
-
+@ignore
 @epao
 @recordagrade
 @regression

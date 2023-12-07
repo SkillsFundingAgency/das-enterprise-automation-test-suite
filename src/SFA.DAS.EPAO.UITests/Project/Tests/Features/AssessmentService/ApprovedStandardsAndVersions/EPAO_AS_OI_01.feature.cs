@@ -77,15 +77,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.Approved
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_OI_01 - Apply Opt In Standard For New Version")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteorganisationstandardversion")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void EPAO_AS_OI_01_ApplyOptInStandardForNewVersion()
         {
             string[] tagsOfScenario = new string[] {
                     "epao",
                     "assessmentservice",
-                    "regression",
-                    "deleteorganisationstandardversion"};
+                    "deleteorganisationstandardversion",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_OI_01 - Apply Opt In Standard For New Version", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7

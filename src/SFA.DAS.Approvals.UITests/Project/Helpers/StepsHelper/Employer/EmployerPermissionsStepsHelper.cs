@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(providerPermissionConfig.PermissionsCosmosUrl, providerPermissionConfig.PermissionsCosmosDBKey, providerPermissionConfig.PermissionsCosmosDatabaseName, providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(providerPermissionConfig.Ukprn));
 
 
-        private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
+        private Tests.Pages.Employer.YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
 
         private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(YourOrganisationsAndAgreementsPage page, string orgName) =>
             string.IsNullOrEmpty(orgName) ? page.ClickViewAgreementLink() : page.ClickViewAgreementLink(orgName);
