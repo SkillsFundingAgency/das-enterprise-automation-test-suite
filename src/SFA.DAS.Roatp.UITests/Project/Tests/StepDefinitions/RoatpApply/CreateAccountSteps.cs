@@ -58,8 +58,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             });
 
             new CreatePasswordPage(_context).CreatePassword(pasword);
-
-            _objectContext.SetCreateAccountCreds(email, pasword);
         }
     }
 }

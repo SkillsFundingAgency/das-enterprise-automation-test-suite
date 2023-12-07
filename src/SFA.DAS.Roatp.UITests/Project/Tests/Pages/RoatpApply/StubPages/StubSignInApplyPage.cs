@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages
 
         public StubSignInApplyPage(ScenarioContext context) : base(context) { }
 
-        public StubYouHaveSignedInApplyPage SubmitValidUserDetails() => GoToStubYouHaveSignedInApplyPage(objectContext.GetEmail(), objectContext.GetPassword(), false);
+        public StubYouHaveSignedInApplyPage SubmitValidUserDetails() => GoToStubYouHaveSignedInApplyPage(objectContext.GetEmail(), objectContext.GetSignInId(), false);
 
         public StubYouHaveSignedInApplyPage CreateAccount(string email) => GoToStubYouHaveSignedInApplyPage(email, email, true);
 

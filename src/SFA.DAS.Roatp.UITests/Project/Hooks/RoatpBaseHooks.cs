@@ -20,7 +20,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
         private readonly RoatpQnASqlDbHelper _roatpQnASqlDbHelper;
         private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
-        private readonly RoatpConfig config;
         protected readonly DbConfig _dbConfig;
 
         private readonly RoatpApplyUkprnDataHelpers _roatpApplyUkprnDataHelpers;
@@ -29,14 +28,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly NewRoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
         private readonly OldRoatpAdminUkprnDataHelpers _roatpOldAdminUkprnDataHelpers;
         private readonly RoatpFullUkprnDataHelpers _roatpFullUkprnDataHelpers;
-        private RoatpApplyCreateUserDataHelper _roatpApplyCreateUserDataHelpers;
 
         public RoatpBaseHooks(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
-            config = context.GetRoatpConfig<RoatpConfig>();
             _dbConfig = context.Get<DbConfig>();
             _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, _dbConfig);
             _roatpQnASqlDbHelper = new RoatpQnASqlDbHelper(_objectContext, _dbConfig);
@@ -53,7 +50,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers());
 
-        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(_roatpApplyCreateUserDataHelpers = new RoatpApplyCreateUserDataHelper());
+        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelper());
 
         protected void ClearDownApplyDataAndTrainingProvider()
         {
@@ -110,14 +107,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         private void SetEmail(string email)
         {
+            if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e")) return;
+
             _objectContext.SetEmail(email);
 
-            if (!_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
-            {
-                var signinId = new RoatpApplyContactSqlDbHelper(_objectContext, _dbConfig).GetSignInId(email);
+            var signinId = new RoatpApplyContactSqlDbHelper(_objectContext, _dbConfig).GetSignInId(email);
 
-                _objectContext.SetPassword(signinId);
-            }
+            _objectContext.SetSigninId(signinId);
         }
 
         private void SetDetails((string email, string providername, string ukprn) p)

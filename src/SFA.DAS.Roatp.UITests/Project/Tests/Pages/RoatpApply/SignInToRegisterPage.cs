@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public void SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
-            formCompletionHelper.EnterText(EnterPassword, objectContext.GetPassword());
+            formCompletionHelper.EnterText(EnterPassword, objectContext.GetSignInId());
             Continue();
         }
     }

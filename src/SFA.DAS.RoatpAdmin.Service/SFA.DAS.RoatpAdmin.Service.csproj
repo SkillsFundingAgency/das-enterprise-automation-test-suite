@@ -13,10 +13,4 @@
 		<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="appsettings.Project.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	</ItemGroup>
-
 </Project>
