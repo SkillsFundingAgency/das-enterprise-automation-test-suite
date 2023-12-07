@@ -22,12 +22,15 @@ public class StubSignInAssessorPage : StubSignInBasePage
 
     public StubYouHaveSignedInAssessorPage SubmitValidUserDetails(GovSignUser loginUser)
     {
-        var email = loginUser.Username;
+        return new StubYouHaveSignedInAssessorPage(context, loginUser.Username, loginUser.IdOrUserRef, false);
+    }
 
-        var idOrUserRef = loginUser.IdOrUserRef;
+    public StubYouHaveSignedInAssessorPage CreateAccount(string email) => GoToStubYouHaveSignedInAssessorPage(email, email, true);
 
+    private StubYouHaveSignedInAssessorPage GoToStubYouHaveSignedInAssessorPage(string email, string idOrUserRef, bool newUser)
+    {
         EnterLoginDetailsAndClickSignIn(email, idOrUserRef);
 
-        return new StubYouHaveSignedInAssessorPage(context, email, idOrUserRef, false);
+        return new StubYouHaveSignedInAssessorPage(context, email, idOrUserRef, newUser);
     }
 }

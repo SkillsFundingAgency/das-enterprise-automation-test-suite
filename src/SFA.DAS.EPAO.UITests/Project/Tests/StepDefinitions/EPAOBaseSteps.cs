@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 public class EPAOBaseSteps
 {
@@ -14,6 +16,7 @@ public class EPAOBaseSteps
     protected readonly EPAOApplyDataHelper ePAOApplyDataHelper;
     protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper;
     protected readonly EPAOApplyStandardDataHelper ePAOApplyStandardData;
+    protected readonly EPAOAssesorCreateUserDataHelper ePAOAssesorCreateUserDataHelper;
 
     protected readonly EPAOAdminSqlDataHelper ePAOAdminSqlDataHelper;
     protected readonly EPAOAdminCASqlDataHelper ePAOAdminCASqlDataHelper;
@@ -32,7 +35,6 @@ public class EPAOBaseSteps
     protected CheckAndSubmitAssessmentDetailsPage checkAndSubmitAssessmentDetailsPage;
 
     protected AP_ApplicationOverviewPage applicationOverviewPage;
-    protected AS_CreateAnAccountPage createAnAccountPage;
     protected AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage;
 
     protected AO_HomePage homePage;
@@ -59,6 +61,7 @@ public class EPAOBaseSteps
         ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();
         ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
         ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
+        ePAOAssesorCreateUserDataHelper = context.Get<EPAOAssesorCreateUserDataHelper>();
 
         ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
         ePAOAdminCASqlDataHelper = context.Get<EPAOAdminCASqlDataHelper>();

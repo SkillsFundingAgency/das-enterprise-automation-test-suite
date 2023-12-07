@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly ScenarioContext _context;
         private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
-        private readonly RoatpApplyCreateUserDataHelpers _applydataHelpers;
+        private readonly RoatpApplyCreateUserDataHelper _applydataHelpers;
         private readonly RetryAssertHelper _assertHelper;
         private readonly ObjectContext _objectContext;
 
@@ -24,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _applydataHelpers = context.Get<RoatpApplyCreateUserDataHelpers>();
+            _applydataHelpers = context.Get<RoatpApplyCreateUserDataHelper>();
             _assertHelper = context.Get<RetryAssertHelper>();
             _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(_objectContext, context.Get<DbConfig>());
@@ -36,7 +36,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"user submits the details to create an account")]
         public void WhenUserSubmitsTheDetailsToCreateAnAccount(Table table)
         {
-            _applydataHelpers.UpdateData(table.CreateInstance<RoatpApplyCreateUserDataHelpers>());
+            _applydataHelpers.UpdateData(table.CreateInstance<RoatpApplyCreateUserDataHelper>());
 
             UserSubmitsTheDetailsToCreateAnAccount();
         }
@@ -48,7 +48,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
             string email = _applydataHelpers.CreateAccountEmail;
 
-            string pasword = _applydataHelpers.Password;
+            string pasword = string.Empty;
 
             _assertHelper.RetryOnNUnitException(() =>
             {

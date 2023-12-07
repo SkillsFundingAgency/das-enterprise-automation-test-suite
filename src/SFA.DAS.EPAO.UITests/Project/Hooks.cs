@@ -65,6 +65,8 @@ public class Hooks
 
         _context.Set(_ePAOAdminSqlDataHelper);
 
+        _context.Set(new EPAOAssesorCreateUserDataHelper());
+
         _context.Set(new EPAOAssesmentServiceDataHelper());
 
         _context.Set(new EPAOApplyDataHelper());

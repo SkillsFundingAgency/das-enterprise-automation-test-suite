@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly ScenarioContext _context;
         private readonly RoatpApplyContactSqlDbHelper _roatpApplyContactSqlDbHelper;
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
-        private RoatpApplyCreateUserDataHelpers _applydataHelpers;
+        private RoatpApplyCreateUserDataHelper _applydataHelpers;
 
         public RoatpApplyCreateAccountHooks(ScenarioContext context) : base(context)
         {
@@ -28,7 +28,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         {
             if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplycreateaccount")) { return; }
 
-            _applydataHelpers = _context.Get<RoatpApplyCreateUserDataHelpers>();
+            _applydataHelpers = _context.Get<RoatpApplyCreateUserDataHelper>();
 
             var email = _applydataHelpers.CreateAccountEmail;
 

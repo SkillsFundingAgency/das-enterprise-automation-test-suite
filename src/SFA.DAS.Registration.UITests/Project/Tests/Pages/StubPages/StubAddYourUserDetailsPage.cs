@@ -1,35 +1,18 @@
-﻿using OpenQA.Selenium;
+﻿using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
-    public class StubAddYourUserDetailsPage : RegistrationBasePage
+    public class StubAddYourUserDetailsPage : StubAddYourUserDetailsBasePage
     {
-        protected override string PageTitle => "Add your user details";
+        public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) { }
 
-        private static By FirstNameInput => By.CssSelector($"#FirstName");
-        private static By LastNameInput => By.CssSelector($"#LastName");
-        protected override By ContinueButton => By.CssSelector("button.govuk-button");
-
-        public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public ConfirmYourUserDetailsPage EnterName()
+        public ConfirmYourUserDetailsPage EnterNameAndContinue(RegistrationDataHelper dataHelper)
         {
-            EnterNameAndContinue();
+            EnterNameAndContinue(dataHelper.FirstName, dataHelper.LastName);
+
             return new ConfirmYourUserDetailsPage(context);
-        }
-
-        public YouVeSuccessfullyAddedUserDetailsPage InvitedUserEntersName()
-        {
-            EnterNameAndContinue();
-            return new YouVeSuccessfullyAddedUserDetailsPage(context);
-        }
-
-        private void EnterNameAndContinue()
-        {
-            formCompletionHelper.EnterText(FirstNameInput, registrationDataHelper.FirstName);
-            formCompletionHelper.EnterText(LastNameInput, registrationDataHelper.LastName);
-            Continue();
         }
 
         public ConfirmYourUserDetailsPage DoNotEnterNameAndContinue()

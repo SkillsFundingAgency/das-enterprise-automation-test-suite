@@ -1,23 +1,17 @@
-﻿using OpenQA.Selenium;
+﻿using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages;
 
-public class StubAddYourUserDetailsPage : RoatpApplyBasePage
+public class StubAddYourUserDetailsPage : StubAddYourUserDetailsBasePage
 {
-    protected override string PageTitle => "Add your user details";
+    public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) { }
 
-    private static By FirstNameInput => By.CssSelector($"#FirstName");
-    private static By LastNameInput => By.CssSelector($"#LastName");
-    protected override By ContinueButton => By.CssSelector("[id='main-content'] button.govuk-button");
-
-    public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-    public ConfirmYourIdentityPage EnterNameAndContinue()
+    public ConfirmYourIdentityPage EnterNameAndContinue(RoatpApplyCreateUserDataHelper dataHelper)
     {
-        formCompletionHelper.EnterText(FirstNameInput, applyCreateUserDataHelpers.GivenName);
-        formCompletionHelper.EnterText(LastNameInput, applyCreateUserDataHelpers.FamilyName);
-        Continue();
+        EnterNameAndContinue(dataHelper.GivenName, dataHelper.FamilyName);
+
         return new ConfirmYourIdentityPage(context);
     }
 }

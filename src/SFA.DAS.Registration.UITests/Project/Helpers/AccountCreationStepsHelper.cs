@@ -2,7 +2,6 @@
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -13,7 +12,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly RegistrationDataHelper _registrationDataHelper;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private readonly ObjectContext _objectContext;
         private readonly AccountSignOutHelper _accountSignOutHelper;
 
@@ -22,7 +20,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
@@ -35,24 +32,24 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return AddNewAccount(homePage.GoToYourAccountsPage().AddNewAccount(), index, orgType);
         }
 
-        internal AddAPAYESchemePage RegisterUserAccount() => 
+        internal AddAPAYESchemePage RegisterUserAccount() =>
             RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
 
         internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
-            RegisterStubUserAccount(indexPage, email).EnterName().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge().GoToAddPayeLink().SelectOptionLessThan3Million();
+            RegisterStubUserAccount(indexPage, email).EnterNameAndContinue(_registrationDataHelper).ConfirmNameAndContinue().ClickContinueButtonToAcknowledge().GoToAddPayeLink().SelectOptionLessThan3Million();
 
         internal HomePage AcceptUserInvite(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
-            RegisterStubUserAccount(indexPage, email).EnterName().ConfirmNameAndContinue().ClickContinueToInvitationsPage().ClickAcceptInviteLink();
+            RegisterStubUserAccount(indexPage, email).EnterNameAndContinue(_registrationDataHelper).ConfirmNameAndContinue().ClickContinueToInvitationsPage().ClickAcceptInviteLink();
 
         internal StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
-        internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) => 
+        internal SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) =>
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
 
         internal CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
-        internal TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => 
+        internal TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().ReEnterTheSameAornDetailsAndContinue();
 
         internal CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();

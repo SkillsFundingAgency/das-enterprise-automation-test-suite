@@ -8,7 +8,7 @@ public class AS_LandingPage : EPAO_BasePage
 
     #region Locators
     private static By StartNowButton => By.LinkText("Start now");
-    private static By CreateAnAccountLink => By.XPath("//a[@href='/Account/CreateAnAccount']");
+    private static By CreateAnAccountLink => By.XPath("//a[@href='/Account/UpdateAnAccount']");
     #endregion
 
     public AS_LandingPage(ScenarioContext context) : base(context)
@@ -31,7 +31,7 @@ public class AS_LandingPage : EPAO_BasePage
         return new(context);
     }
 
-    public AS_CreateAnAccountPage GoToCreateAccountPage()
+    public StubSignInAssessorPage GoToStubSignInAssessorPage()
     {
         formCompletionHelper.Click(CreateAnAccountLink);
         return new(context);

@@ -29,7 +29,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly NewRoatpAdminUkprnDataHelpers _roatpAdminUkprnDataHelpers;
         private readonly OldRoatpAdminUkprnDataHelpers _roatpOldAdminUkprnDataHelpers;
         private readonly RoatpFullUkprnDataHelpers _roatpFullUkprnDataHelpers;
-        private RoatpApplyCreateUserDataHelpers _roatpApplyCreateUserDataHelpers;
+        private RoatpApplyCreateUserDataHelper _roatpApplyCreateUserDataHelpers;
 
         public RoatpBaseHooks(ScenarioContext context)
         {
@@ -53,7 +53,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers());
 
-        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(_roatpApplyCreateUserDataHelpers = new RoatpApplyCreateUserDataHelpers());
+        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(_roatpApplyCreateUserDataHelpers = new RoatpApplyCreateUserDataHelper());
 
         protected void ClearDownApplyDataAndTrainingProvider()
         {
@@ -112,11 +112,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         {
             _objectContext.SetEmail(email);
 
-            if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
-            {
-                _objectContext.SetPassword(_roatpApplyCreateUserDataHelpers.Password);
-            }
-            else
+            if (!_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
             {
                 var signinId = new RoatpApplyContactSqlDbHelper(_objectContext, _dbConfig).GetSignInId(email);
 
