@@ -14,7 +14,7 @@ public class EPAOConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
-        _context.SetAssessorGovSignUser(new List<GovSignUser>
+        _context.SetEPAOAssessorPortalUser(new List<EPAOAssessorPortalUser>
         {
             configSection.GetConfigSection<EPAOStandardApplyUser>(),
             configSection.GetConfigSection<EPAOAssessorUser>(),

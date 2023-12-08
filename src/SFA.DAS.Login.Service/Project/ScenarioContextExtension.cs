@@ -18,13 +18,15 @@ namespace SFA.DAS.Login.Service
             foreach (T item in value) SetUser(context, item);
         }
 
-        public static void SetAssessorGovSignUser(this ScenarioContext context, List<GovSignUser> users)
+        public static void SetEPAOAssessorPortalUser(this ScenarioContext context, List<EPAOAssessorPortalUser> users)
         {
             var signInIds = new AssessorStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
 
             for (int i = 0; i < users.Count; i++)
             {
-                users[i].IdOrUserRef = signInIds[i];
+                users[i].IdOrUserRef = signInIds[i].signInId;
+
+                users[i].FullName = signInIds[i].displayName;
 
                 SetUser(context, users[i]);
             }

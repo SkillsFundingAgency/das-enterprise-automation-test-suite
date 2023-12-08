@@ -106,26 +106,30 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #region GovSignUser
 
-    public class EPAOAssessorPortalLoggedInUser : GovSignUser { }
-
-    public class EPAOStandardApplyUser : GovSignUser { }
-
-    public class EPAOAssessorUser : GovSignUser { }
-
-    public class EPAODeleteAssessorUser : GovSignUser { }
-
-    public class EPAOWithdrawalUser : GovSignUser { }
-
-    public class EPAOManageUser : GovSignUser { }
-
-    public class EPAOApplyUser : GovSignUser
+    public abstract class EPAOAssessorPortalUser : GovSignUser
     {
         public string FullName { get; set; }
     }
 
-    public class EPAOStageTwoStandardCancelUser : GovSignUser { }
+    public class EPAOAssessorPortalLoggedInUser : EPAOAssessorPortalUser { }
 
-    public class EPAOE2EApplyUser : GovSignUser { }
+    public class EPAOStandardApplyUser : EPAOAssessorPortalUser { }
+
+    public class EPAOAssessorUser : EPAOAssessorPortalUser { }
+
+    public class EPAODeleteAssessorUser : EPAOAssessorPortalUser { }
+
+    public class EPAOWithdrawalUser : EPAOAssessorPortalUser { }
+
+    public class EPAOManageUser : EPAOAssessorPortalUser { }
+
+    public class EPAOApplyUser : EPAOAssessorPortalUser
+    {
+    }
+
+    public class EPAOStageTwoStandardCancelUser : EPAOAssessorPortalUser { }
+
+    public class EPAOE2EApplyUser : EPAOAssessorPortalUser { }
 
     #endregion
 
