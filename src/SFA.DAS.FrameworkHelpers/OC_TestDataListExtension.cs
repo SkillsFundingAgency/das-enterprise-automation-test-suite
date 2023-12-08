@@ -23,8 +23,6 @@
             objectContext.SetRetryInformations();
         }
 
-
-
         #region RetryInformations
 
         private static void SetRetryInformations(this ObjectContext objectContext) => objectContext.Set(RetryInformations, new FrameworkList<string>() { $"{string.Empty}" });
@@ -58,7 +56,7 @@
         {
             objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
 
-            objectContext.SetDebugInformation($"Scenario tags - {string.Join(", ", tags.Select(x => x))}");
+            objectContext.SetDebugInformation($"Scenario tags - {string.Join(", ", tags.Select(x => $"@{x}"))}");
         }
 
         public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> {DateTime.UtcNow:dd/MM HH:mm:ss}: {value}");
