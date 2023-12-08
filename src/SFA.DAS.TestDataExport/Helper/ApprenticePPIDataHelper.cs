@@ -1,6 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-
-namespace SFA.DAS.TestDataExport.Helper;
+﻿namespace SFA.DAS.TestDataExport.Helper;
 
 public class ApprenticePPIDataHelper
 {
