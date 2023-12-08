@@ -12,9 +12,9 @@
 
         #endregion
 
-        public static void SetTestDataList(this ObjectContext objectContext)
+        public static void SetTestDataList(this ObjectContext objectContext, string[] tags)
         {
-            objectContext.SetDebugInformations();
+            objectContext.SetDebugInformations(tags);
             objectContext.SetAccessibilityInformations();
             objectContext.SetAccessibilityPageTitles();
             objectContext.SetAfterStepInformations();
@@ -54,7 +54,12 @@
 
         #region DebugInformations
 
-        private static void SetDebugInformations(this ObjectContext objectContext) => objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
+        private static void SetDebugInformations(this ObjectContext objectContext, string[] tags)
+        {
+            objectContext.Set(DebugInformations, new FrameworkList<string>() { $"{string.Empty}" });
+
+            objectContext.SetDebugInformation($"Scenario tags : {string.Join(", ", tags.Select(x => x))}");
+        }
 
         public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> {DateTime.UtcNow:dd/MM HH:mm:ss}: {value}");
 
