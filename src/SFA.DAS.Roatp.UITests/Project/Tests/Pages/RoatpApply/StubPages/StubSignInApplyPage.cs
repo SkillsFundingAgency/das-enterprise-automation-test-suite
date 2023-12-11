@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages
 
         public StubYouHaveSignedInApplyPage SubmitValidUserDetails() => GoToStubYouHaveSignedInApplyPage(objectContext.GetEmail(), objectContext.GetSignInId(), false);
 
-        public StubYouHaveSignedInApplyPage CreateAccount(string email) => GoToStubYouHaveSignedInApplyPage(email, email, true);
+        public StubYouHaveSignedInApplyPage CreateAccount(string email, string idOrUserRef) => GoToStubYouHaveSignedInApplyPage(email, idOrUserRef, true);
 
         private StubYouHaveSignedInApplyPage GoToStubYouHaveSignedInApplyPage(string email, string idOrUserRef, bool newUser)
         {

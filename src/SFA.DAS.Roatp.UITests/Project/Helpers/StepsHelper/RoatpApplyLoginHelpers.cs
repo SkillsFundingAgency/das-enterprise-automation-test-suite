@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         {
             var datahelper = _context.Get<RoatpApplyCreateUserDataHelper>();
 
-            ApplyNow().CreateAccount(datahelper.CreateAccountEmail).Continue();
+            ApplyNow().CreateAccount(datahelper.CreateAccountEmail, datahelper.CreateAccountIdOrUserRef).Continue();
 
             new StubAddYourUserDetailsPage(_context).EnterNameAndContinue(datahelper);
         }
