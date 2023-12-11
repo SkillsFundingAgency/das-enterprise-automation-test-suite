@@ -8,10 +8,10 @@ public class StubAddYourUserDetailsPage : StubAddYourUserDetailsBasePage
 {
     public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) { }
 
-    public ConfirmYourIdentityPage EnterNameAndContinue(RoatpApplyCreateUserDataHelper dataHelper)
+    public EnterUkprnPage EnterNameAndContinue(RoatpApplyCreateUserDataHelper dataHelper)
     {
         EnterNameAndContinue(dataHelper.GivenName, dataHelper.FamilyName);
 
-        return new ConfirmYourIdentityPage(context);
+        return new EnterUkprnPage(context);
     }
 }

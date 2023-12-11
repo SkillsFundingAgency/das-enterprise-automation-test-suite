@@ -33,8 +33,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             var email = _applydataHelpers.CreateAccountEmail;
 
             _roatpApplyContactSqlDbHelper.DeleteContact(email);
-
-            _loginInvitationsSqlDbHelper.DeleteUser(email);
         }
     }
 }
