@@ -9,11 +9,13 @@ public abstract class GovStubSignCreateUserDataHelper
         var randomPersonNameHelper = new RandomPersonNameHelper();
 
         GivenName = randomPersonNameHelper.FirstName;
-        FamilyName = $"{randomPersonNameHelper.LastName}+{DateTimeExtension.GetDateTimeValue()}";
+        FamilyName = GetFamilyName(randomPersonNameHelper.LastName);
         CreateAccountEmail = $"{GivenName}_{FamilyName}@mailinator.com";
     }
 
     public string GivenName { get; protected set; }
     public string FamilyName { get; protected set; }
     public string CreateAccountEmail { get; protected set; }
+
+    protected static string GetFamilyName(string familyName) => $"{familyName}+{DateTimeExtension.GetDateTimeValue()}";
 }

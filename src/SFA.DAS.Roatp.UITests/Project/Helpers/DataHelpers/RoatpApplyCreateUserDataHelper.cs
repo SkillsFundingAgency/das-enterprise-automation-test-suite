@@ -17,7 +17,7 @@ public class RoatpApplyCreateUserDataHelper : GovStubSignCreateUserDataHelper
     {
         GivenName = data.GivenName;
 
-        FamilyName = $"{data.FamilyName}";
+        FamilyName = GetFamilyName(data.FamilyName);
 
         CreateAccountEmail = $"{GivenName}{FamilyName}@digital.education.gov.uk";
     }
