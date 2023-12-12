@@ -12,17 +12,26 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public override string ToString() => $"Username:'{Username}'";
     }
 
-    #region SingleAccountUser
+    public abstract class GovSignUser : LoginUser
+    {
+        public string IdOrUserRef { get; set; }
+    }
 
-    public abstract class EasAccountUser : LoginUser
+    public abstract class NonEasAccountUser : LoginUser
+    {
+        public string Password { get; set; }
+
+        public override string ToString() => $"{base.ToString()}, Password:'{Password}'";
+    }
+
+    public abstract class EasAccountUser : GovSignUser
     {
         public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
-
-        public string IdOrUserRef { get; set; }
-
     }
+
+    #region SingleAccountEasUser
 
     public class EmployerFeedbackUser : EasAccountUser { }
 
@@ -74,7 +83,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #endregion
 
-    #region MultipleAccountUser
+    #region MultipleAccountEasUser
     public abstract class MultipleEasAccountUser : EasAccountUser
     {
         public string SecondOrganisationName => LegalEntities?.ElementAtOrDefault(1);
@@ -95,31 +104,34 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #region NonEasAccountUser
 
-    public abstract class NonEasAccountUser : LoginUser
-    {
-        public string Password { get; set; }
+    #region GovSignUser
 
-        public override string ToString() => $"{base.ToString()}, Password:'{Password}'";
-    }
-
-    public class EPAOStandardApplyUser : NonEasAccountUser { }
-
-    public class EPAOAssessorUser : NonEasAccountUser { }
-
-    public class EPAODeleteAssessorUser : NonEasAccountUser { }
-
-    public class EPAOWithdrawalUser : NonEasAccountUser { }
-
-    public class EPAOManageUser : NonEasAccountUser { }
-
-    public class EPAOApplyUser : NonEasAccountUser
+    public abstract class EPAOAssessorPortalUser : GovSignUser
     {
         public string FullName { get; set; }
     }
 
-    public class EPAOStageTwoStandardCancelUser : NonEasAccountUser { }
+    public class EPAOAssessorPortalLoggedInUser : EPAOAssessorPortalUser { }
 
-    public class EPAOE2EApplyUser : NonEasAccountUser { }
+    public class EPAOStandardApplyUser : EPAOAssessorPortalUser { }
+
+    public class EPAOAssessorUser : EPAOAssessorPortalUser { }
+
+    public class EPAODeleteAssessorUser : EPAOAssessorPortalUser { }
+
+    public class EPAOWithdrawalUser : EPAOAssessorPortalUser { }
+
+    public class EPAOManageUser : EPAOAssessorPortalUser { }
+
+    public class EPAOApplyUser : EPAOAssessorPortalUser
+    {
+    }
+
+    public class EPAOStageTwoStandardCancelUser : EPAOAssessorPortalUser { }
+
+    public class EPAOE2EApplyUser : EPAOAssessorPortalUser { }
+
+    #endregion
 
     #region AanApprenticeUser
 

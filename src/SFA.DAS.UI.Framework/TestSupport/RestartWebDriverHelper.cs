@@ -31,6 +31,8 @@ public class RestartWebDriverHelper
 
         webDriver.Navigate().GoToUrl(url);
 
+        _objectContext.SetDebugInformation($"Restarted WebDriver and Navigated to {url}");
+
         _objectContext.SetCurrentApplicationName(applicationName);
     }
 

@@ -88,7 +88,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             RestartRoatpApply("apply");
 
-            _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
+            _roatpApplyLoginHelpers.SubmitValidUserDetails();
 
             new ApplicationOutcomePage(_context).VerifyApplicationOutcomePage(expectedPage, externalComments);
         }
@@ -100,7 +100,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         {
             RestartRoatpApply("apply");
 
-            _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetails();
+            _roatpApplyLoginHelpers.SubmitValidUserDetails();
+
             new AppealSubmittedPage(_context).VerifyAppealOutcomePage(expectedPage);
         }
 

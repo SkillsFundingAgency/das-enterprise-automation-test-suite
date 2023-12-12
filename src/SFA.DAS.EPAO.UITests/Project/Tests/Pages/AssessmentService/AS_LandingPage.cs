@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.StubPages;
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
 public class AS_LandingPage : EPAO_BasePage
 {
@@ -6,7 +8,7 @@ public class AS_LandingPage : EPAO_BasePage
 
     #region Locators
     private static By StartNowButton => By.LinkText("Start now");
-    private static By CreateAnAccountLink => By.XPath("//a[@href='/Account/CreateAnAccount']");
+    private static By CreateAnAccountLink => By.XPath("//a[@href='/Account/UpdateAnAccount']");
     #endregion
 
     public AS_LandingPage(ScenarioContext context) : base(context)
@@ -15,19 +17,21 @@ public class AS_LandingPage : EPAO_BasePage
         AcceptCookies();
     }
 
-    public AS_LoginPage GoToLoginPage()
+    public StubSignInAssessorPage GoToStubSign()
     {
         formCompletionHelper.Click(StartNowButton);
+
         return new(context);
     }
 
     public AS_ApplyForAStandardPage AlreadyLoginGoToApplyForAStandardPage()
     {
-        formCompletionHelper.Click(StartNowButton);
+        CheckAndLogin();
+
         return new(context);
     }
 
-    public AS_CreateAnAccountPage GoToCreateAccountPage()
+    public StubSignInAssessorPage GoToStubSignInAssessorPage()
     {
         formCompletionHelper.Click(CreateAnAccountLink);
         return new(context);
@@ -35,7 +39,16 @@ public class AS_LandingPage : EPAO_BasePage
 
     public AS_LoggedInHomePage AlreadyLoginGoToLoggedInHomePage()
     {
-        formCompletionHelper.Click(StartNowButton);
+        CheckAndLogin();
+
         return new(context);
     }
+
+    private void CheckAndLogin()
+    {
+        formCompletionHelper.Click(StartNowButton);
+
+        if (new CheckStubSignInAssessorPage(context).IsPageDisplayed()) new StubSignInAssessorPage(context).SubmitValidUserDetails(context.Get<EPAOAssessorPortalLoggedInUser>()).Continue();
+    }
+    
 }

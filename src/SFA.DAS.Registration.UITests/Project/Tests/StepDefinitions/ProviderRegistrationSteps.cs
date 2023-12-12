@@ -71,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             
             _tabHelper.OpenInNewTab(uri);
 
-            _accountCreationStepsHelper.RegisterUserAccount(new StubSignInPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
+            _accountCreationStepsHelper.RegisterUserAccount(new StubSignInEmployerPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
         }
 
         [When(@"the employer adds PAYE from TaskList Page")]

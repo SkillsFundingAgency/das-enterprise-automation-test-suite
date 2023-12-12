@@ -4,7 +4,6 @@ using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -25,8 +24,6 @@ public class RoatpConfigurationSetup
     [BeforeScenario(Order = 2)]
     public void SetUpRoatpConfigConfiguration()
     {
-        _context.SetRoatpConfig(_configSection.GetConfigSection<RoatpConfig>());
-
         var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
 
         _context.SetNonEasLoginUser(new List<NonEasAccountUser>

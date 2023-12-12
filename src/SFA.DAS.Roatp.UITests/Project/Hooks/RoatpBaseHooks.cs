@@ -6,6 +6,7 @@ using SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers;
 using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -19,7 +20,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
         private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
         private readonly RoatpQnASqlDbHelper _roatpQnASqlDbHelper;
         private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
-        private readonly RoatpConfig config;
         protected readonly DbConfig _dbConfig;
 
         private readonly RoatpApplyUkprnDataHelpers _roatpApplyUkprnDataHelpers;
@@ -34,7 +34,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
-            config = context.GetRoatpConfig<RoatpConfig>();
             _dbConfig = context.Get<DbConfig>();
             _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(_objectContext, _dbConfig);
             _roatpQnASqlDbHelper = new RoatpQnASqlDbHelper(_objectContext, _dbConfig);
@@ -51,7 +50,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         protected void SetUpApplyDataHelpers() => _context.Set(new RoatpApplyDataHelpers());
 
-        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelpers(config));
+        protected void SetUpCreateAccountApplyDataHelpers() => _context.Set(new RoatpApplyCreateUserDataHelper());
 
         protected void ClearDownApplyDataAndTrainingProvider()
         {
@@ -108,16 +107,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         private void SetEmail(string email)
         {
+            if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e")) return;
+
             _objectContext.SetEmail(email);
 
-            if (_context.ScenarioInfo.Tags.Contains("perftestroatpapplye2e"))
-            {
-                _objectContext.SetPassword("RoatpAutomation123");
-            }
-            else
-            {
-                _objectContext.SetPassword(config.ApplyPassword);
-            }
+            var signinId = new RoatpApplyContactSqlDbHelper(_objectContext, _dbConfig).GetSignInId(email);
+
+            _objectContext.SetSigninId(signinId);
         }
 
         private void SetDetails((string email, string providername, string ukprn) p)

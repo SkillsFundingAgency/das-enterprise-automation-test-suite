@@ -27,9 +27,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
 
-        public HomePage ReLogin() => new StubSignInPage(_context).Login(GetLoginCredentials()).ContinueToHomePage();
+        public HomePage ReLogin() => new StubSignInEmployerPage(_context).Login(GetLoginCredentials()).ContinueToHomePage();
 
-        public AccountUnavailablePage FailedLogin1() => new StubSignInPage(_context).Login(GetLoginCredentials()).GoToAccountUnavailablePage();
+        public AccountUnavailablePage FailedLogin1() => new StubSignInEmployerPage(_context).Login(GetLoginCredentials()).GoToAccountUnavailablePage();
 
         protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToHomePage();
 

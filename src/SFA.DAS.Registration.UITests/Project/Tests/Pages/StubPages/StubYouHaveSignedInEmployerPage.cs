@@ -1,34 +1,17 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.TestDataCleanup.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
+﻿using SFA.DAS.TestDataCleanup.Project.Helpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
-    public class StubYouHaveSignedInPage : VerifyBasePage
+    public class StubYouHaveSignedInEmployerPage : StubYouHaveSignedInBasePage
     {
-        protected override string PageTitle => "You've signed in";
 
-        protected override bool CanAnalyzePage => false;
-
-        private static By MainContent => By.CssSelector("[id='main-content']");
-
-        protected override By ContinueButton => By.CssSelector("a.govuk-button");
-
-        public StubYouHaveSignedInPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context)
+        public StubYouHaveSignedInEmployerPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context, username, idOrUserRef, newUser)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
-                () => VerifyPage(),
-                () => VerifyPage(MainContent, username),
-                () => newUser || VerifyPage(MainContent, idOrUserRef)
-            });
-
             if (newUser)
             {
                 idOrUserRef = new UsersSqlDataHelper(objectContext, context.Get<DbConfig>()).GetUserId(username);

@@ -21,7 +21,6 @@ global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUs
 global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.TestDataExport.Helper;
@@ -33,8 +32,6 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text.RegularExpressions;
 global using TechTalk.SpecFlow;
-using Polly;
-
 
 namespace SFA.DAS.EPAO.UITests.Project;
 
@@ -67,6 +64,8 @@ public class Hooks
         _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(objectContext, _config);
 
         _context.Set(_ePAOAdminSqlDataHelper);
+
+        _context.Set(new EPAOAssesorCreateUserDataHelper());
 
         _context.Set(new EPAOAssesmentServiceDataHelper());
 
