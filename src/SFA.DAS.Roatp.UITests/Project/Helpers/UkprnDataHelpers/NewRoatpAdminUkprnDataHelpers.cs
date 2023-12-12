@@ -13,157 +13,157 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rpadgw01",
               new List<KeyValuePair<string, string>>
              {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw01@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "PARAGON TRAINING AND CONSULTING LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10065592"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw01@digital.education.gov.uk"),
+                    new(providernamekey, "PARAGON TRAINING AND CONSULTING LIMITED"),
+                    new(ukprnkey, "10065592"),
              }); //rpe2e01
             _data.Add("rpadgw02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw02@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "WOODLANDS SPEAKS"),
-                    new KeyValuePair<string, string>(ukprnkey, "10065665"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw02@digital.education.gov.uk"),
+                    new(providernamekey, "WOODLANDS SPEAKS"),
+                    new(ukprnkey, "10065665"),
             }); //rpe2e02
             _data.Add("rpadgw03",
            new List<KeyValuePair<string, string>>
            {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw03@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "JOHN MICHAEL PLANT"),
-                    new KeyValuePair<string, string>(ukprnkey, "10066541"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw03@digital.education.gov.uk"),
+                    new(providernamekey, "JOHN MICHAEL PLANT"),
+                    new(ukprnkey, "10066541"),
            }); //rpe2e03
             _data.Add("rpadgw04",
              new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw04@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "FIT FOR SPORT LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10030570"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw04@digital.education.gov.uk"),
+                    new(providernamekey, "FIT FOR SPORT LIMITED"),
+                    new(ukprnkey, "10030570"),
             });//rpe2e01
             _data.Add("rpadgw05",
            new List<KeyValuePair<string, string>>
           {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw05@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "TRIRATNA SOUTHAMPTON"),
-                    new KeyValuePair<string, string>(ukprnkey, "10002617"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw05@digital.education.gov.uk"),
+                    new(providernamekey, "TRIRATNA SOUTHAMPTON"),
+                    new(ukprnkey, "10002617"),
           });//rpe2e02
             _data.Add("rpadgw06",
           new List<KeyValuePair<string, string>>
           {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw06@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "NIOMI SAMANTHA JOSEPH"),
-                    new KeyValuePair<string, string>(ukprnkey, "10066540"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw06@digital.education.gov.uk"),
+                    new(providernamekey, "NIOMI SAMANTHA JOSEPH"),
+                    new(ukprnkey, "10066540"),
          }); //rpe2e03
             _data.Add("rpadgw07",
            new List<KeyValuePair<string, string>>
           {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadgw07@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "JO INGHAM"),
-                    new KeyValuePair<string, string>(ukprnkey, "10040377"),
+                    new(emailkey, "sudhakar.chinoor+rpadgw07@digital.education.gov.uk"),
+                    new(providernamekey, "JO INGHAM"),
+                    new(ukprnkey, "10040377"),
          }); //rpe2e03
             _data.Add("rpadfha01",
              new List<KeyValuePair<string, string>>
              {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadfha01@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "HENRI BAPTISTE"),
-                    new KeyValuePair<string, string>(ukprnkey, "10054031"),
+                    new(emailkey, "sudhakar.chinoor+rpadfha01@digital.education.gov.uk"),
+                    new(providernamekey, "HENRI BAPTISTE"),
+                    new(ukprnkey, "10054031"),
              }); //rpe2e03, rpadgw03
             _data.Add("rpadfha02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+rpadfha02@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "CHURCHILL COLLEGE IN THE UNIVERSITY OF CAMBRIDGE"),
-                    new KeyValuePair<string, string>(ukprnkey, "10056258"),
+                    new(emailkey, "sudhakar.chinoor+rpadfha02@digital.education.gov.uk"),
+                    new(providernamekey, "CHURCHILL COLLEGE IN THE UNIVERSITY OF CAMBRIDGE"),
+                    new(ukprnkey, "10056258"),
             }); //rpe2e02, rpadgw02
             _data.Add("rpadas01",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadas01@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "7TAO ENGINEERING UK LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10082318"),
+                    new(emailkey,"sudhakar.chinoor+rpadas01@digital.education.gov.uk"),
+                    new(providernamekey, "7TAO ENGINEERING UK LIMITED"),
+                    new(ukprnkey, "10082318"),
             });//rpe2e01, rpadgw01
             _data.Add("rpadas02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadas02@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "BEDAZZLE PROJECTS"),
-                    new KeyValuePair<string, string>(ukprnkey, "10068209"),
+                    new(emailkey,"sudhakar.chinoor+rpadas02@digital.education.gov.uk"),
+                    new(providernamekey, "BEDAZZLE PROJECTS"),
+                    new(ukprnkey, "10068209"),
             });//rpe2e02, rpadgw02
             _data.Add("rpadas03",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadas03@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "ARTHUR MUREVERWI"),
-                    new KeyValuePair<string, string>(ukprnkey, "10028295"),
+                    new(emailkey,"sudhakar.chinoor+rpadas03@digital.education.gov.uk"),
+                    new(providernamekey, "ARTHUR MUREVERWI"),
+                    new(ukprnkey, "10028295"),
 
             });//rpe2e03, rpadgw03
             _data.Add("rpadmod01",
            new List<KeyValuePair<string, string>>
            {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod01@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "EASY MANAGEMENT OF AGGRESSION LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10008214"),
+                    new(emailkey,"sudhakar.chinoor+rpadmod01@digital.education.gov.uk"),
+                    new(providernamekey, "EASY MANAGEMENT OF AGGRESSION LIMITED"),
+                    new(ukprnkey, "10008214"),
            });//rpe2e01, rpadgw01, rpadas01
             _data.Add("rpadmod02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod02@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
-                    new KeyValuePair<string, string>(ukprnkey, "10038763"),
+                    new(emailkey,"sudhakar.chinoor+rpadmod02@digital.education.gov.uk"),
+                    new(providernamekey, "FORMISSION LTD"),
+                    new(ukprnkey, "10038763"),
             });//rpe2e02, rpadgw02, rpadas02
             _data.Add("rpadmod03",
             new List<KeyValuePair<string, string>>
             {
-                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadmod03@digital.education.gov.uk"),
-                   new KeyValuePair<string, string>(providernamekey, "LORNA BAIN"),
-                   new KeyValuePair<string, string>(ukprnkey, "10041478"),
+                   new(emailkey,"sudhakar.chinoor+rpadmod03@digital.education.gov.uk"),
+                   new(providernamekey, "LORNA BAIN"),
+                   new(ukprnkey, "10041478"),
             });//rpe2e03, rpadgw03, rpadas03
             _data.Add("rpadcla01",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla01@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "ALTURA LEARNING UNITED KINGDOM LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10082168"),
+                    new(emailkey,"sudhakar.chinoor+rpadcla01@digital.education.gov.uk"),
+                    new(providernamekey, "ALTURA LEARNING UNITED KINGDOM LIMITED"),
+                    new(ukprnkey, "10082168"),
             });//rpe2e01, rpadgw01, rpadas01, moderation (fail every section and ask for clarification)
             _data.Add("rpadcla02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadcla02@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "ONE VISION MEDIA"),
-                    new KeyValuePair<string, string>(ukprnkey, "10063154"),
+                    new(emailkey,"sudhakar.chinoor+rpadcla02@digital.education.gov.uk"),
+                    new(providernamekey, "ONE VISION MEDIA"),
+                    new(ukprnkey, "10063154"),
             });//rpe2e02, rpadgw02, rpadas02, moderation (fail few section and ask for clarification)
             _data.Add("rpadoutcome01",
             new List<KeyValuePair<string, string>>
             {
-                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadoutcome01@digital.education.gov.uk"),
-                   new KeyValuePair<string, string>(providernamekey, "FYLO LTD."),
-                   new KeyValuePair<string, string>(ukprnkey, "10067908"),
+                   new(emailkey,"sudhakar.chinoor+rpadoutcome01@digital.education.gov.uk"),
+                   new(providernamekey, "FYLO LTD."),
+                   new(ukprnkey, "10067908"),
             });//rpe2e01, rpadgw01, rpadas01, rpadmod01
             _data.Add("rpadoutcomeappeals01",
             new List<KeyValuePair<string, string>>
             {
-                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpadoutcomeappeals01@digital.education.gov.uk"),
-                   new KeyValuePair<string, string>(providernamekey, "COUNTY BUSINESS SCHOOL LIMITED"),
-                   new KeyValuePair<string, string>(ukprnkey, "10067972"),
+                   new(emailkey,"sudhakar.chinoor+rpadoutcomeappeals01@digital.education.gov.uk"),
+                   new(providernamekey, "COUNTY BUSINESS SCHOOL LIMITED"),
+                   new(ukprnkey, "10067972"),
             });//rpe2e01, rpadgw01, rpadas01, rpadmod01
             _data.Add("rpadallowlist01",
            new List<KeyValuePair<string, string>>
            {
-                   new KeyValuePair<string, string>(emailkey,"sudhakar.chinoor+rpallowlist01@digital.education.gov.uk"),
-                   new KeyValuePair<string, string>(providernamekey, "TEST"),
-                   new KeyValuePair<string, string>(ukprnkey, "10001234"),
+                   new(emailkey,"sudhakar.chinoor+rpallowlist01@digital.education.gov.uk"),
+                   new(providernamekey, "TEST"),
+                   new(ukprnkey, "10001234"),
            });
             _data.Add("rpadgatewayfailappeals01",
              new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GatewayFailAppeal@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "DONCASTER ROVERS FOOTBALL CLUB LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10030581"),
+                    new(emailkey, "sudhakar.chinoor+GatewayFailAppeal@digital.education.gov.uk"),
+                    new(providernamekey, "DONCASTER ROVERS FOOTBALL CLUB LIMITED"),
+                    new(ukprnkey, "10030581"),
             });//rpe2e01 ,rpadgw04
             _data.Add("rpadgatewayrejectreapplications01",
             new List<KeyValuePair<string, string>>
            {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GatewayRejectReapplication@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(providernamekey, "DORSET COUNTY FOOTBALL ASSOCIATION LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10030587"),
+                    new(emailkey, "sudhakar.chinoor+GatewayRejectReapplication@digital.education.gov.uk"),
+                    new(providernamekey, "DORSET COUNTY FOOTBALL ASSOCIATION LIMITED"),
+                    new(ukprnkey, "10030587"),
            });//rpe2e01 ,rpadgw05
         }
     }

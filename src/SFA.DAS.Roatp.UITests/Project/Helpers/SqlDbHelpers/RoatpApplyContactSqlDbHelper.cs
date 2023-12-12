@@ -9,6 +9,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public void DeleteContact(string email) => ExecuteSqlCommand($"DELETE FROM Contacts WHERE Email ='{email}'");
 
-        public string GetSignInId(string email) => GetDataAsString($"select SigninId from dbo.Contacts where email = '{email}'");
+        public string GetSignInId(string email) => GetNullableData($"select SigninId from dbo.Contacts where email = '{email}'");
     }
 }
