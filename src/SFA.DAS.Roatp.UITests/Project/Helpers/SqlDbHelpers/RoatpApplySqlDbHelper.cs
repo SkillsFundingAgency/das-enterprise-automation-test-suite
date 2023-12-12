@@ -103,10 +103,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         private string GeRejectedApplication_ApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'Rejected';";
 
-        public void Delete_AllowListProviders(string ukprn)
-        {
-            var deleteAllowListProviderQuery = $"DELETE FROM AllowedProviders WHERE [UKPRN] = {ukprn}";
-            ExecuteSqlCommand(deleteAllowListProviderQuery);
-        }
+        public void Delete_AllowListProviders(string ukprn) => ExecuteSqlCommand($"DELETE FROM AllowedProviders WHERE [UKPRN] = {ukprn}");
     }
 }

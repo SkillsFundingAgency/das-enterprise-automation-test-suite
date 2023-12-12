@@ -4,6 +4,5 @@
 @roatp
 @roatpapply
 @regression
-@govloginapplytests
 Scenario: RP_TC_01_Do Not Accept the Terms and Conditions
 	Then the provider do not accept the Terms and conditions

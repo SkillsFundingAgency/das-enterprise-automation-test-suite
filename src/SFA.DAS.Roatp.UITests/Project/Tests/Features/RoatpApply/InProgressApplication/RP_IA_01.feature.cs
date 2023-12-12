@@ -79,18 +79,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.InProgressAppl
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("rpip01")]
-        [NUnit.Framework.CategoryAttribute("govloginapplytests")]
         public void RP_IA_01_InProgress_Application()
         {
             string[] tagsOfScenario = new string[] {
                     "roatpapplyinprogressapplication",
                     "roatp",
                     "regression",
-                    "rpip01",
-                    "govloginapplytests"};
+                    "rpip01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_IA_01_InProgress_Application", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 9
  testRunner.When("a user with in progress application login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the user will be directed to their current application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
