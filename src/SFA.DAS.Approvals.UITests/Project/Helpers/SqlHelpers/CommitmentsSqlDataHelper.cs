@@ -6,10 +6,8 @@ using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    public class CommitmentsSqlDataHelper : SqlDbHelper
+    public class CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.CommitmentsDbConnectionString)
     {
-        public CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
-
         public (string apprenticeshipid, string dob, string fname, string lname, string startDate, string trainningName, string uln, string ukprn) GetDataFromComtDb(string accountid)
         {
             var query = @$"select top 1 a.Id, a.DateOfBirth, a.FirstName, a.LastName, a.StartDate, a.TrainingName, a.ULN, c.ProviderId from dbo.Apprenticeship a
@@ -67,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToInt32(WaitAndGetDataAsObject(query));
         }
 
-        public string GetNewcohortReferenceWithNoContinuation(string ULN, string title)
+        public string GetNewcohortReferenceWithNoContinuation(string ULN)
         {
             string query = $@"SELECT Reference FROM Commitment cmt
                                 INNER JOIN Apprenticeship app
@@ -165,7 +163,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return GetDataAsObject(query);
         }
 
-        public string getPledgeApplicationId(string reference)
+        public string GetPledgeApplicationId(string reference)
         {
             string query = $@"select PledgeApplicationId from  [dbo].[Commitment] " +
                 $" where Reference = '{reference}'";
@@ -253,7 +251,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         {
             var sql = @$"  Update Apprenticeship
                           set PaymentStatus = 4
-                          , CompletionDate = '{DateTime.UtcNow.ToString("MM-dd-yyyy")}'
+                          , CompletionDate = '{DateTime.UtcNow:MM-dd-yyyy}'
                           Where ULN = '{uln}'";
 
             var rowsEffected = ExecuteSqlCommand(sql);

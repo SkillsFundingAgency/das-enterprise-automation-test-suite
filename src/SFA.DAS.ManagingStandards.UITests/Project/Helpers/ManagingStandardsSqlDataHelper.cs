@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Helpers;
 
-public class ManagingStandardsSqlDataHelper : SqlDbHelper
+public class ManagingStandardsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.ManagingStandardsDbConnectionString)
 {
-    public ManagingStandardsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ManagingStandardsDbConnectionString) { }
-
     public void ClearRegulation(string ukprn, string larsCode) => ExecuteSqlCommand($"update providercourse set IsApprovedByRegulator = NULL " +
         $"where LarsCode = '{larsCode}' and providerid = (select Id from provider where ukprn = {ukprn})");
 

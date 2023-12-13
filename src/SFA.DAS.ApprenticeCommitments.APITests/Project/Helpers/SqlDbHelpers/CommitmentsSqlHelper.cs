@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class CommitmentsSqlHelper : SqlDbHelper
+    public class CommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.CommitmentsDbConnectionString)
     {
-        public CommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.CommitmentsDbConnectionString) { }
-
         public (string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
         {
             var query = $"SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";

@@ -58,7 +58,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             // Verify that there is only 1 record in [Cache].[DataCollectionsResponse] table that is manually inserted
             // Use the correlationId and Uln for the check
 
-            int count = _employmentChecksSqlDbHelper.getCountFromDataCollectionResponse(_testData.ULN);
+            int count = _employmentChecksSqlDbHelper.GetCountFromDataCollectionResponse(_testData.ULN);
 
             Assert.AreEqual(1, count, "Unexpected number of DataCollectionsResponse rows found!");
         }
@@ -66,7 +66,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"an employment check request to HMRC is created using the Nino provided")]
         public void ThenAnEmploymentCheckRequestToHMRCIsCreatedUsingTheNinoProvided()
         {
-            var request = _employmentChecksSqlDbHelper.getEmploymentCheckCacheRequestRows();
+            var request = _employmentChecksSqlDbHelper.GetEmploymentCheckCacheRequestRows();
 
             Assert.AreEqual(1, request.Count, "Unexpected number of requests in [Cache].[EmploymentCheckCacheRequest] table");
             Assert.AreEqual(_testData.NationalInsuranceNumber, request[0][3].ToString(), "Unexpected NINO found in [Cache].[EmploymentCheckCacheRequest] table");

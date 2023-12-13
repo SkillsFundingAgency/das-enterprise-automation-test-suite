@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 
-public class AccountsSqlDataHelper : SqlDbHelper
+public class AccountsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
 {
-    public AccountsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
-
     public (string name, DateTime createdDate, string hashedId, string email, string fName, string lName, string payeref) GetAccountDetails(string publicHashedId)
     {
         var query = $"select Top 1 a.Name,a.CreatedDate,a.HashedId,u.Email,u.FirstName,u.LastName,ah.PayeRef from employer_account.Account a " +

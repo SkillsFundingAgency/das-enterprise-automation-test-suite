@@ -32,13 +32,13 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
             int requestId = _employmentChecksSqlDbHelper.GetEmploymentCheckCacheRequestId(1);
 
             // verify that RequestCompletionStatus for this paye is set to 2 [completed]
-            int status = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatus(requestId);
+            int status = _employmentChecksSqlDbHelper.GetHmrcRequestCompletionStatus(requestId);
 
             Assert.AreEqual(2, status, "Completion Status for the first paye scheme is not as expected");
 
             // verify following Paye Schemes have been abandoned in [Cache].[EmploymentCheckCacheRequest] table
 
-            var completionStatuses = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatuses(requestId);
+            var completionStatuses = _employmentChecksSqlDbHelper.GetHmrcRequestCompletionStatuses(requestId);
 
             // RequestCompletionstatus 3 represents 'Abandoned' records
             for (int i= 0; i < completionStatuses.Count; i++)
@@ -48,7 +48,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             // verify no subsequest calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
 
-            int count = _employmentChecksSqlDbHelper.getNumberOfHmrcCallsAfterId(requestId);
+            int count = _employmentChecksSqlDbHelper.GetNumberOfHmrcCallsAfterId(requestId);
 
             Assert.AreEqual(0, count, $"{count} subsequest call to HMRC were made after the apprentice was found employed on one of the paye schemes");
         }
@@ -63,13 +63,13 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 
             // verify that subsequent check for the next paye scheme is not abandoned in [Cache].[EmploymentCheckCacheRequest] table
 
-            var completionStatus = _employmentChecksSqlDbHelper.getHmrcRequestCompletionStatuses(requestId);
+            var completionStatus = _employmentChecksSqlDbHelper.GetHmrcRequestCompletionStatuses(requestId);
 
             Assert.AreNotEqual(3, completionStatus[0][0], "Completion Status is set to 3 [Abandoned] which is not expected");
 
             // verify subsequent calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table
 
-            int count = _employmentChecksSqlDbHelper.getNumberOfHmrcCallsAfterId(requestId);
+            int count = _employmentChecksSqlDbHelper.GetNumberOfHmrcCallsAfterId(requestId);
 
             Assert.Greater(count, 0, " No further calls have been made to HMRC in [Cache].[EmploymentCheckCacheResponse] table");
         }

@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 
-public class AANSqlHelper : SqlDbHelper
+public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AANDbConnectionString)
 {
-    public AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AANDbConnectionString) { }
-
     public (string, DateTime) GetNextActiveEventDetails(string email)
     {
         var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");

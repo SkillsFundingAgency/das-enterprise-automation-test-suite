@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 
-public class EPAOAdminCASqlDataHelper : SqlDbHelper
+public class EPAOAdminCASqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
 {
-    public EPAOAdminCASqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
-
     public void DeleteCertificate(string uln, string standardcode)
     {
         if (string.IsNullOrEmpty(uln)) return;
@@ -25,7 +23,7 @@ public class EPAOAdminCASqlDataHelper : SqlDbHelper
 
     private static List<string> GetTestData(Func<List<string>> func)
     {
-        List<string> data = new();
+        List<string> data = [];
 
         int i = 0;
 

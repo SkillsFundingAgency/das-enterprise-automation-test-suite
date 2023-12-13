@@ -5,20 +5,13 @@ using static SFA.DAS.FrameworkHelpers.WaitConfigurationHelper;
 
 namespace SFA.DAS.FrameworkHelpers;
 
-public class SqlDbBaseHelper
+public class SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
 {
     protected bool waitForResults = false;
 
-    protected readonly string connectionString;
+    protected readonly string connectionString = connectionString;
 
-    protected readonly ObjectContext objectContext;
-
-    public SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
-    {
-       this.connectionString = connectionString;
-
-       this.objectContext = objectContext;
-    }
+    protected readonly ObjectContext objectContext = objectContext;
 
     #region ExecuteSqlCommand
 
@@ -34,23 +27,19 @@ public class SqlDbBaseHelper
 
         try
         {
-            using (SqlConnection databaseConnection = GetSqlConnection(connectionString))
+            using SqlConnection databaseConnection = GetSqlConnection(connectionString);
+            databaseConnection.Open();
+
+            using SqlCommand command = new(queryToExecute, databaseConnection);
+            if (parameters != null)
             {
-                databaseConnection.Open();
-
-                using (SqlCommand command = new(queryToExecute, databaseConnection))
+                foreach (KeyValuePair<string, string> param in parameters)
                 {
-                    if (parameters != null)
-                    {
-                        foreach (KeyValuePair<string, string> param in parameters)
-                        {
-                            command.Parameters.AddWithValue(param.Key, param.Value);
-                        }
-                    }
-
-                    return command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue(param.Key, param.Value);
                 }
             }
+
+            return command.ExecuteNonQuery();
         }
         catch (Exception exception)
         {
@@ -63,7 +52,7 @@ public class SqlDbBaseHelper
     protected List<object[]> GetListOfData(string queryToExecute) => GetListOfData(queryToExecute, connectionString, null).data;
 
     protected (List<object[]> data, int noOfColumns) GetListOfData(string queryToExecute, string connectionString, Dictionary<string, string> parameters) =>
-        GetMultipleListOfData(new List<string> { queryToExecute }, connectionString, parameters).FirstOrDefault();
+        GetMultipleListOfData([queryToExecute], connectionString, parameters).FirstOrDefault();
 
     protected List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute) =>
         GetMultipleListOfData(queryToExecute, connectionString, null);
@@ -74,37 +63,33 @@ public class SqlDbBaseHelper
 
         try
         {
-            using (SqlConnection dbConnection = GetSqlConnection(connectionString))
+            using SqlConnection dbConnection = GetSqlConnection(connectionString);
+            using SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection);
+            command.CommandType = CommandType.Text;
+
+            if (parameters != null)
             {
-                using (SqlCommand command = new(string.Join(string.Empty, queryToExecute), dbConnection))
+                foreach (KeyValuePair<string, string> param in parameters)
                 {
-                    command.CommandType = CommandType.Text;
-
-                    if (parameters != null)
-                    {
-                        foreach (KeyValuePair<string, string> param in parameters)
-                        {
-                            command.Parameters.AddWithValue(param.Key, param.Value);
-                        }
-                    }
-
-                    var result = RetriveData(queryToExecute, dbConnection, command);
-
-                    if (waitForResults)
-                    {
-                        WaitHelper.WaitForIt(() =>
-                        {
-                            if (result.Any(x => x.data.Any(y => !string.IsNullOrEmpty(y?.ToString())))) return true;
-
-                            result = RetriveData(queryToExecute, dbConnection, command);
-
-                            return false;
-                        }, $"{queryToExecute.FirstOrDefault()}{Environment.NewLine}{WriteDebugMessage(connectionString)}").Wait();
-                    }
-
-                    return result;
+                    command.Parameters.AddWithValue(param.Key, param.Value);
                 }
             }
+
+            var result = RetriveData(queryToExecute, dbConnection, command);
+
+            if (waitForResults)
+            {
+                WaitHelper.WaitForIt(() =>
+                {
+                    if (result.Any(x => x.data.Any(y => !string.IsNullOrEmpty(y?.ToString())))) return true;
+
+                    result = RetriveData(queryToExecute, dbConnection, command);
+
+                    return false;
+                }, $"{queryToExecute.FirstOrDefault()}{Environment.NewLine}{WriteDebugMessage(connectionString)}").Wait();
+            }
+
+            return result;
         }
         catch (Exception exception)
         {
@@ -115,7 +100,7 @@ public class SqlDbBaseHelper
 
     private static List<(List<object[]> data, int noOfColumns)> RetriveData(List<string> queryToExecute, SqlConnection dbConnection, SqlCommand command)
     {
-        List<(List<object[]>, int)> multiresult = new();
+        List<(List<object[]>, int)> multiresult = [];
 
         dbConnection.Open();
 
@@ -123,7 +108,7 @@ public class SqlDbBaseHelper
 
         foreach (var _ in queryToExecute)
         {
-            List<object[]> result = new();
+            List<object[]> result = [];
             int noOfColumns = dataReader.FieldCount;
             while (dataReader.Read())
             {
