@@ -14,11 +14,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage(ScenarioContext context) : base(context)  { }
 
-        internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider(string ukprn)
+        public ConfirmTrainingProviderPage SearchForATrainingProvider(string ukprn)
         {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
-            return new ConfirmTrainingProviderUnderPermissionsPage(context);
+            return new ConfirmTrainingProviderPage(context);
         }
     }
 }
