@@ -1,62 +1,49 @@
-﻿using System.Text.RegularExpressions;
-
-namespace SFA.DAS.ConfigurationBuilder
+﻿namespace SFA.DAS.ConfigurationBuilder
 {
-    public class LocalHostDbConfig
+    public class LocalHostDbConfig(DbDevConfig dbDevConfig, bool useSqlLogin)
     {
-        private readonly DbDevConfig _dbDevConfig;
-
-        private readonly bool _useSqlLogin;
-
-        public LocalHostDbConfig(DbDevConfig dbDevConfig, bool useSqlLogin)
-        {
-            _useSqlLogin = useSqlLogin;
-            
-            _dbDevConfig = dbDevConfig;
-        }
-
         internal DbConfig GetLocalHostDbConfig()
         {
             return new DbConfig
             {
-                DatamartDbConnectionString = GetConnectionString(_dbDevConfig.DatamartDbName),
-                AccountsDbConnectionString = GetConnectionString(_dbDevConfig.AccountsDbName),
-                FinanceDbConnectionString = GetConnectionString(_dbDevConfig.FinanceDbName),
-                FcastDbConnectionString = GetConnectionString(_dbDevConfig.FcastDbName),
-                CommitmentsDbConnectionString = GetConnectionString(_dbDevConfig.CommitmentsDbName),
-                ApprenticeCommitmentDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentDbName),
-                ApprenticeCommitmentLoginDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentLoginDbName),
-                ApprenticeCommitmentAccountsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeCommitmentAccountsDbName),
-                ApplyDatabaseConnectionString = GetConnectionString(_dbDevConfig.ApplyDatabaseName),
-                LoginDatabaseConnectionString = GetConnectionString(_dbDevConfig.LoginDatabaseName),
-                QnaDatabaseConnectionString = GetConnectionString(_dbDevConfig.QnaDatabaseName),
-                RoatpDatabaseConnectionString = GetConnectionString(_dbDevConfig.RoatpDatabaseName),
-                EmployerFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.EmployerFeedbackDbName),
-                ApprenticeFeedbackDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeFeedbackDbName),  
-                AssessorDbConnectionString = GetConnectionString(_dbDevConfig.AssessorDbName),
-                IncentivesDbConnectionString = GetConnectionString(_dbDevConfig.EmployerIncentivesDbName),
-                ReservationsDbConnectionString = GetConnectionString(_dbDevConfig.ReservationsDbName),
-                PermissionsDbConnectionString = GetConnectionString(_dbDevConfig.PermissionsDbName),
-                PublicSectorReportingConnectionString = GetConnectionString(_dbDevConfig.PublicSectorReportingDbName),
-                PregDbConnectionString = GetConnectionString(_dbDevConfig.PregDbName),
-                TPRDbConnectionString = GetConnectionString(_dbDevConfig.TPRDbName),
-                UsersDbConnectionString = GetConnectionString(_dbDevConfig.UsersDbName),
-                TMDbConnectionString = GetConnectionString(_dbDevConfig.TMDbName),
-                CRSDbConnectionString = GetConnectionString(_dbDevConfig.CrsDbName),
-                EmploymentCheckDbConnectionString = GetConnectionString(_dbDevConfig.EmploymentCheckDbName),
-                ManagingStandardsDbConnectionString = GetConnectionString(_dbDevConfig.ManagingStandardsDbName),
-                EarningsDbConnectionString = GetConnectionString(_dbDevConfig.EarningsDbName),
-                ApprenticeshipsDbConnectionString = GetConnectionString(_dbDevConfig.ApprenticeshipsDbName),
-                RofjaaDbConnectionString = GetConnectionString(_dbDevConfig.RofjaaDbName),
-                AANDbConnectionString = GetConnectionString(_dbDevConfig.AANDbName)
+                DatamartDbConnectionString = GetConnectionString(dbDevConfig.DatamartDbName),
+                AccountsDbConnectionString = GetConnectionString(dbDevConfig.AccountsDbName),
+                FinanceDbConnectionString = GetConnectionString(dbDevConfig.FinanceDbName),
+                FcastDbConnectionString = GetConnectionString(dbDevConfig.FcastDbName),
+                CommitmentsDbConnectionString = GetConnectionString(dbDevConfig.CommitmentsDbName),
+                ApprenticeCommitmentDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeCommitmentDbName),
+                ApprenticeCommitmentLoginDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeCommitmentLoginDbName),
+                ApprenticeCommitmentAccountsDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeCommitmentAccountsDbName),
+                ApplyDatabaseConnectionString = GetConnectionString(dbDevConfig.ApplyDatabaseName),
+                LoginDatabaseConnectionString = GetConnectionString(dbDevConfig.LoginDatabaseName),
+                QnaDatabaseConnectionString = GetConnectionString(dbDevConfig.QnaDatabaseName),
+                RoatpDatabaseConnectionString = GetConnectionString(dbDevConfig.RoatpDatabaseName),
+                EmployerFeedbackDbConnectionString = GetConnectionString(dbDevConfig.EmployerFeedbackDbName),
+                ApprenticeFeedbackDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeFeedbackDbName),
+                AssessorDbConnectionString = GetConnectionString(dbDevConfig.AssessorDbName),
+                IncentivesDbConnectionString = GetConnectionString(dbDevConfig.EmployerIncentivesDbName),
+                ReservationsDbConnectionString = GetConnectionString(dbDevConfig.ReservationsDbName),
+                PermissionsDbConnectionString = GetConnectionString(dbDevConfig.PermissionsDbName),
+                PublicSectorReportingConnectionString = GetConnectionString(dbDevConfig.PublicSectorReportingDbName),
+                PregDbConnectionString = GetConnectionString(dbDevConfig.PregDbName),
+                TPRDbConnectionString = GetConnectionString(dbDevConfig.TPRDbName),
+                UsersDbConnectionString = GetConnectionString(dbDevConfig.UsersDbName),
+                TMDbConnectionString = GetConnectionString(dbDevConfig.TMDbName),
+                CRSDbConnectionString = GetConnectionString(dbDevConfig.CrsDbName),
+                EmploymentCheckDbConnectionString = GetConnectionString(dbDevConfig.EmploymentCheckDbName),
+                ManagingStandardsDbConnectionString = GetConnectionString(dbDevConfig.ManagingStandardsDbName),
+                EarningsDbConnectionString = GetConnectionString(dbDevConfig.EarningsDbName),
+                ApprenticeshipsDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeshipsDbName),
+                RofjaaDbConnectionString = GetConnectionString(dbDevConfig.RofjaaDbName),
+                AANDbConnectionString = GetConnectionString(dbDevConfig.AANDbName)
             };
         }
 
         private string GetConnectionString(string dbName)
         {
-            string GetDbName() => _useSqlLogin ? "Database" : "Initial Catalog";
+            string GetDbName() => useSqlLogin ? "Database" : "Initial Catalog";
 
-            var x = $"Server={_dbDevConfig.Server};{GetDbName()}={dbName};{_dbDevConfig.ConnectionDetails};";
+            var x = $"Server={dbDevConfig.Server};{GetDbName()}={dbName};{dbDevConfig.ConnectionDetails};";
 
             return EnvironmentConfig.ReplaceEnvironmentName(x);
         }
