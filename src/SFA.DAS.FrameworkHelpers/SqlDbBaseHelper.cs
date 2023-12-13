@@ -5,7 +5,7 @@ using static SFA.DAS.FrameworkHelpers.WaitConfigurationHelper;
 
 namespace SFA.DAS.FrameworkHelpers;
 
-public class SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
+public partial class SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
 {
     protected bool waitForResults = false;
 
@@ -128,7 +128,10 @@ public class SqlDbBaseHelper(ObjectContext objectContext, string connectionStrin
 
     private static SqlConnection GetSqlConnection(string connectionString) => GetSqlConnectionHelper.GetSqlConnection(connectionString);
 
-    private static string WriteDebugMessage(string connectionString) => Regex.Replace(connectionString, @"Password=.*;Trusted_Connection", "Password=<*******>;Trusted_Connection");
+    private static string WriteDebugMessage(string connectionString) => ConnectionStringRegex().Replace(connectionString, "Password=<*******>;Trusted_Connection");
 
     private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
+    
+    [GeneratedRegex(@"Password=.*;Trusted_Connection")]
+    private static partial Regex ConnectionStringRegex();
 }

@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 
-public class EPAOAdminCASqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
+public partial class EPAOAdminCASqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
 {
     public void DeleteCertificate(string uln, string standardcode)
     {
@@ -59,17 +59,30 @@ public class EPAOAdminCASqlDataHelper(ObjectContext objectContext, DbConfig dbCo
 
     private static string GetTestData(string sqlQueryFromFile, bool isActiveStandard, bool hasMultipleVersions, bool withOptions, bool versionConfirmed, bool optionSet)
     {
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Isactivestandard__", isActiveStandard ? $"{1}" : $"{0}");
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasVersions__", hasMultipleVersions ? $"{1}" : $"{0}");
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__HasOptions__", withOptions ? $"{1}" : $"{0}");
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__InUseUln__", EPAOCAInUseUlns.GetInUseUln());
+        sqlQueryFromFile = IsActiveStandardRegex().Replace(sqlQueryFromFile, isActiveStandard ? $"{1}" : $"{0}");
+        sqlQueryFromFile = HasVersionsRegex().Replace(sqlQueryFromFile, hasMultipleVersions ? $"{1}" : $"{0}");
+        sqlQueryFromFile = HasOptionsRegex().Replace(sqlQueryFromFile, withOptions ? $"{1}" : $"{0}");
+        sqlQueryFromFile = InUseUlnRegex().Replace(sqlQueryFromFile, EPAOCAInUseUlns.GetInUseUln());
 
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__VersionConfirmed__", versionConfirmed ? $"{1}" : $"{0}");
-        sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__OptionSet__", optionSet ? $"{1}" : $"{0}");
+        sqlQueryFromFile = VersionConfirmedRegex().Replace(sqlQueryFromFile, versionConfirmed ? $"{1}" : $"{0}");
+        sqlQueryFromFile = OptionSetRegex().Replace(sqlQueryFromFile, optionSet ? $"{1}" : $"{0}");
 
 
         return sqlQueryFromFile;
     }
 
     private static string GetLearnersDataSqlFileName(LearnerCriteria learnerCriteria) => learnerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
+    
+    [GeneratedRegex(@"__Isactivestandard__")]
+    private static partial Regex IsActiveStandardRegex();
+    [GeneratedRegex(@"__HasVersions__")]
+    private static partial Regex HasVersionsRegex();
+    [GeneratedRegex(@"__HasOptions__")]
+    private static partial Regex HasOptionsRegex();
+    [GeneratedRegex(@"__InUseUln__")]
+    private static partial Regex InUseUlnRegex();
+    [GeneratedRegex(@"__VersionConfirmed__")]
+    private static partial Regex VersionConfirmedRegex();
+    [GeneratedRegex(@"__OptionSet__")]
+    private static partial Regex OptionSetRegex();
 }
