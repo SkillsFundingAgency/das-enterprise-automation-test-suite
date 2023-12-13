@@ -11,7 +11,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
         private readonly IConfigurationRoot _configurationRoot;
 
-        private readonly ConfigSection _configSection;
+        private readonly IConfigSection _configSection;
 
         public ConfigurationSetup(ScenarioContext context)
         {
