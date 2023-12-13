@@ -11,7 +11,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
         private readonly IConfigurationRoot _configurationRoot;
 
-        private readonly IConfigSection _configSection;
+        private readonly ConfigSection _configSection;
 
         public ConfigurationSetup(ScenarioContext context)
         {
@@ -25,9 +25,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
         {
             _context.Set(_configSection);
 
-            var dbConfig = _configSection.GetConfigSection<DbConfig>();
-
-            if (!Configurator.IsVstsExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>(), _context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
+            var dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbConfigusingMI>(), _context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
 
             _context.Set(dbConfig);
         }

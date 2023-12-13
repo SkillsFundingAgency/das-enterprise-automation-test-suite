@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ConfigurationBuilder
 {
-    public class LocalHostDbConfig(DbDevConfig dbDevConfig, bool useSqlLogin)
+    public class LocalHostDbConfig(DbConfigusingMI dbDevConfig, bool useSqlLogin)
     {
         internal DbConfig GetLocalHostDbConfig()
         {
