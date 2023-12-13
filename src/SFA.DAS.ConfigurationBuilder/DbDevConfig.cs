@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ConfigurationBuilder
 {
-    public class DbConfigusingMI
+    public class DbDevConfig
     {
         public string Server { get; set; }
         public string ConnectionDetails { get; set; }
