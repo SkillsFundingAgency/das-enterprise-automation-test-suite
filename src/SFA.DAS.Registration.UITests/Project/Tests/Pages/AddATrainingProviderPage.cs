@@ -10,11 +10,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public AddATrainingProviderPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public EmployerAccountCreatedPage AddTrainingProviderNow()
+        public YourTrainingProvidersPage AddTrainingProviderNow()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes, I'll add a training provider now");
             Continue();
-            return new EmployerAccountCreatedPage(context);
+            return new YourTrainingProvidersPage(context);
         }
 
         public EmployerAccountCreatedPage AddTrainingProviderLater()

@@ -11,6 +11,8 @@ using System;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -102,9 +104,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .ProviderLeadRegistrationSignAgreement()
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderNow()
+                .SelectAddATrainingProvider()
+                .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>().Ukprn)
+                .ConfirmTrainingProvider()
+                .SelectSaveAndComeBackLater()
+                .SelectContinueCreatingYourAccount()
+                .GoToTrainingProviderPermissionsLink()
+                .SelectSetPermissions("")
                 .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
                 .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-                .ConfirmProviderLeadRegistrationPermissions();
+                .ConfirmProviderLeadRegistrationPermissions()
+                .ContinueToAccountCreationConfirmationPage()
+                .SelectGoToYourEmployerAccountHomepage();
 
         }
 
