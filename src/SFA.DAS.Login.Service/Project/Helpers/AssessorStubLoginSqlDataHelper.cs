@@ -5,10 +5,8 @@ using System.Linq;
 
 namespace SFA.DAS.Login.Service.Project.Helpers;
 
-public class AssessorStubLoginSqlDataHelper : SqlDbHelper
+public class AssessorStubLoginSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
 {
-    public AssessorStubLoginSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
-
     internal List<(string signInId, string displayName)> GetSignInIds(List<string> emails)
     {
         static string func(List<string> x) => x.IsNoDataFound() ? string.Empty : x.FirstOrDefault();

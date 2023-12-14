@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
-    public class RoatpApplySqlDbHelper : SqlDbHelper
+    public class RoatpApplySqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.ApplyDatabaseConnectionString)
     {
-        public RoatpApplySqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString) { }
-
         public void GateWayClearDownDataFromApply(string ukprn)
         {
             var applicationId = GetDataAsString($"SELECT ApplicationId from dbo.Apply where ukprn = {ukprn}");
@@ -99,9 +97,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
            $"UPDATE Apply set [ApplyData] = JSON_MODIFY(JSON_MODIFY(JSON_Modify(ApplyData, '$.ApplyDetails.RequestToReapplyMade', null), '$.ApplyDetails.RequestToReapplyBy', null), '$.ApplyDetails.RequestToReapplyOn', null) " +
             $"Where ApplicationId =  @ApplicationID");
 
-        private string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
+        private static string GetApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn};";
 
-        private string GeRejectedApplication_ApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'Rejected';";
+        private static string GeRejectedApplication_ApplicationId(string ukprn) => $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'Rejected';";
 
         public void Delete_AllowListProviders(string ukprn) => ExecuteSqlCommand($"DELETE FROM AllowedProviders WHERE [UKPRN] = {ukprn}");
     }

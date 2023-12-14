@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
-    public class RoatpAdminSqlDbHelper : SqlDbHelper
+    public class RoatpAdminSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.RoatpDatabaseConnectionString)
     {
-        public RoatpAdminSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.RoatpDatabaseConnectionString) { }
-
         public void DeleteTrainingProvider(string ukprn) => ExecuteSqlCommand($"DELETE FROM Organisations WHERE UKPRN ='{ukprn}'");
     }
 }

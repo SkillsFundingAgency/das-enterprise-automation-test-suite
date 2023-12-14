@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    public class RofjaaDbSqlHelper : SqlDbHelper
+    public class RofjaaDbSqlHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.RofjaaDbConnectionString)
     {
-        public RofjaaDbSqlHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.RofjaaDbConnectionString) {}
-
         public string GetAccountLegalEntityId(string removalReason) => GetDataAsString($"SELECT LegalEntityId FROM Agency WHERE RemovalReason = '{removalReason}'");
 
         public void RemoveFJAAEmployerFromRegister()

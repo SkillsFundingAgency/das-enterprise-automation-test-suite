@@ -7,17 +7,15 @@ using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    public class CrsSqlhelper : SqlDbHelper
+    public class CrsSqlhelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.CRSDbConnectionString)
     {
         private static string MultipleOptionPredicate => "Options NOT like '%core%' and Options like '%,%' and Options NOT like '%N/A%'";
 
         private static string NoOptionPredicate => "Options like '%core%'";
 
-        public CrsSqlhelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.CRSDbConnectionString) { }
-        
-        public string GetSqlQueryWithMultipleOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {MultipleOptionPredicate}");
+        public static string GetSqlQueryWithMultipleOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {MultipleOptionPredicate}");
 
-        public string GetSqlQueryWithNoOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(NoOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {NoOptionPredicate}");
+        public static string GetSqlQueryWithNoOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(NoOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {NoOptionPredicate}");
 
         public List<List<CourseDetails>> GetApprenticeCourse(List<string> sqlQuery)
         {
@@ -39,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return multiResultFromDb;
         }
 
-        private string GetSqlQuery(string optionsPredicate)
+        private static string GetSqlQuery(string optionsPredicate)
         {
             static string VersionEarliestStartDatePredicate()
             {

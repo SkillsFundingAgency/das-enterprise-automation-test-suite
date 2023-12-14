@@ -12,9 +12,8 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class EISqlHelper : SqlDbHelper
+    public class EISqlHelper(ObjectContext objectContext, DbConfig eIConfig) : SqlDbHelper(objectContext, eIConfig.IncentivesDbConnectionString)
     {
-        public EISqlHelper(ObjectContext objectContext, DbConfig eIConfig) : base(objectContext, eIConfig.IncentivesDbConnectionString) { }
         public string ConnectionString => connectionString;
 
         public List<T> GetAllFromDatabase<T>() where T : class

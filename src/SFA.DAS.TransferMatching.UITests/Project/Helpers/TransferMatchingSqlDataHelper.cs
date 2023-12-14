@@ -5,10 +5,8 @@ using System.Text.RegularExpressions;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
-    public class TransferMatchingSqlDataHelper : SqlDbHelper
+    public class TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.TMDbConnectionString)
     {
-        public TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TMDbConnectionString) { }
-
         public void DeletePledge(List<Pledge> pledges)
         {
             foreach (var pledge in pledges)

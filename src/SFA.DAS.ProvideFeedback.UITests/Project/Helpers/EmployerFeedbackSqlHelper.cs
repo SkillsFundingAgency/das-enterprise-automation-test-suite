@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
 
-public class EmployerFeedbackSqlHelper : SqlDbHelper
+public class EmployerFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.EmployerFeedbackDbConnectionString)
 {
-    public EmployerFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.EmployerFeedbackDbConnectionString) { }
-
     public (string uniqueSurveycode, string ukprn) GetTestData(string email)
     {
         var data = GetData($"select TOP (1) [UniqueSurveyCode] , [Ukprn] FROM [dbo].[vw_EmployerSurveyHistoryComplete] where EmailAddress = '{email}'");

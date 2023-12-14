@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.DataAnalytics.Tests.Project.Helpers;
 
-public class CommitmentsSqlDataHelper : SqlDbHelper
+public class CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.CommitmentsDbConnectionString)
 {
-    public CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
-
     public List<string[]> GetCommtData(int count)
     {
         int propostion = Math.Abs(2 * count / 3);
