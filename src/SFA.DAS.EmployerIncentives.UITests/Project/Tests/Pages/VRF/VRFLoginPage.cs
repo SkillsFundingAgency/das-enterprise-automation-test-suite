@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 {
-    public class VRFLoginPage : EIBasePage
+    public class VRFLoginPage(ScenarioContext context) : EIBasePage(context)
     {
         protected override string PageTitle => "Log In";
 
@@ -12,9 +12,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private static By Username => By.CssSelector("input[name='username']");
         private static By Password => By.CssSelector("input[name='password']");
         private static By SignInButton => By.CssSelector("button.primary[type='submit']");
-        #endregion
 
-        public VRFLoginPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public VRFHomePage SignIntoVRF()
         {

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -17,7 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.Click(CandidateSummary);
             string changedEmailId = (faaDataHelper.ChangedEmailId).ToLower();
-            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewPostCode);
+            pageInteractionHelper.VerifyText(CandidateDetails, FAADataHelper.NewPostCode);
             pageInteractionHelper.VerifyText(CandidateDetails, changedEmailId);
             pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewPhoneNumber);
         }

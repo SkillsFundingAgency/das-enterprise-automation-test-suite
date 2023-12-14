@@ -102,7 +102,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
         {
             _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
-            _transferMatchingStepsHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
+            SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
             OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
@@ -455,7 +455,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            _transferMatchingStepsHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
+            SubmitApplicationHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
 
             return OpenPledgeApplication(_isImmediateAutoApprovalPledge ? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
         }
@@ -466,7 +466,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
 
-            return _transferMatchingStepsHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
+            return SubmitApplicationHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
         private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -64,7 +65,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             else
             {
                 formCompletionHelper.Click(YesQualifications);
-                formCompletionHelper.SelectFromDropDownByText(TypeOfQualification, faaDataHelper.TypeOfQualification);
+                formCompletionHelper.SelectFromDropDownByText(TypeOfQualification, FAADataHelper.TypeOfQualification);
                 formCompletionHelper.EnterText(InputYear, faaDataHelper.QualificationYear);
                 formCompletionHelper.EnterText(Subject, faaDataHelper.QualificationSubject);
                 formCompletionHelper.EnterText(Grade, faaDataHelper.QualificationGrade);

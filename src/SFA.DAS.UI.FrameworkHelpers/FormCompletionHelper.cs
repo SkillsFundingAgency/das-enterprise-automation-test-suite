@@ -70,12 +70,12 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
     private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
 
-    public void SelectCheckbox(IWebElement element)
+    public static void SelectCheckbox(IWebElement element)
     {
         if (!element.Selected) element.Click();
     }
 
-    public void UnSelectCheckbox(IWebElement element)
+    public static void UnSelectCheckbox(IWebElement element)
     {
         if (element.Selected) element.Click();
     }

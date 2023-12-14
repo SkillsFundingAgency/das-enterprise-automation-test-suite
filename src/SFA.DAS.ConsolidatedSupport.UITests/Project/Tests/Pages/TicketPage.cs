@@ -107,7 +107,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }
 
-                SubmitComments(dataHelper.InternalNote, dataHelper.SubmitAsWaitingForIncNum);
+                SubmitComments(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsWaitingForIncNum);
 
                 Thread.Sleep(5000);
 
@@ -121,11 +121,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return incidentNumber;
         }
 
-        public (HomePage, string) SubmitAsNew() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
+        public (HomePage, string) SubmitAsNew() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
 
-        public (HomePage, string) SubmitAsOpen() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
+        public (HomePage, string) SubmitAsOpen() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
 
-        public (HomePage, string) SubmitAsPending() => SubmitStatus(dataHelper.PublicReply, dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
+        public (HomePage, string) SubmitAsPending() => SubmitStatus(ConsolidateSupportDataHelper.PublicReply, ConsolidateSupportDataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
 
         public (HomePage, string) SubmitAsOnHold()
         {
@@ -138,10 +138,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             SelectOptions("Service Offering", "AS Payments");
             SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
 
-            return SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+            return SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
         }
 
-        public (HomePage, string) SubmitAsSolved() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+        public (HomePage, string) SubmitAsSolved() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
 
         private (HomePage, string) SubmitStatus(string commentsarea, string comments, string attribute, string text)
         {

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ApplicationProcessPage : Raav2BasePage
+    public class ApplicationProcessPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "How would you like to receive applications?";
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private static By ApplicationUrl => By.CssSelector("#ApplicationUrl");
 
         private static By ApplicationInstructions => By.CssSelector("#ApplicationInstructions");
-
-        public ApplicationProcessPage(ScenarioContext context) : base(context) { }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage SelectApplicationMethod_Employer(bool isFAA) { SelectApplicationMethod(isFAA); return new CreateAnApprenticeshipAdvertOrVacancyPage(context); }
 

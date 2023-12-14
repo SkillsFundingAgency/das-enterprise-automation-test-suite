@@ -42,5 +42,5 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
 
     private ReadOnlyCollection<string> ExistingTabs() => webDriver.WindowHandles;
 
-    private string GetUrl(string uriString, string relativeUri) => UriHelper.GetAbsoluteUri(uriString, relativeUri);
+    private static string GetUrl(string uriString, string relativeUri) => UriHelper.GetAbsoluteUri(uriString, relativeUri);
 }

@@ -60,7 +60,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public DateTime YearsAttended { get; }
 
-        public string TypeOfQualification => "GCSE";
+        public static string TypeOfQualification => "GCSE";
 
         public string QualificationYear { get; }
 
@@ -123,19 +123,19 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string NewPhoneNumber { get; }
 
-        public string PostCode => "1 Speedway Drive London SW17 0XW";
+        public static string PostCode => "1 Speedway Drive London SW17 0XW";
 
-        public string NewPostCode => "NN5 4AB";
+        public static string NewPostCode => "NN5 4AB";
 
-        public string ActivationCode => "ABC123";
+        public static string ActivationCode => "ABC123";
 
-        public string PhoneNumberVerificationText => "We've sent a verification code to your mobile number ";
+        public static string PhoneNumberVerificationText => "We've sent a verification code to your mobile number ";
 
-        public string PhoneNumberVerificationCode => "1234";
+        public static string PhoneNumberVerificationCode => "1234";
 
-        public string SuccessfulPhoneVerificationText => "You've successfully verified your mobile number";
+        public static string SuccessfulPhoneVerificationText => "You've successfully verified your mobile number";
 
-        public string CreateAccountWithRegisteredEmailErrorMessage => "Your email address has already been activated. Please try signing in again. If you’ve forgotten your password you can reset it.";
+        public static string CreateAccountWithRegisteredEmailErrorMessage => "Your email address has already been activated. Please try signing in again. If you’ve forgotten your password you can reset it.";
 
         public string OptionalMessage { get; }
     }

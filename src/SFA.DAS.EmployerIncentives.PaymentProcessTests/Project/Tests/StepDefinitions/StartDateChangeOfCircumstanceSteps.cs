@@ -11,17 +11,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 {
     [Binding]
     [Scope(Feature = "StartDateChangeOfCircumstance")]
-    public class StartDateChangeOfCircumstanceSteps : StepsBase
+    public class StartDateChangeOfCircumstanceSteps(ScenarioContext context) : StepsBase(context)
     {
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
         private Payment _payment;
         private PendingPayment _initialEarning;
         private List<PendingPayment> _newEarnings;
-
-        public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
-        {
-        }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(

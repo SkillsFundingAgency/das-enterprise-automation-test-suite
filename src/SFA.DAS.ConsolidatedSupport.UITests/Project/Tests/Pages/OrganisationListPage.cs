@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -42,7 +43,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public int NoOfOrganisation()
         {
-            SearchOrganisation(dataHelper.NewOrgNameWithOutSuffix);
+            SearchOrganisation(ConsolidateSupportDataHelper.NewOrgNameWithOutSuffix);
 
             if (pageInteractionHelper.GetText(ResultCount) == "0 results") return 0;
 

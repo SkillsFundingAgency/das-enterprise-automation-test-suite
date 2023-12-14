@@ -15,7 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By NonLevyEarningsValue => By.XPath("//h3[text()='Non-levy earnings'] /following-sibling::p");
         private static By NonLevyGovernmentContribution => By.XPath("//h3[text()='Non-levy government contribution'] /following-sibling::p");
         private static By NonLevyEmployerContribution => By.XPath("//h3[text()='Non-levy employer contribution'] /following-sibling::p");
-        private static By DownloadSumaryReportButton => By.XPath("//a[text()='Download CSV Summary report']");
         protected override string PageTitle => "Estimated earnings from apprentices on the Simplified Payments pilot";
 
         public ProviderApprenticeshipIndicativeEarningsReportPage(ScenarioContext context) : base(context)

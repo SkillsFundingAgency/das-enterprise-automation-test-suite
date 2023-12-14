@@ -4,7 +4,7 @@
     {
         protected override string PageTitle => "Terms and conditions";
 
-        private By ConfirmAndContinueButton => By.Id("confirm-continue");
+        private static By ConfirmAndContinueButton => By.Id("confirm-continue");
 
         public TermsAndConditionsOfEmployerPage(ScenarioContext context) : base(context) => VerifyPage();
 

@@ -27,26 +27,19 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             }
         }
 
-        private class StopWatchInstance
+        private class StopWatchInstance(string caller)
         {
-            private readonly Stopwatch _stopwatch;
-            private readonly string _caller;
-
-            public StopWatchInstance(string caller)
-            {
-                _stopwatch = new Stopwatch();
-                _caller = caller;
-            }
+            private readonly Stopwatch _stopwatch = new();
 
             public void Start()
             {
                 _stopwatch.Restart();
-                Console.WriteLine($@"[{_caller}] started");
+                Console.WriteLine($@"[{caller}] started");
             }
 
             public void Stop()
             {
-                Console.WriteLine($@"[{_caller}] finished in {_stopwatch.ElapsedMilliseconds} ms");
+                Console.WriteLine($@"[{caller}] finished in {_stopwatch.ElapsedMilliseconds} ms");
             }
         }
     }

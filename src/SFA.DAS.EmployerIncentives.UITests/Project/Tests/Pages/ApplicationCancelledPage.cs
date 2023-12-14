@@ -8,7 +8,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "applications cancelled";
 
-        private string ExpectedPageTitle => "One application cancelled";
+        private static string ExpectedPageTitle => "One application cancelled";
 
         private List<string> ExpectedPageTitles => new() { PageTitle, ExpectedPageTitle };
 

@@ -177,7 +177,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
 
-        private void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
+        private static void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
             string expectedText = "You have made a change of provider request. It’s now with the new training provider for review.";
             string actualText = apprenticeDetailsPage.GetAlertBanner();
@@ -195,7 +195,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
         }
 
-        private void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
+        private static void ValidateBannerWithLinkToEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {
             string expectedText = "The new training provider has reviewed the change of provider request. You need to review the new details. View changes";
             string actualText = apprenticeDetailsPage.GetAlertBanner();
@@ -210,7 +210,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ValidateOnlyEditableApprenticeDetails(editApprenticePage);
         }
 
-        private void ValidateOnlyEditableApprenticeDetails(EditApprenticeDetailsPage editApprenticePage)
+        private static void ValidateOnlyEditableApprenticeDetails(EditApprenticeDetailsPage editApprenticePage)
         {
             Assert.IsTrue(editApprenticePage.GetAllEditableBoxes().Count == expectedEditableFields, "validate that cohort is editable on View apprentice details page");
         }

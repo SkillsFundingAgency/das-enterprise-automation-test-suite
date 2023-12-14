@@ -20,21 +20,21 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
         private static readonly string Comment = $" {CanBeDeleted}, Comment - Submit as";
 
-        internal string InternalNote => "Internal note";
+        internal static string InternalNote => "Internal note";
 
-        internal string PublicReply => "Public reply";
+        internal static string PublicReply => "Public reply";
 
-        internal string SubmitAsWaitingForIncNum => $"{Comment} waiting for service incident number";
+        internal static string SubmitAsWaitingForIncNum => $"{Comment} waiting for service incident number";
 
-        internal string SubmitAsNewComments => $"{Comment} New";
+        internal static string SubmitAsNewComments => $"{Comment} New";
 
-        internal string SubmitAsOpenComments => $"{Comment} Open";
+        internal static string SubmitAsOpenComments => $"{Comment} Open";
 
-        internal string SubmitAsPendingComments => $"{Comment} Pending";
+        internal static string SubmitAsPendingComments => $"{Comment} Pending";
 
-        internal string SubmitAsOnHoldComments => $"{Comment} On-Hold";
+        internal static string SubmitAsOnHoldComments => $"{Comment} On-Hold";
 
-        internal string SubmitAsSolvedComments => $"{Comment} Solved";
+        internal static string SubmitAsSolvedComments => $"{Comment} Solved";
 
         internal string Subject { get; }
 
@@ -44,32 +44,32 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
         internal string OrganisationUserName { get; set; }
 
-        internal string NewUserFullName => "JackReacher";
+        internal static string NewUserFullName => "JackReacher";
 
-        internal string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
+        internal static string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
 
-        internal string NewOrgNameWithOutSuffix => $"TestOrgJackReacher";
+        internal static string NewOrgNameWithOutSuffix => $"TestOrgJackReacher";
 
         internal string NewOrgName => $"{NewOrgNameWithOutSuffix}{_suffix}";
 
-        internal string NewOrgDomain => "TestOrgJackReacher.com";
+        internal static string NewOrgDomain => "TestOrgJackReacher.com";
 
-        internal string Type => "Employer";
+        internal static string Type => "Employer";
 
-        internal string Status => "Active";
+        internal static string Status => "Active";
 
-        internal string AccountManagerStatus => "National Account Managed";
+        internal static string AccountManagerStatus => "National Account Managed";
 
-        internal string AddressLine1 => "Cheylesmore House";
+        internal static string AddressLine1 => "Cheylesmore House";
 
-        internal string AddressLine2 => "5";
+        internal static string AddressLine2 => "5";
 
-        internal string AddressLine3 => "Quinton Road";
+        internal static string AddressLine3 => "Quinton Road";
 
-        internal string City => "Coventry";
+        internal static string City => "Coventry";
 
-        internal string County => "West Midlands";
+        internal static string County => "West Midlands";
 
-        internal string Postcode => "CV1 2WT";
+        internal static string Postcode => "CV1 2WT";
     }
 }

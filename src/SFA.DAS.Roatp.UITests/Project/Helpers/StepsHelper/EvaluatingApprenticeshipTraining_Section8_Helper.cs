@@ -4,14 +4,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class EvaluatingApprenticeshipTraining_Section8_Helper
     {
-        internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_IntroductionWhatYouwillNeed()
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section8(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_ProcessForEvaluatingTheQualityOfTrainingDelivered()
                 .EnterTextRegardingOrganisationProcessForEvaluatingTheQualityOfTrainingDeliveredAndContinue()
@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_ProcessForEvaluatingTheQualityOfApprenticeshipTraining()
                 .YesAndContinue()
@@ -27,7 +27,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_SystemsAndProcessesToCollectApprenticeshipDataForMainAndEmpoyerRoute()
                 .SelectYesAndContinueOnCollectingDataPage()

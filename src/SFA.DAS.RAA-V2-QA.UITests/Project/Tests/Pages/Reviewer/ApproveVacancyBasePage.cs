@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         {
             var errors = pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
 
-            foreach (var error in errors) formCompletionHelper.UnSelectCheckbox(error);
+            foreach (var error in errors) UI.FrameworkHelpers.FormCompletionHelper.UnSelectCheckbox(error);
 
             Submit();
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         public ApproveVacancyBasePage ReferTitle()
         {
-            formCompletionHelper.SelectCheckbox(pageInteractionHelper.FindElement(TitleFieldIdentifiers));
+            UI.FrameworkHelpers.FormCompletionHelper.SelectCheckbox(pageInteractionHelper.FindElement(TitleFieldIdentifiers));
 
             formCompletionHelper.EnterText(ReviewerComment, "Refered - Title requires edit");
 

@@ -130,7 +130,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         {
             var user = new User
             {
-                Name = dataHelper.NewUserFullName
+                Name = ConsolidateSupportDataHelper.NewUserFullName
             };
 
             var response = await zendeskApi.CreateUserTicket(new CreateUser { User = user });

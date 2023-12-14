@@ -3,18 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class LearnerMatchOrchestratorHelper
+    public class LearnerMatchOrchestratorHelper(ScenarioContext context)
     {
-        private readonly EILearnerMatchHelper _eiLearnerMatchHelper;
-        private readonly StopWatchHelper _stopWatchHelper;
-        private readonly IEIDataSnapper _dataSnapper;
-
-        public LearnerMatchOrchestratorHelper(ScenarioContext context)
-        {
-            _eiLearnerMatchHelper = context.Get<EILearnerMatchHelper>();
-            _stopWatchHelper = context.Get<StopWatchHelper>();
-            _dataSnapper = context.Get<IEIDataSnapper>();
-        }
+        private readonly EILearnerMatchHelper _eiLearnerMatchHelper = context.Get<EILearnerMatchHelper>();
+        private readonly StopWatchHelper _stopWatchHelper = context.Get<StopWatchHelper>();
+        private readonly IEIDataSnapper _dataSnapper = context.Get<IEIDataSnapper>();
 
         public async Task Run(bool continueOnFailure = false)
         {

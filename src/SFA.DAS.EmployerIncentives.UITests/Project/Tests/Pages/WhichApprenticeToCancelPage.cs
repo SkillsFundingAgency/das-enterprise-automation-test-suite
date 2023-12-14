@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class WhichApprenticeToCancelPage : EIBasePage
+    public class WhichApprenticeToCancelPage(ScenarioContext context) : EIBasePage(context)
     {
         protected override string PageTitle => "Which apprentices do you want to cancel an application for?";
 
         private static By CancelApprenticeshipSelector => By.CssSelector("input[id*='cancel-apprenticeships']");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
-        public WhichApprenticeToCancelPage(ScenarioContext context) : base(context) { }
 
         public ConfirmApprenticeCancelPage SelectApprenticeToCancel()
         {

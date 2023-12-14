@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -13,25 +14,25 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public HomePage VerifyDetails()
         {
-            VerifyUserDetails("Organisation Type", dataHelper.Type);
-            VerifyUserDetails("Organisation Status", dataHelper.Status);
-            return VerifyUserDetails("Account Manager Status", dataHelper.AccountManagerStatus);
+            VerifyUserDetails("Organisation Type", ConsolidateSupportDataHelper.Type);
+            VerifyUserDetails("Organisation Status", ConsolidateSupportDataHelper.Status);
+            return VerifyUserDetails("Account Manager Status", ConsolidateSupportDataHelper.AccountManagerStatus);
         }
 
         public OrgPage EnterDetails()
         {
-            SelectOptions("Organisation Type", dataHelper.Type);
-            SelectOptions("Organisation Status", dataHelper.Status);
-            SelectOptions("Account Manager Status", dataHelper.AccountManagerStatus);
+            SelectOptions("Organisation Type", ConsolidateSupportDataHelper.Type);
+            SelectOptions("Organisation Status", ConsolidateSupportDataHelper.Status);
+            SelectOptions("Account Manager Status", ConsolidateSupportDataHelper.AccountManagerStatus);
 
-            EnterText("Address Line 1", dataHelper.AddressLine1);
-            EnterText("Address Line 2", dataHelper.AddressLine2);
-            EnterText("Address Line 3", dataHelper.AddressLine3);
-            EnterText("City", dataHelper.City);
-            EnterText("County", dataHelper.County);
-            EnterText("Postcode", dataHelper.Postcode);
-            EnterText("Account Manager Name", dataHelper.NewUserFullName);
-            EnterText("Account Manager E-mail", dataHelper.NewUserEmail);
+            EnterText("Address Line 1", ConsolidateSupportDataHelper.AddressLine1);
+            EnterText("Address Line 2", ConsolidateSupportDataHelper.AddressLine2);
+            EnterText("Address Line 3", ConsolidateSupportDataHelper.AddressLine3);
+            EnterText("City", ConsolidateSupportDataHelper.City);
+            EnterText("County", ConsolidateSupportDataHelper.County);
+            EnterText("Postcode", ConsolidateSupportDataHelper.Postcode);
+            EnterText("Account Manager Name", ConsolidateSupportDataHelper.NewUserFullName);
+            EnterText("Account Manager E-mail", ConsolidateSupportDataHelper.NewUserEmail);
 
             return this;
         }

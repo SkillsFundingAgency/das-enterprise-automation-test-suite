@@ -244,7 +244,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                               .VerifyAdditionalMessageOnConfirmationPage(finalMessage);
         }
 
-        private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
+        private static void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
             string expectedText = "You have made a change of employer request. It’s now with the new employer for review.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
@@ -260,7 +260,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
         }
 
-        private void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
+        private static void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
             string expectedText = "The new employer has reviewed the change of employer request. You need to review the new details.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();

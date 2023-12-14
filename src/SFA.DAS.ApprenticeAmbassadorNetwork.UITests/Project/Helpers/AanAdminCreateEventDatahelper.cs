@@ -82,9 +82,9 @@ public abstract class AanAdminCreateEventBaseDatahelper
 
     public string EventSummary { get; init; } = RandomDataGenerator.GenerateRandomAlphabeticString(100);
 
-    public string GuestSpeakerName => RandomDataGenerator.GenerateRandomAlphabeticString(10);
+    public static string GuestSpeakerName => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
-    public string GuestSpeakerRole => RandomDataGenerator.GenerateRandomAlphabeticString(10);
+    public static string GuestSpeakerRole => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
     public void SetEventFormat(EventFormat eventFormat) => EventFormat = GetEventFormat(eventFormat);
 

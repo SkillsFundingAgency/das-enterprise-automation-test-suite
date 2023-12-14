@@ -22,10 +22,10 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         #endregion
 
         #region Constants
-        public string ExpectedCurrentFundsLabel => "Current funds";
-        public string ExpectedEstimatesLabel => "Estimates";
-        public string ExpectedEstimatedTotalFundsLabel => "Estimated total funding for the next 12 months (based on funds entering your Apprenticeship service account, including the 10% top up)";
-        public string ExpectedEstimatedPlannedSpendingLabel => "Estimated planned spending for the next 12 months";
+        public static string ExpectedCurrentFundsLabel => "Current funds";
+        public static string ExpectedEstimatesLabel => "Estimates";
+        public static string ExpectedEstimatedTotalFundsLabel => "Estimated total funding for the next 12 months (based on funds entering your Apprenticeship service account, including the 10% top up)";
+        public static string ExpectedEstimatedPlannedSpendingLabel => "Estimated planned spending for the next 12 months";
         #endregion
 
         public FinancePage(ScenarioContext context) : base(context) => VerifyPage();
@@ -72,7 +72,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             return new FundingProjectionPage(context);
         }
 
-        public string ExpectedFundsSpentLabelConstant()
+        public static string ExpectedFundsSpentLabelConstant()
         {
             DateTime dt = DateTime.Now;
             int previousYear = dt.Year - 1;

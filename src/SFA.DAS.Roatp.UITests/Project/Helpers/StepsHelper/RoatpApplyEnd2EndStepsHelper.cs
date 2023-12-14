@@ -377,18 +377,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 
         public ApplicationOverviewPage CompletesEvaluatingApprenticeshipTraining_Section8(ApplicationOverviewPage applicationOverviewPage)
         {
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_1(applicationOverviewPage);
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_2(applicationOverviewPage);
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_3(applicationOverviewPage);
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_4(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_1(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_2(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_3(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_4(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
         public ApplicationOverviewPage CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_1(applicationOverviewPage);
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_2(applicationOverviewPage);
-            applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_3(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_1(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_2(applicationOverviewPage);
+            applicationOverviewPage = EvaluatingApprenticeshipTraining_Section8_Helper.CompleteEvaluatingApprenticeshipTraining_3(applicationOverviewPage);
             return applicationOverviewPage;
         }
 

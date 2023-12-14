@@ -50,5 +50,5 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
         if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
     }
 
-    private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
+    private static bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
 }

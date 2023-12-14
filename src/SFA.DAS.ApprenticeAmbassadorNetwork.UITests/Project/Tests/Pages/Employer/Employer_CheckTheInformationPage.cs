@@ -6,11 +6,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
     {
         protected override string PageTitle => "Check the information you have provided before completing your registration";
 
-        private By SubmitButton => By.Id("continue-button");
-        private By ChangeLinkToWhatAreas => By.XPath("(//a[text()='Change'])[1]");
-        private By ChangeLinkToReasonsForApply => By.XPath("(//a[text()='Change'])[2]");
-        private By ChangeLinkToSupportNeeded => By.XPath("(//a[text()='Change'])[3]");
-        private By ChangeLinkToPreviousEngagement => By.XPath("(//a[text()='Change'])[4]");
+        private static By SubmitButton => By.Id("continue-button");
+        private static By ChangeLinkToWhatAreas => By.XPath("(//a[text()='Change'])[1]");
+        private static By ChangeLinkToReasonsForApply => By.XPath("(//a[text()='Change'])[2]");
+        private static By ChangeLinkToSupportNeeded => By.XPath("(//a[text()='Change'])[3]");
+        private static By ChangeLinkToPreviousEngagement => By.XPath("(//a[text()='Change'])[4]");
 
         public Employer_CheckTheInformationPage(ScenarioContext context) : base(context) => VerifyPage();
 

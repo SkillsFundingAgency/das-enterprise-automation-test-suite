@@ -4,8 +4,8 @@
     {
         protected override string PageTitle => "Who would you like to primarily engage with in the network?";
 
-        private By LocallyRadio => By.Id("IsLocalOrganisation");
-        private By MultiRegionalOrganisationRadio => By.Id("multiRegionalOrganisation");
+        private static By LocallyRadio => By.Id("IsLocalOrganisation");
+        private static By MultiRegionalOrganisationRadio => By.Id("multiRegionalOrganisation");
 
         public PrimarilyEnagageWithinNetworkPage(ScenarioContext context) : base(context) => VerifyPage();
 

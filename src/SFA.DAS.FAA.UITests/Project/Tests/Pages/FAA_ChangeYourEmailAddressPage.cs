@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -19,7 +20,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(EmailAddress, faaDataHelper.ChangedEmailId);
             formCompletionHelper.Click(SendCodeButton);
             pageInteractionHelper.VerifyText(SuccessMessageText, "A verification code has been sent to your new email address.");
-            formCompletionHelper.EnterText(VerificationCode, faaDataHelper.ActivationCode);
+            formCompletionHelper.EnterText(VerificationCode, FAADataHelper.ActivationCode);
             formCompletionHelper.EnterText(VerifyPassword, faaDataHelper.Password);
             formCompletionHelper.Click(VerifyEmailButton);
             return new FAA_SignInPage(context);

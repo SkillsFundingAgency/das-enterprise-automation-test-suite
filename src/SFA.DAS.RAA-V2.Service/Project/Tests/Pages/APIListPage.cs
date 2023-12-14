@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ApiListPage : Raav2BasePage
+    public class ApiListPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "API list";
 
@@ -16,9 +16,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private readonly By RecruitmentAPIGetLink = By.CssSelector("#get-key-for-VacanciesManageOuterApi");
         private readonly By RecruitmentAPISandBoxGetKeyLink = By.CssSelector("#get-key-for-VacanciesManageOuterApi-Sandbox");
         private readonly By DisplayAPIGetKeyLink = By.CssSelector("#get-key-for-VacanciesOuterApi");
-        #endregion
 
-        public ApiListPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public KeyforApiPage ClickViewRecruitmentAPILink() => GoToKeyforAPIPage(RecruitmentAPIViewKeyLink, RecruitmentAPIGetLink);
 

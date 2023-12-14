@@ -6,7 +6,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
     public class Assessor_Section1Helper
     {
 
-        public ApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
@@ -25,7 +25,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassEqualityAndDiversityPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassEqualityAndDiversityPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section1_EqualityAndDiversityPolicy()
@@ -33,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection1Link2Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassSafeguardingAndPreventDutyPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassSafeguardingAndPreventDutyPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section1_SafeguardingAndPreventDutyPolicy()
@@ -43,7 +43,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection1Link3Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassHealthAndSafetyPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassHealthAndSafetyPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section1_HealthAndSafetyPolicy()
@@ -52,7 +52,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection1Link4Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassActingAsASubcontractor(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassActingAsASubcontractor(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section1_ActingAsASubcontractor()

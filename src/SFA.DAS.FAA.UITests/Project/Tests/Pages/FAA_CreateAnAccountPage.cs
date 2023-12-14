@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -37,7 +38,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void SelectAddress()
         {
-            formCompletionHelper.EnterText(PostCode, faaDataHelper.PostCode);
+            formCompletionHelper.EnterText(PostCode, FAADataHelper.PostCode);
 
             pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
 
@@ -67,6 +68,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CreateAccountButton);
         }
 
-        public void CheckTheValidationMessagesForAlreadyRegisteredEmail() => pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, faaDataHelper.CreateAccountWithRegisteredEmailErrorMessage);
+        public void CheckTheValidationMessagesForAlreadyRegisteredEmail() => pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, FAADataHelper.CreateAccountWithRegisteredEmailErrorMessage);
     }
 }

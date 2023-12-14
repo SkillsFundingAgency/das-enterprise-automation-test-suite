@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class EIHubPage : EIBasePage
+    public class EIHubPage(ScenarioContext context) : EIBasePage(context)
     {
         protected override string PageTitle => "Hire a new apprentice payment";
-
-        public EIHubPage(ScenarioContext context) : base(context) { }
 
         public ViewApplicationsPage NavigateToEIViewApplicationsPage()
         {

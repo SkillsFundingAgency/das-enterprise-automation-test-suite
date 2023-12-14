@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.Framework;
 using System;
@@ -107,7 +108,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
-            pageInteractionHelper.VerifyText(VerifyPhoneNumberText, faaDataHelper.PhoneNumberVerificationText);
+            pageInteractionHelper.VerifyText(VerifyPhoneNumberText, FAADataHelper.PhoneNumberVerificationText);
             formCompletionHelper.ClickElement(VerifyMobile);
             return new FAA_PhoneNumberVerificationPage(context);
         }

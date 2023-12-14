@@ -33,7 +33,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
             });
         }
 
-        private void NavigateTo(Action navigate) => navigate.Invoke();
+        private static void NavigateTo(Action navigate) => navigate.Invoke();
 
         private void NavigateTo(bool navigate)
         {

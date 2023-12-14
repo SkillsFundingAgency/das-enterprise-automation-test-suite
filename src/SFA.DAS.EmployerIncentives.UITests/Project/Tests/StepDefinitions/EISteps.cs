@@ -5,12 +5,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EISteps
+    public class EISteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public EISteps(ScenarioContext context) => _context = context;
-
         [Then(@"View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications")]
         public void ThenShutterPageIsDiplayed() => NavigateToEIHubPage().NavigateToEIViewApplicationsShutterPage();
 
@@ -51,8 +47,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ReturnToEIHubPage();
         }
 
-        private string GetEmail() => _context.Get<LoginCredentialsHelper>().GetLoginCredentials().Username;
+        private string GetEmail() => context.Get<LoginCredentialsHelper>().GetLoginCredentials().Username;
 
-        private EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection_EI(_context).NavigateToEIHubPage();
+        private EIHubPage NavigateToEIHubPage() => new HomePageFinancesSection_EI(context).NavigateToEIHubPage();
     }
 }

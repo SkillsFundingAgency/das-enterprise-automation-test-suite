@@ -40,7 +40,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             DateTime plannedStartDate, DateTime dateOfBirth, string scenario, Phase phase)
         {
             var apprenticeship = _fixture.Build<IncentiveApplicationApprenticeship>()
-                .With(a => a.CourseName, scenario.Substring(0, Math.Min(126, scenario.Length)))
+                .With(a => a.CourseName, scenario[..Math.Min(126, scenario.Length)])
                 .With(a => a.ApprenticeshipId, apprenticeshipId)
                 .With(a => a.ULN, uln)
                 .With(a => a.UKPRN, ukprn)
