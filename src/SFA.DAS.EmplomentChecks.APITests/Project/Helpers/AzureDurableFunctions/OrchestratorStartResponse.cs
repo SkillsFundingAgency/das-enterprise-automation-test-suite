@@ -1,11 +1,10 @@
-﻿namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions
+﻿namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
+
+public class OrchestratorStartResponse
 {
-    public class OrchestratorStartResponse
-    {
-        public string Id { get; set; }
-        public string StatusQueryGetUri { get; set; }
-        public string SendEventPostUri { get; set; }
-        public string TerminatePostUri { get; set; }
-        public string PurgeHistoryDeleteUri { get; set; }
-    }
+    public string Id { get; set; }
+    public string StatusQueryGetUri { get; set; }
+    public string SendEventPostUri { get; set; }
+    public string TerminatePostUri { get; set; }
+    public string PurgeHistoryDeleteUri { get; set; }
 }

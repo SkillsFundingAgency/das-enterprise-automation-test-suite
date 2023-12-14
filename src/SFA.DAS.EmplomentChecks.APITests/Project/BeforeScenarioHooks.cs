@@ -1,40 +1,28 @@
-﻿using System.Runtime.InteropServices;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.API.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.API.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
+using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmploymentChecks.APITests.Project
+namespace SFA.DAS.EmploymentChecks.APITests.Project;
+
+[Binding]
+public class BeforeScenarioHooks(ScenarioContext context)
 {
-    [Binding]
-    public class BeforeScenarioHooks
+    private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+    private readonly EmploymentCheckProcessConfig _config = context.GetEmploymentCheckPaymentProcessConfig<EmploymentCheckProcessConfig>();
+
+    [BeforeScenario(Order = 32)]
+    public void SetUpHelpers()
     {
-        private readonly ScenarioContext _context;
-        private readonly DbConfig _dbConfig;
-        private readonly EmploymentCheckProcessConfig _config;
+        var objectContext = context.Get<ObjectContext>();
 
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _dbConfig = context.Get<DbConfig>();
-            _config = context.GetEmploymentCheckPaymentProcessConfig<EmploymentCheckProcessConfig>();
-        }
-       
+        context.SetRestClient(new Outer_EmploymentCheckApiClient(objectContext, context.GetOuter_ApiAuthTokenConfig()));
 
-        [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            var objectContext = _context.Get<ObjectContext>();
-
-            _context.SetRestClient(new Outer_EmploymentCheckApiClient(objectContext, _context.GetOuter_ApiAuthTokenConfig()));
-
-            _context.Set(new EmploymentCheckOrchestrationHelper(_config));
-            _context.Set(new Helper(_context));
-            _context.Set(new EmploymentChecksSqlDbHelper(objectContext, _dbConfig));
-        }
-           
+        context.Set(new EmploymentCheckOrchestrationHelper(_config));
+        context.Set(new Helper(context));
+        context.Set(new EmploymentChecksSqlDbHelper(objectContext, _dbConfig));
     }
 }
