@@ -1,11 +1,12 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringApprenticeshipTrainingChecks;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class Assessor_Section4Helper
     {
-        public ApplicationAssessmentOverviewPage PassOverallAccountabilityForApprenticeships(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassOverallAccountabilityForApprenticeships(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section4_OverallAccountabilityForApprenticeships()
@@ -13,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection4Link1Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassManagementHierarchyForApprenticeships(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassManagementHierarchyForApprenticeships(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section4_ManagementHierarchyForApprenticeships()
@@ -22,7 +23,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassQualityAndHighStandardsInApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassQualityAndHighStandardsInApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section4_QualityAndHighStandardsInApprenticeshipTraining()
@@ -33,7 +34,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection4Link3Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
@@ -67,7 +68,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.SupportingProviderRoute ||
@@ -84,7 +85,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .NavigateToDeliveringTrainingInDigitalSectorPage()
                 .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-                yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
+                yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(YourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
 
                 return yourSectorsAndEmployeesPage
                     .NavigateToAssessmentOverviewPage()
@@ -92,7 +93,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section4_PolicyForProfessionalDevelopmentOfEmployees()

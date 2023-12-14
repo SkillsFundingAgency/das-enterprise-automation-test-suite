@@ -65,12 +65,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage CompleteAssessorSection4Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassOverallAccountabilityForApprenticeships(applicationAssessmentOverviewPage);
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassManagementHierarchyForApprenticeships(applicationAssessmentOverviewPage);
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassQualityAndHighStandardsInApprenticeshipTraining(applicationAssessmentOverviewPage);
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassDevelopingAndDeliveringTraining(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassYourSectorsAndEmployees(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section4Helper.PassPolicyForProfessionalDevelopmentOfEmployees(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = Assessor_Section4Helper.PassOverallAccountabilityForApprenticeships(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = Assessor_Section4Helper.PassManagementHierarchyForApprenticeships(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = Assessor_Section4Helper.PassQualityAndHighStandardsInApprenticeshipTraining(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = Assessor_Section4Helper.PassDevelopingAndDeliveringTraining(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section4Helper.PassYourSectorsAndEmployees(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section4Helper.PassPolicyForProfessionalDevelopmentOfEmployees(applicationAssessmentOverviewPage);
             return applicationAssessmentOverviewPage;
         }
 
