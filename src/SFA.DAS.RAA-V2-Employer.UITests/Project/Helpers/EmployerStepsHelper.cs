@@ -7,8 +7,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
     public class EmployerStepsHelper(ScenarioContext context)
     {
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper = new(context);
-        private readonly StepsHelper _stepsHelper = new(context);
-
         internal EmployerVacancySearchResultPage YourAdvert()
         {
             _rAAV2EmployerLoginHelper.GotoEmployerHomePage();

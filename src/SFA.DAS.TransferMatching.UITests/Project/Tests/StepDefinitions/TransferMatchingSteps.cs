@@ -202,10 +202,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
@@ -220,10 +220,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
@@ -254,10 +254,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, true);
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 

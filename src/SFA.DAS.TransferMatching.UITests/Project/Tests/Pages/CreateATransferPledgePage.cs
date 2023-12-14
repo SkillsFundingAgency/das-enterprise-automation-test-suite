@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class CreateATransferPledgePage : TransferMatchingBasePage
+    public class CreateATransferPledgePage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Create a transfer pledge";
 
@@ -12,16 +12,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private static By ColumnIdentifier => By.CssSelector(".das-task-list__task-tag");
 
-        private string TableIdentifier => ".das-task-list__items";
+        private static string TableIdentifier => ".das-task-list__items";
 
-        private string TableRowIdentifier => ".das-task-list__item";
+        private static string TableRowIdentifier => ".das-task-list__item";
 
-        public string LocationLink => "Location";
-        public string SectorLink => "Sector";
-        public string TypeOfJobRoleLink => "Type of job role";
-        public string LevelLink => "Level";
-
-        public CreateATransferPledgePage(ScenarioContext context) : base(context) { }
+        public static string LocationLink => "Location";
+        public static string SectorLink => "Sector";
+        public static string TypeOfJobRoleLink => "Type of job role";
+        public static string LevelLink => "Level";
 
         public PledgeAmountPage GoToPledgeAmountPage()
         {

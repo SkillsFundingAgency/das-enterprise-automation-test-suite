@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class RoatpAdminLoginSteps
+    public class RoatpAdminLoginSteps(ScenarioContext context)
     {
-        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper;
-
-        public RoatpAdminLoginSteps(ScenarioContext context) => _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(context);
+        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(context);
 
         [Given(@"the admin lands on the Dashboard as Assessor1")]
         public void GivenTheAdminLandsOnTheDashboardAsAssessor() => _dfeAdminLoginStepsHelper.LoginToAsAssessor1();

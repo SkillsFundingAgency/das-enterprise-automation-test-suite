@@ -5,14 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class CreateATransfersApplicationPage : TransferMatchingBasePage
+    public class CreateATransfersApplicationPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Create a transfers application";
 
         protected override By ContinueButton => By.CssSelector("#opportunity-apply-submit");
 
         private static By CompletedStatusSelector => By.TagName("govuk-tag app-task-list__group-header-tag");
-        public CreateATransfersApplicationPage(ScenarioContext context) : base(context) { }
 
         public ApplicationSubmittedPage SubmitApplication()
         {
@@ -50,12 +49,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new AddContactDetailsPage(context);
         }
 
-        private string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);
+        private static string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);
 
-        private List<string> AppTraining => new() { "Job role", "Number of apprentices", "Start by", "Have you found a training provider?" };
+        private static List<string> AppTraining => ["Job role", "Number of apprentices", "Start by", "Have you found a training provider?" ];
 
-        private List<string> BusinessDetails => new() { "Sector", "Location" };
+        private static List<string> BusinessDetails => [ "Sector", "Location" ];
 
-        private List<string> ContactDetails => new() { "Name", "Email address", "Business website" };
+        private static List<string> ContactDetails => ["Name", "Email address", "Business website"];
     }
 }

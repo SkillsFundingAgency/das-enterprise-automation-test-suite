@@ -4,15 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ChooseApprenticeshipLocationPage : Raav2BasePage
+    public class ChooseApprenticeshipLocationPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => IsTraineeship ? "Where is the work experience placement" : "Where will the apprentice work?";
 
         private static By Postcode => By.CssSelector("#Postcode");
 
         private static By MenuItems => By.CssSelector(".ui-menu-item");
-
-        public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context) { }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage ChooseAddressAndGoToCreateApprenticeshipPage(bool isEmployerAddress)
         {

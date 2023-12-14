@@ -3,12 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-
-    public class Searchfundingopportunitiespage : TransferMatchingBasePage
+    public class Searchfundingopportunitiespage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Search funding opportunities";
-
-        public Searchfundingopportunitiespage(ScenarioContext context) : base(context) { }
 
         private static By AgricultureSelector => By.Id("Sectors");
         private static By CareServicesSelector => By.Id("Sectors-3");

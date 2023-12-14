@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class CreateAnAdvertPage : Raav2BasePage
+    public class CreateAnAdvertPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Create an advert";
 
         protected override By ContinueButton => By.CssSelector("[data-automation='continue-button']");
-
-        public CreateAnAdvertPage(ScenarioContext context) : base(context) { }
 
         public WhatDoYouWantToCallThisAdvertPage CreateNewAdvert()
         {

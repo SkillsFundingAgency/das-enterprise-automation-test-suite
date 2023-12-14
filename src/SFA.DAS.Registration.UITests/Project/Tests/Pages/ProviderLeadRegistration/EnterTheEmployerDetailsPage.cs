@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-        private static By FormGroup = By.CssSelector(".govuk-form-group");
+        private static By FormGroup => By.CssSelector(".govuk-form-group");
 
         private static By EmployerOrganisation(string value = null) => By.CssSelector($"#EmployerOrganisation{value}");
 

@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
-    public class StubSignInEmployerPage : StubSignInBasePage
+    public class StubSignInEmployerPage(ScenarioContext context) : StubSignInBasePage(context)
     {
         protected override string PageTitle => "Stub Authentication - Enter sign in details";
-
-        public StubSignInEmployerPage(ScenarioContext context) : base(context) { }
 
         public StubYouHaveSignedInEmployerPage Register(string email = null)
         {

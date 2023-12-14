@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     public class BaseSteps(ScenarioContext context)
     {
+        protected readonly ScenarioContext context = context;
         protected readonly CreateAccountStepsHelper createAccountStepsHelper = new(context);
         protected readonly ConfirmMyApprenticeshipStepsHelper confirmMyApprenticeshipStepsHelper = new(context);
         protected readonly PasswordResetStepsHelper passwordResetStepsHelper = new(context);

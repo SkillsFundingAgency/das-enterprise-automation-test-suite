@@ -9,12 +9,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerPerfTestDataPreparationSteps
+    public class EmployerPerfTestDataPreparationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public EmployerPerfTestDataPreparationSteps(ScenarioContext context) => _context = context;
-
         [Given(@"the Employer creates additional using '(.*)'")]
         public void GivenTheEmployerCreatesAdditionalUsing(string email) => GetEmployerCreateAdvertPrefStepsHelper(email).CreateANewAdvert();
 
@@ -31,17 +27,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer '([^']*)' grants permission to a provider")]
         public void GivenTheEmployerGrantsPermissionToAProvider(string email, Table table)
         {
-            new EmployerPortalLoginHelper(_context).Login(GetRaav2EmployerUser(email), true);
+            new EmployerPortalLoginHelper(context).Login(GetRaav2EmployerUser(email), true);
 
-            foreach (var row in table.Rows) new EmployerPermissionsStepsHelper(_context).SetRecruitApprenticesPermission(row[0], row[1]);
+            foreach (var row in table.Rows) new EmployerPermissionsStepsHelper(context).SetRecruitApprenticesPermission(row[0], row[1]);
         }
 
         private EmployerCreateAdvertPrefStepsHelper GetEmployerCreateAdvertPrefStepsHelper(string email)
-            => new(_context, GetRaav2EmployerUser(email));
+            => new(context, GetRaav2EmployerUser(email));
 
         private RAAV2EmployerUser GetRaav2EmployerUser(string email)
         {
-            var legalEntities = _context.GetAccountLegalEntities(new List<string>() { email });
+            var legalEntities = context.GetAccountLegalEntities([email]);
 
             return new RAAV2EmployerUser { Username = email, IdOrUserRef = legalEntities[0].idOrUserRef, LegalEntities = legalEntities[0].listoflegalEntities };
         }

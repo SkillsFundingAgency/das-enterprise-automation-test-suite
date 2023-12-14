@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {
-    public class CheckDetailsPage : ProviderLeadRegistrationBasePage
+    public class CheckDetailsPage(ScenarioContext context) : ProviderLeadRegistrationBasePage(context)
     {
         protected override string PageTitle => "Check details";
 
@@ -12,9 +12,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         private static By EmployerOrganisationChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
         private static By EmployerFirstNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
         private static By EmployerLastNameChangeLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
-        #endregion
 
-        public CheckDetailsPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public EmployerAccountIsReadyPage InviteEmployer()
         {

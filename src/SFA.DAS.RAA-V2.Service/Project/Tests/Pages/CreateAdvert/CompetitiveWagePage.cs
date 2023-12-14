@@ -2,14 +2,8 @@
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class CompetitiveWagePage : Raav2BasePage
+    public class CompetitiveWagePage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Set as competitive?";
-
-        public CompetitiveWagePage(ScenarioContext context) : base(context) { }
-
-
-
-
     }
 }

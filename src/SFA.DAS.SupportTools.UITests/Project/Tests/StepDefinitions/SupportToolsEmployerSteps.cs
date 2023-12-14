@@ -7,7 +7,6 @@
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
         private readonly UsersSqlDataHelper _usersSqlDataHelper;
-        private readonly AccountSignOutHelper accountSignOutHelper;
 
         public SupportToolsEmployerSteps(ScenarioContext context)
         {
@@ -15,7 +14,6 @@
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _usersSqlDataHelper = new UsersSqlDataHelper(_context.Get<ObjectContext>(), _context.Get<DbConfig>());
-            accountSignOutHelper = new AccountSignOutHelper(context);
         }
 
         [Given(@"the employer user can login to EAS")]

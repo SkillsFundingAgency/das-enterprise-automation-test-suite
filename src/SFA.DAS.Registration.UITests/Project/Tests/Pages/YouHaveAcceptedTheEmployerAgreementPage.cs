@@ -17,11 +17,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YouHaveAcceptedTheEmployerAgreementPage(ScenarioContext context) : base(context)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(),
                 () => VerifyPage(DownloadYourAcceptedAgreementLink)
-            });
+            ]);
         }
 
         public HomePage ClickOnViewYourAccountButton()

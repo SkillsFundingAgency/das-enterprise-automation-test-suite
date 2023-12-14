@@ -3,14 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {
-    public class ProviderLeadRegistrationHomePage : ProviderHomePage
+    public class ProviderLeadRegistrationHomePage(ScenarioContext context) : ProviderHomePage(context, true)
     {
-        #region Helpers and Context
-
-        #endregion
-
-        public ProviderLeadRegistrationHomePage(ScenarioContext context) : base(context, true) { }
-
         public StartSettingUpEmployerPage SetupEmployerAccount()
         {
             formCompletionHelper.ClickElement(ManageEmployerInvitations);

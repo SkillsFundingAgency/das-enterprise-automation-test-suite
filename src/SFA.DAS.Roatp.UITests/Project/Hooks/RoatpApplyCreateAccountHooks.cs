@@ -10,14 +10,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
     {
         private readonly ScenarioContext _context;
         private readonly RoatpApplyContactSqlDbHelper _roatpApplyContactSqlDbHelper;
-        private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
         private RoatpApplyCreateUserDataHelper _applydataHelpers;
 
         public RoatpApplyCreateAccountHooks(ScenarioContext context) : base(context)
         {
             _context = context;
             _roatpApplyContactSqlDbHelper = new RoatpApplyContactSqlDbHelper(_objectContext, _dbConfig);
-            _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(_objectContext, _dbConfig);
         }
 
         [BeforeScenario(Order = 32)]

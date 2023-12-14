@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
         protected const string newukprnkey = "newukprnkey";
 
 
-        public RoatpUkprnBaseDataHelpers() => _data = new Dictionary<string, List<KeyValuePair<string, string>>>();
+        public RoatpUkprnBaseDataHelpers() => _data = [];
 
         protected (string value1, string value2) GetData(string key, string value1Key, string value2Key)
         {
@@ -32,6 +32,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 
         private List<KeyValuePair<string, string>> FindKeyValuePairs(string key) => _data.TryGetValue(key, out var keyValuePair) ? keyValuePair : throw new KeyNotFoundException($"Can not find data for key {key}");
 
-        private string FindValue(List<KeyValuePair<string, string>> keyValuePairs, string valuekey) => keyValuePairs.First(x => x.Key == valuekey).Value;
+        private static string FindValue(List<KeyValuePair<string, string>> keyValuePairs, string valuekey) => keyValuePairs.First(x => x.Key == valuekey).Value;
     }
 }

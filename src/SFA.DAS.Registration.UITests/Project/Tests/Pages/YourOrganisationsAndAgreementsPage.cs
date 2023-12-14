@@ -7,10 +7,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourOrganisationsAndAgreementsPage : InterimYourOrganisationsAndAgreementsPage
+    public class YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : InterimYourOrganisationsAndAgreementsPage(context, navigate)
     {
 
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
 
         #region Locators
         private static By TransferStatus => By.CssSelector("p.govuk-body");
@@ -20,9 +20,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private static By ViewAgreementLink(string accountLegalEntityPublicHashedId) => By.CssSelector($"[href*='{accountLegalEntityPublicHashedId}/agreements']");
         private static By OrgRemovedMessageInHeader => By.XPath("//h3");
         private static By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
-        #endregion
 
-        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+        #endregion
 
         public bool VerifyTransfersStatus(string expected) => VerifyElement(() => pageInteractionHelper.FindElements(TransferStatus), $"Transfers status:  {expected}");
 

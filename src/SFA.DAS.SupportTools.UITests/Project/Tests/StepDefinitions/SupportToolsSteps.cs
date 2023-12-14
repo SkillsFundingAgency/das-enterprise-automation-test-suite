@@ -1,28 +1,20 @@
 ﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class SupportToolsSteps
+public class SupportToolsSteps(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly ObjectContext _objectContext;
-    private readonly StepsHelper _stepsHelper;
-
-    public SupportToolsSteps(ScenarioContext context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _stepsHelper = new StepsHelper(context);
-    }
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+    private readonly StepsHelper _stepsHelper = new(context);
 
     [Given(@"Opens the Pause Utility")]
     [When(@"user opens Pause Utility")]
-    public void WhenUserOpensPauseUtility() => new ToolSupportHomePage(_context).ClickPauseApprenticeshipsLink();
+    public void WhenUserOpensPauseUtility() => new ToolSupportHomePage(context).ClickPauseApprenticeshipsLink();
 
     [Given(@"Opens the Resume Utility")]
-    public void GivenOpensTheResumeUtility() => new ToolSupportHomePage(_context).ClickResumeApprenticeshipsLink();
+    public void GivenOpensTheResumeUtility() => new ToolSupportHomePage(context).ClickResumeApprenticeshipsLink();
 
     [Given(@"Opens the Stop Utility")]
-    public void GivenOpensTheStopUtility() => new ToolSupportHomePage(_context).ClickStopApprenticeshipsLink();
+    public void GivenOpensTheStopUtility() => new ToolSupportHomePage(context).ClickStopApprenticeshipsLink();
 
 
     [Given(@"Search for Apprentices using following criteria")]
@@ -36,7 +28,7 @@ public class SupportToolsSteps
         {
             _objectContext.Set($"FilterCriteria_{row}", item);
 
-            new SearchForApprenticeshipPage(_context, false)
+            new SearchForApprenticeshipPage(context, false)
                    .EnterEmployerName(item.EmployerName)
                    .EnterProviderName(item.ProviderName)
                    .EnterUkprn(item.Ukprn)
@@ -45,7 +37,7 @@ public class SupportToolsSteps
                    .SelectStatus(item.Status)
                    .ClickSubmitButton();
 
-            var actualRecord = new SearchForApprenticeshipPage(_context, false).GetNumberOfRecordsFound();
+            var actualRecord = new SearchForApprenticeshipPage(context, false).GetNumberOfRecordsFound();
             Assert.GreaterOrEqual(actualRecord, item.TotalRecords, $"Validate number of expected records on row: {row}{item}");
             row++;
         }
@@ -68,7 +60,7 @@ public class SupportToolsSteps
 
     private SearchForApprenticeshipPage SelectAllRecords()
     {
-        var page = new SearchForApprenticeshipPage(_context, false);
+        var page = new SearchForApprenticeshipPage(context, false);
 
         UpdateStatusInDb(page.GetULNsFromApprenticeshipTable());
 
@@ -78,7 +70,7 @@ public class SupportToolsSteps
     [Then(@"User should be able to stop all the records")]
     public void ThenUserShouldBeAbleToStopAllTheRecords()
     {
-        var ststusList = new StopApprenticeshipsPage(_context)
+        var ststusList = new StopApprenticeshipsPage(context)
                                 .ClickStopBtn()
                                 .ValidateErrorMessage()
                                 .EnterStopDateAndClickSetbutton()
@@ -93,7 +85,7 @@ public class SupportToolsSteps
     [Then(@"User should be able to pause all the live records")]
     public void ThenUserShouldBeAbleToPauseAllTheLiveRecords()
     {
-        var ststusList = new PauseApprenticeshipsPage(_context)
+        var ststusList = new PauseApprenticeshipsPage(context)
                             .ClickPauseBtn()
                             .GetStatusColumn();
 
@@ -103,7 +95,7 @@ public class SupportToolsSteps
     [Then(@"User should be able to resume all the paused records")]
     public void ThenUserShouldBeAbleToResumeAllThePausedRecords()
     {
-        var ststusList = new ResumeApprenticeshipsPage(_context)
+        var ststusList = new ResumeApprenticeshipsPage(context)
                            .ClickResumeBtn()
                            .GetStatusColumn();
 
@@ -113,7 +105,7 @@ public class SupportToolsSteps
     [Given(@"User should NOT be able to see Pause, Resume, Suspend and Reinstate utilities")]
     public void ThenUserShouldNOTBeAbleToSeePauseResumeSuspendAndReinstateUtilities()
     {
-        ToolSupportHomePage toolSupportHomePage = new(_context);
+        ToolSupportHomePage toolSupportHomePage = new(context);
 
         Assert.IsFalse(toolSupportHomePage.IsPauseApprenticeshipLinkVisible());
         Assert.IsFalse(toolSupportHomePage.IsResumeApprenticeshipLinkVisible());
@@ -135,7 +127,7 @@ public class SupportToolsSteps
                             .ClicSuspendUsersbtn()
                             .GetStatusColumn();
 
-        status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
+        _ = status.Where(x => x.Text == "Submitted successfully").FirstOrDefault();
     }
 
     [When(@"that account is reinstated using bulk utility")]
@@ -152,17 +144,17 @@ public class SupportToolsSteps
                             .ClickReinstateUserButton()
                             .GetStatusColumn();
 
-        actualStatusBefore.Where(x => x.Text == expectedStatusBefore).FirstOrDefault();
+        _ = actualStatusBefore.Where(x => x.Text == expectedStatusBefore).FirstOrDefault();
 
-        var actualStatusAfter = new ReinstateUsersPage(_context).ClickReinstateUsersbtn().GetStatusColumn();
+        var actualStatusAfter = new ReinstateUsersPage(context).ClickReinstateUsersbtn().GetStatusColumn();
 
-        actualStatusAfter.Where(x => x.Text == expectedStatusAfter).FirstOrDefault();
+        _ = actualStatusAfter.Where(x => x.Text == expectedStatusAfter).FirstOrDefault();
     }
 
     private void UpdateStatusInDb(List<IWebElement> UlnList)
     {
 
-        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_objectContext, _context.Get<DbConfig>());
+        var _commitmentsSqlDataHelper = new ToolsCommitmentsSqlDataHelper(_objectContext, context.Get<DbConfig>());
         int i = 0;
         foreach (var uln in UlnList)
         {

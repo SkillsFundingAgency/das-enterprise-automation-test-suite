@@ -20,7 +20,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
-        private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private EasAccountUser _loginUser;
         private ProviderVacancySearchResultPage _resultPage;
@@ -30,7 +29,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(_context);
         }
@@ -108,7 +106,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         private void ConfirmationMessage(VacancyReferencePage vacancyReferencePage, string expected) => AssertMessage(expected, vacancyReferencePage.GetConfirmationMessage());
 
-        private void AssertMessage(string expected, string actual) => StringAssert.Contains(expected, actual);
+        private static void AssertMessage(string expected, string actual) => StringAssert.Contains(expected, actual);
 
     }
 }

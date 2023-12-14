@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public partial class MyAccountTransferFundingPage : TransferMatchingBasePage
+    public partial class MyAccountTransferFundingPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "My accounts";
-
-        public MyAccountTransferFundingPage(ScenarioContext context) : base(context) { }
 
         public CreateATransfersApplicationPage GoToCreateATransfersApplicationPage(string orgName)
         {

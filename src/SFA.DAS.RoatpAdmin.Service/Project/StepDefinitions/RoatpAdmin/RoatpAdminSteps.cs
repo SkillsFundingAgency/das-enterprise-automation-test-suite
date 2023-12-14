@@ -1,15 +1,12 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.StepDefinitions.RoatpAdmin;
 
 [Binding]
-public class RoatpAdminSteps
+public class RoatpAdminSteps(ScenarioContext context)
 {
     private RoatpAdminHomePage _roatpAdminHomePage;
     private SearchPage _searchPage;
     private ResultsFoundPage _resultsFoundPage;
-    private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper;
-
-
-    public RoatpAdminSteps(ScenarioContext context) => _roatpAdminStepsHelper = new OldRoatpAdminStepsHelper(context);
+    private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper = new(context);
 
     [When(@"the admin searches for a provider by partial provider name")]
     public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = _resultsFoundPage.GoToSearchPage().SearchTrainingProvider("PEOPLE");

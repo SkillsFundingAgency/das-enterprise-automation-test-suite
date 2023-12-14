@@ -4,15 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class VerifyDetailsBasePage : Raav2BasePage
+    public abstract class VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : Raav2BasePage(context, verifypage)
     {
         protected virtual By EmployerName { get; }
 
         protected virtual By EmployerNameInAboutTheEmployerSection { get; }
 
         protected virtual By DisabilityConfident { get; }
-
-        public VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         protected void VerifyEmployerName()
         {

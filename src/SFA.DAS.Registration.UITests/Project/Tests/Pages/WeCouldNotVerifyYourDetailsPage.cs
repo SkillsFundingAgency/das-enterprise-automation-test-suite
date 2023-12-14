@@ -20,11 +20,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public WeCouldNotVerifyYourDetailsPage(ScenarioContext context) : base(context)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(),
                 () => VerifyPage(() => pageInteractionHelper.FindElements(AccountDisabledInfo), AccountDisabledInfoMessage)
-            });
+            ]);
         }
 
         public UsingYourGovtGatewayDetailsPage ClickAddViaGGLink()

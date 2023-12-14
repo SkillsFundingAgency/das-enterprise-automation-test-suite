@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class ApplicationSubmittedPage : TransferMatchingBasePage
+    public class ApplicationSubmittedPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Your application has been submitted";
 
         protected override By PageHeader => PanelTitle;
-
-        public ApplicationSubmittedPage(ScenarioContext context) : base(context) { }
 
         public HomePage ContinueToMyAccount()
         {
