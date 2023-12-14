@@ -2,26 +2,16 @@
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class AccountCreationStepsHelper
+    public class AccountCreationStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly RegistrationDataHelper _registrationDataHelper;
-        private readonly ObjectContext _objectContext;
-        private readonly AccountSignOutHelper _accountSignOutHelper;
-
-        public AccountCreationStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _accountSignOutHelper = new AccountSignOutHelper(context);
-        }
+        private readonly RegistrationDataHelper _registrationDataHelper = context.Get<RegistrationDataHelper>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly AccountSignOutHelper _accountSignOutHelper = new(context);
 
         public HomePage CreateUserAccount() => AddNewAccount(RegisterUserAccount(), 0);
 
@@ -33,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         internal AddAPAYESchemePage RegisterUserAccount() =>
-            RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(_context), null);
+            RegisterUserAccount(new CreateAnAccountToManageApprenticeshipsPage(context), null);
 
         internal AddAPAYESchemePage RegisterUserAccount(CreateAnAccountToManageApprenticeshipsPage indexPage, string email) =>
             RegisterStubUserAccount(indexPage, email).EnterNameAndContinue(_registrationDataHelper).ConfirmNameAndContinue().ClickContinueButtonToAcknowledge().GoToAddPayeLink().SelectOptionLessThan3Million();
