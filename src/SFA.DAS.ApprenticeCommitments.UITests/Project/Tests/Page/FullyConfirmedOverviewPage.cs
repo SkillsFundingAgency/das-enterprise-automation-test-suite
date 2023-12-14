@@ -21,15 +21,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public FullyConfirmedOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}"),
                 () => VerifyPage(() => pageInteractionHelper.FindElement(CourseName), objectContext.GetExpectedTrainingTitles()),
                 () => VerifyPage(RolesSectionHeaderLink),
                 () => VerifyPage(RolesSectionSubText, OverviewPageHelper.FullyConfirmedOverviewRolesSubText),
                 () => VerifyPage(HYAWDSectionHeaderLink),
                 () => VerifyPage(HYAWDSectionSubText, OverviewPageHelper.FullyConfirmedOverviewHYAWDSubText)
-            });
+            ]);
         }
 
         public AlreadyConfirmedRolesAndResponsibilitiesPage GoToConfirmedRolesPage()

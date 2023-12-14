@@ -3,7 +3,7 @@
 [Binding]
 public class AedSteps(ScenarioContext context)
 {
-    private readonly AedStepsHelper _aEDStepsHelper = new AedStepsHelper(context);
+    private readonly AedStepsHelper _aEDStepsHelper = new(context);
     private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
     private AedIndexPage _aedIndexPage;
 

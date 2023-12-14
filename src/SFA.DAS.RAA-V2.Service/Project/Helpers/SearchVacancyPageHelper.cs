@@ -7,63 +7,56 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
-    public class SearchVacancyPageHelper
+    public class SearchVacancyPageHelper(ScenarioContext context)
     {
+
         #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly PageInteractionHelper _pageInteractionHelper = context.Get<PageInteractionHelper>();
+        private readonly FormCompletionHelper _formCompletionHelper = context.Get<FormCompletionHelper>();
         #endregion
+
         private static By SearchInput => By.CssSelector("#search-input");
 
         private static By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
         private static By Manage => By.CssSelector("[data-label='Action']");
 
-        public SearchVacancyPageHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-        }
-
         public ManageRecruitPage SelectLiveVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
             _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
-            return new ManageRecruitPage(_context);
+            return new ManageRecruitPage(context);
         }
 
         public ProviderVacancySearchResultPage SearchVacancyByVacancyReference()
         {
             SearchVacancy();
-            return new ProviderVacancySearchResultPage(_context);
+            return new ProviderVacancySearchResultPage(context);
         }
 
         public ProviderVacancySearchResultPage SearchProviderVacancy()
         {
             SearchEmployerProviderPermissionVacancy();
-            return new ProviderVacancySearchResultPage(_context);
+            return new ProviderVacancySearchResultPage(context);
         }
 
         public VacancyCompletedAllSectionsPage SearchReferVacancy()
         {
             SearchVacancy();
-            return new VacancyCompletedAllSectionsPage(_context);
+            return new VacancyCompletedAllSectionsPage(context);
         }
 
         public EmployerVacancySearchResultPage SearchEmployerVacancy()
         {
             SearchEmployerProviderPermissionVacancy();
-            return new EmployerVacancySearchResultPage(_context);
+            return new EmployerVacancySearchResultPage(context);
         }
         public EmployerVacancySearchResultPage SearchEmployerVacancyByVacancyReference()
         {
             SearchVacancy();
-            return new EmployerVacancySearchResultPage(_context);
+            return new EmployerVacancySearchResultPage(context);
         }
 
         internal void SearchEmployerProviderPermissionVacancy() => SearchVacancy();

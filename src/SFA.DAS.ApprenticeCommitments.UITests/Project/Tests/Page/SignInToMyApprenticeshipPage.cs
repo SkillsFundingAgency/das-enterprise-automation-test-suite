@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class SignIntoMyApprenticeshipPage : ApprenticeCommitmentsBasePage
+    public class SignIntoMyApprenticeshipPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         protected override string PageTitle => $"Sign in to {ServiceName}";
         private static By Username => By.CssSelector("#Username");
         private static By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
-
-        public SignIntoMyApprenticeshipPage(ScenarioContext context) : base(context)  { }
 
         public CreateMyApprenticeshipAccountPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
         {

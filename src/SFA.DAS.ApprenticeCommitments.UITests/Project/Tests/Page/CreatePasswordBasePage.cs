@@ -4,17 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class CreatePasswordBasePage : ApprenticeCommitmentsBasePage
+    public abstract class CreatePasswordBasePage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
-        protected string validPassword;
+        protected string validPassword = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>().AC_AccountPassword;
         protected override string PageTitle { get; }
         private static By PasswordError => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
         protected static By ConfirmPassword => By.CssSelector("#ConfirmPassword");
-
-        public CreatePasswordBasePage(ScenarioContext context) : base(context)
-        {
-            validPassword = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>().AC_AccountPassword; 
-        }
 
         public void EnterMismatchedPasswordsOnCreateLoginDetailsPage(string password)
         {

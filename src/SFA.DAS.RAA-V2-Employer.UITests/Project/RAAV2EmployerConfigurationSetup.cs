@@ -7,26 +7,19 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 {
     [Binding]
-    public class RAAV2EmployerConfigurationSetup
+    public class RAAV2EmployerConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public RAAV2EmployerConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly IConfigSection _configSection = context.Get<IConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpRAAV2EmployerProjectConfiguration()
         {
-            _context.SetEasLoginUser(new List<EasAccountUser>()
-            {
+            context.SetEasLoginUser(
+            [
                 _configSection.GetConfigSection<RAAV2EmployerUser>(),
 
                 _configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>()
-            });
+            ]);
         }
     }
 }

@@ -29,13 +29,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             if (navigateTo) 
             {
                 action();
-                MultipleVerifyPage(new List<Func<bool>>
-                {
+                MultipleVerifyPage(
+                [
                     () => VerifyPage(PageHeader, action),
                     () => VerifyPage(BrandingHeader, action),
                     () => VerifyPage(Indicators, action),
                     () => VerifyPage(TicketTable, action)
-                });
+                ]);
             }
         }
 
@@ -51,6 +51,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return new TicketPage(context);
         }
 
-        protected HomePage NavigateToHomePage() => new HomePage(context, true);
+        protected HomePage NavigateToHomePage() => new(context, true);
     }
 }

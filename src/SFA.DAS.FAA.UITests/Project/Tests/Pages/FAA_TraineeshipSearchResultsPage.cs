@@ -5,14 +5,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_TraineeshipSearchResultsPage : FAA_SearchVacancyBasePage
+    public class FAA_TraineeshipSearchResultsPage(ScenarioContext context) : FAA_SearchVacancyBasePage(context)
     {
         protected override string PageTitle => "Search results";
 
         private static By LocationTextBox => By.Id("Location");
         private static By DistanceDropDown => By.Id("loc-within");
-
-        public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context) { }
 
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string locationPostCode, string distance)
         {

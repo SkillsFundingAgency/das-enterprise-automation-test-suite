@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class OrgPage : UserOrgBasePage
+    public class OrgPage(ScenarioContext context, bool navigate) : UserOrgBasePage(context, navigate)
     {
         protected override By PageHeader => By.CssSelector("[data-test-id='tabs-nav-item-organizations']");
 
         protected override string PageTitle => dataHelper.NewOrgName;
 
         protected override PageTypeEnum PageType => PageTypeEnum.Org;
-
-        public OrgPage(ScenarioContext context, bool navigate) : base(context, navigate) { }
 
         public HomePage VerifyDetails()
         {

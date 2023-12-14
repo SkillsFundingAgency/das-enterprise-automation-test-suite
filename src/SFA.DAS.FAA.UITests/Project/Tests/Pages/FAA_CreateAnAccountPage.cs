@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_CreateAnAccountPage : FAABasePage
+    public class FAA_CreateAnAccountPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Create an account";
 
@@ -25,8 +25,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private static By RegisteredEmailErrorMessage => By.ClassName("error-summary-list");
 
         #endregion
-
-        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) { }
 
         public FAA_ActivateYourAccountPage CreateAccount()
         {

@@ -1,14 +1,10 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
-public class CancelStandardStepsHelper
+public class CancelStandardStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public CancelStandardStepsHelper(ScenarioContext context) => _context = context;
-
     public void CancelYourStandard()
     {
-        AP_ApplicationOverviewPage _aP_ApplicationOverviewPage = new(_context);
+        AP_ApplicationOverviewPage _aP_ApplicationOverviewPage = new(context);
 
         _aP_ApplicationOverviewPage.ClickToCancelYourStandardApplication()
             .SelectYesToCancelStandardApplication()

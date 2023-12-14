@@ -6,22 +6,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
 
-public class CheckSelectYourOrganisationPage : CheckPageUsingPageTitle
+public class CheckSelectYourOrganisationPage(ScenarioContext context) : CheckPageUsingPageTitle(context)
 {
     protected override string PageTitle => "Select your organisation";
 
     protected override By Identifier => PageHeader;
-
-    public CheckSelectYourOrganisationPage(ScenarioContext context) : base(context) { }
 }
 
-public class SelectYourOrganisationPage : ProviderLoginBasePage
+public class SelectYourOrganisationPage(ScenarioContext context) : ProviderLoginBasePage(context)
 {
     private static By Organisaitons => By.CssSelector("#organisation .govuk-radios__item");
 
     private static By OrganisationLabel => By.CssSelector(".govuk-label--s");
-
-    public SelectYourOrganisationPage(ScenarioContext context) : base(context) { }
 
     protected override string PageTitle => "Select your organisation";
 

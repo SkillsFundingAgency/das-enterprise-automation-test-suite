@@ -8,16 +8,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
-    public class RAAV2EmployerLoginStepsHelper
+    public class RAAV2EmployerLoginStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-
-        public RAAV2EmployerLoginStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
-        }
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper = new(context);
 
         internal HomePage GotoEmployerHomePage() => _homePageStepsHelper.GotoEmployerHomePage();
 
@@ -27,9 +20,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             GoToHomePage(user);
 
-            new InterimCreateAnAdvertHomePage(_context);
+            _ = new InterimCreateAnAdvertHomePage(context);
 
-            return new CreateAnAdvertHomePage(_context);
+            return new CreateAnAdvertHomePage(context);
         }
 
         internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage(RAAV2EmployerUser user)
@@ -39,8 +32,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return NavigateToRecruitmentHomePage();
         }
 
-        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(_context.GetUser<RAAV2EmployerUser>());
+        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(context.GetUser<RAAV2EmployerUser>());
         
-        internal YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new YourApprenticeshipAdvertsHomePage(_context, true);
+        internal YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new(context, true);
     }
 }

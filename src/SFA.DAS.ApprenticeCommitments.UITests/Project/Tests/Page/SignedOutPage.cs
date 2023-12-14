@@ -1,13 +1,10 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class SignedOutPage : ApprenticeCommitmentsBasePage
+    public class SignedOutPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         protected override string PageTitle => "You have successfully signed out";
-
-        public SignedOutPage(ScenarioContext context) : base(context)  { }
 
         public SignIntoMyApprenticeshipPage ClickSignBackInLinkFromSignOutPage()
         {

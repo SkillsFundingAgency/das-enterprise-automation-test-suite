@@ -28,9 +28,10 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             createAdvertPage;
-        private VacancyReferencePage CreateANewTraineeshipVacancy(string employername, bool isEmployerAddress)
+
+        private new VacancyReferencePage CreateANewTraineeshipVacancy(string employername, bool isEmployerAddress)
         {
-            CreateANewTraineeshipVacancy(employername, isEmployerAddress, false);
+            base.CreateANewTraineeshipVacancy(employername, isEmployerAddress);
 
             return new VacancyReferencePage(context);
         }

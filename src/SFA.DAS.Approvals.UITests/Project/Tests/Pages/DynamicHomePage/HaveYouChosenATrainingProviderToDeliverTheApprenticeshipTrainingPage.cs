@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
-    public class HaveYouChosenATrainingProviderToDeliverTheApprenticeshipTrainingPage : ApprovalsBasePage
+    public class HaveYouChosenATrainingProviderToDeliverTheApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Have you chosen a training provider to deliver the apprenticeship training?";
 
         private static By ClickYesContinue => By.Id("have-you-chosen-a-training-provider-button");
-
-        public HaveYouChosenATrainingProviderToDeliverTheApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 
         public WillTheApprenticeshipTrainingStartInTheNextSixMonthsPage YesToTrainingProviderToDeliver()
         {

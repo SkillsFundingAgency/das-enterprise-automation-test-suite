@@ -86,11 +86,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyErrorSummaryTitle();
 
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(ErrorSummaryText,"Select an answer"),
                 () => VerifyPage(FieldValidtionError,"Select an answer")
-            });
+            ]);
         }
 
         private void SelectYesRadioOption() { formCompletionHelper.SelectRadioOptionByText("Yes"); Continue(); }

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_SettingsPage : FAABasePage
+    public class FAA_SettingsPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Settings";
 
@@ -17,8 +17,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private static By Postcode_Address => By.Id("Address_Postcode");
         private static By ChangeEmailIdLink => By.Id("settings-change-username");
         private static By UpdateDetailsButton => By.Id("update-details-button");
-
-        public FAA_SettingsPage(ScenarioContext context) : base(context) { }
 
         public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faaDataHelper.SuccessfulPhoneVerificationText);
 

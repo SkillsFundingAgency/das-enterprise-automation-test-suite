@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class RegisterInterestSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
+        private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
         private  RegisterInterestPage _registerInterestPage;
 

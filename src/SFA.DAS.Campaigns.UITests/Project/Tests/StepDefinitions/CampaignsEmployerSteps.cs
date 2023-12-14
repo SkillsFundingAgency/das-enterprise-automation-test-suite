@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     [Binding, Scope(Tag = "apprentice")]
     public class CampaignsEmployerSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
+        private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
         [Given(@"the user navigates to Setting Up Page")]
         public void GivenTheUserNavigatesToSettingUpPage() => GoToEmployerHubPage().ClickSettingUpLink();

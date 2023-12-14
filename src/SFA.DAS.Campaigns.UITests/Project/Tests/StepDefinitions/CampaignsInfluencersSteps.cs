@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     [Binding, Scope(Tag = "influencers")]
     public class CampaignsInfluencersSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
+        private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
         [Given(@"the user navigates to the browse apprenticeship page")]
         public void GivenTheUserNavigatesToTheBrowseApprenticeshipPage() => GoToInfluencersHubPage().NavigateToBrowseApprenticeshipPage();

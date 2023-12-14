@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
-    public class DynamicHomePages : HomePage
+    public class DynamicHomePages(ScenarioContext context, bool navigate = false) : HomePage(context, navigate)
     {
         private static By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
         private static By VerifyDraftStatus => By.Id("draft");
@@ -14,8 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private static By ReviewApprenticeDetailsButton => By.LinkText("Review apprentice details");
         private static By ViewApprenticeDetailsLink => By.LinkText("View apprentice details");
         private static By DynamicHomeContinueButton => By.LinkText("Continue");
-
-        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public DoYouKnowWhichCourseYourApprenticeWillTakePage StartNowToReserveFunding()
         {

@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests
 
 
     {
-        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
+        private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
         private FundingAnApprenticeshipPage _fundingAnApprenticeshipPage;
 

@@ -8,15 +8,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public class SelectStandardPage : AddAndEditApprenticeDetailsBasePage
+    public class SelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "Select standard";
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
-
-        public SelectStandardPage(ScenarioContext context) : base(context) { }
 
         public AddApprenticeDetailsPage EmployerSelectsAStandard()
         {

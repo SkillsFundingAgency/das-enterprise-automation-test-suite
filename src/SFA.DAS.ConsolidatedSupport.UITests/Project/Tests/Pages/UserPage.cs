@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class UserPage : UserOrgBasePage
+    public class UserPage(ScenarioContext context) : UserOrgBasePage(context, true)
     {
         protected override By PageHeader => By.CssSelector("[data-test-id='tabs-nav-item-users']");
 
@@ -21,8 +21,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override PageTypeEnum PageType => PageTypeEnum.User;
 
-        public UserPage(ScenarioContext context) : base(context, true) { }
-        
         public void CreateOrganisation()
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(OrganisationTab), false);

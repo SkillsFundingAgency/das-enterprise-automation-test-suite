@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ChangeYourEmailAddressPage : FAABasePage
+    public class FAA_ChangeYourEmailAddressPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Change your email address";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private static By VerificationCode => By.Id("PendingUsernameCode");
         private static By VerifyEmailButton => By.Id("verify-email-button");
         private static By VerifyPassword => By.Id("VerifyPassword");
-
-        public FAA_ChangeYourEmailAddressPage(ScenarioContext context) : base(context) { }
 
         public FAA_SignInPage ChangeEmailAddress()
         {

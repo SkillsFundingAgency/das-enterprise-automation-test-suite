@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
-    public class ApprovalsDynamicHomePage : HomePage
+    public class ApprovalsDynamicHomePage(ScenarioContext context) : HomePage(context)
     {
-        public ApprovalsDynamicHomePage(ScenarioContext context) : base(context)  { }
-        
         public ReserveFundingToTrainAndAssessAnApprenticePage StartNowToReserveFunding()
         {
             formCompletionHelper.ClickElement(StartNowButton);

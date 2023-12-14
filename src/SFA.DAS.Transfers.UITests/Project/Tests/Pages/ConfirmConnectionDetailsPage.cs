@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class ConfirmConnectionDetailsPage : TransfersBasePage
+    public class ConfirmConnectionDetailsPage(ScenarioContext context) : TransfersBasePage(context)
     {
         protected override string PageTitle => "Confirm details";
 
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
         private static By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".govuk-radios__label");
-
-        public ConfirmConnectionDetailsPage(ScenarioContext context) : base(context) { }
 
         public RequestSentConfirmPage SendTransferConnectionRequest()
         {

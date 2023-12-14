@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddTrainingProviderDetailsPage : ApprovalsBasePage
+    public class AddTrainingProviderDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Add training provider details";
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.Id("continue-button");
 
         private static By UkprnField => By.CssSelector(".govuk-input");
-
-        public AddTrainingProviderDetailsPage(ScenarioContext context) : base(context) { }
 
         public ConfirmTrainingProviderPage SubmitValidUkprn()
         {

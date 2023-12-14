@@ -4,16 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
-    public class EmployerStepsHelper
+    public class EmployerStepsHelper(ScenarioContext context)
     {
-        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
-        private readonly StepsHelper _stepsHelper;
-
-        public EmployerStepsHelper(ScenarioContext context)
-        {
-            _stepsHelper = new StepsHelper(context);
-            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
-        }
+        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper = new(context);
+        private readonly StepsHelper _stepsHelper = new(context);
 
         internal EmployerVacancySearchResultPage YourAdvert()
         {

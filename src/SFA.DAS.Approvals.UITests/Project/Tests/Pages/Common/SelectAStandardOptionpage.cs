@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public class SelectAStandardOptionpage : ApprovalsBasePage
+    public class SelectAStandardOptionpage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Select a standard option";
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
-        public SelectAStandardOptionpage(ScenarioContext context) : base(context) { }
 
         public void SelectAStandardOption()
         {

@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_TraineeshipSearchPage : FAA_SearchVacancyBasePage
+    public class FAA_TraineeshipSearchPage(ScenarioContext context) : FAA_SearchVacancyBasePage(context)
     {
         protected override string PageTitle => "Find a traineeship";
         private static By Location => By.Id("Location");
         private static By ReferenceNumber => By.Id("ReferenceNumber");
-
-        public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context) { }
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {

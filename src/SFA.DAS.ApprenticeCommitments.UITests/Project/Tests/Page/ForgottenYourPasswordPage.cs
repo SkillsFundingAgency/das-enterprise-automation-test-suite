@@ -4,14 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ForgottenYourPasswordPage : ApprenticeCommitmentsBasePage
+    public class ForgottenYourPasswordPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context, verifyserviceheader: false)
     {
         protected override string PageTitle => "Forgotten password";
         private static By NewEmailAddress => By.CssSelector("#Email");
         private static By Message => By.CssSelector("#main-content .govuk-body");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
-
-        public ForgottenYourPasswordPage(ScenarioContext context) : base(context, verifyserviceheader: false)  { }
 
         public ForgottenYourPasswordPage RequestToUpdatePassword()
         {

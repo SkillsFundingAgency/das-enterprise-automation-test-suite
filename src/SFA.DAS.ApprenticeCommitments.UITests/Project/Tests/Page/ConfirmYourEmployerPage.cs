@@ -14,13 +14,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ConfirmYourEmployerPage(ScenarioContext context) : base(context)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(),
                 () => VerifyPage(ConfirmingEntityNamePageHeader, objectContext.GetEmployerName().Replace("  ", " ")),
                 () => VerifyPage(EmployerHelpSectionLink),
                 () => VerifyPage(EmployerHelpSectionText)
-            });
+            ]);
         }
 
         public new ConfirmYourEmployerPage ClickOnConfirmButton()

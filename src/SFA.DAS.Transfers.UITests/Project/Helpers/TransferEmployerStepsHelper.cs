@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using System;
@@ -7,10 +6,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
-    public class TransferEmployerStepsHelper : EmployerStepsHelper
+    public class TransferEmployerStepsHelper(ScenarioContext context) : EmployerStepsHelper(context)
     {
-        public TransferEmployerStepsHelper(ScenarioContext context) : base(context) { }
-
         protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsUsingTransfersFunc();
 
         public void AssertApprenticeChangeToReviewTaskLink(int numberOfTasks) => AssertTaskCount("ApprenticeChangeToReview", numberOfTasks);

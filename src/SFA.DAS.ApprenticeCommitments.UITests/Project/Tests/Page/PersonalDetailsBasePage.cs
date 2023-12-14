@@ -5,15 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class PersonalDetailsBasePage : ApprenticeCommitmentsBasePage
+    public abstract class PersonalDetailsBasePage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         private static By FirstName => By.CssSelector("input#FirstName");
         private static By LastName => By.CssSelector("input#LastName");
         private static By DateOfBirth_Day => By.CssSelector("input#DateOfBirth_Day");
         private static By DateOfBirth_Month => By.CssSelector("input#DateOfBirth_Month");
         private static By DateOfBirth_Year => By.CssSelector("input#DateOfBirth_Year");
-
-        public PersonalDetailsBasePage(ScenarioContext context) : base(context) { }
 
         protected void UpdateApprenticeName() => EnterApprenticeDetails(UpdatedNewName(GetFirstName()), UpdatedNewName(GetLastName()), null, null, null);
 
@@ -49,7 +47,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Continue();
         }
 
-        private string UpdatedNewName(string name) => $"New{name}";
+        private static string UpdatedNewName(string name) => $"New{name}";
 
         private string UpdatedInvalidFirstName() => SetFirstName("InvalidFName");
 

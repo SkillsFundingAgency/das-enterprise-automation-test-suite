@@ -1,15 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
-public class ApplyStepsHelper
+public class ApplyStepsHelper(ScenarioContext context)
 {
-    private readonly ObjectContext _objectContext;
-    private readonly ScenarioContext _context;
-
-    public ApplyStepsHelper(ScenarioContext context)
-    {
-        _objectContext = context.Get<ObjectContext>();
-        _context = context;
-    }
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
     public AP_ApplicationOverviewPage CompletePreambleJourney(AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage, string orgName)
     {
@@ -106,7 +99,7 @@ public class ApplyStepsHelper
 
     public void ApplyStageTwoStandard()
     {
-        AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new(_context);
+        AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new(context);
 
         var applyToStandard = _aS_ApplyForAStandardPage.Start()
         .EnterStandardToCancelName()

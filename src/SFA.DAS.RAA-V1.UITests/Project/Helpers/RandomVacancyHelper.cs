@@ -1,26 +1,15 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
-    public class RandomVacancyHelper
+    public class RandomVacancyHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, ObjectContext objectContext)
     {
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ObjectContext _objectContext;
-
-        public RandomVacancyHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, ObjectContext objectContext)
-        {
-            _pageInteractionHelper = pageInteractionHelper;
-            _formCompletionHelper = formCompletionHelper;
-            _objectContext = objectContext;
-        }
-
         public IWebElement RandomElementAt(Func<IWebElement, bool> func, By VacancyTables, By VacancyTitle, By NextPage, By NoOfPagesCssSelector)
         {
             IWebElement randomElement = null;
@@ -31,17 +20,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             for (int i = 1; i <= noOfPages; i++)
             {
-                List<IWebElement> filteredRows = _pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x)).ToList();
+                List<IWebElement> filteredRows = pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x)).ToList();
 
                 if (filteredRows.Count == 0)
                 {
-                    if (_pageInteractionHelper.IsElementDisplayed(NextPage))
+                    if (pageInteractionHelper.IsElementDisplayed(NextPage))
                     {
-                        _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(NextPage));
+                        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(NextPage));
                         int currentPage = i + 1;
                         if (currentPage < noOfPages)
                         {
-                            _pageInteractionHelper.WaitForElementToChange(NextPage, AttributeHelper.InnerText, $"{currentPage + 1} of {noOfPages}");
+                            pageInteractionHelper.WaitForElementToChange(NextPage, AttributeHelper.InnerText, $"{currentPage + 1} of {noOfPages}");
                         }
                     }
                     continue;
@@ -53,7 +42,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
                 var vacTitle = PageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
 
-                _objectContext.SetVacancyTitle(vacTitle);
+                objectContext.SetVacancyTitle(vacTitle);
 
                 break;
             }
@@ -65,8 +54,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             int noOfPages = 1;
 
-            if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
-                noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
+            if (pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
+                noOfPages = int.Parse(pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
 
             return noOfPages;
         }

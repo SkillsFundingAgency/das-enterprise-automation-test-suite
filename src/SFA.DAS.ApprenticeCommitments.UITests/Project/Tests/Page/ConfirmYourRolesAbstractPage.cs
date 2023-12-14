@@ -24,11 +24,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             VerifyErrorSummaryTitle();
 
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(ErrorSummaryText,"Please confirm that you have read the roles and responsibilities"),
                 () => VerifyPage(FieldValidtionError,"Please confirm that you have read the roles and responsibilities")
-            });
+            ]);
         }
     }
 }

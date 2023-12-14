@@ -28,12 +28,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createTraineeshipPage, string employername);
 
-        protected WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
+        protected static WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
 
-        protected VacancyReferencePage CheckAndSubmitAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => 
+        protected static VacancyReferencePage CheckAndSubmitAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             SubmitAndSetVacancyReference(createAdvertPage.CheckYourAnswers());
 
-        protected VacancyReferencePage SubmitAndSetVacancyReference(CheckYourAnswersPage checkYourAnswersPage) =>
+        protected static VacancyReferencePage SubmitAndSetVacancyReference(CheckYourAnswersPage checkYourAnswersPage) =>
             checkYourAnswersPage.SubmitAdvert().SetVacancyReference();
 
 
@@ -76,8 +76,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return CheckAndSubmitAdvert(createAdvertPage);
         }
 
-        protected VacancyReferencePage CreateANewTraineeshipVacancy(string employerName, bool isEmployerAddress,
-            bool disabilityConfidence)
+        protected VacancyReferencePage CreateANewTraineeshipVacancy(string employerName, bool isEmployerAddress)
         {
             var createTraineeshipPage = CreateNewTraineeshipVacancy();
 

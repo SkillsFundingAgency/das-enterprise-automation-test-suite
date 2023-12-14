@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_WithDrawConfirmationPage : FAABasePage
+    public class FAA_WithDrawConfirmationPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Are you sure you want to withdraw your application?";
-
-        public FAA_WithDrawConfirmationPage(ScenarioContext context) : base(context) { }
 
         public FAA_WithdrawSuccessfulPage YesWithdraw()
         {

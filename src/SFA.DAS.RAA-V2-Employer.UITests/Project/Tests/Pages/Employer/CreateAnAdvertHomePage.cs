@@ -5,15 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class CreateAnAdvertHomePage : Raav2BasePage
+    public class CreateAnAdvertHomePage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Create an advert";
 
         protected override bool TakeFullScreenShot => false;
 
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
-
-        public CreateAnAdvertHomePage(ScenarioContext context) : base(context) { }
 
         public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
         {

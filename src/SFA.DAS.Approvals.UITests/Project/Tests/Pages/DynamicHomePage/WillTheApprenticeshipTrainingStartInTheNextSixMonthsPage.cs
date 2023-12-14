@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
-   public class WillTheApprenticeshipTrainingStartInTheNextSixMonthsPage : ApprovalsBasePage
+   public class WillTheApprenticeshipTrainingStartInTheNextSixMonthsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Will the apprenticeship training start in the next 6 months?";
 
         private static By ClickYesContinue => By.Id("will-apprenticeship-training-start-button");
-
-        public WillTheApprenticeshipTrainingStartInTheNextSixMonthsPage(ScenarioContext context) : base(context)  { }
 
         public AreYouSettingUpAnApprenticeshipForAnExistingEmployeePage YesWillTrainingStartInSixMonths()
         {
