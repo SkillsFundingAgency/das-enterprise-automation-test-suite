@@ -5,13 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCoESelectEmployerPage : ApprovalsBasePage
+    public class ProviderCoESelectEmployerPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose a new employer";
 
         protected override bool TakeFullScreenShot => false;
-
-        public ProviderCoESelectEmployerPage(ScenarioContext context) : base(context)  { }
 
         public ProviderCoEConfirmNewEmployerPage SelectNewEmployer()
         {

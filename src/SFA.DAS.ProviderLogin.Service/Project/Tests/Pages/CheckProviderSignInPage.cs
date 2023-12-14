@@ -4,9 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class CheckProviderSignInPage : CheckPageUsingShorterTimeOut
+public class CheckProviderSignInPage(ScenarioContext context) : CheckPageUsingShorterTimeOut(context)
 {
     protected override By Identifier => By.Id("form-signin");
-
-    public CheckProviderSignInPage(ScenarioContext context) : base(context) { }
 }

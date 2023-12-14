@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
@@ -18,8 +19,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         public WageTypePage EnterDuration()
         {
             pageInteractionHelper.WaitforURLToChange("/duration/");
-            EnterDurationAndWorkingWeek(rAAV2DataHelper.Duration);
-            formCompletionHelper.EnterText(WeeklyHours, rAAV2DataHelper.WeeklyHours);
+            EnterDurationAndWorkingWeek(RAAV2DataHelper.Duration);
+            formCompletionHelper.EnterText(WeeklyHours, RAAV2DataHelper.WeeklyHours);
             Continue();
             pageInteractionHelper.WaitforURLToChange("wage");
             return new WageTypePage(context);
@@ -28,7 +29,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         public SubmitNoOfPositionsPage EnterTraineeshipDuration()
         {
             pageInteractionHelper.WaitforURLToChange("/duration/");
-            EnterDurationAndWorkingWeek(rAAV2DataHelper.TraineeshipDuration);
+            EnterDurationAndWorkingWeek(RAAV2DataHelper.TraineeshipDuration);
             Continue();
             pageInteractionHelper.WaitforURLToChange("number-of-positions");
             return new SubmitNoOfPositionsPage(context);

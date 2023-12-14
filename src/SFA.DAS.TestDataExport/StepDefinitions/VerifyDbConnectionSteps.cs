@@ -16,7 +16,7 @@ public class VerifyDbConnectionSteps(ScenarioContext context)
     [Then(@"the db connection are verified")]
     public void ThenTheDbConnectionAreVerified()
     {
-        _exception = new List<string>();
+        _exception = [];
 
         AssertDbConnection(new AssessorDbSqlDataHelper(_objectContext, _dbConfig));
         AssertDbConnection(new LoginDbSqlDataHelper(_objectContext, _dbConfig));
@@ -43,7 +43,7 @@ public class VerifyDbConnectionSteps(ScenarioContext context)
         AssertDbConnection(new TprDbSqlDataHelper(_objectContext, _dbConfig));
         AssertDbConnection(new TestDataCleanUpUsersDbSqlDataHelper(_objectContext, _dbConfig));
 
-        if (_exception.Any())
+        if (_exception.Count != 0)
         {
             _exception.ForEach(x => SetDebugInformation(x));
 

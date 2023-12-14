@@ -15,7 +15,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
 
         foreach (var tablerow in tableRows)
         {
-            if (tablerow.Text.ContainsCompareCaseInsensitive(rowIdentifier) && tablerow.FindElements(columnIdentifier).Any())
+            if (tablerow.Text.ContainsCompareCaseInsensitive(rowIdentifier) && tablerow.FindElements(columnIdentifier).Count != 0)
             {
                return tablerow.FindElement(columnIdentifier);
             }
@@ -26,7 +26,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
 
     public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
     {
-        var element = FindElementInTable(byLinkText, new List<string> { byKey }, tableSelector);
+        var element = FindElementInTable(byLinkText, [byKey], tableSelector);
 
         var href = element?.GetAttribute("href");
 

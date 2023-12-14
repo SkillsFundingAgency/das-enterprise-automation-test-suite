@@ -37,7 +37,7 @@ public abstract class RequestAndResponseCollectionHelper(RestClient client, Rest
 
         if (absoluteUri.ContainsCompareCaseInsensitive("code="))
         {
-            var index = absoluteUri.IndexOf("=");
+            var index = absoluteUri.IndexOf('=');
             absoluteUri = absoluteUri[..(index + 5)];
             absoluteUri = $"{absoluteUri}{HashedValue}";
         }

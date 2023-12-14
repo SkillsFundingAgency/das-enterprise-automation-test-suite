@@ -5,29 +5,26 @@ using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 
-public class DfeAdminLoginStepsHelper
+public class DfeAdminLoginStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public DfeAdminLoginStepsHelper(ScenarioContext context) => _context = context;
 
     #region Login
     public void NavigateAndLoginToASAdmin()
     {
-        _context.Get<TabHelper>().GoToUrl(UrlConfig.Admin_BaseUrl);
+        context.Get<TabHelper>().GoToUrl(UrlConfig.Admin_BaseUrl);
 
         LoginToAsAdmin();
     }
 
-    public void LoginToAsAssessor1() => CheckAndLoginToAsAdmin(_context.GetUser<AsAssessor1User>());
+    public void LoginToAsAssessor1() => CheckAndLoginToAsAdmin(context.GetUser<AsAssessor1User>());
 
-    public void LoginToAsAssessor2() => CheckAndLoginToAsAdmin(_context.GetUser<AsAssessor2User>());
+    public void LoginToAsAssessor2() => CheckAndLoginToAsAdmin(context.GetUser<AsAssessor2User>());
 
-    public void LoginToAsAdmin() => SubmitValidLoginDetails(new ASAdminLandingPage(_context), GetAsAdminUser());
+    public void LoginToAsAdmin() => SubmitValidLoginDetails(new ASAdminLandingPage(context), GetAsAdminUser());
 
-    public void LoginToSupportConsole(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportConsoleLandingPage(_context), dfeAdminUser);
+    public void LoginToSupportConsole(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportConsoleLandingPage(context), dfeAdminUser);
 
-    public void LoginToSupportTool(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportToolLandingPage(_context), dfeAdminUser);
+    public void LoginToSupportTool(DfeAdminUser dfeAdminUser) => SubmitValidLoginDetails(new ASEmpSupportToolLandingPage(context), dfeAdminUser);
 
     public void SubmitValidAsLoginDetails(ASLandingBasePage landingPage) => SubmitValidLoginDetails(landingPage, GetAsAdminUser());
 
@@ -37,11 +34,11 @@ public class DfeAdminLoginStepsHelper
 
     public void CheckAndLoginToAsAdmin() => CheckAndLoginToAsAdmin(GetAsAdminUser());
 
-    public void CheckAndLoginToAsAdmin(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASAdminLandingPage(_context), () => new ASAdminLandingPage(_context), dfeAdminUser);
+    public void CheckAndLoginToAsAdmin(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASAdminLandingPage(context), () => new ASAdminLandingPage(context), dfeAdminUser);
 
-    public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(_context), () => new ASEmpSupportToolLandingPage(_context), dfeAdminUser);
+    public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(context), () => new ASEmpSupportToolLandingPage(context), dfeAdminUser);
 
-    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(_context), () => new ASVacancyQaLandingPage(_context), _context.GetUser<VacancyQaUser>());
+    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(context), () => new ASVacancyQaLandingPage(context), context.GetUser<VacancyQaUser>());
 
     #endregion
 
@@ -49,7 +46,7 @@ public class DfeAdminLoginStepsHelper
     {
         if (checkPage.IsPageDisplayed()) landingPage().ClickStartNowButton();
 
-        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) SubmitValidLoginDetails(dfeAdminUser);
+        if (new CheckDfeSignInPage(context).IsPageDisplayed()) SubmitValidLoginDetails(dfeAdminUser);
     }
 
     private void SubmitValidLoginDetails(ASLandingBasePage landingPage, DfeAdminUser dfeAdminUser)
@@ -59,7 +56,7 @@ public class DfeAdminLoginStepsHelper
         SubmitValidLoginDetails(dfeAdminUser);
     }
 
-    private void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser) => new DfeSignInPage(_context).SubmitValidLoginDetails(dfeAdminUser);
+    private void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser) => new DfeSignInPage(context).SubmitValidLoginDetails(dfeAdminUser);
 
-    private AsAdminUser GetAsAdminUser() => _context.GetUser<AsAdminUser>();
+    private AsAdminUser GetAsAdminUser() => context.GetUser<AsAdminUser>();
 }

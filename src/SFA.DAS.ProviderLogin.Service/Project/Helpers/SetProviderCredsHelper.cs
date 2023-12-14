@@ -13,7 +13,7 @@ internal static class SetProviderCredsHelper
 
         if (!(dfeProviderList.Any(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn))))
         {
-            FrameworkList<string> message = new() { Environment.NewLine };
+            FrameworkList<string> message = [Environment.NewLine];
 
             foreach (var item in dfeProviderList) message.Add($"{item.Username} [{string.Join(",", item.Listofukprn)}]");
 

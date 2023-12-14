@@ -59,9 +59,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 var cohort = parent.FindElement(Cohort);
                 var numberOfApprentices = parent.FindElement(NumberOfApprentices);
 
-                pageInteractionHelper.VerifyText(flattenedRow.EmployerName.RemoveSpace(), pageInteractionHelper.GetText(employerName).RemoveSpace());
-                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.CohortRefText, pageInteractionHelper.GetText(cohort));
-                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.NumberOfApprentices.ToString(), pageInteractionHelper.GetText(numberOfApprentices));
+                pageInteractionHelper.VerifyText(flattenedRow.EmployerName.RemoveSpace(), UI.FrameworkHelpers.PageInteractionHelper.GetText(employerName).RemoveSpace());
+                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.CohortRefText, UI.FrameworkHelpers.PageInteractionHelper.GetText(cohort));
+                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.NumberOfApprentices.ToString(), UI.FrameworkHelpers.PageInteractionHelper.GetText(numberOfApprentices));
 
                 objectContext.SetCohortReferenceList(flattenedRow.CohortDetails.CohortRefText);
             }

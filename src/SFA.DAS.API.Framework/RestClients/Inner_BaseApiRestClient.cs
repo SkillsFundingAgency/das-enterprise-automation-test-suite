@@ -20,7 +20,7 @@ public abstract class Inner_BaseApiRestClient(ObjectContext objectContext, Inner
         restClient = new(options);
     }
 
-    private IAuthenticator GetAuthenticator() 
+    private OAuth2AuthorizationRequestHeaderAuthenticator GetAuthenticator() 
     {
         (string tokenType, string accessToken) = config.IsVstsExecution ? GetOAuthToken() : GetAADAuthToken();
 

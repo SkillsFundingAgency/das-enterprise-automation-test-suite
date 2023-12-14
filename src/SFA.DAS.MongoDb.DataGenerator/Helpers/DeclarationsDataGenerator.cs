@@ -4,21 +4,17 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
-    public class DeclarationsDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
+    public class DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration) : EmpRefFilterDefinition(helper), IMongoDbDataGenerator
     {
-        private readonly List<dynamic> _declarations;
-
-        public DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration) : base(helper) => _declarations = declaration;
-
         public string CollectionName() => "declarations";
 
         public BsonDocument[] Data()
         {
-            BsonArray declarations = new BsonArray();
+            BsonArray declarations = [];
 
-            foreach (var declaration in _declarations)
+            foreach (var declaration in declaration)
             {
-                BsonDocument payrollperiod = new BsonDocument
+                BsonDocument payrollperiod = new()
                 {
                     {"year", declaration.Year  },
                     {"month", declaration.Month }
@@ -26,7 +22,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
                 var submissionDate = (declaration.SubmissionDate as DateTime?)?.ToString("yyyy-MM-dd");
 
-                long.TryParse(DateTime.Now.ToString("yssfffffff"), out long id);
+                _ = long.TryParse(DateTime.Now.ToString("yssfffffff"), out long id);
 
                 declarations.Add(new BsonDocument
                 {
@@ -38,13 +34,13 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
                 });
             }
 
-            BsonDocument levydeclaration = new BsonDocument
+            BsonDocument levydeclaration = new()
             {
                 { "empref",mongoDbDatahelper.EmpRef},
                 { "declarations", declarations}
             };
 
-            return new BsonDocument[] { levydeclaration };
+            return [levydeclaration];
         }
     }
 }

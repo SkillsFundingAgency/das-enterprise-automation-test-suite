@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -111,7 +112,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterFurtherDetailsPage EnterVacancyDescription()
         {
-            formCompletionHelper.SendKeys(frameHelper.Iframe, Keys.Tab + rAAV1DataHelper.VacancyDescription);
+            formCompletionHelper.SendKeys(IFrameHelper.Iframe, Keys.Tab + rAAV1DataHelper.VacancyDescription);
             return this;
         }
     }

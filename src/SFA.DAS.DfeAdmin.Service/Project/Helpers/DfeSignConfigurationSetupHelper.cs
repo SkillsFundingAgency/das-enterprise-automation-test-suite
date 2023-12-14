@@ -1,14 +1,10 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Helpers;
 
-public class DfeSignConfigurationSetupHelper
+public class DfeSignConfigurationSetupHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public DfeSignConfigurationSetupHelper(ScenarioContext context) => _context = context;
-
     public void SetUpDfeSignConfiguration<T>(string key)
     {
-        var configSection = _context.Get<IConfigSection>();
+        var configSection = context.Get<IConfigSection>();
 
         var dfeSignInList = configSection.GetConfigSection<List<T>>(key);
 
@@ -23,6 +19,6 @@ public class DfeSignConfigurationSetupHelper
 
         dfeframeworkList.AddRange(dfeSignInList);
 
-        _context.Set(dfeframeworkList);
+        context.Set(dfeframeworkList);
     }
 }

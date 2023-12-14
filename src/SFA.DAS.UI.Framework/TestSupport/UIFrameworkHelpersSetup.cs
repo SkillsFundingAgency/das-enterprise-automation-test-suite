@@ -34,12 +34,11 @@ public class UIFrameworkHelpersSetup
         var iFrameHelper = new IFrameHelper(webDriver);
         _context.Replace(iFrameHelper);
 
-        var javaScriptHelper = new JavaScriptHelper(webDriver, iFrameHelper);
-        _context.Replace(javaScriptHelper);
+        _context.Replace(new JavaScriptHelper(webDriver, iFrameHelper));
 
         _context.Replace(new TabHelper(webDriver, objectContext));
 
-        var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, javaScriptHelper, _context.Get<FrameworkConfig>().TimeOutConfig);
+        var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, _context.Get<FrameworkConfig>().TimeOutConfig);
 
         var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext);
 

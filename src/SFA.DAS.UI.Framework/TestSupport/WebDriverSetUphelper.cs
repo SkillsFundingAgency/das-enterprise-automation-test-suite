@@ -10,18 +10,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public class WebDriverSetupHelper : WebdriverAddCapabilities
+public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabilities(context)
 {
-    private readonly ScenarioContext _context;
-    private readonly ObjectContext _objectContext;
-    private readonly FrameworkConfig _frameworkConfig;
-
-    public WebDriverSetupHelper(ScenarioContext context) : base(context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _frameworkConfig = context.Get<FrameworkConfig>();
-    }
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+    private readonly FrameworkConfig _frameworkConfig = context.Get<FrameworkConfig>();
 
     public IWebDriver SetupWebDriver()
     {
@@ -34,7 +26,7 @@ public class WebDriverSetupHelper : WebdriverAddCapabilities
 
         WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
 
-        _context.SetWebDriver(WebDriver);
+        context.SetWebDriver(WebDriver);
 
         return WebDriver;
     }
@@ -44,10 +36,10 @@ public class WebDriverSetupHelper : WebdriverAddCapabilities
         return true switch
         {
             _ when browser.IsFirefox() => FirefoxDriver(),
-            _ when browser.IsChrome() => ChromeDriver(new List<string>()),
+            _ when browser.IsChrome() => ChromeDriver([]),
             _ when browser.IsEdge() => EdgeDriver(),
             _ when browser.IsZap() => InitialiseZapProxyChrome(),
-            _ when browser.IsChromeHeadless() => ChromeDriver(new List<string>() { "--headless" }),
+            _ when browser.IsChromeHeadless() => ChromeDriver(["--headless"]),
             _ when browser.IsCloudExecution() => SetUpBrowserStack(),
             _ => throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified")
         };
@@ -55,7 +47,7 @@ public class WebDriverSetupHelper : WebdriverAddCapabilities
 
     private IWebDriver SetUpBrowserStack()
     {
-        _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+        _frameworkConfig.BrowserStackSetting.Name = context.ScenarioInfo.Title;
 
         return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
     }

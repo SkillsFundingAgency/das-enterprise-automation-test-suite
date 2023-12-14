@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public void EnterNumberOfPositionsAndContinue(string urltext)
         {
-            formCompletionHelper.EnterText(NumberOfPositions, rAAV2DataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfPositions, RAA.DataGenerator.RAAV2DataHelper.NumberOfVacancy);
             Continue();
             pageInteractionHelper.WaitforURLToChange(urltext);
         }

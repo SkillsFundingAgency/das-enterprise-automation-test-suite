@@ -10,7 +10,7 @@ public static class SetDfeAdminCredsHelper
 
         if (!dfeAdmins.Any(x => x.Listofservices.Select(y => y.ToString()).Contains(t.AdminServiceName)))
         {
-            FrameworkList<string> message = new() { Environment.NewLine };
+            FrameworkList<string> message = [Environment.NewLine];
 
             foreach (var item in dfeAdmins) message.Add($"{item.Username} [{string.Join(",", item.Listofservices)}]");
 

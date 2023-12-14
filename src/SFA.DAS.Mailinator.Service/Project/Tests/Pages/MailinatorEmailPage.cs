@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
 {
-    public class MailinatorEmailPage : MailinatorBasePage
+    public class MailinatorEmailPage(ScenarioContext context) : MailinatorBasePage(context)
     {
         protected override string PageTitle => "Received";
 
@@ -17,8 +17,6 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         private static By EmailLink(string linktext) => By.XPath($"//a[contains(text(), '{linktext}')]");
 
         #endregion
-
-        public MailinatorEmailPage(ScenarioContext context) : base(context) { }
 
         internal void OpenLink(string linktext)
         {

@@ -30,9 +30,9 @@ public abstract class TestDataCleanUpSqlDataHelper(ObjectContext objectContext, 
 
     protected (List<string>, List<string>) CleanUpTestData(Func<List<string>> getAccountidfunc, Func<List<string>, int> deleteAccountidfunc)
     {
-        List<string> accountIdToDelete = new();
+        List<string> accountIdToDelete = [];
 
-        List<string> accountIdNotDeleted = new();
+        List<string> accountIdNotDeleted = [];
 
         if (ExcludeEnvironments) return (accountIdToDelete, accountIdNotDeleted);
 

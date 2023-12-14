@@ -11,29 +11,19 @@ using SFA.DAS.ProviderLogin.Service.Project;
 namespace SFA.DAS.ManagingStandards.UITests.Project.Hooks
 {
     [Binding]
-    public class ManagingStandardsHooks
+    public class ManagingStandardsHooks(ScenarioContext context)
     {
-        private readonly string[] _tags;
+        private readonly string[] _tags = context.ScenarioInfo.Tags;
         private ManagingStandardsSqlDataHelper _managingStandardsSqlDataHelper;
-        protected readonly DbConfig _dbConfig;
-        private readonly ScenarioContext _context;
-        private readonly ProviderConfig _config;
-        private readonly ObjectContext _objectContext;
-
-        public ManagingStandardsHooks(ScenarioContext context)
-        {
-            _tags = context.ScenarioInfo.Tags;
-            _context = context;
-            _dbConfig = context.Get<DbConfig>();
-            _config = context.GetProviderConfig<ProviderConfig>();
-            _objectContext = context.Get<ObjectContext>();
-        }
+        protected readonly DbConfig _dbConfig = context.Get<DbConfig>();
+        private readonly ProviderConfig _config = context.GetProviderConfig<ProviderConfig>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [BeforeScenario(Order = 31)]
         public void SetUpDataHelpers()
         {
-            _context.Set(_managingStandardsSqlDataHelper = new ManagingStandardsSqlDataHelper(_objectContext, _dbConfig));
-            _context.Set(new ManagingStandardsDataHelpers());
+            context.Set(_managingStandardsSqlDataHelper = new ManagingStandardsSqlDataHelper(_objectContext, _dbConfig));
+            context.Set(new ManagingStandardsDataHelpers());
         }
 
         [BeforeScenario(Order = 32)]

@@ -66,20 +66,20 @@ public class AnalyzePageHelper(ScenarioContext context)
     }
 
     //Do not delete this method please.
-    private bool ShouldAnalyzePage()
-    {
-        var analyzedPages = _objectContext.GetAccessibilityInformations();
+    //private bool ShouldAnalyzePage()
+    //{
+    //    var analyzedPages = _objectContext.GetAccessibilityInformations();
 
-        var url = context.Get<PageInteractionHelper>().GetUrl();
+    //    var url = context.Get<PageInteractionHelper>().GetUrl();
 
-        if (analyzedPages.Any(x => x.Contains(url))) return false;
+    //    if (analyzedPages.Any(x => x.Contains(url))) return false;
 
-        var urlsplit = url.Split("?");
+    //    var urlsplit = url.Split("?");
 
-        if (urlsplit.Any() && analyzedPages.Any(x => x.Contains(urlsplit[0]))) return false;
+    //    if (urlsplit.Any() && analyzedPages.Any(x => x.Contains(urlsplit[0]))) return false;
 
-        return true;
-    }
+    //    return true;
+    //}
 
     private void SetAccessibilityInformation(string x) => _objectContext.SetAccessibilityInformation(x);
 

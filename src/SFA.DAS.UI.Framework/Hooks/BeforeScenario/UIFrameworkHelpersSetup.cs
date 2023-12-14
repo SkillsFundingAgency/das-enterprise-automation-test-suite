@@ -6,7 +6,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 [Binding]
 public class UIFrameworkHelpersSetup(ScenarioContext context)
 {
-    private readonly TestSupport.UIFrameworkHelpersSetup _helpersSetup = new TestSupport.UIFrameworkHelpersSetup(context);
+    private readonly TestSupport.UIFrameworkHelpersSetup _helpersSetup = new(context);
     private readonly FrameworkConfig _config = context.Get<FrameworkConfig>();
 
     [BeforeScenario(Order = 4)]

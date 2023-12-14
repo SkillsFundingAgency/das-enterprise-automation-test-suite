@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.SelectFromDropDownByText(QualificationType, "A Level or equivalent");
             formCompletionHelper.EnterText(Subject, rAAV2DataHelper.DesiredQualificationsSubject);
-            formCompletionHelper.EnterText(Grade, rAAV2DataHelper.DesiredQualificationsGrade);
+            formCompletionHelper.EnterText(Grade, RAA.DataGenerator.RAAV2DataHelper.DesiredQualificationsGrade);
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
             return new ConfirmQualificationsPage(context);

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -97,7 +98,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             SelectRadioOptionByForAttribute("wage-type-fixed");
             Continue();
             
-            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, RAAV2DataHelper.FixedWageYearlyAmount);
         }
 
         private static By SelectYesRadioButton => By.CssSelector("#competitive-salary-type-national-minimum-wage-or-above");

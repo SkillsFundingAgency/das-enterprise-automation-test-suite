@@ -209,7 +209,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         }
         catch (Exception)
         {
-            return default(T);
+            return default;
         }
         finally
         {
@@ -245,7 +245,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetAttribute(AttributeHelper.DataCount));
 
-    public string GetText(IWebElement webElement) => webElement.Text;
+    public static string GetText(IWebElement webElement) => webElement.Text;
 
     public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
@@ -255,10 +255,8 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public IWebElement FindElement(By locator) => webDriver.FindElement(locator);
 
-    public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
-
     public List<IWebElement> FindElements(IWebElement element, By locator, bool withoutImplicitWaits = false) =>
-        withoutImplicitWaits ? WithoutImplicitWaits(() => element.FindElements(locator).ToList()) : element.FindElements(locator).ToList();
+        withoutImplicitWaits ? WithoutImplicitWaits(() => element.FindElements(locator).ToList()) : [.. element.FindElements(locator)];
 
     public List<IWebElement> FindElements(By locator) => webDriver.FindElements(locator).ToList();
 

@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public DescriptionPage EnterShortDescription()
         {
-            formCompletionHelper.EnterText(ShortDescSelector, rAAV2DataHelper.RandomAlphabeticString(60));
+            formCompletionHelper.EnterText(ShortDescSelector, RAA.DataGenerator.RAAV2DataHelper.RandomAlphabeticString(60));
             Continue();
             return new DescriptionPage(context);
         }

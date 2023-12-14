@@ -97,7 +97,7 @@ public class EPAOWithdrawalHelper
         new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
     }
 
-    public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
+    public static AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
     {
         return staffDashboardPage
             .GoToNewWithdrawalApplications()

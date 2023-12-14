@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
@@ -22,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private void EnterTrainingTitleAction()
         {
-            formCompletionHelper.EnterText(ProgrammeId, rAAV2DataHelper.TrainingTitle);
+            formCompletionHelper.EnterText(ProgrammeId, RAAV2DataHelper.TrainingTitle);
 
             formCompletionHelper.Click(PageHeader);
 

@@ -8,15 +8,13 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 public class WebDriverWaitHelper
 {
     private readonly IWebDriver _webDriver;
-    private readonly JavaScriptHelper _javaScriptHelper;
     private readonly TimeOutConfig _timeOutConfig;
     private readonly WebDriverWait _implicitWait;
     private readonly WebDriverWait _pagenavigationWait;
     
-    public WebDriverWaitHelper(IWebDriver webDriver, JavaScriptHelper javaScriptHelper, TimeOutConfig timeOutConfig)
+    public WebDriverWaitHelper(IWebDriver webDriver, TimeOutConfig timeOutConfig)
     {
         _webDriver = webDriver;
-        _javaScriptHelper = javaScriptHelper;
         _timeOutConfig = timeOutConfig;
         _implicitWait = WebDriverWait(timeOutConfig.ImplicitWait);
         _pagenavigationWait = WebDriverWait(timeOutConfig.PageLoad);
@@ -43,7 +41,7 @@ public class WebDriverWaitHelper
 
     internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
 
-    internal void WaitForPageToLoad() => _pagenavigationWait.Until(_javaScriptHelper.IsDocumentReady);
+    internal void WaitForPageToLoad() => _pagenavigationWait.Until(JavaScriptHelper.IsDocumentReady);
 
     internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
 
@@ -53,5 +51,5 @@ public class WebDriverWaitHelper
 
     internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
 
-    private WebDriverWait WebDriverWait(int timespan) => new WebDriverWait(new SystemClock(), _webDriver, TimeSpan.FromSeconds(timespan), TimeSpan.FromMilliseconds(1000));
+    private WebDriverWait WebDriverWait(int timespan) => new(new SystemClock(), _webDriver, TimeSpan.FromSeconds(timespan), TimeSpan.FromMilliseconds(1000));
 }

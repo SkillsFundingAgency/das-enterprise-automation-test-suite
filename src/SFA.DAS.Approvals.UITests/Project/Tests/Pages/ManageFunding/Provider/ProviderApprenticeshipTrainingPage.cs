@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             var option = pageInteractionHelper.FindElements(RadioLabels).LastOrDefault();
             formCompletionHelper.ClickElement(option);
-            SetCourseDate(pageInteractionHelper.GetText(option));
+            SetCourseDate(UI.FrameworkHelpers.PageInteractionHelper.GetText(option));
             return this;
         }
 

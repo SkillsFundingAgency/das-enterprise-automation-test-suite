@@ -13,26 +13,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderBulkUploadCsvFilePage : ApprovalsBasePage
+    public class ProviderBulkUploadCsvFilePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private static By ChooseFileButton => By.Id("attachment");
         private static By UploadFileButton => By.Id("submit-upload-apprentices");
-        protected readonly string CsvFileLocation;
-        private readonly List<BulkUploadApprenticeDetails> _apprenticeList;
+        
+        protected readonly string CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title[..8]}_BulkUpload.csv";
+        
+        private readonly List<BulkUploadApprenticeDetails> _apprenticeList = [];
 
         protected override string PageTitle => "Upload a CSV file";
 
-        private readonly CreateCsvFileHelper _bulkUploadDataHelper;
-
-        public ProviderBulkUploadCsvFilePage(ScenarioContext context) : base(context)
-        {
-            CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
-
-            _bulkUploadDataHelper = new CreateCsvFileHelper();
-
-            _apprenticeList = new List<BulkUploadApprenticeDetails>();
-        }
+        private readonly CreateCsvFileHelper _bulkUploadDataHelper = new();
 
         public ProviderBulkUploadCsvFilePage CreateApprenticeshipsForAlreadyCreatedCohorts(int numberOfApprenticesPerCohort)
         {
@@ -151,7 +144,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             List<string> cohortRefs = objectContext.GetCohortReferenceList();
             if (cohortRefs == null || cohortRefs.Count == 0)
             {
-                cohortRefs = new List<string>();
+                cohortRefs = [];
                 var cohortRef = objectContext.GetCohortReference();
                 cohortRefs.Add(cohortRef);
             }
@@ -168,7 +161,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private BulkUploadApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper([""]), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
 
@@ -185,7 +178,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 agreementId = sqlHelper.GetAgreementIdByCohortRef(cohortRef).Trim();
             }
 
-            var isNonLevy =sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
+            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0";
             var startDate = apprenticeCourseDataHelper.CourseStartDate;
             var endDate = apprenticeCourseDataHelper.CourseEndDate;
 
@@ -209,7 +202,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private BulkUploadApprenticeDetails SetApprenticeDetailsForLegalEntity(int courseCode, string cohortRef, string email, string name)
         {
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper([""]), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
             var sqlHelper = context.Get<AccountsDbSqlHelper>();
@@ -223,7 +216,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
 
 
-            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
+            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0";
             var startDate = apprenticeCourseDataHelper.CourseStartDate;
             var endDate = apprenticeCourseDataHelper.CourseEndDate;
 

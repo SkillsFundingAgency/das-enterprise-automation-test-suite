@@ -24,7 +24,7 @@
         public void GivenUserVerifiesViewLinksNavigateToTheAppropriateCorrespondingPage() => _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
 
         [Then(@"the admin user logs in to approve the standard withdrawal application")]
-        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(false));
+        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => EPAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(false));
 
         [Then(@"the admin user logs in to approve the register withdrawal application")]
         public void ThenTheAdminUserLogsInToApproveTheRegisterWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveARegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));

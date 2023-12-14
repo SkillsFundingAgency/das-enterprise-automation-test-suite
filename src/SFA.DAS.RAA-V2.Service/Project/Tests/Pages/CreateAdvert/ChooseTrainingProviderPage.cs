@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
@@ -24,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public ConfirmTrainingProviderPage SelectTrainingProvider()
         {
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, rAAV2DataHelper.Provider); return pageInteractionHelper.FindElement(FirstOption); });
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, RAAV2DataHelper.Provider); return pageInteractionHelper.FindElement(FirstOption); });
 
             Continue();
 

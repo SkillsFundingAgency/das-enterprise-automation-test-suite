@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -28,14 +29,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public void VerifyEmployerWageType(string wageType) => VerifyWageAmount(EmployerWageType, wageType);
 
-        private string GetWageAmount(string wageType)
+        private static string GetWageAmount(string wageType)
         {
             return wageType switch
             {
-                RAAV2Const.NationalMinWages => rAAV2DataHelper.NationalMinimumWage,
-                RAAV2Const.FixedWageType => rAAV2DataHelper.FixedWageForApprentices,
-                RAAV2Const.SetAsCompetitive => rAAV2DataHelper.SetAsCompetitive,
-                _ => rAAV2DataHelper.NationalMinimumWageForApprentices,
+                RAAV2Const.NationalMinWages => RAAV2DataHelper.NationalMinimumWage,
+                RAAV2Const.FixedWageType => RAAV2DataHelper.FixedWageForApprentices,
+                RAAV2Const.SetAsCompetitive => RAAV2DataHelper.SetAsCompetitive,
+                _ => RAAV2DataHelper.NationalMinimumWageForApprentices,
             };
         }
 

@@ -27,10 +27,8 @@ namespace SFA.DAS.FrameworkHelpers
                  })
                  .Execute(() =>
                  {
-                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                     {
-                         action.Invoke();
-                     }
+                     using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                     action.Invoke();
                  });
         }
     }

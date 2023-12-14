@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
@@ -38,7 +39,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         private void DifferentLocation()
         {
             SelectRadioOptionByForAttribute("other-location");
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(Postcode, $"{rAAV2DataHelper.EmployerAddress} "); return pageInteractionHelper.FindElement(MenuItems); });
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(Postcode, $"{RAAV2DataHelper.EmployerAddress} "); return pageInteractionHelper.FindElement(MenuItems); });
         }
     }
 }

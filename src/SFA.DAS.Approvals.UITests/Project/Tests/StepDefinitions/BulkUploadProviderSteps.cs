@@ -154,7 +154,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"Upload cancelled confirmation page is displayed")]
         [When(@"Upload cancelled confirmation page is displayed")]
-        public void UploadCancelled() => new ProviderFileDiscadSuccessPage(_context);
+        public void UploadCancelled() => _ = new ProviderFileDiscadSuccessPage(_context);
 
         [Then(@"New apprentice records become available in Manage Apprentice section")]
         public void ThenNewApprenticeRecordsBecomeAvailableInManageApprenticeSection()
@@ -168,7 +168,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             foreach (var apprentice in apprenticeList)
             {
                 var actualStatus = providerManageYourApprenticesPage.SearchForApprentice(apprentice.FullName).GetStatus(apprentice.ULN);
-                Assert.IsTrue((actualStatus.ToUpper() == expectedStatus1.ToUpper() || actualStatus.ToUpper() == expectedStatus2.ToUpper()), "Validate status on Manage Your Apprentices page");
+                Assert.IsTrue((actualStatus.Equals(expectedStatus1, StringComparison.CurrentCultureIgnoreCase) || actualStatus.Equals(expectedStatus2, StringComparison.CurrentCultureIgnoreCase)), "Validate status on Manage Your Apprentices page");
             }
 
         }
@@ -215,7 +215,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 {
                     EmployerName = _context.Get<AccountsDbSqlHelper>().GetEmployerNameByAgreementId(employer.Key),
                     AgreementId = employer.Key,
-                    CohortDetails = new List<FileUploadReviewCohortDetail>()
+                    CohortDetails = []
                 };
 
                 var cohortGroups = employer.GroupBy(x => x.CohortRef);
@@ -282,6 +282,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             return _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
         }
 
-        private string GetOrgName(string name) => name[..3] + "%";
+        private static string GetOrgName(string name) => name[..3] + "%";
     }
 }

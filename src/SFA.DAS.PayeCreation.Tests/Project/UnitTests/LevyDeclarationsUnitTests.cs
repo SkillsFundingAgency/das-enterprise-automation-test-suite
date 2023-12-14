@@ -80,19 +80,19 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
             int noOfmonths = 10;
             int levypermonth = 10000;
             string levyperyear = (noOfmonths * levypermonth).ToString();
-            List<List<string>> expected = new List<List<string>>() 
-            {
-                new List<string>() { "18-19", "11", (levypermonth * 1).ToString(), levyperyear, "2019-02-15" },
-                new List<string>() { "18-19", "12", (levypermonth * 2).ToString(), levyperyear, "2019-03-15" },
-                new List<string>() { "19-20", "1", (levypermonth * 3).ToString(), levyperyear, "2019-04-15" },
-                new List<string>() { "19-20", "2", (levypermonth * 4).ToString(), levyperyear, "2019-05-15" },
-                new List<string>() { "19-20", "3", (levypermonth * 5).ToString(), levyperyear, "2019-06-15" },
-                new List<string>() { "19-20", "4", (levypermonth * 6).ToString(), levyperyear, "2019-07-15" },
-                new List<string>() { "19-20", "5", (levypermonth * 7).ToString(), levyperyear, "2019-08-15" },
-                new List<string>() { "19-20", "6", (levypermonth * 8).ToString(), levyperyear, "2019-09-15" },
-                new List<string>() { "19-20", "7", (levypermonth * 9).ToString(), levyperyear, "2019-10-15" },
-                new List<string>() { "19-20", "8", (levypermonth * 10).ToString(), levyperyear, "2019-11-15" }
-            };
+            List<List<string>> expected =
+            [
+                ["18-19", "11", (levypermonth * 1).ToString(), levyperyear, "2019-02-15"],
+                ["18-19", "12", (levypermonth * 2).ToString(), levyperyear, "2019-03-15"],
+                ["19-20", "1", (levypermonth * 3).ToString(), levyperyear, "2019-04-15"],
+                ["19-20", "2", (levypermonth * 4).ToString(), levyperyear, "2019-05-15"],
+                ["19-20", "3", (levypermonth * 5).ToString(), levyperyear, "2019-06-15"],
+                ["19-20", "4", (levypermonth * 6).ToString(), levyperyear, "2019-07-15"],
+                ["19-20", "5", (levypermonth * 7).ToString(), levyperyear, "2019-08-15"],
+                ["19-20", "6", (levypermonth * 8).ToString(), levyperyear, "2019-09-15"],
+                ["19-20", "7", (levypermonth * 9).ToString(), levyperyear, "2019-10-15"],
+                ["19-20", "8", (levypermonth * 10).ToString(), levyperyear, "2019-11-15"]
+            ];
 
             var (_, _, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(noOfmonths.ToString(), levypermonth.ToString(), new DateTime(2019, 12, 20));
 
@@ -109,10 +109,10 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
             int noOfmonths = 1;
             int levypermonth = 0;
             string levyperyear = (noOfmonths * levypermonth).ToString();
-            List<List<string>> expected = new List<List<string>>()
-            {
-                new List<string>() { "21-22", "12", (levypermonth * 1).ToString(), levyperyear, "2022-03-15" },
-            };
+            List<List<string>> expected =
+            [
+                ["21-22", "12", (levypermonth * 1).ToString(), levyperyear, "2022-03-15"],
+            ];
 
             var (_, _, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(noOfmonths.ToString(), levypermonth.ToString());
 
@@ -122,7 +122,7 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
             }
         }
 
-        private void AssertPreviousTaxYearEnd(string expectedduraration, string actualduration, string expectedyear, int actualyear)
+        private static void AssertPreviousTaxYearEnd(string expectedduraration, string actualduration, string expectedyear, int actualyear)
         {
             Assert.Multiple(() =>
             {

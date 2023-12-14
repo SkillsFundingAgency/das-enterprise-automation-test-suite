@@ -37,7 +37,7 @@ public class UlnDetailsPage : SupportConsoleBasePage
         var header = pageInteractionHelper.FindElement(By.XPath(headerTextXpathQuery));
         var parent = header.FindElement(By.XPath(".."));
         var value = parent.FindElement(By.CssSelector("td"));
-        pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(header), headerText);
-        pageInteractionHelper.VerifyText(headerValue, pageInteractionHelper.GetText(value));
+        pageInteractionHelper.VerifyText(PageInteractionHelper.GetText(header), headerText);
+        pageInteractionHelper.VerifyText(headerValue, PageInteractionHelper.GetText(value));
     }
 }

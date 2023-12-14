@@ -12,22 +12,20 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderBulkUploadApprenticesPage : ApprovalsBasePage
+    public class ProviderBulkUploadApprenticesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Bulk upload apprentices";
         private static By ChooseFileButton => By.Id("files-upload");
         private static By UploadFileButton => By.Id("submit-upload-apprentices");
         private static By TableCells => By.ClassName("govuk-table__row");
 
-        public ProviderBulkUploadApprenticesPage(ScenarioContext context) : base(context) { }
-
-        public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices, bool isNonLevy = false)
+        public ProviderApproveApprenticeDetailsPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
         {
             objectContext.SetNoOfApprentices(numberOfApprentices);
 
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
 
-            List<BulkUploadApprenticeDetails> ApprenticeList = new List<BulkUploadApprenticeDetails>();
+            List<BulkUploadApprenticeDetails> ApprenticeList = [];
             
             for (int i = 0; i < numberOfApprentices; i++) ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
 

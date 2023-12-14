@@ -2,6 +2,7 @@
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator;
 
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -58,7 +59,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
-            formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+            formCompletionHelper.EnterText(ContactPhone(), RAAV2DataHelper.ContactNumber);
         }
 
         private ApplicationProcessPage GoToApplicationProcessPage()

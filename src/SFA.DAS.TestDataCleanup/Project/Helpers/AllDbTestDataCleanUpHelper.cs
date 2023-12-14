@@ -4,9 +4,9 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
 {
     private string _sqlFileName, _dbName;
 
-    private readonly List<string> usersdeleted = new();
+    private readonly List<string> usersdeleted = [];
 
-    private readonly List<string> userswithconstraints = new();
+    private readonly List<string> userswithconstraints = [];
 
     private List<string[]> _apprenticeIds;
 
@@ -14,7 +14,7 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
 
     public (List<string>, List<string>) CleanUpAllDbTestData(List<string> email)
     {
-        List<List<string>> userEmailListoflist = new();
+        List<List<string>> userEmailListoflist = [];
 
         (var easAccDbSqlDataHelper, var userEmailListArray) = GetUserEmailList(email);
 

@@ -6,11 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderChooseAnEmployerNonLevyPage : ApprovalsBasePage
+    public class ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose an employer";
-
-        public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderConfirmEmployerPage ChooseLevyEmployer() => ChooseAnEmployer("Levy");
 

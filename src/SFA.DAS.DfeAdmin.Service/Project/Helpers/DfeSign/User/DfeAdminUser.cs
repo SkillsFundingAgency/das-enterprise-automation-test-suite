@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
-public abstract class DfeAdminUser : NonEasAccountUser
+public abstract class DfeAdminUser(string adminServiceName) : NonEasAccountUser
 {
-    public DfeAdminUser(string adminServiceName) => AdminServiceName = adminServiceName;
-
-    public string AdminServiceName { get; init; }
+    public string AdminServiceName { get; init; } = adminServiceName;
 
     public override string ToString() => $"{base.ToString()}, ServiceName:'{AdminServiceName}'";
 }

@@ -10,13 +10,13 @@ public class RandomPersonNameHelper
         LastName = GenerateRandomLastName();
     }
 
-    private static string GenerateRandomFirstName() => GenerateRandom(new string[] { "Oliver", "George", "Noah", "Arthur", "Harry", "Jack", "Charlie", "Henry",
+    private static string GenerateRandomFirstName() => GenerateRandom([ "Oliver", "George", "Noah", "Arthur", "Harry", "Jack", "Charlie", "Henry",
             "Michael", "Ethan", "Thomas", "Freddie", "William", "James", "Edward", "Scarlett", "Daisy", "Phoebe",
-            "Isabella", "Evelyn", "Lily", "Mia", "Emily", "Charlotte", "Rosie", "Amelia", "Olivia", "Eva", "Sophia", "Grace"});
+            "Isabella", "Evelyn", "Lily", "Mia", "Emily", "Charlotte", "Rosie", "Amelia", "Olivia", "Eva", "Sophia", "Grace"]);
 
-    private static string GenerateRandomLastName() => GenerateRandom(new string[] { "Cox", "Jones", "Taylor", "Williams", "Brown", "White", "Harris", "Martin",
+    private static string GenerateRandomLastName() => GenerateRandom([ "Cox", "Jones", "Taylor", "Williams", "Brown", "White", "Harris", "Martin",
             "Davies", "Wilson", "Cooper", "Evans", "King", "Baker", "Green", "Wright", "Clark", "Webb",
-            "Robinson", "Hall", "Young", "Turner", "Hill", "Collins", "Allen", "Moore", "Knight", "Walker", "Wood", "Bennett"});
+            "Robinson", "Hall", "Young", "Turner", "Hill", "Collins", "Allen", "Moore", "Knight", "Walker", "Wood", "Bennett"]);
 
     private static string GenerateRandom(string[] names) => names[new Random().Next(names.Length)];
 }

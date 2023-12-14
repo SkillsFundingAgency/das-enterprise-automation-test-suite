@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
@@ -21,7 +22,7 @@ public class TraineeshipSectorPage : Raav2BasePage
 
     private void EnterTrainingTitleAction()
     {
-        formCompletionHelper.SelectFromDropDownByText(SectorId, rAAV2DataHelper.SectorName);
+        formCompletionHelper.SelectFromDropDownByText(SectorId, RAAV2DataHelper.SectorName);
 
         formCompletionHelper.Click(PageHeader);
 

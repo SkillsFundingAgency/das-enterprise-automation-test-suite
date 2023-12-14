@@ -27,7 +27,7 @@ namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
 
             Assert.That(commtList.Count, Is.GreaterThanOrEqualTo(datamartList.Count), "Not enough data found in commitments");
 
-            List<string> updateQuery = new();
+            List<string> updateQuery = [];
 
             for (int i = 0; i < datamartList.Count; i++)
             {

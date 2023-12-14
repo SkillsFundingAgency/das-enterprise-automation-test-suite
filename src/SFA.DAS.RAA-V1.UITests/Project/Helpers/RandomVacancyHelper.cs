@@ -51,7 +51,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
                 randomElement = filteredRows[randomNumber - 1];
 
-                var vacTitle = _pageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
+                var vacTitle = PageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
 
                 _objectContext.SetVacancyTitle(vacTitle);
 

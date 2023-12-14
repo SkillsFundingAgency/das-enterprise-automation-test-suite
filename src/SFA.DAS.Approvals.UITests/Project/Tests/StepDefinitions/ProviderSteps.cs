@@ -14,34 +14,21 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderSteps
+    public class ProviderSteps(ScenarioContext context)
     {
+
         #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
-        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
-        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        private readonly ProviderConfig _providerConfig;
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
+        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper = new(context);
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper = new(context.Get<ObjectContext>(), context.Get<DbConfig>());
+        private readonly ProviderConfig _providerConfig = context.GetProviderConfig<ProviderConfig>();
         #endregion
 
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
-        private readonly RetryAssertHelper _assertHelper;
-
-        public ProviderSteps(ScenarioContext context)
-        {
-            _context = context;
-            _assertHelper = context.Get<RetryAssertHelper>();
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _providerEditStepsHelper = new ProviderEditStepsHelper(context);
-            _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(context);
-            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>());
-            _providerConfig = context.GetProviderConfig<ProviderConfig>();
-        }
+        private readonly RetryAssertHelper _assertHelper = context.Get<RetryAssertHelper>();
 
         [Then(@"the provider will no longer be able to change the email address")]
         public void ThenTheProviderWillNoLongerBeAbleToChangeTheEmailAddress() => _providerEditStepsHelper.ProviderEditApprentice().VerifyReadOnlyEmail();
@@ -84,13 +71,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerCommonStepsHelper.GoToProviderHomePage();
 
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithEmployers().SelectViewCurrentCohortDetails();
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsWithEmployers().SelectViewCurrentCohortDetails();
         }
 
         [Then(@"Provider is able to view all apprentice details when the cohort with employer")]
         public void ThenProviderIsAbleToViewAllApprenticeDetailsWhenTheCohortWithEmployer()
         {
-            ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new(_context);
+            ProvideViewApprenticesDetailsPage _providerViewYourCohortPage = new(context);
 
             int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
 
@@ -127,7 +114,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             {
                 var expected = GetProvidersDraftAndReadyForReviewCohortsCount();
 
-                var actual = new ProviderChooseACohortPage(_context).GetDataRowsCount();
+                var actual = new ProviderChooseACohortPage(context).GetDataRowsCount();
 
                 Assert.AreEqual(expected, actual, $"Incorrect number of cohorts displayed, expected {expected} from db but {actual} displayed in the UI ");
             });
@@ -136,16 +123,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"User should be able to add or edit apprentice details on any cohort")]
         public void ThenUserShouldBeAbleToAddOrEditApprenticeDetailsOnAnyCohort()
         {
-            var employerUser = _context.GetUser<LevyUser>();
+            var employerUser = context.GetUser<LevyUser>();
             var organisationName = employerUser.OrganisationName[..3] + "%";
-            int employerAccountId = _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
+            int employerAccountId = context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
             var cohortReference = _commitmentsSqlDataHelper.GetOldestEditableCohortReference(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 
-            var providerApproveApprenticeDetailsPage = new ProviderChooseACohortPage(_context).SelectCohort(cohortReference);
+            var providerApproveApprenticeDetailsPage = new ProviderChooseACohortPage(context).SelectCohort(cohortReference);
             var existingapprentices = providerApproveApprenticeDetailsPage.GetNumberOfEditableApprentices();
             if (existingapprentices > 0)
             {
-                _context.Get<ObjectContext>().SetNoOfApprentices(Convert.ToInt32(existingapprentices));
+                context.Get<ObjectContext>().SetNoOfApprentices(Convert.ToInt32(existingapprentices));
                 _providerDeleteStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
             }
 
