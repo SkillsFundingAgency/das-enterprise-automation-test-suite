@@ -20,7 +20,7 @@ public class UrlDataReporting
     public UrlDataReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
 
         [BeforeTestRun(Order = 10)]
-    public static void InitVariable() => _urls = new List<string>();
+    public static void InitVariable() => _urls = [];
 
     [AfterScenario(Order = 98)]
     public void CollectUrlData()
@@ -35,7 +35,7 @@ public class UrlDataReporting
 
             if (urldataset == null || urldataset?.Count == 0) return;
 
-            List<string> distinctUrls = urldataset.ToHashSet().ToList();
+            List<string> distinctUrls = [.. urldataset];
 
             lock (_urls) { _urls.AddRange(distinctUrls); }
 

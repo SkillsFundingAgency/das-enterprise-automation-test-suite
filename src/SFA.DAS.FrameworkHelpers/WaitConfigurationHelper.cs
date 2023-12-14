@@ -21,14 +21,14 @@ public static class WaitConfigurationHelper
 
                 TestContext.Progress.WriteLine($"Retry {retryCount++} - Waiting for the sql query to return valid data - '{textMessage}'");
 
-                await Task.Delay(Config.TimeToPoll(retryCount));
+                await Task.Delay(WaitConfiguration.TimeToPoll(retryCount));
             }
         }
 
         public class WaitConfiguration
         {
             public TimeSpan TimeToWait { get; set; } = TimeSpan.FromMinutes(5);
-            public TimeSpan TimeToPoll(int x) => TimeSpan.FromSeconds(5 * x);
+            public static TimeSpan TimeToPoll(int x) => TimeSpan.FromSeconds(5 * x);
         }
     }
 }

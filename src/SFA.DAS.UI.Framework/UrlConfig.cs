@@ -30,7 +30,7 @@ public static class UrlConfig
     public static string FindEPAO_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-find-epao.apprenticeships.education.gov.uk/";
     public static string EI_VRFUrl => "https://dfeuat.achieveservice.com/forms";
     public static string ConsolidatedSupport_WebBaseUrl => $"{ConsolidatedSupport_BaseUrl}/agent";
-    public static Uri ConsolidatedSupport_ApiBaseUrl => new Uri(new Uri(ConsolidatedSupport_BaseUrl), "api/v2");
+    public static Uri ConsolidatedSupport_ApiBaseUrl => new(new Uri(ConsolidatedSupport_BaseUrl), "api/v2");
     public static string ConsolidatedSupport_BaseUrl => true switch
     {
         bool _ when EnvironmentConfig.IsTestEnvironment => "https://esfa1567428279.zendesk.com",

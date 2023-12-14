@@ -29,7 +29,7 @@ public abstract class EPAO_BasePage : VerifyBasePage
 
     protected void UploadFile()
     {
-        string File = AppDomain.CurrentDomain.BaseDirectory + frameworkConfig.SampleFileName;
+        string File = AppDomain.CurrentDomain.BaseDirectory + FrameworkConfig.SampleFileName;
         formCompletionHelper.EnterText(ChooseFile, File);
         Continue();
     }

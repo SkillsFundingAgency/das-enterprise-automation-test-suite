@@ -2,8 +2,8 @@
 
 internal static class TestDataCleanUpEmailsInUse
 {
-    private static readonly List<string> _emails = new() 
-    { 
+    private static readonly List<string> _emails =
+    [
       "'first111@test.com'",
       "'HJ_PPTest1368_06Sep2021@mailinator.com'",
       "'HJ_TestLMAPI@mailinator.com'",
@@ -107,7 +107,7 @@ internal static class TestDataCleanUpEmailsInUse
       "'LE_PerfTest_103_26Aug2020_08585900026@mailinator.com'",
       "'LE_PerfTest_102_26Aug2020_08562706744@mailinator.com'",
       "'LE_PerfTest_101_26Aug2020_08540081925@mailinator.com'"
-    };
+    ];
 
     internal static string GetInUseEmails() { lock (_emails) { return string.Join(",", _emails); } }
 

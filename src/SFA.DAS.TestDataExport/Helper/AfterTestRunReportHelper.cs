@@ -6,7 +6,7 @@ public class AfterTestRunReportHelper
     {
         if (list.Count == 0) return;
 
-        List<string> distinctList = list.ToHashSet().ToList();
+        List<string> distinctList = [.. list];
 
         string fileName = $"{fileNamePrefix}_{DateTime.Now:HH-mm-ss-fffff}.txt";
 

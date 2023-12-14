@@ -12,7 +12,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
 
-        internal static TimeSpan[] GetTimeSpan(int a, int b, int c) => GetTimeSpan(new int[] { a, b, c });
+        internal static TimeSpan[] GetTimeSpan(int a, int b, int c) => GetTimeSpan([a, b, c]);
 
         public static TimeSpan[] GetTimeSpan(int[] x)
         {

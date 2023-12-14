@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
-public class TestDataCleanUpUsersDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
+public class TestDataCleanUpUsersDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper(objectContext, dbConfig.UsersDbConnectionString)
 {
     public override string SqlFileName => "EasUsersTestDataCleanUp";
-
-    public TestDataCleanUpUsersDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.UsersDbConnectionString) { }
 
     internal int CleanUpUsersDbTestData(List<string> emailsToDelete) => CleanUpUsingEmail(emailsToDelete);
 }

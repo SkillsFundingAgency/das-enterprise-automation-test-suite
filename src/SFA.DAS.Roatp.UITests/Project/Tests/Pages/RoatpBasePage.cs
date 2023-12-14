@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         protected void ChooseFile()
         {
-            string File = AppDomain.CurrentDomain.BaseDirectory + frameworkConfig.SampleFileName;
+            string File = AppDomain.CurrentDomain.BaseDirectory + UI.Framework.FrameworkConfig.SampleFileName;
             formCompletionHelper.EnterText(ChooseFileSelector, File);
         }
     }

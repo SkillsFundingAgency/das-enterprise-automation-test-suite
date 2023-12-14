@@ -1,17 +1,10 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 
-public abstract class TestdataCleanupStepsHelperBase
+public abstract class TestdataCleanupStepsHelperBase(ScenarioContext context)
 {
-    protected readonly DbConfig _dbConfig;
+    protected readonly DbConfig _dbConfig = context.Get<DbConfig>();
 
-    private readonly ObjectContext _objectContext;
-
-    public TestdataCleanupStepsHelperBase(ScenarioContext context)
-    {
-        _objectContext = context.Get<ObjectContext>();
-
-        _dbConfig = context.Get<DbConfig>();
-    }
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
     protected void ReportTestDataCleanUp(Func<(List<string>, List<string>)> func)
     {

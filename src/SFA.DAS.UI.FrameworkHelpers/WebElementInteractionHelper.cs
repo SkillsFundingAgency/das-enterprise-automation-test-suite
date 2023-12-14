@@ -32,7 +32,7 @@ public abstract class WebElementInteractionHelper
 
     private List<IWebElement> GetElementsByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
     {
-        List<IWebElement> elements = new();
+        List<IWebElement> elements = [];
 
         foreach (var e in _webDriver.FindElements(locator))
         {
@@ -43,7 +43,7 @@ public abstract class WebElementInteractionHelper
     }
 
 
-    protected SelectElement SelectElement(IWebElement element) => new(element);
+    protected static SelectElement SelectElement(IWebElement element) => new(element);
 
     protected SelectElement SelectElement(By by) => SelectElement(_webDriver.FindElement(by));
 }

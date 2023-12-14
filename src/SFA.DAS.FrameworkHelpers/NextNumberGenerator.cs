@@ -2,7 +2,7 @@
 {
     public static class NextNumberGenerator
     {
-        static readonly object _object = new object();
+        static readonly object _object = new();
 
         private static int count;
 

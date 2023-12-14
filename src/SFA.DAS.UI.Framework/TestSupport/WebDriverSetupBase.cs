@@ -7,30 +7,21 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class WebDriverSetupBase
+public abstract partial class WebDriverSetupBase(ScenarioContext context)
 {
-    protected readonly string DriverPath;
+    protected readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-    protected readonly ScenarioContext context;
+    protected readonly ScenarioContext context = context;
 
-    protected readonly ObjectContext objectContext;
+    protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
 
-    protected readonly WebDriverSetupHelper webDriverSetupHelper;
+    protected readonly WebDriverSetupHelper webDriverSetupHelper = new(context);
 
-    protected readonly FrameworkConfig frameworkConfig;
+    protected readonly FrameworkConfig frameworkConfig = context.Get<FrameworkConfig>();
 
     private const string ChromeDriverServiceName = "chromedriver.exe";
     private const string FirefoxDriverServiceName = "geckodriver.exe";
     private const string EdgeDriverServiceName = "msedgedriver.exe";
-
-    public WebDriverSetupBase(ScenarioContext context)
-    {
-        this.context = context;
-        DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        objectContext = context.Get<ObjectContext>();
-        webDriverSetupHelper = new WebDriverSetupHelper(context);
-        frameworkConfig = context.Get<FrameworkConfig>();
-    }
 
     protected void SetDriverLocation(bool isLocal)
     {
@@ -53,7 +44,7 @@ public abstract class WebDriverSetupBase
 
     private string FindLocalDriverServiceLocation(string executableName)
     {
-        string[] file = Directory.GetFiles(Regex.Replace(DriverPath, "SFA.DAS.[A-Za-z]*.[A-Z0-9a-z]*Tests", "SFA.DAS.UI.FrameworkHelpers"), executableName);
+        string[] file = Directory.GetFiles(ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers"), executableName);
 
         return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
     }
@@ -69,4 +60,7 @@ public abstract class WebDriverSetupBase
             _ => chromeWebDriver,
         };
     }
+
+    [GeneratedRegex("SFA.DAS.[A-Za-z]*.[A-Z0-9a-z]*Tests")]
+    private static partial Regex ProjectNameRegex();
 }

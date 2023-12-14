@@ -6,7 +6,7 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class InterimBasePage : BasePage
+public abstract class InterimBasePage(ScenarioContext context) : BasePage(context)
 {
     protected virtual By TaskLists => By.CssSelector(".das-task-list > li");
 
@@ -17,8 +17,6 @@ public abstract class InterimBasePage : BasePage
     protected virtual By TaskName => By.CssSelector(".das-task-list__task-name > .govuk-link");
 
     protected virtual By TaskStatus => By.CssSelector(".das-task-list__task-tag");
-
-    public InterimBasePage(ScenarioContext context) : base(context) { }
 
     protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
 

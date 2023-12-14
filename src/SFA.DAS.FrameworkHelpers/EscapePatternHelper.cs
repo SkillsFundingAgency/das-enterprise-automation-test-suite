@@ -1,15 +1,14 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace SFA.DAS.FrameworkHelpers
 {
-    public static class EscapePatternHelper
+    public static partial class EscapePatternHelper
     {
-        private static readonly string[] chars = new string[] { ".", "^", "$", "?", "(", ")", "[", "]", "{", "}", "\\", "|" };
+        private static readonly string[] chars = [".", "^", "$", "?", "(", ")", "[", "]", "{", "}", "\\", "|"];
 
-        public static string DirectoryEscapePattern(string value) => Regex.Replace(value, @"<|>|:", string.Empty);
+        public static string DirectoryEscapePattern(string value) => MyRegex1().Replace(value, string.Empty);
 
-        public static string FileEscapePattern(string value) => Regex.Replace(value, @"\\|/|:|\*|\?|<|>|\||""", string.Empty);
+        public static string FileEscapePattern(string value) => MyRegex().Replace(value, string.Empty);
 
         public static string StringEscapePattern(string value, string pattern) => Regex.Replace(value, StringEscapePattern(pattern), string.Empty);
 
@@ -26,5 +25,11 @@ namespace SFA.DAS.FrameworkHelpers
 
             return escapedPattern;
         }
+
+        [GeneratedRegex(@"\\|/|:|\*|\?|<|>|\||""")]
+        private static partial Regex MyRegex();
+        
+        [GeneratedRegex(@"<|>|:")]
+        private static partial Regex MyRegex1();
     }
 }
