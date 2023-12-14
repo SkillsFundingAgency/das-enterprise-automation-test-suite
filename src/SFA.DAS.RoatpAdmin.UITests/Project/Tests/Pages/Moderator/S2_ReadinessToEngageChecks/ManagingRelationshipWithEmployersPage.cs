@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessToEngageChecks
 {
-    public class ManagingRelationshipWithEmployersPage : ModeratorBasePage
+    public class ManagingRelationshipWithEmployersPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "Managing relationship with employers";
-
-        public ManagingRelationshipWithEmployersPage(ScenarioContext context) : base(context) { }
 
         public OverallResponsibilityForManagingRelationshipsWithEmployersPage SelectPassAndContinueInManagingRelationshipWithEmployersPage()
         {

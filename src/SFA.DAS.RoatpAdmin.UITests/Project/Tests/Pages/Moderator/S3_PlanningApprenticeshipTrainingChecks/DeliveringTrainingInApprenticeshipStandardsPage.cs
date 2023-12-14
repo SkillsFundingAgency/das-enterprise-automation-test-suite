@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningApprenticeshipTrainingChecks
 {
-    public class DeliveringTrainingInApprenticeshipStandardsPage : ModeratorBasePage
+    public class DeliveringTrainingInApprenticeshipStandardsPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "standards";
-
-        public DeliveringTrainingInApprenticeshipStandardsPage(ScenarioContext context) : base(context) { }
 
         public EngagingWithEndpointAssessmentOrganisationsPage SelectPassAndContinueInDeliveringTraining()
         {

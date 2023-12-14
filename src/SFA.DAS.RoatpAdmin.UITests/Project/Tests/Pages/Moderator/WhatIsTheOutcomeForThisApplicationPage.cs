@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
-    public class WhatIsTheOutcomeForThisApplicationPage : ModeratorBasePage
+    public class WhatIsTheOutcomeForThisApplicationPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "What is the outcome for this application?";
-
-        public WhatIsTheOutcomeForThisApplicationPage(ScenarioContext context) : base(context) { }
 
         public AreYouSureYouWantToPassPage SelectPassAndContinueAreYouSurePage()
         {

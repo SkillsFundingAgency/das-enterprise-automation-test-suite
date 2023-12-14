@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 {
-    public class ApplicationSummaryPage : RoatpNewAdminBasePage
+    public class ApplicationSummaryPage(ScenarioContext context) : RoatpNewAdminBasePage(context)
     {
         protected override string PageTitle => "Application summary";
 
@@ -28,8 +28,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         private static By AppealOversightSuccessful => By.CssSelector("label[for= 'AppealStatus']");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button");
-
-        public ApplicationSummaryPage(ScenarioContext context) : base(context) { }
 
         public AreYouSureSuccessfullPage MakeApplicationSuccessful()
         {

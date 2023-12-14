@@ -26,7 +26,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private GWApplicationOverviewPage _gwApplicationOverviewPage;
 
         private ApplicationRoute _applicationRoute;
 
@@ -63,7 +62,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
-            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+            _ = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
 
             _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsFail(gwApplicationOverviewPage);
         }
@@ -74,7 +73,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
-            _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+            _ = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
 
             _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(gwApplicationOverviewPage);
         }
@@ -226,7 +225,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         {
             _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(applicationAssessmentOverviewPage, _applicationRoute);
 
-            _assessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(applicationAssessmentOverviewPage);
+            AssessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(applicationAssessmentOverviewPage);
         }
 
         private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)

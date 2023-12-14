@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
-    public partial class ModerationApplicationAssessmentOverviewPage : ModeratorBasePage
+    public partial class ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "Application moderation overview";
-
-        public ModerationApplicationAssessmentOverviewPage(ScenarioContext context) : base(context) { }
 
         #region Section-1
         private static string Section1_Link1 => "Continuity plan for apprenticeship training";

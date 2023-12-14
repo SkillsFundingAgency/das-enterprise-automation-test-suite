@@ -5,15 +5,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {
     [Binding]
-    public class FHASteps
+    public class FHASteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
         private FinancialLandingPage _financialLandingPage;
 
-        public FHASteps(ScenarioContext context) => _context = context;
-
         [When(@"the admin access the Financial Applications")]
-        public void WhenTheAdminAccessTheFinancialApplications() => _financialLandingPage = new StaffDashboardPage(_context).AccessFinancialApplications();
+        public void WhenTheAdminAccessTheFinancialApplications() => _financialLandingPage = new StaffDashboardPage(context).AccessFinancialApplications();
 
         [Then(@"the Financial assessor completes assessment by confirming the Financial outcome as (outstanding)")]
         public void ThenTheFinancialAssessorCompletesAssessmentByConfirmingTheFinancialOutcomeAsOutstanding(string expectedoutcome)

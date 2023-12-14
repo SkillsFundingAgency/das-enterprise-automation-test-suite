@@ -8,7 +8,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         private readonly Assessor_Section1Helper _assessor_Section1Helper;
         private readonly Assessor_Section2Helper _assessor_Section2Helper;
         private readonly Assessor_Section3Helper _assessor_Section3Helper;
-        private readonly Assessor_Section4Helper _assessor_Section4Helper;
         private readonly Assessor_Section5Helper _assessor_Section5Helper;
 
         public AssessorEndtoEndStepsHelper()
@@ -16,7 +15,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             _assessor_Section1Helper = new Assessor_Section1Helper();
             _assessor_Section2Helper = new Assessor_Section2Helper();
             _assessor_Section3Helper = new Assessor_Section3Helper();
-            _assessor_Section4Helper = new Assessor_Section4Helper();
             _assessor_Section5Helper = new Assessor_Section5Helper();
         }
 
@@ -63,7 +61,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             return applicationAssessmentOverviewPage;
         }
 
-        public ApplicationAssessmentOverviewPage CompleteAssessorSection4Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage CompleteAssessorSection4Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             applicationAssessmentOverviewPage = Assessor_Section4Helper.PassOverallAccountabilityForApprenticeships(applicationAssessmentOverviewPage);
             applicationAssessmentOverviewPage = Assessor_Section4Helper.PassManagementHierarchyForApprenticeships(applicationAssessmentOverviewPage);
@@ -82,7 +80,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             return applicationAssessmentOverviewPage;
         }
 
-        public void MarkApplicationAsReadyForModeration(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static void MarkApplicationAsReadyForModeration(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             applicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()

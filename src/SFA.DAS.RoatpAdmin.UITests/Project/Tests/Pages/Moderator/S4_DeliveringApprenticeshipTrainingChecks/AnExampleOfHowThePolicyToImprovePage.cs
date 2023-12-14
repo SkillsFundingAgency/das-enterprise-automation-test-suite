@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_DeliveringApprenticeshipTrainingChecks
 {
-    public class AnExampleOfHowThePolicyToImprovePage : ModeratorBasePage
+    public class AnExampleOfHowThePolicyToImprovePage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "An example of how the policy is used to improve employee sector expertise";
-
-        public AnExampleOfHowThePolicyToImprovePage(ScenarioContext context) : base(context) { }
 
         public AnExampleOfHowThePolicyToMaintainPage SelectPassAndContinueInAnExampleOfHowThePolicyToImprovePage()
         {

@@ -2,11 +2,8 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
-    public class ModerationAssessmentFailCompletePage : ModerationAssessmentCompletePage
+    public class ModerationAssessmentFailCompletePage(ScenarioContext context) : ModerationAssessmentCompletePage(context)
     {
         protected override string PageTitle => "Fail";
-
-        public ModerationAssessmentFailCompletePage(ScenarioContext context) : base(context) { }
-
     }
 }

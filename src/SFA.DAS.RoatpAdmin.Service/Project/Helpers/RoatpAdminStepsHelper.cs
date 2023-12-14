@@ -4,6 +4,8 @@ namespace SFA.DAS.RoatpAdmin.Service.Project.Helpers;
 
 public abstract class RoatpAdminStepsHelper(ScenarioContext context)
 {
+    protected readonly ScenarioContext context = context;
+
     public SearchPage InitatesAnApplication(string providerType)
     {
         return GoToRoatpAdminHomePage()

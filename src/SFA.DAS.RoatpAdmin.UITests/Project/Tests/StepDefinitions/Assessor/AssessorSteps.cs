@@ -9,21 +9,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
     [Binding]
-    public class AssessorSteps
+    public class AssessorSteps(ScenarioContext context)
     {
-        private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
-        private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
+        private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper = new();
+        private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper = new(context);
+        private readonly RestartWebDriverHelper _restartWebDriverHelper = new(context);
         private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
         private ApplicationAssessmentOverviewPage _applicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
-
-        public AssessorSteps(ScenarioContext context)
-        {
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
-            _assessorLoginStepsHelper = new AssessorLoginStepsHelper(context);
-            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
-        }
 
         [When(@"the (Assessor1|Assessor2) is on the RoATP assessor applications dashboard")]
         public void WhenTheAssessorIsOnTheRoATPAssessorApplicationsDashboard(string assessorUser)
@@ -53,7 +46,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 
         [Then(@"marks the Application as Ready for moderation")]
         public void ThenMarksTheApplicationAsReadyForModeration() =>
-            _assessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(_applicationAssessmentOverviewPage);
+            AssessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(_applicationAssessmentOverviewPage);
 
         [Then(@"the Assessor assesses all the sections of the application as PASS")]
         public void TheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>

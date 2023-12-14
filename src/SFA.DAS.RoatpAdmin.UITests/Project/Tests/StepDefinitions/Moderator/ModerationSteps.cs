@@ -7,25 +7,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
 {
     [Binding]
-    public class ModerationSteps
+    public class ModerationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
+        private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper = new();
         private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
-
-        public ModerationSteps(ScenarioContext context)
-        {
-            _context = context;
-            _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper();
-        }
 
         [When(@"selects the (Employer Provider Route For Existing Provider|Supporting Provider Route For Existing Provider|Main Provider Route For Existing Provider|Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Moderation Tab")]
         public void WhenSelectsTheMainProviderRouteApplicationFromModerationTab(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;
 
-            _moderationApplicationAssessmentOverviewPage = new StaffDashboardPage(_context).AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
+            _moderationApplicationAssessmentOverviewPage = new StaffDashboardPage(context).AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
         }
 
         [Then(@"the Moderator assesses all the sections of the application as PASS")]
