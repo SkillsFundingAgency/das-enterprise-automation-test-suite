@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ThisApprenticeshipEndDatePage : ApprovalsBasePage
+    public class ThisApprenticeshipEndDatePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "What is the planned end date for this apprenticeship training?";
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.Id("save-button");
         private static By NewMonth => By.Id("EndMonth");
         private static By NewYear => By.Id("EndYear");
-
-        public ThisApprenticeshipEndDatePage(ScenarioContext context) : base(context) { }
 
         public ApprenticeDetailsPage EditEndDate(string month, string year)
         {

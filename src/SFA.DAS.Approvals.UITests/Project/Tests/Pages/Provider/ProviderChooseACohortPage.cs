@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderChooseACohortPage : ApprovalsBasePage
+    public class ProviderChooseACohortPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose a cohort";
 
         protected override bool TakeFullScreenShot => false;
 
         private static By CohortsTable => By.CssSelector(".govuk-table__row");
-
-        public ProviderChooseACohortPage(ScenarioContext context) : base(context) { }
 
         public int? GetDataRowsCount() => pageInteractionHelper.FindElements(CohortsTable).Count - 1;
 

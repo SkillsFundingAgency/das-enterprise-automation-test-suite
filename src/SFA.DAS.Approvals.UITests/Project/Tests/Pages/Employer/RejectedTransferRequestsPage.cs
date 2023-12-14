@@ -3,14 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class RejectedTransferRequestsPage : ApprovalsBasePage
+    public class RejectedTransferRequestsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Rejected transfer requests";
 
         private static By CohortInfoRow => By.CssSelector("tbody tr");
         private static By CohortEditLink => By.LinkText("Edit");
-
-        public RejectedTransferRequestsPage(ScenarioContext context) : base(context) { }
 
         public ApproveApprenticeDetailsPage OpenRejectedCohort()
         {

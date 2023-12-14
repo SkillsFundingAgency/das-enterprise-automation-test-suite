@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class NotificationSentToTrainingProviderPage : CohortReferenceBasePage
+    public class NotificationSentToTrainingProviderPage(ScenarioContext context) : CohortReferenceBasePage(context)
     {
         protected override string PageTitle => "Notification sent to training provider";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By PageHeader => PanelTitle;
         private static By DynamicHomeLink => By.CssSelector(".das-navigation__list-item");
-
-        public NotificationSentToTrainingProviderPage(ScenarioContext context) : base(context) { }
 
         public DynamicHomePages ClickHomeLink()
         {

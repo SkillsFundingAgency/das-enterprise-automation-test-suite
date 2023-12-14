@@ -3,12 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeshipRecordStoppedPage : ApprovalsBasePage
+    public class ApprenticeshipRecordStoppedPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Apprenticeship record stopped";
         protected override By ContinueButton => By.Id("continue-button");
-
-        public ApprenticeshipRecordStoppedPage(ScenarioContext context) : base(context) { }
 
         public EnterUkprnPage ClickOnContinueButton()
         {

@@ -5,11 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ApprovalsProviderHomePage : ProviderHomePage
+    public class ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : ProviderHomePage(context, navigate)
     {
         protected static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
-
-        public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
         {

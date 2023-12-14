@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class WhoWillEnterTheNewCourseDatesAndPrice : ApprovalsBasePage
+    public class WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Who will enter the new course dates and price?";
 
         protected override bool TakeFullScreenShot => false;
 
         private static By WhoWillEnterTheNewCourseDatesAndPriceContinueBtn => By.XPath("//button[@class='govuk-button']");
-
-        public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context) : base(context) { }
 
         public ConfirmRequestForChangeOfProviderPage NewTrainingProviderWillAddThemLater()
         {

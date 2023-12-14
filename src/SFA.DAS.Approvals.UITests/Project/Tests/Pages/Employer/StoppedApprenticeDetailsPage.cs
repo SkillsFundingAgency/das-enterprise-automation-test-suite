@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class StoppedApprenticeDetailsPage : ConfirmApprenticeStatus
+    public class StoppedApprenticeDetailsPage(ScenarioContext context) : ConfirmApprenticeStatus(context)
     {
         protected override string PageTitle => "Apprenticeship stopped";
         protected override By PageHeader => By.CssSelector("h1.govuk-panel__title");
@@ -15,9 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By MadeRedundantTextBox => By.Id("madeRedundant");
 
 
-        private readonly ApprenticeDataHelper _dataHelper;
-
-        public StoppedApprenticeDetailsPage(ScenarioContext context) : base(context) => _dataHelper = context.Get<ApprenticeDataHelper>();
+        private readonly ApprenticeDataHelper _dataHelper = context.Get<ApprenticeDataHelper>();
 
         public StoppedApprenticeDetailsPage ValidateEditLinkIsNoLongerVisible()
         {

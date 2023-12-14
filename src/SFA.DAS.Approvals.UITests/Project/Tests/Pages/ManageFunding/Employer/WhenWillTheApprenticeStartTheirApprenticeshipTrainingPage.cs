@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage : ApprovalsBasePage
+    public class WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "When will the apprentice start their apprenticeship training?";
 
@@ -17,8 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private static By ReservationResumeFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
 
         private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
-
-        public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickMonthRadioButton()
         {

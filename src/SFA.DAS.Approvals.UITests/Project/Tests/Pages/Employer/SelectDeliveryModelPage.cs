@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SelectDeliveryModelPage : AddAndEditApprenticeDetailsBasePage
+    public class SelectDeliveryModelPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "Select the apprenticeship delivery model";
         protected override By ContinueButton => By.CssSelector("#selectDeliveryModel button");
@@ -14,8 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By RegularRadioButton => By.CssSelector("label[for=DeliveryModelRegular]");
         private static By EditRegularRadioButton => By.XPath("//label[@for='DeliveryModelRegular' or @for='Regular']");
         private static By PortableFlexiJobRadioButton => By.CssSelector("label[for=DeliveryModelFlexible]");
-
-        public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
 
         public AddApprenticeDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
         {

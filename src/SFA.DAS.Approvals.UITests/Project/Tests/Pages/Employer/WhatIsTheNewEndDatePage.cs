@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class WhatIsTheNewEndDatePage : ApprovalsBasePage
+    public class WhatIsTheNewEndDatePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => $"What is the new planned training end date with {changeOfPartyConfig.NewProviderName}?";
 
@@ -13,7 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NewEndMonthInput => By.CssSelector(".govuk-input--width-2");
         private static By NewEndYearInput => By.CssSelector(".govuk-input--width-4");
         private static By ContinueBtn => By.XPath("//button[@class='govuk-button']");
-        public WhatIsTheNewEndDatePage(ScenarioContext context) : base(context) { }
 
         public WhatIsTheNewEndDatePage EnterInvalidEndDate()
         {

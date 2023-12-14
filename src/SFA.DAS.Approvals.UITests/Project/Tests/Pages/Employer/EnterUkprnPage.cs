@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EnterUkprnPage : ApprovalsBasePage
+    public class EnterUkprnPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.TagName("h1");
 
@@ -19,19 +19,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
 
-        private readonly ChangeOfPartyConfig _changeOfPartyConfig;
-        private readonly ProviderConfig _providerConfig;
+        private readonly ChangeOfPartyConfig _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
+        private readonly ProviderConfig _providerConfig = context.GetProviderConfig<ProviderConfig>();
         #endregion
 
         private static By TrainingProviderSearch => By.CssSelector("#Ukprn");
         private static By FirstOption => By.CssSelector("#Ukprn__option--0");
-
-
-        public EnterUkprnPage(ScenarioContext context) : base(context)
-        {
-            _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
-            _providerConfig = context.GetProviderConfig<ProviderConfig>();
-        }
 
         public WhoWillEnterTheNewCourseDatesAndPrice ChooseTrainingProviderPage()
         {

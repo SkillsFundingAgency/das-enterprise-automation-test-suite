@@ -3,12 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class DeleteReservationPage : ApprovalsBasePage
+    public class DeleteReservationPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Delete Reservation";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
-        public DeleteReservationPage(ScenarioContext context) : base(context) { }
 
         public DeleteReservationPage ChooseDeleteReservationRadioButton()
         {

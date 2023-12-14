@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ChangingTrainingProviderPage : ApprovalsBasePage
+    public class ChangingTrainingProviderPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.TagName("h1");
         protected override string PageTitle => "Changing training provider";
@@ -13,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
 
         private static By WarningText => By.TagName("strong");
-
-        public ChangingTrainingProviderPage(ScenarioContext context) : base(context) { }
 
         public EnterUkprnPage ClickOnContinueButton()
         {

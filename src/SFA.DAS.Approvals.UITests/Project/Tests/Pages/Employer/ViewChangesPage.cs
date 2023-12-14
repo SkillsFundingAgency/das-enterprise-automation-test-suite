@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ViewChangesPage : ApprovalsBasePage
+    public class ViewChangesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "View changes";
 
@@ -16,8 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By UndoChangesSelector => By.CssSelector("#UndoChanges");
 
         private static By ContinueUndoChangesSelector => By.CssSelector("#continue-button");
-
-        public ViewChangesPage(ScenarioContext context) : base(context) { }
 
         public ViewApprenticePage ClickProviderReviewingTheRequestLink()
         {

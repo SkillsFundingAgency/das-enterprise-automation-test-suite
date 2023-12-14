@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderApprenticeshipTrainingPage : ApprovalsBasePage
+    public class ProviderApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Apprenticeship training";
 
@@ -18,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private static By ReservationStartFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
 
         private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
-        public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public ProviderApprenticeshipTrainingPage AddTrainingCourse()
         {

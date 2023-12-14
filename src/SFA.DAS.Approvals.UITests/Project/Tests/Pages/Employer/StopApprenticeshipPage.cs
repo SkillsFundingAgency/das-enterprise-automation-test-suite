@@ -4,15 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class StopApprenticeshipPage : ChangeApprenticeStatus
+    public class StopApprenticeshipPage(ScenarioContext context) : ChangeApprenticeStatus(context)
     {
         protected override string PageTitle => "Confirm apprenticeship stop";
 
         protected override bool TakeFullScreenShot => false;
 
         private static By WarningMessage => By.TagName("strong");
-
-        public StopApprenticeshipPage(ScenarioContext context) : base(context) { }
 
         public new StoppedApprenticeDetailsPage SelectYesAndConfirm()
         {

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;

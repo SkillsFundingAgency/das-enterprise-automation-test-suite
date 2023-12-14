@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class ManageFundingHomePage : InterimManageFundingHomePage
+    public class ManageFundingHomePage(ScenarioContext context, bool navigate) : InterimManageFundingHomePage(context, navigate)
     {
         private static By ReserveFundingLink => By.LinkText("Reserve funding");
         private static By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private static By DeleteLink => By.LinkText("Delete");
-
-        public ManageFundingHomePage(ScenarioContext context, bool navigate) : base(context, navigate) { }
 
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {

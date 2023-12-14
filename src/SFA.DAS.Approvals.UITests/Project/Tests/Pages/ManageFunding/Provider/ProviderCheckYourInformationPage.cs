@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderCheckYourInformationPage : ApprovalsBasePage
+    public class ProviderCheckYourInformationPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Check your information";
 
         private static By ConfirmButton => By.XPath("//button[contains(text(),'Confirm')]");
-
-        public ProviderCheckYourInformationPage(ScenarioContext context) : base(context) { }
 
         public ProviderMakingChangesPage ConfirmReserveFunding()
         {

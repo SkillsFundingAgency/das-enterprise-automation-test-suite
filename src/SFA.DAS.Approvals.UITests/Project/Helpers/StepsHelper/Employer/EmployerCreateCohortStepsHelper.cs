@@ -51,6 +51,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                .SendInstructionsToProviderForEmptyCohort();
         }
 
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
     }
 }

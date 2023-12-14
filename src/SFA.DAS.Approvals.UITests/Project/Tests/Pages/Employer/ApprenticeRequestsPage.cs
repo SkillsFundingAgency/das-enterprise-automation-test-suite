@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeRequestsPage : ApprovalsBasePage
+    public class ApprenticeRequestsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Apprentice requests";
 
@@ -16,8 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NumberOfWithTrainingProviders => By.CssSelector("a[id='WithProvider'] span[class*='das-tabs-boxes__figure']");
         private static By NumberOfDrafts => By.CssSelector("a[id='Draft'] span[class*='das-tabs-boxes__figure']");
         private static By NumberOfWithTransferSendingEmployers => By.CssSelector("a[id='WithTransferSender'] span[class*='das-tabs-boxes__figure']");
-
-        public ApprenticeRequestsPage(ScenarioContext context) : base(context) { }
 
         public ApprenticeRequestsReadyForReviewPage GoToReadyToReview() => AssertPage<ApprenticeRequestsReadyForReviewPage>(NumberOfReadyForReview, "Ready to review", () => new(context));
 

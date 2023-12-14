@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             ApprenticeLastname = lastName;
         }
 
-        private string CalculateTotalNegotiatedPrices(TotalNegotiatedPriceTypes priceType, string trainingCost)
+        private static string CalculateTotalNegotiatedPrices(TotalNegotiatedPriceTypes priceType, string trainingCost)
         {
             string calculatedPrice;
 
