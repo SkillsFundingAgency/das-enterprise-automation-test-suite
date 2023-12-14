@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private int _expectedPaymentAmount;
         private Phase _phase;
         private DateTime _submittedOn;
-        private List<Tuple<DateTime, DateTime>> _breaksInLearning = new List<Tuple<DateTime, DateTime>>();
+        private readonly List<Tuple<DateTime, DateTime>> _breaksInLearning = [];
 
         protected RetrospectiveBreakInLearningSteps(ScenarioContext context) : base(context)
         {
@@ -169,7 +169,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithAcademicYear(academicYear)
-                    .WithStartDate(i == 0 ? _initialStartDate : _breaksInLearning[i-1].Item2.AddDays(1))
+                    .WithStartDate(i == 0 ? _initialStartDate : _breaksInLearning[i - 1].Item2.AddDays(1))
                     .WithEndDate(_breaksInLearning[i].Item1.AddDays(-1))
                     .WithPeriod(TestData.ApprenticeshipId, 11)
                     .Create();

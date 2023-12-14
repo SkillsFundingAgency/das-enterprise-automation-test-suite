@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class DeleteOrgPage : OrgPage
+    public class DeleteOrgPage(ScenarioContext context) : OrgPage(context, false)
     {
         protected override string PageTitle => dataHelper.NewOrgNameWithOutSuffix;
-
-        public DeleteOrgPage(ScenarioContext context) : base(context, false) { }
     }
 }

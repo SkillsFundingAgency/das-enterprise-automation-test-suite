@@ -27,7 +27,7 @@
         public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => EPAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(false));
 
         [Then(@"the admin user logs in to approve the register withdrawal application")]
-        public void ThenTheAdminUserLogsInToApproveTheRegisterWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveARegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
+        public void ThenTheAdminUserLogsInToApproveTheRegisterWithdrawalApplication() => EPAOWithdrawalHelper.ApproveARegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
         [When(@"starts the journey to withdraw from the register")]
         [Given(@"starts the journey to withdraw from the register")]
@@ -41,7 +41,7 @@
         public void ReturnToWithdrawalNotificationsPage() => _ePAOWithdrawalHelper.ReturnToWithdrawalApplicationsPage();
 
         [Then(@"the admin user logs in and adds feedback to an application")]
-        public void ThenTheAdminUserAddsFeedbackToAnApplication() => _ePAOWithdrawalHelper.AddFeedbackToARegisterWithdrawalApplication(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
+        public void ThenTheAdminUserAddsFeedbackToAnApplication() => EPAOWithdrawalHelper.AddFeedbackToARegisterWithdrawalApplication(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
         [Then(@"verify application has moved from new to feedback tab")]
         public void VerifyApplicationMovedFromNewToFeedbackTab() => _ePAOWithdrawalHelper.VerifyApplicationMovedFromNewToFeedback();
@@ -57,7 +57,7 @@
         public void AmmendWithdrawalApplication() => _ePAOWithdrawalHelper.AmmendWithdrawalApplication();
 
         [Given(@"the admin user returns and reviews the ammended withdrawal notification")]
-        public void TheAdminUserReturnsAndReviewsTheAmmendedWithdrawalNotification() => _ePAOWithdrawalHelper.ApproveAmmendedRegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
+        public void TheAdminUserReturnsAndReviewsTheAmmendedWithdrawalNotification() => EPAOWithdrawalHelper.ApproveAmmendedRegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
         [Then(@"verify withdrawal from register approved and return to withdrawal applications")]
         public void VerifyWithdrawalFromRegisterApproved() => _ePAOWithdrawalHelper.VerifyWithdrawalFromRegisterApproved();

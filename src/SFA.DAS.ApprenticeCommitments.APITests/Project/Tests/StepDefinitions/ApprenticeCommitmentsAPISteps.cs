@@ -7,18 +7,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ApprenticeCommitmentsAPISteps
+    public class ApprenticeCommitmentsAPISteps(ScenarioContext context)
     {
-        private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper;
-        private readonly Inner_CommitmentsApiRestClient _innerApiRestClient;
-        private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper;
-
-        public ApprenticeCommitmentsAPISteps(ScenarioContext context)
-        {
-            _apprenticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
-            _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
-            _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-        }
+        private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
+        private readonly Inner_CommitmentsApiRestClient _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
+        private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
 
         [Then(@"the apprentice commitments api dependent api's are reachable")]
         public void ThenTheApprenticeCommitmentsApiDependentApisAreReachable() => _apprenticeCommitmentsApiHelper.CheckHealth();

@@ -5,11 +5,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
     [Binding, Scope(Tag = "apprentice")]
-    public class CampaignsEmployerSteps
+    public class CampaignsEmployerSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper;
-
-        public CampaignsEmployerSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
+        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the user navigates to Setting Up Page")]
         public void GivenTheUserNavigatesToSettingUpPage() => GoToEmployerHubPage().ClickSettingUpLink();

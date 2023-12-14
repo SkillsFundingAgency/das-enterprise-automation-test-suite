@@ -6,32 +6,23 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class EmployerPortalLoginHelper : IReLoginHelper
+    public class EmployerPortalLoginHelper(ScenarioContext context) : IReLoginHelper
     {
-        private readonly ScenarioContext _context;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
-        protected readonly ObjectContext objectContext;
-        protected readonly LoginCredentialsHelper loginCredentialsHelper;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+        protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
+        protected readonly LoginCredentialsHelper loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
 
-        public EmployerPortalLoginHelper(ScenarioContext context)
-        {
-            _context = context;
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
-            objectContext = context.Get<ObjectContext>();
-            loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
-        }
+        public bool IsSignInPageDisplayed() => new CheckStubSignInPage(context).IsPageDisplayed();
 
-        public bool IsSignInPageDisplayed() => new CheckStubSignInPage(_context).IsPageDisplayed();
+        public bool IsIndexPageDisplayed() => new CheckIndexPage(context).IsPageDisplayed();
 
-        public bool IsIndexPageDisplayed() => new CheckIndexPage(_context).IsPageDisplayed();
+        public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(context).IsPageDisplayed();
 
-        public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
+        public HomePage ReLogin() => new StubSignInEmployerPage(context).Login(GetLoginCredentials()).ContinueToHomePage();
 
-        public HomePage ReLogin() => new StubSignInEmployerPage(_context).Login(GetLoginCredentials()).ContinueToHomePage();
+        public AccountUnavailablePage FailedLogin1() => new StubSignInEmployerPage(context).Login(GetLoginCredentials()).GoToAccountUnavailablePage();
 
-        public AccountUnavailablePage FailedLogin1() => new StubSignInEmployerPage(_context).Login(GetLoginCredentials()).GoToAccountUnavailablePage();
-
-        protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToHomePage();
+        protected virtual HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(context).GoToStubSignInPage().Login(loginUser).ContinueToHomePage();
 
         protected virtual void SetLoginCredentials(EasAccountUser loginUser, bool isLevy)
             => loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, loginUser.OrganisationName, isLevy);

@@ -2,8 +2,7 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class Apprentice_NetworkHubPage : NetworkHubPage
+    public class Apprentice_NetworkHubPage(ScenarioContext context) : NetworkHubPage(context)
     {
-        public Apprentice_NetworkHubPage(ScenarioContext context) : base(context) { }
     }
 }

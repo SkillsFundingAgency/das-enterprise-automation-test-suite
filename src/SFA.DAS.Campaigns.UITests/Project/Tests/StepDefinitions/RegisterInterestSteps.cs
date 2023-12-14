@@ -5,13 +5,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class RegisterInterestSteps
+    public class RegisterInterestSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper;
+        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
 
         private  RegisterInterestPage _registerInterestPage;
-
-        public RegisterInterestSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the employer navigates to Register Interest Page")]
         public void GivenTheEmployerNavigatesToRegisterInterestPage() => _registerInterestPage = _stepsHelper.GoToEmployerHubPage().NavigateToRegisterInterestPage();

@@ -7,55 +7,52 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerFinanceSteps
+    public class EmployerFinanceSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
         private FinancePage _financePage;
 
-        public EmployerFinanceSteps(ScenarioContext context) => _context = context;
-
         [Then(@"'Set up an apprenticeship' section is displayed")]
-        public void ThenSetUpAnApprnticeshipSectionIsDisplayed() => new HomePage(_context).VerifySetupAnApprenticeshipSection();
+        public void ThenSetUpAnApprnticeshipSectionIsDisplayed() => new HomePage(context).VerifySetupAnApprenticeshipSection();
 
         [Then(@"'Your funding reservations' and 'Your finances' links are displayed in the Finances section")]
-        public void ThenAndLinksAreDisplayedInTheFinancesSection() => new HomePageFinancesSection_YourFinance(_context).VerifyYourFinancesSectionLinksForANonLevyUser();
+        public void ThenAndLinksAreDisplayedInTheFinancesSection() => new HomePageFinancesSection_YourFinance(context).VerifyYourFinancesSectionLinksForANonLevyUser();
 
         [Then(@"'Your finances' link is displayed in the Finances section")]
-        public void ThenLinkIsDisplayedInTheFinancesSection() => new HomePageFinancesSection_YourFinance(_context).VerifyYourFinancesSectionLinksForALevyUser();
+        public void ThenLinkIsDisplayedInTheFinancesSection() => new HomePageFinancesSection_YourFinance(context).VerifyYourFinancesSectionLinksForALevyUser();
 
         [When(@"the Employer navigates to 'Finance' Page")]
-        public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection_YourFinance(_context).NavigateToFinancePage();
+        public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection_YourFinance(context).NavigateToFinancePage();
 
         [Then(@"the employer can navigate to recruitment page")]
         public void ThenTheEmployerCanNavigateToRecruitment()
         {
-            new InterimFinanceHomePage(_context, true);
+            _ = new InterimFinanceHomePage(context, true);
 
-            new InterimYourApprenticeshipAdvertsHomePage(_context, true);
+            _ = new InterimYourApprenticeshipAdvertsHomePage(context, true);
         }
 
         [Then(@"the employer can navigate to apprentice page")]
         public void ThenTheEmployerCanNavigateToApprentice()
         {
-            new InterimFinanceHomePage(_context, true);
+            _ = new InterimFinanceHomePage(context, true);
 
-            new InterimApprenticesHomePage(_context, false);
+            _ = new InterimApprenticesHomePage(context, false);
         }
 
         [Then(@"the employer can navigate to your team page")]
-        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimFinanceHomePage(_context, true, true).GotoYourTeamPage();
+        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimFinanceHomePage(context, true, true).GotoYourTeamPage();
 
         [Then(@"the employer can navigate to account settings page")]
-        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToYourAccountsPage();
+        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimFinanceHomePage(context, true, true).GoToYourAccountsPage();
 
         [Then(@"the employer can navigate to rename account settings page")]
-        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToRenameAccountPage();
+        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimFinanceHomePage(context, true, true).GoToRenameAccountPage();
 
         [Then(@"the employer can navigate to notification settings page")]
-        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToNotificationSettingsPage();
+        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimFinanceHomePage(context, true, true).GoToNotificationSettingsPage();
 
         [Then(@"the employer can navigate to help settings page")]
-        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToHelpPage();
+        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimFinanceHomePage(context, true, true).GoToHelpPage();
 
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();
@@ -96,9 +93,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 
             AddApprenticeshipsToEstimateCostPage addApprenticeshipsToEstimateCostPage;
 
-            if (new RemoveApprenticeshipCheckPage(_context).IsPageDisplayed())
+            if (new RemoveApprenticeshipCheckPage(context).IsPageDisplayed())
             {
-                var estimatedCostsPage = new EstimatedCostsPage(_context);
+                var estimatedCostsPage = new EstimatedCostsPage(context);
 
                 var existingApprenticeship = estimatedCostsPage.ExistingApprenticeships();
 
@@ -111,7 +108,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             }
             else
             {
-                addApprenticeshipsToEstimateCostPage = new AddApprenticeshipsToEstimateCostPage(_context);
+                addApprenticeshipsToEstimateCostPage = new AddApprenticeshipsToEstimateCostPage(context);
             }
 
             addApprenticeshipsToEstimateCostPage.Add()

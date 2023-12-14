@@ -4,11 +4,9 @@ using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class CreateAccountEmployerPortalLoginHelper : EmployerPortalLoginHelper
+    public class CreateAccountEmployerPortalLoginHelper(ScenarioContext context) : EmployerPortalLoginHelper(context)
     {
-        private readonly ScenarioContext _context;
-
-        public CreateAccountEmployerPortalLoginHelper(ScenarioContext context) : base(context) => _context = context;
+        private readonly ScenarioContext _context = context;
 
         protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).ClickOnCreateAccountLink().Login(loginUser).ContinueToHomePage();
     }

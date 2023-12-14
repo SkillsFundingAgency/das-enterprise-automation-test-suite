@@ -29,7 +29,7 @@
 
             var homePage = _employerPortalLoginHelper.Login(user, true);
 
-            accountSignOutHelper.SignOut(homePage);
+            AccountSignOutHelper.SignOut(homePage);
         }
 
         [Then(@"the employer user can login to EAS")]
@@ -40,7 +40,7 @@
         {
             var accountUnavailablePage = _employerHomePageStepsHelper.ValidateUnsuccessfulLogon();
 
-            accountSignOutHelper.SignOut(accountUnavailablePage);
+            AccountSignOutHelper.SignOut(accountUnavailablePage);
         }
 
     }

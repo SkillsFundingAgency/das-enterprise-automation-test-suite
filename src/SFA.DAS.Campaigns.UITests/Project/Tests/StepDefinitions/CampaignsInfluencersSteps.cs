@@ -5,11 +5,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
     [Binding, Scope(Tag = "influencers")]
-    public class CampaignsInfluencersSteps
+    public class CampaignsInfluencersSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper;
-
-        public CampaignsInfluencersSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
+        private readonly CampaignsStepsHelper _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the user navigates to the browse apprenticeship page")]
         public void GivenTheUserNavigatesToTheBrowseApprenticeshipPage() => GoToInfluencersHubPage().NavigateToBrowseApprenticeshipPage();

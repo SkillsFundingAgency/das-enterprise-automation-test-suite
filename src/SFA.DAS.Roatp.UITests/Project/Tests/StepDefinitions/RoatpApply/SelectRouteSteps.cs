@@ -6,29 +6,19 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class SelectRouteSteps
+    public class SelectRouteSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly SelectRouteStepsHelper _selectRouteStepsHelper = new(context);
         private AlreadyOnRoatpPage _alreadyOnRoatpPage;
         private ApplicationOverviewPage _applicationOverviewPage;
-        private readonly YourOrganisation_Section1_Helper _section1_Helper;
-        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
-
-        public SelectRouteSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
-            _section1_Helper = new YourOrganisation_Section1_Helper();
-            _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
-        }
+        private readonly YourOrganisation_Section1_Helper _section1_Helper = new();
+        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper = new();
 
         [Then(@"the provider should be able to change the ukprn")]
         public void ThenTheProviderShouldBeAbleToChangeTheUkprn()
         {
-            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+            _applicationOverviewPage = new ApplicationOverviewPage(context)
              .Access_ChangeUkprn()
              .SelectNoToChangeUkprnAndContinue();
 
@@ -40,13 +30,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
                 .EnterOrgTypeCompanyProvidersUkprn(_objectContext.GetNewUkprn()).ClickConfirmAndContinue()
                 .SelectApplicationRouteAsMain();
 
-            _selectRouteStepsHelper.AcceptAndContinue(page);
+            SelectRouteStepsHelper.AcceptAndContinue(page);
         }
 
         [Then(@"the  provider should be able to change route to Employer")]
         public void ThenTheProviderShouldBeAbleToChangeRouteToEmployer()
         {
-            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+            _applicationOverviewPage = new ApplicationOverviewPage(context)
             .Access_ChangeRoute()
             .SelectYesToChangeRouteAndContinue()
             .SelectApplicationRouteAsEmployer()
@@ -57,7 +47,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"the provider should be able to change route to Supporting")]
         public void ThenTheProviderShouldBeAbleToChangeRouteToSupporting()
         {
-            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+            _applicationOverviewPage = new ApplicationOverviewPage(context)
             .Access_ChangeRoute()
             .SelectYesToChangeRouteAndContinue()
             .SelectApplicationRouteAsSupporting()
@@ -67,7 +57,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"the provider should be able to change route to Main")]
         public void ThenTheProviderShouldBeAbleToChangeRouteToMain()
         {
-            _applicationOverviewPage = new ApplicationOverviewPage(_context)
+            _applicationOverviewPage = new ApplicationOverviewPage(context)
            .Access_ChangeRoute()
            .SelectYesToChangeRouteAndContinue()
            .SelectApplicationRouteAsMain()

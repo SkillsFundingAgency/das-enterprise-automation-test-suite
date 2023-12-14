@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
-public class SearchNetworkEventsPage : SearchEventsBasePage
+public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBasePage(context)
 {
     protected override string PageTitle => "Search network events";
-
-    public SearchNetworkEventsPage(ScenarioContext context) : base(context) { }
 
     public EventPage ClickOnFirstEvent()
     {

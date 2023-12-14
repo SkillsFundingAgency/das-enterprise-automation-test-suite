@@ -4,18 +4,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks
 {
     [Binding]
-    public class EmployerAccountsApiConfigurationSetup
+    public class EmployerAccountsApiConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public EmployerAccountsApiConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly IConfigSection _configSection = context.Get<IConfigSection>();
 
         [BeforeScenario(Order = 2)]
-        public void SetUpEmployerAccountsApiConfig() => _context.SetEmployerAccountsApiConfig(_configSection.GetConfigSection<EmployerAccountsApiConfig>());
+        public void SetUpEmployerAccountsApiConfig() => context.SetEmployerAccountsApiConfig(_configSection.GetConfigSection<EmployerAccountsApiConfig>());
     }
 }

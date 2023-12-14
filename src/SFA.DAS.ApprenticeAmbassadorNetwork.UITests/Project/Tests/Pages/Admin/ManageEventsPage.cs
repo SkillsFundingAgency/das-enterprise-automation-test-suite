@@ -3,17 +3,13 @@ using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.Crea
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
-public class ManageEventsPage : SearchEventsBasePage
+public class ManageEventsPage(ScenarioContext context) : SearchEventsBasePage(context)
 {
     private static By CancelEventLink(string id) => By.CssSelector($"a[href='/events/{id}/cancel']");
 
     private static By CreateEventButton => By.CssSelector("#create-event");
 
     protected override string PageTitle => "Manage events";
-
-    public ManageEventsPage(ScenarioContext context) : base(context) { }
-
-
 
     public CancelEventPage CancelEvent()
     {

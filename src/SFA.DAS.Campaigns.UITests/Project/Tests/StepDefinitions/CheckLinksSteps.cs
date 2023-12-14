@@ -4,16 +4,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class CheckLinksSteps
+    public class CheckLinksSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public CheckLinksSteps(ScenarioContext context) => _context = context;
-
         [Then(@"the links are not broken")]
-        public void ThenTheLinksAreNotBroken() => new CampaingnsVerifyLinks(_context, false).VerifyLinks();
+        public void ThenTheLinksAreNotBroken() => new CampaingnsVerifyLinks(context, false).VerifyLinks();
 
         [Then(@"the video links are not broken")]
-        public void ThenTheVideoLinksAreNotBroken() => new CampaingnsVerifyLinks(_context, false).VerifyVideoLinks();
+        public void ThenTheVideoLinksAreNotBroken() => new CampaingnsVerifyLinks(context, false).VerifyVideoLinks();
     }
 }
