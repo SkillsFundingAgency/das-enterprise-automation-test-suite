@@ -4,15 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageApplicantPage : Raav2BasePage
+    public class ManageApplicantPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
         protected override string PageTitle => isRaaV2Employer ? "About you" : "Contact Details";
 
         private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
-
-        public ManageApplicantPage(ScenarioContext context) : base(context) { }
 
         public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
         {

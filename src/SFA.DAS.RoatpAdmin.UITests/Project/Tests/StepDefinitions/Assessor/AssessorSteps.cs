@@ -11,7 +11,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
     [Binding]
     public class AssessorSteps(ScenarioContext context)
     {
-        private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper = new();
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper = new(context);
         private readonly RestartWebDriverHelper _restartWebDriverHelper = new(context);
         private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
@@ -50,7 +49,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 
         [Then(@"the Assessor assesses all the sections of the application as PASS")]
         public void TheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
-            _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage, _applicationRoute);
+            AssessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage, _applicationRoute);
 
     }
 }

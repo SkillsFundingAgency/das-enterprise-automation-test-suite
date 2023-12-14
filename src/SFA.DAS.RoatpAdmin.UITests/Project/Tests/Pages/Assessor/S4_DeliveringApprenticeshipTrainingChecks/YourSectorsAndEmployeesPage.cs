@@ -7,7 +7,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     {
         protected override string PageTitle => "Sectors and employee experience";
         public static string DigitalLinkText => "Digital";
-        private By DigitalLink => By.LinkText($"{DigitalLinkText}");
+        private static By DigitalLink => By.LinkText($"{DigitalLinkText}");
         private static By GoToApplicationAssessmentOverviewLink => By.LinkText("Go to application assessment overview");
 
         public DeliveringTrainingInDigitalSectorPage NavigateToDeliveringTrainingInDigitalSectorPage()

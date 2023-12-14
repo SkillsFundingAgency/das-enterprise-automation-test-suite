@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class PreviewYourAdvertOrVacancyPage : Raav2BasePage
+    public class PreviewYourAdvertOrVacancyPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => isRaaV2Employer ? "Preview your advert" : "Preview your vacancy";
 
@@ -24,8 +24,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private static By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
         private static By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
         private static By ApplicationWebAddress => By.Id("ApplicationUrl");
-
-        public PreviewYourAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {

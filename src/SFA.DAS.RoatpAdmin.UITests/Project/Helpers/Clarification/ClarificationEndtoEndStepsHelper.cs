@@ -17,12 +17,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
         }

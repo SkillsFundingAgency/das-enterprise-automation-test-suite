@@ -84,7 +84,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to change vacancy dates")]
         public void ThenProviderIsAbleToChangeVacancyDates() => ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
 
-        private void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage) => linkBasePage.ChangeVacancyDates().SaveAndContinue();
+        private static void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage) => linkBasePage.ChangeVacancyDates().SaveAndContinue();
 
         [Then(@"Provider is able to close this vacancy with no application")]
         public void ThenProviderIsAbleToCloseThisVacancyWithNoApplication()
@@ -171,7 +171,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             ChangeStatus(_summaryPage, newStatus);
         }
 
-        private RAA_VacancySummaryPage ChangeStatus(RAA_VacancySummaryPage summaryPage, string newStatus) =>
+        private static RAA_VacancySummaryPage ChangeStatus(RAA_VacancySummaryPage summaryPage, string newStatus) =>
             summaryPage.ViewApplication().ChangeStatus(newStatus);
 
         private void CloneVacancy()

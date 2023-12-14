@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageRecruitPage : Raav2BasePage
+    public class ManageRecruitPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => isRaaV2Employer ? "Manage Advert" : "Manage vacancy";
-
-        public ManageRecruitPage(ScenarioContext context) : base(context) { }
 
         public CloneVacancyDatesPage CloneAdvert()
         {

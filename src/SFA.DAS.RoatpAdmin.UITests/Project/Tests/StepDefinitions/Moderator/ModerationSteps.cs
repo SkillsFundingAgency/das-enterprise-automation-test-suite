@@ -30,7 +30,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses the outcome as PASS")]
         public void ThenTheModeratorAssessesTheOutcomeAsPASS()
         {
-            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
+            ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator FAILS few sections")]
@@ -43,13 +43,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses the outcome as FAIL")]
         public void ThenTheModeratorAssessesTheOutcomeAsFAIL()
         {
-            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
+            ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator assesses the outcome as CLARIFICATION")]
         public void ThenTheModeratorAssessesTheOutcomeAsCLARIFICATION()
         {
-            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
+            ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
         }
     }
 }

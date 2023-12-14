@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class AssessorEndtoEndStepsHelper()
     {
-        public ApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             CompleteAssessorSection1Checks(applicationAssessmentOverviewPage, applicationroute);
             CompleteAssessorSection2Checks(applicationAssessmentOverviewPage, applicationroute);

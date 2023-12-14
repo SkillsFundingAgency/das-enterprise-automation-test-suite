@@ -4,131 +4,114 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
     public class GatewayEndtoEndStepsHelpers
     {
-        private readonly OrganisationChecks_Section1Helpers _organisationChecksSectionHelpers;
-        private readonly PeopleInControlChecks_Section2Helpers _peopleInControlChecksSectionHelpers;
-        private readonly RegisterChecks_Section3Helpers _registerChecks_SectionHelpers;
-        private readonly ExperienceAndAccreditationChecks_Section4Helpers _experienceAndAccreditationChecks_SectionHelpers;
-        private readonly OrganisationsCriminalAndComplianceChecks_Section5Helpers _organisationsCriminalAndComplianceChecks_SectionHelpers;
-        private readonly PeopleInControlCriminalAndComplianceChecks_Section6Helpers _peopleInControlCriminalAndComplianceChecksSectionHelpers;
-
-        public GatewayEndtoEndStepsHelpers()
+        internal static GWApplicationOverviewPage CompleteOrganisationChecks_Section1(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            _organisationChecksSectionHelpers = new OrganisationChecks_Section1Helpers();
-            _peopleInControlChecksSectionHelpers = new PeopleInControlChecks_Section2Helpers();
-            _registerChecks_SectionHelpers = new RegisterChecks_Section3Helpers();
-            _experienceAndAccreditationChecks_SectionHelpers = new ExperienceAndAccreditationChecks_Section4Helpers();
-            _organisationsCriminalAndComplianceChecks_SectionHelpers = new OrganisationsCriminalAndComplianceChecks_Section5Helpers();
-            _peopleInControlCriminalAndComplianceChecksSectionHelpers = new PeopleInControlCriminalAndComplianceChecks_Section6Helpers();
-        }
-
-        internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1(GWApplicationOverviewPage gwApplicationOverviewPage)
-        {
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_TradingName(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_Address(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_ICONumber(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_WebsiteAddress(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_TradingName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_Address(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_ICONumber(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_WebsiteAddress(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1_TradingNameNotRequired(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteOrganisationChecks_Section1_TradingNameNotRequired(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.NotRequiredOrganisationChecks_TradingName(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_Address(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_ICONumber(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_WebsiteAddress(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.NotRequiredOrganisationChecks_TradingName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_Address(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_ICONumber(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_WebsiteAddress(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationChecks_Section1Helpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompletePeopleInControlChecks_Section2(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlChecks_Section2Helpers.PassPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlChecks_Section2Helpers.PassPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Fail(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Fail(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.FailPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.FailPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlChecks_Section2Helpers.FailPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlChecks_Section2Helpers.FailPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteRegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteRegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _registerChecks_SectionHelpers.PassRegisterChecks_ROATP(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _registerChecks_SectionHelpers.PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = RegisterChecks_Section3Helpers.PassRegisterChecks_ROATP(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = RegisterChecks_Section3Helpers.PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage Fail_RegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage Fail_RegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _registerChecks_SectionHelpers.FailRegisterChecks_ROATP(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _registerChecks_SectionHelpers.FailRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
-            return gwApplicationOverviewPage;
-        }
-
-        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
-        {
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_OfficeForStudent(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = RegisterChecks_Section3Helpers.FailRegisterChecks_ROATP(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = RegisterChecks_Section3Helpers.FailRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OfficeForStudents(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.PassExperienceAndAccreditationChecks_OfficeForStudent(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofstead(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_Subcontractos(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.NotRequiredExperienceAndAccreditationChecks_OfficeForStudents(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteOrganisationsCriminalAndComplianceChecks_Section5(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_Ofstead(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_CompositionWithCreditors(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_WithDrawnFromContractEarlyByPublicBody(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfTrainingOrganisations(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_FudingRemovedFromAnyEducationBodies(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RemovedFromAnyProfessionalOrTradeBodies(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ITTAccreditation(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RemovedFromAnyCharityRegister(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedDueToSafeGuardingIssues(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedDuetoWhistleBlowingIssues(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InsolvencyOrWindingProceedings(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.NotRequiredExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = ExperienceAndAccreditationChecks_Section4Helpers.PassExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompletePeopleInControlCriminalAndComplianceChecks_Section6(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteOrganisationsCriminalAndComplianceChecks_Section5(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_UnSpentCriminalConvictions(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedForFraudOrIrregularities(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_OngoingInvestigationForFraudOrIrregularities(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_WithdrawnFromContractWithApublic(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_CompositionWithCreditors(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_WithDrawnFromContractEarlyByPublicBody(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfTrainingOrganisations(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_FudingRemovedFromAnyEducationBodies(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_RemovedFromAnyProfessionalOrTradeBodies(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_ITTAccreditation(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_RemovedFromAnyCharityRegister(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedDueToSafeGuardingIssues(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedDuetoWhistleBlowingIssues(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = OrganisationsCriminalAndComplianceChecks_Section5Helpers.PassOrganisationsCriminalAndComplianceChecks_InsolvencyOrWindingProceedings(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
-        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompletePeopleInControlCriminalAndComplianceChecks_Section6(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_UnSpentCriminalConvictions(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedForFraudOrIrregularities(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_OngoingInvestigationForFraudOrIrregularities(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_WithdrawnFromContractWithApublic(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlCriminalAndComplianceChecks_Section6Helpers.PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal static GWApplicationOverviewPage CompleteAllSectionsWithPass_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
@@ -138,7 +121,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1_TradingNameNotRequired(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2_Fail(gwApplicationOverviewPage);
@@ -148,7 +131,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteAllSectionsWithPass_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
@@ -158,7 +141,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompleteAllSectionsPass_FailRegisterChecks_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteAllSectionsPass_FailRegisterChecks_EmployerRouteCharity(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
@@ -168,7 +151,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             CompletePeopleInControlCriminalAndComplianceChecks_Section6(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal GWApplicationOverviewPage CompleteAllSectionsWithPass_SupportingRouteSoleTrader(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompleteAllSectionsWithPass_SupportingRouteSoleTrader(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             CompleteOrganisationChecks_Section1(gwApplicationOverviewPage);
             CompletePeopleInControlChecks_Section2(gwApplicationOverviewPage);
@@ -179,14 +162,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage;
         }
 
-        internal void ConfirmGatewayOutcomeAsPass(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static void ConfirmGatewayOutcomeAsPass(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .PassThisApplicationAndContinue()
                  .YesSurePassThisApplicationAndGoToGovernance()
                  .GoToRoATPGatewayApplicationsPage();
         }
-        internal void ConfirmGatewayOutcomeAsFail(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static void ConfirmGatewayOutcomeAsFail(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .FailThisApplicationAndContinue()
@@ -194,44 +177,44 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
                  .GoToRoATPGatewayApplicationsPage();
         }
 
-        internal void ConfirmGatewayOutcomeAsReject(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static void ConfirmGatewayOutcomeAsReject(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .RejectThisApplicationAndContinue()
                  .YesSureRejectThisApplicationAndGoToGovernance()
                  .GoToRoATPGatewayApplicationsPage();
         }
-        internal void ConfirmWithdrawGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static void ConfirmWithdrawGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.SelectApplicationWithdrawl()
                 .YesSureWithdrawThisApplication()
                 .GoToRoATPGatewayApplicationsPage();
         }
-        internal void ConfirmRemoveGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static void ConfirmRemoveGatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.SelectRemoveApplication()
                 .YesSureRemoveThisApplication()
                 .GoToRoATPGatewayApplicationsPage();
         }
-        internal void ConfirmWithdrawOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
+        internal static void ConfirmWithdrawOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
         {
             readOnlyGatewayOutcomePage.SelectApplicationWithdrawl()
                 .YesSureWithdrawThisApplication()
                 .GoToRoATPGatewayApplicationsPage();
         }
-        internal void ConfirmRemoveOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
+        internal static void ConfirmRemoveOutcomeMadeGatewayApplication(ReadOnlyGatewayOutcomePage readOnlyGatewayOutcomePage)
         {
             readOnlyGatewayOutcomePage.SelectRemoveApplication()
                 .YesSureRemoveThisApplication()
                 .GoToRoATPGatewayApplicationsPage();
         }
-        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Clarification(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage CompletePeopleInControlChecks_Section2_Clarification(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.Clarification_PeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.Clarification_PeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlChecks_Section2Helpers.Clarification_PeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = PeopleInControlChecks_Section2Helpers.Clarification_PeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
-        internal void ConfirmClarification_GatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static void ConfirmClarification_GatewayApplication(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.SelectClarificationForOverallApplication()
                 .YesClarificationRequired()

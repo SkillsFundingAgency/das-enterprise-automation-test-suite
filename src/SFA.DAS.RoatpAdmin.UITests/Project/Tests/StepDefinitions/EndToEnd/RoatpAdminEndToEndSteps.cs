@@ -21,8 +21,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
-        private readonly AssessorEndtoEndStepsHelper _assessorEndtoEndStepsHelper;
         private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
@@ -34,8 +32,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(_context);
-            _gatewayEndToEndStepsHelpers = new GatewayEndtoEndStepsHelpers();
-            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
             _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
         }
@@ -52,7 +48,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             gwApplicationOverviewPage = CompleteAllSectionsWithPass(gwApplicationOverviewPage);
 
-            _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsPass(gwApplicationOverviewPage);
+            GatewayEndtoEndStepsHelpers.ConfirmGatewayOutcomeAsPass(gwApplicationOverviewPage);
         }
 
         [When(@"the GateWay user assess the application by confirming Gateway outcome as Fail")]
@@ -62,9 +58,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
-            _ = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+            _ = GatewayEndtoEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
 
-            _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsFail(gwApplicationOverviewPage);
+            GatewayEndtoEndStepsHelpers.ConfirmGatewayOutcomeAsFail(gwApplicationOverviewPage);
         }
         [When(@"the GateWay user assess the application by confirming Gateway outcome as Reject")]
         public void WhenTheGateWayUserAssessTheApplicationByConfirmingGatewayOutcomeAsReject()
@@ -73,9 +69,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var gwApplicationOverviewPage = staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
-            _ = _gatewayEndToEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
+            _ = GatewayEndtoEndStepsHelpers.CompleteAllSectionsPass_FailPeopleInControlChecks_MainOrEmpRouteCompany((new GWApplicationOverviewPage(_context)));
 
-            _gatewayEndToEndStepsHelpers.ConfirmGatewayOutcomeAsReject(gwApplicationOverviewPage);
+            GatewayEndtoEndStepsHelpers.ConfirmGatewayOutcomeAsReject(gwApplicationOverviewPage);
         }
 
         [When(@"the Financial user assess the application by confirming Finance outcome as (outstanding|inadequate)")]
@@ -114,7 +110,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             moderationApplicationAssessmentOverviewPage = CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage);
 
-            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
+            var moderationApplicationsPage = ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
 
             moderationApplicationsPage.VerifyOutcomeStatus("PASS");
         }
@@ -146,7 +142,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage, _applicationRoute);
 
-            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
+            var moderationApplicationsPage = ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
 
             moderationApplicationsPage.VerifyOutcomeStatus("FAIL");
         }
@@ -201,7 +197,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
-            var moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(moderationApplicationAssessmentOverviewPage);
+            var moderationApplicationsPage = ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(moderationApplicationAssessmentOverviewPage);
 
             return moderationApplicationsPage.VerifyClarificationStatus();
         }
@@ -223,7 +219,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
         private void RoatpAssessor(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(applicationAssessmentOverviewPage, _applicationRoute);
+            AssessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(applicationAssessmentOverviewPage, _applicationRoute);
 
             AssessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(applicationAssessmentOverviewPage);
         }
@@ -231,13 +227,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
         private GWApplicationOverviewPage CompleteAllSectionsWithPass(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             if (_applicationRoute == ApplicationRoute.MainProviderRoute || _applicationRoute == ApplicationRoute.MainProviderRouteForExistingProvider)
-                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
+                gwApplicationOverviewPage = GatewayEndtoEndStepsHelpers.CompleteAllSectionsWithPass_MainOrEmpRouteCompany((gwApplicationOverviewPage));
 
             if (_applicationRoute == ApplicationRoute.EmployerProviderRoute || _applicationRoute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
-                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
+                gwApplicationOverviewPage = GatewayEndtoEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((gwApplicationOverviewPage));
 
             if (_applicationRoute == ApplicationRoute.SupportingProviderRoute || _applicationRoute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
-                gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
+                gwApplicationOverviewPage = GatewayEndtoEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((gwApplicationOverviewPage));
 
             return gwApplicationOverviewPage;
         }

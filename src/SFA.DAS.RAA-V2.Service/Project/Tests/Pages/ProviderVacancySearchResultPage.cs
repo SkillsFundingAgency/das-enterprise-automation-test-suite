@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ProviderVacancySearchResultPage : VacancySearchResultPage
+    public class ProviderVacancySearchResultPage(ScenarioContext context) : VacancySearchResultPage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
@@ -11,7 +11,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private static By Applicant => By.CssSelector("tbody tr:nth-child(1) td:nth-child(1)");
 
-        public ProviderVacancySearchResultPage(ScenarioContext context) : base(context) { }
         public ManageApplicantPage NavigateToManageApplicant()
         {
             GoToVacancyManagePage();

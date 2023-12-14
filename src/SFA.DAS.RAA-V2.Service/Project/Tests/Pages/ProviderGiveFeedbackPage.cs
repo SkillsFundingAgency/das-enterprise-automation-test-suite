@@ -3,14 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ProviderGiveFeedbackPage : Raav2BasePage
+    public class ProviderGiveFeedbackPage(ScenarioContext context) : Raav2BasePage(context)
     {
         private static By ConfirmButton => By.CssSelector("input[value='Confirm'][class='govuk-button']");
-
-        public ProviderGiveFeedbackPage(ScenarioContext context) : base(context)
-        {
-
-        }
 
         protected override string PageTitle => $"Give feedback to {rAAV2DataHelper.CandidateFullName}";
 

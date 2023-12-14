@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class KeyforApiPage : Raav2BasePage
+    public class KeyforApiPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Key for API";
 
@@ -12,9 +12,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #region Locators
         private readonly By RenewKeyLink = By.CssSelector("#renew-key");
         private readonly By DoYouNeedANewKeyDropDown = By.CssSelector(".govuk-details__summary-text");
-        #endregion
 
-        public KeyforApiPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public KeyforApiPage VerifyApikeyRenewed() { VerifyPanelTitle("Key renewed"); return this; }
 

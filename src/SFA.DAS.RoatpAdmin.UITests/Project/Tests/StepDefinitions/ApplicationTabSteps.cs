@@ -12,7 +12,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
     public class ApplicationTabSteps(ScenarioContext context)
     {
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
-        private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper = new();
         private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
 
         [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
@@ -26,7 +25,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         {
             (var page, var route) = GetApplicationRoute();
 
-            _moderatorEndtoEndStepsHelper.VerifySubSectionsAsPass(page, route);
+            ModeratorEndtoEndStepsHelper.VerifySubSectionsAsPass(page, route);
         }
 
         [Then(@"verify subsections outcome failed by Clarification assessor are updated as FAIL")]
@@ -34,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         {
             (var page, var _) = GetApplicationRoute();
 
-            _moderatorEndtoEndStepsHelper.VerifySubSectionsAsFail(page);
+            ModeratorEndtoEndStepsHelper.VerifySubSectionsAsFail(page);
         }
 
         private (ModerationApplicationAssessmentOverviewPage page, ApplicationRoute route) GetApplicationRoute() => (_roatpApplicationsHomePage.SelectFromOutcomeTab(), _objectContext.GetApplicationRoute());
