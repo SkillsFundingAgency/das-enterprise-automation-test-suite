@@ -82,7 +82,7 @@ public class EPAOWithdrawalHelper
             .AcceptAndSubmitWithHowWillYouSuportQuestion();
     }
 
-    public void VerifyStandardSubmitted() => new AS_WithdrawalApplicationSubmittedPage(_context);
+    public void VerifyStandardSubmitted() => _ = new AS_WithdrawalApplicationSubmittedPage(_context);
 
     public void VerifyTheInProgressStatus()
     {

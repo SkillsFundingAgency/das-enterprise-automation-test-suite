@@ -6,16 +6,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 {
     [Binding]
-    public class DirectorySetup
+    public class DirectorySetup(ScenarioContext context, FeatureContext featureContext)
     {
-        private readonly ObjectContext _objectContext;
-        private readonly FeatureContext _featureContext;
-
-        public DirectorySetup(ScenarioContext context, FeatureContext featureContext)
-        {
-            _featureContext = featureContext;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [BeforeScenario(Order = 4)]
         public void SetUpDirectory()
@@ -29,7 +22,7 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 
         private string GetDirectoryPath()
         {
-            string directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestAttachments", $"{DateTime.Now:dd-MM-yyyy}", $"{EscapePatternHelper.DirectoryEscapePattern(_featureContext.FeatureInfo.Title)}");
+            string directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestAttachments", $"{DateTime.Now:dd-MM-yyyy}", $"{EscapePatternHelper.DirectoryEscapePattern(featureContext.FeatureInfo.Title)}");
 
             return Path.GetFullPath(directory);
         }

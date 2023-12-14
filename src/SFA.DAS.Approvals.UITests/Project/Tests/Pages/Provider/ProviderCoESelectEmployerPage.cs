@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             var newEmployerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
 
-            var newEmployerName = newEmployerUser.SecondOrganisationName.Substring(0, 10) + "%";
+            var newEmployerName = newEmployerUser.SecondOrganisationName[..10] + "%";
             
             string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
 

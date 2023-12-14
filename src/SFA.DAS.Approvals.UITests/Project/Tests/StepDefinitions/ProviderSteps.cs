@@ -137,7 +137,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenUserShouldBeAbleToAddOrEditApprenticeDetailsOnAnyCohort()
         {
             var employerUser = _context.GetUser<LevyUser>();
-            var organisationName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            var organisationName = employerUser.OrganisationName[..3] + "%";
             int employerAccountId = _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
             var cohortReference = _commitmentsSqlDataHelper.GetOldestEditableCohortReference(Convert.ToInt32(_providerConfig.Ukprn), employerAccountId);
 

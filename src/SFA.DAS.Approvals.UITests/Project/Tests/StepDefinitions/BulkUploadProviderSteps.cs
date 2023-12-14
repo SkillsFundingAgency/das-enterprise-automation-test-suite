@@ -241,7 +241,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                         var existingCohortDetails = new FileUploadReviewCohortDetail
                         {
                             CohortRef = cohortGroup.Key,
-                            NumberOfApprentices = existingApprentices.Count(),
+                            NumberOfApprentices = existingApprentices.Count,
                             TotalCost = totalCost
                         };
                         cohortDetails.Add(existingCohortDetails);
@@ -282,6 +282,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             return _context.Get<AccountsDbSqlHelper>().GetEmployerAccountId(employerUser.Username, organisationName);
         }
 
-        private string GetOrgName(string name) => name.Substring(0, 3) + "%";
+        private string GetOrgName(string name) => name[..3] + "%";
     }
 }

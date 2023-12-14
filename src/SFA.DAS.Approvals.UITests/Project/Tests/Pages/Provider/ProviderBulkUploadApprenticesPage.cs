@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private BulkUploadApprenticeDetails SetApprenticeDetails(int courseCode, bool isNonLevy = false)
         {
             var employerUser = context.GetUser<LevyUser>();
-            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            var employerName = employerUser.OrganisationName[..3] + "%";
             DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
             string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
             string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();

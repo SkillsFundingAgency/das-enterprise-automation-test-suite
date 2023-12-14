@@ -362,7 +362,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var payments = Helper.EISqlHelper.GetAllFromDatabase<Payment>()
                 .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
 
-            payments.Count().Should().Be(1);
+            payments.Count.Should().Be(1);
         }
 
         private async Task SetupSubmission()

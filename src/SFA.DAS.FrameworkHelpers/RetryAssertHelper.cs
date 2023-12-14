@@ -1,21 +1,11 @@
-﻿using System;
+﻿using NUnit.Framework;
 using Polly;
-using NUnit.Framework;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FrameworkHelpers
 {
-    public class RetryAssertHelper
+    public class RetryAssertHelper(ScenarioInfo scenarioInfo, ObjectContext objectContext)
     {
-        private readonly string _title;
-
-        private readonly ObjectContext objectContext;
-
-        public RetryAssertHelper(ScenarioInfo scenarioInfo, ObjectContext objectContext)
-        {
-            _title = scenarioInfo.Title;
-            this.objectContext = objectContext;
-        }
+        private readonly string _title = scenarioInfo.Title;
 
         public void RetryOnNUnitException(Action action) => RetryOnNUnitException(action, RetryTimeOut.DefaultTimeout());
 
@@ -23,7 +13,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public void RetryOnNUnitException(Action action, TimeSpan[] timespan) => RetryOnNUnitException(action, timespan, null);
 
-        public void RetryOnNUnitException(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 13, 20, 30, 30, 30 }), retryaction);
+        public void RetryOnNUnitException(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan([5, 8, 13, 20, 30, 30, 30]), retryaction);
 
         private void RetryOnNUnitException(Action action, TimeSpan[] timespan, Action retryaction)
         {

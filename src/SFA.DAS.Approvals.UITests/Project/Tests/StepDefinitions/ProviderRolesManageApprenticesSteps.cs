@@ -197,10 +197,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
         private void UpdateApprenticeName(string key)
         {
-            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData(key);
+            var (firstname, lastname) = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData(key);
 
-            _dataHelper.ApprenticeFirstname = apprentice.firstname;
-            _dataHelper.ApprenticeLastname = apprentice.lastname;
+            _dataHelper.ApprenticeFirstname = firstname;
+            _dataHelper.ApprenticeLastname = lastname;
         }
 
         private ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage() => _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageYourApprenticePage();

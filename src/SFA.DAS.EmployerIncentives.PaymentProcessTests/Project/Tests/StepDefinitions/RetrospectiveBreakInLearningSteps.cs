@@ -165,7 +165,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(_initialStartDate);
 
-            for (int i = 0; i < _breaksInLearning.Count(); i++)
+            for (int i = 0; i < _breaksInLearning.Count; i++)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithAcademicYear(academicYear)

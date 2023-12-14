@@ -177,7 +177,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (cohortRef == "" || cohortRef == null)
             {
                 var employerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
-                var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+                var employerName = employerUser.OrganisationName[..3] + "%";
                 agreementId = sqlHelper.GetAgreementId(employerUser.Username, employerName).Trim();
             }
             else 

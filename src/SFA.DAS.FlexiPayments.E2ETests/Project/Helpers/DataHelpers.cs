@@ -8,14 +8,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
     {
         public static DateTime TryParse(string text)
         {
-            DateTime date;
-            return DateTime.TryParse(text, out date) ? date : DateTime.Today;
+            return DateTime.TryParse(text, out DateTime date) ? date : DateTime.Today;
         }
 
         public static DateTime? TryParseDate(string text)
         {
-            DateTime date;
-            return DateTime.TryParse(text, out date) ? date : null;
+            return DateTime.TryParse(text, out DateTime date) ? date : null;
         }
 
         public static DateTime CalculatePlannedEndDate(DateTime date, string months, FundingPlatform funding) 

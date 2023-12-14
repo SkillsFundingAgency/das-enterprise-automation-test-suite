@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             var employerUser = employerType == "Levy" ? context.GetUser<LevyUser>() : (EasAccountUser)context.GetUser<NonLevyUser>();
 
-            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            var employerName = employerUser.OrganisationName[..3] + "%";
 
             string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
 
