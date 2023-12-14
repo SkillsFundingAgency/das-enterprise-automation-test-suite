@@ -41,8 +41,8 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationRoot InitializeConfig()
         {
             var builder = ConfigurationBuilder()
-                .AddOptionalJsonFiles(new List<string> 
-                { 
+                .AddOptionalJsonFiles(
+                [
                     "appsettings.DbConfig.json",
                     "appsettings.TimeOutConfig.json", 
                     "appsettings.NServiceBusConfig.json", 
@@ -55,7 +55,7 @@ namespace SFA.DAS.ConfigurationBuilder
                     "appsettings.Project.BrowserStack.json", 
                     $"appsettings.{EnvironmentName}.json", 
                     "appsettings.TestExecution.json" 
-                });
+                ]);
 
             if (!IsVstsExecution)
             {

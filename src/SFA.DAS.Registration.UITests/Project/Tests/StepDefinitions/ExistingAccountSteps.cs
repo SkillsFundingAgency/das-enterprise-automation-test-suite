@@ -51,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
 
         [Then(@"the employer can navigate to home page")]
-        public void ThenTheEmployerCanNavigateToHomePage() => new HomePage(_context, true);
+        public void ThenTheEmployerCanNavigateToHomePage() => _ = new HomePage(_context, true);
 
         [Then(@"the user can not add an organisation")]
         public void ThenTheUserCanNotAddAnOrganisation()
@@ -83,7 +83,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not add an apprentices")]
         public void ThenTheUserCanNotAddAnApprentices()
         {
-            InterimApprenticesAccessDeniedPage _interimApprenticesAccessDeniedPage = new InterimApprenticesAccessDeniedPage(_context);
+            InterimApprenticesAccessDeniedPage _interimApprenticesAccessDeniedPage = new(_context);
             _interimApprenticesAccessDeniedPage.GoBackToTheEASServiceHomePage();
             _homePage = new HomePage(_context, true);
         }

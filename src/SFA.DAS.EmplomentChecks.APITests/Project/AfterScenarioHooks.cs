@@ -4,21 +4,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmploymentChecks.APITests.Project
 {
     [Binding]
-    public  class AfterScenarioHooks
+    public  class AfterScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
+        private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
 
-        public AfterScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
-        }
-
-        [AfterScenario(Order =101)]
+        [AfterScenario(Order = 101)]
         public void DeleteTestExecutionData()
         {
-            var scenarioName = _context.ScenarioInfo.Title.Substring(0,10);
+            var scenarioName = context.ScenarioInfo.Title[..10];
 
             _employmentChecksSqlDbHelper.DeleteEmploymentCheck(scenarioName);
         }

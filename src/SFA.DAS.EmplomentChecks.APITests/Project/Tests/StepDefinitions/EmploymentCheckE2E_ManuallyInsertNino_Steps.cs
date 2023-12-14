@@ -28,7 +28,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Given(@"employment check has been requested for an apprentice with '([^']*)' and ULN '([^']*)'")]
         public void GivenEmploymentCheckHasBeenRequestedForAnApprenticeWithAndULN(int scenarioId, long Uln)
         {
-            _testData = _setupScenarioTestData.SetData(scenarioId);
+            _testData = SetupScenarioTestData.SetData(scenarioId);
             
             _testData.ULN = Uln;
         }

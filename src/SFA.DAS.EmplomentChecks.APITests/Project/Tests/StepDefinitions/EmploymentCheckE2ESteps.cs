@@ -11,29 +11,19 @@ using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmploymentCheckE2ESteps
+    public class EmploymentCheckE2ESteps(ScenarioContext context)
     {
-        private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper;
-        private readonly SetupScenarioTestData _setupScenarioTestData;
-        private TestData _testData;
-        private List<string> _payeSchemes = new List<string>();
-        private readonly ScenarioContext _context;
-        private readonly Helper _helper;
-
-        public EmploymentCheckE2ESteps(ScenarioContext context)
-        {
-            _context = context;
-            _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
-            _setupScenarioTestData = new SetupScenarioTestData();
-            _testData = new TestData();
-            _helper = context.Get<Helper>();
-        }
+        private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
+        private TestData _testData = new();
+        private List<string> _payeSchemes = [];
+        private readonly ScenarioContext _context = context;
+        private readonly Helper _helper = context.Get<Helper>();
 
         [Given(@"employment check has been requested for an apprentice with '(.*)', '(.*)', '(.*)'")]
         public async Task GivenEmploymentCheckHasBeenRequestedForAnApprenticeWith(int scenarioId, DateTime minDate, DateTime maxDate)
         {
-            _testData = _setupScenarioTestData.SetData(scenarioId);
-            string checkType = _context.ScenarioInfo.Title.Substring(0, 10);
+            _testData = SetupScenarioTestData.SetData(scenarioId);
+            string checkType = _context.ScenarioInfo.Title[..10];
 
             await _employmentChecksSqlDbHelper.InsertData(checkType, _testData.ULN, _testData.AccountId, minDate, maxDate);
             await _helper.EmploymentCheckOrchestrationHelper.StartEmploymentChecksOrchestrator();
@@ -68,7 +58,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"data is enriched with results from DC and Accounts")]
         public void ThenDataIsEnrichedWithResultsFromDCAndAccounts()
         {
-            static List<string> ToList(string value) => (!string.IsNullOrEmpty(value) && value.Contains(',')) ? value.Split(',').ToList() : new List<string> { value };
+            static List<string> ToList(string value) => (!string.IsNullOrEmpty(value) && value.Contains(',')) ? value.Split(',').ToList() : [value];
 
             var (nino, payeScheme) = _employmentChecksSqlDbHelper.GetEnrichmentData();
 
@@ -125,7 +115,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"an employment check request is created for each unique Nino and paye scheme combination")]
         public void ThenAnEmploymentCheckRequestIsCreatedForEachUniqueNinoAndPayeSchemeCombination()
         {
-            _payeSchemes = _testData.PayeScheme.Split(',').ToList();
+            _payeSchemes = [.. _testData.PayeScheme.Split(',')];
 
             var requests = _employmentChecksSqlDbHelper.GetRelatedsPayeFromEmploymentCheckCacheRequestRows();
 
