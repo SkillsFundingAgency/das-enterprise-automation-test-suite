@@ -6,12 +6,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ReviewerSteps
+    public class ReviewerSteps(ScenarioContext context)
     {
-        private readonly ReviewerStepsHelper _reviewerStepsHelper;
+        private readonly ReviewerStepsHelper _reviewerStepsHelper = new ReviewerStepsHelper(context);
         private Reviewer_HomePage reviewer_HomePage;
-
-        public ReviewerSteps(ScenarioContext context) => _reviewerStepsHelper = new ReviewerStepsHelper(context);
 
         [When(@"Reviewer is logged into QA Application")]
         public void WhenReviewerIsLoggedIntoQAApplication() => reviewer_HomePage = _reviewerStepsHelper.GoToReviewerHomePage(false);

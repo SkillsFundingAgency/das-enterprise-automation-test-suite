@@ -21,7 +21,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             SelectRandomCheckbox();
 
-            var location = tMDataHelper.GetRandomLocation();
+            var location = Helpers.TMDataHelper.GetRandomLocation();
 
             if (pageInteractionHelper.IsElementPresent(AdditionalLocationSelector))
             {

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class QualificationsPage : Raav2BasePage
+    public class QualificationsPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "What qualifications would you like the applicant to have?";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private static By Subject => By.CssSelector("#Subject");
 
         private static By Grade => By.CssSelector("#Grade");
-       
-        public QualificationsPage(ScenarioContext context) : base(context) { }
 
         public ConfirmQualificationsPage EnterQualifications()
         {

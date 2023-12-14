@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ChooseTrainingProviderPage : Raav2BasePage
+    public class ChooseTrainingProviderPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Have you found a training provider?";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         private static By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
-
-        public ChooseTrainingProviderPage(ScenarioContext context) : base(context) { }
 
         public ConfirmTrainingProviderPage ChooseFoundATrainingProvider()
         {

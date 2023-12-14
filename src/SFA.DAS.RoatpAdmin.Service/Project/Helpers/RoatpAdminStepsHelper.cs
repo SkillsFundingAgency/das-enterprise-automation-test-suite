@@ -2,12 +2,8 @@
 
 namespace SFA.DAS.RoatpAdmin.Service.Project.Helpers;
 
-public abstract class RoatpAdminStepsHelper
+public abstract class RoatpAdminStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    
-    public RoatpAdminStepsHelper(ScenarioContext context) => _context = context;
-
     public SearchPage InitatesAnApplication(string providerType)
     {
         return GoToRoatpAdminHomePage()
@@ -22,8 +18,8 @@ public abstract class RoatpAdminStepsHelper
 
     public RoatpAdminHomePage GoToRoatpAdminHomePage()
     {
-        new DfeAdminLoginStepsHelper(_context).NavigateAndLoginToASAdmin();
+        new DfeAdminLoginStepsHelper(context).NavigateAndLoginToASAdmin();
 
-        return new RoatpAdminHomePage(_context);
+        return new RoatpAdminHomePage(context);
     }
 }

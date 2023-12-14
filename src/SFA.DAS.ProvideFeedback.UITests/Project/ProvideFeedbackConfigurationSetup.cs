@@ -15,30 +15,22 @@ global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Collections.Generic;
 global using System.Linq;
 global using TechTalk.SpecFlow;
-using SFA.DAS.ApprenticeCommitments.UITests.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project;
 
 [Binding]
-public class ProvideFeedbackConfigurationSetup
+public class ProvideFeedbackConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly IConfigSection _configSection;
-
-    public ProvideFeedbackConfigurationSetup(ScenarioContext context)
-    {
-        _context = context;
-        _configSection = context.Get<IConfigSection>();
-    }
+    private readonly IConfigSection _configSection = context.Get<IConfigSection>();
 
     [BeforeScenario(Order = 2)]
     public void SetUpProvideFeedbackConfigConfiguration()
     {
-        _context.SetEasLoginUser(new List<EasAccountUser>()
-        {
+        context.SetEasLoginUser(
+        [
             _configSection.GetConfigSection<EmployerFeedbackUser>()
-        });
+        ]);
 
-        _context.SetNonEasLoginUser(_configSection.GetConfigSection<ApprenticeFeedbackUser>());
+        context.SetNonEasLoginUser(_configSection.GetConfigSection<ApprenticeFeedbackUser>());
     }
 }

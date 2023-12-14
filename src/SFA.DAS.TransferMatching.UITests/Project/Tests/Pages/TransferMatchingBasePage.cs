@@ -48,7 +48,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             var NonDefaultList = pageInteractionHelper.FindElements(NonDefaulCheckboxSelector);
 
-            int randomvalue = tMDataHelper.GenerateRandomNumberLessThanMaxAmount(NonDefaultList.Count);
+            int randomvalue = TMDataHelper.GenerateRandomNumberLessThanMaxAmount(NonDefaultList.Count);
 
             formCompletionHelper.ClickElement(NonDefaultList.ElementAt(randomvalue));
         }

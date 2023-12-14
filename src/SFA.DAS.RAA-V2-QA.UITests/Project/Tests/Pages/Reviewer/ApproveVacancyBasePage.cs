@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
-    public abstract class ApproveVacancyBasePage : VerifyDetailsBasePage
+    public abstract class ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : VerifyDetailsBasePage(context, verifypage)
     {
         private static By ErrorsCheckboxes => By.Name("SelectedAutomatedQaResults");
 
@@ -16,8 +16,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         protected static By SubmitButton => By.CssSelector("#submit-button");
 
         private static By VacancyQALink => By.LinkText("Apprenticeship service vacancy QA");
-
-        public ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public QAReviewsPage Approve()
         {

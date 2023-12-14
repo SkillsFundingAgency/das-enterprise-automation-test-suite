@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ViewVacancyPage : VerifyDetailsBasePage
+    public class ViewVacancyPage(ScenarioContext context) : VerifyDetailsBasePage(context)
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
@@ -23,8 +23,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
 
-        public ViewVacancyPage(ScenarioContext context) : base(context) { }
-        
         public void VerifyWageType(string wageType) => VerifyWageAmount(WageType, wageType);
 
         public void VerifyEmployerWageType(string wageType) => VerifyWageAmount(EmployerWageType, wageType);

@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 
-public class ChallengePage : SupportConsoleBasePage
+public class ChallengePage(ScenarioContext context) : SupportConsoleBasePage(context)
 {
     protected override string PageTitle => "Enter the following information to verify the caller";
 
@@ -16,8 +16,6 @@ public class ChallengePage : SupportConsoleBasePage
     private static By Challenge_ErrorMessage => By.CssSelector(".error-summary");
     private static By SubmitButton => By.CssSelector(".button");
     private static By PayeChallengeLabel => By.CssSelector("label[for='challenge1']");
-
-    public ChallengePage(ScenarioContext context) : base(context) { }
 
     public void EnterIncorrectPaye() => EnterPayeChallenge("2", "2");
 

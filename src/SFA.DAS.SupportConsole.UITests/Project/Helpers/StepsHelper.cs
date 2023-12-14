@@ -3,23 +3,19 @@ using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers;
 
-public class StepsHelper
+public class StepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
+    public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(context.GetUser<SupportConsoleTier1User>());
 
-    public StepsHelper(ScenarioContext context) => _context = context;
+    public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(context.GetUser<SupportConsoleTier2User>());
 
-    public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());
+    public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(context).SearchByPublicAccountIdAndViewAccount();
 
-    public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
-
-    public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
-
-    public UlnSearchResultsPage SearchForUln(string uln) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN(uln);
+    public UlnSearchResultsPage SearchForUln(string uln) => new AccountOverviewPage(context).ClickCommitmentsMenuLink().SearchForULN(uln);
 
     public void SearchWithInvalidUln(bool WithSpecialChars)
     {
-        var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
+        var commitmentsSearchPage = new AccountOverviewPage(context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
 
         Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
@@ -31,7 +27,7 @@ public class StepsHelper
 
     public void SearchWithInvalidCohort(bool WithSpecialChars)
     {
-        var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+        var commitmentsSearchPage = new AccountOverviewPage(context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
         VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
 
@@ -43,21 +39,21 @@ public class StepsHelper
 
     public void SearchWithUnauthorisedCohortAccess()
     {
-        var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+        var commitmentsSearchPage = new AccountOverviewPage(context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
         VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
 
         commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
     }
 
-    public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
+    public CohortSummaryPage SearchForCohort(string cohortRef) => new AccountOverviewPage(context).ClickCommitmentsMenuLink().SearchCohort(cohortRef);
 
-    private void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+    private static void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
     private SearchHomePage LoginToSupportConsole(DfeAdminUser loginUser)
     {
-        new DfeAdminLoginStepsHelper(_context).LoginToSupportConsole(loginUser);
+        new DfeAdminLoginStepsHelper(context).LoginToSupportConsole(loginUser);
 
-        return new (_context);
+        return new (context);
     }
 }

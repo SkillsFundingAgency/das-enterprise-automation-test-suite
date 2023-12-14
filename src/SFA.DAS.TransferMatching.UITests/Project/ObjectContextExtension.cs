@@ -10,7 +10,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project
     {
         #region Constants
         private const string EmployerTotalPledgeAmount = "employertotalpledgeamount";
-        private const string PledgeId = "pledgeid";
         private const string PledgeAmount = "pledgeamount";
         private const string PledgeCreatedOn = "pledgecreatedon";
         private const string PledgeDetailList = "pledgedetaillist";
@@ -40,7 +39,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
                 Amount = objectContext.GetPledgeAmount(),
                 CreatedOn = objectContext.GetPledgeCreatedOn(),
                 EmployerAccountId = objectContext.GetDBAccountId(),
-                Applications = new List<string>()
+                Applications = []
             });
         }
 

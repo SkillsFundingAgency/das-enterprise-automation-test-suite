@@ -5,45 +5,36 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
-    public class TMDataHelper
+    public class TMDataHelper(CourseDetails courseDetails)
     {
-        public TMDataHelper(CourseDetails courseDetails)
-        {
-            Course = courseDetails.Course.title;
-            Cost = courseDetails.Course.proposedMaxFunding;
-            Duration = courseDetails.Course.proposedTypicalDuration;
-            NoOfApprentice = 1;
-            CourseStartDate = DateTime.Now;
-        }
+        public static string ApprenticeshipMoreDetails => RandomDataGenerator.GenerateRandomAlphabeticString(25);
 
-        public string ApprenticeshipMoreDetails => RandomDataGenerator.GenerateRandomAlphabeticString(25);
+        public static int GenerateRandomNumberMoreThanMaxAmount(int max) => Func(max + 1, max * 2);
 
-        public int GenerateRandomNumberMoreThanMaxAmount(int max) => Func(max + 1, max * 2);
-
-        public int GenerateRandomNumberLessThanMaxAmount(int max) => Func(1, max);
+        public static int GenerateRandomNumberLessThanMaxAmount(int max) => Func(1, max);
 
         public int GenerateRandomNumberMoreThanMinAmount(int max) => Func(MinAmount, max);
 
-        public string GetRandomLocation() => RandomDataGenerator.GetRandomElementFromListOfElements(Locations);
+        public static string GetRandomLocation() => RandomDataGenerator.GetRandomElementFromListOfElements(Locations);
 
-        public string Course { get; }
+        public string Course { get; } = courseDetails.Course.title;
 
-        public int Cost { get; set; }
+        public int Cost { get; set; } = courseDetails.Course.proposedMaxFunding;
 
-        public int NoOfApprentice { get; set; }
+        public int NoOfApprentice { get; set; } = 1;
 
-        public int Duration { get; set; }
+        public int Duration { get; set; } = courseDetails.Course.proposedTypicalDuration;
 
         public int MinAmount => Cost * NoOfApprentice;
         
         public int MinimalPledgeAmount => Cost * (NoOfApprentice + 1);
 
-        public DateTime CourseStartDate { get; set; }
+        public DateTime CourseStartDate { get; set; } = DateTime.Now;
 
         private static int Func(int min, int max) => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(min, max);
 
-        private List<string> Locations => new List<string>()
-        {
+        private static List<string> Locations =>
+        [
             "Coventry, West Midlands",
             "Greater London, Berkshire",
             "Grays, Essex",
@@ -53,7 +44,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             "Sutton, Greater London",
             "Cheam, Greater London",
             "Worcester, Worcestershire"
-        };
+        ];
 
         public string GetEstimatedCostOfTrainingForApplicationDetail()
         {

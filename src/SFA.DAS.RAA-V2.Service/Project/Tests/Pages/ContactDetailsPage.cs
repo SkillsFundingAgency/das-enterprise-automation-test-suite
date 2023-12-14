@@ -7,7 +7,7 @@ using SFA.DAS.RAA.DataGenerator;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ContactDetailsPage : Raav2BasePage
+    public class ContactDetailsPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
@@ -18,8 +18,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected static By ProviderContactName => By.CssSelector("#ProviderContactName");
         protected static By ProviderContactEmail => By.CssSelector("#ProviderContactEmail");
         protected static By ProviderContactPhone => By.CssSelector("#ProviderContactPhone");
-
-        public ContactDetailsPage(ScenarioContext context) : base(context) { }
 
         public ApplicationProcessPage EnterProviderContactDetails(bool optionalFields)
         {

@@ -5,15 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class WageTypePage : Raav2BasePage
+    public class WageTypePage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "How much will the apprentice be paid?";
 
         private static By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
 
         private static By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
-
-        public WageTypePage(ScenarioContext context) : base(context) { }
 
         public ExtraInformationAboutPayPage ChooseWage_Employer(string wageType)
         {

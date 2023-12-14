@@ -7,14 +7,9 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project;
 public class ApprenticeFeedbackUser : ApprenticeUser { }
 
 [Binding, Scope(Tag = "apprenticefeedback")]
-public class ApprenticeFeedbackHooks : BaseHooks
+public class ApprenticeFeedbackHooks(ScenarioContext context) : BaseHooks(context)
 {
-    private readonly DbConfig _dbConfig;
-
-    public ApprenticeFeedbackHooks(ScenarioContext context) : base(context)
-    {
-        _dbConfig = context.Get<DbConfig>();
-    }
+    private readonly DbConfig _dbConfig = context.Get<DbConfig>();
 
     [BeforeScenario(Order = 31)]
     public void NavigateToApprenticePortal() => _context.Get<TabHelper>().GoToUrl(UrlConfig.Apprentice_BaseUrl);

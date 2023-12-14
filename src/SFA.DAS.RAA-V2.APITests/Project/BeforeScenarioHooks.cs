@@ -13,19 +13,15 @@ global using System.Collections.Generic;
 namespace SFA.DAS.RAA_V2.APITests.Project;
 
 [Binding]
-public class BeforeScenarioHooks
+public class BeforeScenarioHooks(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public BeforeScenarioHooks(ScenarioContext context) => _context = context;
-
     [BeforeScenario(Order = 32)]
     public void SetUpHelpers()
     {
-        var objectContext = _context.Get<ObjectContext>();
+        var objectContext = context.Get<ObjectContext>();
 
-        _context.SetRestClient(new Outer_RecruitApiClient(objectContext, _context.GetOuter_ApiAuthTokenConfig()));
+        context.SetRestClient(new Outer_RecruitApiClient(objectContext, context.GetOuter_ApiAuthTokenConfig()));
 
-        _context.Set(new EmployerLegalEntitiesSqlDbHelper(objectContext, _context.Get<DbConfig>()));
+        context.Set(new EmployerLegalEntitiesSqlDbHelper(objectContext, context.Get<DbConfig>()));
     }
 }

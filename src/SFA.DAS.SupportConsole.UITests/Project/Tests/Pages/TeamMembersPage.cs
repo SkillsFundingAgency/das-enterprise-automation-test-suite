@@ -12,11 +12,11 @@ public class TeamMembersPage : SupportConsoleBasePage
 
     public TeamMembersPage(ScenarioContext context) : base(context)
     {
-        MultipleVerifyPage(new List<Func<bool>>
-        {
+        MultipleVerifyPage(
+        [
             () => VerifyPage(),
             () => VerifyPage(TeamMembersTable)
-        });
+        ]);
     }
 
     public UserInformationOverviewPage GoToUserInformationOverviewPage()

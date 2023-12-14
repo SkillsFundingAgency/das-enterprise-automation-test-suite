@@ -19,23 +19,19 @@ global using TechTalk.SpecFlow;
 namespace SFA.DAS.SupportConsole.UITests.Project;
 
 [Binding]
-public class Hooks
+public class Hooks(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public Hooks(ScenarioContext context) => _context = context;
-
     [BeforeScenario(Order = 22)]
-    public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
+    public void Navigate() => context.Get<TabHelper>().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
 
     [BeforeScenario(Order = 23)]
     public void SetUpHelpers()
     {
-        var config = _context.GetSupportConsoleConfig<SupportConsoleConfig>();
+        var config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
 
-        var objectContext = _context.Get<ObjectContext>();
+        var objectContext = context.Get<ObjectContext>();
 
-        var dbConfig = _context.Get<DbConfig>();
+        var dbConfig = context.Get<DbConfig>();
 
         var accsqlHelper = new AccountsSqlDataHelper(objectContext, dbConfig);
 
@@ -43,12 +39,12 @@ public class Hooks
 
         var updatedConfig = new SupportConsoleSqlDataHelper(accsqlHelper, comtsqlHelper).GetUpdatedConfig(config);
 
-        _context.ReplaceSupportConsoleConfig(updatedConfig);
+        context.ReplaceSupportConsoleConfig(updatedConfig);
 
-        _context.Get<ObjectContext>().Set("SupportConsoleConfig", updatedConfig);
+        context.Get<ObjectContext>().Set("SupportConsoleConfig", updatedConfig);
 
-        _context.Set(accsqlHelper);
+        context.Set(accsqlHelper);
 
-        _context.Set(comtsqlHelper);
+        context.Set(comtsqlHelper);
     }
 }

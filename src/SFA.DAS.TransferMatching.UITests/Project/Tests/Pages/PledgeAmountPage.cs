@@ -49,7 +49,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             {
                 amount = tMDataHelper.MinimalPledgeAmount;
             }
-            int randomAmount = exceedMaxFunding ? tMDataHelper.GenerateRandomNumberMoreThanMaxAmount(amount) : ValidatePledgeAmount(amount);
+            int randomAmount = exceedMaxFunding ? Helpers.TMDataHelper.GenerateRandomNumberMoreThanMaxAmount(amount) : ValidatePledgeAmount(amount);
             
             formCompletionHelper.EnterText(AmountCssSelector, randomAmount);
 

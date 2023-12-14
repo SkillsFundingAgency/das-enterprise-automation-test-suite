@@ -1,23 +1,14 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 
-public class SupportConsoleSqlDataHelper
+public class SupportConsoleSqlDataHelper(AccountsSqlDataHelper accountsSqlDataHelper, CommitmentsSqlDataHelper commitmentsSqlDataHelper)
 {
-    private readonly AccountsSqlDataHelper _accountsSqlDataHelper;
-    private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-
-    public SupportConsoleSqlDataHelper(AccountsSqlDataHelper accountsSqlDataHelper, CommitmentsSqlDataHelper commitmentsSqlDataHelper)
-    {
-        _accountsSqlDataHelper = accountsSqlDataHelper;
-        _commitmentsSqlDataHelper = commitmentsSqlDataHelper;
-    }
-
     public SupportConsoleConfig GetUpdatedConfig(SupportConsoleConfig supportConsoleConfig)
     {
         string publicAccountId = supportConsoleConfig.PublicAccountId;
 
-        var (name, createdDate, hashedId, email, fName, lName, payeref) = _accountsSqlDataHelper.GetAccountDetails(publicAccountId);
+        var (name, createdDate, hashedId, email, fName, lName, payeref) = accountsSqlDataHelper.GetAccountDetails(publicAccountId);
 
-        var comtData = _commitmentsSqlDataHelper.GetCommtDetails(publicAccountId);
+        var comtData = commitmentsSqlDataHelper.GetCommtDetails(publicAccountId);
 
         var result = new SupportConsoleConfig
         {

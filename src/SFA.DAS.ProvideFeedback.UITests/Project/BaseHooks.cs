@@ -1,15 +1,8 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project;
 
-public abstract class BaseHooks
+public abstract class BaseHooks(ScenarioContext context)
 {
-    protected readonly ObjectContext _objectContext;
-    protected readonly ScenarioContext _context;
-    protected readonly TryCatchExceptionHelper _tryCatch;
-
-    public BaseHooks(ScenarioContext context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _tryCatch = context.Get<TryCatchExceptionHelper>();
-    }
+    protected readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+    protected readonly ScenarioContext _context = context;
+    protected readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
 }
