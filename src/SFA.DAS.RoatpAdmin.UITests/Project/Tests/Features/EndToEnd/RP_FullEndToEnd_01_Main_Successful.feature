@@ -4,6 +4,7 @@
 @rpendtoend01apply
 @roatpfulle2eviaapply
 @roatpfulle2e
+@accessibility
 Scenario: RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks_Successful
 	Given the provider completes the Apply Journey as Main Provider Route
 	When the GateWay user assess the application by confirming Gateway outcome as Pass
