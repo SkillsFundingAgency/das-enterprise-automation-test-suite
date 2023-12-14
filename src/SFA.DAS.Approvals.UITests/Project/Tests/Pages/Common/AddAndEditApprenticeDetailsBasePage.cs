@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class AddAndEditApprenticeDetailsBasePage : ApprovalsBasePage
+    public abstract class AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private static By Uln => By.Name("Uln");
@@ -42,16 +42,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
         private static By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
-        public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
-        {
-        }
         public void VerifyCourseAndCostAreReadOnly()
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(ReadOnlyTrainingCost),
                 () => VerifyPage(ReadOnlyTrainingCourse)
-            });
+            ]);
         }
 
         protected void EnterTrainingCostAndEmpReference(bool isFlexiPaymentPilotLearner = false)

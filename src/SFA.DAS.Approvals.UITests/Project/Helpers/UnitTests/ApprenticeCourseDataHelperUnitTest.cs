@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(19)]
         public void WaitingTostartApprentice(int _)
         {
-            bool IsItJuly() => DateTime.Now.Month == 7;
+            static bool IsItJuly() => DateTime.Now.Month == 7;
 
             //Arrange 
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
@@ -158,6 +158,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             });
         }
 
-        private RandomCourseDataHelper GetRandomCourseDataHelper() => new RandomCourseDataHelper();
+        private static RandomCourseDataHelper GetRandomCourseDataHelper() => new();
     }
 }

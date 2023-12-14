@@ -7,9 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
     public class ProviderApproveStepsHelper(ScenarioContext context)
     {
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly ProviderEditStepsHelper _providerEditStepsHelper = new ProviderEditStepsHelper(context);
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
 
         public void Approve() => SubmitApprove(_providerCommonStepsHelper.CurrentCohortDetails());
 

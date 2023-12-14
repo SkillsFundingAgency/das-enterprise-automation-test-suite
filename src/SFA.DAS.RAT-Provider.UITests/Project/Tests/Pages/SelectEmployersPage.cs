@@ -10,7 +10,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 {
     public class SelectEmployersPage : Raav2BasePage
     {
-        private List<(string hashedid, string value)> values = new();
+        private List<(string hashedid, string value)> values = [];
         protected override string PageTitle => "Which employer do you want to create a vacancy for?";
 
         private static By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");

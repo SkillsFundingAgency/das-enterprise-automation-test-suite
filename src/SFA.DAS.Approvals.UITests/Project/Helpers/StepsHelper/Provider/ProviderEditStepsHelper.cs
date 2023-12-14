@@ -8,9 +8,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
     public class ProviderEditStepsHelper(ScenarioContext context)
     {
-        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
         public ProviderEditApprenticeCoursePage ProviderEditApprentice() => _providerCommonStepsHelper.CurrentApprenticeDetails().EditApprentice();
 

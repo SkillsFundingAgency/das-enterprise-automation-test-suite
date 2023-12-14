@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return VerifySucessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
         }
 
-        private ProviderMakingChangesPage VerifySucessMessage(ProviderApprenticeshipTrainingPage page)
+        private static ProviderMakingChangesPage VerifySucessMessage(ProviderApprenticeshipTrainingPage page)
         {
             return page.AddTrainingCourse().SelectDate().ClickSaveAndContinueButton().ConfirmReserveFunding().VerifySucessMessage();
         }

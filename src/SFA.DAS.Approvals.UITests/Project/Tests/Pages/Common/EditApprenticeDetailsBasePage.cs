@@ -21,11 +21,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public void VerifyCourseAndCostAreReadOnly()
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(ReadOnlyTrainingCost),
                 () => VerifyPage(ReadOnlyTrainingCourse)
-            });
+            ]);
         }
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
 
