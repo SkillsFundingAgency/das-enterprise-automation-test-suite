@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class TrainingProviderAddedPage : ApprovalsBasePage
+    public class TrainingProviderAddedPage : RegistrationBasePage
     {
         protected override string PageTitle => "You've successfully added";
 

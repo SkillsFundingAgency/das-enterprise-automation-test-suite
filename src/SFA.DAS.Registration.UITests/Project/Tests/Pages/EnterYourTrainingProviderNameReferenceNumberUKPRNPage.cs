@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class EnterYourTrainingProviderNameReferenceNumberUKPRNPage : ApprovalsBasePage
+    public class EnterYourTrainingProviderNameReferenceNumberUKPRNPage : RegistrationBasePage
     {
         protected override string PageTitle => "Enter your training provider’s name or reference number (UKPRN)";
         
@@ -14,11 +14,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage(ScenarioContext context) : base(context)  { }
 
-        internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider(string ukprn)
+        public ConfirmTrainingProviderPage SearchForATrainingProvider(string ukprn)
         {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
-            return new ConfirmTrainingProviderUnderPermissionsPage(context);
+            return new ConfirmTrainingProviderPage(context);
         }
     }
 }

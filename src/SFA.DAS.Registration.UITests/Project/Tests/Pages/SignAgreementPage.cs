@@ -26,10 +26,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YouHaveAcceptedTheEmployerAgreementPage(context);
         }
 
-        public SetPermissionsForTrainingProviderPage ProviderLeadRegistrationSignAgreement()
+        public CreateYourEmployerAccountPage ProviderLeadRegistrationSignAgreement()
         {
             Sign();
-            return new SetPermissionsForTrainingProviderPage(context);
+            return new CreateYourEmployerAccountPage(context);
         }
 
         public HomePage DoNotSignAgreement()
