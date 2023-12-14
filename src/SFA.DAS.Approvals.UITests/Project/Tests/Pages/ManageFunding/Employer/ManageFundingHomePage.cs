@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
             if (pageInteractionHelper.IsElementPresent(ReserveFundingLink)) formCompletionHelper.ClickElement(ReserveFundingLink);
-            
+
             if (pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink)) formCompletionHelper.ClickElement(ReserveMoreFundingLink);
 
             return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         }
 
         public bool CheckIfDeleteLinkIsPresent() => pageInteractionHelper.IsElementPresent(DeleteLink);
-        
+
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
         {
             ClickReserveFundingButton();
@@ -36,6 +36,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new(context, true);
     }
 }

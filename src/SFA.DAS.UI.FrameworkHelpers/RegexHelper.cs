@@ -21,7 +21,7 @@ public partial class RegexHelper
 
     public static string GetLevyBalance(string levybalance) => MyRegex4().Replace(levybalance, string.Empty);
 
-    public static (int,int) GetPayeChallenge(string question)
+    public static (int, int) GetPayeChallenge(string question)
     {
         var matches = MyRegex5().Matches(question);
 
@@ -88,37 +88,37 @@ public partial class RegexHelper
     private static Match CohortMatch(string url, string action) => Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
 
     public static string TrimAnySpace(string value) => string.IsNullOrEmpty(value) ? string.Empty : MyRegex19().Replace(value, string.Empty);
-    
+
     [GeneratedRegex(@"\s+")]
     private static partial Regex MyRegex1();
-    
+
     [GeneratedRegex(@"of [0-9]*", RegexOptions.None)]
     private static partial Regex MyRegex2();
-    
+
     [GeneratedRegex(@"of")]
     private static partial Regex MyRegex3();
-    
+
     [GeneratedRegex(@",|\.[0-9]*")]
     private static partial Regex MyRegex4();
-    
+
     [GeneratedRegex(@"[0-9]{1}", RegexOptions.None)]
     private static partial Regex MyRegex5();
-    
+
     [GeneratedRegex(@"[0-9]{6}")]
     private static partial Regex MyRegex6();
-    
+
     [GeneratedRegex(@"[A-Z0-9]{6}")]
     private static partial Regex MyRegex7();
-    
+
     [GeneratedRegex(@"vacancyReferenceNumber=[0-9]*")]
     private static partial Regex MyRegex8();
-    
+
     [GeneratedRegex(@"vacancyReferenceNumber|=")]
     private static partial Regex MyRegex9();
-    
+
     [GeneratedRegex(@"edsUrn=[0-9]*&vacancyGuid=")]
     private static partial Regex MyRegex10();
-    
+
     [GeneratedRegex(@"edsUrn|&|vacancyGuid|=")]
     private static partial Regex MyRegex11();
 
@@ -130,7 +130,7 @@ public partial class RegexHelper
 
     [GeneratedRegex(@"\s")]
     private static partial Regex MyRegex19();
-    
+
     [GeneratedRegex("[0-9]{1,2}%")]
     private static partial Regex MyRegex12();
 }

@@ -1,5 +1,5 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -21,9 +21,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ApiListPage(ScenarioContext context) : base(context) { }
 
         public KeyforApiPage ClickViewRecruitmentAPILink() => GoToKeyforAPIPage(RecruitmentAPIViewKeyLink, RecruitmentAPIGetLink);
-       
+
         public KeyforApiPage ClickViewRecruitmentAPISandBoxLink() => GoToKeyforAPIPage(RecruitmentAPISandBoxViewKeyLink, RecruitmentAPISandBoxGetKeyLink);
-       
+
         public KeyforApiPage ClickViewDisplayAPILink() => GoToKeyforAPIPage(DisplayAPIViewKeyLink, DisplayAPIGetKeyLink);
 
         private KeyforApiPage GoToKeyforAPIPage(By view, By get)

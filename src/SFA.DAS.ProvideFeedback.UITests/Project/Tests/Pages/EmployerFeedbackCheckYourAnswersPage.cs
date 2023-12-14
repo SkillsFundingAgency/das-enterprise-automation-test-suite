@@ -17,24 +17,24 @@ public class EmployerFeedbackCheckYourAnswersPage : EmployerFeedbackBasePage
     public EmployerFeedbackStrengthsPage ChangeQuestionOne()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionOneLink));
-        return new (context);
+        return new(context);
     }
 
     public EmployerFeedbackImprovePage ChangeQuestionTwo()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionTwoLink));
-        return new (context);
+        return new(context);
     }
 
     public EmployerFeedbackOverallRatingPage ChangeQuestionThree()
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionThreeLink));
-        return new (context);
+        return new(context);
     }
 
     public FeedbackCompletePage SubmitAnswersNow()
     {
         formCompletionHelper.ClickElement(SubmitAnswers);
-        return new (context);
+        return new(context);
     }
 }

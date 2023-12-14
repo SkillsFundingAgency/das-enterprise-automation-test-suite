@@ -109,9 +109,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ApplicationProcessPage UpdateApplicationProcess()
         {
-            if (pageInteractionHelper.IsElementPresent(ApplicationWebAddress)) formCompletionHelper.Click(ChangeApplicationProcess);                
+            if (pageInteractionHelper.IsElementPresent(ApplicationWebAddress)) formCompletionHelper.Click(ChangeApplicationProcess);
             else formCompletionHelper.Click(ApplicationProcess);
-            
+
             return new ApplicationProcessPage(context);
         }
     }

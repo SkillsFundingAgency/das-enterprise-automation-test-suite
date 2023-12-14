@@ -8,7 +8,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     public class EISteps
     {
         private readonly ScenarioContext _context;
-        
+
         public EISteps(ScenarioContext context) => _context = context;
 
         [Then(@"View EI applications shutter page is diplayed to the Employer when navigating to View EI applications page with no applications")]

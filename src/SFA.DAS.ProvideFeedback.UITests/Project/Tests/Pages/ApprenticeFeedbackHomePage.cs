@@ -6,6 +6,6 @@ public class ApprenticeFeedbackHomePage(ScenarioContext context) : ApprenticeOve
     public ApprenticeFeedbackSelectProviderPage GiveFeedbackOnYourTrainingProvider()
     {
         formCompletionHelper.Click(FeedbackLink);
-        return new (context);
+        return new(context);
     }
 }

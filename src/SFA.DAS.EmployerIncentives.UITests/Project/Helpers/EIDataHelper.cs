@@ -27,6 +27,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public DateTime JoiningDate(bool validStartDate)
             => validStartDate ? RandomDataGenerator.GenerateRandomDate(new DateTime(2021, 10, 1), new DateTime(2021, 12, 31)) :
-                                RandomDataGenerator.GenerateRandomDate(new DateTime(2022, 02, 4), new DateTime(2022, 02, 28)) ;
+                                RandomDataGenerator.GenerateRandomDate(new DateTime(2022, 02, 4), new DateTime(2022, 02, 28));
     }
 }

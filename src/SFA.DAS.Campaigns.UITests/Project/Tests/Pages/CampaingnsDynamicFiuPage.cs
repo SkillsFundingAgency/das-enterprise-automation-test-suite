@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
@@ -8,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         private static By FiuPageHeading => By.CssSelector(".govuk-heading-xl");
 
-        public CampaingnsDynamicFiuPage(ScenarioContext context, string pageTitle) : base(context) 
+        public CampaingnsDynamicFiuPage(ScenarioContext context, string pageTitle) : base(context)
         {
             VerifyPage(FiuPageHeading, pageTitle);
 
@@ -16,6 +15,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
             VerifyVideoLinks();
         }
-        
+
     }
 }

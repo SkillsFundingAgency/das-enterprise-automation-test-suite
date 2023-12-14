@@ -8,6 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override bool TakeFullScreenShot => false;
 
-        public ProviderCohortApprovedPage(ScenarioContext context) : base(context) { }       
+        public ProviderCohortApprovedPage(ScenarioContext context) : base(context) { }
     }
 }

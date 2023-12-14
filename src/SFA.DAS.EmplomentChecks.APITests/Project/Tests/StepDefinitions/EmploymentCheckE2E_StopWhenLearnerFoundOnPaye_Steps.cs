@@ -36,7 +36,7 @@ public class EmploymentCheckE2E_StopWhenLearnerFoundOnPaye_Steps(ScenarioContext
         var completionStatuses = _employmentChecksSqlDbHelper.GetHmrcRequestCompletionStatuses(requestId);
 
         // RequestCompletionstatus 3 represents 'Abandoned' records
-        for (int i= 0; i < completionStatuses.Count; i++)
+        for (int i = 0; i < completionStatuses.Count; i++)
         {
             Assert.AreEqual(3, completionStatuses[i][0], "Completion Status for the abandoned paye scheme is not as expected");
         }

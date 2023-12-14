@@ -7,7 +7,7 @@ public static class ObjectContextExtension
     private const string ProviderUkprn = "providerukprn";
     #endregion
 
-    internal static void SetTestData(this ObjectContext objectContext, (string , string ) data)
+    internal static void SetTestData(this ObjectContext objectContext, (string, string) data)
     {
         objectContext.Set(UniqueSurveyCode, data.Item1?.ToUpper());
         objectContext.SetProviderUkprn(data.Item2);

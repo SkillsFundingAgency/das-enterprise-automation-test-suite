@@ -14,10 +14,10 @@ using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using System;
 using System.Threading;
+using TechTalk.SpecFlow;
+using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -245,9 +245,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .GoToChooseTheLevelPage().SelectLevelAndContinue()
                 .ContinueToPledgeVerificationPage();
 
-            SetPledgeDetail();           
+            SetPledgeDetail();
         }
-      
+
         [Given(@"the levy employer can create pledge using minimal funding")]
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
@@ -278,7 +278,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             SetPledgeDetail();
         }
-      
+
         [Then(@"the levy employer can sort the pledges")]
         public void TheLevyEmployerCanSortThePledges() => SortApplications();
 
@@ -314,8 +314,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
 
         [Then(@"the levy employer can view pleged amount")]
-        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();              
-   
+        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
+
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
@@ -341,7 +341,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             // trigger autoapproval job
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
         }
-        
+
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -455,9 +455,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            _transferMatchingStepsHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge? "": _objectContext.GetPledgeDetail().PledgeId);
+            _transferMatchingStepsHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
 
-            return OpenPledgeApplication(_isImmediateAutoApprovalPledge? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication(_isImmediateAutoApprovalPledge ? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
         }
 
         private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);

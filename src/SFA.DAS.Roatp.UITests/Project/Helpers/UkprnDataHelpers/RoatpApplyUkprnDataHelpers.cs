@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
         public RoatpApplyUkprnDataHelpers() : base() => AddApplyDatahelpers();
 
         public (string email, string ukprn) GetRoatpAppplyData(string key) => GetData(key, emailkey, ukprnkey);
-      
+
         private void AddApplyDatahelpers()
         {
             _data.Add("rpse01",
@@ -51,7 +51,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                 {
                     new(emailkey, "sudhakar.chinoor+B2@digital.education.gov.uk"),
                     new(ukprnkey, "10062499"),
-                });  
+                });
             _data.Add("rpe2e07",
             new List<KeyValuePair<string, string>>
             {

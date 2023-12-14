@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private readonly string _message;
 
-        public ApplicationOutcomeBasePage(ScenarioContext context, string message) : base(context, false) 
+        public ApplicationOutcomeBasePage(ScenarioContext context, string message) : base(context, false)
         {
             _message = message;
 

@@ -14,7 +14,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private static By SignInButton => By.CssSelector("button.primary[type='submit']");
         #endregion
 
-        public VRFLoginPage(ScenarioContext context) : base(context)  { }
+        public VRFLoginPage(ScenarioContext context) : base(context) { }
 
         public VRFHomePage SignIntoVRF()
         {

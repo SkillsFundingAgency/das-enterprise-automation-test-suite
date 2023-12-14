@@ -11,8 +11,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         private static By OrganisatiponNameInput => By.CssSelector("#Report_OrganisationName");
 
-        public YourOrganisationNamePage(ScenarioContext context) : base(context)  { }
-        
+        public YourOrganisationNamePage(ScenarioContext context) : base(context) { }
+
         public ReportYourProgressPage EnterNameOftheOrganisation()
         {
             formCompletionHelper.EnterText(OrganisatiponNameInput, registrationDataHelper.CompanyTypeOrg);

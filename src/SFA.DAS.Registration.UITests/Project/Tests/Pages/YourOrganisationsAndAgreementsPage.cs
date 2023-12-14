@@ -2,14 +2,14 @@
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
-using TechTalk.SpecFlow;
 using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YourOrganisationsAndAgreementsPage : InterimYourOrganisationsAndAgreementsPage
     {
-        
+
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink() => 
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink() =>
             ClickViewAgreementLink(() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewAgreementLink())));
 
         public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(string orgName)

@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessT
     public class OverallResponsibilityForManagingRelationshipsWithEmployersPage : ModeratorBasePage
     {
         protected override string PageTitle => "Overall responsibility for managing relationships with employers";
-        
+
         public OverallResponsibilityForManagingRelationshipsWithEmployersPage(ScenarioContext context) : base(context) { }
 
         public PromoteApprenticeshipsToEmployersPage SelectPassAndContinueInOverallResponsibilityForManagingRelationshipsWithEmployersPage()

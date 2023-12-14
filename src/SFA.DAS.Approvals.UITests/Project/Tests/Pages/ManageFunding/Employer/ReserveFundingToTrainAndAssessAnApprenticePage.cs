@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static By ReserveFundingButton => By.LinkText("Reserve funding");
 
-        public ReserveFundingToTrainAndAssessAnApprenticePage(ScenarioContext context) : base(context)  { }
+        public ReserveFundingToTrainAndAssessAnApprenticePage(ScenarioContext context) : base(context) { }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveFundingButton()
         {

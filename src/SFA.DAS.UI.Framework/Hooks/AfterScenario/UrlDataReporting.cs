@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
-using System.IO;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario;
 
@@ -19,7 +18,7 @@ public class UrlDataReporting
 
     public UrlDataReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
 
-        [BeforeTestRun(Order = 10)]
+    [BeforeTestRun(Order = 10)]
     public static void InitVariable() => _urls = [];
 
     [AfterScenario(Order = 98)]

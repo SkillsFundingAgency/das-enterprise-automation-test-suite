@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         // This call can be used in TEST and TEST2 but can't be used in PP.
         public void CreateApprenticeshipViaCommitmentsJobApiRequest()
         {
-            _assertHelper.RetryOnNUnitException(() => 
+            _assertHelper.RetryOnNUnitException(() =>
             {
                 base.CreateApprenticeshipViaCommitmentsJob();
             });

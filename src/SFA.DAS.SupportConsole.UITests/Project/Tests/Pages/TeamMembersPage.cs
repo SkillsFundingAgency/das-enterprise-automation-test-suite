@@ -23,6 +23,6 @@ public class TeamMembersPage : SupportConsoleBasePage
     {
         formCompletionHelper.ClickElement(() => tableRowHelper.GetColumn(config.EmailAddress, NameLink));
 
-        return new (context);
+        return new(context);
     }
 }

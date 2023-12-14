@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private static By NoOfEmployees2022 => By.CssSelector("#z1__Answer");
         private static By NoOfEmployees => By.CssSelector("#z2__Answer");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        public YourSchoolEmployeesPage(ScenarioContext context) : base(context)  { }
+        public YourSchoolEmployeesPage(ScenarioContext context) : base(context) { }
 
         public ReportYourProgressPage EnterSchoolEmployeesDetails()
         {

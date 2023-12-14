@@ -1,6 +1,6 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
-using OpenQA.Selenium;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {

@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public void Stop(string caller)
         {
-            if(_stopWatches.TryGetValue(caller, out StopWatchInstance instance))
+            if (_stopWatches.TryGetValue(caller, out StopWatchInstance instance))
             {
                 instance.Stop();
             }

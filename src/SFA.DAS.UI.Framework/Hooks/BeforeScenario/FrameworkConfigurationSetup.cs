@@ -1,10 +1,10 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using System.Linq;
-using System.Collections.Generic;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
@@ -50,5 +50,5 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
         if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
     }
 
-      private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
+    private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
 }

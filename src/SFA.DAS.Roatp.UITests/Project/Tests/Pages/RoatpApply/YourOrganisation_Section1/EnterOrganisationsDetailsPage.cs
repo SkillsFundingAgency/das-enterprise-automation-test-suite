@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
 {
-   public class EnterOrganisationsDetailsPage : RoatpApplyBasePage
+    public class EnterOrganisationsDetailsPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Enter the organisation's details";
 

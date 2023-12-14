@@ -1,5 +1,4 @@
-﻿using RestSharp.Authenticators;
-using RestSharp.Authenticators.OAuth2;
+﻿using RestSharp.Authenticators.OAuth2;
 
 namespace SFA.DAS.API.Framework.RestClients;
 
@@ -11,7 +10,7 @@ public abstract class Inner_BaseApiRestClient(ObjectContext objectContext, Inner
 
     protected override void AddResource(string resource) => restRequest.Resource = resource;
 
-    protected override void AddAuthHeaders() 
+    protected override void AddAuthHeaders()
     {
         var options = GetClientOptions();
 
@@ -20,12 +19,12 @@ public abstract class Inner_BaseApiRestClient(ObjectContext objectContext, Inner
         restClient = new(options);
     }
 
-    private OAuth2AuthorizationRequestHeaderAuthenticator GetAuthenticator() 
+    private OAuth2AuthorizationRequestHeaderAuthenticator GetAuthenticator()
     {
         (string tokenType, string accessToken) = config.IsVstsExecution ? GetOAuthToken() : GetAADAuthToken();
 
         return new OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, tokenType);
-    } 
+    }
 
     private (string tokenType, string accessToken) GetAADAuthToken() => new Inner_ApiAuthUsingMI(config).GetAuthToken(AppServiceName);
 

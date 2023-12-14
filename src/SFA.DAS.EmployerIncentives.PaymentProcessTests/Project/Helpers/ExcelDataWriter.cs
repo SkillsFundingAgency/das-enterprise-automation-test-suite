@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
     public class ExcelDataWriter
     {
-        private readonly ExcelMapper _excel = new ExcelMapper();
+        private readonly ExcelMapper _excel = new();
         private readonly string _fileName;
 
         public ExcelDataWriter(string fileName)

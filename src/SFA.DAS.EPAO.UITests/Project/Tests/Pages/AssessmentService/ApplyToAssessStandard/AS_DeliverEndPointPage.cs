@@ -12,7 +12,7 @@ public class AS_DeliverEndPointPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
-    
+
     public AS_IntendToOutsourcePage NHEI_EnterDeliverEndPoint()
     {
         formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));

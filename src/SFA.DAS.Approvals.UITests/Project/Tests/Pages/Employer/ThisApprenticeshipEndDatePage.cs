@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NewMonth => By.Id("EndMonth");
         private static By NewYear => By.Id("EndYear");
 
-        public ThisApprenticeshipEndDatePage(ScenarioContext context) : base(context)  { }
+        public ThisApprenticeshipEndDatePage(ScenarioContext context) : base(context) { }
 
         public ApprenticeDetailsPage EditEndDate(string month, string year)
         {

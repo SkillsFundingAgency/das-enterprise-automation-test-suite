@@ -9,7 +9,7 @@ public class EmploymentCheckOrchestrationHelper(EmploymentCheckProcessConfig con
     {
         await StartOrchestrator("api/orchestrators/ResponseOrchestrator");
     }
-    
+
     public async Task StartEmploymentChecksOrchestrator()
     {
         await StartOrchestrator("api/orchestrators/EmploymentChecksOrchestrator", true);
@@ -17,7 +17,7 @@ public class EmploymentCheckOrchestrationHelper(EmploymentCheckProcessConfig con
 
     public async Task WaitUntilComplete(TimeSpan? timeout = null)
     {
-        await WaitUntilStatus(timeout ?? TimeSpan.FromMinutes(2), false,"Completed");
+        await WaitUntilStatus(timeout ?? TimeSpan.FromMinutes(2), false, "Completed");
     }
 
     public async Task WaitUntilStopped(TimeSpan? timeout = null)

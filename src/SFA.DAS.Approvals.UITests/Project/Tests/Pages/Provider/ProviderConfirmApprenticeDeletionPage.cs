@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ConfirmDeleteOptions => By.Id("confirm-true");
         private static By SaveAndContinueButton => By.Id("saveBtn");
 
-        public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context)  { }
+        public ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : base(context) { }
 
         internal ProviderApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
         {

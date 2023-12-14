@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             else
             {
                 currentwage = RegexHelper.GetVacancyCurrentWage(pageInteractionHelper.GetText(CurrentWage));
-                
+
                 formCompletionHelper.SelectRadioOptionByText("Custom wage");
 
                 formCompletionHelper.SelectRadioOptionByText("Wage range");

@@ -1,11 +1,10 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
-using NUnit.Framework;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {
@@ -42,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
             _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((new GWApplicationOverviewPage(_context)));
 
         [When(@"the gateway admin assess all sections as PASS for Supporting Route Application")]
-        public void WhenTheGatewayAdminAssessAllSectionsAsPASSForSupportingRouteApplication()=>    
+        public void WhenTheGatewayAdminAssessAllSectionsAsPASSForSupportingRouteApplication() =>
             _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_SupportingRouteSoleTrader((new GWApplicationOverviewPage(_context)));
 
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as PASS")]
@@ -62,16 +61,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         {
             var staffDashboardPage = new GatewayLandingPage(_context).ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessFinancialApplications();
-            FinancialLandingPage financialLandingPage = new FinancialLandingPage(_context);
+            FinancialLandingPage financialLandingPage = new(_context);
             Assert.IsFalse(financialLandingPage.VerifyApplication(), "Gateway Fail outcome Application Transitioned to PMO");
             staffDashboardPage = financialLandingPage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessAssessorAndModerationApplications();
-            RoatpAssessorApplicationsHomePage roatpAssessorApplicationsHomePage = new RoatpAssessorApplicationsHomePage(_context);
+            RoatpAssessorApplicationsHomePage roatpAssessorApplicationsHomePage = new(_context);
             Assert.Throws<Exception>(() => roatpAssessorApplicationsHomePage.GetApplication(), "Gateway Fail outcome Application Transitioned to Assessor");
             staffDashboardPage = roatpAssessorApplicationsHomePage.ClickReturnToStaffDashBoard();
             staffDashboardPage.AccessOversightApplications();
         }
-       
+
         [Then(@"the admin Withdraws the Application")]
         public void ThenTheAdminWithdrawsTheApplication() => _gatewayEndToEndStepsHelpers.ConfirmWithdrawGatewayApplication((new GWApplicationOverviewPage(_context)));
 
@@ -96,7 +95,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"the admin access the application from Outcome tab")]
         public void ThenTheAdminAccessTheApplicationFromOutcomeTab()
         {
-            GatewayLandingPage gatewayLandingPage = new GatewayLandingPage(_context);
+            GatewayLandingPage gatewayLandingPage = new(_context);
             gatewayLandingPage.SelectApplicationFromOutcomeTab();
         }
     }

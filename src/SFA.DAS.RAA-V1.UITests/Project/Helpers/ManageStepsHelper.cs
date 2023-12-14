@@ -1,10 +1,10 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly string _manageBaseUrl = UrlConfig.Manage_BaseUrl;
 
         public void ApproveAVacancy(bool restart) => GoToManageHomePage(restart).ReviewAVacancy().ApproveAVacancy();
-       
+
         public Manage_HomePage GoToManageHomePage(bool restart)
         {
             if (restart)

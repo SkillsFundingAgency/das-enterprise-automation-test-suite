@@ -1,10 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RoatpAdmin.Service.Project;
-using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.AllowList;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages

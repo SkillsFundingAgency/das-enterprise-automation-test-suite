@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
 
-        public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context)  { }
+        public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context) { }
 
         public DynamicHomePages GoToDynamicHomePage()
         {

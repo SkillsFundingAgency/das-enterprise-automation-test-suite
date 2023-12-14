@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DoYouWantToRequestChangesOptions => By.XPath("(//input[@class='govuk-radios__input'])[1]");
         private static By FinishButton => By.XPath("(//button[@type='submit'])[2]");
 
-        public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
+        public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         internal ProviderApprenticeDetailsPage ConfirmRequestToFixILRMismatch()
         {

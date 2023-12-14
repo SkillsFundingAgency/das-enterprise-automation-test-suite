@@ -1,8 +1,4 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Allowlist
@@ -12,7 +8,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Allowlist
     {
         private readonly ScenarioContext _context;
         private AllowListPage _allowListPage;
-        
+
         public AllowListSteps(ScenarioContext context) => _context = context;
 
         [When(@"the admin access the Allowlist")]
@@ -28,4 +24,4 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Allowlist
         public void ThenTheAdminIsAbleToRemoveAUkprnFromTheAllowList() => _allowListPage.RemoveUkprnFromAllowlist().SelectYesRemoveUkprn();
     }
 }
-        
+

@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By WarningMessage => By.TagName("strong");
 
-        public StopApprenticeshipPage(ScenarioContext context) : base(context)  { }
+        public StopApprenticeshipPage(ScenarioContext context) : base(context) { }
 
         public new StoppedApprenticeDetailsPage SelectYesAndConfirm()
         {
@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             ConfirmChangesAndContinue();
             return new StopApprenticeshipPage(context);
         }
-        
+
         private StopApprenticeshipPage ConfirmChangesAndContinue()
         {
             base.SelectYesAndConfirm();

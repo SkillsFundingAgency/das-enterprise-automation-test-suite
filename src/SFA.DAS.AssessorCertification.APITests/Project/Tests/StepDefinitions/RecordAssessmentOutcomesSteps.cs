@@ -72,7 +72,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var actualEPARef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(_contextUln);
 
-            DoesContains(actualEPARef, _restResponse.Content, "Value is not contained in response");   
+            DoesContains(actualEPARef, _restResponse.Content, "Value is not contained in response");
         }
 
         [Then(@"the CertificateReference in the response is same as in the Certificates table in the database")]

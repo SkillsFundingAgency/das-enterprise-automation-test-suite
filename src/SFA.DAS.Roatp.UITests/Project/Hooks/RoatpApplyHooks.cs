@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         [BeforeScenario(Order = 33)]
         public new void GetRoatpAppplyData() => base.GetRoatpAppplyData();
-        
+
         [BeforeScenario(Order = 34)]
         public void ClearDownDataUkprnFromApply()
         {

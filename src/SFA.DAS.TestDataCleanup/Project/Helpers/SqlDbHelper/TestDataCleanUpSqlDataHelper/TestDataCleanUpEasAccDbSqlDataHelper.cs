@@ -22,7 +22,7 @@ public class TestDataCleanUpEasAccDbSqlDataHelper(ObjectContext objectContext, D
 
         return userEmailList;
     }
-   
+
     internal List<string[]> GetAccountIds(int greaterThan, int lessThan) => GetMultipleAccountData($"select Id from employer_account.Account where id > {greaterThan} and id < {lessThan} order by id desc");
 
     internal List<string[]> GetAccountHashedIds(List<string> accountIdToDelete) => GetMultipleData($"select HashedId from employer_account.Account where id in ({string.Join(",", accountIdToDelete)})");

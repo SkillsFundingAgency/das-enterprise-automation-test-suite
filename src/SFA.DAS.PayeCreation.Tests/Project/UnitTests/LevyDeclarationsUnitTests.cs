@@ -2,7 +2,6 @@
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SFA.DAS.PayeCreation.Project.UnitTests
 {
@@ -54,7 +53,7 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
 
             StringAssert.AreEqualIgnoringCase(result, finyear);
         }
-        
+
         [TestCase(2019, 05, 24, "2")]
         [TestCase(2019, 06, 24, "3")]
         [TestCase(2019, 07, 24, "4")]

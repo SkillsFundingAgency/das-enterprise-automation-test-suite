@@ -6,7 +6,7 @@ public class AanAdminCreateEventDatahelper : AanAdminCreateEventBaseDatahelper
 {
     public AanAdminCreateEventDatahelper() : base()
     {
-            
+
     }
 }
 
@@ -43,7 +43,7 @@ public abstract class AanAdminCreateEventBaseDatahelper
 
         EventOnlineLink = $"https://www.{name}{domain}";
 
-        var school = RandomDataGenerator.GetRandomElementFromListOfElements(new System.Collections.Generic.List<string> { "Church", "Grange", "Primary", "Academy", "Catholic" }); 
+        var school = RandomDataGenerator.GetRandomElementFromListOfElements(new System.Collections.Generic.List<string> { "Church", "Grange", "Primary", "Academy", "Catholic" });
 
         EventSchoolName = school;
 

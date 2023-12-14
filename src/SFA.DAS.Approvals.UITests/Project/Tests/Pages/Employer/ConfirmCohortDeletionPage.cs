@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Confirm deletion";
         protected override By ContinueButton => By.Id("continue-button");
 
-        public ConfirmCohortDeletionPage(ScenarioContext context) : base(context)  { }
+        public ConfirmCohortDeletionPage(ScenarioContext context) : base(context) { }
 
         public ApprenticeRequestsPage ConfirmDeleteAndSubmit()
         {

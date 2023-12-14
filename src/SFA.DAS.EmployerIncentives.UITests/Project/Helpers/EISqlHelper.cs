@@ -1,6 +1,6 @@
-﻿using System;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {

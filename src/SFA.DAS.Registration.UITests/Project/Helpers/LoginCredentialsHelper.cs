@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             objectContext.SetLoginCredentials(username, password, organisationName);
 
-            IsLevy = isLevy;            
+            IsLevy = isLevy;
         }
 
         public void SetIsLevy() => IsLevy = true;

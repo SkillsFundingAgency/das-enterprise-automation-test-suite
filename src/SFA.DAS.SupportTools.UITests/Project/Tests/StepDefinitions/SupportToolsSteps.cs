@@ -184,7 +184,7 @@ public class SupportToolsSteps
         Assert.IsTrue(StatusList.Count == 10, "Validate total number of records");
         string todaysDate = DateTime.Now.ToString("dd/MM/yyyy");
         int i = 0;
-        MultipleAssert(() => 
+        MultipleAssert(() =>
         {
             foreach (var status in StatusList)
             {
@@ -207,7 +207,7 @@ public class SupportToolsSteps
         Assert.IsTrue(StatusList.Count == 10, "Validate total number of records");
         string todaysDate = DateTime.Now.ToString("dd/MM/yyyy");
         int i = 0;
-        MultipleAssert(() => 
+        MultipleAssert(() =>
         {
             foreach (var status in StatusList)
             {
@@ -223,13 +223,13 @@ public class SupportToolsSteps
                 i++;
             }
         });
-        
+
 
     }
 
     private static void ValidateStopSuccessful(List<IWebElement> StatusList)
     {
-        
+
         Assert.IsTrue(StatusList.Count == 10, $"Validate total number of records. Expected: 10 | Actual {StatusList.Count}");
         string todaysDate = "01/" + DateTime.Now.Month.ToString("00") + "/" + DateTime.Now.Year.ToString("0000");
         string todaysDate2 = DateTime.Now.Month.ToString("00") + "/01/" + DateTime.Now.Year.ToString("0000");

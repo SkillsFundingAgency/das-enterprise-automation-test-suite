@@ -43,7 +43,7 @@
         public void VerifyApprovedTabContainsRegisterWithdrawal() => DoesNotThrow(ApprovedTableSelector);
 
         private void DoesNotThrow(string table)
-        {        
+        {
             Assert.DoesNotThrow(() => tableRowHelper.FindElementInTable(WithrawalOrgName, new List<string> { "Withdrawal from register", $"{DateTime.Now:dd MMMM yyyy}" }, table));
         }
     }

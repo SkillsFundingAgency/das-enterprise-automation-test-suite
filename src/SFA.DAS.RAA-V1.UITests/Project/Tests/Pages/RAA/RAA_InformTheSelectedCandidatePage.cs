@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_InformTheCandidatePreviewPage SendFeedback()
         {
-            formCompletionHelper.EnterText(UnSuccessfulReason ,rAAV1DataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(UnSuccessfulReason, rAAV1DataHelper.OptionalMessage);
 
             formCompletionHelper.ClickButtonByText("Send feedback");
 

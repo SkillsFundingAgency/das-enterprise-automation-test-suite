@@ -132,8 +132,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = section2Helper.FailContractForServicesTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section2Helper.FailCommitmentStatementTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section2Helper.FailPriorLearningOfApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = section2Helper.FailEnglishAndMathsAssessments(moderationApplicationAssessmentOverviewPage, applicationroute); 
-             moderationApplicationAssessmentOverviewPage = section2Helper.FailAllWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section2Helper.FailEnglishAndMathsAssessments(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section2Helper.FailAllWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
             return moderationApplicationAssessmentOverviewPage;
         }
 

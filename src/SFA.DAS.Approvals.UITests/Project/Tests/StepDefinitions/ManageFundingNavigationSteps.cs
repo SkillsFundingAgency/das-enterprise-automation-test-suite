@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to help settings page")]
         public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimManageFundingHomePage(_context, true, true).GoToHelpPage();
 
-        private ManageFundingHomePage GoToManageFundingHomePage() => new ManageFundingHomePage(_context, true);
+        private ManageFundingHomePage GoToManageFundingHomePage() => new(_context, true);
 
     }
 }

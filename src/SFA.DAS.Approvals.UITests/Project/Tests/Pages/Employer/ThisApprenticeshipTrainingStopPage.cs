@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NewStopDate_Month => By.Id("stop-month");
         private static By NewStopDate_Year => By.Id("stop-year");
 
-        public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context)  { }
+        public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context) { }
 
         public HasTheApprenticeBeenMadeRedundantPage EditStopDateToThisMonthAndSubmit()
         {

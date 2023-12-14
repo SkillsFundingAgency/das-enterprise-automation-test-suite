@@ -1,8 +1,8 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
-using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Your apprenticeship adverts";
 
         #region Helpers and Context
-        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
+        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");

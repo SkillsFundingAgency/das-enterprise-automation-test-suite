@@ -1,6 +1,4 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
-
-namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 public class EPAOBaseSteps
 {
@@ -55,7 +53,7 @@ public class EPAOBaseSteps
 
         ePAOE2EApplyUser = context.GetUser<EPAOE2EApplyUser>();
         ePAOApplyUser = context.GetUser<EPAOApplyUser>();
-        ePAOStageTwoStandardCancelUser = context.GetUser<EPAOStageTwoStandardCancelUser> ();
+        ePAOStageTwoStandardCancelUser = context.GetUser<EPAOStageTwoStandardCancelUser>();
 
         ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();

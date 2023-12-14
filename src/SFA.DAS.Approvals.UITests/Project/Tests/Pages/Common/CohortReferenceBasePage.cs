@@ -1,6 +1,6 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By KeyIdentifier => By.CssSelector(".govuk-summary-list__key, tr > td");
 
         protected CohortReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
-    
+
         public string CohortReference() => RegexHelper.GetCohortReference(pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference", "Cohort reference"));
 
         public string CohortReferenceFromUrl() => RegexHelper.GetCohortReferenceFromUrl(GetUrl());

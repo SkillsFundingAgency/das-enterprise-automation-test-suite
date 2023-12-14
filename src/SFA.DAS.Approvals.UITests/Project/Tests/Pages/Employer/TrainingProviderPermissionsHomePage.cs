@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         private static By YourTrainingProvidersLink => By.LinkText("Your training providers");
 
-        public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context)  { }
+        public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context) { }
 
         public YourTrainingProvidersPage OpenProviderPermissions()
         {

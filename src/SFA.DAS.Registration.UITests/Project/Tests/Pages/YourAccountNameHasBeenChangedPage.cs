@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using Polly;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -16,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new CreateYourEmployerAccountPage(context);
         }
-         
+
 
     }
 }

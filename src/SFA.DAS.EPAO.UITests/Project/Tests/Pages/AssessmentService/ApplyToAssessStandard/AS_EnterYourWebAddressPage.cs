@@ -12,7 +12,7 @@ public class AS_EnterYourWebAddressPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
-    
+
     public AS_ApplyToStandardPage NHEI_EnterWebAddress()
     {
         formCompletionHelper.EnterText(InputText, standardDataHelper.RandomWebsiteAddress);

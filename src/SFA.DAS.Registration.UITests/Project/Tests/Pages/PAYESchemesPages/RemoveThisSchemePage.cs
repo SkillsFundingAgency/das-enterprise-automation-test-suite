@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
     public class RemoveThisSchemePage : RegistrationBasePage
     {
         protected override string PageTitle => "Remove this scheme?";
-        
+
         #region Locators
         protected override By PageHeader => By.CssSelector(".govuk-caption-l");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");

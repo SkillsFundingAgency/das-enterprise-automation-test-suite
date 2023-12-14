@@ -22,6 +22,6 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
         => _apiResponse = _restClient.Execute(responseCode);
 
     [Then(@"verify response body displays correct information")]
-    public void ThenVerifyResponseBodyDisplaysCorrectInformation() 
+    public void ThenVerifyResponseBodyDisplaysCorrectInformation()
         => StringAssert.Contains(_expected, _apiResponse.Content);
 }

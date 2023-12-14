@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
+using System;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             //Arrange 
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
 
-            var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate(): AcademicYearDatesHelper.GetNextAcademicYearStartDate();
+            var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate() : AcademicYearDatesHelper.GetNextAcademicYearStartDate();
 
             var courseStartDate = apprentice.CourseStartDate;
 
@@ -50,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 
                 if (courseStartDate.Month == DateTime.Now.Month)
                 {
-                    Assert.IsTrue(courseStartDate.Year != DateTime.Now.Year, 
+                    Assert.IsTrue(courseStartDate.Year != DateTime.Now.Year,
                         $"if Course start month ({courseStartDate.Month}) == this month ({DateTime.Now.Month}) then Course Start Year ({courseStartDate.Year}) should not be equal to this year ({DateTime.Now.Year})");
                 }
 
@@ -143,7 +143,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             var courseDetails = RandomDataGenerator.GetRandomElementFromListOfElements(AvailableCourses.GetAvailableCourses());
             var expectedLarsCode = courseDetails.Course.larsCode;
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), startDate, durationInMonths, expectedLarsCode);
-            
+
 
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 

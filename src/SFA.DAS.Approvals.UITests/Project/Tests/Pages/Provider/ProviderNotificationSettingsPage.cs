@@ -6,11 +6,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ProviderNotificationSettingsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Notification settings";
-        
+
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Update')]");
 
         private static By NotificationOptions => By.CssSelector(".selection-button-radio");
-        
+
         private static By Alert => By.CssSelector(".green-box-alert");
 
         public ProviderNotificationSettingsPage(ScenarioContext context) : base(context) { }

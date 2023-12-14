@@ -101,4 +101,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private void ConfirmWithdrawal() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawalConfirmedSelector));
 
         private void CompleteWithdraw() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithdrawFundingSelector));
-    } }
+    }
+}

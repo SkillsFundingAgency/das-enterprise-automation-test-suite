@@ -9,13 +9,13 @@ public class EmployerDashboardPage : EmployerFeedbackBasePage
     public EmployerFeedbackSelectProviderPage ClickFeedbackLink()
     {
         formCompletionHelper.ClickLinkByText("Feedback on training providers");
-        return new (context);
+        return new(context);
     }
 
     public EmployerFeedbackHomePage OpenFeedbackLinkWithSurveyCode()
     {
         OpenFeedbackUsingSurveyCode();
 
-        return new (context);
+        return new(context);
     }
 }

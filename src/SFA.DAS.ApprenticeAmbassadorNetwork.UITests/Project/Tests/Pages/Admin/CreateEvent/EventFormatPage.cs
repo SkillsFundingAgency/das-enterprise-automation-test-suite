@@ -22,4 +22,4 @@ public class EventFormatPage(ScenarioContext context) : AanAdminBasePage(context
     }
 
     private void SelectEventFormatAndContinue(string value) { SelectRadioOptionByForAttribute(value); Continue(); }
-    }
+}

@@ -80,7 +80,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId)
                .ToList();
 
-            payments.Count.Should().Be(1);            
+            payments.Count.Should().Be(1);
 
             _expectedPaymentAmount = amount;
         }
@@ -149,7 +149,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _initialEndDate = endDate;
 
             _breaksInLearning.Clear();
-            
+
             await SetupSubmissionWithNoBreakInLearning();
         }
 
@@ -298,7 +298,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             learner.InLearning.Should().BeTrue();
         }
 
-        [Then(@"the paid earning of £(.*) is marked as requiring a clawback in Period R(.*) (.*)")]        
+        [Then(@"the paid earning of £(.*) is marked as requiring a clawback in Period R(.*) (.*)")]
         public void ThenAClawbackIsRecorded(int amount, byte period, short year)
         {
             var clawbacks = Helper.EISqlHelper.GetAllFromDatabase<ClawbackPayment>()

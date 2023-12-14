@@ -23,12 +23,12 @@ public class AS_WhichStandardDoYouWantToWithdrawFromAssessingPage : EPAO_BasePag
 {
     protected override string PageTitle => "Which standard do you want to withdraw from assessing?";
 
-   public AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(ScenarioContext context) : base(context) => VerifyPage();
+    public AS_WhichStandardDoYouWantToWithdrawFromAssessingPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public AS_CheckWithdrawalRequestPage ClickASpecificStandardToWithdraw()
     {
         tableRowHelper.SelectRowFromTable("Withdraw from standard", "Brewer");
-              
+
         return new(context);
     }
 }

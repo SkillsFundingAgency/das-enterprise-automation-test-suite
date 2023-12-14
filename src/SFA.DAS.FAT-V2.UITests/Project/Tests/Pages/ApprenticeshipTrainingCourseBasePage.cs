@@ -6,7 +6,7 @@ public abstract class ApprenticeshipTrainingCourseBasePage : FATV2BasePage
 
     protected override bool TakeFullScreenShot => false;
 
-    public ApprenticeshipTrainingCourseBasePage(ScenarioContext context) : base(context) 
+    public ApprenticeshipTrainingCourseBasePage(ScenarioContext context) : base(context)
     {
         var environmentName = EnvironmentName.ToLower() + "-";
 
@@ -15,7 +15,7 @@ public abstract class ApprenticeshipTrainingCourseBasePage : FATV2BasePage
         if (!currentURL.ToLower().Contains(environmentName))
         {
             var newURL = currentURL.Insert(8, environmentName);
-            
+
             tabHelper.GoToUrl(newURL);
         }
     }

@@ -43,7 +43,7 @@
         private string PlanningApprenticeshipTraining => "6. Planning apprenticeship training";
         private string PlanningApprenticeshipTraining_1 => "Introduction and what you'll need";
         private string PlanningApprenticeshipTraining_2 => "Type of apprenticeship training";
-        
+
         private string PlanningApprenticeshipTraining_3 => "Training apprentices";
         private string PlanningApprenticeshipTraining_4 => "Supporting apprentices";
         private string PlanningApprenticeshipTraining_5 => "Forecasting starts";

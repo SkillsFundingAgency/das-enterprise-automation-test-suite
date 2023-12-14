@@ -7,7 +7,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
     {
         private static readonly decimal EnglishFraction = 1.00m;
 
-        private static readonly DateTime EnglishFractioncalculatedAt = new DateTime(2019, 01, 15);
+        private static readonly DateTime EnglishFractioncalculatedAt = new(2019, 01, 15);
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) TransferslevyFunds()
         {
@@ -56,7 +56,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             return (EnglishFraction, englishFractioncalculatedAt, levyDeclarations);
         }
 
-        private static Table GetTableHeader() => new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+        private static Table GetTableHeader() => new("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
 
         private static (DateTime calculatedAt, Table levyDeclarations) GetlevyDeclarations(string duration, string levyPerMonth, DateTime dateTime)
         {

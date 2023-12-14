@@ -81,7 +81,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var sb = new StringBuilder();
 
-            if(string.IsNullOrEmpty(PrivateAccountHashSalt))
+            if (string.IsNullOrEmpty(PrivateAccountHashSalt))
             {
                 sb.Append($" {nameof(PrivateAccountHashSalt)} is Required.");
             }
@@ -125,7 +125,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var errors = sb.ToString();
 
-            if(!string.IsNullOrEmpty(errors))
+            if (!string.IsNullOrEmpty(errors))
             {
                 throw new InvalidOperationException(errors);
             }

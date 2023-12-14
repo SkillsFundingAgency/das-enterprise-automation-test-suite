@@ -51,7 +51,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
                     new(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
                     new(providernamekey, "COLEMAN TRAINING & CONSULTANCY"),
                     new(ukprnkey, "10083833"),
-              }); 
+              });
             _data.Add("rpexistingprovider04",
               new List<KeyValuePair<string, string>>
               {

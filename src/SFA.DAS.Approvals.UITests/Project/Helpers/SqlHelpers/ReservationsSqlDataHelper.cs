@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                             Restriction = {restriction}
                                       WHERE RuleType = {ruleType}";
 
-            ExecuteSqlCommand(updateQuery);            
+            ExecuteSqlCommand(updateQuery);
         }
     }
 }

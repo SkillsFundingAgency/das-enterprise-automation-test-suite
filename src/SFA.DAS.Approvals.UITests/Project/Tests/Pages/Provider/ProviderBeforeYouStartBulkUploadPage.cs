@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string PageTitle => "Using file upload";
 
-        public ProviderBeforeYouStartBulkUploadPage(ScenarioContext context) : base(context)  { }
+        public ProviderBeforeYouStartBulkUploadPage(ScenarioContext context) : base(context) { }
 
         public ProviderBulkUploadCsvFilePage ContinueToUploadCsvFilePage()
         {

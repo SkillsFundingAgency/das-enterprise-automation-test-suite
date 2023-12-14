@@ -1,6 +1,6 @@
-﻿using SFA.DAS.Registration.UITests.Project;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
-using OpenQA.Selenium;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
@@ -17,7 +17,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public MyTransferPledgesPage ClickTask()
         {
             formCompletionHelper.Click(TaskSelector);
-            
+
             return new MyTransferPledgesPage(context);
         }
     }

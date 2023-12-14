@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public StopApprenticeshipPage ClickARadioButtonAndContinue()
         {
-            List<string> RadioButtonList = new List<string> { "Yes", "No" };
+            List<string> RadioButtonList = new() { "Yes", "No" };
             _dataHelper.MadeRedundant = RadioButtonList[new Random().Next(RadioButtonList.Count)];
             formCompletionHelper.SelectRadioOptionByText(_dataHelper.MadeRedundant);
             Continue();

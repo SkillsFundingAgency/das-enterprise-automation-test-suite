@@ -8,9 +8,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
-                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage

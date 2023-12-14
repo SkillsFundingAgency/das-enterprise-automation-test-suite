@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string PageTitle => "Short description of the apprenticeship";
 
         private static By ShortDescription => By.Id("ShortDescription");
-        
+
         public ShortDescriptionPage(ScenarioContext context) : base(context) { }
 
         public PreviewYourAdvertOrVacancyPage EnterBriefOverview()

@@ -12,7 +12,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public long ULN { get; set; }
         public byte PeriodNumber { get; set; }
         public DateTime StartDate { get; set; }
-        public LearnerSubmissionDto LearnerSubmission { get; set; }        
+        public LearnerSubmissionDto LearnerSubmission { get; set; }
         public short AcademicYear { get; set; }
         public IList<Guid> IncentiveIds { get; set; } = new List<Guid>();
         public Guid ApprenticeshipIncentiveId { get; set; }

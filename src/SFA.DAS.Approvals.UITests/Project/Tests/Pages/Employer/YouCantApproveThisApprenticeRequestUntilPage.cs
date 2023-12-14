@@ -16,12 +16,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By DraftSaveAndSubmit => By.Id("continue-button");
 
-        public YouCantApproveThisApprenticeRequestUntilPage (ScenarioContext context) : base(context)  { }
-        
+        public YouCantApproveThisApprenticeRequestUntilPage(ScenarioContext context) : base(context) { }
+
         public DynamicHomePages DraftReturnToHomePage()
         {
             var cohortReference = pageInteractionHelper.GetText(Reference);
-            
+
             objectContext.SetCohortReference(cohortReference);
 
             SelectRadioOptionByForAttribute("radio-home");
@@ -30,6 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             return new DynamicHomePages(context);
         }
-        
+
     }
 }

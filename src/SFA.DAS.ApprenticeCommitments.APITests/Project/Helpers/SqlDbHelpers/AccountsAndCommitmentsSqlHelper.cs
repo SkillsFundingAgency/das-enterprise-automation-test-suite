@@ -41,7 +41,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             var dateOfBirth = apprenticeData[10];
 
             List<object[]> empNameData = EmpNameData(long.Parse(accountid));
-            
+
 
             if (empNameData.Count == 0)
                 return (0, 0, string.Empty, string.Empty, default, string.Empty, string.Empty, 0, 0, string.Empty, string.Empty, string.Empty);

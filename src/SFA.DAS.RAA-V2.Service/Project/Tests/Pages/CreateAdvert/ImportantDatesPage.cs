@@ -24,10 +24,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             StartDate(rAAV2DataHelper.VacancyStart);
             Continue();
 
-            var expectedUrl = IsTraineeship ? "work-experience" : "duration"; 
-            
+            var expectedUrl = IsTraineeship ? "work-experience" : "duration";
+
             pageInteractionHelper.WaitforURLToChange(expectedUrl);
-            
+
         }
     }
 }

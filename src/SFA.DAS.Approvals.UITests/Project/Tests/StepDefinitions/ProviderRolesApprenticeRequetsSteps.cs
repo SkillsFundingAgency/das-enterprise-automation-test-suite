@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerRoleApprenticeDataHelper = new ProviderRoleApprenticeDataHelper();
         }
-      
+
         [When(@"the user clicks on apprentice request link from homepage or apprentice request link")]
         public void WhenTheUserClicksOnApprenticeRequestLinkFromHomepageOrApprenticeRequestLink()
         {
@@ -76,7 +76,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails();
-        }        
+        }
 
         [Then(@"the user cannot edit an apprentice in a cohort")]
         public void ThenTheUserCannotEditAnApprenticeInACohort()
@@ -94,7 +94,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                         .GoBackToTheServiceHomePage();
 
             }
-                                                       
+
         }
 
         [Then(@"the user cannot bulk upload apprentices via csv file")]
@@ -126,10 +126,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the user can add apprentice to a cohort")]
         public void ThenTheUserCanAddApprenticeToACohort()
-        {          
+        {
             new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
                                                      .SelectViewCurrentCohortDetails()
-                                                     .SelectAddAnApprentice();                                                   
+                                                     .SelectAddAnApprentice();
         }
 
         [Then(@"the user can bulk upload apprentices")]
@@ -162,7 +162,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can delete a cohort")]
         public void ThenTheUserCanDeleteACohort()
         {
-           
+
             bool canDeleteCohort = new ProviderApprenticeRequestsPage(_context, true)
                                                         .GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
@@ -171,7 +171,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (!canDeleteCohort)
                 throw new Exception("unable to find option to delete cohort!");
-            
+
         }
 
         [Then(@"the user can delete an apprentice in a cohort")]
@@ -182,7 +182,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                                                         .IsEditApprenticeLinkDisplayed();
 
             if (editLinkPresent)
-            {              
+            {
                 new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
                                                        .SelectViewCurrentCohortDetails()
                                                        .SelectEditApprentice()
@@ -195,7 +195,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
-                                                        .SubmitSaveButDontSendToEmployer();                                                        
+                                                        .SubmitSaveButDontSendToEmployer();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ConfirmChangesRadio => By.CssSelector("#ConfirmChanges");
         private static By FinishButton => By.CssSelector("#submit-confirm-change");
 
-        public ConfirmChangesPage(ScenarioContext context) : base(context)  { }
+        public ConfirmChangesPage(ScenarioContext context) : base(context) { }
 
         public ApprenticeDetailsPage AcceptChangesAndSubmit()
         {

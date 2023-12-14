@@ -81,7 +81,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassPriorLearningOfApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute||
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
@@ -103,7 +103,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
-                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider )
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_EnglishAndMathsAssessments()

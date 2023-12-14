@@ -1,10 +1,9 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using System;
-using System.Linq;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {

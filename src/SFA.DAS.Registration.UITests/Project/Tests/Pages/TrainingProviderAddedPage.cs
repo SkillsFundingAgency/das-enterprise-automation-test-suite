@@ -9,10 +9,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public TrainingProviderAddedPage(ScenarioContext context) : base(context)  { }
+        public TrainingProviderAddedPage(ScenarioContext context) : base(context) { }
 
         public YourTrainingProvidersPage SelectContinueInEmployerTrainingProviderAddedPage()
-        { 
+        {
             Continue();
             return new YourTrainingProvidersPage(context);
         }

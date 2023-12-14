@@ -22,8 +22,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 
         public ViewAllVacancyPage GoToViewAllVacancyPage()
         {
-                formCompletionHelper.Click(ViewAllVacancy);
-                return new ViewAllVacancyPage(context);
+            formCompletionHelper.Click(ViewAllVacancy);
+            return new ViewAllVacancyPage(context);
         }
         public TraineeshipRecruitHomePage GoToTraineeshipHomePage()
         {

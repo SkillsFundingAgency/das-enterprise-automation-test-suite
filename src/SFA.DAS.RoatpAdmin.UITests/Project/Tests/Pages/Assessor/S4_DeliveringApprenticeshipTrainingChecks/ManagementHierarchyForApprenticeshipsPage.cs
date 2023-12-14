@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class ManagementHierarchyForApprenticeshipsPage : AssessorBasePage
     {
         protected override string PageTitle => "Management hierarchy for apprenticeships";
-        
+
         public ManagementHierarchyForApprenticeshipsPage(ScenarioContext context) : base(context) { }
 
         public AnnualTurnOverFTEPage SelectPassAndContinueInManagementHierarchyPage()

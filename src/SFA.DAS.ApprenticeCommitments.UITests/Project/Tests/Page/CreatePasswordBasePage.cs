@@ -27,7 +27,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             formCompletionHelper.EnterText(Password, password);
             formCompletionHelper.EnterText(ConfirmPassword, confirmpassword);
-            
+
             if (clickSubmit)
                 formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
         }

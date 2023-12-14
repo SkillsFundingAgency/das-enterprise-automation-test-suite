@@ -17,5 +17,5 @@ public class AS_FairAccessPage : AS_EPAOApplyStandardBasePage
         UploadFile();
         return new(context);
     }
-    
+
 }

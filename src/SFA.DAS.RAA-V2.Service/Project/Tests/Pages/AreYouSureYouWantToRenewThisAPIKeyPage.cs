@@ -1,5 +1,5 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -19,9 +19,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : base(context) { }
 
         public KeyforApiPage RenewAPIKey() => GoToKeyforAPIPage(SelectYesRadioButton);
-        
+
         public KeyforApiPage DoNotRenewApiKey() => GoToKeyforAPIPage(SelectNoRadioButton);
-        
+
         private KeyforApiPage GoToKeyforAPIPage(By by)
         {
             formCompletionHelper.SelectRadioOptionByLocator(by);

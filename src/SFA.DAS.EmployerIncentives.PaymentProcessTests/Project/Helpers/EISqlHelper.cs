@@ -4,9 +4,9 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.FrameworkHelpers;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -138,7 +138,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             throw new Exception("Employment Check results not updated!");
         }
-                
+
 
         public async Task CleanUpAccount(long accountId)
         {

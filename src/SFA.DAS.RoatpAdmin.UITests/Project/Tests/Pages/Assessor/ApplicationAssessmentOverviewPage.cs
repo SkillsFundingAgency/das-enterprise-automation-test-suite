@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
     public partial class ApplicationAssessmentOverviewPage : AssessorBasePage
     {
         protected override string PageTitle => "Application assessment overview";
-        
+
         public ApplicationAssessmentOverviewPage(ScenarioContext context) : base(context) { }
 
         #region Section-1

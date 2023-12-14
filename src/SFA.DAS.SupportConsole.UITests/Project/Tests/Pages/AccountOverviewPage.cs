@@ -24,13 +24,13 @@ public class AccountOverviewPage : SupportConsoleBasePage
     public TeamMembersPage ClickTeamMembersLink()
     {
         formCompletionHelper.Click(TeamMembersLink);
-        return new (context);
+        return new(context);
     }
 
     public CommitmentsSearchPage ClickCommitmentsMenuLink()
     {
         formCompletionHelper.Click(CommitmentsMenuLink);
-        return new (context);
+        return new(context);
     }
 
     private void RefreshPage() => formCompletionHelper.Click(OrganisationsMenuLink);

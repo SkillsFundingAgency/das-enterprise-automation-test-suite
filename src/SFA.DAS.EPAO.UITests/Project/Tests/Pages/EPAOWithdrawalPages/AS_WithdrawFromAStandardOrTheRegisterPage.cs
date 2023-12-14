@@ -3,7 +3,7 @@
 public class AS_WithdrawFromAStandardOrTheRegisterPage : EPAO_BasePage
 {
     protected override string PageTitle => "Withdraw from a standard or the register";
-    
+
     public AS_WithdrawFromAStandardOrTheRegisterPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public AS_WhatAreYouWithdrawingFromPage ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()

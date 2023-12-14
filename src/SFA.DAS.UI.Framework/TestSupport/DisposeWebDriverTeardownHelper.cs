@@ -12,7 +12,7 @@ public class DisposeWebDriverTeardownHelper(ScenarioContext context)
 
     public void DisposeWebDriver()
     {
-        _tryCatch.AfterScenarioException(() => 
+        _tryCatch.AfterScenarioException(() =>
         {
             var WebDriver = context.GetWebDriver();
 

@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -8,11 +6,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     public class PledgeOrganisationNameOptionPage : TransferMatchingBasePage
     {
         protected override string PageTitle => "Show organisation name";
-        
+
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
         public PledgeOrganisationNameOptionPage(ScenarioContext context) : base(context) { }
-        
+
         public CreateATransferPledgePage EnterValidOrgNameChoice(bool showOrg)
         {
             SelectOrgName(showOrg);

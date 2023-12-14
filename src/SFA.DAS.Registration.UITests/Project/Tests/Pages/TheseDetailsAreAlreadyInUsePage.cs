@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class TheseDetailsAreAlreadyInUsePage : RegistrationBasePage
     {
         protected override string PageTitle => "These details are already in use";
-        
+
         #region Locators
         protected override By ContinueButton => By.Id("search_again");
         #endregion

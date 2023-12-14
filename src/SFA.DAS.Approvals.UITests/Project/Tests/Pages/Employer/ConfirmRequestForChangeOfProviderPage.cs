@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.Id("continue-button");
 
-        public ConfirmRequestForChangeOfProviderPage(ScenarioContext context) : base(context)  { }
+        public ConfirmRequestForChangeOfProviderPage(ScenarioContext context) : base(context) { }
 
         public ChangeOfTrainingProviderRequestedPage SelectYesAndContinue()
         {

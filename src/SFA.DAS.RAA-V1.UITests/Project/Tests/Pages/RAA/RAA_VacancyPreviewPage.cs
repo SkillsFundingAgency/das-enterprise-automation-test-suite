@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Vacancy preview";
 
         #region Helpers and Context
-        
+
         #endregion
 
         public RAA_VacancyPreviewPage(ScenarioContext context) : base(context) { }

@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
         protected string PageNotFoundPageTitle => "Page not found";
         protected string AccessDeniedPageTitle => "Access denied";
 
-        public UnauthorisedAccessBasePage(ScenarioContext context, string url) : base(context) 
+        public UnauthorisedAccessBasePage(ScenarioContext context, string url) : base(context)
         {
             void action() => tabHelper.GoToUrl(url);
 

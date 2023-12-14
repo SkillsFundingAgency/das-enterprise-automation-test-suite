@@ -10,13 +10,13 @@ public class CommitmentsTrainingProviderHistorySteps : CommitmentsCohortDetailsB
 
     [When(@"the User clicks on 'View this cohort' button with Training provider history")]
     public void WhenTheUserClicksOnButtonWithTrainingProviderHistory() => ViewThisCohort();
-    
+
     [When(@"the ULN details page is displayed with Training provider history")]
     public void ThenTheULNDetailsPageIsDisplayedWithTrainingProviderHistory() => GetUlnDetailsPage().ClickTrainingProviderHistoryTab();
 
     [When(@"the user chooses to view Uln of the Cohort with Training provider history")]
     public void WhenTheUserChoosesToViewUlnOfTheCohortWithTrainingProviderHistory() => ViewCohortUln();
-    
+
     [Then(@"the Training provider history is displayed")]
     public void TheTrainingProviderHistoryIsDisplayed() => GetUlnDetailsPage().TrainingProviderHistoryIsDisplayed();
 

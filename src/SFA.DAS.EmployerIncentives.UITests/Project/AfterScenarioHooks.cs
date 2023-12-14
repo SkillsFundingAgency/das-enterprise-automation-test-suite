@@ -33,8 +33,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
                 var (apprenticeshipid, dob, fname, lname, startDate, trainningName, uln, ukprn) = _context.Get<CommitmentsSqlDataHelper>().GetDataFromComtDb(accountId);
 
-                var data = new AddApplicationData 
-                { 
+                var data = new AddApplicationData
+                {
                     AccountId = accountId,
                     AccountLegalEntityId = accountLegalEntityId,
                     SubmittedByEmail = _objectContext.GetRegisteredEmail(),

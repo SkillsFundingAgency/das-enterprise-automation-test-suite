@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         protected override By AcceptCookieButton => By.CssSelector(".govuk-button");
 
-        public ProviderReserveFundingForNonLevyEmployersPage(ScenarioContext context) : base(context)  { }
+        public ProviderReserveFundingForNonLevyEmployersPage(ScenarioContext context) : base(context) { }
 
         internal ProviderChooseAnEmployerNonLevyPage StartReservedFunding()
         {

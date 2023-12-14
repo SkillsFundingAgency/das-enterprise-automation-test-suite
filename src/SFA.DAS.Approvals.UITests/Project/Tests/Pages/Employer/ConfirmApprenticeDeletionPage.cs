@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Delete the apprentice";
         protected override By ContinueButton => By.Id("continue-button");
 
-        public ConfirmApprenticeDeletionPage(ScenarioContext context) : base(context)  { }
+        public ConfirmApprenticeDeletionPage(ScenarioContext context) : base(context) { }
 
         internal ApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
         {

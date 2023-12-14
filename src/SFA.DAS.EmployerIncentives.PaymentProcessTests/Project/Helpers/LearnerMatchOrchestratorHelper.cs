@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         public async Task Run(bool continueOnFailure = false)
         {
             _stopWatchHelper.Start("RunLearnerMatchOrchestrator");
-            
+
             await _eiLearnerMatchHelper.StartLearnerMatchOrchestrator();
             if (continueOnFailure) await _eiLearnerMatchHelper.WaitUntilStopped();
             else await _eiLearnerMatchHelper.WaitUntilComplete();

@@ -52,10 +52,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);
 
-        private List<string> AppTraining => new List<string>() { "Job role", "Number of apprentices", "Start by", "Have you found a training provider?" };
+        private List<string> AppTraining => new() { "Job role", "Number of apprentices", "Start by", "Have you found a training provider?" };
 
-        private List<string> BusinessDetails => new List<string>() { "Sector", "Location" };
+        private List<string> BusinessDetails => new() { "Sector", "Location" };
 
-        private List<string> ContactDetails => new List<string>() { "Name", "Email address", "Business website" };
+        private List<string> ContactDetails => new() { "Name", "Email address", "Business website" };
     }
 }

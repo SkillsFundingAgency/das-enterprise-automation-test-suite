@@ -1,10 +1,10 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
-using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
@@ -58,6 +58,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         [Then(@"the Assessor assesses all the sections of the application as PASS")]
         public void TheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
             _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage, _applicationRoute);
-        
+
     }
 }

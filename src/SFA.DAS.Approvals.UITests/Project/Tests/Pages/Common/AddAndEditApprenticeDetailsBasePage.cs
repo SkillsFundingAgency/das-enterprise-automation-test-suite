@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -35,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By EmployerReference => By.Id("Reference");
         private static By StartDateErrorMessagelLink => By.XPath("//*[contains(@data-focuses, 'error-message-StartDate')]");
         private static By EndDateErrorMessagelLink => By.XPath("//*[contains(@data-focuses, 'error-message-EndDate')]");
-        protected virtual By SaveButtonSelector => GetFormSubmitButton(); 
+        protected virtual By SaveButtonSelector => GetFormSubmitButton();
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
         private static By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
@@ -169,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             {
                 pageInteractionHelper.WaitForElementToBeDisplayed(locator);
                 Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not displayed");
-                
+
                 string expectedMessage = "The date overlaps with existing dates for the same apprentice";
                 string actualMessage = pageInteractionHelper.GetText(locator);
                 StringAssert.StartsWith(expectedMessage, actualMessage, "Incorrect Date Overlaps Message displayed");

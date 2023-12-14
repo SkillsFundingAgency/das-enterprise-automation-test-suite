@@ -20,7 +20,7 @@ public class EmployerFeedbackOverallRatingPage : EmployerFeedbackBasePage
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(selector));
         Continue();
-        return new (context);
+        return new(context);
 
     }
 }

@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
     public class PolicyForProfessionalDevelopmentOfEmployeesPage : AssessorBasePage
     {
         protected override string PageTitle => "Policy for professional development of employees";
-        
+
         public PolicyForProfessionalDevelopmentOfEmployeesPage(ScenarioContext context) : base(context) { }
 
         public AnExampleOfHowThePolicyToImprovePage SelectPassAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()

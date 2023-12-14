@@ -23,7 +23,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             if (isAnonymousPledge)
             {
-                MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>> 
+                MultipleVerifyPage(new System.Collections.Generic.List<System.Func<bool>>
                 {
                     () => VerifyPage(PageHeader, $"Transfer fund details for opportunity ({pledgeid})"),
                     () => VerifyPage(DasHighlight, $"A levy-paying business wants to fund apprenticeship training")

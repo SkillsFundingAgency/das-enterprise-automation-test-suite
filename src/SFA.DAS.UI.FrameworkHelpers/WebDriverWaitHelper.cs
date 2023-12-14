@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
-using System;
-using SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
@@ -11,7 +11,7 @@ public class WebDriverWaitHelper
     private readonly TimeOutConfig _timeOutConfig;
     private readonly WebDriverWait _implicitWait;
     private readonly WebDriverWait _pagenavigationWait;
-    
+
     public WebDriverWaitHelper(IWebDriver webDriver, TimeOutConfig timeOutConfig)
     {
         _webDriver = webDriver;

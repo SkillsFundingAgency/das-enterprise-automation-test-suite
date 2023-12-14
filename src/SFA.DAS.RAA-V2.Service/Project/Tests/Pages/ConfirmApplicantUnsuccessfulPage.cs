@@ -11,5 +11,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             base.NotifyApplicant();
             return new ApplicationUnsuccessfulPage(context);
         }
-    }    
+    }
 }

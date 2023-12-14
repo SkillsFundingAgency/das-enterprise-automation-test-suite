@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
 {
@@ -9,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     {
         protected override string PageTitle => "Is your organisation monitored and supported by the Office of Students?";
 
-        public OrgMonitoredSupportedByOFSPage(ScenarioContext context) : base(context) => VerifyPage(); 
+        public OrgMonitoredSupportedByOFSPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public DescribeYourOrganisationPage SelectYesForOrgSupportedandMonitoredByOFSAndContinue()
         {

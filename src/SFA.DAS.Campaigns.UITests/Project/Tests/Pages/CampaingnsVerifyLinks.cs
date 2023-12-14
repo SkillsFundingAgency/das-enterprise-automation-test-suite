@@ -25,10 +25,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 var attributeValue = item.GetAttribute(attributeName);
                 var text = func(item);
                 objectContext.Replace(text, $"{attributeName}:{attributeValue}");
-                
+
                 if (string.IsNullOrEmpty(attributeValue) && !string.IsNullOrEmpty(text) && (item.GetAttribute("asp-action") == null))
                     throw new Exception($"'{text}' element's '{attributeName}' attribute is broken - attributeValue : '{attributeValue}'");
-                    
+
             }
         }
     }

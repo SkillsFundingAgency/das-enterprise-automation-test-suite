@@ -20,7 +20,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(firstLinkText);
             return new EPAOOrganisationDetailsPage(context);
         }
-        
+
         public SearchApprenticeshipTrainingCoursePage NavigateBackFromEPAOOrganisationsPageToSearchApprenticeshipTrainingPage()
         {
             NavigateBackToSearchApprenticeshipTraining();

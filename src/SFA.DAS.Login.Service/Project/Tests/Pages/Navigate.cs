@@ -15,7 +15,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         protected abstract string Linktext { get; }
 
         protected Navigate(ScenarioContext context, bool navigate) : this(context, navigate, string.Empty) { }
-    
+
         protected Navigate(ScenarioContext context, bool navigate, string url) : base(context, url) => NavigateTo(navigate);
 
         protected Navigate(ScenarioContext context, Action navigate, string url) : base(context, url) => NavigateTo(navigate);
@@ -23,17 +23,17 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
 
         protected void RetryClickOnException(By parentElement, Func<IWebElement> childElement)
-        { 
-            formCompletionHelper.RetryClickOnException(() => 
+        {
+            formCompletionHelper.RetryClickOnException(() =>
             {
                 if (pageInteractionHelper.IsElementDisplayedAfterPageLoad(parentElement))
                     formCompletionHelper.ClickElement(parentElement);
 
                 return childElement();
-            }); 
+            });
         }
 
-        private void NavigateTo(Action navigate) => navigate.Invoke(); 
+        private void NavigateTo(Action navigate) => navigate.Invoke();
 
         private void NavigateTo(bool navigate)
         {

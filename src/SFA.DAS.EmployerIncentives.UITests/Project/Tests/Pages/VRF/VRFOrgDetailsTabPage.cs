@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         #endregion
 
         public VRFOrgDetailsTabPage(ScenarioContext context) : base(context, false)
-        { 
+        {
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
             _eISqlHelper = context.Get<EISqlHelper>();
         }

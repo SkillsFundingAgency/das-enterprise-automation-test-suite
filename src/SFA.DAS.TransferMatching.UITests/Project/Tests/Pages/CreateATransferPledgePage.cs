@@ -28,7 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Amount you want to pledge");
             return new PledgeAmountPage(context);
         }
-        
+
         public PledgeOrganisationNameOptionPage GoToPledgeOrganisationNamePageOptionPage()
         {
             formCompletionHelper.ClickLinkByText("Show or hide your organisation's name");

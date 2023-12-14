@@ -24,5 +24,5 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.Click(StartNow);
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
-    }  
+    }
 }

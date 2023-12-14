@@ -22,6 +22,6 @@ public class ApprenticeFeedbackSelectProviderPage(ScenarioContext context) : App
             return element;
         });
 
-        return new (context);
+        return new(context);
     }
 }

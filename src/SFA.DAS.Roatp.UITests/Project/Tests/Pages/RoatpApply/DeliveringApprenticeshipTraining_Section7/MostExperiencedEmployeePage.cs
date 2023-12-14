@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         protected static By LabelCssSelector => By.CssSelector(".govuk-form-group");
         protected static By MontYearCssSelector => By.CssSelector(".govuk-form-group .govuk-form-group");
-     
+
 
         public MostExperiencedEmployeePage(ScenarioContext context) : base(context) => VerifyPage();
 
@@ -20,10 +20,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Last name", applydataHelpers.LastName);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Job role", applydataHelpers.JobRole);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Time in role", $"{applydataHelpers.GenerateRandomWholeNumber(1)} years, {applydataHelpers.GenerateRandomWholeNumber(1)} months");
-            formCompletionHelper.EnterTextByLabel(MontYearCssSelector, "Month", "12" );
+            formCompletionHelper.EnterTextByLabel(MontYearCssSelector, "Month", "12");
             formCompletionHelper.EnterTextByLabel(MontYearCssSelector, "Year", "1989");
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector,"Email", applydataHelpers.Email);
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector,"Contact number", applydataHelpers.ContactNumber);
+            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Email", applydataHelpers.Email);
+            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", applydataHelpers.ContactNumber);
             SelectRadioOptionByText("Yes");
             EnterLongTextAreaAndContinue(applydataHelpers.NamesOfAllOrganisations);
             return new ExperienceInTheSectorPage(context);

@@ -4,7 +4,6 @@ using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers;
 using SFA.DAS.RoatpAdmin.Service.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;

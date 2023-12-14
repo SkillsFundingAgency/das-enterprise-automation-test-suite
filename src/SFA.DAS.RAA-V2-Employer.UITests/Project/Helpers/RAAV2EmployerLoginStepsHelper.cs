@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(context.GetUser<RAAV2EmployerUser>());
-        
+
         internal YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new(context, true);
     }
 }

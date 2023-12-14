@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessTo
     public class SignificantEventEnglishAndMathsAssessmentsPage : AssessorBasePage
     {
         protected override string PageTitle => "English and maths assessments";
-        
+
         public SignificantEventEnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context) { }
 
         public ApplicationAssessmentOverviewPage SelectPassAndContinueForDeliveringEnglishAndMathsDuringSignificantEvent()

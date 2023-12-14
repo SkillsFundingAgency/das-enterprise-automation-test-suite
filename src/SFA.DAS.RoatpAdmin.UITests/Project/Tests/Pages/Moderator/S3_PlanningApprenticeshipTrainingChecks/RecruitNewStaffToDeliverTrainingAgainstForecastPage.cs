@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
     public class RecruitNewStaffToDeliverTrainingAgainstForecastPage : ModeratorBasePage
     {
         protected override string PageTitle => "Recruit new staff to deliver training against forecast";
-        
+
         public RecruitNewStaffToDeliverTrainingAgainstForecastPage(ScenarioContext context) : base(context) { }
 
         public TypicalRatioOfTheStaffDeliveringTrainingToTheApprenticesPage SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()

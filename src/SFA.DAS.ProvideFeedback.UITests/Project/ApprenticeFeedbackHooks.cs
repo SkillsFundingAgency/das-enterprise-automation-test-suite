@@ -19,10 +19,10 @@ public class ApprenticeFeedbackHooks(ScenarioContext context) : BaseHooks(contex
     {
         _context.Set(new ApprenticeCommitmentsSqlDbHelper(_objectContext, _dbConfig));
         _context.Set(new ApprenticeCommitmentsAccountsSqlDbHelper(_objectContext, _dbConfig));
-    } 
+    }
 
     [AfterScenario(Order = 33)]
-    public void ClearDownEmployerFeedbackResult() => 
+    public void ClearDownEmployerFeedbackResult() =>
         _tryCatch.AfterScenarioException(() => new ApprenticeFeedbackSqlHelper(_objectContext, _dbConfig).ClearDownApprenticeFeedbackResult(_objectContext.GetApprenticeId(), _objectContext.GetProviderUkprn()));
 
 }

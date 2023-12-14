@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +28,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 WithdrawalType = withdrawalType,
                 Applications = new List<Application>
                 {
-                    new Application 
-                    { 
-                        AccountLegalEntityId = accountLegalEntityId, 
+                    new() {
+                        AccountLegalEntityId = accountLegalEntityId,
                         ULN = uln
                     }
                 }.ToArray(),
@@ -38,7 +37,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             };
 
             var jsonRequest = JsonConvert.SerializeObject(request);
-            
+
             var response = await httpClient.PostAsync($"{baseUrl}/api/withdraw?code={AuthenticationCode}", new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
         }
@@ -49,8 +48,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             {
                 Applications = new List<Application>
                 {
-                    new Application
-                    {
+                    new() {
                         AccountLegalEntityId = accountLegalEntityId,
                         ULN = uln,
                         ServiceRequest = new ServiceRequest
@@ -67,10 +65,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             var request = new EmploymentCheckRequest
             {
                 CheckType = RefreshEmploymentCheckType.InitialEmploymentChecks.ToString(),
-                Applications = new List<Application> 
+                Applications = new List<Application>
                     {
-                        new Application
-                        {
+                        new() {
                             ULN = uln,
                             AccountLegalEntityId = accountLegalEntityId
                         }
@@ -82,7 +79,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                     TaskId = "ZZZ999"
                 }
             };
-            var requests = new List<EmploymentCheckRequest> { request }; 
+            var requests = new List<EmploymentCheckRequest> { request };
 
             var response = await httpClient.PostAsync($"{baseUrl}/api/employmentchecks?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(requests), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();

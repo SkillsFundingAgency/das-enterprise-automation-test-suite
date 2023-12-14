@@ -18,11 +18,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private void CreateAornData(string orgType)
         {
             var aornNumber = aornDataHelper.AornNumber;
-            
+
             var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, objectContext.GetGatewayPaye(0), orgType);
-            
+
             objectContext.UpdateOrganisationName(organisationName);
-            
+
             objectContext.UpdateAornNumber(aornNumber, 0);
         }
     }

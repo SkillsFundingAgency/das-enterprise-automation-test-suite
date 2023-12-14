@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.Id("continue-button");
 
-        public StartAddingApprenticesPage(ScenarioContext context) : base(context)  { }
+        public StartAddingApprenticesPage(ScenarioContext context) : base(context) { }
 
         public SelectStandardPage EmployerAddsApprentices()
         {

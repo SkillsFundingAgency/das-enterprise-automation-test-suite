@@ -63,7 +63,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         public DateTime CreatedOn;
         public string EmployerAccountId;
         public List<string> Applications;
-        
+
         public override string ToString() => $"Pledge Id:'{PledgeId}', Amount:'{Amount}'";
     }
 }

@@ -1,6 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-
-namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
+﻿namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class DatamartSteps

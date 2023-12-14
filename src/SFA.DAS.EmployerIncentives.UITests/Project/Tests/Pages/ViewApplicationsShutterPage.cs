@@ -7,6 +7,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => $"{objectContext.GetOrganisationName()} does not have any hire a new apprentice payment applications";
 
-        public ViewApplicationsShutterPage(ScenarioContext context) : base(context)  { }
+        public ViewApplicationsShutterPage(ScenarioContext context) : base(context) { }
     }
 }

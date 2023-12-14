@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public CharityTypeOrg GetCharityTypeOrg(CharityTypeOrg existingCharityTypeOrg) => GetCharityOrg(OrgType.Charity2, existingCharityTypeOrg);
 
-        private CharityTypeOrg GetCharityOrg(OrgType orgType, CharityTypeOrg existingCharityTypeOrg) => DoNotUseRandomOrgname() ? GetCharityScenarioSpecificOrgName(orgType) 
+        private CharityTypeOrg GetCharityOrg(OrgType orgType, CharityTypeOrg existingCharityTypeOrg) => DoNotUseRandomOrgname() ? GetCharityScenarioSpecificOrgName(orgType)
             : GetRandomOrgName(ListOfCharityTypeOrgOrganisation().Where(x => x.Name != existingCharityTypeOrg?.Name).ToList());
 
         private CharityTypeOrg GetCharityScenarioSpecificOrgName(OrgType orgType) => ListOfCharityTypeOrgOrganisation().FirstOrDefault(x => x.Name == GetScenarioSpecificOrgName(orgType));
@@ -44,7 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private static string GetRandomOrgName(List<string> listoforg, List<string> existingOrgName) => GetRandomOrgName(listoforg.Except(existingOrgName).ToList());
 
         private static T GetRandomOrgName<T>(List<T> listoforg) => RandomDataGenerator.GetRandomElementFromListOfElements(listoforg);
-        
+
         private bool DoNotUseRandomOrgname() => tags.Contains("donotuserandomorgname");
 
         private static Dictionary<string, Dictionary<OrgType, string>> ListofScenarioSpecificOrg()

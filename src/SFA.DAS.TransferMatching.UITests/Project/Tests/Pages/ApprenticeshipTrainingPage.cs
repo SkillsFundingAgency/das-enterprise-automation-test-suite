@@ -26,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public CreateATransfersApplicationPage EnterAppTrainingDetailsAndContinue()
         {
-            EnterDetails(); Continue(); 
+            EnterDetails(); Continue();
 
             return new CreateATransfersApplicationPage(context);
         }

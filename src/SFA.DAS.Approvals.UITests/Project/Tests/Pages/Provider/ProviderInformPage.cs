@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By ChangeTheEmployerButton => By.Id("change-the-employer-button");
 
-        public ProviderInformPage(ScenarioContext context) : base(context)  { }
+        public ProviderInformPage(ScenarioContext context) : base(context) { }
 
         public ProviderCoESelectEmployerPage SelectChangeTheEmployer()
         {

@@ -1,9 +1,9 @@
 global using NUnit.Framework;
 global using OpenQA.Selenium;
 global using SFA.DAS.ConfigurationBuilder;
-global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.DfeAdmin.Service.Project.Helpers;
-global using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+global using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.Registration.UITests.Project;
@@ -20,4 +20,3 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using TechTalk.SpecFlow;
 global using TechTalk.SpecFlow.Assist;
-global using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;

@@ -135,9 +135,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         }
 
 
-        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage,ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.SupportingProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
-using TechTalk.SpecFlow;
 using System.Collections.Generic;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {

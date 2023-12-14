@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override By PageHeader => VacancyReferenceNumber;
 
         protected override string PageTitle => "VAC";
-        
+
         protected override By VacancyReferenceNumber => By.XPath("//strong[@class='heading-medium']");
 
         public RAA_VacancyReferencePage(ScenarioContext context) : base(context) => VerifyPage(VacancyReferenceNumber);

@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        public ProviderConfirmCohortDeletionPage(ScenarioContext context) : base(context)  { }
+        public ProviderConfirmCohortDeletionPage(ScenarioContext context) : base(context) { }
 
         public ProviderApprenticeRequestsPage ConfirmDeleteAndSubmit()
         {

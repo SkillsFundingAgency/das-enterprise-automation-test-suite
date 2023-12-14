@@ -11,6 +11,6 @@ public class EmployerFeedbackHomePage : EmployerFeedbackBasePage
     public EmployerFeedbackStrengthsPage StartNow()
     {
         formCompletionHelper.ClickElement(StartButton);
-        return new (context);
+        return new(context);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using System.Collections.Generic;
-using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -88,8 +86,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             MultipleVerifyPage(
             [
-                () => VerifyPage(ErrorSummaryText,"Select an answer"),
-                () => VerifyPage(FieldValidtionError,"Select an answer")
+                () => VerifyPage(ErrorSummaryText, "Select an answer"),
+                () => VerifyPage(FieldValidtionError, "Select an answer")
             ]);
         }
 

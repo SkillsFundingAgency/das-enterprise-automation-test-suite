@@ -1,12 +1,12 @@
-﻿using System;
-using TechTalk.SpecFlow;
+﻿using NUnit.Framework;
+using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
-using System.Threading.Tasks;
-using NUnit.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
+using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions;
 
@@ -64,7 +64,7 @@ public class EmploymentCheckE2ESteps(ScenarioContext context)
 
         TestContext.Out.WriteLine($"Post Enrichment, Nino value in the queue is: {nino} and PayeScheme: {payeScheme}");
 
-        Assert.Multiple(() => 
+        Assert.Multiple(() =>
         {
             Assert.AreEqual(_testData.NationalInsuranceNumber, nino, "Unexpected National Insurance Number returned");
 
@@ -107,7 +107,7 @@ public class EmploymentCheckE2ESteps(ScenarioContext context)
         returnCode = returnCode == "null" ? null : returnCode;
 
         Assert.AreEqual(employed, employmentCheckResults.isEmployed, "Unexpected Employement Status returned.");
-        Assert.AreEqual(returnCode, employmentCheckResults.returnCode, "Unexpected Return Code is returned." );
+        Assert.AreEqual(returnCode, employmentCheckResults.returnCode, "Unexpected Return Code is returned.");
         Assert.AreEqual(returnMessage, employmentCheckResults.returnMessage, "Unexpected Return Message returned.");
     }
 

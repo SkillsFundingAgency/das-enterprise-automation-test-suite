@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YouHaveAcceptedTheEmployerAgreementPage : RegistrationBasePage
     {
         protected override string PageTitle => "You’ve accepted the employer agreement";
-        
+
         #region Locators
         protected override By ContinueButton => By.LinkText("View your account");
         private static By DownloadYourAcceptedAgreementLink => By.LinkText("Download your accepted agreement");

@@ -12,5 +12,5 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.ClickButtonByText("Continue");
             return new FAA_WithdrawSuccessfulPage(context);
         }
-    } 
+    }
 }

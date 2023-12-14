@@ -36,7 +36,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
-                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider )
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
@@ -69,15 +69,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-              if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
-                  applicationroute == ApplicationRoute.SupportingProviderRoute ||
-                  applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
-                  applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.SupportingProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .VerifySection4Link5Status(StatusHelper.NotRequired);
             }
-              else
+            else
             {
                 var yourSectorsAndEmployeesPage = applicationAssessmentOverviewPage
                 .Access_Section4_YourSectorsAndEmployees()
@@ -89,7 +89,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 return yourSectorsAndEmployeesPage
                     .NavigateToAssessmentOverviewPage()
                     .VerifySection4Link5Status(StatusHelper.StatusPass);
-            }      
+            }
         }
 
         public ApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)

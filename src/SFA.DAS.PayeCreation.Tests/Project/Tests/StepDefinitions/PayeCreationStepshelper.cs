@@ -1,12 +1,12 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.MongoDb.DataGenerator;
-using TechTalk.SpecFlow;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
-using NUnit.Framework;
-using System.Linq;
-using SFA.DAS.PayeCreation.Tests.Project;
+﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
+using SFA.DAS.PayeCreation.Tests.Project;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 {
@@ -33,7 +33,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
                 var aornNumber = new AornDataHelper().AornNumber;
 
                 new InsertTprDataHelper(_objectContext, _dbConfig).InsertSingleOrgTprData(aornNumber, gatewaycred.Paye);
-                
+
                 _objectContext.UpdateAornNumber(aornNumber, gatewaycred.Index);
             }
         }

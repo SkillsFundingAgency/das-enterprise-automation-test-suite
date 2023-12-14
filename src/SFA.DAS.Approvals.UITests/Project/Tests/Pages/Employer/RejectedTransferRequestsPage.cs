@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By CohortInfoRow => By.CssSelector("tbody tr");
         private static By CohortEditLink => By.LinkText("Edit");
 
-        public RejectedTransferRequestsPage(ScenarioContext context) : base(context)  { }
+        public RejectedTransferRequestsPage(ScenarioContext context) : base(context) { }
 
         public ApproveApprenticeDetailsPage OpenRejectedCohort()
         {

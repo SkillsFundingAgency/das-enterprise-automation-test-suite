@@ -17,7 +17,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
         {
             if (tablerow.Text.ContainsCompareCaseInsensitive(rowIdentifier) && tablerow.FindElements(columnIdentifier).Count != 0)
             {
-               return tablerow.FindElement(columnIdentifier);
+                return tablerow.FindElement(columnIdentifier);
             }
         }
         throw new Exception($"Test Exception: Could not find row with text '{rowIdentifier}' or column using '{columnIdentifier}' and selector '{tableSelector}'");
@@ -55,7 +55,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
         var table = pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
         var tableRows = table.FindElements(By.CssSelector("tbody tr")).Reverse();
         var links = pageInteractionHelper.FindElements(By.PartialLinkText(byLinkText));
-        int i = tableRows.Count()-1;
+        int i = tableRows.Count() - 1;
         foreach (IWebElement tableRow in tableRows)
         {
             if (tableRow.Text.Contains(byKey))
@@ -73,7 +73,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
 
     public void SelectRowFromTable(string byLinkText, string byKey, By nextPage, By noOfPages, string tableSelector = "table")
     {
-         if (pageInteractionHelper.IsElementDisplayed(nextPage))
+        if (pageInteractionHelper.IsElementDisplayed(nextPage))
         {
             int NoOfpages = RegexHelper.GetMaxNoOfPages(pageInteractionHelper.GetText(noOfPages));
 
@@ -94,6 +94,6 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
         SelectRowFromTable(byLinkText, byKey, tableSelector);
     }
 
-    private void SetDebugInformation(string x, string y ) => formCompletionHelper.SetDebugInformation($"Clicked LinkText - '{x}' using Key - '{y}'");
+    private void SetDebugInformation(string x, string y) => formCompletionHelper.SetDebugInformation($"Clicked LinkText - '{x}' using Key - '{y}'");
 
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
     public static class ListExtension
     {
@@ -14,7 +10,7 @@ namespace SFA.DAS.FrameworkHelpers
         {
             var randomnNumber = new Random().Next(0, list.Count);
 
-            return list.Count == 0  ? null : list[randomnNumber];
+            return list.Count == 0 ? null : list[randomnNumber];
         }
 
         public static List<T> ListOfArrayToList<T>(this List<T[]> listarray, int index) where T : class

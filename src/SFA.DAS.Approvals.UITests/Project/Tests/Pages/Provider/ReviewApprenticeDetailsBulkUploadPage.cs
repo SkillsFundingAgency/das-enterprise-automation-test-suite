@@ -50,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderNewApprenticesAddedAndSentToEmployer(context, new VerifyBulkUploadApprentices(context));
         }
-        
+
         public ProviderUploadAmendedFilePage SelectToUploadAnAmendedFileThroughLink()
         {
             formCompletionHelper.Click(UploadAnAmendedFileActionLink);

@@ -14,15 +14,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ApproveApprenticeDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort, int numberOfApprentices)
         {
             SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(reviewYourCohort, numberOfApprentices));
-            
+
             return SetApprenticeTotalCost(reviewYourCohort);
         }
 
         internal ApproveApprenticeDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort)
         {
             SetNoOfApprentices(ReviewYourCohortStepsHelper.GetNoOfApprentice(reviewYourCohort));
-            
-            return SetApprenticeTotalCost(reviewYourCohort);           
+
+            return SetApprenticeTotalCost(reviewYourCohort);
         }
 
         internal ApproveApprenticeDetailsPage SetApprenticeTotalCost(ReviewYourCohort reviewYourCohort)

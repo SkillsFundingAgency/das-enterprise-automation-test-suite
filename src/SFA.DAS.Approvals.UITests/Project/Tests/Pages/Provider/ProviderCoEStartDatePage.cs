@@ -1,5 +1,5 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By StartDateYear => By.Name("StartYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
-        public ProviderCoEStartDatePage(ScenarioContext context) : base(context)  { }
+        public ProviderCoEStartDatePage(ScenarioContext context) : base(context) { }
 
         public ProviderCoEEndDatePage EndNewStartDateAndContinue()
         {

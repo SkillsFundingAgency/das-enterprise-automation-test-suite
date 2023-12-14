@@ -14,10 +14,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
             _suffix = DateTime.Now.ToSeconds();
 
             Subject = $"Zendesk UI Testing {CanBeDeleted} {Guid.NewGuid()}_{_suffix}";
-            
+
             CommentBody = $"{CanBeDeleted} created on {_suffix}";
         }
-        
+
         private static readonly string Comment = $" {CanBeDeleted}, Comment - Submit as";
 
         internal string InternalNote => "Internal note";

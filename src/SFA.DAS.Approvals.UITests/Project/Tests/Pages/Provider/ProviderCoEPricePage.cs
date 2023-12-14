@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By Price => By.Id("Price");
         protected override By ContinueButton => By.Id("save-and-continue-button");
 
-        public ProviderCoEPricePage(ScenarioContext context) : base(context)  { }
+        public ProviderCoEPricePage(ScenarioContext context) : base(context) { }
 
         public ProviderCoESummaryPage EnterNewPriceAndContinue()
         {

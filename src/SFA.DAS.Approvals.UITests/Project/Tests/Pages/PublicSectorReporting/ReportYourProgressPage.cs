@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {

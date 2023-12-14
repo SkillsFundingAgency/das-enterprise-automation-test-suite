@@ -1,10 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {
@@ -28,8 +25,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         private string FirstName => registrationDataHelper.FirstName;
         private string LastName => registrationDataHelper.LastName;
         private readonly string Email;
-        
-        public EnterTheEmployerDetailsPage(ScenarioContext context): base(context)
+
+        public EnterTheEmployerDetailsPage(ScenarioContext context) : base(context)
         {
             Email = objectContext.GetRegisteredEmail();
         }

@@ -10,14 +10,14 @@ public class ApprenticeFeedbackDoYouThinkPage(ScenarioContext context) : Apprent
     {
         var elements = pageInteractionHelper.FindElements(RadioItems);
 
-        for (int i = 0; i < elements.Count; i+=2)
+        for (int i = 0; i < elements.Count; i += 2)
         {
-            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(new List<IWebElement> { elements[i], elements[i+1] }));
+            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(new List<IWebElement> { elements[i], elements[i + 1] }));
         }
 
         ClickContinueButton();
 
-        return new (context);
+        return new(context);
     }
 
     public ApprenticeFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage()

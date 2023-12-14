@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -11,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Apprenticeship record stopped";
         protected override By ContinueButton => By.Id("continue-button");
 
-        public ApprenticeshipRecordStoppedPage(ScenarioContext context) : base(context)  { }
+        public ApprenticeshipRecordStoppedPage(ScenarioContext context) : base(context) { }
 
         public EnterUkprnPage ClickOnContinueButton()
         {

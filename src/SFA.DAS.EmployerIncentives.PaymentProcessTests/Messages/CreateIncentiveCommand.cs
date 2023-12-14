@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.Common.Domain.Types;
-using System;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Messages
 {

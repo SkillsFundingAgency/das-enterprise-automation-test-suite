@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
     public abstract class RoatpUkprnBaseDataHelpers
     {
         protected readonly Dictionary<string, List<KeyValuePair<string, string>>> _data;
-        
+
         protected const string ukprnkey = "ukprnkey";
         protected const string providernamekey = "providernamekey";
         protected const string emailkey = "emailkey";

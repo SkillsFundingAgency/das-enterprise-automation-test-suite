@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         public int GetDatalocksResolvedStatus() => Convert.ToInt32(GetDataAsObject($"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{_apprenticeshipId}'"));
 
         private string ExistingRecordOnDataLockStatusTable(int apprenticeshipId) => GetNullableData($"SELECT Id from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{apprenticeshipId}'");
-        
+
         public void SubmitILRWithPriceMismatch() => SubmitILRMismatch("PriceDataLock");
 
         public void SubmitILRWithCourseMismatch() => SubmitILRMismatch("CourseDataLock");
@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             _apprenticeshipId = dataHelper.ApprenticeshipId();
 
             bool DoesRecordExistOnDataLockStatusTable = ExistingRecordOnDataLockStatusTable(_apprenticeshipId) != "";
-            
+
             string priceEpisodeIdentifier = (DoesRecordExistOnDataLockStatusTable) ? "455-3-1-01-01-2019" : "455-3-1-01-01-2018";
             int month = (DoesRecordExistOnDataLockStatusTable) ? coursedataHelper.CourseStartDate.Month + 1 : coursedataHelper.CourseStartDate.Month;
             string price = (DoesRecordExistOnDataLockStatusTable) ? (Convert.ToInt32(dataHelper.TrainingCost) + 500).ToString() : dataHelper.TrainingCost;

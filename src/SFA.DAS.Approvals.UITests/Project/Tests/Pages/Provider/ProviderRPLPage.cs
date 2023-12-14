@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public AddRPLDetailsPage SelectYesAndContinue()
         {
             SelectAndContinue("Yes");
-            
+
             return new AddRPLDetailsPage(context);
         }
 

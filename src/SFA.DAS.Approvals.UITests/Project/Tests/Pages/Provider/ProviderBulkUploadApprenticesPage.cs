@@ -26,12 +26,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             string fileLocation = Path.GetFullPath(@"..\..\..\") + approvalsConfig.BulkUploadFileLocation;
 
             List<BulkUploadApprenticeDetails> ApprenticeList = [];
-            
+
             for (int i = 0; i < numberOfApprentices; i++) ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
 
             CreateCsvFileHelper.CreateCsvFile(ApprenticeList, fileLocation);
 
-            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);           
+            formCompletionHelper.EnterText(ChooseFileButton, fileLocation);
             formCompletionHelper.ClickElement(UploadFileButton);
 
             for (int i = 0; i < numberOfApprentices; i++)
@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
                 Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(uln), $"Unable to locate ULN: {uln} on 'Approve apprentices details' page");
             }
-            
+
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
@@ -48,8 +48,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             var employerUser = context.GetUser<LevyUser>();
             var employerName = employerUser.OrganisationName[..3] + "%";
-            DateTime dateOfBirth = Convert.ToDateTime($"{ apprenticeDataHelper.DateOfBirthYear}-{ apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
-            string emailAddress = $"{ apprenticeDataHelper.ApprenticeFirstname}.{ apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
+            DateTime dateOfBirth = Convert.ToDateTime($"{apprenticeDataHelper.DateOfBirthYear}-{apprenticeDataHelper.DateOfBirthMonth}-{apprenticeDataHelper.DateOfBirthDay}");
+            string emailAddress = $"{apprenticeDataHelper.ApprenticeFirstname}.{apprenticeDataHelper.ApprenticeLastname}.{courseCode}@mailinator.com";
             string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
 
             var startDate = apprenticeCourseDataHelper.CourseStartDate;
@@ -59,7 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 startDate = DateTime.UtcNow;
                 endDate = DateTime.UtcNow.AddYears(1);
             }
-            
+
             return new BulkUploadApprenticeDetails(courseCode, agreementId, dateOfBirth, startDate, endDate)
             {
                 CohortRef = objectContext.GetCohortReference(),

@@ -46,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new ChooseAnOrganisationPage(context);
         }
 
-        new public EnterYourPAYESchemeDetailsPage Continue()
+        public new EnterYourPAYESchemeDetailsPage Continue()
         {
             base.Continue();
             return this;

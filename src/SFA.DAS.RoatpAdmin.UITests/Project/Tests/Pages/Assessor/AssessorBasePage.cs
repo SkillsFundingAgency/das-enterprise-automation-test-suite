@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
     public abstract class AssessorBasePage : RoatpNewAdminBasePage
     {
-        protected AssessorBasePage(ScenarioContext context) : base(context) { } 
+        protected AssessorBasePage(ScenarioContext context) : base(context) { }
 
         public ApplicationAssessmentOverviewPage SelectPassAndContinue()
         {

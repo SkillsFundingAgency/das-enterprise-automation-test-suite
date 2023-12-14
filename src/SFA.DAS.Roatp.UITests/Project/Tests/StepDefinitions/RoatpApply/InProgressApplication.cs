@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using TechTalk.SpecFlow;
 

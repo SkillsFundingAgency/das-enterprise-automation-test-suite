@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
-using SFA.DAS.RAA.DataGenerator.Project;
-using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA.DataGenerator.Project;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
+using TechTalk.SpecFlow;
 
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -65,7 +65,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             Continue();
             return new ApplicationProcessPage(context);
         }
-        
+
         private CheckYourAnswersPage GoToCheckYourAnswersPage()
         {
             Continue();

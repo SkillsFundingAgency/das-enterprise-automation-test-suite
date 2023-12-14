@@ -11,8 +11,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By ContinueButton => By.Id("saveBtn");
 
-        public ProviderCoEConfirmNewEmployerPage(ScenarioContext context) : base(context)  { }
-        
+        public ProviderCoEConfirmNewEmployerPage(ScenarioContext context) : base(context) { }
+
         public ProviderCoEStartDatePage ConfirmNewEmployer()
         {
             SelectRadioOptionByForAttribute("confirm-true");

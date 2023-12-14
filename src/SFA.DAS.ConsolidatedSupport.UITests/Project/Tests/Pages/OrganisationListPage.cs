@@ -51,8 +51,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public DeleteOrgPage NavigateToOrgPage()
         {
-            formCompletionHelper.ClickElement(() => { Search(); return pageInteractionHelper.FindElement(Tickets); }); 
-            
+            formCompletionHelper.ClickElement(() => { Search(); return pageInteractionHelper.FindElement(Tickets); });
+
             return new DeleteOrgPage(context);
         }
 

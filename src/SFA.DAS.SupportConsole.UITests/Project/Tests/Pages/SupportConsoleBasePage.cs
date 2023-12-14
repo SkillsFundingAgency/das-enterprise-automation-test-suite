@@ -17,6 +17,6 @@ public abstract class SupportConsoleBasePage(ScenarioContext context) : VerifyBa
     public SearchHomePage GoToSearchHomePage()
     {
         formCompletionHelper.ClickElement(Heading);
-        return new (context);
+        return new(context);
     }
 }

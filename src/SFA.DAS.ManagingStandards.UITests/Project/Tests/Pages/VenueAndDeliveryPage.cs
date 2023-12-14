@@ -6,7 +6,7 @@ public class VenueAndDeliveryPage : ManagingStandardsBasePage
 
     private static By ChooseVenue => By.Id("TrainingVenueNavigationId");
     private static By DayRelease => By.Id("HasDayReleaseDeliveryOption");
-    private static By BlockRelease =>By.Id("HasBlockReleaseDeliveryOption");
+    private static By BlockRelease => By.Id("HasBlockReleaseDeliveryOption");
     public VenueAndDeliveryPage(ScenarioContext context) : base(context) { }
 
     public TrainingVenuesPage ChooseTheVenueDeliveryAndContinue()

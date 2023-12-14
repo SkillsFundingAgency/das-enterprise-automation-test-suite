@@ -12,7 +12,7 @@ public class AS_ManageAnyPotentialConflictPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
-    
+
     public AS_WhereWillYouDeliverEndPointAssessmentsPage NHEI_EnterManageAnyPotentialConflict()
     {
         formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));

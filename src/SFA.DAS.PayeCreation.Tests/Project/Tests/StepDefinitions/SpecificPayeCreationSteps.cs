@@ -8,7 +8,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
     {
         [Given(@"I add levy declarations")]
         public void GivenIAddLevyDeclarations(Table table) => GetPayeCreationStepshelper(table).AddLevyPaye();
-        
+
         [Given(@"I add non levy declarations")]
         public void GivenIAddNonLevyDeclarations(Table table) => GetPayeCreationStepshelper(table).AddNonLevyPaye();
 

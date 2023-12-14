@@ -6,6 +6,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
     {
         protected override string PageTitle => "How has the team worked with other organisations and employers to develop and deliver training?";
 
-        public HowHasTheTeamWorkedWithBothPage(ScenarioContext context) : base(context)   {  }
+        public HowHasTheTeamWorkedWithBothPage(ScenarioContext context) : base(context) { }
     }
 }

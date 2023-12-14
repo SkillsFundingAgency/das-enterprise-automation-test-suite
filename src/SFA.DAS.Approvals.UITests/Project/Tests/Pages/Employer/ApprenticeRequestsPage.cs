@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NumberOfDrafts => By.CssSelector("a[id='Draft'] span[class*='das-tabs-boxes__figure']");
         private static By NumberOfWithTransferSendingEmployers => By.CssSelector("a[id='WithTransferSender'] span[class*='das-tabs-boxes__figure']");
 
-        public ApprenticeRequestsPage(ScenarioContext context) : base(context)  { }
+        public ApprenticeRequestsPage(ScenarioContext context) : base(context) { }
 
         public ApprenticeRequestsReadyForReviewPage GoToReadyToReview() => AssertPage<ApprenticeRequestsReadyForReviewPage>(NumberOfReadyForReview, "Ready to review", () => new(context));
 

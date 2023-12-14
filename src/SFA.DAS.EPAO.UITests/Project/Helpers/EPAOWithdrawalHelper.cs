@@ -18,7 +18,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
                .ContinueWithWithdrawalRequest();
         }
         else
-        { 
+        {
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
                 .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
                 .ClickAssessingASpecificStandard()

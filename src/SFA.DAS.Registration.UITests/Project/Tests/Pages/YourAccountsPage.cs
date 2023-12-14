@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YourAccountsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Your accounts";
-        
+
         #region Locators
         private static By AddNewAccountButton => By.Id("add_new_account");
         private static By OpenLink() => By.CssSelector("table a");

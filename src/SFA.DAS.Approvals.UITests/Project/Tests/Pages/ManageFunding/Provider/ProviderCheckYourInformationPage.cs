@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         private static By ConfirmButton => By.XPath("//button[contains(text(),'Confirm')]");
 
-        public ProviderCheckYourInformationPage(ScenarioContext context) : base(context)  { }
+        public ProviderCheckYourInformationPage(ScenarioContext context) : base(context) { }
 
         public ProviderMakingChangesPage ConfirmReserveFunding()
         {

@@ -21,9 +21,9 @@ public class UlnDetailsPage : SupportConsoleBasePage
     {
         MultipleVerifyPage(
         [
-            () => {VerifyHeaderAndValue("Unique learner number", cohortDetails.Uln); return true;},
-            () => {VerifyHeaderAndValue("Name", cohortDetails.UlnName); return true;},
-            () => {VerifyHeaderAndValue("Cohort reference", cohortDetails.CohortRef); return true;}
+            () => { VerifyHeaderAndValue("Unique learner number", cohortDetails.Uln); return true; },
+            () => { VerifyHeaderAndValue("Name", cohortDetails.UlnName); return true; },
+            () => { VerifyHeaderAndValue("Cohort reference", cohortDetails.CohortRef); return true; }
         ]);
     }
 

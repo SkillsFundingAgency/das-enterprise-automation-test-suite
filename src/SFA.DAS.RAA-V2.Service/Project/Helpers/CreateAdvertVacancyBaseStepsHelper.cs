@@ -64,7 +64,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             createAdvertPage = AboutTheEmployer(createAdvertPage, employername, disabilityConfidence, isApplicationMethodFAA);
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
-            
+
             createAdvertPage.VerifyApplicationSectionStatus(NotStarted);
 
             createAdvertPage = Application(createAdvertPage);

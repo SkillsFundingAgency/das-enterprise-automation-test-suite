@@ -54,6 +54,6 @@ public class StepsHelper(ScenarioContext context)
     {
         new DfeAdminLoginStepsHelper(context).LoginToSupportConsole(loginUser);
 
-        return new (context);
+        return new(context);
     }
 }

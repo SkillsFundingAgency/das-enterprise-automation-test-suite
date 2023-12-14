@@ -1,5 +1,5 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.EPAO.UITests.Project;
 
@@ -27,5 +27,5 @@ public class EPAOConfigurationSetup(ScenarioContext context)
         {
             SetDfeAdminCredsHelper.SetDfeAdminCreds(context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser())
         });
-    }             
+    }
 }

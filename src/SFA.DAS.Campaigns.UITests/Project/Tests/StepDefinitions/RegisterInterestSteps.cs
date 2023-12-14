@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
-        private  RegisterInterestPage _registerInterestPage;
+        private RegisterInterestPage _registerInterestPage;
 
         [Given(@"the employer navigates to Register Interest Page")]
         public void GivenTheEmployerNavigatesToRegisterInterestPage() => _registerInterestPage = _stepsHelper.GoToEmployerHubPage().NavigateToRegisterInterestPage();

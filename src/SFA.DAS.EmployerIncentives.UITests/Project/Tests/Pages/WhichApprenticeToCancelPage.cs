@@ -11,7 +11,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public WhichApprenticeToCancelPage(ScenarioContext context) : base(context)  { }
+        public WhichApprenticeToCancelPage(ScenarioContext context) : base(context) { }
 
         public ConfirmApprenticeCancelPage SelectApprenticeToCancel()
         {

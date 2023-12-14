@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
         public async Task WaitUntilComplete(TimeSpan? timeout = null)
         {
-            await WaitUntilStatus(timeout ?? TimeSpan.FromMinutes(2), false,"Completed");
+            await WaitUntilStatus(timeout ?? TimeSpan.FromMinutes(2), false, "Completed");
         }
 
         public async Task WaitUntilStopped(TimeSpan? timeout = null)

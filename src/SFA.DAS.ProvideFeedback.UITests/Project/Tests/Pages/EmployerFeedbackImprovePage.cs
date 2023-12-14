@@ -12,11 +12,11 @@ public class EmployerFeedbackImprovePage : EmployerFeedbackBasePage
     public EmployerFeedbackOverallRatingPage ContinueToOverallRating()
     {
         SelectOptionAndContinue(Options);
-        return new (context);
+        return new(context);
     }
     public EmployerFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
     {
         Continue();
-        return new (context);
+        return new(context);
     }
 }

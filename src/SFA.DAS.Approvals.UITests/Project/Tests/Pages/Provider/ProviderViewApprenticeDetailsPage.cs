@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By InputBox => By.TagName("input");
 
-        public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context)  { }
+        public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         internal ProvideViewApprenticesDetailsPage SelectReturnToCohortView()
         {

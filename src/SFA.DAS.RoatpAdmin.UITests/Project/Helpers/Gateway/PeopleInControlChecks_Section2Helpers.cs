@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
-   public class PeopleInControlChecks_Section2Helpers
+    public class PeopleInControlChecks_Section2Helpers
     {
         internal GWApplicationOverviewPage PassPeopleInControlChecks_PeopleInControl(GWApplicationOverviewPage gwApplicationOverviewPage)
         {

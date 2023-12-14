@@ -262,9 +262,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         }
 
         private void AssertFlexijobApprenticeshipDetails()
-        {            
+        {
             Assert.AreEqual("Flexi-job Agency", actualDeliveryModel);
-            
+
             AssertApprenticeshipDetails();
         }
 

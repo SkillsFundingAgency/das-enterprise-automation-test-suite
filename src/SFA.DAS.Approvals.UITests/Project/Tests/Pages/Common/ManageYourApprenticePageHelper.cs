@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -31,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 }
 
                 apprentices = [.. pageInteractionHelper.FindElements(ViewApprenticeFullName(name))];
-            }, 
+            },
             RetryTimeOut.GetTimeSpan([10, 20, 30, 60, 120, 180]));
 
             return apprentices.Count > 0;

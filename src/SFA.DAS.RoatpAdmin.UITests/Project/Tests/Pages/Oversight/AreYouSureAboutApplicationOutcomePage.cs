@@ -9,7 +9,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 
         protected abstract string OversightAssessmentMessage { get; }
 
-        public AreYouSureAboutApplicationOutcomePage(ScenarioContext context) : base(context) { } 
+        public AreYouSureAboutApplicationOutcomePage(ScenarioContext context) : base(context) { }
 
         public OversightAssessmentCompletePage SelectYesAskAndContinueOutcomePage()
         {

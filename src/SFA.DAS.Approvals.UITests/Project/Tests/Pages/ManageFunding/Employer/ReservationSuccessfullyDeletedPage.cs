@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public ReservationSuccessfullyDeletedPage(ScenarioContext context) : base(context)  { }
+        public ReservationSuccessfullyDeletedPage(ScenarioContext context) : base(context) { }
 
         public ReservationSuccessfullyDeletedPage ChooseReturnToManageReservationRadioButton()
         {

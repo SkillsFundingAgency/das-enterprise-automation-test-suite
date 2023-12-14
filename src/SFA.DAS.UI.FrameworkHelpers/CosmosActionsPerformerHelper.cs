@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.Azure.Documents;
+﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
 using SFA.DAS.CosmosDb;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
@@ -15,7 +15,7 @@ public class CosmosActionsPerformerHelper
         var db = CosmosConnectionHelper.CreateCosmosDbRepoHelper<ProviderPermissionDocument>(url, authKey, dbName, collectionName);
 
         var docs = Query(db, (a) => a.Ukprn == ukprn);
-        
+
         var requestOptions = new RequestOptions { PartitionKey = new PartitionKey(ukprn) };
 
         RemoveDoc(db, docs, requestOptions);
@@ -25,7 +25,7 @@ public class CosmosActionsPerformerHelper
         return db.CreateQuery().Select(x => x).Where(expression);
     }
 
-    private static void RemoveDoc<TDocument>(DocumentRepository<TDocument> db, IQueryable<TDocument> docs,  RequestOptions requestOptions) where TDocument : class, IDocument
+    private static void RemoveDoc<TDocument>(DocumentRepository<TDocument> db, IQueryable<TDocument> docs, RequestOptions requestOptions) where TDocument : class, IDocument
     {
         foreach (var doc in docs)
         {

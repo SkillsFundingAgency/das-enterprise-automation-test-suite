@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
-        public ViewApprenticePage(ScenarioContext context) : base(context)  { }
+        public ViewApprenticePage(ScenarioContext context) : base(context) { }
 
         public ViewApprenticeDetailsPage ClickViewApprenticeLink()
         {

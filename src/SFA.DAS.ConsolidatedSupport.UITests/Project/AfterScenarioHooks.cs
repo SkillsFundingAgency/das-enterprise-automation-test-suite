@@ -16,7 +16,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         {
             OrganisationListPage GoToOrganisationListPage() => new(context);
 
-            _tryCatch.AfterScenarioException(() => 
+            _tryCatch.AfterScenarioException(() =>
             {
                 if (_objectContext.IsUserCreated()) new UserPage(context).DeleteUser();
 

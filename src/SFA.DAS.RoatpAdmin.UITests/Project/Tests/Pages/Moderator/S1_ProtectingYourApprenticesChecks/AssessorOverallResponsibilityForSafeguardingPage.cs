@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_Protecting
     public class AssessorOverallResponsibilityForSafeguardingPage : ModeratorBasePage
     {
         protected override string PageTitle => "Overall responsibility for safeguarding";
-        
+
         public AssessorOverallResponsibilityForSafeguardingPage(ScenarioContext context) : base(context) { }
 
         public SafeguardingPolicyIncludePreventDutyPolicyPage SelectPassAndContinueInAssessorOverallResponsibilityForSafeguardingPage()

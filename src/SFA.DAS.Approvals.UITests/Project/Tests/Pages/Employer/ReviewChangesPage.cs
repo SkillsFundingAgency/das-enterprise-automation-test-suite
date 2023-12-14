@@ -6,8 +6,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ReviewChangesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Review changes";
-        
-        public ReviewChangesPage(ScenarioContext context) : base(context)  { }
+
+        public ReviewChangesPage(ScenarioContext context) : base(context) { }
 
         protected override By ContinueButton => By.Id("continue-button");
 

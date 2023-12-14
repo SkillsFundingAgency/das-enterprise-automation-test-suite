@@ -1,8 +1,8 @@
-﻿using System;
-using Dapper.Contrib.Extensions;
+﻿using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;

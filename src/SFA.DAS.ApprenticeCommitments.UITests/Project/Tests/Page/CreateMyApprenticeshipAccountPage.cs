@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By DOBError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[3]");
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
 
-        public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context)  { }
+        public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) { }
 
         public new CreateMyApprenticeshipAccountPage NavigateToChangeYourPersonalDetails()
         {
@@ -31,7 +31,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return this;
         }
 
-        public new(TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails()
+        public new (TermsOfUsePage page, (string firstName, string lastName) name) EnterInValidApprenticeDetails()
         {
             var name = base.EnterInValidApprenticeDetails();
             return (new TermsOfUsePage(context), name);

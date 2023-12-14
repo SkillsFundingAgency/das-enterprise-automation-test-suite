@@ -11,6 +11,6 @@ public class EmployerFeedbackSelectProviderPage : EmployerFeedbackBasePage
     public ApprenticeFeedbackConfirmProviderPage SelectTrainingProvider()
     {
         formCompletionHelper.ClickElement(SelectLink(objectContext.GetProviderUkprn()));
-        return new (context);
+        return new(context);
     }
 }

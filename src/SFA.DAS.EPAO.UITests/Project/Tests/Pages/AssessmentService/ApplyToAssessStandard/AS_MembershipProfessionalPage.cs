@@ -12,7 +12,7 @@ public class AS_MembershipProfessionalPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
-    
+
     public AS_HowManyAssessorsPage NHEI_EnterMembershipDetails()
     {
         formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
@@ -14,8 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private static By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
-        
-        public ChooseAReservationPage(ScenarioContext context) : base(context)  { }
+
+        public ChooseAReservationPage(ScenarioContext context) : base(context) { }
 
         public ChooseAReservationPage ChooseCreateANewReservationRadioButton()
         {

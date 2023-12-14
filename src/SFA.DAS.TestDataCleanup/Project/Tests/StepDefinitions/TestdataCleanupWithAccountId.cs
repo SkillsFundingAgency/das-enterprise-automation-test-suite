@@ -21,10 +21,10 @@ public class TestdataCleanupWithAccountId(ScenarioContext context)
 
     [Then(@"the test data are cleaned up in fin db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInFinDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpFinTestData(greaterThan, lessThan);
-    
+
     [Then(@"the test data are cleaned up in rsvr db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInRsvrDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpRsvrTestData(greaterThan, lessThan);
-    
+
     [Then(@"the test data are cleaned up in emp inc db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInEmpIncDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpIncTestData(greaterThan, lessThan);
 

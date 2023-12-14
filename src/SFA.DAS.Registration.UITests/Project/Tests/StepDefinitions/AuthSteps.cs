@@ -1,16 +1,16 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages;
-using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -34,9 +34,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void VerifyAuthUrls(bool login)
         {
-            HashSet<string> skippedurls = new HashSet<string>();
+            HashSet<string> skippedurls = new();
 
-            HashSet<string> verifiedurls = new HashSet<string>();
+            HashSet<string> verifiedurls = new();
 
             HashSet<string> authurls = _objectContext.GetAuthUrl().ToHashSet();
 
@@ -53,7 +53,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 new EmployerPortalLoginHelper(_context).Login(_context.GetUser<AuthTestUser>(), true);
             }
 
-            List<string> exceptions = new List<string>();
+            List<string> exceptions = new();
 
             string scenarioTitle = string.Empty;
 
@@ -67,11 +67,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
                 try
                 {
-                    if (UrlException(url) || (login && UrlExceptionForLogedInUser(url))) 
+                    if (UrlException(url) || (login && UrlExceptionForLogedInUser(url)))
                     {
                         skipped = true;
-                        skippedurls.Add(url); 
-                        continue; 
+                        skippedurls.Add(url);
+                        continue;
                     }
 
                     scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context, url).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context, url).ScenarioTitle();
@@ -85,7 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 finally
                 {
                     if (!(skipped)) verifiedurls.Add($"{scenarioTitle}_{x}_{result} - {url}");
-                }              
+                }
             }
 
             _objectContext.Replace($"{scenarioTitle}_Verified Urls", VerifiedUrlsToString());
@@ -98,20 +98,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private string ToString(string message, HashSet<string> x) => $"{message} : {Environment.NewLine}{x.ToList().ToString(Environment.NewLine)}{Environment.NewLine}";
 
         private List<string> ExcludeUrlContains() =>
-            new List<string> {
+            new()
+            {
                 $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/register?clientId=easacc",
                 $"{EnvName}-pas.apprenticeships.education.gov.uk/"
             };
 
         private List<string> ExcludeUrlEquals() =>
-            new List<string>
+            new()
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/index?",
                 $"{UrlConfig.EmployerApprenticeshipService_BaseUrl}",
             };
 
         private List<string> ExcludeUrlEqualsForLogedInUser() =>
-            new List<string>
+            new()
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/getApprenticeshipFunding",
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/gatewayInform",
@@ -122,7 +123,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             };
 
         private List<string> ExcludeUrlContainsForLogedInUser() =>
-            new List<string>
+            new()
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/organisations/search/results?searchTerm=",
                 $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/changepassword?clientId=easacc{EnvName}" +

@@ -29,6 +29,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _stopWatchHelper.Start("DeleteIncentive");
             await _sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
             _stopWatchHelper.Stop("DeleteIncentive");
-        }        
+        }
     }
 }

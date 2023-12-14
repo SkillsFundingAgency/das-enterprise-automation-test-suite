@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -123,7 +122,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var apprenticeList = new List<BulkUploadApprenticeDetails>()
             {
-                new BulkUploadApprenticeDetails(apprentice.apprenticeDataHelper, apprentice.apprenticeCourseDataHelper, agreementId)
+                new(apprentice.apprenticeDataHelper, apprentice.apprenticeCourseDataHelper, agreementId)
             };
 
             _providerBulkUploadStepsHelper.UsingFileUpload().CreateACsvFile(apprenticeList).UploadFile();

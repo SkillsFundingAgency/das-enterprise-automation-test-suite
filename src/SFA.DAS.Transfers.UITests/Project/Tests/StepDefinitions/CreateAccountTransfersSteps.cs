@@ -250,7 +250,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
             _homePage = _accountCreationStepsHelper.CreateUserAccount();
 
-            if(integers[noOfAccounts] > 1)
+            if (integers[noOfAccounts] > 1)
             {
                 _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg2, 1);
             }

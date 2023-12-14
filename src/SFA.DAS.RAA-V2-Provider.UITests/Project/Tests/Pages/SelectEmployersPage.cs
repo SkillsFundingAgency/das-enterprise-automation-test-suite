@@ -1,10 +1,10 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using System.Linq;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
@@ -47,8 +47,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
             formCompletionHelper.SelectRadioOptionByLocator(SelectedEmployerYes);
 
-            SaveAndContinue();             
-            
+            SaveAndContinue();
+
             return (new CreateAnApprenticeshipAdvertOrVacancyPage(context), noOfLegalEntity > 1);
         }
 

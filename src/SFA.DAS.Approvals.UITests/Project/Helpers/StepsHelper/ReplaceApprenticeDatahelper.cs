@@ -9,10 +9,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     public class ReplaceApprenticeDatahelper(ScenarioContext context)
     {
-        public void ReplaceApprenticeDataInContext(int i) 
+        public void ReplaceApprenticeDataInContext(int i)
             => ReplaceApprenticeDataInContext(GetApprentice(i));
 
-        public void ReplaceApprenticeDataInContext(int i, Func<(ApprenticeDataHelper, ApprenticeCourseDataHelper), (ApprenticeDataHelper, ApprenticeCourseDataHelper)> func) 
+        public void ReplaceApprenticeDataInContext(int i, Func<(ApprenticeDataHelper, ApprenticeCourseDataHelper), (ApprenticeDataHelper, ApprenticeCourseDataHelper)> func)
             => ReplaceApprenticeDataInContext(func(GetApprentice(i)));
 
         private (ApprenticeDataHelper, ApprenticeCourseDataHelper) GetApprentice(int i) => context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().ToList()[i];

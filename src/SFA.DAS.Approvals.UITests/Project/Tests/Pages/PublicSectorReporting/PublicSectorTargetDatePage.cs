@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         protected override By ContinueButton => By.CssSelector("#report-create-start");
 
-        public PublicSectorTargetDatePage(ScenarioContext context) : base(context)  { }
+        public PublicSectorTargetDatePage(ScenarioContext context) : base(context) { }
 
         public IsYourOrganisationALocalAuthorityPage Start()
         {

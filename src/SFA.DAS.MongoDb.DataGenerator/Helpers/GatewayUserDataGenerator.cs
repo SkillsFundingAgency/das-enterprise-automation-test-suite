@@ -11,7 +11,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public BsonDocument[] Data()
         {
-            BsonDocument gatewayUser = new BsonDocument
+            BsonDocument gatewayUser = new()
             {
                 { "gatewayID", mongoDbDatahelper.GatewayId},
                 { "password", mongoDbDatahelper.GatewayPassword},

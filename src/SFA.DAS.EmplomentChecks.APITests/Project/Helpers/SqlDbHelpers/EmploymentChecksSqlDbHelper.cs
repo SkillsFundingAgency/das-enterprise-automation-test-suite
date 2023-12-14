@@ -70,7 +70,7 @@ public class EmploymentChecksSqlDbHelper(ObjectContext objectContext, DbConfig d
         string query = $"select ErrorType from [Business].[EmploymentCheck] where Id = {employmentCheckId}";
 
         return GetDataAsString(query);
-        
+
     }
 
     internal int GetCountFromDataCollectionResponse(long uln)

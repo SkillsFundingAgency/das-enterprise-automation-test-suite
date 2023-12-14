@@ -73,7 +73,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             string expectedEstimatedTotalFundsText = _financePage.ExpectedEstimatedTotalFundsLabel;
             string expectedEstimatedPlannedSpendingText = _financePage.ExpectedEstimatedPlannedSpendingLabel;
 
-            Assert.Multiple(() => 
+            Assert.Multiple(() =>
             {
                 Assert.AreEqual(expectedCurrentFundsLabel, _financePage.GetCurrentFundsLabel());
                 Assert.AreEqual(expectedFundsSpentLabel, _financePage.GetFundsSpentLabel());

@@ -19,7 +19,7 @@ public class SupportConsoleConfig
     public string HashedAccountId { get; init; }
     public string AccountName { get; init; }
     public string PayeScheme { get; init; }
-    public string CurrentLevyBalance {get;init;}
+    public string CurrentLevyBalance { get; init; }
     public string AccountDetails { get; init; }
 
     public CohortDetails CohortDetails { get; init; }

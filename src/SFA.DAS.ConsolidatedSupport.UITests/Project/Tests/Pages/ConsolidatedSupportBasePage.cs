@@ -24,7 +24,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected void CloseAllTickets()
         {
-            pageInteractionHelper.InvokeAction(() => 
+            pageInteractionHelper.InvokeAction(() =>
             {
                 foreach (var element in pageInteractionHelper.FindElements(CloseButton).ToList()) element.Click();
             });

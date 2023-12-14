@@ -4,7 +4,7 @@
 public class MS_AddAndDelete_Steps
 {
     private readonly ScenarioContext _context;
-    
+
     private string StandardName;
 
     public MS_AddAndDelete_Steps(ScenarioContext context) => _context = context;

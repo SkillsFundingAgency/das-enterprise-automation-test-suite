@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project
 
         public static string GetAanAdminEventId(this ObjectContext objectContext) => objectContext.Get(AanAdminEventId);
 
-        private const string AanEventTitle= "aaneventtitle";
+        private const string AanEventTitle = "aaneventtitle";
 
         internal static void SetAanEventTitle(this ObjectContext objectContext, string value) => objectContext.Replace(AanEventTitle, value);
 

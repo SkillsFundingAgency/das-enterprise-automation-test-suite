@@ -124,6 +124,6 @@ public class ApplyStepsHelper(ScenarioContext context)
             .NHEIEnterVolume()
             .NHEIChooseLocation()
             .NHEIEnterDayToStart();
-            return applyToStandard;
+        return applyToStandard;
     }
 }

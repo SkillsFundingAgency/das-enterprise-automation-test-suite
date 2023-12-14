@@ -22,7 +22,7 @@ public class SupportConsoleSqlDataHelper(AccountsSqlDataHelper accountsSqlDataHe
             AccountDetails = $"Account ID {publicAccountId}, created {createdDate:dd/MM/yyyy}",
             CohortDetails = new CohortDetails(comtData[0]),
             CohortNotAssociatedToAccount = new CohortDetails(comtData[1]),
-            CohortWithPendingChanges = new CohortDetails(comtData[2]),  
+            CohortWithPendingChanges = new CohortDetails(comtData[2]),
             CohortWithTrainingProviderHistory = new CohortDetails(comtData[3]),
         };
 

@@ -1,14 +1,14 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public abstract class RegistrationBasePage : VerifyBasePage
     {
         #region Helpers and Context
-        protected readonly RegistrationDataHelper registrationDataHelper;       
+        protected readonly RegistrationDataHelper registrationDataHelper;
         #endregion
 
         #region Locators
@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected RegistrationBasePage(ScenarioContext context) : base(context) => registrationDataHelper = context.Get<RegistrationDataHelper>();
 
-        public HomePage GoToHomePage() => new HomePage(context, true);
+        public HomePage GoToHomePage() => new(context, true);
 
         public HomePage ClickBackLink()
         {

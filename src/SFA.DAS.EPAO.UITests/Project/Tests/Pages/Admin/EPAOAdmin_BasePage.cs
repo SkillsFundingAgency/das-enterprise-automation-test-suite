@@ -19,7 +19,7 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
     public ASAdminLandingPage SignOut()
     {
         formCompletionHelper.ClickElement(SignOutLink);
-        return new (context);
+        return new(context);
     }
 
     protected IWebElement GetData(string headerName)

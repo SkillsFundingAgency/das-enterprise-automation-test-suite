@@ -20,7 +20,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         public VRFSubmitterDetailsTabPage SubmitBankDetails()
         {
-            frameHelper.SwitchFrameAndAction(() => 
+            frameHelper.SwitchFrameAndAction(() =>
             {
                 SelectOptionByText("account_type", "UK bank account");
                 formCompletionHelper.EnterText(NameOfTheBank, eIDataHelper.BankName);

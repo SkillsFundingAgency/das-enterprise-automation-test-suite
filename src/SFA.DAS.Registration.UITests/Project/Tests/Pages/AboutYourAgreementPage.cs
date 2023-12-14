@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
         {
             Continue();
-            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (context);
+            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
         }
     }
 }

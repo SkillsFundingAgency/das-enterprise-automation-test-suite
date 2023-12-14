@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
 {
     public class EmployerAccountsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
-    {        
+    {
         public void SetHashedAccountId()
         {
             var hashedAccountId = GetDataAsString($"SELECT TOP (1) a.HashedId" +
@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Helpers.SqlDbHelpers
         {
             var legalEntityId = GetDataAsString($"SELECT TOP (1) LegalEntityId" +
                 $" FROM [employer_account].[AccountLegalEntity] ale" +
-                $" INNER JOIN [employer_account].[Account] a on ale.AccountId = a.Id" + 
+                $" INNER JOIN [employer_account].[Account] a on ale.AccountId = a.Id" +
                 $" WHERE a.HashedId = '{objectContext.GetHashedAccountId()}'");
             objectContext.SetLegalEntityId(legalEntityId);
         }

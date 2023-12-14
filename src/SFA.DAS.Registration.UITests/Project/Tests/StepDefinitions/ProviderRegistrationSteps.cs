@@ -1,18 +1,15 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
-using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -70,7 +67,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             string email = _objectContext.GetRegisteredEmail();
 
             var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(email)}").AbsoluteUri;
-            
+
             _tabHelper.OpenInNewTab(uri);
 
             _accountCreationStepsHelper.RegisterUserAccount(new StubSignInEmployerPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();

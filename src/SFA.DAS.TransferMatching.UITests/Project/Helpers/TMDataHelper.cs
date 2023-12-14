@@ -26,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         public int Duration { get; set; } = courseDetails.Course.proposedTypicalDuration;
 
         public int MinAmount => Cost * NoOfApprentice;
-        
+
         public int MinimalPledgeAmount => Cost * (NoOfApprentice + 1);
 
         public DateTime CourseStartDate { get; set; } = DateTime.Now;

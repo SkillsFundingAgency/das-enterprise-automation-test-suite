@@ -1,5 +1,5 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
@@ -14,7 +14,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         public Searchfundingopportunitiespage GoToOpportunitiesPage()
         {
             formCompletionHelper.Click(StartNowSelector);
-                return new Searchfundingopportunitiespage(context);
+            return new Searchfundingopportunitiespage(context);
         }
 
     }

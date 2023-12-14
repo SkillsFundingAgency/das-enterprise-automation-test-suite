@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected virtual By DisabilityConfident { get; }
 
         public VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
-    
+
         protected void VerifyEmployerName()
         {
             var empName = objectContext.GetEmployerNameAsShownInTheAdvert();

@@ -1,11 +1,11 @@
-﻿using SFA.DAS.RAA.DataGenerator.Project;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -176,7 +176,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .GotoFurtherDetailsPage();
         }
 
-        internal RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails,string vacancyDuration)
+        internal RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails, string vacancyDuration)
         {
             return enteropportunityDetails
                    .EnterWorkingInformation()
@@ -215,12 +215,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 requirementsAndProspects = requirementsAndProspects
                 .EnterDesiredQualificationsText();
             }
-                requirementsAndProspects
-                    .EnterDesiredSkillsText()
-                    .EnterPersonalQualitiesText()
-                    .EnterFutureProspectsText()
-                    .EnterThingsToConsiderText()
-                    .ClickSaveAndContinue();
+            requirementsAndProspects
+                .EnterDesiredSkillsText()
+                .EnterPersonalQualitiesText()
+                .EnterFutureProspectsText()
+                .EnterThingsToConsiderText()
+                .ClickSaveAndContinue();
         }
 
         internal void EnterExtraQuestions()

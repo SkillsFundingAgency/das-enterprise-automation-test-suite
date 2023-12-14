@@ -22,7 +22,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTransferMatchingConfiguration()
         {
-            _context.SetTransferMatchingJobsConfig(_configSection.GetConfigSection<TransferMatchingJobsConfig>()); 
+            _context.SetTransferMatchingJobsConfig(_configSection.GetConfigSection<TransferMatchingJobsConfig>());
             _context.SetEasLoginUser(new List<EasAccountUser>()
             {
                 _configSection.GetConfigSection<TransferMatchingUser>(),

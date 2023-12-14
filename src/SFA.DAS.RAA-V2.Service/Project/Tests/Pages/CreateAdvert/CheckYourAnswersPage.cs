@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public CheckYourAnswersPage(ScenarioContext context) : base(context)  { }
+        public CheckYourAnswersPage(ScenarioContext context) : base(context) { }
 
         public PreviewYourAdvertOrVacancyPage PreviewAdvert()
         {

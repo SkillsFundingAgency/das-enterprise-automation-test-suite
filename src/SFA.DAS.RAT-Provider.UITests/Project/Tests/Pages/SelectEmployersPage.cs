@@ -1,10 +1,10 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using System.Linq;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 {

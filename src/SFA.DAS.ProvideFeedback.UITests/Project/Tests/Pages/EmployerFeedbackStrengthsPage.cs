@@ -13,12 +13,12 @@ public class EmployerFeedbackStrengthsPage : EmployerFeedbackBasePage
     public EmployerFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
     {
         Continue();
-        return new (context);
+        return new(context);
     }
 
     public EmployerFeedbackImprovePage SelectOptionsForDoingWell()
     {
         SelectOptionAndContinue(Options);
-        return new (context);
+        return new(context);
     }
 }

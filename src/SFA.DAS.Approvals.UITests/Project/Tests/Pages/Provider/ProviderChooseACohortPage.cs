@@ -11,12 +11,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By CohortsTable => By.CssSelector(".govuk-table__row");
 
-        public ProviderChooseACohortPage(ScenarioContext context) : base(context)  { }
+        public ProviderChooseACohortPage(ScenarioContext context) : base(context) { }
 
         public int? GetDataRowsCount() => pageInteractionHelper.FindElements(CohortsTable).Count - 1;
 
         public ProviderApproveApprenticeDetailsPage SelectCohort(string cohortReference)
-        {            
+        {
             javaScriptHelper.ScrollToTheBottom();
             tableRowHelper.SelectRowFromTableDescending("Select", cohortReference);
             return new ProviderApproveApprenticeDetailsPage(context);

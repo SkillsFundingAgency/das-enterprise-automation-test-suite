@@ -9,6 +9,6 @@ public class ApprenticeFeedbackGiveFeedbackPage(ScenarioContext context) : Appre
     public ApprenticeFeedbackDoYouThinkPage StartNow()
     {
         formCompletionHelper.ClickButtonByText(StartNowButton, "Start now");
-        return new (context);
+        return new(context);
     }
 }

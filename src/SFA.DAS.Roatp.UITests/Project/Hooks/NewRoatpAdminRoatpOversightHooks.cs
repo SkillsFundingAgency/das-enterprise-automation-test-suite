@@ -30,5 +30,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
                 DeleteTrainingProvider();
             }
         }
-    } 
+    }
 }

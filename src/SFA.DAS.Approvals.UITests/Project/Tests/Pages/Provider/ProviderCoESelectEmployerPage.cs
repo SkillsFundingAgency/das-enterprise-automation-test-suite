@@ -16,11 +16,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             var newEmployerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
 
             var newEmployerName = newEmployerUser.SecondOrganisationName[..10] + "%";
-            
+
             string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(newEmployerUser.Username, newEmployerName);
 
             tableRowHelper.SelectRowFromTable("Select", agreementId);
-            
+
             return new ProviderCoEConfirmNewEmployerPage(context);
         }
     }

@@ -28,7 +28,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         [GeneratedRegex(@"\\|/|:|\*|\?|<|>|\||""")]
         private static partial Regex MyRegex();
-        
+
         [GeneratedRegex(@"<|>|:")]
         private static partial Regex MyRegex1();
     }

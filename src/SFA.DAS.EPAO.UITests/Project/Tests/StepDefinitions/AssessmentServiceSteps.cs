@@ -29,7 +29,7 @@ public class AssessmentServiceSteps : EPAOBaseSteps
     }
 
     [When(@"the User certifies an Apprentice as '(pass|fail)' using '(employer|apprentice)' route")]
-    public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string route) => RecordAGrade(grade, route, SetLearnerDetails(), true); 
+    public void WhenTheUserCertifiesAnApprenticeAsWhoHasEnrolledForStandard(string grade, string route) => RecordAGrade(grade, route, SetLearnerDetails(), true);
 
     [When(@"the User provides the matching uln and invalid Family name for the existing certificate")]
     public void WhenTheUserProvidesTheMatchingUlnAndInvalidFamilyNameForTheExistingCertificate() => loggedInHomePage.GoToRecordAGradePage().EnterApprenticeDetailsForExistingCertificateAndContinue();
@@ -82,7 +82,7 @@ public class AssessmentServiceSteps : EPAOBaseSteps
         switch (scenario)
         {
             case "with out entering Any details":
-                familyName = string.Empty; uln = string.Empty; 
+                familyName = string.Empty; uln = string.Empty;
                 break;
             case "by entering valid Family name and blank ULN":
                 uln = string.Empty;
@@ -109,7 +109,7 @@ public class AssessmentServiceSteps : EPAOBaseSteps
         => CertifyApprentice(grade, route, SetLearnerDetails(), true).ClickContinueInCheckAndSubmitAssessmentPage();
 
     [When(@"the User certifies an Apprentice as '(pass|fail)' with '(employer|apprentice)' route and lands on Confirm Assessment Page")]
-    public void WhenTheUserCertifiesAnApprenticeAndLandsOnConfirmAssessmentPage(string grade, string route) 
+    public void WhenTheUserCertifiesAnApprenticeAndLandsOnConfirmAssessmentPage(string grade, string route)
         => checkAndSubmitAssessmentPage = CertifyApprentice(grade, route, SetLearnerDetails(), true);
 
     [Then(@"the Change links navigate to the respective pages")]
@@ -172,12 +172,12 @@ public class AssessmentServiceSteps : EPAOBaseSteps
     }
 
     [Then(@"the User is able to change the permissions")]
-    public void ThenTheUserIsAbleToChangeThePermissions() => 
-        Assert.Multiple(() => 
-        { 
-            IsViewDashboardPermissionDisplayed(true); 
-            IsChangeOrganisationDetailsPersmissionDisplayed(_permissionsSelected); 
-            IsPipelinePermissionDisplayed(_permissionsSelected); 
+    public void ThenTheUserIsAbleToChangeThePermissions() =>
+        Assert.Multiple(() =>
+        {
+            IsViewDashboardPermissionDisplayed(true);
+            IsChangeOrganisationDetailsPersmissionDisplayed(_permissionsSelected);
+            IsPipelinePermissionDisplayed(_permissionsSelected);
             IsCompletedAssessmentsPermissionDisplayed(_permissionsSelected);
             IsManageStandardsPermissionDisplayed(_permissionsSelected);
             IsManageUsersPermissionDisplayed(_permissionsSelected);
@@ -202,7 +202,7 @@ public class AssessmentServiceSteps : EPAOBaseSteps
     }
 
     [Then(@"the user can apply to assess a standard")]
-    public void ThenTheUserCanApplyToAssessAStandard() => 
+    public void ThenTheUserCanApplyToAssessAStandard() =>
         applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), EPAOApplyStandardDataHelper.ApplyStandardName);
 
     [Given(@"the certificate is printed")]
@@ -216,10 +216,10 @@ public class AssessmentServiceSteps : EPAOBaseSteps
         checkAndSubmitAssessmentPage = checkAndSubmitAssessmentPage.ClickCertificateReceiverLink().ClickBackLink();
     }
 
-    private AS_AssessmentRecordedPage RecordAGrade(string grade, string route, LearnerCriteria learnerCriteria, bool deleteCertificate) => 
+    private AS_AssessmentRecordedPage RecordAGrade(string grade, string route, LearnerCriteria learnerCriteria, bool deleteCertificate) =>
         assessmentRecordedPage = CertifyApprentice(grade, route, learnerCriteria, deleteCertificate).ClickContinueInCheckAndSubmitAssessmentPage();
 
-    private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LearnerCriteria learnerCriteria, bool deleteExistingCertificate) => 
+    private AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string route, LearnerCriteria learnerCriteria, bool deleteExistingCertificate) =>
         assessmentServiceStepsHelper.CertifyApprentice(grade, route, learnerCriteria, deleteExistingCertificate);
 
     private LearnerCriteria SetLearnerDetails() => SetLearnerDetails(() => ePAOAdminCASqlDataHelper.GetCATestData(ePAOAdminDataHelper.LoginEmailAddress, GetLearnerCriteria()));

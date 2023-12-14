@@ -159,7 +159,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice verifies the (Regular|Portable) apprenticeship information displayed on the fully confirmed overview page")]
         public void ThenTheApprenticeVerifiesTheApprenticeshipInformationDisplayedOnTheFullyConfirmedOverviewPage(string appType)
         {
-             confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedAppOverviewPageDetails(IsRegularApp(appType)).NavigateToHomePageFromTopNavigationLink();
+            confirmMyApprenticeshipStepsHelper.VerifyFullyConfirmedAppOverviewPageDetails(IsRegularApp(appType)).NavigateToHomePageFromTopNavigationLink();
         }
 
         private static bool IsRegularApp(string appType) => appType.CompareToIgnoreCase("Regular");

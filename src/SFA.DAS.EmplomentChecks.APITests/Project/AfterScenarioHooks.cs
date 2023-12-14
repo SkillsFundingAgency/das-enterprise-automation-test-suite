@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmploymentChecks.APITests.Project;
 
 [Binding]
-public  class AfterScenarioHooks(ScenarioContext context)
+public class AfterScenarioHooks(ScenarioContext context)
 {
     private readonly EmploymentChecksSqlDbHelper _employmentChecksSqlDbHelper = context.Get<EmploymentChecksSqlDbHelper>();
 

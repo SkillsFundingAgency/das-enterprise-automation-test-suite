@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         private static By ReturnToApprenticeshipButton => By.CssSelector("button.govuk-button");
 
-        public YouCantConfirmBasePage(ScenarioContext context) : base(context)  { }
+        public YouCantConfirmBasePage(ScenarioContext context) : base(context) { }
 
         public ApprenticeOverviewPage ReturnToApprenticeOverviewPage()
         {

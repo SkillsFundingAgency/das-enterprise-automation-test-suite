@@ -6,8 +6,8 @@ namespace SFA.DAS.RAA.DataGenerator
     public class FAADataHelper
     {
         public FAADataHelper()
-        {            
-            var datetime = DateTime.Now;            
+        {
+            var datetime = DateTime.Now;
             EducationSchoolOrCollege = RandomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
             QualificationYear = YearsAttended.Year.ToString();
@@ -51,7 +51,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public DateTime NewVacancyStart { get; }
 
         public DateTime VacancyClosing { get; }
-        
+
         public string NewCustomMinWagePerWeek { get; set; }
 
         public string NewCustomMaxWagePerWeek { get; set; }

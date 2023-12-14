@@ -9,7 +9,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         private static By Links => By.CssSelector("#main-content a");
 
-        public ViewApplicationsPage(ScenarioContext context) : base(context)  { }
+        public ViewApplicationsPage(ScenarioContext context) : base(context) { }
 
         public WhichApprenticeToCancelPage CancelAnApplication()
         {

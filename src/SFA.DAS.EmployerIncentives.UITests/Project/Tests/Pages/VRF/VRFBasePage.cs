@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         protected override void Continue() => formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ContinueButton), false);
 
         protected void SelectOptionByText(string forvalue, string text) => formCompletionHelper.ClickElement(SelectByText(RadioOptions, forvalue, text), false);
-    
+
         protected void SelectCheckBoxByText(string forvalue, string text) => formCompletionHelper.ClickElement(SelectByText(CheckboxOptions, forvalue, text), false);
 
         private IWebElement SelectByText(By by, string forvalue, string text) => pageInteractionHelper.FindElements(by).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text);

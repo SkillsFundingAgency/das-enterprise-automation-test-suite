@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private static By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-        public ApprenticesHomePage(ScenarioContext context) : base(context, false) {  }
+        public ApprenticesHomePage(ScenarioContext context) : base(context, false) { }
 
         public AddAnApprenitcePage AddAnApprentice()
         {
@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ManageYourApprenticesPage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new(context, true);
 
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {

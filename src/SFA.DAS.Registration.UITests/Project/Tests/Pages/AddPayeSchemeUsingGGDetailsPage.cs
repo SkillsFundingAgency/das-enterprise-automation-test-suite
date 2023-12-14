@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public  class AddPayeSchemeUsingGGDetailsPage : RegistrationBasePage
+    public class AddPayeSchemeUsingGGDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Add a PAYE scheme using your Government Gateway details";
         protected override By ContinueButton => By.Id("agree_and_continue");

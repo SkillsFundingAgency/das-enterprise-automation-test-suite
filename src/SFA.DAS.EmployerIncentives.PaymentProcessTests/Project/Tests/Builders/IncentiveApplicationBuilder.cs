@@ -6,7 +6,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
 {
     public class IncentiveApplicationBuilder
     {
-        private readonly Fixture _fixture = new Fixture();
+        private readonly Fixture _fixture = new();
         private readonly IncentiveApplication _incentiveApplication;
 
         public IncentiveApplicationBuilder()

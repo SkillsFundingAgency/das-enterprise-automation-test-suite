@@ -136,7 +136,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         public virtual ModerationApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
-                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
@@ -211,7 +211,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 return moderatorApplicationAssessmentOverviewPage
                     .VerifySection2Link6Status(StatusHelper.NotRequired);
             }
-        } 
+        }
         public virtual ModerationApplicationAssessmentOverviewPage PassEnglishAndMathsAssessments(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
@@ -274,10 +274,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-              if (applicationroute == ApplicationRoute.MainProviderRoute ||
-                  applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
-                  applicationroute == ApplicationRoute.EmployerProviderRoute ||
-                  applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
+                applicationroute == ApplicationRoute.EmployerProviderRoute ||
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section2_WorkingWithSubcontractors()

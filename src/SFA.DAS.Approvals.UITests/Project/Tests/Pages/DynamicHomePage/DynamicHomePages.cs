@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         public DynamicHomePages CheckWithTrainingProviderStatus()
         {
             pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, "WITH TRAINING PROVIDER");
-            return  new DynamicHomePages(context);
+            return new DynamicHomePages(context);
         }
         public AfterEditApproveApprenticeDetailsPage CheckReadyToReviewStatus()
         {

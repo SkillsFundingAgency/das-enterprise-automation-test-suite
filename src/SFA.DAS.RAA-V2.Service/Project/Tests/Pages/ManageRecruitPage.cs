@@ -1,10 +1,9 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ManageRecruitPage : Raav2BasePage
-    { 
+    {
         protected override string PageTitle => isRaaV2Employer ? "Manage Advert" : "Manage vacancy";
 
         public ManageRecruitPage(ScenarioContext context) : base(context) { }
@@ -26,6 +25,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Close advert");
             return new CloseVacancyPage(context);
         }
-        
+
     }
 }

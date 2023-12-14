@@ -1,7 +1,7 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By ClickDynamicHomeLink => By.CssSelector(".das-navigation__list-item");
 
-        public ApprenticeDetailsApprovedPage(ScenarioContext context) : base(context)  { }
+        public ApprenticeDetailsApprovedPage(ScenarioContext context) : base(context) { }
 
         public DynamicHomePages ClickHome()
         {

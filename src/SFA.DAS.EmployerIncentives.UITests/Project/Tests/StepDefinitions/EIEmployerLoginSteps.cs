@@ -21,7 +21,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing EI Levy Account to add vrf")]
         public void GivenTheEmployerLoginsUsingExistingEILevyAccountToAddVrf() => ResetVrfDetails();
-    
+
         [Given(@"the Employer logins using existing ei no application user")]
         public void GivenTheEmployerLoginsUsingExistingEiNoApplicationUser() => Login(_context.GetUser<EINoApplicationUser>());
 
@@ -32,7 +32,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         private HomePage ResetVrfDetails()
         {
-            var homePage =  Login(_context.GetUser<EIAddVrfUser>());
+            var homePage = Login(_context.GetUser<EIAddVrfUser>());
 
             _context.Get<EISqlHelper>().ResetVrfDetails(_context.Get<ObjectContext>().GetDBAccountId());
 

@@ -13,7 +13,7 @@ public class StaffDashboardPage : EPAOAdmin_BasePage
     private static By InProgressStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#in-progress']");
     private static By FeedbackWithdrawalApplications => By.CssSelector("a.govuk-link[href='/WithdrawalApplication#feedback']");
     private static By ApprovedStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#approved']");
-            
+
     private static By NewFinancialHeathAssesment => By.CssSelector("a.govuk-link[href='/Financial/Open']");
     private static By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
     private static By BatchSearch => By.CssSelector("a.govuk-link[href='/BatchSearch']");

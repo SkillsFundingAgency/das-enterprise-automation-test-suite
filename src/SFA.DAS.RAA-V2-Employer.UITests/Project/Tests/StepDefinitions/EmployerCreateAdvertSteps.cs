@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void TheEmployerCanCreateAnAdvertByEnteringAllTheOptionalFields()
         {
             _employerCreateVacancyStepsHelper.optionalFields = true;
-            
+
             _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.Anonymous);
         }
 

@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public YourTrainingProvidersPage SelectContinueInEmployerTrainingProviderAddedPage()
-        { 
+        {
             Continue();
             return new YourTrainingProvidersPage(context);
         }

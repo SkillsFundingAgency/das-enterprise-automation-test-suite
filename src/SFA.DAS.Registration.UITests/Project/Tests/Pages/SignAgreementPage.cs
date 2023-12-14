@@ -50,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(ContinueToYourAgreementButton);
-            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (context);
+            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
         }
     }
 }

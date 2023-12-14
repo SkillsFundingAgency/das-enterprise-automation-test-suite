@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By WhoWillEnterTheNewCourseDatesAndPriceContinueBtn => By.XPath("//button[@class='govuk-button']");
 
-        public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context): base(context) { }
+        public WhoWillEnterTheNewCourseDatesAndPrice(ScenarioContext context) : base(context) { }
 
         public ConfirmRequestForChangeOfProviderPage NewTrainingProviderWillAddThemLater()
         {

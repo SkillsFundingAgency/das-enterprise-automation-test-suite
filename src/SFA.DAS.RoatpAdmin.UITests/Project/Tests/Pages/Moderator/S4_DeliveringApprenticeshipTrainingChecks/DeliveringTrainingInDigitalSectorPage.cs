@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
     public class DeliveringTrainingInDigitalSectorPage : ModeratorBasePage
     {
         protected override string PageTitle => "Delivering training in 'Digital' sector";
-        
+
         public DeliveringTrainingInDigitalSectorPage(ScenarioContext context) : base(context) { }
 
         public YourSectorsAndEmployeesPage SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage()

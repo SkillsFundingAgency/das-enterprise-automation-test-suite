@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA.DataGenerator
 {

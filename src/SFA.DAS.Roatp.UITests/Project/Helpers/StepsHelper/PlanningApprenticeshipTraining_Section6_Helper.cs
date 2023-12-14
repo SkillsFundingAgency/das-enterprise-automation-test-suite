@@ -39,7 +39,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute| applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute | applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 return applicationOverviewPage
                 .Access_Section6_TypeOfApprenticeshipTraining_NewProviders()

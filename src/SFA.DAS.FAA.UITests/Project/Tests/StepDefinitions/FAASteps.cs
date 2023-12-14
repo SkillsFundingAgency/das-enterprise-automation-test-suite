@@ -10,7 +10,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     {
         private readonly FAAStepsHelper _faaStepsHelper;
         private FAA_CreateAnAccountPage accountCreationPage;
-        
+
         public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [When(@"the Applicant withdraw the application")]
@@ -19,10 +19,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"an Applicant initiates Account creation journey")]
         [Given(@"an Applicant initiates Account creation journey")]
         public void WhenAnApplicantInitiatesAccountCreationJourney() => accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
-        
+
         [Then(@"Applicant is redirected to Activation Page when Login With Unactivated email")]
         public void ThenApplicantIsRedirectedToActivationPageWhenLoginWithUnactivatedEmail() => _faaStepsHelper.CreateFAAAccountWithNoActivation(accountCreationPage);
-                       
+
         [Then(@"the Applicant is able to create a FAA Account")]
         [When(@"the Applicant is able to create a FAA Account")]
 
@@ -59,17 +59,17 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Trainneship Vacancy dates is changed in FAA")]
         public void ThenTheTrainneshipVacancyDatesIsChangedInFAA() => _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
-        
+
         [When(@"Applicant Deletes the FAA Account")]
-        public void WhenApplicantDeletesTheFAAAccount() 
+        public void WhenApplicantDeletesTheFAAAccount()
         {
             _faaStepsHelper.GoToFAAHomePage()
                 .GoToSettings()
                 .DeleteYourAccount()
                 .DeleteAccount()
-                .ConfirmAccountDeletion();            
+                .ConfirmAccountDeletion();
         }
-      
+
         [When(@"the Candidate changes Personal Settings")]
         public void WhenTheCandidateChangesPersonalSettings() => _faaStepsHelper.ChangePersonalSettings();
 

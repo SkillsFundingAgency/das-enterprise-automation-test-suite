@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
                     helper.ClickLinkByText(Link);
                 };
             }
-            return null;            
+            return null;
         }
     }
 }

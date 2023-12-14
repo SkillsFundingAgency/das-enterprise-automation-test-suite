@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         private static By ContinueButtonTo => By.XPath("//button[contains(text(),'Continue')]");
 
-        public ProviderMakingChangesPage(ScenarioContext context) : base(context)  { }
+        public ProviderMakingChangesPage(ScenarioContext context) : base(context) { }
 
         internal ApprovalsProviderHomePage GoToHomePage()
         {

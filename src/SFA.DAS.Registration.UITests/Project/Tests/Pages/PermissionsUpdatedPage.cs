@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected static By HomeLink => By.XPath("(//li[@class='das-navigation__list-item'])[1]");
 
         #region Helpers and Context
-        
+
         #endregion
 
         public PermissionsUpdatedPage(ScenarioContext context) : base(context) => VerifyPage();

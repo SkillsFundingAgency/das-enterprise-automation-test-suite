@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             var (_, _, firstname, lastname) = objectContext.GetFAALogin();
             formCompletionHelper.EnterText(FirstName, firstname);
             formCompletionHelper.EnterText(LastName, lastname);
-            formCompletionHelper.Click(SearchCandidate); 
+            formCompletionHelper.Click(SearchCandidate);
             return this;
         }
 

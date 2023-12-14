@@ -10,7 +10,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         public PayeCreationSteps(ScenarioContext context)
         {
             var payeConfig = context.GetPayeCreationConfig();
-            
+
             var payeDetails = new PayeDetails
             {
                 EmpRef = string.Empty,

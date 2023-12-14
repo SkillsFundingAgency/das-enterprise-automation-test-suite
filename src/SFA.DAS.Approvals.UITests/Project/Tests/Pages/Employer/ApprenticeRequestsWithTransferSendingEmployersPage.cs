@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        public ApprenticeRequestsWithTransferSendingEmployersPage(ScenarioContext context) : base(context)  { }
+        public ApprenticeRequestsWithTransferSendingEmployersPage(ScenarioContext context) : base(context) { }
 
         public ViewApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {

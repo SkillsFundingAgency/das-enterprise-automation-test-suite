@@ -1,12 +1,11 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper )
+        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper)
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             var randomPersonNameHelper = new RandomPersonNameHelper();
@@ -31,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName => $"{FirstName } {LastName}";
+        public string FullName => $"{FirstName} {LastName}";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }

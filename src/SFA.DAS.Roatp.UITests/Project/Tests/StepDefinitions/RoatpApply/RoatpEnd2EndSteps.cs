@@ -76,7 +76,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Given(@"the provider naviagate to Admin")]
         public void GivenTheProviderNaviagateToAdmin() => _tabHelper.OpenInNewTab(UrlConfig.Admin_BaseUrl);
 
-        
+
         [Then(@"the provider naviagate to Apply")]
         [Given(@"the provider naviagate to Apply")]
         public void GivenTheProviderNaviagateToApply() => _tabHelper.OpenInNewTab(UrlConfig.Apply_BaseUrl);
@@ -121,7 +121,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"verify (Appeal submitted) page is displayed once provider submits the APPEAL")]
         public void ThenVerifyAppealSubmittedPageIsDisplayedOnceProviderSubmitsTheAPPEAL(string expectedPage)
-            { 
+        {
             new ApplicationOutcomePage(_context)
             .StartAppeal()
             .SelectAppealOnAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
@@ -204,11 +204,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [When(@"the provider completes Planning apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
         public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionFor(ApplicationRoute applicationRoute)
-            {
+        {
             _objectContext.SetApplicationRoute(applicationRoute);
             _overviewPage = _end2EndStepsHelper.
             CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage, applicationRoute);
-            }
+        }
         [When(@"the provider completes Delivering apprenticeship training section for main route")]
         public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
 

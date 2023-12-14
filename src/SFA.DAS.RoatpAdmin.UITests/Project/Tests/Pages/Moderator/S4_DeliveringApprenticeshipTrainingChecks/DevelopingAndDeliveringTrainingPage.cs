@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_Delivering
     public class DevelopingAndDeliveringTrainingPage : ModeratorBasePage
     {
         protected override string PageTitle => "Team responsible for developing and delivering training";
-        
+
         public DevelopingAndDeliveringTrainingPage(ScenarioContext context) : base(context) { }
 
         public WhoTheTeamHaveWorkedWithPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()

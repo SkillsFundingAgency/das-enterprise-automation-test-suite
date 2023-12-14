@@ -83,7 +83,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
                 $"UPDATE Apply set[ModerationStatus] = 'Clarification Sent', Applicationstatus = 'GatewayAssessed', [AssessorReviewStatus] = 'New',[ApplicationDeterminedDate] = NULL  WHERE ApplicationId = @ApplicationID;" +
                 $"UPDATE ModeratorPageReviewOutcome set ClarificationUserId = NULL, ClarificationUserName = NULL, ClarificationStatus = NULL, ClarificationComment = NULL, ClarificationFile = NULL, " +
                 $"ClarificationResponse = NULL,  ClarificationUpdatedAt = NULL WHERE ApplicationId = @ApplicationID ";
-            
+
             ExecuteSqlCommand(ClarificationResetQuery);
         }
 

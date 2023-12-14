@@ -60,9 +60,9 @@ public class EmployerFeedbackSteps
 
     [Then(@"the user can not resubmit the feedback")]
     public void ThenTheUserCanNotResubmitTheFeedback() => new EmployerFeedbackAlreadySubmittedPage(_context);
-     
+
     private static EmployerFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage(EmployerFeedbackHomePage page)
     {
-       return page.StartNow().SelectOptionsForDoingWell().ContinueToOverallRating().SelectVPoorAndContinue();
+        return page.StartNow().SelectOptionsForDoingWell().ContinueToOverallRating().SelectVPoorAndContinue();
     }
 }

@@ -53,7 +53,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 
         private ChangeStatusPage InitatesAnApplication(string providerType)
         {
-           var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
+            var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
 
             searchPage = searchPage.VerifyNewProviderHasBeenAdded();
 

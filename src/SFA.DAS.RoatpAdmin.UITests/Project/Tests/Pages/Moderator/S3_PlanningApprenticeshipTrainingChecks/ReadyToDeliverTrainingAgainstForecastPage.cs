@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
     public class ReadyToDeliverTrainingAgainstForecastPage : ModeratorBasePage
     {
         protected override string PageTitle => "Ready to deliver training against forecast";
-        
+
         public ReadyToDeliverTrainingAgainstForecastPage(ScenarioContext context) : base(context) { }
 
         public RecruitNewStaffToDeliverTrainingAgainstForecastPage SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()

@@ -52,7 +52,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public EmployerAccountStatusPage ViewStatus()
         {
-            formCompletionHelper.Click(ViewStatusLink);   
+            formCompletionHelper.Click(ViewStatusLink);
             return new EmployerAccountStatusPage(context);
         }
     }

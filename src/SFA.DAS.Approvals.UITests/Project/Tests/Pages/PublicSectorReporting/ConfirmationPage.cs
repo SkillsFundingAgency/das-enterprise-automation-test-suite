@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         protected override By ContinueButton => By.CssSelector("#report-confirm-submit");
 
-        public ConfirmationPage(ScenarioContext context) : base(context)  { }
+        public ConfirmationPage(ScenarioContext context) : base(context) { }
 
         public ReportSubmittedPage Confirm()
         {

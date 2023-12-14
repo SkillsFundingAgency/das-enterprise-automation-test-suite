@@ -12,7 +12,7 @@ public class ApprenticeFeedbackConfirmProviderPage(ScenarioContext context) : Em
     {
         formCompletionHelper.SelectRadioOptionByLocator(Yes);
         formCompletionHelper.ClickElement(ClickonContinue);
-        return new (context);
+        return new(context);
     }
 }
 

@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.StepDefinitions
         [When(@"the Reviewer Approves the vacancy")]
         [Then(@"the Reviewer Approves the vacancy")]
         public void TheReviewerApprovesTheVacancy() => _reviewerStepsHelper.VerifyEmployerNameAndApprove(false);
-       
+
         [Given(@"the Reviewer Refer the vacancy")]
         public void GivenTheReviewerReferTheVacancy() => _reviewerStepsHelper.Refer(false);
 

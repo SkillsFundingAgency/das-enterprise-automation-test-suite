@@ -10,6 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By PageHeader => By.CssSelector("h1.govuk-heading-xl");
 
-        public PausedApprenticeDetailsPage(ScenarioContext context): base(context) { }
-}
+        public PausedApprenticeDetailsPage(ScenarioContext context) : base(context) { }
+    }
 }

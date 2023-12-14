@@ -37,7 +37,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
                     && transferRequestRow.Text.Contains("Pending"))
                 {
                     var detailsLiink = transferRequestRow.FindElements(DetailsLink).FirstOrDefault();
-                    if(detailsLiink != null)
+                    if (detailsLiink != null)
                     {
                         formCompletionHelper.ClickElement(detailsLiink);
                         return new TransferConnectionRequestDetailsPage(context);
@@ -51,7 +51,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         public bool CheckTransferConnectionStatus(string Employer, string role)
         {
             By by;
-            switch(role)
+            switch (role)
             {
                 case "send":
                     by = ConnectionsSendRows;
@@ -62,7 +62,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
                 default:
                     return false;
             }
-            
+
             if (pageInteractionHelper.IsElementDisplayed(by))
             {
                 IList<IWebElement> rows = pageInteractionHelper.FindElements(by);

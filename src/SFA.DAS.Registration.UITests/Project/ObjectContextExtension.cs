@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string RegisteredEmailAddress = "registeredemailaddress";
         private const string RecentlyAddedOrganisationName = "recentlyaddedorganisationname";
         private static string AdditionalOrganisation(int index) => $"additionalorganisationkey_{index}";
-        
+
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string idOrUserRef, string organisationName)
@@ -66,7 +66,7 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetTransferSenderOrganisationName(this ObjectContext objectContext) => objectContext.Get(TransferSenderOrganisationNameKey);
         public static string GetTransferReceiverOrganisationName(this ObjectContext objectContext) => objectContext.Get(TransferReceiverOrganisationNameKey);
         public static string GetRecentlyAddedOrganisationName(this ObjectContext objectContext) => objectContext.Get(RecentlyAddedOrganisationName);
-        public static string GetAdditionalOrganisationName(this ObjectContext objectContext,int index) => objectContext.Get(AdditionalOrganisation(index));
+        public static string GetAdditionalOrganisationName(this ObjectContext objectContext, int index) => objectContext.Get(AdditionalOrganisation(index));
         internal static LoggedInAccountUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoggedInAccountUser>(LoggedInUserObject);
 
         private static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, int index) =>

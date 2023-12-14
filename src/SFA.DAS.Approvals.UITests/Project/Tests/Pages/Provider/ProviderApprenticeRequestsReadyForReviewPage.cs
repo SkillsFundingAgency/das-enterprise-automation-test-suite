@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override bool TakeFullScreenShot => false;
         private static By SortByDateReceivedLink => By.PartialLinkText("Date received");
 
-        public ProviderApprenticeRequestsReadyForReviewPage(ScenarioContext context) : base(context)  
+        public ProviderApprenticeRequestsReadyForReviewPage(ScenarioContext context) : base(context)
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(SortByDateReceivedLink), "Validate SortByDateReceived link on 'Ready to review' page");
         }

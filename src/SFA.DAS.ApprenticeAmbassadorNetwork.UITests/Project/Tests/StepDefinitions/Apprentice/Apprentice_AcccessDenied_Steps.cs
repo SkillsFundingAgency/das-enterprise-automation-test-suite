@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 public class Apprentice_AcccessDenied_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
     [Given(@"the non Private beta apprentice logs into AAN portal")]
-    public void GivenTheNonPrivateBetaApprenticeLogsIntoAANPortal() =>  new SignInPage(context).NonPrivateBetaUserDetails(context.Get<AanApprenticeNonBetaUser>());
+    public void GivenTheNonPrivateBetaApprenticeLogsIntoAANPortal() => new SignInPage(context).NonPrivateBetaUserDetails(context.Get<AanApprenticeNonBetaUser>());
 
     [Then(@"an Access Denied page should be displayed")]
     public void ThenAccessDeniedPageShouldBeDisplayed() =>

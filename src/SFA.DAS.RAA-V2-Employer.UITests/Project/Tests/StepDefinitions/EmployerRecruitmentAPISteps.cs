@@ -1,5 +1,5 @@
-﻿using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerSelectsTheRecruitmentAPIListPage() => _apiListPage = new YourApprenticeshipAdvertsHomePage(_context).ClickRecruitmentAPILink().ClickAPIKeysHereLink();
 
         [When(@"the employer selects Recruitment API from the list")]
-        
+
         public void WhenTheEmployerSelectsRecruitmentAPIFromTheList() => _keyforAPIPage = _apiListPage.ClickViewRecruitmentAPILink();
 
         [When(@"the employer selects Recruitment Sandbox API from the list")]

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -17,9 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By IsValidCourseErrorMsg => By.CssSelector("#error-message-IsValidCourseCode");
 
-        protected override By ContinueButton => By.CssSelector("#continue-button");        
+        protected override By ContinueButton => By.CssSelector("#continue-button");
 
-        public ProviderReviewChangesPage(ScenarioContext context) : base(context)  { }
+        public ProviderReviewChangesPage(ScenarioContext context) : base(context) { }
 
         public void VerifyLimitingStandardRestriction()
         {
@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderEditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
             SelectOption(ApproveSelector);
-            
+
             return new ProviderEditedApprenticeDetailsPage(context);
         }
 

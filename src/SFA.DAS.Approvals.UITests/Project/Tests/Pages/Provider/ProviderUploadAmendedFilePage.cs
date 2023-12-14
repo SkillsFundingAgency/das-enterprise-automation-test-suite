@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider

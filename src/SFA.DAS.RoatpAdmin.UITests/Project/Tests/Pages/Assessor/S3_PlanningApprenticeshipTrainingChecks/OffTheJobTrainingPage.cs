@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
     public class OffTheJobTrainingPage : AssessorBasePage
     {
         protected override string PageTitle => "Methods used to deliver 20% off the job training";
-        
+
         public OffTheJobTrainingPage(ScenarioContext context) : base(context) { }
 
         public OffTheJobTrainingRelevantToApprenticeshipBeingDeliveredPage SelectPassAndContinueInOffTheJobTrainingPage()

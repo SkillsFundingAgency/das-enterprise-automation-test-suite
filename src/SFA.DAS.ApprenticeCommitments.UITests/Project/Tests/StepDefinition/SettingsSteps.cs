@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
     {
         private readonly ScenarioContext _context;
 
-        public SettingsSteps(ScenarioContext context) : base(context)  => _context = context;
+        public SettingsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"an apprentice has a confirmed account")]
         public void GivenAnApprenticeHasAConfirmedAccount() => createAccountStepsHelper.CreateAccountViaApiAndConfirmApprenticeshipViaDb();
@@ -53,6 +53,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         private void NavigateToMailinatorClickOnNotificationLink(string email, string linkText) => new MailinatorStepsHelper(_context, email).OpenLink(linkText);
 
-        private TopBannerSettingsPage GetTopBannerSettingsPage() => new TopBannerSettingsPage(_context);
+        private TopBannerSettingsPage GetTopBannerSettingsPage() => new(_context);
     }
 }

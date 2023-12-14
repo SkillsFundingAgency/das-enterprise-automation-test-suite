@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
-        
+
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -88,7 +88,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
         public void AddOrganisationTypeDetails(OrgType orgType) => _doYouAcceptTheEmployerAgreementOnBehalfOfPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
-        
+
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -128,7 +128,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer does not sign the Agreement")]
         [Then(@"the Employer does not sign the Agreement")]
-        public void DoNotSignTheAgreement() => 
+        public void DoNotSignTheAgreement() =>
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
             .DoNotSignAgreement()
             .GoToTrainingProviderLink()

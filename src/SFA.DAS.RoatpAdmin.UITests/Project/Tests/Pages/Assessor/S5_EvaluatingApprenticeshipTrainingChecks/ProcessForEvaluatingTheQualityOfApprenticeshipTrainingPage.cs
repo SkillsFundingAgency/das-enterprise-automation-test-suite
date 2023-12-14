@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S5_EvaluatingA
     public class ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage : AssessorBasePage
     {
         protected override string PageTitle => "Process for evaluating the quality of training delivered include apprenticeship training";
-        
+
         public ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
 
         public ReviewProcessForEvaluatingPage SelectPassAndContinueInProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage()

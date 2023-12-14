@@ -1,44 +1,42 @@
-﻿using System.Collections.Generic;
-
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
+﻿namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class ProviderRoleApprenticeDataHelper : ProviderRoleApprenticeBaseDataHelper
     {
         public ProviderRoleApprenticeDataHelper() : base() => AddProviderRoleApprenticeTestData();
 
-        public (string firstname, string lastname) GetProviderRoleApprenticeTestData(string key) => GetData(key, firstname, lastname); 
+        public (string firstname, string lastname) GetProviderRoleApprenticeTestData(string key) => GetData(key, firstname, lastname);
 
         public void AddProviderRoleApprenticeTestData()
         {
-            _data.Add("ChangesForReviewApprentice", 
+            _data.Add("ChangesForReviewApprentice",
             [
                     new(firstname, "DoNotUse_TestData"),
-                    new(lastname, "ChangesForReviewApprentice"),
+                new(lastname, "ChangesForReviewApprentice"),
             ]);
             _data.Add("ChangesPendingApprentice",
             [
                     new(firstname, "DoNotUse_TestData"),
-                    new(lastname, "ChangesPendingApprentice"),
+                new(lastname, "ChangesPendingApprentice"),
             ]);
             _data.Add("ILRDataMisMatchRequestDetails",
             [
                     new(firstname, "DoNotUse_TestData"),
-                    new(lastname, "ILRDataMisMatchRequestDetails"),
+                new(lastname, "ILRDataMisMatchRequestDetails"),
             ]);
             _data.Add("LiveApprentice",
            [
                     new(firstname, "DoNotUse_TestData"),
-                    new(lastname, "LiveApprentice"),
+               new(lastname, "LiveApprentice"),
            ]);
             _data.Add("StoppedApprentice",
             [
                     new(firstname, "DoNotUse_TestData"),
-                    new(lastname, "StoppedApprentice"),
+                new(lastname, "StoppedApprentice"),
             ]);
             _data.Add("ILRDataMisMatchAskEmployerToFix",
             [
                     new(firstname, "DoNotUse_TestData"),
-                    new(lastname, "ILRDataMisMatchAskEmployerToFix"),
+                new(lastname, "ILRDataMisMatchAskEmployerToFix"),
             ]);
         }
     }

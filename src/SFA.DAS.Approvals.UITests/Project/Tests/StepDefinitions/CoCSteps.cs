@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
@@ -47,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _commitmentsDataHelper = context.Get<CommitmentsSqlDataHelper>();
-             _dataHelper = context.Get<ApprenticeDataHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
             _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
@@ -100,9 +99,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-                ProviderEditApprentice()
-                .EditApprenticeNameDobAndReference()
-                .AcceptChangesAndSubmit();
+            ProviderEditApprentice()
+            .EditApprenticeNameDobAndReference()
+            .AcceptChangesAndSubmit();
         }
 
         [When(@"the provider edits cost and course and confirm the changes before ILR match")]
@@ -168,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void ApproveCohort(bool isFirstCourse, EasAccountUser loginUser)
         {
-            if(isFirstCourse)
+            if (isFirstCourse)
                 _loginHelper.Login(loginUser, true);
             else
                 _objectContext.SetIsSameApprentice();

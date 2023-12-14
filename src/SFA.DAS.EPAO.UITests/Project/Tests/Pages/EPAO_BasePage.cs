@@ -6,7 +6,7 @@ public abstract class EPAO_BasePage : VerifyBasePage
     protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper;
     protected readonly EPAOApplyStandardDataHelper standardDataHelper;
     protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
-            
+
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading, .govuk-label--xl");
 
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -33,6 +33,6 @@ public abstract class EPAO_BasePage : VerifyBasePage
         formCompletionHelper.EnterText(ChooseFile, File);
         Continue();
     }
-           
+
     protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
 }

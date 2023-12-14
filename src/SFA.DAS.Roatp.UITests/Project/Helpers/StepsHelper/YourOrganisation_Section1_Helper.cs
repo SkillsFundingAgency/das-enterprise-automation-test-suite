@@ -140,7 +140,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-            internal ApplicationOverviewPage CompleteYourOrganisationSection_4_UnhappyPaths(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_UnhappyPaths(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()

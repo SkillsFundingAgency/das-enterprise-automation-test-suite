@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By WarningText => By.TagName("strong");
 
-        public ChangingTrainingProviderPage(ScenarioContext context) : base(context)  { }
+        public ChangingTrainingProviderPage(ScenarioContext context) : base(context) { }
 
         public EnterUkprnPage ClickOnContinueButton()
         {

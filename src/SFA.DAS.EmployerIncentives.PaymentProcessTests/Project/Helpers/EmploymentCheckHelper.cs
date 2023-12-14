@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers

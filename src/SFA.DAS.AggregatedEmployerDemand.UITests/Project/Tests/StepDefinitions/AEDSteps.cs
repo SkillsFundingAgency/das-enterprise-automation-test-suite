@@ -21,7 +21,7 @@ public class AedSteps(ScenarioContext context)
 
     [Then(@"the user can register interest without apprentices")]
     public void ThenTheUserCanRegisterInterestWithoutApprentices() => RegisterInterest(0);
-    
+
     [Then(@"the user can register interest with apprentices")]
     public void ThenTheUserCanRegisterInterestWithApprentices() => RegisterInterest(2);
 

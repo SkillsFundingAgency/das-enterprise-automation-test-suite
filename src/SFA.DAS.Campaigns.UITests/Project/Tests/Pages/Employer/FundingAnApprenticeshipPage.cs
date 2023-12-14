@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         #region Page Object Element
 
-        private readonly By __levyPayingEmployer= By.Id("levyPayerYes");
+        private readonly By __levyPayingEmployer = By.Id("levyPayerYes");
         private readonly By _nonLevyPayingEmployer = By.Id("levyPayerNo");
         private readonly By _continueButton = By.XPath("//button[contains(@class, 'button') and contains(text(), 'Continue')]");
 
@@ -28,7 +28,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(_continueButton);
             return new LevyingPayingEmployerPage(context);
         }
-        
+
         public NotSureLevyPayingEmployerPage NavigateToNotSureLevyEmployerPage()
         {
             formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);

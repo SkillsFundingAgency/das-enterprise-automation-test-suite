@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SFA.DAS.MongoDb.DataGenerator
+﻿namespace SFA.DAS.MongoDb.DataGenerator
 {
     public class GatewayCreds
     {

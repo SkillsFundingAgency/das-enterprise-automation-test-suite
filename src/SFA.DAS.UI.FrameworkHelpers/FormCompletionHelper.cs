@@ -41,7 +41,7 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
         EnterText(webDriver.FindElement(locator), text);
     }
 
-    public List<string> GetAllDropDownOptions(By bySelect) => GetAllDropDown(bySelect, (x) => x.Text); 
+    public List<string> GetAllDropDownOptions(By bySelect) => GetAllDropDown(bySelect, (x) => x.Text);
 
     public List<string> GetAllDropDownValue(By bySelect) => GetAllDropDown(bySelect, (x) => x.GetAttribute("value"));
 
@@ -104,7 +104,7 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
         var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
 
-        if (radioToSelect != null) { ClickElement(radioToSelect); SetDebugInformation($"Clicked 'for='{forAttribute}''"); } 
+        if (radioToSelect != null) { ClickElement(radioToSelect); SetDebugInformation($"Clicked 'for='{forAttribute}''"); }
     }
 
     public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);

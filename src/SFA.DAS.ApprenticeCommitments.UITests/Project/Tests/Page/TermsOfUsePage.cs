@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class TermsOfUsePage : ApprenticeCommitmentsBasePage
-    {       
+    {
         protected override string PageTitle => "Terms of use of service";
         protected override By ContinueButton => By.CssSelector("#main-content button.govuk-button");
 

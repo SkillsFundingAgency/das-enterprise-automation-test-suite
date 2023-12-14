@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -16,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NewStartYearInput => By.Id("new-start-year");
         private static By ContinueBtn => By.Id("continue-button");
 
-        public WhatIsTheNewStartDatePage(ScenarioContext context) : base(context)  { }
+        public WhatIsTheNewStartDatePage(ScenarioContext context) : base(context) { }
 
         public WhatIsTheNewStartDatePage EnterInvalidNewStartDate()
         {
@@ -31,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(NewStartMonthInput, DateTime.Now.Month.ToString());
             formCompletionHelper.EnterText(NewStartYearInput, DateTime.Now.Year.ToString());
-            formCompletionHelper.Click(ContinueBtn); 
+            formCompletionHelper.Click(ContinueBtn);
 
             return new WhatIsTheNewEndDatePage(context);
         }

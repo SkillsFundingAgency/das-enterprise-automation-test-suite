@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public GetStartedWithRecruitmentAPIsPage NavigateToRecruitmentAPIs()
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);
-            
+
             return new GetStartedWithRecruitmentAPIsPage(context);
         }
 
