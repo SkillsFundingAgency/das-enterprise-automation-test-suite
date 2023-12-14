@@ -4,8 +4,9 @@
 public class FrameworkHelpersSetup
 {
     private readonly ScenarioContext _context;
+    private readonly string[] _tags;
 
-    public FrameworkHelpersSetup(ScenarioContext context) => _context = context;
+    public FrameworkHelpersSetup(ScenarioContext context) { _context = context; _tags = _context.ScenarioInfo.Tags; }
 
     [BeforeScenario(Order = 1)]
     public void SetUpFrameworkHelpers()
@@ -14,9 +15,9 @@ public class FrameworkHelpersSetup
 
         _context.Set(new TryCatchExceptionHelper(objectContext));
 
-        objectContext.SetTestDataList();
+        objectContext.SetTestDataList(_tags);
     }
 
     [BeforeScenario(Order = 12)]
-    public void DataSetUpHelpers() => _context.Set(new ApprenticePPIDataHelper(_context.ScenarioInfo.Tags));
+    public void DataSetUpHelpers() => _context.Set(new ApprenticePPIDataHelper(_tags));
 }

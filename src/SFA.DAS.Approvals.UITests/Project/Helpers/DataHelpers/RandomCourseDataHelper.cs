@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
             {
-                isMultipleOptionStandard ? crsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : crsSqlhelper.GetSqlQueryWithNoOptions(larsCode)
+                isMultipleOptionStandard ? CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode)
             });
 
             _availableCourses = multiqueryResult[0];

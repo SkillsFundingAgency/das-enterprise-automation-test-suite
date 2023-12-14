@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers;
 
-public class EmployerLegalEntitiesSqlDbHelper : SqlDbHelper
+public class EmployerLegalEntitiesSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
 {
-    public EmployerLegalEntitiesSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
-
     public (string, string) GetEmployerAccountDetails()
     {
         List<string> queryResult = GetData("select top (1) a.HashedId, '\"accountLegalEntityPublicHashedId\":\"'+ ale.PublicHashedId +'\",\"name\":\"'+ ale.Name + '\"' as expected " +

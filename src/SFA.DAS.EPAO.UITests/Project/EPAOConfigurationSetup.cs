@@ -1,4 +1,7 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+
+namespace SFA.DAS.EPAO.UITests.Project;
 
 [Binding]
 public class EPAOConfigurationSetup
@@ -11,7 +14,7 @@ public class EPAOConfigurationSetup
     {
         var configSection = _context.Get<IConfigSection>();
 
-        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        _context.SetEPAOAssessorPortalUser(new List<EPAOAssessorPortalUser>
         {
             configSection.GetConfigSection<EPAOStandardApplyUser>(),
             configSection.GetConfigSection<EPAOAssessorUser>(),
@@ -20,7 +23,12 @@ public class EPAOConfigurationSetup
             configSection.GetConfigSection<EPAOApplyUser>(),
             configSection.GetConfigSection<EPAOE2EApplyUser>(),
             configSection.GetConfigSection<EPAOWithdrawalUser>(),
-            configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>()
+            configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>(),
+        });
+
+        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        {
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser())
         });
     }             
 }

@@ -249,7 +249,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderEditApprenticeDetailsPage(_context)
                  .EditStartDate("", "")
                  .EditEndDate("", "")
-                 .ClickSave();
+                 .ClickSave(false);
         }
 
         [Then(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]

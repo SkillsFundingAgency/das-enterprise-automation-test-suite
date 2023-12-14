@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         #region Helpers and Context
         protected readonly RoatpApplyDataHelpers applydataHelpers;
-        protected readonly RoatpApplyCreateUserDataHelpers applyCreateUserDataHelpers;
+        protected readonly RoatpApplyCreateUserDataHelper applyCreateUserDataHelpers;
         #endregion
 
         private static By Dob => By.CssSelector("#dob");
@@ -24,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public RoatpApplyBasePage(ScenarioContext context) : base(context)
         {
             applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
-            applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelpers>();
+            applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelper>();
         }
 
         protected void UploadMultipleFiles(int noOfFiles)

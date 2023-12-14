@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToYourAccountsPage().GoToHomePage(objectContext.GetOrganisationName());
 
-        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(StubSignInPage signInPage) => signInPage.Login(GetLoginCredentials()).ContinueToMyAccountTransferFundingPage();
+        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(StubSignInEmployerPage signInPage) => signInPage.Login(GetLoginCredentials()).ContinueToMyAccountTransferFundingPage();
 
         public new HomePage ReLogin() => Login(GetLoginCredentials());
     }

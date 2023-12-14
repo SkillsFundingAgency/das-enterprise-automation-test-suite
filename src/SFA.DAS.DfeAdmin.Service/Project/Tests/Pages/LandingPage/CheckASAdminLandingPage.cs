@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public class CheckASAdminLandingPage : CheckASLandingBasePage
+public class CheckASAdminLandingPage : CheckPageUsingPageTitle
 {
     protected override string PageTitle => ASAdminLandingPage.ASAdminPageTitle;
 

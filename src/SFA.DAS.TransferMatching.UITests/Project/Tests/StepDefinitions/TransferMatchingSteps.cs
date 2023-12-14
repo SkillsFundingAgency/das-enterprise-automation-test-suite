@@ -476,7 +476,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
-        private StubSignInPage ApplyForTransferFunds()
+        private StubSignInEmployerPage ApplyForTransferFunds()
         {
             SignOutAndGoToTransferMacthingApplyUrl();
 

@@ -45,7 +45,7 @@ public class DfeAdminLoginStepsHelper
 
     #endregion
 
-    private void CheckAndLoginTo(CheckASLandingBasePage checkPage, Func<ASLandingBasePage> landingPage, DfeAdminUser dfeAdminUser)
+    private void CheckAndLoginTo(CheckPageUsingPageTitle checkPage, Func<ASLandingBasePage> landingPage, DfeAdminUser dfeAdminUser)
     {
         if (checkPage.IsPageDisplayed()) landingPage().ClickStartNowButton();
 

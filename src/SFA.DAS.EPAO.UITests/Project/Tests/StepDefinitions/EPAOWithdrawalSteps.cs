@@ -24,7 +24,7 @@
         public void GivenUserVerifiesViewLinksNavigateToTheAppropriateCorrespondingPage() => _ePAOWithdrawalHelper.VerifyInProgressViewLinkNavigatesToApplicationOverviewPage();
 
         [Then(@"the admin user logs in to approve the standard withdrawal application")]
-        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage());
+        public void ThenTheAdminUserLogsInToApproveTheStandardWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveAStandardWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(false));
 
         [Then(@"the admin user logs in to approve the register withdrawal application")]
         public void ThenTheAdminUserLogsInToApproveTheRegisterWithdrawalApplication() => _ePAOWithdrawalHelper.ApproveARegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
@@ -57,7 +57,7 @@
         public void AmmendWithdrawalApplication() => _ePAOWithdrawalHelper.AmmendWithdrawalApplication();
 
         [Given(@"the admin user returns and reviews the ammended withdrawal notification")]
-        public void TheAdminUserReturnsAndReviewsTheAmmendedWithdrawalNotification() => _ePAOWithdrawalHelper.ApproveAmmendedRegisterWithdrawal(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
+        public void TheAdminUserReturnsAndReviewsTheAmmendedWithdrawalNotification() => _ePAOWithdrawalHelper.ApproveAmmendedRegisterWithdrawal(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));
 
         [Then(@"verify withdrawal from register approved and return to withdrawal applications")]
         public void VerifyWithdrawalFromRegisterApproved() => _ePAOWithdrawalHelper.VerifyWithdrawalFromRegisterApproved();

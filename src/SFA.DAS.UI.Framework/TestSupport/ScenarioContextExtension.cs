@@ -28,7 +28,6 @@ public static class ScenarioContextExtension
 
     #region Setters
     public static void SetManagingStandardsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ManagingStandatdsProjectConfigKey);
-    public static void SetRoatpConfig<T>(this ScenarioContext context, T value) => Set(context, value, RoatpProjectConfigKey);
     public static void SetApprovalsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprovalsProjectConfigKey);
     public static void SetProviderConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderConfigKey);
     public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderPermissionConfigKey);

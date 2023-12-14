@@ -8,10 +8,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerAccountsLegacyAPISteps : BaseSteps
+    public class EmployerAccountsLegacyAPISteps(ScenarioContext context) : BaseSteps(context)
     {
-        public EmployerAccountsLegacyAPISteps(ScenarioContext context) : base(context) { }
-
         [Then(@"endpoint api/accounts/\{hashedAccountId} from legacy accounts api can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdCanBeAccessed()
         {
@@ -80,7 +78,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"endpoint api/accountlegalentities\?pageNumber=(.*)&pageSize=(.*) from legacy accounts api can be accessed")]
-        public void ThenEndpointApiAccountlegalentitiesPageNumberPageSizeCanBeAccessed(int p0, int p1)
+        public void ThenEndpointApiAccountlegalentitiesPageNumberPageSizeCanBeAccessed(int _, int __)
         {
             _innerApiLegacyRestClient.ExecuteEndpoint("/api/accountlegalentities?pageNumber=1&pageSize=100", HttpStatusCode.OK);
         }

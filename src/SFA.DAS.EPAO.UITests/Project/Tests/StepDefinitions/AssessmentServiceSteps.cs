@@ -179,7 +179,7 @@ public class AssessmentServiceSteps : EPAOBaseSteps
             IsChangeOrganisationDetailsPersmissionDisplayed(_permissionsSelected); 
             IsPipelinePermissionDisplayed(_permissionsSelected); 
             IsCompletedAssessmentsPermissionDisplayed(_permissionsSelected);
-            IsApplyForAStandardPermissionDisplayed(_permissionsSelected);
+            IsManageStandardsPermissionDisplayed(_permissionsSelected);
             IsManageUsersPermissionDisplayed(_permissionsSelected);
             IsRecordGradesPermissionDisplayed(_permissionsSelected);
         });
@@ -247,7 +247,7 @@ public class AssessmentServiceSteps : EPAOBaseSteps
     private void IsChangeOrganisationDetailsPersmissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(expected));
     private void IsPipelinePermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsPipelinePermissionDisplayed(), "'Pipeline' " + AddAssertResultText(expected));
     private void IsCompletedAssessmentsPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsCompletedAssessmentsPermissionDisplayed(), "'Completed assessments' " + AddAssertResultText(expected));
-    private void IsApplyForAStandardPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsApplyForAStandardPermissionDisplayed(), "'Apply for a Standard' " + AddAssertResultText(expected));
+    private void IsManageStandardsPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsManageStandardsPermissionDisplayed(), "'Manage standards' " + AddAssertResultText(expected));
     private void IsManageUsersPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(expected));
     private void IsRecordGradesPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(expected));
 

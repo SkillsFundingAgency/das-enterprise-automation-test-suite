@@ -61,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
             return providerEditApprenticeDetailsPage.ClickEditSimplifiedPaymentsPilotLink()
                 .MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(isPilotLearner)
-                .EnterUlnAndSave();
+                .EnterUlnAndSave(true);
         }
 
         public ProviderApproveApprenticeDetailsPage EditAllDetailsOfApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 providerApproveApprenticeDetailsPage = providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
                     .ProviderSelectsAStandardForEditApprenticeDetails()
-                    .ClickSave();
+                    .ClickSave(true);
             }
             return providerApproveApprenticeDetailsPage;
         }
@@ -98,7 +98,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
                         editPage = func(editPage);
 
-                        providerApproveApprenticeDetailsPage = editPage.EnterUlnAndSave();
+                        providerApproveApprenticeDetailsPage = editPage.EnterUlnAndSave(true);
 
                         break;
                     }

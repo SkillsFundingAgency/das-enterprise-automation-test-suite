@@ -7,8 +7,8 @@ public abstract class EPAODataHelper
         CurrentDay = DateTime.Now.Day;
         CurrentMonth = DateTime.Now.Month;
         CurrentYear = DateTime.Now.Year;
-        RandomEmail = GetDateTimeValue() + "@mailinator.com";
-        RandomWebsiteAddress = "www.TEST" + GetDateTimeValue() + ".com";
+        RandomEmail = DateTimeExtension.GetDateTimeValue() + "@mailinator.com";
+        RandomWebsiteAddress = "www.TEST" + DateTimeExtension.GetDateTimeValue() + ".com";
     }
 
     public int CurrentDay { get; }
@@ -27,6 +27,4 @@ public abstract class EPAODataHelper
     public static string GetRandomNumber(int length) => RandomDataGenerator.GenerateRandomNumber(length);
 
     public static string GetRandomAlphabeticString(int length) => RandomDataGenerator.GenerateRandomAlphabeticString(length);
-
-    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
 }

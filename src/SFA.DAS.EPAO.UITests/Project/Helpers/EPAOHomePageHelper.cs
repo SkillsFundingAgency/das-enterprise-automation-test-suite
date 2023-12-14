@@ -1,5 +1,5 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+﻿using Polly;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
@@ -8,19 +8,21 @@ public class EPAOHomePageHelper
     private readonly ScenarioContext _context;
     private readonly TabHelper _tabHelper;
     private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
+    private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper;
 
     public EPAOHomePageHelper(ScenarioContext context)
     {
         _context = context;
         _tabHelper = context.Get<TabHelper>();
         _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
+        _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(_context);
     }
 
-    public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
+    public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab)
     {
-        var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
+        OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
-        new DfeAdminLoginStepsHelper(_context).SubmitValidAsLoginDetails(serviceStartPage);
+        _dfeAdminLoginStepsHelper.CheckAndLoginToAsAdmin();
 
         return new StaffDashboardPage(_context);
     }
@@ -34,31 +36,15 @@ public class EPAOHomePageHelper
 
     public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginGoToApplyForAStandardPage();
 
-    public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
-    {
-        OpenAdminBaseUrl(true).ClickStartNowButton();
+    public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(GovSignUser loginUser) { StubSign(loginUser); return new AP_PR1_SearchForYourOrganisationPage(_context); }
 
-        if (new CheckDfeSignInPage(_context).IsPageDisplayed()) { }
+    public AS_LoggedInHomePage LoginInAsNonApplyUser(GovSignUser loginUser) { StubSign(loginUser); return new AS_LoggedInHomePage(_context); }
 
-        return new StaffDashboardPage(_context);
-    }
-
-    public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInAsApplyUser(loginUser);
-
-    public AS_LoggedInHomePage LoginInAsNonApplyUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
-
-    public AS_LoggedInHomePage LoginInAsStandardApplyUser(NonEasAccountUser loginUser, string standardcode, string organisationId)
+    public AS_LoggedInHomePage LoginInAsStandardApplyUser(GovSignUser loginUser, string standardcode, string organisationId)
     {
         _ePAOSqlDataHelper.DeleteStandardApplicication(standardcode, organisationId, loginUser.Username);
 
         return LoginInAsNonApplyUser(loginUser);
-    }
-
-    private ASAdminLandingPage OpenAdminBaseUrl(bool openInNewTab)
-    {
-        OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
-
-        return new ASAdminLandingPage(_context);
     }
 
     private void OpenUrl(string url, bool openInNewTab)
@@ -66,5 +52,14 @@ public class EPAOHomePageHelper
         if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
     }
 
-    public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(NonEasAccountUser loginUser) => GoToEpaoAssessmentLandingPage().GoToLoginPage().SignInWithValidDetails(loginUser);
+    public AS_LoggedInHomePage StageTwoEPAOStandardCancelUser(GovSignUser loginUser) => LoginInAsNonApplyUser(loginUser);
+
+    private void StubSign(GovSignUser loginUser)
+    {
+        GoToEpaoAssessmentLandingPage().GoToStubSign().SubmitValidUserDetails(loginUser).Continue();
+
+        _context.Get<EPAOAdminDataHelper>().LoginEmailAddress = loginUser.Username;
+
+        _context.Set(new EPAOAssessorPortalLoggedInUser { Username = loginUser.Username, IdOrUserRef = loginUser.IdOrUserRef });
+    }
 }

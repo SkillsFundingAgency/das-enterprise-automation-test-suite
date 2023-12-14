@@ -3,19 +3,14 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class EmployerAccountsSqlHelper : SqlDbHelper
+    public class EmployerAccountsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
     {
-        private readonly ObjectContext _objectContext;
-
-        public EmployerAccountsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString)
-        {
-            _objectContext = objectContext;
-        }
-
         public string SetHashedAccountId(string accountId)
         {
             var id = GetDataAsString($"SELECT HashedId FROM [employer_account].[Account] WHERE id = '{accountId}' ");
-            _objectContext.SetHashedAccountId(id);
+
+            objectContext.SetHashedAccountId(id);
+
             return id;
         }
     }

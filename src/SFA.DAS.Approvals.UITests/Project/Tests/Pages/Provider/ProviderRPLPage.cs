@@ -13,25 +13,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void SelectNoAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByText("No");
-            Continue();
+            SelectAndContinue("No");
         }
 
-        public ProviderRPLDetailsPage SelectYesAndContinue()
+        public AddRPLDetailsPage SelectYesAndContinue()
         {
-            SelectYes();
-            return new ProviderRPLDetailsPage(context);
+            SelectAndContinue("Yes");
+            
+            return new AddRPLDetailsPage(context);
         }
 
-        public WhitelistedProviderRPLDetailsPage SelectYesAndContinue_RplWhiteListed()
+        private void SelectAndContinue(string x)
         {
-            SelectYes();
-            return new WhitelistedProviderRPLDetailsPage(context);
-        }
-
-        private void SelectYes()
-        {
-            formCompletionHelper.SelectRadioOptionByText("Yes");
+            formCompletionHelper.SelectRadioOptionByText(x);
             Continue();
         }
     }

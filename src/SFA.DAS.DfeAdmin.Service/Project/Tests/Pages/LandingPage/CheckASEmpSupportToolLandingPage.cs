@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 
-public class CheckASEmpSupportToolLandingPage : CheckASLandingBasePage
+public class CheckASEmpSupportToolLandingPage : CheckPageUsingPageTitle
 {
     protected override string PageTitle => ASEmpSupportToolLandingPage.ASEmpSupportToolPageTitle;
 
