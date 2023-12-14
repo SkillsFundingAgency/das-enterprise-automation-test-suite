@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
-public class RoatpV2SqlDataHelper : SqlDbHelper
+public class RoatpV2SqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.ManagingStandardsDbConnectionString)
 {
-    public RoatpV2SqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ManagingStandardsDbConnectionString) { }
-
     internal List<string> GetPortableFlexiJobLarsCode(string ukprn) => GetCourses($"select pc.LarsCode from ProviderCourse pc Join [Provider] p on pc.ProviderId = p.id where HasPortableFlexiJobOption = 1 and ukprn = '{ukprn}' order by NEWID();");
 
     internal List<string> GetCoursesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT LarsCode FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
@@ -23,5 +21,5 @@ public class RoatpV2SqlDataHelper : SqlDbHelper
         return data.ListOfArrayToList(0);
     }
 
-    private string ProviderCourseQuery(string ukprn) => $"SELECT LarsCode FROM [dbo].[ProviderCourse] WHERE ProviderId = (SELECT id FROM [Provider] WHERE ukprn = {ukprn})";
+    private static string ProviderCourseQuery(string ukprn) => $"SELECT LarsCode FROM [dbo].[ProviderCourse] WHERE ProviderId = (SELECT id FROM [Provider] WHERE ukprn = {ukprn})";
 }

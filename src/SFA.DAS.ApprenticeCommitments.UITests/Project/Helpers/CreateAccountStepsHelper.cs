@@ -12,28 +12,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 {
-    public class CreateAccountStepsHelper
+    public class CreateAccountStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        protected readonly ObjectContext _objectContext;
-        protected readonly RetryAssertHelper _assertHelper;
-        protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper;
-        private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
-        private readonly CommitmentsSqlHelper _commitmentsSqlHelper;
-        protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper;
-        protected readonly TabHelper tabHelper;
-
-        public CreateAccountStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _assertHelper = context.Get<RetryAssertHelper>();
-            _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
-            appreticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
-            tabHelper = context.Get<TabHelper>();
-        }
+        private readonly ScenarioContext _context = context;
+        protected readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        protected readonly RetryAssertHelper _assertHelper = context.Get<RetryAssertHelper>();
+        protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+        private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+        private readonly CommitmentsSqlHelper _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
+        protected readonly ApprenticeCommitmentsApiHelper appreticeCommitmentsApiHelper = new(context);
+        protected readonly TabHelper tabHelper = context.Get<TabHelper>();
+        private static readonly int[] x = [5, 8, 10];
 
         public StartPage OpenLatestInvitation(int noOfRegistrations)
         {
@@ -48,7 +37,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 Assert.AreEqual(noOfRegistrations, registrationIds.Count, $"Registration id expected to be {noOfRegistrations} in total but found {registrationIds.Count} in the aComt db for email '{email}'");
             });
 
-            return OpenInvitation(_aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title));
+            return OpenInvitation(_aComtSqlDbHelper.GetRegistrationId(email));
         }
 
         public ApprenticeOverviewPage CreateAccountViaApiAndConfirmApprenticeshipViaDb()
@@ -104,7 +93,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new StartPage(_context);
         }
 
-        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(new int[] { 5, 8, 10 }));
+        private void RetryGetRegistrationId(Action action) => _assertHelper.RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan(x));
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
     }

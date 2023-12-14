@@ -1,21 +1,17 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SFA.DAS.EmployerAccounts.APITests.Project.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 {
 
     [Binding]
-    public class EmployerAccountsAPISteps : BaseSteps
+    public class EmployerAccountsAPISteps(ScenarioContext context) : BaseSteps(context)
     {
-
-        public EmployerAccountsAPISteps(ScenarioContext context) : base(context) { }
-
         [Then(@"the employer accounts outer api is reachable")]
         public void ThenTheEmployerAccountsOuterApiIsReachable() => _employerAccountsOuterApiHelper.Ping();
 
@@ -43,13 +39,13 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesCanBeAccessed()
         {
             var hashedAccountId = _objectContext.GetHashedAccountId();
-           _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes", HttpStatusCode.OK);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/\{payeSchemeRef} can be accessed")]
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/scheme?ref=\{payeSchemeRef} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesPayeSchemeRefCanBeAccessed()
-        {           
+        {
             var hashedAccountId = _objectContext.GetHashedAccountId();
             var payeschemeRef = _objectContext.GetPayeSchemeRefId();
             var encodepayeschemeRef = Uri.EscapeDataString(payeschemeRef);
@@ -59,12 +55,12 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         [Then(@"endpoint /api/accounts can be accessed")]
         public void ThenEndpointApiAccountsCanBeAccessed()
         {
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/", HttpStatusCode.OK);            
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdCanBeAccessed()
-        {               
+        {
             var hashedAccountId = _objectContext.GetHashedAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}", HttpStatusCode.OK);
         }
@@ -78,7 +74,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/users can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdUsersCanBeAccessed()
-        {   
+        {
             var hashedAccountId = _objectContext.GetHashedAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/users", HttpStatusCode.OK);
         }
@@ -86,11 +82,11 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 
         [Then(@"endpoint /api/accounts/internal/\{accountId}/users can be accessed")]
         public void ThenEndpointApiAccountsInternalAccountIdUsersCanBeAccessed()
-        {       
+        {
             var accountId = _objectContext.GetAccountId();
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/internal/{accountId}/users", HttpStatusCode.OK);
         }
-        
+
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalEntities/\{hashedlegalEntityId}/agreements/\{agreementId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalEntitiesHashedlegalEntityIdAgreementsAgreementIdCanBeAccessed()
         {
@@ -98,7 +94,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             var hashedAgreementId = _hashingService.HashValue((long)result[0][1]);
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetHashedAccountId()}/legalentities/{result[0][0]}/agreements/{hashedAgreementId}", HttpStatusCode.OK);
         }
-        
+
         [Then(@"endpoint /api/user/\{userRef}/accounts can be accessed")]
         public void ThenEndpointApiUserUserRefAccountsCanBeAccessed()
         {
@@ -108,19 +104,19 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
 
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalentities can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalentitiesCanBeAccessed()
-        {   
+        {
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetHashedAccountId()}/legalentities", HttpStatusCode.OK);
         }
-        
+
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/legalentities/\{legalEntityId} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdLegalentitiesLegalEntityIdCanBeAccessed()
-        {        
+        {
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{_objectContext.GetHashedAccountId()}/legalentities/{_objectContext.GetLegalEntityId()}", HttpStatusCode.OK);
         }
 
         [Then(@"endpoint /api/statistics can be accessed")]
         public void ThenEndpointApiStatisticsCanBeAccessed()
-        {   
+        {
             _innerApiRestClient.ExecuteEndpoint("/api/statistics", HttpStatusCode.OK);
         }
 
@@ -149,8 +145,8 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
         public void ThenEndpointAccountsHashedAccountIdTransactionsYearMonthCanBeAccessed()
         {
             var hashedAccountId = _objectContext.GetHashedAccountId();
-            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions");            
-            var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);            
+            var response = _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions");
+            var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);
             _innerApiLegacyRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
         }
 

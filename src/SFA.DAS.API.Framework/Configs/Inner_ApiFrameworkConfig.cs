@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.API.Framework.Configs;
 
-public class Inner_ApiFrameworkConfig 
+public class Inner_ApiFrameworkConfig(Inner_ApiAuthTokenConfig config)
 {
-    public Inner_ApiAuthTokenConfig config;
-
-    public Inner_ApiFrameworkConfig(Inner_ApiAuthTokenConfig config) => this.config = config;
+    public Inner_ApiAuthTokenConfig config = config;
 
     internal bool IsVstsExecution { get; init; }
 

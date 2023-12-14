@@ -13,20 +13,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public void VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList);
     }
 
-    public sealed class VerifyBulkUploadApprentices : InitialiseBasePage, IVerifyBulkUploadApprentices
+    public sealed class VerifyBulkUploadApprentices(ScenarioContext context) : InitialiseBasePage(context), IVerifyBulkUploadApprentices
     {
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
 
         private static By CohortsSaveTableRows => By.CssSelector("tbody tr");
         private static By EmployerName => By.CssSelector("td.govuk-table__cell[data-label='EmployerName']");
         private static By Cohort => By.CssSelector("td.govuk-table__cell[data-label='CohortReference']");
         private static By NumberOfApprentices => By.CssSelector("td.govuk-table__cell[data-label='NumberOfApprenticeships']");
-
-
-        public VerifyBulkUploadApprentices(ScenarioContext context) : base(context)
-        {
-            _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
-        }
 
         public void VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
@@ -37,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 .Where(y => string.IsNullOrWhiteSpace(y.Key.CohortRef))
                 .Select(z =>
                 {
-                    var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReferenceWithNoContinuation(z.First().ULN, context.ScenarioInfo.Title);
+                    var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReferenceWithNoContinuation(z.First().ULN);
                     return new { cohortRef, z.Key.AgreementId };
                 }).ToList();
 

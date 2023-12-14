@@ -24,7 +24,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private GgSignInPage _gGSignInPage;
         private SearchForYourOrganisationPage _searchForYourOrganisationPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
-        private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;

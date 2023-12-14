@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class EmploymentChecksSqlDbHelper : SqlDbHelper
+    public class EmploymentChecksSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.EmploymentCheckDbConnectionString)
     {
-        private readonly DbConfig _dbConfig;
         private int employmentCheckId;
         private Guid correlationId;
-
-        public EmploymentChecksSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.EmploymentCheckDbConnectionString) { _dbConfig = dbConfig; }
 
         public async Task<int> InsertData(string checkType, long uln, long accountId, DateTime minDate, DateTime maxDate)
         {
@@ -68,7 +65,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand(query);
         }
 
-        internal string getErrorTypeFromEmploymentCheckTable()
+        internal string GetErrorTypeFromEmploymentCheckTable()
         {
             string query = $"select ErrorType from [Business].[EmploymentCheck] where Id = {employmentCheckId}";
 
@@ -76,7 +73,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             
         }
 
-        internal int getCountFromDataCollectionResponse(long uln)
+        internal int GetCountFromDataCollectionResponse(long uln)
         {
             string query = $" SELECT COUNT(*) FROM [Cache].[DataCollectionsResponse] " +
                 $" WHERE CorrelationId = '{correlationId}' AND Uln = '{uln}'";
@@ -94,7 +91,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return Convert.ToInt32(GetDataAsString(query));
         }
 
-        internal int? getEmploymentCheckStatusWithId()
+        internal int? GetEmploymentCheckStatusWithId()
         {
             int count = 0;
 
@@ -154,7 +151,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return queryResult.Count;
         }
 
-        internal List<object[]> getHmrcRequestCompletionStatuses(int Id)
+        internal List<object[]> GetHmrcRequestCompletionStatuses(int Id)
         {
             string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id > {Id}";
@@ -164,7 +161,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return completionStatuses;
         }
 
-        internal int getHmrcRequestCompletionStatus(int Id)
+        internal int GetHmrcRequestCompletionStatus(int Id)
         {
             string query = $"select RequestCompletionStatus from [Cache].[EmploymentCheckCacheRequest] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and Id = {Id}";
@@ -172,7 +169,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return Convert.ToInt16(GetDataAsString(query));
         }
 
-        internal int getNumberOfHmrcCallsAfterId(int EmploymentCheckCacheRequestId)
+        internal int GetNumberOfHmrcCallsAfterId(int EmploymentCheckCacheRequestId)
         {
             string query = $" select COUNT(*) from[Cache].[EmploymentCheckCacheResponse] " +
                 $" where ApprenticeEmploymentCheckId = {employmentCheckId} and EmploymentCheckCacheRequestId > {EmploymentCheckCacheRequestId} ";
@@ -301,7 +298,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return (employed, result[0][1].ToString() == "" ? null : result[0][1].ToString(), result[0][2].ToString());
         }
 
-        internal List<object[]> getRelatedsPayeFromEmploymentCheckCacheRequestRows()
+        internal List<object[]> GetRelatedsPayeFromEmploymentCheckCacheRequestRows()
         {
             int count = 0;
 
@@ -321,7 +318,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers
             return result;
         }
 
-        internal List<object[]> getEmploymentCheckCacheRequestRows()
+        internal List<object[]> GetEmploymentCheckCacheRequestRows()
         {
             int count = 0;
 

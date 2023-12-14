@@ -43,7 +43,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Given(@"employment check record status is '([^']*)'")]
         public void GivenEmploymentCheckRecordHasBeenPickedForProcessing(int expectedStatus)
         {
-            int? completionStatus = _employmentChecksSqlDbHelper.getEmploymentCheckStatusWithId();
+            int? completionStatus = _employmentChecksSqlDbHelper.GetEmploymentCheckStatusWithId();
 
             Assert.AreEqual(expectedStatus, completionStatus, "Unexpected RequestCompletionStatus column value in [Business].[EmploymentCheck] table");
         }
@@ -51,7 +51,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         [Then(@"business outcome for the check is set to '([^']*)'")]
         public void ThenBusinessOutcomeForTheCheckIsSetTo(string errorType)
         {
-            Assert.AreEqual(errorType, _employmentChecksSqlDbHelper.getErrorTypeFromEmploymentCheckTable(), "Unexpected Error Type found");
+            Assert.AreEqual(errorType, _employmentChecksSqlDbHelper.GetErrorTypeFromEmploymentCheckTable(), "Unexpected Error Type found");
         }
 
 
@@ -127,7 +127,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions
         {
             _payeSchemes = _testData.PayeScheme.Split(',').ToList();
 
-            var requests = _employmentChecksSqlDbHelper.getRelatedsPayeFromEmploymentCheckCacheRequestRows();
+            var requests = _employmentChecksSqlDbHelper.GetRelatedsPayeFromEmploymentCheckCacheRequestRows();
 
             Assert.AreEqual(_payeSchemes.Count, requests.Count, $"Incorrect number of EmploymentCheckCacheRequest returned.");
 
