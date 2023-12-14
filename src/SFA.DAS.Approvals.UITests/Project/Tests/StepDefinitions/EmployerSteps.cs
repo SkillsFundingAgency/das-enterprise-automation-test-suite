@@ -60,8 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Stop the apprentice")]
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
-            _apprenticeDetailsPage = _employerStepsHelper
-            .StopApprenticeThisMonth(_apprenticeDetailsPage, StopApprentice.Withdrawn)
+            _apprenticeDetailsPage = EmployerStepsHelper.StopApprenticeThisMonth(_apprenticeDetailsPage, StopApprentice.Withdrawn)
              .ValidateFlashMessage("Apprenticeship stopped");
         }
 
@@ -167,7 +166,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
-            => SetCohortReference(_employerStepsHelper.EmployerApproveAndSendToProvider(NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false)));
+            => SetCohortReference(EmployerStepsHelper.EmployerApproveAndSendToProvider(NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false)));
 
         [When(@"the Employer uses the reservation and (.*) confirm only standard courses are selectable and adds (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(bool shouldConfirmOnlyStandardCoursesSelectable, int numberOfApprentices)

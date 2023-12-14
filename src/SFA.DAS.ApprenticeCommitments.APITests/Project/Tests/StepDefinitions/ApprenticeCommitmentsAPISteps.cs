@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeCommitmentsAPISteps(ScenarioContext context)
     {
-        private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper = new ApprenticeCommitmentsApiHelper(context);
+        private readonly ApprenticeCommitmentsApiHelper _apprenticeCommitmentsApiHelper = new(context);
         private readonly Inner_CommitmentsApiRestClient _innerApiRestClient = context.GetRestClient<Inner_CommitmentsApiRestClient>();
         private readonly AccountsAndCommitmentsSqlHelper _apprenticeCommitmentSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
 

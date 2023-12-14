@@ -4,12 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ChangeYourPersonalDetailsPage : PersonalDetailsBasePage
+    public class ChangeYourPersonalDetailsPage(ScenarioContext context) : PersonalDetailsBasePage(context)
     {
         protected override string PageTitle => $"Change your personal details";
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
-
-        public ChangeYourPersonalDetailsPage(ScenarioContext context) : base(context)  { }
 
         public new ApprenticeHomePage UpdateApprenticeName()
         {

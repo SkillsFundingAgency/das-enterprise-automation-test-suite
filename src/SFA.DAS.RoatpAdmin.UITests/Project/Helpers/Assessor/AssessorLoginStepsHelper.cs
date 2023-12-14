@@ -6,7 +6,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class AssessorLoginStepsHelper(ScenarioContext context)
     {
-        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(context);
+        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper = new(context);
 
         public RoatpAssessorApplicationsHomePage Assessor1Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor1(); return new(context); }
 

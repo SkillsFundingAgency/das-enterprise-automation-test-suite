@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
@@ -12,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         protected const string firstname = "firstname";
         protected const string lastname = "lastname";
 
-        public ProviderRoleApprenticeBaseDataHelper() => _data = new Dictionary<string, List<KeyValuePair<string, string>>>();
+        public ProviderRoleApprenticeBaseDataHelper() => _data = [];
 
 
         protected (string value1, string value2) GetData(string key, string value1Key, string value2Key)
@@ -31,6 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private List<KeyValuePair<string, string>> FindKeyValuePairs(string key) => _data.TryGetValue(key, out var keyValuePair) ? keyValuePair : throw new KeyNotFoundException($"Can not find data for key {key}");
 
-        private string FindValue(List<KeyValuePair<string, string>> keyValuePairs, string valuekey) => keyValuePairs.First(x => x.Key == valuekey).Value;
+        private static string FindValue(List<KeyValuePair<string, string>> keyValuePairs, string valuekey) => keyValuePairs.First(x => x.Key == valuekey).Value;
     }
 }

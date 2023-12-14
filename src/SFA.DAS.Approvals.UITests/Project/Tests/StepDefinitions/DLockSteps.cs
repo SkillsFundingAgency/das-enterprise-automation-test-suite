@@ -72,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
 
-            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
+            EmployerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
 
             apprenticeDetails.VerifyIfChangeRequestWasApproved();
         }

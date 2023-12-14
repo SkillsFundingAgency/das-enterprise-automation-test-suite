@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderApproveApprenticeDetailsPage PilotProviderAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
         {
-            ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(SimplifiedPaymentsPilotPage page) => page.MakePaymentsPilotSelectionAndContinueToSelectStandardPage().ProviderSelectsAStandardForFlexiPilotLearner().SubmitValidApprenticeDetails();
+            static ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(SimplifiedPaymentsPilotPage page) => page.MakePaymentsPilotSelectionAndContinueToSelectStandardPage().ProviderSelectsAStandardForFlexiPilotLearner().SubmitValidApprenticeDetails();
 
             _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(0);
 

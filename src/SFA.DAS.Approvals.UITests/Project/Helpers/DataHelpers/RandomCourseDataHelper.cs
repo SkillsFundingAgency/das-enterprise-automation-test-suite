@@ -17,10 +17,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         {
             var crsSqlhelper = new CrsSqlhelper(objectContext, dbConfig);
 
-            var multiqueryResult = crsSqlhelper.GetApprenticeCourse(new List<string>
-            {
+            var multiqueryResult = crsSqlhelper.GetApprenticeCourse(
+            [
                 isMultipleOptionStandard ? CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode)
-            });
+            ]);
 
             _availableCourses = multiqueryResult[0];
         }

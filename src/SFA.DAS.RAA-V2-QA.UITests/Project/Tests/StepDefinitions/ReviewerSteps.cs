@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ReviewerSteps(ScenarioContext context)
     {
-        private readonly ReviewerStepsHelper _reviewerStepsHelper = new ReviewerStepsHelper(context);
+        private readonly ReviewerStepsHelper _reviewerStepsHelper = new(context);
         private Reviewer_HomePage reviewer_HomePage;
 
         [When(@"Reviewer is logged into QA Application")]

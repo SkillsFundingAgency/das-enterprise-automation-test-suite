@@ -11,13 +11,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     public class CohortReferenceHelper
     {
         private readonly ObjectContext _objectContext;
-        private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
 
         public CohortReferenceHelper(ScenarioContext context)
         {
-            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(_objectContext, context.Get<DbConfig>());

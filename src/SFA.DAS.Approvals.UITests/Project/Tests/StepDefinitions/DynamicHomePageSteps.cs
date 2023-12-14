@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var addAnApprenitcePage = _reservationStepsHelper.GoToAddAnApprentices();
 
-            _employerStepsHelper.DynamicHomePageStartToAddApprentice(addAnApprenitcePage);
+            EmployerStepsHelper.DynamicHomePageStartToAddApprentice(addAnApprenitcePage);
         }
 
         [Then(@"The TrainingProvider approves apprentice by adding further details")]

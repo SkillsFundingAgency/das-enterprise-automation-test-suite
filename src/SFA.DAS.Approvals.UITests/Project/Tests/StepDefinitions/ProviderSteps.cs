@@ -99,7 +99,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerDeleteStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider is able to delete the cohort before approval")]
-        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => _providerDeleteStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => ProviderDeleteStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
 
         [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -70,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterFurtherDetailsPage NationalMinimumWage()
         {
             formCompletionHelper.SelectRadioOptionByText("National Minimum Wage");
-            return this;            
+            return this;
         }
 
         public RAA_EnterFurtherDetailsPage FixedWage()
