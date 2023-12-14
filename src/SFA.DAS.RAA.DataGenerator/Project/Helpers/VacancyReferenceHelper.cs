@@ -5,24 +5,13 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class VacancyReferenceHelper
+    public class VacancyReferenceHelper(PageInteractionHelper pageInteractionHelper, ObjectContext objectContext)
     {
-        #region Helpers and Context
-        private readonly ObjectContext _objectContext;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
-        public VacancyReferenceHelper(PageInteractionHelper pageInteractionHelper, ObjectContext objectContext)
-        {
-            _objectContext = objectContext;
-            _pageInteractionHelper = pageInteractionHelper;
-        }
-
         public void SetVacancyReference(By vacancyReferenceNumber)
         {
-            var referenceNumber = _pageInteractionHelper.GetText(vacancyReferenceNumber);
+            var referenceNumber = pageInteractionHelper.GetText(vacancyReferenceNumber);
 
-            _objectContext.SetVacancyReference(RegexHelper.GetVacancyReference(referenceNumber));
+            objectContext.SetVacancyReference(RegexHelper.GetVacancyReference(referenceNumber));
         }
     }
 }
