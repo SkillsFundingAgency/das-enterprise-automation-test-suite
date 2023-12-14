@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class ManageTransferMatchingPage : TransferMatchingBasePage
+    public class ManageTransferMatchingPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Manage transfers";
 
         private static By CreateTransferPledgeSelector => By.LinkText("Create a transfers pledge");
         private static By ApplyForTransferOppurtunitySelector => By.LinkText("Apply for transfer opportunities");
         private static By TransferAllowanceSection => By.TagName("column-two-thirds");
-
-        public ManageTransferMatchingPage(ScenarioContext context) : base(context) { }
 
         public ManageTransferMatchingPage VerifyTransferAllowanceText()
         {

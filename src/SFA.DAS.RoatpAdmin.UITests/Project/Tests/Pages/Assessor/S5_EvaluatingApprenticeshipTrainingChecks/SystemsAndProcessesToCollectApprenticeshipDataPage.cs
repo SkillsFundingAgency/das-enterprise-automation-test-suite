@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S5_EvaluatingApprenticeshipTrainingChecks
 {
-    public class SystemsAndProcessesToCollectApprenticeshipDataPage : AssessorBasePage
+    public class SystemsAndProcessesToCollectApprenticeshipDataPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Systems and processes to collect apprenticeship data";
-
-        public SystemsAndProcessesToCollectApprenticeshipDataPage(ScenarioContext context) : base(context) { }
 
         public ILRDataPage SelectPassAndContinueInSystemsAndProcessesToCollectApprenticeshipDataPage()
         {

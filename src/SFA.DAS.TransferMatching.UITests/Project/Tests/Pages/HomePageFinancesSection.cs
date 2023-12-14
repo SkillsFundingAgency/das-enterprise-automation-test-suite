@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class HomePageFinancesSection_YourTransfers : HomePageFinancesSection
+    public class HomePageFinancesSection_YourTransfers(ScenarioContext context) : HomePageFinancesSection(context)
     {
-        public HomePageFinancesSection_YourTransfers(ScenarioContext context) : base(context) { }
-
         private static By HomeButton => By.CssSelector("#navigation > li:nth-child(1) > a");
         public ManageTransferMatchingPage NavigateToTransferMatchingPage()
         {

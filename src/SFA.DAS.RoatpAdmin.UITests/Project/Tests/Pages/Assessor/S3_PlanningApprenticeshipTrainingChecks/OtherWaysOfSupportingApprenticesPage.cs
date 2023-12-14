@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApprenticeshipTrainingChecks
 {
-    public class OtherWaysOfSupportingApprenticesPage : AssessorBasePage
+    public class OtherWaysOfSupportingApprenticesPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Other ways of supporting apprentices";
-
-        public OtherWaysOfSupportingApprenticesPage(ScenarioContext context) : base(context) { }
     }
 }

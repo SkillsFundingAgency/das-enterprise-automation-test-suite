@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringApprenticeshipTrainingChecks
 {
-    public class HowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage : AssessorBasePage
+    public class HowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "How has this person worked with employers to develop and deliver training";
-
-        public HowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage(ScenarioContext context) : base(context) { }
 
         public OverallManagerForTheTeamPage SelectPassAndContinueInHowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage()
         {

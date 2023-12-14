@@ -3,14 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringApprenticeshipTrainingChecks
 {
-    public class YourSectorsAndEmployeesPage : AssessorBasePage
+    public class YourSectorsAndEmployeesPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Sectors and employee experience";
-        public string DigitalLinkText => "Digital";
+        public static string DigitalLinkText => "Digital";
         private By DigitalLink => By.LinkText($"{DigitalLinkText}");
         private static By GoToApplicationAssessmentOverviewLink => By.LinkText("Go to application assessment overview");
-
-        public YourSectorsAndEmployeesPage(ScenarioContext context) : base(context) { }
 
         public DeliveringTrainingInDigitalSectorPage NavigateToDeliveringTrainingInDigitalSectorPage()
         {
