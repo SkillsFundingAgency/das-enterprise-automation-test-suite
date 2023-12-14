@@ -12,7 +12,7 @@ public abstract class ApprenticeshipTrainingCourseBasePage : FATV2BasePage
 
         var currentURL = GetUrl();
 
-        if (!currentURL.ToLower().Contains(environmentName))
+        if (!currentURL.Contains(environmentName, System.StringComparison.CurrentCultureIgnoreCase))
         {
             var newURL = currentURL.Insert(8, environmentName);
 

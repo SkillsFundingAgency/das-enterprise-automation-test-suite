@@ -2,26 +2,17 @@ namespace SFA.DAS.ProvideFeedback.UITests;
 
 
 [Binding]
-public class EmployerFeedbackSteps
+public class EmployerFeedbackSteps(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
     private EmployerFeedbackCheckYourAnswersPage _providerFeedbackCheckYourAnswers;
-    private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-    private readonly EmployerFeedbackSqlHelper _provideFeedbackSqlHelper;
-    private readonly ObjectContext _objectContext;
-
-    public EmployerFeedbackSteps(ScenarioContext context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-        _provideFeedbackSqlHelper = context.Get<EmployerFeedbackSqlHelper>();
-    }
+    private readonly EmployerPortalLoginHelper _employerPortalLoginHelper = new(context);
+    private readonly EmployerFeedbackSqlHelper _provideFeedbackSqlHelper = context.Get<EmployerFeedbackSqlHelper>();
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
     [Given(@"the Employer logins into Employer Portal")]
     public void WhenTheEmployerLoginsIntoEmployerPortal()
     {
-        var user = _context.GetUser<EmployerFeedbackUser>();
+        var user = context.GetUser<EmployerFeedbackUser>();
 
         _employerPortalLoginHelper.Login(user, true);
 
@@ -31,7 +22,7 @@ public class EmployerFeedbackSteps
     [Given(@"completes the feedback journey for a training provider")]
     public void GivenCompletesTheFeedbackJourneyForATrainingProvider()
     {
-        _providerFeedbackCheckYourAnswers = GoToCheckYourAnswersPage(new EmployerDashboardPage(_context)
+        _providerFeedbackCheckYourAnswers = GoToCheckYourAnswersPage(new EmployerDashboardPage(context)
            .ClickFeedbackLink()
            .SelectTrainingProvider()
            .ConfirmTrainingProvider());
@@ -42,7 +33,7 @@ public class EmployerFeedbackSteps
     [Given(@"completes the feedback journey for a training provider via survey code")]
     public void GivenCompletesTheFeedbackJourneyForATrainingProviderViaSurveyCode()
     {
-        _providerFeedbackCheckYourAnswers = GoToCheckYourAnswersPage(new EmployerDashboardPage(_context)
+        _providerFeedbackCheckYourAnswers = GoToCheckYourAnswersPage(new EmployerDashboardPage(context)
             .OpenFeedbackLinkWithSurveyCode());
     }
 
@@ -59,7 +50,7 @@ public class EmployerFeedbackSteps
     }
 
     [Then(@"the user can not resubmit the feedback")]
-    public void ThenTheUserCanNotResubmitTheFeedback() => new EmployerFeedbackAlreadySubmittedPage(_context);
+    public void ThenTheUserCanNotResubmitTheFeedback() => _ = new EmployerFeedbackAlreadySubmittedPage(context);
 
     private static EmployerFeedbackCheckYourAnswersPage GoToCheckYourAnswersPage(EmployerFeedbackHomePage page)
     {

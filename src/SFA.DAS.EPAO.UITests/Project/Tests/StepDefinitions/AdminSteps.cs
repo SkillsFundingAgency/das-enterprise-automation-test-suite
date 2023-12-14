@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class AdminSteps : EPAOBaseSteps
+public class AdminSteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
     private ConfirmReasonBasePage confirmReasonBasePage;
     private ConfirmationAmendReprintBasePage confirmationAmendReprintBasePage;
-
-    public AdminSteps(ScenarioContext context) : base(context) { }
 
     [Then(@"the admin can add organisation")]
     public void ThenTheAdminCanAddOrganisation() => AdminStepshelper.AddOrganisation(GoToEpaoAdminHomePage());

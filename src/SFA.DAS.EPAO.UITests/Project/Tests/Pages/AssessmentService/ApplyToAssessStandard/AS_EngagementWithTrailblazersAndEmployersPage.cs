@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_EngagementWithTrailblazersAndEmployersPage : AS_EPAOApplyStandardBasePage
+public class AS_EngagementWithTrailblazersAndEmployersPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "Engagement with trailblazers and employers";
-
-    public AS_EngagementWithTrailblazersAndEmployersPage(ScenarioContext context) : base(context) { }
 
     public AS_MembershipProfessionalPage EnterEngagement()
     {

@@ -104,7 +104,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             return yourAdvert.GoToVacancyCompletedPage();
         }
 
-        private void ConfirmationMessage(VacancyReferencePage vacancyReferencePage, string expected) => AssertMessage(expected, vacancyReferencePage.GetConfirmationMessage());
+        private static void ConfirmationMessage(VacancyReferencePage vacancyReferencePage, string expected) => AssertMessage(expected, vacancyReferencePage.GetConfirmationMessage());
 
         private static void AssertMessage(string expected, string actual) => StringAssert.Contains(expected, actual);
 

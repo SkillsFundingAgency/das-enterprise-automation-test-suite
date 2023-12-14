@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_HowRecruitAndTrainAssessorsPage : AS_EPAOApplyStandardBasePage
+public class AS_HowRecruitAndTrainAssessorsPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "How do you recruit and train assessors?";
-
-    public AS_HowRecruitAndTrainAssessorsPage(ScenarioContext context) : base(context) { }
 
     public AS_ExperiencePage EnterHowRecruitAndTrainAssessors()
     {

@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class AssessmentOpportunitySteps : EPAOBaseSteps
+public class AssessmentOpportunitySteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
-    private readonly ScenarioContext _context;
-
-    public AssessmentOpportunitySteps(ScenarioContext context) : base(context) => _context = context;
+    private readonly ScenarioContext _context = context;
 
     [When(@"the User visits the Assessment Opportunity Application")]
     public void WhenTheUserVisitsTheAssessmentOpportunityApplication()
@@ -24,7 +22,7 @@ public class AssessmentOpportunitySteps : EPAOBaseSteps
     public void WhenTheUserClicksOnApplyToAssessThisStandard() => new AO_ApprovedStandardDetailsPage(_context).ClickApplyToThisStandardButton();
 
     [Then(@"the User is redirected to 'Assessment Service' application")]
-    public void ThenTheUserIsRedirectedToAssessmentServiceApplication() => new AS_LandingPage(_context);
+    public void ThenTheUserIsRedirectedToAssessmentServiceApplication() => _ = new AS_LandingPage(_context);
 
     [When(@"the User clicks on one of the standards listed under 'In-development' tab to view it")]
     public void WhenTheUserClicksOnOneOfTheStandardsListedUnderInDevelopmentTabToViewIt() => homePage.ClickInDevelopmentTab().ClickOnInDevelopmentStandardLink();

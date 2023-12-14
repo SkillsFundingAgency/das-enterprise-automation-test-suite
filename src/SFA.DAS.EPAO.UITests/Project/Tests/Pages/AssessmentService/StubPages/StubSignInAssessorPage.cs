@@ -3,22 +3,18 @@
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.StubPages;
 
 
-public class CheckStubSignInAssessorPage : CheckPageUsingPageTitle
+public class CheckStubSignInAssessorPage(ScenarioContext context) : CheckPageUsingPageTitle(context)
 {
     protected override string PageTitle => StubSignInAssessorPage.StubSignInAssessorPageTitle;
 
     protected override By Identifier => PageHeader;
-
-    public CheckStubSignInAssessorPage(ScenarioContext context) : base(context) { }
 }
 
-public class StubSignInAssessorPage : StubSignInBasePage
+public class StubSignInAssessorPage(ScenarioContext context) : StubSignInBasePage(context)
 {
     protected override string PageTitle => StubSignInAssessorPageTitle;
 
     internal static string StubSignInAssessorPageTitle => "Stub Authentication - Enter sign in details";
-
-    public StubSignInAssessorPage(ScenarioContext context) : base(context) { }
 
     public StubYouHaveSignedInAssessorPage SubmitValidUserDetails(GovSignUser loginUser)
     {

@@ -9,9 +9,7 @@
         private readonly string ApprovedTableSelector = "#approved-organisation-applications > table:first-of-type";
 
         private static By NewTab => By.Id("tab_new");
-        private static By InProgressTab => By.Id("tab_in-progress");
         private static By FeedbackTab => By.Id("tab_feedback");
-        private static By ApprovedTab => By.Id("tab_approved");
 
         private static string WithrawalOrgName => "Ingram Limited";
 
@@ -44,7 +42,7 @@
 
         private void DoesNotThrow(string table)
         {
-            Assert.DoesNotThrow(() => tableRowHelper.FindElementInTable(WithrawalOrgName, new List<string> { "Withdrawal from register", $"{DateTime.Now:dd MMMM yyyy}" }, table));
+            Assert.DoesNotThrow(() => tableRowHelper.FindElementInTable(WithrawalOrgName, ["Withdrawal from register", $"{DateTime.Now:dd MMMM yyyy}"], table));
         }
     }
 }

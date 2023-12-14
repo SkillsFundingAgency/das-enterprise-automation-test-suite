@@ -42,7 +42,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"continuing by choosing 'Update details' option displays 'Details updated' page showing (You've successfully updated your organisation details)")]
-        public void ThenContinuingByChoosingOptionDisplaysPageShowing(string expectedMessage)
+        public void ThenContinuingByChoosingOptionDisplaysPageShowing(string _)
         {
             _reviewYourDetailsPage.SelectUpdateMyDetailsRadioOptionAndContinueInReviewYourDetailsPage()
                 .SelectGoToHomePageOptionAndContinueInDetailsUpdatedPage();

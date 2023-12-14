@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_SafeguardingPolicyPage : AS_EPAOApplyStandardBasePage
+public class AS_SafeguardingPolicyPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "Safeguarding policy";
-
-    public AS_SafeguardingPolicyPage(ScenarioContext context) : base(context) { }
 
     public AS_PreventAgendaPolicyPage UploadSafeguardingPolicy()
     {

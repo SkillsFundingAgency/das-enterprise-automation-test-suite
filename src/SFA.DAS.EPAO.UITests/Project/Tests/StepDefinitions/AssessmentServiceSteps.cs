@@ -1,15 +1,13 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class AssessmentServiceSteps : EPAOBaseSteps
+public class AssessmentServiceSteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
-    private readonly ScenarioContext _context;
+    private readonly ScenarioContext _context = context;
     private bool _permissionsSelected;
     private string _newUserEmailId;
 
     private AS_AssessmentRecordedPage assessmentRecordedPage;
-
-    public AssessmentServiceSteps(ScenarioContext context) : base(context) => _context = context;
 
     [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|EPAO Withdrawal User) is logged into Assessment Service Application")]
     public void GivenTheUserIsLoggedIn(Func<AS_LoggedInHomePage> userloginFunc) => loggedInHomePage = userloginFunc?.Invoke();
@@ -251,5 +249,5 @@ public class AssessmentServiceSteps : EPAOBaseSteps
     private void IsManageUsersPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(expected));
     private void IsRecordGradesPermissionDisplayed(bool expected) => Assert.AreEqual(expected, userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(expected));
 
-    private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is shown in 'User details' page";
+    private static string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is shown in 'User details' page";
 }

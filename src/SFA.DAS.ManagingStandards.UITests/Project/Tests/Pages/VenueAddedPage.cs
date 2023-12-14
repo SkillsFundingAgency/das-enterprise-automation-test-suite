@@ -1,9 +1,8 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class VenueAddedPage : ManagingStandardsBasePage
+public class VenueAddedPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Test Demo Automation Venue";
-    public VenueAddedPage(ScenarioContext context) : base(context) { }
 
     public VenueDetailsPage Click_UpdateContactDetails()
     {

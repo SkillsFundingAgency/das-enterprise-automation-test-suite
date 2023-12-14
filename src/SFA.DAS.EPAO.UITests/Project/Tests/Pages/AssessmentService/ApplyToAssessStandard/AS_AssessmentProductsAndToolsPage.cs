@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_AssessmentProductsAndToolsPage : AS_EPAOApplyStandardBasePage
+public class AS_AssessmentProductsAndToolsPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "Assessment products and tools";
-
-    public AS_AssessmentProductsAndToolsPage(ScenarioContext context) : base(context) { }
 
     public AS_AssessmentContentPage EnterAssessmentProduct()
     {

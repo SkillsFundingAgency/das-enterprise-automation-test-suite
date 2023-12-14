@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EPAOWithdrawalSteps : EPAOBaseSteps
+    public class EPAOWithdrawalSteps(ScenarioContext context) : EPAOBaseSteps(context)
     {
-        private readonly EPAOWithdrawalHelper _ePAOWithdrawalHelper;
-
-        public EPAOWithdrawalSteps(ScenarioContext context) : base(context) => _ePAOWithdrawalHelper = new EPAOWithdrawalHelper(context);
+        private readonly EPAOWithdrawalHelper _ePAOWithdrawalHelper = new(context);
 
         [When(@"starts the journey to withdraw a standard")]
         [Given(@"starts the journey to withdraw a standard")]

@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourTrainingProvidersPage : RegistrationBasePage
+    public class YourTrainingProvidersPage(ScenarioContext context) : RegistrationBasePage(context)
     {
         protected override string PageTitle => "Your training providers";
 
         private static By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
         private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
         private static By ChangePermissionsLink => By.PartialLinkText("Change permissions");
-
-        public YourTrainingProvidersPage(ScenarioContext context) : base(context) { }
 
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddATrainingProvider()
         {

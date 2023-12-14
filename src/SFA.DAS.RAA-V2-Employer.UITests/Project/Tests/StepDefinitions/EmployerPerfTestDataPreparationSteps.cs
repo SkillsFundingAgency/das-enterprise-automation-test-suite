@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
             var page = _employerCreateAdvertPrefStepsHelper.GoToCreateAnApprenticeshipAdvertPage();
 
-            _employerCreateAdvertPrefStepsHelper.CreateFirstDraftAdvert_PrefTest(page);
+            EmployerCreateAdvertStepsHelper.CreateFirstDraftAdvert_PrefTest(page);
         }
 
         [Given(@"the Employer '([^']*)' grants permission to a provider")]

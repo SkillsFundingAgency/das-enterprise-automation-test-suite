@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_AssessmentPlanPage : AS_EPAOApplyStandardBasePage
+public class AS_AssessmentPlanPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "How will you undertake the individual elements of the assessment plan?";
-
-    public AS_AssessmentPlanPage(ScenarioContext context) : base(context) { }
 
     public AS_ReviewAndMaintainPage EnterAssessmentPlan()
     {

@@ -3,14 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourProgressHasBeenSavedPage : RegistrationBasePage
+    public class YourProgressHasBeenSavedPage(ScenarioContext context) : RegistrationBasePage(context)
     {
         protected override string PageTitle => "You've successfully added";
 
-        private By ContinueCreatingYourAccountButton => By.Id("continue-task-list");
-        private By SignOutButton => By.XPath("//button[contains(text(),'Save and come back later')]");
-
-        public YourProgressHasBeenSavedPage(ScenarioContext context) : base(context) { }
+        private static By ContinueCreatingYourAccountButton => By.Id("continue-task-list");
+        private static By SignOutButton => By.XPath("//button[contains(text(),'Save and come back later')]");
 
         public CreateYourEmployerAccountPage SelectContinueCreatingYourAccount()
         {

@@ -15,16 +15,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class AuthSteps
+    public class AuthSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-
-        public AuthSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [Then(@"a valid user can not access different account")]
         public void ThenAValidUserCanNotAccessDifferentAccount() => VerifyAuthUrls(true);
@@ -34,32 +27,32 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void VerifyAuthUrls(bool login)
         {
-            HashSet<string> skippedurls = new();
+            HashSet<string> skippedurls = [];
 
-            HashSet<string> verifiedurls = new();
+            HashSet<string> verifiedurls = [];
 
-            HashSet<string> authurls = _objectContext.GetAuthUrl().ToHashSet();
+            HashSet<string> authurls = [.. _objectContext.GetAuthUrl()];
 
             string VerifiedUrlsToString() => ToString("Verified Urls", verifiedurls);
 
             string SkippedUrlsToString() => ToString("Skipped Urls", skippedurls);
 
-            var webDriver = new RestartWebDriverHelper(_context).RestartWebDriver();
+            var webDriver = new RestartWebDriverHelper(context).RestartWebDriver();
 
             if (login)
             {
-                _context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+                context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
-                new EmployerPortalLoginHelper(_context).Login(_context.GetUser<AuthTestUser>(), true);
+                new EmployerPortalLoginHelper(context).Login(context.GetUser<AuthTestUser>(), true);
             }
 
-            List<string> exceptions = new();
+            List<string> exceptions = [];
 
             string scenarioTitle = string.Empty;
 
             foreach (var url in authurls)
             {
-                int x = _context.Get<ScreenShotTitleGenerator>().GetNextCounter();
+                int x = context.Get<ScreenShotTitleGenerator>().GetNextCounter();
 
                 string result = "Pass";
 
@@ -74,7 +67,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         continue;
                     }
 
-                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(_context, url).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(_context, url).ScenarioTitle();
+                    scenarioTitle = login ? new UnauthorisedUserWithLoginPage(context, url).ScenarioTitle() : new UnauthorisedUserWithoutLoginPage(context, url).ScenarioTitle();
                 }
                 catch (Exception ex)
                 {
@@ -95,23 +88,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 $"{VerifiedUrlsToString()}{SkippedUrlsToString()}");
         }
 
-        private string ToString(string message, HashSet<string> x) => $"{message} : {Environment.NewLine}{x.ToList().ToString(Environment.NewLine)}{Environment.NewLine}";
+        private static string ToString(string message, HashSet<string> x) => $"{message} : {Environment.NewLine}{x.ToList().ToString(Environment.NewLine)}{Environment.NewLine}";
 
-        private List<string> ExcludeUrlContains() =>
+        private static List<string> ExcludeUrlContains() =>
             new()
             {
                 $"https://{EnvName}-login.apprenticeships.education.gov.uk/account/register?clientId=easacc",
                 $"{EnvName}-pas.apprenticeships.education.gov.uk/"
             };
 
-        private List<string> ExcludeUrlEquals() =>
+        private static List<string> ExcludeUrlEquals() =>
             new()
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/index?",
                 $"{UrlConfig.EmployerApprenticeshipService_BaseUrl}",
             };
 
-        private List<string> ExcludeUrlEqualsForLogedInUser() =>
+        private static List<string> ExcludeUrlEqualsForLogedInUser() =>
             new()
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/getApprenticeshipFunding",
@@ -122,7 +115,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/service/accounts"
             };
 
-        private List<string> ExcludeUrlContainsForLogedInUser() =>
+        private static List<string> ExcludeUrlContainsForLogedInUser() =>
             new()
             {
                 $"https://accounts.{EnvName}-eas.apprenticeships.education.gov.uk/accounts/organisations/search/results?searchTerm=",
@@ -132,10 +125,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 $"&returnurl=https%3A%2F%2Faccounts.{EnvName}-eas.apprenticeships.education.gov.uk"
             };
 
-        private bool UrlException(string url) => (ExcludeUrlContains().Any(x => url.ContainsCompareCaseInsensitive(x)) || ExcludeUrlEquals().Any(x => x.CompareToIgnoreCase(url)));
+        private static bool UrlException(string url) => (ExcludeUrlContains().Any(x => url.ContainsCompareCaseInsensitive(x)) || ExcludeUrlEquals().Any(x => x.CompareToIgnoreCase(url)));
 
-        private bool UrlExceptionForLogedInUser(string url) => (ExcludeUrlContainsForLogedInUser().Any(x => url.ContainsCompareCaseInsensitive(x)) || ExcludeUrlEqualsForLogedInUser().Any(x => x.CompareToIgnoreCase(url)));
+        private static bool UrlExceptionForLogedInUser(string url) => (ExcludeUrlContainsForLogedInUser().Any(x => url.ContainsCompareCaseInsensitive(x)) || ExcludeUrlEqualsForLogedInUser().Any(x => x.CompareToIgnoreCase(url)));
 
-        private string EnvName => EnvironmentConfig.EnvironmentName;
+        private static string EnvName => EnvironmentConfig.EnvironmentName;
     }
 }

@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_FairAccessPage : AS_EPAOApplyStandardBasePage
+public class AS_FairAccessPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "Fair access";
-
-    public AS_FairAccessPage(ScenarioContext context) : base(context) { }
 
     public AS_ConsistencyAssurancePage UploadFairAccess()
     {

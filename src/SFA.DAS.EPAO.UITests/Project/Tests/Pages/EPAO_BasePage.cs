@@ -1,11 +1,11 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages;
 
-public abstract class EPAO_BasePage : VerifyBasePage
+public abstract class EPAO_BasePage(ScenarioContext context) : VerifyBasePage(context)
 {
-    protected readonly EPAOApplyDataHelper ePAOApplyDataHelper;
-    protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper;
-    protected readonly EPAOApplyStandardDataHelper standardDataHelper;
-    protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
+    protected readonly EPAOApplyDataHelper ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();
+    protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
+    protected readonly EPAOApplyStandardDataHelper standardDataHelper = context.Get<EPAOApplyStandardDataHelper>();
+    protected readonly EPAOAdminDataHelper ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
 
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading, .govuk-label--xl");
 
@@ -16,14 +16,6 @@ public abstract class EPAO_BasePage : VerifyBasePage
     private static By ChooseFile => By.ClassName("govuk-file-upload");
 
     private static By SummaryRows => By.CssSelector(".govuk-summary-list__row");
-
-    public EPAO_BasePage(ScenarioContext context) : base(context)
-    {
-        ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();
-        ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
-        standardDataHelper = context.Get<EPAOApplyStandardDataHelper>();
-        ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
-    }
 
     public virtual bool VerifyGrade(string grade) => pageInteractionHelper.FindElements(SummaryRows).ToList().Any(x => x.Text.Contains("Grade") && x.Text.ContainsCompareCaseInsensitive(grade));
 

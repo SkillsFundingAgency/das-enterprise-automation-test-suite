@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_ChooseDayPage : AS_EPAOApplyStandardBasePage
+public class AS_ChooseDayPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "If your application is successful, can you start an end-point assessment on the day you join the register?";
 
     protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-
-    public AS_ChooseDayPage(ScenarioContext context) : base(context) { }
 
     public AS_AssessmentPlanPage EnterDayToStart()
     {

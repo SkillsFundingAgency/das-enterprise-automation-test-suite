@@ -1,7 +1,7 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class E2ESteps : EPAOBaseSteps
+public class E2ESteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
     private static string E2eOrgName => "TIRO TRAINING LTD";
 
@@ -10,8 +10,6 @@ public class E2ESteps : EPAOBaseSteps
     private bool FinancialHealthAssessmentLinkExists;
 
     private string Username;
-
-    public E2ESteps(ScenarioContext context) : base(context) { }
 
     [Given(@"the apply user submits an Assessment Service Application")]
     public void GivenTheApplyUserSubmitsAnAssessmentServiceApplication()

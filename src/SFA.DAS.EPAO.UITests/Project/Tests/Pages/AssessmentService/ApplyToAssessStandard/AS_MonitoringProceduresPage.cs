@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_MonitoringProceduresPage : AS_EPAOApplyStandardBasePage
+public class AS_MonitoringProceduresPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "Monitoring procedures";
-
-    public AS_MonitoringProceduresPage(ScenarioContext context) : base(context) { }
 
     public AS_ModerationProcessesPage UploadMonitoringProcedure()
     {

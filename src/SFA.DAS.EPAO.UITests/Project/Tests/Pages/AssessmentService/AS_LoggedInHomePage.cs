@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-public class AS_LoggedInHomePage : EPAO_BasePage
+public class AS_LoggedInHomePage(ScenarioContext context) : EPAO_BasePage(context)
 {
     protected override string PageTitle => ""; //There is NO Title on this page
 
@@ -18,9 +18,8 @@ public class AS_LoggedInHomePage : EPAO_BasePage
     private static By SignOutLink => By.XPath("//a[@href='/Account/SignOut']");
     private static By ApplyToAssessStandardLink => By.CssSelector("a[href='/ApplyToAssessStandard']");
     private static By ApprovedStandardsAndVersions => By.CssSelector("a[href='/OrganisationStandards']");
-    #endregion
 
-    public AS_LoggedInHomePage(ScenarioContext context) : base(context) { }
+    #endregion
 
     public AS_ApplyToAssessStandardPage ApplyToAssessStandard()
     {

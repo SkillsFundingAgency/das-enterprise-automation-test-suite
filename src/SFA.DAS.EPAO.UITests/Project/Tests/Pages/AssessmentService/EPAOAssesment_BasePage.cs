@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-public abstract class EPAOAssesment_BasePage : EPAO_BasePage
+public abstract class EPAOAssesment_BasePage(ScenarioContext context) : EPAO_BasePage(context)
 {
-    public EPAOAssesment_BasePage(ScenarioContext context) : base(context) { }
-
     public AS_CheckAndSubmitAssessmentPage ClickBackLink()
     {
         NavigateBack();

@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class TasksHomePage : HomePage
+    public partial class TasksHomePage : HomePage
     {
         private static By TaskList => By.CssSelector("#tasks");
         private static By StartAddingApprenticesNowTaskLink => By.PartialLinkText("Start adding apprentices now");
@@ -70,7 +70,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             if (taskLink != null && hasItemsDueCount)
             {
-                var match = Regex.Match(taskLink.Text, "^(\\d+).*\r?$", RegexOptions.Multiline);
+                var match = NoOfTasksRegex().Match(taskLink.Text);
                 return match.Success && match.Groups.Count > 0 ? int.Parse(match.Groups[1].Value) : 0;
             }
             else if (taskLink != null)
@@ -80,5 +80,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             return 0;
         }
+
+        [GeneratedRegex("^(\\d+).*\r?$", RegexOptions.Multiline)]
+        private static partial Regex NoOfTasksRegex();
     }
 }

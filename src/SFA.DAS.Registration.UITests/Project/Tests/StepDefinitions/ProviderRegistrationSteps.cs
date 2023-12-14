@@ -21,7 +21,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly TabHelper _tabHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private readonly PregSqlDataHelper _pregSqlDataHelper;
 
         public ProviderRegistrationSteps(ScenarioContext context)
@@ -32,7 +31,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _pregSqlDataHelper = context.Get<PregSqlDataHelper>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
-            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
         [Given(@"the provider invites an employer")]
@@ -70,7 +68,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _tabHelper.OpenInNewTab(uri);
 
-            _accountCreationStepsHelper.RegisterUserAccount(new StubSignInEmployerPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
+            AccountCreationStepsHelper.RegisterUserAccount(new StubSignInEmployerPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
         }
 
         [When(@"the employer adds PAYE from TaskList Page")]

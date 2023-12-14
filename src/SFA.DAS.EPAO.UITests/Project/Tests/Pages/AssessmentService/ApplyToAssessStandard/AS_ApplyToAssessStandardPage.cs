@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_ApplyToAssessStandardPage : EPAO_BasePage
+public class AS_ApplyToAssessStandardPage(ScenarioContext context) : EPAO_BasePage(context)
 {
     protected override string PageTitle => "Apply to assess a standard";
 
     private static By StartNow => By.CssSelector("a.govuk-button--start");
-
-    public AS_ApplyToAssessStandardPage(ScenarioContext context) : base(context) { }
 
     public AS_SelectApplicationPage SelectApplication()
     {
