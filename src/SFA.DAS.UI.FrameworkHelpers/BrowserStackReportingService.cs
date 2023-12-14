@@ -6,13 +6,9 @@ using Newtonsoft.Json;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class BrowserStackReportingService
+public class BrowserStackReportingService(BrowserStackSetting options)
 {
-    private readonly BrowserStackSetting _options;
-
-    public BrowserStackReportingService(BrowserStackSetting options) => _options = options;
-
-    public void UpdateTestName(string sessionId, string name) => Execute(sessionId, UpdateNameJSonBody($"{_options.Name}-{name}"));
+    public void UpdateTestName(string sessionId, string name) => Execute(sessionId, UpdateNameJSonBody($"{options.Name}-{name}"));
 
     public void MarkTestStatus(string sessionId, bool testStatus, string message)
     {
@@ -25,7 +21,7 @@ public class BrowserStackReportingService
     {
         var request = Request(sessionId, jsonObj);
 
-        var response = Client(_options).Put(request);
+        var response = Client(options).Put(request);
 
         if (IsNotSucess(response)) NUnit.Framework.TestContext.Progress.WriteLine($"{response.StatusCode} - {response.Content}");
 

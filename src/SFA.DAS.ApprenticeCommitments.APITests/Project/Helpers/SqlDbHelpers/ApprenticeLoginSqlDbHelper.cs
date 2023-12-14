@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class ApprenticeLoginSqlDbHelper : InvitationsSqlDbHelper
+    public class ApprenticeLoginSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : InvitationsSqlDbHelper(objectContext, dbConfig.ApprenticeCommitmentLoginDbConnectionString)
     {
-        public ApprenticeLoginSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentLoginDbConnectionString) { }
-
         public void DeleteResetPasswordRequestsTableData(string email) => ExecuteSqlCommand($"DELETE FROM LoginService.ResetPasswordRequests where email = '{email}'");
             
         public (string clientId, string requestId) GetApprenticeResetLoginData(string email)

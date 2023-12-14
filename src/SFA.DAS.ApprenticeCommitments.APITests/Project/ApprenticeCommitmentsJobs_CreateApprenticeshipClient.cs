@@ -7,10 +7,8 @@ using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class ApprenticeCommitmentsJobs_CreateApprenticeshipClient : OuterJobs_BaseApiRestClient
+    public class ApprenticeCommitmentsJobs_CreateApprenticeshipClient(ObjectContext objectContext, ApprenticeCommitmentsJobsAuthTokenConfig config) : OuterJobs_BaseApiRestClient(objectContext, config.Code)
     {
-        public ApprenticeCommitmentsJobs_CreateApprenticeshipClient(ObjectContext objectContext, ApprenticeCommitmentsJobsAuthTokenConfig config) : base(objectContext, config.Code) { }
-
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.ApprenticeCommitmentsJobs_BaseUrl;
 
         public RestResponse CreateApprenticeshipViaCommitmentsJob(CreateApprenticeshipViaCommitmentsJob payload, HttpStatusCode expectedResponse)

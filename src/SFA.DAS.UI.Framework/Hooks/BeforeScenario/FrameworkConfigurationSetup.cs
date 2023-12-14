@@ -9,21 +9,12 @@ using SFA.DAS.FrameworkHelpers;
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
 [Binding]
-public class FrameworkConfigurationSetup
+public class FrameworkConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
+    private readonly IConfigSection _configSection = context.Get<IConfigSection>();
 
-    private readonly IConfigSection _configSection;
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-    private readonly ObjectContext _objectContext;
-
-    public FrameworkConfigurationSetup(ScenarioContext context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _configSection = context.Get<IConfigSection>();
-    }
-    
     [BeforeScenario(Order = 2)]
     public void SetUpFrameworkConfiguration()
     {
@@ -50,11 +41,11 @@ public class FrameworkConfigurationSetup
             IsAccessibilityTesting = isAccessibilityTesting
         };
 
-        _context.Set(frameworkConfig);
+        context.Set(frameworkConfig);
 
         _objectContext.SetBrowser(testExecutionConfig.Browser);
 
-        _context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
+        context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
 
         if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
     }

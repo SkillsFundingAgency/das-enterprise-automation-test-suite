@@ -5,20 +5,13 @@ using SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlData
 namespace SFA.DAS.TestDataExport.StepDefinitions;
 
 [Binding]
-public class VerifyDbConnectionSteps
+public class VerifyDbConnectionSteps(ScenarioContext context)
 {
-    private readonly DbConfig _dbConfig;
+    private readonly DbConfig _dbConfig = context.Get<DbConfig>();
 
-    private readonly ObjectContext _objectContext;
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
     private List<string> _exception;
-
-    public VerifyDbConnectionSteps(ScenarioContext context)
-    {
-        _dbConfig = context.Get<DbConfig>();
-
-        _objectContext = context.Get<ObjectContext>();
-    }
 
     [Then(@"the db connection are verified")]
     public void ThenTheDbConnectionAreVerified()

@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.BaseSqlDbHelper;
 
-public abstract class TestDataCleanUpSqlDataHelper : ProjectSqlDbHelper
+public abstract class TestDataCleanUpSqlDataHelper(ObjectContext objectContext, string connectionString) : ProjectSqlDbHelper(objectContext, connectionString)
 {
     public abstract string SqlFileName { get; }
-
-    public TestDataCleanUpSqlDataHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString) { }
 
     protected int CleanUpUsingEmail(List<string> emailsToDelete) => CleanUpTestData(emailsToDelete, (x) => $"Insert into #emails values ('{x}')", "create table #emails (email varchar(255))");
 

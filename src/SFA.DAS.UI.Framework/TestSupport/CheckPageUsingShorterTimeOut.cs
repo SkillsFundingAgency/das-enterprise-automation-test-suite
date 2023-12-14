@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class CheckPageUsingShorterTimeOut : CheckPage
+public abstract class CheckPageUsingShorterTimeOut(ScenarioContext context) : CheckPage(context)
 {
-    protected readonly CheckPageInteractionHelper checkPageInteractionHelper;
-
-    public CheckPageUsingShorterTimeOut(ScenarioContext context) : base(context) => checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
+    protected readonly CheckPageInteractionHelper checkPageInteractionHelper = context.Get<CheckPageInteractionHelper>();
 
     public override bool IsPageDisplayed() => IsPageDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier));
 

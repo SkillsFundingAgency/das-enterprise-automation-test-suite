@@ -3,13 +3,11 @@ using RestSharp.Authenticators.OAuth2;
 
 namespace SFA.DAS.API.Framework.RestClients;
 
-public abstract class Inner_BaseApiRestClient : BaseApiRestClient
+public abstract class Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : BaseApiRestClient(objectContext)
 {
-    protected readonly Inner_ApiFrameworkConfig config;
+    protected readonly Inner_ApiFrameworkConfig config = config;
 
     protected abstract string AppServiceName { get; }
-
-    public Inner_BaseApiRestClient(ObjectContext objectContext, Inner_ApiFrameworkConfig config) : base(objectContext) => this.config = config;
 
     protected override void AddResource(string resource) => restRequest.Resource = resource;
 

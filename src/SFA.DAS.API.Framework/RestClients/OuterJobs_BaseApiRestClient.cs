@@ -1,13 +1,8 @@
 ﻿namespace SFA.DAS.API.Framework.RestClients;
 
-public abstract class OuterJobs_BaseApiRestClient : Outer_BaseApiRestClient
+public abstract class OuterJobs_BaseApiRestClient(ObjectContext objectContext, string code) : Outer_BaseApiRestClient(objectContext, code)
 {
     protected override string ApiName => "/api";
-
-    public OuterJobs_BaseApiRestClient(ObjectContext objectContext, string code) : base(objectContext, code)
-    {
-
-    }
 
     protected override void AddAuthHeaders() { }
 

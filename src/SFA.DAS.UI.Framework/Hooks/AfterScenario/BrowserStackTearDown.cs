@@ -4,12 +4,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario;
 
 [Binding]
-public class BrowserStackTearDown
+public class BrowserStackTearDown(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public BrowserStackTearDown(ScenarioContext context) => _context = context;
-
     [AfterScenario(Order = 12)]
-    public void InformBrowserStackOnFailure() => new BrowserStackTearDownHelper(_context).MarkTestStatus();
+    public void InformBrowserStackOnFailure() => new BrowserStackTearDownHelper(context).MarkTestStatus();
 }

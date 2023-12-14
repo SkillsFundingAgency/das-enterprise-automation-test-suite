@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
-public class TestDataCleanUpEasAccDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
+public class TestDataCleanUpEasAccDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper(objectContext, dbConfig.AccountsDbConnectionString)
 {
     public override string SqlFileName => "EasAccTestDataCleanUp";
-
-    public TestDataCleanUpEasAccDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
     internal List<string[]> GetAccountIds(List<string> userEmail) => GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where Email = {GetAccountIdsQuery(userEmail)})");
 

@@ -6,32 +6,19 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class FormCompletionHelper : WebElementInteractionHelper
+public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : WebElementInteractionHelper(webDriver)
 {
-    private readonly IWebDriver _webDriver;
-    private readonly WebDriverWaitHelper _webDriverWaitHelper;
-    private readonly RetryHelper _retryHelper;
-    private readonly ObjectContext _objectContext;
+    public void RetryClickOnException(Func<IWebElement> element) => retryHelper.RetryClickOnException(element);
 
-    public FormCompletionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
-    {
-        _webDriver = webDriver;
-        _webDriverWaitHelper = webDriverWaitHelper;
-        _retryHelper = retryHelper;
-        _objectContext = objectContext;
-    }
+    public void ClickElement(Func<IWebElement> element, Action retryAction = null) => retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
-    public void RetryClickOnException(Func<IWebElement> element) => _retryHelper.RetryClickOnException(element);
-
-    public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
-
-    public void ClickElement(IWebElement element, bool useAction = true) => _retryHelper.RetryOnElementClickInterceptedException(element, useAction);
+    public void ClickElement(IWebElement element, bool useAction = true) => retryHelper.RetryOnElementClickInterceptedException(element, useAction);
 
     public void ClickElement(By locator)
     {
-        _webDriverWaitHelper.WaitForElementToBeClickable(locator);
+        webDriverWaitHelper.WaitForElementToBeClickable(locator);
 
-        ClickElement(_webDriver.FindElement(locator));
+        ClickElement(webDriver.FindElement(locator));
 
         SetDebugInformation($"Clicked '{locator}'");
     }
@@ -49,9 +36,9 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void EnterText(By locator, string text)
     {
-        _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+        webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
 
-        EnterText(_webDriver.FindElement(locator), text);
+        EnterText(webDriver.FindElement(locator), text);
     }
 
     public List<string> GetAllDropDownOptions(By bySelect) => GetAllDropDown(bySelect, (x) => x.Text); 
@@ -64,9 +51,9 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void SendKeys(By locator, string Key)
     {
-        _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+        webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
 
-        _webDriver.FindElement(locator).SendKeys(Key);
+        webDriver.FindElement(locator).SendKeys(Key);
 
         SetDebugInformation($"Entered '{Key}'");
     }
@@ -75,9 +62,9 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void EnterText(IWebElement element, int value) => EnterText(element, value.ToString());
 
-    public void SelectFromDropDownByValue(By @by, string value) => SelectFromDropDownByValue(_webDriver.FindElement(by), value);
+    public void SelectFromDropDownByValue(By @by, string value) => SelectFromDropDownByValue(webDriver.FindElement(by), value);
 
-    public void SelectFromDropDownByText(By @by, string text) => SelectFromDropDownByText(_webDriver.FindElement(by), text);
+    public void SelectFromDropDownByText(By @by, string text) => SelectFromDropDownByText(webDriver.FindElement(by), text);
 
     private void SelectFromDropDownByValue(IWebElement element, string value) { SelectElement(element).SelectByValue(value); SetDebugInformation($"Selected '{value}'"); }
 
@@ -95,14 +82,14 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void UnSelectCheckbox(By locator)
     {
-        UnSelectCheckbox(_webDriver.FindElement(locator));
+        UnSelectCheckbox(webDriver.FindElement(locator));
 
         SetDebugInformation($"Unchecked '{locator}'");
     }
 
     public void SelectCheckbox(By locator)
     {
-        SelectCheckbox(_webDriver.FindElement(locator));
+        SelectCheckbox(webDriver.FindElement(locator));
 
         SetDebugInformation($"Checked '{locator}'");
     }
@@ -113,7 +100,7 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
     {
-        IList<IWebElement> radios = _webDriver.FindElements(locator);
+        IList<IWebElement> radios = webDriver.FindElements(locator);
 
         var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
 
@@ -124,7 +111,7 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonLabelCssSelector, text);
 
-    public void SelectRadioOptionByLocator(By locator) => ClickElement(_webDriver.FindElement(locator));
+    public void SelectRadioOptionByLocator(By locator) => ClickElement(webDriver.FindElement(locator));
 
     public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
@@ -145,5 +132,5 @@ public class FormCompletionHelper : WebElementInteractionHelper
 
     public void ClickButtonByText(By locator, string text) => ClickElementByText(locator, text);
 
-    public void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
+    public void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
 }

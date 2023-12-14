@@ -4,10 +4,6 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class CheckPageRetryHelper : RetryHelper
+public class CheckPageRetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext) : RetryHelper(webDriver, scenarioInfo, objectContext, RetryTimeOut.ShorterTimeout())
 {
-    public CheckPageRetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext) : base(webDriver, scenarioInfo, objectContext, RetryTimeOut.ShorterTimeout())
-    {
-
-    }
 }

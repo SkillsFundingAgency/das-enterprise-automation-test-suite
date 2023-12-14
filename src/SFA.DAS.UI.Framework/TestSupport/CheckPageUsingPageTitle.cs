@@ -2,13 +2,7 @@
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class CheckPageUsingPageTitle : CheckPageUsingShorterTimeOut
+public abstract class CheckPageUsingPageTitle(ScenarioContext context) : CheckPageUsingShorterTimeOut(context)
 {
-
-    public CheckPageUsingPageTitle(ScenarioContext context) : base(context)
-    {
-
-    }
-
     public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
 }

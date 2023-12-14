@@ -5,24 +5,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public class DisposeWebDriverTeardownHelper
+public class DisposeWebDriverTeardownHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly ObjectContext _objectContext;
-    private readonly TryCatchExceptionHelper _tryCatch;
-
-    public DisposeWebDriverTeardownHelper(ScenarioContext context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _tryCatch = context.Get<TryCatchExceptionHelper>();
-    }
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+    private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
 
     public void DisposeWebDriver()
     {
         _tryCatch.AfterScenarioException(() => 
         {
-            var WebDriver = _context.GetWebDriver();
+            var WebDriver = context.GetWebDriver();
 
             if (DoNotDisposeWebDriver() == false)
             {
@@ -36,6 +28,6 @@ public class DisposeWebDriverTeardownHelper
     {
         //Browserstack will leave the tests as inconclusive if they are timed out 
         //we wanted to leave the tests as inconclusive if for any reason Rest Api failed to update the results)
-        return _context.TestError != null && _objectContext.GetBrowser().IsCloudExecution() && _objectContext.FailedtoUpdateTestResultInBrowserStack();
+        return context.TestError != null && _objectContext.GetBrowser().IsCloudExecution() && _objectContext.FailedtoUpdateTestResultInBrowserStack();
     }
 }
