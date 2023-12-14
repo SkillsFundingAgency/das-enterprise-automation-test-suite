@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-public abstract class OrganisationSectionsBasePage : EPAOAdmin_BasePage
+public abstract class OrganisationSectionsBasePage(ScenarioContext context) : EPAOAdmin_BasePage(context)
 {
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-    public OrganisationSectionsBasePage(ScenarioContext context) : base(context) { }
 
     protected OrganisationDetailsPage ReturnToOrganisationDetailsPage(Action action)
     {

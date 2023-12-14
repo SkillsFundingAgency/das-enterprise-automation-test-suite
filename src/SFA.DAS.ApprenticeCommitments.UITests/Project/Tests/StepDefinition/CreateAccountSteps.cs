@@ -6,15 +6,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class CreateAccountSteps : BaseSteps
+    public class CreateAccountSteps(ScenarioContext context) : BaseSteps(context)
     {
-        private readonly ScenarioContext _context;
         private CreateMyApprenticeshipAccountPage _createMyApprenticeshipAccountPage;
         private ApprenticeHomePage _apprenticeHomePage;
         private ApprenticeHomePageNegativeMatch _apprenticeHomePagNegativeMatch;
         private (string firstName, string lastName) _name;
-
-        public CreateAccountSteps(ScenarioContext context) : base(context) => _context = context;
 
         [When(@"an apprenticeship is created via API request")]
         public void WhenAnApprenticeshipIsCreatedViaApiRequest() => createAccountStepsHelper.CreateApprenticeshipViaApiRequest();

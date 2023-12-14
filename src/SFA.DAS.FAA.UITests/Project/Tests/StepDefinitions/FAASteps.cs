@@ -6,12 +6,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FAASteps
+    public class FAASteps(ScenarioContext context)
     {
-        private readonly FAAStepsHelper _faaStepsHelper;
+        private readonly FAAStepsHelper _faaStepsHelper = new(context);
         private FAA_CreateAnAccountPage accountCreationPage;
-
-        public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [When(@"the Applicant withdraw the application")]
         public void WhenTheApplicantWithdrawTheApplication() => _faaStepsHelper.WithdrawVacancy();

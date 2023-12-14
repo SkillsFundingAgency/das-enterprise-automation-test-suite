@@ -9,29 +9,22 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.UITests.Project
 {
     [Binding]
-    public class AfterScenarioHooks
+    public class AfterScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-
-        public AfterScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [AfterScenario(Order = 44)]
         public void AddIncentiveApplication()
         {
-            if (_context.ScenarioInfo.Tags.Contains("addincentiveapplication"))
+            if (context.ScenarioInfo.Tags.Contains("addincentiveapplication"))
             {
                 var accountId = _objectContext.GetDBAccountId();
 
                 var orgName = _objectContext.GetOrganisationName();
 
-                var accountLegalEntityId = _context.Get<RegistrationSqlDataHelper>().GetAccountLegalEntityId(accountId, orgName);
+                var accountLegalEntityId = context.Get<RegistrationSqlDataHelper>().GetAccountLegalEntityId(accountId, orgName);
 
-                var (apprenticeshipid, dob, fname, lname, startDate, trainningName, uln, ukprn) = _context.Get<CommitmentsSqlDataHelper>().GetDataFromComtDb(accountId);
+                var (apprenticeshipid, dob, fname, lname, startDate, trainningName, uln, ukprn) = context.Get<CommitmentsSqlDataHelper>().GetDataFromComtDb(accountId);
 
                 var data = new AddApplicationData
                 {
@@ -49,7 +42,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                     Uln = uln
                 };
 
-                _context.Get<EISqlHelper>().AddIncentiveApplication(data);
+                context.Get<EISqlHelper>().AddIncentiveApplication(data);
             }
         }
     }

@@ -3,10 +3,8 @@
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class ResetPasswordSteps : BaseSteps
+    public class ResetPasswordSteps(ScenarioContext context) : BaseSteps(context)
     {
-        public ResetPasswordSteps(ScenarioContext context) : base(context) { }
-
         [When(@"an apprentice submits Email to reset password for a new account pending personal details confirmation")]
         public void WhenAnApprenticeSubmitsEmailToResetPasswordForANewAccountPendingPD()
         {

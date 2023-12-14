@@ -1,18 +1,11 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project;
 
 [Binding]
-public class RoatpAdminLaunchApplicationHooks
+public class RoatpAdminLaunchApplicationHooks(ScenarioContext context)
 {
-    private readonly string[] _tags;
+    private readonly string[] _tags = context.ScenarioInfo.Tags;
 
-    private readonly TabHelper _tabHelper;
-
-    public RoatpAdminLaunchApplicationHooks(ScenarioContext context)
-    {
-        _tags = context.ScenarioInfo.Tags;
-
-        _tabHelper = context.Get<TabHelper>();
-    }
+    private readonly TabHelper _tabHelper = context.Get<TabHelper>();
 
     [BeforeScenario(Order = 40)]
     public void RoatpAdminLaunchApplication()

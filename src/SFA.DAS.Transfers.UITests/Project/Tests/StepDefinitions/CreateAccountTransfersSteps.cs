@@ -14,41 +14,22 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class CreateAccountTransfersSteps
+    public class CreateAccountTransfersSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
-        private readonly TransferEmployerStepsHelper _employerStepsHelper;
-        private readonly TransfersProviderStepsHelper _providerStepsHelper;
-        private readonly TransfersCreateCohortStepsHelper _transfersCreateCohortStepsHelper;
-        private readonly RegistrationDataHelper _registrationDataHelper;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
-        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private readonly CohortReferenceHelper _cohortReferenceHelper;
-        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
+        private readonly AccountCreationStepsHelper _accountCreationStepsHelper = new(context);
+        private readonly TransferEmployerStepsHelper _employerStepsHelper = new(context);
+        private readonly TransfersProviderStepsHelper _providerStepsHelper = new(context);
+        private readonly TransfersCreateCohortStepsHelper _transfersCreateCohortStepsHelper = new(context);
+        private readonly RegistrationDataHelper _registrationDataHelper = context.Get<RegistrationDataHelper>();
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
+        private readonly CohortReferenceHelper _cohortReferenceHelper = new(context);
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
 
-        private readonly Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails;
+        private readonly Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)> _accountDetails = [];
         private HomePage _homePage;
-
-        public CreateAccountTransfersSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-
-            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
-            _employerStepsHelper = new TransferEmployerStepsHelper(context);
-            _providerStepsHelper = new TransfersProviderStepsHelper(context);
-            _transfersCreateCohortStepsHelper = new TransfersCreateCohortStepsHelper(context);
-            _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
-            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _cohortReferenceHelper = new CohortReferenceHelper(context);
-            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
-
-            _accountDetails = new Dictionary<string, (string orgName, string hashedAccountId, string publicHashedAccountId)>();
-        }
 
         [Given(@"We have (two|three) Employer accounts")]
         public void GivenWeHaveEmployerAccounts(string number) => AccountsAreCreated(number);
@@ -100,14 +81,14 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Receiver (First|Second|Third) sends empty cohort using transfer funds from Sender (First|Second|Third) to the provider for review and approval")]
-        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string sender)
+        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string _)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
             _transfersCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
 
         [When(@"Receiver (First|Second|Third) sends approved cohort using transfer funds from Sender (First|Second|Third) with (.*) apprentices to the provider for review and approval")]
-        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string sender, int numberOfApprentices)
+        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string _, int numberOfApprentices)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
@@ -246,16 +227,16 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             var integers = new Dictionary<string, int> { { "one", 1 }, { "two", 2 }, { "three", 3 } };
 
-            if (!integers.ContainsKey(noOfAccounts)) throw new Exception("Only one to three accounts are supported.");
+            if (!integers.TryGetValue(noOfAccounts, out int value)) throw new Exception("Only one to three accounts are supported.");
 
             _homePage = _accountCreationStepsHelper.CreateUserAccount();
 
-            if (integers[noOfAccounts] > 1)
+            if (value > 1)
             {
                 _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg2, 1);
             }
 
-            if (integers[noOfAccounts] > 2)
+            if (value > 2)
             {
                 _homePage = AddNewAccount(_registrationDataHelper.CompanyTypeOrg3, 2);
             }
@@ -315,7 +296,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private bool CheckTransferConnectionStatus(string orgName, string role) => OpenTransfers().CheckTransferConnectionStatus(orgName, role);
 
-        private TransfersPage OpenTransfers() => new FinancePage(_context, true).OpenTransfers();
+        private TransfersPage OpenTransfers() => new FinancePage(context, true).OpenTransfers();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }

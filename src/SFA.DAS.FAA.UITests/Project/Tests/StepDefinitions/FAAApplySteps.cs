@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FAAApplySteps
+    public class FAAApplySteps(ScenarioContext context)
     {
-        private readonly FAAStepsHelper _faaStepsHelper;
-
-        public FAAApplySteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
+        private readonly FAAStepsHelper _faaStepsHelper = new(context);
 
         [Then(@"the Applicant can apply for a Vacancy in FAA")]
         [When(@"the Applicant can apply for a Vacancy in FAA")]

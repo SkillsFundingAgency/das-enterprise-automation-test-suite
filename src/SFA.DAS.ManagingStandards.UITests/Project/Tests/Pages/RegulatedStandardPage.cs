@@ -1,12 +1,11 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class RegulatedStandardPage : ManagingStandardsBasePage
+public class RegulatedStandardPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "This is a regulated standard";
 
     private static By ApprovesYesRadio => By.Id("ConfirmRegulatedStandard-Yes");
     private static By ApprovesNoRadio => By.Id("ConfirmRegulatedStandard-No");
-    public RegulatedStandardPage(ScenarioContext context) : base(context) { }
 
     public ManageTheStandardsYouDeliverPage ApproveStandard_FromStandardsPage()
     {

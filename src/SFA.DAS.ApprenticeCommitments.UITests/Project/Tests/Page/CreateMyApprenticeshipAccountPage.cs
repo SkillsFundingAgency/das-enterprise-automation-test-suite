@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class CreateMyApprenticeshipAccountPage : PersonalDetailsBasePage
+    public class CreateMyApprenticeshipAccountPage(ScenarioContext context) : PersonalDetailsBasePage(context)
     {
         protected override string PageTitle => "Create My apprenticeship account";
         private static By FirstNameError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[1]");
         private static By LastNameError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[2]");
         private static By DOBError => By.XPath("(//span[@class='govuk-error-message field-validation-error'])[3]");
         protected override By ContinueButton => By.CssSelector("#identity-assurance-btn");
-
-        public CreateMyApprenticeshipAccountPage(ScenarioContext context) : base(context) { }
 
         public new CreateMyApprenticeshipAccountPage NavigateToChangeYourPersonalDetails()
         {

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-public abstract class EPAOAdmin_BasePage : EPAO_BasePage
+public abstract class EPAOAdmin_BasePage(ScenarioContext context) : EPAO_BasePage(context)
 {
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
@@ -11,8 +11,6 @@ public abstract class EPAOAdmin_BasePage : EPAO_BasePage
     private static By THeader => By.CssSelector(".govuk-summary-list__key");
     private static By TData => By.CssSelector(".govuk-summary-list__value");
     private static By ReturnToDashboardlink => By.CssSelector("a[href='/Dashboard']");
-
-    public EPAOAdmin_BasePage(ScenarioContext context) : base(context) { }
 
 
     // Clicking Sign out is redirecting to Admin landing page instead of SignedOutPage

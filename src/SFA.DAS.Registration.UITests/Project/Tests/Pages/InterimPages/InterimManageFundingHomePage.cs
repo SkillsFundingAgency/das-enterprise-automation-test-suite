@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
-    public class InterimManageFundingHomePage : InterimEmployerBasePage
+    public class InterimManageFundingHomePage(ScenarioContext context, bool navigate, bool gotourl) : InterimEmployerBasePage(context, OpenYourFundingReservations(context, navigate), gotourl)
     {
         protected override string PageTitle => "Your funding reservations";
 
@@ -16,15 +16,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public InterimManageFundingHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
 
-        public InterimManageFundingHomePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, OpenYourFundingReservations(context, navigate), gotourl) { }
-
         private static Action OpenYourFundingReservations(ScenarioContext context, bool navigate)
         {
             if (navigate)
             {
                 return () =>
                 {
-                    new HomePage(context, true);
+                    _ = new HomePage(context, true);
 
                     var helper = context.Get<FormCompletionHelper>();
 

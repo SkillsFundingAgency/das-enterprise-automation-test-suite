@@ -6,19 +6,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class ConfirmMyApprenticeshipSteps : BaseSteps
+    public class ConfirmMyApprenticeshipSteps(ScenarioContext context) : BaseSteps(context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private AlreadyConfirmedApprenticeshipDetailsPage _alreadyConfirmedApprenticeshipDetailsPage;
         private AlreadyConfirmedRolesAndResponsibilitiesPage _alreadyConfirmedRolesAndResponsibilitiesPage;
-
-        public ConfirmMyApprenticeshipSteps(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-        }
 
         [Then(@"the coc notification should not be displayed")]
         public void ThenTheCocNotificationShouldNotBeDisplayed() => _apprenticeOverviewPage = ApprenticeOverviewPage().VerifyCoCNotificationIsNotDisplayed();
@@ -134,7 +126,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice confirms all the sections and the overall (Regular|Portable) apprenticeship")]
         public void ThenTheApprenticeConfirmsAllTheSectionsAndTheOverallApprenticeship(string appType)
         {
-            new ApprenticeHomePage(_context).NavigateToOverviewPageFromTopNavigationLink();
+            new ApprenticeHomePage(context).NavigateToOverviewPageFromTopNavigationLink();
 
             confirmMyApprenticeshipStepsHelper.ConfirmAllSectionsAndOverallApprenticeship(IsRegularApp(appType)).VerifyTrainingNameOnGreenHeaderBoxOnTheOverallApprenticeshipConfirmedPage().NavigateBackToOverviewPage();
 
@@ -164,7 +156,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         private static bool IsRegularApp(string appType) => appType.CompareToIgnoreCase("Regular");
 
-        private ApprenticeOverviewPage ApprenticeOverviewPage() => new(_context);
+        private ApprenticeOverviewPage ApprenticeOverviewPage() => new(context);
 
         private ApprenticeHomePage VerifyOverviewPageAndHomePageAfterOVerallConfirmation() => _apprenticeOverviewPage.VerifyHeaderSummaryOnApprenticeOverviewPageAfterApprenticeshipConfirm().NavigateToHomePageFromTopNavigationLink()
             .VerifyCMADCardOnHomePageOnceFullyConfirmed();

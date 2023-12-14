@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class EmployerFeedbackCheckYourAnswersPage : EmployerFeedbackBasePage
+public class EmployerFeedbackCheckYourAnswersPage(ScenarioContext context) : EmployerFeedbackBasePage(context)
 {
     protected override string PageTitle => "Check your answers";
 
@@ -11,8 +11,6 @@ public class EmployerFeedbackCheckYourAnswersPage : EmployerFeedbackBasePage
     private static By ChangeQuestionThreeLink => By.CssSelector("a[href*='question-three?']");
 
     private static By SubmitAnswers => By.XPath("//button[@class='govuk-button']");
-
-    public EmployerFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) { }
 
     public EmployerFeedbackStrengthsPage ChangeQuestionOne()
     {

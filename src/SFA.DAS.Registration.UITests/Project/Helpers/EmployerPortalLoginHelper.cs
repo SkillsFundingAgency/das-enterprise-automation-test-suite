@@ -8,6 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class EmployerPortalLoginHelper(ScenarioContext context) : IReLoginHelper
     {
+        protected readonly ScenarioContext context = context;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
         protected readonly LoginCredentialsHelper loginCredentialsHelper = context.Get<LoginCredentialsHelper>();

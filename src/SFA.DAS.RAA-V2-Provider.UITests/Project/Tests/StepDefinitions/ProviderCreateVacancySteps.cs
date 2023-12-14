@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderCreateVacancySteps
+    public class ProviderCreateVacancySteps(ScenarioContext context)
     {
-        private readonly ProviderCreateVacancyStepsHelper _providerStepsHelper;
-
-        public ProviderCreateVacancySteps(ScenarioContext context) => _providerStepsHelper = new ProviderCreateVacancyStepsHelper(context);
+        private readonly ProviderCreateVacancyStepsHelper _providerStepsHelper = new(context);
 
         [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
         public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateAnonymousVacancy();

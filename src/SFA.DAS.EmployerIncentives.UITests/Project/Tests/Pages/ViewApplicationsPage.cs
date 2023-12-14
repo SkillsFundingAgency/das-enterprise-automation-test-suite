@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class ViewApplicationsPage : EIBasePage
+    public class ViewApplicationsPage(ScenarioContext context) : EIBasePage(context)
     {
         protected override string PageTitle => "Hire a new apprentice payment applications";
 
         private static By Links => By.CssSelector("#main-content a");
-
-        public ViewApplicationsPage(ScenarioContext context) : base(context) { }
 
         public WhichApprenticeToCancelPage CancelAnApplication()
         {

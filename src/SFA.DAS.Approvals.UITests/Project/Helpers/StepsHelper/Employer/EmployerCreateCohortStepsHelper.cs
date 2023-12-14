@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
     public class EmployerCreateCohortStepsHelper
     {
         private readonly ObjectContext _objectContext;
-        private readonly ScenarioContext _context;
+        protected readonly ScenarioContext context;
 
         private readonly CohortReferenceHelper _cohortReferenceHelper;
         private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
@@ -17,10 +17,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public EmployerCreateCohortStepsHelper(ScenarioContext context)
         {
-            _context = context;
+            this.context = context;
             _objectContext = context.Get<ObjectContext>();
             _cohortReferenceHelper = new CohortReferenceHelper(context);
-            _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(_context);
+            _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(this.context);
         }
 
         public void EmployerCreateCohortAndSendsToProvider()

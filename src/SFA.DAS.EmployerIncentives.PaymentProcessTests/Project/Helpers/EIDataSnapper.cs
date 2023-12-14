@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class IEDataSnapper : IEIDataSnapper
+    public class IEDataSnapper(DbConfig config) : IEIDataSnapper
     {
-        private readonly string _connectionString;
-
-        private IEDataSnapper(DbConfig config)
-        {
-            _connectionString = config.IncentivesDbConnectionString;
-        }
+        private readonly string _connectionString = config.IncentivesDbConnectionString;
 
         public async Task TakeDataSnapshot()
         {

@@ -132,10 +132,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions) =>
-            _raaEmployerInformation = _raaStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
+            _raaEmployerInformation = RAAStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
 
         [When(@"the Provider chooses their '(.*)'")]
-        public void WhenTheProviderChoosesTheir(string answer) => _raaStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
+        public void WhenTheProviderChoosesTheir(string answer) => RAAStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
 
         [When(@"the Provider fills out details based on WageType '(.*)','(.*)'")]
         public void WhenTheProviderFillsOutDetailsBasedOnWageType(string location, string wageType) =>
@@ -182,12 +182,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 _enterFurtherDetails = _enterTrainingDetails.GotoFurtherDetailsPage();
-                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
+                _requirementsAndProspects = RAAStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
             }
             else
             {
                 _enterOpportunityDetails = _enterTrainingDetails.GotoOpportunityDetailsPage();
-                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterOpportunityDetails);
+                _requirementsAndProspects = RAAStepsHelper.EnterFurtherDetails(_enterOpportunityDetails);
             }
 
             _requirementsAndProspects.ClickSaveAndContinue();

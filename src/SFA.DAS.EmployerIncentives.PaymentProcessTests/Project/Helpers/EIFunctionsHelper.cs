@@ -8,31 +8,24 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class EIFunctionsHelper
+    public class EIFunctionsHelper(EIPaymentProcessConfig config)
     {
-        protected HttpClient httpClient;
-        protected string baseUrl;
-        public string AuthenticationCode { get; set; }
-
-        public EIFunctionsHelper(EIPaymentProcessConfig config)
-        {
-            baseUrl = config.EI_FunctionsBaseUrl;
-            AuthenticationCode = config.EI_FunctionsAppCode;
-            httpClient = new HttpClient();
-        }
+        protected HttpClient httpClient = new();
+        protected string baseUrl = config.EI_FunctionsBaseUrl;
+        public string AuthenticationCode { get; set; } = config.EI_FunctionsAppCode;
 
         public async Task Withdraw(long uln, long accountLegalEntityId, WithdrawalType withdrawalType)
         {
             var request = new WithdrawRequest
             {
                 WithdrawalType = withdrawalType,
-                Applications = new List<Application>
-                {
+                Applications =
+                [
                     new() {
                         AccountLegalEntityId = accountLegalEntityId,
                         ULN = uln
                     }
-                }.ToArray(),
+                ],
                 ServiceRequest = new ServiceRequest { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
             };
 
@@ -46,15 +39,15 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
         {
             var request = new ReinstateApplicationRequest
             {
-                Applications = new List<Application>
-                {
+                Applications =
+                [
                     new() {
                         AccountLegalEntityId = accountLegalEntityId,
                         ULN = uln,
                         ServiceRequest = new ServiceRequest
                             { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
                     }
-                }.ToArray()
+                ]
             };
             var response = await httpClient.PostAsync($"{baseUrl}/api/reinstate?code={AuthenticationCode}", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
@@ -65,13 +58,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             var request = new EmploymentCheckRequest
             {
                 CheckType = RefreshEmploymentCheckType.InitialEmploymentChecks.ToString(),
-                Applications = new List<Application>
-                    {
+                Applications =
+                    [
                         new() {
                             ULN = uln,
                             AccountLegalEntityId = accountLegalEntityId
                         }
-                    },
+                    ],
                 ServiceRequest = new ServiceRequest
                 {
                     DecisionReference = "ABC123",

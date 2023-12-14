@@ -3,14 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AfterEditApproveApprenticeDetailsPage : ApprovalsBasePage
+    public class AfterEditApproveApprenticeDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Approve apprentice details";
 
         private static By ApproveApprenticeSaveAndSubmit => By.Id("continue-button");
         protected override By ContinueButton => By.Id("continue-button");
-
-        public AfterEditApproveApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         internal NotificationSentToTrainingProviderPage DynamicHomePageChangeRequestFromTrainingProvider()
         {

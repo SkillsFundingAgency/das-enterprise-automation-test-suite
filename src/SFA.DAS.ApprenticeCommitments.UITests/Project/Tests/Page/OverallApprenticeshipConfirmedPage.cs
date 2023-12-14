@@ -4,12 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class OverallApprenticeshipConfirmedPage : ApprenticeCommitmentsBasePage
+    public class OverallApprenticeshipConfirmedPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         protected override string PageTitle => "You have confirmed your apprenticeship details";
         protected static By TrainingName => By.CssSelector(".govuk-panel__body");
-
-        public OverallApprenticeshipConfirmedPage(ScenarioContext context) : base(context) { }
 
         public void NavigateBackToOverviewPage() => NavigateBack();
 

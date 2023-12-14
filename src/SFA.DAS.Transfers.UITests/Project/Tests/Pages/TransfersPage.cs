@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransfersPage : TransfersBasePage
+    public class TransfersPage(ScenarioContext context) : TransfersBasePage(context)
     {
         protected override string PageTitle => "Transfers";
 
@@ -19,8 +19,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         private static By ConnectionsReceiveRows => By.CssSelector("#connections-receive tbody tr");
         private static By TransfersSendRows => By.CssSelector("#transfers-send tbody tr");
         private static By DetailsLink => By.PartialLinkText("Details");
-
-        public TransfersPage(ScenarioContext context) : base(context) { }
 
         public ConnectWithReceivingEmployerPage ConnectWithReceivingEmployer()
         {
@@ -33,7 +31,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
             List<IWebElement> transferRequestRows = pageInteractionHelper.FindElements(ConnectionsReceiveRows);
             foreach (IWebElement transferRequestRow in transferRequestRows)
             {
-                if (transferRequestRow.Text.ToUpper().Contains($"{sender.ToUpper()}")
+                if (transferRequestRow.Text.Contains($"{sender.ToUpper()}", StringComparison.CurrentCultureIgnoreCase)
                     && transferRequestRow.Text.Contains("Pending"))
                 {
                     var detailsLiink = transferRequestRow.FindElements(DetailsLink).FirstOrDefault();
@@ -69,7 +67,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 
                 foreach (IWebElement row in rows)
                 {
-                    if (row.Text.ToUpper().Contains(Employer.ToUpper())
+                    if (row.Text.Contains(Employer, StringComparison.CurrentCultureIgnoreCase)
                         && row.Text.Contains("Approved"))
                     {
                         return true;
@@ -90,7 +88,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
             var transfersSendRows = pageInteractionHelper.FindElements(TransfersSendRows).Reverse<IWebElement>();
             foreach (IWebElement transfersSendRow in transfersSendRows)
             {
-                if (transfersSendRow.Text.ToUpper().Contains(receivingEmployer.ToUpper())
+                if (transfersSendRow.Text.Contains(receivingEmployer, StringComparison.CurrentCultureIgnoreCase)
                     && transfersSendRow.Text.Contains("Pending")
                     && transfersSendRow.Text.Contains(cohortTotalCost))
                 {

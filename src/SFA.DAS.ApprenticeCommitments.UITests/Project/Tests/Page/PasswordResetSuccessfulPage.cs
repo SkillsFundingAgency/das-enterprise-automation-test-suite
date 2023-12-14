@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class PasswordResetSuccessfulPage : EmailAndPasswordSuccessfulBasePage
+    public class PasswordResetSuccessfulPage(ScenarioContext context) : EmailAndPasswordSuccessfulBasePage(context)
     {
         protected override string PageTitle => "Password reset successful";
-
-        public PasswordResetSuccessfulPage(ScenarioContext context) : base(context) { }
 
         public SignIntoMyApprenticeshipPage ReturnToSignInPage()
         {

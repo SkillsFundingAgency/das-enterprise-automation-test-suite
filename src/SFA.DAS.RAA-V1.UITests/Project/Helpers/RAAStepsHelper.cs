@@ -9,24 +9,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
-    public class RAAStepsHelper
+    public class RAAStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
-        private readonly RestartWebDriverHelper _helper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly TabHelper _tabHelper = context.Get<TabHelper>();
+        private readonly RestartWebDriverHelper _helper = new(context);
 
         private string ApplicationName => "Recruit";
-        private readonly string _recruitBaseUrl;
-
-        public RAAStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tabHelper = context.Get<TabHelper>();
-            _helper = new RestartWebDriverHelper(context);
-            _recruitBaseUrl = UrlConfig.Recruit_BaseUrl;
-        }
+        private readonly string _recruitBaseUrl = UrlConfig.Recruit_BaseUrl;
 
         public void GoToRAA()
         {
@@ -51,7 +41,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return SubmitRecruitmentLoginDetails().CreateANewVacancy();
         }
 
-        internal RAA_EmployerInformationPage ChoosesTheEmployer(RAA_EmployerSelectionPage employerSelection, string location, string noOfpositions)
+        internal static RAA_EmployerInformationPage ChoosesTheEmployer(RAA_EmployerSelectionPage employerSelection, string location, string noOfpositions)
         {
             var raaEmployerInformation = employerSelection.SelectAnEmployer();
 
@@ -71,7 +61,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return raaEmployerInformation;
         }
 
-        internal void ChooseAnonymous(RAA_EmployerInformationPage raaEmployerInformation, string answer)
+        internal static void ChooseAnonymous(RAA_EmployerInformationPage raaEmployerInformation, string answer)
         {
             switch (answer)
             {
@@ -138,14 +128,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {
-            return new RAA_BasicVacancyDetailsPage(_context)
+            return new RAA_BasicVacancyDetailsPage(context)
                        .EnterVacancyTitle()
                        .ClickSaveAndContinueButton();
         }
 
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
         {
-            return new RAA_BasicVacancyDetailsPage(_context)
+            return new RAA_BasicVacancyDetailsPage(context)
                        .EnterVacancyTitle()
                        .EnterVacancyShortDescription()
                        .ClickOnVacancyType(vacancyType)
@@ -154,7 +144,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .ClickSaveAndContinueButton();
         }
 
-        internal RAA_EnterOpportunityDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails)
+        internal static RAA_EnterOpportunityDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails)
         {
             return enterTrainingDetails
                    .SelectApprenticeshipType("Traineeship")
@@ -176,7 +166,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .GotoFurtherDetailsPage();
         }
 
-        internal RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails, string vacancyDuration)
+        internal static RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails, string vacancyDuration)
         {
             return enteropportunityDetails
                    .EnterWorkingInformation()
@@ -187,7 +177,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .SaveAndContinue();
         }
 
-        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
+        internal static RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
         {
             return enterFurtherDetails
                    .EnterVacancyClosingDate()
@@ -195,7 +185,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .SaveAndContinue();
         }
 
-        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration, string wagetype)
+        internal static RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration, string wagetype)
         {
             return enterFurtherDetails
                    .EnterWorkingInformation()
@@ -225,7 +215,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal void EnterExtraQuestions()
         {
-            new RAA_ExtraQuestionsPage(_context)
+            new RAA_ExtraQuestionsPage(context)
                 .EnterFirstQuestion()
                 .EnterSecondQuestion()
                 .ClickPreviewVacancyButton();
@@ -233,7 +223,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal void AddMultipleVacancy(string postCode)
         {
-            new RAA_MultipleVacancyLocationPage(_context)
+            new RAA_MultipleVacancyLocationPage(context)
                        .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
@@ -248,9 +238,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             RAA_PreviewBasePage previewPage;
 
             if (_objectContext.IsApprenticeshipVacancyType())
-                previewPage = new RAA_VacancyPreviewPage(_context);
+                previewPage = new RAA_VacancyPreviewPage(context);
             else
-                previewPage = new RAA_OppurtunityPreviewPage(_context);
+                previewPage = new RAA_OppurtunityPreviewPage(context);
 
             var vacancyReferencePage = previewPage.ClickSubmitForApprovalButton();
             vacancyReferencePage.SetVacancyReference();
@@ -268,12 +258,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
-            new RAA_IndexPage(_context)
+            new RAA_IndexPage(context)
                 .AcceptCookies()
                 .ClickOnSignInButton()
                 .LoginToPireanPreprod();
 
-            return new SignInPage(_context)
+            return new SignInPage(context)
                 .SubmitRecruitmentLoginDetails();
         }
 

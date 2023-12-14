@@ -3,12 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class HelpAndSupportPage : ApprenticeCommitmentsBasePage
+    public class HelpAndSupportPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         protected override string PageTitle => "Help and support";
         private static By ReturnToHomePageButton => By.LinkText("Go back to the dashboard");
-
-        public HelpAndSupportPage(ScenarioContext context) : base(context) { }
 
         public ApprenticeHomePage NavigateToHomePageWithGoBackToTheDashboardButton()
         {

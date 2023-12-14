@@ -3,10 +3,8 @@ using MongoDB.Driver;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
-    public class GatewayUserDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
+    public class GatewayUserDataGenerator(MongoDbDataHelper helper) : EmpRefFilterDefinition(helper), IMongoDbDataGenerator
     {
-        public GatewayUserDataGenerator(MongoDbDataHelper helper) : base(helper) { }
-
         public string CollectionName() => "gateway_users";
 
         public BsonDocument[] Data()
@@ -20,7 +18,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
                 { "require2SV", false }
             };
 
-            return new BsonDocument[] { gatewayUser };
+            return [gatewayUser];
         }
 
         public new FilterDefinition<BsonDocument> FilterDefinition() => Builders<BsonDocument>.Filter.Eq("gatewayID", mongoDbDatahelper.GatewayId);
