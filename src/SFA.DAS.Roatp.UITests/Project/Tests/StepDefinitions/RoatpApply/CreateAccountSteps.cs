@@ -6,19 +6,15 @@ using TechTalk.SpecFlow.Assist;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class CreateAccountSteps
+    public class CreateAccountSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public CreateAccountSteps(ScenarioContext context) => _context = context;
-
         [Then(@"user submits the details to create an account")]
-        public void UserSubmitsTheDetailsToCreateAnAccount() => new RoatpApplyLoginHelpers(_context).CreateAnAccount();
+        public void UserSubmitsTheDetailsToCreateAnAccount() => new RoatpApplyLoginHelpers(context).CreateAnAccount();
 
         [Then(@"user submits the details to create an account")]
         public void UserSubmitsTheDetailsToCreateAnAccount(Table table)
         {
-            _context.Get<RoatpApplyCreateUserDataHelper>().UpdateData(table.CreateInstance<RoatpApplyCreateUserDataHelper>());
+            context.Get<RoatpApplyCreateUserDataHelper>().UpdateData(table.CreateInstance<RoatpApplyCreateUserDataHelper>());
 
             UserSubmitsTheDetailsToCreateAnAccount();
         }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
@@ -20,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         public ConfirmPartnerShipDetailsPage EnterIndividualsDetailsAndContinue()
         {
-            formCompletionHelper.EnterText(IndividualsDetails, applydataHelpers.FullName);
+            formCompletionHelper.EnterText(IndividualsDetails, RoatpApplyDataHelpers.FullName);
             EnterMonthAndYear();
             return new ConfirmPartnerShipDetailsPage(context);
         }

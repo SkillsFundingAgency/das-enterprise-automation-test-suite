@@ -41,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = section1Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section2Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section3Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = section4Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section4Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section5Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
@@ -50,7 +50,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         {
             moderationApplicationAssessmentOverviewPage = section1Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section2Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = section4Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section4Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
 

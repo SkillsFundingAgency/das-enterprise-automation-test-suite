@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "oldroatpadmin")]
-    public class OldRoatpAdminHooks : RoatpBaseHooks
+    public class OldRoatpAdminHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        private readonly string[] _tags;
-
-        public OldRoatpAdminHooks(ScenarioContext context) : base(context) { _tags = context.ScenarioInfo.Tags; }
+        private readonly string[] _tags = context.ScenarioInfo.Tags;
 
         [BeforeScenario(Order = 32)]
         public new void GetOldRoatpAdminData()

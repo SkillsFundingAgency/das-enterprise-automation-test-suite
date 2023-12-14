@@ -10,29 +10,16 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class RoatpEnd2EndSteps
+    public class RoatpEnd2EndSteps(ScenarioContext context)
     {
-        private readonly ObjectContext _objectContext;
-        private readonly ScenarioContext _context;
-        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
-        private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper = new();
+        private readonly SelectRouteStepsHelper _selectRouteStepsHelper = new(context);
         private ApplicationOverviewPage _overviewPage;
-        private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
-        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
-        private readonly TabHelper _tabHelper;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
-
-        public RoatpEnd2EndSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tabHelper = context.Get<TabHelper>();
-            _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
-            _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
-            _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
-        }
+        private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper = new();
+        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers = new(context);
+        private readonly TabHelper _tabHelper = context.Get<TabHelper>();
+        private readonly RestartWebDriverHelper _restartWebDriverHelper = new(context);
 
         [Given(@"the provider initates an application as (Supporting Provider Route For Existing Provider)")]
         public void GivenTheProviderInitatesAnApplicationAsSupportingProviderRouteForExistingProvider(ApplicationRoute applicationRoute)
@@ -90,7 +77,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
             _roatpApplyLoginHelpers.SubmitValidUserDetails();
 
-            new ApplicationOutcomePage(_context).VerifyApplicationOutcomePage(expectedPage, externalComments);
+            new ApplicationOutcomePage(context).VerifyApplicationOutcomePage(expectedPage, externalComments);
         }
         [Then(@"verify the (Application withdrawn|Application successful|Application unsuccessful|Application in progress) page is displayed")]
         public void VerifyTheApplicationOutcome(string expectedPage) => VerifyTheApplicationOutcome(expectedPage, string.Empty);
@@ -102,27 +89,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
             _roatpApplyLoginHelpers.SubmitValidUserDetails();
 
-            new AppealSubmittedPage(_context).VerifyAppealOutcomePage(expectedPage);
+            new AppealSubmittedPage(context).VerifyAppealOutcomePage(expectedPage);
         }
 
         [Then(@"verify provider able to request new invitation to Reapply")]
         public void ThenVerifyProviderAbleToRequestNewInvitationToReapply()
         {
-            new ApplicationOutcomePage(_context).RequestNewInvitation();
+            new ApplicationOutcomePage(context).RequestNewInvitation();
 
             RestartRoatpApply("apply");
         }
 
         [Then(@"verify the (Application successful|Application unsuccessful) page is displayed for Appealead Application")]
         public void ThenVerifyTheApplicationPageIsDisplayedForAppeal(string expectedPage) =>
-            new AppealSubmittedPage(_context)
+            new AppealSubmittedPage(context)
             .AccessApplicationOverviewPage()
             .VerifyApplicationOutcomePage(expectedPage, string.Empty);
 
         [Then(@"verify (Appeal submitted) page is displayed once provider submits the APPEAL")]
         public void ThenVerifyAppealSubmittedPageIsDisplayedOnceProviderSubmitsTheAPPEAL(string expectedPage)
         {
-            new ApplicationOutcomePage(_context)
+            new ApplicationOutcomePage(context)
             .StartAppeal()
             .SelectAppealOnAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
             .EnterText_UploadFileForAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
@@ -179,7 +166,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesFinancialEvidenceSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
 
         [When(@"the provider completes Criminal and Compliance section")]
-        public void WhenTheProviderCompletesCriminalAndComplianceSection() => _overviewPage = _end2EndStepsHelper.CompletesCriminalAndCompliance_Section3(_overviewPage);
+        public void WhenTheProviderCompletesCriminalAndComplianceSection() => _overviewPage = RoatpApplyEnd2EndStepsHelper.CompletesCriminalAndCompliance_Section3(_overviewPage);
 
         [When(@"the provider completes Protecting your apprentices section")]
         public void WhenTheProviderCompletesProtectingYourApprenticesSection() => _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4(_overviewPage);
@@ -188,7 +175,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void WhenTheProviderCompletesProtectingYourApprenticesSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4_SupportingRoute(_overviewPage);
 
         [When(@"the provider does not require to complete Readiness to engage section")]
-        public void WhenTheProviderDoesNotRequireToCompleteReadinessToEngageSection() => _overviewPage = _end2EndStepsHelper.NotRequiredReadinessToEngage_Section5(_overviewPage);
+        public void WhenTheProviderDoesNotRequireToCompleteReadinessToEngageSection() => _overviewPage = RoatpApplyEnd2EndStepsHelper.NotRequiredReadinessToEngage_Section5(_overviewPage);
 
         [When(@"the provider completes Readiness to engage section")]
         public void WhenTheProviderCompletesReadinessToEngageSection() => _overviewPage = _end2EndStepsHelper.CompletesReadinessToEngage_Section5(_overviewPage);
@@ -210,13 +197,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage, applicationRoute);
         }
         [When(@"the provider completes Delivering apprenticeship training section for main route")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute() => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute() => _overviewPage = RoatpApplyEnd2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
 
         [When(@"the provider completes Delivering apprenticeship training section for (Employer Provider Route|Employer Provider Route For Existing Provider)")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage, applicationRoute);
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute(ApplicationRoute applicationRoute) => _overviewPage = RoatpApplyEnd2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage, applicationRoute);
 
         [When(@"the provider completes Delivering apprenticeship training section for (Supporting Provider Route|Supporting Provider Route For Existing Provider)")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute(ApplicationRoute applicationRoute) => _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage, applicationRoute);
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute(ApplicationRoute applicationRoute) => _overviewPage = RoatpApplyEnd2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage, applicationRoute);
 
         [When(@"the provider completes Evaluating apprenticeship training section")]
         public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSection() => _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);

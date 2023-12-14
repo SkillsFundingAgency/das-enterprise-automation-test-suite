@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprenticeshipTraining_Section7
@@ -13,9 +14,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public HowAreTheyCommunicatedToEmployeesPage EnterDetails()
         {
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Full name", applydataHelpers.FullName);
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Email", applydataHelpers.Email);
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", applydataHelpers.ContactNumber);
+            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Full name", RoatpApplyDataHelpers.FullName);
+            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Email", RoatpApplyDataHelpers.Email);
+            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", RoatpApplyDataHelpers.ContactNumber);
             Continue();
             return new HowAreTheyCommunicatedToEmployeesPage(context);
         }

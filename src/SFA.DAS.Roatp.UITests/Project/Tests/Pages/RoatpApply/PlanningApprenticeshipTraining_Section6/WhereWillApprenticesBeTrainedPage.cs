@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprenticeshipTraining_Section6
@@ -22,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             formCompletionHelper.EnterText(BuildingAndStreetTextBox, applydataHelpers.BuildingAndStreet);
             formCompletionHelper.EnterText(TownOrCityTextBox, applydataHelpers.TownOrCity);
             formCompletionHelper.EnterText(CountyTextBox, applydataHelpers.County);
-            formCompletionHelper.EnterText(PostcodeTextBox, applydataHelpers.Postcode);
+            formCompletionHelper.EnterText(PostcodeTextBox, RoatpApplyDataHelpers.Postcode);
             Continue();
             return new ApplicationOverviewPage(context);
         }

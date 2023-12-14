@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class CriminalAndCompliance_Section3_Helper
     {
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteCriminalAndCompliance_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .Access_Section3_IntroductionWhatYouwillNeed()
@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatus_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_2(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteCriminalAndCompliance_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section3_ChecksOnYourOrganisation()
                 .SelectYesForCompositionWithCreditorsAndContinue()
@@ -30,14 +30,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyChecksOnYourOrganisations_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteCriminalAndCompliance_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section3_IntroductionWhatYouWillNeedStatusWhosInControl()
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatusControl_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
            .SelectYesEnterInformationForUnspentCriminalConvicitionAndContinue()

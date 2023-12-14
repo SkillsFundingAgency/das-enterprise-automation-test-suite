@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
@@ -15,8 +16,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         public ConfrimWhosInControlPage EnterWhoIsInControlDetailsAndContinue()
         {
-            formCompletionHelper.EnterText(FullNameField, applydataHelpers.FullName);
-            var dobcalc = applydataHelpers.Dob(2);
+            formCompletionHelper.EnterText(FullNameField, RoatpApplyDataHelpers.FullName);
+            var dobcalc = Helpers.DataHelpers.RoatpApplyDataHelpers.Dob(2);
             formCompletionHelper.EnterText(MonthField, dobcalc.Month);
             formCompletionHelper.EnterText(YearField, dobcalc.Year);
             Continue();

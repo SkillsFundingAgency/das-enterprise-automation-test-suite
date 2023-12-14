@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
@@ -13,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         public ConfirmPartnerShipDetailsPage EnterOrganisationDetailsAndContinue()
         {
-            formCompletionHelper.EnterText(OrganisationDetails, applydataHelpers.FullName);
+            formCompletionHelper.EnterText(OrganisationDetails, RoatpApplyDataHelpers.FullName);
             Continue();
             return new ConfirmPartnerShipDetailsPage(context);
         }

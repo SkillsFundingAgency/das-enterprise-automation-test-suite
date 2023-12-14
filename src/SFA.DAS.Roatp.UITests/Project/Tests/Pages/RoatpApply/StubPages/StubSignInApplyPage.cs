@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages
 {
-    public class StubSignInApplyPage : StubSignInBasePage
+    public class StubSignInApplyPage(ScenarioContext context) : StubSignInBasePage(context)
     {
         protected override string PageTitle => "Stub Authentication - Enter sign in details from Contacts table";
-
-        public StubSignInApplyPage(ScenarioContext context) : base(context) { }
 
         public StubYouHaveSignedInApplyPage SubmitValidUserDetails() => GoToStubYouHaveSignedInApplyPage(objectContext.GetEmail(), objectContext.GetSignInId(), false);
 

@@ -5,24 +5,16 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class Section1Steps
+    public class Section1Steps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
         private ApplicationOverviewPage _overviewPage;
-        private readonly YourOrganisation_Section1_Helper _yourOrganisationSectionHelper;
-        private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
-
-        public Section1Steps(ScenarioContext context)
-        {
-            _context = context;
-            _yourOrganisationSectionHelper = new YourOrganisation_Section1_Helper();
-            _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
-        }
+        private readonly YourOrganisation_Section1_Helper _yourOrganisationSectionHelper = new();
+        private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper = new();
 
         [When(@"the provider completes Your organisation section using an ukprn")]
         public void WhenTheProviderCompletesYourOrganisationSectionUsingAnUkprn()
         {
-            _overviewPage = new ApplicationOverviewPage(_context);
+            _overviewPage = new ApplicationOverviewPage(context);
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(_overviewPage);
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2_NotACompany(_overviewPage);
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_GovernmentStatue(_overviewPage);
@@ -32,10 +24,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [Then(@"the provider completes Introduction and what you'll need section for main and employer route")]
-        public void ThenTheProviderCompletesIntroductionAndWhatYoullNeedSectionForMainAndEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(new ApplicationOverviewPage(_context));
+        public void ThenTheProviderCompletesIntroductionAndWhatYoullNeedSectionForMainAndEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(new ApplicationOverviewPage(context));
 
         [Then(@"the provider completes Introduction and what you'll need content for supporting route")]
-        public void ThenTheProviderCompletesIntroductionAndWhatYoullNeedContentForSupportingRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1_SupportRoute(new ApplicationOverviewPage(_context));
+        public void ThenTheProviderCompletesIntroductionAndWhatYoullNeedContentForSupportingRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1_SupportRoute(new ApplicationOverviewPage(context));
 
         [Then(@"the provider completes Organisation Information section for company")]
         public void ThenTheProviderCompletesOrganisationInformationSectionForCompany() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2(_overviewPage);

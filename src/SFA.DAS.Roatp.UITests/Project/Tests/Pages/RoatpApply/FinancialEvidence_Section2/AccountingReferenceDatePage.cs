@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public HowManyMonthsAccountingPeriodPage EnterAccountingReferenceDateAndContinue()
         {
-            var dobcalc = applydataHelpers.Dob(2);
+            var dobcalc = Helpers.DataHelpers.RoatpApplyDataHelpers.Dob(2);
             formCompletionHelper.EnterText(AccountingReferenceDay, dobcalc.Day);
             formCompletionHelper.EnterText(AccountingReferenceMonth, dobcalc.Month);
             formCompletionHelper.EnterText(AccountingReferenceYear, dobcalc.Year);

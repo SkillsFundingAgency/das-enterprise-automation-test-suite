@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages;
 
-public class StubAddYourUserDetailsPage : StubAddYourUserDetailsBasePage
+public class StubAddYourUserDetailsPage(ScenarioContext context) : StubAddYourUserDetailsBasePage(context)
 {
-    public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) { }
-
     public EnterUkprnPage EnterNameAndContinue(RoatpApplyCreateUserDataHelper dataHelper)
     {
         EnterNameAndContinue(dataHelper.GivenName, dataHelper.FamilyName);
