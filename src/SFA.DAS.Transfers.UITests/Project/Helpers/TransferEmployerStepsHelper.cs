@@ -8,7 +8,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
     public class TransferEmployerStepsHelper(ScenarioContext context) : EmployerStepsHelper(context)
     {
-        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsUsingTransfersFunc();
+        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingTransfersFunc();
 
         public void AssertApprenticeChangeToReviewTaskLink(int numberOfTasks) => AssertTaskCount("ApprenticeChangeToReview", numberOfTasks);
 

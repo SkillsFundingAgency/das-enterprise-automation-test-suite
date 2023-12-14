@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderReviewApprenticeDetailsBulkUploadPage : ApprovalsBasePage
+    public class ProviderReviewApprenticeDetailsBulkUploadPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Check new apprentice records";
         protected override By ContinueButton => By.Id("continue-button");
@@ -21,9 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected static By SaveButDontSendToEmployerRadioButton => By.Id("details-save");
         protected static By ApproveAllAndSendToEmployerButton => By.Id("details-approve");
         protected static By CancelUploadLink => By.Id("cancel-upload-link");
-
-
-        public ProviderReviewApprenticeDetailsBulkUploadPage(ScenarioContext context) : base(context) { }
 
         public ProviderReviewApprenticeDetailsBulkUploadPage VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
@@ -60,14 +57,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void CancelUpload() => formCompletionHelper.Click(CancelUploadLink);
 
-        private void VerifyCohortDetails(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
+        private static void VerifyCohortDetails(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
         {
             VerifyCohortReferences(cohortDetails, employerDetails);
 
             VerifyApprenticeCountAndTotalAmount(cohortDetails, employerDetails);
         }
 
-        private void VerifyApprenticeCountAndTotalAmount(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
+        private static void VerifyApprenticeCountAndTotalAmount(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
         {
             int counter = 0;
             var apprenticeCountAndTotalTextWE = employerDetails.FindElements(ApprenticeCountAndTotalText);
@@ -82,7 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
         }
 
-        private void VerifyCohortReferences(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
+        private static void VerifyCohortReferences(List<FileUploadReviewCohortDetail> cohortDetails, IWebElement employerDetails)
         {
             int counter = 0;
             var cohortReferencesWE = employerDetails.FindElements(CohortReferences);
@@ -115,7 +112,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
         }
 
-        private void VerifyAgreementId(FileUploadReviewEmployerDetails expectedEmployerDetails, IWebElement employerNameAndAgreementId)
+        private static void VerifyAgreementId(FileUploadReviewEmployerDetails expectedEmployerDetails, IWebElement employerNameAndAgreementId)
         {
             var agrreementId = employerNameAndAgreementId.FindElement(EmployerAgreementId);
             if (agrreementId.Text != $"Agreement ID: {expectedEmployerDetails.AgreementId}")
@@ -124,7 +121,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
         }
 
-        private void VerifyEmployerName(FileUploadReviewEmployerDetails expectedEmployerDetails, IWebElement employerNameAndAgreementId)
+        private static void VerifyEmployerName(FileUploadReviewEmployerDetails expectedEmployerDetails, IWebElement employerNameAndAgreementId)
         {
             if (!employerNameAndAgreementId.Text.Contains(expectedEmployerDetails.EmployerName.Replace("  ", " ")))
             {

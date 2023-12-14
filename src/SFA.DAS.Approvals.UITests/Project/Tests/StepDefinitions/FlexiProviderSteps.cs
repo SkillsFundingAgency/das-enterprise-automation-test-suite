@@ -5,15 +5,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FlexiProviderSteps
+    public class FlexiProviderSteps(ScenarioContext context)
     {
-        private readonly FlexiProviderStepsHelper _flexiProviderStepsHelper;
+        private readonly FlexiProviderStepsHelper _flexiProviderStepsHelper = new(context);
         private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
-
-        public FlexiProviderSteps(ScenarioContext context)
-        {
-            _flexiProviderStepsHelper = new FlexiProviderStepsHelper(context);
-        }
 
         [Then(@"provider can edit delivery model and approve")]
         public void ThenProviderCanEditDeliveryModelAndApprove() => _flexiProviderStepsHelper.ProviderEditsDeliveryModelAndApprovesAfterFJAARemoval();

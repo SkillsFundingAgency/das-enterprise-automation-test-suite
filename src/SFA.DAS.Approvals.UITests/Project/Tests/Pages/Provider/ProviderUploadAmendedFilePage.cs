@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderUploadAmendedFilePage : ApprovalsBasePage
+    public class ProviderUploadAmendedFilePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By ContinueButton => By.Id("continueBtn");
 
@@ -11,8 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected static By ConfirmFalseRadioButton => By.Id("confirm-false");
 
         protected override string PageTitle => "Are you sure you want to upload an amended file?";
-
-        public ProviderUploadAmendedFilePage(ScenarioContext context) : base(context) { }
 
         internal void SelectYesAndContinue()
         {

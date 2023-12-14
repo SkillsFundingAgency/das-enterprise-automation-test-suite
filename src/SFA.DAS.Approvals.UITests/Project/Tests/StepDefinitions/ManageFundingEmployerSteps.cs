@@ -6,12 +6,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ManageFundingEmployerSteps : BaseSteps
+    public class ManageFundingEmployerSteps(ScenarioContext context) : BaseSteps
     {
         private ManageFundingHomePage _yourFundingReservationsPage;
-        private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
-
-        public ManageFundingEmployerSteps(ScenarioContext context) => _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
+        private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper = new(context);
 
         [When(@"The NonLevyEmployer reserves funding for an apprenticeship course from reserved panel")]
         public void WhenTheNonLevyEmployerReservesFundingForAnApprenticeshipCourseFromReservedPanel() => _reservationStepsHelper.CreateReservationViaDynamicHomePageTriageJourney();

@@ -14,51 +14,32 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class CoCSteps
+    public class CoCSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-        private readonly ObjectContext _objectContext;
+        private readonly EmployerPortalLoginHelper _loginHelper = new(context);
 
-        private readonly EmployerPortalLoginHelper _loginHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
-        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
 
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly CommitmentsSqlDataHelper _commitmentsDataHelper = context.Get<CommitmentsSqlDataHelper>();
 
-        private readonly CommitmentsSqlDataHelper _commitmentsDataHelper;
+        private readonly ApprenticeDataHelper _dataHelper = context.Get<ApprenticeDataHelper>();
 
-        private readonly ApprenticeDataHelper _dataHelper;
+        private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
 
-        private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
+        private readonly CohortReferenceHelper _cohortReferenceHelper = new(context);
 
-        private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
 
-        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-
-        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
-
-
-        public CoCSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _commitmentsDataHelper = context.Get<CommitmentsSqlDataHelper>();
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _loginHelper = new EmployerPortalLoginHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
-            _cohortReferenceHelper = new CohortReferenceHelper(context);
-            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
-        }
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
 
         [Given(@"the listed employer has approved apprentice")]
-        public void GivenTheListedEmployerHasApprovedApprentice() => ApproveCohort(true, _context.GetUser<ASListedLevyUser>());
+        public void GivenTheListedEmployerHasApprovedApprentice() => ApproveCohort(true, context.GetUser<ASListedLevyUser>());
 
         [When(@"the Employer has approved another apprenticeship")]
         public void WhenTheEmployerHasApprovedAnotherApprenticeship() => ApproveCohortForLevyUser(false);
@@ -163,7 +144,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             SelectViewCurrentApprenticeDetails().ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
         }
 
-        private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, _context.GetUser<LevyUser>());
+        private void ApproveCohortForLevyUser(bool isFirstCourse) => ApproveCohort(isFirstCourse, context.GetUser<LevyUser>());
 
         private void ApproveCohort(bool isFirstCourse, EasAccountUser loginUser)
         {

@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderInformPage : ApprovalsBasePage
+    public class ProviderInformPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "What you'll need";
 
         protected override bool TakeFullScreenShot => false;
 
         private static By ChangeTheEmployerButton => By.Id("change-the-employer-button");
-
-        public ProviderInformPage(ScenarioContext context) : base(context) { }
 
         public ProviderCoESelectEmployerPage SelectChangeTheEmployer()
         {

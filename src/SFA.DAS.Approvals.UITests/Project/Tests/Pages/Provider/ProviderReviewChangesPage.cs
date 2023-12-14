@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderReviewChangesPage : ApprovalsBasePage
+    public class ProviderReviewChangesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Review changes";
 
@@ -19,16 +19,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By ContinueButton => By.CssSelector("#continue-button");
 
-        public ProviderReviewChangesPage(ScenarioContext context) : base(context) { }
-
         public void VerifyLimitingStandardRestriction()
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(ErrorMsg, "There is a problem"),
                 () => VerifyPage(ErrorMsg, "This training course has not been declared"),
                 () => VerifyPage(IsValidCourseErrorMsg, "This training course has not been declared")
-            });
+            ]);
         }
 
         public ProviderEditedApprenticeDetailsPage SelectApproveChangesAndSubmit()

@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
-    public class SubmittedReportspage : PublicSectorReportingBasePage
+    public class SubmittedReportspage(ScenarioContext context) : PublicSectorReportingBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         protected override string PageTitle => "Submitted reports";
-
-        public SubmittedReportspage(ScenarioContext context) : base(context) { }
 
         public SubmittedDetailsPage ViewReport()
         {

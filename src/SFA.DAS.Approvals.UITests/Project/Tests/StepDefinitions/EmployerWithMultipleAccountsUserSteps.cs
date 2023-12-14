@@ -12,7 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class EmployerWithMultipleAccountsUserSteps
     {
         private readonly ObjectContext _objectContext;
-        private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerWithMultipleAccountsUser _employerWithMultipleAccountsUser;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
@@ -20,7 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public EmployerWithMultipleAccountsUserSteps(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
-            _employerStepsHelper = new EmployerStepsHelper(context);
             _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
             _employerWithMultipleAccountsUser = context.GetUser<EmployerWithMultipleAccountsUser>();
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context, _employerWithMultipleAccountsUser);

@@ -5,12 +5,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding, Scope(Tag = "approvalsnavigation")]
-    public class ApprovalsNavigationSteps
+    public class ApprovalsNavigationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
         private ApprenticesHomePage _apprenticesHomePage;
-
-        public ApprovalsNavigationSteps(ScenarioContext context) => _context = context;
 
         [When(@"the Employer navigates to 'Apprentice' Page")]
         public void WhenTheEmployerNavigatesToPage() => GoToApprenticesHomePage();
@@ -75,8 +72,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        private ApprenticesHomePage GoToApprenticesHomePage() => new(_context);
+        private ApprenticesHomePage GoToApprenticesHomePage() => new(context);
 
-        private InterimApprenticesHomePage GoToInterimApprenticesHomePage() => new(_context, true);
+        private InterimApprenticesHomePage GoToInterimApprenticesHomePage() => new(context, true);
     }
 }

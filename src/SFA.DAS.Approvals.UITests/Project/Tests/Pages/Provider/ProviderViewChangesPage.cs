@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderViewChangesPage : ApprovalsBasePage
+    public class ProviderViewChangesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "View changes";
         private static By ReviewNewDetails => By.LinkText("reviewing the new details");
         private static By ReviewNewDetailsToUpdate => By.LinkText("Review the apprentice details to update");
         protected override By ContinueButton => By.CssSelector("#submit-undo-changes, #continue-button");
         private static By ViewChangesOptions => By.CssSelector(".selection-button-radio");
-
-        public ProviderViewChangesPage(ScenarioContext context) : base(context) { }
 
         public ProvideViewApprenticesDetailsPage ClickOnReviewNewDetailsLink()
         {

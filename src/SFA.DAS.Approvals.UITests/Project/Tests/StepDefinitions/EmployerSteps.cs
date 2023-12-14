@@ -7,31 +7,21 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerSteps
+    public class EmployerSteps(ScenarioContext context)
     {
+
         #region context&Helpers
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly EmployerCreateCohortStepsHelper _employerCreateCohortStepsHelper;
-        private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper;
-        private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
+        private readonly EmployerCreateCohortStepsHelper _employerCreateCohortStepsHelper = new(context);
+        private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper = new(context);
+        private readonly CohortReferenceHelper _cohortReferenceHelper = new(context);
         #endregion
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private ViewApprenticeDetailsPage _viewApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-
-        public EmployerSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _employerCreateCohortStepsHelper = new EmployerCreateCohortStepsHelper(context);
-            _cohortReferenceHelper = new CohortReferenceHelper(context);
-            _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(context);
-        }
 
         [StepArgumentTransformation(@"(does ?.*)")]
         public bool DoesToBool(string value) => value == "does";
@@ -176,7 +166,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ANewLiveApprenticeRecordIsCreated() => _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context).AddAnApprentice();
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(context).AddAnApprentice();
 
         [Then(@"employer validates apprentice is Flexi-job and can edit Delivery Model")]
         public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel() => _employerStepsHelper.EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable();

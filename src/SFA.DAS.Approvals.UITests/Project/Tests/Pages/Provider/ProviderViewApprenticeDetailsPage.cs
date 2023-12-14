@@ -4,15 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    class ProviderViewApprenticeDetailsPage : ApprovalsBasePage
+    class ProviderViewApprenticeDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "View apprentice details";
 
         private static By ReturnToCohortViewLink => By.LinkText("Return to cohort view");
 
         private static By InputBox => By.TagName("input");
-
-        public ProviderViewApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         internal ProvideViewApprenticesDetailsPage SelectReturnToCohortView()
         {
