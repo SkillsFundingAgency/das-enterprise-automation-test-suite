@@ -6,13 +6,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ValidationSteps
+    public class ValidationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
         private ApprenticeDetailsPage apprenticeDetailsPage;
-
-        public ValidationSteps(ScenarioContext context) => _context = context;
 
         [Then(@"the apprenticeship status changes to completed")]
         public void ThenTheApprenticeshipStatusChangesToCompleted() => apprenticeDetailsPage = ValidateCompletionStatus();
@@ -24,7 +20,7 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinit
         {
             string expectedCompletionDate = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year;
 
-            ApprenticeDetailsPage apprenticeDetailsPage = new ManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails();
+            ApprenticeDetailsPage apprenticeDetailsPage = new ManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails();
 
             apprenticeDetailsPage.VerifyApprenticeshipStatus("COMPLETED");
 
@@ -35,7 +31,7 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinit
             return apprenticeDetailsPage;
         }
 
-        internal void ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate(ApprenticeDetailsPage apprenticeDetailsPage)
+        internal static void ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate(ApprenticeDetailsPage apprenticeDetailsPage)
         {
             Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeStatusLinkVisible());
 

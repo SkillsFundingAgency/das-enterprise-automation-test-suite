@@ -7,26 +7,22 @@ using System.Collections.Generic;
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project;
 
 [Binding]
-public class AANConfigurationSetup
+public class AANConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public AANConfigurationSetup(ScenarioContext context) => _context = context;
-
     [BeforeScenario(Order = 2)]
     public void SetUpAANConfigConfiguration()
     {
-        var configSection = _context.Get<IConfigSection>();
+        var configSection = context.Get<IConfigSection>();
 
-        _context.SetEasLoginUser(new List<EasAccountUser>
-        {
+        context.SetEasLoginUser(
+        [
             configSection.GetConfigSection<AanEmployerUser>(),
             configSection.GetConfigSection<AanEmployerOnBoardedUser>()
-        });
+        ]);
 
-        var dfeAdminUsers = _context.Get<FrameworkList<DfeAdminUsers>>();
+        var dfeAdminUsers = context.Get<FrameworkList<DfeAdminUsers>>();
 
-        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
             configSection.GetConfigSection<AanApprenticeUser>(),
             configSection.GetConfigSection<AanApprenticeNonBetaUser>(),

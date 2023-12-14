@@ -12,13 +12,8 @@ global using SFA.DAS.TestDataExport.Helper;
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
 [Binding]
-public class AANHooks : AANBaseHooks
+public class AANHooks(ScenarioContext context) : AANBaseHooks(context)
 {
-    public AANHooks(ScenarioContext context) : base(context)
-    {
-
-    }
-
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {

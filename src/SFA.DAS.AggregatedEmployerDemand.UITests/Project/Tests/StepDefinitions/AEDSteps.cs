@@ -1,13 +1,11 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class AedSteps
+public class AedSteps(ScenarioContext context)
 {
-    private readonly AedStepsHelper _aEDStepsHelper;
+    private readonly AedStepsHelper _aEDStepsHelper = new AedStepsHelper(context);
     private GetHelpWithFindingATrainingProviderPage _getHelpWithFindingATrainingProviderPage;
     private AedIndexPage _aedIndexPage;
-
-    public AedSteps(ScenarioContext context) => _aEDStepsHelper = new AedStepsHelper(context);
 
     [Given(@"the employer has shared interest")]
     public void GivenTheEmployerHasSharedInterest() => _aEDStepsHelper.RegisterInterest(0);

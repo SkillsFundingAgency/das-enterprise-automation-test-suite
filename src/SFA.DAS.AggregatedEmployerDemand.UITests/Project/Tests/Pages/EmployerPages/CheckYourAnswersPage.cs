@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
-public class CheckYourAnswersPage : AedBasePage
+public class CheckYourAnswersPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "Check your answers";
-
-    public CheckYourAnswersPage(ScenarioContext context) : base(context) { }
 
     private static By Confirm => By.CssSelector("#submit-demand");
 

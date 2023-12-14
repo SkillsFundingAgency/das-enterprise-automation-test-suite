@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
-public class AedIndexPage : AedBasePage
+public class AedIndexPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "";
-
-    public AedIndexPage(ScenarioContext context) : base(context) { }
 
     #region Locators
     private static By GetHelpWithFindingATrainingProviderLink => By.LinkText("Share your interest");

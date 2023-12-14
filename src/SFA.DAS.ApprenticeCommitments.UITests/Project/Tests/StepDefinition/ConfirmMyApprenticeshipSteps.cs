@@ -127,7 +127,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenConfirmedRolesPageIsDisplayedForTryingToConfirmAgain()
         {
             _alreadyConfirmedRolesAndResponsibilitiesPage = _apprenticeOverviewPage.GoToAlreadyConfirmedRolesAndResponsibilitiesPage();
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(_alreadyConfirmedRolesAndResponsibilitiesPage)
+            _apprenticeOverviewPage = ConfirmMyApprenticeshipStepsHelper.VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(_alreadyConfirmedRolesAndResponsibilitiesPage)
                 .NavigateBackToCMADOverviewPage();
         }
 

@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public class AlreadyConfirmedApprenticeshipDetailsPage : ConfirmYourDetailsBasePage
     {
         protected override string PageTitle => "Confirm the details of your apprenticeship";
-        private string GreenTickTextInfo => "You have confirmed these are the details of your apprenticeship";
+        private static string GreenTickTextInfo => "You have confirmed these are the details of your apprenticeship";
 
         public AlreadyConfirmedApprenticeshipDetailsPage(ScenarioContext context) : base(context)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(),
-                () => VerifyPage(GreenTickText, GreenTickTextInfo) 
-            });
+                () => VerifyPage(GreenTickText, GreenTickTextInfo)
+            ]);
         }
 
         public new AlreadyConfirmedApprenticeshipDetailsPage ChangeMyAnswerAction()

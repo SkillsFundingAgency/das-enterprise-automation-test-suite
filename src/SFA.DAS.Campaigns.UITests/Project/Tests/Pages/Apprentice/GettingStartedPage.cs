@@ -1,12 +1,9 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class GettingStartedPage : ApprenticeBasePage
+    public class GettingStartedPage(ScenarioContext context) : ApprenticeBasePage(context)
     {
         protected override string PageTitle => "Get started";
-
-        public GettingStartedPage(ScenarioContext context): base(context) { }
     }
 }

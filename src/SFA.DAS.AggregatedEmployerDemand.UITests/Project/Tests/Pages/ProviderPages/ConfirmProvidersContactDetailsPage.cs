@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
-public class ConfirmProvidersContactDetailsPage : AedBasePage
+public class ConfirmProvidersContactDetailsPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "Confirm";
 
     protected override bool TakeFullScreenShot => false;
-
-    public ConfirmProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
 
     public CheckYourAnswersPage ContinueToProviderCheckYourAnswersPage()
     {

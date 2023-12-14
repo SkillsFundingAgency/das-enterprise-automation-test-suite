@@ -13,7 +13,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
         protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
         protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
         private readonly ApprenticeCommitmentsAccountsSqlDbHelper _apprenticeCommitmentsAccountsSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
-        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         private readonly CommitmentsSqlHelper _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
         private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
         protected readonly string[] tags = context.ScenarioInfo.Tags;

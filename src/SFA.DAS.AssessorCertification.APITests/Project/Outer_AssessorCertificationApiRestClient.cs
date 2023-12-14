@@ -6,10 +6,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.AssessorCertification.APITests.Project
 {
-    public class Outer_AssessorCertificationApiRestClient : Outer_BaseApiRestClient
+    public class Outer_AssessorCertificationApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config.NAS_Apim_SubscriptionKey)
     {
-        public Outer_AssessorCertificationApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config.NAS_Apim_SubscriptionKey) { }
-
         readonly string environment = EnvironmentConfig.IsPPEnvironment ? "preprod" : EnvironmentConfig.EnvironmentName;
         
         protected override string ApiName => $"/assessor-service-api-{environment}";

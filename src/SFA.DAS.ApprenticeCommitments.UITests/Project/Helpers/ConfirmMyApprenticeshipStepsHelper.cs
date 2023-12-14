@@ -9,25 +9,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 {
-    public class ConfirmMyApprenticeshipStepsHelper
+    public class ConfirmMyApprenticeshipStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ApprenticeCommitmentsSqlDbHelper _apprenticeCommitmentsSqlDbHelper;
-        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly ApprenticeCommitmentsSqlDbHelper _apprenticeCommitmentsSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
         private string actualDeliveryModel;
         private string actualApprenticeshipName, actualApprenticeshipLevel, actualApprenticeshipStartDate, actualEsimatedDurationInfo;
         private string actualApprenticeshipEndDate, actualJobEndDate;
         private ApprenticeOverviewPage _apprenticeOverviewPage;
         private FullyConfirmedOverviewPage _fullyConfirmedOverviewPage;
-
-        public ConfirmMyApprenticeshipStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _apprenticeCommitmentsSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-        }
 
         public OverallApprenticeshipConfirmedPage ConfirmAllSectionsAndOverallApprenticeship(bool isRegularApp = true)
         {
@@ -36,11 +27,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return apprenticeOverviewPage.ConfirmOverallApprenticeship();
         }
 
-        public ApprenticeOverviewPage ConfirmYourEmployer(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourEmployerPage().SelectYesAndContinueToOverviewPage();
+        public static ApprenticeOverviewPage ConfirmYourEmployer(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourEmployerPage().SelectYesAndContinueToOverviewPage();
 
-        public ApprenticeOverviewPage ConfirmYourTrainingProvider(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().SelectYesAndContinueToOverviewPage();
+        public static ApprenticeOverviewPage ConfirmYourTrainingProvider(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourTrainingProviderPage().SelectYesAndContinueToOverviewPage();
 
-        public ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYesAndContinueToOverviewPage();
+        public static ApprenticeOverviewPage ConfirmYourApprenticeshipDetails(ApprenticeOverviewPage apprenticeOverviewPage) => apprenticeOverviewPage.GoToConfirmYourApprenticeshipDetailsPage().SelectYesAndContinueToOverviewPage();
 
         public ApprenticeOverviewPage ConfirmAllSections(bool isRegularApp)
         {
@@ -56,13 +47,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return VerifyCMADSectionStatusOnTheHomePageToBeInComplete(apprenticeOverviewPage);
         }
 
-        public ApprenticeOverviewPage VerifyCMADSectionStatusOnTheHomePageToBeInComplete(ApprenticeOverviewPage apprenticeOverviewPage)
+        public static ApprenticeOverviewPage VerifyCMADSectionStatusOnTheHomePageToBeInComplete(ApprenticeOverviewPage apprenticeOverviewPage)
             => apprenticeOverviewPage.NavigateToHomePageFromTopNavigationLink().VerifyDashboardCMADSectionWhenInCompleteOnHomePage().NavigateToOverviewPageWithCmadLinkOnTheHomePage();
 
         public ApprenticeOverviewPage ConfirmYourEmployer(string initialStatus)
         {
             AssertSection1Status(initialStatus);
-            var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(_context));
+            var apprenticeOverviewPage = ConfirmYourEmployer(new ApprenticeOverviewPage(context));
             AssertSection1Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
@@ -70,7 +61,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage ConfirmYourTrainingProvider(string initialStatus)
         {
             AssertSection2Status(initialStatus);
-            var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(_context));
+            var apprenticeOverviewPage = ConfirmYourTrainingProvider(new ApprenticeOverviewPage(context));
             AssertSection2Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
@@ -91,7 +82,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
         public ApprenticeOverviewPage ConfirmHowYourApprenticeshipWillBeDelivered(string initialStatus)
         {
             AssertSection4Status(initialStatus);
-            var apprenticeOverviewPage = new ApprenticeOverviewPage(_context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
+            var apprenticeOverviewPage = new ApprenticeOverviewPage(context).GoToConfirmHowYourApprenticeshipWillBeDeliveredPage().ContinueToCMADOverviewPage();
             AssertSection4Status(OverviewPageHelper.Complete);
             return apprenticeOverviewPage;
         }
@@ -114,21 +105,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ConfirmYourApprenticeshipDetailsPage NavigateAndVerifyApprenticeshipDetails()
         {
-            var page = new ApprenticeOverviewPage(_context).GoToConfirmYourApprenticeshipDetailsPage();
+            var page = new ApprenticeOverviewPage(context).GoToConfirmYourApprenticeshipDetailsPage();
             VerifyApprenticeshipDataDisplayed(page);
             return page;
         }
 
         public ConfirmYourPortableApprenticeshipDetailsPage NavigateAndVerifyPortableApprenticeshipDetails()
         {
-            var page = new ApprenticeOverviewPage(_context).GoToConfirmYourPortableApprenticeshipDetailsPage();
+            var page = new ApprenticeOverviewPage(context).GoToConfirmYourPortableApprenticeshipDetailsPage();
             VerifyPortableApprenticeshipDataDisplayed(page);
             return page;
         }
 
         public ConfirmYourFlexiJobApprenticeshipDetailsPage NavigateAndVerifyFlexijobApprenticeshipDetails()
         {
-            var page = new ApprenticeOverviewPage(_context).GoToConfirmYourFlexiJobApprenticeshipDetailsPage();
+            var page = new ApprenticeOverviewPage(context).GoToConfirmYourFlexiJobApprenticeshipDetailsPage();
             VerifyFlexijobApprenticeshipDataDisplayed(page);
             return page;
         }
@@ -147,14 +138,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeOverviewPage AssertSectionStatus(string sectionName, string expectedStatus)
         {
-            var page = new ApprenticeOverviewPage(_context);
+            var page = new ApprenticeOverviewPage(context);
             Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
             return page;
         }
 
         public ApprenticeOverviewPage AssertSection6Status(string sectionName, string expectedStatus)
         {
-            var page = new ApprenticeOverviewPage(_context, false);
+            var page = new ApprenticeOverviewPage(context, false);
             Assert.AreEqual(expectedStatus, page.GetTheSectionStatus(sectionName));
             return page;
         }
@@ -202,7 +193,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             AssertActualEsimatedDurationInfo();
         }
 
-        public ApprenticeOverviewPage VerifyAndConfirmRolesAndResponsibilities(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
+        public static ApprenticeOverviewPage VerifyAndConfirmRolesAndResponsibilities(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
         {
             return confirmRolesAndResponsibilitiesPage1of3
                 .ConfirmYourRolesAndContinue()
@@ -210,7 +201,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 .ConfirmTrainingProviderRolesAndContinue();
         }
 
-        public ApprenticeOverviewPage VerifyAndConfirmRolesAndResponsibilitiesWithNegativeFlows(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
+        public static ApprenticeOverviewPage VerifyAndConfirmRolesAndResponsibilitiesWithNegativeFlows(ConfirmRolesAndResponsibilitiesPage1of3 confirmRolesAndResponsibilitiesPage1of3)
         {
             return confirmRolesAndResponsibilitiesPage1of3
                 .ConfirmYourRolesWithOutSelectionAndContinue()
@@ -221,7 +212,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
                 .ConfirmTrainingProviderRolesAndContinue();
         }
 
-        public AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage alreadyConfirmedRolesAndResponsibilitiesPage)
+        public static AlreadyConfirmedRolesAndResponsibilitiesPage VerifyRolesAndResponsibilitiesForAlreadyConfirmedPage(AlreadyConfirmedRolesAndResponsibilitiesPage alreadyConfirmedRolesAndResponsibilitiesPage)
             => alreadyConfirmedRolesAndResponsibilitiesPage.VerifySubSectionHeaders();
 
         public FullyConfirmedOverviewPage VerifyFullyConfirmedAppOverviewPageDetails(bool isRegularApp)
@@ -235,7 +226,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private void NavigateToFullyConfirmedOverviewPageAndValidateRegularAppDetails()
         {
-            _fullyConfirmedOverviewPage = new ApprenticeHomePage(_context, false).NavigateToFullyConfirmedOverviewPageFromTopNavigationLink();
+            _fullyConfirmedOverviewPage = new ApprenticeHomePage(context, false).NavigateToFullyConfirmedOverviewPageFromTopNavigationLink();
 
             (string expectedEmpName, string expectedProviderName) = _accountsAndCommitmentsSqlHelper.GetEmpAndProvNames(_objectContext.GetApprenticeEmail());
 
@@ -253,7 +244,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         private ApprenticeOverviewPage NavigateAndVerifyRolesAndResponsibilities() => VerifyAndConfirmRolesAndResponsibilities(NavigateToRolesPage());
 
-        private ConfirmRolesAndResponsibilitiesPage1of3 NavigateToRolesPage() => new ApprenticeOverviewPage(_context).GoToConfirmRolesAndResponsibilitiesPage();
+        private ConfirmRolesAndResponsibilitiesPage1of3 NavigateToRolesPage() => new ApprenticeOverviewPage(context).GoToConfirmRolesAndResponsibilitiesPage();
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
 

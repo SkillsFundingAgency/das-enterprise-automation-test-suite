@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class BrowseApprenticeshipPage : ApprenticeBasePage
+    public class BrowseApprenticeshipPage(ScenarioContext context) : ApprenticeBasePage(context)
     {
         protected override string PageTitle => "Browse apprenticeships before you apply";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private static By Postcode => By.CssSelector("#Postcode");
 
         protected override By ContinueButton => By.CssSelector("#search-apprenticeship");
-
-        public BrowseApprenticeshipPage(ScenarioContext context) : base(context)  { }
 
         public ResultsPage SearchForAnApprenticeship()
         {

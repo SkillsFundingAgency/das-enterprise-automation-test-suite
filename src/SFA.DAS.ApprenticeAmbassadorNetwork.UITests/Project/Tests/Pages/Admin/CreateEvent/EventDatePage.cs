@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class EventDatePage : AanAdminBasePage
+public class EventDatePage(ScenarioContext context) : AanAdminBasePage(context)
 {
     protected override string PageTitle => "Event date";
 
@@ -10,8 +10,6 @@ public class EventDatePage : AanAdminBasePage
     private static By StartMinutesSelector => By.CssSelector("#startMinutes");
     private static By EndHourSelector => By.CssSelector("#EndHour");
     private static By EndMinutesSelector => By.CssSelector("#EndMinutes");
-
-    public EventDatePage(ScenarioContext context) : base(context) { }
 
     public void SubmitEventDate()
     {

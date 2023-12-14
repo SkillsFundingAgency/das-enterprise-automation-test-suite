@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 
-public class EventFormatPage : AanAdminBasePage
+public class EventFormatPage(ScenarioContext context) : AanAdminBasePage(context)
 {
     protected override string PageTitle => "Choose an event format";
-
-    public EventFormatPage(ScenarioContext context) : base(context) { }
 
     public EventTitlePage SubmitEventFormat(EventFormat eventFormat)
     {

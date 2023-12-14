@@ -1,13 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
 [Binding, Scope(Tag = "@aanemployer")]
-public class AANEmployerHooks : AANBaseHooks
+public class AANEmployerHooks(ScenarioContext context) : AANBaseHooks(context)
 {
-    public AANEmployerHooks(ScenarioContext context) : base(context)
-    {
-
-    }
-
     [BeforeScenario(Order = 31)]
     public void Navigate_Employer()
     {

@@ -85,14 +85,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void VerifyConfirmedCoCPageViewAndNavigateToOverviewPage()
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(CmadDashboardLinkWhenIncompleteOrUnConfirmed),
                 () => VerifyPage(CurrentApprenticeshipStatusSelector, HomePageHelper.DashboardUnConfimredStatusForCoC),
                 () => VerifyPage(UnConfimredApprenticeshipDetailsSubText, HomePageHelper.CmadSectionTextWhenUnConfirmed),
                 () => VerifyPage(CmadDashboardLinkAfterFullyConfirmed),
                 () => VerifyPage(ConfimredApprenticeshipDetailsSubText, HomePageHelper.CmadSectionTextWhenFullyConfirmed)
-            });
+            ]);
 
             formCompletionHelper.Click(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
         }
