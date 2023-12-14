@@ -13,6 +13,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourTrainingProvidersPage(ScenarioContext context) : base(context) { }
 
+        public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddATrainingProvider()
+        {
+            formCompletionHelper.ClickElement(AddANewTrainingProviderButton);
+            return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(context);
+        }
         public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
         {
             if (string.IsNullOrEmpty(orgName))

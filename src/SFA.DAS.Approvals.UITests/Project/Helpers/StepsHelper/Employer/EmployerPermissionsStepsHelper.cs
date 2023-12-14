@@ -35,10 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private HomePage SetProviderPermissions(string ukprn, string orgName, AddApprenticePermissions addApprenticePermissions, RecruitApprenticePermissions recruitApprenticePermissions)
         {
             return OpenProviderPermissions()
-                 .SelectAddANewTrainingProvider()
+                 .SelectAddATrainingProvider()
                  .SearchForATrainingProvider(ukprn)
                  .ConfirmTrainingProvider()
-                 .SelectContinueInEmployerTrainingProviderAddedPage()
+                 .SelectReturnToYourTrainingProviders()
                  .SelectSetPermissions(orgName)
                  .ClickAddApprentice(addApprenticePermissions)
                  .ClickRecruitApprentice(recruitApprenticePermissions)
@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(providerPermissionConfig.PermissionsCosmosUrl, providerPermissionConfig.PermissionsCosmosDBKey, providerPermissionConfig.PermissionsCosmosDatabaseName, providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(providerPermissionConfig.Ukprn));
 
 
-        private Tests.Pages.Employer.YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
+        private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
 
         private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(YourOrganisationsAndAgreementsPage page, string orgName) =>
             string.IsNullOrEmpty(orgName) ? page.ClickViewAgreementLink() : page.ClickViewAgreementLink(orgName);
