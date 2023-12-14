@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By ConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.ConfirmedCmadSectionTitle}')]/..//following-sibling::p");
         private static By HelpAndSupportDashboardLink => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Help and support')]");
         private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
-        private static By HelpAndSupportDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[2]");
+        private static By HelpAndSupportDashboardText => By.XPath("(//*[@id=\"dashboard-section\"]/div/div/ul/li[4]/h2/a");
         private static By CurrentApprenticeshipStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context)
