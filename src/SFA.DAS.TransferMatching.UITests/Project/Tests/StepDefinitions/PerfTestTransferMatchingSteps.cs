@@ -26,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
                 var page = new TransferFundDetailsPage(context).ApplyForTransferFundsAfterLogin();
 
-                new SubmitApplicationHelper().SubmitApplication(page);
+                SubmitApplicationHelper.SubmitApplication(page);
             }
         }
     }
