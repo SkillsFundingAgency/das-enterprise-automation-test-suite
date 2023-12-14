@@ -21,7 +21,7 @@ public class MailinatorApiHelper
     
     private readonly ObjectContext _objectContext;
 
-    private static readonly HashSet<string> mailers = new();
+    private static readonly HashSet<string> mailers = [];
 
     private readonly string domainName;
 

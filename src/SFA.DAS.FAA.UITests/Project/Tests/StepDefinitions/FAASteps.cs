@@ -26,13 +26,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [Then(@"the Applicant is able to create a FAA Account")]
         [When(@"the Applicant is able to create a FAA Account")]
 
-        public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
+        public void ThenTheApplicantIsAbleToCreateAFAAAccount() => FAAStepsHelper.CreateFAAAccount(accountCreationPage);
 
         [Given(@"the Applicant creates a new FAA account")]
         public void GivenTheApplicantCreatesANewFAAAccount()
         {
             accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
-            _faaStepsHelper.CreateFAAAccount(accountCreationPage);
+            FAAStepsHelper.CreateFAAAccount(accountCreationPage);
         }
 
         [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]

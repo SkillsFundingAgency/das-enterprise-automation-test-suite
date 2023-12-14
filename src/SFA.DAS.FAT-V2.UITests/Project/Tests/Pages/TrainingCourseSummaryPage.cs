@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
-public class TrainingCourseSummaryPage : FATV2BasePage
+public class TrainingCourseSummaryPage(ScenarioContext context) : FATV2BasePage(context)
 {
     protected override string PageTitle => objectContext.GetTrainingCourseName();
 
@@ -12,8 +12,6 @@ public class TrainingCourseSummaryPage : FATV2BasePage
     private static By BackToCourseSearchPage => By.Id("courses-breadcrumb");
 
     #endregion
-
-    public TrainingCourseSummaryPage(ScenarioContext context) : base(context) { }
 
     public FATV2IndexPage NavigateBackToHompage()
     {

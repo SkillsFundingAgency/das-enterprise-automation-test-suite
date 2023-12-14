@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-public abstract class AddOrEditOrganisationPage : EPAOAdmin_BasePage
+public abstract class AddOrEditOrganisationPage(ScenarioContext context) : EPAOAdmin_BasePage(context)
 {
     protected static By OrganisationNameField => By.Id("Name");
     protected static By LegalNameField => By.Id("LegalName");
@@ -16,6 +16,5 @@ public abstract class AddOrEditOrganisationPage : EPAOAdmin_BasePage
     protected static By PostCodeField => By.Id("Postcode");
     protected static By CompanyNumberField => By.Id("CompanyNumber");
     protected static By CharityNumberField => By.Id("CharityNumber");
-    public AddOrEditOrganisationPage(ScenarioContext context) : base(context) { }
 }
 

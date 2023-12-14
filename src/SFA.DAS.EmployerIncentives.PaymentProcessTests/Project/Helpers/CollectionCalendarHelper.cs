@@ -5,19 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class CollectionCalendarHelper
+    public class CollectionCalendarHelper(ScenarioContext context)
     {
-        private readonly EISqlHelper _sqlHelper;
-        private readonly StopWatchHelper _stopWatchHelper;
+        private readonly EISqlHelper _sqlHelper = context.Get<EISqlHelper>();
+        private readonly StopWatchHelper _stopWatchHelper = context.Get<StopWatchHelper>();
         private (byte Number, short Year) _activePeriod;
 
         public (byte Number, short Year) ActivePeriod => _activePeriod;
-
-        public CollectionCalendarHelper(ScenarioContext context)
-        {
-            _sqlHelper = context.Get<EISqlHelper>();
-            _stopWatchHelper = context.Get<StopWatchHelper>();
-        }
 
         public async Task SetActiveCollectionPeriod(byte periodNumber, short academicYear)
         {

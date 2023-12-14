@@ -9,27 +9,15 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
-    public class FAAStepsHelper
+    public class FAAStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly RestartWebDriverHelper _helper;
-        private readonly TabHelper _tabHelper;
-        private readonly FAADataHelper _faaDataHelper;
-        private readonly ObjectContext _objectContext;
+        private readonly RestartWebDriverHelper _helper = new(context);
+        private readonly TabHelper _tabHelper = context.Get<TabHelper>();
+        private readonly FAADataHelper _faaDataHelper = context.Get<FAADataHelper>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
         private const string _applicationName = "FindApprenticeship";
-        private readonly string _faaBaseUrl;
-        private readonly string _faa_SearchApprenticeshipUrl;
-
-        public FAAStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tabHelper = context.Get<TabHelper>();
-            _faaDataHelper = context.Get<FAADataHelper>();
-            _helper = new RestartWebDriverHelper(context);
-            _faaBaseUrl = UrlConfig.FAA_BaseUrl;
-            _faa_SearchApprenticeshipUrl = UrlConfig.FAA_SearchApprenticeshipUrl;
-        }
+        private readonly string _faaBaseUrl = UrlConfig.FAA_BaseUrl;
+        private readonly string _faa_SearchApprenticeshipUrl = UrlConfig.FAA_SearchApprenticeshipUrl;
 
         public string GetApplicationStatus()
         {
@@ -53,7 +41,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
             var (username, password, _, _) = _objectContext.GetFAALogin();
 
-            return new FAA_Indexpage(_context)
+            return new FAA_Indexpage(context)
                .GoToSignInPage()
                .SubmitValidLoginDetails(username, password);
         }
@@ -62,12 +50,12 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         {
             _tabHelper.GoToUrl(_faaBaseUrl);
 
-            return new FAA_Indexpage(_context)
+            return new FAA_Indexpage(context)
                 .GoToSignInPage()
                 .ClickCreateAnAccountLink();
         }
 
-        public void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
+        public static void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
         {
             accountCreationPage.CreateAccount()
                 .EnterActivationCode()
@@ -144,13 +132,13 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public void CheckNationWideVacancies()
         {
-            FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new FAA_ApprenticeSearchResultsPage(_context);
+            FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new(context);
             _faaApprenticeshipSearchResultsPage.CheckSortOrderAndDistance();
         }
 
         public void CreateDraftApplication() => SearchByReferenceNumber().Apply().ClickSave();
 
-        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion() => new FAA_MyApplicationsHomePage(_context).ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion() => new FAA_MyApplicationsHomePage(context).ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
 
         public void ChangePersonalSettings()
         {
@@ -175,7 +163,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         {
             _tabHelper.OpenInNewTab(_faa_SearchApprenticeshipUrl);
 
-            return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
+            return new FAA_FindAnApprenticeshipHomePage(context).MyApplications();
         }
 
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();

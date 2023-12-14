@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderBulkUploadCsvFilePage WriteApprenticeshipRecordsToCsvFile()
         {
             objectContext.SetBulkuploadApprentices(_apprenticeList);
-            _bulkUploadDataHelper.CreateCsvFile(_apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(_apprenticeList, CsvFileLocation);
             return this;
         }
 
@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
@@ -107,7 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
@@ -120,7 +120,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
@@ -134,7 +134,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
             
             return this;
         }

@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
-public class FindApprenticeshipTrainingSearchPage : ApprenticeshipTrainingCourseBasePage
+public class FindApprenticeshipTrainingSearchPage(ScenarioContext context) : ApprenticeshipTrainingCourseBasePage(context)
 {
-    public FindApprenticeshipTrainingSearchPage(ScenarioContext context) : base(context) { }
-
     public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
     {
         SearchApprenticeship(searchTerm);

@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             
             for (int i = 0; i < numberOfApprentices; i++) ApprenticeList.Add(SetApprenticeDetails((i + 1) * 17));
 
-            new CreateCsvFileHelper().CreateCsvFile(ApprenticeList, fileLocation);
+            CreateCsvFileHelper.CreateCsvFile(ApprenticeList, fileLocation);
 
             formCompletionHelper.EnterText(ChooseFileButton, fileLocation);           
             formCompletionHelper.ClickElement(UploadFileButton);

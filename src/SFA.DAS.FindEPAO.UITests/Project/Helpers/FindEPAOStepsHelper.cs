@@ -3,12 +3,8 @@ using SFA.DAS.FindEPAO.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.FindEPAO.UITests.Project.Helpers
 {
-    class FindEPAOStepsHelper
+    class FindEPAOStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public FindEPAOStepsHelper(ScenarioContext context) => _context = context;
-
         public EPAOOrganisationsPage SearchForApprenticeshipStandard(string standard = "") => FindEPAO().SearchForApprenticeshipStandardInSearchApprenticeshipTrainingCoursePage(standard);
 
         public ZeroAssessmentOrganisationsPage SearchForApprenticeshipStandardWithNoEPAO(string standard = "") => FindEPAO().SearchForApprenticeshipStandardWithNoEPAO(standard);
@@ -17,6 +13,6 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Helpers
 
         public EPAOOrganisationsPage SearchForIntegratedApprenticeshipStandard(string standard = "") => FindEPAO().SearchForAnIntegratedApprenticeshipStandard(standard);
 
-        private SearchApprenticeshipTrainingCoursePage FindEPAO() => new FindEPAOIndexPage(_context).ClickStartButton();
+        private SearchApprenticeshipTrainingCoursePage FindEPAO() => new FindEPAOIndexPage(context).ClickStartButton();
     }
 }
