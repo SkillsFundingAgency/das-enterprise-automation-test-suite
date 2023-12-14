@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ConfirmQualificationsPage : Raav2BasePage
+    public class ConfirmQualificationsPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Qualifications";
 
         private static By Preview => By.PartialLinkText("Preview");
-
-        public ConfirmQualificationsPage(ScenarioContext context) : base(context) { }
 
         public PreviewYourAdvertOrVacancyPage ConfirmQualifications()
         {

@@ -7,11 +7,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     [Binding]
     public class UnHappyPathSteps(ScenarioContext context)
     {
-        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper = new();
         private ApplicationOverviewPage _overviewPage;
 
         [When(@"the provider selects the unhappy path")]
-        public void WhenTheProviderSelectsTheUnhappyPath() => _overviewPage = _end2EndStepsHelper.CompleteSecion1_UnHappyPath(new ApplicationOverviewPage(context));
+        public void WhenTheProviderSelectsTheUnhappyPath() => _overviewPage = RoatpApplyEnd2EndStepsHelper.CompleteSecion1_UnHappyPath(new ApplicationOverviewPage(context));
 
         [Then(@"the provider cannot continue the journey")]
         public void ThenTheProviderCannotContinueTheJourney() => _overviewPage.VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress);

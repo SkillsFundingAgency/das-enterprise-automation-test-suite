@@ -69,11 +69,11 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string TrainingDetails { get; }
 
-        public int RandomNumber => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
+        public static int RandomNumber => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
 
         public string TrainingContactName { get; }
 
-        public string TrainingContactNumber => "07777777777";
+        public static string TrainingContactNumber => "07777777777";
 
         public string TrainingEmail { get; }
 
@@ -111,12 +111,12 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string AdditionalLocationInformation { get; }
 
-        public string NumberOfVacancy => "2";
+        public static string NumberOfVacancy => "2";
 
         public string ShareApplicationEmail { get; }
 
         public string OptionalMessage { get; }
 
-        private string WebsiteUrl(string url) => $"https://www.{url}.com";
+        private static string WebsiteUrl(string url) => $"https://www.{url}.com";
     }
 }

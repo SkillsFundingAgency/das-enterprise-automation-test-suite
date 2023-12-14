@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             void SelectRandomCourse(By locator)
             {
-                for (int i = 0; i < rAAV1DataHelper.RandomNumber; i++)
+                for (int i = 0; i < DAS.RAA.DataGenerator.RAAV1DataHelper.RandomNumber; i++)
                 {
                     formCompletionHelper.SendKeys(locator, Keys.ArrowDown);
                 }
@@ -70,7 +70,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterTrainingDetailsPage ContactTelephone()
         {
-            formCompletionHelper.EnterText(ContactumberField, rAAV1DataHelper.TrainingContactNumber);
+            formCompletionHelper.EnterText(ContactumberField, DAS.RAA.DataGenerator.RAAV1DataHelper.TrainingContactNumber);
             return this;
         }
 

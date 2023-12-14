@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class YourOrganisation_Section1_Helper
     {
-        internal ApplicationOverviewPage VerifySection1Status(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage VerifySection1Status(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .VerifyIntroductionStatus(StatusHelper.StatusCompleted)
@@ -15,7 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessIntroductionWhatYouWillNeedSection()
@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_1_SupportRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_1_SupportRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessIntroductionWhatYouWillNeedSection()
@@ -31,19 +31,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_NotACompany(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_2_NotACompany(ApplicationOverviewPage applicationOverviewPage)
         {
             return CompleteYourOrganisationSection_2(applicationOverviewPage
                .AccessYourOrganisationSectionForOrgTypeNotACompany());
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_HasWebsite(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_2_HasWebsite(ApplicationOverviewPage applicationOverviewPage)
         {
             return CompleteYourOrganisationSection_Website_2(applicationOverviewPage
                .AccessYourOrganisationSectionForOrgTypeNotACompany());
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return CompleteYourOrganisationSection_2(applicationOverviewPage
                 .AccessYourOrganisationSectionForOrgTypeCompany()
@@ -51,7 +51,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterParentCompanyDetailsAndContinue());
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_ChangeRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_2_ChangeRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessYourOrganisationSectionForOrgTypeCompany()
@@ -63,7 +63,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessTellUSWhosInControlSection()
@@ -71,7 +71,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Charity(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_3_Charity(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessTellUSWhosInControlSectionForOrgTypeCharity()
@@ -80,7 +80,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_CharityAndCompany(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_3_CharityAndCompany(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessTellUSWhosInControlSection()
@@ -90,7 +90,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_GovernmentStatue(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_3_GovernmentStatue(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessTellUsWhosInControlSectionForCHManualEntryTrue()
@@ -99,7 +99,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Support(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_3_Support(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessTellUsWhosInControlSectionForSoleTrader()
@@ -108,7 +108,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Supporting_Partnership(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_3_Supporting_Partnership(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessTellUsWhosInControlSectionForSoleTrader()
@@ -130,7 +130,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -140,7 +140,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_UnhappyPaths(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_UnhappyPaths(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -192,7 +192,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_SixthFormCollege(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_SixthFormCollege(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -204,7 +204,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeNoneOfTheAbove(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeNoneOfTheAbove(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -213,7 +213,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectMaximumTradingPeriodAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRoute_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRoute_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -226,7 +226,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyComplaints_Section5(StatusHelper.NotRequired)
                 .VerifyContract_Section5(StatusHelper.NotRequired);
         }
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRouteEmployerToSupporting_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_ChangeRouteEmployerToSupporting_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -252,7 +252,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyWhereWillYourApprenticesBeTrained_Section6(StatusHelper.NotRequired)
                 .VerifySystemsAndProcesses_Section8(StatusHelper.NotRequired);
         }
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5DifferentPath_ChangeRouteEmployerToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_5DifferentPath_ChangeRouteEmployerToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -272,7 +272,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted)
                 .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired);
         }
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_5ChangeRouteSupportingToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_5ChangeRouteSupportingToMain_VerifySectionExemptions(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -289,7 +289,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyTrainingApprentices_Section6(StatusHelper.NotRequired);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeGTA(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeGTA(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -299,7 +299,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeAEI(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeAEI(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -311,7 +311,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeHEIEmplopyerRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeHEIEmplopyerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -323,7 +323,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeAcadamy(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeAcadamy(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -335,7 +335,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeRailFranchise(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeRailFranchise(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -345,7 +345,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeATP(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeATP(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
@@ -355,7 +355,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypePublicBody(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypePublicBody(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                     .SelectPublicBodyAndContinue()
@@ -365,7 +365,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllMainRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllMainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessExperienceAndAccreditationsSectionForMainRoute()
@@ -375,7 +375,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .SelectNoForMonitoringVisitAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllForEmployerRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAllForEmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessExperienceAndAccreditationsSectionForEmployerRoute()
@@ -385,7 +385,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Support(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_Support(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessExperienceAndAccreditationsSectionForSupportingRoute()
@@ -394,7 +394,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
@@ -406,7 +406,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_InsufficientProgressInMonitoringVisits(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_InsufficientProgressInMonitoringVisits(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
@@ -418,7 +418,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement_MainRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
@@ -431,7 +431,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeOutstanding(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeOutstanding(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForEmployerRoute()
                 .SelectYesForITTAndContinue()
@@ -446,7 +446,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_YesToPGTA(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_YesToPGTA(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                .SelectYesForFundedbyOFSAndContinue()
@@ -455,7 +455,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Ofsted(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteYourOrganisationSection_5_Ofsted(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectYesForFundedbyOFSAndContinue()
@@ -469,7 +469,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
-        private ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
+        private static ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
         {
             return icoRegistrationNumberPage
                 .EnterIcoRegistrationNumberAndContinue()
@@ -477,14 +477,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
         }
 
-        private ApplicationOverviewPage CompleteYourOrganisationSection_Website_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
+        private static ApplicationOverviewPage CompleteYourOrganisationSection_Website_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
         {
             return icoRegistrationNumberPage
                 .EnterIcoRegistrationNumber_WebsiteAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessExperienceAndAccreditationsSectionForMainRoute()
                 .SelectNoForFundedbyOFSAndContinue()
@@ -516,7 +516,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress);
         }
 
-        internal ApplicationOverviewPage CompleteAndVerifySectionExemptions_MainRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteAndVerifySectionExemptions_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()
@@ -595,7 +595,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.NotRequired);
         }
 
-        internal ApplicationOverviewPage CompleteAndVerifySectionExemptions_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteAndVerifySectionExemptions_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectARailFranchiseOperatorAndContinue()

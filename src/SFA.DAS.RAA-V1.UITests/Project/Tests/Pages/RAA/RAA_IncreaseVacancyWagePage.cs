@@ -41,9 +41,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             int.TryParse(currentwage, out int newMinWage);
 
-            newMinWage = newMinWage == 0 ? 200 : (newMinWage + rAAV1DataHelper.RandomNumber);
+            newMinWage = newMinWage == 0 ? 200 : (newMinWage + RAAV1DataHelper.RandomNumber);
 
-            int newMaxWage = newMinWage + rAAV1DataHelper.RandomNumber;
+            int newMaxWage = newMinWage + RAAV1DataHelper.RandomNumber;
 
             _faaDataHelper.NewCustomMinWagePerWeek = newMinWage.ToString();
             _faaDataHelper.NewCustomMaxWagePerWeek = newMaxWage.ToString();

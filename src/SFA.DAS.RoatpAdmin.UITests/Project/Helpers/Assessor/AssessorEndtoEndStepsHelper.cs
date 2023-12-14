@@ -3,21 +3,8 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
-    public class AssessorEndtoEndStepsHelper
+    public class AssessorEndtoEndStepsHelper()
     {
-        private readonly Assessor_Section1Helper _assessor_Section1Helper;
-        private readonly Assessor_Section2Helper _assessor_Section2Helper;
-        private readonly Assessor_Section3Helper _assessor_Section3Helper;
-        private readonly Assessor_Section5Helper _assessor_Section5Helper;
-
-        public AssessorEndtoEndStepsHelper()
-        {
-            _assessor_Section1Helper = new Assessor_Section1Helper();
-            _assessor_Section2Helper = new Assessor_Section2Helper();
-            _assessor_Section3Helper = new Assessor_Section3Helper();
-            _assessor_Section5Helper = new Assessor_Section5Helper();
-        }
-
         public ApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             CompleteAssessorSection1Checks(applicationAssessmentOverviewPage, applicationroute);
@@ -28,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             return applicationAssessmentOverviewPage;
         }
 
-        public ApplicationAssessmentOverviewPage CompleteAssessorSection1Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage CompleteAssessorSection1Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             applicationAssessmentOverviewPage = Assessor_Section1Helper.PassContinuityPlanForApprenticeshipTraining(applicationAssessmentOverviewPage, applicationroute);
             applicationAssessmentOverviewPage = Assessor_Section1Helper.PassEqualityAndDiversityPolicy(applicationAssessmentOverviewPage);
@@ -38,26 +25,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             return applicationAssessmentOverviewPage;
         }
 
-        public ApplicationAssessmentOverviewPage CompleteAssessorSection2Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage CompleteAssessorSection2Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassEngagingWithEmployers(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassComplaintsPolicy(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassContractForServicesTemplate(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassCommitmentStatementTemplate(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassPriorLearningOfApprentices(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassEnglishAndMathsAssessment(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section2Helper.PassWorkingWithSubcontractors(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassEngagingWithEmployers(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassComplaintsPolicy(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassContractForServicesTemplate(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassCommitmentStatementTemplate(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassPriorLearningOfApprentices(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassEnglishAndMathsAssessment(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section2Helper.PassWorkingWithSubcontractors(applicationAssessmentOverviewPage, applicationroute);
             return applicationAssessmentOverviewPage;
         }
 
-        public ApplicationAssessmentOverviewPage CompleteAssessorSection3Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage CompleteAssessorSection3Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassTypeOfApprenticeshipTraining(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassTrainingApprentices(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassSupportingApprentices(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassForecastingStarts(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassOffTheJobTraining(applicationAssessmentOverviewPage, applicationroute);
-            applicationAssessmentOverviewPage = _assessor_Section3Helper.PassWhereWillYourApprenticesBeTrained(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section3Helper.PassTypeOfApprenticeshipTraining(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section3Helper.PassTrainingApprentices(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section3Helper.PassSupportingApprentices(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section3Helper.PassForecastingStarts(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section3Helper.PassOffTheJobTraining(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section3Helper.PassWhereWillYourApprenticesBeTrained(applicationAssessmentOverviewPage, applicationroute);
             return applicationAssessmentOverviewPage;
         }
 
@@ -72,11 +59,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             return applicationAssessmentOverviewPage;
         }
 
-        public ApplicationAssessmentOverviewPage CompleteAssessorSection5Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage CompleteAssessorSection5Checks(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            applicationAssessmentOverviewPage = _assessor_Section5Helper.PassProcessForEvaluatingTheQualityOfTrainingDelivered(applicationAssessmentOverviewPage);
-            applicationAssessmentOverviewPage = _assessor_Section5Helper.PassProcessForEvaluatingTheQualityOfApprenticeshipTraining(applicationAssessmentOverviewPage);
-            applicationAssessmentOverviewPage = _assessor_Section5Helper.PassSystemsAndProcessesToCollectApprenticeshipData(applicationAssessmentOverviewPage, applicationroute);
+            applicationAssessmentOverviewPage = Assessor_Section5Helper.PassProcessForEvaluatingTheQualityOfTrainingDelivered(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = Assessor_Section5Helper.PassProcessForEvaluatingTheQualityOfApprenticeshipTraining(applicationAssessmentOverviewPage);
+            applicationAssessmentOverviewPage = Assessor_Section5Helper.PassSystemsAndProcessesToCollectApprenticeshipData(applicationAssessmentOverviewPage, applicationroute);
             return applicationAssessmentOverviewPage;
         }
 

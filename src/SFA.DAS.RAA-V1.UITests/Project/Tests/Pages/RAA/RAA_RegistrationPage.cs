@@ -24,11 +24,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_RegistrationPage Register()
         {
-            formCompletionHelper.SelectFromDropDownByText(Title, rAAV1RegistrationDataHelper.Title);
+            formCompletionHelper.SelectFromDropDownByText(Title, DAS.RAA.DataGenerator.RAAV1RegistrationDataHelper.Title);
             formCompletionHelper.EnterText(FirstName, rAAV1RegistrationDataHelper.FirstName);
             formCompletionHelper.EnterText(LastName, rAAV1RegistrationDataHelper.LastName);
             formCompletionHelper.EnterText(EmailAddress, rAAV1RegistrationDataHelper.EmailAddress);
-            formCompletionHelper.EnterText(MobileNumber, rAAV1RegistrationDataHelper.MobileNumber);
+            formCompletionHelper.EnterText(MobileNumber, DAS.RAA.DataGenerator.RAAV1RegistrationDataHelper.MobileNumber);
             formCompletionHelper.EnterText(Password, rAAV1RegistrationDataHelper.Password);
             formCompletionHelper.EnterText(ConfirmPassword, rAAV1RegistrationDataHelper.Password);
             formCompletionHelper.Click(AcceptTermsAndCondition);

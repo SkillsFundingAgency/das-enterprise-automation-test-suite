@@ -12,11 +12,11 @@ namespace SFA.DAS.RAA.DataGenerator
             Password = $"{RandomDataGenerator.GenerateRandomAlphanumericStringWithSpecialCharacters(9)}1";
         }
 
-        public string Title => "Mr";
+        public static string Title => "Mr";
         public string FirstName { get; }
         public string LastName { get; }
         public string EmailAddress { get; }
-        public string MobileNumber => "07777777777";
+        public static string MobileNumber => "07777777777";
         public string Password { get; }
     }
 }

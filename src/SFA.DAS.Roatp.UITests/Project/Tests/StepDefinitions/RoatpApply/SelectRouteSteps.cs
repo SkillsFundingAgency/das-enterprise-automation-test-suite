@@ -12,8 +12,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper = new(context);
         private AlreadyOnRoatpPage _alreadyOnRoatpPage;
         private ApplicationOverviewPage _applicationOverviewPage;
-        private readonly YourOrganisation_Section1_Helper _section1_Helper = new();
-        private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper = new();
 
         [Then(@"the provider should be able to change the ukprn")]
         public void ThenTheProviderShouldBeAbleToChangeTheUkprn()
@@ -22,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
              .Access_ChangeUkprn()
              .SelectNoToChangeUkprnAndContinue();
 
-            _section1_Helper.VerifySection1Status(_applicationOverviewPage);
+            YourOrganisation_Section1_Helper.VerifySection1Status(_applicationOverviewPage);
 
             var page = _applicationOverviewPage
                 .Access_ChangeUkprn()
@@ -65,16 +63,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         }
 
         [Then(@"the provider should be able to verify the Employer route flow")]
-        public void ThenTheProviderShouldBeAbleToVerifyTheEmployerRouteFlow() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteMainToEmployer(_applicationOverviewPage);
+        public void ThenTheProviderShouldBeAbleToVerifyTheEmployerRouteFlow() => _applicationOverviewPage = RoatpApplyEnd2EndStepsHelper.VerifyAnswers_ChangeRouteMainToEmployer(_applicationOverviewPage);
 
         [Then(@"the provider should be able to verify the Supporting route flow")]
-        public void ThenTheProviderShouldBeAbleToVerifyTheSupportingRouteFlow() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteEmployerToSupporting(_applicationOverviewPage);
+        public void ThenTheProviderShouldBeAbleToVerifyTheSupportingRouteFlow() => _applicationOverviewPage = RoatpApplyEnd2EndStepsHelper.VerifyAnswers_ChangeRouteEmployerToSupporting(_applicationOverviewPage);
 
         [Then(@"the provider should be able to verify the Main route flow")]
-        public void ThenTheProviderShouldBeAbleToVerifyTheMainRouteFlow() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteSupportingToMain(_applicationOverviewPage);
+        public void ThenTheProviderShouldBeAbleToVerifyTheMainRouteFlow() => _applicationOverviewPage = RoatpApplyEnd2EndStepsHelper.VerifyAnswers_ChangeRouteSupportingToMain(_applicationOverviewPage);
 
         [Then(@"the provider should be able to verify the Main route flow for route changed Employer To Main")]
-        public void ThenTheProviderShouldBeAbleToVerifyTheMainRouteFlowForRouteChangedEmployerToMain() => _applicationOverviewPage = _end2EndStepsHelper.VerifyAnswers_ChangeRouteEmployerToMain(_applicationOverviewPage);
+        public void ThenTheProviderShouldBeAbleToVerifyTheMainRouteFlowForRouteChangedEmployerToMain() => _applicationOverviewPage = RoatpApplyEnd2EndStepsHelper.VerifyAnswers_ChangeRouteEmployerToMain(_applicationOverviewPage);
 
         [Given(@"the provider initates an application as employer who is already on Roatp as employer")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerWhoIsAlreadyOnRoatpAsEmployer() => _alreadyOnRoatpPage = _selectRouteStepsHelper.CompleteProviderCharityRouteWhoisAlreayOnRoatp();

@@ -29,7 +29,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
-        private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
         private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
@@ -48,7 +47,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _isAnonymousPledge = false;
             _isImmediateAutoApprovalPledge = false;
             _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
-            _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _tabHelper = context.Get<TabHelper>();
@@ -483,7 +481,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return new TransferFundDetailsPage(_context, false).ApplyForTransferFunds();
         }
 
-        private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
+        private static void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {
             string actualErrorMessage = page.GetErrorMessage();
 
