@@ -2,7 +2,7 @@
 
 public class GuestSpeakersPage : AanAdminBasePage
 {
-    protected override string PageTitle => "Guest Speakers";
+    protected override string PageTitle => "Confirm details of guest speaker";
 
     public GuestSpeakersPage(ScenarioContext context) : base(context) { }
 
