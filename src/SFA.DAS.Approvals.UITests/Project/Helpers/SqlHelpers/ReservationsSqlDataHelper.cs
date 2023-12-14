@@ -4,10 +4,8 @@ using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    public class ReservationsSqlDataHelper : SqlDbHelper
+    public class ReservationsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.ReservationsDbConnectionString)
     {
-        public ReservationsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.ReservationsDbConnectionString) { }
-
         public void UpdateDynamicPauseGlobalRule(DateTime activeFrom, DateTime activeTo) => UpdateGlobalRule(activeFrom, activeTo, 1, 3);
 
         private void UpdateGlobalRule(DateTime activeFrom, DateTime activeTo, int restriction, int ruleType)

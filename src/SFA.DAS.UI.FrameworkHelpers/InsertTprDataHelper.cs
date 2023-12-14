@@ -4,14 +4,9 @@ using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class InsertTprDataHelper : SqlDbHelper
+public class InsertTprDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.TPRDbConnectionString)
 {
     private static readonly object _object = new();
-
-    public InsertTprDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TPRDbConnectionString)
-    {
-            
-    }
 
     public string InsertSingleOrgTprData(string aornValue, string payescheme)
         => InsertTprData(aornValue, payescheme, "SingleOrg");

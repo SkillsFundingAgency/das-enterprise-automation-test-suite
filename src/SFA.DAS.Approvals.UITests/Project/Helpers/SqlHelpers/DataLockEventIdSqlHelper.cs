@@ -1,17 +1,11 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    internal class DataLockEventIdSqlHelper : SqlDbHelper
+    internal class DataLockEventIdSqlHelper(ObjectContext objectContext, string connectionString) : SqlDbHelper(objectContext, connectionString)
     {
-        public DataLockEventIdSqlHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString)
-        {
-                
-        }
-
         static readonly object _object = new();
 
         internal int GetMaxDataLockEventId()

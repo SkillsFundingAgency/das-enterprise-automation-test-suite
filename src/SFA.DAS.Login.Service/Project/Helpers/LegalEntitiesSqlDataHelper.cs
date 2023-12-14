@@ -5,10 +5,8 @@ using System.Linq;
 
 namespace SFA.DAS.Login.Service.Project.Helpers;
 
-internal class EasAccountsSqlDataHelper : SqlDbHelper
+internal class EasAccountsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
 {
-    public EasAccountsSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
-
     internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountDetails(List<string> emails)
     {
         var query = emails.Select(x => GetSqlQuery(x)).ToList();
@@ -23,7 +21,7 @@ internal class EasAccountsSqlDataHelper : SqlDbHelper
 
             var userref = legalEntities.ListOfArrayToList(1);
 
-            var x = legalEntitieslist.IsNoDataFound() ? new List<string>() : legalEntitieslist;
+            var x = legalEntitieslist.IsNoDataFound() ? [] : legalEntitieslist;
 
             listoflegalEntities.Add(x);
 

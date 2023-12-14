@@ -51,7 +51,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _providerStepsHelper.ApproveChangesAndSubmit();
 
-            _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
+            _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail);
         }
 
         [When(@"the apprentice logs into CMAD again following a CoC")]

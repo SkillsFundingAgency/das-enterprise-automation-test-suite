@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class RegistrationSqlDataHelper : SqlDbHelper
+    public class RegistrationSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
     {
-        public RegistrationSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
-
         public string GetAccountApprenticeshipEmployerType(string email) => GetDataAsString($"SELECT ApprenticeshipEmployerType FROM [employer_account].[Account] WHERE Id IN {GetAccountIdQuery(email)} ORDER BY CreatedDate");
 
         public void UpdateLegalEntityName(string email) => ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] SET [Name] = 'Changed Org Name' WHERE AccountId IN {GetAccountIdQuery(email)}");
@@ -29,6 +27,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return list;
         }
 
-        private string GetAccountIdQuery(string email) => $"(SELECT AccountId FROM [employer_account].[Membership] m JOIN [employer_account].[User] u ON u.Id = m.UserId AND u.Email = '{email}')";
+        private static string GetAccountIdQuery(string email) => $"(SELECT AccountId FROM [employer_account].[Membership] m JOIN [employer_account].[User] u ON u.Id = m.UserId AND u.Email = '{email}')";
     }
 }
