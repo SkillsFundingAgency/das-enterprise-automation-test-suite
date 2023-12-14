@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
+﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
     public class RoatpApplyUkprnDataHelpers : RoatpUkprnBaseDataHelpers
     {
@@ -13,17 +11,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rpse01",
                [
                     new(emailkey, "sudhakar.chinoor+SE1@digital.education.gov.uk"),
-                    new(ukprnkey, "10066722"),
+                   new(ukprnkey, "10066722"),
                ]);
             _data.Add("rpse02",
                [
                     new(emailkey, "umakanth.gangaraju+SE2@digital.education.gov.uk"),
-                    new(ukprnkey, "10058122"),
+                   new(ukprnkey, "10058122"),
                ]);
             _data.Add("rpuhp01",
                [
                     new(emailkey, "sudhakar.chinoor+U1@digital.education.gov.uk"),
-                    new(ukprnkey, "10022137"),
+                   new(ukprnkey, "10022137"),
                ]);
             _data.Add("rppj01",
                 [
@@ -48,17 +46,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rpe2e07",
             [
                     new(emailkey, "sudhakar.chinoor+SupportingNew@digital.education.gov.uk"),
-                    new(ukprnkey, "10083878"),
+                new(ukprnkey, "10083878"),
             ]);
             _data.Add("rpe2e08",
             [
                     new(emailkey, "sudhakar.chinoor+MainNew@digital.education.gov.uk"),
-                    new(ukprnkey, "10047196"),
-           ]);
+                new(ukprnkey, "10047196"),
+            ]);
             _data.Add("rpe2e09",
            [
                     new(emailkey, "sudhakar.chinoor+EmployerNew@digital.education.gov.uk"),
-                    new(ukprnkey, "10056078"),
+               new(ukprnkey, "10056078"),
            ]);
             _data.Add("rps101",
                 [
@@ -113,12 +111,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
             _data.Add("rps111",
                [
                     new(emailkey, "sudhakar.chinoor+D11@digital.education.gov.uk"),
-                    new(ukprnkey, "10029129"),
+                   new(ukprnkey, "10029129"),
                ]);
             _data.Add("rpcr01",
               [
                     new(emailkey, "sudhakar.chinoor+CR01@digital.education.gov.uk"),
-                    new(ukprnkey, "10047260"),
+                  new(ukprnkey, "10047260"),
               ]);
         }
     }

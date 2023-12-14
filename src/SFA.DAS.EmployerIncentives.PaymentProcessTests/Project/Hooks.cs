@@ -9,7 +9,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
     [Binding]
     public class Hooks(ScenarioContext context)
     {
-        private readonly Fixture _fixture = new Fixture();
+        private readonly Fixture _fixture = new();
         private TestData _testData;
         private Helper _helper;
         private bool _hasRunInitialCleanup = false;

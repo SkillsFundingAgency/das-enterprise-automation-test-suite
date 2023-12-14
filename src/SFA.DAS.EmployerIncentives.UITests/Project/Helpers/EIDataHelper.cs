@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using System;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {

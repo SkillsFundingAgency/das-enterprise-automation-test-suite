@@ -51,9 +51,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private static string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);
 
-        private static List<string> AppTraining => ["Job role", "Number of apprentices", "Start by", "Have you found a training provider?" ];
+        private static List<string> AppTraining => ["Job role", "Number of apprentices", "Start by", "Have you found a training provider?"];
 
-        private static List<string> BusinessDetails => [ "Sector", "Location" ];
+        private static List<string> BusinessDetails => ["Sector", "Location"];
 
         private static List<string> ContactDetails => ["Name", "Email address", "Business website"];
     }

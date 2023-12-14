@@ -21,7 +21,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 WithdrawalType = withdrawalType,
                 Applications =
                 [
-                    new() {
+                    new()
+                    {
                         AccountLegalEntityId = accountLegalEntityId,
                         ULN = uln
                     }
@@ -41,11 +42,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             {
                 Applications =
                 [
-                    new() {
+                    new()
+                    {
                         AccountLegalEntityId = accountLegalEntityId,
                         ULN = uln,
                         ServiceRequest = new ServiceRequest
-                            { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
+                        { TaskId = "AUTOMATED", DecisionReference = "TESTS", TaskCreatedDate = DateTime.Now }
                     }
                 ]
             };
@@ -60,7 +62,8 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
                 CheckType = RefreshEmploymentCheckType.InitialEmploymentChecks.ToString(),
                 Applications =
                     [
-                        new() {
+                        new()
+                        {
                             ULN = uln,
                             AccountLegalEntityId = accountLegalEntityId
                         }

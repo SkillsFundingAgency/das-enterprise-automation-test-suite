@@ -60,6 +60,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
             return searchPage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding().ClickChangeStatusLink();
         }
 
-        private void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();
+        private static void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();
     }
 }
