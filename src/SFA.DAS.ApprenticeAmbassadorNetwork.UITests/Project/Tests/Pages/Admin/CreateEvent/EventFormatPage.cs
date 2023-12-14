@@ -3,7 +3,7 @@
 
 public class EventFormatPage : AanAdminBasePage
 {
-    protected override string PageTitle => "Event format";
+    protected override string PageTitle => "Choose an event format";
 
     public EventFormatPage(ScenarioContext context) : base(context) { }
 

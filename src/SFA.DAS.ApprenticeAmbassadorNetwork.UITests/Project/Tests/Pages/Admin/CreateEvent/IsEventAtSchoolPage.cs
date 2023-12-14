@@ -2,7 +2,7 @@
 
 public class IsEventAtSchoolPage : AanAdminBasePage
 {
-    protected override string PageTitle => "Is this event held at a school?";
+    protected override string PageTitle => "Provide event location details";
 
     public IsEventAtSchoolPage(ScenarioContext context) : base(context) { }
 
