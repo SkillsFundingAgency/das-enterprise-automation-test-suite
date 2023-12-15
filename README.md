@@ -2,11 +2,11 @@
 
 # DAS-ENTERPRISE-AUTOMATION-TEST-SUITE
 
-This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core 7.0) in SpecFlow BDD methodology and Page Object Pattern.
+This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core 8.0) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Visual Studio (2022 with V17.7 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
-2. Download appropriate 'Dot Net Core 7.0.11' or [latest 7.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/7.0 "Download .NET 7.0") version matching Visual Studio version (If its not automatically installed as part of VS2022 installation). And make sure the sysytem has only one instance of Dotnet core.<br />NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
+1. Visual Studio (2022 with V17.8.3 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
+2. Download appropriate 'Dot Net Core 8.0.0' or [latest 8.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/8.0") version matching Visual Studio version (If its not automatically installed as part of VS2022 installation / upgrade). And make sure the sysytem has only one instance of Dotnet core.<br />NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
 3. Browsers (Chrome, Firefox, Edge)
 
 ## Set Up (UI):
@@ -26,7 +26,7 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
 	```text
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<RootNamespace>SFA.DAS.YourProjectName.UITests</RootNamespace>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
@@ -97,7 +97,7 @@ Note: This API framework is built with all standard libraries and ready to write
 	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
 	```text
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<RootNamespace>SFA.DAS.YourProjectName.APITests</RootNamespace>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
