@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
-public class TestDataCleanUpEmpIncSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
+public class TestDataCleanUpEmpIncSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper(objectContext, dbConfig.IncentivesDbConnectionString)
 {
     public override string SqlFileName => "EmpIncTestDataCleanUp";
 
     public override bool ExcludeEnvironments => EnvironmentConfig.IsDemoEnvironment;
-
-    public TestDataCleanUpEmpIncSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.IncentivesDbConnectionString) { }
 
     public (List<string>, List<string>) CleanUpEmpIncTestData(int greaterThan, int lessThan, List<string> easaccountidsnottodelete)
     {

@@ -4,16 +4,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ChangeOfTrainingProviderRequestedPage : ApprovalsBasePage
+    public class ChangeOfTrainingProviderRequestedPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Change of training provider requested";
 
         protected override bool TakeFullScreenShot => false;
 
         private string EmployerLedExpectedBodyText => $"We'll ask {changeOfPartyConfig.NewProviderName} to check the details of this change. If they make any changes, it will come back to you.";
-        
-        public ChangeOfTrainingProviderRequestedPage(ScenarioContext context) : base(context)  { }                 
-        
+
         public void VerifyConfirmationMessage()
         {
             var bodyTextElements = pageInteractionHelper.FindElements(By.CssSelector(".govuk-body"));

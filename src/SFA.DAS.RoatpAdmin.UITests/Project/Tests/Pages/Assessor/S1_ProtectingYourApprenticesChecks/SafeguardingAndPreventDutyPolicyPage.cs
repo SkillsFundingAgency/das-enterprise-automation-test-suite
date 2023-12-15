@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S1_ProtectingYourApprenticesChecks
 {
-    public class SafeguardingAndPreventDutyPolicyPage : AssessorBasePage
+    public class SafeguardingAndPreventDutyPolicyPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Safeguarding policy";
-
-        public SafeguardingAndPreventDutyPolicyPage(ScenarioContext context) : base(context) { }
 
         public AssessorOverallResponsibilityForSafeguardingPage SelectPassAndContinueInSafeguardingAndPreventDutyPolicyPage()
         {

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderOverlappingTrainingDateEmployerNotifiedPage : ApprovalsBasePage
+    public class ProviderOverlappingTrainingDateEmployerNotifiedPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By IWillAddAnotherApprenticeRadionButton => By.CssSelector("#radio-add-another-apprentice");
 
         protected override bool TakeFullScreenShot => false;
-
-        public ProviderOverlappingTrainingDateEmployerNotifiedPage(ScenarioContext context) : base(context) { }
 
         public ProviderApproveApprenticeDetailsPage IWillAddAnotherApprentice()
         {

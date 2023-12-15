@@ -50,5 +50,5 @@ public class AS_LandingPage : EPAO_BasePage
 
         if (new CheckStubSignInAssessorPage(context).IsPageDisplayed()) new StubSignInAssessorPage(context).SubmitValidUserDetails(context.Get<EPAOAssessorPortalLoggedInUser>()).Continue();
     }
-    
+
 }

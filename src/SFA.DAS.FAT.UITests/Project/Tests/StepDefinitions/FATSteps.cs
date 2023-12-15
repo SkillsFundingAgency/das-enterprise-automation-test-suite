@@ -47,7 +47,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode)
         {
             _providerSearchResultsPage = _findATrainingProviderPage.EnterPostCodeAndSearch(postCode);
-            _fATStepsHelper.CheckIfSatisfactionAndAchievementRatesAreDisplayed(_providerSearchResultsPage);
+            FATStepsHelper.CheckIfSatisfactionAndAchievementRatesAreDisplayed(_providerSearchResultsPage);
         }
 
         [When(@"the User chooses to diplay results in (ascending order|descending order) of Apprenticeship Level")]

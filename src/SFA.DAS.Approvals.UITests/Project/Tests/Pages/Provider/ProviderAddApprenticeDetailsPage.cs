@@ -7,9 +7,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderAddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
         private static By AddButton => By.XPath("//button[contains(text(),'Add')]");
@@ -17,11 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DeliveryModelType => By.Id("delivery-model-value");
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
         private static By Uln => By.Id("Uln");
-
-        public ProviderAddApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
-        {
-            _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
-        }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {
@@ -38,13 +32,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
 
-            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers() && !_isFlexiPaymentPilotLearner) EnterStartDate(DateTime.Now);
+            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers() && !isFlexiPaymentPilotLearner) EnterStartDate(DateTime.Now);
 
             EnterEndDate(apprenticeCourseDataHelper.CourseEndDate);
 
-            if (_isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
+            if (isFlexiPaymentPilotLearner) AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);
 
-            EnterTrainingCostAndEmpReference(_isFlexiPaymentPilotLearner);
+            EnterTrainingCostAndEmpReference(isFlexiPaymentPilotLearner);
 
             formCompletionHelper.ClickElement(AddButton);
 
@@ -105,7 +99,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void EnterTrainingStartDate(DateTime date)
         {
-            if (_isFlexiPaymentPilotLearner)
+            if (isFlexiPaymentPilotLearner)
             {
                 ClickActualStartDateDay();
                 EnterActualStartDate(date);

@@ -8,19 +8,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
 {
     [Binding]
-    public class RecordAssessmentOutcomesSteps
+    public class RecordAssessmentOutcomesSteps(ScenarioContext context)
     {
-        private readonly Outer_AssessorCertificationApiRestClient _restClient;
-        private readonly AssessorCertificationSqlDbHelper _assessorCertificationSqlDbHelper;
+        private readonly Outer_AssessorCertificationApiRestClient _restClient = context.GetRestClient<Outer_AssessorCertificationApiRestClient>();
+        private readonly AssessorCertificationSqlDbHelper _assessorCertificationSqlDbHelper = context.Get<AssessorCertificationSqlDbHelper>();
         private string _contextUln;
         private RestResponse _restResponse = null;
 
-        public RecordAssessmentOutcomesSteps(ScenarioContext context)
-        {
-            _restClient = context.GetRestClient<Outer_AssessorCertificationApiRestClient>();
-            _assessorCertificationSqlDbHelper = context.Get<AssessorCertificationSqlDbHelper>();
-        }
-        
         [Given(@"the user prepares payload with uln (.*)")]
         public void GivenTheUserPreparesPayloadWithUln(string uln)
         {
@@ -78,7 +72,7 @@ namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
         {
             var actualEPARef = _assessorCertificationSqlDbHelper.GetEPAreferenceAfterAPI(_contextUln);
 
-            DoesContains(actualEPARef, _restResponse.Content, "Value is not contained in response");   
+            DoesContains(actualEPARef, _restResponse.Content, "Value is not contained in response");
         }
 
         [Then(@"the CertificateReference in the response is same as in the Certificates table in the database")]

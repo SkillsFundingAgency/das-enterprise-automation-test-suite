@@ -1,21 +1,18 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
 namespace SFA.DAS.EPAO.UITests.Project;
 
 [Binding]
-public class EPAOConfigurationSetup
+public class EPAOConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    public EPAOConfigurationSetup(ScenarioContext context) => _context = context;
-
     [BeforeScenario(Order = 2)]
     public void SetUpEPAOProjectConfiguration()
     {
-        var configSection = _context.Get<IConfigSection>();
+        var configSection = context.Get<IConfigSection>();
 
-        _context.SetEPAOAssessorPortalUser(new List<EPAOAssessorPortalUser>
-        {
+        context.SetEPAOAssessorPortalUser(
+        [
             configSection.GetConfigSection<EPAOStandardApplyUser>(),
             configSection.GetConfigSection<EPAOAssessorUser>(),
             configSection.GetConfigSection<EPAODeleteAssessorUser>(),
@@ -24,11 +21,11 @@ public class EPAOConfigurationSetup
             configSection.GetConfigSection<EPAOE2EApplyUser>(),
             configSection.GetConfigSection<EPAOWithdrawalUser>(),
             configSection.GetConfigSection<EPAOStageTwoStandardCancelUser>(),
-        });
+        ]);
 
-        _context.SetNonEasLoginUser(new List<NonEasAccountUser>
+        context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser())
+            SetDfeAdminCredsHelper.SetDfeAdminCreds(context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser())
         });
-    }             
+    }
 }

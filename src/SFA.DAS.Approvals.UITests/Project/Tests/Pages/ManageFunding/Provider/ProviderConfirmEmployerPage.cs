@@ -5,15 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderConfirmEmployerPage : ApprovalsBasePage
+    public class ProviderConfirmEmployerPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Confirm employer";
 
         private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-
-        public ProviderConfirmEmployerPage(ScenarioContext context) : base(context) { }
 
         internal ProviderApprenticeshipTrainingPage ConfirmNonLevyEmployer()
         {

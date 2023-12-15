@@ -5,23 +5,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class MultipleAccountsLoginHelper : EmployerPortalLoginHelper
+    public class MultipleAccountsLoginHelper(ScenarioContext context, MultipleEasAccountUser multipleAccountUser) : EmployerPortalLoginHelper(context)
     {
-        private readonly ScenarioContext _context;
 
-        public string OrganisationName { get; set; }
+        public string OrganisationName { get; set; } = multipleAccountUser.OrganisationName;
 
-        public MultipleAccountsLoginHelper(ScenarioContext context, MultipleEasAccountUser multipleAccountUser) : base(context)
-        {
-            _context = context;
-
-            OrganisationName = multipleAccountUser.OrganisationName;
-        }
-
-        protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) => 
+        protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) =>
             loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, OrganisationName, isLevy);
 
-        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage().Login(loginUser).ContinueToYourAccountsPage().GoToHomePage(objectContext.GetOrganisationName());
+        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(context).GoToStubSignInPage().Login(loginUser).ContinueToYourAccountsPage().GoToHomePage(objectContext.GetOrganisationName());
 
         public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(StubSignInEmployerPage signInPage) => signInPage.Login(GetLoginCredentials()).ContinueToMyAccountTransferFundingPage();
 

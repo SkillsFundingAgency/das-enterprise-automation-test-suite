@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class AuthTestUserHomePage : HomePage
+    public class AuthTestUserHomePage(ScenarioContext context) : HomePage(context)
     {
         protected override bool CaptureUrl => false;
-
-        public AuthTestUserHomePage(ScenarioContext context) : base(context) { }
     }
 }

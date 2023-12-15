@@ -14,7 +14,7 @@ public class CohortSummaryPage : SupportConsoleBasePage
     public CohortDetailsPage ClickViewThisCohortButton()
     {
         formCompletionHelper.Click(ViewThisCohortButton);
-        return new (context);
+        return new(context);
     }
 
     public string GetCohortRefNumber() => pageInteractionHelper.GetText(CohortRefNumber);

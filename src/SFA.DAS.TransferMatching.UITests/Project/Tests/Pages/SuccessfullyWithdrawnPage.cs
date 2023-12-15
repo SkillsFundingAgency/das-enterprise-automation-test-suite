@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class SuccessfullyWithdrawnPage : TransferMatchingBasePage
+    public class SuccessfullyWithdrawnPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "You have successfully declined a transfer of funds";
-
-        public SuccessfullyWithdrawnPage(ScenarioContext context) : base(context) { }
 
         public AccountHomePage ReturnToMyAccount()
         {

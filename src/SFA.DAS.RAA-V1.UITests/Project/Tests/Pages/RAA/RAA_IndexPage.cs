@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new PreProdDIGBEADFSPage(context);
         }
 
-        new public RAA_IndexPage AcceptCookies()
+        public new RAA_IndexPage AcceptCookies()
         {
             base.AcceptCookies();
             return this;

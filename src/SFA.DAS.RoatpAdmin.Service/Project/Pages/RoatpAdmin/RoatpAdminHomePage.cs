@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
-public class RoatpAdminHomePage : RoatpAdminBasePage
+public class RoatpAdminHomePage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
     protected override string PageTitle => "Staff dashboard";
 
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-    public RoatpAdminHomePage(ScenarioContext context) : base(context) { }
 
     public OrganisationUkprnPage AddANewTrainingProvider()
     {

@@ -1,20 +1,13 @@
 ﻿namespace SFA.DAS.API.FrameworkHelpers;
 
-public abstract class RequestAndResponseCollectionHelper
+public abstract class RequestAndResponseCollectionHelper(RestClient client, RestRequest request, RestResponse response)
 {
 
-    protected readonly RestResponse _response;
-    protected readonly RestRequest _request;
-    protected readonly RestClient _client;
+    protected readonly RestResponse _response = response;
+    protected readonly RestRequest _request = request;
+    protected readonly RestClient _client = client;
 
     protected static string HashedValue => "********";
-
-    public RequestAndResponseCollectionHelper(RestClient client, RestRequest request, RestResponse response)
-    {
-        _client = client;
-        _request = request;
-        _response = response;
-    }
 
     public string GetRequestData() => $"{Environment.NewLine}REQUEST DETAILS: {GetMethod()}{GetRequestUri()}{GetRequestBody()}";
 
@@ -44,7 +37,7 @@ public abstract class RequestAndResponseCollectionHelper
 
         if (absoluteUri.ContainsCompareCaseInsensitive("code="))
         {
-            var index = absoluteUri.IndexOf("=");
+            var index = absoluteUri.IndexOf('=');
             absoluteUri = absoluteUri[..(index + 5)];
             absoluteUri = $"{absoluteUri}{HashedValue}";
         }

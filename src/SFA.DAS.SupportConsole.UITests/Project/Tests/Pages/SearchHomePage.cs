@@ -21,7 +21,7 @@ public class SearchHomePage : SupportConsoleBasePage
     {
         if (pageInteractionHelper.IsElementPresent(StartNowButton))
             formCompletionHelper.Click(StartNowButton);
-        
+
         VerifyPage();
     }
 
@@ -44,7 +44,7 @@ public class SearchHomePage : SupportConsoleBasePage
         formCompletionHelper.EnterText(SearchTextBox, criteria);
         formCompletionHelper.Click(SearchButton);
         tableRowHelper.SelectRowFromTable("view", config.PublicAccountId, NextPage, NoOfPages);
-        return new (context);
+        return new(context);
     }
 
     private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
@@ -54,6 +54,6 @@ public class SearchHomePage : SupportConsoleBasePage
         formCompletionHelper.EnterText(SearchTextBox, criteria);
         formCompletionHelper.Click(SearchButton);
         tableRowHelper.SelectRowFromTable("view", config.EmailAddress, NextPage, NoOfPages);
-        return new (context);
+        return new(context);
     }
 }

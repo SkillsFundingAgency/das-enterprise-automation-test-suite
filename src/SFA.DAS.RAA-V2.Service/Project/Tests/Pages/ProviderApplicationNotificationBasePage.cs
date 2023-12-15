@@ -23,19 +23,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string AccessibilityPageTitle => "Candidate application made page";
     }
 
-    public class ProviderApplicationSuccessfulPage : ProviderApplicationNotificationBasePage
+    public class ProviderApplicationSuccessfulPage(ScenarioContext context) : ProviderApplicationNotificationBasePage(context, "successful")
     {
-        public ProviderApplicationSuccessfulPage(ScenarioContext context) : base(context, "successful")
-        {
-
-        }
     }
 
-    public class ProviderApplicationUnsuccessfulPage : ProviderApplicationNotificationBasePage
+    public class ProviderApplicationUnsuccessfulPage(ScenarioContext context) : ProviderApplicationNotificationBasePage(context, "unsuccessful")
     {
-        public ProviderApplicationUnsuccessfulPage(ScenarioContext context) : base(context, "unsuccessful")
-        {
-
-        }
     }
 }

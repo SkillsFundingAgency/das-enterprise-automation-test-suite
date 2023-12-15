@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using System.Linq;
+﻿using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprenticeshipTraining_Section7

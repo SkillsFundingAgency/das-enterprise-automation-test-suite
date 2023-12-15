@@ -4,15 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class CampaingnsVerifyLinks : CampaingnsBasePage
+    public class CampaingnsVerifyLinks(ScenarioContext context, bool verifypage = true) : CampaingnsBasePage(context, verifypage)
     {
         private static By Links => By.CssSelector("a");
 
         private static By VideoLinks => By.CssSelector("a[data-module='videoPlayer']");
 
         protected override string PageTitle => "";
-
-        public CampaingnsVerifyLinks(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
 
@@ -27,10 +25,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 var attributeValue = item.GetAttribute(attributeName);
                 var text = func(item);
                 objectContext.Replace(text, $"{attributeName}:{attributeValue}");
-                
+
                 if (string.IsNullOrEmpty(attributeValue) && !string.IsNullOrEmpty(text) && (item.GetAttribute("asp-action") == null))
                     throw new Exception($"'{text}' element's '{attributeName}' attribute is broken - attributeValue : '{attributeValue}'");
-                    
+
             }
         }
     }

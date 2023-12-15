@@ -31,7 +31,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();    
+            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
         }
@@ -95,7 +95,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             var email = GetApprenticeEmail();
 
             var regId = _aComtSqlDbHelper.GetRegistrationId(email);
-                
+
             var apprenticeId = _appAccSqlDbHelper.GetApprenticeDetails(email).apprenticeId;
 
             _objectContext.SetApprenticeId(apprenticeId);

@@ -5,13 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderMakingChangesPage : ReservationIdBasePage
+    public class ProviderMakingChangesPage(ScenarioContext context) : ReservationIdBasePage(context)
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
 
         private static By ContinueButtonTo => By.XPath("//button[contains(text(),'Continue')]");
-
-        public ProviderMakingChangesPage(ScenarioContext context) : base(context)  { }
 
         internal ApprovalsProviderHomePage GoToHomePage()
         {

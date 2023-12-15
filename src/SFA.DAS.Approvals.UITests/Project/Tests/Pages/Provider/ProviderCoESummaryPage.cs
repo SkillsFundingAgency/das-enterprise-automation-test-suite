@@ -1,17 +1,15 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCoESummaryPage : ApprovalsBasePage
+    public class ProviderCoESummaryPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
 
         protected override string PageTitle => "Confirm the information before sending your request";
         protected override By ContinueButton => By.Id("confirm-button");
-
-        public ProviderCoESummaryPage(ScenarioContext context) : base(context) { }
 
         public ProviderCoERequestedPage VerifyAndSubmitChangeOfEmployerRequest()
         {
@@ -28,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderCoERequestedPage(context);
         }
 
-        private string FormatDateIntoMMYYYY(DateTime date)
+        private static string FormatDateIntoMMYYYY(DateTime date)
         {
             var prefix = date.Month < 10 ? "0" : "";
             return $"{prefix}{date.Month}{date.Year}";

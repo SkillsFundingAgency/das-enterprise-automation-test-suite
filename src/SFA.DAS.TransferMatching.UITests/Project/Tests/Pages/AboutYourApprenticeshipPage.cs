@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class AboutYourApprenticeshipPage : TransferMatchingBasePage
+    public class AboutYourApprenticeshipPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Provide more detail about your apprenticeship";
 
@@ -12,11 +11,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
-        public AboutYourApprenticeshipPage(ScenarioContext context) : base(context) { }
-
         public CreateATransfersApplicationPage EnterMoreDetailsAndContinue(string pledgeId)
         {
-            formCompletionHelper.EnterText(MoreDetailsSelector, !string.IsNullOrEmpty(pledgeId) ? pledgeId: tMDataHelper.ApprenticeshipMoreDetails);
+            formCompletionHelper.EnterText(MoreDetailsSelector, !string.IsNullOrEmpty(pledgeId) ? pledgeId : Helpers.TMDataHelper.ApprenticeshipMoreDetails);
 
             Continue();
 

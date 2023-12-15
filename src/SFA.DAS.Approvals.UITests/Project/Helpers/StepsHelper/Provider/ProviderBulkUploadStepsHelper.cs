@@ -3,17 +3,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderBulkUploadStepsHelper
+    public class ProviderBulkUploadStepsHelper(ScenarioContext context)
     {
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-
-        public ProviderBulkUploadStepsHelper(ScenarioContext context) => _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
         public ProviderCohortApprovedPage AddApprenticeViaBulkUpload(int numberOfApprentices)
         {
             return _providerCommonStepsHelper.CurrentCohortDetails()
                 .SelectBulkUploadApprentices()
-                .UploadFileAndConfirmSuccessful(numberOfApprentices, false)
+                .UploadFileAndConfirmSuccessful(numberOfApprentices)
                 .SubmitApprove();
         }
 

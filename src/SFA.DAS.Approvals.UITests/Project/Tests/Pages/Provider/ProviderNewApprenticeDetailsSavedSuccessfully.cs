@@ -1,22 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderNewApprenticeDetailsSavedSuccessfully : ApprovalsBasePage
+    public class ProviderNewApprenticeDetailsSavedSuccessfully(ScenarioContext context, IVerifyBulkUploadApprentices verifyBulkUploadApprentices) : ApprovalsBasePage(context)
     {
-        private readonly IVerifyBulkUploadApprentices _verifyBulkUploadApprentices;
-
         protected override string PageTitle => "New apprentice details saved successfully";
-
-        public ProviderNewApprenticeDetailsSavedSuccessfully(ScenarioContext context, IVerifyBulkUploadApprentices verifyBulkUploadApprentices) : base(context)
-        {
-            _verifyBulkUploadApprentices = verifyBulkUploadApprentices;
-        }
 
         public ProviderNewApprenticeDetailsSavedSuccessfully VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
-            _verifyBulkUploadApprentices.VerifyCorrectInformationIsDisplayed(apprenticeList);
+            verifyBulkUploadApprentices.VerifyCorrectInformationIsDisplayed(apprenticeList);
 
             return this;
         }

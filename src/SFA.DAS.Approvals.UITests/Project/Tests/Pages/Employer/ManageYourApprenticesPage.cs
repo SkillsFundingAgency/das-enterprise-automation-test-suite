@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ManageYourApprenticesPage : ApprovalsBasePage
+    public class ManageYourApprenticesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Manage your apprentices";
 
@@ -16,9 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
 
-        private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper;
-
-        public ManageYourApprenticesPage(ScenarioContext context) : base(context) => manageYourApprenticePageHelper = new ManageYourApprenticePageHelper(context);
+        private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper = new(context);
 
         public ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {

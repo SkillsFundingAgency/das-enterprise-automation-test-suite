@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApproveApprenticeDetailsPage : ReviewYourCohort
+    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details")
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
@@ -29,8 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ApproveRadioButton => By.Id("radio-approve");
 
         protected override string AccessibilityPageTitle => "Provider approve apprentice details";
-
-        public ProviderApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {

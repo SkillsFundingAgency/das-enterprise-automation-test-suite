@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
-    public class Reviewer_HomePage : RAAV2QABasePage
+    public class Reviewer_HomePage(ScenarioContext context) : RAAV2QABasePage(context)
     {
         protected override By PageHeader => ReviewVacancyButton;
 
@@ -17,8 +17,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         private static By SearchVacancy => By.CssSelector(".search-submit button");
 
         private static By ReviewLink => By.LinkText("Review");
-
-        public Reviewer_HomePage(ScenarioContext context) : base(context) { }
 
         public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
         {

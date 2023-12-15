@@ -3,11 +3,6 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class CheckPageInteractionHelper : PageInteractionHelper
+public class CheckPageInteractionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, CheckPageRetryHelper retryHelper) : PageInteractionHelper(webDriver, objectContext, webDriverWaitHelper, retryHelper)
 {
-    public CheckPageInteractionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, CheckPageRetryHelper retryHelper) 
-        : base(webDriver, objectContext, webDriverWaitHelper, retryHelper)
-    {
-
-    }
 }

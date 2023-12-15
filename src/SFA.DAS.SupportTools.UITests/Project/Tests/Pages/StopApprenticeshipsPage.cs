@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
 
-public class StopApprenticeshipsPage : ToolSupportBasePage
+public class StopApprenticeshipsPage(ScenarioContext context) : ToolSupportBasePage(context)
 {
     protected override string PageTitle => "Stop apprenticeships";
 
@@ -11,9 +11,8 @@ public class StopApprenticeshipsPage : ToolSupportBasePage
     private static By SetBtn => By.Id("btnSetBulkDate");
     private static By StatusColumn => By.CssSelector("#apprenticeshipsTable tr td:nth-child(12)");
     private static By ErrorMessage => By.XPath("//li[contains(text(),'Not all Apprenticeship rows have been supplied wit')]");
-    #endregion
 
-    public StopApprenticeshipsPage(ScenarioContext context) : base(context) { }
+    #endregion
 
     public StopApprenticeshipsPage ClickStopBtn()
     {

@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class HomePageFinancesSection_EI : HomePage
+    public class HomePageFinancesSection_EI(ScenarioContext context) : HomePage(context)
     {
         private static By EIHubLink => By.LinkText("Your hire a new apprentice payments");
-
-        public HomePageFinancesSection_EI(ScenarioContext context) : base(context) { }
 
         public EIHubPage NavigateToEIHubPage()
         {

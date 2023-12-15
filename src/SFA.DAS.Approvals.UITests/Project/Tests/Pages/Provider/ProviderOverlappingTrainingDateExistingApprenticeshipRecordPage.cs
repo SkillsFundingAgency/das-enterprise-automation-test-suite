@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage : ApprovalsBasePage
+    public class ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         protected override string PageTitle => "This apprentice already has an existing apprenticeship record";
 
         protected override bool TakeFullScreenShot => false;
-
-        public ProviderOverlappingTrainingDateExistingApprenticeshipRecordPage(ScenarioContext context) : base(context) { }
 
         private static By IWillAddLaterRadionButton => By.CssSelector("#overlap-option-3");
 

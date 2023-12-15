@@ -15,96 +15,87 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project
 {
     [Binding]
-    public class BeforeScenarioHooks
+    public class BeforeScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectcontext;
+        private readonly ObjectContext _objectcontext = context.Get<ObjectContext>();
         private CommitmentsSqlDataHelper commitmentsdatahelper;
         private RoatpV2SqlDataHelper roatpV2SqlDataHelper;
-        private readonly DbConfig _dbConfig;
-        private readonly string[] _tags;
-
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _objectcontext = context.Get<ObjectContext>();
-            _dbConfig = context.Get<DbConfig>();
-            _tags = context.ScenarioInfo.Tags;
-        }
+        private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+        private readonly string[] _tags = context.ScenarioInfo.Tags;
 
         [BeforeScenario(Order = 31)]
         public void SetUpDbHelpers()
         {
             commitmentsdatahelper = new CommitmentsSqlDataHelper(_objectcontext, _dbConfig);
 
-            _context.Set(commitmentsdatahelper);
+            context.Set(commitmentsdatahelper);
 
-            _context.Set(new ProviderPermissionsSqlDbHelper(_objectcontext, _dbConfig));
+            context.Set(new ProviderPermissionsSqlDbHelper(_objectcontext, _dbConfig));
 
-            _context.Set(new RofjaaDbSqlHelper(_objectcontext, _dbConfig));
+            context.Set(new RofjaaDbSqlHelper(_objectcontext, _dbConfig));
 
-            _context.Set(new AccountsDbSqlHelper(_objectcontext, _dbConfig));
+            context.Set(new AccountsDbSqlHelper(_objectcontext, _dbConfig));
 
-            _context.Set(roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_objectcontext, _dbConfig));
+            context.Set(roatpV2SqlDataHelper = new RoatpV2SqlDataHelper(_objectcontext, _dbConfig));
 
-            _context.Set(new PublicSectorReportingDataHelper());
+            context.Set(new PublicSectorReportingDataHelper());
 
-            _context.Set(new PublicSectorReportingSqlDataHelper(_objectcontext, _dbConfig));
+            context.Set(new PublicSectorReportingSqlDataHelper(_objectcontext, _dbConfig));
 
-            _context.Set(new ManageFundingEmployerStepsHelper(_context));
+            context.Set(new ManageFundingEmployerStepsHelper(context));
         }
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            if (new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration()) return;
+            if (new TestDataSetUpConfigurationHelper(context).NoNeedToSetUpConfiguration()) return;
 
             var apprenticeStatus = _tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
                                    _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
-                                   _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow: ApprenticeStatus.Random;
+                                   _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow : ApprenticeStatus.Random;
 
             List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> listOfApprentices = SetProviderSpecificCourse(apprenticeStatus);
 
-            _context.Set(listOfApprentices);
+            context.Set(listOfApprentices);
 
             var apprenticeDataHelper = listOfApprentices.FirstOrDefault().apprenticeDataHelper;
 
-            _context.Set(apprenticeDataHelper);
+            context.Set(apprenticeDataHelper);
 
-            _context.Set(apprenticeDataHelper.apprenticePPIDataHelper);
+            context.Set(apprenticeDataHelper.apprenticePPIDataHelper);
 
-            _context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
+            context.Set(new EditedApprenticeDataHelper(apprenticeDataHelper));
 
             var apprenticeCourseDataHelper = listOfApprentices.FirstOrDefault().apprenticeCourseDataHelper;
 
-            _context.Set(apprenticeCourseDataHelper);
+            context.Set(apprenticeCourseDataHelper);
 
-            _context.Set(new DataLockSqlHelper(_objectcontext, _dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper));
+            context.Set(new DataLockSqlHelper(_objectcontext, _dbConfig, apprenticeDataHelper, apprenticeCourseDataHelper));
 
         }
 
         private List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> SetProviderSpecificCourse(ApprenticeStatus apprenticeStatus)
         {
-            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = new();
+            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = [];
 
             if (_tags.Contains("portableflexijob"))
             {
-                var larsCode = roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
+                var larsCode = roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode(context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
 
                 listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
 
             }
             else if (_tags.Contains("limitingstandards"))
             {
-                var larsCode = roatpV2SqlDataHelper.GetCoursesthatProviderDeosNotOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+                var larsCode = roatpV2SqlDataHelper.GetCoursesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
 
                 listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
             }
             else
             {
-                var larsCode = roatpV2SqlDataHelper.GetCoursesThatProviderDeosOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+                var larsCode = roatpV2SqlDataHelper.GetCoursesThatProviderDeosOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
 
                 listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
 

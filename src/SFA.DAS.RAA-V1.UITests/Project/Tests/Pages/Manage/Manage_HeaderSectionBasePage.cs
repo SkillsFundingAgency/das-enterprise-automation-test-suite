@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         }
 
         protected void AgentHome() => formCompletionHelper.Click(AgencyHomeCss);
-        
+
         public Manage_AdminFunctionsPage NavigateToAdminFuntionsPage()
         {
             formCompletionHelper.Click(AdminLink);

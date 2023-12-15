@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override bool TakeFullScreenShot => false;
         private static By SortByDateReceivedLink => By.PartialLinkText("Date sent to employer");
 
-        public ProviderApprenticeRequestsWithTransferSendingEmployerPage(ScenarioContext context) : base(context)  
+        public ProviderApprenticeRequestsWithTransferSendingEmployerPage(ScenarioContext context) : base(context)
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(SortByDateReceivedLink), "Validate SortByDateSentToEmployer link on 'With Transfer Sending Employers' page");
         }

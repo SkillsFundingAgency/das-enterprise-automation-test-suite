@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
+
 public class FileUploadReviewEmployerDetails
 {
     public string EmployerName { get; set; }

@@ -57,14 +57,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return NonLevyEmployerAddsApprenticesUsingReservations(listOfApprentice.Take(numberOfApprentices).ToList(), shouldConfirmOnlyStandardCoursesSelectable);
         }
 
-        private AddApprenticeDetailsPage AddAnotherApprentice(ApproveApprenticeDetailsPage approveApprenticeDetailsPage)
+        private static AddApprenticeDetailsPage AddAnotherApprentice(ApproveApprenticeDetailsPage approveApprenticeDetailsPage)
         {
             var page = approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().ChooseCreateANewReservationRadioButton().ClickSaveAndContinueButton();
 
-            return _employerReservationStepsHelper.CreateReservation(page).AddAnotherApprentice().EmployerSelectsAStandard();
+            return ManageFundingEmployerStepsHelper.CreateReservation(page).AddAnotherApprentice().EmployerSelectsAStandard();
         }
 
-        private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable)
+        private static ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
             if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
 
@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private StartAddingApprenticesPage NonLevyEmployerAddsProviderDetails()
         {
-            return _employerReservationStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding())
+            return ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding())
                 .AddApprentice()
                 .StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()

@@ -4,19 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
-    public class AssessorLoginStepsHelper
+    public class AssessorLoginStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper;
+        private readonly DfeAdminLoginStepsHelper _dfeAdminLoginStepsHelper = new(context);
 
-        public AssessorLoginStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _dfeAdminLoginStepsHelper = new DfeAdminLoginStepsHelper(context);
-        }
+        public RoatpAssessorApplicationsHomePage Assessor1Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor1(); return new(context); }
 
-        public RoatpAssessorApplicationsHomePage Assessor1Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor1(); return new(_context); }
-
-        public RoatpAssessorApplicationsHomePage Assessor2Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor2(); return new(_context); }
+        public RoatpAssessorApplicationsHomePage Assessor2Login() { _dfeAdminLoginStepsHelper.LoginToAsAssessor2(); return new(context); }
     }
 }

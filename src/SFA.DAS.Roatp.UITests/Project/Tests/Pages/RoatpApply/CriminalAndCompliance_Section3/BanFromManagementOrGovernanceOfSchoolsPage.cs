@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
 
         public ApplicationOverviewPage SelecNoForBanFromManagementOrGovernanceOfSchoolsAndContinue()
         {
-            SelectNoAndContinue();       
+            SelectNoAndContinue();
             return new ApplicationOverviewPage(context);
         }
     }

@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
-public class OrganisationUkprnPage : RoatpAdminBasePage
+public class OrganisationUkprnPage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
     protected override string PageTitle => "What is the organisation's UKPRN?";
 
     private static By UkprnField => By.Id("UKPRN");
-
-    public OrganisationUkprnPage(ScenarioContext context) : base(context) { }
 
     public OrganisationsDetailsPage EnterUkprn()
     {

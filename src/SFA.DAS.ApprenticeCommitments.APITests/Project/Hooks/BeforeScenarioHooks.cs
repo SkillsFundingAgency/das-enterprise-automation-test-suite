@@ -9,37 +9,29 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 {
     [Binding]
-    public class BeforeScenarioHooks
+    public class BeforeScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly DbConfig _dbConfig;
-        private readonly ObjectContext _objectContext;
-
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _dbConfig = context.Get<DbConfig>();
-        }
+        private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var a = _context.Get<ApprenticePPIDataHelper>();
+            var a = context.Get<ApprenticePPIDataHelper>();
 
             _objectContext.SetApprenticeDetail(a.ApprenticeFirstname, a.ApprenticeLastname, a.ApprenticeDob, a.ApprenticeEmail);
 
-            _context.Set(new CommitmentsSqlHelper(_objectContext, _dbConfig));
+            context.Set(new CommitmentsSqlHelper(_objectContext, _dbConfig));
 
-            _context.Set(new AccountsAndCommitmentsSqlHelper(_objectContext, _dbConfig));
+            context.Set(new AccountsAndCommitmentsSqlHelper(_objectContext, _dbConfig));
 
-            _context.Set(new ApprenticeLoginSqlDbHelper(_objectContext, _dbConfig));
+            context.Set(new ApprenticeLoginSqlDbHelper(_objectContext, _dbConfig));
 
-            _context.Set(new ApprenticeCommitmentsSqlDbHelper(_objectContext, _dbConfig));
+            context.Set(new ApprenticeCommitmentsSqlDbHelper(_objectContext, _dbConfig));
 
-            _context.Set(new ApprenticeCommitmentsAccountsSqlDbHelper(_objectContext, _dbConfig));
+            context.Set(new ApprenticeCommitmentsAccountsSqlDbHelper(_objectContext, _dbConfig));
 
-            _context.SetRestClient(new Inner_CommitmentsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
+            context.SetRestClient(new Inner_CommitmentsApiRestClient(_objectContext, context.Get<Inner_ApiFrameworkConfig>()));
         }
     }
 }

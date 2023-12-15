@@ -6,10 +6,8 @@ using System.Net;
 
 namespace SFA.DAS.EmployerFinance.APITests.Project
 {
-    public class Inner_EmployerFinanceApiRestClient : Inner_BaseApiRestClient
+    public class Inner_EmployerFinanceApiRestClient(ObjectContext objectContext, API.Framework.Configs.Inner_ApiFrameworkConfig config) : Inner_BaseApiRestClient(objectContext, config)
     {
-        public Inner_EmployerFinanceApiRestClient(ObjectContext objectContext, API.Framework.Configs.Inner_ApiFrameworkConfig config) : base(objectContext, config) { }
-
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_EmployerFinanceApiBaseUrl;
 
         protected override string AppServiceName => config.config.EmployerFinanceAppServiceName;

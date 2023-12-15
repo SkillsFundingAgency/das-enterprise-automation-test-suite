@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class FinancePage : InterimFinanceHomePage
+    public class FinancePage(ScenarioContext context, bool navigate = false) : InterimFinanceHomePage(context, navigate)
     {
         private static By TransferLink => By.LinkText("Transfers");
-
-        public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public TransfersPage OpenTransfers()
         {

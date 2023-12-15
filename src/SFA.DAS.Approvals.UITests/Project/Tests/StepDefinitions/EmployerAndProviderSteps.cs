@@ -1,37 +1,25 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerAndProviderSteps : BaseSteps
+    public class EmployerAndProviderSteps(ScenarioContext context) : BaseSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly EmployerCreateCohortStepsHelper _employerCreateCohortStepsHelper;
-        private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
-
-        public EmployerAndProviderSteps(ScenarioContext context)
-        {
-            _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
-            _employerCreateCohortStepsHelper = new EmployerCreateCohortStepsHelper(context);
-        }
-
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper = new(context);
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
+        private readonly EmployerCreateCohortStepsHelper _employerCreateCohortStepsHelper = new(context);
+        private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper = new(context);
 
         [Given(@"the listed provider has approved apprentice")]
         public void GivenTheListedProviderHasApprovedApprentice()
         {
-            _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
+            _employerPortalLoginHelper.Login(context.GetUser<LevyUser>(), true);
 
             _employerCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
 

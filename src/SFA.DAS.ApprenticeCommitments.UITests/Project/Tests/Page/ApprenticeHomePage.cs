@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -85,14 +83,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public void VerifyConfirmedCoCPageViewAndNavigateToOverviewPage()
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(CmadDashboardLinkWhenIncompleteOrUnConfirmed),
                 () => VerifyPage(CurrentApprenticeshipStatusSelector, HomePageHelper.DashboardUnConfimredStatusForCoC),
                 () => VerifyPage(UnConfimredApprenticeshipDetailsSubText, HomePageHelper.CmadSectionTextWhenUnConfirmed),
                 () => VerifyPage(CmadDashboardLinkAfterFullyConfirmed),
                 () => VerifyPage(ConfimredApprenticeshipDetailsSubText, HomePageHelper.CmadSectionTextWhenFullyConfirmed)
-            });
+            ]);
 
             formCompletionHelper.Click(CmadDashboardLinkWhenIncompleteOrUnConfirmed);
         }

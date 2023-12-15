@@ -11,8 +11,8 @@ public class RoatpV2SqlDataHelper(ObjectContext objectContext, DbConfig dbConfig
     internal List<string> GetCoursesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT LarsCode FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
 
     internal List<string> GetCoursesThatProviderDeosOffer(string ukprn) => GetCourses($"{ProviderCourseQuery(ukprn)} order by NEWID();");
-    
-    private List<string> GetCourses(string query) 
+
+    private List<string> GetCourses(string query)
     {
         var data = GetMultipleData(query);
 

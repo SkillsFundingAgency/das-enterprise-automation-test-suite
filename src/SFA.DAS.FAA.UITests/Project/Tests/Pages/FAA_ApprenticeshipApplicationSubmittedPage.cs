@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApprenticeshipApplicationSubmittedPage : FAA_ApplicationSubmittedPage
+    public class FAA_ApprenticeshipApplicationSubmittedPage(ScenarioContext context) : FAA_ApplicationSubmittedPage(context)
     {
         protected override string PageTitle => "Apprenticeship application submitted";
-
-        public FAA_ApprenticeshipApplicationSubmittedPage(ScenarioContext context) : base(context) { }
     }
 
 }

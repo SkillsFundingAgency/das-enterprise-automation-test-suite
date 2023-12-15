@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public void ClickPreviewVacancyButton()
         {
-            if (pageInteractionHelper.IsElementDisplayed(ClickPreviewVacacncy)) 
+            if (pageInteractionHelper.IsElementDisplayed(ClickPreviewVacacncy))
                 formCompletionHelper.Click(ClickPreviewVacacncy);
         }
     }

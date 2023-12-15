@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.StubPages;
 
-public class StubAddYourUserDetailsPage : StubAddYourUserDetailsBasePage
+public class StubAddYourUserDetailsPage(ScenarioContext context) : StubAddYourUserDetailsBasePage(context)
 {
-    public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) { }
-
     public AS_ConfirmYourIdentityPage EnterAccountDetailsAndClickCreateAccount(EPAOAssesorCreateUserDataHelper dataHelper)
     {
         EnterNameAndContinue(dataHelper.GivenName, dataHelper.FamilyName);

@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class YouCantConfirmBasePage : ApprenticeCommitmentsBasePage
+    public abstract class YouCantConfirmBasePage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         private static By ReturnToApprenticeshipButton => By.CssSelector("button.govuk-button");
-
-        public YouCantConfirmBasePage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeOverviewPage ReturnToApprenticeOverviewPage()
         {

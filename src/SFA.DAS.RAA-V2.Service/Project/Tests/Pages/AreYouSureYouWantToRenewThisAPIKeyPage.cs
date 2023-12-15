@@ -1,9 +1,9 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class AreYouSureYouWantToRenewThisAPIKeyPage : Raav2BasePage
+    public class AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Are you sure you want to renew this API key?";
 
@@ -14,14 +14,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #region Locators
         private static By SelectYesRadioButton => By.CssSelector("#ConfirmRenew-yes");
         private static By SelectNoRadioButton => By.CssSelector("#ConfirmRenew-no");
+
         #endregion
 
-        public AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : base(context) { }
-
         public KeyforApiPage RenewAPIKey() => GoToKeyforAPIPage(SelectYesRadioButton);
-        
+
         public KeyforApiPage DoNotRenewApiKey() => GoToKeyforAPIPage(SelectNoRadioButton);
-        
+
         private KeyforApiPage GoToKeyforAPIPage(By by)
         {
             formCompletionHelper.SelectRadioOptionByLocator(by);

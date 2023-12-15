@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -17,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.XPath("//input[@class='govuk-button govuk-!-margin-top-6']");
         #endregion
 
-        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage (ScenarioContext context) : base(context) => VerifyPage();
+        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public CreateYourEmployerAccountPage SignAgreement()
         {

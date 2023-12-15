@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticesHomePage : InterimApprenticesHomePage
+    public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
     {
         private static By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
@@ -22,8 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By CookiesSettingsButton => By.Id("btn-cookie-settings");
         private static By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private static By ZenHelpWidgetScript2 => By.Id("co-snippet");
-
-        public ApprenticesHomePage(ScenarioContext context) : base(context, false) {  }
 
         public AddAnApprenitcePage AddAnApprentice()
         {
@@ -43,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ManageYourApprenticesPage(context);
         }
 
-        internal InterimFinanceHomePage GoToFinancePage() => new InterimFinanceHomePage(context, true);
+        internal InterimFinanceHomePage GoToFinancePage() => new(context, true);
 
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {

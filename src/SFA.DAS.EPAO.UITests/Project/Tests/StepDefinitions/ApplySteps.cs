@@ -3,11 +3,9 @@
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class ApplySteps : EPAOBaseSteps
+public class ApplySteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
-    private readonly ScenarioContext _context;
-
-    public ApplySteps(ScenarioContext context) : base(context) => _context = context;
+    private readonly ScenarioContext _context = context;
 
     [Given(@"the (Apply User) is logged into Assessment Service Application")]
     [When(@"the (Apply User) is logged into Assessment Service Application")]

@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderOverlappingTrainingDateThereMayBeProblemPage : ApprovalsBasePage
+    public class ProviderOverlappingTrainingDateThereMayBeProblemPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         protected override string PageTitle => "There may be a problem with the proposed training details";
 
         protected override bool TakeFullScreenShot => false;
-
-        public ProviderOverlappingTrainingDateThereMayBeProblemPage(ScenarioContext context) : base(context) { }
 
         private static By SelectYesCheckBox => By.CssSelector("#checkbox-acknowledgement");
 

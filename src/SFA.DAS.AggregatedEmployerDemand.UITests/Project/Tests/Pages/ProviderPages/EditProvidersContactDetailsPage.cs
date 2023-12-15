@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
-public class EditProvidersContactDetailsPage : AedBasePage
+public class EditProvidersContactDetailsPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "Edit";
 
     protected override bool TakeFullScreenShot => false;
-
-    public EditProvidersContactDetailsPage(ScenarioContext context) : base(context)  { }
 
     #region Locators
     private static By EmailAddressTextBox => By.CssSelector("#EmailAddress");

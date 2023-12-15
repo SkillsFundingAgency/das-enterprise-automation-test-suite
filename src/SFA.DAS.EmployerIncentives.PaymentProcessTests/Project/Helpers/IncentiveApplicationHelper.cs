@@ -6,20 +6,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class IncentiveApplicationHelper
+    public class IncentiveApplicationHelper(ScenarioContext context)
     {
-        private readonly EISqlHelper _sqlHelper;
-        private readonly StopWatchHelper _stopWatchHelper;
-        private readonly EIServiceBusHelper _eIServiceBusHelper;
-        private readonly TestData _testData;
-
-        public IncentiveApplicationHelper(ScenarioContext context)
-        {
-            _sqlHelper = context.Get<EISqlHelper>();
-            _stopWatchHelper = context.Get<StopWatchHelper>();
-            _eIServiceBusHelper = context.Get<EIServiceBusHelper>();
-            _testData = context.Get<TestData>();
-        }
+        private readonly EISqlHelper _sqlHelper = context.Get<EISqlHelper>();
+        private readonly StopWatchHelper _stopWatchHelper = context.Get<StopWatchHelper>();
+        private readonly EIServiceBusHelper _eIServiceBusHelper = context.Get<EIServiceBusHelper>();
+        private readonly TestData _testData = context.Get<TestData>();
 
         public async Task Submit(IncentiveApplication application, int signedAgreementVersion = 6)
         {

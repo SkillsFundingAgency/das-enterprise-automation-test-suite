@@ -10,7 +10,7 @@ namespace SFA.DAS.Mailinator.Service.Project.Tests.Pages
         protected override bool TakeFullScreenShot => false;
 
         protected override By PageHeader => By.CssSelector(".gel-heading-title");
-        
+
         #region Locators
         private static By EmailTextBox => By.CssSelector("#search");
         private static By GoButton => By.CssSelector("#site-header button");

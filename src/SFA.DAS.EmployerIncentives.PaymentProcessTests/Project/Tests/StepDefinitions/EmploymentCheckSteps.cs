@@ -58,12 +58,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Given(@"the employment check request has not been superseded")]
-        public void GivenTheEmploymentCheckHasNotBeenSuperseded()
+        public static void GivenTheEmploymentCheckHasNotBeenSuperseded()
         {
         }
 
         [Given(@"we have not previously received a result from the Employment Check service")]
-        public void GivenWeHaveNotPreviouslyReceivedAResult()
+        public static void GivenWeHaveNotPreviouslyReceivedAResult()
         {
         }
 
@@ -84,7 +84,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Given(@"a payment is due for the apprenticeship")]
-        public void GivenAPaymentIsDueForTheApprenticeship()
+        public static void GivenAPaymentIsDueForTheApprenticeship()
         {
         }
 
@@ -97,12 +97,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [Given(@"the employer has requested the check be re-ran")]
-        public void GivenTheEmployerHasRequestedTheCheckBeReRan()
+        public static void GivenTheEmployerHasRequestedTheCheckBeReRan()
         {
         }
 
         [Given(@"month end is not in progress")]
-        public void GivenMonthEndIsNotInProgress()
+        public static void GivenMonthEndIsNotInProgress()
         {
         }
 
@@ -196,12 +196,12 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"we have not previously requested an employment check for the learner")]
-        public void WhenWeHaveNotPreviouslyRequestedAnEmploymentCheck()
+        public static void WhenWeHaveNotPreviouslyRequestedAnEmploymentCheck()
         {
         }
 
         [When(@"6 weeks has elapsed since the start date of the apprenticeship")]
-        public void When6WeeksHaveElapsedSinceStartDate()
+        public static void When6WeeksHaveElapsedSinceStartDate()
         {
         }
 
@@ -249,7 +249,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         }
 
         [When(@"there are no other validation failures")]
-        public void WhenThereAreNoOtherValidationFailures()
+        public static void WhenThereAreNoOtherValidationFailures()
         {
         }
 
@@ -362,7 +362,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var payments = Helper.EISqlHelper.GetAllFromDatabase<Payment>()
                 .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId).ToList();
 
-            payments.Count().Should().Be(1);
+            payments.Count.Should().Be(1);
         }
 
         private async Task SetupSubmission()

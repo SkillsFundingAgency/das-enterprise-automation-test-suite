@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderChooseACohortPage : ApprovalsBasePage
+    public class ProviderChooseACohortPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose a cohort";
 
@@ -11,12 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By CohortsTable => By.CssSelector(".govuk-table__row");
 
-        public ProviderChooseACohortPage(ScenarioContext context) : base(context)  { }
-
         public int? GetDataRowsCount() => pageInteractionHelper.FindElements(CohortsTable).Count - 1;
 
         public ProviderApproveApprenticeDetailsPage SelectCohort(string cohortReference)
-        {            
+        {
             javaScriptHelper.ScrollToTheBottom();
             tableRowHelper.SelectRowFromTableDescending("Select", cohortReference);
             return new ProviderApproveApprenticeDetailsPage(context);

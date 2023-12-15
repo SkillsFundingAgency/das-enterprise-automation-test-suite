@@ -2,20 +2,16 @@
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
-public class ProviderStepsHelper
+public class ProviderStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public ProviderStepsHelper(ScenarioContext context) => _context = context;
-
     internal AedProviderHomePage GoToProviderHomePagePage(ProviderLoginUser login, bool newTab = true)
     {
-        new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(login, newTab);
+        new ProviderHomePageStepsHelper(context).GoToProviderHomePage(login, newTab);
 
-        return new AedProviderHomePage(_context);
+        return new AedProviderHomePage(context);
     }
 
-    public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(_context).ViewWhichEmployerNeedsATrainingProvider();
+    public WhichEmployersAreYouInterestedInPage GoToWhichEmployersAreYouInterestedInPage() => new FindEmployersThatNeedATrainingProviderPage(context).ViewWhichEmployerNeedsATrainingProvider();
 
     public static WeveSharedYourContactDetailsWithEmployersPage ConfirmEditedProviderContactDetailsAndSubmit(ConfirmProvidersContactDetailsPage page) =>
         page.ContinueToProviderCheckYourAnswersPage()

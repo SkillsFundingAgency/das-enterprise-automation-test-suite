@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
 {
-    public class IntegratedAppreticeshipStandardPage : FindEPAOBasePage
+    public class IntegratedAppreticeshipStandardPage(ScenarioContext context) : FindEPAOBasePage(context)
     {
         protected override string PageTitle => "The training provider will carry out the end-point assessment";
-
-        public IntegratedAppreticeshipStandardPage(ScenarioContext context) : base(context) { }
 
         private static By BackToSearchApprenticeshipTraining => By.ClassName("govuk-back-link");
 

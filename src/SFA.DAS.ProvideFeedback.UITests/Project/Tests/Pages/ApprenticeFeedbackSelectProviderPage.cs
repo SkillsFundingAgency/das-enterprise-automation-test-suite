@@ -1,16 +1,11 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
 
-public class ApprenticeFeedbackSelectProviderPage : ApprenticeFeedbackBasePage
+public class ApprenticeFeedbackSelectProviderPage(ScenarioContext context) : ApprenticeFeedbackBasePage(context)
 {
     private static By SelectTrainingProvider => By.CssSelector("a.govuk-link[href*='start']");
 
     protected override string PageTitle => "Select a training provider";
-
-    public ApprenticeFeedbackSelectProviderPage(ScenarioContext context) : base(context)
-    {
-
-    }
 
     public ApprenticeFeedbackGiveFeedbackPage SelectATrainingProvider()
     {
@@ -27,6 +22,6 @@ public class ApprenticeFeedbackSelectProviderPage : ApprenticeFeedbackBasePage
             return element;
         });
 
-        return new (context);
+        return new(context);
     }
 }

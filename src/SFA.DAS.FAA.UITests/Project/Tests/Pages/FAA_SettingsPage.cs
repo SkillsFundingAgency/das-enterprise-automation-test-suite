@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_SettingsPage : FAABasePage
+    public class FAA_SettingsPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Settings";
 
@@ -18,13 +19,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private static By ChangeEmailIdLink => By.Id("settings-change-username");
         private static By UpdateDetailsButton => By.Id("update-details-button");
 
-        public FAA_SettingsPage(ScenarioContext context) : base(context) { }
-
-        public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faaDataHelper.SuccessfulPhoneVerificationText);
+        public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, FAADataHelper.SuccessfulPhoneVerificationText);
 
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
         {
-            var (username, password, _ , _) = objectContext.GetFAALogin();
+            var (username, password, _, _) = objectContext.GetFAALogin();
             formCompletionHelper.Click(DeleteYourAccountLink);
             formCompletionHelper.EnterText(UsernameField, username);
             formCompletionHelper.EnterText(PasswordField, password);
@@ -34,7 +33,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ChangeYourEmailAddressPage ChangeTheEmailIdSettings()
         {
-            formCompletionHelper.EnterText(Postcode_Address, faaDataHelper.NewPostCode);
+            formCompletionHelper.EnterText(Postcode_Address, FAADataHelper.NewPostCode);
             formCompletionHelper.Click(UpdateDetailsButton);
             formCompletionHelper.Click(ChangeEmailIdLink);
             return new FAA_ChangeYourEmailAddressPage(context);

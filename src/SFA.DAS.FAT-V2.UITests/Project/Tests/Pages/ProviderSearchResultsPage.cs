@@ -1,18 +1,13 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
-public class ProviderShortListedResultPage : ProviderSearchResultsPage
+public class ProviderShortListedResultPage(ScenarioContext context) : ProviderSearchResultsPage(context)
 {
     protected override string PageTitle => "SHORTLISTED";
 
     protected override By PageHeader => By.CssSelector(".govuk-tag.app-provider-shortlist-tag");
-
-    public ProviderShortListedResultPage(ScenarioContext context) : base(context)
-    {
-
-    }
 }
 
-public class ProviderSearchResultsPage : FATV2BasePage
+public class ProviderSearchResultsPage(ScenarioContext context) : FATV2BasePage(context)
 {
     protected override string PageTitle => "Training providers for";
 
@@ -25,9 +20,8 @@ public class ProviderSearchResultsPage : FATV2BasePage
     private static By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
     private static By AddToShortlist => By.CssSelector("button[id^='add-to-shortlist-']");
     private static By RemoveLocation => By.LinkText("Clear");
-    #endregion
 
-    public ProviderSearchResultsPage(ScenarioContext context) : base(context) { }
+    #endregion
 
     public ProviderSummaryPage SelectFirstProviderInTheList()
     {

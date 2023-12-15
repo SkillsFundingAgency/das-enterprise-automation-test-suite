@@ -3,7 +3,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     public class BaseSteps
     {
-        protected DateTime? ParseMonth(string relativeMonth)
+        protected static DateTime? ParseMonth(string relativeMonth)
         {
             var utcNow = DateTime.UtcNow;
 

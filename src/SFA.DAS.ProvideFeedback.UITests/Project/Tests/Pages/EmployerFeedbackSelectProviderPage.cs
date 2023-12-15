@@ -1,16 +1,14 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class EmployerFeedbackSelectProviderPage : EmployerFeedbackBasePage
+public class EmployerFeedbackSelectProviderPage(ScenarioContext context) : EmployerFeedbackBasePage(context)
 {
     protected override string PageTitle => "Select a training provider";
 
     private static By SelectLink(string ukprn) => By.CssSelector($"a[href*='/providers/{ukprn}']");
 
-    public EmployerFeedbackSelectProviderPage(ScenarioContext context) : base(context) { }
-
     public ApprenticeFeedbackConfirmProviderPage SelectTrainingProvider()
     {
         formCompletionHelper.ClickElement(SelectLink(objectContext.GetProviderUkprn()));
-        return new (context);
+        return new(context);
     }
 }

@@ -6,12 +6,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ReviewerSteps
+    public class ReviewerSteps(ScenarioContext context)
     {
-        private readonly ReviewerStepsHelper _reviewerStepsHelper;
+        private readonly ReviewerStepsHelper _reviewerStepsHelper = new(context);
         private Reviewer_HomePage reviewer_HomePage;
-
-        public ReviewerSteps(ScenarioContext context) => _reviewerStepsHelper = new ReviewerStepsHelper(context);
 
         [When(@"Reviewer is logged into QA Application")]
         public void WhenReviewerIsLoggedIntoQAApplication() => reviewer_HomePage = _reviewerStepsHelper.GoToReviewerHomePage(false);
@@ -23,7 +21,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.StepDefinitions
         [When(@"the Reviewer Approves the vacancy")]
         [Then(@"the Reviewer Approves the vacancy")]
         public void TheReviewerApprovesTheVacancy() => _reviewerStepsHelper.VerifyEmployerNameAndApprove(false);
-       
+
         [Given(@"the Reviewer Refer the vacancy")]
         public void GivenTheReviewerReferTheVacancy() => _reviewerStepsHelper.Refer(false);
 

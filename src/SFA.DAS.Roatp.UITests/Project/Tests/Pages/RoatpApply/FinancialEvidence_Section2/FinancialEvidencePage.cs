@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -16,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
         {
             var inputNumbersFields = pageInteractionHelper.FindElements(InputNumbers).ToList();
 
-            foreach (var inputNumber in inputNumbersFields) formCompletionHelper.EnterText(inputNumber, applydataHelpers.GenerateRandomWholeNumber(4));
+            foreach (var inputNumber in inputNumbersFields) formCompletionHelper.EnterText(inputNumber, RoatpApplyDataHelpers.GenerateRandomWholeNumber(4));
 
             Continue();
 

@@ -63,17 +63,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
             RandomYear = RandomDataGenerator.GenerateRandomDobYear();
         }
 
-        public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
-        public string FullName => "George Smith";
-        public string LastName => "George";
-        public string FirstName => "Smith";
-        public string JobRole => "Employee";
-        public string Email => "test.demo@digital.education.gov.uk";
-        public string ContactNumber => "1234567890";
+        public static DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
+        public static string FullName => "George Smith";
+        public static string LastName => "George";
+        public static string FirstName => "Smith";
+        public static string JobRole => "Employee";
+        public static string Email => "test.demo@digital.education.gov.uk";
+        public static string ContactNumber => "1234567890";
         public string BuildingAndStreet { get; }
         public string TownOrCity { get; }
         public string County { get; }
-        public string Postcode => "CV22 4NX";
+        public static string Postcode => "CV22 4NX";
         public string CompanyNumber { get; }
         public string CompanyName { get; }
         public string IocNumber { get; }
@@ -122,7 +122,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
         public string NamesOfAllOrganisations { get; }
         public string WhatLevelOfSupportProvided { get; }
         public string SignificantEventText { get; }
-        public string GenerateRandomWholeNumber(int length) => RandomDataGenerator.GenerateRandomWholeNumber(length);
+        public static string GenerateRandomWholeNumber(int length) => RandomDataGenerator.GenerateRandomWholeNumber(length);
         public int NumberBetween1And23 { get; }
         public int RandomMonth { get; }
         public int RandomYear { get; }

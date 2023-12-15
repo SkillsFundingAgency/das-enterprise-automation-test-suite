@@ -1,12 +1,9 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransferRequestApprovedPage : TransfersBasePage
+    public class TransferRequestApprovedPage(ScenarioContext context) : TransfersBasePage(context)
     {
-        public TransferRequestApprovedPage(ScenarioContext context) : base(context) { }
-
         protected override string PageTitle => "Transfer request approved";
     }
 }

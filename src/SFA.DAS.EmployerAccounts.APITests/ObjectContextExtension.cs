@@ -18,5 +18,5 @@ namespace SFA.DAS.EmployerAccounts.APITests
         internal static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);
         internal static string GetLegalEntityId(this ObjectContext objectContext) => objectContext.Get(LegalEntityIdKey);
         internal static string GetPayeSchemeRefId(this ObjectContext objectContext) => objectContext.Get(PayeSchemeRef);
-    } 
+    }
 }

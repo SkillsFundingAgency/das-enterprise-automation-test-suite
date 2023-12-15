@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class MyTransferPledgesPage : TransferMatchingBasePage
+    public class MyTransferPledgesPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "My transfer pledges";
 
@@ -11,7 +11,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
         private static By ActiveStatusSelector => By.TagName("govuk-tag govuk-tag--dark-blue");
         private static By ClosedStatusSelector => By.TagName("govuk-tag govuk-tag--grey");
-        public MyTransferPledgesPage(ScenarioContext context) : base(context) { }
 
         public TransferPledgePage GoToTransferPledgePage()
         {

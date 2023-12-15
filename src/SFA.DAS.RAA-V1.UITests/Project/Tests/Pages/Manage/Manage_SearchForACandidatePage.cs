@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public void VerifyUpdatedCandidateDetails()
         {
-            pageInteractionHelper.VerifyText(CandidateAddress, _faaDataHelper.NewPostCode);
+            pageInteractionHelper.VerifyText(CandidateAddress, FAADataHelper.NewPostCode);
         }
     }
 }

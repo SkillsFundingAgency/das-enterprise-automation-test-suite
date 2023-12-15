@@ -6,14 +6,13 @@ using SFA.DAS.Login.Service.Project.Helpers;
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Employer;
 
 [Binding, Scope(Tag = "@aanemployer")]
-public class Employer_Events_Steps : Employer_BaseSteps
+public class Employer_Events_Steps(ScenarioContext context) : Employer_BaseSteps(context)
 {
     private EventsHubPage eventsHubPage;
 
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
     private AanEmployerOnBoardedUser user;
-    public Employer_Events_Steps(ScenarioContext context) : base(context) { }
 
     [Given(@"an onboarded employer logs into the AAN portal")]
     public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
@@ -51,5 +50,5 @@ public class Employer_Events_Steps : Employer_BaseSteps
     public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
-    public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombination_NetworkCirectory(networkDirectoryPage);
+    public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
 }

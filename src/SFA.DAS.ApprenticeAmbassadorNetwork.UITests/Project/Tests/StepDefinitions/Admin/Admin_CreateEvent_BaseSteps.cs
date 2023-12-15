@@ -4,17 +4,12 @@ using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.Crea
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
 
-public class Admin_CreateEvent_BaseSteps : Admin_BaseSteps
+public class Admin_CreateEvent_BaseSteps(ScenarioContext context) : Admin_BaseSteps(context)
 {
 
     protected SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
 
-    protected AanAdminCreateEventDatahelper aanAdminDatahelper;
-
-    public Admin_CreateEvent_BaseSteps(ScenarioContext context) : base(context)
-    {
-        aanAdminDatahelper = context.Get<AanAdminCreateEventDatahelper>();
-    }
+    protected AanAdminCreateEventDatahelper aanAdminDatahelper = context.Get<AanAdminCreateEventDatahelper>();
 
     protected string AssertEventStatus(bool status)
     {

@@ -50,7 +50,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         }
     }
 
-    public class RAA_ChangeUkprnPage: RAA_HeaderSectionBasePage
+    public class RAA_ChangeUkprnPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Change UKPRN";
 

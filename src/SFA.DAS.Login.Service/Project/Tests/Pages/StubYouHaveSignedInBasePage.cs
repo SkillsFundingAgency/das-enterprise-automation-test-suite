@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Login.Service.Project.Tests.Pages;
@@ -18,11 +16,11 @@ public abstract class StubYouHaveSignedInBasePage : VerifyBasePage
 
     public StubYouHaveSignedInBasePage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context)
     {
-        MultipleVerifyPage(new List<Func<bool>>
-        {
+        MultipleVerifyPage(
+        [
             () => VerifyPage(),
             () => VerifyPage(MainContent, username),
             () => newUser || VerifyPage(MainContent, idOrUserRef)
-        });
+        ]);
     }
 }

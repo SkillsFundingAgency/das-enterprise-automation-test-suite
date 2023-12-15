@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class ConnectionConfirmedPage : TransfersBasePage
+    public class ConnectionConfirmedPage(ScenarioContext context) : TransfersBasePage(context)
     {
         protected override string PageTitle => "Connection confirmed";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 
         private static By GoToHomePageRadioButton => By.CssSelector(".govuk-radios__label");
-
-        public ConnectionConfirmedPage(ScenarioContext context) : base(context) { }
 
         public HomePage GoToHomePage()
         {

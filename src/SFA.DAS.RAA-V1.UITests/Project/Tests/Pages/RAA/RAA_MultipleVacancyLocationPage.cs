@@ -44,13 +44,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy()
         {
-            formCompletionHelper.EnterText(NumberOfVacancy, rAAV1DataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfVacancy, DAS.RAA.DataGenerator.RAAV1DataHelper.NumberOfVacancy);
             return this;
         }
 
         public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy2()
         {
-            formCompletionHelper.EnterText(NumberOfVacancy2, rAAV1DataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfVacancy2, DAS.RAA.DataGenerator.RAAV1DataHelper.NumberOfVacancy);
             return this;
         }
         public void ClickSaveAndContinue()

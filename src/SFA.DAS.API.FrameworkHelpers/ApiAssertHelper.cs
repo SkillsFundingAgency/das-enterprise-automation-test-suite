@@ -1,11 +1,7 @@
 ﻿namespace SFA.DAS.API.FrameworkHelpers;
 
-public class ApiAssertHelper
+public class ApiAssertHelper(ObjectContext objectContext)
 {
-    private readonly ObjectContext _objectContext;
-
-    public ApiAssertHelper(ObjectContext objectContext) => _objectContext = objectContext;
-
     public RestResponse ExecuteAndAssertResponse(HttpStatusCode expectedResponse, RestClient client, RestRequest request)
     => ExecuteAndAssertResponse(expectedResponse, string.Empty, client, request);
 
@@ -31,6 +27,6 @@ public class ApiAssertHelper
     }
 
     private void SetDebugInformation(RequestAndResponseCollectionHelper apidataCollector)
-        => _objectContext.SetDebugInformation($"{apidataCollector.GetRequestData()}{Environment.NewLine}{apidataCollector.GetResponseData()}");
+        => objectContext.SetDebugInformation($"{apidataCollector.GetRequestData()}{Environment.NewLine}{apidataCollector.GetResponseData()}");
 
 }

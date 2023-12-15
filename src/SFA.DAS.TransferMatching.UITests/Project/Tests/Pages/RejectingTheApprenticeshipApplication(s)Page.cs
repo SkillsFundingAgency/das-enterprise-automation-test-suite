@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class RejectingTheApprenticeshipApplicationsPage : TransferMatchingBasePage
+    public class RejectingTheApprenticeshipApplicationsPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Rejecting the apprenticeship application(s)";
-
-        public RejectingTheApprenticeshipApplicationsPage(ScenarioContext context) : base(context) { }
 
         private static By ContinueSelector => By.CssSelector("#reject_application");
         private static By RejectSelector => By.CssSelector("#reject-application-reject");

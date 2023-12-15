@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 
-public class TestdataCleanupStepsHelper : TestdataCleanupStepsHelperBase
+public class TestdataCleanupStepsHelper(ScenarioContext context) : TestdataCleanupStepsHelperBase(context)
 {
-    private readonly ObjectContext _objectContext;
-
-    public TestdataCleanupStepsHelper(ScenarioContext context) : base(context) => _objectContext = context.Get<ObjectContext>();
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
     public void CleanUpAllDbTestData(HashSet<string> email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_objectContext, _dbConfig).CleanUpAllDbTestData(email.ToList()));
 

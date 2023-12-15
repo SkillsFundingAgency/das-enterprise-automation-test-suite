@@ -1,18 +1,11 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project;
 
 
-public class CohortDetails
+public class CohortDetails((string uln, string fname, string lname, string cohortRef) data)
 {
-    public CohortDetails((string uln, string fname, string lname, string cohortRef) data)
-    {
-        Uln = data.uln;
-        UlnName = $"{data.fname} {data.lname}";
-        CohortRef = data.cohortRef;
-    }
-
-    public string Uln { get; set; }
-    public string UlnName { get; init; }
-    public string CohortRef { get; set; }
+    public string Uln { get; set; } = data.uln;
+    public string UlnName { get; init; } = $"{data.fname} {data.lname}";
+    public string CohortRef { get; set; } = data.cohortRef;
 
     public override string ToString() => $"Uln : '{Uln}', UlnName : '{UlnName}', CohortRef : '{CohortRef}'";
 
@@ -26,7 +19,7 @@ public class SupportConsoleConfig
     public string HashedAccountId { get; init; }
     public string AccountName { get; init; }
     public string PayeScheme { get; init; }
-    public string CurrentLevyBalance {get;init;}
+    public string CurrentLevyBalance { get; init; }
     public string AccountDetails { get; init; }
 
     public CohortDetails CohortDetails { get; init; }

@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class EventAttendeesPage : AanAdminBasePage
+public class EventAttendeesPage(ScenarioContext context) : AanAdminBasePage(context)
 {
     protected override string PageTitle => "How many attendees do you expect at this event?";
 
     private static By NumberOfAttendees => By.CssSelector("input#NumberOfAttendees");
-
-    public EventAttendeesPage(ScenarioContext context) : base(context) { }
 
     public CheckYourEventPage SubmitEventAttendees()
     {

@@ -11,16 +11,9 @@ global using TechTalk.SpecFlow;
 namespace SFA.DAS.API.Framework;
 
 [Binding]
-public class ApiFrameworkConfigurationSetup
+public class ApiFrameworkConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly IConfigSection _configSection;
-
-    public ApiFrameworkConfigurationSetup(ScenarioContext context)
-    {
-        _context = context;
-        _configSection = context.Get<IConfigSection>();
-    }
+    private readonly IConfigSection _configSection = context.Get<IConfigSection>();
 
     [BeforeScenario(Order = 2)]
     public void SetUpApiFrameworkConfiguration()
@@ -39,13 +32,13 @@ public class ApiFrameworkConfigurationSetup
         inner_ApiFrameworkConfig.config.EmployerAccountsAppServiceName += _appServiceResourceSuffix;
         inner_ApiFrameworkConfig.config.EmployerAccountsLegacyAppServiceName += _appServiceResourceSuffix;
 
-        _context.Set(inner_ApiFrameworkConfig);
+        context.Set(inner_ApiFrameworkConfig);
 
-        _context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
+        context.Set(_configSection.GetConfigSection<Outer_ApiAuthTokenConfig>());
 
-        _context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
+        context.Set(_configSection.GetConfigSection<ApprenticeCommitmentsJobsAuthTokenConfig>());
     }
 
     [BeforeScenario(Order = 4)]
-    public void SetUpHelpers() => _context.Replace(new RetryAssertHelper(_context.ScenarioInfo, _context.Get<ObjectContext>()));
+    public void SetUpHelpers() => context.Replace(new RetryAssertHelper(context.ScenarioInfo, context.Get<ObjectContext>()));
 }

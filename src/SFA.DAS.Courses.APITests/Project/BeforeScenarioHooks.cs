@@ -6,13 +6,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Courses.APITests.Project
 {
     [Binding]
-    public class BeforeScenarioHooks
+    public class BeforeScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public BeforeScenarioHooks(ScenarioContext context) => _context = context;
-
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() => _context.SetRestClient(new Inner_CoursesApiRestClient(_context.Get<ObjectContext>(), _context.Get<Inner_ApiFrameworkConfig>()));
+        public void SetUpHelpers() => context.SetRestClient(new Inner_CoursesApiRestClient(context.Get<ObjectContext>(), context.Get<Inner_ApiFrameworkConfig>()));
     }
 }

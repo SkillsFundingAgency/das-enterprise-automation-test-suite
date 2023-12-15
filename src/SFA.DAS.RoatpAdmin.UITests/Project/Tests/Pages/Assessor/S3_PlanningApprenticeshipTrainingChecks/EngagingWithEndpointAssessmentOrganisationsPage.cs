@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApprenticeshipTrainingChecks
 {
-    public class EngagingWithEndpointAssessmentOrganisationsPage : AssessorBasePage
+    public class EngagingWithEndpointAssessmentOrganisationsPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Engaging with end-point assessment organisations (EPAOs)";
-        
-        public EngagingWithEndpointAssessmentOrganisationsPage(ScenarioContext context) : base(context) { }
 
         public EngagingAndWorkWithAwardingBodiesPage SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
         {

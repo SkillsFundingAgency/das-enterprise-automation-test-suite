@@ -7,14 +7,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class CheckYourDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Check your details";
-        
+
         #region Locators
         protected override By ContinueButton => By.Id("continue-check-details");
         private static By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
         private static By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
         private static By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
         private static By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
-        private static By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");   
+        private static By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");
         private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
         private By AornChangeLink => By.XPath($"//td[contains(text(), '{registrationDataHelper.AornNumber}')]/..//a");
         private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td/a");
@@ -54,7 +54,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string GetOrganisationNumber() => pageInteractionHelper.GetText(OrganisationNumber);
 
         public string GetPayeScheme() => pageInteractionHelper.GetText(PayeScheme);
-      
+
         public SearchForYourOrganisationPage ClickOrganisationChangeLink()
         {
             formCompletionHelper.Click(OrganisationChangeLink);

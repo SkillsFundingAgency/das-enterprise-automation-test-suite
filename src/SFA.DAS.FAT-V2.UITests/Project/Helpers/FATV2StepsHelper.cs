@@ -1,14 +1,10 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Helpers;
 
-public class FATV2StepsHelper
+public class FATV2StepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
+    public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATV2IndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
 
-    public FATV2StepsHelper(ScenarioContext context) => _context = context;
-
-    public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATV2IndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
-
-    public ProviderSummaryPage SelectASpecificProvider(string provider) => new ProviderSearchResultsPage(_context).ClickSpecifiedProvider(provider);
+    public ProviderSummaryPage SelectASpecificProvider(string provider) => new ProviderSearchResultsPage(context).ClickSpecifiedProvider(provider);
 
     public ProviderShortlistPage ShortlistATrainingCourseAndNavigateToShortlistPage() => ViewProvidersForThisCourse().ShortlistAProviderFromProviderList().NavigateToProviderShortlistPage();
 

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
-public class DfeSignInPage : SignInBasePage
+public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
     public static string DfePageTitle => "Department for Education Sign-in";
 
@@ -14,8 +14,6 @@ public class DfeSignInPage : SignInBasePage
 
     private static By SignInButton => By.CssSelector("button.govuk-button[type='submit']");
 
-    public DfeSignInPage(ScenarioContext context) : base(context) { }
-
     protected override void ClickSignInButton() => formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
 
     public void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser)
@@ -24,13 +22,11 @@ public class DfeSignInPage : SignInBasePage
     }
 }
 
-public class CheckDfeSignInPage : CheckPageUsingShorterTimeOut
+public class CheckDfeSignInPage(ScenarioContext context) : CheckPageUsingShorterTimeOut(context)
 {
     protected override string PageTitle => DfeSignInPage.DfePageTitle;
 
     protected override By Identifier => DfeSignInPage.DfePageheader;
-
-    public CheckDfeSignInPage(ScenarioContext context) : base(context) { }
 
     public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
 }

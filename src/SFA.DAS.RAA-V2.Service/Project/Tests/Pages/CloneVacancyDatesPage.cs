@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class CloneVacancyDatesPage : Raav2BasePage
+    public class CloneVacancyDatesPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Does the new advert have the same closing date and start date?";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        public CloneVacancyDatesPage(ScenarioContext context) : base(context) { }
 
         public ConfimCloneVacancyDatePage SelectYes()
         {

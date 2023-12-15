@@ -2,8 +2,7 @@
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ApplicationUnsuccessfulPage : ApplicationOutcomeBasePage
+    public class ApplicationUnsuccessfulPage(ScenarioContext context) : ApplicationOutcomeBasePage(context, "unsuccessful")
     {
-        public ApplicationUnsuccessfulPage(ScenarioContext context) : base(context, "unsuccessful") { }
     }
 }

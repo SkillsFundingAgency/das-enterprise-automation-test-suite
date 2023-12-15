@@ -3,7 +3,7 @@
 public record AedDataHelper
 {
     public AedDataHelper(string domainName) => Email = $"{GetDateTimeValue()}@{domainName}";
-    
+
     public string Email { get; init; }
     public string RandomWebsiteAddress { get; init; } = "www.TEST" + GetDateTimeValue() + ".com";
     public string TelephoneNumber { get; init; } = $"020{GetRandomNumber(8)}";

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ConfirmWhenApprenticeshipTrainingStoppedPage : ApprovalsBasePage
+    public class ConfirmWhenApprenticeshipTrainingStoppedPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.TagName("h1");
         protected override string PageTitle => "Confirm when apprenticeship training stopped";
@@ -13,9 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.CssSelector("#submit-status-change");
         protected static By DateIsCorrectRadionButton => By.CssSelector("#IsCorrectStopDate");
         protected static By DateIsWrongRadioButton => By.CssSelector("#IsCorrectStopDate-no");
-
-
-        public ConfirmWhenApprenticeshipTrainingStoppedPage(ScenarioContext context) : base(context) { }
 
         public EnterUkprnPage ClickOnContinueButton()
         {

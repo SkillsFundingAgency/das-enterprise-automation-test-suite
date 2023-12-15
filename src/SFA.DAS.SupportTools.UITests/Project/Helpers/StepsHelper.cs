@@ -3,30 +3,26 @@ using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 
 namespace SFA.DAS.SupportTools.UITests.Project.Helpers;
 
-public class StepsHelper
+public class StepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
+    public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool reLogin) => LoginToSupportTools(context.GetUser<SupportToolScpUser>(), reLogin);
 
-    public StepsHelper(ScenarioContext context) => _context = context;
-
-    public ToolSupportHomePage ValidUserLogsinToSupportSCPTools(bool reLogin) => LoginToSupportTools(_context.GetUser<SupportToolScpUser>(), reLogin);
-
-    public ToolSupportHomePage ValidUserLogsinToSupportSCSTools() => LoginToSupportTools(_context.GetUser<SupportToolScsUser>(), false);
+    public ToolSupportHomePage ValidUserLogsinToSupportSCSTools() => LoginToSupportTools(context.GetUser<SupportToolScsUser>(), false);
 
     private ToolSupportHomePage LoginToSupportTools(DfeAdminUser loginUser, bool reLogin)
     {
         LoginToDfeSignIn(loginUser, reLogin);
 
-        return new ToolSupportHomePage(_context);
+        return new ToolSupportHomePage(context);
     }
 
     public void LoginToDfeSignIn(DfeAdminUser loginUser, bool reLogin)
     {
-        var helper = new DfeAdminLoginStepsHelper(_context);
+        var helper = new DfeAdminLoginStepsHelper(context);
 
         if (reLogin)
         {
-            _context.Get<TabHelper>().OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
+            context.Get<TabHelper>().OpenInNewTab(UrlConfig.SupportTools_BaseUrl);
 
             helper.CheckAndLoginToSupportTool(loginUser);
         }

@@ -3,7 +3,7 @@
 public class AS_YourWithdrawalRequestsPage : EPAO_BasePage
 {
     protected override string PageTitle => "Your withdrawal requests";
-    
+
     #region Locators
     private static By StandardNameVerification => By.XPath("//a[contains(text(),'Create a new withdrawal request')]");
     private static By Status(string status) => By.XPath($"//td[contains(text(),'{status}')]");

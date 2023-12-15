@@ -4,13 +4,12 @@ using SFA.DAS.Login.Service.Project.Helpers;
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 
 [Binding, Scope(Tag = "@aanaprentice")]
-public class Apprentice_Events_Steps : Apprentice_BaseSteps
+public class Apprentice_Events_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
     private EventsHubPage eventsHubPage;
     private AanApprenticeOnBoardedUser user;
-    public Apprentice_Events_Steps(ScenarioContext context) : base(context) { }
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
     public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
@@ -43,6 +42,6 @@ public class Apprentice_Events_Steps : Apprentice_BaseSteps
     public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
-    public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombination_NetworkCirectory(networkDirectoryPage);
+    public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
 
 }

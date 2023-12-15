@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using TechTalk.SpecFlow;
-using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
@@ -84,7 +84,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to change vacancy dates")]
         public void ThenProviderIsAbleToChangeVacancyDates() => ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
 
-        private void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage) => linkBasePage.ChangeVacancyDates().SaveAndContinue();
+        private static void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage) => linkBasePage.ChangeVacancyDates().SaveAndContinue();
 
         [Then(@"Provider is able to close this vacancy with no application")]
         public void ThenProviderIsAbleToCloseThisVacancyWithNoApplication()
@@ -132,10 +132,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions) =>
-            _raaEmployerInformation = _raaStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
+            _raaEmployerInformation = RAAStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
 
         [When(@"the Provider chooses their '(.*)'")]
-        public void WhenTheProviderChoosesTheir(string answer) => _raaStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
+        public void WhenTheProviderChoosesTheir(string answer) => RAAStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
 
         [When(@"the Provider fills out details based on WageType '(.*)','(.*)'")]
         public void WhenTheProviderFillsOutDetailsBasedOnWageType(string location, string wageType) =>
@@ -171,7 +171,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             ChangeStatus(_summaryPage, newStatus);
         }
 
-        private RAA_VacancySummaryPage ChangeStatus(RAA_VacancySummaryPage summaryPage, string newStatus) =>
+        private static RAA_VacancySummaryPage ChangeStatus(RAA_VacancySummaryPage summaryPage, string newStatus) =>
             summaryPage.ViewApplication().ChangeStatus(newStatus);
 
         private void CloneVacancy()
@@ -182,12 +182,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 _enterFurtherDetails = _enterTrainingDetails.GotoFurtherDetailsPage();
-                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
+                _requirementsAndProspects = RAAStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
             }
             else
             {
                 _enterOpportunityDetails = _enterTrainingDetails.GotoOpportunityDetailsPage();
-                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterOpportunityDetails);
+                _requirementsAndProspects = RAAStepsHelper.EnterFurtherDetails(_enterOpportunityDetails);
             }
 
             _requirementsAndProspects.ClickSaveAndContinue();

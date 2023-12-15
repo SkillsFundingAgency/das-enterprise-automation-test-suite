@@ -1,12 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class AddApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By DeliveryModelLabel => By.Id("delivery-model-label");
@@ -16,8 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
 
         protected override string PageTitle => "Add apprentice details";
-
-        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF)
         {

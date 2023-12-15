@@ -52,7 +52,7 @@ namespace SFA.DAS.Login.Service
 
         public static T GetUser<T>(this ScenarioContext context) => context.Get<T>(Key<T>());
 
-        public static List<(List<string> listoflegalEntities, string idOrUserRef)>  GetAccountLegalEntities(this ScenarioContext context, List<string> username)
+        public static List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountLegalEntities(this ScenarioContext context, List<string> username)
         {
             var accountDetails = new EasAccountsSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetAccountDetails(username);
 

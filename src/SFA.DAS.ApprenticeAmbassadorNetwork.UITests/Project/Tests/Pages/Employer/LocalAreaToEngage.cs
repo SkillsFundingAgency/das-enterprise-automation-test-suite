@@ -4,7 +4,7 @@
     {
         protected override string PageTitle => "What area would you like to engage with locally within the network?";
 
-        private By NorthEastRadio => By.Id("region-North-East");
+        private static By NorthEastRadio => By.Id("region-North-East");
 
         public LocalAreaToEngage(ScenarioContext context) : base(context) => VerifyPage();
 

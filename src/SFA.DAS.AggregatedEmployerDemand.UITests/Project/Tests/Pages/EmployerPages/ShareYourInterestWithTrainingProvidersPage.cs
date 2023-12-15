@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
-public class ShareYourInterestWithTrainingProvidersPage : AedBasePage
+public class ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "Share your interest with training providers";
 
     protected override bool TakeFullScreenShot => false;
-
-    public ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : base(context)  { }
 
     private static By StartNowButton => By.CssSelector(".govuk-button");
 

@@ -5,18 +5,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class NServiceBusSteps
+    public class NServiceBusSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly PublishPaymentEvent _publishPaymentEvent;
-        private readonly ApprenticeDataHelper _dataHelper;
-
-        public NServiceBusSteps(ScenarioContext context)
-        {
-            _context = context;
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _publishPaymentEvent = context.Get<PublishPaymentEvent>();
-        }
+        private readonly PublishPaymentEvent _publishPaymentEvent = context.Get<PublishPaymentEvent>();
+        private readonly ApprenticeDataHelper _dataHelper = context.Get<ApprenticeDataHelper>();
 
         [When(@"PaymentsCompletion event is received")]
         public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());

@@ -6,21 +6,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario;
 
 [Binding]
-public class AddUrlToTearDown
+public class AddUrlToTearDown(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly TryCatchExceptionHelper _tryCatch;
+    private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
     private string _url;
 
-    public AddUrlToTearDown(ScenarioContext context)
-    {
-        _context = context;
-        _tryCatch = context.Get<TryCatchExceptionHelper>();
-    }
-
     [AfterScenario(Order = 10)]
-    public void AddUrl() => _tryCatch.AfterScenarioException(() => _url = _context.GetWebDriver().Url);
+    public void AddUrl() => _tryCatch.AfterScenarioException(() => _url = context.GetWebDriver().Url);
 
     [AfterScenario(Order = 101)]
-    public void ReportErrorUrl() => _tryCatch.AfterScenarioException(() => { if (_context.TestError != null) throw new Exception($"Url : {_url}"); });
+    public void ReportErrorUrl() => _tryCatch.AfterScenarioException(() => { if (context.TestError != null) throw new Exception($"Url : {_url}"); });
 }

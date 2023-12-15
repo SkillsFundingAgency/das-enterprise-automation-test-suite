@@ -10,9 +10,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderEditApprenticeDetailsPage : ProviderEditApprenticeCoursePage
+    public class ProviderEditApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : ProviderEditApprenticeCoursePage(context)
     {
-        private readonly bool _isFlexiPaymentPilotLearner;
         protected override string PageTitle => "Edit apprentice details";
         private static By ChangeDeliveryModelLink => By.Name("ChangeDeliveryModel");
         private static By UpdateDetailsBtn => By.Id("continue-button");
@@ -29,11 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By EmployerReference => By.Id("Reference");
         private static By ChangeSimplifiedPaymentsPilotLink => By.Id("change-pilot-status-link");
         private static By SaveButton => By.XPath("//button[contains(text(),'Save')]");
-
-        public ProviderEditApprenticeDetailsPage(ScenarioContext context, bool isFlexiPaymentPilotLearner = false) : base(context)
-        {
-            _isFlexiPaymentPilotLearner = isFlexiPaymentPilotLearner;
-        }
 
         public SelectDeliveryModelPage ClickEditDeliveryModel()
         {
@@ -59,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             EnterUln();
 
-            if (_isFlexiPaymentPilotLearner)
+            if (isFlexiPaymentPilotLearner)
             {
                 AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
                 AddPlannedEndDateDay(apprenticeCourseDataHelper.CourseEndDate);

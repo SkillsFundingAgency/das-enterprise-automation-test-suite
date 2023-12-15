@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 
 
 [Binding, Scope(Tag = "@aanemployer")]
-public class Employer_Steps : Employer_BaseSteps
+public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(context)
 {
     private EmployerAmbassadorApplicationPage employerAmbassadorApplicationPage;
 
@@ -14,9 +14,7 @@ public class Employer_Steps : Employer_BaseSteps
 
     private RegistrationComplete_EmployerPage applicationSubmitted_EmployerPage;
 
-    protected readonly AANSqlHelper aANSqlHelper;
-
-    public Employer_Steps(ScenarioContext context) : base(context) => aANSqlHelper = context.Get<AANSqlHelper>();
+    protected readonly AANSqlHelper aANSqlHelper = context.Get<AANSqlHelper>();
 
     [Given(@"an employer without onboarding logs into the AAN portal")]
     public void AnEmployerWithoutOnboardingLogsIntoTheAANPortal()

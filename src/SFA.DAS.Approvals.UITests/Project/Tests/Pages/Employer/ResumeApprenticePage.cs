@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ResumeApprenticePage : ChangeApprenticeStatus
+    public class ResumeApprenticePage(ScenarioContext context) : ChangeApprenticeStatus(context)
     {
         protected override string PageTitle => "Resume apprenticeship";
-
-        public ResumeApprenticePage(ScenarioContext context) : base(context)  { }
 
         public new ApprenticeDetailsPage SelectYesAndConfirm()
         {

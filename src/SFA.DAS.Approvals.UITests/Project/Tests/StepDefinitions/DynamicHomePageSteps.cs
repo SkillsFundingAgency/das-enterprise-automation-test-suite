@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -34,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var addAnApprenitcePage = _reservationStepsHelper.GoToAddAnApprentices();
 
-            _employerStepsHelper.DynamicHomePageStartToAddApprentice(addAnApprenitcePage);
+            EmployerStepsHelper.DynamicHomePageStartToAddApprentice(addAnApprenitcePage);
         }
 
         [Then(@"The TrainingProvider approves apprentice by adding further details")]

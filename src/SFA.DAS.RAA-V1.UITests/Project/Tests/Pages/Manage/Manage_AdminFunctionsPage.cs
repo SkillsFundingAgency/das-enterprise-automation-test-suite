@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected override string PageTitle => "Administrator functions";
 
         public Manage_AdminFunctionsPage(ScenarioContext context) : base(context) { }
-            
+
         public Manage_AdminManageProvidersPage ClickManageProvidersLink()
         {
             formCompletionHelper.ClickLinkByText("Manage Providers");

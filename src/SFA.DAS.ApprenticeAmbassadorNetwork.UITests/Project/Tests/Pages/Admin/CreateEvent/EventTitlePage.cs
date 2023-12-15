@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class EventTitlePage : AanAdminBasePage
+public class EventTitlePage(ScenarioContext context) : AanAdminBasePage(context)
 {
     protected override string PageTitle => "Event title";
 
     private static By EventTitleSelector => By.CssSelector("#eventTitle");
-
-    public EventTitlePage(ScenarioContext context) : base(context) { }
 
     public EventOutlinePage SubmitEventTitle()
     {

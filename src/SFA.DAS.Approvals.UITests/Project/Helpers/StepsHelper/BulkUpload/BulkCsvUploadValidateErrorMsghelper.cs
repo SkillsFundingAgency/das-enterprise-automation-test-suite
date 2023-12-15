@@ -5,22 +5,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 
-public class BulkCsvUploadValidateErrorMsghelper
+public class BulkCsvUploadValidateErrorMsghelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public BulkCsvUploadValidateErrorMsghelper(ScenarioContext context) => _context = context;
-
     internal ProviderFileUploadValidationErrorsPage VerifyErrorMessage(string expectedMessage, string title = null)
     {
         expectedMessage = expectedMessage.RemoveSpace();
 
-        string actualMessage = new ProviderFileUploadValidationErrorsPage(_context).GetErrorMessage();
+        string actualMessage = new ProviderFileUploadValidationErrorsPage(context).GetErrorMessage();
 
         int index = expectedMessage.Length < 80 ? expectedMessage.Length : 80;
 
-        StringAssert.Contains(expectedMessage.Substring(0, index), actualMessage, string.IsNullOrEmpty(title) ? string.Empty : $"Scenario : {title}");
+        StringAssert.Contains(expectedMessage[..index], actualMessage, string.IsNullOrEmpty(title) ? string.Empty : $"Scenario : {title}");
 
-        return new ProviderFileUploadValidationErrorsPage(_context);
+        return new ProviderFileUploadValidationErrorsPage(context);
     }
 }

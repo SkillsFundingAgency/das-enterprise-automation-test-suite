@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class NotSureLevyPayingEmployerPage: EmployerBasePage
+    public class NotSureLevyPayingEmployerPage(ScenarioContext context) : EmployerBasePage(context)
     {
         protected override string PageTitle => "Funding an apprenticeship for non levy employers";
-
-        public NotSureLevyPayingEmployerPage(ScenarioContext context) : base(context) { }
     }
 }

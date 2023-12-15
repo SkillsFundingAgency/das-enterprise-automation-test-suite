@@ -1,15 +1,10 @@
-﻿using Polly;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
-    public class SelectRouteStepsHelper
+    public class SelectRouteStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public SelectRouteStepsHelper(ScenarioContext context) => _context = context;
-
         internal NotAcceptTermsConditionsPage DoNotAcceptTermsConditions() => ConfirmUkprn().SelectApplicationRouteAsMain().DoNotAcceptTermsConditions();
         public ApplicationOverviewPage CompleteProviderMainRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsMain());
         internal ApplicationOverviewPage CompleteProviderCharityRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsEmployer().SelectYesForLevyPayingEmployerAndContinue());
@@ -18,14 +13,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         internal ApplicationOverviewPage CompleteProviderMainRouteSection_ExistingProvider() => ConfirmUkprnForProviderOnRoatp().SelectYesToChangeProviderRouteAndContinue().SelectApplicationRouteAsMain().AcceptTermAndConditionsAndContinue();
         internal AlreadyOnRoatpPage CompleteProviderCharityRouteWhoisAlreayOnRoatp() => ConfirmUkprnForProviderOnRoatp();
         internal ApplicationOverviewPage CompleteProviderSupportRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsSupporting());
-        internal ApplicationOverviewPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptTermAndConditionsAndContinue().VerifyIntroductionStatus(StatusHelper.StatusNext);    
+        internal static ApplicationOverviewPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptTermAndConditionsAndContinue().VerifyIntroductionStatus(StatusHelper.StatusNext);
         private ChooseProviderRoutePage ConfirmUkprn() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinue();
         private AlreadyOnRoatpPage ConfirmUkprnForProviderOnRoatp() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinueForProviderOnRoatp();
         private ConfirmOrganisationsDetailsPage ConfirmOrganisationsDetailsPage()
         {
-            new RoatpApplyLoginHelpers(_context).SubmitValidUserDetails();
+            new RoatpApplyLoginHelpers(context).SubmitValidUserDetails();
 
-            return new EnterUkprnPage(_context).EnterOrgTypeCompanyProvidersUkprn();
+            return new EnterUkprnPage(context).EnterOrgTypeCompanyProvidersUkprn();
         }
     }
 }

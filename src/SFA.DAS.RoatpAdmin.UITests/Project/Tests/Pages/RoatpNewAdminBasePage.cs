@@ -1,10 +1,7 @@
 ﻿using OpenQA.Selenium;
-using Polly;
-using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
+using SFA.DAS.RoatpAdmin.Service.Project;
 using System;
 using TechTalk.SpecFlow;
 
@@ -27,11 +24,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private static By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
 
         private static By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
-        
+
         private static By ReturnToDashBoard => By.CssSelector("a[href='/Dashboard']");
 
         private static By SearchField => By.CssSelector("#SearchTerm");
-        
+
         protected static By UkprnStatus => By.CssSelector("[data-label='UKPRN']");
 
         private static By SearchButton => By.CssSelector(".app-search-form__button-wrap");
@@ -79,7 +76,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             if (pageInteractionHelper.IsElementDisplayed(ReturnToDashBoard))
                 formCompletionHelper.ClickElement(ReturnToDashBoard);
-            
+
             return new StaffDashboardPage(context);
         }
 
@@ -103,14 +100,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         public void VerifyStatusBesideGenericQuestion(string linkText, string expectedStatus) =>
                     VerifyElement(() => pageInteractionHelper.FindElement(StatusTextLocator(linkText)), expectedStatus, null);
 
-        protected void VerifyOutcomeStatus(string expectedStatus) => 
+        protected void VerifyOutcomeStatus(string expectedStatus) =>
             VerifyOutcomeStatus(OutcomeTab, OutcomeStatus, expectedStatus);
 
-        protected void VerifyOutcomeStatus(By outcomeTab, By outcomeStatus, string expectedStatus) => 
+        protected void VerifyOutcomeStatus(By outcomeTab, By outcomeStatus, string expectedStatus) =>
             VerifyApplicationStatus(outcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(outcomeTab)));
-        
 
-        protected void VerifyClarificationStatus(By statusSelector, string expectedStatus) => 
+
+        protected void VerifyClarificationStatus(By statusSelector, string expectedStatus) =>
             VerifyApplicationStatus(statusSelector, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab)));
 
         protected void VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
@@ -126,8 +123,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         protected void EnterAskForClarificationInternalComments() => formCompletionHelper.EnterText(AskForClarificationInternalComments, "Internal comments");
 
-        private void EnterClarificationResponse() 
-        { 
+        private void EnterClarificationResponse()
+        {
             if (objectContext.IsClarificationJourney())
             {
                 if (objectContext.IsUploadFile())

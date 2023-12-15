@@ -4,15 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class IncentiveHelper
+    public class IncentiveHelper(ScenarioContext context)
     {
-        private readonly EISqlHelper _sqlHelper;
-        private readonly StopWatchHelper _stopWatchHelper;
-        public IncentiveHelper(ScenarioContext context)
-        {
-            _sqlHelper = context.Get<EISqlHelper>();
-            _stopWatchHelper = context.Get<StopWatchHelper>();
-        }
+        private readonly EISqlHelper _sqlHelper = context.Get<EISqlHelper>();
+        private readonly StopWatchHelper _stopWatchHelper = context.Get<StopWatchHelper>();
 
         public async Task Delete(IncentiveApplication application)
         {
@@ -29,6 +24,6 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             _stopWatchHelper.Start("DeleteIncentive");
             await _sqlHelper.DeleteIncentiveData(accountId, apprenticeshipId);
             _stopWatchHelper.Stop("DeleteIncentive");
-        }        
+        }
     }
 }

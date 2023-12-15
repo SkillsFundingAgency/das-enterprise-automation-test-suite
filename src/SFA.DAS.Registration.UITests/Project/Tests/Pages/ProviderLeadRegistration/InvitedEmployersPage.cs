@@ -6,11 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {
-    public class InvitedEmployersPage : ProviderLeadRegistrationBasePage
+    public class InvitedEmployersPage(ScenarioContext context) : ProviderLeadRegistrationBasePage(context)
     {
         protected override string PageTitle => "Manage employer invitations";
-
-        public InvitedEmployersPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private By ResendInvitationLink => By.Id($"resendInvitation-{objectContext.GetRegisteredEmail().ToLower()}");
@@ -52,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public EmployerAccountStatusPage ViewStatus()
         {
-            formCompletionHelper.Click(ViewStatusLink);   
+            formCompletionHelper.Click(ViewStatusLink);
             return new EmployerAccountStatusPage(context);
         }
     }

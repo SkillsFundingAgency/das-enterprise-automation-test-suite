@@ -5,21 +5,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 {
-    public class ProviderStepsHelper : ProviderBaseStepsHelper
+    public class ProviderStepsHelper(ScenarioContext context) : ProviderBaseStepsHelper(context)
     {
-        private readonly StepsHelper _stepsHelper;
-
-        public ProviderStepsHelper(ScenarioContext context) : base(context) => _stepsHelper = new StepsHelper(_context);
-
         public ProviderVacancySearchResultPage SearchVacancy() => GoToRecruitmentHomePage().SearchVacancy();
 
         internal void ViewReferVacancy() => GoToRecruitmentHomePage().SearchReferAdvertTitle();
 
-        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
+        internal void ApplicantSucessful() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
 
-        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReference());
+        internal void ApplicantUnsucessful() => StepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReference());
 
-        internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
+        internal void VerifyWageType(string wageType) => StepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
         private ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage().SearchVacancyByVacancyReference();
 

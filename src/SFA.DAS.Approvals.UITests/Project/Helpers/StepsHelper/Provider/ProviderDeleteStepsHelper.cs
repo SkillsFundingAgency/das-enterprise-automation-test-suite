@@ -5,20 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderDeleteStepsHelper
+    public class ProviderDeleteStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-
-        public ProviderDeleteStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-        }
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
         public ProviderApproveApprenticeDetailsPage DeleteApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
-            var totalNoOfApprentices = _context.Get<ObjectContext>().GetNoOfApprentices();
+            var totalNoOfApprentices = context.Get<ObjectContext>().GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
@@ -36,8 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public void DeleteCohort() => DeleteCohort(_providerCommonStepsHelper.CurrentCohortDetails());
 
-        public void DeleteCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage) => providerApproveApprenticeDetailsPage.SelectDeleteCohort().ConfirmDeleteAndSubmit();
-
-
+        public static void DeleteCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage) => providerApproveApprenticeDetailsPage.SelectDeleteCohort().ConfirmDeleteAndSubmit();
     }
 }

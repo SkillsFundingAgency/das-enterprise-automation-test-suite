@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_ApplicationOverviewPage : EPAO_BasePage
+public class AS_ApplicationOverviewPage(ScenarioContext context) : EPAO_BasePage(context)
 {
     protected override string PageTitle => "Application overview";
-
-    public AS_ApplicationOverviewPage(ScenarioContext context) : base(context) { }
 
     public AS_ApplyToStandardPage GoToApplyToStandard()
     {

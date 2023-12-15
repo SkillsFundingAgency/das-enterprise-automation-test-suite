@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace SFA.DAS.FrameworkHelpers
 {
@@ -14,7 +13,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static string Serialize<T>(T data)
         {
-            JsonSerializerOptions jso = new JsonSerializerOptions
+            JsonSerializerOptions jso = new()
             {
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             };

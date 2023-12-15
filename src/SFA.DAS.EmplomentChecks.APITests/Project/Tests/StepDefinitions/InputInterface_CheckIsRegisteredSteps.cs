@@ -36,7 +36,7 @@ internal class InputInterface_CheckIsRegisteredSteps(ScenarioContext context)
         string checkType = context.ScenarioInfo.Title[..10];
         int count = _employmentChecksSqlDbHelper.GetCheckFromEmploymentCheckTable(checkType);
 
-        if (registered) 
+        if (registered)
             Assert.AreEqual(1, count, $"Unexpected number of records for test {checkType} in [Business].[EmploymentCheck] table");
         else
             Assert.AreEqual(0, count, $"Unexpected number of records for test {checkType} in [Business].[EmploymentCheck] table");

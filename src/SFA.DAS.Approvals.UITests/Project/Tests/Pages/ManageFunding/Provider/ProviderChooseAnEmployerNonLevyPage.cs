@@ -1,16 +1,13 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderChooseAnEmployerNonLevyPage : ApprovalsBasePage
+    public class ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose an employer";
-
-        public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderConfirmEmployerPage ChooseLevyEmployer() => ChooseAnEmployer("Levy");
 
@@ -20,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             var employerUser = employerType == "Levy" ? context.GetUser<LevyUser>() : (EasAccountUser)context.GetUser<NonLevyUser>();
 
-            var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+            var employerName = employerUser.OrganisationName[..3] + "%";
 
             string agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
 

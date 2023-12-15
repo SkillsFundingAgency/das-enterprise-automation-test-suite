@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_FindAnApprenticeshipHomePage : FAABasePage
+    public class FAA_FindAnApprenticeshipHomePage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Find an apprenticeship";
-
-        public FAA_FindAnApprenticeshipHomePage(ScenarioContext context) : base(context) { }
 
         public FAA_MyApplicationsHomePage MyApplications()
         {

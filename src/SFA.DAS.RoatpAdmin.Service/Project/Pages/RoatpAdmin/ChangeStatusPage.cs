@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
-public class ChangeStatusPage : ChangeBasePage
+public class ChangeStatusPage(ScenarioContext context) : ChangeBasePage(context)
 {
     protected override string PageTitle => $"Change status for {objectContext.GetProviderName()}";
 
@@ -11,8 +11,6 @@ public class ChangeStatusPage : ChangeBasePage
     private static By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");
 
     protected override By ContinueButton => By.CssSelector(".govuk-button[value='Change']");
-
-    public ChangeStatusPage(ScenarioContext context) : base(context) { }
 
     public ResultsFoundPage ChangeStatusToActive() => ChangeStatus(ActiveStatus);
 

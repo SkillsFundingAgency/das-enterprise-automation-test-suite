@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private DateTime _initialEndDate;
         private DateTime _breakStart;
         private PriceEpisodeDto _priceEpisodeWithBreakInLearning;
-        
+
         protected ResumeLearningChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
         {
         }
@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(DateTime startDate, DateTime endDate)
         {
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(6, 2021);
-           
+
             _initialStartDate = startDate;
             _initialEndDate = endDate;
 
@@ -218,7 +218,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var earning = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(p => p.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             earning.Should().BeEquivalentTo(_initialEarning, opts => opts.Excluding(
-                x =>x.ClawedBack).Excluding(x => x.PaymentMadeDate));
+                x => x.ClawedBack).Excluding(x => x.PaymentMadeDate));
             earning.Amount.Should().Be(amount);
         }
 

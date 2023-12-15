@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Step_Definitions
 {
     [Binding]
-    public class ProviderCreateVacancySteps
+    public class ProviderCreateVacancySteps(ScenarioContext context)
     {
-        private readonly ProviderTraineeshipCreateVacancyStepsHelper _providerStepsHelper;
-
-        public ProviderCreateVacancySteps(ScenarioContext context) => _providerStepsHelper = new ProviderTraineeshipCreateVacancyStepsHelper(context);
+        private readonly ProviderTraineeshipCreateVacancyStepsHelper _providerStepsHelper = new(context);
 
         [Given(@"the Provider creates traineeship vacancy through View all your traineeship vacancies page")]
         public void ThenTheProviderCreatesTraineeshipVacancyThroughViewAllYourTraineeshipsVacanciesPage() => _providerStepsHelper.CreateANewTraineeshipVacancy();

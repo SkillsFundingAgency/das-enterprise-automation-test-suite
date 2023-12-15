@@ -17,7 +17,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         #endregion
 
         public VRFOrgDetailsTabPage(ScenarioContext context) : base(context, false)
-        { 
+        {
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
             _eISqlHelper = context.Get<EISqlHelper>();
         }
@@ -48,7 +48,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         private void AddOtherOrgDetails()
         {
             formCompletionHelper.EnterText(OrganisationName, registrationDataHelper.CompanyTypeOrg);
-            formCompletionHelper.EnterText(TelephoneNumber, eIDataHelper.TelephoneNumber);
+            formCompletionHelper.EnterText(TelephoneNumber, EIDataHelper.TelephoneNumber);
             SelectOptionByText("provider_supplier_have_company_number", "No");
             SelectOptionByText("provider_supplier_have_vat_number", "No");
             SelectOptionByText("supplier_sme", "No");

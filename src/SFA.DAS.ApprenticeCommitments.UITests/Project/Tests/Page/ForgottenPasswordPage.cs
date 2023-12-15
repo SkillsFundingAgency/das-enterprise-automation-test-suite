@@ -4,12 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ForgottenPasswordPage : ApprenticeCommitmentsBasePage
+    public class ForgottenPasswordPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         protected override string PageTitle => "Forgotten password";
         private static By Email => By.CssSelector("input#Email");
-
-        public ForgottenPasswordPage(ScenarioContext context) : base(context)  { }
 
         public ForgottenPasswordConfirmPage SubmitEmailOnForgottenPasswordPage()
         {

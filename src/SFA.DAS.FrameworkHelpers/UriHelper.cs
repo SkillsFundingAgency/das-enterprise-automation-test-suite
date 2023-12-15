@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
     public static class UriHelper
     {

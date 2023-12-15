@@ -10,7 +10,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static string GetAppServiceAuthToken(string resource) => GetAzureToken(resource).Result;
 
-        private async static Task<string> GetAzureToken(string resource)
+        private static async Task<string> GetAzureToken(string resource)
         {
             var tokenCredential = new DefaultAzureCredential();
 

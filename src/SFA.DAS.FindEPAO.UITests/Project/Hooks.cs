@@ -5,13 +5,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FindEPAO.UITests.Project
 {
     [Binding]
-    public class Hooks
+    public class Hooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public Hooks(ScenarioContext context) => _context = context;
-
         [BeforeScenario(Order = 21)]
-        public void NavigateToFindEPAOHomepage() => _context.Get<TabHelper>().GoToUrl(UrlConfig.FindEPAO_BaseUrl);
+        public void NavigateToFindEPAOHomepage() => context.Get<TabHelper>().GoToUrl(UrlConfig.FindEPAO_BaseUrl);
     }
 }

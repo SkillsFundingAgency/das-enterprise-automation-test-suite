@@ -1,15 +1,13 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticeDetailsPage : AddAndEditApprenticeDetailsBasePage
+    public class EditApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "Edit apprentice details";
 
@@ -26,10 +24,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => GetEditDeliveryModelLink();
         private By DeliveryModelValue => GetDeliveryModelValue();
-
-        public EditApprenticeDetailsPage(ScenarioContext context) : base(context)
-        {
-        }
 
         public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
         {
@@ -96,8 +90,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal List<IWebElement> GetAllEditableBoxes()
         {
-            return pageInteractionHelper.FindElements(InputBox("input[type='text']"))
-                .Concat(pageInteractionHelper.FindElements(InputBox("input[type='number']"))).ToList();
+            return
+            [
+                .. pageInteractionHelper.FindElements(InputBox("input[type='text']"))
+,
+                .. pageInteractionHelper.FindElements(InputBox("input[type='number']")),
+            ];
         }
 
         private EditApprenticeDetailsPage AddValidStartDate()

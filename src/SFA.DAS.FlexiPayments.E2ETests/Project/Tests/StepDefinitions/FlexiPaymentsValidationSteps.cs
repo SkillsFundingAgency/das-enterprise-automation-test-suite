@@ -12,20 +12,11 @@ using TechTalk.SpecFlow.Assist;
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FlexiPaymentsValidationSteps
+    public class FlexiPaymentsValidationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        private readonly EarningsSqlDbHelper _earningsSqlDbHelper;
-        private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper;
-
-        public FlexiPaymentsValidationSteps(ScenarioContext context)
-        {
-            _context = context;
-            _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
-            _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
-            _apprenticeshipsSqlDbHelper = context.Get<ApprenticeshipsSqlDbHelper>();
-        }
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
+        private readonly EarningsSqlDbHelper _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
+        private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper = context.Get<ApprenticeshipsSqlDbHelper>();
 
         [Then(@"validate the following data is created in the commitments database")]
         public void ValidateTheFollowingDataIsCreatedInTheCommitmentsDatabase(Table table)
@@ -116,6 +107,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         private string ErrorMessage(string message, int ulnKey) => $"'{message}' for ulnkey '{ulnKey}', uln '{GetApprenticeULN(ulnKey)}'";
 
-        private string GetApprenticeULN(int key) => _context.Get<ObjectContext>().GetULNKeyInformations().Single(x => x.key == key).uln;
+        private string GetApprenticeULN(int key) => context.Get<ObjectContext>().GetULNKeyInformations().Single(x => x.key == key).uln;
     }
 }

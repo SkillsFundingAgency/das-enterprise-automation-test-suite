@@ -1,10 +1,10 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCoEEndDatePage : ApprovalsBasePage
+    public class ProviderCoEEndDatePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "New training end date";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By EndDateMonth => By.Name("EndMonth");
         private static By EndDateYear => By.Name("EndYear");
         protected override By ContinueButton => By.Id("save-and-continue-button");
-
-        public ProviderCoEEndDatePage(ScenarioContext context) : base(context)  { }
 
         public ProviderCoEPricePage EnterNewEndDateAndContinue()
         {

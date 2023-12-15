@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
 {
-    public class EPAOOrganisationDetailsPage : FindEPAOBasePage
+    public class EPAOOrganisationDetailsPage(ScenarioContext context) : FindEPAOBasePage(context)
     {
         protected override string PageTitle => objectContext.GetEPAOOrganisationName();
 
         protected override string AccessibilityPageTitle => "EPAO organisation name Page";
-
-        public EPAOOrganisationDetailsPage(ScenarioContext context) : base(context) { }
 
         #region Locators
         private static By BackButton => By.ClassName("govuk-back-link");

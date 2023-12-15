@@ -3,19 +3,15 @@ using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class IFrameHelper
+public class IFrameHelper(IWebDriver webDriver)
 {
-    private readonly IWebDriver _webDriver;
-
-    public IFrameHelper(IWebDriver webDriver) => _webDriver = webDriver;
-
-    public By Iframe => By.CssSelector("iframe");
+    public static By Iframe => By.CssSelector("iframe");
 
     public void SwitchToFrame() => SwitchToFrame(Iframe);
 
-    public void SwitchToFrame(By by) => _webDriver.SwitchTo().Frame(_webDriver.FindElement(by));
+    public void SwitchToFrame(By by) => webDriver.SwitchTo().Frame(webDriver.FindElement(by));
 
-    public void SwitchToDefaultContent() => _webDriver.SwitchTo().DefaultContent();
+    public void SwitchToDefaultContent() => webDriver.SwitchTo().DefaultContent();
 
     public void SwitchFrameAndAction(Action action)
     {

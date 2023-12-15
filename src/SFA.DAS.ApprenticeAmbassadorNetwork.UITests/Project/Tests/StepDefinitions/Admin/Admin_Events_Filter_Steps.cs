@@ -4,11 +4,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 {
 
     [Binding, Scope(Tag = "@aanadmin")]
-    public class Admin_Events_Filter_Steps : Admin_BaseSteps
+    public class Admin_Events_Filter_Steps(ScenarioContext context) : Admin_BaseSteps(context)
     {
         private ManageEventsPage manageEventsPage;
-
-        public Admin_Events_Filter_Steps(ScenarioContext context) : base(context) { }
 
         [Then(@"the user should be able to successfully filter events by date")]
         public void TheUserShouldBeAbleToSuccessfullyFilterEventsByDate()

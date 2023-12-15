@@ -4,11 +4,11 @@
     {
         protected override string PageTitle => "Tell us what areas of the country your organisation works in";
 
-        private By LondonRadio => By.Id("3");
-        private By EastMidlandsRadio => By.Id("1");
-        private By EastOfEnglandRadio => By.Id("2");
-        private By NorthEastRadio => By.Id("4");
-        private By NorthWestRadio => By.Id("5");
+        private static By LondonRadio => By.Id("3");
+        private static By EastMidlandsRadio => By.Id("1");
+        private static By EastOfEnglandRadio => By.Id("2");
+        private static By NorthEastRadio => By.Id("4");
+        private static By NorthWestRadio => By.Id("5");
 
         public WhatAreasOfCountryYourOrganisationWorksInPage(ScenarioContext context) : base(context) => VerifyPage();
 

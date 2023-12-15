@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class SelectAStandardPage : ManagingStandardsBasePage
+public class SelectAStandardPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Select a standard";
 
@@ -11,8 +11,6 @@ public class SelectAStandardPage : ManagingStandardsBasePage
     private static By AddStandardsDDL => By.CssSelector("#SelectedLarsCode");
 
     private static By FirstItemInTheList => By.CssSelector("#SelectedLarsCode__option--0");
-
-    public SelectAStandardPage(ScenarioContext context) : base(context) { }
 
     public AddAstandardPage SelectAStandardAndContinue(string standardName)
     {

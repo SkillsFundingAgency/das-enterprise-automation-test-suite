@@ -4,21 +4,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class DeliveringApprenticeshipTraining_Section7_Helper
     {
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_IntroductionWhatYouwillNeed()
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_OverallAccountability()
                 .EnterDetails()
                 .VerifyOverallAccountability_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_ManagementHierarchy()
                 .EnterDetails()
@@ -26,7 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyManagementHierarchy_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_QualityAndHighStandards()
                 .UploadManagementExpectationsForQuality()
@@ -36,7 +36,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyQualityAndHighStandards_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_MainRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_DevelopingAndDelivering()
                 .SelectYes()
@@ -46,7 +46,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_DevelopingAndDelivering()
                 .SelectNo()
@@ -54,7 +54,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_DevelopingAndDelivering_Support()
                 .SelectYes()
@@ -63,7 +63,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterDetailsOfTheManagerPerson()
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6_NotRequired(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6_NotRequired(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
@@ -87,7 +87,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 return applicationOverviewPage.VerifyYourSectorsAndEmployees_Section7(StatusHelper.NotRequired);
             }
         }
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_YourSectorsAndEmployees()
                 .NavigateToChooseYourOrganisationSectors()
@@ -104,7 +104,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyYourSectorsAndEmployees_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_PolicyForProfessionalDevelopment()
                 .UploadOrganisationPolicyAndContinue()

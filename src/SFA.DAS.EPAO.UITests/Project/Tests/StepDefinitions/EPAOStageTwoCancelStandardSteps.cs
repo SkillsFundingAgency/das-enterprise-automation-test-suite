@@ -6,9 +6,9 @@ public class EPAOStageTwoCancelStandardSteps : EPAOBaseSteps
     protected EPAOStageTwoCancelStandardSteps(ScenarioContext context) : base(context) { }
 
     [Given(@"Stage one approved EPAO logs in to apply for a first standard")]
-    public void GivenStageOneApprovedEPAOLogsInToApplyForAFirstStandard() => 
+    public void GivenStageOneApprovedEPAOLogsInToApplyForAFirstStandard() =>
         loggedInHomePage = ePAOHomePageHelper.StageTwoEPAOStandardCancelUser(context.GetUser<EPAOStageTwoStandardCancelUser>());
-    
+
 
     [When(@"Starts the journey to apply for the first standard")]
     [Given(@"Starts the journey to apply for the first standard")]

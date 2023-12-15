@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
-public class ApplicationDateDeterminedPage : RoatpAdminBasePage
+public class ApplicationDateDeterminedPage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
     protected override string PageTitle => "What is the application determined date for this organisation?";
 
@@ -11,8 +11,6 @@ public class ApplicationDateDeterminedPage : RoatpAdminBasePage
     private static By Month => By.CssSelector("#Month");
 
     private static By Year => By.CssSelector("#Year");
-
-    public ApplicationDateDeterminedPage(ScenarioContext context) : base(context) { }
 
     public ConfirmDetailsPage EnterDob()
     {

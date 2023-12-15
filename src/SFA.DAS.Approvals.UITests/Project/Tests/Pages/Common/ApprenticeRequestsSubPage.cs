@@ -5,16 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class ApprenticeRequestsSubPage : ApprovalsBasePage
+    public abstract class ApprenticeRequestsSubPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         private static By TableRows => By.CssSelector(".govuk-table .govuk-table__body .govuk-table__row");
 
         private static By ReferenceSelector => By.CssSelector("[data-label=Reference]");
-
-        public ApprenticeRequestsSubPage(ScenarioContext context) : base(context)
-        {
-
-        }
 
         protected void SelectCurrentCohortDetailsFromTable()
         {

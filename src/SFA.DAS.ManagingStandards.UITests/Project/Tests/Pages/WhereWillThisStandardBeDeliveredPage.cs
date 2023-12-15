@@ -1,15 +1,13 @@
 ﻿
 namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class WhereWillThisStandardBeDeliveredPage : ManagingStandardsBasePage
+public class WhereWillThisStandardBeDeliveredPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Where will this standard be delivered";
 
     private static By AtOneOfYourTrainingLocationsRadio => By.Id("ProviderLocationOption");
     private static By AtAnEmployersLocationRadio => By.Id("EmployerLocationOption");
     private static By BothRadio => By.Id("BothLocationOption");
-
-    public WhereWillThisStandardBeDeliveredPage(ScenarioContext context) : base(context) { }
 
     public TrainingLocation_ConfirmVenuePage ConfirmAtOneofYourTrainingLocations()
     {

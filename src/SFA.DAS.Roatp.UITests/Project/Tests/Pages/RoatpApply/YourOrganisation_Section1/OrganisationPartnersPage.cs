@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
 {
-   public class OrganisationPartnersPage : RoatpApplyBasePage
+    public class OrganisationPartnersPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "What is your organisation's partner?";
 

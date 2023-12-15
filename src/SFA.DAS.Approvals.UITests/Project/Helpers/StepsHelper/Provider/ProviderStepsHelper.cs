@@ -3,24 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderStepsHelper
+    public class ProviderStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
-        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-
-        public ProviderStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
-
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-        }
-
-        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new(_context, true);
+        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new(context, true);
 
         public ProviderReviewChangesPage ReviewChanges() => CurrentApprenticeDetails().ClickReviewChanges();
 

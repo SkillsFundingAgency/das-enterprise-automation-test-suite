@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class AreYouSureYouWantToRemovePage : RegistrationBasePage
     {
         protected override string PageTitle => "Are you sure you want to remove";
-        
+
         #region Locators
         private static By YesRadioButton => By.Name("Remove");
         protected override By ContinueButton => By.Id("can-remove-organisation-button");
@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public YourOrganisationsAndAgreementsPage SelectYesRadioOptionAndClickContinueInRemoveOrganisationPage()
         {
             formCompletionHelper.SelectRadioOptionByLocator(YesRadioButton);
-            Continue();          
+            Continue();
             return new YourOrganisationsAndAgreementsPage(context);
         }
     }

@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YourAgreementsWithTheEducationAndSkillsFundingAgencyPage : RegistrationBasePage
     {
         protected override string PageTitle => "Your agreements with the Department for Education";
-        
+
         #region Locators
         private static By UpdateTheseDetailsLink => By.LinkText("Update these details");
 

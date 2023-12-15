@@ -4,10 +4,10 @@
     {
         protected override string PageTitle => "Why do you want to join the network?";
 
-        private By MeetOtherEmployerAmbassadorsCheckbox => By.Id("41");
-        private By ProjectManageCheckbox => By.Id("43");
-        private By BuildingApprenticeshipProfileCheckbox => By.Id("51");
-        private By IncreasingEngagementWithSchoolsAndCollegesCheckBox => By.Id("52");
+        private static By MeetOtherEmployerAmbassadorsCheckbox => By.Id("41");
+        private static By ProjectManageCheckbox => By.Id("43");
+        private static By BuildingApprenticeshipProfileCheckbox => By.Id("51");
+        private static By IncreasingEngagementWithSchoolsAndCollegesCheckBox => By.Id("52");
 
         public NetworkSupportAndNetworkJoinPage(ScenarioContext context) : base(context) => VerifyPage();
 

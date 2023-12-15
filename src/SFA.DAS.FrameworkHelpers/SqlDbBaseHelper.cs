@@ -21,7 +21,7 @@ public partial class SqlDbBaseHelper(ObjectContext objectContext, string connect
 
     public int ExecuteSqlCommand(string queryToExecute, Dictionary<string, string> parameters) => ExecuteSqlCommand(queryToExecute, connectionString, parameters);
 
-    public int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters) 
+    public int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
         SetDebugInformation($"ExecuteSqlCommand:{Environment.NewLine}{queryToExecute}");
 
@@ -131,7 +131,7 @@ public partial class SqlDbBaseHelper(ObjectContext objectContext, string connect
     private static string WriteDebugMessage(string connectionString) => ConnectionStringRegex().Replace(connectionString, "Password=<*******>;Trusted_Connection");
 
     private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
-    
+
     [GeneratedRegex(@"Password=.*;Trusted_Connection")]
     private static partial Regex ConnectionStringRegex();
 }

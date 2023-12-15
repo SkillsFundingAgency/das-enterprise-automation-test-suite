@@ -6,21 +6,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 {
     [Binding]
-    public class BeforeScenarioHooks
+    public class BeforeScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
-
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _tabHelper = context.Get<TabHelper>();
-        }
+        private readonly TabHelper _tabHelper = context.Get<TabHelper>();
 
         [BeforeScenario(Order = 21)]
         public void Navigate() => _tabHelper.GoToUrl(UrlConfig.ConsolidatedSupport_WebBaseUrl);
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers() => _context.Set(new ConsolidateSupportDataHelper());
+        public void SetUpHelpers() => context.Set(new ConsolidateSupportDataHelper());
     }
 }

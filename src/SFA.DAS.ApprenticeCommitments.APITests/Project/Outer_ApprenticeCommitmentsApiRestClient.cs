@@ -6,10 +6,8 @@ using System.Net;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project
 {
-    public class Outer_ApprenticeCommitmentsApiRestClient : Outer_BaseApiRestClient
+    public class Outer_ApprenticeCommitmentsApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
     {
-        public Outer_ApprenticeCommitmentsApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
-
         protected override string ApiName => "/apprenticecommitments";
 
         public RestResponse CreateApprovalsCreatedEvent(ApprovalsCreated payload, HttpStatusCode expectedResponse)

@@ -2,31 +2,19 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class EditedApprenticeDataHelper
+    public class EditedApprenticeDataHelper(ApprenticeDataHelper apprenticeDataHelper)
     {
-        public EditedApprenticeDataHelper(ApprenticeDataHelper apprenticeDataHelper)
-        {
-            ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
-            ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
-            DateOfBirthDay = RandomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
-            EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
-            ProviderRefernce = RandomDataGenerator.GenerateRandomAlphanumericString(10);
-            TrainingCost = "2" + RandomDataGenerator.GenerateRandomNumber(3);
-        }
+        public int DateOfBirthDay { get; } = RandomDataGenerator.GenerateRandomDateOfMonth();
 
-        public int DateOfBirthDay { get; }
+        public int DateOfBirthMonth { get; } = RandomDataGenerator.GenerateRandomMonth();
 
-        public int DateOfBirthMonth { get; }
+        public int DateOfBirthYear { get; } = RandomDataGenerator.GenerateRandomDobYear();
 
-        public int DateOfBirthYear { get; }
+        public string EmployerReference { get; } = RandomDataGenerator.GenerateRandomAlphanumericString(10);
 
-        public string EmployerReference { get; }
+        public string ProviderRefernce { get; } = RandomDataGenerator.GenerateRandomAlphanumericString(10);
 
-        public string ProviderRefernce { get; }
-
-        public string TrainingCost { get; }
+        public string TrainingCost { get; } = "2" + RandomDataGenerator.GenerateRandomNumber(3);
 
         public string ApprenticeEditedFullName => $"{ApprenticeEditedFirstname} {ApprenticeEditedLastname}";
 
@@ -42,9 +30,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return ApprenticeEditedLastname;
         }
 
-        public string ApprenticeEditedFirstname { get; private set; }
+        public string ApprenticeEditedFirstname { get; private set; } = apprenticeDataHelper.ApprenticeFirstname;
 
-        public string ApprenticeEditedLastname { get; private set; }
+        public string ApprenticeEditedLastname { get; private set; } = apprenticeDataHelper.ApprenticeLastname;
 
         public void UpdateCurrentApprenticeName(string firstName, string lastName)
         {

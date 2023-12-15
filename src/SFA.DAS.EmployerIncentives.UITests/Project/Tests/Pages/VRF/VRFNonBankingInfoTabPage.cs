@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
@@ -22,9 +23,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
             frameHelper.SwitchFrameAndAction(() =>
             {
                 SelectOptionByText("uk_address", "Yes");
-                formCompletionHelper.EnterText(AddressLine1, eIDataHelper.AddressLine1);
-                formCompletionHelper.EnterText(Town, eIDataHelper.Town);
-                formCompletionHelper.EnterText(Postcode, eIDataHelper.Poscode);
+                formCompletionHelper.EnterText(AddressLine1, Helpers.EIDataHelper.AddressLine1);
+                formCompletionHelper.EnterText(Town, EIDataHelper.Town);
+                formCompletionHelper.EnterText(Postcode, EIDataHelper.Poscode);
                 formCompletionHelper.EnterText(ContactEmail, email);
                 formCompletionHelper.EnterText(FullName, registrationDataHelper.CompanyTypeOrg);
                 formCompletionHelper.EnterText(Fc_email, email);

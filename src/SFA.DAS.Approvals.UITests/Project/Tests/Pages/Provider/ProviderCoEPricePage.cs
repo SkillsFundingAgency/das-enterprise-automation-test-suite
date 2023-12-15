@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCoEPricePage : ApprovalsBasePage
+    public class ProviderCoEPricePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "What's the new agreed apprenticeship price";
 
@@ -11,8 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By Price => By.Id("Price");
         protected override By ContinueButton => By.Id("save-and-continue-button");
-
-        public ProviderCoEPricePage(ScenarioContext context) : base(context)  { }
 
         public ProviderCoESummaryPage EnterNewPriceAndContinue()
         {

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class VacancySearchResultPage : Raav2BasePage
+    public abstract class VacancySearchResultPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected static By Filter => By.CssSelector("#Filter");
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected static By VacancyActionSelector => By.CssSelector("[id^='manage']");
         protected static By RejectedVacancyActionSelector => By.CssSelector("[data-label='Action']");
-
-        public VacancySearchResultPage(ScenarioContext context) : base(context) { }
 
         public void VerifyAdvertStatus(string expected)
         {

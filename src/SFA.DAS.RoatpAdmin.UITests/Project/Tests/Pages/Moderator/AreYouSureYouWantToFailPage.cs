@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
-    public class AreYouSureYouWantToFailPage : AreYouSurePage
+    public class AreYouSureYouWantToFailPage(ScenarioContext context) : AreYouSurePage(context)
     {
         protected override string PageTitle => "Are you sure you want to fail this application?";
-
-        public AreYouSureYouWantToFailPage(ScenarioContext context) : base(context) { }
 
         public ModerationAssessmentFailCompletePage SelectYesFailAndContinueOutcomePage()
         {

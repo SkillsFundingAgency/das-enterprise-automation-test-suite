@@ -1,21 +1,14 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.Login.Service;
-using System;
+﻿using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.StepDefinitions;
 
 [Binding]
-public class ProviderLoginSteps
+public class ProviderLoginSteps(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-
-    public ProviderLoginSteps(ScenarioContext context)
-    {
-        _context = context;
-        _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
-    }
+    private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper = new(context);
 
     [Given(@"the provider logs in as a (Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
     public void GivenTheProviderLogsInAs(ProviderConfig config) => _providerHomePageStepsHelper.GoToProviderHomePage(config, false);
@@ -23,14 +16,14 @@ public class ProviderLoginSteps
     [StepArgumentTransformation(@"(Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
     public ProviderConfig GetProviderUserRole(string providerUserRoles)
     {
-     var userRole = Enum.Parse<ProviderUserRoles>(providerUserRoles, true);
+        var userRole = Enum.Parse<ProviderUserRoles>(providerUserRoles, true);
 
         return true switch
         {
-            bool _ when (userRole == ProviderUserRoles.Contributor) => _context.GetUser<ProviderContributorUser>(),
-            bool _ when (userRole == ProviderUserRoles.ContributorWithApproval) => _context.GetUser<ProviderContributorWithApprovalUser>(),
-            bool _ when (userRole == ProviderUserRoles.AccountOwner) => _context.GetUser<ProviderAccountOwnerUser>(),
-            bool _ when (userRole == ProviderUserRoles.Viewer) => _context.GetUser<ProviderViewOnlyUser>(),
+            bool _ when (userRole == ProviderUserRoles.Contributor) => context.GetUser<ProviderContributorUser>(),
+            bool _ when (userRole == ProviderUserRoles.ContributorWithApproval) => context.GetUser<ProviderContributorWithApprovalUser>(),
+            bool _ when (userRole == ProviderUserRoles.AccountOwner) => context.GetUser<ProviderAccountOwnerUser>(),
+            bool _ when (userRole == ProviderUserRoles.Viewer) => context.GetUser<ProviderViewOnlyUser>(),
             _ => null,
         };
     }

@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages

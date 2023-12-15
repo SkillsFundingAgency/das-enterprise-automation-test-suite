@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : ApprovalsBasePage
+    public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
 
@@ -14,8 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static By StandardCourseOption => By.Id("SelectedCourseId__option--0");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context)  { }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickYesRadioButton()
         {

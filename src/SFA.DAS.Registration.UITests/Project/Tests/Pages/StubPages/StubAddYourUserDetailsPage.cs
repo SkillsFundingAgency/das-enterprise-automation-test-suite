@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
-    public class StubAddYourUserDetailsPage : StubAddYourUserDetailsBasePage
+    public class StubAddYourUserDetailsPage(ScenarioContext context) : StubAddYourUserDetailsBasePage(context)
     {
-        public StubAddYourUserDetailsPage(ScenarioContext context) : base(context) { }
-
         public ConfirmYourUserDetailsPage EnterNameAndContinue(RegistrationDataHelper dataHelper)
         {
             EnterNameAndContinue(dataHelper.FirstName, dataHelper.LastName);

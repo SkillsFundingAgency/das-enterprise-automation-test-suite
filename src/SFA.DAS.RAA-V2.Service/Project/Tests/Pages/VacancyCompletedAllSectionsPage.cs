@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacancyCompletedAllSectionsPage : PreviewYourAdvertOrVacancyPage
+    public class VacancyCompletedAllSectionsPage(ScenarioContext context) : PreviewYourAdvertOrVacancyPage(context)
     {
         protected override string PageTitle => "";
 
@@ -15,8 +15,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private static By RejectedReason => By.CssSelector("textarea#RejectedReason");
 
-        public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) { }
-     
         public AreYouSureYouWantToSubmitPage SubmitAdvert()
         {
             SelectRadioOptionByText("Submit advert to DfE for checking and publication");

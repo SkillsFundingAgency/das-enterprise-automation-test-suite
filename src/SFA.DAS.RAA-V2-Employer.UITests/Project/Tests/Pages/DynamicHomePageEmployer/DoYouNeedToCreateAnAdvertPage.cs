@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer
 {
-    class DoYouNeedToCreateAnAdvertPage: DoYouNeedToCreateAnAdvertBasePage
+    class DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : DoYouNeedToCreateAnAdvertBasePage(context)
     {
-        public DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : base(context) { }
-
         public CreateAnAdvertHomePage ClickYesRadioButtonTakesToRecruitment()
         {
             formCompletionHelper.ClickElement(YesRadioButtonOption);

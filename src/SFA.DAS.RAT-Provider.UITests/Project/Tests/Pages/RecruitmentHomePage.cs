@@ -6,26 +6,24 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 {
-    public class TraineeshipRecruitHomePage : InterimProviderBasePage
+    public class TraineeshipRecruitHomePage(ScenarioContext context, bool navigate = false) : InterimProviderBasePage(context, navigate)
     {
         protected override string PageTitle => "";
 
         protected override string Linktext => "Recruit apprentices";
 
         #region Helpers and Context
-        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;
+        private readonly SearchVacancyPageHelper _searchVacancyPageHelper = new(context);
         #endregion
 
         private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
         protected static By RecruitTraineesLink => By.LinkText("Recruit trainees");
         protected static By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
 
-        public TraineeshipRecruitHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
-
         public ViewAllVacancyPage GoToViewAllVacancyPage()
         {
-                formCompletionHelper.Click(ViewAllVacancy);
-                return new ViewAllVacancyPage(context);
+            formCompletionHelper.Click(ViewAllVacancy);
+            return new ViewAllVacancyPage(context);
         }
         public TraineeshipRecruitHomePage GoToTraineeshipHomePage()
         {
@@ -40,7 +38,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 
         public ReferVacancyPage SearchReferAdvertTitle()
         {
-            var vacancyPage = _searchVacancyPageHelper.SearchReferVacancy();
+            _ = _searchVacancyPageHelper.SearchReferVacancy();
 
             GoToReferredVacancyCheckYourAnswersPage();
 

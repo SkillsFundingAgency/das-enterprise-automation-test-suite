@@ -1,8 +1,6 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 
-public class AS_ApprenticeFailedDatePage : AS_GradeDateBasePage
+public class AS_ApprenticeFailedDatePage(ScenarioContext context) : AS_GradeDateBasePage(context)
 {
     protected override string PageTitle => "What is the date the apprentice failed?";
-
-    public AS_ApprenticeFailedDatePage(ScenarioContext context) : base(context) { }
 }

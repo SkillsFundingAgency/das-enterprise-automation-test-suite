@@ -3,12 +3,8 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class EIPaymentsProcessHelper : EIFunctionAppHelper
+    public class EIPaymentsProcessHelper(EIPaymentProcessConfig config) : EIFunctionAppHelper(config)
     {
-        public EIPaymentsProcessHelper(EIPaymentProcessConfig config) : base(config)
-        {
-        }
-
         public async Task StartPaymentProcessOrchestrator()
         {
             await StartOrchestrator($"api/orchestrators/IncentivePaymentOrchestrator");

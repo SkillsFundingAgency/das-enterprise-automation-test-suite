@@ -9,7 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[role='button']");
-        private static By SaveAndComeBackButton => By.XPath("//button[text()='Save and come back later']");
         #endregion
 
         public YouHaveAddedYourOrgAndPAYEScheme(ScenarioContext context) : base(context) => VerifyPage();

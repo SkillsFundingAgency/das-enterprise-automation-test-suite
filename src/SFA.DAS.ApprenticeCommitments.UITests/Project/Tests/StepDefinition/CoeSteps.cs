@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;

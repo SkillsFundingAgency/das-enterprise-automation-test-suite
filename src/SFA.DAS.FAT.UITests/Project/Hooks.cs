@@ -5,13 +5,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAT.UITests.Project
 {
     [Binding]
-    public class Hooks
+    public class Hooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public Hooks(ScenarioContext context) => _context = context;
-
         [BeforeScenario(Order = 21)]
-        public void NavigateToFATHomepage() => _context.Get<TabHelper>().GoToUrl(UrlConfig.FAT_BaseUrl);
+        public void NavigateToFATHomepage() => context.Get<TabHelper>().GoToUrl(UrlConfig.FAT_BaseUrl);
     }
 }

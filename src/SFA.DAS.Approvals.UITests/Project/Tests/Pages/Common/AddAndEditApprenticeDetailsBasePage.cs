@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class AddAndEditApprenticeDetailsBasePage : ApprovalsBasePage
+    public abstract class AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private static By Uln => By.Name("Uln");
@@ -35,23 +33,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By EmployerReference => By.Id("Reference");
         private static By StartDateErrorMessagelLink => By.XPath("//*[contains(@data-focuses, 'error-message-StartDate')]");
         private static By EndDateErrorMessagelLink => By.XPath("//*[contains(@data-focuses, 'error-message-EndDate')]");
-        protected virtual By SaveButtonSelector => GetFormSubmitButton(); 
+        protected virtual By SaveButtonSelector => GetFormSubmitButton();
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef, #with-hint");
         private static By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
         private static By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
         private static By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
-        public AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : base(context)
-        {
-        }
         public void VerifyCourseAndCostAreReadOnly()
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(ReadOnlyTrainingCost),
                 () => VerifyPage(ReadOnlyTrainingCourse)
-            });
+            ]);
         }
 
         protected void EnterTrainingCostAndEmpReference(bool isFlexiPaymentPilotLearner = false)
@@ -172,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             {
                 pageInteractionHelper.WaitForElementToBeDisplayed(locator);
                 Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(locator), "Date overlaps error message not displayed");
-                
+
                 string expectedMessage = "The date overlaps with existing dates for the same apprentice";
                 string actualMessage = pageInteractionHelper.GetText(locator);
                 StringAssert.StartsWith(expectedMessage, actualMessage, "Incorrect Date Overlaps Message displayed");

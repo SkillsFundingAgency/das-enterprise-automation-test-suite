@@ -6,19 +6,17 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerCreateAdvertSteps
+    public class EmployerCreateAdvertSteps(ScenarioContext context)
     {
-        private readonly EmployerCreateAdvertStepsHelper _employerCreateVacancyStepsHelper;
+        private readonly EmployerCreateAdvertStepsHelper _employerCreateVacancyStepsHelper = new(context);
 
         private CreateAnApprenticeshipAdvertOrVacancyPage _createAnApprenticeshipAdvertPage;
-
-        public EmployerCreateAdvertSteps(ScenarioContext context) => _employerCreateVacancyStepsHelper = new EmployerCreateAdvertStepsHelper(context);
 
         [Given(@"the Employer can create an advert by entering all the Optional fields")]
         public void TheEmployerCanCreateAnAdvertByEnteringAllTheOptionalFields()
         {
             _employerCreateVacancyStepsHelper.optionalFields = true;
-            
+
             _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.Anonymous);
         }
 

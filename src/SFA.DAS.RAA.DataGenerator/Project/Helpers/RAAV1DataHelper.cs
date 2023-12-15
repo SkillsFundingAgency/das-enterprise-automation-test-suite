@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA.DataGenerator
             SecondQuestion = RandomDataGenerator.GenerateRandomAlphabeticString(15);
             AdditionalLocationInformation = RandomDataGenerator.GenerateRandomAlphabeticString(5);
             ShareApplicationEmail = $"{TrainingContactName}@gmail.com";
-            OptionalMessage = RandomDataGenerator.GenerateRandomAlphabeticString(30);              
+            OptionalMessage = RandomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public string EmployerErn { get; private set; }
@@ -51,14 +51,14 @@ namespace SFA.DAS.RAA.DataGenerator
 
             return randomEmployer;
         }
-                
+
 
         public string EmployerDescription { get; }
 
         public string EmployerReason { get; }
 
         public string EmployerBody { get; }
-        
+
         public string EmployerWebsiteUrl { get; }
 
         public string VacancyShortDescription { get; }
@@ -69,11 +69,11 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string TrainingDetails { get; }
 
-        public int RandomNumber => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
+        public static int RandomNumber => RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
 
         public string TrainingContactName { get; }
 
-        public string TrainingContactNumber => "07777777777";
+        public static string TrainingContactNumber => "07777777777";
 
         public string TrainingEmail { get; }
 
@@ -83,7 +83,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string CustomMinWagePerWeek { get; }
 
-        public string CustomMaxWagePerWeek { get; }    
+        public string CustomMaxWagePerWeek { get; }
 
         public DateTime VacancyClosing { get; }
 
@@ -95,28 +95,28 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string VacancyDescription { get; }
 
-        public string DesiredSkills { get;}
-        
+        public string DesiredSkills { get; }
+
         public string PersonalQualities { get; }
-        
+
         public string DesiredQualifications { get; }
-        
+
         public string FutureProspects { get; }
-        
+
         public string ThingsToConsider { get; }
 
         public string SecondQuestion { get; }
-        
+
         public string FirstQuestion { get; }
 
-        public string AdditionalLocationInformation { get;}
-        
-        public string NumberOfVacancy => "2" ;
+        public string AdditionalLocationInformation { get; }
+
+        public static string NumberOfVacancy => "2";
 
         public string ShareApplicationEmail { get; }
 
         public string OptionalMessage { get; }
 
-        private string WebsiteUrl(string url) => $"https://www.{url}.com";
+        private static string WebsiteUrl(string url) => $"https://www.{url}.com";
     }
 }

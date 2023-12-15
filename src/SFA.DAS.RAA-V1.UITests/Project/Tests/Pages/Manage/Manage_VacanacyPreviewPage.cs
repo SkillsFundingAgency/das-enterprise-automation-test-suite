@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected override string PageTitle => "Vacancy preview";
 
         private By Refer => By.CssSelector("#btnReject");
-        
+
 
         public Manage_VacanacyPreviewPage(ScenarioContext context) : base(context) { }
 

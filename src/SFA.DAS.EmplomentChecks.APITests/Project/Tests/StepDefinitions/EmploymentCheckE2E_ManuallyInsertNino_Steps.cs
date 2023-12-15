@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.EmploymentChecks.APITests.Project.Models;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Tests.StepDefinitions;
@@ -19,7 +19,7 @@ internal class EmploymentCheckE2E_ManuallyInsertNino_Steps(ScenarioContext conte
     public void GivenEmploymentCheckHasBeenRequestedForAnApprenticeWithAndULN(int scenarioId, long Uln)
     {
         _testData = SetupScenarioTestData.SetData(scenarioId);
-        
+
         _testData.ULN = Uln;
     }
 

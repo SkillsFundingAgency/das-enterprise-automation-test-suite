@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FluentAssertions;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentAssertions;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -50,7 +50,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .Create();
 
         }
-        
+
         [When(@"they submit the application")]
         public async Task WhenTheySubmitTheApplication()
         {
@@ -66,7 +66,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _incentives.Should().HaveCount(2);
             _incentives.Where(i => i.Status == IncentiveStatus.Active).Should().HaveCount(1);
         }
-        
+
         [Then(@"original withdrawn incentive is retained")]
         public void ThenOriginalWithdrawnIncentiveIsRetained()
         {

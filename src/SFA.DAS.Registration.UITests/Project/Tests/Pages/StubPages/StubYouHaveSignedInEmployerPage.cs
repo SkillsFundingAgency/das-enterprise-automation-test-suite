@@ -1,9 +1,9 @@
-﻿using SFA.DAS.TestDataCleanup.Project.Helpers;
-using TechTalk.SpecFlow;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprenticeshipTraining_Section7
@@ -21,15 +22,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public ConfirmOrganisationManagementHierarchy EnterDetails()
         {
-            formCompletionHelper.EnterText(FirstName, applydataHelpers.FirstName);
-            formCompletionHelper.EnterText(LastName, applydataHelpers.LastName);
-            formCompletionHelper.EnterText(JobRole, applydataHelpers.JobRole);
-            formCompletionHelper.EnterText(TimeInRoleYears, applydataHelpers.GenerateRandomWholeNumber(1));
-            formCompletionHelper.EnterText(TimeInRoleMonths, applydataHelpers.GenerateRandomWholeNumber(1));
+            formCompletionHelper.EnterText(FirstName, RoatpApplyDataHelpers.FirstName);
+            formCompletionHelper.EnterText(LastName, RoatpApplyDataHelpers.LastName);
+            formCompletionHelper.EnterText(JobRole, RoatpApplyDataHelpers.JobRole);
+            formCompletionHelper.EnterText(TimeInRoleYears, RoatpApplyDataHelpers.GenerateRandomWholeNumber(1));
+            formCompletionHelper.EnterText(TimeInRoleMonths, RoatpApplyDataHelpers.GenerateRandomWholeNumber(1));
             formCompletionHelper.EnterText(DateOfBirthMonth, applydataHelpers.RandomMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, applydataHelpers.RandomYear);
-            formCompletionHelper.EnterText(Email, applydataHelpers.Email);
-            formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
+            formCompletionHelper.EnterText(Email, RoatpApplyDataHelpers.Email);
+            formCompletionHelper.EnterText(ContactNumber, RoatpApplyDataHelpers.ContactNumber);
             SelectNoAndContinue();
             return new ConfirmOrganisationManagementHierarchy(context);
         }

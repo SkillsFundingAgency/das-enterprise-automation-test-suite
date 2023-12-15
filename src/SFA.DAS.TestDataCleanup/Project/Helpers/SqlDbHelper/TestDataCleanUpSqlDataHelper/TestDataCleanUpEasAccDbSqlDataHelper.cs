@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
-public class TestDataCleanUpEasAccDbSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
+public class TestDataCleanUpEasAccDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper(objectContext, dbConfig.AccountsDbConnectionString)
 {
     public override string SqlFileName => "EasAccTestDataCleanUp";
-
-    public TestDataCleanUpEasAccDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { }
 
     internal List<string[]> GetAccountIds(List<string> userEmail) => GetMultipleData($"select AccountId from employer_account.Membership where UserId in (select id from employer_account.[User] where Email = {GetAccountIdsQuery(userEmail)})");
 
@@ -24,7 +22,7 @@ public class TestDataCleanUpEasAccDbSqlDataHelper : BaseSqlDbHelper.TestDataClea
 
         return userEmailList;
     }
-   
+
     internal List<string[]> GetAccountIds(int greaterThan, int lessThan) => GetMultipleAccountData($"select Id from employer_account.Account where id > {greaterThan} and id < {lessThan} order by id desc");
 
     internal List<string[]> GetAccountHashedIds(List<string> accountIdToDelete) => GetMultipleData($"select HashedId from employer_account.Account where id in ({string.Join(",", accountIdToDelete)})");

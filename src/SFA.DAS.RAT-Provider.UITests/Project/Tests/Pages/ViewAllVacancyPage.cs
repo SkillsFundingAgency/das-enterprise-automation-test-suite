@@ -4,13 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 {
-    public class ViewAllVacancyPage : Raav2BasePage
+    public class ViewAllVacancyPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Your vacancies";
 
         private static By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
-
-        public ViewAllVacancyPage(ScenarioContext context) : base(context) { }
 
         public CreateAVacancyPage CreateVacancy()
         {

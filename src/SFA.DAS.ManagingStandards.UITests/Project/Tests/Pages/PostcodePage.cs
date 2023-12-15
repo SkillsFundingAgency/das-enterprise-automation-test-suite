@@ -1,11 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class PostcodePage : ManagingStandardsBasePage
+public class PostcodePage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "What is the postcode of this training venue?";
 
-    private static By PostCodeField = By.Id("Postcode");
-    public PostcodePage(ScenarioContext context) : base(context) { }
+    private static By PostCodeField => By.Id("Postcode");
 
     public ChooseTheAddressPage EnterPostcodeAndContinue()
     {

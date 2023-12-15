@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
 
@@ -26,7 +26,7 @@ public abstract class EmploymentCheckFunctionAppHelper
         var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?code={AuthenticationCode}");
 
         if (ignoreFailure) return;
-        
+
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception($"Unsuccessful request - {response.StatusCode}");

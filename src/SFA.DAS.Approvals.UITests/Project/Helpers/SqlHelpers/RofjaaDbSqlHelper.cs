@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             var removalReason = "Automation";
             var accountLegalEntityId = GetAccountLegalEntityId(removalReason);
             string query = $"UPDATE Agency SET EffectiveTo = '2022-12-09 12:00:00.0000000' where LegalEntityId = {accountLegalEntityId}";
-            ExecuteSqlCommand(query);      
+            ExecuteSqlCommand(query);
         }
 
         public void AddFJAAEmployerToRegister()

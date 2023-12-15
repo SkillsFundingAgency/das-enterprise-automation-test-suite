@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 
-public class TprDbSqlDataHelper : ProjectSqlDbHelper
+public class TprDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : ProjectSqlDbHelper(objectContext, dbConfig.TPRDbConnectionString)
 {
-    public TprDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TPRDbConnectionString) { }
 }

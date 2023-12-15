@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
-    public class InfluencersHubPage : InfluencersBasePage
+    public class InfluencersHubPage(ScenarioContext context) : InfluencersBasePage(context)
     {
         protected override string PageTitle => "INFLUENCERS";
 
         protected override By PageHeader => PageHeaderTag;
 
         private static By BrowseApprentice => By.CssSelector("#fiu-panel-link-faa");
-
-        public InfluencersHubPage(ScenarioContext context) : base(context)  { }
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToInfluencersHubPage());
 

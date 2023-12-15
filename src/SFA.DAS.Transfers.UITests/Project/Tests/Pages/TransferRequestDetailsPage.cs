@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransferRequestDetailsPage : TransfersBasePage
+    public class TransferRequestDetailsPage(ScenarioContext context) : TransfersBasePage(context)
     {
         protected override string PageTitle => "Transfer request details";
 
         protected override By ContinueButton => By.Id("submit-approve-transfer");
-
-        public TransferRequestDetailsPage(ScenarioContext context) : base(context) { }
 
         public TransferRequestApprovedPage ApproveTransferRequest()
         {

@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         private const string FAAUsername = "faaLoginWithNewAccountusername";
         private const string FAAPassword = "faaLoginWithNewAccountpassword";
         private const string FAAFirstname = "faaLoginWithNewAccountfirstname";
-        private const string FAALastname  = "faaLoginWithNewAccountlastname";
+        private const string FAALastname = "faaLoginWithNewAccountlastname";
         private const string VacancyShortDesc = "vacancyshortdesc";
         #endregion
 

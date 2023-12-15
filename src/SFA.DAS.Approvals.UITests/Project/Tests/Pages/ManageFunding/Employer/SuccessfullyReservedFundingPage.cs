@@ -6,14 +6,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class SuccessfullyReservedFundingPage : ReservationIdBasePage
+    public class SuccessfullyReservedFundingPage(ScenarioContext context) : ReservationIdBasePage(context)
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
         protected override By ContinueButton => By.CssSelector("main button");
 
         private static By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
-
-        public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context)  { }
 
         public DynamicHomePages GoToDynamicHomePage()
         {

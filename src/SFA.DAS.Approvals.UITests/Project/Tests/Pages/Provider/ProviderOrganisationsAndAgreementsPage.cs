@@ -3,12 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderOrganisationsAndAgreementsPage : Navigate
+    public class ProviderOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : Navigate(context, navigate)
     {
         protected override string PageTitle => "Organisations and agreements";
 
         protected override string Linktext => "Organisations and agreements";
-
-        public ProviderOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
     }
 }

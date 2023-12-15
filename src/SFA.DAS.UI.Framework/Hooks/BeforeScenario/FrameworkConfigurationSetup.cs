@@ -1,29 +1,20 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using System.Linq;
-using System.Collections.Generic;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
 [Binding]
-public class FrameworkConfigurationSetup
+public class FrameworkConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
+    private readonly IConfigSection _configSection = context.Get<IConfigSection>();
 
-    private readonly IConfigSection _configSection;
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-    private readonly ObjectContext _objectContext;
-
-    public FrameworkConfigurationSetup(ScenarioContext context)
-    {
-        _context = context;
-        _objectContext = context.Get<ObjectContext>();
-        _configSection = context.Get<IConfigSection>();
-    }
-    
     [BeforeScenario(Order = 2)]
     public void SetUpFrameworkConfiguration()
     {
@@ -50,14 +41,14 @@ public class FrameworkConfigurationSetup
             IsAccessibilityTesting = isAccessibilityTesting
         };
 
-        _context.Set(frameworkConfig);
+        context.Set(frameworkConfig);
 
         _objectContext.SetBrowser(testExecutionConfig.Browser);
 
-        _context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
+        context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
 
         if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
     }
 
-      private bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
+    private static bool IsCurrrentUserAnAdmin(List<string> admins) => admins.Any(x => Configurator.GetDeploymentRequestedFor().ContainsCompareCaseInsensitive(x));
 }

@@ -13,7 +13,7 @@ public abstract class FATV2BasePage : VerifyBasePage
     #endregion
 
     protected FATV2BasePage(ScenarioContext context) : base(context) => VerifyPage();
-    
+
     public void SearchApprenticeship(string searchTerm)
     {
         formCompletionHelper.EnterText(SearchTextField, searchTerm);

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 
-public abstract class Apprentice_BaseSteps : AppEmp_BaseSteps
+public abstract class Apprentice_BaseSteps(ScenarioContext context) : AppEmp_BaseSteps(context)
 {
     protected BeforeYouStartPage beforeYouStartPage;
 
@@ -13,8 +13,6 @@ public abstract class Apprentice_BaseSteps : AppEmp_BaseSteps
     protected ShutterPage shutterPage;
 
     protected Apprentice_NetworkHubPage networkHubPage;
-
-    public Apprentice_BaseSteps(ScenarioContext context) : base(context) { }
 
     protected SignInPage GetSignInPage() => new(context);
 }

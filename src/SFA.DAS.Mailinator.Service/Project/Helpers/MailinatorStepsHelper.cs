@@ -4,18 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Mailinator.Service.Project.Helpers;
 
-public class MailinatorStepsHelper
+public class MailinatorStepsHelper(ScenarioContext context, string email)
 {
-    private readonly ScenarioContext _context;
-    private readonly TabHelper _tabHelper;
-    private readonly string _email;
-
-    public MailinatorStepsHelper(ScenarioContext context, string email)
-    {
-        _context = context;
-        _tabHelper = context.Get<TabHelper>();
-        _email = email;
-    }
+    private readonly TabHelper _tabHelper = context.Get<TabHelper>();
 
     public void OpenLink(string linktext)
     {
@@ -28,6 +19,6 @@ public class MailinatorStepsHelper
     {
         _tabHelper.OpenInNewTab("https://www.mailinator.com/");
 
-        return new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_email).OpenEmail();
+        return new MailinatorLandingPage(context).EnterEmailAndClickOnGoButton(email).OpenEmail();
     }
 }

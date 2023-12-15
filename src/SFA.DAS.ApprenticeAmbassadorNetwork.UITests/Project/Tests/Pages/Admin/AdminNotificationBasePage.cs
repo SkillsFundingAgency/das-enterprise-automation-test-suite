@@ -1,12 +1,7 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
-public abstract class AdminNotificationBasePage : AanAdminBasePage
+public abstract class AdminNotificationBasePage(ScenarioContext context) : AanAdminBasePage(context)
 {
-    public AdminNotificationBasePage(ScenarioContext context) : base(context)
-    {
-
-    }
-
     public ManageEventsPage AccessManageEvents()
     {
         formCompletionHelper.ClickLinkByText("Manage events");

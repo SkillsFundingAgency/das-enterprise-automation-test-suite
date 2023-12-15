@@ -3,15 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class ApprenticeHubPage : ApprenticeBasePage
+    public class ApprenticeHubPage(ScenarioContext context) : ApprenticeBasePage(context)
     {
         protected override string PageTitle => "APPRENTICES";
 
         protected override By PageHeader => PageHeaderTag;
 
-        protected static By SetUpService => By.CssSelector("a[href*='create-account']"); 
-
-        public ApprenticeHubPage(ScenarioContext context) : base(context)  { }
+        protected static By SetUpService => By.CssSelector("a[href*='create-account']");
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToApprenticeshipHubPage());
 

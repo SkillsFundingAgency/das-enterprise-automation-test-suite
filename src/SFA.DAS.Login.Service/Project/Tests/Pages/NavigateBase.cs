@@ -7,7 +7,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
     {
         protected NavigateBase(ScenarioContext context, string url) : base(context)
         {
-            if (!(string.IsNullOrEmpty(url))) tabHelper.GoToUrl(url); 
+            if (!(string.IsNullOrEmpty(url))) tabHelper.GoToUrl(url);
         }
     }
 }

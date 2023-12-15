@@ -6,16 +6,16 @@ public abstract class ApprenticeshipTrainingCourseBasePage : FATV2BasePage
 
     protected override bool TakeFullScreenShot => false;
 
-    public ApprenticeshipTrainingCourseBasePage(ScenarioContext context) : base(context) 
+    public ApprenticeshipTrainingCourseBasePage(ScenarioContext context) : base(context)
     {
         var environmentName = EnvironmentName.ToLower() + "-";
 
         var currentURL = GetUrl();
 
-        if (!currentURL.ToLower().Contains(environmentName))
+        if (!currentURL.Contains(environmentName, System.StringComparison.CurrentCultureIgnoreCase))
         {
             var newURL = currentURL.Insert(8, environmentName);
-            
+
             tabHelper.GoToUrl(newURL);
         }
     }

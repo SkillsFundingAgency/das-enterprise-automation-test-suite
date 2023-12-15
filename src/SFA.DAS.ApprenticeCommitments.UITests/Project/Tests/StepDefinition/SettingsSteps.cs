@@ -6,12 +6,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class SettingsSteps : BaseSteps
+    public class SettingsSteps(ScenarioContext context) : BaseSteps(context)
     {
-        private readonly ScenarioContext _context;
-
-        public SettingsSteps(ScenarioContext context) : base(context)  => _context = context;
-
         [Given(@"an apprentice has a confirmed account")]
         public void GivenAnApprenticeHasAConfirmedAccount() => createAccountStepsHelper.CreateAccountViaApiAndConfirmApprenticeshipViaDb();
 
@@ -35,24 +31,24 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenAnApprenticeCanChangeTheirPasswordBeforeConfirmingAccount() => UpdatePassword().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
 
         [Then(@"an apprentice change their personal details menu is available")]
-        public void ThenAnApprenticeChangeTheirPersonalDetailsMenuIsAvailable() => new CreateMyApprenticeshipAccountPage(_context).NavigateToChangeYourPersonalDetails();
+        public void ThenAnApprenticeChangeTheirPersonalDetailsMenuIsAvailable() => new CreateMyApprenticeshipAccountPage(context).NavigateToChangeYourPersonalDetails();
 
         private PasswordResetSuccessfulPage UpdatePassword()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
             NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeEmail(), "change your password");
-            return new ResetPasswordPage(_context).UpdatePassword();
+            return new ResetPasswordPage(context).UpdatePassword();
         }
 
         private YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourEmailAddress().RequestToUpdateEmailAddress();
             NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeChangedEmail(), "Verify email address");
-            return new ChangeYourEmailAddressPage(_context).UpdateEmailAddress();
+            return new ChangeYourEmailAddressPage(context).UpdateEmailAddress();
         }
 
-        private void NavigateToMailinatorClickOnNotificationLink(string email, string linkText) => new MailinatorStepsHelper(_context, email).OpenLink(linkText);
+        private void NavigateToMailinatorClickOnNotificationLink(string email, string linkText) => new MailinatorStepsHelper(context, email).OpenLink(linkText);
 
-        private TopBannerSettingsPage GetTopBannerSettingsPage() => new TopBannerSettingsPage(_context);
+        private TopBannerSettingsPage GetTopBannerSettingsPage() => new(context);
     }
 }

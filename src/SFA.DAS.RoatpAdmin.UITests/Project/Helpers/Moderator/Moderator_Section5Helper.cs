@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section5Helper
     {
-        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link1Status(StatusHelper.StatusPass);
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection5Link2Status(StatusHelper.StatusPass);
@@ -33,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public virtual ModerationApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)

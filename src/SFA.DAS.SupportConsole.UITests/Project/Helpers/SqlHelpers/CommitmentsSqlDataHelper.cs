@@ -7,7 +7,7 @@ public class CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBCo
         var query = $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetails(publicHashedId)}) temp UNION " +
             $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortNotAssociatedToAccount(publicHashedId)}) temp UNION " +
             $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetailsWithPendingChanges(publicHashedId)}) temp UNION " +
-            $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetailsWithTrainingProviderHistory(publicHashedId)}) temp" ;
+            $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetailsWithTrainingProviderHistory(publicHashedId)}) temp";
 
         var result = GetMultipleData(query);
 

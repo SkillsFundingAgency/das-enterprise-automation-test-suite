@@ -1,15 +1,15 @@
 ﻿using MongoDB.Bson;
-using System.Text.RegularExpressions;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
-    public class EmpRefLinksDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
+    public partial class EmpRefLinksDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
         private readonly string _empRefLink;
 
         public EmpRefLinksDataGenerator(MongoDbDataHelper helper) : base(helper)
         {
-            _empRefLink = Regex.Replace(mongoDbDatahelper.EmpRef, "/", "%2");
+            _empRefLink = GeneratedRegexHelper.UrlEscapeRegex().Replace(mongoDbDatahelper.EmpRef, "%2");
         }
 
         public string CollectionName() => "emprefs";
@@ -17,13 +17,13 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         public BsonDocument[] Data()
         {
 
-            BsonDocument selfHref = new BsonDocument { { "href", $"/epaye/{_empRefLink}" } };
-            BsonDocument declarationsHref = new BsonDocument { { "href", $"/epaye/{_empRefLink}/declarations" } };
-            BsonDocument franctionsHref = new BsonDocument { { "href", $"/epaye/{_empRefLink}/fractions" } };
-            BsonDocument empCheckHref = new BsonDocument { { "href", $"/epaye/{_empRefLink}/employed" } };
+            BsonDocument selfHref = new() { { "href", $"/epaye/{_empRefLink}" } };
+            BsonDocument declarationsHref = new() { { "href", $"/epaye/{_empRefLink}/declarations" } };
+            BsonDocument franctionsHref = new() { { "href", $"/epaye/{_empRefLink}/fractions" } };
+            BsonDocument empCheckHref = new() { { "href", $"/epaye/{_empRefLink}/employed" } };
 
 
-            BsonDocument links = new BsonDocument
+            BsonDocument links = new()
             {
                 { "self" , selfHref},
                 { "declarations" , declarationsHref },
@@ -31,18 +31,18 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
                 { "employment-check" ,empCheckHref }
             };
 
-            BsonDocument scenarioName = new BsonDocument { { "nameLine1", mongoDbDatahelper.Name } };
+            BsonDocument scenarioName = new() { { "nameLine1", mongoDbDatahelper.Name } };
 
-            BsonDocument name = new BsonDocument { { "name", scenarioName } };
+            BsonDocument name = new() { { "name", scenarioName } };
 
-            BsonDocument empRefLinks = new BsonDocument
+            BsonDocument empRefLinks = new()
             {
                 {"_links" , links },
                 {"empref", mongoDbDatahelper.EmpRef },
                 {"employer", name}
             };
 
-            return new BsonDocument[] { empRefLinks };
+            return [empRefLinks];
         }
     }
 }

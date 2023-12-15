@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
 {
-    public class SearchApprenticeshipTrainingCoursePage : FindEPAOBasePage
+    public class SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : FindEPAOBasePage(context)
     {
         protected override string PageTitle => "What is the apprenticeship training course?";
-
-        public SearchApprenticeshipTrainingCoursePage(ScenarioContext context) : base(context) { } 
 
         #region Locators
         private static By BackButton => By.ClassName("govuk-back-link");

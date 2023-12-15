@@ -1,11 +1,12 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_DeliveringApprenticeshipTrainingChecks;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section4Helper
     {
-        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link1Status(StatusHelper.StatusPass);
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link2Status(StatusHelper.StatusPass);
@@ -16,7 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
-        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link3Status(StatusHelper.StatusFail);
             moderationApplicationAssessmentOverviewPage = moderationApplicationAssessmentOverviewPage.VerifySection4Link6Status(StatusHelper.StatusFail);
@@ -135,9 +136,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         }
 
 
-        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage,ApplicationRoute applicationroute)
+        public virtual ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute || 
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.SupportingProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.SupportingProviderRouteForExistingProvider)
@@ -152,7 +153,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .NavigateToDeliveringTrainingInDigitalSectorPage()
                     .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-                yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
+                yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(YourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
 
                 return yourSectorsAndEmployeesPage
                     .NavigateToAssessmentOverviewPage()
@@ -167,7 +168,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .NavigateToDeliveringTrainingInDigitalSectorPage()
                 .SelectFailAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-            yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusFail);
+            yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(YourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusFail);
 
             return yourSectorsAndEmployeesPage
                .NavigateToAssessmentOverviewPage()

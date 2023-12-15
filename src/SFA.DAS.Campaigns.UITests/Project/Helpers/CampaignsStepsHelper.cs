@@ -6,13 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {
-    public class CampaignsStepsHelper
+    public class CampaignsStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public CampaignsStepsHelper(ScenarioContext context) => _context = context;
-
-        public CampaingnsHomePage GoToCampaingnsHomePage() => new CampaingnsHomePage(_context).AcceptCookieAndAlert();
+        public CampaingnsHomePage GoToCampaingnsHomePage() => new CampaingnsHomePage(context).AcceptCookieAndAlert();
 
         public ApprenticeHubPage GoToApprenticeshipHubPage() => GoToCampaingnsHomePage().NavigateToApprenticeshipHubPage();
 

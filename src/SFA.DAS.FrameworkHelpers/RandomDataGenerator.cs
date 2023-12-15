@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
     public class RandomDataGenerator
     {

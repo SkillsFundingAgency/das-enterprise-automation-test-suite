@@ -1,18 +1,18 @@
-﻿using TechTalk.SpecFlow;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using System.Linq;
-using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -227,7 +227,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             string firstWarning = "You need to stop the apprenticeship record with the current training provider before you can change training providers.";
             string secondWarning = "This apprenticeship record cannot be restarted once stopped.";
             string finalMessage = $"We've stopped {_dataHelper.ApprenticeFullName}'s apprenticeship record with their current training provider.";
-            
+
             new ApprenticeDetailsPage(_context)
                               .ClickOnChangeOfProviderLink()
                               .ValidateWarningAndClickOnContinueButton(firstWarning)
@@ -243,8 +243,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                               .ClickConfirmAndSend()
                               .VerifyAdditionalMessageOnConfirmationPage(finalMessage);
         }
-    
-        private void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
+
+        private static void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
             string expectedText = "You have made a change of employer request. It’s now with the new employer for review.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();
@@ -260,7 +260,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count < 1, "validate there are no edit or input box available on View apprentice details page");
         }
 
-        private void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
+        private static void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
             string expectedText = "The new employer has reviewed the change of employer request. You need to review the new details.";
             string actualText = providerApprenticeDetailsPage.GetCoPBanner();

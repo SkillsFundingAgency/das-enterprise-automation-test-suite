@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_CreateAnAccountPage : FAABasePage
+    public class FAA_CreateAnAccountPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Create an account";
 
@@ -26,8 +27,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #endregion
 
-        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) { }
-
         public FAA_ActivateYourAccountPage CreateAccount()
         {
             CreateAccount(faaDataHelper.EmailId);
@@ -39,7 +38,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void SelectAddress()
         {
-            formCompletionHelper.EnterText(PostCode, faaDataHelper.PostCode);
+            formCompletionHelper.EnterText(PostCode, FAADataHelper.PostCode);
 
             pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
 
@@ -69,6 +68,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CreateAccountButton);
         }
 
-        public void CheckTheValidationMessagesForAlreadyRegisteredEmail() => pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, faaDataHelper.CreateAccountWithRegisteredEmailErrorMessage);
+        public void CheckTheValidationMessagesForAlreadyRegisteredEmail() => pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, FAADataHelper.CreateAccountWithRegisteredEmailErrorMessage);
     }
 }

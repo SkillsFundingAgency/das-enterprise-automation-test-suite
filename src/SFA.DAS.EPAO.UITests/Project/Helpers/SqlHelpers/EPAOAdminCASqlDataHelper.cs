@@ -72,7 +72,7 @@ public partial class EPAOAdminCASqlDataHelper(ObjectContext objectContext, DbCon
     }
 
     private static string GetLearnersDataSqlFileName(LearnerCriteria learnerCriteria) => learnerCriteria.HasMultiStandards ? "GetMultiStandardLearnersData" : "GetSingleStandardLearnersData";
-    
+
     [GeneratedRegex(@"__Isactivestandard__")]
     private static partial Regex IsActiveStandardRegex();
     [GeneratedRegex(@"__HasVersions__")]

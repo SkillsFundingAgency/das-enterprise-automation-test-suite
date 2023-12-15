@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 

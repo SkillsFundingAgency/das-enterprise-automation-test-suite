@@ -41,11 +41,9 @@ public class RetryHelper
              })
              .Execute(() =>
              {
-                 using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                 {
-                     beforeAction?.Invoke();
-                     return func();
-                 }
+                 using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                 beforeAction?.Invoke();
+                 return func();
              });
     }
 
@@ -61,10 +59,8 @@ public class RetryHelper
             })
            .Execute(() =>
            {
-               using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-               {
-                   ClickEvent(element()).Invoke();
-               }
+               using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+               ClickEvent(element()).Invoke();
            });
     }
 
@@ -81,10 +77,8 @@ public class RetryHelper
             })
            .Execute(() =>
            {
-               using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-               {
-                   ClickEvent(element()).Invoke();
-               }
+               using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+               ClickEvent(element()).Invoke();
            });
     }
 
@@ -122,10 +116,8 @@ public class RetryHelper
             })
             .Execute(() =>
             {
-                using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                {
-                    result = func.Invoke();
-                }
+                using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                result = func.Invoke();
             });
 
         return result;
@@ -159,12 +151,10 @@ public class RetryHelper
              })
              .Execute(() =>
              {
-                 using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                 {
-                     beforeAction?.Invoke();
-                     ClickEvent(element, useAction).Invoke();
-                     afterAction?.Invoke();
-                 }
+                 using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                 beforeAction?.Invoke();
+                 ClickEvent(element, useAction).Invoke();
+                 afterAction?.Invoke();
              });
     }
 
@@ -172,7 +162,7 @@ public class RetryHelper
 
     private Action ClickEvent(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
 
-    private Action Click(IWebElement element) => () => element.Click();
+    private static Action Click(IWebElement element) => () => element.Click();
 
     private (Action beforeAction, Action afterAction) ResizeWindow()
     {

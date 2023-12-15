@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
-    public class YourSchoolApprenticesPage : PublicSectorReportingBasePage
+    public class YourSchoolApprenticesPage(ScenarioContext context) : PublicSectorReportingBasePage(context)
     {
         protected override string PageTitle => "Your apprentices - maintained schools only";
         private static By NoOfApprentices2021 => By.CssSelector("#z0__Answer");
@@ -11,7 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private static By NoOfApprentices => By.CssSelector("#z2__Answer");
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-        public YourSchoolApprenticesPage(ScenarioContext context) : base(context)  { }
 
         public ReportYourProgressPage EnterSchoolApprenticeDetails()
         {

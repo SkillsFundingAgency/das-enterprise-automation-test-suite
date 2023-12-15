@@ -1,35 +1,32 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.FrameworkHelpers;
-
+using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class TransferPledgePage : TransferMatchingBasePage
+    public class TransferPledgePage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => $"Transfer pledge {GetPledgeId()}";
 
         protected override string AccessibilityPageTitle => "Transfer pledge page";
 
         private static By DownloadSelector => By.CssSelector("#main-content > div > div:nth-child(1) > div.govuk-grid-column-one-third > p > a");
-        private By ClosePLedgeSelector => By.Id("close-pledge-button");
-        private By RejectContinueSelector => By.CssSelector("#applications-action");
-        private By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
-        private By PledgedFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(1) > div > p.govuk-heading-l.app-data__figure\r\n");
-        private By EstimatedRemainingFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(2) > div > p.govuk-heading-l.app-data__figure");
-        private By ApplicationStatusSelector => By.CssSelector("#ApplicationsToReject > fieldset > table > tbody > tr > td:nth-child(6) > strong");
+        private static By ClosePLedgeSelector => By.Id("close-pledge-button");
+        private static By RejectContinueSelector => By.CssSelector("#applications-action");
+        private static By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
+        private static By PledgedFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(1) > div > p.govuk-heading-l.app-data__figure\r\n");
+        private static By EstimatedRemainingFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(2) > div > p.govuk-heading-l.app-data__figure");
+        private static By ApplicationStatusSelector => By.CssSelector("#ApplicationsToReject > fieldset > table > tbody > tr > td:nth-child(6) > strong");
 
-        private By PledgedFunds => By.LinkText("Pledged funds");
-        private By RemainingFunds => By.LinkText("Remaining funds");
-        private By EstimatedCost => By.LinkText("Estimated yearly cost");
-        private By Applicant => By.LinkText("Applicant");
-        private By TypicalDuration => By.LinkText("Typical duration");
-        private By Criteria => By.LinkText("Criteria");
-        private By Status => By.LinkText("Status");
-
-        public TransferPledgePage(ScenarioContext context) : base(context) { }
+        private static By PledgedFunds => By.LinkText("Pledged funds");
+        private static By RemainingFunds => By.LinkText("Remaining funds");
+        private static By EstimatedCost => By.LinkText("Estimated yearly cost");
+        private static By Applicant => By.LinkText("Applicant");
+        private static By TypicalDuration => By.LinkText("Typical duration");
+        private static By Criteria => By.LinkText("Criteria");
+        private static By Status => By.LinkText("Status");
 
         public TransferPledgePage VerifyPledgeAmount()
         {
