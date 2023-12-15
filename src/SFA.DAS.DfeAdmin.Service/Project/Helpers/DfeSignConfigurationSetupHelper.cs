@@ -4,7 +4,7 @@ public class DfeSignConfigurationSetupHelper(ScenarioContext context)
 {
     public void SetUpDfeSignConfiguration<T>(string key)
     {
-        var configSection = context.Get<IConfigSection>();
+        var configSection = context.Get<ConfigSection>();
 
         var dfeSignInList = configSection.GetConfigSection<List<T>>(key);
 

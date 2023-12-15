@@ -7,7 +7,7 @@ namespace SFA.DAS.EmploymentChecks.APITests.Project;
 public class EmploymentCheckProcessConfigurationSetup(ScenarioContext context)
 {
     private readonly ScenarioContext _context = context;
-    private readonly IConfigSection _configSection = context.Get<IConfigSection>();
+    private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
     [BeforeScenario(Order = 2)]
     public void SetUpEmploymentCheckProcessConfig() => _context.SetEmploymentCheckPaymentProcessConfig(_configSection.GetConfigSection<EmploymentCheckProcessConfig>());

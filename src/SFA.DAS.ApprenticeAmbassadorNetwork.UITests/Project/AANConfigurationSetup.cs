@@ -12,7 +12,7 @@ public class AANConfigurationSetup(ScenarioContext context)
     [BeforeScenario(Order = 2)]
     public void SetUpAANConfigConfiguration()
     {
-        var configSection = context.Get<IConfigSection>();
+        var configSection = context.Get<ConfigSection>();
 
         context.SetEasLoginUser(
         [

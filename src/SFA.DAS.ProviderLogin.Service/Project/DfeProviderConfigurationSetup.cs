@@ -15,7 +15,7 @@ public class DfeProviderConfigurationSetup(ScenarioContext context)
     [BeforeScenario(Order = 1)]
     public void SetUpDfeProviderConfiguration()
     {
-        var configSection = context.Get<IConfigSection>();
+        var configSection = context.Get<ConfigSection>();
 
         var dfeProviderList = configSection.GetConfigSection<List<DfeProviderUsers>>(DfeProvidersConfig);
 

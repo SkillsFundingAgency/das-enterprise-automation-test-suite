@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project
     [Binding]
     public class RAAV1ConfigurationSetup(ScenarioContext context)
     {
-        private readonly IConfigSection _configSection = context.Get<IConfigSection>();
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpTestProjectConfiguration() => context.SetRAAV1Config(_configSection.GetConfigSection<RAAV1Config>());

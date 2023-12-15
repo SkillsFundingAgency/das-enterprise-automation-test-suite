@@ -11,7 +11,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 [Binding]
 public class FrameworkConfigurationSetup(ScenarioContext context)
 {
-    private readonly IConfigSection _configSection = context.Get<IConfigSection>();
+    private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
     private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 

@@ -8,7 +8,7 @@ namespace SFA.DAS.Transfers.UITests.Project
     [Binding]
     public class TransfersConfigurationSetup(ScenarioContext context)
     {
-        private readonly IConfigSection _configSection = context.Get<IConfigSection>();
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpTransfersConfiguration()

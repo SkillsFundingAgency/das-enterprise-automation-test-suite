@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project
     [Binding]
     public class RAAV2EmployerConfigurationSetup(ScenarioContext context)
     {
-        private readonly IConfigSection _configSection = context.Get<IConfigSection>();
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpRAAV2EmployerProjectConfiguration()

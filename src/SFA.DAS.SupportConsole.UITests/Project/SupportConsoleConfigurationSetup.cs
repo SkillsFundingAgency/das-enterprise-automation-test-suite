@@ -9,7 +9,7 @@ public class SupportConsoleConfigurationSetup(ScenarioContext context)
     [BeforeScenario(Order = 2)]
     public void SetUpSupportConsoleProjectConfiguration()
     {
-        var configSection = context.Get<IConfigSection>();
+        var configSection = context.Get<ConfigSection>();
 
         context.SetSupportConsoleConfig(configSection.GetConfigSection<SupportConsoleConfig>());
 
