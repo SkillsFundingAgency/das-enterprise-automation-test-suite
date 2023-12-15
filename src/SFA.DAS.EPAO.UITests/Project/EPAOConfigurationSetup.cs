@@ -9,7 +9,7 @@ public class EPAOConfigurationSetup(ScenarioContext context)
     [BeforeScenario(Order = 2)]
     public void SetUpEPAOProjectConfiguration()
     {
-        var configSection = context.Get<IConfigSection>();
+        var configSection = context.Get<ConfigSection>();
 
         context.SetEPAOAssessorPortalUser(
         [

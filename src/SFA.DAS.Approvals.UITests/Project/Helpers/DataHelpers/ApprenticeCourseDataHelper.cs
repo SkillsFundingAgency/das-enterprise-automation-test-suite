@@ -18,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly DateTime _currentAcademicYearStartDate;
         private readonly DateTime _currentAcademicYearEndDate;
         private readonly DateTime _nextAcademicYearStartDate;
-        private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
 
         public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
@@ -33,7 +32,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
             _currentAcademicYearEndDate = AcademicYearDatesHelper.GetCurrentAcademicYearEndDate();
             _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
-            _nextAcademicYearEndDate = AcademicYearDatesHelper.GetNextAcademicYearEndDate();
         }
 
         private void SetCourseDetails(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode)

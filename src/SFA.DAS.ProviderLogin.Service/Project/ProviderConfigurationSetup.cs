@@ -12,14 +12,14 @@ namespace SFA.DAS.ProviderLogin.Service.Project;
 public class ProviderConfigurationSetup
 {
     private readonly ScenarioContext _context;
-    private readonly IConfigSection _configSection;
+    private readonly ConfigSection _configSection;
     private readonly string[] _tags;
 
     public ProviderConfigurationSetup(ScenarioContext context)
     {
         _context = context;
         _tags = context.ScenarioInfo.Tags;
-        _configSection = _context.Get<IConfigSection>();
+        _configSection = _context.Get<ConfigSection>();
     }
 
     [BeforeScenario(Order = 2)]

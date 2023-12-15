@@ -7,5 +7,5 @@ namespace SFA.DAS.MailinatorAPI.Service.Project;
 public class MailinatorConfigurationSetup(ScenarioContext context)
 {
     [BeforeScenario(Order = 2)]
-    public void SetUpMailinatorConfiguration() => context.Set(context.Get<IConfigSection>().GetConfigSection<MailinatorConfig>());
+    public void SetUpMailinatorConfiguration() => context.Set(context.Get<ConfigSection>().GetConfigSection<MailinatorConfig>());
 }
