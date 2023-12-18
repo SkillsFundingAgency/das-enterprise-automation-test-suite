@@ -26,7 +26,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private static By TriageLinkUpdateLink => By.LinkText("View price mismatch");
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
-        private static By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static By ChangePriceLink => By.Id("linkChangePrice");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -137,8 +138,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ValidateFlexiPaymentDataLockMessageDisplayed(bool isDisplayed)
         {
-            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPatmentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
-            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPatmentsPilotNotificationMessage));
+            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPaymentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
+            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPaymentsPilotNotificationMessage));
         }
+
+        public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
     }
 }

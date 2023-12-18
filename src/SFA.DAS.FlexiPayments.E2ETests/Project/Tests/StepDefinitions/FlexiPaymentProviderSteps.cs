@@ -53,6 +53,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(context).SubmitApprove();
 
+        [Given(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         [When(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         public void ProviderCanSearchLearnerUsingSimplifiedPaymentsPilotFilterSetToYesOnManageYourApprenticesPage(int learnerNumber, string filter)
         {
@@ -70,6 +71,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             new ProviderManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
         }
+
+        [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
+        public void WhenProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
+        {
+            new ProviderManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails().ClickChangePriceLink();
+        }
+
 
         [Then(@"validate provider (can|cannot) view Pilot DataLock message")]
         public void ThenValidateProviderCanViewPilotDataLockMessage(string action)
