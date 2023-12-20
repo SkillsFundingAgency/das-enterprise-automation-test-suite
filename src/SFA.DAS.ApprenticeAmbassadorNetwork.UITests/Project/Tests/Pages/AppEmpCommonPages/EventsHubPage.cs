@@ -15,6 +15,7 @@ public class EventsHubPage(ScenarioContext context) : AanBasePage(context)
     public SearchNetworkEventsPage AccessAllNetworkEvents()
     {
         formCompletionHelper.ClickLinkByText("All network events");
+
         return new SearchNetworkEventsPage(context);
     }
 

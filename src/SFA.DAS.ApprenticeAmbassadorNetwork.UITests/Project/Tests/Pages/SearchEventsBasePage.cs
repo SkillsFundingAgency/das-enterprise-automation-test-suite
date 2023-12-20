@@ -55,6 +55,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected void FilterEventByEventFormat_Hybrid() => ApplyFilter(Hybrid);
 
         protected void FilterEventByEventRegion_London() => ApplyFilter(London);
+
         protected void FilterByRole_Apprentice() => ApplyFilter(Apprentice);
 
         protected void FilterByRole_Employer() => ApplyFilter(Employer);

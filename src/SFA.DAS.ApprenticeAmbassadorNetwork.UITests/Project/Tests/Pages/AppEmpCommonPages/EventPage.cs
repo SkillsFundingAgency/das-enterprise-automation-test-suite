@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
-public class EventPage(ScenarioContext context) : AanBasePage(context)
+public class EventPage(ScenarioContext context) : AppEmpCommonBasePage(context, true)
 {
     protected override string PageTitle => "";
 
@@ -13,13 +13,7 @@ public class EventPage(ScenarioContext context) : AanBasePage(context)
 
     public EventPage GoToEvent((string id, DateTime startdate) eventLink)
     {
-        var url = pageInteractionHelper.GetUrl();
-
-        var guid = url.Split('/').ToList().Single(x => x.Count(c => c == '-') == 4);
-
-        var eventUrl = url.Replace(guid, eventLink.id);
-
-        tabHelper.GoToUrl(eventUrl);
+        GoToId(eventLink.id);
 
         return new EventPage(context);
     }

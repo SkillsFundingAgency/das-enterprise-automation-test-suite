@@ -1,10 +1,19 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
-public class NetworkDirectoryPage : SearchEventsBasePage
+public class NetworkDirectoryPage(ScenarioContext context) : SearchEventsBasePage(context)
 {
     protected override string PageTitle => "Network directory";
 
-    public NetworkDirectoryPage(ScenarioContext context) : base(context) => VerifyPage();
+    private static By SearchResultLink => By.CssSelector(".das-search-results__link");
+
+    public ApprenticeMessagePage ClickOnFirstApprentice()
+    {
+        FilterByRole_Apprentice();
+
+        formCompletionHelper.Click(SearchResultLink);
+
+        return new ApprenticeMessagePage(context);
+    }
 
     public new NetworkDirectoryPage FilterEventByEventRegion_London()
     {

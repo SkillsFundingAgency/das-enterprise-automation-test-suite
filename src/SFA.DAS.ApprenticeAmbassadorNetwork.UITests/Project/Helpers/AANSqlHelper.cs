@@ -4,7 +4,17 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 
 public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AANDbConnectionString)
 {
-    public (string, DateTime) GetNextActiveEventDetails(string email)
+    public (string id, string FullName) GetLiveApprenticeDetails(string email)
+    {
+        var query = $"select top 1 Id, FirstName, LastName from Member where UserType = 'Apprentice' and Email != '{email}' and status = 'Live' order by NEWID()";
+
+        var list = GetData(query);
+
+        return (list[0], $"{list[1]} {list[2]}");
+    }
+
+
+    public (string id , DateTime startdate) GetNextActiveEventDetails(string email)
     {
         var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
 

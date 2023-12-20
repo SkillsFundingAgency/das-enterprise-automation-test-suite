@@ -11,15 +11,24 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     private EventsHubPage eventsHubPage;
 
     private AanApprenticeOnBoardedUser user;
+    private (string id, string FullName) Apprentice;
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
     public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
 
-    [Then(@"the user should be able to successfully verify ambassador profile")]
-    public void TheUserShouldBeAbleToSuccessfullyVerifyAmbassadorProfile()
+    [Then(@"the user should be able to successfully verify apprentice member profile")]
+    public void VerifyApprenticeMemberProfile()
     {
-        networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile().VerifyYourAmbassadorProfile(user.Username);
+        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+
+        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(user.Username);
     }
+
+    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to the member successfully")]
+    public void TheUserShouldBeAbleToAskToTheMemberSuccessfully(string message) => SendMessage(networkDirectoryPage, Apprentice, message);
+
+    [Then(@"the user should be able to successfully verify ambassador profile")]
+    public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
 
     [Then(@"the user should be able to successfully signup for a future event")]
     public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);

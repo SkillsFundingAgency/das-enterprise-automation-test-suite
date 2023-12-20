@@ -23,10 +23,7 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     }
 
     [Then(@"the user should be able to successfully verify ambassador profile")]
-    public void TheUserShouldBeAbleToSuccessfullyVerifyAmbassadorProfile()
-    {
-        networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile().VerifyYourAmbassadorProfile(user.Username);
-    }
+    public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
 
     [Then(@"the user should be able to successfully signup for a future event")]
     public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);

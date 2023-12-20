@@ -8,6 +8,19 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
 {
     private (string id, DateTime startdate) Event;
 
+    protected static NetworkDirectoryPage SendMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return networkDirectoryPage.ClickOnFirstApprentice()
+        .GoToApprenticeMessagePage(apprentice)
+        .SendMessage(message)
+        .AccessNetworkDirectory();
+    }
+
+    protected static void VerifyYourAmbassadorProfile(NetworkHubPage networkHubPage, string value)
+    {
+        networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile().VerifyYourAmbassadorProfile(value);
+    }
+
     protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage, string email)
     {
         var page = networkHubPage.AccessEventsHub();
