@@ -11,9 +11,8 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     private EventsHubPage eventsHubPage;
 
     private SearchNetworkEventsPage searchNetworkEventsPage;
-    private NetworkDirectoryPage networkDirectoryPage;
+
     private AanEmployerOnBoardedUser user;
-    private (string id, string FullName) Apprentice;
 
     [Given(@"an onboarded employer logs into the AAN portal")]
     public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
@@ -23,16 +22,19 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
         networkHubPage = new Employer_NetworkHubPage(context);
     }
 
+    [Then(@"the user should be able to successfully verify a regional chair member profile")]
+    public void VerifyARegionalChairMemberProfile() => AccessNetworkDirectory(true);
+
     [Then(@"the user should be able to successfully verify apprentice member profile")]
-    public void VerifyApprenticeMemberProfile()
-    {
-        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+    public void VerifyApprenticeMemberProfile() => AccessNetworkDirectory(false);
 
-        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(string.Empty);
-    }
+    private void AccessNetworkDirectory(bool isRegionalChair) => AccessNetworkDirectory(networkHubPage, isRegionalChair, string.Empty);
 
-    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to the member successfully")]
-    public void TheUserShouldBeAbleToAskToTheMemberSuccessfully(string message) => SendMessage(networkDirectoryPage, Apprentice, message);
+    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to a regional chair member successfully")]
+    public void TheUserShouldBeAbleToAskARegionalChairMemberSuccessfully(string message) => SendRegionalChairMessage(networkDirectoryPage, Apprentice, message);
+
+    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to an apprentice member successfully")]
+    public void TheUserShouldBeAbleToAskToTheMemberSuccessfully(string message) => SendApprenticeMessage(networkDirectoryPage, Apprentice, message);
 
     [Then(@"the user should be able to successfully verify ambassador profile")]
     public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);

@@ -6,10 +6,3 @@ public enum EventFormat
     Online,
     Hybrid
 }
-
-public enum UserType
-{
-    Apprentice,
-    Employer,
-    Admin
-}

@@ -7,25 +7,27 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
     private SearchNetworkEventsPage searchNetworkEventsPage;
-    private NetworkDirectoryPage networkDirectoryPage;
+
     private EventsHubPage eventsHubPage;
 
     private AanApprenticeOnBoardedUser user;
-    private (string id, string FullName) Apprentice;
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
     public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
 
-    [Then(@"the user should be able to successfully verify apprentice member profile")]
-    public void VerifyApprenticeMemberProfile()
-    {
-        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+    [Then(@"the user should be able to successfully verify a regional chair member profile")]
+    public void VerifyRegionalChairMemberProfile() => AccessNetworkDirectory(true);
 
-        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(user.Username);
-    }
+    [Then(@"the user should be able to successfully verify an apprentice member profile")]
+    public void VerifyApprenticeMemberProfile() => AccessNetworkDirectory(false);
 
-    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to the member successfully")]
-    public void TheUserShouldBeAbleToAskToTheMemberSuccessfully(string message) => SendMessage(networkDirectoryPage, Apprentice, message);
+    private void AccessNetworkDirectory(bool isRegionalChair) => AccessNetworkDirectory(networkHubPage, isRegionalChair, user.Username);
+
+    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to an apprentice member successfully")]
+    public void TheUserShouldBeAbleToAskAnApprenticeMemberSuccessfully(string message) => SendApprenticeMessage(networkDirectoryPage, Apprentice, message);
+
+    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to a regional chair member successfully")]
+    public void TheUserShouldBeAbleToAskARegionalChairMemberSuccessfully(string message) => SendRegionalChairMessage(networkDirectoryPage, Apprentice, message);
 
     [Then(@"the user should be able to successfully verify ambassador profile")]
     public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
@@ -59,5 +61,4 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
     public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
-
 }

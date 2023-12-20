@@ -8,12 +8,33 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
 {
     private (string id, DateTime startdate) Event;
 
-    protected static NetworkDirectoryPage SendMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    protected NetworkDirectoryPage networkDirectoryPage;
+
+    protected (string id, string FullName) Apprentice;
+
+    protected void AccessNetworkDirectory(NetworkHubPage networkHubPage, bool isRegionalChair, string email)
     {
-        return networkDirectoryPage.ClickOnFirstApprentice()
-        .GoToApprenticeMessagePage(apprentice)
-        .SendMessage(message)
-        .AccessNetworkDirectory();
+        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+
+        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(isRegionalChair, email);
+    }
+
+    protected static NetworkDirectoryPage SendRegionalChairMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return SendMessage(networkDirectoryPage, true, apprentice, message);
+    }
+
+    protected static NetworkDirectoryPage SendApprenticeMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return SendMessage(networkDirectoryPage, false, apprentice, message);
+    }
+
+    private static NetworkDirectoryPage SendMessage(NetworkDirectoryPage networkDirectoryPage, bool isRegionalChair, (string id, string fullname) apprentice, string message)
+    {
+        return networkDirectoryPage.GoToApprenticeMessagePage(isRegionalChair)
+           .GoToApprenticeMessagePage(apprentice)
+           .SendMessage(message)
+           .AccessNetworkDirectory();
     }
 
     protected static void VerifyYourAmbassadorProfile(NetworkHubPage networkHubPage, string value)

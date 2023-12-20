@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Apprentice
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_A_07_VerifyApprenticeMemberProfileAndSendMessage")]
-    public partial class AAN_A_07_VerifyApprenticeMemberProfileAndSendMessageFeature
+    [NUnit.Framework.DescriptionAttribute("AAN_E_07_VerifyRegionalChairProfileAndSendMessage")]
+    public partial class AAN_E_07_VerifyRegionalChairProfileAndSendMessageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_A_07_VerifyApprenticeMemberProfileAndSendMessage.feature"
+#line 1 "AAN_E_07_VerifyRegionalChairProfileAndSendMessage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apprentice", "AAN_A_07_VerifyApprenticeMemberProfileAndSendMessage", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AAN_E_07_VerifyRegionalChairProfileAndSendMessage", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_A_07_VerifyApprenticeMemberProfileAndSendMessage")]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_07_VerifyRegionalChairProfileAndSendMessage")]
         [NUnit.Framework.CategoryAttribute("aan")]
-        [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_A_07_VerifyApprenticeMemberProfileAndSendMessage()
+        public void AAN_E_07_VerifyRegionalChairProfileAndSendMessage()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
-                    "aanaprentice",
+                    "aanemployer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_07_VerifyApprenticeMemberProfileAndSendMessage", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_07_VerifyRegionalChairProfileAndSendMessage", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,24 +97,26 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-    testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-    testRunner.Then("the user should be able to successfully verify apprentice member profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the user should be able to successfully verify a regional chair member profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
-    testRunner.And("the user should be able to ask for industry advice to the member successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
-    testRunner.And("the user should be able to ask for help with a network activity to the member suc" +
+    testRunner.And("the user should be able to ask for industry advice to a regional chair member suc" +
                         "cessfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+    testRunner.And("the user should be able to ask for help with a network activity to a regional cha" +
+                        "ir member successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 12
-    testRunner.And("the user should be able to request a case study to the member successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the user should be able to request a case study to a regional chair member succes" +
+                        "sfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
-    testRunner.And("the user should be able to get in touch after meeting at a network event to the m" +
-                        "ember successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the user should be able to get in touch after meeting at a network event to a reg" +
+                        "ional chair member successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

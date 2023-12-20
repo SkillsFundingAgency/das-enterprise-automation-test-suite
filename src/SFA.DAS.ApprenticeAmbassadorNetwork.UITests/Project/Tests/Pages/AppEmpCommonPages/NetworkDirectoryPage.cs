@@ -6,13 +6,15 @@ public class NetworkDirectoryPage(ScenarioContext context) : SearchEventsBasePag
 
     private static By SearchResultLink => By.CssSelector(".das-search-results__link");
 
-    public ApprenticeMessagePage ClickOnFirstApprentice()
+    public ApprenticeMessagePage GoToApprenticeMessagePage(bool isRegionalChair)
     {
-        FilterByRole_Apprentice();
+        if (isRegionalChair) FilterByRole_Regionalchair();
+
+        else FilterByRole_Apprentice();
 
         formCompletionHelper.Click(SearchResultLink);
 
-        return new ApprenticeMessagePage(context);
+        return new ApprenticeMessagePage(context, isRegionalChair);
     }
 
     public new NetworkDirectoryPage FilterEventByEventRegion_London()
@@ -62,4 +64,5 @@ public class NetworkDirectoryPage(ScenarioContext context) : SearchEventsBasePag
         base.VerifyRole_Regionalchair_Filter();
         return this;
     }
+
 }

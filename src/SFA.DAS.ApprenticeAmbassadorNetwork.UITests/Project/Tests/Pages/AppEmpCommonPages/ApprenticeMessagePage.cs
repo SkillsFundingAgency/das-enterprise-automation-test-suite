@@ -10,12 +10,12 @@ public class ApprenticeMessagePage : AppEmpCommonBasePage
 
     private static By SendMessageButton => By.CssSelector("[id='sendMessage']");
 
-    public ApprenticeMessagePage(ScenarioContext context) : base(context, false)
+    public ApprenticeMessagePage(ScenarioContext context, bool isRegionalChair) : base(context, false)
     {
-        VerifyPage(EventTag, UserType.Apprentice.ToString());
+        VerifyPage(EventTag, isRegionalChair ? "Regional chair" : "Apprentice");
     }
 
-    public ApprenticeMessagePage(ScenarioContext context, string ApprenticeName) : this(context)
+    public ApprenticeMessagePage(ScenarioContext context, string ApprenticeName) : base(context, false)
     {
         this.ApprenticeName = ApprenticeName;
 
