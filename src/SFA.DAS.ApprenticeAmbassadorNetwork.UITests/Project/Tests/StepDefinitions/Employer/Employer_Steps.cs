@@ -13,6 +13,7 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
     private AanEmployerOnBoardedUser user;
+    private (string id, string FullName) Apprentice;
 
     [Given(@"an onboarded employer logs into the AAN portal")]
     public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
@@ -21,6 +22,17 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
 
         networkHubPage = new Employer_NetworkHubPage(context);
     }
+
+    [Then(@"the user should be able to successfully verify apprentice member profile")]
+    public void VerifyApprenticeMemberProfile()
+    {
+        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+
+        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(string.Empty);
+    }
+
+    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to the member successfully")]
+    public void TheUserShouldBeAbleToAskToTheMemberSuccessfully(string message) => SendMessage(networkDirectoryPage, Apprentice, message);
 
     [Then(@"the user should be able to successfully verify ambassador profile")]
     public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
