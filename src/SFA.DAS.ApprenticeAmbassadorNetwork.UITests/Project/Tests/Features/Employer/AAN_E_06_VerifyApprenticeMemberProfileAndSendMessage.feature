@@ -1,10 +1,10 @@
-﻿Feature: AAN_E_06_VerifyMemberProfileAndSendMessage
+﻿Feature: AAN_E_06_VerifyApprenticeMemberProfileAndSendMessage
 
 
 @aan
 @aanemployer
 @regression
-Scenario: AAN_E_06_VerifyMemberProfileAndSendMessage
+Scenario: AAN_E_06_VerifyApprenticeMemberProfileAndSendMessage
     Given an onboarded employer logs into the AAN portal
     Then the user should be able to successfully verify apprentice member profile
     And the user should be able to ask for industry advice to the member successfully
