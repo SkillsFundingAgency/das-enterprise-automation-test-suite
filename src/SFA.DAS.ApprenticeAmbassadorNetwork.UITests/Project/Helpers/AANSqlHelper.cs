@@ -6,11 +6,11 @@ public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlD
 {
     public (string id, string FullName) GetLiveApprenticeDetails(bool isRegionalChair, string email)
     {
-        string GetuserType() => isRegionalChair ? string.Empty : "UserType = 'Apprentice'";
+        string GetuserType() => isRegionalChair ? string.Empty : "UserType = 'Apprentice' and";
 
         int GetIsRegionalChairint() => isRegionalChair ? 1 : 0;
 
-        var query = $"select top 1 Id, FirstName, LastName from Member where {GetuserType()} and IsRegionalChair = {GetIsRegionalChairint()} and Email != '{email}' and status = 'Live' order by NEWID()";
+        var query = $"select top 1 Id, FirstName, LastName from Member where {GetuserType()} IsRegionalChair = {GetIsRegionalChairint()} and Email != '{email}' and status = 'Live' order by NEWID()";
 
         var list = GetData(query);
 

@@ -12,7 +12,7 @@ public class ApprenticeMessagePage : AppEmpCommonBasePage
 
     public ApprenticeMessagePage(ScenarioContext context, bool isRegionalChair) : base(context, false)
     {
-        VerifyPage(EventTag, isRegionalChair ? "Regional chair" : "Apprentice");
+        VerifyPage(() => pageInteractionHelper.FindElement(EventTag), isRegionalChair ? ["Regional chair", "Regional Chair"] : ["Apprentice"]);
     }
 
     public ApprenticeMessagePage(ScenarioContext context, string ApprenticeName) : base(context, false)
