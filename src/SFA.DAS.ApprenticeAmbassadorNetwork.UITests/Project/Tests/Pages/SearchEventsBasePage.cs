@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
-    public abstract class SearchEventsBasePage : AanBasePage
+    public abstract class SearchEventsBasePage(ScenarioContext context) : AanBasePage(context)
     {
         private static string Published => "Published";
         private static string Cancelled => "Cancelled";
@@ -24,8 +24,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
 
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
-
-        public SearchEventsBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void FilterEventFromTomorrow() => FilterEventByDate(null);
 

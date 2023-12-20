@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
-public class EventPage : AanBasePage
+public class EventPage(ScenarioContext context) : AanBasePage(context)
 {
     protected override string PageTitle => "";
 
@@ -10,8 +10,6 @@ public class EventPage : AanBasePage
     private static By InPersonEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--InPerson')]");
     private static By OnlineEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Online')]");
     private static By HybridEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Hybrid')]");
-
-    public EventPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public EventPage GoToEvent((string id, DateTime startdate) eventLink)
     {

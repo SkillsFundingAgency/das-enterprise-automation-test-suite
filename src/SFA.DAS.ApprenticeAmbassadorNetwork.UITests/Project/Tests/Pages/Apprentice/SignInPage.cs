@@ -2,15 +2,13 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SignInPage : AanBasePage
+    public class SignInPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Sign in to My apprenticeship";
 
         private static By EnterUsername => By.Id("Username");
 
         private static By EnterPassword => By.Id("Password");
-
-        public SignInPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public BeforeYouStartPage SubmitValidUserDetails(AanBaseUser user)
         {

@@ -4,15 +4,22 @@ using SFA.DAS.Login.Service.Project.Helpers;
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 
 [Binding, Scope(Tag = "@aanaprentice")]
-public class Apprentice_Events_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
+public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
     private SearchNetworkEventsPage searchNetworkEventsPage;
     private NetworkDirectoryPage networkDirectoryPage;
     private EventsHubPage eventsHubPage;
+
     private AanApprenticeOnBoardedUser user;
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
-    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
+    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
+
+    [Then(@"the user should be able to successfully verify ambassador profile")]
+    public void TheUserShouldBeAbleToSuccessfullyVerifyAmbassadorProfile()
+    {
+        networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile().VerifyYourAmbassadorProfile(user.Username);
+    }
 
     [Then(@"the user should be able to successfully signup for a future event")]
     public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);

@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class AreYouJoiningBecauseYouHaveEngagedPage : AanBasePage
+    public class AreYouJoiningBecauseYouHaveEngagedPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Did you previously engage with an ambassador before deciding to join the network?";
-
-        public AreYouJoiningBecauseYouHaveEngagedPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public Employer_CheckTheInformationPage YesHaveEngagedWithAmbassadorAndContinue()
         {

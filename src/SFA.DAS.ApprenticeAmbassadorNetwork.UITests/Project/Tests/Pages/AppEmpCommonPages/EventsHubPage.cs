@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
-public class EventsHubPage : AanBasePage
+public class EventsHubPage(ScenarioContext context) : AanBasePage(context)
 {
     protected override string PageTitle => "Events hub";
-
-    public EventsHubPage(ScenarioContext context) : base(context) => VerifyPage();
 
     private static By EventInCalendarLinkSelector => By.CssSelector("a.app-calendar__event");
 

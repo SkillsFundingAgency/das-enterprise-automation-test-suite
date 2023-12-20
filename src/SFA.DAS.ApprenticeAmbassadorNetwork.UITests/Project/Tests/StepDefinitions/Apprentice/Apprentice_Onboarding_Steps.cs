@@ -62,6 +62,6 @@ public class Apprentice_Onboarding_Steps(ScenarioContext context) : Apprentice_B
     {
         _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_Apprentice_BaseUrl, "AAN_Apprentice_BaseUrl");
 
-        GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
+        SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
     }
 }
