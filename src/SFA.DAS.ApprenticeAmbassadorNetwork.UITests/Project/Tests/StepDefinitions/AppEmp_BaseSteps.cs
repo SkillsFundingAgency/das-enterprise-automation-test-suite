@@ -8,6 +8,44 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
 {
     private (string id, DateTime startdate) Event;
 
+    protected NetworkDirectoryPage networkDirectoryPage;
+
+    protected (string id, string FullName) Apprentice;
+
+    protected void AccessNetworkDirectory(NetworkHubPage networkHubPage, bool isRegionalChair, string email)
+    {
+        string x = isRegionalChair ? "is" : "is not";
+
+        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+
+        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(isRegionalChair, email);
+
+        Assert.That(!string.IsNullOrEmpty(Apprentice.id), $"No member found who '{x} regional chair' and email is not '{email}', use the sql query in test data attachment to debug the test");
+    }
+
+    protected static NetworkDirectoryPage SendRegionalChairMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return SendMessage(networkDirectoryPage, true, apprentice, message);
+    }
+
+    protected static NetworkDirectoryPage SendApprenticeMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return SendMessage(networkDirectoryPage, false, apprentice, message);
+    }
+
+    private static NetworkDirectoryPage SendMessage(NetworkDirectoryPage networkDirectoryPage, bool isRegionalChair, (string id, string fullname) apprentice, string message)
+    {
+        return networkDirectoryPage.GoToApprenticeMessagePage(isRegionalChair)
+           .GoToApprenticeMessagePage(apprentice)
+           .SendMessage(message)
+           .AccessNetworkDirectory();
+    }
+
+    protected static void VerifyYourAmbassadorProfile(NetworkHubPage networkHubPage, string value)
+    {
+        networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile().VerifyYourAmbassadorProfile(value);
+    }
+
     protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage, string email)
     {
         var page = networkHubPage.AccessEventsHub();

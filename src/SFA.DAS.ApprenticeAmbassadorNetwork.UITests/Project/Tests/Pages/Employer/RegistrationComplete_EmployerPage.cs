@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer;
 
-public class RegistrationComplete_EmployerPage : AanBasePage
+public class RegistrationComplete_EmployerPage(ScenarioContext context) : AanBasePage(context)
 {
     protected override string PageTitle => "Registration complete";
-
-    public RegistrationComplete_EmployerPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public Employer_NetworkHubPage ContinueToAmbassadorHub()
     {
