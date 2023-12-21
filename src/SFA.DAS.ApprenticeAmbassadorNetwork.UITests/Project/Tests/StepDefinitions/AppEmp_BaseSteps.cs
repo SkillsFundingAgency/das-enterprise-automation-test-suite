@@ -14,9 +14,13 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
 
     protected void AccessNetworkDirectory(NetworkHubPage networkHubPage, bool isRegionalChair, string email)
     {
+        string x = isRegionalChair ? "is" : "is not";
+
         networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
 
         Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(isRegionalChair, email);
+
+        Assert.That(!string.IsNullOrEmpty(Apprentice.id), $"No member found who '{x} regional chair' and email is not '{email}', use the sql query in test data attachment to debug the test");
     }
 
     protected static NetworkDirectoryPage SendRegionalChairMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
