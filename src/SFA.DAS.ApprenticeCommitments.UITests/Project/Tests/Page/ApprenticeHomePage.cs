@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override string AccessibilityPageTitle => "Apprentice home page";
 
-        private static By PageHeadings => By.CssSelector(".govuk-heading-m");
+        private static By PageDashboards => By.CssSelector(".dashboard-nav.dashboard-li li");
 
         private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]");
         private static By UnConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]/..//following-sibling::p");
@@ -79,7 +79,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage VerifyDashboardHelpAndSupportSectionOnHomePage()
         {
             VerifyElement(HelpAndSupportDashboardLink);
-            VerifyElement(() => pageInteractionHelper.FindElements(PageHeadings).Where(x => x.Text.Contains("Help and support", System.StringComparison.OrdinalIgnoreCase)).ToList(), HomePageHelper.HelpAndSupportSectionText);
+            VerifyElement(() => pageInteractionHelper.FindElements(PageDashboards).Where(x => x.Text.Contains("Help and support", System.StringComparison.OrdinalIgnoreCase)).ToList(), HomePageHelper.HelpAndSupportSectionText);
             return this;
         }
 
