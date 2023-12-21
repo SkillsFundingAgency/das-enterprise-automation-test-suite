@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -11,13 +12,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override string AccessibilityPageTitle => "Apprentice home page";
 
+        private static By PageHeadings => By.CssSelector(".govuk-heading-m");
+
         private static By CmadDashboardLinkWhenIncompleteOrUnConfirmed => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]");
         private static By UnConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.UnConfirmedCmadSectionTitle}')]/..//following-sibling::p");
         private static By CmadDashboardLinkAfterFullyConfirmed => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.ConfirmedCmadSectionTitle}')]");
         private static By ConfimredApprenticeshipDetailsSubText => By.XPath($"//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'{HomePageHelper.ConfirmedCmadSectionTitle}')]/..//following-sibling::p");
-        private static By HelpAndSupportDashboardLink => By.XPath("//ul[@class='dashboard-nav dashboard-li']/li/h2/a[contains(text(),'Help and support')]");
+        private static By HelpAndSupportDashboardLink => By.CssSelector(".govuk-heading-m a[href='/HelpAndSupport']");
         private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
-        private static By HelpAndSupportDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[2]");
         private static By CurrentApprenticeshipStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
 
         public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context)
@@ -77,7 +79,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeHomePage VerifyDashboardHelpAndSupportSectionOnHomePage()
         {
             VerifyElement(HelpAndSupportDashboardLink);
-            VerifyElement(HelpAndSupportDashboardText, HomePageHelper.HelpAndSupportSectionText);
+            VerifyElement(() => pageInteractionHelper.FindElements(PageHeadings).Where(x => x.Text.Contains("Help and support", System.StringComparison.OrdinalIgnoreCase)).ToList(), HomePageHelper.HelpAndSupportSectionText);
             return this;
         }
 
