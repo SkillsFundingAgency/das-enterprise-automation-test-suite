@@ -16,6 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private static By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
         protected static By YourFinancesLink => By.LinkText("Your finances");
+        protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
         #endregion
 
         protected override string AccessibilityPageTitle => "Employer home page";
@@ -23,6 +24,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
 
         public HomePage(ScenarioContext context) : this(context, false) { }
+
+        public void GoToAanHomePage() => formCompletionHelper.Click(AANLink);
 
         public HomePage VerifySucessSummary(string message)
         {

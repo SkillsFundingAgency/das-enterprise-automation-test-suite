@@ -69,8 +69,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class AanEmployerUser : EasAccountUser { }
 
-    public class AanEmployerOnBoardedUser : EasAccountUser { }
-
     public class AddMultiplePayeLevyUser : EasAccountUser
     {
         public string NoOfPayeToAdd { get; set; }
@@ -88,6 +86,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public string SecondOrganisationName => LegalEntities?.ElementAtOrDefault(1);
     }
+
+    public class AanEmployerOnBoardedUser : MultipleEasAccountUser { }
 
     public class TransfersUser : MultipleEasAccountUser { }
 
