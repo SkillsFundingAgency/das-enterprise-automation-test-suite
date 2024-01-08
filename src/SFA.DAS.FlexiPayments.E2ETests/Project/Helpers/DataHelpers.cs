@@ -48,11 +48,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
         {
             DateTime date = DateTime.Today;
 
-            if (isStartInPreviousMonth) date = new DateTime(date.Year, date.Month - 1, date.Day);
+            if (isStartInPreviousMonth)
+            {
+                if (date.Month == 1) date = new DateTime(date.Year - 1, 12, date.Day);
+                else date = new DateTime(date.Year, date.Month - 1, date.Day);
+            }
 
             return IsLastDayOfTheMonth(date) ? date.AddDays(-1) : date;
         }
-
 
         private static bool IsLastDayOfTheMonth(DateTime date) => DateTime.DaysInMonth(date.Year, date.Month) == date.Day;
     }
