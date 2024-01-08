@@ -137,9 +137,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(ApprenticeStatus.WaitingToStart)]
         public void SpecficlarsCode(ApprenticeStatus apprenticeStatus)
         {
+            int liveYear = (DateTime.Now.Month < 8) ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+
             //Arrange 
             int durationInMonths = 12;
-            var startDate = new DateTime(apprenticeStatus == ApprenticeStatus.Live ? DateTime.Now.Year : DateTime.Now.Year + 1, 8, 2);
+            var startDate = new DateTime(apprenticeStatus == ApprenticeStatus.Live ? liveYear : liveYear + 1, 8, 1);
             var courseDetails = RandomDataGenerator.GetRandomElementFromListOfElements(AvailableCourses.GetAvailableCourses());
             var expectedLarsCode = courseDetails.Course.larsCode;
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), startDate, durationInMonths, expectedLarsCode);
