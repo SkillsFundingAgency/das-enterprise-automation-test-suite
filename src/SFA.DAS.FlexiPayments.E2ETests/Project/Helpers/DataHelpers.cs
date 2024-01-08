@@ -35,8 +35,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 
         public static DateTime GetFirstDateOfPreviousMonth()
         {
-            DateTime today = DateTime.Today;
-            return new DateTime(today.Year, today.Month - 1, 1);
+            DateTime date = DateTime.Today;
+            
+            if (date.Month == 1) date = new DateTime(date.Year - 1, 12, 1);
+            else date = new DateTime(date.Year, date.Month - 1, 1);
+
+            return date;
         }
 
         public static T ToEnum<T>(this string value, bool ignoreCase = true)
