@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -51,9 +52,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             ]);
         }
 
-        protected void VerifyNotificationBannerHeader(string expected) => VerifyElement(NotificationBannerHeader, expected);
+        protected void VerifyNotificationBannerHeader(string expected) => VerifyNotification(NotificationBannerHeader, expected);
 
-        protected void VerifyNotificationBannerContent(string expected) => VerifyElement(NotificationBannerContent, expected);
+        protected void VerifyNotificationBannerContent(string expected) => VerifyNotification(NotificationBannerContent, expected);
+
+        private void VerifyNotification(By by, string expected) => VerifyElement(() => pageInteractionHelper.FindElements(by).ToList(), expected);
 
         public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
