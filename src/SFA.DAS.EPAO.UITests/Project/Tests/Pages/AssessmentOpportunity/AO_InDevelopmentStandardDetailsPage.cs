@@ -2,7 +2,7 @@
 
 public class AO_InDevelopmentStandardDetailsPage : EPAO_BasePage
 {
-    protected override string PageTitle => "Embalmer";
+    protected override string PageTitle => "Interior designer";
 
     public AO_InDevelopmentStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
