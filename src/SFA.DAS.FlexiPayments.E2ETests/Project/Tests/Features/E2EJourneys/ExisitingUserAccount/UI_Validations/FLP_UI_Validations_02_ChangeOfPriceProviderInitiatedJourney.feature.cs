@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.CoC
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.UI_Validations
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,24 +20,24 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_CoC_02_ChangeOfPriceProviderInitiated")]
-    public partial class FLP_CoC_02_ChangeOfPriceProviderInitiatedFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_02_ChangeOfPriceProviderInitiatedJourney")]
+    public partial class FLP_UI_Validations_02_ChangeOfPriceProviderInitiatedJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_CoC_02_ChangeOfPriceProviderInitiated.feature"
+#line 1 "FLP_UI_Validations_02_ChangeOfPriceProviderInitiatedJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/CoC", "FLP_CoC_02_ChangeOfPriceProviderInitiated", "The purpose of this test is to validate that the Training Provider can successull" +
-                    "y raise a Change of Price. \r\nThe Employer approves the request and the earnings " +
-                    "are recalculated", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_02_ChangeOfPriceProviderInitiatedJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
+                    " errors) for a training provider to \r\nsuccessully raise a Change of Price reques" +
+                    "t for a learner opted in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,20 +76,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_CoC_02 Change of Price request is approved and earnings are calculated - Prov" +
-            "ider Initiated")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_02 Change Of Price Provider Initiated Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_CoC_02ChangeOfPriceRequestIsApprovedAndEarningsAreCalculated_ProviderInitiated()
+        public void FLP_UI_Validations_02ChangeOfPriceProviderInitiatedJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_02 Change of Price request is approved and earnings are calculated - Prov" +
-                    "ider Initiated", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_Validations_02 Change Of Price Provider Initiated Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -108,20 +106,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table3.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
-                            "2024/08/01",
+                            "StartPreviousMonth",
                             "12",
                             "15000",
                             "true"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table3, "Given ");
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table25, "Given ");
 #line hidden
 #line 13
- testRunner.And("Provider can search learner 1 using Simplified Payments Pilot filter set to yes o" +
-                        "n Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +

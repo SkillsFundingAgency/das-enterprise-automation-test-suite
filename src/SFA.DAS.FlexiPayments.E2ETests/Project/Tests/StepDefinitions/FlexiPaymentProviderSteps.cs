@@ -54,9 +54,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(context).SubmitApprove();
 
+        [Given(@"Provider searches for the learner on Manage your apprentice page")]
         [Given(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         [When(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
-        public void ProviderCanSearchLearnerUsingSimplifiedPaymentsPilotFilterSetToYesOnManageYourApprenticesPage(int learnerNumber, string filter)
+        public void ProviderSearchesOnManageYourApprenticesPage(int learnerNumber = 1, string filter = "")
         {
             SetApprenticeDetailsInContext(learnerNumber);
 
