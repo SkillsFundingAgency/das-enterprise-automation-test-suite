@@ -124,6 +124,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 15
+ testRunner.And("Provider submits change of price form without changing input fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.Then("validation errors are displayed to the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

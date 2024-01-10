@@ -12,3 +12,5 @@ Scenario: FLP_UI_Validations_02 Change Of Price Provider Initiated Journey
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 15000        | true         |
     And Provider searches for the learner on Manage your apprentice page
 	When Provider proceeds to create a Change of Price request for flexi payments pilot learner
+	And Provider submits change of price form without changing input fields
+	Then validation errors are displayed to the Provider

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -35,6 +36,20 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
             formCompletionHelper.EnterText(ReasonPriceChange, "AutomationTest");
 
             formCompletionHelper.Click(ContinueButton);
+        }
+
+        public ChangePriceNegotiationAmountsPage ClickContinueButtonWithValidationErrors()
+        {
+            formCompletionHelper.Click(ContinueButton);
+            return this;
+        }
+
+        public void ConfirmValidationErrorMessagesDisplayed()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(pageInteractionHelper.GetText(ChangeTrainingAndOrEpaPriceErrorMessage), "");
+            });
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -14,8 +15,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
         private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
-        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
+        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDataHelper = new(context);
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
+        private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
+        private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -54,17 +57,25 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"pilot provider approves the cohort")]
         public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(context).SubmitApprove();
 
-        [Given(@"Provider searches for the learner on Manage your apprentice page")]
         [Given(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         [When(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
-        public void ProviderSearchesOnManageYourApprenticesPage(int learnerNumber = 1, string filter = "")
+        public void ProviderSearchesLearnerOnManageYourApprenticesPageWithSimplifiedPaymentsPilotFilter(int learnerNumber = 1, string filter = "")
         {
             SetApprenticeDetailsInContext(learnerNumber);
 
             SimplifiedPaymentsPilot filterValue = filter == "yes" ? SimplifiedPaymentsPilot.True : filter == "no" ? SimplifiedPaymentsPilot.False : SimplifiedPaymentsPilot.All;
 
-            Assert.IsTrue(_providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().IsPaymentsPilotLearnerDisplayed(filterValue));
+            Assert.IsTrue(_providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
+                .IsPaymentsPilotLearnerDisplayed(filterValue));
         }
+
+        [Given(@"Provider searches for the learner on Manage your apprentice page")]
+        public void ProviderSearchesLearnerOnManageYourApprenticesPage()
+        {
+            _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails();
+        }
+
 
         [Then(@"Provider (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenProviderIsUnableToMakeAnyChangesToFullyApprovedLearner(string action, int learnerNumber)
@@ -77,11 +88,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
         public void WhenProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
         {
-            new ProviderManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails().ClickChangePriceLink();
-
-            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails();
+            _providerApprenticeDetailsPage.ClickChangePriceLink();
         }
 
+        [When(@"Provider submits change of price form without changing input fields")]
+        public void WhenProviderSubmitsChangeOfPriceFormWithoutChangingInputFields()
+        {
+            _changePriceNegotiationAmountPage = new ChangePriceNegotiationAmountsPage(context).ClickContinueButtonWithValidationErrors();
+        }
+
+        [Then(@"validation errors are displayed to the Provider")]
+        public void ThenValidationErrorsAreDisplayedToTheProvider()
+        {
+            _changePriceNegotiationAmountPage.ConfirmValidationErrorMessagesDisplayed();
+        }
 
         [Then(@"validate provider (can|cannot) view Pilot DataLock message")]
         public void ThenValidateProviderCanViewPilotDataLockMessage(string action)
@@ -98,6 +118,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"verify training provider cannot approve the cohort")]
         public void ThenValidateCohortCannotBeApproved() => _providerApproveApprenticeDetailsPage.VerifyRadioOptionToApproveCohortIsNotDisplayed();
 
-        internal void SetApprenticeDetailsInContext(int learnerNumber) => _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(learnerNumber - 1);
+        internal void SetApprenticeDetailsInContext(int learnerNumber) => _replaceApprenticeDataHelper.ReplaceApprenticeDataInContext(learnerNumber - 1);
     }
 }
