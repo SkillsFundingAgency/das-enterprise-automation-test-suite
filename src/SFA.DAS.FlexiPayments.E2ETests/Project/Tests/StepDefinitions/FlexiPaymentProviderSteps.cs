@@ -4,6 +4,8 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourApprenticesPage;
 
@@ -19,6 +21,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
         private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
         private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
+        private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -97,11 +100,34 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _changePriceNegotiationAmountPage = new ChangePriceNegotiationAmountsPage(context).ClickContinueButtonWithValidationErrors();
         }
 
-        [Then(@"validation errors are displayed to the Provider")]
+        [Then(@"all default validation errors are displayed to the Provider")]
         public void ThenValidationErrorsAreDisplayedToTheProvider()
         {
             _changePriceNegotiationAmountPage.ConfirmValidationErrorMessagesDisplayed();
         }
+
+        [Then(@"validate Training Price and EPA price must be between (.*) and (.*)")]
+        public void ValidateTrainingPriceAndEPAPriceMustBeBetweenValues(int min, int max)
+        {
+            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(min-1);
+
+            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(max+1);
+        }
+
+        [Then(@"validate Effective From Date cannot be before Training Start Date")]
+        public void ValidateEffectiveFromDateCannotBeBeforeTrainingStartDate()
+        {
+            var date = _apprenticeCourseDataHelper.CourseStartDate.AddDays(-1);
+            _changePriceNegotiationAmountPage.ValidateEnterADateThatIsAfterTrainingStartDateErrorMessage(date);
+        }
+
+        [Then(@"validate Effective From Date cannot be after Training End Date")]
+        public void ThenValidateEffectiveFromDateCannotBeAfterTrainingEndDate()
+        {
+            var date = _apprenticeCourseDataHelper.CourseEndDate.AddDays(1);
+            _changePriceNegotiationAmountPage.ValidateEnterADateThatIsBeforePlannedEndDateErrorMessage(date);
+        }
+
 
         [Then(@"validate provider (can|cannot) view Pilot DataLock message")]
         public void ThenValidateProviderCanViewPilotDataLockMessage(string action)

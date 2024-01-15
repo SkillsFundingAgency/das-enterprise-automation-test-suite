@@ -13,4 +13,7 @@ Scenario: FLP_UI_Validations_02 Change Of Price Provider Initiated Journey
     And Provider searches for the learner on Manage your apprentice page
 	When Provider proceeds to create a Change of Price request for flexi payments pilot learner
 	And Provider submits change of price form without changing input fields
-	Then validation errors are displayed to the Provider
+	Then all default validation errors are displayed to the Provider
+	And validate Training Price and EPA price must be between 1 and 100000
+	And validate Effective From Date cannot be before Training Start Date
+	And validate Effective From Date cannot be after Training End Date
