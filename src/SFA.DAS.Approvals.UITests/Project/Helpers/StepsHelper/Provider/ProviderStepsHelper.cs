@@ -44,8 +44,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                     .SelectChangeTheEmployer()
                     .SelectNewEmployer()
                     .ConfirmNewEmployer()
-                    .EndNewStartDateAndContinue()
-                    .EnterNewEndDateAndContinue()
+                    .EnterNewTrainingDatesAndContinue()
+                    //.EndNewStartDateAndContinue()
+                    //.EnterNewEndDateAndContinue()
                     .EnterNewPriceAndContinue()
                     .VerifyAndSubmitChangeOfEmployerRequest()
                     .VerifyChangeOfEmployerHasBeenRequested();
