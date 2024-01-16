@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
@@ -19,7 +15,11 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
         private static By ChangeEffectiveFromDateLink => By.Id("linkEffectiveFromDate");
         private static By ChangeReasonForChangeLink => By.Id("linkReasonForChange");
 
-        public void ClickSendButton() => formCompletionHelper.Click(SendButton);
+        public ProviderApprenticeDetailsPage ClickSendButton()
+        {
+            formCompletionHelper.Click(SendButton);
+            return new ProviderApprenticeDetailsPage(context);
+        }
 
     }
 }

@@ -98,11 +98,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"Provider successfully creates a Change of Price request")]
         public void ProviderSuccessfullyCreatesAChangeOfPriceRequest()
         {
-            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
-                (_apprenticeDataHelper.TrainingPrice, _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, "FLP_CoC_02_Test")
-                .ClickSendButton();
+            var newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + 500;
 
-            _providerApprenticeDetailsPage.ValidateChangeOfPriceRequestRaisedSuccessfully();
+            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
+                (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title)
+                .ClickSendButton()
+                .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
 
