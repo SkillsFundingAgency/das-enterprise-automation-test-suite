@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
         protected readonly LoginCredentialsHelper loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
 
-        public bool IsDfeSignInPageDisplayed() => new CheckStubSignInPage(context).IsPageDisplayed();
+        public bool IsStubSignInPageDisplayed() => new CheckStubSignInPage(context).IsPageDisplayed();
 
         public bool IsLandingPageDisplayed() => new CheckIndexPage(context).IsPageDisplayed();
 

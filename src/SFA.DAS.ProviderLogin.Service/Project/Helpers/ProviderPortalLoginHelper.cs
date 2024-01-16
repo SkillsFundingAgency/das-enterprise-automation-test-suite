@@ -13,7 +13,7 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 
         public bool IsLandingPageDisplayed() => new CheckProviderLandingPage(_context).IsPageDisplayed();
 
-        public bool IsDfeSignInPageDisplayed() => new CheckDfeSignInPage(_context).IsPageDisplayed();
+        public bool IsStubSignInPageDisplayed() => new CheckDfeSignInPage(_context).IsPageDisplayed();
 
         public bool IsSelectYourOrganisationDisplayed() => new CheckSelectYourOrganisationPage(_context).IsPageDisplayed();
 

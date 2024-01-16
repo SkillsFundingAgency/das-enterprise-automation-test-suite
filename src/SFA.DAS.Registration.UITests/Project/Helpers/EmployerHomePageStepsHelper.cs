@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             GoToEmployerLoginPage(openInNewTab);
 
-            if (_loginHelper.IsDfeSignInPageDisplayed())
+            if (_loginHelper.IsStubSignInPageDisplayed())
                 return _loginHelper.ReLogin();
 
             if (_loginHelper.IsYourAccountPageDisplayed())
@@ -45,7 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             GoToEmployerLoginPage(true);
 
-            if (_loginHelper.IsDfeSignInPageDisplayed()) return _loginHelper.FailedLogin1();
+            if (_loginHelper.IsStubSignInPageDisplayed()) return _loginHelper.FailedLogin1();
 
             return new AccountUnavailablePage(_context);
         }
