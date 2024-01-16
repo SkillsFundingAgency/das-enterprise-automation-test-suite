@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             GoToEmployerLoginPage(openInNewTab);
 
-            if (_loginHelper.IsSignInPageDisplayed())
+            if (_loginHelper.IsStubSignInPageDisplayed())
                 return _loginHelper.ReLogin();
 
             if (_loginHelper.IsYourAccountPageDisplayed())
@@ -45,7 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             GoToEmployerLoginPage(true);
 
-            if (_loginHelper.IsSignInPageDisplayed()) return _loginHelper.FailedLogin1();
+            if (_loginHelper.IsStubSignInPageDisplayed()) return _loginHelper.FailedLogin1();
 
             return new AccountUnavailablePage(_context);
         }
@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             if (openInNewTab) OpenInNewTab();
 
-            if (_loginHelper.IsIndexPageDisplayed()) new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage();
+            if (_loginHelper.IsLandingPageDisplayed()) new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage();
         }
 
         private static string EmployerApprenticeshipService_BaseUrl => UrlConfig.EmployerApprenticeshipService_BaseUrl;
