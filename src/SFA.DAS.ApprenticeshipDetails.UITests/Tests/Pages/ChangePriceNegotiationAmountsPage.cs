@@ -1,6 +1,4 @@
-﻿using DnsClient;
-using Dynamitey;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using System;
@@ -49,16 +47,18 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
         private static string EnterDateAfterTrainingStartDateErrorText = "Enter a date that is after the training start date";
 
         private static string EnterDateBeforePlannedEndDateErrorText = "The date entered must be before the planned end date";
-        public void EnterValidChangeOfPriceDetails()
+
+        public CheckYourChangesBeforeSendingToTheEmployerPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason)
         {
-            formCompletionHelper.EnterText(TrainingPrice, 5000);
-            formCompletionHelper.EnterText(EndpointAssessmentPrice, 1000);
-            formCompletionHelper.EnterText(EffectiveFromDate_Day, 10);
-            formCompletionHelper.EnterText(EffectiveFromDate_Month, 01);
-            formCompletionHelper.EnterText(EffectiveFromDate_Year, 2024);
-            formCompletionHelper.EnterText(ReasonPriceChange, "AutomationTest");
+            formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
+            formCompletionHelper.EnterText(EndpointAssessmentPrice, epaPrice);
+            formCompletionHelper.EnterText(EffectiveFromDate_Day, effectiveFrom.Day);
+            formCompletionHelper.EnterText(EffectiveFromDate_Month, effectiveFrom.Month);
+            formCompletionHelper.EnterText(EffectiveFromDate_Year, effectiveFrom.Year);
+            formCompletionHelper.EnterText(ReasonPriceChange, reason);
 
             formCompletionHelper.Click(ContinueButton);
+            return new CheckYourChangesBeforeSendingToTheEmployerPage(context);
         }
 
         public ChangePriceNegotiationAmountsPage ClickContinueButtonWithValidationErrors()

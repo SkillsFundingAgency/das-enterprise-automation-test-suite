@@ -22,6 +22,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
         private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
+        private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -89,10 +90,21 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
-        public void WhenProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
+        public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
         {
             _providerApprenticeDetailsPage.ClickChangePriceLink();
         }
+
+        [When(@"Provider successfully creates a Change of Price request")]
+        public void ProviderSuccessfullyCreatesAChangeOfPriceRequest()
+        {
+            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
+                (_apprenticeDataHelper.TrainingPrice, _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, "FLP_CoC_02_Test")
+                .ClickSendButton();
+
+            _providerApprenticeDetailsPage.ValidateChangeOfPriceRequestRaisedSuccessfully();
+        }
+
 
         [When(@"Provider submits change of price form without changing input fields")]
         public void WhenProviderSubmitsChangeOfPriceFormWithoutChangingInputFields()

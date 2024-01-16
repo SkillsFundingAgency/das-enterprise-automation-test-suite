@@ -28,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
         private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private static By ChangePriceLink => By.Id("linkChangePrice");
+        private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
+        private static By TrainingPricePendingTag => By.CssSelector("#apprentice-price strong.govuk-tag--yellow");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -143,5 +145,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
+
+        public void ValidateChangeOfPriceRequestRaisedSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfPriceRequestSentBanner), "Change of Price Request Sent banner not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(TrainingPricePendingTag), "Training Price Pending tag not displayed");
+            }   
+            );
+        }
     }
 }
