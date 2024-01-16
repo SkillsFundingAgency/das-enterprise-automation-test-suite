@@ -281,6 +281,8 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
+    private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
+
     private Func<bool> Func(By locator)
     {
         return () =>
@@ -310,6 +312,4 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
         retryHelper.RetryOnWebDriverException(() => func(element));
     }
-
-    private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
 }

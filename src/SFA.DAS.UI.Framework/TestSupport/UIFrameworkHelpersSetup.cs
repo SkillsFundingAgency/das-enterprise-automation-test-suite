@@ -30,7 +30,7 @@ public class UIFrameworkHelpersSetup(ScenarioContext context)
 
         var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, context.Get<FrameworkConfig>().TimeOutConfig);
 
-        var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext);
+        var retryHelper = new RetryHelper(webDriver, scenarioInfo, objectContext, RetryTimeOut.DefaultTimeout());
 
         var pageInteractionHelper = new PageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
         context.Replace(pageInteractionHelper);
@@ -38,7 +38,7 @@ public class UIFrameworkHelpersSetup(ScenarioContext context)
         var formCompletionHelper = new FormCompletionHelper(webDriver, objectContext, webDriverwaitHelper, retryHelper);
         context.Replace(formCompletionHelper);
 
-        context.Replace(new CheckPageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext)));
+        context.Replace(new CheckPageInteractionHelper(webDriver, objectContext, webDriverwaitHelper, new CheckPageRetryHelper(webDriver, scenarioInfo, objectContext, RetryTimeOut.ShorterTimeout())));
 
         context.Replace(new TableRowHelper(pageInteractionHelper, formCompletionHelper));
 

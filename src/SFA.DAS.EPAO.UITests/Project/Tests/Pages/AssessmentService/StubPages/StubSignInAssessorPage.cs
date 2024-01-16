@@ -1,9 +1,10 @@
 ﻿using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.StubPages;
 
 
-public class CheckStubSignInAssessorPage(ScenarioContext context) : CheckPageUsingPageTitle(context)
+public class CheckStubSignInAssessorPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
     protected override string PageTitle => StubSignInAssessorPage.StubSignInAssessorPageTitle;
 

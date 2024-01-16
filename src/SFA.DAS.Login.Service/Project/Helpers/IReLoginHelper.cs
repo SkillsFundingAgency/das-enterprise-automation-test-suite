@@ -2,8 +2,8 @@
 {
     public interface IReLoginHelper
     {
-        bool IsSignInPageDisplayed();
+        bool IsDfeSignInPageDisplayed();
 
-        bool IsIndexPageDisplayed();
+        bool IsLandingPageDisplayed();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
@@ -22,11 +23,9 @@ public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
     }
 }
 
-public class CheckDfeSignInPage(ScenarioContext context) : CheckPageUsingShorterTimeOut(context)
+public class CheckDfeSignInPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
     protected override string PageTitle => DfeSignInPage.DfePageTitle;
 
     protected override By Identifier => DfeSignInPage.DfePageheader;
-
-    public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
 }

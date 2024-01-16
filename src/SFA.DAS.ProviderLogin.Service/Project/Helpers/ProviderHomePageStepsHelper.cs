@@ -37,9 +37,9 @@ public class ProviderHomePageStepsHelper(ScenarioContext context)
     {
         var loginHelper = new ProviderPortalLoginHelper(context);
 
-        if (loginHelper.IsIndexPageDisplayed()) loginHelper.StartNow();
+        if (loginHelper.IsLandingPageDisplayed()) loginHelper.StartNow();
 
-        if (loginHelper.IsSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
+        if (loginHelper.IsDfeSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
 
         if (loginHelper.IsSelectYourOrganisationDisplayed()) return loginHelper.SelectOrganisation(login);
 
