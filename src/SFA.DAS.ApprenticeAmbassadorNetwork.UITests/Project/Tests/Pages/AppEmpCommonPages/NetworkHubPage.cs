@@ -21,4 +21,9 @@ public abstract class NetworkHubPage(ScenarioContext context) : AanBasePage(cont
         formCompletionHelper.ClickLinkByText("Profile settings");
         return new ProfileSettingsPage(context);
     }
+    public ContactUsPage AccessContactUs()
+    {
+        formCompletionHelper.ClickLinkByText("Contact us");
+        return new ContactUsPage(context);
+    }
 }
