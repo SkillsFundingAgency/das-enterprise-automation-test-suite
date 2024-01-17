@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AAN_A_06_VerifyAndUpdateAmbassadorProfile")]
-    public partial class AAN_A_06_VerifyAndUpdateAmbassadorProfileFeature
+    [NUnit.Framework.DescriptionAttribute("AAN_A_09_HideAndDisplayAmbassadorProfile")]
+    public partial class AAN_A_09_HideAndDisplayAmbassadorProfileFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_A_06_VerifyAmbassadorProfile.feature"
+#line 1 "AAN_A_09_HideAndDisplayAmbassadorProfile.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apprentice", "AAN_A_06_VerifyAndUpdateAmbassadorProfile", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Apprentice", "AAN_A_09_HideAndDisplayAmbassadorProfile", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_A_06_VerifyAndUpdateAmbassadorProfile")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_09_HideAndDisplayAmbassadorProfile")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_A_06_VerifyAndUpdateAmbassadorProfile()
+        public void AAN_A_09_HideAndDisplayAmbassadorProfile()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
                     "aanaprentice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_06_VerifyAndUpdateAmbassadorProfile", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_09_HideAndDisplayAmbassadorProfile", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,10 +100,10 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-    testRunner.When("the user should be able to successfully verify ambassador profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("the user should be able to successfully hide ambassador profile information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
-    testRunner.Then("the user should be able to update profile information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the user should be able to successfully display ambassador profile information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

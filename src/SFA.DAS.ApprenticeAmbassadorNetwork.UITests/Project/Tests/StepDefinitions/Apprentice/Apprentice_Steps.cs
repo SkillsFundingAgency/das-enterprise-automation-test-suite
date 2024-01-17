@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+﻿using Polly;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
@@ -7,6 +8,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
     private SearchNetworkEventsPage searchNetworkEventsPage;
+    private YourAmbassadorProfilePage yourAmbassadorProfilePage;
 
     private EventsHubPage eventsHubPage;
 
@@ -29,8 +31,38 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to a regional chair member successfully")]
     public void TheUserShouldBeAbleToAskARegionalChairMemberSuccessfully(string message) => SendRegionalChairMessage(networkDirectoryPage, Apprentice, message);
 
-    [Then(@"the user should be able to successfully verify ambassador profile")]
+    [When(@"the user should be able to successfully verify ambassador profile")]
     public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
+
+    [Then(@"the user should be able to update profile information")]
+    public void ThenTheUserShouldBeAbleToUpdateProfileInformation() => new YourAmbassadorProfilePage(context).
+        AccessChangeForPersonalDetails()
+        .ChangePersonalDetailsAndContinue()
+        .AccessChangeForInterestInNetwork()
+        .SelectProjectManagementAndContinue()
+        .AccessChangeForApprenticeshipInformation()
+        .ChangeSeconLineAddressAndContinue()
+        .AccessChangeForContactDetails()
+        .ChangeLinkedlnUrlAndContinue();
+
+    [When(@"the user should be able to successfully hide ambassador profile information")]
+    public void WhenTheUserShouldBeAbleToSuccessfullyHideAmbassadorProfileInformation() => AccessYourAmbassadorProfile(networkHubPage)
+        .AccessChangeForPersonalDetails()
+        .HideJobtitleAndBiography()
+        .AccessChangeForApprenticeshipInformation()
+        .HideApprenticeshipInformation()
+        .AccessChangeForContactDetails()
+        .HideLinkedlnInformation();
+
+    [Then(@"the user should be able to successfully display ambassador profile information")]
+    public void ThenTheUserShouldBeAbleToSuccessfullyDisplayAmbassadorProfileInformation() => new YourAmbassadorProfilePage(context)
+        .AccessChangeForPersonalDetails()
+        .DisplayJobtitleAndBiography()
+        .AccessChangeForApprenticeshipInformation()
+        .DisplayApprenticeshipInformation()
+        .AccessChangeForContactDetails()
+        .DisplayLinkedlnInformation();
+
 
     [Then(@"the user should be able to successfully signup for a future event")]
     public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);

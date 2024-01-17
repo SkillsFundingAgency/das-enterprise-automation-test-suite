@@ -43,7 +43,21 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
 
     protected static void VerifyYourAmbassadorProfile(NetworkHubPage networkHubPage, string value)
     {
-        networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile().VerifyYourAmbassadorProfile(value);
+        AccessYourAmbassadorProfile(networkHubPage).VerifyYourAmbassadorProfile(value);
+    }
+    protected static YourAmbassadorProfilePage AccessYourAmbassadorProfile(NetworkHubPage networkHubPage)
+    {
+       return networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile();
+    }
+
+    protected static void UpdateAmbassadorProfile(YourAmbassadorProfilePage yourAmbassadorProfilePage)
+    {
+        yourAmbassadorProfilePage.AccessChangeForPersonalDetails();
+    }
+
+    protected static void VerifyContactUs(NetworkHubPage networkHubPage)
+    {
+        networkHubPage.AccessContactUs();
     }
 
     protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage, string email)
