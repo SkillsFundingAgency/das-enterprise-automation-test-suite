@@ -2,7 +2,7 @@
 {
     public static class RetryTimeOut
     {
-        internal static TimeSpan[] LongerTimeout() => GetTimeSpan(5, 8, 13);
+        public static TimeSpan[] LongerTimeout() => GetTimeSpan(5, 8, 13);
 
         public static TimeSpan[] DefaultTimeout() => GetTimeSpan(1, 2, 3);
 

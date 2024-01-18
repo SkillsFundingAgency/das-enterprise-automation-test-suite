@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class ProviderSignInPage(ScenarioContext context) : DfeSignInPage(context)
+public class ProviderDfeSignInPage(ScenarioContext context) : DfeSignInPage(context)
 {
     public void SubmitValidLoginDetails(ProviderLoginUser login) => SubmitValidLoginDetails(login.Username, login.Password);
 }

@@ -1,6 +1,8 @@
-﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+﻿using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
-public class CheckASEmpSupportConsoleLandingPage(ScenarioContext context) : CheckPageUsingPageTitle(context)
+namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+
+public class CheckASEmpSupportConsoleLandingPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
     protected override string PageTitle => ASEmpSupportConsoleLandingPage.ASEmpSupportConsolePageTitle;
 

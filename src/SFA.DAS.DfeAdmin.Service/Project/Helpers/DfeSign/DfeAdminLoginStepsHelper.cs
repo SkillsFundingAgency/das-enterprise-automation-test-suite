@@ -2,6 +2,7 @@
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.Login.Service;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 
@@ -42,7 +43,7 @@ public class DfeAdminLoginStepsHelper(ScenarioContext context)
 
     #endregion
 
-    private void CheckAndLoginTo(CheckPageUsingPageTitle checkPage, Func<ASLandingBasePage> landingPage, DfeAdminUser dfeAdminUser)
+    private void CheckAndLoginTo(CheckPageTitleShorterTimeOut checkPage, Func<ASLandingBasePage> landingPage, DfeAdminUser dfeAdminUser)
     {
         if (checkPage.IsPageDisplayed()) landingPage().ClickStartNowButton();
 

@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
@@ -10,5 +10,5 @@ public class CheckProviderHomePage(ScenarioContext context) : CheckPageUsingShor
 
     protected override By Identifier => ProviderHomePage.Identifier;
 
-    public bool IsPageDisplayed(string ukprn) => IsPageDisplayed(() => checkPageInteractionHelper.VerifyPage(Identifier, ukprn));
+    public bool IsPageDisplayed(string ukprn) => IsPageDisplayedUsingPageTitle(ukprn);
 }
