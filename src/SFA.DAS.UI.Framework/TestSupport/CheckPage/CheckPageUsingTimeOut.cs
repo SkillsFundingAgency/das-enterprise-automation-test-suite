@@ -12,7 +12,7 @@ public abstract class CheckPageUsingTimeOut(ScenarioContext context) : CheckPage
     {
         var idenifier = Identifier;
 
-        SetDebugInformation($"Check page using Identifier: '{idenifier}'");
+        SetDebugInformation($"Check the page using Identifier: '{idenifier}'");
 
         return checkPageInteractionHelper.VerifyPage(idenifier); 
     });

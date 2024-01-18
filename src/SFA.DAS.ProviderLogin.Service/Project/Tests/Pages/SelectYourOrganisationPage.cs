@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class CheckSelectYourOrganisationPage(ScenarioContext context) : CheckPageTitleLongerTimeOut(context)
+public class CheckSelectYourOrganisationPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
     protected override string PageTitle => SelectYourOrganisationPage.SyoPageTitle;
 
