@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YouveLoggedOutPage(ScenarioContext context) : base(context) => pageInteractionHelper.Verify(() =>
         {
-            var result = pageInteractionHelper.CheckText(PageHeader, PageTitle);
+            var result = IsPageCurrent;
 
             return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
 
