@@ -61,15 +61,21 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         return VerifyPage(func);
     }
 
-    public bool VerifyPage(Func<IWebElement> element, List<string> expected, Action retryAction = null)
+    public (bool result, string actualPage) VerifyPage(Func<IWebElement> element, List<string> expected, Action retryAction = null)
     {
+        string actualPage = string.Empty;
+
         bool func()
         {
             var actual = GetText(element, retryAction);
 
             if (expected.Any(x => actual.Contains(x)))
             {
-                SetDebugInformation($"Verified page - '{string.Join("/", expected)}'"); return true;
+                SetDebugInformation($"Verified page - '{string.Join("/", expected)}'");
+
+                actualPage = actual;
+
+                return true;
             }
 
             throw new Exception("Page verification failed:"
@@ -77,7 +83,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
             + "\n Found: " + actual + " page");
         }
 
-        return VerifyPage(func, retryAction);
+        return (VerifyPage(func, retryAction), actualPage);
     }
 
     public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)

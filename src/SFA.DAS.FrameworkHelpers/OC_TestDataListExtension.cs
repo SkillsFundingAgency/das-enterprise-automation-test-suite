@@ -61,6 +61,8 @@
 
         public static void SetDebugInformation(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Add($"-> {DateTime.UtcNow:dd/MM HH:mm:ss}: {value}");
 
+        public static List<string> GetDebugInformations(this ObjectContext objectContext, string value) => objectContext.GetDebugInformations().Where(x => x.Contains(value)).ToList();
+
         private static FrameworkList<string> GetDebugInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(DebugInformations);
         #endregion
 

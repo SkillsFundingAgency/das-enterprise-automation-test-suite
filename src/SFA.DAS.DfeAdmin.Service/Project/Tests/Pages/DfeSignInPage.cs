@@ -7,9 +7,11 @@ public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
     public static string DfePageTitle => "Department for Education Sign-in";
 
-    public static By DfePageheader => By.CssSelector(".govuk-heading-xl");
+    public static By DfePageIdentifier => By.CssSelector(DfePageIdentifierCss);
 
-    protected override By PageHeader => DfePageheader;
+    public static string DfePageIdentifierCss => ".govuk-heading-xl";
+
+    protected override By PageHeader => DfePageIdentifier;
 
     protected override string PageTitle => DfePageTitle;
 
@@ -34,14 +36,14 @@ public class CheckDfeSignInPage(ScenarioContext context) : CheckPageTitleShorter
 {
     protected override string PageTitle => DfeSignInPage.DfePageTitle;
 
-    protected override By Identifier => DfeSignInPage.DfePageheader;
+    protected override By Identifier => DfeSignInPage.DfePageIdentifier;
 }
 
 public class NotADfeSignPage(ScenarioContext context) : CheckPageTitleLongerTimeOut(context)
 {
     protected override string PageTitle => DfeSignInPage.DfePageTitle;
 
-    protected override By Identifier => DfeSignInPage.DfePageheader;
+    protected override By Identifier => DfeSignInPage.DfePageIdentifier;
 
     public override bool IsPageDisplayed() 
     {

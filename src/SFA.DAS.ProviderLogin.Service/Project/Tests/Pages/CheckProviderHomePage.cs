@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class CheckProviderHomePage(ScenarioContext context) : CheckPageUsingShorterTimeOut(context)
+public class CheckProviderHomePage(ScenarioContext context, string ukprn) : CheckPageUsingShorterTimeOut(context)
 {
-    protected override string PageTitle { get; }
+    protected override string PageTitle => ukprn;
 
-    protected override By Identifier => ProviderHomePage.Identifier;
+    protected override By Identifier => ProviderHomePage.ProviderHomePageIdentifier;
 
-    public bool IsPageDisplayed(string ukprn) => IsPageDisplayedUsingPageTitle(ukprn);
+    public override bool IsPageDisplayed() => IsPageDisplayedUsingPageTitle(ukprn);
 }

@@ -1,5 +1,6 @@
 ﻿
 using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using TechTalk.SpecFlow;
 
@@ -9,10 +10,10 @@ public class CheckSelectYourOrganisationPage(ScenarioContext context) : CheckPag
 {
     protected override string PageTitle => SelectYourOrganisationPage.SyoPageTitle;
 
-    protected override By Identifier => PageHeader;
+    protected override By Identifier => SelectYourOrganisationPage.SyoPageIdentifier;
 }
 
-public class SelectYourOrganisationPage(ScenarioContext context) : ProviderLoginBasePage(context)
+public class SelectYourOrganisationPage(ScenarioContext context) : BasePage(context)
 {
     private static By Organisaitons => By.CssSelector("#organisation .govuk-radios__item");
 
@@ -20,7 +21,13 @@ public class SelectYourOrganisationPage(ScenarioContext context) : ProviderLogin
 
     protected override string PageTitle => SyoPageTitle;
 
+    protected override By PageHeader => SyoPageIdentifier;
+
     public static string SyoPageTitle => "Select your organisation";
+
+    public static By SyoPageIdentifier => By.CssSelector(SyoPageIdentifierCss);
+
+    public static string SyoPageIdentifierCss => ".govuk-heading-xl";
 
     public ProviderHomePage SelectOrganisation(string ukprn)
     {

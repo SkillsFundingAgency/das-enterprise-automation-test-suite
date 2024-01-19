@@ -4,11 +4,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class ProviderLandingPage(ScenarioContext context) : IdamsLoginBasePage(context)
+public class ProviderLandingPage(ScenarioContext context) : IdamsLoginBasePage(context, false)
 {
-    protected override string PageTitle => "Apprenticeship service for training providers: sign in or register for an account";
+    protected override string PageTitle => ProviderLandingPageTitle;
 
-    internal static By ProviderLandingPageStartSelector => By.CssSelector("a[href='/signin'].govuk-button.govuk-button--start");
+    protected override By PageHeader => ProviderLandingPageIdentifier;
 
-    public void StartNow() => formCompletionHelper.ClickElement(ProviderLandingPageStartSelector);
+    public static string ProviderLandingPageTitle => "Apprenticeship service for training providers: sign in or register for an account";
+
+    public static By ProviderLandingPageIdentifier => By.CssSelector(".govuk-heading-xl");
+
+    private static By StartNowSelector => By.CssSelector("a[href='/signin'].govuk-button.govuk-button--start");
+
+    public void ClickStartNow() => formCompletionHelper.ClickElement(StartNowSelector);
 }
