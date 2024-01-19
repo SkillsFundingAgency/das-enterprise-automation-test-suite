@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using Polly;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -37,26 +38,18 @@ public class ProviderHomePageStepsHelper(ScenarioContext context)
 
     private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
     {
-        var loginHelper = new ProviderPortalLoginHelper(context);
+        var loginHelper = new ProviderPortalLoginHelper(context, login);
 
-        bool IsProviderHomePageDisplayed() => loginHelper.IsProviderHomePageDisplayed(login.Ukprn);
+        loginHelper.ClickStartNow();
 
-        if (loginHelper.IsLandingPageDisplayed()) loginHelper.ClickStartNow();
+        var checkPage = new CheckSelectYourOrgOrProviderHomePage(context, login.Ukprn);
 
         // provider relogin check
         if (objectContext.GetDebugInformations(Provider_BaseUrl).Count > 1)
         {
-            if (IsProviderHomePageDisplayed()) return GoToProviderHomePage();
+            if (checkPage.IsProviderHomePageDisplayed()) return new ProviderHomePage(context);
         }
 
-        if (loginHelper.IsStubSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
-
-        if (loginHelper.IsSelectYourOrganisationDisplayed()) return loginHelper.SelectOrganisation(login);
-
-        if (IsProviderHomePageDisplayed()) return GoToProviderHomePage();
-
-        return GoToProviderHomePage();
+        return loginHelper.GoToProviderHomePage(checkPage);
     }
-
-    private ProviderHomePage GoToProviderHomePage() => new (context);
 }

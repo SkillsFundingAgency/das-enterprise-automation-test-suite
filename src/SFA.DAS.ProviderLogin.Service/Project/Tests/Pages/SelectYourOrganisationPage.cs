@@ -1,17 +1,9 @@
 ﻿
 using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
-
-public class CheckSelectYourOrganisationPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
-{
-    protected override string PageTitle => SelectYourOrganisationPage.SyoPageTitle;
-
-    protected override By Identifier => SelectYourOrganisationPage.SyoPageIdentifier;
-}
 
 public class SelectYourOrganisationPage(ScenarioContext context) : BasePage(context)
 {

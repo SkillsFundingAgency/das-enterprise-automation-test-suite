@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Azure.Documents.Spatial;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using System;
@@ -7,9 +8,22 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public static class ExceptionMessageHelper
+public static class MessageHelper
 {
-    public static string GetExceptionMessage(string x, string expected, string actual) => $"{x} verification failed:{Environment.NewLine}Expected: {expected} page {Environment.NewLine}Found: {actual} page";
+    public static string GetExceptionMessage(string x, string expected, string actual) => GetExceptionMessage(x, [expected], [actual]);
+
+    internal static string GetExceptionMessage(string x, IEnumerable<string> expected, string actual) => GetExceptionMessage(x, expected, [actual]);
+
+    internal static string GetExceptionMessage(string x, string expected, IEnumerable<string> actual) => GetExceptionMessage(x, [expected], actual);
+
+    internal static string GetExceptionMessage(string x, IEnumerable<string> expected, IEnumerable<string> actual) => OutputMessage($"{x} verification failed", expected, actual);
+
+    internal static string OutputMessage(string message, IEnumerable<string> expected, IEnumerable<string> actual)
+    {
+        static string Join(string separator, IEnumerable<string> values) => string.Join(separator, values.Select(x => $"'{x}'").ToList());
+
+        return $"{message}:{Environment.NewLine}Expected: {Join(" OR ", expected)} {Environment.NewLine}Found: {Join(" , ", actual)}";
+    }
 }
 
 public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : WebElementInteractionHelper(webDriver)
@@ -50,40 +64,55 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
             if (actual.Any(x => x.Contains(expected)))
             {
-                SetDebugInformation($"Verified page - '{expected}'"); return true;
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", [expected], actual)); 
+                
+                return true;
             }
 
-            throw new Exception("Page verification failed:"
-                + "\n Expected: " + expected + " page"
-                + "\n Found: " + string.Join(",", actual) + " page");
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
         }
 
         return VerifyPage(func);
     }
 
-    public (bool result, string actualPage) VerifyPage(Func<IWebElement> element, List<string> expected, Action retryAction = null)
+    public (bool result, string actualPage) VerifyPage(Func<List<IWebElement>> element, List<string> expected, Action retryAction = null)
     {
         string actualPage = string.Empty;
 
+        bool func()
+        {
+            var actual = GetTexts(element, retryAction);
+
+            if (expected.Any(e => actual.Any(a => { if (a.Contains(e)) { actualPage = a; } return a.Contains(e); })))  
+            {
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", expected, [actualPage]));
+
+                return true;
+            }
+
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
+        }
+
+        return (VerifyPage(func, retryAction), actualPage);
+    }
+
+    public bool VerifyPage(Func<IWebElement> element, List<string> expected, Action retryAction = null)
+    {
         bool func()
         {
             var actual = GetText(element, retryAction);
 
             if (expected.Any(x => actual.Contains(x)))
             {
-                SetDebugInformation($"Verified page - '{string.Join("/", expected)}'");
-
-                actualPage = actual;
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", expected, [actual]));
 
                 return true;
             }
 
-            throw new Exception("Page verification failed:"
-            + "\n Expected: " + string.Join(" OR ", expected) + " page"
-            + "\n Found: " + actual + " page");
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
         }
 
-        return (VerifyPage(func, retryAction), actualPage);
+        return VerifyPage(func, retryAction);
     }
 
     public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)
@@ -97,7 +126,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
                 SetDebugInformation($"Verified page - '{expected}'"); return true;
             }
 
-            throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", expected, actual));
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
         }
 
         return VerifyPage(func, retryAction);
@@ -117,22 +146,24 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
     {
         if (actual.Contains(expected1) || actual.Contains(expected2))
         {
-            SetDebugInformation($"Verifed text - '{expected1}/{expected2}'"); return true;
+            SetDebugInformation(MessageHelper.OutputMessage("Verified text", [expected1, expected2], [actual]));
+
+            return true;
         }
 
-        throw new Exception("Text verification failed: "
-            + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
-            + "\n Found: '" + actual + "' page");
+        throw new Exception(MessageHelper.GetExceptionMessage("Text", [expected1, expected2], [actual]));
     }
 
     public bool VerifyText(string actual, string expected)
     {
         if (actual.Contains(expected))
-            SetDebugInformation($"Verifed text - '{expected}'"); return true;
+        {
+            SetDebugInformation(MessageHelper.OutputMessage("Verified text", [expected], [actual])); 
+            
+            return true;
+        }
 
-        throw new Exception("Text verification failed: "
-            + "\n Expected: " + expected
-            + "\n Found: " + actual);
+        throw new Exception(MessageHelper.GetExceptionMessage("Text", expected, actual));
     }
 
     public bool VerifyText(By locator, string expected)
@@ -243,7 +274,9 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public string GetText(By locator) => GetText(() => FindElement(locator));
 
-    public string GetText(Func<IWebElement> element, Action retryAction = null) => retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);
+    public string GetText(Func<IWebElement> element, Action retryAction = null) => retryHelper.RetryOnWebDriverException(() => element().Text, retryAction);
+
+    public List<string> GetTexts(Func<List<IWebElement>> element, Action retryAction = null) => retryHelper.RetryOnWebDriverException(() => element().Select(x => x.Text).ToList(), retryAction);
 
     public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
@@ -287,6 +320,8 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
+    public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
     private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
 
     private Func<bool> Func(By locator)
@@ -300,8 +335,6 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
             throw new Exception($"Page verification failed:{locator} is not found");
         };
     }
-
-    public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
 
     private void WaitForPageToLoad() => webDriverWaitHelper.WaitForPageToLoad();
 

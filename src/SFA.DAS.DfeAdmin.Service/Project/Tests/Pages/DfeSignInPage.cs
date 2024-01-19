@@ -7,9 +7,7 @@ public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
     public static string DfePageTitle => "Department for Education Sign-in";
 
-    public static By DfePageIdentifier => By.CssSelector(DfePageIdentifierCss);
-
-    public static string DfePageIdentifierCss => ".govuk-heading-xl";
+    public static By DfePageIdentifier => By.CssSelector(".govuk-heading-xl");
 
     protected override By PageHeader => DfePageIdentifier;
 
@@ -53,7 +51,7 @@ public class NotADfeSignPage(ScenarioContext context) : CheckPageTitleLongerTime
         {
             var result = IsPageCurrent;
 
-            return result.Item1 ? throw new Exception(ExceptionMessageHelper.GetExceptionMessage("'Dfe Sign'", $"Should have navigated from '{PageTitle}'", result.Item2)) : true;
+            return result.Item1 ? throw new Exception(MessageHelper.GetExceptionMessage("'Dfe Sign'", $"Should have navigated from '{PageTitle}'", result.Item2)) : true;
 
         }, null);
     }
