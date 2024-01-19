@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class BasePage : InitialiseBasePage
+public abstract class BasePage(ScenarioContext context) : InitialiseBasePage(context)
 {
     protected static string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading";
     protected virtual By PageHeader => By.CssSelector(PageHeaderSelector);
@@ -20,8 +20,6 @@ public abstract class BasePage : InitialiseBasePage
     protected abstract string PageTitle { get; }
 
     protected virtual By AcceptCookieButton { get; }
-
-    public BasePage(ScenarioContext context) : base(context) { }
 
     protected void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
 

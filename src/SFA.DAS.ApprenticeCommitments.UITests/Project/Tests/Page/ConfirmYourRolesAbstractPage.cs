@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using System;
-using System.Collections.Generic;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -24,11 +22,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             VerifyErrorSummaryTitle();
 
-            MultipleVerifyPage(new List<Func<bool>>
-            {
-                () => VerifyPage(ErrorSummaryText,"Please confirm that you have read the roles and responsibilities"),
-                () => VerifyPage(FieldValidtionError,"Please confirm that you have read the roles and responsibilities")
-            });
+            MultipleVerifyPage(
+            [
+                () => VerifyPage(ErrorSummaryText, "Please confirm that you have read the roles and responsibilities"),
+                () => VerifyPage(FieldValidtionError, "Please confirm that you have read the roles and responsibilities")
+            ]);
         }
     }
 }

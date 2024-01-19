@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.SupportTools.UITests.Project.Helpers;
 
-public class ToolsCommitmentsSqlDataHelper : SqlDbHelper
+public class ToolsCommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.CommitmentsDbConnectionString)
 {
-    public ToolsCommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
-
     public void UpdateApprenticeshipStatus(string uln, int status)
     {
         string stopDate, pauseDate, completionDate;

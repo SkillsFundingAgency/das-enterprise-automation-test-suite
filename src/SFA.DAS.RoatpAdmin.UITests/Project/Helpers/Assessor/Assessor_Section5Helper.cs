@@ -7,7 +7,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
     {
         public Assessor_Section5Helper() { }
 
-        public ApplicationAssessmentOverviewPage PassProcessForEvaluatingTheQualityOfTrainingDelivered(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassProcessForEvaluatingTheQualityOfTrainingDelivered(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section5_ProcessForEvaluatingTheQualityOfTrainingDelivered()
@@ -16,7 +16,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection5Link1Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassProcessForEvaluatingTheQualityOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public static ApplicationAssessmentOverviewPage PassProcessForEvaluatingTheQualityOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
                 .Access_Section5_ProcessOfEvaluatingTheQualityOfApprenticeshipTraining()
@@ -25,7 +25,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 .VerifySection5Link2Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassSystemsAndProcessesToCollectApprenticeshipData(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||

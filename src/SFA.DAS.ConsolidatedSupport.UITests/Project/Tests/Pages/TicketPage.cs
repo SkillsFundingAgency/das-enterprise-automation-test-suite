@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -15,46 +13,46 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector("[data-test-id='header-tab-title']");
 
-       private static By FindParent => By.XPath("..");
+        private static By FindParent => By.XPath("..");
 
-       private static By TicketStatus(string statusclass) => By.CssSelector($"[data-test-id='tabs-section-nav-item-ticket'] {statusclass}.ticket_status_label");
+        private static By TicketStatus(string statusclass) => By.CssSelector($"[data-test-id='tabs-section-nav-item-ticket'] {statusclass}.ticket_status_label");
 
-       private static By TicketOrganisationName => By.CssSelector("span[data-test-id='tabs-nav-item-organizations']");
+        private static By TicketOrganisationName => By.CssSelector("span[data-test-id='tabs-nav-item-organizations']");
 
-       private static By TicketOrganisationUserName => By.CssSelector("span[data-test-id='tabs-nav-item-users']");
+        private static By TicketOrganisationUserName => By.CssSelector("span[data-test-id='tabs-nav-item-users']");
 
-       private static By MenuButton => By.CssSelector("[data-test-id='submit_button-menu-button']");
+        private static By MenuButton => By.CssSelector("[data-test-id='submit_button-menu-button']");
 
-       private static By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
+        private static By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
 
-       private static By CommentEditorSelector => By.CssSelector("[data-test-id='standalone-rich-text-ckeditor']");
+        private static By CommentEditorSelector => By.CssSelector("[data-test-id='standalone-rich-text-ckeditor']");
 
-       private static By CommentsSections => By.CssSelector(".zd-comment");
+        private static By CommentsSections => By.CssSelector(".zd-comment");
 
-       private static By TicketDropdownFields => By.CssSelector("[data-garden-id='forms.field']");
+        private static By TicketDropdownFields => By.CssSelector("[data-garden-id='forms.field']");
 
-       private static By TicketDropdownLabel => By.CssSelector("[data-garden-id='forms.input_label']");
+        private static By TicketDropdownLabel => By.CssSelector("[data-garden-id='forms.input_label']");
 
-       private static By TicketDropdownSelect => By.CssSelector("[data-garden-id='dropdowns.select']");
+        private static By TicketDropdownSelect => By.CssSelector("[data-garden-id='dropdowns.select']");
 
-       private static By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
+        private static By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
 
-       private static By TicketFormsInput => By.CssSelector("[data-garden-id='forms.input']");
+        private static By TicketFormsInput => By.CssSelector("[data-garden-id='forms.input']");
 
-       private static By TicketDropdownItem => By.CssSelector("li");
+        private static By TicketDropdownItem => By.CssSelector("li");
 
-       private static By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
+        private static By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
 
-       private static By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
+        private static By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
 
         public TicketPage(ScenarioContext context) : base(context, false)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
                 () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
                 () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)
-            });
+            ]);
         }
 
         public void VerifyTicketStatus(string expectedstatus) => VerifyElement(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());
@@ -67,7 +65,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             var elements = pageInteractionHelper.FindElements(TicketDropdownFields).Where(x => x.Text.ContainsCompareCaseInsensitive(question)).ToList();
 
-            pageInteractionHelper.InvokeAction(() => 
+            pageInteractionHelper.InvokeAction(() =>
             {
                 foreach (var element in elements)
                 {
@@ -109,7 +107,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }
 
-                SubmitComments(dataHelper.InternalNote, dataHelper.SubmitAsWaitingForIncNum);
+                SubmitComments(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsWaitingForIncNum);
 
                 Thread.Sleep(5000);
 
@@ -119,15 +117,15 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
                 SearchTicket();
             }
-            
+
             return incidentNumber;
         }
 
-        public (HomePage, string) SubmitAsNew() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
+        public (HomePage, string) SubmitAsNew() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsNewComments, "status-badge-new", "Submit as New");
 
-        public (HomePage, string) SubmitAsOpen() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
+        public (HomePage, string) SubmitAsOpen() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsOpenComments, "status-badge-open", "Submit as Open");
 
-        public (HomePage, string) SubmitAsPending() => SubmitStatus(dataHelper.PublicReply, dataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
+        public (HomePage, string) SubmitAsPending() => SubmitStatus(ConsolidateSupportDataHelper.PublicReply, ConsolidateSupportDataHelper.SubmitAsPendingComments, "status-badge-pending", "Submit as Pending");
 
         public (HomePage, string) SubmitAsOnHold()
         {
@@ -140,10 +138,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             SelectOptions("Service Offering", "AS Payments");
             SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
 
-            return SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+            return SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
         }
 
-        public (HomePage, string) SubmitAsSolved() => SubmitStatus(dataHelper.InternalNote, dataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
+        public (HomePage, string) SubmitAsSolved() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
 
         private (HomePage, string) SubmitStatus(string commentsarea, string comments, string attribute, string text)
         {
@@ -171,7 +169,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private void SubmitComments(string commentsarea, string comments)
         {
             formCompletionHelper.ClickElement(() => CommentsSection(commentsarea));
-            
+
             formCompletionHelper.ClickElement(() => CommentEditor());
 
             formCompletionHelper.EnterText(CommentEditor(), comments);
@@ -181,7 +179,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private IWebElement CommentEditor() => pageInteractionHelper.FindElements(CommentEditorSelector).First(x => x.Enabled && x.Displayed);
 
-        private string GetTicketStatusClassName(string status)
+        private static string GetTicketStatusClassName(string status)
         {
             return true switch
             {

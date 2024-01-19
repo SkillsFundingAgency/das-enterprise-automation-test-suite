@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common

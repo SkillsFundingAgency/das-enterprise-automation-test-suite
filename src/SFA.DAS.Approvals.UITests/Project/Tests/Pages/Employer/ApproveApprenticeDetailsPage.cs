@@ -103,7 +103,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             if (!pageInteractionHelper.IsElementDisplayed(NotificationBannerHeading))
                 throw new Exception("Notification banner is not displayed");
-            if(GetBannerHeading() != bannerHeading)
+            if (GetBannerHeading() != bannerHeading)
                 throw new Exception($"Expected: {bannerHeading} but actual was: {GetBannerHeading()}");
             if (pageInteractionHelper.IsElementDisplayed(ApproveRadioButton))
                 throw new Exception("The approve radio button is displayed to the user");

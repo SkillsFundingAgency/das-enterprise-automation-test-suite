@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By OptionalMessage => By.CssSelector("#OptionalMessage");
 
-        
+
         public RAA_ShareApplicationsPage(ScenarioContext context) : base(context) { }
 
         public RAA_ShareApplicationPreviewPage Send()

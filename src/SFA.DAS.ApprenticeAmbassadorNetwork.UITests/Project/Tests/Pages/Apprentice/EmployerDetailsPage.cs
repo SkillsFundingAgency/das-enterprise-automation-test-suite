@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class EmployerDetailsPage : AanBasePage
+    public class EmployerDetailsPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "your employer's name and address";
 
@@ -10,7 +10,6 @@
         private static By County => By.Id("County");
         private static By Town => By.Id("Town");
         private static By Postcode => By.Id("Postcode");
-        public EmployerDetailsPage(ScenarioContext context) : base(context) { }
 
         public CurrentJobTitlePage EnterEmployersDetailsAndContinue()
         {

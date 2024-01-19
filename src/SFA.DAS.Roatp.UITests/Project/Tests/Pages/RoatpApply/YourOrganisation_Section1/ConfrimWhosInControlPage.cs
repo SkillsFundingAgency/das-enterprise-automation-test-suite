@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         protected override string PageTitle => "Confirm who's in control";
 
         #region Helpers and Context
-        
+
         #endregion
 
         public ConfrimWhosInControlPage(ScenarioContext context) : base(context) => VerifyPage();

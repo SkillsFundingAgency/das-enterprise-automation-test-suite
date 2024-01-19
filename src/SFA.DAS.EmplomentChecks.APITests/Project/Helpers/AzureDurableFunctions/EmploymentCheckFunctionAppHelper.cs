@@ -1,93 +1,92 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
-namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions
+namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
+
+public abstract class EmploymentCheckFunctionAppHelper
 {
-    public abstract class EmploymentCheckFunctionAppHelper
+    protected OrchestratorStartResponse OrchestratorStartResponse;
+    protected HttpClient HttpClient;
+    protected string BaseUrl;
+    protected string AuthenticationCode;
+
+    protected EmploymentCheckFunctionAppHelper(EmploymentCheckProcessConfig config)
     {
-        protected OrchestratorStartResponse OrchestratorStartResponse;
-        protected HttpClient HttpClient;
-        protected string BaseUrl;
-        protected string AuthenticationCode;
+        BaseUrl = config.EC_FunctionsBaseUrl;
+        AuthenticationCode = config.EC_FunctionsAuthenticationCode;
+        HttpClient = new HttpClient();
+    }
 
-        protected EmploymentCheckFunctionAppHelper(EmploymentCheckProcessConfig config)
+    protected async Task StartOrchestrator(string path, bool ignoreFailure = false)
+    {
+        var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?code={AuthenticationCode}");
+
+        if (ignoreFailure) return;
+
+        if (!response.IsSuccessStatusCode)
         {
-            BaseUrl = config.EC_FunctionsBaseUrl;
-            AuthenticationCode = config.EC_FunctionsAuthenticationCode;
-            HttpClient = new HttpClient();
+            throw new Exception($"Unsuccessful request - {response.StatusCode}");
         }
 
-        protected async Task StartOrchestrator(string path, bool ignoreFailure = false)
+        var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        OrchestratorStartResponse = JsonConvert.DeserializeObject<OrchestratorStartResponse>(json);
+    }
+
+    protected async Task CallHttpTrigger(string path)
+    {
+        var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?code={AuthenticationCode}");
+
+        if (!response.IsSuccessStatusCode)
         {
-            var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?code={AuthenticationCode}");
+            throw new Exception();
+        }
+    }
 
-            if (ignoreFailure) return;
-            
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"Unsuccessful request - {response.StatusCode}");
-            }
+    protected async Task WaitUntilStatus(TimeSpan? timeout, bool continueOnFailure, params string[] status)
+    {
+        await WaitUntil(x => status.Contains(x.RuntimeStatus), timeout, continueOnFailure);
+    }
 
-            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            OrchestratorStartResponse = JsonConvert.DeserializeObject<OrchestratorStartResponse>(json);
+    protected async Task WaitUntilCustomStatus(string customStatus, TimeSpan? timeout)
+    {
+        await WaitUntil(x => x.CustomStatus == customStatus, timeout);
+    }
+
+    private async Task WaitUntil(Func<OrchestratorStatusResponse, bool> comparison, TimeSpan? timeout, bool continueOnFailure = false)
+    {
+        using var cts = new CancellationTokenSource();
+        if (timeout != null)
+        {
+            cts.CancelAfter(timeout.Value);
         }
 
-        protected async Task CallHttpTrigger(string path)
+        while (!cts.Token.IsCancellationRequested)
         {
-            var response = await HttpClient.GetAsync($"{BaseUrl}/{path}?code={AuthenticationCode}");
+            var response = await HttpClient.GetAsync(OrchestratorStartResponse.StatusQueryGetUri);
 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception();
             }
-        }
 
-        protected async Task WaitUntilStatus(TimeSpan? timeout, bool continueOnFailure, params string[] status)
-        {
-            await WaitUntil(x => status.Contains(x.RuntimeStatus), timeout, continueOnFailure);
-        }
-
-        protected async Task WaitUntilCustomStatus(string customStatus, TimeSpan? timeout)
-        {
-            await WaitUntil(x => x.CustomStatus == customStatus, timeout);
-        }
-
-        private async Task WaitUntil(Func<OrchestratorStatusResponse, bool> comparison, TimeSpan? timeout, bool continueOnFailure = false)
-        {
-            using var cts = new CancellationTokenSource();
-            if (timeout != null)
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var orchestratorStatusResponse = JsonConvert.DeserializeObject<OrchestratorStatusResponse>(json);
+            if (!continueOnFailure && orchestratorStatusResponse.RuntimeStatus == "Failed")
             {
-                cts.CancelAfter(timeout.Value);
+                throw new Exception(orchestratorStatusResponse.Output);
+            }
+            if (comparison(orchestratorStatusResponse))
+            {
+                return;
             }
 
-            while (!cts.Token.IsCancellationRequested)
-            {
-                var response = await HttpClient.GetAsync(OrchestratorStartResponse.StatusQueryGetUri);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception();
-                }
-
-                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                var orchestratorStatusResponse = JsonConvert.DeserializeObject<OrchestratorStatusResponse>(json);
-                if (!continueOnFailure && orchestratorStatusResponse.RuntimeStatus == "Failed")
-                {
-                    throw new Exception(orchestratorStatusResponse.Output);
-                }
-                if (comparison(orchestratorStatusResponse))
-                {
-                    return;
-                }
-
-                await Task.Delay(TimeSpan.FromMilliseconds(100));
-            }
-
-            throw new Exception("Orchestrator didn't complete successfully");
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
         }
+
+        throw new Exception("Orchestrator didn't complete successfully");
     }
 }

@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessToEngageChecks
 {
-    public class EnglishAndMathsAssessmentsPage : ModeratorBasePage
+    public class EnglishAndMathsAssessmentsPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "English and maths assessments";
-        
-        public EnglishAndMathsAssessmentsPage(ScenarioContext context) : base(context) { }
 
         public DeliverEnglishAndMathsAssessmentsPage SelectPassAndContinueForEnglishAndMathsAssessment()
         {

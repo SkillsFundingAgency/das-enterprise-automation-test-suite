@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected static By CandidateFeedback => By.CssSelector("#CandidateFeedback");
 
-        public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context) 
+        public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
             isRaaV2Employer = tags.Contains("raa-v2e");
             IsTraineeship = tags.Contains("rat-p");

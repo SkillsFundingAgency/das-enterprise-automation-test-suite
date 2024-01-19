@@ -13,7 +13,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
     [Scope(Feature = "LearnerMatchTest")]
     public class LearnerMatchTestSteps : StepsBase
     {
-        public LearnerMatchTestSteps(ScenarioContext context) : base(context) 
+        public LearnerMatchTestSteps(ScenarioContext context) : base(context)
         {
         }
 
@@ -150,7 +150,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod(01, 2122);
 
-            TestData.LearnerSubmission  = new LearnerSubmissionDtoBuilder()
+            TestData.LearnerSubmission = new LearnerSubmissionDtoBuilder()
                 .WithUkprn(TestData.UKPRN)
                 .WithUln(TestData.ULN)
                 .WithAcademicYear(2122)
@@ -266,7 +266,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             await Helper.LearnerMatchApiHelper.SetupResponseHttpStatusCode(TestData.ULN, TestData.UKPRN, HttpStatusCode.NotFound);
         }
-        
+
         [Then(@"a learner match record is not created for the apprenticeship id")]
         public async Task ThenALearnerMatchRecordIsNotCreated()
         {
@@ -427,7 +427,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         public async Task WhenTheLearnerHasADataLockForAPriceEpisodeInThePreviousAcademicYear()
         {
             var startDate = DateTime.Parse("2021-06-12");
-            
+
             var priceEpisode = new PriceEpisodeDtoBuilder()
                 .WithAcademicYear(2021)
                 .WithStartDate(startDate)
@@ -479,7 +479,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             var learnerRecord = Helper.EISqlHelper.GetFromDatabase<Learner>(l => l.ApprenticeshipId == TestData.ApprenticeshipId);
 
-            learnerRecord.SubmissionFound.Should().BeTrue();            
+            learnerRecord.SubmissionFound.Should().BeTrue();
             learnerRecord.LearningFound.Should().BeTrue();
             learnerRecord.InLearning.Should().BeTrue();
             learnerRecord.SubmissionDate.Should().Be(TestData.LearnerSubmission.IlrSubmissionDate);

@@ -5,11 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class WebdriverAddCapabilities
+public abstract class WebdriverAddCapabilities(ScenarioContext context)
 {
-    protected readonly ObjectContext objectContext;
+    protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
 
-    public WebdriverAddCapabilities(ScenarioContext context) => objectContext = context.Get<ObjectContext>();
+    protected readonly ScenarioContext context = context;
 
     protected void AddChromeCapabilities(IWebDriver webDriver)
     {

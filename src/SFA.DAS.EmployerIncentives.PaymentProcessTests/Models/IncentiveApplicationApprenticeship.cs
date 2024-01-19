@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SFA.DAS.Common.Domain.Types;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using SFA.DAS.Common.Domain.Types;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 {

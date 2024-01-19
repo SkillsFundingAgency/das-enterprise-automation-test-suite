@@ -1,15 +1,13 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
-    public class CheckStubSignInPage : CheckPage
+    public class CheckStubSignInPage(ScenarioContext context) : CheckPage(context)
     {
         protected override string PageTitle { get; }
 
         protected override By Identifier => By.CssSelector(".govuk-input[id='Email']");
-
-        public CheckStubSignInPage(ScenarioContext context) : base(context) { }
     }
 }

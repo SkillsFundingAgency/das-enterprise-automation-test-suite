@@ -1,8 +1,7 @@
-﻿using SFA.DAS.RAA.DataGenerator.Project;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project
 {

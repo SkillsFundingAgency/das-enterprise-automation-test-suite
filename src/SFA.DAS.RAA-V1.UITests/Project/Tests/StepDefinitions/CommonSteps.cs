@@ -98,9 +98,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var employerSelection = _raaStepsHelper.CreateANewVacancy();
 
-            var raaEmployerInformation = _raaStepsHelper.ChoosesTheEmployer(employerSelection, dataset.Location, "2");
+            var raaEmployerInformation = RAAStepsHelper.ChoosesTheEmployer(employerSelection, dataset.Location, "2");
 
-            _raaStepsHelper.ChooseAnonymous(raaEmployerInformation, "Yes");
+            RAAStepsHelper.ChooseAnonymous(raaEmployerInformation, "Yes");
 
             _raaStepsHelper.ProviderFillsOutTraineeshipDetails(dataset.Location, "Yes", "Online", postCode);
 
@@ -127,9 +127,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var raa_employerSelection = _raaStepsHelper.CreateANewVacancy();
 
-            var raa_EmployerInformation = _raaStepsHelper.ChoosesTheEmployer(raa_employerSelection, dataset.Location, dataset.NoOfPositions);
+            var raa_EmployerInformation = RAAStepsHelper.ChoosesTheEmployer(raa_employerSelection, dataset.Location, dataset.NoOfPositions);
 
-            _raaStepsHelper.ChooseAnonymous(raa_EmployerInformation, dataset.Anonymity);
+            RAAStepsHelper.ChooseAnonymous(raa_EmployerInformation, dataset.Anonymity);
 
             _raaStepsHelper.ProviderFillsOutApprenticeshipDetails(dataset.Location, dataset.DisabilityConfident, dataset.ApplicationMethod, dataset.ApprenticeshipType, dataset.HoursPerWeek, dataset.VacancyDuration, "National Minimum Wage for apprentices", postCode);
 

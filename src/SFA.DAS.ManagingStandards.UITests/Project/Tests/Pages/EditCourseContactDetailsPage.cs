@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class YourContactInformationForThisStandardPage : ManagingStandardsBasePage
+public class YourContactInformationForThisStandardPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Your contact information for this standard";
 
@@ -9,10 +9,6 @@ public class YourContactInformationForThisStandardPage : ManagingStandardsBasePa
     private static By ContactPageTextBox => By.Id("ContactUsPageUrl");
     private static By YourWebsitePageTextBox => By.Id("StandardInfoUrl");
     private static By SaveAndContinueButton => By.Id("submit");
-
-    public YourContactInformationForThisStandardPage(ScenarioContext context) : base(context)
-    {
-    }
 
     public ManageAStandard_TeacherPage UpdateContactInformation()
     {

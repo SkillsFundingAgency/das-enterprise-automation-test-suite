@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             var match = Regex.Match(applicationroute, Routes, RegexOptions.IgnoreCase);
 
-            var value = Regex.Replace(match.Value, Routes, match.Value.ToLower() == "support" ? $"{match.Value}ing" : match.Value, RegexOptions.IgnoreCase);
+            var value = Regex.Replace(match.Value, Routes, match.Value.Equals("support", StringComparison.CurrentCultureIgnoreCase) ? $"{match.Value}ing" : match.Value, RegexOptions.IgnoreCase);
 
             return Enum.Parse<ApplicationRoute>($"{value}ProviderRoute", true);
         }

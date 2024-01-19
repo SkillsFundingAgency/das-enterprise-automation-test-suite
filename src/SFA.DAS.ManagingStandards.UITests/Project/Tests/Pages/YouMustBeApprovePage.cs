@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class YouMustBeApprovePage : ManagingStandardsBasePage
+public class YouMustBeApprovePage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "You must be approved by the regulator to deliver this standard";
-
-    public YouMustBeApprovePage(ScenarioContext context) : base(context) { }
 
     public ManageAStandard_TeacherPage ContinueToTeacher_ManageStandardPage()
     {

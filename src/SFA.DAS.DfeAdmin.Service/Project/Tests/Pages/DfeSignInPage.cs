@@ -1,8 +1,9 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
-public class DfeSignInPage : SignInBasePage
+public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
     public static string DfePageTitle => "Department for Education Sign-in";
 
@@ -14,23 +15,44 @@ public class DfeSignInPage : SignInBasePage
 
     private static By SignInButton => By.CssSelector("button.govuk-button[type='submit']");
 
-    public DfeSignInPage(ScenarioContext context) : base(context) { }
-
     protected override void ClickSignInButton() => formCompletionHelper.ClickButtonByText(SignInButton, "Sign in");
 
     public void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser)
     {
         SubmitValidLoginDetails(dfeAdminUser.Username, dfeAdminUser.Password);
     }
+
+    public new void SubmitValidLoginDetails(string username, string password)
+    {
+        base.SubmitValidLoginDetails(username, password);
+
+        new NotADfeSignPage(context).IsPageDisplayed();
+    }
 }
 
-public class CheckDfeSignInPage : CheckPageUsingShorterTimeOut
+public class CheckDfeSignInPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
+{
+    protected override string PageTitle => DfeSignInPage.DfePageTitle;
+
+    protected override By Identifier => DfeSignInPage.DfePageheader;
+}
+
+public class NotADfeSignPage(ScenarioContext context) : CheckPageTitleLongerTimeOut(context)
 {
     protected override string PageTitle => DfeSignInPage.DfePageTitle;
 
     protected override By Identifier => DfeSignInPage.DfePageheader;
 
-    public CheckDfeSignInPage(ScenarioContext context) : base(context) { }
+    public override bool IsPageDisplayed() 
+    {
+        SetDebugInformation($"Check page title is NOT : '{PageTitle}'");
 
-    public override bool IsPageDisplayed() => checkPageInteractionHelper.WithoutImplicitWaits(() => pageInteractionHelper.VerifyPage(Identifier, PageTitle));
+        return checkPageInteractionHelper.Verify(() =>
+        {
+            var result = IsPageCurrent;
+
+            return result.Item1 ? throw new Exception(ExceptionMessageHelper.GetExceptionMessage("'Dfe Sign'", $"Should have navigated from '{PageTitle}'", result.Item2)) : true;
+
+        }, null);
+    }
 }

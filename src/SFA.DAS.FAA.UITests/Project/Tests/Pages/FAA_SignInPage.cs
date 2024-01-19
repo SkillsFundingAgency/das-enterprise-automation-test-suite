@@ -22,7 +22,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
             var currentURL = GetUrl();
 
-            if (!currentURL.ToLower().Contains(environmentName))
+            if (!currentURL.Contains(environmentName, System.StringComparison.CurrentCultureIgnoreCase))
             {
                 var newURL = currentURL.Replace("www.", environmentName) + "?ReturnUrl=%2F";
 

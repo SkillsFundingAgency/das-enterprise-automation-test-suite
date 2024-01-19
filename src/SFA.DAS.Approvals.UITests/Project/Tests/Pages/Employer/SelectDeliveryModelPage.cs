@@ -1,12 +1,11 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SelectDeliveryModelPage : AddAndEditApprenticeDetailsBasePage
+    public class SelectDeliveryModelPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "Select the apprenticeship delivery model";
         protected override By ContinueButton => By.CssSelector("#selectDeliveryModel button");
@@ -15,8 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By RegularRadioButton => By.CssSelector("label[for=DeliveryModelRegular]");
         private static By EditRegularRadioButton => By.XPath("//label[@for='DeliveryModelRegular' or @for='Regular']");
         private static By PortableFlexiJobRadioButton => By.CssSelector("label[for=DeliveryModelFlexible]");
-
-        public SelectDeliveryModelPage(ScenarioContext context) : base(context) { }
 
         public AddApprenticeDetailsPage SelectFlexiJobAgencyDeliveryModelAndContinue()
         {
@@ -32,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EditApprenticeDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue ()
+        public ProviderAddApprenticeDetailsPage ProviderSelectFlexiJobAgencyDeliveryModelAndContinue()
         {
             formCompletionHelper.Click(FlexiJobRadioButton);
             Continue();
@@ -76,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ProviderEditApprenticeDetailsPage ProviderEditsDeliveryModelToRegularAndSubmits()
         {
-            formCompletionHelper.Click(EditRegularRadioButton); 
+            formCompletionHelper.Click(EditRegularRadioButton);
             Continue();
             return new ProviderEditApprenticeDetailsPage(context);
         }

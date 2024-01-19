@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {

@@ -8,7 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Email address";
 
         #region Locators
-        private static By EmailAddressTextField => By.Id("Email");
         protected override By ContinueButton => By.Id("forgottenpassword-button");
         #endregion
 

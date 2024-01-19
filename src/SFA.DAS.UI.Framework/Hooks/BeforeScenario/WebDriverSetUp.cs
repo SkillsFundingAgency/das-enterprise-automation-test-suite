@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
 [Binding]
-public class WebDriverSetup : WebDriverSetupBase
+public class WebDriverSetup(ScenarioContext context) : WebDriverSetupBase(context)
 {
-    public WebDriverSetup(ScenarioContext context) : base(context) { }
-
     [BeforeScenario(Order = 3)]
     public void SetupWebDriver()
     {

@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
-    public class TransfersProviderStepsHelper : ProviderStepsHelper
+    public class TransfersProviderStepsHelper(ScenarioContext context) : ProviderStepsHelper(context)
     {
-        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
-
-        public TransfersProviderStepsHelper(ScenarioContext context) : base(context) => _providerEditStepsHelper = new ProviderEditStepsHelper(context);
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
 
         public void ApprovesTheCohortsAndSendsToEmployer() => EditApprentice().SubmitApprove();
 

@@ -2,32 +2,19 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Transfers.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourApprenticesPage;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FlexiPaymentProviderSteps
+    public class FlexiPaymentProviderSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly TransfersProviderStepsHelper _providerStepsHelper;
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
-        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
-        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
-
-        public FlexiPaymentProviderSteps(ScenarioContext context)
-        {
-            _context = context;
-            _providerStepsHelper = new TransfersProviderStepsHelper(context);
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _providerEditStepsHelper = new ProviderEditStepsHelper(context);
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
-            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
-        }
+        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -64,7 +51,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         [Given(@"pilot provider approves the cohort")]
         [When(@"pilot provider approves the cohort")]
-        public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
+        public void WhenPilotProviderApprovesCohort() => new ProviderApproveApprenticeDetailsPage(context).SubmitApprove();
 
         [When(@"Provider can search learner (.*) using Simplified Payments Pilot filter set to (yes|no) on Manage your apprentices page")]
         public void ProviderCanSearchLearnerUsingSimplifiedPaymentsPilotFilterSetToYesOnManageYourApprenticesPage(int learnerNumber, string filter)
@@ -81,7 +68,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             SetApprenticeDetailsInContext(learnerNumber);
 
-            new ProviderManageYourApprenticesPage(_context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
+            new ProviderManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
         }
 
         [Then(@"validate provider (can|cannot) view Pilot DataLock message")]

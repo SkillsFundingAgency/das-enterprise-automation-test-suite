@@ -1,21 +1,14 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
-public class EPAOWithdrawalHelper
+public class EPAOWithdrawalHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
-
-    public EPAOWithdrawalHelper(ScenarioContext context)
-    {
-        _context = context;
-        _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
-    }
+    private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
 
     public void StartOfStandardWithdrawalJourney()
     {
-        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(context);
 
-        if (_ePAOSqlDataHelper.HasWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username))
+        if (_ePAOSqlDataHelper.HasWithdrawals(context.GetUser<EPAOWithdrawalUser>().Username))
         {
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
@@ -25,7 +18,7 @@ public class EPAOWithdrawalHelper
                .ContinueWithWithdrawalRequest();
         }
         else
-        { 
+        {
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
                 .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
                 .ClickAssessingASpecificStandard()
@@ -36,9 +29,9 @@ public class EPAOWithdrawalHelper
 
     public void StartOfRegisterWithdrawalJourney()
     {
-        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(context);
 
-        if (_ePAOSqlDataHelper.HasWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username))
+        if (_ePAOSqlDataHelper.HasWithdrawals(context.GetUser<EPAOWithdrawalUser>().Username))
         {
             aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
                 .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
@@ -57,7 +50,7 @@ public class EPAOWithdrawalHelper
 
     public void StandardApplicationFinalJourney()
     {
-        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(_context);
+        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(context);
         aS_ApplicationOverviewPage.ClickGoToStandardWithdrawalQuestions()
                                   .ClickGoToReasonForWithdrawingQuestionLink()
                                   .ClickExternalQualityAssuranceProviderHasChanged()
@@ -70,7 +63,7 @@ public class EPAOWithdrawalHelper
 
     public void RegisterWithdrawalQuestions()
     {
-        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(_context);
+        AS_WithdrawalRequestOverviewPage aS_ApplicationOverviewPage = new(context);
         aS_ApplicationOverviewPage.ClickGoToRegisterWithdrawalQuestions()
             .ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
             .ClickAssessmentPlanHasChangedAndEnterOptionalReason()
@@ -82,11 +75,11 @@ public class EPAOWithdrawalHelper
             .AcceptAndSubmitWithHowWillYouSuportQuestion();
     }
 
-    public void VerifyStandardSubmitted() => new AS_WithdrawalApplicationSubmittedPage(_context);
+    public void VerifyStandardSubmitted() => _ = new AS_WithdrawalApplicationSubmittedPage(context);
 
     public void VerifyTheInProgressStatus()
     {
-        new AS_LoggedInHomePage(_context)
+        new AS_LoggedInHomePage(context)
             .ClickWithdrawFromAStandardLink()
             .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
             .ValidateStatus("In progress");
@@ -94,10 +87,10 @@ public class EPAOWithdrawalHelper
 
     public void VerifyInProgressViewLinkNavigatesToApplicationOverviewPage()
     {
-        new AS_YourWithdrawalRequestsPage(_context).ClickOnViewLinkForInProgressApplication();
+        new AS_YourWithdrawalRequestsPage(context).ClickOnViewLinkForInProgressApplication();
     }
 
-    public AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
+    public static AD_YouhaveApprovedThisWithdrawalNotification ApproveAStandardWithdrawal(StaffDashboardPage staffDashboardPage)
     {
         return staffDashboardPage
             .GoToNewWithdrawalApplications()
@@ -109,7 +102,7 @@ public class EPAOWithdrawalHelper
             .ClickApproveApplication();
     }
 
-    public AD_YouhaveApprovedThisWithdrawalNotification ApproveARegisterWithdrawal(StaffDashboardPage staffDashboardPage)
+    public static AD_YouhaveApprovedThisWithdrawalNotification ApproveARegisterWithdrawal(StaffDashboardPage staffDashboardPage)
     {
         return staffDashboardPage
             .GoToNewWithdrawalApplications()
@@ -121,7 +114,7 @@ public class EPAOWithdrawalHelper
             .ClickApproveApplication();
     }
 
-    public AD_WithdrawalApplicationsPage AddFeedbackToARegisterWithdrawalApplication(StaffDashboardPage staffDashboardPage)
+    public static AD_WithdrawalApplicationsPage AddFeedbackToARegisterWithdrawalApplication(StaffDashboardPage staffDashboardPage)
     {
         return staffDashboardPage
             .GoToNewWithdrawalApplications()
@@ -137,17 +130,17 @@ public class EPAOWithdrawalHelper
     }
     public void ReturnToWithdrawalApplicationsPage()
     {
-        new AD_YouhaveApprovedThisWithdrawalNotification(_context).ReturnToWithdrawalApplications();
+        new AD_YouhaveApprovedThisWithdrawalNotification(context).ReturnToWithdrawalApplications();
     }
 
-    public void VerifyApplicationMovedFromNewToFeedback() => new AD_WithdrawalApplicationsPage(_context).VerifyAnApplicationAddedToFeedbackTab();
+    public void VerifyApplicationMovedFromNewToFeedback() => new AD_WithdrawalApplicationsPage(context).VerifyAnApplicationAddedToFeedbackTab();
 
-    public void VerifyApplicationIsMovedToApprovedTab() => new AD_WithdrawalApplicationsPage(_context).VerifyApprovedTabContainsRegisterWithdrawal();
+    public void VerifyApplicationIsMovedToApprovedTab() => new AD_WithdrawalApplicationsPage(context).VerifyApprovedTabContainsRegisterWithdrawal();
 
 
     public void AmmendWithdrawalApplication()
     {
-        AS_LoggedInHomePage aS_LoggedInHomePage = new(_context);
+        AS_LoggedInHomePage aS_LoggedInHomePage = new(context);
         aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
                            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
                            .ClickViewOnRegisterWithdrawalWithFeedbackAdded()
@@ -157,7 +150,7 @@ public class EPAOWithdrawalHelper
                            .SubmitUpdatedAnswers();
     }
 
-    public AD_YouhaveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
+    public static AD_YouhaveApprovedThisWithdrawalNotification ApproveAmmendedRegisterWithdrawal(StaffDashboardPage staffDashboardPage)
     {
         return staffDashboardPage
             .GoToFeedbackWithdrawalApplications()
@@ -172,7 +165,7 @@ public class EPAOWithdrawalHelper
 
     public AD_WithdrawalApplicationsPage VerifyWithdrawalFromRegisterApproved()
     {
-        var approvedPage = new AD_YouhaveApprovedThisWithdrawalNotification(_context);
+        var approvedPage = new AD_YouhaveApprovedThisWithdrawalNotification(context);
 
         return approvedPage.VerifyRegisterWithdrawalBodyText()
             .ReturnToWithdrawalApplications();

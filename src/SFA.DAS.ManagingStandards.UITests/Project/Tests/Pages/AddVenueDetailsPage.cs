@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class AddVenueDetailsPage : ManagingStandardsBasePage
+public class AddVenueDetailsPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Add venue details";
 
@@ -9,10 +9,6 @@ public class AddVenueDetailsPage : ManagingStandardsBasePage
     private static By EmailAddressTextBox => By.Id("EmailAddress");
     private static By WebsiteTextBox => By.Id("Website");
     private static By SaveAndContinueButton => By.Id("submit");
-
-    public AddVenueDetailsPage(ScenarioContext context) : base(context)
-    {
-    }
 
     public TrainingVenuesPage AddVenueDetailsAndSubmit()
     {

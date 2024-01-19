@@ -1,13 +1,9 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SetpaymentOrderPage : ApprovalsBasePage
+    public class SetpaymentOrderPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Set payment order";
-
-        public SetpaymentOrderPage(ScenarioContext context) : base(context) { }
-
     }
 }

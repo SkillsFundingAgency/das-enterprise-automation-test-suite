@@ -1,33 +1,23 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
-    public class ManageStepsHelper
+    public class ManageStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly RestartWebDriverHelper _helper;
-        private readonly TabHelper _tabHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly RestartWebDriverHelper _helper = new(context);
+        private readonly TabHelper _tabHelper = context.Get<TabHelper>();
         private const string _applicationName = "Manage";
-        private readonly string _manageBaseUrl;
-
-        public ManageStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _helper = new RestartWebDriverHelper(context);
-            _tabHelper = context.Get<TabHelper>();
-            _manageBaseUrl = UrlConfig.Manage_BaseUrl;
-        }
+        private readonly string _manageBaseUrl = UrlConfig.Manage_BaseUrl;
 
         public void ApproveAVacancy(bool restart) => GoToManageHomePage(restart).ReviewAVacancy().ApproveAVacancy();
-       
+
         public Manage_HomePage GoToManageHomePage(bool restart)
         {
             if (restart)
@@ -41,9 +31,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 _tabHelper.GoToUrl(_manageBaseUrl);
             }
 
-            new Manage_IndexPage(_context).ClickAgencyButton().LoginToAccess1Staff();
+            new Manage_IndexPage(context).ClickAgencyButton().LoginToAccess1Staff();
 
-            return new SignInPage(_context).SubmitManageLoginDetails();
+            return new SignInPage(context).SubmitManageLoginDetails();
         }
 
         public void SearchForACandidate() => Search().ViewApplications();

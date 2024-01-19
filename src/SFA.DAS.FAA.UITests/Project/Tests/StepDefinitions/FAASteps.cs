@@ -6,12 +6,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FAASteps
+    public class FAASteps(ScenarioContext context)
     {
-        private readonly FAAStepsHelper _faaStepsHelper;
+        private readonly FAAStepsHelper _faaStepsHelper = new(context);
         private FAA_CreateAnAccountPage accountCreationPage;
-        
-        public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [When(@"the Applicant withdraw the application")]
         public void WhenTheApplicantWithdrawTheApplication() => _faaStepsHelper.WithdrawVacancy();
@@ -19,20 +17,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"an Applicant initiates Account creation journey")]
         [Given(@"an Applicant initiates Account creation journey")]
         public void WhenAnApplicantInitiatesAccountCreationJourney() => accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
-        
+
         [Then(@"Applicant is redirected to Activation Page when Login With Unactivated email")]
         public void ThenApplicantIsRedirectedToActivationPageWhenLoginWithUnactivatedEmail() => _faaStepsHelper.CreateFAAAccountWithNoActivation(accountCreationPage);
-                       
+
         [Then(@"the Applicant is able to create a FAA Account")]
         [When(@"the Applicant is able to create a FAA Account")]
 
-        public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
+        public void ThenTheApplicantIsAbleToCreateAFAAAccount() => FAAStepsHelper.CreateFAAAccount(accountCreationPage);
 
         [Given(@"the Applicant creates a new FAA account")]
         public void GivenTheApplicantCreatesANewFAAAccount()
         {
             accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
-            _faaStepsHelper.CreateFAAAccount(accountCreationPage);
+            FAAStepsHelper.CreateFAAAccount(accountCreationPage);
         }
 
         [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]
@@ -59,17 +57,17 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Trainneship Vacancy dates is changed in FAA")]
         public void ThenTheTrainneshipVacancyDatesIsChangedInFAA() => _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
-        
+
         [When(@"Applicant Deletes the FAA Account")]
-        public void WhenApplicantDeletesTheFAAAccount() 
+        public void WhenApplicantDeletesTheFAAAccount()
         {
             _faaStepsHelper.GoToFAAHomePage()
                 .GoToSettings()
                 .DeleteYourAccount()
                 .DeleteAccount()
-                .ConfirmAccountDeletion();            
+                .ConfirmAccountDeletion();
         }
-      
+
         [When(@"the Candidate changes Personal Settings")]
         public void WhenTheCandidateChangesPersonalSettings() => _faaStepsHelper.ChangePersonalSettings();
 

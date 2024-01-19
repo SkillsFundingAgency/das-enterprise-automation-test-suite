@@ -6,10 +6,8 @@ using System.Net;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project
 {
-    public class Outer_EmployerAccountsApiRestClient : Outer_BaseApiRestClient
+    public class Outer_EmployerAccountsApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
     {
-        public Outer_EmployerAccountsApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
-
         protected override string ApiName => "/employeraccounts";
 
         public RestResponse GetAccountEnglishFractionCurrent(string hashedAccountId, HttpStatusCode expectedResponse)

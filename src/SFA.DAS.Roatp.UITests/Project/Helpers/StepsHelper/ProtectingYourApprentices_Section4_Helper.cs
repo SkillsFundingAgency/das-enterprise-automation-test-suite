@@ -4,26 +4,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class ProtectingYourApprentices_Section4_Helper
     {
-        internal ApplicationOverviewPage CompleteProtectingYourApprentices_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteProtectingYourApprentices_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_IntroductionWhatYouWillNeed()
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section4(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteProtectingYourApprentices_2(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteProtectingYourApprentices_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_ContinuityPlanForApprenticeshipTraining()
                 .ContinuityPlanFileUploadAndContinue()
                 .VerifyContinuity_Section4(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteProtectingYourApprentices_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteProtectingYourApprentices_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_EqualityAndDiversityPolicy()
                 .EqualityAndDiversityPolicyFileUploadAndContinue()
                 .VerifyEquality_Section4(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteProtectingYourApprentices_4(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteProtectingYourApprentices_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_SafeguardingPolicy()
                     .SafeguardingPolicyFileUploadAndContinue()
@@ -31,14 +31,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .SelectYesForPreventDutyPageAndContinue()
                     .VerifySafeguarding_Section4(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteProtectingYourApprentices_5(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteProtectingYourApprentices_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_HealthAndSafetyPolicy()
                 .HealthAndSafetyPolicyFileUploadAndContinue()
                 .EnterDetailsOfHealthAndSafetyPerson()
                 .VerifyHealthAndSafety_Section4(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteProtectingYourApprentices_6(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteProtectingYourApprentices_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_ActingAsASubContractor()
                 .SelectYes()

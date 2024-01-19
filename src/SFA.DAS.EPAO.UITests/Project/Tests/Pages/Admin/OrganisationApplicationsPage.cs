@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-public class OrganisationApplicationsPage : ApplicationBasePage
+public class OrganisationApplicationsPage(ScenarioContext context) : ApplicationBasePage(context)
 {
     protected override string PageTitle => "Organisation applications";
-
-    public OrganisationApplicationsPage(ScenarioContext context) : base(context) { }
 
     public OrganisationApplicationOverviewPage GoToNewOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(NewTab);
 

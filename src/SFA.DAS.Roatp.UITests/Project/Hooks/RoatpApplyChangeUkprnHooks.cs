@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpapplychangeukprn")]
-    public class RoatpApplyChangeUkprnHooks : RoatpBaseHooks
+    public class RoatpApplyChangeUkprnHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        public RoatpApplyChangeUkprnHooks(ScenarioContext context) : base(context) { }
-
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpApplyDataHelpers();
 

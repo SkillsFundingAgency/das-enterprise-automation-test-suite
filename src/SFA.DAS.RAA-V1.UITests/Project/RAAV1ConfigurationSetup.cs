@@ -5,18 +5,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V1.UITests.Project
 {
     [Binding]
-    public class RAAV1ConfigurationSetup
+    public class RAAV1ConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public RAAV1ConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
-        public void SetUpTestProjectConfiguration() => _context.SetRAAV1Config(_configSection.GetConfigSection<RAAV1Config>());
+        public void SetUpTestProjectConfiguration() => context.SetRAAV1Config(_configSection.GetConfigSection<RAAV1Config>());
     }
 }

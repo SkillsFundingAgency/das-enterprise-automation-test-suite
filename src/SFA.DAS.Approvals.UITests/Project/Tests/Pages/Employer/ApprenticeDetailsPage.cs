@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeDetailsPage : ApprovalsBasePage
+    public class ApprenticeDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
@@ -28,7 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
 
         private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
-        public ApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 

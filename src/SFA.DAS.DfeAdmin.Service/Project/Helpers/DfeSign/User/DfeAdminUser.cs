@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 
-public abstract class DfeAdminUser : NonEasAccountUser
+public abstract class DfeAdminUser(string adminServiceName) : NonEasAccountUser
 {
-    public DfeAdminUser(string adminServiceName) => AdminServiceName = adminServiceName;
-
-    public string AdminServiceName { get; init; }
+    public string AdminServiceName { get; init; } = adminServiceName;
 
     public override string ToString() => $"{base.ToString()}, ServiceName:'{AdminServiceName}'";
 }
@@ -39,7 +37,7 @@ public class AanSuperAdminUser : DfeAdminUser
     public AanSuperAdminUser() : base("aansuperadmin") { }
 }
 
-public class SupportConsoleTier1User : DfeAdminUser 
+public class SupportConsoleTier1User : DfeAdminUser
 {
     public SupportConsoleTier1User() : base("supportconsoletier1") { }
 }
@@ -51,10 +49,10 @@ public class SupportConsoleTier2User : DfeAdminUser
 
 public class SupportToolScpUser : DfeAdminUser
 {
-    public SupportToolScpUser() : base("supporttoolscp") { } 
+    public SupportToolScpUser() : base("supporttoolscp") { }
 }
 
-public class SupportToolScsUser : DfeAdminUser 
+public class SupportToolScsUser : DfeAdminUser
 {
     public SupportToolScsUser() : base("supporttoolscs") { }
 }

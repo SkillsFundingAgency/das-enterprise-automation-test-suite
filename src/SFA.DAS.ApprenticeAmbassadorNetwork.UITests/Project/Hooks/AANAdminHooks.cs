@@ -1,13 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
 [Binding, Scope(Tag = "@aanadmin")]
-public class AANAdminHooks : AANBaseHooks
+public class AANAdminHooks(ScenarioContext context) : AANBaseHooks(context)
 {
-    public AANAdminHooks(ScenarioContext context) : base(context)
-    {
-
-    }
-
     [BeforeScenario(Order = 31)]
     public void Navigate_Admin() => tabHelper.GoToUrl(UrlConfig.AAN_Admin_BaseUrl);
 

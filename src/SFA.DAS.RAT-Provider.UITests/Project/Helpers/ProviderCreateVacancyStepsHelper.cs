@@ -5,24 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 {
-    public class ProviderTraineeshipCreateVacancyStepsHelper : CreateAdvertVacancyBaseStepsHelper
+    public class ProviderTraineeshipCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : CreateAdvertVacancyBaseStepsHelper()
     {
-        private readonly ScenarioContext _context;
-
         private bool _isMultiOrg;
 
-        private string _hashedid;
-
-        private readonly bool _newTab;
+        private readonly string _hashedid = string.Empty;
 
         public ProviderTraineeshipCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
-
-        public ProviderTraineeshipCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : base()
-        {
-            _context = context;
-            _newTab = newTab;
-            _hashedid = string.Empty;
-        }
 
         public VacancyReferencePage CreateANewTraineeshipVacancy() => CreateANewTraineeshipVacancy(string.Empty, false);
 
@@ -39,11 +28,12 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             createAdvertPage;
-        private VacancyReferencePage CreateANewTraineeshipVacancy(string employername, bool isEmployerAddress)
-        {
-            CreateANewTraineeshipVacancy(employername, isEmployerAddress, false);
 
-            return new VacancyReferencePage(_context);
+        private new VacancyReferencePage CreateANewTraineeshipVacancy(string employername, bool isEmployerAddress)
+        {
+            base.CreateANewTraineeshipVacancy(employername, isEmployerAddress);
+
+            return new VacancyReferencePage(context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
@@ -69,8 +59,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
         {
             (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
-                new RecruitmentTraineeshipsProviderHomePageStepsHelper(_context)
-                    .GoToTraineeshipRecruitmentProviderHomePage(_newTab)
+                new RecruitmentTraineeshipsProviderHomePageStepsHelper(context)
+                    .GoToTraineeshipRecruitmentProviderHomePage(newTab)
                     .GoToViewAllVacancyPage()
                     .CreateVacancy()
                     .StartNow()
@@ -111,8 +101,8 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()
         {
             (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
-                new RecruitmentTraineeshipsProviderHomePageStepsHelper(_context)
-                .GoToTraineeshipRecruitmentProviderHomePage(_newTab)
+                new RecruitmentTraineeshipsProviderHomePageStepsHelper(context)
+                .GoToTraineeshipRecruitmentProviderHomePage(newTab)
                 .GoToViewAllVacancyPage()
                 .CreateVacancy()
                 .StartNow()

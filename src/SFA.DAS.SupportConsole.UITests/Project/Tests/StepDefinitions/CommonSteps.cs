@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class CommonSteps
+public class CommonSteps(ScenarioContext context)
 {
-    private readonly StepsHelper _stepsHelper;
-
-    public CommonSteps(ScenarioContext context) => _stepsHelper = new StepsHelper(context);
+    private readonly StepsHelper _stepsHelper = new(context);
 
     [Given(@"the Tier 1 User is logged into Support Console")]
     public void GivenTheTierUserIsLoggedIntoSupportConsole() => _stepsHelper.Tier1LoginToSupportConsole();

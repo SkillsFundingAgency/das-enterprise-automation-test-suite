@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class AddContactDetailsPage : TransferMatchingBasePage
+    public class AddContactDetailsPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Add contact details";
 
@@ -14,10 +14,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#application-contact-details");
 
-        public AddContactDetailsPage(ScenarioContext context) : base(context) { }
-
         public CreateATransfersApplicationPage EnterContactDetailsAndContinue()
-        {   
+        {
             formCompletionHelper.EnterText(FirstNameSelector, datahelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameSelector, datahelper.ApprenticeLastname);
             formCompletionHelper.EnterText(EmailAddressSelector, datahelper.ApprenticeEmail);

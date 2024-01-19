@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
-    public static class EnvironmentConfig
+    public static partial class EnvironmentConfig
     {
         public static string EnvironmentName => Configurator.EnvironmentName;
 
@@ -17,6 +17,9 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public static bool IsDemoEnvironment => EnvironmentName.CompareToIgnoreCase("demo");
 
-        public static string ReplaceEnvironmentName(string x) => Regex.Replace(x, "{environmentname}", EnvironmentName.ToLower());
+        public static string ReplaceEnvironmentName(string x) => EnvironmentNameRegex().Replace(x, EnvironmentName.ToLower());
+
+        [GeneratedRegex("{environmentname}")]
+        private static partial Regex EnvironmentNameRegex();
     }
 }

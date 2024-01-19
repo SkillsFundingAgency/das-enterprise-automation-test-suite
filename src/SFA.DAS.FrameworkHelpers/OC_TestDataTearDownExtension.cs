@@ -16,7 +16,7 @@ public static class OC_TestDataTearDownExtension
     {
         var dictionary = objectContext.GetDbNameToTearDown();
 
-        if (!dictionary.ContainsKey(dbName)) dictionary.Add(dbName, new HashSet<string> { });
+        if (!dictionary.ContainsKey(dbName)) dictionary.Add(dbName, []);
 
         dictionary[dbName].Add(value);
     }

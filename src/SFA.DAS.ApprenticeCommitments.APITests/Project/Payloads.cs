@@ -33,7 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         public DateTime DateOfBirth { get; set; }
     }
 
-    public class CreateApprenticeshipFromRegistration 
+    public class CreateApprenticeshipFromRegistration
     {
         public string RegistrationId { get; set; }
         public string ApprenticeId { get; set; }

@@ -6,18 +6,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAA.UITests.Project
 {
     [Binding]
-    public class FAAConfigurationSetup
+    public class FAAConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public FAAConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
-        public void SetUpTestProjectConfiguration() => _context.SetFAAConfig(_configSection.GetConfigSection<FAAConfig>());
+        public void SetUpTestProjectConfiguration() => context.SetFAAConfig(_configSection.GetConfigSection<FAAConfig>());
     }
 }

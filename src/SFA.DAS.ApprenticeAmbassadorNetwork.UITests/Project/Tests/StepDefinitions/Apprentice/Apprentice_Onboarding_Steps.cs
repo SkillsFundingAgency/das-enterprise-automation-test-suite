@@ -3,10 +3,8 @@
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 
 [Binding, Scope(Tag = "@aanaprentice")]
-public class Apprentice_Onboarding_Steps : Apprentice_BaseSteps
+public class Apprentice_Onboarding_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
-    public Apprentice_Onboarding_Steps(ScenarioContext context) : base(context) { }
-
     [Given(@"an apprentice logs into the AAN portal")]
     public void GivenAnApprenticeLogsIntoTheAANPortal()
     {
@@ -64,6 +62,6 @@ public class Apprentice_Onboarding_Steps : Apprentice_BaseSteps
     {
         _restartWebDriverHelper.RestartWebDriver(UrlConfig.AAN_Apprentice_BaseUrl, "AAN_Apprentice_BaseUrl");
 
-        GetSignInPage().SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
+        SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
     }
 }

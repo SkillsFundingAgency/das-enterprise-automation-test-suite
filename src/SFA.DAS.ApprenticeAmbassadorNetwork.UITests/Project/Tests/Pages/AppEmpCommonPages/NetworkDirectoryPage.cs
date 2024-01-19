@@ -1,10 +1,21 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
-public class NetworkDirectoryPage : SearchEventsBasePage
+public class NetworkDirectoryPage(ScenarioContext context) : SearchEventsBasePage(context)
 {
     protected override string PageTitle => "Network directory";
 
-    public NetworkDirectoryPage(ScenarioContext context) : base(context) => VerifyPage();
+    private static By SearchResultLink => By.CssSelector(".das-search-results__link");
+
+    public ApprenticeMessagePage GoToApprenticeMessagePage(bool isRegionalChair)
+    {
+        if (isRegionalChair) FilterByRole_Regionalchair();
+
+        else FilterByRole_Apprentice();
+
+        formCompletionHelper.Click(SearchResultLink);
+
+        return new ApprenticeMessagePage(context, isRegionalChair);
+    }
 
     public new NetworkDirectoryPage FilterEventByEventRegion_London()
     {
@@ -53,4 +64,5 @@ public class NetworkDirectoryPage : SearchEventsBasePage
         base.VerifyRole_Regionalchair_Filter();
         return this;
     }
+
 }

@@ -5,12 +5,8 @@ using SFA.DAS.Login.Service;
 namespace SFA.DAS.ManagingStandards.UITests.Project;
 
 [Binding]
-public class ManagingStandardsConfigurationSetup
+public class ManagingStandardsConfigurationSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public ManagingStandardsConfigurationSetup(ScenarioContext context) => _context = context;
-
     [BeforeScenario(Order = 2)]
-    public void SetUpManagingStandardsProjectConfiguration() => _context.SetNonEasLoginUser(SetDfeAdminCredsHelper.SetDfeAdminCreds(_context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser()));
+    public void SetUpManagingStandardsProjectConfiguration() => context.SetNonEasLoginUser(SetDfeAdminCredsHelper.SetDfeAdminCreds(context.Get<FrameworkList<DfeAdminUsers>>(), new AsAdminUser()));
 }

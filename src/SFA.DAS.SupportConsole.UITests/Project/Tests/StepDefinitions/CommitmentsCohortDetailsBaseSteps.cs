@@ -1,20 +1,13 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
-public abstract class CommitmentsCohortDetailsBaseSteps
+public abstract class CommitmentsCohortDetailsBaseSteps(ScenarioContext context)
 {
-    protected readonly ScenarioContext _context;
-    private readonly StepsHelper _stepsHelper;
+    protected readonly ScenarioContext _context = context;
+    private readonly StepsHelper _stepsHelper = new(context);
     private CohortSummaryPage cohortSummaryPage;
     private CohortDetailsPage cohortDetailsPage;
-    protected SupportConsoleConfig config;
+    protected SupportConsoleConfig config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
     protected CohortDetails cohortDetails;
-
-    public CommitmentsCohortDetailsBaseSteps(ScenarioContext context)
-    {
-        _context = context;
-        config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-        _stepsHelper = new StepsHelper(context);
-    }
 
     protected CohortSummaryPage SearchesForACohort() => cohortSummaryPage = _stepsHelper.SearchForCohort(cohortDetails.CohortRef);
 

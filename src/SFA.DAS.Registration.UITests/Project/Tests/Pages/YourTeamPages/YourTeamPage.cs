@@ -4,14 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 {
-    public class YourTeamPage : InterimYourTeamPage
+    public class YourTeamPage(ScenarioContext context, bool navigate = false) : InterimYourTeamPage(context, navigate)
     {
         #region Locators
         private static By InviteANewMemberButton => By.Id("addNewUser");
         private static By InvitationActionHeader => By.CssSelector(".das-notification__heading");
-        #endregion
 
-        public YourTeamPage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
+        #endregion
 
         public CreateInvitationPage ClickInviteANewMemberButton()
         {

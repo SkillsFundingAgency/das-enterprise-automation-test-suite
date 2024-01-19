@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -10,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public partial class ApprenticeOverviewPage : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => "Confirm my apprenticeship details";
-        private string PageTitleAfterConfirmation => "Your apprenticeship details";
+        private static string PageTitleAfterConfirmation => "Your apprenticeship details";
         private static By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
         private static By AllSectionsConfirmedSuccessTickIcon => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private static By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
@@ -26,14 +24,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
             if (verifypage)
-                MultipleVerifyPage(new List<Func<bool>>
-            {
+                MultipleVerifyPage(
+            [
                 () => VerifyPage(HelpTopNavigationLink),
                 () => VerifyPage(OverviewPageSubTextBelowPageTitle, OverviewPageHelper.OverviewPageTopSubText1),
                 () => VerifyPage(OverviewPageWarningIcon),
                 () => VerifyPage(OverviewPageWarningText, OverviewPageHelper.OverviewPageTopSubText2),
                 () => VerifyPage(OverviewPageTopSubTextAfterWarning, OverviewPageHelper.OverviewPageTopSubText3)
-            });
+            ]);
         }
 
         public ConfirmYourEmployerPage GoToConfirmYourEmployerPage()

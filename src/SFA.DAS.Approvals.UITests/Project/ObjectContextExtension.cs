@@ -53,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var list = objectContext.GetCohortReferenceList();
 
-            list ??= new List<string>();
+            list ??= [];
 
             if (list.Any(x => x == cohortReference)) return;
 
@@ -97,7 +97,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         public static DateTime GetStartDate(this ObjectContext objectContext)
         {
             var dateTimeString = objectContext.Get<string>(StartDate);
-            DateTime.TryParse(dateTimeString, out var date);
+            _ = DateTime.TryParse(dateTimeString, out var date);
             return date;
         }
 
@@ -114,7 +114,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         public static DateTime GetEndDate(this ObjectContext objectContext)
         {
             var dateTimeString = objectContext.Get<string>(EndDate);
-            DateTime.TryParse(dateTimeString, out var date);
+            _ = DateTime.TryParse(dateTimeString, out var date);
             return date;
         }
 

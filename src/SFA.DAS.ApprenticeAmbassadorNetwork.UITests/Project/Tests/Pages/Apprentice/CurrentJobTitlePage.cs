@@ -1,13 +1,11 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class CurrentJobTitlePage : AanBasePage
+    public class CurrentJobTitlePage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "What is your current job title?";
 
 
         private static By CurrentJobTitle => By.Id("JobTitle");
-
-        public CurrentJobTitlePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public RegionsPage ConfirmJobtitleAndContinue()
         {

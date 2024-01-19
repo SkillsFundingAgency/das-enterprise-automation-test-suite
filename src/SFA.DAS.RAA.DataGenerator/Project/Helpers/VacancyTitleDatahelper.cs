@@ -8,11 +8,11 @@ namespace SFA.DAS.RAA.DataGenerator
         public VacancyTitleDatahelper(bool isCloneVacancy)
         {
             VacancyTitleDate = DateTime.Now;
-            
+
             VacancyTitleDateElement = VacancyTitleDate.ToString("ddMMMyyyy");
-            
+
             var part1 = isCloneVacancy ? $"Clone {RandomDataGenerator.GenerateRandomAlphabeticString(4)}" : $"{RandomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            
+
             SetVacancyTitile($"{part1}_{VacancyTitleDateElement}_{VacancyTitleDate:HHmmssfffff}");
         }
 

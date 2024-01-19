@@ -4,77 +4,77 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
     public class PeopleInControlCriminalAndComplianceChecks_Section6Helpers
     {
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_UnSpentCriminalConvictions(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_UnSpentCriminalConvictions(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_UnspentCriminalConvictions()
             .SelectPassAndContinue()
             .VerifyUnspentcriminalconvictions_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_FailedToPayBackFunds()
             .SelectPassAndContinue()
             .VerifyFailedtopaybackfunds_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_InvestigatedForFraudOrIrregularities(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_InvestigatedForFraudOrIrregularities(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_InvestigatedForFraudorIrregularities()
             .SelectPassAndContinue()
             .VerifyInvestigatedforfraudorirregularities_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_OngoingInvestigationForFraudOrIrregularities(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_OngoingInvestigationForFraudOrIrregularities(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_OngoingInvestigationsForFraudorIrregularities()
             .SelectPassAndContinue()
             .VerifyOngoinginvestigationsforfraudorirregularities_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_ContractTerminateEarlyByPublicBody()
             .SelectPassAndContinue()
             .VerifyContractterminatedearlybyapublicbody_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_WithdrawnFromContractWithApublic(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_WithdrawnFromContractWithApublic(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_WithdrawnFromContractWithPublicBody()
             .SelectPassAndContinue()
             .VerifyWithdrawnfromacontractwithapublicbody_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_BreachedTaxPaymentsOrSocialSecurityPayments()
             .SelectPassAndContinue()
             .VerifyBreachedtaxpaymentsorsocialsecuritycontributions_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_RegisterOfRemovedTrustees()
             .SelectPassAndContinue()
             .VerifyBreachedtaxpaymentsorsocialsecuritycontributions_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_BeenMadeBankrupt()
             .SelectPassAndContinue()
             .VerifyBeenmadebankrupt_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_ProhibitionOrderFromTeachingRegulationAgency(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_ProhibitionOrder()
             .SelectPassAndContinue()
             .VerifyProhibitionOrder_Section6(StatusHelper.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal static GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_BanFromManagementOrGovernance(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section6_BanFromManagementOrGovernance()

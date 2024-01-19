@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3
 {
@@ -9,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         protected override string PageTitle => "Has your organisation failed to pay back funds in the last 3 years?";
 
         #region Helpers and Context
-        
+
         #endregion
 
         public PayBackFundsLastThreeYearsPage(ScenarioContext context) : base(context) => VerifyPage();

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class CampaingnsHomePage : CampaingnsHeaderBasePage
+    public class CampaingnsHomePage(ScenarioContext context) : CampaingnsHeaderBasePage(context)
     {
         protected override string PageTitle => "APPRENTICES EMPLOYERS INFLUENCERS";
 
@@ -13,9 +13,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private static By CloseCookieButton => By.Id("fiu-cb-close-accept");
 
-
-        public CampaingnsHomePage(ScenarioContext context) : base(context)  { }
-        
         public CampaingnsHomePage AcceptCookieAndAlert()
         {
             if (pageInteractionHelper.WaitUntilAnyElements(CookieButton))

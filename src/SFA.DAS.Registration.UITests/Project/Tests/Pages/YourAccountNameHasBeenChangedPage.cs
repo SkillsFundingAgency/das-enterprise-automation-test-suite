@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using Polly;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -11,12 +10,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourAccountNameHasBeenChangedPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public EmployerAccountCreatedPage ContinueToAcknowledge()
+        public CreateYourEmployerAccountPage ContinueToAcknowledge()
         {
             Continue();
-            return new EmployerAccountCreatedPage(context);
+            return new CreateYourEmployerAccountPage(context);
         }
-         
+
 
     }
 }

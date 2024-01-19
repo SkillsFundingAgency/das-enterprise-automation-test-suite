@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ChooseTrainingProviderPage : Raav2BasePage
+    public class ChooseTrainingProviderPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Have you found a training provider?";
 
@@ -12,8 +13,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
         private static By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
-
-        public ChooseTrainingProviderPage(ScenarioContext context) : base(context) { }
 
         public ConfirmTrainingProviderPage ChooseFoundATrainingProvider()
         {
@@ -24,7 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         public ConfirmTrainingProviderPage SelectTrainingProvider()
         {
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, rAAV2DataHelper.Provider); return pageInteractionHelper.FindElement(FirstOption); });
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, RAAV2DataHelper.Provider); return pageInteractionHelper.FindElement(FirstOption); });
 
             Continue();
 

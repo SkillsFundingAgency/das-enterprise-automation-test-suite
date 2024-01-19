@@ -15,14 +15,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         public void VerifyExternalComments(string internalComments) => pageInteractionHelper.VerifyText(InternalComments, internalComments);
 
         public ApplicationOutcomePage VerifyApplicationOutcomePage(string expectedPage, string externalComments)
-        {   
+        {
             pageInteractionHelper.VerifyText(PageHeader, expectedPage);
-            
+
             if (!(string.IsNullOrEmpty(externalComments))) { VerifyExternalComments(externalComments); }
-            
+
             return this;
         }
-        public MakeAnAppealPage StartAppeal ()
+        public MakeAnAppealPage StartAppeal()
         {
             Continue();
             return new MakeAnAppealPage(context);

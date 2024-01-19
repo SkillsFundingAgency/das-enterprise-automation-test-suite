@@ -8,13 +8,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
 {
     [Binding]
-    public class OutcomeSteps
+    public class OutcomeSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
         private ApplicationSummaryPage _applicationSummaryPage;
-
-        public OutcomeSteps(ScenarioContext context) => _context = context;
 
         [Given(@"the admin navigates to the Dashboard")]
         [Then(@"the admin navigates to the Dashboard")]
@@ -22,13 +19,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         {
             RestartRoatpAdmin("RoATPAdmin");
 
-            new DfeAdminLoginStepsHelper(_context).LoginToAsAdmin();
+            new DfeAdminLoginStepsHelper(context).LoginToAsAdmin();
         }
 
         [Then(@"the appeal manager approves the appeal as SUCCESSFUl Already Active")]
         public void ThenTheAppealManagerApprovesTheAppealAsSUCCESSFUlAlreadyActive()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealTab()
                 .MakeApplicationSuccessfulAlreadyActive_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -36,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the appeal as SUCCESSFUl")]
         public void ThenTheAppealManagerApprovesTheAppealAsSUCCESSFUl()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealTab()
                 .MakeApplicationSuccessful_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -44,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the appeal as UNSUCCESSFUl")]
         public void ThenTheAppealManagerApprovesTheAppealAsUNSUCCESSFUl()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealTab()
                 .MakeApplicationUnSuccessful_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -52,7 +49,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the in progress appeal as UNSUCCESSFUl")]
         public void ThenTheAppealManagerApprovesTheInProgressAppealAsUNSUCCESSFUl()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealOutcomeTab()
                 .MakeApplicationUnSuccessful_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -60,7 +57,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the in progress appeal as SUCCESSFUl Already Active")]
         public void ThenTheAppealManagerApprovesTheInProgressAppealAsSUCCESSFUlAlreadyActive()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealOutcomeTab()
                 .MakeApplicationSuccessfulAlreadyActive_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -68,7 +65,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the in progress appeal as SUCCESSFUl Fitness For Funding")]
         public void ThenTheAppealManagerApprovesTheInProgressAppealAsSUCCESSFUlFitnessForFunding()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealOutcomeTab()
                 .MakeApplicationSuccessfulFitnessForFunding_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -76,7 +73,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the in progress appeal as SUCCESSFUl")]
         public void ThenTheAppealManagerApprovesTheInProgressAppealAsSUCCESSFUl()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealOutcomeTab()
                 .MakeApplicationSuccessful_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -84,7 +81,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"the appeal manager approves the appeal as INPROGRESS")]
         public void ThenTheAppealManagerApprovesTheAppealAsINPROGRESS()
         {
-            _staffDashboardPage = new StaffDashboardPage(_context);
+            _staffDashboardPage = new StaffDashboardPage(context);
             _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealTab()
                 .MakeApplicationInProgress_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
@@ -153,7 +150,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"verify the provider is added to the register with status of Onboarding")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()
         {
-            var resultPage = new StaffDashboardPage(_context, true)
+            var resultPage = new StaffDashboardPage(context, true)
                 .SearchForATrainingProvider()
                 .SearchTrainingProviderByUkprn();
 
@@ -165,32 +162,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"verify the provider is not added to the register")]
         public void ThenVerifyTheProviderIsNotAddedToTheRegister()
         {
-            new StaffDashboardPage(_context, true).SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyNoProviderUkprnResultFound();
+            new StaffDashboardPage(context, true).SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyNoProviderUkprnResultFound();
         }
 
         private void SelectApplication(string expectedStatus)
         {
-            _staffDashboardPage = new StaffDashboardPage(_context, true);
+            _staffDashboardPage = new StaffDashboardPage(context, true);
 
             _applicationSummaryPage = _staffDashboardPage.AccessOversightApplications().SelectApplication(expectedStatus);
         }
 
-        private OversightLandingPage SelectApplicationOversights_WithoutStatus_AppealsTab()
-        {
-            _staffDashboardPage = new StaffDashboardPage(_context);
-            _applicationSummaryPage = _staffDashboardPage.AccessOversightApplications().SelectApplication_AppealTab();
-            return new OversightLandingPage(_context);
-        }
+        private void VerifyOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(context).VerifyOverallOutcomeStatus(expectedStatus);
 
-        private void VerifyOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
-        private void VerifyAppealOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(_context).VerifyApplicationsAppealOutcomeStatus(expectedStatus);
+        private void VerifyAppealOverallOutcomeStatus(string expectedStatus) => new OversightLandingPage(context).VerifyApplicationsAppealOutcomeStatus(expectedStatus);
 
-        private OversightLandingPage ConfirmApplicationOutcome(AreYouSureAboutApplicationOutcomePage areYouSureSuccessfullPage)
+        private static OversightLandingPage ConfirmApplicationOutcome(AreYouSureAboutApplicationOutcomePage areYouSureSuccessfullPage)
         {
             return areYouSureSuccessfullPage.SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 
-        private void RestartWebDriver(string url, string applicationName) => new RestartWebDriverHelper(_context).RestartWebDriver(url, applicationName);
+        private void RestartWebDriver(string url, string applicationName) => new RestartWebDriverHelper(context).RestartWebDriver(url, applicationName);
         private void RestartRoatpAdmin(string applicationName) => RestartWebDriver(UrlConfig.Admin_BaseUrl, applicationName);
     }
 }

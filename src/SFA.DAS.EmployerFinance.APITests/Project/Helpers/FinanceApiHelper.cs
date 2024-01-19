@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers
+﻿namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers
 {
     public class TransactionSummary
     {

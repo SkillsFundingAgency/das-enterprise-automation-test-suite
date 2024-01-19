@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
     public class AccountingReferenceDatePage : RoatpApplyBasePage
     {
         protected override string PageTitle => "What's the accounting reference date for the financial information you are submitting?";
-        
+
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         private static By AccountingReferenceDay => By.Id("FH-420");
@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 
         public HowManyMonthsAccountingPeriodPage EnterAccountingReferenceDateAndContinue()
         {
-            var dobcalc = applydataHelpers.Dob(2);
+            var dobcalc = Helpers.DataHelpers.RoatpApplyDataHelpers.Dob(2);
             formCompletionHelper.EnterText(AccountingReferenceDay, dobcalc.Day);
             formCompletionHelper.EnterText(AccountingReferenceMonth, dobcalc.Month);
             formCompletionHelper.EnterText(AccountingReferenceYear, dobcalc.Year);

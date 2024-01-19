@@ -11,20 +11,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class DLockSteps
+    public class DLockSteps(ScenarioContext context)
     {
-        private readonly DataLockSqlHelper _dlockDataHelper;
+        private readonly DataLockSqlHelper _dlockDataHelper = context.Get<DataLockSqlHelper>();
 
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly EmployerStepsHelper _employerStepsHelper;
-
-        public DLockSteps(ScenarioContext context)
-        {
-            _dlockDataHelper = context.Get<DataLockSqlHelper>();
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(context);
-        }
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
         [When(@"the provider submit an ILR with price mismatch")]
         [When(@"the provider submit another ILR with price mismatch")]
@@ -72,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
 
-            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
+            EmployerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
 
             apprenticeDetails.VerifyIfChangeRequestWasApproved();
         }

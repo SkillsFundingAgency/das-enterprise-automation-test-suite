@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class AddYourOrgBankDetailsPage : EIBasePage
+    public class AddYourOrgBankDetailsPage(ScenarioContext context) : EIBasePage(context)
     {
         protected override string PageTitle => $"Add {ObjectContextExtension.GetOrganisationName(objectContext)}'s organisation and finance details";
-
-        public AddYourOrgBankDetailsPage(ScenarioContext context) : base(context) { }
 
         public VRFIntroductionTabPage ContinueToVRFIntroductionTab1Page()
         {

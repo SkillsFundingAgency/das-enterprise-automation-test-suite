@@ -1,41 +1,28 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
-    public class EmployerStepsHelper
+    public class EmployerStepsHelper(ScenarioContext context)
     {
-        private readonly ObjectContext _objectContext;
-        protected readonly ScenarioContext context;
-        private readonly ApprenticeDataHelper _dataHelper;
-        private readonly CohortReferenceHelper _cohortReferenceHelper;
-        private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
-        private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper;
-        protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper;
-        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
-
-        public EmployerStepsHelper(ScenarioContext context)
-        {
-            this.context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _rofjaaDbSqlHelper = context.Get<RofjaaDbSqlHelper>();
-            _cohortReferenceHelper = new CohortReferenceHelper(context);
-            _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
-            _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(context);
-            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
-        }
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        protected readonly ScenarioContext context = context;
+        private readonly ApprenticeDataHelper _dataHelper = context.Get<ApprenticeDataHelper>();
+        private readonly CohortReferenceHelper _cohortReferenceHelper = new(context);
+        private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper = new(context);
+        private readonly ConfirmProviderDetailsHelper _confirmProviderDetailsHelper = new(context);
+        protected readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
+        private readonly RofjaaDbSqlHelper _rofjaaDbSqlHelper = context.Get<RofjaaDbSqlHelper>();
+        protected readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
 
@@ -55,12 +42,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public StoppedApprenticeDetailsPage StopApprenticeThisMonth(StopApprentice reason) => StopApprenticeThisMonth(ViewCurrentApprenticeDetails(), reason);
 
-        internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage) =>
+        internal static EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage) =>
             apprenticeDetailsPage.ClickReviewChanges().SelectApproveChangesAndSubmit();
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit() => ApproveChangesAndSubmit(ViewCurrentApprenticeDetails());
 
-        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage, StopApprentice reason)
+        internal static StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage, StopApprentice reason)
         {
             return apprenticeDetailsPage
                 .ClickEditStatusLink()
@@ -97,14 +84,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public string EmployerApproveAndSendToProvider(int numberOfApprentices) => EmployerApproveAndSendToProvider(EmployerAddApprentice(numberOfApprentices));
 
-        public string EmployerApproveAndSendToProvider(ApproveApprenticeDetailsPage employerReviewYourCohortPage)
+        public static string EmployerApproveAndSendToProvider(ApproveApprenticeDetailsPage employerReviewYourCohortPage)
         {
             return employerReviewYourCohortPage.
                  EmployerFirstApproveAndNotifyTrainingProvider()
                 .CohortReference();
         }
 
-        public DynamicHomePages DynamicHomePageStartToAddApprentice(AddAnApprenitcePage addAnApprenitcePage)
+        public static DynamicHomePages DynamicHomePageStartToAddApprentice(AddAnApprenitcePage addAnApprenitcePage)
         {
             return addAnApprenitcePage.StartNowToAddTrainingProvider()
                  .SubmitValidUkprn()
@@ -170,7 +157,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
             => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
-        private ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
+        private static ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
 
         public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
@@ -248,7 +235,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
 

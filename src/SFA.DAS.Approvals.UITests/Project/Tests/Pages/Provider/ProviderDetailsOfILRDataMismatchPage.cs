@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderDetailsOfILRDataMismatchPage : ApprovalsBasePage
+    public class ProviderDetailsOfILRDataMismatchPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Details of ILR data mismatch";
         private static By FixILRMismatchOptions => By.XPath("//input[@value='Confirm']");
@@ -12,8 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By PriceMismatchRow => By.XPath("//*[text() = 'training price']");
         private static By CourseMismatchRow => By.XPath("//*[text() = 'training course']");
         private static By CourseMismatchRow2 => By.CssSelector("#new-course-name");
-
-        public ProviderDetailsOfILRDataMismatchPage(ScenarioContext context) : base(context)  { }
 
         internal ProviderChangeApprenticeDetailsPage RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
         {
@@ -25,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderAccessDeniedPage ClickContinueNavigateToProviderAccessDeniedPage()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(FixILRMismatchOptions, "SubmitStatusViewModel-Confirm");
-            Continue();            
+            Continue();
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -44,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public Dictionary<string, int?> GetRowCountForMismatch()
         {
-            Dictionary<string, int?> mismatchRows = new Dictionary<string, int?>();
+            Dictionary<string, int?> mismatchRows = [];
             var courseMismatchRows = pageInteractionHelper.FindElements(CourseMismatchRow).Count + pageInteractionHelper.FindElements(CourseMismatchRow2).Count;
             var priceMismatchRows = pageInteractionHelper.FindElements(PriceMismatchRow).Count;
             mismatchRows.Add("CourseMismatchRows", courseMismatchRows);

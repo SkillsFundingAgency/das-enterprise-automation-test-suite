@@ -4,19 +4,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class PlanningApprenticeshipTraining_Section6_Helper
     {
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_IntroductionWhatYouwillNeed()
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_TrainingApprentices()
                .SelectInYourOrganisationAndContinue()
                 .VerifyTrainingApprentices_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
@@ -37,9 +37,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
             }
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.EmployerProviderRoute| applicationroute == ApplicationRoute.MainProviderRoute)
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute | applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 return applicationOverviewPage
                 .Access_Section6_TypeOfApprenticeshipTraining_NewProviders()
@@ -59,7 +59,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                     .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
             }
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Support(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Support(ApplicationOverviewPage applicationOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
@@ -79,7 +79,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
             }
         }
 
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_SupportingApprentices()
                 .EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue()
@@ -87,13 +87,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextForOtherWaysToSupportApprenticesAndContinue()
                 .VerifySupporting_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4_MainRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_SupportingApprentices()
                 .EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue_MainRoute()
                 .VerifySupporting_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_ForeCastingStarts()
                 .SelectOneTo49ForecastAndContinue()
@@ -103,14 +103,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .EnterTextRegardingHowDoYouAgreeForSupportProvidedAndContinue()
                 .VerifyForecasting_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_OffTheJobTraining()
                 .SelectLearningSupportAndWrritenAssignmentsAndContinue()
                 .EnterTextForOffTheJobTrainingIsRelevantAndContinue()
                 .VerifyOffTheJobTrainning_Section6(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompletePlanningApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_WhereWillYourApprenticesBeTrained()
                 .EnterTrainingLocationDetailsAndContinue()

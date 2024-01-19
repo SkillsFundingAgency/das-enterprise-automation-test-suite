@@ -52,10 +52,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         public override ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute || 
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider ||
-                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider )
+                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
             {
                 moderatorApplicationAssessmentOverviewPage.VerifySection3Link6Status(StatusHelper.StatusClarification);
             }

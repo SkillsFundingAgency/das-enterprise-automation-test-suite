@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 
-public class AssessorDbSqlDataHelper : ProjectSqlDbHelper
+public class AssessorDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : ProjectSqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
 {
-    public AssessorDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
 }

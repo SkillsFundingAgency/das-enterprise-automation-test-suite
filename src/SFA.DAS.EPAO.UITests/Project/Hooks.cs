@@ -21,7 +21,6 @@ global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUs
 global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 global using SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.TestDataExport.Helper;
@@ -33,52 +32,44 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text.RegularExpressions;
 global using TechTalk.SpecFlow;
-using Polly;
-
 
 namespace SFA.DAS.EPAO.UITests.Project;
 
 [Binding]
-public class Hooks
+public class Hooks(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly DbConfig _config;
-    private readonly TryCatchExceptionHelper _tryCatch;
+    private readonly DbConfig _config = context.Get<DbConfig>();
+    private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
     private EPAOAdminDataHelper _ePAOAdminDataHelper;
     private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
     private EPAOApplySqlDataHelper _ePAOApplySqlDataHelper;
 
-    public Hooks(ScenarioContext context)
-    {
-        _context = context;
-        _tryCatch = context.Get<TryCatchExceptionHelper>();
-        _config = context.Get<DbConfig>();
-    }
-
     [BeforeScenario(Order = 32)]
     public void SetUpHelpers()
     {
-        var objectContext = _context.Get<ObjectContext>();
+        var objectContext = context.Get<ObjectContext>();
 
         _ePAOApplySqlDataHelper = new EPAOApplySqlDataHelper(objectContext, _config);
 
-        _context.Set(_ePAOApplySqlDataHelper);
+        context.Set(_ePAOApplySqlDataHelper);
 
         _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(objectContext, _config);
 
-        _context.Set(_ePAOAdminSqlDataHelper);
+        context.Set(_ePAOAdminSqlDataHelper);
 
-        _context.Set(new EPAOAssesmentServiceDataHelper());
+        context.Set(new EPAOAssesorCreateUserDataHelper());
 
-        _context.Set(new EPAOApplyDataHelper());
+        context.Set(new EPAOAssesmentServiceDataHelper());
 
-        _context.Set(new EPAOApplyStandardDataHelper());
+        context.Set(new EPAOApplyDataHelper());
+
+        context.Set(new EPAOApplyStandardDataHelper());
 
         _ePAOAdminDataHelper = new EPAOAdminDataHelper();
 
-        _context.Set(_ePAOAdminDataHelper);
+        context.Set(_ePAOAdminDataHelper);
 
-        _context.Set(new EPAOAdminCASqlDataHelper(objectContext, _config));
+        context.Set(new EPAOAdminCASqlDataHelper(objectContext, _config));
     }
 
     [BeforeScenario(Order = 33)]
@@ -87,15 +78,15 @@ public class Hooks
 
     [BeforeScenario(Order = 34)]
     [Scope(Tag = "resetapplyuserorganisationid")]
-    public void ResetApplyUserOrganisationId() => _ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(_context.GetUser<EPAOApplyUser>().Username);
+    public void ResetApplyUserOrganisationId() => _ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(context.GetUser<EPAOApplyUser>().Username);
 
     [BeforeScenario(Order = 35)]
     [Scope(Tag = "resetstandardwithdrawal")]
-    public void ResetStandardWithdrawalApplication() => _ePAOApplySqlDataHelper.ResetStandardWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username);
+    public void ResetStandardWithdrawalApplication() => _ePAOApplySqlDataHelper.ResetStandardWithdrawals(context.GetUser<EPAOWithdrawalUser>().Username);
 
     [BeforeScenario(Order = 36)]
     [Scope(Tag = "resetregisterwithdrawal")]
-    public void ResetRegisterWithdrawalApplication() => _ePAOApplySqlDataHelper.ResetRegisterWithdrawals(_context.GetUser<EPAOWithdrawalUser>().Username);
+    public void ResetRegisterWithdrawalApplication() => _ePAOApplySqlDataHelper.ResetRegisterWithdrawals(context.GetUser<EPAOWithdrawalUser>().Username);
 
     [BeforeScenario(Order = 37)]
     [Scope(Tag = "deleteorganisationstandardversion")]
@@ -115,5 +106,5 @@ public class Hooks
 
     [AfterScenario(Order = 18)]
     [Scope(Tag = "cancelstandard")]
-    public void CancelStandard() => _tryCatch.AfterScenarioException(() => new CancelStandardStepsHelper(_context).CancelYourStandard());
+    public void CancelStandard() => _tryCatch.AfterScenarioException(() => new CancelStandardStepsHelper(context).CancelYourStandard());
 }

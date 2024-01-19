@@ -6,22 +6,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderEditStepsHelper
+    public class ProviderEditStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
-        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
-
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-
-        public ProviderEditStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
-
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-        }
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
         public ProviderEditApprenticeCoursePage ProviderEditApprentice() => _providerCommonStepsHelper.CurrentApprenticeDetails().EditApprentice();
 
@@ -77,7 +66,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 providerApproveApprenticeDetailsPage = providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
                     .ClickEditCourseLink()
                     .ProviderSelectsAStandardForEditApprenticeDetails()
-                    .ClickSave();
+                    .ClickSave(true);
             }
             return providerApproveApprenticeDetailsPage;
         }
@@ -110,7 +99,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => _providerCommonStepsHelper.CurrentCohortDetails();
 
-        private int GetNoOfApprentices() => _context.Get<ObjectContext>().GetNoOfApprentices();
+        private int GetNoOfApprentices() => context.Get<ObjectContext>().GetNoOfApprentices();
 
     }
 }

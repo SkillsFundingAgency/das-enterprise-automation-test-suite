@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class EmployerFeedbackStrengthsPage : EmployerFeedbackBasePage
+public class EmployerFeedbackStrengthsPage(ScenarioContext context) : EmployerFeedbackBasePage(context)
 {
     protected override string PageTitle => "strengths";
 
@@ -8,17 +8,15 @@ public class EmployerFeedbackStrengthsPage : EmployerFeedbackBasePage
 
     private static By Options => By.CssSelector(".govuk-label.govuk-checkboxes__label");
 
-    public EmployerFeedbackStrengthsPage(ScenarioContext context) : base(context) { }
-
     public EmployerFeedbackCheckYourAnswersPage ContinueToCheckYourAnswers()
     {
         Continue();
-        return new (context);
+        return new(context);
     }
 
     public EmployerFeedbackImprovePage SelectOptionsForDoingWell()
     {
         SelectOptionAndContinue(Options);
-        return new (context);
+        return new(context);
     }
 }

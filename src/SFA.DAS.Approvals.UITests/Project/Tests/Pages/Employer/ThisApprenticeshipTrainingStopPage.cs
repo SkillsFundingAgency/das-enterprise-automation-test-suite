@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ThisApprenticeshipTrainingStopPage : ApprovalsBasePage
+    public class ThisApprenticeshipTrainingStopPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "When did this apprenticeship training stop?";
 
@@ -15,8 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.Id("continue-button");
         private static By NewStopDate_Month => By.Id("stop-month");
         private static By NewStopDate_Year => By.Id("stop-year");
-
-        public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context)  { }
 
         public HasTheApprenticeBeenMadeRedundantPage EditStopDateToThisMonthAndSubmit()
         {

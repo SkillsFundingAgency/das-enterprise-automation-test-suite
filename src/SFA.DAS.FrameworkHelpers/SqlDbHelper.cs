@@ -31,7 +31,7 @@ public abstract class SqlDbHelper : SqlDbBaseHelper
         return returnItems;
     }
 
-    protected List<string[]> GetMultipleData(string query) => GetListOfMultipleData(new List<string> { query }).FirstOrDefault();
+    protected List<string[]> GetMultipleData(string query) => GetListOfMultipleData([query]).FirstOrDefault();
 
     protected List<List<string[]>> GetListOfMultipleData(List<string> query)
     {

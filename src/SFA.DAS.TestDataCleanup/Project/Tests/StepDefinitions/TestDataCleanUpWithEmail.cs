@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions;
 
 [Binding]
-public class TestDataCleanUpWithEmail
+public class TestDataCleanUpWithEmail(ScenarioContext context)
 {
-    private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper;
-
-    public TestDataCleanUpWithEmail(ScenarioContext context) => _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context);
+    private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper = new(context);
 
     [Then(@"the test data are cleaned up for email (.*)")]
     public void ThenTheTestDataAreCleanedUpForEmail(string email) => CleanUpTestData(email);

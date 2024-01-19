@@ -6,28 +6,19 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 {
     [Binding, Scope(Tag = "newuser")]
-    public class AfterScenarioHooks
+    public class AfterScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly TryCatchExceptionHelper _tryCatch;
-        private readonly ObjectContext _objectContext;
-
-        public AfterScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchExceptionHelper>();
-        }
+        private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [AfterScenario(Order = 18)]
         public void DeleteEntities()
         {
+            OrganisationListPage GoToOrganisationListPage() => new(context);
 
-            OrganisationListPage GoToOrganisationListPage() => new OrganisationListPage(_context);
-
-            _tryCatch.AfterScenarioException(() => 
+            _tryCatch.AfterScenarioException(() =>
             {
-                if (_objectContext.IsUserCreated()) new UserPage(_context).DeleteUser();
+                if (_objectContext.IsUserCreated()) new UserPage(context).DeleteUser();
 
                 if (!(_objectContext.IsOrgCreated())) return;
 

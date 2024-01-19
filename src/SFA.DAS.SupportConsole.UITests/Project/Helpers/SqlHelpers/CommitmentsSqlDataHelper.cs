@@ -1,21 +1,17 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Helpers.SqlHelpers;
 
-public class CommitmentsSqlDataHelper : SqlDbHelper
+public class CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.CommitmentsDbConnectionString)
 {
-    public CommitmentsSqlDataHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.CommitmentsDbConnectionString) { }
-
-   
-
     public Dictionary<int, (string uln, string fname, string lname, string cohortRef)> GetCommtDetails(string publicHashedId)
     {
         var query = $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetails(publicHashedId)}) temp UNION " +
             $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortNotAssociatedToAccount(publicHashedId)}) temp UNION " +
             $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetailsWithPendingChanges(publicHashedId)}) temp UNION " +
-            $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetailsWithTrainingProviderHistory(publicHashedId)}) temp" ;
+            $"Select ULN, FirstName, LastName, Reference, indentifier from ({GetCohortDetailsWithTrainingProviderHistory(publicHashedId)}) temp";
 
         var result = GetMultipleData(query);
 
-        Dictionary<int, (string, string, string, string)> resultList = new();
+        Dictionary<int, (string, string, string, string)> resultList = [];
 
         foreach (var item in result) resultList.Add(int.Parse(item[4]), (item[0], item[1], item[2], item[3]));
 

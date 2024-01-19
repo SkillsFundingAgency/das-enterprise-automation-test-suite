@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 
-public class EventFormatPage : AanAdminBasePage
+public class EventFormatPage(ScenarioContext context) : AanAdminBasePage(context)
 {
-    protected override string PageTitle => "Event format";
-
-    public EventFormatPage(ScenarioContext context) : base(context) { }
+    protected override string PageTitle => "Choose an event format";
 
     public EventTitlePage SubmitEventFormat(EventFormat eventFormat)
     {
@@ -24,4 +22,4 @@ public class EventFormatPage : AanAdminBasePage
     }
 
     private void SelectEventFormatAndContinue(string value) { SelectRadioOptionByForAttribute(value); Continue(); }
-    }
+}

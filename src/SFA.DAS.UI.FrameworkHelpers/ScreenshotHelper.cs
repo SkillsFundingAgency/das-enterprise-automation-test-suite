@@ -27,9 +27,9 @@ public class ScreenshotHelper
         try
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
-                
+
             js.ExecuteScript(html2canvasJs);
-            
+
             js.ExecuteScript(generateScreenshotJS);
 
             var pngContent = Policy
@@ -72,7 +72,7 @@ public class ScreenshotHelper
     private static void AddTestAttachment(string screenshotPath, string imageName) => TestContext.AddTestAttachment(screenshotPath, imageName);
 
     private static (string screenshotPath, string imageName) GetScreenShotDetails(string screenshotsDirectory, string scenarioTitle)
-    {           
+    {
         var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
 
         (string screenshotPath, string fileName) = new WindowsFileHelper().GetFileDetails(screenshotsDirectory, imageName);

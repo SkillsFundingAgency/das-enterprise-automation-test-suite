@@ -4,18 +4,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
 {
     [Binding]
-    public class EIPaymentProcessConfigurationSetup
+    public class EIPaymentProcessConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public EIPaymentProcessConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
-        public void SetUpEIPPConfigConfiguration() => _context.SetEIPaymentProcessConfig(_configSection.GetConfigSection<EIPaymentProcessConfig>());
+        public void SetUpEIPPConfigConfiguration() => context.SetEIPaymentProcessConfig(_configSection.GetConfigSection<EIPaymentProcessConfig>());
     }
 }

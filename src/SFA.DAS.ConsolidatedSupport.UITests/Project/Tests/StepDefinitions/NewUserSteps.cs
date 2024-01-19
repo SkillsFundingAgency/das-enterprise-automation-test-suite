@@ -8,25 +8,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class NewUserSteps
+    public class NewUserSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        
-        public NewUserSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [Given(@"a new user without contact and organisation details is created")]
         public void GivenANewUserWithoutContactAndOrganisationDetailsIsCreated()
         {
-            var _config = _context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
+            var _config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
 
-            var _dataHelper = _context.Get<ConsolidateSupportDataHelper>();
+            var _dataHelper = context.Get<ConsolidateSupportDataHelper>();
 
-            new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
+            new SignInPage(context).SignIntoApprenticeshipServiceSupport();
 
             var user = new RestApiHelper(_config, _dataHelper).CreateUser().Result;
 
@@ -50,13 +43,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetOrgCreated();
 
-            new OrganisationListPage(_context).VerifyOrganisationDetails();
+            new OrganisationListPage(context).VerifyOrganisationDetails();
 
             GoToUserPage().VerifyOrganisationDetails();
 
-            new OrgPage(_context, true).EnterDetails().VerifyDetails();
+            new OrgPage(context, true).EnterDetails().VerifyDetails();
         }
 
-        private UserPage GoToUserPage() => new UserPage(_context);
+        private UserPage GoToUserPage() => new(context);
     }
 }

@@ -15,10 +15,8 @@ public static class ObjectContextExtension
     private const string HasMultipleVersions = "HasMultipleVersions";
     private const string WithOptions = "WithOptions";
     private const string HasMultiStandards = "HasMultiStandards";
-    private const string LoggedInUserName = "loggedinusername";
     #endregion
 
-    internal static void SetLoggedInUser(this ObjectContext objectContext, string value) => objectContext.Replace(LoggedInUserName, value);
 
     public static void SetApplyOrganisationName(this ObjectContext objectContext, string value) => objectContext.Replace(ApplyOrganisationName, value);
     public static string GetApplyOrganisationName(this ObjectContext objectContext) => objectContext.Get(ApplyOrganisationName);

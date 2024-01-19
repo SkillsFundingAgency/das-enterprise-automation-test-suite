@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
-    public class InterimPublicSectorReportingHomePage : InterimEmployerBasePage
+    public class InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate) : InterimEmployerBasePage(context, OpenPublicSectorReporting(context, navigate), false)
     {
         protected override string PageTitle => "Annual apprenticeship return";
 
@@ -12,15 +12,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         private static string Link => "Report public sector apprenticeship target";
 
-        public InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate) : base(context, OpenPublicSectorReporting(context, navigate), false) { }
-
         private static Action OpenPublicSectorReporting(ScenarioContext context, bool navigate)
         {
             if (navigate)
             {
                 return () =>
                 {
-                    new InterimApprenticesHomePage(context, false);
+                    _ = new InterimApprenticesHomePage(context, false);
 
                     var helper = context.Get<FormCompletionHelper>();
 

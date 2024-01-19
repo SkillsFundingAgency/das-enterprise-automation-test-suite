@@ -6,15 +6,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FAAFindApplicationSteps
+    public class FAAFindApplicationSteps(ScenarioContext context)
     {
-        private readonly FAAStepsHelper _faaStepsHelper;
+        private readonly FAAStepsHelper _faaStepsHelper = new(context);
         private FAA_ApprenticeSearchPage _apprenticeSearchPage;
         private FAA_ApprenticeSearchResultsPage _apprenticeSearchResultspage;
         private FAA_TraineeshipSearchPage _traineeshipSearchPage;
         private FAA_TraineeshipSearchResultsPage _traineeshipSearchResultsPage;
-
-        public FAAFindApplicationSteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [Given(@"an applicant is on the Find an Apprenticeship Page")]
         [When(@"an applicant is on the Find an Apprenticeship Page")]

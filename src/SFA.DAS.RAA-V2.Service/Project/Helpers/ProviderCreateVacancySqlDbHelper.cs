@@ -1,14 +1,12 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
-    public class RAAV2ProviderPermissionsSqlDbHelper : SqlDbHelper
+    public class RAAV2ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
     {
-        public RAAV2ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.PermissionsDbConnectionString) { }
-
         public int GetNoOfValidOrganisations(string hashedid)
         {
             string query = $@"SELECT count(AccountLegalEntityId) ctr FROM dbo.AccountProviderLegalEntities apl
@@ -21,10 +19,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         }
     }
 
-    public class ProviderCreateVacancySqlDbHelper : SqlDbHelper
+    public class ProviderCreateVacancySqlDbHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.AccountsDbConnectionString)
     {
-        public ProviderCreateVacancySqlDbHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.AccountsDbConnectionString) { }
-
         public List<object[]> GetValidHashedId(List<string> hashedid)
         {
             string query = $@"SELECT HashedId, count(HashedId) FROM 

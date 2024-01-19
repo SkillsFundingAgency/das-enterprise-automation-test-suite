@@ -4,17 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
-    public class EmployerStepsHelper
+    public class EmployerStepsHelper(ScenarioContext context)
     {
-        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
-        private readonly StepsHelper _stepsHelper;
-
-        public EmployerStepsHelper(ScenarioContext context)
-        {
-            _stepsHelper = new StepsHelper(context);
-            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(context);
-        }
-
+        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper = new(context);
         internal EmployerVacancySearchResultPage YourAdvert()
         {
             _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
@@ -26,11 +18,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().GoToVacancyManagePage().CloseAdvert().YesCloseThisVacancy();
 
-        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
+        internal void ApplicantUnsucessful() => StepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
-        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
+        internal void ApplicantSucessful() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
 
-        internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
+        internal void VerifyWageType(string wageType) => StepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
         private EmployerVacancySearchResultPage SearchVacancyByVacancyReferenceInNewTab()
         {

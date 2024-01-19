@@ -5,24 +5,17 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.MailinatorAPI.Service.Project;
 
 [Binding, Scope(Tag = "testinator")]
-public class Hooks
+public class Hooks(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
     private MailinatorApiHelper mailinatorApiHelper;
-    private readonly TryCatchExceptionHelper _tryCatch;
-
-    public Hooks(ScenarioContext context)
-    {
-        _context = context;
-        _tryCatch = context.Get<TryCatchExceptionHelper>();
-    }
+    private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
 
     [BeforeScenario(Order = 12)]
-    public void SetUpMailinatorApiHelpers() => _context.Set(mailinatorApiHelper = new MailinatorApiHelper(_context, true));
+    public void SetUpMailinatorApiHelpers() => context.Set(mailinatorApiHelper = new MailinatorApiHelper(context, true));
 
     [AfterScenario(Order = 22)]
     public void DeleteMessages()
     {
-        if (_context.TestError != null) _tryCatch.AfterScenarioException(() => mailinatorApiHelper.DeleteInbox());
+        if (context.TestError != null) _tryCatch.AfterScenarioException(() => mailinatorApiHelper.DeleteInbox());
     }
 }

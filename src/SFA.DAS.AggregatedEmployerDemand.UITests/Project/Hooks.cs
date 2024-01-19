@@ -14,21 +14,17 @@ using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project;
 
 [Binding]
-public class Hooks
+public class Hooks(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public Hooks(ScenarioContext context) => _context = context;
-
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        var emailDomain = _context.Get<MailinatorApiHelper>().GetDomainName();
+        var emailDomain = context.Get<MailinatorApiHelper>().GetDomainName();
 
         var datahelper = new AedDataHelper(emailDomain);
 
-        _context.Set(datahelper);
+        context.Set(datahelper);
 
-        _context.Get<ObjectContext>().SetDebugInformation($"'{datahelper.Email}' is used");
+        context.Get<ObjectContext>().SetDebugInformation($"'{datahelper.Email}' is used");
     }
 }

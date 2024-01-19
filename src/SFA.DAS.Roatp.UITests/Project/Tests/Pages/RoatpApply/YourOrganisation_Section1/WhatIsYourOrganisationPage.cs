@@ -11,49 +11,49 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public DescribeYourOrganisationPage SelectAnApprenticeshipTrainingAgencyAndContinue()
         {
             SelectRadioOptionByText("An Apprenticeship Training Agency");
-           SaveAndContinue();
+            SaveAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
         public TypeOfEducationalInstitutePage SelectEducationalInstituteAndContinue()
-        { 
+        {
             SelectRadioOptionByText("An educational institute");
-           SaveAndContinue();
+            SaveAndContinue();
             return new TypeOfEducationalInstitutePage(context);
         }
         public DescribeYourOrganisationPage SelectIndependentTrainingProviderAndContinue()
         {
             SelectRadioOptionByText("An Independent Training Provider");
-           SaveAndContinue();
+            SaveAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
         public DescribeYourOrganisationPage SelectARailFranchiseOperatorAndContinue()
         {
             SelectRadioOptionByText("A rail franchise operator, licensed and acting on behalf of the Department for Transport");
-           SaveAndContinue();
+            SaveAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
         public DescribeYourOrganisationPage SelectNoneOfTheAboveAndContinue()
         {
             SelectRadioOptionByText("None of the above");
-           SaveAndContinue();
+            SaveAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
         public DescribeYourOrganisationPage SelectGroupTrainingAssociationAndContinue()
         {
             SelectRadioOptionByText("A Group Training Association");
-           SaveAndContinue();
+            SaveAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
         public TypeOfBodyPage SelectPublicBodyAndContinue()
-        { 
+        {
             SelectRadioOptionByText("A public body");
-           SaveAndContinue();
+            SaveAndContinue();
             return new TypeOfBodyPage(context);
         }
         public DescribeYourOrganisationPage SelectEmployerTrainingInOtherOrganisations()
         {
             SelectRadioOptionByText("An employer training apprentices in other organisations");
-           SaveAndContinue();
+            SaveAndContinue();
             return new DescribeYourOrganisationPage(context);
         }
 

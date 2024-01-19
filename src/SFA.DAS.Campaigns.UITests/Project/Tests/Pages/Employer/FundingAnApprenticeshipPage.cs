@@ -3,19 +3,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class FundingAnApprenticeshipPage : EmployerBasePage
+    public class FundingAnApprenticeshipPage(ScenarioContext context) : EmployerBasePage(context)
     {
         protected override string PageTitle => "Funding an apprenticeship";
 
         #region Page Object Element
 
-        private readonly By __levyPayingEmployer= By.Id("levyPayerYes");
+        private readonly By __levyPayingEmployer = By.Id("levyPayerYes");
         private readonly By _nonLevyPayingEmployer = By.Id("levyPayerNo");
         private readonly By _continueButton = By.XPath("//button[contains(@class, 'button') and contains(text(), 'Continue')]");
-        
-        #endregion
 
-        public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)  { }
+        #endregion
 
         public NonLevyPayingEmployerPage NavigateToNonLevyEmployerPage()
         {
@@ -30,7 +28,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(_continueButton);
             return new LevyingPayingEmployerPage(context);
         }
-        
+
         public NotSureLevyPayingEmployerPage NavigateToNotSureLevyEmployerPage()
         {
             formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);

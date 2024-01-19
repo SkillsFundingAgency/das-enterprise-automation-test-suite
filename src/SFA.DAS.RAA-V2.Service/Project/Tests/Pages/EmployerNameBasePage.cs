@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -65,7 +65,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private EmployerDescriptionPage ChooseRegisteredNameAndGotoEmployerDescriptionPage()
         {
             SelectRadioOptionByForAttribute("legal-entity-name");
-            
+
             SetLegalEntityAsEmployerName();
 
             return GoToEmployerDescriptionPage();
@@ -92,7 +92,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             SelectRadioOptionByForAttribute("anonymous");
 
             formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
-            
+
             formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
 
             SetLegalEntityAsEmployerName();
@@ -101,7 +101,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
 
         private EmployerDescriptionPage GoToEmployerDescriptionPage() => GoToEmployerDescriptionPage(_employerName);
-        
+
         private EmployerDescriptionPage GoToEmployerDescriptionPage(string employerNameAsShownInTheAdvert)
         {
             SetEmployerName(_employerName);

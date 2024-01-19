@@ -3,23 +3,19 @@ using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class LoginCredentialsHelper
+    public class LoginCredentialsHelper(ObjectContext objectContext)
     {
-        private readonly ObjectContext _objectContext;
-
-        public LoginCredentialsHelper(ObjectContext objectContext) => _objectContext = objectContext;
-
         public bool IsLevy { get; private set; }
 
         internal void SetLoginCredentials(string username, string password, string organisationName, bool isLevy = false)
         {
-            _objectContext.SetLoginCredentials(username, password, organisationName);
+            objectContext.SetLoginCredentials(username, password, organisationName);
 
-            IsLevy = isLevy;            
+            IsLevy = isLevy;
         }
 
         public void SetIsLevy() => IsLevy = true;
 
-        public LoggedInAccountUser GetLoginCredentials() => _objectContext.GetLoginCredentials();
+        public LoggedInAccountUser GetLoginCredentials() => objectContext.GetLoginCredentials();
     }
 }

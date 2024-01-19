@@ -7,7 +7,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
     {
         private static readonly decimal EnglishFraction = 1.00m;
 
-        private static readonly DateTime EnglishFractioncalculatedAt = new DateTime(2019, 01, 15);
+        private static readonly DateTime EnglishFractioncalculatedAt = new(2019, 01, 15);
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) TransferslevyFunds()
         {
@@ -47,16 +47,16 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds() => LevyFunds("15", "9999");
 
-        public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds(string duration, string levyPerMonth, DateTime dateTime = default(DateTime))
+        public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds(string duration, string levyPerMonth, DateTime dateTime = default)
         {
-            dateTime = dateTime == default(DateTime) ? DateTime.Now : dateTime;
+            dateTime = dateTime == default ? DateTime.Now : dateTime;
 
             (DateTime englishFractioncalculatedAt, Table levyDeclarations) = GetlevyDeclarations(duration, levyPerMonth, dateTime);
 
             return (EnglishFraction, englishFractioncalculatedAt, levyDeclarations);
         }
 
-        private static Table GetTableHeader() => new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+        private static Table GetTableHeader() => new("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
 
         private static (DateTime calculatedAt, Table levyDeclarations) GetlevyDeclarations(string duration, string levyPerMonth, DateTime dateTime)
         {
@@ -82,10 +82,10 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public static string[] GetlevyDeclarations(DateTime date, int levyPerMonth, int levyAllowanceForFullYear)
         {
-            return new string[] { GetCurrentFinancialYear(date), GetCurrentFinancialMonth(date), levyPerMonth.ToString(), levyAllowanceForFullYear.ToString(), GetSubmissionDate(date) };
+            return [GetCurrentFinancialYear(date), GetCurrentFinancialMonth(date), levyPerMonth.ToString(), levyAllowanceForFullYear.ToString(), GetSubmissionDate(date)];
         }
 
-        public static string GetSubmissionDate(DateTime dateTime) => $"{dateTime.Year.ToString()}-{dateTime.ToString("MM")}-15";
+        public static string GetSubmissionDate(DateTime dateTime) => $"{dateTime.Year}-{dateTime:MM}-15";
 
         public static string GetCurrentFinancialMonth(DateTime dateTime)
         {

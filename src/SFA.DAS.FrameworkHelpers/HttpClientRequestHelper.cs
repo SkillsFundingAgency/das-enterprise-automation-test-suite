@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -9,7 +8,7 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public class HttpClientRequestHelper
     {
-        private static readonly HttpClient Client = new HttpClient();
+        private static readonly HttpClient Client = new();
 
         private const string MediaType = "application/json";
 
@@ -61,7 +60,7 @@ namespace SFA.DAS.FrameworkHelpers
 
             if (string.IsNullOrEmpty(deleteData))
             {
-                new HttpRequestMessage(HttpMethod.Delete, requestUri);
+                _ = new HttpRequestMessage(HttpMethod.Delete, requestUri);
             }
             else
             {
@@ -78,7 +77,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static async Task<string> ExecuteHttpPatchRequest(string requestUri, string patchData, string accessToken = "")
         {
-            HttpRequestMessage requestMessage = new HttpRequestMessage(new HttpMethod("PATCH"), requestUri)
+            HttpRequestMessage requestMessage = new(new HttpMethod("PATCH"), requestUri)
             {
                 Content = new StringContent(patchData, Encoding.UTF8, MediaType)
             };

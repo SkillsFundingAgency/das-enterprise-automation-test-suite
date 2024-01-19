@@ -1,8 +1,8 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {

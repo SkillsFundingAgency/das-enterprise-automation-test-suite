@@ -10,7 +10,7 @@ public class FailedTestReporting
     public FailedTestReporting(ScenarioContext context) { _context = context; _directoryPath = _context.Get<ObjectContext>().GetDirectory(); }
 
     [BeforeTestRun(Order = 11)]
-    public static void InitVariable() => _scenarioTitles = new List<string>();
+    public static void InitVariable() => _scenarioTitles = [];
 
     [AfterScenario(Order = 97)]
     public void CaptureFailedScenarioTitle()
@@ -23,7 +23,7 @@ public class FailedTestReporting
 
                 var x = TestContext.CurrentContext.Test.Name;
 
-                lock (_scenarioTitles) { _scenarioTitles.Add((x.Length <= requiredLength) ? x : x.Substring(0, requiredLength)); }
+                lock (_scenarioTitles) { _scenarioTitles.Add((x.Length <= requiredLength) ? x : x[..requiredLength]); }
             });
         }
     }
@@ -37,6 +37,6 @@ public class FailedTestReporting
 
         list = $"({list})&FullyQualifiedName!~TestDataPreparation";
 
-        AfterTestRunReportHelper.ReportAfterTestRun(new List<string> { list }, _directoryPath, "FailedScenarios");
+        AfterTestRunReportHelper.ReportAfterTestRun([list], _directoryPath, "FailedScenarios");
     }
 }

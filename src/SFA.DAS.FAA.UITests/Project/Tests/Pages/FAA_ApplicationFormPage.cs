@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApplicationFormPage : FAABasePage
+    public class FAA_ApplicationFormPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Application form";
 
@@ -46,9 +47,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private static By AcceptSubmit => By.Id("AcceptSubmitLabel");
         private static By MyApplications => By.CssSelector("a#myapplications-link");
         private static By Save => By.Id("save-button");
-        #endregion
 
-        public FAA_ApplicationFormPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public void EnterEducation() => formCompletionHelper.EnterText(Education, faaDataHelper.EducationSchoolOrCollege);
 
@@ -65,7 +65,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             else
             {
                 formCompletionHelper.Click(YesQualifications);
-                formCompletionHelper.SelectFromDropDownByText(TypeOfQualification, faaDataHelper.TypeOfQualification);
+                formCompletionHelper.SelectFromDropDownByText(TypeOfQualification, FAADataHelper.TypeOfQualification);
                 formCompletionHelper.EnterText(InputYear, faaDataHelper.QualificationYear);
                 formCompletionHelper.EnterText(Subject, faaDataHelper.QualificationSubject);
                 formCompletionHelper.EnterText(Grade, faaDataHelper.QualificationGrade);

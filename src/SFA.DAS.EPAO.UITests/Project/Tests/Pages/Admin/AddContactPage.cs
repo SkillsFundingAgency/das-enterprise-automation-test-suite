@@ -19,7 +19,7 @@ public class AddContactPage : OrganisationSectionsBasePage
         formCompletionHelper.EnterText(FirstName, ePAOAdminDataHelper.GivenNames);
         formCompletionHelper.EnterText(LastName, ePAOAdminDataHelper.FamilyName);
         formCompletionHelper.EnterText(Email, ePAOAdminDataHelper.Email);
-        formCompletionHelper.EnterText(PhoneNumber, ePAOAdminDataHelper.PhoneNumber);
+        formCompletionHelper.EnterText(PhoneNumber, EPAOAdminDataHelper.PhoneNumber);
         Continue();
         return new(context);
     }

@@ -7,20 +7,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public abstract class ConsolidatedSupportBasePage : VerifyBasePage
+    public abstract class ConsolidatedSupportBasePage(ScenarioContext context) : VerifyBasePage(context)
     {
-        protected readonly ConsolidatedSupportConfig config;
-        protected readonly ConsolidateSupportDataHelper dataHelper;
+        protected readonly ConsolidatedSupportConfig config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
+        protected readonly ConsolidateSupportDataHelper dataHelper = context.Get<ConsolidateSupportDataHelper>();
 
         private static By CloseButton => By.CssSelector("[data-test-id='close-button']");
 
         private static By MainNavigationButton => By.CssSelector("#main_navigation button");
-
-        public ConsolidatedSupportBasePage(ScenarioContext context) : base(context)
-        {
-            config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
-            dataHelper = context.Get<ConsolidateSupportDataHelper>();
-        }
 
         protected void ClickHomeButton() => formCompletionHelper.ClickButtonByText(MainNavigationButton, "Home");
 
@@ -30,7 +24,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected void CloseAllTickets()
         {
-            pageInteractionHelper.InvokeAction(() => 
+            pageInteractionHelper.InvokeAction(() =>
             {
                 foreach (var element in pageInteractionHelper.FindElements(CloseButton).ToList()) element.Click();
             });

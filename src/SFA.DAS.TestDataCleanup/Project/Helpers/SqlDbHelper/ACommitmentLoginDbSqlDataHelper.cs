@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 
-public class ACommitmentLoginDbSqlDataHelper : ProjectSqlDbHelper
+public class ACommitmentLoginDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : ProjectSqlDbHelper(objectContext, dbConfig.ApprenticeCommitmentLoginDbConnectionString)
 {
-    public ACommitmentLoginDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentLoginDbConnectionString) { }
 }

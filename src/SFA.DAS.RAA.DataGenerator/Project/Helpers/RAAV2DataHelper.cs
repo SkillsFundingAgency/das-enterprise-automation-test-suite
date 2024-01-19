@@ -41,12 +41,12 @@ namespace SFA.DAS.RAA.DataGenerator
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
         public string TraineeshipVacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} traineeship";
 
-        public string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
-        public string SectorName => "Care services";
+        public static string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
+        public static string SectorName => "Care services";
 
-        public string EmployerAddress => AvailableAddress.RandomOrDefault();
+        public static string EmployerAddress => AvailableAddress.RandomOrDefault();
 
-        public string Provider => AvailableProviders.RandomOrDefault();
+        public static string Provider => AvailableProviders.RandomOrDefault();
 
         public string EmployerName { get; }
 
@@ -58,7 +58,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string ContactName { get; }
 
-        public string ContactNumber => "07777777777";
+        public static string ContactNumber => "07777777777";
 
         public string Email { get; }
 
@@ -69,22 +69,22 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string TrainingDetails { get; }
 
-        public string Duration => "52";
-        public string TraineeshipDuration => "12";
+        public static string Duration => "52";
+        public static string TraineeshipDuration => "12";
 
         public string WorkkingWeek { get; }
 
-        public string WeeklyHours => "40";
+        public static string WeeklyHours => "40";
 
-        public string FixedWageYearlyAmount => "11000";
+        public static string FixedWageYearlyAmount => "11000";
 
-        public string NationalMinimumWage => "£10,982.40 to £21,673.60";
+        public static string NationalMinimumWage => "£10,982.40 to £21,673.60";
 
-        public string NationalMinimumWageForApprentices => "£10,982.40";
+        public static string NationalMinimumWageForApprentices => "£10,982.40";
 
-        public string SetAsCompetitive => "Competitive";
+        public static string SetAsCompetitive => "Competitive";
 
-        public string FixedWageForApprentices => "£11,000";
+        public static string FixedWageForApprentices => "£11,000";
 
         public DateTime EditedVacancyClosing { get; }
 
@@ -98,19 +98,20 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string DesiredQualificationsSubject { get; }
 
-        public string DesiredQualificationsGrade => "A Level";
+        public static string DesiredQualificationsGrade => "A Level";
 
-        public string NumberOfVacancy => "2";
+        public static string NumberOfVacancy => "2";
 
         public string OptionalMessage { get; }
 
-        public string RandomAlphabeticString(int length) => RandomDataGenerator.GenerateRandomAlphabeticString(length);
-        public string RandomQuestionString(int length) => $"{RandomDataGenerator.GenerateRandomAlphabeticString(length)}?";
+        public static string RandomAlphabeticString(int length) => RandomDataGenerator.GenerateRandomAlphabeticString(length);
 
-        private string WebsiteUrl(string url) => $"www.{url}.com";
+        public static string RandomQuestionString(int length) => $"{RandomDataGenerator.GenerateRandomAlphabeticString(length)}?";
 
-        private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
+        private static string WebsiteUrl(string url) => $"www.{url}.com";
 
-        private List<string> AvailableAddress => new List<string> { "CV33", "CV35", "SM3", "SW11" };
+        private static List<string> AvailableProviders => new() { "BALTIC TRAINING SERVICES LIMITED 10019026" };
+
+        private static List<string> AvailableAddress => new() { "CV33", "CV35", "SM3", "SW11" };
     }
 }

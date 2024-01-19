@@ -5,7 +5,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
     public class Assessor_Section2Helper
     {
-        public ApplicationAssessmentOverviewPage PassEngagingWithEmployers(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassEngagingWithEmployers(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
@@ -25,7 +25,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassComplaintsPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassComplaintsPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
@@ -43,7 +43,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassContractForServicesTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassContractForServicesTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider)
@@ -60,7 +60,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassCommitmentStatementTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
@@ -79,9 +79,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassPriorLearningOfApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassPriorLearningOfApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (applicationroute == ApplicationRoute.MainProviderRoute||
+            if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
                 applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
@@ -98,12 +98,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .VerifySection2Link5Status(StatusHelper.NotRequired);
             }
         }
-        public ApplicationAssessmentOverviewPage PassEnglishAndMathsAssessment(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassEnglishAndMathsAssessment(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||
                 applicationroute == ApplicationRoute.EmployerProviderRoute ||
-                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider )
+                applicationroute == ApplicationRoute.EmployerProviderRouteForExistingProvider)
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_EnglishAndMathsAssessments()
@@ -119,7 +119,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage PassWorkingWithSubcontractors(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ApplicationAssessmentOverviewPage PassWorkingWithSubcontractors(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             if (applicationroute == ApplicationRoute.MainProviderRoute ||
                 applicationroute == ApplicationRoute.MainProviderRouteForExistingProvider ||

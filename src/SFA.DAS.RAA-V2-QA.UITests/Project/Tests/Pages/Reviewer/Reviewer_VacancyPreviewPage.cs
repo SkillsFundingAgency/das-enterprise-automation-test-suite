@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
-    public class Reviewer_VacancyPreviewPage : ApproveVacancyBasePage
+    public class Reviewer_VacancyPreviewPage(ScenarioContext context) : ApproveVacancyBasePage(context)
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
@@ -15,8 +15,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
 
-        public Reviewer_VacancyPreviewPage(ScenarioContext context) : base(context) { }
-        
         public new Reviewer_VacancyPreviewPage VerifyEmployerName()
         {
             base.VerifyEmployerName();

@@ -16,12 +16,12 @@ namespace SFA.DAS.MailinatorAPI.Service.Project.Helpers;
 public class MailinatorApiHelper
 {
     private readonly MailinatorClient mailinatorClient;
-    
+
     private readonly RetryAssertHelper _assertHelper;
-    
+
     private readonly ObjectContext _objectContext;
 
-    private static readonly HashSet<string> mailers = new();
+    private static readonly HashSet<string> mailers = [];
 
     private readonly string domainName;
 
@@ -34,7 +34,7 @@ public class MailinatorApiHelper
         _assertHelper = context.Get<RetryAssertHelper>();
 
         _objectContext = context.Get<ObjectContext>();
-        
+
         domainName = isPublic ? "mailinator.com" : GetPrivateDomain();
 
         apiDomainName = isPublic ? "public" : domainName;
@@ -57,7 +57,7 @@ public class MailinatorApiHelper
     {
         _objectContext.SetMessageList();
 
-        return domainName; 
+        return domainName;
     }
 
     private string GetPrivateDomain()

@@ -4,13 +4,60 @@ using System;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions;
 
-public abstract class AppEmp_BaseSteps : BaseSteps
+public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(context)
 {
     private (string id, DateTime startdate) Event;
 
-    public AppEmp_BaseSteps(ScenarioContext context) : base(context)
-    {
+    protected NetworkDirectoryPage networkDirectoryPage;
 
+    protected (string id, string FullName) Apprentice;
+
+    protected void AccessNetworkDirectory(NetworkHubPage networkHubPage, bool isRegionalChair, string email)
+    {
+        string x = isRegionalChair ? "is" : "is not";
+
+        networkDirectoryPage = networkHubPage.AccessNetworkDirectory();
+
+        Apprentice = _aanSqlHelper.GetLiveApprenticeDetails(isRegionalChair, email);
+
+        Assert.That(!string.IsNullOrEmpty(Apprentice.id), $"No member found who '{x} regional chair' and email is not '{email}', use the sql query in test data attachment to debug the test");
+    }
+
+    protected static NetworkDirectoryPage SendRegionalChairMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return SendMessage(networkDirectoryPage, true, apprentice, message);
+    }
+
+    protected static NetworkDirectoryPage SendApprenticeMessage(NetworkDirectoryPage networkDirectoryPage, (string id, string fullname) apprentice, string message)
+    {
+        return SendMessage(networkDirectoryPage, false, apprentice, message);
+    }
+
+    private static NetworkDirectoryPage SendMessage(NetworkDirectoryPage networkDirectoryPage, bool isRegionalChair, (string id, string fullname) apprentice, string message)
+    {
+        return networkDirectoryPage.GoToApprenticeMessagePage(isRegionalChair)
+           .GoToApprenticeMessagePage(apprentice)
+           .SendMessage(message)
+           .AccessNetworkDirectory();
+    }
+
+    protected static void VerifyYourAmbassadorProfile(NetworkHubPage networkHubPage, string value)
+    {
+        AccessYourAmbassadorProfile(networkHubPage).VerifyYourAmbassadorProfile(value);
+    }
+    protected static YourAmbassadorProfilePage AccessYourAmbassadorProfile(NetworkHubPage networkHubPage)
+    {
+       return networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile();
+    }
+
+    protected static void UpdateAmbassadorProfile(YourAmbassadorProfilePage yourAmbassadorProfilePage)
+    {
+        yourAmbassadorProfilePage.AccessChangeForPersonalDetails();
+    }
+
+    protected static void VerifyContactUs(NetworkHubPage networkHubPage)
+    {
+        networkHubPage.AccessContactUs();
     }
 
     protected EventsHubPage SignupForAFutureEvent(NetworkHubPage networkHubPage, string email)
@@ -40,7 +87,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
         Assert.That(actual, Is.EqualTo(NoOfeventsFound - 1));
     }
 
-    protected SearchNetworkEventsPage FilterByDate(NetworkHubPage networkHubPage)
+    protected static SearchNetworkEventsPage FilterByDate(NetworkHubPage networkHubPage)
     {
         return networkHubPage.AccessEventsHub()
              .AccessAllNetworkEvents()
@@ -48,7 +95,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
              .ClearAllFilters();
     }
 
-    protected SearchNetworkEventsPage FilterByEventFormat(SearchNetworkEventsPage searchNetworkEventsPage)
+    protected static SearchNetworkEventsPage FilterByEventFormat(SearchNetworkEventsPage searchNetworkEventsPage)
     {
         return searchNetworkEventsPage
            .FilterEventByEventFormat_InPerson()
@@ -62,7 +109,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
            .ClearAllFilters();
     }
 
-    protected SearchNetworkEventsPage FilterByEventType(SearchNetworkEventsPage searchNetworkEventsPage)
+    protected static SearchNetworkEventsPage FilterByEventType(SearchNetworkEventsPage searchNetworkEventsPage)
     {
         return searchNetworkEventsPage
              .FilterEventByEventType_TrainingEvent()
@@ -70,7 +117,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
              .ClearAllFilters();
     }
 
-    protected SearchNetworkEventsPage FilterByEventRegion(SearchNetworkEventsPage searchNetworkEventsPage)
+    protected static SearchNetworkEventsPage FilterByEventRegion(SearchNetworkEventsPage searchNetworkEventsPage)
     {
         return searchNetworkEventsPage
             .FilterEventByEventRegion_London()
@@ -78,7 +125,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
             .ClearAllFilters();
     }
 
-    protected SearchNetworkEventsPage FilterByMultipleCombination(SearchNetworkEventsPage searchNetworkEventsPage)
+    protected static SearchNetworkEventsPage FilterByMultipleCombination(SearchNetworkEventsPage searchNetworkEventsPage)
     {
         return searchNetworkEventsPage
             .FilterEventByOneMonth()
@@ -95,13 +142,13 @@ public abstract class AppEmp_BaseSteps : BaseSteps
             .ClearAllFilters();
     }
 
-    protected NetworkDirectoryPage FilterByEventRegionNetworkDirectory(NetworkDirectoryPage networkDirectoryPage)
+    protected static NetworkDirectoryPage FilterByEventRegionNetworkDirectory(NetworkDirectoryPage networkDirectoryPage)
     {
         return networkDirectoryPage.FilterEventByEventRegion_London()
             .VerifyEventRegion_London_Filter()
             .ClearAllFilters();
     }
-    protected NetworkDirectoryPage FilterByEventRoleNetworkDirectory(NetworkHubPage networkHubPage)
+    protected static NetworkDirectoryPage FilterByEventRoleNetworkDirectory(NetworkHubPage networkHubPage)
     {
         return networkHubPage.AccessNetworkDirectory()
             .FilterByRole_Apprentice()
@@ -114,7 +161,7 @@ public abstract class AppEmp_BaseSteps : BaseSteps
             .VerifyRole_Regionalchair_Filter()
             .ClearAllFilters();
     }
-    protected NetworkDirectoryPage FilterByMultipleCombination_NetworkCirectory(NetworkDirectoryPage networkDirectoryPage)
+    protected static NetworkDirectoryPage FilterByMultipleCombinationNetworkDirectory(NetworkDirectoryPage networkDirectoryPage)
     {
         return networkDirectoryPage
             .FilterEventByEventRegion_London()

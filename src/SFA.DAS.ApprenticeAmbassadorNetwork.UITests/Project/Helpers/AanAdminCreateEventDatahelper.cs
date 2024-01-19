@@ -6,7 +6,7 @@ public class AanAdminCreateEventDatahelper : AanAdminCreateEventBaseDatahelper
 {
     public AanAdminCreateEventDatahelper() : base()
     {
-            
+
     }
 }
 
@@ -43,7 +43,7 @@ public abstract class AanAdminCreateEventBaseDatahelper
 
         EventOnlineLink = $"https://www.{name}{domain}";
 
-        var school = RandomDataGenerator.GetRandomElementFromListOfElements(new System.Collections.Generic.List<string> { "Church", "Grange", "Primary", "Academy", "Catholic" }); 
+        var school = RandomDataGenerator.GetRandomElementFromListOfElements(new System.Collections.Generic.List<string> { "Church", "Grange", "Primary", "Academy", "Catholic" });
 
         EventSchoolName = school;
 
@@ -82,9 +82,9 @@ public abstract class AanAdminCreateEventBaseDatahelper
 
     public string EventSummary { get; init; } = RandomDataGenerator.GenerateRandomAlphabeticString(100);
 
-    public string GuestSpeakerName => RandomDataGenerator.GenerateRandomAlphabeticString(10);
+    public static string GuestSpeakerName => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
-    public string GuestSpeakerRole => RandomDataGenerator.GenerateRandomAlphabeticString(10);
+    public static string GuestSpeakerRole => RandomDataGenerator.GenerateRandomAlphabeticString(10);
 
     public void SetEventFormat(EventFormat eventFormat) => EventFormat = GetEventFormat(eventFormat);
 

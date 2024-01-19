@@ -5,22 +5,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class FlexiProviderStepsHelper
+    public class FlexiProviderStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
-
-        public FlexiProviderStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
-        }
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
         public ProviderApproveApprenticeDetailsPage PilotProviderAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
         {
-            ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(SimplifiedPaymentsPilotPage page) => page.MakePaymentsPilotSelectionAndContinueToSelectStandardPage().ProviderSelectsAStandardForFlexiPilotLearner().SubmitValidApprenticeDetails();
+            static ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails(SimplifiedPaymentsPilotPage page) => page.MakePaymentsPilotSelectionAndContinueToSelectStandardPage().ProviderSelectsAStandardForFlexiPilotLearner().SubmitValidApprenticeDetails();
 
             _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(0);
 
@@ -58,12 +50,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderApproveApprenticeDetailsPage ProviderEditsDeliveryModelAndApprovesAfterFJAARemoval()
         {
-            return new ProviderApproveApprenticeDetailsPage(_context)
+            return new ProviderApproveApprenticeDetailsPage(context)
                 .SelectEditApprentice()
                 .SelectEditDeliveryModel()
                 .ConfirmDeliveryModelChangeToRegular()
                 .ValidateDeliveryModelDisplayed("Regular")
-                .ClickSave();
+                .ClickSave(true);
         }
 
         public ProviderCohortApprovedPage ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
@@ -72,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 .SelectEditApprentice()
                 .EnterUlnAndSelectEditDeliveryModel()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndSubmit()
-                .ClickSave()
+                .ClickSave(true)
                 .ValidateFlexiJobTagAndSubmitApprove();
         }
 

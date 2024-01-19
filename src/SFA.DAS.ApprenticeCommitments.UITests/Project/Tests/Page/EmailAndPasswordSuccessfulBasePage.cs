@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public abstract class EmailAndPasswordSuccessfulBasePage : ApprenticeCommitmentsBasePage
+    public abstract class EmailAndPasswordSuccessfulBasePage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context, verifyserviceheader: false)
     {
-        public EmailAndPasswordSuccessfulBasePage(ScenarioContext context) : base(context, verifyserviceheader: false) { }
-
         public ApprenticeHomePage ReturnToHome()
         {
             ClickOnRetunToHomeLink();

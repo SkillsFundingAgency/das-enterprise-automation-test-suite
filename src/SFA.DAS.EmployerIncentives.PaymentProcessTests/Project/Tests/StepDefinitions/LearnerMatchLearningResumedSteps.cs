@@ -161,7 +161,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var second = earnings.Last();
             second.DueDate.Should().Be(_initialStartDate.AddDays(365 + 11));
         }
-        
+
         [Then(@"a Learning Resumed change of circumstance is recorded")]
         public void ThenALearningResumedChangeOfCircumstanceIsRecorded()
         {
@@ -172,7 +172,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             coc.Should().HaveCount(2);
             var stop = coc.Single(x => x.ChangeType == ChangeOfCircumstanceType.LearningStopped);
             DateTime.Parse(stop.NewValue).Should().Be(_stoppedDate.AddDays(1));
-           
+
             var resume = coc.Single(x => x.ChangeType == ChangeOfCircumstanceType.LearningResumed);
             DateTime.Parse(resume.NewValue).Should().Be(_resumedDate);
         }

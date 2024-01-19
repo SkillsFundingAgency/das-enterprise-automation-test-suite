@@ -6,31 +6,23 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
-    public class SetApprenticeDetailsHelper
+    public class SetApprenticeDetailsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-
-        public SetApprenticeDetailsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(context.Get<RetryAssertHelper>());
-        }
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper = new(context.Get<RetryAssertHelper>());
 
         internal ApproveApprenticeDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort, int numberOfApprentices)
         {
             SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(reviewYourCohort, numberOfApprentices));
-            
+
             return SetApprenticeTotalCost(reviewYourCohort);
         }
 
         internal ApproveApprenticeDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort)
         {
-            SetNoOfApprentices(_reviewYourCohortStepsHelper.GetNoOfApprentice(reviewYourCohort));
-            
-            return SetApprenticeTotalCost(reviewYourCohort);           
+            SetNoOfApprentices(ReviewYourCohortStepsHelper.GetNoOfApprentice(reviewYourCohort));
+
+            return SetApprenticeTotalCost(reviewYourCohort);
         }
 
         internal ApproveApprenticeDetailsPage SetApprenticeTotalCost(ReviewYourCohort reviewYourCohort)
@@ -38,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(reviewYourCohort));
 
             //returning new instance to capture screen shot
-            return new ApproveApprenticeDetailsPage(_context);
+            return new ApproveApprenticeDetailsPage(context);
         }
 
         private void SetNoOfApprentices(int value) => _objectContext.SetNoOfApprentices(value);
@@ -77,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 return noOfApprentice;
             }
 
-            internal int GetNoOfApprentice(ReviewYourCohort reviewYourCohortPage) => reviewYourCohortPage.TotalNoOfApprentices();
+            internal static int GetNoOfApprentice(ReviewYourCohort reviewYourCohortPage) => reviewYourCohortPage.TotalNoOfApprentices();
         }
 
     }

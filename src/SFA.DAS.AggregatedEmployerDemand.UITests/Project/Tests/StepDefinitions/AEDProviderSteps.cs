@@ -13,7 +13,7 @@ public class AedProviderSteps
     public AedProviderSteps(ScenarioContext context)
     {
         _providerStepsHelper = new ProviderStepsHelper(context);
-        
+
         var config = context.GetProviderConfig<ProviderConfig>();
         _login = new ProviderLoginUser { Username = config.Username, Password = config.Password, Ukprn = config.Ukprn };
     }
@@ -49,7 +49,7 @@ public class AedProviderSteps
             .EnterInvalidDetails()
             .EnterValidDetails();
     }
-    
+
     [Then(@"the provider is able to submit the edited details")]
     public void ThenTheProviderIsAbleToSubmitTheEditedDetails() => ProviderStepsHelper.ConfirmEditedProviderContactDetailsAndSubmit(confirmProvidersContactDetailsPage);
 

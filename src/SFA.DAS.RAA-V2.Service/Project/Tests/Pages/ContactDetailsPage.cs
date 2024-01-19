@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ContactDetailsPage : Raav2BasePage
+    public class ContactDetailsPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
@@ -17,8 +18,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected static By ProviderContactName => By.CssSelector("#ProviderContactName");
         protected static By ProviderContactEmail => By.CssSelector("#ProviderContactEmail");
         protected static By ProviderContactPhone => By.CssSelector("#ProviderContactPhone");
-
-        public ContactDetailsPage(ScenarioContext context) : base(context) { }
 
         public ApplicationProcessPage EnterProviderContactDetails(bool optionalFields)
         {
@@ -58,7 +57,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
             formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
-            formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
+            formCompletionHelper.EnterText(ContactPhone(), RAAV2DataHelper.ContactNumber);
         }
 
         private ApplicationProcessPage GoToApplicationProcessPage()
@@ -66,7 +65,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             Continue();
             return new ApplicationProcessPage(context);
         }
-        
+
         private CheckYourAnswersPage GoToCheckYourAnswersPage()
         {
             Continue();

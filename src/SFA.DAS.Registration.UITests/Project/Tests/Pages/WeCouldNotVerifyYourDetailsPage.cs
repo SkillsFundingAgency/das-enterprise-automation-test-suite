@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -20,11 +18,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public WeCouldNotVerifyYourDetailsPage(ScenarioContext context) : base(context)
         {
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => VerifyPage(),
                 () => VerifyPage(() => pageInteractionHelper.FindElements(AccountDisabledInfo), AccountDisabledInfoMessage)
-            });
+            ]);
         }
 
         public UsingYourGovtGatewayDetailsPage ClickAddViaGGLink()

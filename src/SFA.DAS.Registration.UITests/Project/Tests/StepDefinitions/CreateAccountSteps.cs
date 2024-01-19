@@ -18,18 +18,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
         private SearchForYourOrganisationPage _searchForYourOrganisationPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
-        private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
         private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
+        private DoYouAcceptTheEmployerAgreementOnBehalfOfPage _doYouAcceptTheEmployerAgreementOnBehalfOfPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -60,7 +61,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             if (org.Equals("SingleOrg"))
             {
                 _tprSqlDataHelper.CreateSingleOrgAornData();
-                _checkYourDetailsPage = _accountCreationStepsHelper.AddPayeDetailsForSingleOrgAornRoute(_addAPAYESchemePage);
+                _checkYourDetailsPage = AccountCreationStepsHelper.AddPayeDetailsForSingleOrgAornRoute(_addAPAYESchemePage);
             }
             else
             {
@@ -70,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     .SelectFirstOrganisationAndContinue();
             }
 
-            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
+            _doYouAcceptTheEmployerAgreementOnBehalfOfPage = AccountCreationStepsHelper.GoToSignAgreementPage(_checkYourDetailsPage);
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -86,8 +87,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType) =>
-            _signAgreementPage = _accountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
+        public void AddOrganisationTypeDetails(OrgType orgType) => _doYouAcceptTheEmployerAgreementOnBehalfOfPage = AccountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
+
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -106,9 +107,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
-            _homePage = _signAgreementPage
+            _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
                 .SignAgreement()
-                .ClickOnViewYourAccountButton();
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderLater()
+                .SelectGoToYourEmployerAccountHomepage();
 
             SetAgreementId(_homePage);
         }
@@ -125,7 +128,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer does not sign the Agreement")]
         [Then(@"the Employer does not sign the Agreement")]
-        public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
+        public void DoNotSignTheAgreement() =>
+            _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
+            .DoNotSignAgreement()
+            .GoToTrainingProviderLink()
+            .AddTrainingProviderLater()
+            .SelectGoToYourEmployerAccountHomepage();
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
@@ -165,7 +173,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
-            _selectYourOrganisationPage = _accountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType);
+            _selectYourOrganisationPage = AccountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType);
 
         [Then(@"'Already added' message is shown to the User")]
         public void ThenAlreadyAddedMessageIsShownToTheUser() => _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
@@ -179,7 +187,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Signs the Agreement from Account HomePage Panel")]
-        public void WhenSignsTheAgreementFromAccountHomePagePanel() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
+        public void WhenSignsTheAgreementFromAccountHomePagePanel() => AccountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => new TasksHomePage(_context).VerifyStartAddingApprenticesNowTaskLink();
@@ -193,7 +201,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
-            _theseDetailsAreAlreadyInUsePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage);
+            _theseDetailsAreAlreadyInUsePage = AccountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage);
         }
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on 'Use different details' button")]
@@ -209,7 +217,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
         {
             _tprSqlDataHelper.CreateSingleOrgAornData();
-            _checkYourDetailsPage = _accountCreationStepsHelper.AddPayeDetailsForSingleOrgAornRoute(_addAPAYESchemePage);
+            _checkYourDetailsPage = AccountCreationStepsHelper.AddPayeDetailsForSingleOrgAornRoute(_addAPAYESchemePage);
         }
 
         [Then(@"choosing to change the AORN number displays 'Enter your PAYE scheme details' page")]
@@ -230,10 +238,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"choosing to Continue with (BlankAornAndBlankPaye|BlankAornValidPaye|BlankPayeValidAorn|InvalidAornAndInvalidPaye) displays relevant Error text")]
         public void ThenChoosingToContinueWithBlankAornValidPayeDisplaysRelevantErrorText(string errorCase)
         {
-            string blankAornFieldErrorMessage = _enterYourPAYESchemeDetailsPage.BlankAornFieldErrorMessage;
-            string blankPayeFieldErrorMessage = _enterYourPAYESchemeDetailsPage.BlankPayeFieldErrorMessage;
-            string aornInvalidFormatErrorMessage = _enterYourPAYESchemeDetailsPage.AornInvalidFormatErrorMessage;
-            string payeInvalidFormatErrorMessage = _enterYourPAYESchemeDetailsPage.PayeInvalidFormatErrorMessage;
+            string blankAornFieldErrorMessage = EnterYourPAYESchemeDetailsPage.BlankAornFieldErrorMessage;
+            string blankPayeFieldErrorMessage = EnterYourPAYESchemeDetailsPage.BlankPayeFieldErrorMessage;
+            string aornInvalidFormatErrorMessage = EnterYourPAYESchemeDetailsPage.AornInvalidFormatErrorMessage;
+            string payeInvalidFormatErrorMessage = EnterYourPAYESchemeDetailsPage.PayeInvalidFormatErrorMessage;
 
             switch (errorCase)
             {
@@ -262,8 +270,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"choosing to enter AORN and PAYE details in the right format but non existing ones for 3 times displays 'Sorry Account disabled' Page")]
         public void ThenChoosingToEnterAORNAndPAYEDetailsInTheRightFormatButNonExistingOnesForTimesDisplaysPage()
         {
-            string InvalidErrorMessage1stAttempt = _enterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage1stAttempt;
-            string InvalidErrorMessage2ndAttempt = _enterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage2ndAttempt;
+            string InvalidErrorMessage1stAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage1stAttempt;
+            string InvalidErrorMessage2ndAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage2ndAttempt;
 
             EnterInvalidAornAndPaye();
             Assert.AreEqual(InvalidErrorMessage1stAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
@@ -297,14 +305,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEAndCompanyTypeOrgDetails()
         {
             _searchForYourOrganisationPage = CreateAnUserAcountAndAddPaye();
-            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company);
+            _checkYourDetailsPage = AccountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company);
         }
 
         [Then(@"the User is able to choose a different Company by clicking on Change Organisation")]
         public void ThenTheUserIsAbleToChooseADifferentCompanyByClickingOnChangeOrganisation()
         {
             _searchForYourOrganisationPage = _checkYourDetailsPage.ClickOrganisationChangeLink();
-            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
+            _checkYourDetailsPage = AccountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
             Assert.AreEqual(_objectContext.GetOrganisationName(), _checkYourDetailsPage.GetOrganisationName());
         }
 
@@ -312,8 +320,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToChooseADifferentPAYESchemeByClickingOnChangePAYESchemeAndCompleteRegistationJourney()
         {
             _addAPAYESchemePage = _checkYourDetailsPage.ClickPayeSchemeChangeLink();
-            _searchForYourOrganisationPage = _accountCreationStepsHelper.AddADifferentPaye(_addAPAYESchemePage);
-            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
+            _searchForYourOrganisationPage = AccountCreationStepsHelper.AddADifferentPaye(_addAPAYESchemePage);
+            _checkYourDetailsPage = AccountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
             Assert.AreEqual(_objectContext.GetGatewayPaye(1), _checkYourDetailsPage.GetPayeScheme());
         }
 
@@ -331,11 +339,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to Add Another NonLevy PAYE scheme to the Account")]
         [Then(@"the Employer is able to Add Another Levy PAYE scheme to the Account")]
         public void ThenTheEmployerIsAbleToAddAnotherPAYESchemeToTheAccount() =>
-            _homePage = _accountCreationStepsHelper.AddAnotherPayeSchemeToTheAccount(_homePage);
+            _homePage = AccountCreationStepsHelper.AddAnotherPayeSchemeToTheAccount(_homePage);
 
         [Then(@"the Employer is able to Remove the second PAYE scheme added from the Account")]
         public void ThenTheEmployerIsAbleToRemoveTheSecondPAYESchemeAddedFromTheAccount() =>
-            _accountCreationStepsHelper.RemovePayeSchemeFromTheAccount(_homePage);
+            AccountCreationStepsHelper.RemovePayeSchemeFromTheAccount(_homePage);
 
         [Then(@"the Employer is able to add another Account with (Company|PublicSector|Charity) Type Org to the same user login")]
         public void ThenTheEmployerIsAbleToAddAnotherAccountToTheSameUserLogin(OrgType orgType) =>
@@ -355,7 +363,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private void EnterInvalidAornAndPaye() =>
-            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(AornDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
+            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(AornDataHelper.InvalidAornNumber, RegistrationDataHelper.InvalidPaye);
 
         private SearchForYourOrganisationPage CreateAnUserAcountAndAddPaye()
         {

@@ -6,18 +6,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Helpers
 {
-    public class TransfersCreateCohortStepsHelper : EmployerCreateCohortStepsHelper
+    public class TransfersCreateCohortStepsHelper(ScenarioContext context) : EmployerCreateCohortStepsHelper(context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-
-        public TransfersCreateCohortStepsHelper(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(context);
-        }
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
         public ApproveApprenticeDetailsPage OpenRejectedCohort() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage().ClickApprenticeRequestsLink().GoToReadyToReview().SelectViewCurrentCohortDetails();
 
@@ -29,13 +21,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ValidateReadyToReviewCohortStatus(string status) => GoToApprenticeRequestsPage().GoToReadyToReview().SelectViewCurrentCohortDetails().ValidateCohortStatus(status);
 
-        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => new AddTrainingProviderStepsHelper().AddTrainingProviderDetailsUsingTransfersFunc();
+        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingTransfersFunc();
 
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()
         {
             _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
 
-            return new FinancePage(_context, true)
+            return new FinancePage(context, true)
                 .OpenTransfers()
                 .OpenPendingCohortRequestAsFundingEmployer();
         }

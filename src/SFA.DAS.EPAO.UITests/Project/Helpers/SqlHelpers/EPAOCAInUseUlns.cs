@@ -2,7 +2,7 @@
 
 internal static class EPAOCAInUseUlns
 {
-    private static readonly List<string> _ulns = new() { "1" };
+    private static readonly List<string> _ulns = ["1"];
 
     internal static string GetInUseUln() { lock (_ulns) { return _ulns.ToString(","); } }
 

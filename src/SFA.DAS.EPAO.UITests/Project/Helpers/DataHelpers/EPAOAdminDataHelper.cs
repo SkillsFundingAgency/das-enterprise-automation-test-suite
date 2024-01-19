@@ -47,7 +47,7 @@ public class EPAOAdminDataHelper : EPAODataHelper
 
     public string Email { get; }
 
-    public string PhoneNumber => $"0844455{GetRandomNumber(4)}";
+    public static string PhoneNumber => $"0844455{GetRandomNumber(4)}";
 
     public static DateTime StandardsEffectiveFrom => new(2015, 08, 01);
 

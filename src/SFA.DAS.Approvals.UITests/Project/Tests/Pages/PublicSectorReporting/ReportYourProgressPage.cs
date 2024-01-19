@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
-    public class ReportYourProgressPage : PublicSectorReportingBasePage
+    public class ReportYourProgressPage(ScenarioContext context) : PublicSectorReportingBasePage(context)
     {
         protected override string PageTitle => "Reporting your progress towards the public sector apprenticeship target";
 
@@ -18,9 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
         private static By SchoolEmployees => By.CssSelector("a[href*='SchoolsEmployees']");
         private static By SchoolApprentices => By.CssSelector("a[href*='SchoolsApprentices']");
         private static string Review => "Review and submit answers";
-        #endregion
 
-        public ReportYourProgressPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public YourOrganisationNamePage GoToYourOrganisationNamePage()
         {

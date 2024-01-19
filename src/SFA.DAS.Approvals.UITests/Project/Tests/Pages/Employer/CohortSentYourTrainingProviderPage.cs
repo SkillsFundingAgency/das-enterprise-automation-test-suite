@@ -1,14 +1,12 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class CohortSentYourTrainingProviderPage : CohortReferenceBasePage
+    public class CohortSentYourTrainingProviderPage(ScenarioContext context) : CohortReferenceBasePage(context)
     {
         protected override string PageTitle => "Cohort sent to your training provider";
 
         protected override bool TakeFullScreenShot => false;
-
-        public CohortSentYourTrainingProviderPage(ScenarioContext context) : base(context) { }
     }
 }

@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SelectYourOrganisationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Select your organisation";
-        
+
         #region Locators
         private static By OrganisationLink => By.CssSelector("button[type=submit]");
         private static By SearchResultsText => By.XPath("//h2[@class='govuk-heading-m']");

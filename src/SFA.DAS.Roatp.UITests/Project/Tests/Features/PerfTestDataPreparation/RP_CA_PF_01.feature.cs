@@ -105,10 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", givenName),
                             string.Format("{0}", familyName)});
 #line 7
- testRunner.When("user submits the details to create an account", ((string)(null)), table1, "When ");
-#line hidden
-#line 10
- testRunner.Then("the user is able to create an account using the invitation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("user submits the details to create an account", ((string)(null)), table1, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

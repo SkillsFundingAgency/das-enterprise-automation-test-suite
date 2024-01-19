@@ -126,13 +126,13 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Tests.StepDefinitions
             var response = _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions");
             var result = JsonConvert.DeserializeObject<ICollection<TransactionSummary>>(response.Content);
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/transactions/{result.FirstOrDefault().Year}/{result.FirstOrDefault().Month}", HttpStatusCode.OK);
-        }       
+        }
 
         [Then(@"endpoint GetFinanceStatistics can be accessed")]
         public void ThenEndpointGetFinanceStatisticsCanBeAccessed()
         {
             _innerApiRestClient.ExecuteEndpoint("/api/financestatistics", HttpStatusCode.OK);
-        }   
+        }
 
         [Then(@"endpoint api/accounts/\{hashedAccountId}/transferAllowance can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdTransferAllowanceCanBeAccessed()

@@ -6,7 +6,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public class FindATrainingProviderByNamePage : FATBasePage
     {
         protected override string PageTitle => "Find a training provider by name";
-        
+
         #region Locators
         protected override By FirstResultLink => By.CssSelector("#provider-search-results a");
         private static By SearchTextBox => By.Id("searchTerm");

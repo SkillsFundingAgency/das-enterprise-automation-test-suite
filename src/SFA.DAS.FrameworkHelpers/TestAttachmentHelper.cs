@@ -1,10 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
 using NUnit.Framework;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using CsvHelper;
 using System.Globalization;
+using System.IO;
 
 namespace SFA.DAS.FrameworkHelpers
 {
@@ -14,7 +11,7 @@ namespace SFA.DAS.FrameworkHelpers
         {
             string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
-            List<TestData> records = new();
+            List<TestData> records = [];
 
             var testdataset = testrecords;
 
@@ -49,7 +46,7 @@ namespace SFA.DAS.FrameworkHelpers
             if (testdata is IEnumerable<object> enumerable)
             {
                 var newtestdata = new FrameworkList<object>();
-                
+
                 newtestdata.AddRange(enumerable);
 
                 return newtestdata.ToString();

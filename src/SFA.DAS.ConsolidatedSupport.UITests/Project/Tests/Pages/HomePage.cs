@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -26,16 +24,16 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             void action() => ClickHomeButton();
 
-            if (navigateTo) 
+            if (navigateTo)
             {
                 action();
-                MultipleVerifyPage(new List<Func<bool>>
-                {
+                MultipleVerifyPage(
+                [
                     () => VerifyPage(PageHeader, action),
                     () => VerifyPage(BrandingHeader, action),
                     () => VerifyPage(Indicators, action),
                     () => VerifyPage(TicketTable, action)
-                });
+                ]);
             }
         }
 
@@ -51,6 +49,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return new TicketPage(context);
         }
 
-        protected HomePage NavigateToHomePage() => new HomePage(context, true);
+        protected HomePage NavigateToHomePage() => new(context, true);
     }
 }

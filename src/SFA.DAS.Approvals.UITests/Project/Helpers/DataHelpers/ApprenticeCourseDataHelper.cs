@@ -18,13 +18,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly DateTime _currentAcademicYearStartDate;
         private readonly DateTime _currentAcademicYearEndDate;
         private readonly DateTime _nextAcademicYearStartDate;
-        private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
 
-        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus) 
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
             : this(apprenticeStatus) => SetCourseDetails(randomCourseHelper, GenerateCourseStartDate(), default, string.Empty);
 
-        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths , string larsCode) 
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode)
             : this(courseStartDate > DateTime.Now ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Live) => SetCourseDetails(randomCourseHelper, courseStartDate, durationInMonths, larsCode);
 
         private ApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus)
@@ -33,7 +32,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _currentAcademicYearStartDate = AcademicYearDatesHelper.GetCurrentAcademicYearStartDate();
             _currentAcademicYearEndDate = AcademicYearDatesHelper.GetCurrentAcademicYearEndDate();
             _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
-            _nextAcademicYearEndDate = AcademicYearDatesHelper.GetNextAcademicYearEndDate();
         }
 
         private void SetCourseDetails(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode)
@@ -77,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         }
 
         private DateTime GenerateCourseStartDate() => GenerateCourseStartDate(_apprenticeStatus);
-        
+
         private DateTime GetLiveApprenticeStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate : dateTime;
 
         private DateTime GetOneMonthBeforeCurrentAcademicYearStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate.AddMonths(-1) : dateTime;

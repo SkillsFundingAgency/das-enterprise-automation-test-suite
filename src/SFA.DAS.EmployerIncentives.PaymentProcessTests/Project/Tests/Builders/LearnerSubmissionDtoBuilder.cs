@@ -15,8 +15,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
             _data = fixture.Create<LearnerSubmissionDto>();
             _data.Training = new List<TrainingDto>
             {
-                new TrainingDto
-                {
+                new() {
                     Reference = "ZPROG001",
                     PriceEpisodes = new List<PriceEpisodeDto>()
                 }

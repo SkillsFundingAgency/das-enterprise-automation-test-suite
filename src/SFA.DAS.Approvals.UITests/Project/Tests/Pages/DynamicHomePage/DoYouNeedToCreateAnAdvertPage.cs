@@ -5,10 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
-    public class DoYouNeedToCreateAnAdvertPage : DoYouNeedToCreateAnAdvertBasePage
+    public class DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : DoYouNeedToCreateAnAdvertBasePage(context)
     {
-        public DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : base(context)  { }
-
         public AddAnApprenitcePage ClickNoRadioButtonTakesToAddAnApprentices()
         {
             formCompletionHelper.ClickElement(NoRadioButtonOption);

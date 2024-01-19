@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerAreTheyRightForYouPage : EmployerBasePage
+    public class EmployerAreTheyRightForYouPage(ScenarioContext context) : EmployerBasePage(context)
     {
         protected override string PageTitle => "Are they right for you?";
-
-        public EmployerAreTheyRightForYouPage(ScenarioContext context): base(context) { }
 
         public void VerifyApprenticeHowDoTheyWorkPageSubHeadings() => VerifyFiuCards(() => NavigateToAreTheyRightForYouPage());
     }

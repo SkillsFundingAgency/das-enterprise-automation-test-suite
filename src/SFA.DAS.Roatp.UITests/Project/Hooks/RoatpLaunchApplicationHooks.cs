@@ -5,11 +5,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding]
-    public class RoatpLaunchApplicationHooks : RoatpBaseHooks
+    public class RoatpLaunchApplicationHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        private readonly string[] _tags;
-
-        public RoatpLaunchApplicationHooks(ScenarioContext context) : base(context) { _tags = context.ScenarioInfo.Tags; }
+        private readonly string[] _tags = context.ScenarioInfo.Tags;
 
         [BeforeScenario(Order = 41)]
         public void RoatpLaunchApplication()

@@ -1,26 +1,18 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderReservationStepsHelper
+    public class ProviderReservationStepsHelper(ScenarioContext context)
     {
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper;
+        private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
         private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
-
-        public ProviderReservationStepsHelper(ScenarioContext context)
-        {
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-
-            _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
-        }
 
         public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
@@ -46,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return VerifySucessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
         }
 
-        private ProviderMakingChangesPage VerifySucessMessage(ProviderApprenticeshipTrainingPage page)
+        private static ProviderMakingChangesPage VerifySucessMessage(ProviderApprenticeshipTrainingPage page)
         {
             return page.AddTrainingCourse().SelectDate().ClickSaveAndContinueButton().ConfirmReserveFunding().VerifySucessMessage();
         }

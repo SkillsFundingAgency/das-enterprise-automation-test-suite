@@ -10,32 +10,23 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class PortableFlexiJobSteps
+    public class PortableFlexiJobSteps(ScenarioContext context)
     {
+
         #region context&Helpers
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper = new(context);
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
         #endregion
 
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private AddApprenticeDetailsPage _addApprenticeDetailsPage;
 
-        public PortableFlexiJobSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
-        }
-
         [Given(@"an Employer initiates a portable flexi-job apprenticeship creation")]
         public void AnEmployerInitiatesAPortableFlexi_JobApprenticeshipCreation()
         {
-            _employerPortalLoginHelper.Login(_context.GetUser<EmployerConnectedToPortableFlexiJobProvider>(), true);
+            _employerPortalLoginHelper.Login(context.GetUser<EmployerConnectedToPortableFlexiJobProvider>(), true);
             _addApprenticeDetailsPage = _employerStepsHelper.AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider();
         }
 

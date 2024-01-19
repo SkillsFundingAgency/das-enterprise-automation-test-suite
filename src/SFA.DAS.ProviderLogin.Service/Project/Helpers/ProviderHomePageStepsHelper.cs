@@ -7,19 +7,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
-public class ProviderHomePageStepsHelper
+public class ProviderHomePageStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public ProviderHomePageStepsHelper(ScenarioContext context) => _context = context;
-
-    public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(_context.GetProviderConfig<ProviderConfig>(), newTab);
+    public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(context.GetProviderConfig<ProviderConfig>(), newTab);
 
     public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
     {
-        var objectContext = _context.Get<ObjectContext>();
+        var objectContext = context.Get<ObjectContext>();
 
-        var tabHelper = _context.Get<TabHelper>();
+        var tabHelper = context.Get<TabHelper>();
 
         if (newTab) tabHelper.OpenNewTab();
 
@@ -39,16 +35,16 @@ public class ProviderHomePageStepsHelper
 
     private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
     {
-        var loginHelper = new ProviderPortalLoginHelper(_context);
+        var loginHelper = new ProviderPortalLoginHelper(context);
 
-        if (loginHelper.IsIndexPageDisplayed()) loginHelper.StartNow();
+        if (loginHelper.IsLandingPageDisplayed()) loginHelper.StartNow();
 
-        if (loginHelper.IsSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
+        if (loginHelper.IsStubSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
 
         if (loginHelper.IsSelectYourOrganisationDisplayed()) return loginHelper.SelectOrganisation(login);
 
-        if (loginHelper.IsProviderHomePageDisplayed(login.Ukprn)) return new ProviderHomePage(_context);
+        if (loginHelper.IsProviderHomePageDisplayed(login.Ukprn)) return new ProviderHomePage(context);
 
-        return new ProviderHomePage(_context);
+        return new ProviderHomePage(context);
     }
 }

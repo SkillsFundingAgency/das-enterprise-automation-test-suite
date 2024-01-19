@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
-public class GetHelpWithFindingATrainingProviderPage : AedBasePage
+public class GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "Get help with finding a training provider";
 
@@ -9,9 +9,8 @@ public class GetHelpWithFindingATrainingProviderPage : AedBasePage
     private static By ApprenticeshipLocationTextBox => By.CssSelector("#search-location");
     private static By OrganisationNameTextBox => By.CssSelector("#OrganisationName");
     private static By OrganisationEmailAddressTextBox => By.CssSelector("#ContactEmailAddress");
-    #endregion
 
-    public GetHelpWithFindingATrainingProviderPage(ScenarioContext context) : base(context) { }
+    #endregion
 
     public CheckYourAnswersPage EnterValidDetails(int noOfApprentices)
     {

@@ -27,10 +27,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
     }
 
-    public class ProviderAreYouSureSuccessfulPage : ProviderAreYouSureYouBasePage
+    public class ProviderAreYouSureSuccessfulPage(ScenarioContext context) : ProviderAreYouSureYouBasePage(context, "successful")
     {
-        public ProviderAreYouSureSuccessfulPage(ScenarioContext context) : base(context, "successful") { }
-
         public ProviderApplicationSuccessfulPage ConfirmSuccessful()
         {
             Confirm();

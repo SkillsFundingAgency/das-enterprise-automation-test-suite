@@ -5,7 +5,7 @@ namespace SFA.DAS.UI.Framework;
 
 public static class UrlConfig
 {
-    public static string AAN_Employer_BaseUrl { get; set; }
+    public static string AAN_Employer_BaseUrl => EmployerApprenticeshipService_BaseUrl;
     public static string AAN_Apprentice_BaseUrl => $"https://aan.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/onboarding/before-you-start";
     public static string AAN_Admin_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-adminaan.apprenticeships.education.gov.uk/";
     public static string Admin_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-admin.apprenticeships.education.gov.uk/";
@@ -30,7 +30,7 @@ public static class UrlConfig
     public static string FindEPAO_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-find-epao.apprenticeships.education.gov.uk/";
     public static string EI_VRFUrl => "https://dfeuat.achieveservice.com/forms";
     public static string ConsolidatedSupport_WebBaseUrl => $"{ConsolidatedSupport_BaseUrl}/agent";
-    public static Uri ConsolidatedSupport_ApiBaseUrl => new Uri(new Uri(ConsolidatedSupport_BaseUrl), "api/v2");
+    public static Uri ConsolidatedSupport_ApiBaseUrl => new(new Uri(ConsolidatedSupport_BaseUrl), "api/v2");
     public static string ConsolidatedSupport_BaseUrl => true switch
     {
         bool _ when EnvironmentConfig.IsTestEnvironment => "https://esfa1567428279.zendesk.com",

@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By NationwideNumberOfVacancy => By.Id("NumberOfPositionsNationwide");
 
         private By EmployerDescription => By.Id("AnonymousEmployerDescription");
-        
+
         private By EmployerReason => By.Id("AnonymousEmployerReason");
 
         private By AboutTheEmployerBody => By.XPath("//body");
@@ -76,7 +76,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             frameHelper.SwitchToFrame();
             formCompletionHelper.SendKeys(AboutTheEmployerBody, (Keys.Tab + Keys.Control + "a" + Keys.Delete));
-            formCompletionHelper.SendKeys(AboutTheEmployerBody,rAAV1DataHelper.EmployerBody);
+            formCompletionHelper.SendKeys(AboutTheEmployerBody, rAAV1DataHelper.EmployerBody);
             formCompletionHelper.SendKeys(AboutTheEmployerBody, Keys.Delete);
             frameHelper.SwitchToDefaultContent();
             return this;

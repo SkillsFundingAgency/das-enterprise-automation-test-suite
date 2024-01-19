@@ -103,7 +103,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return pageInteractionHelper.FindElements(CustomerRecordFields).Where(x => x.Text.ContainsCompareCaseInsensitive(question)).ToList();
         }
 
-        protected bool FindlabelElements(IWebElement element, string question)
+        protected static bool FindlabelElements(IWebElement element, string question)
         {
             var labelElements = element.FindElements(UserLabel).ToList();
 

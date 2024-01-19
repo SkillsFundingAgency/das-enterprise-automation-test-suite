@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class WeHaveSentYouAnEmailPage : ApprenticeCommitmentsBasePage
+    public class WeHaveSentYouAnEmailPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context, verifyserviceheader: false)
     {
         protected override string PageTitle => "We have sent you an email";
-
-        public WeHaveSentYouAnEmailPage(ScenarioContext context) : base(context, verifyserviceheader: false) { }
     }
 }

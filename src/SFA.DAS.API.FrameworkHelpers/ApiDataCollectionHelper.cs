@@ -1,12 +1,7 @@
 ﻿namespace SFA.DAS.API.FrameworkHelpers;
 
-public class ApiDataCollectionHelper : RequestAndResponseCollectionHelper
+public class ApiDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : RequestAndResponseCollectionHelper(client, request, response)
 {
-
-    public ApiDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : base(client, request, response)
-    {
-    }
-
     protected override string GetRequestBody()
     {
         var list = GetRequestParameters();

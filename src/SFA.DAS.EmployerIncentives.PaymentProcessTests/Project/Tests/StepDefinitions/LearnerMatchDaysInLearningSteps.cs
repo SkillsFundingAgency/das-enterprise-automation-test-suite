@@ -80,7 +80,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _learner = Helper.EISqlHelper.GetFromDatabase<Learner>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId);
             _learner.Should().NotBeNull();
         }
-      
+
 
         [Given(@"a successful Learner Match in previous collection period")]
         public async Task GivenASuccessfulLearnerMatchInPreviousCollectionPeriod()
@@ -167,7 +167,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"the SubmissionFound Column in Learner table is set to (.*)")]
         public void ThenTheSubmissionFoundColumnInLearnerTableIsSetTo(bool value)
         {
-            _learner.SubmissionFound.Should().Be(value); 
+            _learner.SubmissionFound.Should().Be(value);
         }
 
         [Then(@"the LearningFound Column in Learner table is set to (.*)")]
@@ -206,7 +206,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             daysInLearning.Count.Should().Be(1);
             var activePeriod = Helper.CollectionCalendarHelper.GetActiveCollectionPeriod();
             var expectedNoOfDays = (activePeriod.CensusDate - _initialStartDate).TotalDays + 1;
-            daysInLearning.First().NumberOfDaysInLearning.Should().Be((int) expectedNoOfDays);
+            daysInLearning.First().NumberOfDaysInLearning.Should().Be((int)expectedNoOfDays);
             daysInLearning.First().CollectionPeriodNumber.Should().Be(activePeriod.PeriodNumber);
             daysInLearning.First().CollectionPeriodYear.ToString().Should().Be(activePeriod.AcademicYear);
         }

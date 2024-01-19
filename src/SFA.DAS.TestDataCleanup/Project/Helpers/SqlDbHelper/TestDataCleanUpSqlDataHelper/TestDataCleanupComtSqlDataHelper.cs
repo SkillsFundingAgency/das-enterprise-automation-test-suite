@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper.TestDataCleanUpSqlDataHelper;
 
 
-public class TestDataCleanupComtSqlDataHelper : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper
+public class TestDataCleanupComtSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : BaseSqlDbHelper.TestDataCleanUpSqlDataHelper(objectContext, dbConfig.CommitmentsDbConnectionString)
 {
     public override string SqlFileName => "EasComtTestDataCleanUp";
-
-    public TestDataCleanupComtSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.CommitmentsDbConnectionString) { }
 
     internal List<string[]> GetApprenticeIds(List<string> accountidsTodelete)
     {

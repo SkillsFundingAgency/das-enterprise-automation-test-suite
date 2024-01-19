@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class IsEventAtSchoolPage : AanAdminBasePage
+public class IsEventAtSchoolPage(ScenarioContext context) : AanAdminBasePage(context)
 {
-    protected override string PageTitle => "Is this event held at a school?";
-
-    public IsEventAtSchoolPage(ScenarioContext context) : base(context) { }
+    protected override string PageTitle => "Provide event location details";
 
     public NameOfTheSchoolPage SubmitIsEventAtSchoolAsYes()
     {

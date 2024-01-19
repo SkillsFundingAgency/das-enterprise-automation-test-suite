@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class EmployerFeedbackOverallRatingPage : EmployerFeedbackBasePage
+public class EmployerFeedbackOverallRatingPage(ScenarioContext context) : EmployerFeedbackBasePage(context)
 {
     protected override string PageTitle => "Overall rating";
 
@@ -10,8 +10,6 @@ public class EmployerFeedbackOverallRatingPage : EmployerFeedbackBasePage
 
     private static By VeryPoorOption => By.CssSelector("label[for='VeryPoor']");
 
-    public EmployerFeedbackOverallRatingPage(ScenarioContext context) : base(context) { }
-
     public EmployerFeedbackCheckYourAnswersPage SelectVPoorAndContinue() => GoToProvideFeedbackCheckYourAnswersPage(VeryPoorOption);
 
     public EmployerFeedbackCheckYourAnswersPage SelectGoodAndContinue() => GoToProvideFeedbackCheckYourAnswersPage(GoodOption);
@@ -20,7 +18,7 @@ public class EmployerFeedbackOverallRatingPage : EmployerFeedbackBasePage
     {
         formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(selector));
         Continue();
-        return new (context);
+        return new(context);
 
     }
 }

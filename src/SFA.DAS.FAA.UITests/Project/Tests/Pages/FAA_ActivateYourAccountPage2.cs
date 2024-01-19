@@ -1,16 +1,14 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ActivateYourAccountPage2 : FAABasePage
+    public class FAA_ActivateYourAccountPage2(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Tell us more about you";
 
         private static By SaveAndContinue => By.Id("save-continue-button");
         private static By SkipLink => By.Id("skip-link");
-
-        public FAA_ActivateYourAccountPage2(ScenarioContext context) : base(context) { }
 
         public FAA_ApprenticeSearchPage ClickSaveAndContinue()
         {

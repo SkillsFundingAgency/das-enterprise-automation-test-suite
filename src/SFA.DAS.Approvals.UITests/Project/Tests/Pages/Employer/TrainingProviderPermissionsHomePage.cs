@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class YourTrainingProvidersLinkHomePage : HomePage
+    public class YourTrainingProvidersLinkHomePage(ScenarioContext context) : HomePage(context)
     {
         private static By YourTrainingProvidersLink => By.LinkText("Your training providers");
-
-        public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context)  { }
 
         public YourTrainingProvidersPage OpenProviderPermissions()
         {

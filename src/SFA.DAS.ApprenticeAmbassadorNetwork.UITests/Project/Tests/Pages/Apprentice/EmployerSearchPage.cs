@@ -1,14 +1,12 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice;
 
-public class EmployerSearchPage : AanBasePage
+public class EmployerSearchPage(ScenarioContext context) : AanBasePage(context)
 {
     protected override string PageTitle => "Search for your employer's name or address";
 
     private static By FirstAddress => By.Id("SearchTerm__option--0");
 
-    private static By PostCodeField = By.Id("SearchTerm");
-
-    public EmployerSearchPage(ScenarioContext context) : base(context) => VerifyPage();
+    private static By PostCodeField => By.Id("SearchTerm");
 
     public EmployerDetailsPage EnterPostcodeAndContinue()
     {

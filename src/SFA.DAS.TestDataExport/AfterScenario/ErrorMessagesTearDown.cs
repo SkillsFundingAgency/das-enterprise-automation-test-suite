@@ -1,15 +1,11 @@
 ﻿namespace SFA.DAS.TestDataExport.AfterScenario;
 
 [Binding]
-public class ErrorMessagesTearDown
+public class ErrorMessagesTearDown(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public ErrorMessagesTearDown(ScenarioContext context) => _context = context;
-
     [AfterScenario(Order = 102)]
     public void ReportErrorMessages()
     {
-        if (_context.TestError != null) throw new Exception(string.Join(Environment.NewLine, _context.Get<ObjectContext>().GetAfterScenarioExceptions().Select(x => x?.Message)));
+        if (context.TestError != null) throw new Exception(string.Join(Environment.NewLine, context.Get<ObjectContext>().GetAfterScenarioExceptions().Select(x => x?.Message)));
     }
 }

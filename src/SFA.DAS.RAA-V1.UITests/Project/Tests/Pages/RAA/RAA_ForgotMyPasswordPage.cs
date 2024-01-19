@@ -14,9 +14,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SubmitButton => By.CssSelector("button.btn.btn-ml");
 
         private By FormInfo => By.CssSelector("p.form-info");
-        
+
         public RAA_ForgotMyPasswordPage(ScenarioContext context) : base(context) { }
-       
+
         public RAA_ForgotMyPasswordPage ResetPassword()
         {
             formCompletionHelper.EnterText(UsernameField, rAAV1Config.RecruitUserName);
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public string FormInfoText()
         {
-            pageInteractionHelper.WaitforURLToChange("/passwordRecoveryEmailSent/"); 
+            pageInteractionHelper.WaitforURLToChange("/passwordRecoveryEmailSent/");
             return pageInteractionHelper.GetText(FormInfo);
         }
     }

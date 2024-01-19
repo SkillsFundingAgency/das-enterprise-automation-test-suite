@@ -28,7 +28,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _context = context;
             _employerStepsHelper = new EmployerStepsHelper(_context);
-            _providerStepsHelper = new FlexiProviderStepsHelper (_context);
+            _providerStepsHelper = new FlexiProviderStepsHelper(_context);
             _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(_context);
             _cohortReferenceHelper = new CohortReferenceHelper(context);
             _existingAccountSteps = new ExistingAccountSteps(_context);

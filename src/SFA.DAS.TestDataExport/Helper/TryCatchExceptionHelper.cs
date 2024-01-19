@@ -1,11 +1,7 @@
 ﻿namespace SFA.DAS.TestDataExport.Helper;
 
-public class TryCatchExceptionHelper
+public class TryCatchExceptionHelper(ObjectContext objectContext)
 {
-    private readonly ObjectContext _objectContext;
-
-    public TryCatchExceptionHelper(ObjectContext objectContext) => _objectContext = objectContext;
-
     public void AfterScenarioException(Action action)
     {
         try
@@ -14,7 +10,7 @@ public class TryCatchExceptionHelper
         }
         catch (Exception ex)
         {
-            _objectContext.SetAfterScenarioException(ex);
+            objectContext.SetAfterScenarioException(ex);
         }
     }
 }

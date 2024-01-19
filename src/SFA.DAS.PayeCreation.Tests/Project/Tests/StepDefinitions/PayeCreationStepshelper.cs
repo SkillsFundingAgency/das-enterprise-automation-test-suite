@@ -1,12 +1,12 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.MongoDb.DataGenerator;
-using TechTalk.SpecFlow;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
-using NUnit.Framework;
-using System.Linq;
-using SFA.DAS.PayeCreation.Tests.Project;
+﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
+using SFA.DAS.PayeCreation.Tests.Project;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 {
@@ -15,42 +15,32 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         public string EmpRef { get; set; }
     }
 
-    public class PayeCreationStepshelper
+    public class PayeCreationStepshelper(ScenarioContext context, PayeDetails payeDetails)
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly PayeDetails _payeDetails;
-        private readonly DbConfig _dbConfig;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly DbConfig _dbConfig = context.Get<DbConfig>();
 
-        public PayeCreationStepshelper(ScenarioContext context, PayeDetails payeDetails)
-        {
-            _context = context;
-            _dbConfig = context.Get<DbConfig>();
-            _objectContext = context.Get<ObjectContext>();
-            _payeDetails = payeDetails;
-        }
+        public void AddLevyPaye() => AddPaye(payeDetails.NoOfLevy, true);
 
-        public void AddLevyPaye() => AddPaye(_payeDetails.NoOfLevy, true);
-
-        public void AddNonLevyPaye() => AddPaye(_payeDetails.NoOfNonLevy, false);
+        public void AddNonLevyPaye() => AddPaye(payeDetails.NoOfNonLevy, false);
 
         public void AddAornNonLevyPaye()
         {
-            AddPaye(_payeDetails.NoOfAornNonLevy, false);
+            AddPaye(payeDetails.NoOfAornNonLevy, false);
 
             foreach (var gatewaycred in _objectContext.GetGatewayCreds().ToList())
             {
                 var aornNumber = new AornDataHelper().AornNumber;
 
                 new InsertTprDataHelper(_objectContext, _dbConfig).InsertSingleOrgTprData(aornNumber, gatewaycred.Paye);
-                
+
                 _objectContext.UpdateAornNumber(aornNumber, gatewaycred.Index);
             }
         }
 
         private void AddPaye(string noofpayefromconfig, bool isLevy)
         {
-            int.TryParse(noofpayefromconfig, out int noofpaye);
+            _ = int.TryParse(noofpayefromconfig, out int noofpaye);
 
             noofpaye = noofpaye < 100 ? noofpaye : 100;
 
@@ -66,9 +56,9 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 
         private MongoDbDataGenerator AddGatewayUsers(int index)
         {
-            _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
+            _objectContext.SetDataHelper(new DataHelper(context.ScenarioInfo.Tags));
 
-            var mongodbGenerator = new MongoDbDataGenerator(_context, _payeDetails.EmpRef);
+            var mongodbGenerator = new MongoDbDataGenerator(context, payeDetails.EmpRef);
 
             mongodbGenerator.AddGatewayUsers(index);
 
@@ -77,7 +67,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 
         private void AddLevy(MongoDbDataGenerator mongoDbDataGenerator)
         {
-            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(_payeDetails.Duration, _payeDetails.LevyPerMonth);
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(payeDetails.Duration, payeDetails.LevyPerMonth);
 
             foreach (var item in levyDeclarations.Rows.ToList().Select(x => x.Values))
             {

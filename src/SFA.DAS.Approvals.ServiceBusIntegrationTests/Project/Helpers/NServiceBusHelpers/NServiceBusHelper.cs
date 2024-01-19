@@ -4,17 +4,12 @@ using SFA.DAS.NServiceBus.Configuration;
 using SFA.DAS.NServiceBus.Configuration.AzureServiceBus;
 using SFA.DAS.NServiceBus.Configuration.NewtonsoftJsonSerializer;
 using SFA.DAS.Payments.ProviderPayments.Messages;
-using System;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceBusHelpers
 {
-    public class NServiceBusHelper
+    public class NServiceBusHelper(string connectionString)
     {
-        private readonly string _connectionString;
-
-        public NServiceBusHelper(string connectionString) => _connectionString = connectionString;
-
         public async Task Publish(string endpointName, object eventName)
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName)
@@ -28,7 +23,7 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Helpers.NServiceB
                 || t == typeof(RecordedAct1CompletionPayment));
 
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            transport.ConnectionString(_connectionString);
+            transport.ConnectionString(connectionString);
             transport.SubscriptionRuleNamingConvention(RuleNameShortener.Shorten);
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
 

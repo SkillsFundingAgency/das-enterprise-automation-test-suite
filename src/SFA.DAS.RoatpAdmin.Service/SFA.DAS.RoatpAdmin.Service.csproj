@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<RootNamespace>SFA.DAS.RoatpAdmin.Service</RootNamespace>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 	</PropertyGroup>
@@ -11,12 +11,6 @@
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 		<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="appsettings.Project.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
 {
     public class FinancialEvidence_Section2_Helper
     {
-        internal ApplicationOverviewPage CompleteFinancialEvidence_1(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteFinancialEvidence_1(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .Access_Section2_IntroductionWhatYouwillNeed()
@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyIntroductionStatus_Section2(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteFinancialEvidence_2(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteFinancialEvidence_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .Access_Section2_YourOrganisationsFinancialEvidence()
@@ -30,7 +30,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteFinancialEvidence_2_ForSupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteFinancialEvidence_2_ForSupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .Access_Section2_YourOrganisationsFinancialEvidence()
@@ -49,7 +49,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteFinancialEvidence_2_ForNoUltimateParentCompany(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteFinancialEvidence_2_ForNoUltimateParentCompany(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .Access_Section2_YourOrganisationsFinancialEvidence()
@@ -66,7 +66,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteFinancialEvidence_3(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage CompleteFinancialEvidence_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .Access_Section2_YourUkUltimateParentCompanyFinancialEvidence()
@@ -76,7 +76,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .VerifyYourUkUltimateParentCompany_Section3(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage VerifyFinancialEvidenceSectionExempted(ApplicationOverviewPage applicationOverviewPage)
+        internal static ApplicationOverviewPage VerifyFinancialEvidenceSectionExempted(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)

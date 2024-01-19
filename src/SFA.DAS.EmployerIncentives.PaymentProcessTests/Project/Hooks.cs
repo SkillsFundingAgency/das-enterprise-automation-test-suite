@@ -7,29 +7,21 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project
 {
     [Binding]
-    public class Hooks
+    public class Hooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly Fixture _fixture;
+        private readonly Fixture _fixture = new();
         private TestData _testData;
         private Helper _helper;
-        private bool _hasRunInitialCleanup;
-
-        public Hooks(ScenarioContext context)
-        {
-            _context = context;
-            _fixture = new Fixture();
-            _hasRunInitialCleanup = false;
-        }
+        private bool _hasRunInitialCleanup = false;
 
         [BeforeScenario(Order = 42)]
         public async Task SetUpHelpers()
         {
             _testData = _fixture.Create<TestData>();
-            _context.Set(_testData);
+            context.Set(_testData);
 
-            _helper = new Helper(_context);
-            _context.Set(_helper);
+            _helper = new Helper(context);
+            context.Set(_helper);
 
             await _helper.CollectionCalendarHelper.Reset();
         }

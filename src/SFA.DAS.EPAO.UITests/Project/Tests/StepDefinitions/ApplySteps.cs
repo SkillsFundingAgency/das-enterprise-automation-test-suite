@@ -1,11 +1,11 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.StubPages;
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class ApplySteps : EPAOBaseSteps
+public class ApplySteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
-    private readonly ScenarioContext _context;
-
-    public ApplySteps(ScenarioContext context) : base(context) => _context = context;
+    private readonly ScenarioContext _context = context;
 
     [Given(@"the (Apply User) is logged into Assessment Service Application")]
     [When(@"the (Apply User) is logged into Assessment Service Application")]
@@ -33,18 +33,18 @@ public class ApplySteps : EPAOBaseSteps
     public void ThenTheApplyUserIsAbleToSignoutFromTheApplication() => new AS_LoggedInHomePage(_context).ClickSignOutLink().ClickSignBackInLink();
 
     [When(@"the Apply User initiates Create Account journey")]
-    public void WhenTheApplyUserInitiatesCreateAccountJourney() => createAnAccountPage = ePAOHomePageHelper.GoToEpaoAssessmentLandingPage().GoToCreateAccountPage();
+    public void WhenTheApplyUserInitiatesCreateAccountJourney() => ePAOHomePageHelper.GoToEpaoAssessmentLandingPage().GoToStubSignInAssessorPage().CreateAccount(ePAOAssesorCreateUserDataHelper.CreateAccountEmail).Continue();
 
     [Then(@"the Apply User is able to Create an Account")]
-    public void ThenTheApplyUserIsAbleToCreateAnAccount() => createAnAccountPage.EnterAccountDetailsAndClickCreateAccount();
+    public void ThenTheApplyUserIsAbleToCreateAnAccount() => new StubAddYourUserDetailsPage(_context).EnterAccountDetailsAndClickCreateAccount(ePAOAssesorCreateUserDataHelper);
 
     [Then(@"no matches are shown for Organisation searches with Invalid search term")]
     public void ThenNoMatchesAreShownForOrganisationSearchesWithInvalidSearchTerm()
     {
         new AP_PR1_SearchForYourOrganisationPage(_context)
-            .EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(Helpers.DataHelpers.EPAOApplyDataHelper.InvalidOrgNameWithAlphabets)
+            .EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(EPAOApplyDataHelper.InvalidOrgNameWithAlphabets)
             .VerifyInvalidSearchResultText()
-            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(Helpers.DataHelpers.EPAOApplyDataHelper.InvalidOrgNameWithNumbers)
-            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(Helpers.DataHelpers.EPAOApplyDataHelper.InvalidOrgNameWithAWord);
+            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(EPAOApplyDataHelper.InvalidOrgNameWithNumbers)
+            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(EPAOApplyDataHelper.InvalidOrgNameWithAWord);
     }
 }

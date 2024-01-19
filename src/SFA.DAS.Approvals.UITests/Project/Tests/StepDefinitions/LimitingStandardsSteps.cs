@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -21,25 +20,23 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class LimitingStandardsSteps
+    public class LimitingStandardsSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-        private readonly ObjectContext _objectContext;
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
-        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
 
-        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly ProviderBulkUploadStepsHelper _providerBulkUploadStepsHelper = new(context);
 
-        private readonly ProviderBulkUploadStepsHelper _providerBulkUploadStepsHelper;
+        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
 
-        private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper = new(context);
 
-        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-
-        private readonly CohortReferenceHelper _cohortReferenceHelper;
+        private readonly CohortReferenceHelper _cohortReferenceHelper = new(context);
 
         private ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage;
 
@@ -47,31 +44,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private (ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper) apprentice;
 
-        public LimitingStandardsSteps(ScenarioContext context)
-        {
-            _context = context;
-
-            _objectContext = context.Get<ObjectContext>();
-
-            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-
-            _employerStepsHelper = new EmployerStepsHelper(context);
-
-            _providerStepsHelper = new ProviderStepsHelper(context);
-
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-
-            _cohortReferenceHelper = new CohortReferenceHelper(context);
-
-            _providerBulkUploadStepsHelper = new ProviderBulkUploadStepsHelper(context);
-
-            _providerApproveStepsHelper = new ProviderApproveStepsHelper(context);
-        }
-
         [Given(@"provider does not offer Standard-X")]
         public void GivenProviderDoesNotOfferStandard_X()
         {
-            apprentice = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().FirstOrDefault();
+            apprentice = context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().FirstOrDefault();
 
             var course = apprentice.apprenticeCourseDataHelper.CourseDetails;
 
@@ -88,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerApproveStepsHelper.EditAndApprove();
 
-            var larsCode = _context.Get<RoatpV2SqlDataHelper>().GetCoursesthatProviderDeosNotOffer(_context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+            var larsCode = context.Get<RoatpV2SqlDataHelper>().GetCoursesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
 
             var randomLarsCode = RandomDataGenerator.GetRandomElementFromListOfElements(larsCode);
 
@@ -113,28 +89,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"provider can not upload file using Standard-X")]
         public void ThenProviderCanNotUploadFileUsingStandard_X()
         {
-            var employerUser = _context.GetUser<EmployerWithMultipleAccountsUser>();
+            var employerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
 
             var employerName = string.Concat(employerUser.OrganisationName.AsSpan(0, 3), "%");
 
-            var agreementId = _context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
+            var agreementId = context.Get<AccountsDbSqlHelper>().GetAgreementId(employerUser.Username, employerName).Trim();
 
-            apprentice = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().FirstOrDefault();
+            apprentice = context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().FirstOrDefault();
 
             var apprenticeList = new List<BulkUploadApprenticeDetails>()
             {
-                new BulkUploadApprenticeDetails(apprentice.apprenticeDataHelper, apprentice.apprenticeCourseDataHelper, agreementId)
+                new(apprentice.apprenticeDataHelper, apprentice.apprenticeCourseDataHelper, agreementId)
             };
 
             _providerBulkUploadStepsHelper.UsingFileUpload().CreateACsvFile(apprenticeList).UploadFile();
 
-            new BulkCsvUploadValidateErrorMsghelper(_context).VerifyErrorMessage("Enter a valid standard code. You have not told us that you deliver this training course. You must assign the course to your account");
+            new BulkCsvUploadValidateErrorMsghelper(context).VerifyErrorMessage("Enter a valid standard code. You have not told us that you deliver this training course. You must assign the course to your account");
 
         }
 
         private void EmployerApproveAndSendToProvider()
         {
-            _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
+            _employerPortalLoginHelper.Login(context.GetUser<LevyUser>());
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider();
 

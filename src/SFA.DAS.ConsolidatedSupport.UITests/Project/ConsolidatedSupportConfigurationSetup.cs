@@ -5,21 +5,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 {
     [Binding]
-    public class ConsolidatedSupportConfigurationSetup
+    public class ConsolidatedSupportConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public ConsolidatedSupportConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpConsolidatedSupportProjectConfiguration()
         {
-            _context.SetConsolidatedSupportConfig(_configSection.GetConfigSection<ConsolidatedSupportConfig>());
+            context.SetConsolidatedSupportConfig(_configSection.GetConfigSection<ConsolidatedSupportConfig>());
         }
     }
 }

@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningApprenticeshipTrainingChecks
 {
-    public class EngagingWithEndpointAssessmentOrganisationsPage : ModeratorBasePage
+    public class EngagingWithEndpointAssessmentOrganisationsPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "Engaging with end-point assessment organisations (EPAOs)";
-        
-        public EngagingWithEndpointAssessmentOrganisationsPage(ScenarioContext context) : base(context) { }
 
         public EngagingAndWorkWithAwardingBodiesPage SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage_FrameWorksOnly()
         {
@@ -18,7 +16,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
             SelectPassAndContinueToSubSection();
             return new TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(context);
         }
-        
+
         public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
         {
             SelectFailAndContinueToSubSection();

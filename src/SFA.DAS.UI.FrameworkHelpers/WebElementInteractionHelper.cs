@@ -8,7 +8,7 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 
 public abstract class WebElementInteractionHelper
 {
-    private readonly IWebDriver _webDriver;
+    protected readonly IWebDriver webDriver;
 
     protected static By LinkCssSelector => By.CssSelector("a");
 
@@ -22,7 +22,7 @@ public abstract class WebElementInteractionHelper
 
     protected static By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
 
-    protected WebElementInteractionHelper(IWebDriver webDriver) => _webDriver = webDriver;
+    protected WebElementInteractionHelper(IWebDriver webDriver) => this.webDriver = webDriver;
 
     public List<IWebElement> GetElementsByText(By locator, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
 
@@ -32,9 +32,9 @@ public abstract class WebElementInteractionHelper
 
     private List<IWebElement> GetElementsByAttribute(By locator, string expectedvalue, Func<IWebElement, string> actualValue)
     {
-        List<IWebElement> elements = new();
+        List<IWebElement> elements = [];
 
-        foreach (var e in _webDriver.FindElements(locator))
+        foreach (var e in webDriver.FindElements(locator))
         {
             if (actualValue(e).Contains(expectedvalue)) elements.Add(e);
         }
@@ -43,7 +43,7 @@ public abstract class WebElementInteractionHelper
     }
 
 
-    protected SelectElement SelectElement(IWebElement element) => new(element);
+    protected static SelectElement SelectElement(IWebElement element) => new(element);
 
-    protected SelectElement SelectElement(By by) => SelectElement(_webDriver.FindElement(by));
+    protected SelectElement SelectElement(By by) => SelectElement(webDriver.FindElement(by));
 }

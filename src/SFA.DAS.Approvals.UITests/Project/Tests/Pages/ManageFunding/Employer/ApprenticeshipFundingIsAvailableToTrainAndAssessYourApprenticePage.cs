@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage : ApprovalsBasePage
+    public class ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Apprenticeship funding is available to train and assess your apprentice";
 
@@ -11,8 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static By YesReserveFundingNowRadioButton => By.CssSelector("label[for=Reserve]");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
-        public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(ScenarioContext context) : base(context)  { }
 
         public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage ClickYesReserveFundingNowRadioButton()
         {

@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.RAA_V2.APITests.Project;
 
-public class Outer_RecruitApiClient : Outer_BaseApiRestClient
+public class Outer_RecruitApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
 {
-    public Outer_RecruitApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
-
     protected override string ApiName => "recruit";
 
     protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;

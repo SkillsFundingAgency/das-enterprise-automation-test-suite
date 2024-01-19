@@ -7,7 +7,7 @@ namespace SFA.DAS.FrameworkHelpers
     {
         private readonly int limitedWinChar;
 
-        public WindowsFileHelper(): this(250) { }
+        public WindowsFileHelper() : this(250) { }
 
         internal WindowsFileHelper(int x) => limitedWinChar = x;
 

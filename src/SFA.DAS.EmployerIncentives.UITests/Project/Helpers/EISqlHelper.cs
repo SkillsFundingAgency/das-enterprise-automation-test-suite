@@ -1,13 +1,11 @@
-﻿using System;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 {
-    public class EISqlHelper : SqlDbHelper
+    public class EISqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.IncentivesDbConnectionString)
     {
-        public EISqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.IncentivesDbConnectionString) { }
-
         public void AddIncentiveApplication(AddApplicationData data)
         {
             var query = $@"EXEC [support].[CreateRetrospectiveApplication]   

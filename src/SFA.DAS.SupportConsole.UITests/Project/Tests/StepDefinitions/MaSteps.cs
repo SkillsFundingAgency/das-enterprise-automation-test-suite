@@ -1,19 +1,16 @@
 ﻿namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class MaSteps
+public class MaSteps(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
     private ChallengePage _challengePage;
     private FinancePage _financePage;
     private TeamMembersPage _teamMembersPage;
 
-    public MaSteps(ScenarioContext context) => _context = context;
-
     [Then(@"the user can search by Hashed account id, account name or PAYE scheme")]
     public void ThenTheUserCanSearchByHashedAccountIdAccountNameOrPAYEScheme()
     {
-        new SearchHomePage(_context)
+        new SearchHomePage(context)
              .GoToSearchHomePage()
              .SearchByHashedAccountIdAndViewAccount()
              .GoToSearchHomePage()
@@ -26,7 +23,7 @@ public class MaSteps
     [Then(@"the user can search by name or email address")]
     public void ThenTheUserCanSearchByNameOrEmailAddress()
     {
-        new SearchHomePage(_context)
+        new SearchHomePage(context)
               .GoToSearchHomePage()
               .SearchByNameAndView()
               .GoToSearchHomePage()
@@ -35,10 +32,10 @@ public class MaSteps
     }
 
     [When(@"the user navigates to finance page")]
-    public void WhenTheUserNavigatesToFinancePage() => new AccountOverviewPage(_context).ClickFinanceMenuLink();
+    public void WhenTheUserNavigatesToFinancePage() => new AccountOverviewPage(context).ClickFinanceMenuLink();
 
     [Then(@"the user is redirected to a challenge page")]
-    public void ThenTheUserIsRedirectedToAChallengePage() => _challengePage = new ChallengePage(_context);
+    public void ThenTheUserIsRedirectedToAChallengePage() => _challengePage = new ChallengePage(context);
 
     [When(@"the user enters invalid payscheme")]
     public void WhenTheUserEntersInvalidPayscheme() => _challengePage.EnterIncorrectPaye();
@@ -60,7 +57,7 @@ public class MaSteps
     }
 
     [Then(@"the user is redirected to finance page")]
-    public void ThenTheUserIsRedirectedToFinancePage() => _financePage = new FinancePage(_context);
+    public void ThenTheUserIsRedirectedToFinancePage() => _financePage = new FinancePage(context);
 
     [Then(@"the user can view levy declarations")]
     public void ThenTheUserCanViewLevyDeclarations() => _financePage.ViewLevyDeclarations();
@@ -69,7 +66,7 @@ public class MaSteps
     public void ThenTheUserCanViewTransactions() => _financePage.ViewTransactions();
 
     [When(@"the user navigates to team members page")]
-    public void WhenTheUserNavigatesToTeamMembersPage() => _teamMembersPage = new AccountOverviewPage(_context).ClickTeamMembersLink();
+    public void WhenTheUserNavigatesToTeamMembersPage() => _teamMembersPage = new AccountOverviewPage(context).ClickTeamMembersLink();
 
     [Then(@"the user can view employer user information")]
     public void ThenTheUserCanViewEmployerUserInformation() => _teamMembersPage.GoToUserInformationOverviewPage();

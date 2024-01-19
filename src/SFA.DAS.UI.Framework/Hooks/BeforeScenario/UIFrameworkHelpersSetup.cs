@@ -4,24 +4,16 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
 [Binding]
-public class UIFrameworkHelpersSetup
+public class UIFrameworkHelpersSetup(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly TestSupport.UIFrameworkHelpersSetup _helpersSetup;
-    private readonly FrameworkConfig _config;
-
-    public UIFrameworkHelpersSetup(ScenarioContext context)
-    {
-        _context = context;
-        _config = context.Get<FrameworkConfig>();
-        _helpersSetup = new TestSupport.UIFrameworkHelpersSetup(context);
-    }
+    private readonly TestSupport.UIFrameworkHelpersSetup _helpersSetup = new(context);
+    private readonly FrameworkConfig _config = context.Get<FrameworkConfig>();
 
     [BeforeScenario(Order = 4)]
     public void SetUpUIFrameworkHelpers()
     {
         _helpersSetup.SetupUIFrameworkHelpers(false);
 
-        _context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
+        context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
     }
 }

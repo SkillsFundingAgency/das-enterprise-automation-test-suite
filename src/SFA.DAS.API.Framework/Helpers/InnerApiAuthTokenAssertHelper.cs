@@ -3,12 +3,8 @@ using SFA.DAS.API.FrameworkHelpers;
 
 namespace SFA.DAS.API.Framework.Helpers;
 
-public class InnerApiAuthTokenAssertHelper
+public class InnerApiAuthTokenAssertHelper(ObjectContext objectContext)
 {
-    private readonly ObjectContext _objectContext;
-
-    public InnerApiAuthTokenAssertHelper(ObjectContext objectContext) => _objectContext = objectContext;
-
     public RestResponse ExecuteInnerApiAuthTokenAndAssertResponse(RestClient client, RestRequest request)
     {
         var response = client.Execute(request);
@@ -23,5 +19,5 @@ public class InnerApiAuthTokenAssertHelper
     }
 
     private void SetDebugInformation(RequestAndResponseCollectionHelper apidataCollector)
-       => _objectContext.SetDebugInformation($"{apidataCollector.GetRequestData()}{Environment.NewLine}{apidataCollector.GetResponseData()}");
+       => objectContext.SetDebugInformation($"{apidataCollector.GetRequestData()}{Environment.NewLine}{apidataCollector.GetResponseData()}");
 }

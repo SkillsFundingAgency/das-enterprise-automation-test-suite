@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S1_ProtectingYourApprenticesChecks
 {
-    public class OverallResponsibilityForHealthAndSafetyPage : ModeratorBasePage
+    public class OverallResponsibilityForHealthAndSafetyPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "Overall responsibility for health and safety";
-
-        public OverallResponsibilityForHealthAndSafetyPage(ScenarioContext context) : base(context) { }
     }
 }

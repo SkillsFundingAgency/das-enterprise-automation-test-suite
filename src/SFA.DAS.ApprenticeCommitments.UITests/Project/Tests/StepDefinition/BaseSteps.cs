@@ -6,23 +6,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
-    public class BaseSteps
+    public class BaseSteps(ScenarioContext context)
     {
-        protected readonly CreateAccountStepsHelper createAccountStepsHelper;
-        protected readonly ConfirmMyApprenticeshipStepsHelper confirmMyApprenticeshipStepsHelper;
-        protected readonly PasswordResetStepsHelper passwordResetStepsHelper;
-        protected readonly ApprenticeCommitmentsConfig config;
-        protected readonly TabHelper tabHelper;
-        protected readonly ObjectContext objectContext;
-
-        public BaseSteps(ScenarioContext context)
-        {
-            createAccountStepsHelper = new CreateAccountStepsHelper(context);
-            confirmMyApprenticeshipStepsHelper = new ConfirmMyApprenticeshipStepsHelper(context);
-            passwordResetStepsHelper = new PasswordResetStepsHelper(context);
-            config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
-            tabHelper = context.Get<TabHelper>();
-            objectContext = context.Get<ObjectContext>();
-        }
+        protected readonly ScenarioContext context = context;
+        protected readonly CreateAccountStepsHelper createAccountStepsHelper = new(context);
+        protected readonly ConfirmMyApprenticeshipStepsHelper confirmMyApprenticeshipStepsHelper = new(context);
+        protected readonly PasswordResetStepsHelper passwordResetStepsHelper = new(context);
+        protected readonly ApprenticeCommitmentsConfig config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
+        protected readonly TabHelper tabHelper = context.Get<TabHelper>();
+        protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
     }
 }

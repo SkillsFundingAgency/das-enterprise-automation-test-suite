@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class WhereCanYouDeliverTrainingPage : ManagingStandardsBasePage
+public class WhereCanYouDeliverTrainingPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Where can you deliver this training?";
 
@@ -8,7 +8,6 @@ public class WhereCanYouDeliverTrainingPage : ManagingStandardsBasePage
     private static By RutlandChekcBox => By.XPath("//input[@value='9']");
     private static By LutonChekcBox => By.XPath("//input[@value='15']");
     private static By EssexChekcBox => By.XPath("//input[@value='13']");
-    public WhereCanYouDeliverTrainingPage(ScenarioContext context) : base(context) { }
 
     public ManageAStandard_TeacherPage SelectDerbyRutlandRegionsAndConfirm()
     {

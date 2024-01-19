@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_PreventAgendaPolicyPage : AS_EPAOApplyStandardBasePage
+public class AS_PreventAgendaPolicyPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "Prevent agenda policy";
-
-    public AS_PreventAgendaPolicyPage(ScenarioContext context) : base(context) { }
 
     public AS_ConflictOfinterestPolicyPage UploadPreventAgendaPolicy()
     {

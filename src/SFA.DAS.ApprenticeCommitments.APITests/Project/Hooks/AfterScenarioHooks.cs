@@ -7,28 +7,15 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
 {
     [Binding]
-    public class AfterScenarioHooks
+    public class AfterScenarioHooks(ScenarioContext context)
     {
-        protected readonly ObjectContext _objectContext;
-        protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper;
-        protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper;
-        private readonly ApprenticeCommitmentsAccountsSqlDbHelper _apprenticeCommitmentsAccountsSqlDbHelper;
-        private readonly AccountsAndCommitmentsSqlHelper _accountsAndCommitmentsSqlHelper;
-        private readonly CommitmentsSqlHelper _commitmentsSqlHelper;
-        private readonly TryCatchExceptionHelper _tryCatch;
-        protected readonly string[] tags;
-
-        public AfterScenarioHooks(ScenarioContext context)
-        {
-            _objectContext = context.Get<ObjectContext>();
-            _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
-            _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
-            _apprenticeCommitmentsAccountsSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
-            _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
-            _tryCatch = context.Get<TryCatchExceptionHelper>();
-            tags = context.ScenarioInfo.Tags;
-        }
+        protected readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        protected readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
+        protected readonly ApprenticeLoginSqlDbHelper _aLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
+        private readonly ApprenticeCommitmentsAccountsSqlDbHelper _apprenticeCommitmentsAccountsSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
+        private readonly CommitmentsSqlHelper _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
+        private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
+        protected readonly string[] tags = context.ScenarioInfo.Tags;
 
         [AfterScenario(Order = 33)]
         public void ClearDownUserData() => _tryCatch.AfterScenarioException(() => ClearDownUserDataQuery());

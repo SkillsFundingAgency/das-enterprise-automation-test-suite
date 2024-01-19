@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             int subStringIndexFrom = currentUrl.IndexOf("/reservations/") + "/reservations/".Length;
             int subStringIndexTo = currentUrl.LastIndexOf("/completed");
 
-            var reservationId = currentUrl.Substring(subStringIndexFrom, subStringIndexTo - subStringIndexFrom);
+            var reservationId = currentUrl[subStringIndexFrom..subStringIndexTo];
 
             objectContext.SetReservationId(reservationId);
         }

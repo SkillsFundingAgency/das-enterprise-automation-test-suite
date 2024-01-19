@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         public ResetPasswordPage(ScenarioContext context) : base(context)
         {
-            
+
             validPassword = $"{validPassword}!%&";
             objectContext.SetApprenticePassword(validPassword);
         }

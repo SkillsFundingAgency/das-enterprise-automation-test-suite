@@ -1,11 +1,10 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.Pages;
 
-public class ChooseTheAddressPage : ManagingStandardsBasePage
+public class ChooseTheAddressPage(ScenarioContext context) : ManagingStandardsBasePage(context)
 {
     protected override string PageTitle => "Choose the address";
 
     private static By AddressFound => By.Id("SelectedAddressUprn");
-    public ChooseTheAddressPage(ScenarioContext context) : base(context) { }
 
     public AddVenueDetailsPage ChooseTheAddressAndContinue()
     {

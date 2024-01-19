@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class TransferRequestRejectedPage : TransfersBasePage
+    public class TransferRequestRejectedPage(ScenarioContext context) : TransfersBasePage(context)
     {
-        public TransferRequestRejectedPage(ScenarioContext context) : base(context) { }
-
         protected override string PageTitle => "Transfer request rejected";
     }
 }

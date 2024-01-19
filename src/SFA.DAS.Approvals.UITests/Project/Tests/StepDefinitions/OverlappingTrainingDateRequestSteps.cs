@@ -249,7 +249,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             new ProviderEditApprenticeDetailsPage(_context)
                  .EditStartDate("", "")
                  .EditEndDate("", "")
-                 .ClickSave();
+                 .ClickSave(false);
         }
 
         [Then(@"overlapping training date request is resolved in database with status (.*) and resolutionType (.*)")]
@@ -281,7 +281,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var apprenticeDetailsPage = _homePageStepsHelper
                 .GoToManageYourApprenticesPage()
                 .SelectViewCurrentApprenticeDetails();
-            _employerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage, StopApprentice.LeftEmployer);
+            EmployerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage, StopApprentice.LeftEmployer);
         }
 
         [When(@"overlapping training date request banner is not displayed")]

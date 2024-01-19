@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ReviewChangesPage : ApprovalsBasePage
+    public class ReviewChangesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Review changes";
-        
-        public ReviewChangesPage(ScenarioContext context) : base(context)  { }
 
         protected override By ContinueButton => By.Id("continue-button");
 

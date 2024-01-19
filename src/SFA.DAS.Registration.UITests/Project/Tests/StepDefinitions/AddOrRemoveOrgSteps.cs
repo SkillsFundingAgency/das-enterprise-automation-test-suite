@@ -7,32 +7,23 @@ using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class AddOrRemoveOrgSteps
+    public class AddOrRemoveOrgSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly RegistrationDataHelper _registrationDataHelper;
-        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+        private readonly RegistrationDataHelper _registrationDataHelper = context.Get<RegistrationDataHelper>();
         private HomePage _homePage;
         private CheckYourDetailsPage _checkYourDetailsPage;
         private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
 
-        public AddOrRemoveOrgSteps(ScenarioContext context)
-        {
-            _context = context;
-            _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
-        }
-
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded() =>
-            Assert.AreEqual(new HomePage(_context).GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
+            Assert.AreEqual(new HomePage(context).GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
 
         [Given(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
             _registrationDataHelper.SetAccountNameAsOrgName = false;
-            _checkYourDetailsPage = _accountCreationStepsHelper.SearchForAnotherOrg(new HomePage(_context, true), orgType).SelectYourOrganisation(orgType);
+            _checkYourDetailsPage = AccountCreationStepsHelper.SearchForAnotherOrg(new HomePage(context, true), orgType).SelectYourOrganisation(orgType);
         }
 
         [Then(@"the new Org added is shown in the Account Organisations list")]
@@ -89,6 +80,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = _checkYourDetailsPage.ClickYesContinueButton().GoToHomePage();
         }
 
-        private YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage);
+        private YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage() => AccountCreationStepsHelper.SignAgreementFromHomePage(_homePage);
     }
 }

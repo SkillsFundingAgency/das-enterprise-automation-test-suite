@@ -24,17 +24,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to finance page")]
         public void ThenTheEmployerCanNavigateToFinancePage()
         {
-            new InterimYourApprenticeshipAdvertsHomePage(_context, true);
+            _ = new InterimYourApprenticeshipAdvertsHomePage(_context, true);
 
-            new InterimFinanceHomePage(_context, true);
+            _ = new InterimFinanceHomePage(_context, true);
         }
 
         [Then(@"the employer can navigate to apprentice page")]
         public void ThenTheEmployerCanNavigateToApprenticePage()
         {
-            new InterimYourApprenticeshipAdvertsHomePage(_context, true);
+            _ = new InterimYourApprenticeshipAdvertsHomePage(_context, true);
 
-            new InterimApprenticesHomePage(_context, false);
+            _ = new InterimApprenticesHomePage(_context, false);
         }
 
         [Then(@"the employer can navigate to your team page")]

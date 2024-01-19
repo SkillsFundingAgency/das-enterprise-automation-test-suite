@@ -51,7 +51,7 @@ public class InPersonOrOnlinePage : AanAdminBasePage
         {
             SubmitInPerson();
         }
-        else if (neweventFormat == EventFormat.Online) 
+        else if (neweventFormat == EventFormat.Online)
         {
             SubmitOnline();
         }

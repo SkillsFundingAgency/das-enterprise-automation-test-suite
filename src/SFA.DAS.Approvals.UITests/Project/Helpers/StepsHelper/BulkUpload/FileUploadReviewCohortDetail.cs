@@ -1,4 +1,5 @@
-﻿
+﻿namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
+
 public class FileUploadReviewCohortDetail
 {
     public const string EmptyCohortRefText = "This will be created when you save or send to employers";

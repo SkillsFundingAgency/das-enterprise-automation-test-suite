@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprenticeshipTraining_Section7
@@ -13,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public ApplicationOverviewPage EnterDetailsOfTheManager()
         {
-            formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
+            formCompletionHelper.EnterText(FullName, RoatpApplyDataHelpers.FullName);
             SelectRadioOptionByText("Over 18 months");
             Continue();
             return new ApplicationOverviewPage(context);
@@ -21,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public ApplicationOverviewPage EnterDetailsOfTheManagerPerson()
         {
-            formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
+            formCompletionHelper.EnterText(FullName, RoatpApplyDataHelpers.FullName);
             SelectYesAndContinue();
             return new ApplicationOverviewPage(context);
         }

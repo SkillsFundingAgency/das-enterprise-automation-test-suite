@@ -5,15 +5,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class AccountsAndCommitmentsSqlHelper : SqlDbHelper
+    public class AccountsAndCommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
     {
-        private readonly DbConfig _dbConfig;
-
-        public AccountsAndCommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AccountsDbConnectionString) { _dbConfig = dbConfig; }
-
         public (string legalName, string tradingName) GetProviderData(long providerId)
         {
-            var providerData = GetData($"select LegalName, TradingName from Organisations where UKPRN = {providerId}", _dbConfig.RoatpDatabaseConnectionString);
+            var providerData = GetData($"select LegalName, TradingName from Organisations where UKPRN = {providerId}", dbConfig.RoatpDatabaseConnectionString);
 
             return (providerData[0], providerData[1]);
         }
@@ -30,7 +26,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
                 "WHERE App.IsApproved = 1 AND C.IsDeleted = 0 AND C.AccountLegalEntityId IS NOT NULL AND ALE.Deleted IS NULL AND LEN(App.TrainingCode) = 3 AND App.Email IS NULL " +
                 "ORDER BY NEWID()";
 
-            var apprenticeData = GetData(query, _dbConfig.CommitmentsDbConnectionString);
+            var apprenticeData = GetData(query, dbConfig.CommitmentsDbConnectionString);
 
             var accountid = apprenticeData[0];
             var apprenticeshipid = apprenticeData[1];
@@ -45,7 +41,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             var dateOfBirth = apprenticeData[10];
 
             List<object[]> empNameData = EmpNameData(long.Parse(accountid));
-            
+
 
             if (empNameData.Count == 0)
                 return (0, 0, string.Empty, string.Empty, default, string.Empty, string.Empty, 0, 0, string.Empty, string.Empty, string.Empty);
@@ -55,7 +51,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public (string empName, string providerName) GetEmpAndProvNames(string email)
         {
-            var apprenticeData = GetData($"SELECT C.EmployerAccountId, C.ProviderId FROM Apprenticeship App INNER JOIN Commitment C on App.CommitmentId = C.Id WHERE App.Email = '{email}'", _dbConfig.CommitmentsDbConnectionString);
+            var apprenticeData = GetData($"SELECT C.EmployerAccountId, C.ProviderId FROM Apprenticeship App INNER JOIN Commitment C on App.CommitmentId = C.Id WHERE App.Email = '{email}'", dbConfig.CommitmentsDbConnectionString);
             var (legalName, tradingName) = GetProviderData(long.Parse(apprenticeData[1]));
             var providerName = string.IsNullOrWhiteSpace(tradingName) ? legalName : tradingName;
             return (EmployerName(long.Parse(apprenticeData[0])), providerName);

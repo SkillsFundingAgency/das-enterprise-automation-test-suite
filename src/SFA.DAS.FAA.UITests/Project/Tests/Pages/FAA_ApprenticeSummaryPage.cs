@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
-using System;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -60,7 +60,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             string actualStartDate = PossibleStartDate.ToString("dd MMM yyyy");
 
             pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
-            pageInteractionHelper.VerifyText(StartDate,actualStartDate);
+            pageInteractionHelper.VerifyText(StartDate, actualStartDate);
         }
 
         public void VerifyNewWages()
@@ -69,8 +69,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             string[] wageRange = displayedWageFAA.Split('-');
             string minWage = RegexHelper.GetVacancyCurrentWage(wageRange[0]);
             string maxWage = RegexHelper.GetVacancyCurrentWage(wageRange[1]);
-            pageInteractionHelper.VerifyText(minWage,faaDataHelper.NewCustomMinWagePerWeek);
-            pageInteractionHelper.VerifyText(maxWage,faaDataHelper.NewCustomMaxWagePerWeek);
+            pageInteractionHelper.VerifyText(minWage, faaDataHelper.NewCustomMinWagePerWeek);
+            pageInteractionHelper.VerifyText(maxWage, faaDataHelper.NewCustomMaxWagePerWeek);
         }
 
         public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()

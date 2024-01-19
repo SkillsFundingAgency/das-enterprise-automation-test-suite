@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 
-public class RoatpDbSqlDataHelper : ProjectSqlDbHelper
+public class RoatpDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : ProjectSqlDbHelper(objectContext, dbConfig.RoatpDatabaseConnectionString)
 {
-    public RoatpDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.RoatpDatabaseConnectionString) { }
 }

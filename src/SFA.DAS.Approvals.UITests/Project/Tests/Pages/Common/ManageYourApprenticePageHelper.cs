@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public class ManageYourApprenticePageHelper : ApprovalsBasePage
+    public class ManageYourApprenticePageHelper(ScenarioContext context) : ApprovalsBasePage(context, false)
     {
         private static By ApprenticeSearchField => By.Id("searchTerm");
 
@@ -17,14 +16,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         internal static By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
 
-        public ManageYourApprenticePageHelper(ScenarioContext context) : base(context, false)
-        {
-
-        }
-
         public bool DoesApprenticeExists(string name)
         {
-            List<IWebElement> apprentices = new();
+            List<IWebElement> apprentices = [];
 
             context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
@@ -35,9 +29,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                     Assert.Fail("Apprentice '" + name + "' is not found");
                 }
 
-                apprentices = pageInteractionHelper.FindElements(ViewApprenticeFullName(name)).ToList();
-            }, 
-            RetryTimeOut.GetTimeSpan(new int[] { 10, 20, 30, 60, 120, 180 }));
+                apprentices = [.. pageInteractionHelper.FindElements(ViewApprenticeFullName(name))];
+            },
+            RetryTimeOut.GetTimeSpan([10, 20, 30, 60, 120, 180]));
 
             return apprentices.Count > 0;
         }

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Ganss.Excel;
+using SFA.DAS.Common.Domain.Types;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Ganss.Excel;
-using SFA.DAS.Common.Domain.Types;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 {
@@ -47,7 +47,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 
         public int? MinimumAgreementVersion { get; set; }
         public DateTime? EmploymentStartDate { get; set; }
-        
+
         [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]
         public Phase Phase { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "nvarchar(50)")]

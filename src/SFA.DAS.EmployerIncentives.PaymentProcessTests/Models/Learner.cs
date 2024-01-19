@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Ganss.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Ganss.Excel;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Models
 {

@@ -5,19 +5,8 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    internal class TprSqlDataHelper
+    internal class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
     {
-        private readonly DbConfig _dbConfig;
-        private readonly ObjectContext _objectContext;
-        private readonly AornDataHelper _aornDataHelper;
-
-        public TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
-        {
-            _dbConfig = dbConfig;
-            _objectContext = objectContext;
-            _aornDataHelper = aornDataHelper;
-        }
-
         public void CreateSingleOrgAornData() => CreateAornData("SingleOrg");
 
         public void CreateMultiOrgAORNData()
@@ -28,13 +17,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private void CreateAornData(string orgType)
         {
-            var aornNumber = _aornDataHelper.AornNumber;
-            
-            var organisationName = new InsertTprDataHelper(_objectContext, _dbConfig).InsertTprData(aornNumber, _objectContext.GetGatewayPaye(0), orgType);
-            
-            _objectContext.UpdateOrganisationName(organisationName);
-            
-            _objectContext.UpdateAornNumber(aornNumber, 0);
+            var aornNumber = aornDataHelper.AornNumber;
+
+            var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, objectContext.GetGatewayPaye(0), orgType);
+
+            objectContext.UpdateOrganisationName(organisationName);
+
+            objectContext.UpdateAornNumber(aornNumber, 0);
         }
     }
 }

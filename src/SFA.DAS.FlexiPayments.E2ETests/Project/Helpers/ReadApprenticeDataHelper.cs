@@ -10,30 +10,26 @@ using TechTalk.SpecFlow.Assist;
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 {
 
-    public class ReadApprenticeDataHelper
+    public class ReadApprenticeDataHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public ReadApprenticeDataHelper(ScenarioContext context) => _context = context;
-
         internal List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
         {
-            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice = new();
+            List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice = [];
 
             foreach (var row in table.Rows) listOfApprentice.Add(ReadApprenticeData(row));
 
-            _context.Set(listOfApprentice);
+            context.Set(listOfApprentice);
 
             return listOfApprentice;
         }
 
         private (ApprenticeDataHelper, ApprenticeCourseDataHelper) ReadApprenticeData(TableRow data)
         {
-            var objectContext = _context.Get<ObjectContext>();
+            var objectContext = context.Get<ObjectContext>();
 
             var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
 
-            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(_context.ScenarioInfo.Tags, inputData.DateOfBirth), objectContext, _context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice, inputData.TrainingPrice, inputData.EndpointAssessmentPrice);
+            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(context.ScenarioInfo.Tags, inputData.DateOfBirth), objectContext, context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice, inputData.TrainingPrice, inputData.EndpointAssessmentPrice);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
 

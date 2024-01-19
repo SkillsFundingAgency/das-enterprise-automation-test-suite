@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
-    public class YourOrganisationNamePage : PublicSectorReportingBasePage
+    public class YourOrganisationNamePage(ScenarioContext context) : PublicSectorReportingBasePage(context)
     {
         protected override string PageTitle => "Your organisation";
 
@@ -11,8 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         private static By OrganisatiponNameInput => By.CssSelector("#Report_OrganisationName");
 
-        public YourOrganisationNamePage(ScenarioContext context) : base(context)  { }
-        
         public ReportYourProgressPage EnterNameOftheOrganisation()
         {
             formCompletionHelper.EnterText(OrganisatiponNameInput, registrationDataHelper.CompanyTypeOrg);

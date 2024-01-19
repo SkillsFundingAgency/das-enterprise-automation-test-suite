@@ -3,11 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class ManageYourAdvertEmailsPage : RegistrationBasePage
+    public class ManageYourAdvertEmailsPage(ScenarioContext context) : RegistrationBasePage(context)
     {
         protected override string PageTitle => "Manage your emails";
-
-        public ManageYourAdvertEmailsPage(ScenarioContext context) : base(context) { }
-
     }
 }

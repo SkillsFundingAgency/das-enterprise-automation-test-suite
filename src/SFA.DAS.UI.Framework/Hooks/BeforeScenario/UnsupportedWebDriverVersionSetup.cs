@@ -6,11 +6,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
 [Binding]
-public class UnsupportedWebDriverVersionSetup : WebDriverSetupBase
+public class UnsupportedWebDriverVersionSetup(ScenarioContext context) : WebDriverSetupBase(context)
 {
     private static string _browser;
-
-    public UnsupportedWebDriverVersionSetup(ScenarioContext context) : base(context) { }
 
     [BeforeScenario(Order = 5)]
     public void SetupUnsupportedWebDriver()
