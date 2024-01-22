@@ -4,6 +4,7 @@ using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
@@ -45,7 +46,10 @@ public class ProviderHomePageStepsHelper(ScenarioContext context)
         var checkPage = new CheckSelectYourOrgOrProviderHomePage(context, login.Ukprn);
 
         // provider relogin check
-        if (objectContext.GetDebugInformations(Provider_BaseUrl).Count > 1)
+
+        var providerUrlInfo = objectContext.GetDebugInformations(Provider_BaseUrl);
+
+        if (providerUrlInfo.Count > 1 && !providerUrlInfo.Any(x => x.Contains(RestartWebDriverHelper.RestartMessage)))
         {
             if (checkPage.IsProviderHomePageDisplayed()) return new ProviderHomePage(context);
         }
