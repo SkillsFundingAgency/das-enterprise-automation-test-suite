@@ -6,11 +6,13 @@ public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
     public static string DfePageTitle => "Department for Education Sign-in";
 
-    public static By DfePageIdentifier => By.CssSelector(".govuk-heading-xl");
+    public static By DfePageIdentifier => By.CssSelector(DfePageIdentifierCss);
 
     protected override By PageHeader => DfePageIdentifier;
 
     protected override string PageTitle => DfePageTitle;
+
+    public static string DfePageIdentifierCss => ".govuk-heading-xl";
 
     private static By SignInButton => By.CssSelector("button.govuk-button[type='submit']");
 

@@ -21,11 +21,11 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 
         internal void SubmitValidLoginDetails() { if (IsSignInPageDisplayed()) new ProviderDfeSignInPage(_context).SubmitValidLoginDetails(providerLoginUser); }
 
-        internal ProviderHomePage GoToProviderHomePage(CheckSelectYourOrgOrProviderHomePage checkPage)
+        internal ProviderHomePage GoToProviderHomePage()
         {
             SubmitValidLoginDetails();
 
-            if (checkPage.IsSelectYourOrganisationDisplayed())
+            if (new CheckSelectYourOrgOrProviderHomePage(_context, providerLoginUser.Ukprn).IsSelectYourOrganisationDisplayed())
             {
                 new SelectYourOrganisationPage(_context).SelectOrganisation(providerLoginUser.Ukprn);
             }

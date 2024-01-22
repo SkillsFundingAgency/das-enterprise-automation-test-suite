@@ -43,17 +43,12 @@ public class ProviderHomePageStepsHelper(ScenarioContext context)
 
         loginHelper.ClickStartNow();
 
-        var checkPage = new CheckSelectYourOrgOrProviderHomePage(context, login.Ukprn);
-
         // provider relogin check
-
-        var providerUrlInfo = objectContext.GetDebugInformations(Provider_BaseUrl);
-
-        if (providerUrlInfo.Count > 1 && !providerUrlInfo.Any(x => x.Contains(RestartWebDriverHelper.RestartMessage)))
+        if (objectContext.GetDebugInformations(Provider_BaseUrl).Count > 1)
         {
-            if (checkPage.IsProviderHomePageDisplayed()) return new ProviderHomePage(context);
+            if (new CheckDfeSignInOrProviderHomePage(context, login.Ukprn).IsProviderHomePageDisplayed()) return new ProviderHomePage(context);
         }
 
-        return loginHelper.GoToProviderHomePage(checkPage);
+        return loginHelper.GoToProviderHomePage();
     }
 }
