@@ -16,7 +16,7 @@ public abstract class VerifyBasePage : InterimBasePage
     private bool _takescreenshot;
     #endregion
 
-    public bool IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle).Item1;
+    public (bool, string) IsPageCurrent => pageInteractionHelper.CheckText(PageHeader, PageTitle);
 
     protected virtual bool CaptureUrl => true;
 
@@ -62,7 +62,7 @@ public abstract class VerifyBasePage : InterimBasePage
 
     protected bool VerifyWithoutRefresh() => VerifyPage(() => pageInteractionHelper.Verify(() =>
     {
-        var result = pageInteractionHelper.CheckText(PageHeader, PageTitle);
+        var result = IsPageCurrent;
 
         return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
     }, null));

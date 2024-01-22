@@ -36,8 +36,35 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to an apprentice member successfully")]
     public void TheUserShouldBeAbleToAskToTheMemberSuccessfully(string message) => SendApprenticeMessage(networkDirectoryPage, Apprentice, message);
 
-    [Then(@"the user should be able to successfully verify ambassador profile")]
+    [When(@"the user should be able to successfully verify ambassador profile")]
     public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
+
+    [Then(@"the user should be able to update profile information")]
+    public void ThenTheUserShouldBeAbleToUpdateProfileInformation() => new YourAmbassadorProfilePage(context).
+      AccessChangeForPersonalDetails()
+      .ChangePersonalDetailsAndContinue()
+      .AccessChangeForInterestInNetwork()
+      .SelectProjectManagementAndContinue()
+      .AccessChangeForContactDetails()
+      .ChangeLinkedlnUrlAndContinue();
+
+    [When(@"the user should be able to successfully hide ambassador profile information")]
+    public void WhenTheUserShouldBeAbleToSuccessfullyHideAmbassadorProfileInformation() => AccessYourAmbassadorProfile(networkHubPage)
+    .AccessChangeForPersonalDetails()
+    .HideJobtitleAndBiography()
+    .AccessChangeForApprenticeshipInformation()
+    .HideApprenticeshipInformation()
+    .AccessChangeForContactDetails()
+    .HideLinkedlnInformation();
+
+    [Then(@"the user should be able to successfully display ambassador profile information")]
+    public void ThenTheUserShouldBeAbleToSuccessfullyDisplayAmbassadorProfileInformation() => new YourAmbassadorProfilePage(context)
+        .AccessChangeForPersonalDetails()
+        .DisplayJobtitleAndBiography()
+        .AccessChangeForApprenticeshipInformation()
+        .DisplayApprenticeshipInformation()
+        .AccessChangeForContactDetails()
+        .DisplayLinkedlnInformation();
 
     [Then(@"the user should be able to successfully signup for a future event")]
     public void SignupForAFutureEvent() => eventsHubPage = SignupForAFutureEvent(networkHubPage, user.Username);

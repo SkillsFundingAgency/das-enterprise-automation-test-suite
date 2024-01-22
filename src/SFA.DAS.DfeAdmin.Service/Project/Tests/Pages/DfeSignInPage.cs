@@ -21,6 +21,13 @@ public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
     {
         SubmitValidLoginDetails(dfeAdminUser.Username, dfeAdminUser.Password);
     }
+
+    public new void SubmitValidLoginDetails(string username, string password)
+    {
+        base.SubmitValidLoginDetails(username, password);
+
+        new NotADfeSignPage(context).IsPageDisplayed();
+    }
 }
 
 public class CheckDfeSignInPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
@@ -28,4 +35,24 @@ public class CheckDfeSignInPage(ScenarioContext context) : CheckPageTitleShorter
     protected override string PageTitle => DfeSignInPage.DfePageTitle;
 
     protected override By Identifier => DfeSignInPage.DfePageheader;
+}
+
+public class NotADfeSignPage(ScenarioContext context) : CheckPageTitleLongerTimeOut(context)
+{
+    protected override string PageTitle => DfeSignInPage.DfePageTitle;
+
+    protected override By Identifier => DfeSignInPage.DfePageheader;
+
+    public override bool IsPageDisplayed() 
+    {
+        SetDebugInformation($"Check page title is NOT : '{PageTitle}'");
+
+        return checkPageInteractionHelper.Verify(() =>
+        {
+            var result = IsPageCurrent;
+
+            return result.Item1 ? throw new Exception(ExceptionMessageHelper.GetExceptionMessage("'Dfe Sign'", $"Should have navigated from '{PageTitle}'", result.Item2)) : true;
+
+        }, null);
+    }
 }

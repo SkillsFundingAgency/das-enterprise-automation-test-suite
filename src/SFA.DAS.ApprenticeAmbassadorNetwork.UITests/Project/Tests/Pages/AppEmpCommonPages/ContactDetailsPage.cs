@@ -4,7 +4,7 @@ public class ContactDetailsPage(ScenarioContext context) : AanBasePage(context)
 {
     protected override string PageTitle => "Contact details"; 
     private static By LinkedlnUrlField => By.Id("LinkedinUrl");
-    private static By LinkedlnInformationCheckbox = By.Id("ShowLinkedinUrl");
+    private static By LinkedlnInformationCheckbox = By.Id("ShowLinkedinUrl"); 
 
     public YourAmbassadorProfilePage ChangeLinkedlnUrlAndContinue()
     {

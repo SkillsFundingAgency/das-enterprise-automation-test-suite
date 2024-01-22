@@ -227,7 +227,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ApprenticeRequestsPage GoToApprenticeRequestsPage()
         {
-            if (!(_apprenticeRequestsPage?.IsPageCurrent ?? false))
+            if (!(_apprenticeRequestsPage?.IsPageCurrent.Item1 ?? false))
             {
                 _apprenticeRequestsPage = _employerStepsHelper.GoToApprenticeRequestsPage();
             }
