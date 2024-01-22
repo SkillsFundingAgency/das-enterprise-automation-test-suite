@@ -2,5 +2,5 @@
 
 public class NotADfeAdminSignPage(ScenarioContext context) : NotADfeSignPage(context)
 {
-    protected override By Identifier => By.CssSelector($"{PageHeaderSelector}, {DfeSignIdentifiers.Reviewer_HomePageIdentifierCss}, {DfeSignIdentifiers.SupportConsole_HomePageidentifierCss}");
+    protected override By Identifier => By.CssSelector($"{PageHeaderSelector}, {DfeAfterSignIdentifiers.Reviewer_HomePageIdentifierCss}, {DfeAfterSignIdentifiers.SupportConsole_HomePageidentifierCss}");
 }

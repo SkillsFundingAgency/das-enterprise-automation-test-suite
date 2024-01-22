@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 
-public static class DfeSignIdentifiers
+public static class DfeAfterSignIdentifiers
 {
     public static string Reviewer_HomePageIdentifierCss => ".govuk-button[type='submit']";
 

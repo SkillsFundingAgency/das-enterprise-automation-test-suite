@@ -1,10 +1,8 @@
-﻿using Polly;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
