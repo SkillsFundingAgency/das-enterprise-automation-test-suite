@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
@@ -10,7 +11,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected override string PageTitle => "Review Vacancy";
 
-        private static By ReviewVacancyButton => By.CssSelector(".govuk-button[type='submit']");
+        private static By ReviewVacancyButton => By.CssSelector(DfeSignIdentifiers.Reviewer_HomePageIdentifierCss);
 
         private static By SearchTerm => By.Id("SearchTerm");
 

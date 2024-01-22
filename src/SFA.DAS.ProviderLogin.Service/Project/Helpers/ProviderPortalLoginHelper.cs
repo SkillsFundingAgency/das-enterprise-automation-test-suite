@@ -1,4 +1,4 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
@@ -19,7 +19,7 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
 
         internal void ClickStartNow() { if (IsLandingPageDisplayed()) new ProviderLandingPage(_context).ClickStartNow(); }
 
-        internal void SubmitValidLoginDetails() {if (IsSignInPageDisplayed()) new ProviderDfeSignInPage(_context).SubmitValidLoginDetails(providerLoginUser); }
+        internal void SubmitValidLoginDetails() { if (IsSignInPageDisplayed()) new ProviderDfeSignInPage(_context).SubmitValidLoginDetails(providerLoginUser); }
 
         internal ProviderHomePage GoToProviderHomePage(CheckSelectYourOrgOrProviderHomePage checkPage)
         {
