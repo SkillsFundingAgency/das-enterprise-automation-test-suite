@@ -9,17 +9,19 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 public class ProviderHomePageStepsHelper(ScenarioContext context)
 {
+    private readonly ObjectContext objectContext = context.Get<ObjectContext>();
+
+    private static string Provider_BaseUrl => UrlConfig.Provider_BaseUrl;
+
     public ProviderHomePage GoToProviderHomePage(bool newTab) => GoToProviderHomePage(context.GetProviderConfig<ProviderConfig>(), newTab);
 
     public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
     {
-        var objectContext = context.Get<ObjectContext>();
-
         var tabHelper = context.Get<TabHelper>();
 
         if (newTab) tabHelper.OpenNewTab();
 
-        tabHelper.GoToUrl(UrlConfig.Provider_BaseUrl);
+        tabHelper.GoToUrl(Provider_BaseUrl);
 
         objectContext.SetUkprn(login.Ukprn);
 
@@ -35,16 +37,16 @@ public class ProviderHomePageStepsHelper(ScenarioContext context)
 
     private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
     {
-        var loginHelper = new ProviderPortalLoginHelper(context);
+        var loginHelper = new ProviderPortalLoginHelper(context, login);
 
-        if (loginHelper.IsLandingPageDisplayed()) loginHelper.StartNow();
+        loginHelper.ClickStartNow();
 
-        if (loginHelper.IsStubSignInPageDisplayed()) loginHelper.SubmitValidLoginDetails(login);
+        // provider relogin check
+        if (objectContext.GetDebugInformations(Provider_BaseUrl).Count > 1)
+        {
+            if (new CheckDfeSignInOrProviderHomePage(context, login.Ukprn).IsProviderHomePageDisplayed()) return new ProviderHomePage(context);
+        }
 
-        if (loginHelper.IsSelectYourOrganisationDisplayed()) return loginHelper.SelectOrganisation(login);
-
-        if (loginHelper.IsProviderHomePageDisplayed(login.Ukprn)) return new ProviderHomePage(context);
-
-        return new ProviderHomePage(context);
+        return loginHelper.GoToProviderHomePage();
     }
 }

@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             var result = IsPageCurrent;
 
-            return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
+            return result.Item1 ? result.Item1 : throw new Exception(MessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
 
         }, () => pageInteractionHelper.WaitUntilAnyElements(ContinueButton));
 

@@ -12,6 +12,8 @@ public class RestartWebDriverHelper(ScenarioContext context)
     private readonly UIFrameworkHelpersSetup _frameworkHelpersSetup = new(context);
     private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
+    public static string RestartMessage => "Restarted WebDriver and Navigated to";
+
     public void RestartWebDriver(string url, string applicationName)
     {
         _browserStackTearDownHelper.MarkTestStatus();
@@ -22,7 +24,7 @@ public class RestartWebDriverHelper(ScenarioContext context)
 
         webDriver.Navigate().GoToUrl(url);
 
-        _objectContext.SetDebugInformation($"Restarted WebDriver and Navigated to {url}");
+        _objectContext.SetDebugInformation($"{RestartMessage} {url}");
 
         _objectContext.SetCurrentApplicationName(applicationName);
     }

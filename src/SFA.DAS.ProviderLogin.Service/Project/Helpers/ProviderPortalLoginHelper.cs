@@ -1,4 +1,4 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
@@ -9,21 +9,28 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        internal ProviderPortalLoginHelper(ScenarioContext context) => _context = context;
+        private readonly ProviderLoginUser providerLoginUser;
+
+        internal ProviderPortalLoginHelper(ScenarioContext context, ProviderLoginUser user) { _context = context; providerLoginUser = user; }
 
         public bool IsLandingPageDisplayed() => new CheckProviderLandingPage(_context).IsPageDisplayed();
 
-        public bool IsStubSignInPageDisplayed() => new CheckDfeSignInPage(_context).IsPageDisplayed();
+        public bool IsSignInPageDisplayed() => new CheckDfeSignInPage(_context).IsPageDisplayed();
 
-        public bool IsSelectYourOrganisationDisplayed() => new CheckSelectYourOrganisationPage(_context).IsPageDisplayed();
+        internal void ClickStartNow() { if (IsLandingPageDisplayed()) new ProviderLandingPage(_context).ClickStartNow(); }
 
-        public bool IsProviderHomePageDisplayed(string ukprn) => new CheckProviderHomePage(_context).IsPageDisplayed(ukprn);
+        internal void SubmitValidLoginDetails() { if (IsSignInPageDisplayed()) new ProviderDfeSignInPage(_context).SubmitValidLoginDetails(providerLoginUser); }
 
-        internal void StartNow() => new ProviderLandingPage(_context).StartNow();
+        internal ProviderHomePage GoToProviderHomePage()
+        {
+            SubmitValidLoginDetails();
 
-        internal void SubmitValidLoginDetails(ProviderLoginUser login) => new ProviderDfeSignInPage(_context).SubmitValidLoginDetails(login);
+            if (new CheckSelectYourOrgOrProviderHomePage(_context, providerLoginUser.Ukprn).IsSelectYourOrganisationDisplayed())
+            {
+                new SelectYourOrganisationPage(_context).SelectOrganisation(providerLoginUser.Ukprn);
+            }
 
-        internal ProviderHomePage SelectOrganisation(ProviderLoginUser login) => new SelectYourOrganisationPage(_context).SelectOrganisation(login.Ukprn);
-
+            return new ProviderHomePage(_context);
+        }
     }
 }
