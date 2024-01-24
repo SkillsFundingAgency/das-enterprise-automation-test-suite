@@ -16,10 +16,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public DoYouAcceptTheEmployerAgreementOnBehalfOfPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public CreateYourEmployerAccountPage SignAgreement()
+        public YouVeAcceptedYourEmployerAgreement SignAgreement()
         {
             Sign();
-            return new CreateYourEmployerAccountPage(context);
+            return new YouVeAcceptedYourEmployerAgreement(context);
         }
 
         public SetPermissionsForTrainingProviderPage ProviderLeadRegistrationSignAgreement()
