@@ -11,6 +11,6 @@ Scenario: EPAO_AD_AmendCert_03 Amend a Certificate - Change SendTo
 	And the Admin can search using learner uln
 	When the Admin amends the certificate with ticket reference 'INC123456' and selects reason 'Incorrect apprentice details'
 	Then the SendTo can be changed from 'apprentice' to 'employer'
-	And the new address can be entered with employer name 'EFSA' and recipient 'HR Department'
-	And the recipient's name on the check page is 'HR Department'
+	And the new address can be entered with employer name 'EFSA' and recipient 'HR DEPARTMENT'
+	And the recipient's name on the check page is 'HR DEPARTMENT'
 	And the address contains the employer name 'EFSA'
