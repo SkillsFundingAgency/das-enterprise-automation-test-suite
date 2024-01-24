@@ -4,7 +4,7 @@ public class ObjectContext
 {
     private readonly Dictionary<string, object> _objects;
 
-    public ObjectContext() => _objects = new Dictionary<string, object>();
+    public ObjectContext() => _objects = [];
 
     #region Getters
 

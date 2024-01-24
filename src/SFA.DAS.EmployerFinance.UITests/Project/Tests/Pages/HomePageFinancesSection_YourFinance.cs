@@ -3,10 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
-    public class HomePageFinancesSection_YourFinance : HomePageFinancesSection
+    public class HomePageFinancesSection_YourFinance(ScenarioContext context) : HomePageFinancesSection(context)
     {
-        public HomePageFinancesSection_YourFinance(ScenarioContext context) : base(context) { }
-
         public FinancePage NavigateToFinancePage()
         {
             formCompletionHelper.Click(YourFinancesLink);

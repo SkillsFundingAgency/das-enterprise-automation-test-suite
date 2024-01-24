@@ -1,18 +1,13 @@
 ﻿using SFA.DAS.API.Framework;
-using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.APITests.Project
 {
     [Binding]
-    public class BeforeScenarioHooks
+    public class BeforeScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public BeforeScenarioHooks(ScenarioContext context) => _context = context;
-
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() => _context.SetRestClient(new FatV2RestClient(_context.Get<ObjectContext>(), _context.GetOuter_ApiAuthTokenConfig()));
+        public void SetUpHelpers() => context.SetRestClient(new FatV2RestClient(context.Get<ObjectContext>(), context.GetOuter_ApiAuthTokenConfig()));
     }
 }

@@ -15,12 +15,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     }
 
 
-    public class WhyDoYouWantToStopThisApprenticeshipPage : ApprovalsBasePage        
+    public class WhyDoYouWantToStopThisApprenticeshipPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Why do you want to stop this apprenticeship?";
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
-
-        public WhyDoYouWantToStopThisApprenticeshipPage(ScenarioContext context) : base(context) { }
 
         public ThisApprenticeshipTrainingStopPage SelectedReasonToStop(StopApprentice reason)
         {

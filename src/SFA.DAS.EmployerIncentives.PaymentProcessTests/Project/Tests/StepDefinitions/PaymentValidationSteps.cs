@@ -1,9 +1,9 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefinitions
@@ -38,7 +38,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             {
                 _phase.Should().Be(Phase.Phase3);
             }
-            
+
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
                 .WithDateSubmitted(_initialStartDate)
@@ -80,9 +80,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, 
+                .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN,
                     TestData.UKPRN, startDate, startDate.AddYears(-20), Context.ScenarioInfo.Title
-                    ,Phase.Phase1)
+                    , Phase.Phase1)
                 .Create();
 
             await Helper.IncentiveApplicationHelper.Submit(TestData.IncentiveApplication);
@@ -121,13 +121,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var temp = Helper.EISqlHelper.GetFromDatabase<ApprenticeshipIncentive>(x => x.Id == TestData.ApprenticeshipIncentiveId);
 
-            _pendingPayment = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId 
+            _pendingPayment = Helper.EISqlHelper.GetFromDatabase<PendingPayment>(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId
                                                                  && x.EarningType == earningType);
 
             var validationStep = Helper.EISqlHelper.GetFromDatabase<PendingPaymentValidationResult>(x =>
                 x.PendingPaymentId == _pendingPayment.Id
                 && x.Step == stepName);
-            
+
             validationStep.Should().NotBeNull();
             validationStep.Result.Should().Be(stepValue);
         }

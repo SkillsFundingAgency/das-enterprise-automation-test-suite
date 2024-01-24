@@ -4,6 +4,6 @@
     {
         bool IsSignInPageDisplayed();
 
-        bool IsIndexPageDisplayed();
+        bool IsLandingPageDisplayed();
     }
 }

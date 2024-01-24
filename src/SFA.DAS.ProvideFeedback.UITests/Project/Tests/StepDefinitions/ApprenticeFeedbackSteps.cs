@@ -7,13 +7,11 @@ public class ApprenticeFeedbackSteps
 {
 
     private readonly ScenarioContext _context;
-    private readonly ObjectContext _objectContext;
     private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
 
     public ApprenticeFeedbackSteps(ScenarioContext context)
     {
         _context = context;
-        _objectContext = context.Get<ObjectContext>();
         _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(_context);
     }
 

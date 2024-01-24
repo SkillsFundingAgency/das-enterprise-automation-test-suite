@@ -8,18 +8,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
-    public class EmployerPermissionsStepsHelper
+    public class EmployerPermissionsStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ProviderPermissionsSqlDbHelper _providerPermissionsSqlDbHelper;
+        private readonly ProviderPermissionsSqlDbHelper _providerPermissionsSqlDbHelper = context.Get<ProviderPermissionsSqlDbHelper>();
 
-        public EmployerPermissionsStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _providerPermissionsSqlDbHelper = context.Get<ProviderPermissionsSqlDbHelper>();
-        }
-
-        public void SetAgreementId(HomePage homePage, string orgName)
+        public static void SetAgreementId(HomePage homePage, string orgName)
         {
             var organisationPage = homePage.GoToYourOrganisationsAndAgreementsPage();
 
@@ -35,10 +28,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private HomePage SetProviderPermissions(string ukprn, string orgName, AddApprenticePermissions addApprenticePermissions, RecruitApprenticePermissions recruitApprenticePermissions)
         {
             return OpenProviderPermissions()
-                 .SelectAddANewTrainingProvider()
+                 .SelectAddATrainingProvider()
                  .SearchForATrainingProvider(ukprn)
                  .ConfirmTrainingProvider()
-                 .SelectContinueInEmployerTrainingProviderAddedPage()
+                 .SelectReturnToYourTrainingProviders()
                  .SelectSetPermissions(orgName)
                  .ClickAddApprentice(addApprenticePermissions)
                  .ClickRecruitApprentice(recruitApprenticePermissions)
@@ -80,13 +73,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             }
         }
 
-        private void RemovePermissionsInCosmosDatabase(ProviderPermissionsConfig providerPermissionConfig) =>
+        private static void RemovePermissionsInCosmosDatabase(ProviderPermissionsConfig providerPermissionConfig) =>
             CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(providerPermissionConfig.PermissionsCosmosUrl, providerPermissionConfig.PermissionsCosmosDBKey, providerPermissionConfig.PermissionsCosmosDatabaseName, providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(providerPermissionConfig.Ukprn));
 
 
-        private Tests.Pages.Employer.YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
+        private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(context).OpenProviderPermissions();
 
-        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(YourOrganisationsAndAgreementsPage page, string orgName) =>
+        private static YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink(YourOrganisationsAndAgreementsPage page, string orgName) =>
             string.IsNullOrEmpty(orgName) ? page.ClickViewAgreementLink() : page.ClickViewAgreementLink(orgName);
 
     }

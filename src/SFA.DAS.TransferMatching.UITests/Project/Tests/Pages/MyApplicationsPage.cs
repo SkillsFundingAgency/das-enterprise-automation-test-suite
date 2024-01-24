@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class MyApplicationsPage : TransferMatchingBasePage
+    public class MyApplicationsPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "My applications";
-
-        public MyApplicationsPage(ScenarioContext context) : base(context) { }
 
         public ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus)
         {

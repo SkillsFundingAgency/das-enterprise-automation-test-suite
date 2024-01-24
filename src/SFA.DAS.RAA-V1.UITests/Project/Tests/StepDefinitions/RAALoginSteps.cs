@@ -2,7 +2,6 @@
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -13,12 +12,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
-        private readonly RAAV1Config _config;
 
         public RAALoginSteps(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetRAAV1Config<RAAV1Config>();
             _tabHelper = context.Get<TabHelper>();
         }
 

@@ -24,11 +24,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new PermissionsUpdatedPage(context);
         }
 
-        public HomePage ConfirmProviderLeadRegistrationPermissions()
+        public YouVeSuccessfullySetProviderPermissionsPage ConfirmProviderLeadRegistrationPermissions()
         {
             javaScriptHelper.ClickElement(SelectYesConfirmChange);
             Continue();
-            return new HomePage(context);
+            return new YouVeSuccessfullySetProviderPermissionsPage(context);
         }
     }
 }

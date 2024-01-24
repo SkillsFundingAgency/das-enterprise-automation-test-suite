@@ -5,31 +5,29 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
-    public class Manage_HomePage : Manage_HeaderSectionBasePage
+    public class Manage_HomePage(ScenarioContext context) : Manage_HeaderSectionBasePage(context)
     {
         protected override string PageTitle => "Agency home";
 
         protected override bool TakeFullScreenShot => false;
 
-        private By ChangeTeam => By.CssSelector("#select2-chosen-2");
+        private static By ChangeTeam => By.CssSelector("#select2-chosen-2");
 
-        private By ChangeRole => By.CssSelector("#select2-chosen-1");
+        private static By ChangeRole => By.CssSelector("#select2-chosen-1");
 
-        private By InputChangeTeam => By.Id("s2id_autogen2_search");
+        private static By InputChangeTeam => By.Id("s2id_autogen2_search");
 
-        private By InputChangeRole => By.Id("s2id_autogen1_search");
+        private static By InputChangeRole => By.Id("s2id_autogen1_search");
 
-        private By Filters => By.CssSelector(".column-one-quarter");
+        private static By Filters => By.CssSelector(".column-one-quarter");
 
-        private By DateFilter => By.CssSelector(".bold-xsmall");
+        private static By DateFilter => By.CssSelector(".bold-xsmall");
 
-        private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
+        private static By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
 
-        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
+        private static By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
         private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={objectContext.GetVacancyReference()}']");
-
-        public Manage_HomePage(ScenarioContext context) : base(context) { }
 
         public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {
@@ -88,7 +86,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
             ChangeFilter(ChangeTeam, InputChangeTeam, "West Midlands");
         }
-        
+
         private void ChangeToHelpdeskAdviser() => ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
     }
 }

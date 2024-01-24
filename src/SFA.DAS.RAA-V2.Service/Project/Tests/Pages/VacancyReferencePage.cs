@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacancyReferencePage : Raav2BasePage
+    public class VacancyReferencePage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override By PageHeader => VacancyReferenceNumber;
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private static By VacancyConfirmationSelector => By.CssSelector(".govuk-panel--confirmation");
 
         protected static By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
-
-        public VacancyReferencePage(ScenarioContext context) : base(context) { }
 
         public VacancyReferencePage SetVacancyReference()
         {

@@ -3,48 +3,40 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
     [Binding]
-    public class ApprovalsConfigurationSetup
+    public class ApprovalsConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public ApprovalsConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
             if (NoNeedToSetUpConfiguration()) return;
 
-            _context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
+            context.SetApprovalsConfig(_configSection.GetConfigSection<ApprovalsConfig>());
 
-            _context.SetEasLoginUser(new List<EasAccountUser>()
-            {
+            context.SetEasLoginUser(
+            [
                 _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
                 _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>(),
                 _configSection.GetConfigSection<FlexiJobUser>(),
                 _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
-            });
+            ]);
         }
 
         private bool NoNeedToSetUpConfiguration()
         {
-            if (_context.ScenarioInfo.Tags.Contains("deletecohortviaemployerportal"))
+            if (context.ScenarioInfo.Tags.Contains("deletecohortviaemployerportal"))
             {
-                _context.SetEasLoginUser(new List<EasAccountUser>() { _configSection.GetConfigSection<DeleteCohortLevyUser>() });
+                context.SetEasLoginUser([_configSection.GetConfigSection<DeleteCohortLevyUser>()]);
             }
 
-            return new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration();
+            return new TestDataSetUpConfigurationHelper(context).NoNeedToSetUpConfiguration();
         }
     }
 }

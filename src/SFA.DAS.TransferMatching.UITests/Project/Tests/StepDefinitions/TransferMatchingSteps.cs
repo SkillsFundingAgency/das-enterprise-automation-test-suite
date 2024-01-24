@@ -14,10 +14,10 @@ using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using System;
 using System.Threading;
+using TechTalk.SpecFlow;
+using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -29,7 +29,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private ManageTransferMatchingPage _manageTransferMatchingPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
-        private readonly SubmitApplicationHelper _transferMatchingStepsHelper;
         private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
@@ -48,7 +47,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _isAnonymousPledge = false;
             _isImmediateAutoApprovalPledge = false;
             _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
-            _transferMatchingStepsHelper = new SubmitApplicationHelper();
             _objectContext = context.Get<ObjectContext>();
             _accountSignOutHelper = new AccountSignOutHelper(context);
             _tabHelper = context.Get<TabHelper>();
@@ -102,7 +100,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
         {
             _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
-            _transferMatchingStepsHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
+            SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
             OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
         }
 
@@ -202,10 +200,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
@@ -220,10 +218,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
@@ -245,19 +243,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .GoToChooseTheLevelPage().SelectLevelAndContinue()
                 .ContinueToPledgeVerificationPage();
 
-            SetPledgeDetail();           
+            SetPledgeDetail();
         }
-      
+
         [Given(@"the levy employer can create pledge using minimal funding")]
         [Then(@"the levy employer can create pledge using minimal funding")]
         public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
         {
             var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, true);
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(page.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(page.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(page.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(page.LevelLink));
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
             _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
 
@@ -278,7 +276,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             SetPledgeDetail();
         }
-      
+
         [Then(@"the levy employer can sort the pledges")]
         public void TheLevyEmployerCanSortThePledges() => SortApplications();
 
@@ -314,8 +312,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
 
         [Then(@"the levy employer can view pleged amount")]
-        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();              
-   
+        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
+
         [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
         public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
         {
@@ -341,7 +339,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             // trigger autoapproval job
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
         }
-        
+
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -455,9 +453,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            _transferMatchingStepsHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge? "": _objectContext.GetPledgeDetail().PledgeId);
+            SubmitApplicationHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
 
-            return OpenPledgeApplication(_isImmediateAutoApprovalPledge? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication(_isImmediateAutoApprovalPledge ? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
         }
 
         private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
@@ -466,7 +464,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
 
-            return _transferMatchingStepsHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
+            return SubmitApplicationHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
         }
 
         private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
@@ -476,14 +474,14 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             return SubmitApplication(new CreateATransfersApplicationPage(_context));
         }
 
-        private StubSignInPage ApplyForTransferFunds()
+        private StubSignInEmployerPage ApplyForTransferFunds()
         {
             SignOutAndGoToTransferMacthingApplyUrl();
 
             return new TransferFundDetailsPage(_context, false).ApplyForTransferFunds();
         }
 
-        private void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
+        private static void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
         {
             string actualErrorMessage = page.GetErrorMessage();
 

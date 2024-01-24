@@ -1,13 +1,10 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.FrameworkHelpers;
+using TechTalk.SpecFlow;
+using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class CheckPageRetryHelper : RetryHelper
+public class CheckPageRetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext, TimeSpan[] timeSpans) : RetryHelper(webDriver, scenarioInfo, objectContext, timeSpans)
 {
-    public CheckPageRetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext) : base(webDriver, scenarioInfo, objectContext, RetryTimeOut.ShorterTimeout())
-    {
-
-    }
 }

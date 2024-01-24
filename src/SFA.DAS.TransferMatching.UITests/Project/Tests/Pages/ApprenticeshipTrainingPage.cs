@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class ApprenticeshipTrainingPage : TransferMatchingBasePage
+    public class ApprenticeshipTrainingPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Apprenticeship training";
 
@@ -22,11 +22,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
-        public ApprenticeshipTrainingPage(ScenarioContext context) : base(context) { }
-
         public CreateATransfersApplicationPage EnterAppTrainingDetailsAndContinue()
         {
-            EnterDetails(); Continue(); 
+            EnterDetails(); Continue();
 
             return new CreateATransfersApplicationPage(context);
         }

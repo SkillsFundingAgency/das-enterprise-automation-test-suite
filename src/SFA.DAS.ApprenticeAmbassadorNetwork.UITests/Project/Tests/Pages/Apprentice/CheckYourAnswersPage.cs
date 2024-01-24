@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class CheckYourAnswersPage : AanBasePage
+    public class CheckYourAnswersPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Check the information you have provided before completing your registration";
         private static By ChangelinkEmployer => By.CssSelector("a[href='/onboarding/employer-search']");
@@ -8,7 +8,6 @@
         private static By ChangelinkRegions => By.CssSelector("a[href='/onboarding/regions']");
         private static By ChangelinkAreasOfInterest => By.CssSelector("a[href='/onboarding/areas-of-interest']");
         private static By ChangelinkPreviousEngagement => By.CssSelector("a[href='/onboarding/previous-engagement']");
-        public CheckYourAnswersPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchEmployerNamePage AccessChangeCurrentEmployerAndContinue()
         {

@@ -4,36 +4,28 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class RegistrationConfigurationSetup
+    public class RegistrationConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly IConfigSection _configSection;
-
-        public RegistrationConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configSection = context.Get<IConfigSection>();
-        }
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
         public void SetUpRegistrationConfigConfiguration()
         {
-            if (new TestDataSetUpConfigurationHelper(_context).NoNeedToSetUpConfiguration()) return;
+            if (new TestDataSetUpConfigurationHelper(context).NoNeedToSetUpConfiguration()) return;
 
-            _context.SetEasLoginUser(new List<EasAccountUser>()
-            {
+            context.SetEasLoginUser(
+            [
                 _configSection.GetConfigSection<AuthTestUser>(),
                 _configSection.GetConfigSection<LevyUser>(),
                 _configSection.GetConfigSection<NonLevyUser>(),
                 _configSection.GetConfigSection<TransactorUser>(),
                 _configSection.GetConfigSection<ViewOnlyUser>(),
-            });
+            ]);
 
             SetMongoDbConfig();
         }
@@ -41,11 +33,11 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 2), Scope(Tag = "@addmultiplelevyfunds")]
         public void SetUpRegistrationConfigConfigurationForAddMultipleLevyFunds()
         {
-            _context.SetEasLoginUser(new List<EasAccountUser>() { _configSection.GetConfigSection<AddMultiplePayeLevyUser>() });
+            context.SetEasLoginUser([_configSection.GetConfigSection<AddMultiplePayeLevyUser>()]);
 
             SetMongoDbConfig();
         }
 
-        public void SetMongoDbConfig() => _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
+        public void SetMongoDbConfig() => context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
     }
 }

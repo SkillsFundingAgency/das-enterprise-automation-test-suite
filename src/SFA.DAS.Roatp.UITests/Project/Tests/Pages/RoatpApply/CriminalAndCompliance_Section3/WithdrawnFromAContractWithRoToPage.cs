@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         protected override string PageTitle => "Has your organisation been removed from the Register of Training Organisations (RoTO) in the last 3 years?";
 
         #region Helpers and Context
-        
+
         #endregion
 
         public WithdrawnFromAContractWithRoToPage(ScenarioContext context) : base(context) => VerifyPage();

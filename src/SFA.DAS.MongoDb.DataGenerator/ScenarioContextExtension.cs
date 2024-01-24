@@ -1,5 +1,5 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MongoDb.DataGenerator
 {

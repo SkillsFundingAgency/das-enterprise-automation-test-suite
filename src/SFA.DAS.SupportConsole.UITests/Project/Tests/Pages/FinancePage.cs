@@ -25,7 +25,7 @@ public class FinancePage : SupportConsoleBasePage
 
         tableRowHelper.SelectRowFromTable("view", obscurepaye);
 
-        return new (context);
+        return new(context);
     }
 
     public void ViewTransactions()

@@ -13,26 +13,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderBulkUploadCsvFilePage : ApprovalsBasePage
+    public class ProviderBulkUploadCsvFilePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private static By ChooseFileButton => By.Id("attachment");
         private static By UploadFileButton => By.Id("submit-upload-apprentices");
-        protected readonly string CsvFileLocation;
-        private readonly List<BulkUploadApprenticeDetails> _apprenticeList;
+
+        protected readonly string CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title[..8]}_BulkUpload.csv";
+
+        private readonly List<BulkUploadApprenticeDetails> _apprenticeList = [];
 
         protected override string PageTitle => "Upload a CSV file";
 
-        private readonly CreateCsvFileHelper _bulkUploadDataHelper;
-
-        public ProviderBulkUploadCsvFilePage(ScenarioContext context) : base(context)
-        {
-            CsvFileLocation = Path.GetFullPath(@"..\..\..\") + $"{context.ScenarioInfo.Title.Substring(0, 8)}_BulkUpload.csv";
-
-            _bulkUploadDataHelper = new CreateCsvFileHelper();
-
-            _apprenticeList = new List<BulkUploadApprenticeDetails>();
-        }
+        private readonly CreateCsvFileHelper _bulkUploadDataHelper = new();
 
         public ProviderBulkUploadCsvFilePage CreateApprenticeshipsForAlreadyCreatedCohorts(int numberOfApprenticesPerCohort)
         {
@@ -47,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
 
             return this;
-         }
+        }
 
 
         public ProviderBulkUploadCsvFilePage CreateApprenticeshipsForEmptyCohorts(int numberOfApprenticesWithoutCohortRef, string email, string name)
@@ -63,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderBulkUploadCsvFilePage WriteApprenticeshipRecordsToCsvFile()
         {
             objectContext.SetBulkuploadApprentices(_apprenticeList);
-            _bulkUploadDataHelper.CreateCsvFile(_apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(_apprenticeList, CsvFileLocation);
             return this;
         }
 
@@ -88,14 +81,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
 
         public ProviderBulkUploadCsvFilePage CreateACsvFile(int numberOfApprenticesPerCohort, int numberOfApprenticesWithoutCohortRef)
         {
-           var listOfCohortReference = GetCohortReferences();
+            var listOfCohortReference = GetCohortReferences();
 
             var apprenticeList = new List<BulkUploadApprenticeDetails>();
 
@@ -114,7 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
@@ -127,7 +120,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
 
             return this;
         }
@@ -136,13 +129,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             var apprenticeList = new List<BulkUploadApprenticeDetails>();
 
-            for (var i = 1; i <= numberOfApprenticesPerCohort; i++) 
+            for (var i = 1; i <= numberOfApprenticesPerCohort; i++)
                 apprenticeList.Add(SetApprenticeDetails(i * 17, cohortReference));
 
             objectContext.SetBulkuploadApprentices(apprenticeList);
 
-            _bulkUploadDataHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
-            
+            CreateCsvFileHelper.CreateCsvFile(apprenticeList, CsvFileLocation);
+
             return this;
         }
 
@@ -151,7 +144,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             List<string> cohortRefs = objectContext.GetCohortReferenceList();
             if (cohortRefs == null || cohortRefs.Count == 0)
             {
-                cohortRefs = new List<string>();
+                cohortRefs = [];
                 var cohortRef = objectContext.GetCohortReference();
                 cohortRefs.Add(cohortRef);
             }
@@ -164,11 +157,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(ChooseFileButton, CsvFileLocation);
             formCompletionHelper.ClickElement(UploadFileButton);
             return this;
-        }      
+        }
 
         private BulkUploadApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper([""]), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
 
@@ -177,15 +170,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (cohortRef == "" || cohortRef == null)
             {
                 var employerUser = context.GetUser<EmployerWithMultipleAccountsUser>();
-                var employerName = employerUser.OrganisationName.Substring(0, 3) + "%";
+                var employerName = employerUser.OrganisationName[..3] + "%";
                 agreementId = sqlHelper.GetAgreementId(employerUser.Username, employerName).Trim();
             }
-            else 
+            else
             {
                 agreementId = sqlHelper.GetAgreementIdByCohortRef(cohortRef).Trim();
             }
 
-            var isNonLevy =sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
+            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0";
             var startDate = apprenticeCourseDataHelper.CourseStartDate;
             var endDate = apprenticeCourseDataHelper.CourseEndDate;
 
@@ -209,7 +202,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private BulkUploadApprenticeDetails SetApprenticeDetailsForLegalEntity(int courseCode, string cohortRef, string email, string name)
         {
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(new string[] { "" }), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper([""]), objectContext, context.Get<CommitmentsSqlDataHelper>());
 
             string agreementId;
             var sqlHelper = context.Get<AccountsDbSqlHelper>();
@@ -223,7 +216,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
 
 
-            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0" ? true : false;
+            var isNonLevy = sqlHelper.GetIsLevyByAgreementId(agreementId) == "0";
             var startDate = apprenticeCourseDataHelper.CourseStartDate;
             var endDate = apprenticeCourseDataHelper.CourseEndDate;
 

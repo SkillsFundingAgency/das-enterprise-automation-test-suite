@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ViewApprenticeDetailsPage : CohortReferenceBasePage
+    public class ViewApprenticeDetailsPage(ScenarioContext context) : CohortReferenceBasePage(context)
     {
         protected static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
@@ -23,8 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By InputBox => By.TagName("input");
 
         private static By CohortStatus => By.Id("cohortStatus");
-
-        public ViewApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         internal List<IWebElement> GetAllEditBoxes() => pageInteractionHelper.FindElements(InputBox);
 

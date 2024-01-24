@@ -5,21 +5,19 @@ using System.Text.RegularExpressions;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
-    public class TransferMatchingSqlDataHelper : SqlDbHelper
+    public partial class TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.TMDbConnectionString)
     {
-        public TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.TMDbConnectionString) { }
-
         public void DeletePledge(List<Pledge> pledges)
         {
             foreach (var pledge in pledges)
             {
                 string sqlQueryFromFile = FileHelper.GetSql("TMTestDataCleanUp");
 
-                sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__EmployerAccountId__", pledge.EmployerAccountId);
+                sqlQueryFromFile = MyRegex().Replace(sqlQueryFromFile, pledge.EmployerAccountId);
 
-                sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__CreatedOn__", pledge.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss"));
+                sqlQueryFromFile = MyRegex1().Replace(sqlQueryFromFile, pledge.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss"));
 
-                sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Amount__", pledge.Amount.ToString());
+                sqlQueryFromFile = MyRegex2().Replace(sqlQueryFromFile, pledge.Amount.ToString());
 
                 ExecuteSqlCommand(sqlQueryFromFile);
             }
@@ -29,9 +27,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
         {
             string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationCreatedDate");
 
-            sqlQueryFromFile = Regex.Replace(sqlQueryFromFile, @"__Details__", details);
+            sqlQueryFromFile = MyRegex3().Replace(sqlQueryFromFile, details);
 
             ExecuteSqlCommand(sqlQueryFromFile);
         }
+
+        [GeneratedRegex(@"__EmployerAccountId__")]
+        private static partial Regex MyRegex();
+        [GeneratedRegex(@"__CreatedOn__")]
+        private static partial Regex MyRegex1();
+        [GeneratedRegex(@"__Amount__")]
+        private static partial Regex MyRegex2();
+        [GeneratedRegex(@"__Details__")]
+        private static partial Regex MyRegex3();
     }
 }

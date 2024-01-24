@@ -4,14 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ExtraInformationAboutPayPage : Raav2BasePage
+    public class ExtraInformationAboutPayPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Extra information about pay";
 
         private static By ExtraPayInformation => By.CssSelector("#WageAdditionalInformation");
-
-
-        public ExtraInformationAboutPayPage(ScenarioContext context) : base(context) { }
 
         public SubmitNoOfPositionsPage SubmitExtraInformationAboutPay()
         {

@@ -24,7 +24,7 @@ public class AddOrganisationPage : AddOrEditOrganisationPage
         formCompletionHelper.EnterText(UkprnNameField, ePAOAdminDataHelper.NewOrganisationUkprn);
         ClickRandomElement(OrganisationTypeId);
         formCompletionHelper.EnterText(Email, ePAOAdminDataHelper.RandomEmail);
-        formCompletionHelper.EnterText(PhoneNumber, ePAOAdminDataHelper.PhoneNumber);
+        formCompletionHelper.EnterText(PhoneNumber, EPAOAdminDataHelper.PhoneNumber);
         formCompletionHelper.EnterText(WebsiteField, ePAOAdminDataHelper.RandomWebsiteAddress);
         formCompletionHelper.EnterText(StreetAddress1Field, EPAOAdminDataHelper.StreetAddress1);
         formCompletionHelper.EnterText(StreetAddress2Field, EPAOAdminDataHelper.StreetAddress2);

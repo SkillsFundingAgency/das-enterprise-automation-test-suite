@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public MakeAnAppealPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public GroundForAppealPage SelectAppealOnAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses ()
+        public GroundForAppealPage SelectAppealOnAppealOnEvidenceSubmittedAndAppealOnPolicyOrProcesses()
         {
             formCompletionHelper.SelectCheckbox(AppealOnPolicyOrProcessesRadio);
             formCompletionHelper.SelectCheckbox(AppealOnEvidenceSubmittedRadio);

@@ -8,25 +8,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class RetryHelper
+public class RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext, TimeSpan[] timeSpans)
 {
-    private readonly IWebDriver _webDriver;
-    private readonly string _title;
-    private readonly TimeSpan[] TimeOut;
-    private readonly ObjectContext objectContext;
+    private readonly string _title = scenarioInfo.Title;
 
-    public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext) : this(webDriver, scenarioInfo, objectContext, RetryTimeOut.DefaultTimeout())
-    {
-
-    }
-
-    internal RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo, ObjectContext objectContext, TimeSpan[] timeSpans)
-    {
-        _webDriver = webDriver;
-        _title = scenarioInfo.Title;
-        TimeOut = timeSpans;
-        this.objectContext = objectContext;
-    }
+    internal void UpdateTimeSpans(TimeSpan[] timeSpan) => timeSpans = timeSpan;
 
     internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
     {
@@ -34,18 +20,16 @@ public class RetryHelper
 
         return Policy
              .Handle<Exception>((x) => x.Message.Contains("verification failed"))
-             .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+             .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
              {
                  logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                  retryAction?.Invoke();
              })
              .Execute(() =>
              {
-                 using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                 {
-                     beforeAction?.Invoke();
-                     return func();
-                 }
+                 using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                 beforeAction?.Invoke();
+                 return func();
              });
     }
 
@@ -55,16 +39,14 @@ public class RetryHelper
 
         Policy
             .Handle<Exception>()
-            .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+            .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
             {
                 logging.Report(retryCount, timeSpan, exception, _title);
             })
            .Execute(() =>
            {
-               using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-               {
-                   ClickEvent(element()).Invoke();
-               }
+               using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+               ClickEvent(element()).Invoke();
            });
     }
 
@@ -74,17 +56,15 @@ public class RetryHelper
 
         Policy
             .Handle<WebDriverException>((ex) => !ex.Message.ContainsCompareCaseInsensitive("The HTTP request to the remote WebDriver server for URL"))
-            .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+            .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
             {
                 logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                 retryAction?.Invoke();
             })
            .Execute(() =>
            {
-               using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-               {
-                   ClickEvent(element()).Invoke();
-               }
+               using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+               ClickEvent(element()).Invoke();
            });
     }
 
@@ -94,7 +74,7 @@ public class RetryHelper
 
         Policy
             .Handle<WebDriverException>()
-            .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+            .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
             {
                 logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                 retryAction?.Invoke();
@@ -115,17 +95,15 @@ public class RetryHelper
         T result = default;
         Policy
             .Handle<WebDriverException>()
-            .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+            .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
             {
                 logging.Report(retryCount, timeSpan, exception, _title, retryAction);
                 retryAction?.Invoke();
             })
             .Execute(() =>
             {
-                using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                {
-                    result = func.Invoke();
-                }
+                using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                result = func.Invoke();
             });
 
         return result;
@@ -139,7 +117,7 @@ public class RetryHelper
         Policy
              .Handle<ElementClickInterceptedException>()
              .Or<WebDriverException>()
-             .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+             .WaitAndRetry(timeSpans, (exception, timeSpan, retryCount, context) =>
              {
                  logging.Report(retryCount, timeSpan, exception, _title, beforeAction);
 
@@ -159,31 +137,29 @@ public class RetryHelper
              })
              .Execute(() =>
              {
-                 using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                 {
-                     beforeAction?.Invoke();
-                     ClickEvent(element, useAction).Invoke();
-                     afterAction?.Invoke();
-                 }
+                 using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                 beforeAction?.Invoke();
+                 ClickEvent(element, useAction).Invoke();
+                 afterAction?.Invoke();
              });
     }
 
     private Action ClickEvent(IWebElement element, bool useAction) => useAction ? ClickEvent(element) : Click(element);
 
-    private Action ClickEvent(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
+    private Action ClickEvent(IWebElement element) => () => new Actions(webDriver).MoveToElement(element).Click(element).Perform();
 
-    private Action Click(IWebElement element) => () => element.Click();
+    private static Action Click(IWebElement element) => () => element.Click();
 
     private (Action beforeAction, Action afterAction) ResizeWindow()
     {
-        void beforeAction() => _webDriver.Manage().Window.Size = new Size(1920, 1080);
-        void afterAction() => _webDriver.Manage().Window.Maximize();
+        void beforeAction() => webDriver.Manage().Window.Size = new Size(1920, 1080);
+        void afterAction() => webDriver.Manage().Window.Maximize();
         return (beforeAction, afterAction);
     }
 
     private (Action beforeAction, Action afterAction) ScrollIntoView(IWebElement element)
     {
-        void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+        void beforeAction() => ((IJavaScriptExecutor)webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
         return (beforeAction, null);
     }
 

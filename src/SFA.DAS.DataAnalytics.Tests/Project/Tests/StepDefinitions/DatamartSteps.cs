@@ -1,6 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-
-namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
+﻿namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class DatamartSteps
@@ -27,7 +25,7 @@ namespace SFA.DAS.DataAnalytics.Tests.Project.Tests.StepDefinitions
 
             Assert.That(commtList.Count, Is.GreaterThanOrEqualTo(datamartList.Count), "Not enough data found in commitments");
 
-            List<string> updateQuery = new();
+            List<string> updateQuery = [];
 
             for (int i = 0; i < datamartList.Count; i++)
             {

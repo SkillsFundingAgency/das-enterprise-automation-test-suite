@@ -13,7 +13,7 @@ public abstract class InterimProviderBasePage : Navigate
 
     protected static By NotificationSettingsLink => By.LinkText("Notification settings");
     protected static By OrganisationsAndAgreementsLink => By.LinkText("Organisations and agreements");
-    
+
     protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
 
     public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)

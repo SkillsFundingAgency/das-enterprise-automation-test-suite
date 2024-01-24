@@ -3,10 +3,8 @@
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpapplytestdataprep")]
-    public class RoatpApplyTestDataPrepHooks : RoatpBaseHooks
+    public class RoatpApplyTestDataPrepHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        public RoatpApplyTestDataPrepHooks(ScenarioContext context) : base(context) { }
-
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpApplyDataHelpers();
 

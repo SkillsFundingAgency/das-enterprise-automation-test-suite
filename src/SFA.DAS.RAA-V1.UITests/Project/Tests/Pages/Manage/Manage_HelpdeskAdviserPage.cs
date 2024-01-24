@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
-    public class Manage_HelpdeskAdviserPage : Manage_HeaderSectionBasePage
+    public class Manage_HelpdeskAdviserPage(ScenarioContext context) : Manage_HeaderSectionBasePage(context)
     {
         protected override string PageTitle => "Search for candidate";
 
         protected override By PageHeader => By.CssSelector(".heading-medium");
-
-        public Manage_HelpdeskAdviserPage(ScenarioContext context) : base(context) { }
 
         public Manage_SearchForACandidatePage SearchForACandidate()
         {

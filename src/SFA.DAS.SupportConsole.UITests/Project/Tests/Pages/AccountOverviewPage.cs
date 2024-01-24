@@ -15,22 +15,22 @@ public class AccountOverviewPage : SupportConsoleBasePage
     {
         RefreshPage(); //Doing this to refresh the page as the Header dissappears at times - known issue
 
-        MultipleVerifyPage(new List<Func<bool>> {
+        MultipleVerifyPage([
             () => VerifyPage(pageInteractionHelper.RefreshPage),
             () => VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails)
-        });
+        ]);
     }
 
     public TeamMembersPage ClickTeamMembersLink()
     {
         formCompletionHelper.Click(TeamMembersLink);
-        return new (context);
+        return new(context);
     }
 
     public CommitmentsSearchPage ClickCommitmentsMenuLink()
     {
         formCompletionHelper.Click(CommitmentsMenuLink);
-        return new (context);
+        return new(context);
     }
 
     private void RefreshPage() => formCompletionHelper.Click(OrganisationsMenuLink);

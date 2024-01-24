@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
+using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -8,21 +9,28 @@ namespace SFA.DAS.ProviderLogin.Service.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        internal ProviderPortalLoginHelper(ScenarioContext context) => _context = context;
+        private readonly ProviderLoginUser providerLoginUser;
 
-        public bool IsSignInPageDisplayed() => new CheckProviderSignInPage(_context).IsPageDisplayed();
+        internal ProviderPortalLoginHelper(ScenarioContext context, ProviderLoginUser user) { _context = context; providerLoginUser = user; }
 
-        public bool IsIndexPageDisplayed() => new CheckProviderIndexPage(_context).IsPageDisplayed();
+        public bool IsLandingPageDisplayed() => new CheckProviderLandingPage(_context).IsPageDisplayed();
 
-        public bool IsProviderHomePageDisplayed(string ukprn) => new CheckProviderHomePage(_context).IsPageDisplayed(ukprn);
+        public bool IsSignInPageDisplayed() => new CheckDfeSignInPage(_context).IsPageDisplayed();
 
-        public bool IsSelectYourOrganisationDisplayed() => new CheckSelectYourOrganisationPage(_context).IsPageDisplayed();
+        internal void ClickStartNow() { if (IsLandingPageDisplayed()) new ProviderLandingPage(_context).ClickStartNow(); }
 
-        internal void StartNow() => new ProviderIndexPage(_context).StartNow();
+        internal void SubmitValidLoginDetails() { if (IsSignInPageDisplayed()) new ProviderDfeSignInPage(_context).SubmitValidLoginDetails(providerLoginUser); }
 
-        internal void SubmitValidLoginDetails(ProviderLoginUser login) => new ProviderSignInPage(_context).SubmitValidLoginDetails(login);
+        internal ProviderHomePage GoToProviderHomePage()
+        {
+            SubmitValidLoginDetails();
 
-        internal ProviderHomePage SelectOrganisation(ProviderLoginUser login) => new SelectYourOrganisationPage(_context).SelectOrganisation(login.Ukprn);
+            if (new CheckSelectYourOrgOrProviderHomePage(_context, providerLoginUser.Ukprn).IsSelectYourOrganisationDisplayed())
+            {
+                new SelectYourOrganisationPage(_context).SelectOrganisation(providerLoginUser.Ukprn);
+            }
 
+            return new ProviderHomePage(_context);
+        }
     }
 }

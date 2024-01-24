@@ -3,8 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
-    public class LoginInvitationsSqlDbHelper : InvitationsSqlDbHelper
+    public class LoginInvitationsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : InvitationsSqlDbHelper(objectContext, dbConfig.LoginDatabaseConnectionString)
     {
-        public LoginInvitationsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.LoginDatabaseConnectionString) { }
     }
 }

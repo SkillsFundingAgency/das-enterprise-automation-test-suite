@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerHubPage : EmployerBasePage
+    public class EmployerHubPage(ScenarioContext context) : EmployerBasePage(context)
     {
         protected override string PageTitle => "EMPLOYERS";
 
@@ -15,8 +15,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected static By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
 
         protected static By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
-
-        public EmployerHubPage(ScenarioContext context) : base(context)  { }
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 

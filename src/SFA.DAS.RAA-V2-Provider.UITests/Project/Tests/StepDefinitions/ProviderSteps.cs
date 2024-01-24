@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderSteps
+    public class ProviderSteps(ScenarioContext context)
     {
-        private readonly ProviderStepsHelper _providerStepsHelper;
-
-        public ProviderSteps(ScenarioContext context) => _providerStepsHelper = new ProviderStepsHelper(context);
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
 
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();

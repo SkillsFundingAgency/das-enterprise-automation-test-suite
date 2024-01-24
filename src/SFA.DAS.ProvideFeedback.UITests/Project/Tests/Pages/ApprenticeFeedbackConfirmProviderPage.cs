@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class ApprenticeFeedbackConfirmProviderPage : EmployerFeedbackBasePage
+public class ApprenticeFeedbackConfirmProviderPage(ScenarioContext context) : EmployerFeedbackBasePage(context)
 {
     protected override string PageTitle => "Confirm training provider";
 
@@ -8,13 +8,11 @@ public class ApprenticeFeedbackConfirmProviderPage : EmployerFeedbackBasePage
 
     private static By Yes => By.Id("correctprovider-yes");
 
-    public ApprenticeFeedbackConfirmProviderPage(ScenarioContext context) : base(context) { }
-
     public EmployerFeedbackHomePage ConfirmTrainingProvider()
     {
         formCompletionHelper.SelectRadioOptionByLocator(Yes);
         formCompletionHelper.ClickElement(ClickonContinue);
-        return new (context);
+        return new(context);
     }
 }
 

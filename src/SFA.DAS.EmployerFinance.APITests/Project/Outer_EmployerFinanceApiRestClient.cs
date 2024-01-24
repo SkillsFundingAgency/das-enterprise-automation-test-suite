@@ -1,19 +1,13 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
+﻿using RestSharp;
 using SFA.DAS.API.Framework.Configs;
 using SFA.DAS.API.Framework.RestClients;
-using SFA.DAS.EmployerFinance.APITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 
 namespace SFA.DAS.EmployerFinance.APITests.Project
 {
-    public class Outer_EmployerFinanceApiRestClient : Outer_BaseApiRestClient
+    public class Outer_EmployerFinanceApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
     {
-        public Outer_EmployerFinanceApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : base(objectContext, config) { }
-
         protected override string ApiName => "/employerfinance";
 
         public RestResponse GetAccountMinimumSignedAgreementVersion(long accountId, HttpStatusCode expectedResponse)

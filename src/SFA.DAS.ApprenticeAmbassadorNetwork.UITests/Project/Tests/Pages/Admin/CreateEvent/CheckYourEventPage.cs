@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class CheckYourEventPage : AanAdminBasePage
+public class CheckYourEventPage(ScenarioContext context) : AanAdminBasePage(context)
 {
     protected override string PageTitle => "Check your event before publishing";
 
@@ -19,8 +19,6 @@ public class CheckYourEventPage : AanAdminBasePage
     private static By ChangeSchool => By.CssSelector("a[href='/events/new/school/question']");
 
     private static By ChangeAttendees => By.CssSelector("a[href='/events/new/attendees']");
-    
-    public CheckYourEventPage(ScenarioContext context) : base(context) { }
 
     public SucessfullyPublisedEventPage SubmitEvent()
     {

@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             EmailAddress = emailaddress;
             IdOrUserRef = password;
             UserIndex = userIndex;
-            AccountDetails = new List<AccountDetails>();
+            AccountDetails = [];
         }
 
         public string EmailAddress { get; private set; }

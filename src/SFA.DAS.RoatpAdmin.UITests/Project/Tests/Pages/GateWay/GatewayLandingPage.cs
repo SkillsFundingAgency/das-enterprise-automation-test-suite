@@ -1,18 +1,16 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+using SFA.DAS.RoatpAdmin.Service.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
-    public class GatewayLandingPage : RoatpGateWayBasePage
+    public class GatewayLandingPage(ScenarioContext context) : RoatpGateWayBasePage(context)
     {
         protected override string PageTitle => "RoATP gateway applications";
 
         protected override By OutcomeTab => By.CssSelector("a[href='/Roatp/Gateway/Closed']");
         private static By InProgressTab => By.CssSelector("a[href='/Roatp/Gateway/InProgress']");
-
-        public GatewayLandingPage(ScenarioContext context) : base(context) { }
 
         public GWApplicationOverviewPage SelectApplication()
         {

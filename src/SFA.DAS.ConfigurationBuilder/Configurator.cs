@@ -6,21 +6,21 @@ namespace SFA.DAS.ConfigurationBuilder
 {
     public static class Configurator
     {
-        private readonly static IConfigurationRoot _config;
+        private static readonly IConfigurationRoot _config;
 
-        private readonly static IConfigurationRoot _hostingConfig;
+        private static readonly IConfigurationRoot _hostingConfig;
 
-        public readonly static bool IsVstsExecution;
+        public static readonly bool IsVstsExecution;
 
-        internal readonly static string EnvironmentName;
+        internal static readonly string EnvironmentName;
 
-        private readonly static string ChromeWebDriver;
+        private static readonly string ChromeWebDriver;
 
-        private readonly static string GeckoWebDriver;
+        private static readonly string GeckoWebDriver;
 
-        private readonly static string EdgeWebDriver;
+        private static readonly string EdgeWebDriver;
 
-        private readonly static string ProjectName;
+        private static readonly string ProjectName;
 
         static Configurator()
         {
@@ -41,21 +41,21 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationRoot InitializeConfig()
         {
             var builder = ConfigurationBuilder()
-                .AddOptionalJsonFiles(new List<string> 
-                { 
+                .AddOptionalJsonFiles(
+                [
                     "appsettings.DbConfig.json",
-                    "appsettings.TimeOutConfig.json", 
-                    "appsettings.NServiceBusConfig.json", 
-                    "appsettings.BrowserStack.json", 
-                    "appsettings.Mailinator.json", 
+                    "appsettings.TimeOutConfig.json",
+                    "appsettings.NServiceBusConfig.json",
+                    "appsettings.BrowserStack.json",
+                    "appsettings.Mailinator.json",
                     "appsettings.ApiFramework.json",
                     "appsettings.AdminConfig.json",
                     "appsettings.ProviderConfig.json",
-                    "appsettings.Project.json", 
-                    "appsettings.Project.BrowserStack.json", 
-                    $"appsettings.{EnvironmentName}.json", 
-                    "appsettings.TestExecution.json" 
-                });
+                    "appsettings.Project.json",
+                    "appsettings.Project.BrowserStack.json",
+                    $"appsettings.{EnvironmentName}.json",
+                    "appsettings.TestExecution.json"
+                ]);
 
             if (!IsVstsExecution)
             {

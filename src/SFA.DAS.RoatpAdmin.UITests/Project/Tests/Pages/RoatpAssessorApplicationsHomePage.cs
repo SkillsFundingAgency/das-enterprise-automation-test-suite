@@ -7,14 +7,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
-    public class RoatpAssessorApplicationsHomePage : AssessorBasePage
+    public class RoatpAssessorApplicationsHomePage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "RoATP assessor applications";
 
         private static By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
         private static By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
-
-        public RoatpAssessorApplicationsHomePage(ScenarioContext context) : base(context) { }
 
         public ApplicationAssessmentOverviewPage Assessor1SelectsAssignToMe() => AssessorSelectsAssignToMe(Assessor1Link);
 

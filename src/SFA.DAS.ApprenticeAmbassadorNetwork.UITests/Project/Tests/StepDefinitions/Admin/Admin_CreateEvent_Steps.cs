@@ -2,13 +2,8 @@
 
 
 [Binding, Scope(Tag = "@aanadmin")]
-public class Admin_CreateEvent_Steps : Admin_CreateEvent_BaseSteps
+public class Admin_CreateEvent_Steps(ScenarioContext context) : Admin_CreateEvent_BaseSteps(context)
 {
-    public Admin_CreateEvent_Steps(ScenarioContext context) : base(context)
-    {
-
-    }
-
     [When(@"the user should be able to successfully create hybrid school event")]
     public void TheUserShouldBeAbleToSuccessfullyCreateHybridSchoolEvent() => SubmitHybridEvent(true, true);
 

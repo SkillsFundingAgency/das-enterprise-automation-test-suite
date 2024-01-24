@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
-public class TrainingCourseSearchResultsPage : ApprenticeshipTrainingCourseBasePage
+public class TrainingCourseSearchResultsPage(ScenarioContext context) : ApprenticeshipTrainingCourseBasePage(context)
 {
     #region Locators
     private static By UpdateResultsButton => By.Id("filters-submit");
@@ -8,9 +8,8 @@ public class TrainingCourseSearchResultsPage : ApprenticeshipTrainingCourseBaseP
     private static By LevelText => By.ClassName("das-no-wrap");
     private static By SortByOption => By.Id("sort-by-name");
     private static By SortByInfoText => By.Id("sort-by-relevance");
-    #endregion
 
-    public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) { }
+    #endregion
 
     public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
     {

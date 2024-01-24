@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public abstract class HubBasePage : CampaingnsHeaderBasePage
+    public abstract class HubBasePage(ScenarioContext context) : CampaingnsHeaderBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
@@ -21,11 +21,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private static By FiuLink => By.CssSelector(".fiu-card__link");
 
-        public HubBasePage(ScenarioContext context) : base(context)  { }
-
         protected T VerifyFiuCards<T>(Func<T> func)
         {
-            List<Exception> exceptions = new();
+            List<Exception> exceptions = [];
 
             T result = default;
 

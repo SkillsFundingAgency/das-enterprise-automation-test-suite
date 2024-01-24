@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerSteps
+    public class EmployerSteps(ScenarioContext context)
     {
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        
-        public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
+        private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
         [Then(@"Employer can make the application successful")]
         public void ThenEmployerCanMakeTheApplicationSuccessful() => _employerStepsHelper.ApplicantSucessful();

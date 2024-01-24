@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderChooseAReservationPage : ApprovalsBasePage
+    public class ProviderChooseAReservationPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose a Reservation";
 
         protected override bool TakeFullScreenShot => false;
-
-        public ProviderChooseAReservationPage(ScenarioContext context) : base(context)  { }
 
         private static By CreateANewReservationButton => By.CssSelector(".govuk-label--s");
         private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");

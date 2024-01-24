@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompliance_Section3
 {
@@ -8,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.CriminalAndCompli
         protected override string PageTitle => "investigated for fraud or irregularities in the last 3 years?";
 
         #region Helpers and Context
-        
+
         #endregion
 
         public WhosInControlInvestigatedForFraudOrIrregularitiesPage(ScenarioContext context) : base(context) => VerifyPage();

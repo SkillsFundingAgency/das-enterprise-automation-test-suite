@@ -1,14 +1,12 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
 
 [Binding, Scope(Tag = "@aanadmin")]
-public class Admin_Login_Steps : Admin_BaseSteps
+public class Admin_Login_Steps(ScenarioContext context) : Admin_BaseSteps(context)
 {
-    public Admin_Login_Steps(ScenarioContext context) : base(context) { }
-
     [Given(@"an admin logs into the AAN portal")]
     public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetUser<AanAdminUser>());
 

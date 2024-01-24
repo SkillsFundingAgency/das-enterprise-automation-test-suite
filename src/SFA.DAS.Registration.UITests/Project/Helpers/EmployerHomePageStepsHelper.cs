@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             if (openInNewTab) OpenInNewTab();
 
-            if (_loginHelper.IsIndexPageDisplayed()) new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage();
+            if (_loginHelper.IsLandingPageDisplayed()) new CreateAnAccountToManageApprenticeshipsPage(_context).GoToStubSignInPage();
         }
 
         private static string EmployerApprenticeshipService_BaseUrl => UrlConfig.EmployerApprenticeshipService_BaseUrl;

@@ -7,31 +7,22 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class TestDataPrepSteps
+    public class TestDataPrepSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper = new(context);
 
         private HomePage _homePage;
-
-        public TestDataPrepSteps(ScenarioContext context)
-        {
-            _context = context;
-
-            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-        }
 
         [When(@"the Employer logins using existing AddMultiplePayeLevyUser Account")]
         public void WhenTheEmployerLoginsUsingExistingAddMultiplePayeLevyUserAccount()
         {
-            _homePage = _employerPortalLoginHelper.Login(_context.GetUser<AddMultiplePayeLevyUser>(), true);
+            _homePage = _employerPortalLoginHelper.Login(context.GetUser<AddMultiplePayeLevyUser>(), true);
         }
 
         [Then(@"the Employer is able to Add multiple Levy PAYE scheme to the Account")]
         public void ThenTheEmployerIsAbleToAddMultipleLevyPAYESchemeToTheAccount()
         {
-            int noOfPayeToAdd = int.Parse(_context.GetUser<AddMultiplePayeLevyUser>().NoOfPayeToAdd);
+            int noOfPayeToAdd = int.Parse(context.GetUser<AddMultiplePayeLevyUser>().NoOfPayeToAdd);
 
             var page = _homePage.GotoPAYESchemesPage().ClickAddNewSchemeButton();
 

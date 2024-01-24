@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => vacancyTitledataHelper.VacancyTitle;
 
         #region Helpers and Context
-        
+
         #endregion
 
         private By Notes => By.CssSelector("#Notes");

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -44,18 +43,20 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
             bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
 
-            MultipleVerifyPage(new List<Func<bool>>
-            {
+            MultipleVerifyPage(
+            [
                 () => verifyPage(verifypage),
                 () => VerifyPage(FeedbackLinkOnBetaBanner),
                 () => verifyServiceHeader(verifyserviceheader),
                 () => { VerifyFooterLinks(); return true; }
-            });
+            ]);
         }
 
-        protected void VerifyNotificationBannerHeader(string expected) => VerifyElement(NotificationBannerHeader, expected);
+        protected void VerifyNotificationBannerHeader(string expected) => VerifyNotification(NotificationBannerHeader, expected);
 
-        protected void VerifyNotificationBannerContent(string expected) => VerifyElement(NotificationBannerContent, expected);
+        protected void VerifyNotificationBannerContent(string expected) => VerifyNotification(NotificationBannerContent, expected);
+
+        private void VerifyNotification(By by, string expected) => VerifyElement(() => pageInteractionHelper.FindElements(by).ToList(), expected);
 
         public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {

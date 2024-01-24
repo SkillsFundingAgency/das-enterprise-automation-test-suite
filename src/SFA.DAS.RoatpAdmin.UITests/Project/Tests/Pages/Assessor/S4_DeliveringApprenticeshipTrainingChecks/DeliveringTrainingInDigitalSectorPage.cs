@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringApprenticeshipTrainingChecks
 {
-    public class DeliveringTrainingInDigitalSectorPage : AssessorBasePage
+    public class DeliveringTrainingInDigitalSectorPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Delivering training in 'Digital' sector";
-        
-        public DeliveringTrainingInDigitalSectorPage(ScenarioContext context) : base(context) { }
 
         public YourSectorsAndEmployeesPage SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage()
         {

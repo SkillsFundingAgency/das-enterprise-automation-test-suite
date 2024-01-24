@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
-public class GuestSpeakersPage : AanAdminBasePage
+public class GuestSpeakersPage(ScenarioContext context) : AanAdminBasePage(context)
 {
-    protected override string PageTitle => "Guest Speakers";
-
-    public GuestSpeakersPage(ScenarioContext context) : base(context) { }
+    protected override string PageTitle => "Confirm details of guest speaker";
 
     public EventDatePage AddAndDeleteGuestSpeakers(int add)
     {

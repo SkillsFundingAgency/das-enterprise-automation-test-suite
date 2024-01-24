@@ -4,18 +4,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public partial class CreateAnApprenticeshipAdvertOrVacancyPage : Raav2BasePage
+    public partial class CreateAnApprenticeshipAdvertOrVacancyPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        protected override string PageTitle => IsTraineeship ? "Create a traineeship vacancy" :(isRaaV2Employer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy");
+        protected override string PageTitle => IsTraineeship ? "Create a traineeship vacancy" : (isRaaV2Employer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy");
 
         protected override By TaskName => By.CssSelector(".das-task-list__item .govuk-link");
 
         private static By ReturnToApplicationsSelector => By.LinkText("Return to your applications");
 
-        public CreateAnApprenticeshipAdvertOrVacancyPage(ScenarioContext context) : base(context) { }
-
         public void ReturnToApplications() => formCompletionHelper.ClickElement(ReturnToApplicationsSelector);
-    
+
         public CheckYourAnswersPage CheckYourAnswers()
         {
             NavigateToTask(Checkandsubmityouradvert, Checkandsubmityouradvert_1);
@@ -45,9 +43,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             NavigateToAdvertTitle();
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
-        
+
         public void NavigateToAdvertTitle() => NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_1);
-      
+
         public AdditionalQuestionsPage EnterAdditionalQuestionsForApplicants()
         {
             NavigateToTask(Application, Application_1);
@@ -81,7 +79,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             NavigateToTask(AdvertOrVacancysummary, AdvertOrVacancysummary_6);
             return new WhatDoYouWantToCallThisAdvertPage(context);
         }
-        
+
         public void VerifyAdvertSummarySectionStatus(string status) => VerifySectionStatus(AdvertOrVacancysummary, status);
 
         public void VerifyEmploymentDetailsSectionStatus(string status) => VerifySectionStatus(Employmentdetails, status);

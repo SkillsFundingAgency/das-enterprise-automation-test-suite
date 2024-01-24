@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
@@ -16,6 +14,6 @@ namespace SFA.DAS.FrameworkHelpers
         }
 
         public static string GetAssemblyDirectory() => AppDomain.CurrentDomain.BaseDirectory;
-        
+
     }
 }

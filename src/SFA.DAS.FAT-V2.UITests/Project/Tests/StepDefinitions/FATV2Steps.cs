@@ -20,7 +20,7 @@ public class FATV2Steps
     [Given(@"the User navigates to the Search Results page")]
     [When(@"the User navigates to the Search Results page")]
     public void WhenTheUserNavigatesToTheSearchResultsPage() => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(string.Empty);
-    
+
     [Given(@"the User searches with (.*) term")]
     [When(@"the User searches with (.*) term")]
     public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(training);

@@ -4,34 +4,27 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
-    public class StepsHelper
+    public class StepsHelper(ScenarioContext context)
     {
+        public ScenarioContext Context { get; } = context;
 
-        public StepsHelper(ScenarioContext context) { }
-
-        public void VerifyWageType(ProviderVacancySearchResultPage providerVacancySearchResultPage, string wageType)
+        public static void VerifyWageType(ProviderVacancySearchResultPage providerVacancySearchResultPage, string wageType)
             => providerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
 
-        public void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+        public static void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantSucessful().ConfirmSuccessful();
 
-        public void ApplicantUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+        public static void ApplicantUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantUnsucessful().FeedbackForUnsuccessful().ConfirmUnsuccessful();
 
-        public void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+        public static void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
-        public void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+        public static void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
-        public void VerifyWageType(EmployerVacancySearchResultPage employerVacancySearchResultPage, string wageType)
+        public static void VerifyWageType(EmployerVacancySearchResultPage employerVacancySearchResultPage, string wageType)
             => employerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyEmployerWageType(wageType);
 
-        public PreviewYourAdvertOrVacancyPage PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
-        {
-            var locationPage = ChooseEmployerNameForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername);
-            return FillApprenticeshipDetails(locationPage, isEmployerAddress, disabilityConfidence);
-        }
-
-        public ChooseApprenticeshipLocationPage ChooseEmployerNameForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername)
+        public static ChooseApprenticeshipLocationPage ChooseEmployerNameForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername)
         {
             return employername switch
             {
@@ -41,9 +34,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             };
             ;
         }
-
-        private PreviewYourAdvertOrVacancyPage FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
-            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates()
-            .EnterDuration().SelectNationalMinimumWage().PreviewVacancy();
     }
 }

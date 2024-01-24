@@ -4,14 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
-    public class ChangeYourEmailAddressPage : ApprenticeCommitmentsBasePage
+    public class ChangeYourEmailAddressPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context, verifyserviceheader: false)
     {
         protected override string PageTitle => $"Change your email address";
         private static By NewEmailAddress => By.CssSelector("#NewEmailAddress");
         private static By ConfirmEmailAddress => By.CssSelector("#ConfirmEmailAddress");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
-
-        public ChangeYourEmailAddressPage(ScenarioContext context) : base(context, verifyserviceheader: false)  { }
 
         public YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {

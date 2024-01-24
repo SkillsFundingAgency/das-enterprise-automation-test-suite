@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
@@ -7,21 +6,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderRolesApprenticeRequetsSteps
+    public class ProviderRolesApprenticeRequetsSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly ApprenticeDataHelper _dataHelper;
-        private readonly ProviderRoleApprenticeDataHelper _providerRoleApprenticeDataHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
 
-        public ProviderRolesApprenticeRequetsSteps(ScenarioContext context)
-        {
-            _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _providerRoleApprenticeDataHelper = new ProviderRoleApprenticeDataHelper();
-        }
-      
         [When(@"the user clicks on apprentice request link from homepage or apprentice request link")]
         public void WhenTheUserClicksOnApprenticeRequestLinkFromHomepageOrApprenticeRequestLink()
         {
@@ -32,35 +20,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can view apprentice details ready for review page when user clicks on with employer box")]
         public void ThenTheUserCanViewApprenticeDetailsReadyForReviewPageWhenUserClicksOnWithEmployerBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithEmployers()
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsWithEmployers()
                                                         .SelectViewCurrentCohortDetails();
         }
 
         [Then(@"the user can view apprentice details ready for review page when user clicks on drafts box")]
         public void ThenTheUserCanViewApprenticeDetailsReadyForReviewPageWhenUserClicksOnDraftsBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
+            new ProviderApprenticeRequestsPage(context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails();
         }
 
         [Then(@"the user can view apprentice details ready for review page when user clicks on with transfer sending employers box")]
         public void ThenTheUserCanViewApprenticeDetailsReadyForReviewPageWhenUserClicksOnWithTransferSendingEmployersBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsWithTransferSendingEmployers()
                                                         .SelectViewCurrentCohortDetails();
         }
 
         [Then(@"the user can view view your cohort page by clicking view link on view your cohort page selecting the employers box")]
         public void ThenTheUserCanViewViewYourCohortPageByClickingViewLinkOnViewYourCohortPageSelectingTheEmployersBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsWithTransferSendingEmployers()
                                                         .SelectViewCurrentCohortDetails();
         }
 
         [Then(@"the user can view view your cohort page by clicking view link on view your cohort page selecting with transfer sending employers box")]
         public void ThenTheUserCanViewViewYourCohortPageByClickingViewLinkOnViewYourCohortPageSelectingWithTransferSendingEmployersBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsWithTransferSendingEmployers()
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsWithTransferSendingEmployers()
                                                         .SelectViewCurrentCohortDetails();
         }
 
@@ -68,33 +56,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting with employers box")]
         public void ThenTheUserCanViewReviewYourCohortPageWhenUserClicksOnDetailsLinkFromApprenticeDetailsReadyForReviewPageSelectingWithEmployersBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage();
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage();
         }
 
         [Then(@"the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting drafts box")]
         public void ThenTheUserCanViewReviewYourCohortPageWhenUserClicksOnDetailsLinkFromApprenticeDetailsReadyForReviewPageSelectingDraftsBox()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
+            new ProviderApprenticeRequestsPage(context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails();
-        }        
+        }
 
         [Then(@"the user cannot edit an apprentice in a cohort")]
         public void ThenTheUserCannotEditAnApprenticeInACohort()
         {
 
-            var editLinkPresent = new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+            var editLinkPresent = new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .IsEditApprenticeLinkDisplayed();
 
             if (editLinkPresent)
             {
-                new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+                new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectEditApprenticeGoesToAccessDenied()
                                                         .GoBackToTheServiceHomePage();
 
             }
-                                                       
+
         }
 
         [Then(@"the user cannot bulk upload apprentices via csv file")]
@@ -109,7 +97,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot send a cohort to employer")]
         public void ThenTheUserCannotSendACohortToEmployer()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectAddAnApprenticeGoesToAccessDenied()
                                                         .GoBackToTheServiceHomePage();
@@ -118,7 +106,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user cannot delete a cohort")]
         public void ThenTheUserCannotDeleteACohort()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectDeleteCohortGoesToAccessDenied()
                                                         .GoBackToTheServiceHomePage();
@@ -126,10 +114,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the user can add apprentice to a cohort")]
         public void ThenTheUserCanAddApprenticeToACohort()
-        {          
-            new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+        {
+            new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                      .SelectViewCurrentCohortDetails()
-                                                     .SelectAddAnApprentice();                                                   
+                                                     .SelectAddAnApprentice();
         }
 
         [Then(@"the user can bulk upload apprentices")]
@@ -145,13 +133,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanEditAnExistingApprenticeshipRecordBySelectingEditApprenticeLinkSelectingWithEmployersOrDraftsBoxes()
         {
 
-            var editLinkPresent = new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+            var editLinkPresent = new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .IsEditApprenticeLinkDisplayed();
 
             if (editLinkPresent)
             {
-                new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+                new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectEditApprentice()
                                                         .EnterUlnAndSave(false);
@@ -162,8 +150,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can delete a cohort")]
         public void ThenTheUserCanDeleteACohort()
         {
-           
-            bool canDeleteCohort = new ProviderApprenticeRequestsPage(_context, true)
+
+            bool canDeleteCohort = new ProviderApprenticeRequestsPage(context, true)
                                                         .GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
                                                         .SelectDeleteCohort()
@@ -171,19 +159,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (!canDeleteCohort)
                 throw new Exception("unable to find option to delete cohort!");
-            
+
         }
 
         [Then(@"the user can delete an apprentice in a cohort")]
         public void ThenTheUserCanDeleteAnApprenticeInACohort()
         {
-            var editLinkPresent = new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+            var editLinkPresent = new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
                                                         .IsEditApprenticeLinkDisplayed();
 
             if (editLinkPresent)
-            {              
-                new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage()
+            {
+                new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                        .SelectViewCurrentCohortDetails()
                                                        .SelectEditApprentice()
                                                        .DeleteApprentice();
@@ -193,9 +181,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can send a cohort to employer")]
         public void ThenTheUserCanSendACohortToEmployer()
         {
-            new ProviderApprenticeRequestsPage(_context, true).GoToDraftCohorts()
+            new ProviderApprenticeRequestsPage(context, true).GoToDraftCohorts()
                                                         .SelectViewCurrentCohortDetails()
-                                                        .SubmitSaveButDontSendToEmployer();                                                        
+                                                        .SubmitSaveButDontSendToEmployer();
         }
     }
 }

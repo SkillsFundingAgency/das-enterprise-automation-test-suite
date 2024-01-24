@@ -4,13 +4,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 {
     [Binding]
-    public class CreateAccountAndConfirmDetailsSteps : BaseSteps
+    public class CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : BaseSteps(context)
     {
-        private readonly ScenarioContext _context;
         private ApprenticeHomePage _apprenticeHomePage;
         private FullyConfirmedOverviewPage _fullyConfirmedOverviewPage;
-
-        public CreateAccountAndConfirmDetailsSteps(ScenarioContext context) : base(context) => _context = context;
 
         [Given(@"the apprentice creates the CMAD account")]
         public void TheApprenticeCreatesTheCMADAccount() => ApprenticeCreatesTheCMADAccount();
@@ -25,7 +22,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to navigate to the Help and Support from Home and Fully confirmed page")]
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromHomeAndFullyConfirmedPage()
         {
-            _apprenticeHomePage = new ApprenticeHomePage(_context, false).NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
+            _apprenticeHomePage = new ApprenticeHomePage(context, false).NavigateToHelpPageFromTopNavigationLink().NavigateToHomePageWithGoBackToTheDashboardButton();
 
             _fullyConfirmedOverviewPage = _apprenticeHomePage.NavigateToFullyConfirmedOverviewPageFromTopNavigationLink()
                 .NavigateToHelpPageFromTopNavigationLink().NavigateToFullyConfirmedOverviewPageWithBackLink();

@@ -32,7 +32,7 @@ public class AS_UserDetailsPage : EPAO_BasePage
     public bool IsPipelinePermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(PipelinePermission);
 
     public bool IsCompletedAssessmentsPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(CompletedAssessmentsPermission);
-    
+
     public bool IsManageStandardsPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ManageStandardsPermission);
 
     public bool IsManageUsersPermissionDisplayed() => pageInteractionHelper.IsElementDisplayed(ManageUsersPermission);

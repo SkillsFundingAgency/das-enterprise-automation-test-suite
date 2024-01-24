@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApprentices_Section4
@@ -17,9 +18,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ProtectingYourApp
 
         public PreventDutyPage EnterDetailsOfSafeguardingPerson()
         {
-            formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
-            formCompletionHelper.EnterText(Email, applydataHelpers.Email);
-            formCompletionHelper.EnterText(ContactNumber, applydataHelpers.ContactNumber);
+            formCompletionHelper.EnterText(FullName, RoatpApplyDataHelpers.FullName);
+            formCompletionHelper.EnterText(Email, RoatpApplyDataHelpers.Email);
+            formCompletionHelper.EnterText(ContactNumber, RoatpApplyDataHelpers.ContactNumber);
             Continue();
             return new PreventDutyPage(context);
         }

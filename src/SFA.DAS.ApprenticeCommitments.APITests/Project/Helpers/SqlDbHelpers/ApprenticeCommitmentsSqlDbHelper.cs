@@ -5,10 +5,8 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class ApprenticeCommitmentsSqlDbHelper : SqlDbHelper
+    public class ApprenticeCommitmentsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.ApprenticeCommitmentDbConnectionString)
     {
-        public ApprenticeCommitmentsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApprenticeCommitmentDbConnectionString) { }
-
         public void DeleteRevisionAndApprenticeshipTableData(string apprenticeId, string email) => ExecuteSqlCommand(
             $"DELETE FROM Revision WHERE ApprenticeshipId in (SELECT ApprenticeshipId from Registration WHERE Email = '{email}')" +
             $"DELETE FROM Apprenticeship WHERE ApprenticeId = '{apprenticeId}'");
@@ -28,9 +26,9 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
             ExecuteSqlCommand($"UPDATE Revision set TrainingProviderCorrect = 1, EmployerCorrect = 1, RolesAndResponsibilitiesConfirmations = 7, ApprenticeshipDetailsCorrect = 1, HowApprenticeshipDeliveredCorrect = 1, ConfirmedOn = GETDATE() WHERE ApprenticeshipId in {GetRevionTableSubQuery(email)}");
         }
 
-        public string ConfirmCoCEventHasTriggered(string email, string scenarioTitle) => GetDetails($"SELECT ApprenticeshipDetailsCorrect from Revision WHERE ConfirmedOn is Null and ApprenticeshipId in {GetRevionTableSubQuery(email)}", scenarioTitle);
+        public string ConfirmCoCEventHasTriggered(string email) => GetDetails($"SELECT ApprenticeshipDetailsCorrect from Revision WHERE ConfirmedOn is Null and ApprenticeshipId in {GetRevionTableSubQuery(email)}");
 
-        public string GetRegistrationId(string email, string scenarioTitle) => GetDetails(GetRegistrationIdQuery(email), scenarioTitle);
+        public string GetRegistrationId(string email) => GetDetails(GetRegistrationIdQuery(email));
 
         public List<string> GetRegistrationIds(string email) => GetMultipleData(GetRegistrationIdQuery(email)).ListOfArrayToList(0);
 
@@ -38,10 +36,10 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 
         public string GetEmploymentEndDateFromRegistration(string email) => Convert.ToString(GetDataAsObject($"SELECT EmploymentEndDate FROM Registration WHERE Email = '{email}'"));
 
-        private string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
+        private static string GetRegistrationIdQuery(string email) => $"select RegistrationId from Registration where Email ='{email}' order by CreatedOn DESC";
 
-        private string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE Id = (SELECT TOP 1 ApprenticeshipId from [Registration] WHERE Email = '{email}' order by ApprenticeshipId desc))";
+        private static string GetRevionTableSubQuery(string email) => $"(SELECT Id FROM Apprenticeship WHERE Id = (SELECT TOP 1 ApprenticeshipId from [Registration] WHERE Email = '{email}' order by ApprenticeshipId desc))";
 
-        private string GetDetails(string query, string scenarioTitle) => Convert.ToString(WaitAndGetDataAsObject(query));
+        private string GetDetails(string query) => Convert.ToString(WaitAndGetDataAsObject(query));
     }
 }

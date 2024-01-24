@@ -1,25 +1,18 @@
-﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public class RestartWebDriverHelper
+public class RestartWebDriverHelper(ScenarioContext context)
 {
-    private readonly BrowserStackTearDownHelper _browserStackTearDownHelper;
-    private readonly DisposeWebDriverTeardownHelper _disposeWebDriverTeardownHelper;
-    private readonly WebDriverSetupHelper _webDriverSetupHelper;
-    private readonly UIFrameworkHelpersSetup _frameworkHelpersSetup;
-    private readonly ObjectContext _objectContext;
+    private readonly BrowserStackTearDownHelper _browserStackTearDownHelper = new(context);
+    private readonly DisposeWebDriverTeardownHelper _disposeWebDriverTeardownHelper = new(context);
+    private readonly WebDriverSetupHelper _webDriverSetupHelper = new(context);
+    private readonly UIFrameworkHelpersSetup _frameworkHelpersSetup = new(context);
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-    public RestartWebDriverHelper(ScenarioContext context)
-    {
-        _objectContext = context.Get<ObjectContext>();
-        _browserStackTearDownHelper = new BrowserStackTearDownHelper(context);
-        _disposeWebDriverTeardownHelper = new DisposeWebDriverTeardownHelper(context);
-        _webDriverSetupHelper = new WebDriverSetupHelper(context);
-        _frameworkHelpersSetup = new UIFrameworkHelpersSetup(context);
-    }
+    public static string RestartMessage => "Restarted WebDriver and Navigated to";
 
     public void RestartWebDriver(string url, string applicationName)
     {
@@ -30,6 +23,8 @@ public class RestartWebDriverHelper
         var webDriver = RestartWebDriver();
 
         webDriver.Navigate().GoToUrl(url);
+
+        _objectContext.SetDebugInformation($"{RestartMessage} {url}");
 
         _objectContext.SetCurrentApplicationName(applicationName);
     }

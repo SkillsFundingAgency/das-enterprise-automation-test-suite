@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S2_ReadinessToEngageChecks
 {
-    public class EngagingWithEmployersPage : ModeratorBasePage
+    public class EngagingWithEmployersPage(ScenarioContext context) : ModeratorBasePage(context)
     {
         protected override string PageTitle => "Engaging with employers to deliver apprenticeship training to employees";
-        
-        public EngagingWithEmployersPage(ScenarioContext context) : base(context) { }
 
         public ManagingRelationshipWithEmployersPage SelectPassAndContinueInEngagingWithEmployersPage()
         {

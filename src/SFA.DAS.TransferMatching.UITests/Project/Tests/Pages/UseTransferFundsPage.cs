@@ -4,23 +4,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class UseTransferFundsPage : TransferMatchingBasePage
+    public class UseTransferFundsPage(ScenarioContext context) : TransferMatchingBasePage(context, false)
     {
 
-       protected override string PageTitle => "Use transfer funds from";
+        protected override string PageTitle => "Use transfer funds from";
 
         private static By StartNowButton => By.XPath("//a[text()='Start now']");
-
-        public UseTransferFundsPage(ScenarioContext context) : base(context, false) { }
-
 
         public AddTrainingProviderDetailsPage ClickOnStartNowButton()
         {
             formCompletionHelper.Click(StartNowButton);
             return new AddTrainingProviderDetailsPage(context);
         }
-
-       
-
     }
 }

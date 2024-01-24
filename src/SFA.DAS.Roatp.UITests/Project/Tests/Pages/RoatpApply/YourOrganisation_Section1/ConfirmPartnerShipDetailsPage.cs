@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
 {
-   public class ConfirmPartnerShipDetailsPage : RoatpApplyBasePage
+    public class ConfirmPartnerShipDetailsPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Confirm your";
 
@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public ApplicationOverviewPage ConfirmAndContinue()
         {
             Continue();
-            return new ApplicationOverviewPage(context); 
+            return new ApplicationOverviewPage(context);
         }
 
         public OrganisationPartnersPage AddAnotherPartner()

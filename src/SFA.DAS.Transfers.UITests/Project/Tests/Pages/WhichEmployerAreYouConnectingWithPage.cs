@@ -3,14 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
 {
-    public class WhichEmployerAreYouConnectingWithPage : TransfersBasePage
+    public class WhichEmployerAreYouConnectingWithPage(ScenarioContext context) : TransfersBasePage(context)
     {
         protected override string PageTitle => "Which employer are you connecting with?";
 
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
         private static By ReceivingEmployer => By.Id("ReceiverAccountPublicHashedId");
-
-        public WhichEmployerAreYouConnectingWithPage(ScenarioContext context) : base(context) { }
 
         public ConfirmConnectionDetailsPage ConnectWithReceivingEmployer(string receiverAccountId)
         {

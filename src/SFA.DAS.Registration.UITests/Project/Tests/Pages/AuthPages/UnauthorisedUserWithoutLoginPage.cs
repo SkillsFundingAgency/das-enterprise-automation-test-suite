@@ -3,12 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
 {
-    public class UnauthorisedUserWithoutLoginPage : UnauthorisedAccessBasePage
+    public class UnauthorisedUserWithoutLoginPage(ScenarioContext context, string url) : UnauthorisedAccessBasePage(context, url)
     {
         protected override string PageTitle => "S1";
 
-        protected override List<string> ExpectedPageTitles => new List<string> { SignInPageTitle, PageNotFoundPageTitle };
-
-        public UnauthorisedUserWithoutLoginPage(ScenarioContext context, string url) : base(context, url) { }
+        protected override List<string> ExpectedPageTitles => new() { SignInPageTitle, PageNotFoundPageTitle };
     }
 }

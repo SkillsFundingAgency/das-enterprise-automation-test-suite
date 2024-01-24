@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
 {
-    public class OversightLandingPage : RoatpNewAdminBasePage
+    public class OversightLandingPage(ScenarioContext context) : RoatpNewAdminBasePage(context)
     {
         protected override string PageTitle => "RoATP application outcomes";
         protected static By ApplicationsTab => By.Id("tab_applications");
@@ -14,7 +14,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Oversight
         protected static By AppealOutcomesTab => By.Id("tab_appealsoutcome");
         protected static By AppealsTab => By.Id("tab_appeals");
         protected override By OutcomeStatus => By.CssSelector("[data-label='Overall outcome']");
-        public OversightLandingPage(ScenarioContext context) : base(context) { }
 
         public OversightLandingPage VerifyApplicationsOutcomeStatus(string expectedStatus)
         {

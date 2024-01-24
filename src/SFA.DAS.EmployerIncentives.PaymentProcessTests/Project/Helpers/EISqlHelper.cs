@@ -4,17 +4,16 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.FrameworkHelpers;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class EISqlHelper : SqlDbHelper
+    public class EISqlHelper(ObjectContext objectContext, DbConfig eIConfig) : SqlDbHelper(objectContext, eIConfig.IncentivesDbConnectionString)
     {
-        public EISqlHelper(ObjectContext objectContext, DbConfig eIConfig) : base(objectContext, eIConfig.IncentivesDbConnectionString) { }
         public string ConnectionString => connectionString;
 
         public List<T> GetAllFromDatabase<T>() where T : class
@@ -139,7 +138,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             throw new Exception("Employment Check results not updated!");
         }
-                
+
 
         public async Task CleanUpAccount(long accountId)
         {

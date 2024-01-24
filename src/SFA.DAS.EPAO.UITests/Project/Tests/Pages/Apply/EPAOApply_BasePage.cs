@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 
-public abstract class EPAOApply_BasePage : EPAO_BasePage
+public abstract class EPAOApply_BasePage(ScenarioContext context) : EPAO_BasePage(context)
 {
-    public EPAOApply_BasePage(ScenarioContext context) : base(context) { }
-
     public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
     {
         Continue();

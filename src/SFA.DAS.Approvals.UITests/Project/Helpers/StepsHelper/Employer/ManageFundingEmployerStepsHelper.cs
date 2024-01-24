@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return VerifyContinueOnHomePagePanel(reservedPage);
         }
 
-        public DynamicHomePages VerifyContinueOnHomePagePanel(SuccessfullyReservedFundingPage successfullyReservedFundingPage) => successfullyReservedFundingPage.GoToDynamicHomePage().VerifyReserveFundingPanel();
+        public static DynamicHomePages VerifyContinueOnHomePagePanel(SuccessfullyReservedFundingPage successfullyReservedFundingPage) => successfullyReservedFundingPage.GoToDynamicHomePage().VerifyReserveFundingPanel();
 
         public AddAnApprenitcePage GoToAddAnApprentices()
         {
@@ -89,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .VerifyProblem("You must select a start date");
         }
 
-        public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+        public static SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
                 .ClickYesRadioButton()
@@ -116,8 +116,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return yourFundingReservationsPage;
         }
 
-        private ManageFundingHomePage GoToManageFundingHomePage() => new ManageFundingHomePage(_context, true);
+        private ManageFundingHomePage GoToManageFundingHomePage() => new(_context, true);
 
-        private DynamicHomePages GoToDynamicHomePage() => new DynamicHomePages(_context);
+        private DynamicHomePages GoToDynamicHomePage() => new(_context);
     }
 }

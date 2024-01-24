@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 
-public class QnaDbSqlDataHelper : ProjectSqlDbHelper
+public class QnaDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : ProjectSqlDbHelper(objectContext, dbConfig.QnaDatabaseConnectionString)
 {
-    public QnaDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.QnaDatabaseConnectionString) { }
 }

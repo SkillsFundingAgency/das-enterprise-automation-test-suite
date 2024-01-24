@@ -7,18 +7,15 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class DynamicHomePageSteps
+    public class DynamicHomePageSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
         private RecruitmentDynamicHomePage _dynamicHomePage;
 
-        public DynamicHomePageSteps(ScenarioContext context) => _context = context;
-
         [Given(@"the Employer logs into Employer account")]
-        public void GivenTheEmployerLogsIntoEmployerAccount() => new EmployerHomePageStepsHelper(_context).GotoEmployerHomePage();
+        public void GivenTheEmployerLogsIntoEmployerAccount() => new EmployerHomePageStepsHelper(context).GotoEmployerHomePage();
 
         [Given(@"the employer reserves funding from the dynamic home page")]
-        public void GivenTheUserReservesFundingFromTheDynamicHomePage() => new ManageFundingEmployerStepsHelper(_context).CreateReservationViaDynamicHomePageTriageJourney();
+        public void GivenTheUserReservesFundingFromTheDynamicHomePage() => new ManageFundingEmployerStepsHelper(context).CreateReservationViaDynamicHomePageTriageJourney();
 
         [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(DRAFT|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
@@ -27,19 +24,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             {
                 case "DRAFT":
                 case "REJECTED":
-                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmVacancyTitleAndStatus(status);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyTitleAndStatus(status);
                     break;
 
                 case "CLOSED":
-                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmClosedVacancyDetails(status);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmClosedVacancyDetails(status);
                     break;
 
                 case "PENDING REVIEW":
-                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmVacancyDetails(status, _context.Get<RAAV2DataHelper>().VacancyClosing);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyDetails(status, context.Get<RAAV2DataHelper>().VacancyClosing);
                     break;
 
                 case "LIVE":
-                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmLiveVacancyDetails(status);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmLiveVacancyDetails(status);
                     break;
             }
         }

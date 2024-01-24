@@ -84,7 +84,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
     public static class ApiFactoryExtensions
     {
-        public static readonly JsonSerializerSettings serialiser = new JsonSerializerSettings
+        public static readonly JsonSerializerSettings serialiser = new()
         {
             ContractResolver = new SnakeCasePropertyNamesContractResolver(),
             NullValueHandling = NullValueHandling.Ignore,
@@ -97,33 +97,29 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         }
     }
 
-    public class SnakeCasePropertyNamesContractResolver : DefaultContractResolver
+    public partial class SnakeCasePropertyNamesContractResolver : DefaultContractResolver
     {
-        private readonly Regex converter = new Regex(@"((?<=[a-z])(?<b>[A-Z])|(?<=[^_])(?<b>[A-Z][a-z]))");
+        private readonly Regex converter = MyRegex();
 
         protected override string ResolvePropertyName(string propertyName)
         {
             return converter.Replace(propertyName, "_${b}").ToLower();
         }
+
+        [GeneratedRegex(@"((?<=[a-z])(?<b>[A-Z])|(?<=[^_])(?<b>[A-Z][a-z]))")]
+        private static partial Regex MyRegex();
     }
 
-    public class RestApiHelper
+    public class RestApiHelper(ConsolidatedSupportConfig config, ConsolidateSupportDataHelper dataHelper)
     {
-        private readonly IApi zendeskApi;
-        private readonly ConsolidateSupportDataHelper _dataHelper;
-
-        public RestApiHelper(ConsolidatedSupportConfig config, ConsolidateSupportDataHelper dataHelper)
-        {
-            _dataHelper = dataHelper;
-            zendeskApi = ApiFactory.CreateApi(config.Username, config.Password);
-        }
+        private readonly IApi zendeskApi = ApiFactory.CreateApi(config.Username, config.Password);
 
         internal async Task<Ticket> CreateTicket()
         {
             var ticket = new Ticket
             {
-                Subject = _dataHelper.Subject,
-                Comment = new Comment { Body = _dataHelper.CommentBody },
+                Subject = dataHelper.Subject,
+                Comment = new Comment { Body = dataHelper.CommentBody },
             };
 
             var response = await zendeskApi.PostTicket(new TicketRequest { Ticket = ticket });
@@ -134,7 +130,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         {
             var user = new User
             {
-                Name = _dataHelper.NewUserFullName
+                Name = ConsolidateSupportDataHelper.NewUserFullName
             };
 
             var response = await zendeskApi.CreateUserTicket(new CreateUser { User = user });

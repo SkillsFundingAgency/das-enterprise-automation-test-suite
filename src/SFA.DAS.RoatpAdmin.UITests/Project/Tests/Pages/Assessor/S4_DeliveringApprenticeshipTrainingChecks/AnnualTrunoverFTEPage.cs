@@ -2,10 +2,8 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringApprenticeshipTrainingChecks
 {
-    public class AnnualTurnOverFTEPage : AssessorBasePage
+    public class AnnualTurnOverFTEPage(ScenarioContext context) : AssessorBasePage(context)
     {
         protected override string PageTitle => "Turnover and full time equivalent (FTE) employees";
-
-        public AnnualTurnOverFTEPage(ScenarioContext context) : base(context) { }
     }
 }

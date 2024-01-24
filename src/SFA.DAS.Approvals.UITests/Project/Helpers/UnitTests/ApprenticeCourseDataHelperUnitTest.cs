@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
+using System;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
@@ -32,12 +32,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(19)]
         public void WaitingTostartApprentice(int _)
         {
-            bool IsItJuly() => DateTime.Now.Month == 7;
+            static bool IsItJuly() => DateTime.Now.Month == 7;
 
             //Arrange 
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
 
-            var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate(): AcademicYearDatesHelper.GetNextAcademicYearStartDate();
+            var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate() : AcademicYearDatesHelper.GetNextAcademicYearStartDate();
 
             var courseStartDate = apprentice.CourseStartDate;
 
@@ -50,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 
                 if (courseStartDate.Month == DateTime.Now.Month)
                 {
-                    Assert.IsTrue(courseStartDate.Year != DateTime.Now.Year, 
+                    Assert.IsTrue(courseStartDate.Year != DateTime.Now.Year,
                         $"if Course start month ({courseStartDate.Month}) == this month ({DateTime.Now.Month}) then Course Start Year ({courseStartDate.Year}) should not be equal to this year ({DateTime.Now.Year})");
                 }
 
@@ -137,13 +137,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         [TestCase(ApprenticeStatus.WaitingToStart)]
         public void SpecficlarsCode(ApprenticeStatus apprenticeStatus)
         {
+            int liveYear = (DateTime.Now.Month < 8) ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+
             //Arrange 
             int durationInMonths = 12;
-            var startDate = new DateTime(apprenticeStatus == ApprenticeStatus.Live ? DateTime.Now.Year : DateTime.Now.Year + 1, 8, 2);
+            var startDate = new DateTime(apprenticeStatus == ApprenticeStatus.Live ? liveYear : liveYear + 1, 8, 1);
             var courseDetails = RandomDataGenerator.GetRandomElementFromListOfElements(AvailableCourses.GetAvailableCourses());
             var expectedLarsCode = courseDetails.Course.larsCode;
             var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), startDate, durationInMonths, expectedLarsCode);
-            
+
 
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
@@ -158,6 +160,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             });
         }
 
-        private RandomCourseDataHelper GetRandomCourseDataHelper() => new RandomCourseDataHelper();
+        private static RandomCourseDataHelper GetRandomCourseDataHelper() => new();
     }
 }

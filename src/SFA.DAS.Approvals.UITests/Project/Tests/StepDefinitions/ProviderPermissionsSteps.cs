@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var homePage = _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-            _employerPermissionsStepsHelper.SetAgreementId(homePage, string.Empty);
+            EmployerPermissionsStepsHelper.SetAgreementId(homePage, string.Empty);
 
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.Ukprn);
 

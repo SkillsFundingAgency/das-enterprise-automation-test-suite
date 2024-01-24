@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 
         public ApplicationOverviewPage SelectInYourOrganisationAndContinue()
         {
-            
+
             SelectRadioOptionByText("In your organisation");
             Continue();
             return new ApplicationOverviewPage(context);

@@ -2,23 +2,18 @@
 global using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.FrameworkHelpers;
+global using SFA.DAS.TestDataExport.Helper;
 global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
-global using SFA.DAS.TestDataExport.Helper;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
 [Binding]
-public class AANHooks : AANBaseHooks
+public class AANHooks(ScenarioContext context) : AANBaseHooks(context)
 {
-    public AANHooks(ScenarioContext context) : base(context)
-    {
-
-    }
-
     [BeforeScenario(Order = 32)]
     public void SetUpDataHelpers()
     {

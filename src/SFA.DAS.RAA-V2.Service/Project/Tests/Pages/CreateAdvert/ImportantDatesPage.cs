@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ImportantDatesPage : VacancyDatesBasePage
+    public class ImportantDatesPage(ScenarioContext context) : VacancyDatesBasePage(context)
     {
         protected override string PageTitle => isRaaV2Employer ? "Closing and start date" : "Closing and start dates";
-
-        public ImportantDatesPage(ScenarioContext context) : base(context) { }
 
         public DurationPage EnterImportantDates()
         {
@@ -24,10 +22,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             StartDate(rAAV2DataHelper.VacancyStart);
             Continue();
 
-            var expectedUrl = IsTraineeship ? "work-experience" : "duration"; 
-            
+            var expectedUrl = IsTraineeship ? "work-experience" : "duration";
+
             pageInteractionHelper.WaitforURLToChange(expectedUrl);
-            
+
         }
     }
 }

@@ -1,19 +1,14 @@
-﻿using System;
+﻿using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class EmploymentCheckHelper
+    public class EmploymentCheckHelper(ScenarioContext context)
     {
-        private readonly EISqlHelper _sqlHelper;
-
-        public EmploymentCheckHelper(ScenarioContext context)
-        {
-            _sqlHelper = context.Get<EISqlHelper>();
-        }
+        private readonly EISqlHelper _sqlHelper = context.Get<EISqlHelper>();
 
         public async Task CompleteEmploymentCheck(Guid apprenticeshipIncentiveId, EmploymentCheckType checkType, bool result)
         {

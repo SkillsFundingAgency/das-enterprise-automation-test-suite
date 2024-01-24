@@ -1,6 +1,7 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -23,8 +24,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_SettingsPage EnterVerificationCode()
-        {            
-            formCompletionHelper.EnterText(EnterCode, faaDataHelper.PhoneNumberVerificationCode);
+        {
+            formCompletionHelper.EnterText(EnterCode, FAADataHelper.PhoneNumberVerificationCode);
             formCompletionHelper.Click(VerifyNumber);
             pageInteractionHelper.WaitforURLToChange("settings");
             return new FAA_SettingsPage(context);

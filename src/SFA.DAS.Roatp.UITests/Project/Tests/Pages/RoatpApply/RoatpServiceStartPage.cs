@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.StubPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
@@ -11,10 +12,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public RoatpServiceStartPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public UsedThisServiceBeforePage ClickApplyNow()
+        public StubSignInApplyPage ClickApplyNow()
         {
             formCompletionHelper.ClickElement(ApplyNow);
-            return new UsedThisServiceBeforePage(context);
+            return new StubSignInApplyPage(context);
         }
     }
 }

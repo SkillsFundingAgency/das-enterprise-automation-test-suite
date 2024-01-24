@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class TermsAndConditionsOfEmployerPage : AanBasePage
+    public class TermsAndConditionsOfEmployerPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Terms and conditions";
 
-        private By ConfirmAndContinueButton => By.Id("confirm-continue");
-
-        public TermsAndConditionsOfEmployerPage(ScenarioContext context) : base(context) => VerifyPage();
+        private static By ConfirmAndContinueButton => By.Id("confirm-continue");
 
         public WhatAreasOfCountryYourOrganisationWorksInPage AcceptTermsAndConditions()
         {

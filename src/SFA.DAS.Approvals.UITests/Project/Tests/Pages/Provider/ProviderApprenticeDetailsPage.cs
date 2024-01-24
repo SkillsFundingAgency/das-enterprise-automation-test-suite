@@ -1,11 +1,11 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApprenticeDetailsPage : ApprovalsBasePage
+    public class ProviderApprenticeDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
 
@@ -28,8 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
         private static By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
-
-        public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context) { }
 
         public ProviderReviewChangesPage ClickReviewChanges()
         {

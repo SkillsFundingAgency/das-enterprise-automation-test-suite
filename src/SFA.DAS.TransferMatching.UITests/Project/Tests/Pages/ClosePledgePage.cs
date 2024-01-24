@@ -3,15 +3,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class ClosePledgePage : TransferMatchingBasePage
+    public class ClosePledgePage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => $"Close pledge {GetPledgeId()}";
 
         protected override string AccessibilityPageTitle => "Close pledge page";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        public ClosePledgePage(ScenarioContext context) : base(context) { }
 
         private static By NoSelector => By.CssSelector("#close-pledge-no");
+
         private static By YesSelector => By.CssSelector("#close-pledge-yes");
 
 

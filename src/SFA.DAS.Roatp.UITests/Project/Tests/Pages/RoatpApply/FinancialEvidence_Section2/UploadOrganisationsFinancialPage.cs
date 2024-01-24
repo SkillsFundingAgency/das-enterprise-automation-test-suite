@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 {
     public class UploadOrganisationsFinancialPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Upload your organisation's financial statements covering any period within the last 12 months";      
+        protected override string PageTitle => "Upload your organisation's financial statements covering any period within the last 12 months";
 
         public UploadOrganisationsFinancialPage(ScenarioContext context) : base(context) => VerifyPage();
 

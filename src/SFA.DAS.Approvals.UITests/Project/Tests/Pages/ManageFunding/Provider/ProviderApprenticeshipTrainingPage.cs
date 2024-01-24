@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderApprenticeshipTrainingPage : ApprovalsBasePage
+    public class ProviderApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Apprenticeship training";
 
@@ -18,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private static By ReservationStartFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
 
         private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
-        public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context)  { }
 
         public ProviderApprenticeshipTrainingPage AddTrainingCourse()
         {
@@ -30,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             var option = pageInteractionHelper.FindElements(RadioLabels).LastOrDefault();
             formCompletionHelper.ClickElement(option);
-            SetCourseDate(pageInteractionHelper.GetText(option));
+            SetCourseDate(UI.FrameworkHelpers.PageInteractionHelper.GetText(option));
             return this;
         }
 
@@ -75,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             string[] desireddate = startDate.Split(" ");
             string[] MonthNames = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
-            int startMonth =  Array.IndexOf(MonthNames, desireddate[0]) + 1;
+            int startMonth = Array.IndexOf(MonthNames, desireddate[0]) + 1;
             int startYear = int.Parse(desireddate[1]);
             var courseStartDate = new DateTime(startYear, startMonth, 1);
             apprenticeCourseDataHelper.CourseStartDate = courseStartDate;

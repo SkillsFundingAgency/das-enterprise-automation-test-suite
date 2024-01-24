@@ -2,15 +2,13 @@
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
-    public class InterimFinanceHomePage : InterimEmployerBasePage
+    public class InterimFinanceHomePage(ScenarioContext context, bool navigate, bool gotourl) : InterimEmployerBasePage(context, navigate, gotourl)
     {
         protected override string PageTitle => "Finance";
 
         protected override string Linktext => "Finance";
 
         public InterimFinanceHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
-
-        public InterimFinanceHomePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, gotourl) { }
     }
 }
 

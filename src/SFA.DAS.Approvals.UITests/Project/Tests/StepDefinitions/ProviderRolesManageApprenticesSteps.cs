@@ -6,18 +6,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderRolesManageApprenticesSteps
+    public class ProviderRolesManageApprenticesSteps(ScenarioContext context)
     {
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly ApprenticeDataHelper _dataHelper;
-        private readonly ProviderRoleApprenticeDataHelper _providerRoleApprenticeDataHelper;
-
-        public ProviderRolesManageApprenticesSteps(ScenarioContext context)
-        {
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _providerRoleApprenticeDataHelper = new ProviderRoleApprenticeDataHelper();
-        }
+        private readonly ProviderStepsHelper _providerStepsHelper = new(context);
+        private readonly ApprenticeDataHelper _dataHelper = context.Get<ApprenticeDataHelper>();
+        private readonly ProviderRoleApprenticeDataHelper _providerRoleApprenticeDataHelper = new();
 
         [When(@"the user clicks on manage apprentice link from homepage or manage apprentices link")]
         public void WhenTheUserClicksOnManageApprenticeLinkFormHomepageOrManageApprenticesLink() => GoToProviderManageYourApprenticePage();
@@ -197,10 +190,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
         private void UpdateApprenticeName(string key)
         {
-            var apprentice = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData(key);
+            var (firstname, lastname) = _providerRoleApprenticeDataHelper.GetProviderRoleApprenticeTestData(key);
 
-            _dataHelper.ApprenticeFirstname = apprentice.firstname;
-            _dataHelper.ApprenticeLastname = apprentice.lastname;
+            _dataHelper.ApprenticeFirstname = firstname;
+            _dataHelper.ApprenticeLastname = lastname;
         }
 
         private ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage() => _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageYourApprenticePage();

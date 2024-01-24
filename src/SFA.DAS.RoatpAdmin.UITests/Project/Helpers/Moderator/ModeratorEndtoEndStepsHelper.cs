@@ -36,21 +36,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             section5Helper = moderator_Section5Helper;
         }
 
-        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
+        public static ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            moderationApplicationAssessmentOverviewPage = section1Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = section2Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = section3Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = section4Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = section5Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section1Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section2Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section3Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section4Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section5Helper.VerifySubSectionsAsPass(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
 
-        public ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static ModerationApplicationAssessmentOverviewPage VerifySubSectionsAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
-            moderationApplicationAssessmentOverviewPage = section1Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = section2Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
-            moderationApplicationAssessmentOverviewPage = section4Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section1Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section2Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = Moderator_Section4Helper.VerifySubSectionsAsFail(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
 
@@ -132,8 +132,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = section2Helper.FailContractForServicesTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section2Helper.FailCommitmentStatementTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section2Helper.FailPriorLearningOfApprentices(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = section2Helper.FailEnglishAndMathsAssessments(moderationApplicationAssessmentOverviewPage, applicationroute); 
-             moderationApplicationAssessmentOverviewPage = section2Helper.FailAllWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section2Helper.FailEnglishAndMathsAssessments(moderationApplicationAssessmentOverviewPage, applicationroute);
+            moderationApplicationAssessmentOverviewPage = section2Helper.FailAllWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
             return moderationApplicationAssessmentOverviewPage;
         }
 
@@ -207,7 +207,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()
@@ -216,7 +216,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()
@@ -225,7 +225,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .GoToRoATPAssessorApplicationsPage();
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()

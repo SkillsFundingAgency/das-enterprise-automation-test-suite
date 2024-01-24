@@ -4,8 +4,7 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.EmployerAccounts.APITests.Project
 {
-    public class Outer_EmployerAccountsHealthApiRestClient : Outer_HealthApiRestClient
+    public class Outer_EmployerAccountsHealthApiRestClient(ObjectContext objectContext) : Outer_HealthApiRestClient(objectContext, UrlConfig.OuterApiUrlConfig.Outer_EmployerAccountsHealthBaseUrl)
     {
-        public Outer_EmployerAccountsHealthApiRestClient(ObjectContext objectContext) : base(objectContext, UrlConfig.OuterApiUrlConfig.Outer_EmployerAccountsHealthBaseUrl) { }
     }
 }

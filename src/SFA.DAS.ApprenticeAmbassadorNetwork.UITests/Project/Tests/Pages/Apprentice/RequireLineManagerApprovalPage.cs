@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class RequiresLineManagerApprovalPage : AanBasePage
+    public class RequiresLineManagerApprovalPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Do you have approval from your line manager to join the network?";
-
-        public RequiresLineManagerApprovalPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public SearchEmployerNamePage YesHaveApprovalFromMaanagerAndContinue()
         {

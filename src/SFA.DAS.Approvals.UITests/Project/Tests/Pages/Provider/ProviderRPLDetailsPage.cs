@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class AddRPLDetailsPage : ApprovalsBasePage
+    public class AddRPLDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Add recognition of prior learning details";
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -12,8 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DurationReducedByHoursTextBox => By.Id("DurationReducedByHours");
         private static By DurationReducedByTextBox => By.Id("DurationReducedBy");
         private static By PriceReduced => By.Id("PriceReduced");
-
-        public AddRPLDetailsPage(ScenarioContext context) : base(context) { }
 
         public void EnterRPLDataAndContinue()
         {

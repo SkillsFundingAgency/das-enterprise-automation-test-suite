@@ -1,12 +1,4 @@
 ﻿using OpenQA.Selenium;
-using Polly;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages

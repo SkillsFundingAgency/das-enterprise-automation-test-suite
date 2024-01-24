@@ -1,19 +1,17 @@
 ﻿using OpenQA.Selenium;
 using System;
-using TechTalk.SpecFlow;
 using System.Collections.Generic;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApprenticeSearchResultsPage : FAA_SearchVacancyBasePage
+    public class FAA_ApprenticeSearchResultsPage(ScenarioContext context) : FAA_SearchVacancyBasePage(context)
     {
         protected override string PageTitle => "Search results";
 
         private static By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By VacancyLink => By.LinkText(vacancyTitleDataHelper.VacancyTitle);
         private static By SearchAgainLink => By.Id("start-again-link");
-
-        public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) { }
 
         public void CheckSortOrderAndDistance()
         {

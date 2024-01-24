@@ -1,17 +1,17 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
-using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class YourApprenticeshipAdvertsHomePage : InterimYourApprenticeshipAdvertsHomePage
+    public class YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : InterimYourApprenticeshipAdvertsHomePage(context, navigate, gotourl)
     {
         protected override string PageTitle => "Your apprenticeship adverts";
 
         #region Helpers and Context
-        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
+        private readonly SearchVacancyPageHelper _searchVacancyPageHelper = new(context);
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
@@ -19,9 +19,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private static By SettingsLink => By.LinkText("Settings");
         private static By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
         private static By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
-
-        public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : base(context, navigate, gotourl) => _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
-
 
         public EmployerVacancySearchResultPage GoToYourAdvertFromDraftAdverts()
         {

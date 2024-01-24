@@ -9,6 +9,6 @@ public class UlnSearchResultsPage : SupportConsoleBasePage
     public UlnDetailsPage SelectULN(CohortDetails cohortDetails)
     {
         tableRowHelper.SelectRowFromTable("View", cohortDetails.UlnName);
-        return new (context, cohortDetails);
+        return new(context, cohortDetails);
     }
 }

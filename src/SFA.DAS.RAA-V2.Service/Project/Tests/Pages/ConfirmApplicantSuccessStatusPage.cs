@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ConfirmApplicantSuccessStatusPage : Raav2BasePage
     {
-        protected override string PageTitle => $"Are you sure you want to make {rAAV2DataHelper.CandidateFullName}'s application {_message}"; 
+        protected override string PageTitle => $"Are you sure you want to make {rAAV2DataHelper.CandidateFullName}'s application {_message}";
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EmployerChangeOfProviderCheckYourAnswersPage : ApprovalsBasePage
+    public class EmployerChangeOfProviderCheckYourAnswersPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => $"Confirm details and send request to {changeOfPartyConfig.NewProviderName}";
 
@@ -13,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ChangeEndDateLink => By.Id("change-end-date-link");
         private static By ChangePriceLink => By.Id("change-price-link");
         private static By ConfirmBtn => By.Id("confirm-and-send-button");
-
-        public EmployerChangeOfProviderCheckYourAnswersPage(ScenarioContext context) : base(context) { }
 
         public WhatIsTheNewStartDatePage ClickChangeStartDate()
         {

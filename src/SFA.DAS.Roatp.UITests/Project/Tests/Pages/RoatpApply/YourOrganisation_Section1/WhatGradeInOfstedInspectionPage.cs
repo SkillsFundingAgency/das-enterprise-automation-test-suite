@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 
         public GradeWithin3YearsPage SelecOutstandingAndContinue()
         {
-            
+
             SelectRadioOptionByText("Outstanding");
             Continue();
             return new GradeWithin3YearsPage(context);

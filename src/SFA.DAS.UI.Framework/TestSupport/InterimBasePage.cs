@@ -1,12 +1,12 @@
-﻿using System;
-using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-using System.Linq;
+﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using System;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract class InterimBasePage : BasePage
+public abstract class InterimBasePage(ScenarioContext context) : BasePage(context)
 {
     protected virtual By TaskLists => By.CssSelector(".das-task-list > li");
 
@@ -18,16 +18,14 @@ public abstract class InterimBasePage : BasePage
 
     protected virtual By TaskStatus => By.CssSelector(".das-task-list__task-tag");
 
-    public InterimBasePage(ScenarioContext context) : base(context) { }
-
     protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => pageInteractionHelper.VerifyPage(func, text, retryAction);
 
     protected void VerifySectionStatus(string sectionName, string status, Action retryAction) => VerifyElement(() => GetSectionElement(sectionName).FindElement(TaskSection), status, retryAction);
 
-    protected void VerifySectionTaskStatus(string sectionName, string taskName, string status, int index, Action retryAction) => 
+    protected void VerifySectionTaskStatus(string sectionName, string taskName, string status, int index, Action retryAction) =>
         VerifyElement(GetTaskStatusElement(sectionName, taskName, index), status, retryAction);
 
-    protected void NavigateToTask(string sectionName, string taskName, int index , Action retryAction) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), retryAction);
+    protected void NavigateToTask(string sectionName, string taskName, int index, Action retryAction) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), retryAction);
 
     private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);
 

@@ -1,20 +1,13 @@
 ﻿namespace SFA.DAS.RAA_V2.APITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class EmployerAccountLegalEntitiesSteps
+public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
 {
-    private readonly Outer_RecruitApiClient _restClient;
-    private readonly EmployerLegalEntitiesSqlDbHelper _employerLegalEntitiesSqlHelper;
+    private readonly Outer_RecruitApiClient _restClient = context.GetRestClient<Outer_RecruitApiClient>();
+    private readonly EmployerLegalEntitiesSqlDbHelper _employerLegalEntitiesSqlHelper = context.Get<EmployerLegalEntitiesSqlDbHelper>();
     private string _hashedAccountId;
     private string _expected;
     private RestResponse _apiResponse;
-
-    public EmployerAccountLegalEntitiesSteps(ScenarioContext context)
-    {
-        _restClient = context.GetRestClient<Outer_RecruitApiClient>();
-
-        _employerLegalEntitiesSqlHelper = context.Get<EmployerLegalEntitiesSqlDbHelper>();
-    }
 
     [Given(@"user prepares request with Employer HashedID")]
     public void GivenUserPreparesRequestWithEmployerHashedId()
@@ -29,6 +22,6 @@ public class EmployerAccountLegalEntitiesSteps
         => _apiResponse = _restClient.Execute(responseCode);
 
     [Then(@"verify response body displays correct information")]
-    public void ThenVerifyResponseBodyDisplaysCorrectInformation() 
+    public void ThenVerifyResponseBodyDisplaysCorrectInformation()
         => StringAssert.Contains(_expected, _apiResponse.Content);
 }

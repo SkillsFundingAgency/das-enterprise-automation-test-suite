@@ -5,18 +5,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 {
     [Binding]
-    public class InProgressApplication
+    public class InProgressApplication(ScenarioContext context)
     {
-        private readonly RoatpApplyLoginHelpers _roatpApplyLoginHelpers;
-        private ApplicationOverviewPage _applicationOverviewPage;
-
-        public InProgressApplication(ScenarioContext context) => _roatpApplyLoginHelpers = new RoatpApplyLoginHelpers(context);
-
-
         [When(@"a user with in progress application login")]
-        public void WhenAUserWithInProgressApplicationLogin() => _applicationOverviewPage = _roatpApplyLoginHelpers.SignInToRegisterPage().SubmitValidUserDetailsApplicationOverviewPage();
+        public void WhenAUserWithInProgressApplicationLogin() => new RoatpApplyLoginHelpers(context).SubmitValidUserDetails();
 
         [Then(@"the user will be directed to their current application")]
-        public void ThenTheUserWillBeDirectedToTheirCurrentApplication() => _applicationOverviewPage.VerifyApplicationDetails();
+        public void ThenTheUserWillBeDirectedToTheirCurrentApplication() => new ApplicationOverviewPage(context).VerifyApplicationDetails();
     }
 }

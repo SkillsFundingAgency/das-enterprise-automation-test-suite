@@ -3,10 +3,8 @@
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpfulle2e")]
-    public class RoatpFullE2EHooks : RoatpBaseHooks
+    public class RoatpFullE2EHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        public RoatpFullE2EHooks(ScenarioContext context) : base(context) { }
-
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpApplyDataHelpers();
 

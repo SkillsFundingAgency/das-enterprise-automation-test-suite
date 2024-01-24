@@ -1,18 +1,11 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Tests.StepDefinitions;
 
 [Binding]
-public class TestdataCleanupWithAccountId
+public class TestdataCleanupWithAccountId(ScenarioContext context)
 {
-    private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper;
-    private readonly DbConfig _dbConfig;
-    private readonly ObjectContext _objectContext;
-
-    public TestdataCleanupWithAccountId(ScenarioContext context) 
-    {
-        _testDataCleanUpStepsHelper = new TestdataCleanupStepsHelper(context); 
-        _dbConfig = context.Get<DbConfig>(); 
-        _objectContext = context.Get<ObjectContext>();
-    }
+    private readonly TestdataCleanupStepsHelper _testDataCleanUpStepsHelper = new(context);
+    private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
     [Then(@"the test data are cleaned up in comt db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInComtDbs(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpComtTestData(greaterThan, lessThan);
@@ -28,10 +21,10 @@ public class TestdataCleanupWithAccountId
 
     [Then(@"the test data are cleaned up in fin db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInFinDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpFinTestData(greaterThan, lessThan);
-    
+
     [Then(@"the test data are cleaned up in rsvr db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInRsvrDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpRsvrTestData(greaterThan, lessThan);
-    
+
     [Then(@"the test data are cleaned up in emp inc db for accounts between '(\d*)' and '(\d*)'")]
     public void TestDataAreCleanedUpInEmpIncDb(int greaterThan, int lessThan) => _testDataCleanUpStepsHelper.CleanUpEmpIncTestData(greaterThan, lessThan);
 

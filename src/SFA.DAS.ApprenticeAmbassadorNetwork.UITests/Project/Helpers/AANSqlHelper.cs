@@ -2,14 +2,25 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers;
 
-public class AANSqlHelper : SqlDbHelper
+public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AANDbConnectionString)
 {
-    public AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AANDbConnectionString) { }
+    public (string id, string FullName) GetLiveApprenticeDetails(bool isRegionalChair, string email)
+    {
+        string GetuserType() => isRegionalChair ? string.Empty : "UserType = 'Apprentice' and";
 
-    public (string, DateTime) GetNextActiveEventDetails(string email)
+        int GetIsRegionalChairint() => isRegionalChair ? 1 : 0;
+
+        var query = $"select top 1 Id, FirstName, LastName from Member where {GetuserType()} IsRegionalChair = {GetIsRegionalChairint()} and Email != '{email}' and status = 'Live' order by NEWID()";
+
+        var list = GetData(query);
+
+        return (list[0], $"{list[1]} {list[2]}");
+    }
+
+    public (string id , DateTime startdate) GetNextActiveEventDetails(string email)
     {
         var date = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
-        
+
         var query = $"select Id, startdate from CalendarEvent where startdate > '{date}' and IsActive = 'True' and id not in (select CalendarEventId from Attendance where MemberId = (select Id from Member where email = '{email}')) order by StartDate";
 
         var list = GetData(query);
@@ -50,7 +61,7 @@ public class AANSqlHelper : SqlDbHelper
     {
         waitForResults = true;
 
-        var data =  GetData($"select Id, IsActive from CalendarEvent where title = '{eventTitle}'");
+        var data = GetData($"select Id, IsActive from CalendarEvent where title = '{eventTitle}'");
 
         return (data[0], data[1]);
     }

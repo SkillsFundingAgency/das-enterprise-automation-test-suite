@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
+﻿namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
     public class RoatpApplyChangeUkprnDataHelpers : RoatpUkprnBaseDataHelpers
     {
@@ -11,12 +9,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
         private void AddApplyDatahelpers()
         {
             _data.Add("rpchangeukprn01",
-                new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+ChangeUKPRNJourney@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10084176"),
-                    new KeyValuePair<string, string>(newukprnkey, "10084177")
-                });
+                [
+                    new(emailkey, "sudhakar.chinoor+ChangeUKPRNJourney@digital.education.gov.uk"),
+                    new(ukprnkey, "10084176"),
+                    new(newukprnkey, "10084177")
+                ]);
         }
     }
 }

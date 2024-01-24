@@ -19,5 +19,5 @@ public class FrameworkConfig
 
     internal bool IsAccessibilityTesting { get; set; }
 
-    public string SampleFileName => "Sample.pdf";
+    public static string SampleFileName => "Sample.pdf";
 }

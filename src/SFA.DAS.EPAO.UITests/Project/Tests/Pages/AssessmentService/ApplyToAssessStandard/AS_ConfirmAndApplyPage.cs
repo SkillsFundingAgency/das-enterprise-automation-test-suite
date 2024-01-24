@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_ConfirmAndApplyPage : EPAO_BasePage
+public class AS_ConfirmAndApplyPage(ScenarioContext context) : EPAO_BasePage(context)
 {
     protected override string PageTitle => "Confirm you want to offer the standard";
 
@@ -11,8 +11,6 @@ public class AS_ConfirmAndApplyPage : EPAO_BasePage
     private static By ConfirmCheckBox => By.CssSelector("#IsConfirmed");
 
     private static By VersionCheckBox => By.Name("SelectedVersions");
-
-    public AS_ConfirmAndApplyPage(ScenarioContext context) : base(context) { }
 
     public AS_ApplicationOverviewPage ConfirmAndApply()
     {

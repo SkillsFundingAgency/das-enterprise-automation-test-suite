@@ -11,7 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 {
     public class Outer_ApprenticeCommitmentsApiHelper
     {
-        private readonly ScenarioContext _context;
         private readonly Outer_ApprenticeCommitmentsApiRestClient _outerAppCommtApiRestClient;
         private readonly Inner_ApprenticeAccountsApiRestClient _inner_ApprenticeAccountsApiRestClient;
         private readonly ApprenticeCommitmentsJobs_CreateApprenticeshipClient _apprenticeCommitmentsJobs_CreateApprenticeshipClient;
@@ -25,7 +24,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         internal Outer_ApprenticeCommitmentsApiHelper(ScenarioContext context)
         {
-            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _assertHelper = context.Get<RetryAssertHelper>();
             _outerAppCommtApiRestClient = new Outer_ApprenticeCommitmentsApiRestClient(_objectContext, context.GetOuter_ApiAuthTokenConfig());
@@ -33,7 +31,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
             _apprenticeCommitmentsJobs_CreateApprenticeshipClient = new ApprenticeCommitmentsJobs_CreateApprenticeshipClient(_objectContext, context.GetApprenticeCommitmentsJobsAuthTokenConfig());
             _outerHealthApiRestClient = new Outer_ApprenticeCommitmentsHealthApiRestClient(_objectContext);
             _accountsAndCommitmentsSqlHelper = context.Get<AccountsAndCommitmentsSqlHelper>();
-            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();    
+            _commitmentsSqlHelper = context.Get<CommitmentsSqlHelper>();
             _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
             _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
         }
@@ -96,8 +94,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         {
             var email = GetApprenticeEmail();
 
-            var regId = _aComtSqlDbHelper.GetRegistrationId(email, _context.ScenarioInfo.Title);
-                
+            var regId = _aComtSqlDbHelper.GetRegistrationId(email);
+
             var apprenticeId = _appAccSqlDbHelper.GetApprenticeDetails(email).apprenticeId;
 
             _objectContext.SetApprenticeId(apprenticeId);
@@ -150,6 +148,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
 
         private string GetApprenticeEmail() => _objectContext.GetApprenticeEmail();
 
-        private string GetProviderName(string tradingName, string legalName) => string.IsNullOrWhiteSpace(tradingName) ? legalName : tradingName;
+        private static string GetProviderName(string tradingName, string legalName) => string.IsNullOrWhiteSpace(tradingName) ? legalName : tradingName;
     }
 }

@@ -5,17 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Helpers
 {
-    public class RecruitmentTraineeshipsProviderHomePageStepsHelper
+    public class RecruitmentTraineeshipsProviderHomePageStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        public RecruitmentTraineeshipsProviderHomePageStepsHelper(ScenarioContext context) => _context = context;
-
         public TraineeshipRecruitHomePage GoToTraineeshipRecruitmentProviderHomePage(bool newTab)
         {
-            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(newTab);
+            new ProviderHomePageStepsHelper(context).GoToProviderHomePage(newTab);
 
-            return new TraineeshipRecruitHomePage(_context, false).GoToTraineeshipHomePage();
+            return new TraineeshipRecruitHomePage(context, false).GoToTraineeshipHomePage();
         }
     }
 }

@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_YourApplicationPage : FAABasePage
+    public class FAA_YourApplicationPage(ScenarioContext context) : FAABasePage(context)
     {
         protected override string PageTitle => "Your application";
 
         private static By Status => By.CssSelector(".inl-block");
-
-        public FAA_YourApplicationPage(ScenarioContext context) : base(context) { }
 
         public FAA_WithDrawConfirmationPage Withdraw()
         {

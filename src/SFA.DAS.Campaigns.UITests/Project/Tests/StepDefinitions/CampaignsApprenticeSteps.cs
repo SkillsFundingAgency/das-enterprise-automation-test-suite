@@ -5,12 +5,10 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
     [Binding, Scope(Tag = "apprentice")]
-    public class CampaignsApprenticeSteps
+    public class CampaignsApprenticeSteps(ScenarioContext context)
     {
-        private readonly CampaignsStepsHelper _stepsHelper;
+        private readonly CampaignsStepsHelper _stepsHelper = new(context);
         private ApprenticeHubPage _apprenticeHubPage;
-
-        public CampaignsApprenticeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
         [Then(@"the apprentice sub headings are displayed")]
         public void ThenTheApprenticeSubHeadingsAreDisplayed() => _apprenticeHubPage.VerifySubHeadings();
@@ -35,7 +33,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the user navigates to the Site Map page")]
         public void GivenTheUserNavigatesToTheSiteMapPage() => GoToApprenticeshipHubPage().NavigateToSiteMapPage();
-        
+
         private ApprenticeHubPage GoToApprenticeshipHubPage() => _stepsHelper.GoToApprenticeshipHubPage();
     }
 }

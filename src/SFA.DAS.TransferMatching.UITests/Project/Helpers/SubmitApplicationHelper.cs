@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
     {
         public SubmitApplicationHelper() { }
 
-        public HomePage SubmitApplication(CreateATransfersApplicationPage page, string pledgeId = "")
+        public static HomePage SubmitApplication(CreateATransfersApplicationPage page, string pledgeId = "")
         {
             return GoToApprenticeshipTrainingPage(page)
                 .EnterAppTrainingDetailsAndContinue()
@@ -25,6 +25,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
                 .ContinueToMyAccount();
         }
 
-        public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
+        public static ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage(CreateATransfersApplicationPage page) => page.GoToApprenticeshipTrainingPage();
     }
 }

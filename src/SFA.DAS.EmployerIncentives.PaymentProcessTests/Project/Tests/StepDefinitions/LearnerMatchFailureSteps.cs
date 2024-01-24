@@ -79,7 +79,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             var learner = Helper.EISqlHelper.GetFromDatabase<Learner>(x => x.ULN == TestData.ULN && x.Ukprn == TestData.UKPRN);
             learner.SuccessfulLearnerMatchExecution.Should().BeFalse();
         }
-        
+
         [Then(@"the learner match process should continue for all remaining learners")]
         public void ThenTheLearnerMatchProcessShouldContinueForAllRemainingLearners()
         {

@@ -3,7 +3,6 @@ using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders;
 using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -117,7 +116,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             await Helper.CollectionCalendarHelper.SetActiveCollectionPeriod((byte)(TestData.PeriodNumber + 1), TestData.AcademicYear);
 
-            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);            
+            await Helper.LearnerMatchApiHelper.SetupResponse(TestData.ULN, TestData.UKPRN, learnerSubmissionData);
         }
 
         [Given(@"the learner match process is run")]
@@ -254,7 +253,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         [Then(@"WithdrawnByCompliance flag of the application apprenticeship is unset")]
         public void ThenTheWithdrawnByComplianceFlagIsUnset()
         {
-            var incentiveApplicationApprenticeship = Helper.EISqlHelper.GetFromDatabase<IncentiveApplicationApprenticeship>( iaa => iaa.IncentiveApplicationId == TestData.IncentiveApplication.Id);
+            var incentiveApplicationApprenticeship = Helper.EISqlHelper.GetFromDatabase<IncentiveApplicationApprenticeship>(iaa => iaa.IncentiveApplicationId == TestData.IncentiveApplication.Id);
             incentiveApplicationApprenticeship.WithdrawnByCompliance.Should().BeFalse();
         }
 

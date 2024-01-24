@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.BulkUpload;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Collections.Generic;
@@ -13,20 +14,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public void VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList);
     }
 
-    public sealed class VerifyBulkUploadApprentices : InitialiseBasePage, IVerifyBulkUploadApprentices
+    public sealed class VerifyBulkUploadApprentices(ScenarioContext context) : InitialiseBasePage(context), IVerifyBulkUploadApprentices
     {
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
+        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
 
         private static By CohortsSaveTableRows => By.CssSelector("tbody tr");
         private static By EmployerName => By.CssSelector("td.govuk-table__cell[data-label='EmployerName']");
         private static By Cohort => By.CssSelector("td.govuk-table__cell[data-label='CohortReference']");
         private static By NumberOfApprentices => By.CssSelector("td.govuk-table__cell[data-label='NumberOfApprenticeships']");
-
-
-        public VerifyBulkUploadApprentices(ScenarioContext context) : base(context)
-        {
-            _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
-        }
 
         public void VerifyCorrectInformationIsDisplayed(List<FileUploadReviewEmployerDetails> apprenticeList)
         {
@@ -37,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 .Where(y => string.IsNullOrWhiteSpace(y.Key.CohortRef))
                 .Select(z =>
                 {
-                    var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReferenceWithNoContinuation(z.First().ULN, context.ScenarioInfo.Title);
+                    var cohortRef = _commitmentsSqlDataHelper.GetNewcohortReferenceWithNoContinuation(z.First().ULN);
                     return new { cohortRef, z.Key.AgreementId };
                 }).ToList();
 
@@ -65,9 +60,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 var cohort = parent.FindElement(Cohort);
                 var numberOfApprentices = parent.FindElement(NumberOfApprentices);
 
-                pageInteractionHelper.VerifyText(flattenedRow.EmployerName.RemoveSpace(), pageInteractionHelper.GetText(employerName).RemoveSpace());
-                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.CohortRefText, pageInteractionHelper.GetText(cohort));
-                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.NumberOfApprentices.ToString(), pageInteractionHelper.GetText(numberOfApprentices));
+                pageInteractionHelper.VerifyText(flattenedRow.EmployerName.RemoveSpace(), UI.FrameworkHelpers.PageInteractionHelper.GetText(employerName).RemoveSpace());
+                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.CohortRefText, UI.FrameworkHelpers.PageInteractionHelper.GetText(cohort));
+                pageInteractionHelper.VerifyText(flattenedRow.CohortDetails.NumberOfApprentices.ToString(), UI.FrameworkHelpers.PageInteractionHelper.GetText(numberOfApprentices));
 
                 objectContext.SetCohortReferenceList(flattenedRow.CohortDetails.CohortRefText);
             }

@@ -5,10 +5,8 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ProviderPermissionsSqlDbHelper : SqlDbHelper
+    public class ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
     {
-        public ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.PermissionsDbConnectionString) { }
-
         public int GetAccountIdOfAProvider(string ukprn)
         {
             string sqlQueryToGetAccountId = $"SELECT AccountId from [AccountProviders] WHERE ProviderUkprn = {Convert.ToInt64(ukprn)}";

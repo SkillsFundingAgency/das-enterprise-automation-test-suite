@@ -19,7 +19,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         private int _expectedPaymentAmount;
         private Phase _phase;
         private DateTime _submittedOn;
-        private List<Tuple<DateTime, DateTime>> _breaksInLearning = new List<Tuple<DateTime, DateTime>>();
+        private readonly List<Tuple<DateTime, DateTime>> _breaksInLearning = [];
 
         protected RetrospectiveBreakInLearningSteps(ScenarioContext context) : base(context)
         {
@@ -80,7 +80,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                .Where(x => x.ApprenticeshipIncentiveId == TestData.ApprenticeshipIncentiveId)
                .ToList();
 
-            payments.Count.Should().Be(1);            
+            payments.Count.Should().Be(1);
 
             _expectedPaymentAmount = amount;
         }
@@ -149,7 +149,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             _initialEndDate = endDate;
 
             _breaksInLearning.Clear();
-            
+
             await SetupSubmissionWithNoBreakInLearning();
         }
 
@@ -165,11 +165,11 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
                 .WithIlrSubmissionWindowPeriod(1)
                 .WithStartDate(_initialStartDate);
 
-            for (int i = 0; i < _breaksInLearning.Count(); i++)
+            for (int i = 0; i < _breaksInLearning.Count; i++)
             {
                 var priceEpisode = new PriceEpisodeDtoBuilder()
                     .WithAcademicYear(academicYear)
-                    .WithStartDate(i == 0 ? _initialStartDate : _breaksInLearning[i-1].Item2.AddDays(1))
+                    .WithStartDate(i == 0 ? _initialStartDate : _breaksInLearning[i - 1].Item2.AddDays(1))
                     .WithEndDate(_breaksInLearning[i].Item1.AddDays(-1))
                     .WithPeriod(TestData.ApprenticeshipId, 11)
                     .Create();
@@ -298,7 +298,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
             learner.InLearning.Should().BeTrue();
         }
 
-        [Then(@"the paid earning of £(.*) is marked as requiring a clawback in Period R(.*) (.*)")]        
+        [Then(@"the paid earning of £(.*) is marked as requiring a clawback in Period R(.*) (.*)")]
         public void ThenAClawbackIsRecorded(int amount, byte period, short year)
         {
             var clawbacks = Helper.EISqlHelper.GetAllFromDatabase<ClawbackPayment>()

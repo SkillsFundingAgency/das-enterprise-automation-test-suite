@@ -1,8 +1,8 @@
 ﻿namespace SFA.DAS.API.Framework.RestClients;
 
-public abstract class Outer_BaseApiRestClient : BaseApiRestClient
+public abstract class Outer_BaseApiRestClient(ObjectContext objectContext, string authKey) : BaseApiRestClient(objectContext)
 {
-    protected readonly string _authKey;
+    protected readonly string _authKey = authKey;
 
     protected abstract string ApiName { get; }
 
@@ -11,8 +11,6 @@ public abstract class Outer_BaseApiRestClient : BaseApiRestClient
     protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
 
     public Outer_BaseApiRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : this(objectContext, config.Apim_SubscriptionKey) { }
-
-    public Outer_BaseApiRestClient(ObjectContext objectContext, string authKey) : base(objectContext) => _authKey = authKey;
 
     protected override void AddResource(string resource) => restRequest.Resource = resource.Contains(ApiName) ? resource : $"{ApiName}{resource}";
 

@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
-public class ApprenticeFeedbackSqlHelper : SqlDbHelper
+public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.ApprenticeFeedbackDbConnectionString)
 {
-    public ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : base(objectContext, config.ApprenticeFeedbackDbConnectionString) { }
-
     public void ClearDownApprenticeFeedbackResult(string apprenticeshipid, string ukprn)
     {
         var query = $"select id into #appfeedbacktargetid from ApprenticeFeedbackTarget where ApprenticeId = '{apprenticeshipid}' and Ukprn = '{ukprn}' " +

@@ -1,21 +1,12 @@
 ﻿namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
-    public class MongoDbDataHelper
+    public class MongoDbDataHelper(DataHelper dataHelper, string empref)
     {
-        private readonly DataHelper _dataHelper;
-        private readonly string _empref;
+        public string GatewayId => dataHelper.GatewayUsername;
 
-        public MongoDbDataHelper(DataHelper dataHelper, string empref)
-        {
-            _dataHelper = dataHelper;
-            _empref = empref;
-        }
+        public string GatewayPassword => dataHelper.GatewayPassword;
 
-        public string GatewayId => _dataHelper.GatewayUsername;
-
-        public string GatewayPassword => _dataHelper.GatewayPassword;
-
-        public string EmpRef => string.IsNullOrEmpty(_empref) ? $"{_dataHelper.NextNumber}/{_dataHelper.LevyOrNonLevy}{_dataHelper.EmpRefDigits}" : _empref;
+        public string EmpRef => string.IsNullOrEmpty(empref) ? $"{dataHelper.NextNumber}/{dataHelper.LevyOrNonLevy}{dataHelper.EmpRefDigits}" : empref;
 
         public string Name => $"End To End Scenario for {GatewayId}";
     }

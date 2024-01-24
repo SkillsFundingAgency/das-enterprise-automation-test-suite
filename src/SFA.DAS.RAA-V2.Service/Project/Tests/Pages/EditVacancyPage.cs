@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class EditVacancyPage : Raav2BasePage
+    public class EditVacancyPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Edit advert dates";
 
@@ -14,8 +14,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private static By EditStartDate => By.CssSelector("a[data-automation='edit-start-date']");
 
         private static By Publish => By.CssSelector(".govuk-button.save-button");
-
-        public EditVacancyPage(ScenarioContext context) : base(context) { }
 
         public EditVacancyDatesPage EditVacancyCloseDate()
         {

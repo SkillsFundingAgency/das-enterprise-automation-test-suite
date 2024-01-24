@@ -1,11 +1,9 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project;
 
 [Binding, Scope(Tag = "employerfeedback")]
-public class EmployerFeedbackHooks : BaseHooks
+public class EmployerFeedbackHooks(ScenarioContext context) : BaseHooks(context)
 {
     private EmployerFeedbackSqlHelper _employerFeedbackSqlHelper;
-    
-    public EmployerFeedbackHooks(ScenarioContext context) : base(context) { }
 
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()

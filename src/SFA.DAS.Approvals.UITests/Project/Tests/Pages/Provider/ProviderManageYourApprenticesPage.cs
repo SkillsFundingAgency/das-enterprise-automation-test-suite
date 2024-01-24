@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
         public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {            
+        {
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
             manageYourApprenticePageHelper = new ManageYourApprenticePageHelper(context);
@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public enum SimplifiedPaymentsPilot
         {
-            All, 
+            All,
             True,
             False
         }

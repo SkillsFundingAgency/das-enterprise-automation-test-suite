@@ -53,13 +53,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 
         private ChangeStatusPage InitatesAnApplication(string providerType)
         {
-           var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
+            var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
 
             searchPage = searchPage.VerifyNewProviderHasBeenAdded();
 
             return searchPage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding().ClickChangeStatusLink();
         }
 
-        private void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();
+        private static void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();
     }
 }

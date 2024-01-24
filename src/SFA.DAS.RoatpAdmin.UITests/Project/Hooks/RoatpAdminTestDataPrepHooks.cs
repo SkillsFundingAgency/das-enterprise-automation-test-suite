@@ -4,10 +4,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpadmintestdataprep")]
-    public class RoatpAdminTestDataPrepHooks : RoatpBaseHooks
+    public class RoatpAdminTestDataPrepHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        public RoatpAdminTestDataPrepHooks(ScenarioContext context) : base(context) { }
-
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() => SetUpApplyDataHelpers();
 

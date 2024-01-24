@@ -3,11 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class AdditionalQuestionsPage : Raav2BasePage
+    public class AdditionalQuestionsPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => "Do you have any questions you would like to ask applicants? (optional)";
-
-        public AdditionalQuestionsPage(ScenarioContext context) : base(context) { }
 
         private static By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
         private static By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
@@ -22,8 +20,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private void EnterAdditionalQuestions()
         {
-            formCompletionHelper.EnterText(AdditionalQuestion1Selector, rAAV2DataHelper.RandomQuestionString(20));
-            formCompletionHelper.EnterText(AdditionalQuestion2Selector, rAAV2DataHelper.RandomQuestionString(20));
+            formCompletionHelper.EnterText(AdditionalQuestion1Selector, RAA.DataGenerator.RAAV2DataHelper.RandomQuestionString(20));
+            formCompletionHelper.EnterText(AdditionalQuestion2Selector, RAA.DataGenerator.RAAV2DataHelper.RandomQuestionString(20));
         }
     }
 }

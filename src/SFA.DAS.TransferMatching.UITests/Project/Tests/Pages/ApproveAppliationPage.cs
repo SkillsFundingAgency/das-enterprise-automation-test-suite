@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class ApproveAppliationPage : TransferMatchingBasePage
+    public class ApproveAppliationPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
 
@@ -14,8 +14,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private static By EstimatedCostText => By.CssSelector("#main-content > div:nth-child(3) > p:nth-child(7)");
         private static By ApproveDisclaimerText => By.CssSelector("#approval-content");
         private static By DateAppliedSelector => By.LinkText("Date applied");
-
-        public ApproveAppliationPage(ScenarioContext context) : base(context) { }
 
         public ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage()
         {

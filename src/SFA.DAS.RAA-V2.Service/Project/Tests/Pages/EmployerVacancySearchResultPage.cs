@@ -4,14 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class EmployerVacancySearchResultPage : VacancySearchResultPage
+    public class EmployerVacancySearchResultPage(ScenarioContext context) : VacancySearchResultPage(context)
     {
         protected override string PageTitle => "Your adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
         private static By Applicant => By.CssSelector("a[data-label='application_review']");
-
-        public EmployerVacancySearchResultPage(ScenarioContext context) : base(context) { }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertPage()
         {

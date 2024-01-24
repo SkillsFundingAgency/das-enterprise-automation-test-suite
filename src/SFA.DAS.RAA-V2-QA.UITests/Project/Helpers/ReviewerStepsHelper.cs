@@ -9,12 +9,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers;
 
-public class ReviewerStepsHelper
+public class ReviewerStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public ReviewerStepsHelper(ScenarioContext context) => _context = context;
-
     public Reviewer_HomePage GoToReviewerHomePage(bool restart)
     {
         var applicationName = "Reviewer";
@@ -22,18 +18,18 @@ public class ReviewerStepsHelper
 
         if (restart)
         {
-            new RestartWebDriverHelper(_context).RestartWebDriver(raav2qaBaseUrl, applicationName);
+            new RestartWebDriverHelper(context).RestartWebDriver(raav2qaBaseUrl, applicationName);
         }
         else
         {
-            _context.Get<ObjectContext>().SetCurrentApplicationName(applicationName);
+            context.Get<ObjectContext>().SetCurrentApplicationName(applicationName);
 
-            _context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
+            context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
         }
 
-        new DfeAdminLoginStepsHelper(_context).CheckAndLoginToASVacancyQa();
+        new DfeAdminLoginStepsHelper(context).CheckAndLoginToASVacancyQa();
 
-        return new Reviewer_HomePage(_context);
+        return new Reviewer_HomePage(context);
     }
 
     public void VerifyEmployerNameAndApprove(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).VerifyEmployerName().Approve());
@@ -44,5 +40,5 @@ public class ReviewerStepsHelper
 
     private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
 
-    private void RAAV2QASignOut(VerifyDetailsBasePage basePage) => basePage.RAAV2QASignOut();
+    private static void RAAV2QASignOut(VerifyDetailsBasePage basePage) => basePage.RAAV2QASignOut();
 }

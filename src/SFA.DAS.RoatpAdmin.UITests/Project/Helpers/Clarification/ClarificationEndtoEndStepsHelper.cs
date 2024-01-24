@@ -17,12 +17,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
 
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
         }
 
-        public RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public static RoatpAssessorApplicationsHomePage CompleteClarificationOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
         }
@@ -33,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification
             moderationApplicationAssessmentOverviewPage = section2Helper.FailCommitmentStatementTemplate(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section2Helper.FailWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage, applicationroute);
             moderationApplicationAssessmentOverviewPage = section3Helper.FailWhereWillYourApprenticesBeTrained(moderationApplicationAssessmentOverviewPage, applicationroute);
-            moderationApplicationAssessmentOverviewPage = section4Helper.FailQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage); 
+            moderationApplicationAssessmentOverviewPage = section4Helper.FailQualityAndHighStandardsInApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
             moderationApplicationAssessmentOverviewPage = section4Helper.FailPolicyForProfessionalDevelopmentOfEmployees(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }

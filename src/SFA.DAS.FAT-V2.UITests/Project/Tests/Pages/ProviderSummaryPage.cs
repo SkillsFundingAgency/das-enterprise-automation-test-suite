@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
 
-public class ProviderSummaryPage : FATV2BasePage
+public class ProviderSummaryPage(ScenarioContext context) : FATV2BasePage(context)
 {
     protected override string PageTitle => objectContext.GetProviderName();
 
@@ -11,10 +11,9 @@ public class ProviderSummaryPage : FATV2BasePage
     private static By ViewOtherTrainingProvidersButton => By.Id("btn-view-providers");
     private static By BackToTrainingProviders => By.Id("providers-breadcrumb");
     private static By NoProviderAtLocationErrorText => By.Id("course_provider_not_available");
+
     #endregion
 
-    public ProviderSummaryPage(ScenarioContext context) : base(context) { }
-    
     public bool VerifyNoTrainingProviderAtLocationErrorText() => pageInteractionHelper.IsElementDisplayed(NoProviderAtLocationErrorText);
 
     public ProviderSummaryPage EnterPostCodeAndSearch(string location)

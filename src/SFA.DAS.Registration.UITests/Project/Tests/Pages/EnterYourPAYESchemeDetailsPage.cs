@@ -18,12 +18,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         #region Constants
-        public string BlankAornFieldErrorMessage => "Enter your Accounts Office reference in the correct format";
-        public string AornInvalidFormatErrorMessage => "Enter your Accounts Office reference in the correct format";
-        public string BlankPayeFieldErrorMessage => "Enter your PAYE reference in the correct format";
-        public string PayeInvalidFormatErrorMessage => "Enter your PAYE reference in the correct format";
-        public string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE and accounts office reference";
-        public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE and accounts office reference";
+        public static string BlankAornFieldErrorMessage => "Enter your Accounts Office reference in the correct format";
+        public static string AornInvalidFormatErrorMessage => "Enter your Accounts Office reference in the correct format";
+        public static string BlankPayeFieldErrorMessage => "Enter your PAYE reference in the correct format";
+        public static string PayeInvalidFormatErrorMessage => "Enter your PAYE reference in the correct format";
+        public static string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE and accounts office reference";
+        public static string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE and accounts office reference";
         #endregion
 
         public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
@@ -46,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new ChooseAnOrganisationPage(context);
         }
 
-        new public EnterYourPAYESchemeDetailsPage Continue()
+        public new EnterYourPAYESchemeDetailsPage Continue()
         {
             base.Continue();
             return this;

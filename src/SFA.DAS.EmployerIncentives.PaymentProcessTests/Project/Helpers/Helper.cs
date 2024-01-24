@@ -40,7 +40,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             context.Set(new LearnerMatchOrchestratorHelper(context));
             context.Set(new EIServiceBusHelper(eiConfig));
             context.Set(new IncentiveApplicationHelper(context));
-            context.Set(new IncentiveHelper(context));            
+            context.Set(new IncentiveHelper(context));
             context.Set(new BusinessCentralApiHelper(context));
             context.Set(new LearnerMatchApiHelper(context));
             context.Set(new LearnerDataHelper(context));

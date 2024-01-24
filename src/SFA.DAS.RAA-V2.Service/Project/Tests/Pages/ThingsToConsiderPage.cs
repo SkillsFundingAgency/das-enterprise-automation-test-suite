@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ThingsToConsiderPage : Raav2BasePage
+    public class ThingsToConsiderPage(ScenarioContext context) : Raav2BasePage(context)
     {
         protected override string PageTitle => isRaaV2Employer ? "What else would you like the applicant to consider? (optional)" : "What else do you want the applicant to consider? (optional)";
 
         private static By ThingsToConsider => By.CssSelector("#ThingsToConsider");
-
-        public ThingsToConsiderPage(ScenarioContext context) : base(context) { }
 
         public PreviewYourAdvertOrVacancyPage EnterThingsToConsider()
         {

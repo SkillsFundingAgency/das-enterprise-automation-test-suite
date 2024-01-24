@@ -1,20 +1,16 @@
 ﻿namespace SFA.DAS.TestDataExport.AfterScenario;
 
 [Binding]
-public class AfterStepReporting
+public class AfterStepReporting(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public AfterStepReporting(ScenarioContext context) => _context = context;
-
     [AfterStep(Order = 10)]
     public void AfterStep()
     {
-        string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
+        string StepOutcome() => context.TestError != null ? "ERROR" : "Done";
 
-        var stepInfo = _context.StepContext.StepInfo;
+        var stepInfo = context.StepContext.StepInfo;
 
-        var objectContext = _context.Get<ObjectContext>();
+        var objectContext = context.Get<ObjectContext>();
 
         var message = $"-> {StepOutcome()}: {stepInfo.StepDefinitionType} {stepInfo.Text}";
 

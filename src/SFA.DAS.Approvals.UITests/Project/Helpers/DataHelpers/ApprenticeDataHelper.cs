@@ -1,5 +1,4 @@
-﻿using RestSharp;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using System;
@@ -30,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             TrainingCost = trainingCost == string.Empty ? "1" + RandomDataGenerator.GenerateRandomNumber(3) : trainingCost;
             TrainingPrice = TrainingCost != string.Empty ? CalculateTotalNegotiatedPrices(TotalNegotiatedPriceTypes.TrainingPrice, TrainingCost) : trainingPrice;
-            EndpointAssessmentPrice = TrainingCost != string.Empty ? CalculateTotalNegotiatedPrices(TotalNegotiatedPriceTypes.EndpointAssessmentPrice,TrainingCost) : endpointAssessmentPrice;
+            EndpointAssessmentPrice = TrainingCost != string.Empty ? CalculateTotalNegotiatedPrices(TotalNegotiatedPriceTypes.EndpointAssessmentPrice, TrainingCost) : endpointAssessmentPrice;
             EmployerReference = RandomDataGenerator.GenerateRandomAlphanumericString(10);
             ApprenticeULN = RandomDataGenerator.GenerateRandomUln();
             _apprenticeid = 0;
@@ -85,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             ApprenticeLastname = lastName;
         }
 
-        private string CalculateTotalNegotiatedPrices (TotalNegotiatedPriceTypes priceType, string trainingCost)
+        private static string CalculateTotalNegotiatedPrices(TotalNegotiatedPriceTypes priceType, string trainingCost)
         {
             string calculatedPrice;
 

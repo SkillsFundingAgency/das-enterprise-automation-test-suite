@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_ReviewAndMaintainPage : AS_EPAOApplyStandardBasePage
+public class AS_ReviewAndMaintainPage(ScenarioContext context) : AS_EPAOApplyStandardBasePage(context)
 {
     protected override string PageTitle => "How will you continuously review and maintain the required resources and assessment tools?";
-
-    public AS_ReviewAndMaintainPage(ScenarioContext context) : base(context) { }
 
     public AS_SecureITInfrastructurePage EnterReviewAndMaintainPlan()
     {
@@ -12,7 +10,7 @@ public class AS_ReviewAndMaintainPage : AS_EPAOApplyStandardBasePage
         Continue();
         return new(context);
     }
-    
+
     public AS_SecureITInfrastructurePage NHEI_EnterReviewAndMaintainPlan()
     {
         formCompletionHelper.EnterText(TextArea, EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(80));

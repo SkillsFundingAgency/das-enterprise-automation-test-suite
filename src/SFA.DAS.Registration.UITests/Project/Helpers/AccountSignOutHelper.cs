@@ -3,16 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class AccountSignOutHelper
+    public class AccountSignOutHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-     
-        public AccountSignOutHelper(ScenarioContext context) => _context = context;
-    
-        public CreateAnAccountToManageApprenticeshipsPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
+        public CreateAnAccountToManageApprenticeshipsPage SignOut() => new HomePage(context, true).SignOut().CickContinueInYouveLoggedOutPage();
 
-        public YouveLoggedOutPage SignOut(HomePage page) => page.SignOut();
+        public static YouveLoggedOutPage SignOut(HomePage page) => page.SignOut();
 
-        public YouveLoggedOutPage SignOut(AccountUnavailablePage page) => page.SignOut();
+        public static YouveLoggedOutPage SignOut(AccountUnavailablePage page) => page.SignOut();
     }
 }

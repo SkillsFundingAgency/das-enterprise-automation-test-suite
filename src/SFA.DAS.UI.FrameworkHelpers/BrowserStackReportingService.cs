@@ -1,18 +1,14 @@
-﻿using System;
-using System.Net;
+﻿using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
-using Newtonsoft.Json;
+using System;
+using System.Net;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public class BrowserStackReportingService
+public class BrowserStackReportingService(BrowserStackSetting options)
 {
-    private readonly BrowserStackSetting _options;
-
-    public BrowserStackReportingService(BrowserStackSetting options) => _options = options;
-
-    public void UpdateTestName(string sessionId, string name) => Execute(sessionId, UpdateNameJSonBody($"{_options.Name}-{name}"));
+    public void UpdateTestName(string sessionId, string name) => Execute(sessionId, UpdateNameJSonBody($"{options.Name}-{name}"));
 
     public void MarkTestStatus(string sessionId, bool testStatus, string message)
     {
@@ -25,7 +21,7 @@ public class BrowserStackReportingService
     {
         var request = Request(sessionId, jsonObj);
 
-        var response = Client(_options).Put(request);
+        var response = Client(options).Put(request);
 
         if (IsNotSucess(response)) NUnit.Framework.TestContext.Progress.WriteLine($"{response.StatusCode} - {response.Content}");
 
@@ -50,5 +46,5 @@ public class BrowserStackReportingService
 
     private static RestRequest Request(string sessionId) => new($"{sessionId}.json", Method.Put) { RequestFormat = DataFormat.Json };
 
-    private static RestClient Client(BrowserStackSetting options) => new(new RestClientOptions {BaseUrl = new Uri(BrowserStackSetting.AutomateSessions), Authenticator = new HttpBasicAuthenticator(options.User, options.Key) });
+    private static RestClient Client(BrowserStackSetting options) => new(new RestClientOptions { BaseUrl = new Uri(BrowserStackSetting.AutomateSessions), Authenticator = new HttpBasicAuthenticator(options.User, options.Key) });
 }

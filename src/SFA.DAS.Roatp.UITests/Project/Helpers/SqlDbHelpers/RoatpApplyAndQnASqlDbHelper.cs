@@ -1,19 +1,14 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RoatpAdmin.Service.Project;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RoatpAdmin.Service.Project;
 using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
-    public class RoatpQnASqlDbHelper : SqlDbHelper
+    public class RoatpQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.QnaDatabaseConnectionString)
     {
-        private string Emptyguid => Guid.Empty.ToString();
-
-        public RoatpQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.QnaDatabaseConnectionString)
-        {
-                
-        }
+        private static string Emptyguid => Guid.Empty.ToString();
 
         public int ClearDownDataFromQna(string applicationId)
         {
@@ -36,16 +31,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
         }
     }
 
-    public class RoatpApplyAndQnASqlDbHelper : SqlDbHelper
+    public class RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.ApplyDatabaseConnectionString)
     {
-        private readonly ObjectContext _objectContext;
-
         private static string Emptyguid => Guid.Empty.ToString();
-
-        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.ApplyDatabaseConnectionString)
-        {
-            _objectContext = objectContext;
-        }
 
         public string GetApplicationId(string ukprn) => GetDataAsString($"Select applicationid from apply where ukprn = {ukprn} and ApplicationStatus = 'In Progress';");
 
@@ -62,7 +50,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
         {
             var applicationIdQuery = $"SELECT ApplicationId from dbo.Apply a " +
                                            $"inner join Contacts c on a.OrganisationId = c.ApplyOrganisationID " +
-                                           $"where c.Email ='{_objectContext.GetEmail()}' ";
+                                           $"where c.Email ='{objectContext.GetEmail()}' ";
 
             var queryResult = GetListOfData(applicationIdQuery);
 
@@ -73,7 +61,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public int AllowListProviders(string ukprn)
         {
-            ukprn ??= _objectContext.GetUkprn();
+            ukprn ??= objectContext.GetUkprn();
 
             var insertAllowListProviderQuery =
                 $"IF NOT EXISTS(SELECT * FROM AllowedProviders WHERE [UKPRN] = {ukprn}) " +
@@ -87,7 +75,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         private string ClearDownFullDataFromApply(List<object[]> queryResult)
         {
-            var email = _objectContext.GetEmail();
+            var email = objectContext.GetEmail();
 
             var applicationId = queryResult[0][0].ToString();
 

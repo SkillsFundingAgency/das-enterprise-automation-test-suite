@@ -7,25 +7,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
 {
     [Binding]
-    public class ModerationSteps
+    public class ModerationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
+        private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper = new();
         private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
         private ApplicationRoute _applicationRoute;
-
-        public ModerationSteps(ScenarioContext context)
-        {
-            _context = context;
-            _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper();
-        }
 
         [When(@"selects the (Employer Provider Route For Existing Provider|Supporting Provider Route For Existing Provider|Main Provider Route For Existing Provider|Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Moderation Tab")]
         public void WhenSelectsTheMainProviderRouteApplicationFromModerationTab(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;
 
-            _moderationApplicationAssessmentOverviewPage = new StaffDashboardPage(_context).AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
+            _moderationApplicationAssessmentOverviewPage = new StaffDashboardPage(context).AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
         }
 
         [Then(@"the Moderator assesses all the sections of the application as PASS")]
@@ -37,7 +30,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses the outcome as PASS")]
         public void ThenTheModeratorAssessesTheOutcomeAsPASS()
         {
-            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
+            ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator FAILS few sections")]
@@ -50,13 +43,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses the outcome as FAIL")]
         public void ThenTheModeratorAssessesTheOutcomeAsFAIL()
         {
-            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
+            ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator assesses the outcome as CLARIFICATION")]
         public void ThenTheModeratorAssessesTheOutcomeAsCLARIFICATION()
         {
-            _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
+            ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
         }
     }
 }

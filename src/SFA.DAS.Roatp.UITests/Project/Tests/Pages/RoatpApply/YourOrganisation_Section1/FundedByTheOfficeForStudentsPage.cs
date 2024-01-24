@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class FundedByTheOfficeForStudentsPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Is your organisation funded by the Office for Students?";
-        
+
         public FundedByTheOfficeForStudentsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public InitialTeacherTrainingPage SelectYesForFundedbyOFSAndContinue()

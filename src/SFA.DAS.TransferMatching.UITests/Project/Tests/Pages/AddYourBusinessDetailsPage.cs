@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
-    public class AddYourBusinessDetailsPage : TransferMatchingBasePage
+    public class AddYourBusinessDetailsPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "Add your business details";
 
@@ -15,13 +15,11 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
 
-        public AddYourBusinessDetailsPage(ScenarioContext context) : base(context) { }
-
         public CreateATransfersApplicationPage EnterBusinessDetailsAndContinue()
         {
             SelectRandomCheckbox();
 
-            var location = tMDataHelper.GetRandomLocation();
+            var location = Helpers.TMDataHelper.GetRandomLocation();
 
             if (pageInteractionHelper.IsElementPresent(AdditionalLocationSelector))
             {

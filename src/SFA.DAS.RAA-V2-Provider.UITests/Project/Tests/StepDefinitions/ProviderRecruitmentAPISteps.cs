@@ -4,11 +4,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderRecruitmentAPISteps
+    public class ProviderRecruitmentAPISteps(ScenarioContext context)
     {
-        private readonly ProviderApiKeyStepsHelper _providerStepsHelper;
-
-        public ProviderRecruitmentAPISteps(ScenarioContext context) => _providerStepsHelper = new ProviderApiKeyStepsHelper(context);
+        private readonly ProviderApiKeyStepsHelper _providerStepsHelper = new(context);
 
         [Given(@"the Provider renews the employer recruitment API key")]
         public void GivenTheProviderRenewsTheEmployerRecruitmentAPIKey() => _providerStepsHelper.RenewRecruitmentAPIKey();

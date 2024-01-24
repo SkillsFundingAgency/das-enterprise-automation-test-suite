@@ -46,7 +46,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         public WithdrawConfirmPage SelectApplicationWithdrawl()
         {
-            formCompletionHelper.ClickLinkByText(ApplicationActions,"Applicant withdrawal of application");
+            formCompletionHelper.ClickLinkByText(ApplicationActions, "Applicant withdrawal of application");
             return new WithdrawConfirmPage(context);
         }
 

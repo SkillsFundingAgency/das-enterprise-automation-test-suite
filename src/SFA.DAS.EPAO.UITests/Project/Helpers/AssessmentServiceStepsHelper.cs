@@ -1,16 +1,8 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
-public class AssessmentServiceStepsHelper
+public class AssessmentServiceStepsHelper(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-    private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
-
-    public AssessmentServiceStepsHelper(ScenarioContext context)
-    {
-        _context = context;
-
-        _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
-    }
+    private readonly EPAOAdminDataHelper _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
 
     public void VerifyApprenticeGrade(string grade, LearnerCriteria learnerCriteria)
     {
@@ -105,13 +97,13 @@ public class AssessmentServiceStepsHelper
             .ClickReturnToDashboard();
     }
 
-    private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(_context).GoToRecordAGradePage();
+    private AS_RecordAGradePage GoToRecordAGradePage() => new AS_LoggedInHomePage(context).GoToRecordAGradePage();
 
     private AS_CheckAndSubmitAssessmentPage SelectGrade(AS_DeclarationPage decpage, string grade, string route)
     {
         decpage.ClickConfirmInDeclarationPage();
 
-        new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
+        new AS_WhatGradePage(context).SelectGradeAndEnterDate(grade);
 
         if (route == "employer") return SelectGradeEmployerRoute(grade);
 
@@ -122,7 +114,7 @@ public class AssessmentServiceStepsHelper
     {
         if (grade == "pass")
         {
-            return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
+            return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(context)
             .ClickAprenticeRadioButton()
             .ClickEnterAddressManuallyLinkInSearchEmployerPage()
             .EnterEmployerAddressAndContinue()
@@ -130,14 +122,14 @@ public class AssessmentServiceStepsHelper
         }
         else if (grade == "PassWithExcellence") PassWithExcellence();
 
-        return new AS_CheckAndSubmitAssessmentPage(_context);
+        return new AS_CheckAndSubmitAssessmentPage(context);
     }
 
     private AS_CheckAndSubmitAssessmentPage SelectGradeEmployerRoute(string grade)
     {
         if (grade == "pass")
         {
-            return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(_context)
+            return new AS_WhoWouldYouLikeUsToSendTheCertificateToPage(context)
             .ClickEmployerRadioButton()
             .ClickEnterAddressManuallyLinkInSearchEmployerPage()
             .EnterEmployerNameAndAddressAndContinue()
@@ -146,10 +138,10 @@ public class AssessmentServiceStepsHelper
         }
         else if (grade == "PassWithExcellence") PassWithExcellence();
 
-        return new AS_CheckAndSubmitAssessmentPage(_context);
+        return new AS_CheckAndSubmitAssessmentPage(context);
     }
 
-    private AS_CheckAndSubmitAssessmentPage PassWithExcellence() => new AS_ConfirmAddressPage(_context).ClickContinueInConfirmEmployerAddressPage();
+    private AS_CheckAndSubmitAssessmentPage PassWithExcellence() => new AS_ConfirmAddressPage(context).ClickContinueInConfirmEmployerAddressPage();
 
     private static AS_DeclarationPage CertifyApprentice(AS_ConfirmApprenticePage confirmApprenticePage, LearnerCriteria learnerCriteria)
     {

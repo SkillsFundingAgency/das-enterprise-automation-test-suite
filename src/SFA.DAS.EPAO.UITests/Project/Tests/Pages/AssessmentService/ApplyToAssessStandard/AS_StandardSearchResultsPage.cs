@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
-public class AS_StandardSearchResultsPage : EPAO_BasePage
+public class AS_StandardSearchResultsPage(ScenarioContext context) : EPAO_BasePage(context)
 {
     protected override string PageTitle => "Standard search results";
 
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
-
-    public AS_StandardSearchResultsPage(ScenarioContext context) : base(context) { }
 
     public AS_ConfirmAndApplyPage Apply()
     {

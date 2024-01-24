@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
 
-public class SearchForAnEmployerPage : ToolSupportBasePage
+public class SearchForAnEmployerPage(ScenarioContext context, bool verifyPage = true) : ToolSupportBasePage(context, verifyPage)
 {
     protected override string PageTitle => "Search for an Employer.";
 
@@ -8,14 +8,12 @@ public class SearchForAnEmployerPage : ToolSupportBasePage
     private static By InternalAccountId => By.Id("internalAccountId");
     private static By HashedAccountId => By.Id("hashedAccountId");
     private static By PaginationInfo => By.ClassName("pagination-info");
-    private static By PageSelector => By.ClassName("page-link");
     private static By SelectAllChkBox => By.Name("btSelectAll");
     private static By SubmitButton => By.Id("submitSearchFormButton");
     private static By SuspendUserButton => By.XPath("//button[contains(text(),'Suspend user(s)')]");
     private static By ReinstateUserButton => By.XPath("//button[contains(text(),'Reinstate user(s)')]");
-    #endregion
 
-    public SearchForAnEmployerPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) { }
+    #endregion
 
     public SearchForAnEmployerPage EnterInternalAccountId(string internalAccountId)
     {

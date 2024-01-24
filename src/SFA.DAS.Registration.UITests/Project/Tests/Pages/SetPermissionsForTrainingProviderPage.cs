@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     }
 
 
-   public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
+    public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");
         protected override string PageTitle => "Set permissions";
@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected static By RecruitDoNotAllowRadioOption => By.Id("operation-1-no");
 
         #region Helpers and Context
-        
+
         #endregion
 
         public SetPermissionsForTrainingProviderPage(ScenarioContext context) : base(context) => VerifyPage();

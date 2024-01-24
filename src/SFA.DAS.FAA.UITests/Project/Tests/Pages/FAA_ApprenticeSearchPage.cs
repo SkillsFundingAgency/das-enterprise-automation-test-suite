@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
-using System;
-using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.Framework;
+using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApprenticeSearchPage : FAA_SearchVacancyBasePage
+    public class FAA_ApprenticeSearchPage(ScenarioContext context) : FAA_SearchVacancyBasePage(context)
     {
         protected override string PageTitle => "Find an apprenticeship";
 
@@ -23,8 +24,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private static By KeywordsTextField => By.Id("Keywords");
         private static By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
         private static By DisabilityConfidentCheckBox => By.CssSelector("label.block-label");
-
-        public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context) { }
 
         public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string locationPostCode, string searchCriteriaOrDistanceDropDownValue, string apprenticeshipLevel, string disabilityConfident)
         {
@@ -55,7 +54,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                     if (searchCriteriaOrDistanceDropDownValue != "England")
                     {
                         int index = searchCriteriaOrDistanceDropDownValue.LastIndexOf("miles");
-                        urlDistance = searchCriteriaOrDistanceDropDownValue.Substring(0, index).TrimEnd();
+                        urlDistance = searchCriteriaOrDistanceDropDownValue[..index].TrimEnd();
                     }
                     formCompletionHelper.SelectFromDropDownByText(Distance, searchCriteriaOrDistanceDropDownValue);
                     SearchByKeyword(string.Empty, string.Empty, "WithinDistance=" + urlDistance);
@@ -109,7 +108,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
-            pageInteractionHelper.VerifyText(VerifyPhoneNumberText, faaDataHelper.PhoneNumberVerificationText);
+            pageInteractionHelper.VerifyText(VerifyPhoneNumberText, FAADataHelper.PhoneNumberVerificationText);
             formCompletionHelper.ClickElement(VerifyMobile);
             return new FAA_PhoneNumberVerificationPage(context);
         }

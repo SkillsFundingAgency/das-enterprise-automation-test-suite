@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
 
-public class SearchForApprenticeshipPage : ToolSupportBasePage
+public class SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : ToolSupportBasePage(context, verifyPage)
 {
     protected override string PageTitle => "Search for an apprenticeship.";
 
@@ -21,9 +21,8 @@ public class SearchForApprenticeshipPage : ToolSupportBasePage
     private static By ResumeButton => By.XPath("//button[contains(text(),'Resume apprenticeship(s)')]");
     private static By StopButton => By.XPath("//button[contains(text(),'Stop apprenticeship(s)')]");
     private static By UlnColumn => By.CssSelector("#apprenticeshipResultsTable tr td:nth-child(3)");
-    #endregion
 
-    public SearchForApprenticeshipPage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage) { }
+    #endregion
 
     public SearchForApprenticeshipPage EnterEmployerName(string employerName)
     {

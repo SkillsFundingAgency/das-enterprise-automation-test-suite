@@ -1,10 +1,8 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
 
-public class WhichEmployersAreYouInterestedInPage : AedBasePage
+public class WhichEmployersAreYouInterestedInPage(ScenarioContext context) : AedBasePage(context)
 {
     protected override string PageTitle => "";
-
-    public WhichEmployersAreYouInterestedInPage(ScenarioContext context) : base(context)  { }
 
     #region Locators
     private static By FirstEmployerCheckbox => By.CssSelector(".govuk-checkboxes__input");

@@ -6,11 +6,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
-    public abstract class RoatpApplyBasePage : RoatpBasePage
+    public abstract class RoatpApplyBasePage(ScenarioContext context) : RoatpBasePage(context)
     {
         #region Helpers and Context
-        protected readonly RoatpApplyDataHelpers applydataHelpers;
-        protected readonly RoatpApplyCreateUserDataHelpers applyCreateUserDataHelpers;
+        protected readonly RoatpApplyDataHelpers applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
+        protected readonly RoatpApplyCreateUserDataHelper applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelper>();
         #endregion
 
         private static By Dob => By.CssSelector("#dob");
@@ -20,12 +20,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         protected static By Year => By.CssSelector("input[id*='Year']");
 
         protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea, .govuk-textarea");
-
-        public RoatpApplyBasePage(ScenarioContext context) : base(context)
-        {
-            applydataHelpers = context.GetValue<RoatpApplyDataHelpers>();
-            applyCreateUserDataHelpers = context.GetValue<RoatpApplyCreateUserDataHelpers>();
-        }
 
         protected void UploadMultipleFiles(int noOfFiles)
         {
@@ -76,7 +70,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
             foreach (var dob in dobs)
             {
-                var dobcalc = applydataHelpers.Dob(count++);
+                var dobcalc = RoatpApplyDataHelpers.Dob(count++);
                 var month = dob.FindElement(Month);
                 formCompletionHelper.EnterText(month, dobcalc.Month);
 

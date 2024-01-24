@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.Azure.Documents;
+﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
 using SFA.DAS.CosmosDb;
+using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
@@ -38,11 +38,7 @@ public class Document : IDocument
     [JsonIgnore]
     public string ETag { get; protected set; }
 
-    [JsonProperty("_etag")]
-    private string ReadOnlyETag { set => ETag = value; }
-
     protected Document()
     {
     }
-
 }

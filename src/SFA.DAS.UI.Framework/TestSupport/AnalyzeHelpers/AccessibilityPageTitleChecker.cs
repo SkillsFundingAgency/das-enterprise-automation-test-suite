@@ -8,7 +8,7 @@ public static class AccessibilityPageTitleChecker
 
     static AccessibilityPageTitleChecker()
     {
-        pageTitles = new();
+        pageTitles = [];
     }
 
     public static bool Contains(string title)

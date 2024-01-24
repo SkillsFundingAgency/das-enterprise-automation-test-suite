@@ -1,6 +1,4 @@
-﻿using Polly;
-
-namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
+﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.StepsHelper;
 
 public class TestdataCleanupWithAccountIdStepsHelper
 {

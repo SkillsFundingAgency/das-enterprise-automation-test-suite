@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using System.Collections.Generic;
-using System;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
@@ -86,11 +84,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             VerifyErrorSummaryTitle();
 
-            MultipleVerifyPage(new List<Func<bool>>
-            {
-                () => VerifyPage(ErrorSummaryText,"Select an answer"),
-                () => VerifyPage(FieldValidtionError,"Select an answer")
-            });
+            MultipleVerifyPage(
+            [
+                () => VerifyPage(ErrorSummaryText, "Select an answer"),
+                () => VerifyPage(FieldValidtionError, "Select an answer")
+            ]);
         }
 
         private void SelectYesRadioOption() { formCompletionHelper.SelectRadioOptionByText("Yes"); Continue(); }

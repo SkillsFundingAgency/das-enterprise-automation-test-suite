@@ -4,13 +4,8 @@ using System.Linq;
 
 namespace SFA.DAS.API.Framework.Helpers;
 
-public class InnerApiAuthDataCollectionHelper : RequestAndResponseCollectionHelper
+public class InnerApiAuthDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : RequestAndResponseCollectionHelper(client, request, response)
 {
-
-    public InnerApiAuthDataCollectionHelper(RestClient client, RestRequest request, RestResponse response) : base(client, request, response)
-    {
-    }
-
     protected override string GetRequestBody()
     {
         var list = GetRequestParameters();

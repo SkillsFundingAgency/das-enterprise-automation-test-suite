@@ -11,17 +11,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 {
     [Binding]
     [Scope(Feature = "StartDateChangeOfCircumstance")]
-    public class StartDateChangeOfCircumstanceSteps : StepsBase
+    public class StartDateChangeOfCircumstanceSteps(ScenarioContext context) : StepsBase(context)
     {
         private DateTime _initialStartDate;
         private DateTime _initialEndDate;
         private Payment _payment;
         private PendingPayment _initialEarning;
         private List<PendingPayment> _newEarnings;
-
-        public StartDateChangeOfCircumstanceSteps(ScenarioContext context) : base(context)
-        {
-        }
 
         [Given(@"an existing apprenticeship incentive with learning starting on (.*) and ending on (.*)")]
         public async Task GivenAnExistingApprenticeshipIncentiveWithLearningStartingIn_Oct(
@@ -36,7 +32,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(_initialStartDate)
+                .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase1)
                 .Create();
 
@@ -54,7 +50,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
             TestData.IncentiveApplication = new IncentiveApplicationBuilder()
                 .WithAccount(TestData.Account)
-				.WithDateSubmitted(_initialStartDate)
+                .WithDateSubmitted(_initialStartDate)
                 .WithApprenticeship(TestData.ApprenticeshipId, TestData.ULN, TestData.UKPRN, _initialStartDate, dateOfBirth, Context.ScenarioInfo.Title, Phase.Phase2)
                 .Create();
 
@@ -184,10 +180,10 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
 
         [When(@"the start date is changed to before the start of the eligibility period in period (.*) AY (.*)")]
         public async Task WhenTheStartDateIsBeforeTheEligibilityPeriod(byte period, short academicYear)
-        {       
+        {
             var apprenticeshipIncentive = TestData.IncentiveApplication.Apprenticeships.Single();
             PriceEpisodeDto priceEpisode;
-            DateTime newStartDate = new DateTime(2021, 03, 31);
+            DateTime newStartDate = new(2021, 03, 31);
 
             if (apprenticeshipIncentive.Phase == Phase.Phase3)
             {
@@ -226,7 +222,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.StepDefin
         {
             var apprenticeshipIncentive = TestData.IncentiveApplication.Apprenticeships.Single();
             PriceEpisodeDto priceEpisode = null;
-            DateTime newStartDate = new DateTime(2021, 03, 31);
+            DateTime newStartDate = new(2021, 03, 31);
 
             if (apprenticeshipIncentive.Phase == Phase.Phase3)
             {

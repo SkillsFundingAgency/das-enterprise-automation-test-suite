@@ -3,13 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeRequestDraftsPage : ApprenticeRequestsSubPage
+    public class ApprenticeRequestDraftsPage(ScenarioContext context) : ApprenticeRequestsSubPage(context)
     {
         protected override string PageTitle => "Apprentice requests";
 
         protected override bool TakeFullScreenShot => false;
-
-        public ApprenticeRequestDraftsPage(ScenarioContext context) : base(context)  { }
 
         public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
         {

@@ -51,7 +51,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             _providerStepsHelper.ApproveChangesAndSubmit();
 
-            _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail, _context.ScenarioInfo.Title);
+            _aComtSqlDbHelper.ConfirmCoCEventHasTriggered(apprenticeEmail);
         }
 
         [When(@"the apprentice logs into CMAD again following a CoC")]
@@ -77,15 +77,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"the apprentice is able to review and confirm employer and apprenticeship details section")]
         public void ThenTheApprenticeIsAbleToReviewAndConfirmEmployerAndApprenticeshipDetailsSection()
         {
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(_apprenticeOverviewPage);
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
+            _apprenticeOverviewPage = ConfirmMyApprenticeshipStepsHelper.ConfirmYourEmployer(_apprenticeOverviewPage);
+            _apprenticeOverviewPage = ConfirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
             VerifyCocAndConfirmApprenticeship();
         }
 
         [Then(@"the apprentice is able to review and confirm apprenticeship details section")]
         public void ThenTheApprenticeIsAbleToReviewAndConfirmApprenticeshipDetailsSection()
         {
-            _apprenticeOverviewPage = confirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
+            _apprenticeOverviewPage = ConfirmMyApprenticeshipStepsHelper.ConfirmYourApprenticeshipDetails(_apprenticeOverviewPage);
             VerifyCocAndConfirmApprenticeship();
         }
 

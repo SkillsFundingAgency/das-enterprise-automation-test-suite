@@ -5,12 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
 {
-    public class NewRoatpAdminStepsHelper : RoatpAdminStepsHelper
+    public class NewRoatpAdminStepsHelper(ScenarioContext context) : RoatpAdminStepsHelper(context)
     {
-        private readonly ScenarioContext _context;
-
-        public NewRoatpAdminStepsHelper(ScenarioContext context) : base(context) => _context = context;
-
-        public SearchPage SearchForATrainingProvider() => new StaffDashboardPage(_context, true).SearchForATrainingProvider();
+        public SearchPage SearchForATrainingProvider() => new StaffDashboardPage(context, true).SearchForATrainingProvider();
     }
 }

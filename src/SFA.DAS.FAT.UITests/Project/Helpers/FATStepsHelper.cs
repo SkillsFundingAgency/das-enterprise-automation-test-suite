@@ -5,19 +5,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT.UITests.Project.Helpers
 {
-    public class FATStepsHelper
+    public class FATStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        
-        public FATStepsHelper(ScenarioContext context) => _context = context;
-
         public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course = "")
         {
-            new FATIndexPage(_context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
-            return new TrainingCourseSearchResultsPage(_context);
+            new FATIndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
+            return new TrainingCourseSearchResultsPage(context);
         }
 
-        public void CheckIfSatisfactionAndAchievementRatesAreDisplayed(ProviderSearchResultsPage providerSearchResultsPage)
+        public static void CheckIfSatisfactionAndAchievementRatesAreDisplayed(ProviderSearchResultsPage providerSearchResultsPage)
         {
             Assert.IsTrue(RegexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetEmployerSatisfactionPercentageInfo()), "EmployerSatisfactionPercentageInfo is Not displayed");
             Assert.IsTrue(RegexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetLearnerSatisfactionPercentageInfoInfo()), "LearnerSatisfactionPercentageInfo is Not displayed");

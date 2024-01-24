@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
@@ -20,11 +21,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
-                formCompletionHelper.EnterText(FirstName, eIDataHelper.FirstName);
-                formCompletionHelper.EnterText(Surname, eIDataHelper.SurName);
+                formCompletionHelper.EnterText(FirstName, EIDataHelper.FirstName);
+                formCompletionHelper.EnterText(Surname, EIDataHelper.SurName);
                 formCompletionHelper.EnterText(Email, email);
                 SelectOptionByText("genric_email_address", "No");
-                formCompletionHelper.EnterText(Telephone, eIDataHelper.TelephoneNumber);
+                formCompletionHelper.EnterText(Telephone, EIDataHelper.TelephoneNumber);
                 Continue();
             });
 

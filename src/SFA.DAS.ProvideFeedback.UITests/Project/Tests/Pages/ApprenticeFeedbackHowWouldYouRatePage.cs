@@ -1,15 +1,10 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class ApprenticeFeedbackHowWouldYouRatePage : ApprenticeFeedbackBasePage
+public class ApprenticeFeedbackHowWouldYouRatePage(ScenarioContext context) : ApprenticeFeedbackBasePage(context)
 {
     protected override string PageTitle => "How would you rate";
 
     private static By RatingRadioItems => By.CssSelector("[id*='overall-rating']");
-
-    public ApprenticeFeedbackHowWouldYouRatePage(ScenarioContext context) : base(context)
-    {
-
-    }
 
     public ApprenticeFeedbackCheckYourAnswersPage ProvideRating()
     {

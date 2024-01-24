@@ -1,11 +1,9 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System.Xml.Linq;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {
-    public class EmployerAccountStatusPage : ProviderLeadRegistrationBasePage
+    public class EmployerAccountStatusPage(ScenarioContext context) : ProviderLeadRegistrationBasePage(context)
     {
         protected override string PageTitle => "Employer account status";
 
@@ -13,9 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         private static By TRows => By.CssSelector(".govuk-summary-list__row");
         private static By THeader => By.CssSelector(".govuk-summary-list__key");
         private static By TData => By.CssSelector(".govuk-summary-list__value");
-        #endregion
 
-        public EmployerAccountStatusPage(ScenarioContext context) : base(context) { }
+        #endregion
 
         public EmployerAccountStatusPage VerifyStatus(string status, string value)
         {
@@ -32,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
                     return row.FindElement(TData);
                 }
             }
-            
+
             throw new NotFoundException($"{headerName} not found");
         }
 

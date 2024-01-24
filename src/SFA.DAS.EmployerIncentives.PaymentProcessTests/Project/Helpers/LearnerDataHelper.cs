@@ -5,14 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class LearnerDataHelper
+    public class LearnerDataHelper(ScenarioContext context)
     {
-        private readonly EISqlHelper _sqlHelper;
-
-        public LearnerDataHelper(ScenarioContext context)
-        {
-            _sqlHelper = context.Get<EISqlHelper>();
-        }
+        private readonly EISqlHelper _sqlHelper = context.Get<EISqlHelper>();
 
         public async Task VerifyLearningRecordsExist(long apprenticeshipId)
         {

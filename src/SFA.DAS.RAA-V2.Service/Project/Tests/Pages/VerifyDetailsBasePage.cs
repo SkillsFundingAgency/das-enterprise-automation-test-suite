@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class VerifyDetailsBasePage : Raav2BasePage
+    public abstract class VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : Raav2BasePage(context, verifypage)
     {
         protected virtual By EmployerName { get; }
 
@@ -12,8 +12,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected virtual By DisabilityConfident { get; }
 
-        public VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
-    
         protected void VerifyEmployerName()
         {
             var empName = objectContext.GetEmployerNameAsShownInTheAdvert();

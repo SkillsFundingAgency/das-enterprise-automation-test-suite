@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
@@ -66,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
     {
         public MapApprenticeDetails()
         {
-                
+
         }
         public string Category { get; set; }
 

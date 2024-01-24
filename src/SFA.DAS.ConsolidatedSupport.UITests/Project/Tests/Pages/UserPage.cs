@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class UserPage : UserOrgBasePage
+    public class UserPage(ScenarioContext context) : UserOrgBasePage(context, true)
     {
         protected override By PageHeader => By.CssSelector("[data-test-id='tabs-nav-item-users']");
 
-        protected override string PageTitle => dataHelper.NewUserFullName;
+        protected override string PageTitle => ConsolidateSupportDataHelper.NewUserFullName;
 
         private static By AllRecordsFields => By.CssSelector(".property_box > .ember-view .property");
 
@@ -21,15 +22,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override PageTypeEnum PageType => PageTypeEnum.User;
 
-        public UserPage(ScenarioContext context) : base(context, true) { }
-        
         public void CreateOrganisation()
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(OrganisationTab), false);
 
             formCompletionHelper.EnterText(OrganisationName, dataHelper.NewOrgName);
 
-            formCompletionHelper.EnterText(OrganisationDomain, dataHelper.NewOrgDomain);
+            formCompletionHelper.EnterText(OrganisationDomain, ConsolidateSupportDataHelper.NewOrgDomain);
 
             formCompletionHelper.ClickElement(AddOrganisationButton);
         }
@@ -42,19 +41,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
             VerifyElement(OrganisationTab, dataHelper.NewOrgName);
 
-            VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower());
+            VerifyElement(() => pageInteractionHelper.FindElements(AllRecordsFields), ConsolidateSupportDataHelper.NewOrgDomain.ToLower());
         }
 
-        public HomePage VerifyDetails() => VerifyUserDetails("Contact Type", dataHelper.Type);
+        public HomePage VerifyDetails() => VerifyUserDetails("Contact Type", ConsolidateSupportDataHelper.Type);
 
         public UserPage EnterDetails()
         {
-            SelectOptions("Contact Type", dataHelper.Type);
-            EnterText("Address Line 1", dataHelper.AddressLine1);
-            EnterText("Address Line 2", dataHelper.AddressLine2);
-            EnterText("Address Line 3", dataHelper.AddressLine3);
-            EnterText("City", dataHelper.City);
-            EnterText("Postcode", dataHelper.Postcode);
+            SelectOptions("Contact Type", ConsolidateSupportDataHelper.Type);
+            EnterText("Address Line 1", ConsolidateSupportDataHelper.AddressLine1);
+            EnterText("Address Line 2", ConsolidateSupportDataHelper.AddressLine2);
+            EnterText("Address Line 3", ConsolidateSupportDataHelper.AddressLine3);
+            EnterText("City", ConsolidateSupportDataHelper.City);
+            EnterText("Postcode", ConsolidateSupportDataHelper.Postcode);
 
             return this;
         }

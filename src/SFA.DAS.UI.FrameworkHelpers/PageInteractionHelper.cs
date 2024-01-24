@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Azure.Documents.Spatial;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using System;
@@ -7,40 +8,40 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public static class ExceptionMessageHelper
+public static class MessageHelper
 {
-    public static string GetExceptionMessage(string x, string expected, string actual) => $"{x} verification failed:{Environment.NewLine}Expected: {expected} page {Environment.NewLine}Found: {actual} page";
+    public static string GetExceptionMessage(string x, string expected, string actual) => GetExceptionMessage(x, [expected], [actual]);
+
+    internal static string GetExceptionMessage(string x, IEnumerable<string> expected, string actual) => GetExceptionMessage(x, expected, [actual]);
+
+    internal static string GetExceptionMessage(string x, string expected, IEnumerable<string> actual) => GetExceptionMessage(x, [expected], actual);
+
+    internal static string GetExceptionMessage(string x, IEnumerable<string> expected, IEnumerable<string> actual) => OutputMessage($"{x} verification failed", expected, actual);
+
+    internal static string OutputMessage(string message, IEnumerable<string> expected, IEnumerable<string> actual)
+    {
+        static string Join(string separator, IEnumerable<string> values) => string.Join(separator, values.Select(x => $"'{x}'").ToList());
+
+        return $"{message}:{Environment.NewLine}Expected: {Join(" OR ", expected)} {Environment.NewLine}Found: {Join(" , ", actual)}";
+    }
 }
 
-public class PageInteractionHelper : WebElementInteractionHelper
+public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : WebElementInteractionHelper(webDriver)
 {
-    private readonly IWebDriver _webDriver;
-    private readonly WebDriverWaitHelper _webDriverWaitHelper;
-    private readonly RetryHelper _retryHelper;
-    private readonly ObjectContext _objectContext;
-
-    public PageInteractionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
-    {
-        _webDriver = webDriver;
-        _webDriverWaitHelper = webDriverWaitHelper;
-        _retryHelper = retryHelper;
-        _objectContext = objectContext;
-    }
-
     public void RefreshPage()
     {
-        _webDriver.Navigate().Refresh();
+        webDriver.Navigate().Refresh();
 
         SetDebugInformation($"Refreshed page...");
     }
 
-    public string GetUrl() => _webDriver.Url;
+    public string GetUrl() => webDriver.Url;
 
-    public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
+    public void InvokeAction(Action action, Action retryAction = null) => retryHelper.RetryOnWebDriverException(action, retryAction);
 
-    public T InvokeAction<T>(Func<T> func, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(func, retryAction);
+    public T InvokeAction<T>(Func<T> func, Action retryAction = null) => retryHelper.RetryOnWebDriverException(func, retryAction);
 
-    public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
+    public void WaitForElementToChange(By locator, string text) => webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
     public void WaitForElementToChange(By locator, string attribute, string value)
     {
@@ -49,11 +50,11 @@ public class PageInteractionHelper : WebElementInteractionHelper
         SetDebugInformation($"waited for '{locator}' : attribute : '{attribute}' to change to : '{value}'");
     }
 
-    public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
+    public void WaitforURLToChange(string urlText) => webDriverWaitHelper.WaitForUrlChange(urlText);
 
-    public void WaitForElementToBeClickable(By locator) => _webDriverWaitHelper.WaitForElementToBeClickable(locator);
+    public void WaitForElementToBeClickable(By locator) => webDriverWaitHelper.WaitForElementToBeClickable(locator);
 
-    public void WaitForElementToBeDisplayed(By locator) => _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+    public void WaitForElementToBeDisplayed(By locator) => webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
 
     public bool VerifyPage(Func<List<IWebElement>> elements, string expected)
     {
@@ -63,15 +64,36 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
             if (actual.Any(x => x.Contains(expected)))
             {
-                SetDebugInformation($"Verified page - '{expected}'"); return true;
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", [expected], actual)); 
+                
+                return true;
             }
 
-            throw new Exception("Page verification failed:"
-                + "\n Expected: " + expected + " page"
-                + "\n Found: " + string.Join(",", actual) + " page");
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
         }
 
         return VerifyPage(func);
+    }
+
+    public (bool result, string actualPage) VerifyPage(Func<List<IWebElement>> element, List<string> expected, Action retryAction = null)
+    {
+        string actualPage = string.Empty;
+
+        bool func()
+        {
+            var actual = GetTexts(element, retryAction);
+
+            if (expected.Any(e => actual.Any(a => { if (a.Contains(e)) { actualPage = a; } return a.Contains(e); })))  
+            {
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", expected, [actualPage]));
+
+                return true;
+            }
+
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
+        }
+
+        return (VerifyPage(func, retryAction), actualPage);
     }
 
     public bool VerifyPage(Func<IWebElement> element, List<string> expected, Action retryAction = null)
@@ -82,12 +104,12 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
             if (expected.Any(x => actual.Contains(x)))
             {
-                SetDebugInformation($"Verified page - '{string.Join("/",expected)}'"); return true;
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", expected, [actual]));
+
+                return true;
             }
 
-            throw new Exception("Page verification failed:"
-            + "\n Expected: " + string.Join(" OR ", expected) + " page"
-            + "\n Found: " + actual + " page");
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
         }
 
         return VerifyPage(func, retryAction);
@@ -104,7 +126,7 @@ public class PageInteractionHelper : WebElementInteractionHelper
                 SetDebugInformation($"Verified page - '{expected}'"); return true;
             }
 
-            throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", expected, actual));
+            throw new Exception(MessageHelper.GetExceptionMessage("Page", expected, actual));
         }
 
         return VerifyPage(func, retryAction);
@@ -114,32 +136,34 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public bool VerifyPage(By locator, string expected, Action retryAction = null) => VerifyPage(() => FindElement(locator), expected, retryAction);
 
-    public bool VerifyPageAfterRefresh(By locator) => _retryHelper.RetryOnException(Func(locator), WaitForPageToLoad, RefreshPage);
+    public bool VerifyPageAfterRefresh(By locator) => retryHelper.RetryOnException(Func(locator), WaitForPageToLoad, RefreshPage);
 
-    public bool Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
+    public bool Verify(Func<bool> func, Action beforeAction) => retryHelper.RetryOnException(func, beforeAction);
 
-    private bool VerifyPage(Func<bool> func, Action retryAction = null) => _retryHelper.RetryOnException(func, WaitForPageToLoad, retryAction);
+    private bool VerifyPage(Func<bool> func, Action retryAction = null) => retryHelper.RetryOnException(func, WaitForPageToLoad, retryAction);
 
     public bool VerifyText(string actual, string expected1, string expected2)
     {
         if (actual.Contains(expected1) || actual.Contains(expected2))
         {
-            SetDebugInformation($"Verifed text - '{expected1}/{expected2}'"); return true;
+            SetDebugInformation(MessageHelper.OutputMessage("Verified text", [expected1, expected2], [actual]));
+
+            return true;
         }
 
-        throw new Exception("Text verification failed: "
-            + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
-            + "\n Found: '" + actual + "' page");
+        throw new Exception(MessageHelper.GetExceptionMessage("Text", [expected1, expected2], [actual]));
     }
 
     public bool VerifyText(string actual, string expected)
     {
         if (actual.Contains(expected))
-            SetDebugInformation($"Verifed text - '{expected}'"); return true;
+        {
+            SetDebugInformation(MessageHelper.OutputMessage("Verified text", [expected], [actual])); 
+            
+            return true;
+        }
 
-        throw new Exception("Text verification failed: "
-            + "\n Expected: " + expected
-            + "\n Found: " + actual);
+        throw new Exception(MessageHelper.GetExceptionMessage("Text", expected, actual));
     }
 
     public bool VerifyText(By locator, string expected)
@@ -157,7 +181,7 @@ public class PageInteractionHelper : WebElementInteractionHelper
     public string GetTextFromElementsGroup(By locator)
     {
         string text = null;
-        IList<IWebElement> webElementGroup = _webDriver.FindElements(locator);
+        IList<IWebElement> webElementGroup = webDriver.FindElements(locator);
 
         foreach (IWebElement webElement in webElementGroup)
             text += GetText(webElement);
@@ -169,7 +193,7 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public void VerifyRadioOptionSelectedByText(string text, bool isSelected)
     {
-        _retryHelper.RetryOnWebDriverException(() =>
+        retryHelper.RetryOnWebDriverException(() =>
         {
             var selected = GetElementByAttribute(RadioButtonInputCssSelector, AttributeHelper.Value, text)?.Selected ?? false;
 
@@ -179,10 +203,10 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public bool IsElementPresent(By locator)
     {
-        _webDriverWaitHelper.TurnOffImplicitWaits();
+        webDriverWaitHelper.TurnOffImplicitWaits();
         try
         {
-            _webDriver.FindElement(locator);
+            webDriver.FindElement(locator);
             return true;
         }
         catch (NoSuchElementException)
@@ -191,7 +215,7 @@ public class PageInteractionHelper : WebElementInteractionHelper
         }
         finally
         {
-            _webDriverWaitHelper.TurnOnImplicitWaits();
+            webDriverWaitHelper.TurnOnImplicitWaits();
         }
     }
 
@@ -202,55 +226,57 @@ public class PageInteractionHelper : WebElementInteractionHelper
         return IsElementDisplayed(locator);
     }
 
-    public bool IsElementDisplayed(By locator) => WithoutImplicitWaits(() => 
+    public bool IsElementDisplayed(By locator) => WithoutImplicitWaits(() =>
     {
         static string text(bool a) => a ? "displayed" : "not displayed";
 
-        var x = _webDriver.FindElement(locator).Displayed;
+        var x = webDriver.FindElement(locator).Displayed;
 
-        SetDebugInformation( $"Verified {locator} is {text(x)}");
+        SetDebugInformation($"Verified {locator} is {text(x)}");
 
         return x;
     });
 
     public T WithoutImplicitWaits<T>(Func<T> func)
     {
-        _webDriverWaitHelper.TurnOffImplicitWaits();
+        webDriverWaitHelper.TurnOffImplicitWaits();
         try
         {
             return func();
         }
         catch (Exception)
         {
-            return default(T);
+            return default;
         }
         finally
         {
-            _webDriverWaitHelper.TurnOnImplicitWaits();
+            webDriverWaitHelper.TurnOnImplicitWaits();
         }
     }
 
     public void FocusTheElement(By locator)
     {
-        IWebElement webElement = _webDriver.FindElement(locator);
-        new Actions(_webDriver).MoveToElement(webElement).Perform();
-        _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+        IWebElement webElement = webDriver.FindElement(locator);
+        new Actions(webDriver).MoveToElement(webElement).Perform();
+        webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
     }
 
-    public void FocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
+    public void FocusTheElement(IWebElement element) => new Actions(webDriver).MoveToElement(element).Perform();
 
     public void UnFocusTheElement(By locator)
     {
-        var webElement = _webDriver.FindElement(locator);
-        new Actions(_webDriver).MoveToElement(webElement).Perform();
-        _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+        var webElement = webDriver.FindElement(locator);
+        new Actions(webDriver).MoveToElement(webElement).Perform();
+        webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
     }
 
-    public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
+    public void UnFocusTheElement(IWebElement element) => new Actions(webDriver).MoveToElement(element).Perform();
 
     public string GetText(By locator) => GetText(() => FindElement(locator));
 
-    public string GetText(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);
+    public string GetText(Func<IWebElement> element, Action retryAction = null) => retryHelper.RetryOnWebDriverException(() => element().Text, retryAction);
+
+    public List<string> GetTexts(Func<List<IWebElement>> element, Action retryAction = null) => retryHelper.RetryOnWebDriverException(() => element().Select(x => x.Text).ToList(), retryAction);
 
     public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
@@ -258,7 +284,7 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetAttribute(AttributeHelper.DataCount));
 
-    public string GetText(IWebElement webElement) => webElement.Text;
+    public static string GetText(IWebElement webElement) => webElement.Text;
 
     public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
@@ -266,18 +292,16 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public string GetRowData(By tableIdentifier, By keyIdentifier, params string[] rowIdentifier) => FindElements(tableIdentifier).Where(x => x.FindElements(keyIdentifier).Any(y => rowIdentifier.Any(r => y?.Text == r))).SingleOrDefault()?.Text;
 
-    public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
-
-    public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
+    public IWebElement FindElement(By locator) => webDriver.FindElement(locator);
 
     public List<IWebElement> FindElements(IWebElement element, By locator, bool withoutImplicitWaits = false) =>
-        withoutImplicitWaits ? WithoutImplicitWaits(() => element.FindElements(locator).ToList()) : element.FindElements(locator).ToList();
+        withoutImplicitWaits ? WithoutImplicitWaits(() => element.FindElements(locator).ToList()) : [.. element.FindElements(locator)];
 
-    public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
+    public List<IWebElement> FindElements(By locator) => webDriver.FindElements(locator).ToList();
 
     public bool WaitUntilAnyElements(By locator)
     {
-        var result = _webDriverWaitHelper.WaitUntil(() => FindElements(locator).Count > 0);
+        var result = webDriverWaitHelper.WaitUntil(() => FindElements(locator).Count > 0);
 
         SetDebugInformation($"wait until elements : '{locator}' count > 0, result '{result}'");
 
@@ -296,6 +320,10 @@ public class PageInteractionHelper : WebElementInteractionHelper
 
     public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetAttribute(AttributeHelper.InnerText)).ToList();
 
+    public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
+    private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
+
     private Func<bool> Func(By locator)
     {
         return () =>
@@ -308,9 +336,7 @@ public class PageInteractionHelper : WebElementInteractionHelper
         };
     }
 
-    public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
-
-    private void WaitForPageToLoad() => _webDriverWaitHelper.WaitForPageToLoad();
+    private void WaitForPageToLoad() => webDriverWaitHelper.WaitForPageToLoad();
 
     private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
     {
@@ -323,8 +349,6 @@ public class PageInteractionHelper : WebElementInteractionHelper
             throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
         }
 
-        _retryHelper.RetryOnWebDriverException(() => func(element));
+        retryHelper.RetryOnWebDriverException(() => func(element));
     }
-
-    private void SetDebugInformation(string x) => _objectContext.SetDebugInformation(x);
 }

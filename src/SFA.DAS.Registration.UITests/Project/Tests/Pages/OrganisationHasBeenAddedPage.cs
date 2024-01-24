@@ -4,14 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class OrganisationHasBeenAddedPage : InterimHomeBasePage
+    public class OrganisationHasBeenAddedPage(ScenarioContext context) : InterimHomeBasePage(context, false)
     {
         protected override string PageTitle => objectContext.GetRecentlyAddedOrganisationName() + " has been added";
 
         protected override string AccessibilityPageTitle => "Organisation has been added page";
 
         protected override By PageHeader => By.CssSelector(".das-notification__heading");
-
-        public OrganisationHasBeenAddedPage(ScenarioContext context) : base(context, false) { }
     }
 }

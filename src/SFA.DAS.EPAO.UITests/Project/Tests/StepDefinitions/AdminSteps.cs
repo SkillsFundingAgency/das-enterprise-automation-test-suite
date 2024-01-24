@@ -1,12 +1,10 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class AdminSteps : EPAOBaseSteps
+public class AdminSteps(ScenarioContext context) : EPAOBaseSteps(context)
 {
     private ConfirmReasonBasePage confirmReasonBasePage;
     private ConfirmationAmendReprintBasePage confirmationAmendReprintBasePage;
-
-    public AdminSteps(ScenarioContext context) : base(context) { }
 
     [Then(@"the admin can add organisation")]
     public void ThenTheAdminCanAddOrganisation() => AdminStepshelper.AddOrganisation(GoToEpaoAdminHomePage());
@@ -72,7 +70,7 @@ public class AdminSteps : EPAOBaseSteps
 
     [When(@"the Admin amends the certificate")]
     public void WhenTheAdminAmendsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickAmendCertificateLink();
-    
+
     [When(@"the Admin reprints the certificate")]
     public void WhenTheAdminReprintsTheCertificate() => confirmReasonBasePage = certificateDetailsPage.ClickReprintCertificateLink();
 
@@ -89,11 +87,11 @@ public class AdminSteps : EPAOBaseSteps
     public void ThenTheReprintCanBeConfirmed() => confirmationAmendReprintBasePage = checkAndSubmitAssessmentDetailsPage.ClickConfirmReprint();
 
     [Then(@"the certificate history contains the incident number '(.*)' and amend reason '(.*)'")]
-    public void ThenTheCertificateHistoryContainsTheReasonForAmending(string incidentNumber, string amendReason) 
+    public void ThenTheCertificateHistoryContainsTheReasonForAmending(string incidentNumber, string amendReason)
         => SelectACertificate().VerifyActionHistoryItem(1, "AmendReason").VerifyIncidentNumber(1, incidentNumber).VerifyFirstReason(1, amendReason);
 
     [Then(@"the certificate history contains the incident number '(.*)' and reprint reason '(.*)'")]
-    public void ThenTheCertificateHistoryContainsTheReasonForReprinting(string incidentNumber, string reprintReason) 
+    public void ThenTheCertificateHistoryContainsTheReasonForReprinting(string incidentNumber, string reprintReason)
         => SelectACertificate().VerifyActionHistoryItem(1, "Reprint").VerifyActionHistoryItem(2, "ReprintReason").VerifyIncidentNumber(2, incidentNumber).VerifyFirstReason(2, reprintReason);
 
     [Then(@"the admin can search batches")]

@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
-public abstract class ChangeBasePage : RoatpAdminBasePage
+public abstract class ChangeBasePage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
-    public ChangeBasePage(ScenarioContext context) : base(context) { }
-
     public ResultsFoundPage ClickBackLink()
     {
         Back();

@@ -1,17 +1,9 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class NonLevyPayingEmployerPage: EmployerBasePage
+    public class NonLevyPayingEmployerPage(ScenarioContext context) : EmployerBasePage(context)
     {
         protected override string PageTitle => "Funding an apprenticeship for non levy employers";
-
-        #region Page Object Element
-        private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Apprenticeships in Scotland, Northern Ireland and Wales')]");
-        private readonly By _nonLevyText = By.XPath("//div[@class='page']/p");
-        #endregion
-
-        public NonLevyPayingEmployerPage(ScenarioContext context): base(context) { }
     }
 }

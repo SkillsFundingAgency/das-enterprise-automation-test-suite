@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
-public class ResultsFoundPage : RoatpAdminBasePage
+public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
     protected override string PageTitle => $"found for";
 
@@ -18,13 +18,11 @@ public class ResultsFoundPage : RoatpAdminBasePage
 
     private static By RefineSearch => By.LinkText("Refine search");
 
-    private string MainAndEmployerStatus => "ON-BOARDING";
+    private static string MainAndEmployerStatus => "ON-BOARDING";
 
-    private string SupportingStatus => "ACTIVE";
+    private static string SupportingStatus => "ACTIVE";
 
-    private string ApplicationDetermineDate => "30 Nov 1980";
-
-    public ResultsFoundPage(ScenarioContext context) : base(context) { }
+    private static string ApplicationDetermineDate => "30 Nov 1980";
 
     public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
 

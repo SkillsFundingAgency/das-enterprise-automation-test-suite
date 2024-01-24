@@ -1,16 +1,16 @@
-﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using System.Linq;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 {
-    public class SelectEmployersPage : Raav2BasePage
+    public class SelectEmployersPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        private List<(string hashedid, string value)> values = new();
+        private List<(string hashedid, string value)> values = [];
         protected override string PageTitle => "Which employer do you want to create a vacancy for?";
 
         private static By SelectItemList => By.CssSelector(".govuk-table .das-button--inline-link");
@@ -18,8 +18,6 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
         private static By ListItem(string value) => By.CssSelector($".govuk-table .das-button--inline-link[value='{value}']");
 
         private static By SelectedEmployerYes => By.Id("confirm-yes");
-
-        public SelectEmployersPage(ScenarioContext context) : base(context) { }
 
         public (CreateAnApprenticeshipAdvertOrVacancyPage, bool) SelectEmployer(string empHashedid)
         {
@@ -52,7 +50,7 @@ namespace SFA.DAS.RAT_Provider.UITests.Project.Tests.Pages
 
             if (string.IsNullOrEmpty(empHashedid)) return values.Select(x => x.hashedid).ToList();
 
-            return new List<string>() { (empHashedid) };
+            return [(empHashedid)];
         }
 
         private List<(string hashedid, string value)> GetEmpDetails()

@@ -2,11 +2,9 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
-    public class InfluencersApprenticeAmbassadorNetworkPage : InfluencersBasePage
+    public class InfluencersApprenticeAmbassadorNetworkPage(ScenarioContext context) : InfluencersBasePage(context)
     {
         protected override string PageTitle => "Apprenticeship ambassador network";
-
-        public InfluencersApprenticeAmbassadorNetworkPage(ScenarioContext context) : base(context) { }
 
         public void VerifyInfluencersApprenticeAmbassadorNetworkPageSubHeadings() => VerifyFiuCards(() => NavigateToApprenticeAmbassadorNetworkPage());
     }

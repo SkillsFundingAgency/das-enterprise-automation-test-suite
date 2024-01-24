@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers.SqlDbHelper;
 
-public class EmploymentCheckDbSqlDataHelper : ProjectSqlDbHelper
+public class EmploymentCheckDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : ProjectSqlDbHelper(objectContext, dbConfig.EmploymentCheckDbConnectionString)
 {
-    public EmploymentCheckDbSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.EmploymentCheckDbConnectionString) { }
 }

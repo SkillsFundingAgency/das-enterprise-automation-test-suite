@@ -3,12 +3,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SetUpServicePage : ApprenticeBasePage
+    public class SetUpServicePage(ScenarioContext context) : ApprenticeBasePage(context)
     {
         protected override string PageTitle => "Create an account to search and apply for apprenticeships";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        public SetUpServicePage(ScenarioContext context): base(context) { }
     }
 }

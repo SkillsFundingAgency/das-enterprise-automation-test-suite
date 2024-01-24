@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
-    public class AreasOfInterestPage : AanBasePage
+    public class AreasOfInterestPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Please tell us which areas interest you most in your role as an ambassador";
 
@@ -9,7 +9,6 @@
         private static By OnlineEventsCheckBox => By.Id("Events_3__IsSelected");
         private static By DistrubtingCommunicationCheckBox => By.Id("Promotions_2__IsSelected");
 
-        public AreasOfInterestPage(ScenarioContext context) : base(context) => VerifyPage();
         public EngagedWithAmbassadorPage SelectEventsAndPromotions()
         {
             formCompletionHelper.SelectRadioOptionByLocator(NetworkingCheckBox);

@@ -1,22 +1,17 @@
-﻿using System;
-using Dapper.Contrib.Extensions;
+﻿using Dapper.Contrib.Extensions;
 using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
+using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {
-    public class IEDataSnapper : IEIDataSnapper
+    public class IEDataSnapper(DbConfig config) : IEIDataSnapper
     {
-        private readonly string _connectionString;
-
-        private IEDataSnapper(DbConfig config)
-        {
-            _connectionString = config.IncentivesDbConnectionString;
-        }
+        private readonly string _connectionString = config.IncentivesDbConnectionString;
 
         public async Task TakeDataSnapshot()
         {

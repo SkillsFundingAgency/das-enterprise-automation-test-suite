@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
 
-public class ToolSupportHomePage : ToolSupportBasePage
+public class ToolSupportHomePage(ScenarioContext context) : ToolSupportBasePage(context)
 {
     protected override string PageTitle => "DAS Tools Support";
 
@@ -10,9 +10,8 @@ public class ToolSupportHomePage : ToolSupportBasePage
     private static By StopApprenticeshipsLink => By.Id("stopApprenticeship");
     private static By SuspendUserAccountsLink => By.Id("suspendUser");
     private static By ReinstateUserAccountsLink => By.Id("reinstateUser");
-    #endregion
 
-    public ToolSupportHomePage(ScenarioContext context) : base(context) { }
+    #endregion
 
     public SearchForApprenticeshipPage ClickPauseApprenticeshipsLink()
     {

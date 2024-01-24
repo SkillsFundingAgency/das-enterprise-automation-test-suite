@@ -3,10 +3,8 @@
 namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpapplyinprogressapplication")]
-    public class RoatpApplyInProgressHooks : RoatpBaseHooks
+    public class RoatpApplyInProgressHooks(ScenarioContext context) : RoatpBaseHooks(context)
     {
-        public RoatpApplyInProgressHooks(ScenarioContext context) : base(context) { }
-
         [BeforeScenario(Order = 33)]
         public new void GetRoatpFullData() => base.GetRoatpFullData();
     }

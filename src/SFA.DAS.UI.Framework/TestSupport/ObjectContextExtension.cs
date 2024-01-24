@@ -12,7 +12,7 @@ public static class ObjectContextExtension
     private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
     private const string CurrentApplicationName = "currentapplicationname";
     private const string ChromedriverVersion = "chromedriverVersion";
-    private static readonly List<string> AuthUrls = new List<string>();
+    private static readonly List<string> AuthUrls = [];
     #endregion
 
     public static string AuthUrlKey => UrlKeyHelper.AuthUrlKey;

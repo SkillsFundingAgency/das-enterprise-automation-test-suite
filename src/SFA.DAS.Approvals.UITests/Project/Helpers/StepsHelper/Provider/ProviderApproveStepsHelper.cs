@@ -5,22 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderApproveStepsHelper
+    public class ProviderApproveStepsHelper(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
+        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-
-        private readonly ProviderEditStepsHelper _providerEditStepsHelper;
-
-        public ProviderApproveStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-
-            _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-
-            _providerEditStepsHelper = new ProviderEditStepsHelper(context);
-        }
+        private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
 
         public void Approve() => SubmitApprove(_providerCommonStepsHelper.CurrentCohortDetails());
 
@@ -32,14 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public void ValidatePortableFlexiJobContentAndApproveCohort()
         {
-            var providerHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
+            var providerHomePage = _providerCommonStepsHelper.GoToProviderHomePage(context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>(), true);
 
             var cohortPage = _providerCommonStepsHelper.CurrentCohortDetails(providerHomePage);
 
             _providerEditStepsHelper.EditApprentice(cohortPage, false).ValidatePortableFlexiJobTagAndSubmitApprove();
         }
 
-        private void SubmitApprove(ProviderApproveApprenticeDetailsPage page) => page.SubmitApprove();
+        private static void SubmitApprove(ProviderApproveApprenticeDetailsPage page) => page.SubmitApprove();
 
     }
 }

@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
-    public class RofjaaDbSqlHelper : SqlDbHelper
+    public class RofjaaDbSqlHelper(ObjectContext objectContext, DbConfig dBConfig) : SqlDbHelper(objectContext, dBConfig.RofjaaDbConnectionString)
     {
-        public RofjaaDbSqlHelper(ObjectContext objectContext, DbConfig dBConfig) : base(objectContext, dBConfig.RofjaaDbConnectionString) {}
-
         public string GetAccountLegalEntityId(string removalReason) => GetDataAsString($"SELECT LegalEntityId FROM Agency WHERE RemovalReason = '{removalReason}'");
 
         public void RemoveFJAAEmployerFromRegister()
@@ -14,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             var removalReason = "Automation";
             var accountLegalEntityId = GetAccountLegalEntityId(removalReason);
             string query = $"UPDATE Agency SET EffectiveTo = '2022-12-09 12:00:00.0000000' where LegalEntityId = {accountLegalEntityId}";
-            ExecuteSqlCommand(query);      
+            ExecuteSqlCommand(query);
         }
 
         public void AddFJAAEmployerToRegister()

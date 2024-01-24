@@ -1,21 +1,13 @@
-﻿using System;
-
-namespace SFA.DAS.FrameworkHelpers
+﻿namespace SFA.DAS.FrameworkHelpers
 {
-    public class RetryLogging
+    public class RetryLogging(ObjectContext objectContext, string uniqueIdentifier)
     {
-        private readonly ObjectContext objectContext;
-
-        private readonly string uniqueIdentifier;
-
-        public RetryLogging(ObjectContext objectContext, string uniqueIdentifier) 
+        public void Report(int retryCount, TimeSpan timeSpan, Exception exception, string scenarioTitle, Action retryAction = null)
         {
-            this.objectContext = objectContext;
+            objectContext.SetDebugInformation($"RETRY Count : {retryCount}, UniqueIdentifier : {uniqueIdentifier}");
 
-            this.uniqueIdentifier = uniqueIdentifier;
+            objectContext.SetRetryInformation(Logging.Message(retryCount, timeSpan, exception, scenarioTitle, uniqueIdentifier, retryAction));
         }
-
-        public void Report(int retryCount, TimeSpan timeSpan, Exception exception, string scenarioTitle, Action retryAction = null) => objectContext.SetRetryInformation(Logging.Message(retryCount, timeSpan, exception, scenarioTitle, uniqueIdentifier, retryAction));
 
     }
 }

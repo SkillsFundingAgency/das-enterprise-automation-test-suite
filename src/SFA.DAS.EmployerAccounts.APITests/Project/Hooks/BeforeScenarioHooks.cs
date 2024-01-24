@@ -8,27 +8,19 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerAccounts.APITests.Project.Hooks
 {
     [Binding]
-    public class BeforeScenarioHooks
+    public class BeforeScenarioHooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly DbConfig _dbConfig;
-        private readonly ObjectContext _objectContext;
-
-        public BeforeScenarioHooks(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _dbConfig = context.Get<DbConfig>();
-        }
+        private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
         [BeforeScenario(Order = 45)]
         public void SetUpHelpers()
         {
-            _context.Set(new EmployerAccountsSqlDbHelper(_context.Get<ObjectContext>(), _dbConfig));          
+            context.Set(new EmployerAccountsSqlDbHelper(context.Get<ObjectContext>(), _dbConfig));
 
-            _context.SetRestClient(new Inner_EmployerAccountsApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
+            context.SetRestClient(new Inner_EmployerAccountsApiRestClient(_objectContext, context.Get<Inner_ApiFrameworkConfig>()));
 
-            _context.SetRestClient(new Inner_EmployerAccountsLegacyApiRestClient(_objectContext, _context.Get<Inner_ApiFrameworkConfig>()));
+            context.SetRestClient(new Inner_EmployerAccountsLegacyApiRestClient(_objectContext, context.Get<Inner_ApiFrameworkConfig>()));
         }
     }
 }

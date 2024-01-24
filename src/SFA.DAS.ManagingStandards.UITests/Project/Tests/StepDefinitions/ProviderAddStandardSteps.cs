@@ -1,17 +1,14 @@
 ﻿namespace SFA.DAS.ManagingStandards.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class ProviderAddStandardSteps
+public class ProviderAddStandardSteps(ScenarioContext context)
 {
-    private readonly ScenarioContext _context;
-
-    public ProviderAddStandardSteps(ScenarioContext context) => _context = context;
 
     //this step is used to add test data (standard) to the provider. Should not be used in the regression tests
     [Then(@"provider can add standards to its list of standards offered")]
     public void ProviderCanAddStandardsToItsListOfStandardsOffered()
     {
-        var _providerManageTheStandardsYouDeliverPage = new ManagingStandardsProviderHomePage(_context).NavigateToYourStandardsAndTrainingVenuesPage().AccessStandards();
+        var _providerManageTheStandardsYouDeliverPage = new ManagingStandardsProviderHomePage(context).NavigateToYourStandardsAndTrainingVenuesPage().AccessStandards();
 
         for (int i = 0; i < 1; i++)
         {

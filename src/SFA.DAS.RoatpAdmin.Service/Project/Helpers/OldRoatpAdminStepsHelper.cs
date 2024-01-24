@@ -1,6 +1,5 @@
 ﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Helpers;
 
-public class OldRoatpAdminStepsHelper : RoatpAdminStepsHelper
+public class OldRoatpAdminStepsHelper(ScenarioContext context) : RoatpAdminStepsHelper(context)
 {
-    public OldRoatpAdminStepsHelper(ScenarioContext context) : base(context) { }
 }

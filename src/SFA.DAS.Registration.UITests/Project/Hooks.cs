@@ -13,29 +13,20 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class Hooks
+    public class Hooks(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly DbConfig _dbConfig;
-        private readonly ObjectContext _objectContext;
-        private readonly TryCatchExceptionHelper _tryCatch;
+        private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
         private PregSqlDataHelper _pregSqlDataHelper;
 
-        public Hooks(ScenarioContext context)
-        {
-            _context = context;
-            _dbConfig = context.Get<DbConfig>();
-            _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchExceptionHelper>();
-        }
-
         [BeforeScenario(Order = 21)]
-        public void Navigate() => _context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+        public void Navigate() => context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var tags = _context.ScenarioInfo.Tags;
+            var tags = context.ScenarioInfo.Tags;
 
             var dataHelper = new DataHelper(tags);
 
@@ -49,27 +40,27 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", aornDataHelper);
 
-            _context.Set(registrationDatahelpers);
+            context.Set(registrationDatahelpers);
 
-            _context.Set(new LoginCredentialsHelper(_objectContext));
+            context.Set(new LoginCredentialsHelper(_objectContext));
 
             _objectContext.SetOrganisationName(registrationDatahelpers.CompanyTypeOrg);
 
-            _context.Set(new RegistrationSqlDataHelper(_objectContext, _dbConfig));
+            context.Set(new RegistrationSqlDataHelper(_objectContext, _dbConfig));
 
-            _context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
+            context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
 
         [BeforeScenario(Order = 23)]
         [Scope(Tag = "providerleadregistration")]
-        public void SetUpProviderLeadRegistrationDataHelpers() => _context.Set(_pregSqlDataHelper = new PregSqlDataHelper(_objectContext, _dbConfig));
+        public void SetUpProviderLeadRegistrationDataHelpers() => context.Set(_pregSqlDataHelper = new PregSqlDataHelper(_objectContext, _dbConfig));
 
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
 
-        private string GetDomainName() => _context.Get<MailinatorApiHelper>().GetDomainName();
+        private string GetDomainName() => context.Get<MailinatorApiHelper>().GetDomainName();
     }
 }

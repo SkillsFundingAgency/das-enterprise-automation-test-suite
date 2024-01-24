@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Enter basic vacancy details";
 
         #region Helpers and Context
-        
+
         #endregion
 
         private By OfflineApplicationProcess => By.Id("apprenticheship-offline-application-instructions");

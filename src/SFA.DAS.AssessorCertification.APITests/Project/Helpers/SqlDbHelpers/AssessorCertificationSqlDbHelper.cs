@@ -3,10 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers
 {
-    public class AssessorCertificationSqlDbHelper : SqlDbHelper
+    public class AssessorCertificationSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
     {
-       public AssessorCertificationSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
-
         public void DeleteCertificate(string uln) => ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE Uln = {uln}); DELETE FROM [Certificates] WHERE Uln = {uln};");
 
         public void UpdateCertificateForSubmission(string uln) => ExecuteSqlCommand($"UPDATE [Certificates] SET Status = 'Draft', CertificateReference = '00034140' WHERE Uln = {uln}");

@@ -2,11 +2,11 @@
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
-public abstract class AanAdminBasePage : AanBasePage
+public abstract class AanAdminBasePage(ScenarioContext context, bool verifyPage = true) : AanBasePage(context, verifyPage)
 {
-    protected readonly AanAdminCreateEventDatahelper aanAdminCreateEventDatahelper;
+    protected readonly AanAdminCreateEventDatahelper aanAdminCreateEventDatahelper = context.GetValue<AanAdminCreateEventDatahelper>();
 
-    protected readonly AanAdminUpdateEventDatahelper aanAdminUpdateEventDatahelper;
+    protected readonly AanAdminUpdateEventDatahelper aanAdminUpdateEventDatahelper = context.GetValue<AanAdminUpdateEventDatahelper>();
 
     protected override By ContinueButton => By.CssSelector("#continue");
 
@@ -15,13 +15,6 @@ public abstract class AanAdminBasePage : AanBasePage
     private static By SearchList => By.CssSelector("#SearchTerm__listbox li");
 
     protected override By PageHeader => By.CssSelector("#main-content");
-
-    public AanAdminBasePage(ScenarioContext context, bool verifyPage = true) : base(context, verifyPage)
-    {
-        aanAdminCreateEventDatahelper = context.GetValue<AanAdminCreateEventDatahelper>();
-
-        aanAdminUpdateEventDatahelper = context.GetValue<AanAdminUpdateEventDatahelper>();
-    }
 
     protected void EnterYesOrNoRadioOption(string x)
     {
@@ -41,7 +34,7 @@ public abstract class AanAdminBasePage : AanBasePage
                 Assert.Fail($"Auto pop up not found for text : {text}");
             }
 
-        }, RetryTimeOut.GetTimeSpan(new int[] { 10, 5, 5, 5 }));
+        }, RetryTimeOut.GetTimeSpan([10, 5, 5, 5]));
 
         formCompletionHelper.ClickElement(() =>
         {

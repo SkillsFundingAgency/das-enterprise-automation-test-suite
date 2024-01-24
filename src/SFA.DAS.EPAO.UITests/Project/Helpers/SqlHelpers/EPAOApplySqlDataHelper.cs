@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers.SqlHelpers;
 
-public class EPAOApplySqlDataHelper : SqlDbHelper
+public partial class EPAOApplySqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AssessorDbConnectionString)
 {
-    public EPAOApplySqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : base(objectContext, dbConfig.AssessorDbConnectionString) { }
-
     public void DeleteCertificate(string uln)
     {
         ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE ULN = '{uln}')");
@@ -38,23 +36,25 @@ public class EPAOApplySqlDataHelper : SqlDbHelper
 
     public bool HasWithdrawals(string email)
     {
-        var sqlQueryFromFile = Regex.Replace(FileHelper.GetSql("HasWithdrawals"), @"__email__", email);
+        var sqlQueryFromFile = EmailRegex().Replace(FileHelper.GetSql("HasWithdrawals"), email);
+
         var data = GetData(sqlQueryFromFile, connectionString);
 
-        return data.Any() && data.First() == "1"
-                ? true
-                : false;
+        return data.Count != 0 && data.First() == "1";
     }
 
     public void ResetStandardWithdrawals(string email)
     {
-        var sqlQueryFromFile = Regex.Replace(FileHelper.GetSql("ResetStandardWithdrawals"), @"__email__", email);
+        var sqlQueryFromFile = EmailRegex().Replace(FileHelper.GetSql("ResetStandardWithdrawals"), email);
         ExecuteSqlCommand(sqlQueryFromFile, connectionString);
     }
 
     public void ResetRegisterWithdrawals(string email)
     {
-        var sqlQueryFromFile = Regex.Replace(FileHelper.GetSql("ResetRegisterWithdrawals"), @"__email__", email);
+        var sqlQueryFromFile = EmailRegex().Replace(FileHelper.GetSql("ResetRegisterWithdrawals"), email);
         ExecuteSqlCommand(sqlQueryFromFile, connectionString);
     }
+
+    [GeneratedRegex(@"__email__")]
+    private static partial Regex EmailRegex();
 }

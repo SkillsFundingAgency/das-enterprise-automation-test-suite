@@ -10,7 +10,7 @@ public class AddAstandardPage : ManagingStandardsBasePage
 
     private static By YesRadio => By.CssSelector("#is-correct-standard-yes");
 
-    public AddAstandardPage(ScenarioContext context, string standardname) : base(context, false) 
+    public AddAstandardPage(ScenarioContext context, string standardname) : base(context, false)
     {
         pageTitle = standardname;
 

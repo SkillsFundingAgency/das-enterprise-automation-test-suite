@@ -14,6 +14,7 @@ public class EPAOBaseSteps
     protected readonly EPAOApplyDataHelper ePAOApplyDataHelper;
     protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper;
     protected readonly EPAOApplyStandardDataHelper ePAOApplyStandardData;
+    protected readonly EPAOAssesorCreateUserDataHelper ePAOAssesorCreateUserDataHelper;
 
     protected readonly EPAOAdminSqlDataHelper ePAOAdminSqlDataHelper;
     protected readonly EPAOAdminCASqlDataHelper ePAOAdminCASqlDataHelper;
@@ -32,7 +33,6 @@ public class EPAOBaseSteps
     protected CheckAndSubmitAssessmentDetailsPage checkAndSubmitAssessmentDetailsPage;
 
     protected AP_ApplicationOverviewPage applicationOverviewPage;
-    protected AS_CreateAnAccountPage createAnAccountPage;
     protected AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage;
 
     protected AO_HomePage homePage;
@@ -53,12 +53,13 @@ public class EPAOBaseSteps
 
         ePAOE2EApplyUser = context.GetUser<EPAOE2EApplyUser>();
         ePAOApplyUser = context.GetUser<EPAOApplyUser>();
-        ePAOStageTwoStandardCancelUser = context.GetUser<EPAOStageTwoStandardCancelUser> ();
+        ePAOStageTwoStandardCancelUser = context.GetUser<EPAOStageTwoStandardCancelUser>();
 
         ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();
         ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
         ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
+        ePAOAssesorCreateUserDataHelper = context.Get<EPAOAssesorCreateUserDataHelper>();
 
         ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
         ePAOAdminCASqlDataHelper = context.Get<EPAOAdminCASqlDataHelper>();

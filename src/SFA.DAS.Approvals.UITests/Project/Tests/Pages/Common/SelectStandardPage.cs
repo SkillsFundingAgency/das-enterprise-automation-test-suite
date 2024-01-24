@@ -8,15 +8,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public class SelectStandardPage : AddAndEditApprenticeDetailsBasePage
+    public class SelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "Select standard";
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
-
-        public SelectStandardPage(ScenarioContext context) : base(context) { }
 
         public AddApprenticeDetailsPage EmployerSelectsAStandard()
         {
@@ -55,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseLarsCode);
-        
+
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
             SelectStandardAndContinue();
@@ -84,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             var courseDetails = apprenticeCourseDataHelper.CourseDetails;
 
-            Assert.That(formCompletionHelper.GetAllDropDownValue(TrainingCourseContainer).Any(x=> x == courseDetails.Course.larsCode), Is.False, $"{courseDetails.Course.larsCode}, {courseDetails.Course.title} is available for the provider");
+            Assert.That(formCompletionHelper.GetAllDropDownValue(TrainingCourseContainer).Any(x => x == courseDetails.Course.larsCode), Is.False, $"{courseDetails.Course.larsCode}, {courseDetails.Course.title} is available for the provider");
         }
 
         private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.That(GetAllTrainingCourses().All(x => x.Contains("(Framework)")), Is.False);

@@ -1,29 +1,23 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
-    public class Manage_SearchForACandidatePage : Manage_HeaderSectionBasePage
+    public class Manage_SearchForACandidatePage(ScenarioContext context) : Manage_HeaderSectionBasePage(context)
     {
         protected override string PageTitle => "Search for a candidate";
 
-        #region Helpers and Context
-        private readonly FAADataHelper _faaDataHelper;
-        #endregion
+        private static By FirstName => By.Id("SearchViewModel_FirstName");
 
-        private By FirstName => By.Id("SearchViewModel_FirstName");
+        private static By LastName => By.Id("SearchViewModel_LastName");
 
-        private By LastName => By.Id("SearchViewModel_LastName");
+        private static By NoCandidateInfo => By.CssSelector(".form-group");
 
-        private By NoCandidateInfo => By.CssSelector(".form-group");
-
-        private By CandidateAddress => By.CssSelector(".candidate-address");
-
-        public Manage_SearchForACandidatePage(ScenarioContext context) : base(context) => _faaDataHelper = context.Get<FAADataHelper>();
+        private static By CandidateAddress => By.CssSelector(".candidate-address");
 
         public Manage_SearchForACandidatePage Search()
         {
@@ -51,7 +45,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public void VerifyUpdatedCandidateDetails()
         {
-            pageInteractionHelper.VerifyText(CandidateAddress, _faaDataHelper.NewPostCode);
+            pageInteractionHelper.VerifyText(CandidateAddress, FAADataHelper.NewPostCode);
         }
     }
 }

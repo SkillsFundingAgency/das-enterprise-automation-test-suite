@@ -5,24 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 {
-    public class ProviderCreateVacancyStepsHelper : CreateAdvertVacancyBaseStepsHelper
+    public class ProviderCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : CreateAdvertVacancyBaseStepsHelper()
     {
-        private readonly ScenarioContext _context;
-
         private bool _isMultiOrg;
 
-        private string _hashedid;
-
-        private readonly bool _newTab;
+        private string _hashedid = string.Empty;
 
         public ProviderCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
-
-        public ProviderCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : base()
-        {
-            _context = context;
-            _newTab = newTab;
-            _hashedid = string.Empty;
-        }
 
         public VacancyReferencePage CreateANewVacancyForSpecificEmployer(string employername, string hashedid)
         {
@@ -101,7 +90,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
         {
-            return new CreateAnApprenticeshipAdvertOrVacancyPage(_context);
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
@@ -116,8 +105,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()
         {
             (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
-                new RecruitmentProviderHomePageStepsHelper(_context)
-                .GoToRecruitmentProviderHomePage(_newTab)
+                new RecruitmentProviderHomePageStepsHelper(context)
+                .GoToRecruitmentProviderHomePage(newTab)
                 .GoToViewAllVacancyPage()
                 .CreateVacancy()
                 .StartNow()

@@ -1,13 +1,11 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
-    public class PrimarilyEnagageWithinNetworkPage : AanBasePage
+    public class PrimarilyEnagageWithinNetworkPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Who would you like to primarily engage with in the network?";
 
-        private By LocallyRadio => By.Id("IsLocalOrganisation");
-        private By MultiRegionalOrganisationRadio => By.Id("multiRegionalOrganisation");
-
-        public PrimarilyEnagageWithinNetworkPage(ScenarioContext context) : base(context) => VerifyPage();
+        private static By LocallyRadio => By.Id("IsLocalOrganisation");
+        private static By MultiRegionalOrganisationRadio => By.Id("multiRegionalOrganisation");
 
         public LocalAreaToEngage ConfirmLocallyAndContinue()
         {

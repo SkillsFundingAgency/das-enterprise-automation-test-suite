@@ -1,12 +1,11 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper )
+        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper)
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             var randomPersonNameHelper = new RandomPersonNameHelper();
@@ -21,8 +20,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             CompanyTypeOrg = randomOrganisationNameHelper.GetCompanyTypeOrgName();
-            CompanyTypeOrg2 = randomOrganisationNameHelper.GetCompanyTypeOrgName(new List<string>() { CompanyTypeOrg });
-            CompanyTypeOrg3 = randomOrganisationNameHelper.GetCompanyTypeOrgName(new List<string>() { CompanyTypeOrg, CompanyTypeOrg2 });
+            CompanyTypeOrg2 = randomOrganisationNameHelper.GetCompanyTypeOrgName([CompanyTypeOrg]);
+            CompanyTypeOrg3 = randomOrganisationNameHelper.GetCompanyTypeOrgName([CompanyTypeOrg, CompanyTypeOrg2]);
             PublicSectorTypeOrg = randomOrganisationNameHelper.GetPublicSectorTypeOrgName();
             CharityTypeOrg1 = randomOrganisationNameHelper.GetCharityTypeOrg();
             CharityTypeOrg2 = randomOrganisationNameHelper.GetCharityTypeOrg(CharityTypeOrg1);
@@ -31,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName => $"{FirstName } {LastName}";
+        public string FullName => $"{FirstName} {LastName}";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }
@@ -49,11 +48,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Number => CharityTypeOrg2.Number;
         public string CharityTypeOrg2Name => CharityTypeOrg2.Name;
         public string CharityTypeOrg2Address => CharityTypeOrg2.Address;
-        public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
+        public static string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
 
         private CharityTypeOrg CharityTypeOrg1 { get; }
         private CharityTypeOrg CharityTypeOrg2 { get; }
-        private string RandomAlphaNumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
-        private string RandomNumericString(int length) => RandomDataGenerator.GenerateRandomNumber(length);
+        private static string RandomAlphaNumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
+        private static string RandomNumericString(int length) => RandomDataGenerator.GenerateRandomNumber(length);
     }
 }
