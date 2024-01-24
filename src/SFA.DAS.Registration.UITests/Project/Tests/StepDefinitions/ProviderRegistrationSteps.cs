@@ -99,6 +99,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .ProviderLeadRegistrationSignAgreement()
+                .SelectContinueToCreateYourEmployerAccount()
                 .GoToTrainingProviderLink()
                 .AddTrainingProviderNow()
                 .SelectAddATrainingProvider()
