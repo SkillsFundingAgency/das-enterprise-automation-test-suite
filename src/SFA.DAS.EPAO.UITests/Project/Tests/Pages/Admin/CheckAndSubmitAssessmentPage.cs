@@ -38,7 +38,7 @@ public class CheckAndSubmitAssessmentDetailsPage : EPAOAdmin_BasePage
         var givenName = pageInteractionHelper.GetText(GetBySummaryValueLocator("Given name"));
         var familyName = pageInteractionHelper.GetText(GetBySummaryValueLocator("Family name"));
 
-        pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Recipient's Name"), $"{givenName} {familyName}");
+        pageInteractionHelper.VerifyText(GetBySummaryValueLocator("Recipient's Name"), $"{givenName} {familyName}".ToUpper());
     }
 
     private static By GetBySummaryValueLocator(string displayName) => By.XPath($"//dt[contains(text(),\"{displayName}\")]/following-sibling::dd[@class='govuk-summary-list__value']");
