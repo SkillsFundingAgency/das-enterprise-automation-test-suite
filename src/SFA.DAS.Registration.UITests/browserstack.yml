@@ -1,0 +1,10 @@
+﻿userName: 
+accessKey: 
+projectName: ApprenticeshipService
+buildName: SFA.DAS.Registration.UITests_1730
+accessibility: true
+platforms:
+  - os: Windows
+    osVersion: 10
+    browserName: Chrome
+    browserVersion: 118
