@@ -1,8 +1,9 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class CheckSelectYourOrgOrProviderHomePage(ScenarioContext context, string ukprn) : CheckMultipleProviderHomePage(context)
+public class CheckSelectYourOrgOrProviderHomePage(ScenarioContext context, string ukprn) : CheckMultipleHomePage(context)
 {
     public override string[] PageIdentifierCss => [SelectYourOrganisationPage.SyoPageIdentifierCss, ProviderHomePage.ProviderHomePageIdentifierCss];
 

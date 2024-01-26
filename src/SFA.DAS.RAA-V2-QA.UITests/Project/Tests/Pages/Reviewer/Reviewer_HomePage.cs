@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
     {
         protected override By PageHeader => ReviewVacancyButton;
 
-        protected override string PageTitle => "Review Vacancy";
+        protected override string PageTitle => DfeAfterSignIdentifiers.Reviewer_HomePageTitle;
 
         private static By ReviewVacancyButton => By.CssSelector(DfeAfterSignIdentifiers.Reviewer_HomePageIdentifierCss);
 
