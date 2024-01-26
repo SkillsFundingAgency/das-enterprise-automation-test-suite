@@ -1,11 +1,8 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport.CheckPage;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
-namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
-public abstract class CheckMultipleProviderHomePage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
+public abstract class CheckMultipleHomePage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
     public abstract string[] PageIdentifierCss { get; }
 
