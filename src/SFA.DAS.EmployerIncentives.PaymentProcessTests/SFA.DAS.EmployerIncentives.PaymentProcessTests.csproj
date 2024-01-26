@@ -10,7 +10,7 @@
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="ExcelMapper" Version="5.2.*" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.58.*" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.59.*" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="NServiceBus.UniformSession" Version="2.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
