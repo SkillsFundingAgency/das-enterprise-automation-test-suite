@@ -1,9 +1,10 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
+﻿using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class CheckDfeSignInOrProviderHomePage(ScenarioContext context, string ukprn) : CheckMultipleProviderHomePage(context)
+public class CheckDfeSignInOrProviderHomePage(ScenarioContext context, string ukprn) : CheckMultipleHomePage(context)
 {
     public override string[] PageIdentifierCss => [DfeSignInPage.DfePageIdentifierCss, ProviderHomePage.ProviderHomePageIdentifierCss];
 
