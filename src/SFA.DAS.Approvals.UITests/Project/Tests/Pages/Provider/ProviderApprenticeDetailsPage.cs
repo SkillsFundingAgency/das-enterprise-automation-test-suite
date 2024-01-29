@@ -157,7 +157,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.Multiple(() =>
             {
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfPriceRequestSentBanner), "Change of Price Request Sent banner not displayed");
-                Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo(" Request to change the price sent to employer "));
+                Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to employer"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View price changes you've requested link is not displayed");
             }   
@@ -169,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.Multiple(() =>
             {
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangeCancelledBanner), "Price Change Cancelled banner not displayed");
-                Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo(" Your request to change the price has been cancelled "));
+                Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo("Your request to change the price has been cancelled"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
             }
            );

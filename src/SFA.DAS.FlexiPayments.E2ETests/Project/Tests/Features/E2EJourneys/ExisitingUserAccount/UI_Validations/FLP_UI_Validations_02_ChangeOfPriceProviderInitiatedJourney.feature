@@ -17,3 +17,6 @@ Scenario: FLP_UI_Validations_02 Change Of Price Provider Initiated Journey
 	And validate Training Price and EPA price must be between 1 and 100000
 	And validate Effective From Date cannot be before Training Start Date
 	And validate Effective From Date cannot be after Training End Date
+    And Provider successfully creates a Change of Price request
+	And Provider is able to view details of change of price request
+	And Provider can successfully cancel the change of price request

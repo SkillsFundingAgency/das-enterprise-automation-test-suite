@@ -21,8 +21,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
         private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
         private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
+        private ChangeOfPriceViewChangeRequestPage _viewChangeRequestPage;
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
         private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
+        private decimal newTrainingPrice;
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -90,15 +92,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
-        public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
-        {
-            _providerApprenticeDetailsPage.ClickChangePriceLink();
-        }
+        public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
         [When(@"Provider successfully creates a Change of Price request")]
+        [Then(@"Provider successfully creates a Change of Price request")]
         public void ProviderSuccessfullyCreatesAChangeOfPriceRequest()
         {
-            var newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + 500;
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + 500;
 
             new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
                 (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title)
@@ -106,6 +106,23 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
+        [Then(@"Provider is able to view details of change of price request")]
+        public void ThenProviderIsAbleToViewDetailsOfChangeOfPriceRequest()
+        {
+            _providerApprenticeDetailsPage.ClickViewPriceChangesRequestedLink();
+
+            var totalPrice = newTrainingPrice + Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice);
+
+            _viewChangeRequestPage = new ChangeOfPriceViewChangeRequestPage(context).VerifyPendingEmployerReviewTagIsDisplayed()
+                .ValidateRequestedValues(newTrainingPrice, Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice), totalPrice, DateTime.Now, context.ScenarioInfo.Title);          
+        }
+
+        [Then(@"Provider can successfully cancel the change of price request")]
+        public void ThenProviderCanSuccessfullyCancelTheChangeOfPriceRequest()
+        {
+            _viewChangeRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
+                .ValidateChangeOfPriceRequestCancelledSuccessfully();
+        }
 
         [When(@"Provider submits change of price form without changing input fields")]
         public void WhenProviderSubmitsChangeOfPriceFormWithoutChangingInputFields()
@@ -140,7 +157,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             var date = _apprenticeCourseDataHelper.CourseEndDate.AddDays(1);
             _changePriceNegotiationAmountPage.ValidateEnterADateThatIsBeforePlannedEndDateErrorMessage(date);
         }
-
 
         [Then(@"validate provider (can|cannot) view Pilot DataLock message")]
         public void ThenValidateProviderCanViewPilotDataLockMessage(string action)

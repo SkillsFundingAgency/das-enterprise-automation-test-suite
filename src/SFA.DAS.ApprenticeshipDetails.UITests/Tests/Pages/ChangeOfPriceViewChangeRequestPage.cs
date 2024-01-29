@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
@@ -21,21 +22,23 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
         private static By CancelRequestOptionYes => By.Id("option-yes");
         private static By CancelRequestOptionNo => By.Id("option-no");
 
-        public void VerifyPendingEmployerReviewTagIsDisplayed()
+        public ChangeOfPriceViewChangeRequestPage VerifyPendingEmployerReviewTagIsDisplayed()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PendingEmployerReviewTag), "Pending Employer Review tag not displayed");
+            return this;
         }
 
-        public void ValidateRequestedValues(string trainingPrice, string endPointAssessmentPrice, string totalPrice, string effectiveFromDate, string reason)
+        public ChangeOfPriceViewChangeRequestPage ValidateRequestedValues(decimal trainingPrice, decimal endPointAssessmentPrice, decimal totalPrice, DateTime effectiveFromDate, string reason)
         {
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(pageInteractionHelper.GetText(TrainingPriceRequestedValue), trainingPrice, "Requested Training Price mismatch");
-                Assert.AreEqual(pageInteractionHelper.GetText(EndPointAssessmentPriceRequestedValue), endPointAssessmentPrice, "Requested Endpoint Assessment Price mismatch");
-                Assert.AreEqual(pageInteractionHelper.GetText(TotalPriceRequestedValue), totalPrice, "Requested Total Price mismatch");
-                Assert.AreEqual(pageInteractionHelper.GetText(EffectiveFromDateValue), effectiveFromDate, "Effective From Date mismatch");
-                Assert.AreEqual(pageInteractionHelper.GetText(ReasonForChangeValue), reason, "Requested reason mismatch");
+                Assert.AreEqual(trainingPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-GB")), pageInteractionHelper.GetText(TrainingPriceRequestedValue), "Requested Training Price mismatch");
+                Assert.AreEqual(endPointAssessmentPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-GB")), pageInteractionHelper.GetText(EndPointAssessmentPriceRequestedValue), "Requested Endpoint Assessment Price mismatch");
+                Assert.AreEqual(totalPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-GB")), pageInteractionHelper.GetText(TotalPriceRequestedValue), "Requested Total Price mismatch");
+                Assert.AreEqual(effectiveFromDate.ToString("dd MMM yyyy"), pageInteractionHelper.GetText(EffectiveFromDateValue), "Effective From Date mismatch");
+                Assert.AreEqual(reason, pageInteractionHelper.GetText(ReasonForChangeValue), "Requested reason mismatch");
             });
+            return this;
         }
 
         public ProviderApprenticeDetailsPage SelectKeepTheRequestRadioButtonAndContinue()
@@ -47,6 +50,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
         public ProviderApprenticeDetailsPage SelectCancelTheRequestRadioButtonAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByLocator(CancelRequestOptionYes);
+            formCompletionHelper.Click(ContinueButton);
             return new ProviderApprenticeDetailsPage(context);
         }
 

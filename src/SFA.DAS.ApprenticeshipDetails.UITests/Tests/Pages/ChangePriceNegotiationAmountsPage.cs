@@ -8,8 +8,6 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
 {
     public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-
-        const
         protected override string PageTitle => "Change the training price and/or the end-point assessment price";
 
         protected override By ContinueButton => By.Id("buttonSubmitForm");
