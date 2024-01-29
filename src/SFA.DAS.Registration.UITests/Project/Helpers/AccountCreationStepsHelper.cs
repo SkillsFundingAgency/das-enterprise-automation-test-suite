@@ -80,6 +80,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SearchForAnOrganisation(orgType)
             .SelectYourOrganisation(orgType))
             .SignAgreement()
+            .SelectContinueToCreateYourEmployerAccount()
             .GoToTrainingProviderLink()
             .AddTrainingProviderLater()
             .SelectGoToYourEmployerAccountHomepage();

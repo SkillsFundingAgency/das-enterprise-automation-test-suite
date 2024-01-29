@@ -64,7 +64,7 @@ public abstract class VerifyBasePage : InterimBasePage
     {
         var result = IsPageCurrent;
 
-        return result.Item1 ? result.Item1 : throw new Exception(ExceptionMessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
+        return result.Item1 ? result.Item1 : throw new Exception(MessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
     }, null));
 
     protected bool VerifyPageAfterRefresh(By locator, string text) => VerifyPage(() => VerifyElement(locator, text, pageInteractionHelper.RefreshPage));

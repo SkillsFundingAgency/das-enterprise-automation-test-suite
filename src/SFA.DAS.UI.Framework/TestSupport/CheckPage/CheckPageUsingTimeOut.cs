@@ -33,5 +33,5 @@ public abstract class CheckPageUsingTimeOut(ScenarioContext context) : CheckPage
         return checkPageInteractionHelper.VerifyPage(Identifier, pageTitle); 
     });
 
-    private bool IsPageDisplayed(Func<bool> predicate) => checkPageInteractionHelper.WithoutImplicitWaits(predicate);
+    protected bool IsPageDisplayed(Func<bool> predicate) => checkPageInteractionHelper.WithoutImplicitWaits(predicate);
 }
