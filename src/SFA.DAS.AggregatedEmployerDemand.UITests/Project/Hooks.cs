@@ -25,6 +25,10 @@ public class Hooks(ScenarioContext context)
 
         context.Set(datahelper);
 
-        context.Get<ObjectContext>().SetDebugInformation($"'{datahelper.Email}' is used");
+        string email = datahelper.Email;
+
+        context.Get<ObjectContext>().SetDebugInformation($"'{email}' is used");
+
+        MailosaurApiHelper.UpdateInboxToDelete(email);
     }
 }
