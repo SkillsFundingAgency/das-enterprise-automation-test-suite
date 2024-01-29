@@ -9,7 +9,7 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using System;
 global using System.Collections.Generic;
 global using TechTalk.SpecFlow;
-using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
+using SFA.DAS.MailosaurAPI.Service;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project;
 
@@ -19,7 +19,7 @@ public class Hooks(ScenarioContext context)
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        var emailDomain = context.Get<MailinatorApiHelper>().GetDomainName();
+        var emailDomain = context.Get<MailosaurApiHelper>().GetDomainName();
 
         var datahelper = new AedDataHelper(emailDomain);
 

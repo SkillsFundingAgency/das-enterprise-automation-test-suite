@@ -68,40 +68,6 @@ public class MailinatorApiHelper
         return getAllDomainsResponse.Domains.FirstOrDefault().Name;
     }
 
-    public string GetLink(string email, string expected)
-    {
-        string link = "https://";
-
-        string body = VerifyEmail(email, expected);
-
-        var match = Regex.Match(body, $"{link}.*", RegexOptions.IgnoreCase);
-
-        return match.Groups[0].Value;
-    }
-
-    public string VerifyEmail(string email, string expected)
-    {
-        Func<Part, bool> Partsfunc() => (x) => IsItHtmlMessage(x) && x.Body.Contains(expected);
-
-        Func<FetchMessageResponse, bool> func() => (x) => x.Parts.Any(x => Partsfunc().Invoke(x));
-
-        string body = string.Empty;
-
-        string inbox = GetEmail(email, true);
-
-        _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(() =>
-        {
-            FetchMessageResponse fetchMessageResponse = FetchMessage(inbox, func());
-
-            Assert.That(func().Invoke(fetchMessageResponse), Is.True, $"{email} did not contain '{expected}'");
-
-            body = fetchMessageResponse.Parts.FirstOrDefault(x => Partsfunc().Invoke(x))?.Body;
-
-            _objectContext.SetDebugInformation($"Actual message received {Environment.NewLine}{body}");
-        });
-
-        return body;
-    }
 
     private static string GetEmail(string email, bool addToTheList)
     {

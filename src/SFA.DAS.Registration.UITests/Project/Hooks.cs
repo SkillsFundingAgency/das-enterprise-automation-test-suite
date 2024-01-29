@@ -33,8 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("testinator")) ? GetDomainName() : "dasautomation.com";
+                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailosaur")) ? GetDomainName() : "dasautomation.com";
 
             var aornDataHelper = new AornDataHelper();
 

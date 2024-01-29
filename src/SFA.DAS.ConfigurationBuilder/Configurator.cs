@@ -10,7 +10,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static readonly IConfigurationRoot _hostingConfig;
 
-        public static readonly bool IsVstsExecution;
+        public static readonly bool IsAzureExecution;
 
         internal static readonly string EnvironmentName;
 
@@ -25,7 +25,7 @@ namespace SFA.DAS.ConfigurationBuilder
         static Configurator()
         {
             _hostingConfig = InitializeHostingConfig();
-            IsVstsExecution = TestsExecutionInVsts();
+            IsAzureExecution = TestsExecutionInAzure();
             ChromeWebDriver = GetHostingConfigSection("CHROMEWEBDRIVER");
             GeckoWebDriver = GetHostingConfigSection("GECKOWEBDRIVER");
             EdgeWebDriver = GetHostingConfigSection("EDGEWEBDRIVER");
@@ -48,6 +48,7 @@ namespace SFA.DAS.ConfigurationBuilder
                     "appsettings.NServiceBusConfig.json",
                     "appsettings.BrowserStack.json",
                     "appsettings.Mailinator.json",
+                    "appsettings.MailosaurApi.json",
                     "appsettings.ApiFramework.json",
                     "appsettings.AdminConfig.json",
                     "appsettings.ProviderConfig.json",
@@ -57,7 +58,7 @@ namespace SFA.DAS.ConfigurationBuilder
                     "appsettings.TestExecution.json"
                 ]);
 
-            if (!IsVstsExecution)
+            if (!IsAzureExecution)
             {
                 builder
                     .AddUserSecrets("BrowserStackSecrets")
@@ -86,11 +87,11 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
-        private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
+        private static bool TestsExecutionInAzure() => !string.IsNullOrEmpty(GetAgentMachineName());
 
         private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 
-        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
+        private static string GetEnvironmentName() => IsAzureExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
 
         private static string GetProjectName() => GetHostingConfigSection("ProjectName");
 

@@ -16,9 +16,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="appsettings.Mailosaur.json">
+	  <None Update="appsettings.MailosaurApi.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Project\Helpers\" />
 	</ItemGroup>
 
 
