@@ -29,6 +29,7 @@
 		<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
+		<ProjectReference Include="..\SFA.DAS.Mailinator.Service\SFA.DAS.Mailinator.Service.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

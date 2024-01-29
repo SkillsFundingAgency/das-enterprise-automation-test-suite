@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.MailosaurAPI.Service;
+namespace SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
 public class MailosaurApiHelper
 {

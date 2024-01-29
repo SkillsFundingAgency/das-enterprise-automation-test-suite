@@ -1,4 +1,4 @@
-﻿using SFA.DAS.MailosaurAPI.Service;
+﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;

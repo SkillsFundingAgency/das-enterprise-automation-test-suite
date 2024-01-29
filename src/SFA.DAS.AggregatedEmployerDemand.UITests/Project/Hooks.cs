@@ -9,7 +9,7 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using System;
 global using System.Collections.Generic;
 global using TechTalk.SpecFlow;
-using SFA.DAS.MailosaurAPI.Service;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project;
 

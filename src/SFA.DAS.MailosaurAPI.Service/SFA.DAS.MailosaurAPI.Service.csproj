@@ -21,9 +21,5 @@
 	  </None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Project\Helpers\" />
-	</ItemGroup>
-
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.TestDataExport.Helper;
+﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using SFA.DAS.TestDataExport.Helper;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MailosaurAPI.Service;

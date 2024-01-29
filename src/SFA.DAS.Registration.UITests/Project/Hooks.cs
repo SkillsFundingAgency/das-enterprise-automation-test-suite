@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -60,6 +60,6 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
 
-        private string GetDomainName() => context.Get<MailinatorApiHelper>().GetDomainName();
+        private string GetDomainName() => context.Get<MailosaurApiHelper>().GetDomainName();
     }
 }
