@@ -47,7 +47,6 @@ namespace SFA.DAS.ConfigurationBuilder
                     "appsettings.TimeOutConfig.json",
                     "appsettings.NServiceBusConfig.json",
                     "appsettings.BrowserStack.json",
-                    "appsettings.Mailinator.json",
                     "appsettings.MailosaurApi.json",
                     "appsettings.ApiFramework.json",
                     "appsettings.AdminConfig.json",
