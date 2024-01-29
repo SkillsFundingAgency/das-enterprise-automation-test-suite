@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Certificates.Amend
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Certificates.Amend
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AD_AmendCert_03")]
-    public partial class EPAO_AD_AmendCert_03Feature
+    [NUnit.Framework.DescriptionAttribute("AAN_E_08_HideAndDisplayAmbassadorProfile")]
+    public partial class AAN_E_08_HideAndDisplayAmbassadorProfileFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPAO_AD_AmendCert_03.feature"
+#line 1 "AAN_E_08_HideAndDisplayAmbassadorProfile.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Admin/Certificates/Amend", "EPAO_AD_AmendCert_03", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "AAN_E_08_HideAndDisplayAmbassadorProfile", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Certificates.Amend
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_AmendCert_03 Amend a Certificate - Change SendTo")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("recordagrade")]
-        [NUnit.Framework.CategoryAttribute("epaoadmin")]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_08_HideAndDisplayAmbassadorProfile")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void EPAO_AD_AmendCert_03AmendACertificate_ChangeSendTo()
+        public void AAN_A_08_HideAndDisplayAmbassadorProfile()
         {
             string[] tagsOfScenario = new string[] {
-                    "epao",
-                    "recordagrade",
-                    "epaoadmin",
+                    "aan",
+                    "aanemployer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_AmendCert_03 Amend a Certificate - Change SendTo", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_08_HideAndDisplayAmbassadorProfile", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,34 +97,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("the User certifies an Apprentice as \'pass\' with \'apprentice\' route and records a " +
-                        "grade", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.When("the user should be able to successfully hide ambassador profile information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("the Admin all roles user is logged into the Admin Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.And("the Admin can search using learner uln", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.When("the Admin amends the certificate with ticket reference \'INC123456\' and selects re" +
-                        "ason \'Incorrect apprentice details\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 13
- testRunner.Then("the SendTo can be changed from \'apprentice\' to \'employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 14
- testRunner.And("the new address can be entered with employer name \'EFSA\' and recipient \'HR DEPART" +
-                        "MENT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.And("the recipient\'s name on the check page is \'HR DEPARTMENT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
- testRunner.And("the address contains the employer name \'EFSA\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Then("the user should be able to successfully display ambassador profile information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -7,11 +7,13 @@ public class ProviderHomePage : InterimProviderBasePage
 {
     protected override string AccessibilityPageTitle => "Provider home page";
 
-    public static By Identifier => By.CssSelector("#content, #main-content");
+    public static By ProviderHomePageIdentifier => By.CssSelector(ProviderHomePageIdentifierCss);
+
+    public static string ProviderHomePageIdentifierCss => "#main-content .govuk-hint";
 
     protected override string PageTitle => ukprn;
 
-    protected override By PageHeader => Identifier;
+    protected override By PageHeader => ProviderHomePageIdentifier;
 
     protected override string Linktext => "Home";
 

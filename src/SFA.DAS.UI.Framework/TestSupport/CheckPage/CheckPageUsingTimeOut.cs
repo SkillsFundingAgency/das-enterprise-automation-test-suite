@@ -12,7 +12,7 @@ public abstract class CheckPageUsingTimeOut(ScenarioContext context) : CheckPage
     {
         var idenifier = Identifier;
 
-        SetDebugInformation($"Check page using Identifier: '{idenifier}'");
+        SetDebugInformation($"Check the page using Identifier: '{idenifier}'");
 
         return checkPageInteractionHelper.VerifyPage(idenifier); 
     });
@@ -33,5 +33,5 @@ public abstract class CheckPageUsingTimeOut(ScenarioContext context) : CheckPage
         return checkPageInteractionHelper.VerifyPage(Identifier, pageTitle); 
     });
 
-    private bool IsPageDisplayed(Func<bool> predicate) => checkPageInteractionHelper.WithoutImplicitWaits(predicate);
+    protected bool IsPageDisplayed(Func<bool> predicate) => checkPageInteractionHelper.WithoutImplicitWaits(predicate);
 }

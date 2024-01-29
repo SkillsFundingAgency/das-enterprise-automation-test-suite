@@ -1,17 +1,18 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
-using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
-namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
+namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 
 public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
     public static string DfePageTitle => "Department for Education Sign-in";
 
-    public static By DfePageheader => By.CssSelector(".govuk-heading-xl");
+    public static By DfePageIdentifier => By.CssSelector(DfePageIdentifierCss);
 
-    protected override By PageHeader => DfePageheader;
+    protected override By PageHeader => DfePageIdentifier;
 
     protected override string PageTitle => DfePageTitle;
+
+    public static string DfePageIdentifierCss => ".govuk-heading-xl";
 
     private static By SignInButton => By.CssSelector("button.govuk-button[type='submit']");
 
@@ -20,12 +21,7 @@ public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
     public void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser)
     {
         SubmitValidLoginDetails(dfeAdminUser.Username, dfeAdminUser.Password);
+
+        new NotADfeAdminSignPage(context).IsPageDisplayed();
     }
-}
-
-public class CheckDfeSignInPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
-{
-    protected override string PageTitle => DfeSignInPage.DfePageTitle;
-
-    protected override By Identifier => DfeSignInPage.DfePageheader;
 }

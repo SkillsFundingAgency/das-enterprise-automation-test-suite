@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class CheckProviderLandingPage(ScenarioContext context) : CheckPageUsingShorterTimeOut(context)
+public class CheckProviderLandingPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
-    protected override string PageTitle { get; }
+    protected override string PageTitle => ProviderLandingPage.ProviderLandingPageTitle;
 
-    protected override By Identifier => ProviderLandingPage.ProviderLandingPageStartSelector;
+    protected override By Identifier => ProviderLandingPage.ProviderLandingPageIdentifier;
 }
