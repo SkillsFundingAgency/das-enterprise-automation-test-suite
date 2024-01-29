@@ -8,6 +8,8 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
 {
     public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
+
+        const
         protected override string PageTitle => "Change the training price and/or the end-point assessment price";
 
         protected override By ContinueButton => By.Id("buttonSubmitForm");
@@ -48,7 +50,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
 
         private static string EnterDateBeforePlannedEndDateErrorText = "The date entered must be before the planned end date";
 
-        public CheckYourChangesBeforeSendingToTheEmployerPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason)
+        public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason)
         {
             formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
             formCompletionHelper.EnterText(EndpointAssessmentPrice, epaPrice);
@@ -58,7 +60,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
             formCompletionHelper.EnterText(ReasonPriceChange, reason);
 
             formCompletionHelper.Click(ContinueButton);
-            return new CheckYourChangesBeforeSendingToTheEmployerPage(context);
+            return new ChangeOfPriceCheckYourChangesPage(context);
         }
 
         public ChangePriceNegotiationAmountsPage ClickContinueButtonWithValidationErrors()
