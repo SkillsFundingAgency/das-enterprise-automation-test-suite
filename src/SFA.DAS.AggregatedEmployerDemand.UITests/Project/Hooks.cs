@@ -19,7 +19,9 @@ public class Hooks(ScenarioContext context)
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        var emailDomain = context.Get<MailosaurApiHelper>().GetDomainName();
+        var mailosaurApiHelper = context.Get<MailosaurApiHelper>();
+
+        var emailDomain = mailosaurApiHelper.GetDomainName();
 
         var datahelper = new AedDataHelper(emailDomain);
 
@@ -29,6 +31,6 @@ public class Hooks(ScenarioContext context)
 
         context.Get<ObjectContext>().SetDebugInformation($"'{email}' is used");
 
-        MailosaurApiHelper.UpdateInboxToDelete(email);
+        mailosaurApiHelper.UpdateInboxToDelete(email);
     }
 }

@@ -17,7 +17,7 @@ public class MailosaurApiHelper
 
     private readonly string domainName;
 
-    private static readonly HashSet<string> inboxToDelete = [];
+    private readonly HashSet<string> inboxToDelete = [];
 
     private readonly DateTime dateTime;
 
@@ -36,7 +36,7 @@ public class MailosaurApiHelper
 
     public string GetDomainName() => domainName;
 
-    public static void UpdateInboxToDelete(string email) => inboxToDelete.Add(email);
+    public void UpdateInboxToDelete(string email) => inboxToDelete.Add(email);
 
     public string GetLinkBySubject(string email, string subject)
     {
