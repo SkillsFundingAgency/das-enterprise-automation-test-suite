@@ -32,8 +32,9 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetDataHelper(dataHelper);
 
-            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailosaur")) ? GetDomainName() : "dasautomation.com";
+            var mailosaurEmaildomain = context.Get<MailosaurApiHelper>().GetDomainName();
+
+            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" : mailosaurEmaildomain;
 
             var aornDataHelper = new AornDataHelper();
 
@@ -49,7 +50,11 @@ namespace SFA.DAS.Registration.UITests.Project
 
             context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
-            _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
+            var randomEmail = registrationDatahelpers.RandomEmail;
+
+            _objectContext.SetRegisteredEmail(randomEmail);
+
+            if (randomEmail.Contains(mailosaurEmaildomain)) MailosaurApiHelper.UpdateInboxToDelete(randomEmail);
         }
 
         [BeforeScenario(Order = 23)]
@@ -59,7 +64,5 @@ namespace SFA.DAS.Registration.UITests.Project
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
-
-        private string GetDomainName() => context.Get<MailosaurApiHelper>().GetDomainName();
     }
 }
