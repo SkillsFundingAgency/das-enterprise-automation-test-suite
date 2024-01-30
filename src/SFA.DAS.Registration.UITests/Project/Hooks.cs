@@ -36,7 +36,8 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var mailosaurEmaildomain = mailosaurApiHelper.GetDomainName();
 
-            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" : mailosaurEmaildomain;
+            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
+                tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "asautomation.com" : mailosaurEmaildomain;
 
             var aornDataHelper = new AornDataHelper();
 
