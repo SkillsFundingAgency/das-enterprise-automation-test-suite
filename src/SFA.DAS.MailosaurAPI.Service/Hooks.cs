@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MailosaurAPI.Service;
 
-[Binding, Scope(Tag = "mailosaur")]
+[Binding]
 public class Hooks(ScenarioContext context)
 {
     private MailosaurApiHelper mailosaurApiHelper;
