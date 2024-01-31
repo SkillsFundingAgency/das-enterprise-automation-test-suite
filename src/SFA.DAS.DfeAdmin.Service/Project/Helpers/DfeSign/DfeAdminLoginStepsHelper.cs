@@ -40,7 +40,16 @@ public class DfeAdminLoginStepsHelper(ScenarioContext context)
 
     public void CheckAndLoginToSupportTool(DfeAdminUser dfeAdminUser) => CheckAndLoginTo(new CheckASEmpSupportToolLandingPage(context), () => new ASEmpSupportToolLandingPage(context), dfeAdminUser);
 
-    public void CheckAndLoginToASVacancyQa() => CheckAndLoginTo(new CheckASVacancyQaLandingPage(context), () => new ASVacancyQaLandingPage(context), context.GetUser<VacancyQaUser>());
+    #endregion
+
+    #region CheckAndLoginToASVacancyQa
+
+    public void CheckAndLoginToASVacancyQa()
+    {
+        if (new CheckASVacancyQaLandingPage(context).IsPageDisplayed()) new ASVacancyQaLandingPage(context).ClickStartNowButton();
+
+        if (new CheckDfeSignInOrReviewHomePage(context).IsDfeSignPageDisplayed()) SubmitValidLoginDetails(context.GetUser<VacancyQaUser>());
+    }
 
     #endregion
 

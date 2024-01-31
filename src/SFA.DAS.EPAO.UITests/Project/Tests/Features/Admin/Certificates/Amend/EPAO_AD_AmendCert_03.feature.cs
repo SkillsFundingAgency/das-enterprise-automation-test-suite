@@ -119,11 +119,11 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the SendTo can be changed from \'apprentice\' to \'employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.And("the new address can be entered with employer name \'EFSA\' and recipient \'HR Depart" +
-                        "ment\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the new address can be entered with employer name \'EFSA\' and recipient \'HR DEPART" +
+                        "MENT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("the recipient\'s name on the check page is \'HR Department\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the recipient\'s name on the check page is \'HR DEPARTMENT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
  testRunner.And("the address contains the employer name \'EFSA\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
