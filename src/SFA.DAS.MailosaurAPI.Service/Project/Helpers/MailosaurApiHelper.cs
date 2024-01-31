@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
+using System.Threading.Tasks;
 
 namespace SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
@@ -59,7 +60,7 @@ public class MailosaurApiHelper
         return link.Href;
     }
 
-    internal void DeleteInbox()
+    internal async Task DeleteInbox()
     {
         foreach (var inbox in inboxToDelete)
         {
@@ -74,13 +75,13 @@ public class MailosaurApiHelper
                 SentTo = inbox,
             };
 
-            var messageList1 = mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 10000, receivedAfter: dateTime, errorOnTimeout: false).Result.Items;
+            var messageresult = await mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 10000, receivedAfter: dateTime, errorOnTimeout: false);
 
-            foreach (var message in messageList1)
+            foreach (var message in messageresult.Items)
             {
                 _objectContext.SetDebugInformation($"Deleting emails received to {inbox} at {message.Received:HH:mm:ss} with subject {message.Subject}");
 
-                mailosaur.Messages.DeleteAsync(message.Id).Wait();
+                await mailosaur.Messages.DeleteAsync(message.Id);
             }
         }
     }
