@@ -63,7 +63,7 @@ public class MailosaurApiHelper
     {
         foreach (var inbox in inboxToDelete)
         {
-            _objectContext.SetDebugInformation($"Deleting emails received to {inbox}");
+            _objectContext.SetDebugInformation($"Deleting emails received to {inbox} after {dateTime:HH:mm:ss}");
 
             var mailosaurAPIUser = GetMailosaurAPIUser(inbox);
 
@@ -74,11 +74,11 @@ public class MailosaurApiHelper
                 SentTo = inbox,
             };
 
-            var messageList = mailosaur.Messages.ListAsync(mailosaurAPIUser.ServerId).Result.Items.Where(x => x.Received >= dateTime && x.To.Any(i => i.Email == inbox)).ToList();
+            var messageList1 = mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 10000, receivedAfter: dateTime, errorOnTimeout: false).Result.Items;
 
-            foreach (var message in messageList)
+            foreach (var message in messageList1)
             {
-                _objectContext.SetDebugInformation($"Deleting emails received to {inbox} using messege id {message.Id}");
+                _objectContext.SetDebugInformation($"Deleting emails received to {inbox} at {message.Received:HH:mm:ss} with subject {message.Subject}");
 
                 mailosaur.Messages.DeleteAsync(message.Id).Wait();
             }
