@@ -32,9 +32,9 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetDataHelper(dataHelper);
 
-            var mailosaurApiHelper = context.Get<MailosaurApiHelper>();
+            var mailosaurUser = context.Get<MailosaurUser>();
 
-            var mailosaurEmaildomain = mailosaurApiHelper.GetDomainName();
+            var mailosaurEmaildomain = mailosaurUser.DomainName;
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "asperfautomation.com" :
                 tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "asautomation.com" : mailosaurEmaildomain;
@@ -57,7 +57,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetRegisteredEmail(randomEmail);
 
-            if (randomEmail.Contains(mailosaurEmaildomain)) mailosaurApiHelper.UpdateInboxToDelete(randomEmail);
+            if (randomEmail.Contains(mailosaurEmaildomain)) mailosaurUser.AddEmail(randomEmail);
         }
 
         [BeforeScenario(Order = 23)]

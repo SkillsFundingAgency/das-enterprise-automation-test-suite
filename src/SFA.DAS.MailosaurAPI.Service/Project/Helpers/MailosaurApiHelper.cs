@@ -1,43 +1,20 @@
 ﻿using Mailosaur;
 using Mailosaur.Models;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using TechTalk.SpecFlow;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
-public class MailosaurApiHelper
+public class MailosaurApiHelper(ScenarioContext context)
 {
-    private readonly FrameworkList<MailosaurApiUser> mailosaurAPIUsers;
+    private readonly FrameworkList<MailosaurApiConfig> mailosaurApiUsers = context.Get<FrameworkList<MailosaurApiConfig>>();
 
-    private readonly ObjectContext _objectContext;
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-    private readonly string domainName;
-
-    private readonly HashSet<string> inboxToDelete = [];
-
-    private readonly DateTime dateTime;
-
-    public MailosaurApiHelper(ScenarioContext context)
-    {
-        mailosaurAPIUsers = context.Get<FrameworkList<MailosaurApiUser>>();
-
-        _objectContext = context.Get<ObjectContext>();
-
-        var mailosaurAPIUser = Configurator.IsAzureExecution ? mailosaurAPIUsers.Single(x => x.ServerName == "azure") : mailosaurAPIUsers.Single(x => x.ServerName == "local");
-
-        domainName = $"{mailosaurAPIUser.ServerId}.mailosaur.net";
-
-        dateTime = DateTime.Now;
-    }
-
-    public string GetDomainName() => domainName;
-
-    public void UpdateInboxToDelete(string email) => inboxToDelete.Add(email);
+    private readonly DateTime dateTime = DateTime.Now;
 
     public string GetLinkBySubject(string email, string subject)
     {
@@ -62,34 +39,36 @@ public class MailosaurApiHelper
 
     internal async Task DeleteInbox()
     {
-        foreach (var inbox in inboxToDelete)
-        {
-            _objectContext.SetDebugInformation($"Deleting emails received to {inbox} after {dateTime:HH:mm:ss}");
+        var inboxToDelete = context.Get<MailosaurUser>().EmailList;
 
-            var mailosaurAPIUser = GetMailosaurAPIUser(inbox);
+        foreach (var (Email, ReceviedAfter) in inboxToDelete)
+        {
+            _objectContext.SetDebugInformation($"Deleting emails received to {Email} after {ReceviedAfter:HH:mm:ss}");
+
+            var mailosaurAPIUser = GetMailosaurAPIUser(Email);
 
             var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
 
             var criteria = new SearchCriteria()
             {
-                SentTo = inbox,
+                SentTo = Email,
             };
 
-            var messageresult = await mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 10000, receivedAfter: dateTime, errorOnTimeout: false);
+            var messageresult = await mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 10000, receivedAfter: ReceviedAfter, errorOnTimeout: false);
 
             foreach (var message in messageresult.Items)
             {
-                _objectContext.SetDebugInformation($"Deleting emails received to {inbox} at {message.Received:HH:mm:ss} with subject {message.Subject}");
+                _objectContext.SetDebugInformation($"Deleting emails received to {Email} at {message.Received:HH:mm:ss} with subject {message.Subject}");
 
                 await mailosaur.Messages.DeleteAsync(message.Id);
             }
         }
     }
 
-    private MailosaurApiUser GetMailosaurAPIUser(string email)
+    private MailosaurApiConfig GetMailosaurAPIUser(string email)
     {
         var serveId = email.Split('@')[1].Split(".")[0];
 
-        return mailosaurAPIUsers.Single(x => x.ServerId == serveId);
+        return mailosaurApiUsers.Single(x => x.ServerId == serveId);
     }
 }

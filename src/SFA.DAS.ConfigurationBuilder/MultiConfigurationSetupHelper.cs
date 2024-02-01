@@ -7,7 +7,7 @@ namespace SFA.DAS.ConfigurationBuilder;
 
 public class MultiConfigurationSetupHelper(ScenarioContext context)
 {
-    public void SetMultiConfiguration<T>(string key)
+    public FrameworkList<T> SetMultiConfiguration<T>(string key)
     {
         var configSection = context.Get<ConfigSection>();
 
@@ -25,5 +25,7 @@ public class MultiConfigurationSetupHelper(ScenarioContext context)
         listType.AddRange(list);
 
         context.Set(listType);
+
+        return listType;
     }
 }

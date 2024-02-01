@@ -9,7 +9,6 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using System;
 global using System.Collections.Generic;
 global using TechTalk.SpecFlow;
-using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project;
 
@@ -19,9 +18,9 @@ public class Hooks(ScenarioContext context)
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        var mailosaurApiHelper = context.Get<MailosaurApiHelper>();
+        var mailosaurUser = context.Get<MailosaurUser>();
 
-        var emailDomain = mailosaurApiHelper.GetDomainName();
+        var emailDomain = mailosaurUser.DomainName;
 
         var datahelper = new AedDataHelper(emailDomain);
 
@@ -31,6 +30,6 @@ public class Hooks(ScenarioContext context)
 
         context.Get<ObjectContext>().SetDebugInformation($"'{email}' is used");
 
-        mailosaurApiHelper.UpdateInboxToDelete(email);
+        mailosaurUser.AddEmail(email);
     }
 }
