@@ -14,7 +14,7 @@ public class Hooks(ScenarioContext context)
     [BeforeScenario(Order = 12)]
     public void SetUpMailosaurApiHelper() => context.Set(mailosaurApiHelper = new MailosaurApiHelper(context));
 
-    [AfterScenario(Order = 22)]
+    [AfterScenario(Order = 29)]
     public void DeleteMessages()
     {
         if (context.TestError == null) _tryCatch.AfterScenarioException(mailosaurApiHelper.DeleteInbox());

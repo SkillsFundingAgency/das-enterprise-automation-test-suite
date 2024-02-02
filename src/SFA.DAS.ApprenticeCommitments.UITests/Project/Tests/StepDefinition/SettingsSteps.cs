@@ -1,6 +1,9 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
+﻿using Polly;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Mailinator.Service.Project.Helpers;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
@@ -36,18 +39,24 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         private PasswordResetSuccessfulPage UpdatePassword()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
-            NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeEmail(), "change your password");
+            NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeEmail(), "Password reset for My apprenticeship", "change your password");
             return new ResetPasswordPage(context).UpdatePassword();
         }
 
         private YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
         {
             GetTopBannerSettingsPage().NavigateToChangeYourEmailAddress().RequestToUpdateEmailAddress();
-            NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeChangedEmail(), "Verify email address");
+            NavigateToMailinatorClickOnNotificationLink(objectContext.GetApprenticeChangedEmail(), "Confirm your new email address", "Verify email address");
             return new ChangeYourEmailAddressPage(context).UpdateEmailAddress();
         }
 
-        private void NavigateToMailinatorClickOnNotificationLink(string email, string linkText) => new MailinatorStepsHelper(context, email).OpenLink(linkText);
+        private void NavigateToMailinatorClickOnNotificationLink(string email, string subject, string linkText)
+        {
+            var link = context.Get<MailosaurApiHelper>().GetLinkBySubject(email, subject, linkText);
+
+            tabHelper.OpenInNewTab(link);
+        }
+
 
         private TopBannerSettingsPage GetTopBannerSettingsPage() => new(context);
     }
