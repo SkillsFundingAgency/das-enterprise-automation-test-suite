@@ -18,7 +18,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     public string GetLinkBySubject(string email, string subject, string linkText)
     {
-        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}'");
+        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and link text '{linkText}' after {dateTime:HH:mm:ss}");
 
         var mailosaurAPIUser = GetMailosaurAPIUser(email);
 
@@ -30,7 +30,7 @@ public class MailosaurApiHelper(ScenarioContext context)
             Subject = subject
         };
 
-        var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, receivedAfter: dateTime).Result;
+        var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
 
         var link = message.Text.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
 
