@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -105,7 +106,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             return listOfApprentices;
         }
 
-        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags), _objectcontext, commitmentsdatahelper);
+        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags, context.Get<MailosaurUser>().DomainName), _objectcontext, commitmentsdatahelper);
 
         private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_objectcontext, _dbConfig, larsCode, _tags.IsSelectStandardWithMultipleOptions()), apprenticeStatus);
     }

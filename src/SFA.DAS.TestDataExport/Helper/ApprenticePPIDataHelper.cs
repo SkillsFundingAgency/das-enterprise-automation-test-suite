@@ -2,19 +2,19 @@
 
 public class ApprenticePPIDataHelper
 {
-    public ApprenticePPIDataHelper(string[] tags) : this(tags, GetCmadPPIData(IsApprenticeCommitments(tags), IsAslistedemployer(tags)))
+    public ApprenticePPIDataHelper(string[] tags, string emailDomain) : this(tags, GetCmadPPIData(IsApprenticeCommitments(tags), IsAslistedemployer(tags)), emailDomain)
     {
 
     }
 
-    public ApprenticePPIDataHelper(string[] tags, DateTime dateOfBirth) : this(tags, ("FLP_", dateOfBirth))
+    public ApprenticePPIDataHelper(string[] tags, DateTime dateOfBirth, string emailDomain) : this(tags, ("FLP_", dateOfBirth), emailDomain)
     {
 
     }
 
-    private ApprenticePPIDataHelper(string[] tags, (string nameprefix, DateTime dateOfBirth) value) => ApprenticeEmail = CreatePPIData(tags, value);
+    private ApprenticePPIDataHelper(string[] tags, (string nameprefix, DateTime dateOfBirth) value, string emailDomain) => ApprenticeEmail = CreatePPIData(tags, value, emailDomain);
 
-    private string CreatePPIData(string[] tags, (string nameprefix, DateTime dateOfBirth) value)
+    private string CreatePPIData(string[] tags, (string nameprefix, DateTime dateOfBirth) value, string emailDomain)
     {
         var datetime = DateTime.UtcNow;
 
@@ -35,9 +35,9 @@ public class ApprenticePPIDataHelper
 
         string emailPrefix = IsPerfTest(tags) ? "PerfTest_" : string.Empty;
 
-        string emaildomain = IsPerfTest(tags) ? "email.com" : (IsApprenticeCommitments(tags) || IsFlexiPayments(tags)) ? "mailinator.com" : "email.com";
+        string _emailDomain = IsPerfTest(tags) ? "email.com" : emailDomain;
 
-        return $"{emailPrefix}{ApprenticeFirstname}_{ApprenticeLastname}@{emaildomain}";
+        return $"{emailPrefix}{ApprenticeFirstname}_{ApprenticeLastname}@{_emailDomain}";
     }
 
     public string ApprenticeEmail { get; private set; }
