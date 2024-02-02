@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinit
 
             ApprenticeDetailsPage apprenticeDetailsPage = new ManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails();
 
-            apprenticeDetailsPage.VerifyApprenticeshipStatus("Completed");
+            apprenticeDetailsPage.VerifyApprenticeshipStatus("COMPLETED");
 
             Assert.AreEqual("Completion payment month", apprenticeDetailsPage.GetStatusDateTitle(), "Validate Completion Date Title");
 
