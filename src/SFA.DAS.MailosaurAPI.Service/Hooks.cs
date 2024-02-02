@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MailosaurAPI.Service;
@@ -16,8 +15,8 @@ public class Hooks(ScenarioContext context)
     public void SetUpMailosaurApiHelper() => context.Set(mailosaurApiHelper = new MailosaurApiHelper(context));
 
     [AfterScenario(Order = 22)]
-    public async Task DeleteMessages()
+    public void DeleteMessages()
     {
-        if (context.TestError == null) await Task.Run(() => _tryCatch.AfterScenarioException(async () => await mailosaurApiHelper.DeleteInbox()));
+        if (context.TestError == null) _tryCatch.AfterScenarioException(mailosaurApiHelper.DeleteInbox());
     }
 }
