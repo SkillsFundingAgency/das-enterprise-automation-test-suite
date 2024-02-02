@@ -18,18 +18,10 @@ public class Hooks(ScenarioContext context)
     [BeforeScenario(Order = 21)]
     public void SetUpHelpers()
     {
-        var mailosaurUser = context.Get<MailosaurUser>();
-
-        var emailDomain = mailosaurUser.DomainName;
-
-        var datahelper = new AedDataHelper(emailDomain);
+        var datahelper = new AedDataHelper(context.Get<MailosaurUser>());
 
         context.Set(datahelper);
 
-        string email = datahelper.Email;
-
-        context.Get<ObjectContext>().SetDebugInformation($"'{email}' is used");
-
-        mailosaurUser.AddEmail(email);
+        context.Get<ObjectContext>().SetDebugInformation($"'{datahelper.Email}' is used");
     }
 }

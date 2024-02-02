@@ -19,5 +19,5 @@ public class FrameworkHelpersSetup
     }
 
     [BeforeScenario(Order = 12)]
-    public void DataSetUpHelpers() => _context.Set(new ApprenticePPIDataHelper(_tags, _context.Get<MailosaurUser>().DomainName));
+    public void DataSetUpHelpers() => _context.Set(new ApprenticePPIDataHelper(_tags, _context.Get<MailosaurUser>()));
 }

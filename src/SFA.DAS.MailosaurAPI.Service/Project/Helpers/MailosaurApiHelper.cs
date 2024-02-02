@@ -39,7 +39,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     internal async Task DeleteInbox()
     {
-        var inboxToDelete = context.Get<MailosaurUser>().EmailList;
+        var inboxToDelete = context.Get<MailosaurUser>().GetEmailList();
 
         foreach (var (Email, ReceviedAfter) in inboxToDelete)
         {

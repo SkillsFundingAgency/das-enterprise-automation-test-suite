@@ -106,7 +106,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             return listOfApprentices;
         }
 
-        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags, context.Get<MailosaurUser>().DomainName), _objectcontext, commitmentsdatahelper);
+        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags, context.Get<MailosaurUser>()), _objectcontext, commitmentsdatahelper);
 
         private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_objectcontext, _dbConfig, larsCode, _tags.IsSelectStandardWithMultipleOptions()), apprenticeStatus);
     }

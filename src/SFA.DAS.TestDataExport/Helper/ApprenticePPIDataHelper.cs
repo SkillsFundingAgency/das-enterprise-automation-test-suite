@@ -2,19 +2,19 @@
 
 public class ApprenticePPIDataHelper
 {
-    public ApprenticePPIDataHelper(string[] tags, string emailDomain) : this(tags, GetCmadPPIData(IsApprenticeCommitments(tags), IsAslistedemployer(tags)), emailDomain)
+    public ApprenticePPIDataHelper(string[] tags, MailosaurUser user) : this(tags, GetCmadPPIData(IsApprenticeCommitments(tags), IsAslistedemployer(tags)), user)
     {
 
     }
 
-    public ApprenticePPIDataHelper(string[] tags, DateTime dateOfBirth, string emailDomain) : this(tags, ("FLP_", dateOfBirth), emailDomain)
+    public ApprenticePPIDataHelper(string[] tags, DateTime dateOfBirth, MailosaurUser user) : this(tags, ("FLP_", dateOfBirth), user)
     {
 
     }
 
-    private ApprenticePPIDataHelper(string[] tags, (string nameprefix, DateTime dateOfBirth) value, string emailDomain) => ApprenticeEmail = CreatePPIData(tags, value, emailDomain);
+    private ApprenticePPIDataHelper(string[] tags, (string nameprefix, DateTime dateOfBirth) value, MailosaurUser user) => ApprenticeEmail = CreatePPIData(tags, value, user);
 
-    private string CreatePPIData(string[] tags, (string nameprefix, DateTime dateOfBirth) value, string emailDomain)
+    private string CreatePPIData(string[] tags, (string nameprefix, DateTime dateOfBirth) value, MailosaurUser user)
     {
         var datetime = DateTime.UtcNow;
 
@@ -35,9 +35,13 @@ public class ApprenticePPIDataHelper
 
         string emailPrefix = IsPerfTest(tags) ? "PerfTest_" : string.Empty;
 
-        string _emailDomain = IsPerfTest(tags) ? "email.com" : emailDomain;
+        string _emailDomain = IsPerfTest(tags) ? "email.com" : user.DomainName;
 
-        return $"{emailPrefix}{ApprenticeFirstname}_{ApprenticeLastname}@{_emailDomain}";
+        var email = $"{emailPrefix}{ApprenticeFirstname}_{ApprenticeLastname}@{_emailDomain}";
+
+        if (email.Contains(user.DomainName)) user.AddToEmailList(email);
+
+        return email;
     }
 
     public string ApprenticeEmail { get; private set; }
@@ -66,7 +70,8 @@ public class ApprenticePPIDataHelper
     }
 
     private static bool IsApprenticeCommitments(string[] tags) => tags.Contains("apprenticecommitments");
+
     private static bool IsAslistedemployer(string[] tags) => tags.IsAsListedEmployer();
-    private static bool IsFlexiPayments(string[] tags) => tags.Contains("flexi-payments");
+
     private static bool IsPerfTest(string[] tags) => tags.Contains("perftest");
 }

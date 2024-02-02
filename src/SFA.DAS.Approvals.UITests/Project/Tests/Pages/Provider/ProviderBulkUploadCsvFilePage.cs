@@ -239,6 +239,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             };
         }
 
-        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper([""], context.Get<MailosaurUser>().DomainName), objectContext, context.Get<CommitmentsSqlDataHelper>());
+        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper([""], context.Get<MailosaurUser>()), objectContext, context.Get<CommitmentsSqlDataHelper>());
     }
 }

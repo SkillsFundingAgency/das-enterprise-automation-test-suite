@@ -10,15 +10,10 @@ public class MailinatorStepsHelper(ScenarioContext context, string email)
 
     public void OpenLink(string linktext)
     {
-        var page = OpenEmail();
-
-        _tabHelper.OpenInNewTab(() => page.OpenLink(linktext));
-    }
-
-    private MailinatorEmailPage OpenEmail()
-    {
         _tabHelper.OpenInNewTab("https://www.mailinator.com/");
 
-        return new MailinatorLandingPage(context).EnterEmailAndClickOnGoButton(email).OpenEmail();
+        var page = new MailinatorLandingPage(context).EnterEmailAndClickOnGoButton(email).OpenEmail();
+
+        _tabHelper.OpenInNewTab(() => page.OpenLink(linktext));
     }
 }

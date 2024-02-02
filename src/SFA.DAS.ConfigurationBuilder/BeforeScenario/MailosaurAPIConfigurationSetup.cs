@@ -16,11 +16,6 @@ public class MailosaurAPIConfigurationSetup(ScenarioContext context)
 
         var mailosaurApiConfig = Configurator.IsAzureExecution ? mailosaurApiConfigs.Single(x => x.ServerName == "azure") : mailosaurApiConfigs.Single(x => x.ServerName == "local");
 
-        context.Set(new MailosaurUser 
-        {
-            ServerName = mailosaurApiConfig.ServerName, 
-            ServerId = mailosaurApiConfig.ServerId, 
-            ApiToken = mailosaurApiConfig.ApiToken, 
-            EmailList = [] });
+        context.Set(new MailosaurUser(mailosaurApiConfig.ServerName, mailosaurApiConfig.ServerId, mailosaurApiConfig.ApiToken));
     }
 }

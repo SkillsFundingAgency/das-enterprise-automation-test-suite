@@ -57,7 +57,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetRegisteredEmail(randomEmail);
 
-            if (randomEmail.Contains(mailosaurEmaildomain)) mailosaurUser.AddEmail(randomEmail);
+            if (randomEmail.Contains(mailosaurEmaildomain)) mailosaurUser.AddToEmailList(randomEmail);
         }
 
         [BeforeScenario(Order = 23)]
