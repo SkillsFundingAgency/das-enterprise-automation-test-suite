@@ -26,8 +26,8 @@ public class ApprenticePPIDataHelper
         var firstName = randomPersonNameHelper.FirstName;
         var lastName = randomPersonNameHelper.LastName;
 
-        ApprenticeFirstname = $"{value.nameprefix}F_{firstName}_{seconds}";
-        ApprenticeLastname = $"{value.nameprefix}L_{lastName}_{nseconds}";
+        ApprenticeFirstname = $"{value.nameprefix}{firstName}_{seconds}";
+        ApprenticeLastname = $"{lastName}_{nseconds}";
 
         DateOfBirthDay = value.dateOfBirth.Day;
         DateOfBirthMonth = value.dateOfBirth.Month;
