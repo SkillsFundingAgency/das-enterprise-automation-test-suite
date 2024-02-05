@@ -35,7 +35,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
                 Assert.AreEqual(trainingPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-GB")), pageInteractionHelper.GetText(TrainingPriceRequestedValue), "Requested Training Price mismatch");
                 Assert.AreEqual(endPointAssessmentPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-GB")), pageInteractionHelper.GetText(EndPointAssessmentPriceRequestedValue), "Requested Endpoint Assessment Price mismatch");
                 Assert.AreEqual(totalPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-GB")), pageInteractionHelper.GetText(TotalPriceRequestedValue), "Requested Total Price mismatch");
-                Assert.AreEqual(effectiveFromDate.ToString("dd MMM yyyy"), pageInteractionHelper.GetText(EffectiveFromDateValue), "Effective From Date mismatch");
+                Assert.AreEqual(effectiveFromDate.ToString("d MMM yyyy"), pageInteractionHelper.GetText(EffectiveFromDateValue), "Effective From Date mismatch");
                 Assert.AreEqual(reason, pageInteractionHelper.GetText(ReasonForChangeValue), "Requested reason mismatch");
             });
             return this;
