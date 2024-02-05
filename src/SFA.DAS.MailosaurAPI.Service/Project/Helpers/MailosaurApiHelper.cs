@@ -34,6 +34,11 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss}");
 
+        foreach (var linkFound in message.Text.Links)
+        {
+            _objectContext.SetDebugInformation($"Message links found with text '{linkFound.Text}', href {linkFound.Href}");
+        }
+
         var link = message.Text.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
 
         return link.Href;
