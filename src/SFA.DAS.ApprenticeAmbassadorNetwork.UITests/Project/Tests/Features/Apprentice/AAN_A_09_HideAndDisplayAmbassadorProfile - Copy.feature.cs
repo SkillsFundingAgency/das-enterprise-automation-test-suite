@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.App
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AAN_A_09_HideAndDisplayAmbassadorProfile.feature"
+#line 1 "AAN_A_09_HideAndDisplayAmbassadorProfile - Copy.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
