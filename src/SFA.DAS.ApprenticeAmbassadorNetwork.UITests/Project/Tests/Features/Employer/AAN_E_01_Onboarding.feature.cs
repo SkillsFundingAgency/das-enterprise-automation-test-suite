@@ -203,6 +203,49 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_E_01D  Remove restore membership")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
+        [NUnit.Framework.CategoryAttribute("aanemployeronboardingreset")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_E_01DRemoveRestoreMembership()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanemployer",
+                    "aanemployeronboardingreset",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_E_01D  Remove restore membership", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 39
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 40
+    testRunner.Given("an employer without onboarding logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 41
+ testRunner.When("the employer provides all the required details for the employer onboarding journe" +
+                        "y", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 42
+    testRunner.Then("the employer onboarding process should be successfully completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 43
+    testRunner.And("the users can reinstate their membership within fourteen days of leaving the netw" +
+                        "ork", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

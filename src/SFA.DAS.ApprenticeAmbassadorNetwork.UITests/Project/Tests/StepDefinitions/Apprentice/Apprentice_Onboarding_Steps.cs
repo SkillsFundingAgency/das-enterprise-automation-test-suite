@@ -64,4 +64,18 @@ public class Apprentice_Onboarding_Steps(ScenarioContext context) : Apprentice_B
 
         SubmitUserDetails_OnboardingJourneyComplete(objectContext.GetLoginCredentials());
     }
+
+    [Then(@"the users can reinstate their membership within fourteen days of leaving the network")]
+    public void ThenTheUsersCanReinstateTheirMembershipWithinFourteenDaysOfLeavingTheNetwork()
+    {
+        applicationSubmittedPage.ContinueToAmbassadorHub()
+            .AccessProfileSettings()
+            .AccessLeaveTheNetwork()
+             .CompleteFeedbackAboutLeavingAndContinue()
+             .ConfirmAndLeave()
+             .AccessRestoreMember()
+             .RestoreMember();
+    }
+
+
 }
