@@ -31,3 +31,13 @@ Scenario: AAN_E_01C User completes onboarding process and lands on the AAN Emplo
 	When the employer provides all the required details for the employer onboarding journey
     Then the employer onboarding process should be successfully completed
     Then the user can sign back in to the AAN Employer platform to verify the hub page
+
+ @aan
+@aanemployer
+@aanemployeronboardingreset
+@regression
+Scenario: AAN_E_01D  Remove restore membership
+    Given an employer without onboarding logs into the AAN portal
+	When the employer provides all the required details for the employer onboarding journey
+    Then the employer onboarding process should be successfully completed
+    And the users can reinstate their membership within fourteen days of leaving the network
