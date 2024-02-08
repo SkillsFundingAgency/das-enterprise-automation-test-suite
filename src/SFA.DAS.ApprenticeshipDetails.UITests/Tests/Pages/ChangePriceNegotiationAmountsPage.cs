@@ -12,41 +12,41 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
 
         protected override By ContinueButton => By.Id("buttonSubmitForm");
 
-        private static By TrainingPrice = By.Id("ApprenticeshipTrainingPrice");
+        private static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
 
-        private static By EndpointAssessmentPrice = By.Id("ApprenticeshipEndPointAssessmentPrice");
+        private static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
 
-        private static By EffectiveFromDate_Day = By.Id("EffectiveFromDate_Day");
+        private static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
 
-        private static By EffectiveFromDate_Month = By.Id("EffectiveFromDate_Month");
+        private static By EffectiveFromDate_Month => By.Id("EffectiveFromDate_Month");
 
-        private static By EffectiveFromDate_Year = By.Id("EffectiveFromDate_Year");
+        private static By EffectiveFromDate_Year => By.Id("EffectiveFromDate_Year");
 
-        private static By ReasonPriceChange = By.Id("ReasonForChangeOfPrice");
+        private static By ReasonPriceChange => By.Id("ReasonForChangeOfPrice");
 
-        private static By ChangeTrainingAndOrEpaPriceErrorMessage = By.CssSelector("div[role='alert'] li a[href='#']");
+        private static By ChangeTrainingAndOrEpaPriceErrorMessage => By.CssSelector("div[role='alert'] li a[href='#']");
 
-        private static By EffectiveFromDateErrorMessage = By.CssSelector("div[role='alert'] li a[href='#EffectiveFromDate']");
+        private static By EffectiveFromDateErrorMessage => By.CssSelector("div[role='alert'] li a[href='#EffectiveFromDate']");
 
-        private static By EnterAReasonErrorMessage = By.CssSelector("div[role='alert'] li a[href='#ReasonForChangeOfPrice']");
+        private static By EnterAReasonErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ReasonForChangeOfPrice']");
 
-        private static By TrainingPriceMustBeAWholeNumberErrorMessage = By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTrainingPrice']");
+        private static By TrainingPriceMustBeAWholeNumberErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTrainingPrice']");
 
-        private static By EndPointAssessmentPriceMustBeAWholeNumberErrorMessage = By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipEndPointAssessmentPrice']");
+        private static By EndPointAssessmentPriceMustBeAWholeNumberErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipEndPointAssessmentPrice']");
 
-        private static string ChangeTrainingAndOrEpaPriceErrorText = "You must change the training price and/or the end-point assessment price";
+        private static string ChangeTrainingAndOrEpaPriceErrorText => "You must change the training price and/or the end-point assessment price";
 
-        private static string EnterADateErrorText = "Enter a date in the correct format";
+        private static string EnterADateErrorText => "Enter a date in the correct format";
 
-        private static string EnterAReasonErrorText = "You must enter a reason for requesting a price change. This will help the employer when they review your request.";
+        private static string EnterAReasonErrorText => "You must enter a reason for requesting a price change. This will help the employer when they review your request.";
 
-        private static string TrainingPriceMustBeAWholeNumberErrorText = "The training price must be a whole number between 1 - 100,000";
+        private static string TrainingPriceMustBeAWholeNumberErrorText => "The training price must be a whole number between 1 - 100,000";
 
-        private static string EndPointAssessmentPriceMustBeAWholeNumberErrorText = "The end-point assessment price must be a whole number between 1 - 100,000";
+        private static string EndPointAssessmentPriceMustBeAWholeNumberErrorText => "The end-point assessment price must be a whole number between 1 - 100,000";
 
-        private static string EnterDateAfterTrainingStartDateErrorText = "Enter a date that is after the training start date";
+        private static string EnterDateAfterTrainingStartDateErrorText => "Enter a date that is after the training start date";
 
-        private static string EnterDateBeforePlannedEndDateErrorText = "The date entered must be before the planned end date";
+        private static string EnterDateBeforePlannedEndDateErrorText => "The date entered must be before the planned end date";
 
         public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason)
         {
