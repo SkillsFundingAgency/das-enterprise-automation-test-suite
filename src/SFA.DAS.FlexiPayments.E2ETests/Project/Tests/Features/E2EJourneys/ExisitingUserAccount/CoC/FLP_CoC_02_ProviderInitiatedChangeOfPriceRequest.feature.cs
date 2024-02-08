@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.UI_Validations
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.CoC
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,26 +20,23 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset")]
-    public partial class FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_CoC_02_ProviderInitiatedChangeOfPriceRequest")]
+    public partial class FLP_CoC_02_ProviderInitiatedChangeOfPriceRequestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset.feature"
+#line 1 "FLP_CoC_02_ProviderInitiatedChangeOfPriceRequest.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset", @"The purpose of this test is to perform UI validations in the below workflow:
-- Training Provider adds a learner's details and send them to the employer 
-- Employer reviews the details and suggests a different Total price; sends back the details to TP for approval
-- When TP review the details, Total price suggested by Employer is displayed but Training Price and EPA price are reset 
-- TP is unable to approve the cohort until they enter Training Price and EPA price", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/CoC", "FLP_CoC_02_ProviderInitiatedChangeOfPriceRequest", "The purpose of this test is to successfully raise a Change of Price request initi" +
+                    "ated by a training provider \r\nfor a learner opted in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,21 +75,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("[FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewT" +
-            "otalPRice")]
+        [NUnit.Framework.DescriptionAttribute("FLP_CoC_02 Provider Initiated Change Of Price Request")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice()
+        public void FLP_CoC_02ProviderInitiatedChangeOfPriceRequest()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "e2escenarios",
+                    "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewT" +
-                    "otalPRice", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_02 Provider Initiated Change Of Price Request", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -102,42 +97,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
- testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
-                            "agreed_price"});
-                table25.AddRow(new string[] {
+                            "agreed_price",
+                            "pilot_status"});
+                table3.AddRow(new string[] {
                             "1",
                             "154",
-                            "2004/06/01",
-                            "2023/08/15",
+                            "2004/06/20",
+                            "StartPreviousMonth",
                             "12",
-                            "15000"});
+                            "15000",
+                            "true"});
+#line 10
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table3, "Given ");
+#line hidden
+#line 13
+    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 14
- testRunner.And("Pilot Provider adds apprentices to the cohort witht the following details", ((string)(null)), table25, "And ");
+ testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
+                        "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
- testRunner.And("pilot provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
- testRunner.And("Employer changes the Total Price then approve the cohort and sends it to the trai" +
-                        "ning provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
- testRunner.When("provider logs in to review the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
- testRunner.Then("validate Training Price and EPA price have been reset with blue warning message d" +
-                        "isplayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 21
- testRunner.And("verify training provider cannot approve the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("Provider successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
