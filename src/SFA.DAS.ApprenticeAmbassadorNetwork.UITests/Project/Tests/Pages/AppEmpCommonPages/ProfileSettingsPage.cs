@@ -9,4 +9,10 @@ public class ProfileSettingsPage(ScenarioContext context) : AanBasePage(context)
         formCompletionHelper.ClickLinkByText("Your ambassador profile");
         return new YourAmbassadorProfilePage(context);
     }
+    public LeavingTheNetworkPage AccessLeaveTheNetwork()
+    {
+        formCompletionHelper.ClickLinkByText("Leave the network");
+        return new LeavingTheNetworkPage(context);
+    }
+
 }

@@ -47,8 +47,8 @@
             _data.Add("rpexistingprovider04",
               [
                     new(emailkey, "sudhakar.chinoor+mainCC@digital.education.gov.uk"),
-                  new(providernamekey, "NORTH ORMESBY NEIGHBOURHOOD DEVELOPMENT TRUST LTD"),
-                  new(ukprnkey, "10004708"),
+                  new(providernamekey, "SIGTA LIMITED"),
+                  new(ukprnkey, "10005839"),
               ]);
             _data.Add("rpexistingprovider05",
              [
