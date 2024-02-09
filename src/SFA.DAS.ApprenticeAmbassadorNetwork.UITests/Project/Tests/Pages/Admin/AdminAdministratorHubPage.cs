@@ -12,4 +12,11 @@ public class AdminAdministratorHubPage : AanAdminBasePage
 
         return new ManageEventsPage(context);
     }
+
+    public ManageAmbassadorsPage AccessManageAmbassadors()
+    {
+        formCompletionHelper.ClickLinkByText("Manage ambassadors");
+
+        return new ManageAmbassadorsPage(context);
+    }
 }
