@@ -10,7 +10,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override string AccessibilityPageTitle => "Employer home page";
 
-        private static By TaskSelector => By.CssSelector("#application-approval-task > a");
+        private static By TaskSelector => By.CssSelector("#tasks a[href*='pledges']");
 
         public MyTransferPledgesPage ClickTask()
         {
