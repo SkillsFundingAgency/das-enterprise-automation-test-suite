@@ -7,7 +7,7 @@ namespace SFA.DAS.UI.Framework.TestSupport;
 
 public abstract class BasePage(ScenarioContext context) : InitialiseBasePage(context)
 {
-    protected static string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading,.govuk-label-wrapper";
+    protected static string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading";
     protected virtual By PageHeader => By.CssSelector(PageHeaderSelector);
     protected virtual By PageCaptionXl => By.CssSelector(".govuk-caption-xl");
     protected virtual By ContinueButton => By.CssSelector(".govuk-button");
