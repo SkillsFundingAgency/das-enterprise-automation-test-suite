@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override bool CanVerifyPage => false;
 
-        public TasksHomePage(ScenarioContext context) : base(context) => VerifyPageAfterRefresh(PageHeader, PageTitle);
+        public TasksHomePage(ScenarioContext context) : base(context) => VerifyTasksHomePage();
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyElement(StartAddingApprenticesNowTaskLink);
 
@@ -39,8 +39,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 int currentNumberOfTasks = GetTaskCount(taskType);
 
                 Assert.That(currentNumberOfTasks == expectedNumberOfTasks, $"The task type '{taskType}' was expected to have '{expectedNumberOfTasks}' tasks but currently has '{currentNumberOfTasks}' task");
-            }, () => pageInteractionHelper.RefreshPage());
+            }, () => VerifyTasksHomePage());
         }
+
+        private bool VerifyTasksHomePage() => VerifyPageAfterRefresh(PageHeader, PageTitle);
 
         private int GetTaskCount(string taskType)
         {
