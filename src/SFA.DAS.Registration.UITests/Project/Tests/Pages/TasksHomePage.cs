@@ -32,7 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void AssertTaskCount(string taskType, int expectedNumberOfTasks)
         {
-            context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
+            context.Get<RetryAssertHelper>().RetryOnTasksHomePage(() =>
             {
                 Assert.That(pageInteractionHelper.FindElements(TaskSelector).Count > 0, "No Task list element found");
 

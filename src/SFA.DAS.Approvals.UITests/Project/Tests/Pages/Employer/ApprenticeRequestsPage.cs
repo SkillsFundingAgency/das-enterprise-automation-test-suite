@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private T AssertPage<T>(By by, string columnName, Func<T> returnfunc)
         {
-            context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
+            context.Get<RetryAssertHelper>().RetryOnApprenticeRequestsPage(() =>
             {
                 Assert.That(Convert.ToInt32(pageInteractionHelper.GetText(by)) > 0, $"No cohorts available in '{columnName}' column");
 
