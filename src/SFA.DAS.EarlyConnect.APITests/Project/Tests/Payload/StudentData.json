@@ -1,0 +1,16 @@
+{
+    "listOfStudentData": [
+        {
+            "firstName": "Kwame",
+            "lastName": "Test",
+            "dateOfBirth": "1984-05-29",
+            "email": "test@education.co.uk",
+            "postcode": "SR8 1AU",
+            "telephone": "077777777777",
+            "industry": "Software | Capentry",
+            "schoolName": "Sacred Heart Secondary",
+            "dateOfInterest": "2023-11-17",
+            "logid": 5
+        }
+    ]
+}
