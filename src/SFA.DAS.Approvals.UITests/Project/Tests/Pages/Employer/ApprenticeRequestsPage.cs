@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 Assert.That(Convert.ToInt32(pageInteractionHelper.GetText(by)) > 0, $"No cohorts available in '{columnName}' column");
 
                 formCompletionHelper.ClickElement(by);
-            }, () => pageInteractionHelper.RefreshPage());
+            }, RefreshPage);
 
             return returnfunc();
         }

@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 int currentNumberOfTasks = GetTaskCount(taskType);
 
                 Assert.That(currentNumberOfTasks == expectedNumberOfTasks, $"The task type '{taskType}' was expected to have '{expectedNumberOfTasks}' tasks but currently has '{currentNumberOfTasks}' task");
-            }, () => VerifyTasksHomePage());
+            }, () => { RefreshPage(); VerifyTasksHomePage(); });
         }
 
         private bool VerifyTasksHomePage() => VerifyPageAfterRefresh(PageHeader, PageTitle);

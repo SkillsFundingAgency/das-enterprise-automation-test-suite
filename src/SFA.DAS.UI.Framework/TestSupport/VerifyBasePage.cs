@@ -35,6 +35,8 @@ public abstract class VerifyBasePage : InterimBasePage
         if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
     }
 
+    protected void RefreshPage() => pageInteractionHelper.RefreshPage();
+
     protected bool IsAccessibilityTesting() => frameworkConfig.IsAccessibilityTesting;
 
     protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
@@ -67,7 +69,7 @@ public abstract class VerifyBasePage : InterimBasePage
         return result.Item1 ? result.Item1 : throw new Exception(MessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
     }, null));
 
-    protected bool VerifyPageAfterRefresh(By locator, string text) => VerifyPage(() => VerifyElement(locator, text, pageInteractionHelper.RefreshPage));
+    protected bool VerifyPageAfterRefresh(By locator, string text) => VerifyPage(() => VerifyElement(locator, text, RefreshPage));
 
     protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
