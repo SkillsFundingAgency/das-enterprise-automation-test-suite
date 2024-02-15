@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport.AnalyzeHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -139,7 +140,9 @@ public abstract class VerifyBasePage : InterimBasePage
         {
             string counter = _screenShotTitleGenerator.GetTitle();
 
-            ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), objectContext.GetDirectory(), $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
+            var fileName = ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), objectContext.GetDirectory(), $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
+
+            objectContext.SetDebugInformation($"Ref to screenshot - {fileName}");
         }
     }
 }
