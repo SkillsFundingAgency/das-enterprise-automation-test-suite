@@ -13,7 +13,9 @@ namespace SFA.DAS.FrameworkHelpers
 
         public void RetryOnNUnitException(Action action, TimeSpan[] timespan) => RetryOnNUnitException(action, timespan, null);
 
-        public void RetryOnNUnitException(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan([5, 8, 13, 20, 30, 30, 30]), retryaction);
+        public void RetryOnApprenticeRequestsPage(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan([5, 8, 13, 20, 30, 30, 30]), retryaction);
+
+        public void RetryOnTasksHomePage(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan([5, 8, 13, 20, 30, 30, 30, 30, 30, 30, 30, 30, 30]), retryaction);
 
         private void RetryOnNUnitException(Action action, TimeSpan[] timespan, Action retryaction)
         {

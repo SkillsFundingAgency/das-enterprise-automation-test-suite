@@ -9,9 +9,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override string PageTitle { get; }
 
-        private static By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
+        private static By SearchIcon => By.CssSelector("[data-test-id='toolbar-search-box-icon']");
 
-        private static By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
+        private static By SearchInput => By.CssSelector("[data-test-id='toolbar-search-box-input']");
 
         private static By BrandingHeader => By.CssSelector("#branding_header");
 
