@@ -28,7 +28,7 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
 
         _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
 
-        bool IsVstsExecution = Configurator.IsVstsExecution;
+        bool IsVstsExecution = Configurator.IsAzureExecution;
 
         var frameworkConfig = new FrameworkConfig
         {
