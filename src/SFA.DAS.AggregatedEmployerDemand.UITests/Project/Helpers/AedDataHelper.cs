@@ -2,7 +2,12 @@
 
 public record AedDataHelper
 {
-    public AedDataHelper(string domainName) => Email = $"{GetDateTimeValue()}@{domainName}";
+    public AedDataHelper(MailosaurUser user)
+    {
+        Email = $"{GetDateTimeValue()}@{user.DomainName}";
+
+        user.AddToEmailList(Email);
+    }
 
     public string Email { get; init; }
     public string RandomWebsiteAddress { get; init; } = "www.TEST" + GetDateTimeValue() + ".com";
