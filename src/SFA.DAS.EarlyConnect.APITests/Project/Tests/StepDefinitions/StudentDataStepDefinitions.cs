@@ -11,10 +11,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions
       
         private readonly Outer_EarlyConnectAPIClient _restClient = context.GetRestClient<Outer_EarlyConnectAPIClient>();
         private RestResponse _restResponse = null;
-        private string _expected;
-        private RestResponse _apiResponse;
-
-
+      
 
         [When(@"the user sends (GET|POST|PUT|DELETE) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endppoint, string payload)
@@ -22,22 +19,10 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions
             _restClient.CreateRestRequest(method, endppoint, payload);
         }
 
-        [Then(@"api OK response is received")]
-        public void ThenApiOKResponseIsReceived()
+        [Then(@"api (OK) response is received")]
+        public void ThenApiOKResponseIsReceived(HttpStatusCode responsecode)
         {
-            throw new PendingStepException();
+            _restResponse = _restClient.Execute(responsecode);
         }
-
-
-
-        [Then(@"a <ResponseStatus> response is received")]
-        public void ThenAResponseStatusResponseIsReceived()
-        {
-            throw new PendingStepException();
-        }
-
-
-
-
     }
 }

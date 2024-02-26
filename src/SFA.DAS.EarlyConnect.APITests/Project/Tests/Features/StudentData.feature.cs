@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void VerifyStudentDataPost_EC201()
         {
 #line 8
-this.VerifyStudentDataPost("EC201", "POST", "/early-connect/student-data/add", "StudentData.json", "Created", ((string[])(null)));
+this.VerifyStudentDataPost("EC201", "POST", "/early-connect/student-data/add", "StudentData.json", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -155,7 +155,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 24
- testRunner.Then(string.Format("a {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
