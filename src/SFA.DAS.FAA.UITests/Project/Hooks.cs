@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using Polly;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator.Project.Config;
@@ -21,7 +22,9 @@ namespace SFA.DAS.FAA.UITests.Project
             var pageInteractionHelper = context.Get<PageInteractionHelper>();
 
             context.Set(new VacancyTitleDatahelper(isCloneVacancy));
-            context.Set(new FAADataHelper());
+
+            context.Set(new FAADataHelper(context.Get<MailosaurUser>()));
+
             context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));
         }
 
