@@ -1,8 +1,9 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using System.Linq;
+using SFA.DAS.ConfigurationBuilder;
 
-namespace SFA.DAS.ConfigurationBuilder.BeforeScenario;
+namespace SFA.DAS.MailosaurAPI.Service;
 
 [Binding]
 public class MailosaurAPIConfigurationSetup(ScenarioContext context)
