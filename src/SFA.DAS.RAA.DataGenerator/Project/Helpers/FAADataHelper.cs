@@ -5,8 +5,10 @@ namespace SFA.DAS.RAA.DataGenerator
 {
     public class FAADataHelper
     {
-        public FAADataHelper()
+        public FAADataHelper(MailosaurUser user)
         {
+            string GenerateRandomEmail() => RandomDataGenerator.GenerateRandomEmail("FAAUser",user.DomainName);
+
             var datetime = DateTime.Now;
             EducationSchoolOrCollege = RandomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
@@ -35,8 +37,8 @@ namespace SFA.DAS.RAA.DataGenerator
             DOB_Day = RandomDataGenerator.GenerateRandomDateOfMonth();
             DOB_Month = RandomDataGenerator.GenerateRandomMonth();
             DOB_Year = RandomDataGenerator.GenerateRandomDobYear();
-            EmailId = RandomDataGenerator.GenerateRandomEmail();
-            ChangedEmailId = RandomDataGenerator.GenerateRandomEmail();
+            EmailId = GenerateRandomEmail();
+            ChangedEmailId = GenerateRandomEmail();
             PhoneNumber = RandomDataGenerator.GenerateRandomNumber(10);
             NewPhoneNumber = RandomDataGenerator.GenerateRandomNumber(10);
             Password = RandomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
