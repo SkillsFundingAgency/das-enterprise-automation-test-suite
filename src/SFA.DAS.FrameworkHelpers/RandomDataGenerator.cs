@@ -44,7 +44,7 @@
             return randomString;
         }
 
-        public static string GenerateRandomEmail(string domain) => GenerateRandomAlphanumericString(10) + DateTime.Now.Millisecond + "@" + domain;
+        public static string GenerateRandomEmail(string suffix, string domain) => $"{suffix}_{GenerateRandomAlphanumericString(5)}_{DateTime.Now.ToSeconds()}_{DateTime.Now.ToNanoSeconds()}@{domain}";
 
         public static int GenerateRandomDateOfMonth() => GenerateRandomNumberBetweenTwoValues(1, 28);
 

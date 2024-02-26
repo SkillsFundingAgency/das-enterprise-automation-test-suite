@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA.DataGenerator
     {
         public FAADataHelper(MailosaurUser user)
         {
-            string GenerateRandomEmail() => RandomDataGenerator.GenerateRandomEmail(user.DomainName);
+            string GenerateRandomEmail() => RandomDataGenerator.GenerateRandomEmail("FAAUser",user.DomainName);
 
             var datetime = DateTime.Now;
             EducationSchoolOrCollege = RandomDataGenerator.GenerateRandomAlphabeticString(10);
