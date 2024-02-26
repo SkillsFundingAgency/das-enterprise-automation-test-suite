@@ -137,9 +137,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.SupportTools.UITest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TransferMatching.APITests", "SFA.DAS.TransferMatching.APITests\SFA.DAS.TransferMatching.APITests.csproj", "{A685DED7-44AA-4903-890B-B3C13C6F6963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ApprenticeshipDetails.UITests", "SFA.DAS.ApprenticeshipDetails.UITests\SFA.DAS.ApprenticeshipDetails.UITests.csproj", "{7E8CEC64-0866-46CA-A107-D6AA757890EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeshipDetails.UITests", "SFA.DAS.ApprenticeshipDetails.UITests\SFA.DAS.ApprenticeshipDetails.UITests.csproj", "{7E8CEC64-0866-46CA-A107-D6AA757890EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MailosaurAPI.Service", "SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj", "{0084AA7E-8A86-4FC8-9925-983281E88F45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnect.APITests", "SFA.DAS.EarlyConnect.APITests\SFA.DAS.EarlyConnect.APITests.csproj", "{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -484,6 +486,24 @@ Global
 		{A685DED7-44AA-4903-890B-B3C13C6F6963}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{A685DED7-44AA-4903-890B-B3C13C6F6963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A685DED7-44AA-4903-890B-B3C13C6F6963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8CEC64-0866-46CA-A107-D6AA757890EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8CEC64-0866-46CA-A107-D6AA757890EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8CEC64-0866-46CA-A107-D6AA757890EE}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8CEC64-0866-46CA-A107-D6AA757890EE}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{7E8CEC64-0866-46CA-A107-D6AA757890EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8CEC64-0866-46CA-A107-D6AA757890EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -515,6 +535,7 @@ Global
 		{ADA2596C-4438-43DC-930D-B62E0E3D2CD6} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 		{D54A446D-A87A-4BE5-95CD-FE7FEC23B354} = {47528102-1EF0-4800-9DA4-B0BA5199E006}
 		{A685DED7-44AA-4903-890B-B3C13C6F6963} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
+		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7E7F47-C08F-4B67-BB6A-FFCED573D7BF}
