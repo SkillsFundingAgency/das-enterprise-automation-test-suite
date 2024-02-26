@@ -26,7 +26,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private static By TriageLinkUpdateLink => By.LinkText("View price mismatch");
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
-        private static By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static By ChangePriceLink => By.Id("linkChangePrice");
+        private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
+        private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
+        private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price changes you've requested\")]");
+        private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
+        private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
+        private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -137,8 +144,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ValidateFlexiPaymentDataLockMessageDisplayed(bool isDisplayed)
         {
-            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPatmentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
-            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPatmentsPilotNotificationMessage));
+            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPaymentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
+            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPaymentsPilotNotificationMessage));
+        }
+
+        public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
+
+        public void ClickViewPriceChangesRequestedLink() => formCompletionHelper.Click(ViewPriceChangesLink);
+
+        public void ValidateChangeOfPriceRequestRaisedSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfPriceRequestSentBanner), "Change of Price Request Sent banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to employer"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View price changes you've requested link is not displayed");
+            }   
+            );
+        }
+
+        public void ValidateChangeOfPriceRequestCancelledSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangeCancelledBanner), "Price Change Cancelled banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo("Your request to change the price has been cancelled"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
+            }
+           );
         }
     }
 }

@@ -12,7 +12,7 @@ Scenario: EPAO_AD_ReprintCert_03 Amend a Certificate - Change SendTo
 	And the Admin can search using learner uln
 	When the Admin reprints the certificate with ticket reference 'INC123456' and selects reason 'Delivery failed'
 	Then the SendTo can be changed from 'apprentice' to 'employer'
-	And the new address can be entered with employer name 'EFSA' and recipient 'HR Department'
-	And the recipient's name on the check page is 'HR Department'
+	And the new address can be entered with employer name 'EFSA' and recipient 'HR DEPARTMENT'
+	And the recipient's name on the check page is 'HR DEPARTMENT'
 	And the address contains the employer name 'EFSA'
 	

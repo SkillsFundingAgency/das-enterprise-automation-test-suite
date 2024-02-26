@@ -13,7 +13,8 @@
     { "assembly": "SFA.DAS.Registration.UITests" },
     { "assembly": "SFA.DAS.Approvals.UITests" },
     { "assembly": "SFA.DAS.ProviderLogin.Service" },
-    { "assembly": "SFA.DAS.ApprenticeCommitments.APITests" }
+    { "assembly": "SFA.DAS.ApprenticeCommitments.APITests" },
+    { "assembly": "SFA.DAS.MailosaurAPI.Service" }
   ],
   "generator": {
     "allowRowTests": false,

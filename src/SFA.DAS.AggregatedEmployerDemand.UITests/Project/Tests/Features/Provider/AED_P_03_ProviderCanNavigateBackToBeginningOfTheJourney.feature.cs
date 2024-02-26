@@ -77,13 +77,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Provid
         [NUnit.Framework.DescriptionAttribute("AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("testinator")]
+        [NUnit.Framework.CategoryAttribute("mailosaur")]
         public void AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
                     "regression",
-                    "testinator"};
+                    "mailosaur"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_P_03_ProviderCanNavigateBackToBeginningOfTheJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6

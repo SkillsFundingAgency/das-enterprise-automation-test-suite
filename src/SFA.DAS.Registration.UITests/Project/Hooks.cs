@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -32,9 +32,12 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetDataHelper(dataHelper);
 
-            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "dasperfautomation.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("mailinator")) ? "mailinator.com" :
-                              tags.Any(x => x.ContainsCompareCaseInsensitive("testinator")) ? GetDomainName() : "dasautomation.com";
+            var mailosaurUser = context.Get<MailosaurUser>();
+
+            var mailosaurEmaildomain = mailosaurUser.DomainName;
+
+            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "asperfautomation.com" :
+                tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "asautomation.com" : mailosaurEmaildomain;
 
             var aornDataHelper = new AornDataHelper();
 
@@ -50,7 +53,11 @@ namespace SFA.DAS.Registration.UITests.Project
 
             context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
-            _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
+            var randomEmail = registrationDatahelpers.RandomEmail;
+
+            _objectContext.SetRegisteredEmail(randomEmail);
+
+            if (randomEmail.Contains(mailosaurEmaildomain)) mailosaurUser.AddToEmailList(randomEmail);
         }
 
         [BeforeScenario(Order = 23)]
@@ -60,7 +67,5 @@ namespace SFA.DAS.Registration.UITests.Project
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]
         public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
-
-        private string GetDomainName() => context.Get<MailinatorApiHelper>().GetDomainName();
     }
 }

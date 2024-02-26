@@ -1,4 +1,4 @@
-﻿using SFA.DAS.MailinatorAPI.Service.Project.Helpers;
+﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
@@ -26,7 +26,7 @@ public class AedStepsHelper
 
         var email = _context.Get<AedDataHelper>().Email;
 
-        _tabHelper.OpenInNewTab(_context.Get<MailinatorApiHelper>().GetLink(email, "Confirm your contact email address"));
+        _tabHelper.OpenInNewTab(_context.Get<MailosaurApiHelper>().GetLinkBySubject(email, "Confirm your contact email address", "registerdemand"));
 
         new WeveSharedYourInterestWithProviderPage(_context).VerifyContent(email);
     }
