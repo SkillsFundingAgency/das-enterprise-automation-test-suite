@@ -43,7 +43,7 @@ namespace SFA.DAS.ConfigurationBuilder
             var builder = ConfigurationBuilder()
                 .AddOptionalJsonFiles(
                 [
-                    "appsettings.DbConfig.json",
+                    "appsettings.Config.json",
                     "appsettings.TimeOutConfig.json",
                     "appsettings.NServiceBusConfig.json",
                     "appsettings.BrowserStack.json",

@@ -15,11 +15,5 @@
 		<ProjectReference Include="..\SFA.DAS.API.FrameworkHelpers\SFA.DAS.API.FrameworkHelpers.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="appsettings.MailosaurApi.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	</ItemGroup>
-
 
 </Project>
