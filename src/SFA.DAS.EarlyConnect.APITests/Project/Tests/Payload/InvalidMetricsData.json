@@ -1,0 +1,17 @@
+{
+    "metricsData": [
+        {
+            "region": "Kent",
+            "intendedStartYear": 2024,
+            "maxTravelInMiles": 30,
+            "willingnessToRelocate": true,
+            "noOfGCSCs": 4,
+            "noOfStudents": 4,
+            "logId": 83,
+            "metricFlags": [
+                "gcse_grade4_english_flag",
+                "interested_in_hr_flag"
+            ]
+        }
+    ]
+}

@@ -37,6 +37,12 @@
 	  <None Update="Project\Tests\Payload\InvalidStudentData.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Project\Tests\Payload\InvalidMetricsData.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Project\Tests\Payload\MetricsData.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Project\Tests\Payload\StudentData.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

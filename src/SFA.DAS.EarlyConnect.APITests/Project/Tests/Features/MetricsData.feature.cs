@@ -35,7 +35,8 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "MetricsData", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "MetricsData", "The API system should allow valid metric data to be posted successfully and also " +
+                    "to be retrive", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +74,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyGETMetricsData(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyApiGETMetricsData(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,7 +91,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify GET Metrics Data", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify api GET Metrics Data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,14 +113,114 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify GET Metrics Data: EC222")]
+        [NUnit.Framework.DescriptionAttribute("Verify api GET Metrics Data: EC222")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyGETMetricsData_EC222()
+        public void VerifyApiGETMetricsData_EC222()
         {
 #line 9
-this.VerifyGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyValidMetrisDataPostReturns201Created(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "api",
+                    "earlyconapi",
+                    "regression"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify valid metris data post returns 201 Created", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 21
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 22
+ testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify valid metris data post returns 201 Created: EC222")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("earlyconapi")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyValidMetrisDataPostReturns201Created_EC222()
+        {
+#line 20
+this.VerifyValidMetrisDataPostReturns201Created("EC222", "POST", "/early-connect/metrics-data/add", "MetricsData.json", "Created", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyInvalidMetrisDataPostReturns400BadRequest(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "api",
+                    "earlyconapi",
+                    "regression"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("TestCaseId", testCaseId);
+            argumentsOfScenario.Add("Method", method);
+            argumentsOfScenario.Add("Endpoint", endpoint);
+            argumentsOfScenario.Add("Payload", payload);
+            argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify invalid metris data post returns 400 Bad request", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 31
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 32
+ testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+ testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify invalid metris data post returns 400 Bad request: EC222")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("earlyconapi")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyInvalidMetrisDataPostReturns400BadRequest_EC222()
+        {
+#line 31
+this.VerifyInvalidMetrisDataPostReturns400BadRequest("EC222", "POST", "/early-connect/metrics-data/add", "InvalidMetricsData.json", "Bad Request", ((string[])(null)));
 #line hidden
         }
     }
