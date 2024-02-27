@@ -31,5 +31,11 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions
             _restResponse = _restClient.Execute(responsecode);
         }
 
+        [Then(@"api (Bad Request) response is received")]
+        public void ThenApiBadRequestResponseIsReceived(HttpStatusCode responsecode)
+        {
+            _restResponse = _restClient.Execute(responsecode);
+        }
+
     }
 }

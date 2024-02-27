@@ -1,0 +1,16 @@
+{
+    "listOfStudentData": [
+        {
+            "firstName": "Mikel",
+            "lastName": "Best",
+            "dateOfBirth": "2084-05-29",
+            "email": "test@education.co.uk",
+            "postCode": "CT12 4PY",
+            "telephone": "1231231231",
+            "industry": "Engineering | Software",
+            "schoolName": "School of Testing",
+            "dateOfInterest": "2088-11-17",
+            "logId": 3
+        }
+    ]
+}
