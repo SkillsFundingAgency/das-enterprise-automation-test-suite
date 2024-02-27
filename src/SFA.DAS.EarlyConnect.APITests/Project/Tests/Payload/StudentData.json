@@ -1,16 +1,16 @@
 {
     "listOfStudentData": [
         {
-            "firstName": "Kwame",
-            "lastName": "Test",
-            "dateOfBirth": "1984-05-29",
-            "email": "test@education.co.uk",
-            "postcode": "SR8 1AU",
-            "telephone": "077777777777",
-            "industry": "Software | Capentry",
-            "schoolName": "Sacred Heart Secondary",
-            "dateOfInterest": "2023-11-17",
-            "logid": 5
+            "firstName": "Richard",
+            "lastName": "Clark",
+            "dateOfBirth": "1982-12-12",
+            "email": "rclarck@gmail.com",
+            "postCode": "CA67BB",
+            "telephone": "07789867768",
+            "industry": "Carpentary | Baking",
+            "schoolName": "Christ Church",
+            "dateOfInterest": "2023-11-10T18:23:48.493",
+            "logId": 5
         }
     ]
 }

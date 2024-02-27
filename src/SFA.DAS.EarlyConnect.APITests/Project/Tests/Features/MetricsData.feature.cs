@@ -20,22 +20,22 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("StudentData")]
-    public partial class StudentDataFeature
+    [NUnit.Framework.DescriptionAttribute("MetricsData")]
+    public partial class MetricsDataFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "StudentData.feature"
+#line 1 "MetricsData.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "StudentData", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "MetricsData", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyValidStudentDataPost(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyGETMetricsData(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,8 +90,8 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify valid student data post", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify GET Metrics Data", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -101,10 +101,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -112,14 +112,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify valid student data post: EC201")]
+        [NUnit.Framework.DescriptionAttribute("Verify GET Metrics Data: EC222")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyValidStudentDataPost_EC201()
+        public void VerifyGETMetricsData_EC222()
         {
-#line 8
-this.VerifyValidStudentDataPost("EC201", "POST", "/early-connect/student-data/add", "StudentData.json", "Created", ((string[])(null)));
+#line 9
+this.VerifyGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
 #line hidden
         }
     }

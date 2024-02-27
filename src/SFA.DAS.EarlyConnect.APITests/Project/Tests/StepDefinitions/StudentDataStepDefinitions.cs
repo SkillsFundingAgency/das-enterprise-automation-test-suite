@@ -24,5 +24,12 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions
         {
             _restResponse = _restClient.Execute(responsecode);
         }
+
+        [Then(@"api (Created) response is received")]
+        public void ThenApiCreatedResponseIsReceived(HttpStatusCode responsecode)
+        {
+            _restResponse = _restClient.Execute(responsecode);
+        }
+
     }
 }
