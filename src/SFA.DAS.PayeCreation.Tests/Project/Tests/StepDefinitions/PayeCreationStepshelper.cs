@@ -30,7 +30,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 
             foreach (var gatewaycred in _objectContext.GetGatewayCreds().ToList())
             {
-                var aornNumber = AornDataHelper.AornNumber;
+                var aornNumber = new AornDataHelper().AornNumber;
 
                 new InsertTprDataHelper(_objectContext, _dbConfig).InsertSingleOrgTprData(aornNumber, gatewaycred.Paye);
 

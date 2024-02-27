@@ -364,7 +364,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private void EnterInvalidAornAndPaye() =>
-            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(AornDataHelper.AornNumber, RegistrationDataHelper.InvalidPaye);
+            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(AornDataHelper.InvalidAornNumber, RegistrationDataHelper.InvalidPaye);
 
         private SearchForYourOrganisationPage CreateAnUserAcountAndAddPaye()
         {

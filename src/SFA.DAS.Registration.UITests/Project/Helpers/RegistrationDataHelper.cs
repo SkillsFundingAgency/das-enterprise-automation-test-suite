@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper
     {
-        public RegistrationDataHelper(string[] tags, string emailaddress)
+        public RegistrationDataHelper(string[] tags, string emailaddress, AornDataHelper aornDataHelper)
         {
             var randomOrganisationNameHelper = new RandomOrganisationNameHelper(tags);
             var randomPersonNameHelper = new RandomPersonNameHelper();
@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             RandomEmail = emailaddress;
             AnotherRandomEmail = GenerateRandomEmail(emailaddress);
-            AornNumber = AornDataHelper.AornNumber;
+            AornNumber = aornDataHelper.AornNumber;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);

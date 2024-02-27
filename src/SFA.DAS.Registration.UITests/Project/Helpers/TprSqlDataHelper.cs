@@ -5,7 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    internal class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext)
+    internal class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
     {
         public void CreateSingleOrgAornData() => CreateAornData("SingleOrg");
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private void CreateAornData(string orgType)
         {
-            var aornNumber = AornDataHelper.AornNumber;
+            var aornNumber = aornDataHelper.AornNumber;
 
             var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, objectContext.GetGatewayPaye(0), orgType);
 

@@ -39,7 +39,9 @@ namespace SFA.DAS.Registration.UITests.Project
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "asperfautomation.com" :
                 tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "asautomation.com" : mailosaurEmaildomain;
 
-            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}");
+            var aornDataHelper = new AornDataHelper();
+
+            var registrationDatahelpers = new RegistrationDataHelper(tags, $"{dataHelper.GatewayUsername}@{emaildomain}", aornDataHelper);
 
             context.Set(registrationDatahelpers);
 
@@ -49,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             context.Set(new RegistrationSqlDataHelper(_objectContext, _dbConfig));
 
-            context.Set(new TprSqlDataHelper(_dbConfig, _objectContext));
+            context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
             var randomEmail = registrationDatahelpers.RandomEmail;
 
