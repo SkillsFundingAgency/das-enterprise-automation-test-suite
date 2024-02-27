@@ -113,14 +113,38 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify api GET Metrics Data: EC222")]
+        [NUnit.Framework.DescriptionAttribute("Verify api GET Metrics Data: Variant 0")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyApiGETMetricsData_EC222()
+        public void VerifyApiGETMetricsData_Variant0()
+        {
+#line 9
+this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000019", "", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify api GET Metrics Data: Variant 1")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("earlyconapi")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyApiGETMetricsData_Variant1()
         {
 #line 9
 this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify api GET Metrics Data: Variant 2")]
+        [NUnit.Framework.CategoryAttribute("api")]
+        [NUnit.Framework.CategoryAttribute("earlyconapi")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyApiGETMetricsData_Variant2()
+        {
+#line 9
+this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000051", "", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -142,7 +166,7 @@ this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify valid metris data post returns 201 Created", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 20
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -152,10 +176,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 21
+#line 23
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 24
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -169,7 +193,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyValidMetrisDataPostReturns201Created_EC222()
         {
-#line 20
+#line 22
 this.VerifyValidMetrisDataPostReturns201Created("EC222", "POST", "/early-connect/metrics-data/add", "MetricsData.json", "Created", ((string[])(null)));
 #line hidden
         }
@@ -192,7 +216,7 @@ this.VerifyValidMetrisDataPostReturns201Created("EC222", "POST", "/early-connect
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify invalid metris data post returns 400 Bad request", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 31
+#line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -202,10 +226,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 32
+#line 34
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 33
+#line 35
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -219,7 +243,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyInvalidMetrisDataPostReturns400BadRequest_EC222()
         {
-#line 31
+#line 33
 this.VerifyInvalidMetrisDataPostReturns400BadRequest("EC222", "POST", "/early-connect/metrics-data/add", "InvalidMetricsData.json", "Bad Request", ((string[])(null)));
 #line hidden
         }

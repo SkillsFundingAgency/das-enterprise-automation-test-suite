@@ -12,7 +12,9 @@ Scenario Outline: Verify api GET Metrics Data
 
 	Examples: 
 | TestCaseId | Method | Endpoint							  | Payload | ResponseStatus |
+| EC222      | GET    | /early-connect/metrics-data/E37000019 |         |    OK          | 
 | EC222      | GET    | /early-connect/metrics-data/E37000025 |         |    OK          | 
+| EC222      | GET    | /early-connect/metrics-data/E37000051 |         |    OK          | 
 
 @api
 @earlyconapi
