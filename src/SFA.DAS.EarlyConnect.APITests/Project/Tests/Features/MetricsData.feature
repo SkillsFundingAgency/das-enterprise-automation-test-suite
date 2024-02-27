@@ -11,10 +11,10 @@ Scenario Outline: Verify api GET Metrics Data
 	Then api <ResponseStatus> response is received
 
 	Examples: 
-| TestCaseId | Method | Endpoint							  | Payload | ResponseStatus |
-| EC222      | GET    | /early-connect/metrics-data/E37000019 |         |    OK          | 
-| EC222      | GET    | /early-connect/metrics-data/E37000025 |         |    OK          | 
-| EC222      | GET    | /early-connect/metrics-data/E37000051 |         |    OK          | 
+  | Method | Endpoint							   | Payload | ResponseStatus |
+  | GET    | /early-connect/metrics-data/E37000019 |         |    OK          |
+  | GET    | /early-connect/metrics-data/E37000025 |         |    OK          | 
+  | GET    | /early-connect/metrics-data/E37000051 |         |    OK          | 
 
 @api
 @earlyconapi
@@ -24,8 +24,8 @@ Scenario Outline: Verify valid metris data post returns 201 Created
 	Then api <ResponseStatus> response is received
 
 	Examples: 
-| TestCaseId | Method | Endpoint							  | Payload | ResponseStatus |
-| EC222      | POST    | /early-connect/metrics-data/add | MetricsData.json  |    Created | 
+ | Method | Endpoint					    | Payload           | ResponseStatus |
+ | POST   | /early-connect/metrics-data/add | MetricsData.json  |    Created     | 
 
 @api
 @earlyconapi
@@ -35,5 +35,5 @@ Scenario Outline: Verify invalid metris data post returns 400 Bad request
 	Then api <ResponseStatus> response is received
 
 	Examples: 
-| TestCaseId | Method | Endpoint							  | Payload | ResponseStatus |
-| EC222      | POST    | /early-connect/metrics-data/add | InvalidMetricsData.json  |    Bad Request |
+ | Method | Endpoint							  | Payload                  | ResponseStatus |
+ | POST   | /early-connect/metrics-data/add       | InvalidMetricsData.json  |    Bad Request |

@@ -10,8 +10,8 @@ Scenario Outline: Verify valid student data post returns 201 Created
 
 
 	Examples: 
-| TestCaseId | Method | Endpoint                        | Payload			| ResponseStatus   |
-| EC201      | POST   | /early-connect/student-data/add |  StudentData.json | Created		   |	
+| Method | Endpoint                        | Payload			| ResponseStatus   |
+| POST   | /early-connect/student-data/add |  StudentData.json | Created		   |	
 
 @api
 @earlyconapi
@@ -22,8 +22,8 @@ Scenario Outline: Verify invalid student data post returns 400 Bad request
 
 
 	Examples: 
-| TestCaseId | Method | Endpoint                        | Payload			| ResponseStatus   |
-| EC201      | POST   | /early-connect/student-data/add |  InvalidStudentData.json | Bad Request		   |
+| Method | Endpoint                        | Payload                 | ResponseStatus |
+| POST   | /early-connect/student-data/add | InvalidStudentData.json | Bad Request    |
 
  
 	
