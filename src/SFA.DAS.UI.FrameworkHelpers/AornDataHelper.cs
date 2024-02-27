@@ -10,5 +10,5 @@ public class AornDataHelper
 
     public static string InvalidAornNumber => $"A{GetDateTimeValue()}";
 
-    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
+    private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHffff");
 }
