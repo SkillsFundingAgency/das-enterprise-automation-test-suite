@@ -73,7 +73,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyValidStudentDataPostReturns201Created(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyValidStudentDataPostReturns201Created(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -85,7 +85,6 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
@@ -112,18 +111,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify valid student data post returns 201 Created: EC201")]
+        [NUnit.Framework.DescriptionAttribute("Verify valid student data post returns 201 Created: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyValidStudentDataPostReturns201Created_EC201()
+        public void VerifyValidStudentDataPostReturns201Created_POST()
         {
 #line 7
-this.VerifyValidStudentDataPostReturns201Created("EC201", "POST", "/early-connect/student-data/add", "StudentData.json", "Created", ((string[])(null)));
+this.VerifyValidStudentDataPostReturns201Created("POST", "/early-connect/student-data/add", "StudentData.json", "Created", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyInvalidStudentDataPostReturns400BadRequest(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyInvalidStudentDataPostReturns400BadRequest(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -135,7 +134,6 @@ this.VerifyValidStudentDataPostReturns201Created("EC201", "POST", "/early-connec
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
@@ -162,14 +160,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify invalid student data post returns 400 Bad request: EC201")]
+        [NUnit.Framework.DescriptionAttribute("Verify invalid student data post returns 400 Bad request: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyInvalidStudentDataPostReturns400BadRequest_EC201()
+        public void VerifyInvalidStudentDataPostReturns400BadRequest_POST()
         {
 #line 19
-this.VerifyInvalidStudentDataPostReturns400BadRequest("EC201", "POST", "/early-connect/student-data/add", "InvalidStudentData.json", "Bad Request", ((string[])(null)));
+this.VerifyInvalidStudentDataPostReturns400BadRequest("POST", "/early-connect/student-data/add", "InvalidStudentData.json", "Bad Request", ((string[])(null)));
 #line hidden
         }
     }

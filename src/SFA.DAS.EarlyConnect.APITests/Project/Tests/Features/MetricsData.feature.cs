@@ -74,7 +74,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyApiGETMetricsData(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyApiGETMetricsData(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -86,7 +86,6 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
@@ -120,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void VerifyApiGETMetricsData_Variant0()
         {
 #line 9
-this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000019", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000019", "", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -132,7 +131,7 @@ this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000
         public void VerifyApiGETMetricsData_Variant1()
         {
 #line 9
-this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
 #line hidden
         }
         
@@ -144,11 +143,11 @@ this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000
         public void VerifyApiGETMetricsData_Variant2()
         {
 #line 9
-this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000051", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000051", "", "OK", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyValidMetrisDataPostReturns201Created(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyValidMetrisDataPostReturns201Created(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -160,7 +159,6 @@ this.VerifyApiGETMetricsData("EC222", "GET", "/early-connect/metrics-data/E37000
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
@@ -187,18 +185,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify valid metris data post returns 201 Created: EC222")]
+        [NUnit.Framework.DescriptionAttribute("Verify valid metris data post returns 201 Created: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyValidMetrisDataPostReturns201Created_EC222()
+        public void VerifyValidMetrisDataPostReturns201Created_POST()
         {
 #line 22
-this.VerifyValidMetrisDataPostReturns201Created("EC222", "POST", "/early-connect/metrics-data/add", "MetricsData.json", "Created", ((string[])(null)));
+this.VerifyValidMetrisDataPostReturns201Created("POST", "/early-connect/metrics-data/add", "MetricsData.json", "Created", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyInvalidMetrisDataPostReturns400BadRequest(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyInvalidMetrisDataPostReturns400BadRequest(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -210,7 +208,6 @@ this.VerifyValidMetrisDataPostReturns201Created("EC222", "POST", "/early-connect
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("TestCaseId", testCaseId);
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
@@ -237,14 +234,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify invalid metris data post returns 400 Bad request: EC222")]
+        [NUnit.Framework.DescriptionAttribute("Verify invalid metris data post returns 400 Bad request: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyInvalidMetrisDataPostReturns400BadRequest_EC222()
+        public void VerifyInvalidMetrisDataPostReturns400BadRequest_POST()
         {
 #line 33
-this.VerifyInvalidMetrisDataPostReturns400BadRequest("EC222", "POST", "/early-connect/metrics-data/add", "InvalidMetricsData.json", "Bad Request", ((string[])(null)));
+this.VerifyInvalidMetrisDataPostReturns400BadRequest("POST", "/early-connect/metrics-data/add", "InvalidMetricsData.json", "Bad Request", ((string[])(null)));
 #line hidden
         }
     }
