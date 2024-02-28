@@ -9,12 +9,13 @@ The API system should allow valid metric data to be posted successfully and also
 Scenario Outline: Verify api GET Metrics Data 
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
+	And verify response body displays correct '<Region>' information
 
 	Examples: 
-  | Method | Endpoint							   | Payload | ResponseStatus |
-  | GET    | /early-connect/metrics-data/E37000019 |         |    OK          |
-  | GET    | /early-connect/metrics-data/E37000025 |         |    OK          | 
-  | GET    | /early-connect/metrics-data/E37000051 |         |    OK          | 
+  | Method | Endpoint                              | Payload | ResponseStatus | Region   |
+  | GET    | /early-connect/metrics-data/E37000019 |         | OK             | Lancashire |
+  | GET    | /early-connect/metrics-data/E37000025 |         | OK             | North East  |
+  | GET    | /early-connect/metrics-data/E37000051 |         | OK             | London      |
 
 @api
 @earlyconapi

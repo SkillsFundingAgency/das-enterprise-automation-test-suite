@@ -5,12 +5,38 @@
             "intendedStartYear": 2024,
             "maxTravelInMiles": 30,
             "willingnessToRelocate": true,
-            "noOfGCSCs": 4,
+            "noOfGCSCs": 3,
             "noOfStudents": 4,
-            "logId": 83,
+            "logId": 1,
             "metricFlags": [
                 "gcse_grade4_english_flag",
                 "interested_in_hr_flag"
+            ]
+        },
+        {
+            "region": "North East",
+            "intendedStartYear": 2024,
+            "maxTravelInMiles": 20,
+            "willingnessToRelocate": true,
+            "noOfGCSCs": 3,
+            "noOfStudents": 4,
+            "logId": 1,
+            "metricFlags": [
+                "gcse_grade4_english_flag",
+                "interested_in_retail_flag"
+            ]
+        },
+        {
+            "region": "London",
+            "intendedStartYear": 2024,
+            "maxTravelInMiles": 10,
+            "willingnessToRelocate": true,
+            "noOfGCSCs": 3,
+            "noOfStudents": 4,
+            "logId": 1,
+            "metricFlags": [
+                "gcse_grade4_english_flag",
+                "interested_in_retail_flag"
             ]
         }
     ]

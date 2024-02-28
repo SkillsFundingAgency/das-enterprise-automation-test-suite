@@ -74,7 +74,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyApiGETMetricsData(string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyApiGETMetricsData(string method, string endpoint, string payload, string responseStatus, string region, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,6 +90,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
+            argumentsOfScenario.Add("Region", region);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify api GET Metrics Data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
@@ -107,6 +108,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 12
+ testRunner.And(string.Format("verify response body displays correct \'{0}\' information", region), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -119,7 +123,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void VerifyApiGETMetricsData_Variant0()
         {
 #line 9
-this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000019", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000019", "", "OK", "Lancashire", ((string[])(null)));
 #line hidden
         }
         
@@ -131,7 +135,7 @@ this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000019", "",
         public void VerifyApiGETMetricsData_Variant1()
         {
 #line 9
-this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000025", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000025", "", "OK", "North East", ((string[])(null)));
 #line hidden
         }
         
@@ -143,7 +147,7 @@ this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000025", "",
         public void VerifyApiGETMetricsData_Variant2()
         {
 #line 9
-this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000051", "", "OK", ((string[])(null)));
+this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000051", "", "OK", "London", ((string[])(null)));
 #line hidden
         }
         
@@ -164,7 +168,7 @@ this.VerifyApiGETMetricsData("GET", "/early-connect/metrics-data/E37000051", "",
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify valid metris data post returns 201 Created", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 23
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -174,10 +178,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 24
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
+#line 25
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -191,7 +195,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyValidMetrisDataPostReturns201Created_POST()
         {
-#line 22
+#line 23
 this.VerifyValidMetrisDataPostReturns201Created("POST", "/early-connect/metrics-data/add", "MetricsData.json", "Created", ((string[])(null)));
 #line hidden
         }
@@ -213,7 +217,7 @@ this.VerifyValidMetrisDataPostReturns201Created("POST", "/early-connect/metrics-
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify invalid metris data post returns 400 Bad request", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 33
+#line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -223,10 +227,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 34
+#line 35
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 35
+#line 36
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -240,7 +244,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyInvalidMetrisDataPostReturns400BadRequest_POST()
         {
-#line 33
+#line 34
 this.VerifyInvalidMetrisDataPostReturns400BadRequest("POST", "/early-connect/metrics-data/add", "InvalidMetricsData.json", "Bad Request", ((string[])(null)));
 #line hidden
         }
