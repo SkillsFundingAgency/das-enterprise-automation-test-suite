@@ -12,8 +12,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions
       
         private readonly Outer_EarlyConnectAPIClient _restClient = context.GetRestClient<Outer_EarlyConnectAPIClient>();
         private RestResponse _restResponse = null;
-        //private string _expected;
-
+      
 
         [When(@"the user sends (GET|POST|PUT|DELETE) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endpoint, string payload)
@@ -38,12 +37,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions
         {
             _restResponse = _restClient.Execute(responsecode);
         }
-
-        //[Then(@"verify response body displays correct (region) information")]
-        //public void ThenVerifyResponseBodyDisplaysCorrectRegionInformation(string region)
-        //{
-        //    Assert.IsTrue(_restResponse.Content.Contains(region));
-        //}
+   
         [Then(@"verify response body displays correct '([^']*)' information")]
         public void ThenVerifyResponseBodyDisplaysCorrectInformation(string Region)
         {
