@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DateOfBirth => By.Id("apprentice-dob");
         private static By Reference => By.Id("apprentice-reference");
         private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        private static By ViewChanges => By.Id("change-employer-link");
+        private static By ViewChanges => By.XPath("//a[contains(text(),'View changes')]");      //By.Id("change-employer-link");
         private static By ViewChangesLink => By.LinkText("View changes");
         private static By ViewDetailsLink => By.LinkText("View details");
         private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
