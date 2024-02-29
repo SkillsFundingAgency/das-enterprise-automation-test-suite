@@ -14,11 +14,11 @@
 
         internal static string Section6 => "Confirm your apprenticeship";
 
-        internal static string Complete => "COMPLETE";
+        internal static string Complete => "Complete";
 
-        internal static string InComplete => "INCOMPLETE";
+        internal static string InComplete => "Incomplete";
 
-        internal static string WaitingForCorrection => "WAITING FOR CORRECTION";
+        internal static string WaitingForCorrection => "Waiting for correction";
 
         internal static string FullyConfirmedOverviewRolesSubText => "You can read through the roles and responsibilities for you, your employer and your training provider.";
 
