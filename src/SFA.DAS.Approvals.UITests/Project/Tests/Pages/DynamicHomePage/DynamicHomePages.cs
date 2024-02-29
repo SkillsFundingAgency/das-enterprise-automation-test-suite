@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         }
         public EditApprenticeDetailsPage CheckDraftStatusAndAddDetails()
         {
-            pageInteractionHelper.VerifyText(VerifyDraftStatus, "DRAFT");
+            pageInteractionHelper.VerifyText(VerifyDraftStatus, "Draft");
             formCompletionHelper.Click(DynamicHomeContinueButton);
             return new EditApprenticeDetailsPage(context);
         }
