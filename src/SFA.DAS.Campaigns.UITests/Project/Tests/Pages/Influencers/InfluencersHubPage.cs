@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
     public class InfluencersHubPage(ScenarioContext context) : InfluencersBasePage(context)
     {
-        protected override string PageTitle => "INFLUENCERS";
+        protected override string PageTitle => "Influencers";
 
         protected override By PageHeader => PageHeaderTag;
 

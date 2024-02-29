@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage(ScenarioContext context) : ApprenticeBasePage(context)
     {
-        protected override string PageTitle => "APPRENTICES";
+        protected override string PageTitle => "Apprentices";
 
         protected override By PageHeader => PageHeaderTag;
 

@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerHubPage(ScenarioContext context) : EmployerBasePage(context)
     {
-        protected override string PageTitle => "EMPLOYERS";
+        protected override string PageTitle => "Employers";
 
         protected override By PageHeader => PageHeaderTag;
 
