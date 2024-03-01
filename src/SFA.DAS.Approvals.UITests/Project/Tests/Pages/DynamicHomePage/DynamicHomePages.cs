@@ -28,12 +28,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         }
         public DynamicHomePages CheckWithTrainingProviderStatus()
         {
-            pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, "WITH TRAINING PROVIDER");
+            pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, "With training provider");
             return new DynamicHomePages(context);
         }
         public AfterEditApproveApprenticeDetailsPage CheckReadyToReviewStatus()
         {
-            pageInteractionHelper.VerifyText(VerifyReadyToReviewStatus, "READY TO REVIEW");
+            pageInteractionHelper.VerifyText(VerifyReadyToReviewStatus, "Ready to review");
             formCompletionHelper.Click(ReviewApprenticeDetailsButton);
             return new AfterEditApproveApprenticeDetailsPage(context);
         }
