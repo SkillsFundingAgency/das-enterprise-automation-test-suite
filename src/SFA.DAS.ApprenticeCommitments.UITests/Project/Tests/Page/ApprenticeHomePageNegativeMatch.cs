@@ -32,7 +32,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private void AssertNotificationBanner()
         {
             VerifyNotificationBannerHeader("There seems to be a problem, we cannot find your apprenticeship.");
-            VerifyNotificationBannerContent("Check your name and date of birth details. If they are incorrect, please update your details.");
+            VerifyNotificationBannerContent("Check your name and date of birth. If these are incorrect, please update your details.");
         }
 
         private void VerifyPageContent()
