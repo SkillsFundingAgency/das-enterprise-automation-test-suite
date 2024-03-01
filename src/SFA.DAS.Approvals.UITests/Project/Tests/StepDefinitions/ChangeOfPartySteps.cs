@@ -216,7 +216,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails();
 
-            apprenticeDetailsPage.VerifyApprenticeshipStatus("LIVE");
+            apprenticeDetailsPage.VerifyApprenticeshipStatus("Live");
 
             Assert.IsTrue(apprenticeDetailsPage.IsChangeOfProviderLinkDisplayed());
         }
