@@ -112,7 +112,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var moderationApplicationsPage = ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
 
-            moderationApplicationsPage.VerifyOutcomeStatus("PASS");
+            moderationApplicationsPage.VerifyOutcomeStatus("Pass");
         }
 
         [Then(@"the (PASS) status overall application is marked as Successful")]
@@ -144,11 +144,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var moderationApplicationsPage = ModeratorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(moderationApplicationAssessmentOverviewPage);
 
-            moderationApplicationsPage.VerifyOutcomeStatus("FAIL");
+            moderationApplicationsPage.VerifyOutcomeStatus("Fail");
         }
 
 
-        [Then(@"the Oversight user assess the (PASS|IN PROGRESS|UNSUCCESSFUL) application as Successful and verifies the provider added to the register")]
+        [Then(@"the Oversight user assess the (Pass|In progress|Unsuccessful) application as Successful and verifies the provider added to the register")]
         public void ThenTheOversightUserAssessTheApplicationAsSuccessfulAndVerifiesTheProviderAddedToTheRegister(string expectedStatus)
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");

@@ -121,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the PASS status overall application is marked as Successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+ testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Successful s" +
                         "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15

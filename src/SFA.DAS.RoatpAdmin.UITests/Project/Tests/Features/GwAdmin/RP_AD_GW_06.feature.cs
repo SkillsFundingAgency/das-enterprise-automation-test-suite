@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Withdraws the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.And("the Gateway Applications Outcome tab is updated with WITHDRAWN outcome for this A" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Withdrawn outcome for this A" +
                         "pplication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
@@ -168,7 +168,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Withdraws the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 30
- testRunner.And("the Gateway Applications Outcome tab is updated with WITHDRAWN outcome for this A" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Withdrawn outcome for this A" +
                         "pplication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -225,7 +225,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Withdraws the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 47
- testRunner.And("the Gateway Applications Outcome tab is updated with WITHDRAWN outcome for this A" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Withdrawn outcome for this A" +
                         "pplication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 48
@@ -279,7 +279,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 63
- testRunner.And("the Gateway Applications Outcome tab is updated with PASS outcome for this Applic" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Pass outcome for this Applic" +
                         "ation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 64
@@ -289,7 +289,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Withdraws the Application where outcome has been made", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 66
- testRunner.And("the Gateway Applications Outcome tab is updated with WITHDRAWN outcome for this A" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Withdrawn outcome for this A" +
                         "pplication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

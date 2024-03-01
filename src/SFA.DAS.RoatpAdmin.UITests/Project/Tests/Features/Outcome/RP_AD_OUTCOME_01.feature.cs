@@ -110,13 +110,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
  testRunner.When("the oversight user selects the overall application outcome as Successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+ testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Successful s" +
                         "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
@@ -164,7 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 28
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -173,7 +173,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 31
@@ -226,7 +226,7 @@ testRunner.Given("the Main provider is already on the RoATP register as Active",
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 45
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 46
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -235,7 +235,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 48
-testRunner.Given("the application with UNSUCCESSFUL outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the application with Unsuccessful outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -276,13 +276,13 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 60
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 61
 testRunner.When("the oversight user selects the overall application outcome as In Progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 62
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with IN PROGRESS " +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with In progress " +
                         "status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 63
@@ -295,13 +295,13 @@ testRunner.And("verify the Application in progress page is displayed", ((string)
 testRunner.Given("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 66
-testRunner.And("the application with IN PROGRESS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with In progress outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 67
 testRunner.When("the oversight user selects the overall application outcome as Successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 68
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Successful s" +
                         "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 69
@@ -351,14 +351,14 @@ testRunner.Given("the Main provider is already on the RoATP register as Active",
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 82
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 83
 testRunner.When("the oversight user selects the overall application outcome as Successful already " +
                         "active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 84
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Successful s" +
                         "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 85
@@ -412,14 +412,14 @@ testRunner.Given("the Main provider is already on the RoATP register as Active B
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 99
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 100
 testRunner.When("the oversight user selects the overall application outcome as Successful fitness " +
                         "for funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 101
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL s" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Successful s" +
                         "tatus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 102

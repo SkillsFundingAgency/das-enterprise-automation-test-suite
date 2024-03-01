@@ -86,21 +86,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
                 .MakeApplicationInProgress_Appeal().SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 
-        [Given(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL|FAIL) outcome is ready to be assessed")]
-        [Then(@"the application with (PASS|IN PROGRESS|UNSUCCESSFUL|FAIL) outcome is ready to be assessed")]
+        [Given(@"the application with (Pass|In progress|Unsuccessful|Fail) outcome is ready to be assessed")]
+        [Then(@"the application with (Pass|In progress|Unsuccessful|Fail) outcome is ready to be assessed")]
         public void ApplicationIsReadyToBeAssessed(string expectedStatus) => SelectApplication(expectedStatus);
 
-        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (REJECTED|REMOVED|UNSUCCESSFUL|SUCCESSFUL|IN PROGRESS) status")]
+        [Then(@"Verify the application is transitioned to Oversight Outcome tab with (Rejected|Removed|Unsuccessful|Successful|In progress) status")]
         public void VerifyTheApplicationOversightStatus(string expectedStatus) => VerifyOverallOutcomeStatus(expectedStatus);
 
-        [Then(@"Verify the application is transitioned to Appeal Outcome tab with (SUCCESSFUL|IN PROGRESS|UNSUCCESSFUL) status")]
+        [Then(@"Verify the application is transitioned to Appeal Outcome tab with (Successful|In progress|Unsuccessful) status")]
         public void ThenVerifyTheApplicationIsTransitionedToAppealOutcomeTab(string expectedStatus) => VerifyAppealOverallOutcomeStatus(expectedStatus);
 
-        [Given(@"verify that the admin can send the application outcome as (REMOVED|UNSUCCESSFUL) to the applicant")]
-        [Then(@"verify that the admin can send the application outcome as (REMOVED|UNSUCCESSFUL) to the applicant")]
+        [Given(@"verify that the admin can send the application outcome as (Removed|Unsuccessful) to the applicant")]
+        [Then(@"verify that the admin can send the application outcome as (Removed|Unsuccessful) to the applicant")]
         public void ThenVerifyThatTheAdminCanSendTheOutcome(string expectedStatus)
         {
-            SelectApplication(expectedStatus == "UNSUCCESSFUL" ? "FAIL" : expectedStatus);
+            SelectApplication(expectedStatus == "Unsuccessful" ? "Fail" : expectedStatus);
 
             _applicationSummaryPage.SendOutcomeToTheApplicant(expectedStatus).GoToRoATPAssessorApplicationsPage();
 

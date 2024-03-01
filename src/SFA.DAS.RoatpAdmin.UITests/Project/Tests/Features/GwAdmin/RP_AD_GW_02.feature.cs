@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.And("the Gateway Applications Outcome tab is updated with PASS outcome for this Applic" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Pass outcome for this Applic" +
                         "ation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

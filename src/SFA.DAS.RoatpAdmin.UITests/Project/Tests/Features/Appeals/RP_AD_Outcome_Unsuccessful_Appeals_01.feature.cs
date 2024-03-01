@@ -115,7 +115,7 @@ testRunner.Given("the Main provider is already on the RoATP register as Active",
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -124,7 +124,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 19
@@ -140,7 +140,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as SUCCESSFUl Already Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Successful stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
@@ -197,7 +197,7 @@ testRunner.Given("the Main provider is already on the RoATP register as Active",
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 38
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -206,7 +206,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 41
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 42
@@ -222,7 +222,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 46
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Unsuccessful st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 47
@@ -275,7 +275,7 @@ testRunner.Given("the Main provider is already on the RoATP register as Active",
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 61
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -284,7 +284,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 63
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 64
@@ -300,7 +300,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 68
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with In progress sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 69
@@ -316,7 +316,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the in progress appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 73
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Unsuccessful st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 74
@@ -371,7 +371,7 @@ testRunner.Given("the Main provider is already on the RoATP register as Active",
 testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 87
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 88
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -380,7 +380,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 90
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 91
@@ -396,7 +396,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 95
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with In progress sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 96
@@ -413,7 +413,7 @@ testRunner.And("the appeal manager approves the in progress appeal as SUCCESSFUl
                         "ing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 100
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Successful stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 101
@@ -465,7 +465,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 113
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 114
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -474,7 +474,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 116
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 117
@@ -493,7 +493,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 122
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Unsuccessful st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 123
@@ -544,7 +544,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 135
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 136
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -553,7 +553,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 138
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 139
@@ -572,7 +572,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as SUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 144
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Successful stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 145
@@ -623,7 +623,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 157
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 158
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -632,7 +632,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 160
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 161
@@ -651,7 +651,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 166
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with In progress sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 167
@@ -667,7 +667,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the in progress appeal as SUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 171
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with SUCCESSFUL stat" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Successful stat" +
                         "us", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 172
@@ -718,7 +718,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 184
-testRunner.And("the application with PASS outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the application with Pass outcome is ready to be assessed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 185
 testRunner.When("the oversight user overturns gateway and moderation outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -727,7 +727,7 @@ testRunner.When("the oversight user overturns gateway and moderation outcome", (
 testRunner.And("the oversight user selects the overall application outcome as Unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 187
-testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL" +
+testRunner.Then("Verify the application is transitioned to Oversight Outcome tab with Unsuccessful" +
                         " status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 188
@@ -746,7 +746,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the appeal as INPROGRESS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 193
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with IN PROGRESS sta" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with In progress sta" +
                         "tus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 194
@@ -762,7 +762,7 @@ testRunner.And("the admin navigates to the Dashboard", ((string)(null)), ((TechT
 testRunner.And("the appeal manager approves the in progress appeal as UNSUCCESSFUl", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 198
-testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with UNSUCCESSFUL st" +
+testRunner.Then("Verify the application is transitioned to Appeal Outcome tab with Unsuccessful st" +
                         "atus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 199
