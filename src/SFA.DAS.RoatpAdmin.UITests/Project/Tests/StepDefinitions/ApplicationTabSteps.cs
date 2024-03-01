@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
         private RoatpAssessorApplicationsHomePage _roatpApplicationsHomePage;
 
-        [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
+        [Then(@"the Outcome tab is updated as (Pass|Fail)")]
         public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _roatpApplicationsHomePage = new RoatpAssessorApplicationsHomePage(context).VerifyOutcomeStatus(expectedStatus);
 
         [Then(@"the Clarification tab is updated")]

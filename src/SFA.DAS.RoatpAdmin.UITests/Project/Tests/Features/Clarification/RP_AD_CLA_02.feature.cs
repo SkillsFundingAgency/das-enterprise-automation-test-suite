@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Clarification assessor assesses the outcome as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.Then("the Outcome tab is updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Outcome tab is updated as Fail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
  testRunner.Then("verify subsections outcome failed by Clarification assessor are updated as FAIL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

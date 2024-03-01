@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Moderator assesses the outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.Then("the Outcome tab is updated as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Outcome tab is updated as Pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
