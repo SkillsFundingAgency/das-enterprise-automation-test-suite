@@ -17,25 +17,25 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the employer reserves funding from the dynamic home page")]
         public void GivenTheUserReservesFundingFromTheDynamicHomePage() => new ManageFundingEmployerStepsHelper(context).CreateReservationViaDynamicHomePageTriageJourney();
 
-        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(DRAFT|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
+        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(Draft|Closed|Pending review|Live|Rejected)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
             switch (status)
             {
-                case "DRAFT":
-                case "REJECTED":
+                case "Draft":
+                case "Rejected":
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyTitleAndStatus(status);
                     break;
 
-                case "CLOSED":
+                case "Closed":
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmClosedVacancyDetails(status);
                     break;
 
-                case "PENDING REVIEW":
+                case "Pending review":
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyDetails(status, context.Get<RAAV2DataHelper>().VacancyClosing);
                     break;
 
-                case "LIVE":
+                case "Live":
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmLiveVacancyDetails(status);
                     break;
             }
