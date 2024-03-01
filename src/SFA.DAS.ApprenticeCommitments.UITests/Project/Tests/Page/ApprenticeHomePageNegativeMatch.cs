@@ -40,7 +40,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             pageInteractionHelper.VerifyText(FirstName, objectContext.GetFirstName());
             pageInteractionHelper.VerifyText(LastName, objectContext.GetLastName());
             pageInteractionHelper.VerifyText(DOB, objectContext.GetDateOfBirth().ToString("d MMM yyyy"));
-            pageInteractionHelper.VerifyText(InsetText, "Contact your employer or training provider if your details are correct and we cannot find your apprenticeship.");
+            pageInteractionHelper.VerifyText(InsetText, "If your details are correct and we cannot find your apprenticeship, contact your employer or training provider.");
         }
     }
 }
