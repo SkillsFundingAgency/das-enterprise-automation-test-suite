@@ -139,10 +139,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"validate Training Price and EPA price must be between (.*) and (.*)")]
         public void ValidateTrainingPriceAndEPAPriceMustBeBetweenValues(int min, int max)
         {
-            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(min-1);
+            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(min - 1);
 
-            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(max+1);
+            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(max + 1);
         }
+
+        [Then(@"a dynamic Total price field is displayed with the sum of Training price and End-point assessment price")]
+        public void DynamicTotalPriceFieldIsDisplayedWithTheSumOfTrainingPriceAndEnd_PointAssessmentPrice()
+        {
+            _changePriceNegotiationAmountPage.ValidateApprenticeshipTotalPrice();
+        }
+
 
         [Then(@"validate Effective From Date cannot be before Training Start Date")]
         public void ValidateEffectiveFromDateCannotBeBeforeTrainingStartDate()
