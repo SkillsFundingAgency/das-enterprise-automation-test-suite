@@ -2,20 +2,17 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
+namespace SFA.DAS.EarlyConnect.APITests.Project;
 
-
-namespace SFA.DAS.EarlyConnect.APITests.Project
+[Binding]
+public class BeforeScenarioHooks(ScenarioContext context)
 {
-    [Binding]
-    public class BeforeScenarioHooks(ScenarioContext context)
+    [BeforeScenario(Order = 32)]
+    public void SetUpHelpers()
     {
-        [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            var objectContext = context.Get<ObjectContext>();
+        var objectContext = context.Get<ObjectContext>();
 
-            context.SetRestClient(new Outer_EarlyConnectAPIClient(objectContext, context.GetOuter_ApiAuthTokenConfig()));
+        context.SetRestClient(new Outer_EarlyConnectAPIClient(objectContext, context.GetOuter_ApiAuthTokenConfig()));
 
-        }
     }
 }

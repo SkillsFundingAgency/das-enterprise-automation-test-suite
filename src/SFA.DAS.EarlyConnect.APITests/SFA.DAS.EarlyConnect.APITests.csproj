@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\" />
-  </ItemGroup>
-	
-  <ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
