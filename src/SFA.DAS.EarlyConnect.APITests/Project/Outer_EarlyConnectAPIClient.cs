@@ -17,7 +17,9 @@ public class Outer_EarlyConnectAPIClient(ObjectContext objectContext, Outer_ApiA
         CreateRestRequest(method, resource, payload);
 
         restRequest.RequestFormat = DataFormat.Json;
+
         Addheader("Content-Type", "application/json");
+        
         Addheader("Accept", "application/json");
 
         Execute($"/early-connect/student-data/add", expectedResponse);

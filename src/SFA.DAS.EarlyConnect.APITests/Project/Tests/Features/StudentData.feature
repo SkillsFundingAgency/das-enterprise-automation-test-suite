@@ -3,6 +3,7 @@ The API system should allow valid student data to be posted successfully
 
 @api
 @earlyconapi
+@earlyconnectstudent
 @regression
 Scenario Outline: Verify valid student data post returns 201 Created
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
