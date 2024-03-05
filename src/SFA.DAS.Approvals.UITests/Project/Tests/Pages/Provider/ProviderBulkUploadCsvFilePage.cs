@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderBulkUploadCsvFilePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
+        protected override By PageHeader => By.CssSelector(".govuk-label--xl");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private static By ChooseFileButton => By.Id("attachment");
         private static By UploadFileButton => By.Id("submit-upload-apprentices");
