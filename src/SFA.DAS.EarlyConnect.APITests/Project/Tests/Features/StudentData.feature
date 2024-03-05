@@ -16,6 +16,7 @@ Scenario Outline: Verify valid student data post returns 201 Created
 
 @api
 @earlyconapi
+@earlyconnectstudent
 @regression
 Scenario Outline: Verify invalid student data post returns 400 Bad request
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
