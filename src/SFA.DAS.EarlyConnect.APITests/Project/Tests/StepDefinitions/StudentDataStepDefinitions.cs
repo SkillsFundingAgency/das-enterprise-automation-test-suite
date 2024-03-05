@@ -20,9 +20,16 @@ public class StudentDataStepDefinitions(ScenarioContext context)
     {
         var data = context.Get<ApprenticePPIDataHelper>();
 
+        var dob = data.ApprenticeDob;
+
         var payloadreplacement = new Dictionary<string, string>
         {
-            { "email", data.ApprenticeEmail }
+            { "email", data.ApprenticeEmail },
+            { "fname", data.ApprenticeFirstname },
+            { "lname", data.ApprenticeLastname},
+            { "doby", dob.ToString("yyyy")},
+            { "dobm", dob.ToString("MM")},
+            { "dobd", dob.ToString("dd")},
         };
 
         _restClient.CreateRestRequest(method, endpoint, payload, payloadreplacement);
