@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
@@ -33,6 +34,51 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal static StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
+
+        internal StubAddYourUserDetailsPage UserLogsIntoStub() 
+        {
+            return RegisterStubUserAccount(new CreateAnAccountToManageApprenticeshipsPage(context), null);
+        }
+
+        internal ConfirmYourUserDetailsPage UserEntersNameAndContinue(StubAddYourUserDetailsPage stubUserDetailsPage) 
+        {
+            return stubUserDetailsPage.EnterNameAndContinue(_registrationDataHelper);
+        }
+           
+
+        internal ConfirmYourUserDetailsPage UserChangesUserDetails(ConfirmYourUserDetailsPage confirmDetailsPage) =>
+           confirmDetailsPage.ClickChange().EnterNameAndContinue(_registrationDataHelper);
+
+        internal  CreateYourEmployerAccountPage UserClicksContinueButtonToAcknowledge(ConfirmYourUserDetailsPage confirmDetailsPage) =>
+          confirmDetailsPage.ConfirmNameAndContinue().ClickContinueButtonToAcknowledge(); 
+
+         internal  CreateYourEmployerAccountPage UserChangesDetailsFromTaskList(CreateYourEmployerAccountPage confirmDetailsPage) =>
+          confirmDetailsPage.GoToAddYouUserDetailsLink().EnterName().ConfirmNameAndContinue(true).ClickContinueButtonToAcknowledge();
+
+        internal CreateYourEmployerAccountPage UserCanClickAddAPAYEScheme(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+           createEmployerAccountPage.GoToAddPayeLink().GoBackToCreateYourEmployerAccountPage();
+        
+        internal CreateYourEmployerAccountPage UserCannotClickAddPAYEScheme(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.OrganisationAndPAYEItemText);
+
+        internal CreateYourEmployerAccountPage UserCannotClickAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.AccountNameItemText);
+
+        internal CreateYourEmployerAccountPage UserCannotClickAcceptEmployerAgreemen(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.EmployerAgreementItemText);
+
+        internal CreateYourEmployerAccountPage UserCannotClickTrainingProvider(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.TrainingProviderItemText);
+
+        internal CreateYourEmployerAccountPage UserCannotClickTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.TrainingProviderPermissionsItemText);
+
+        internal CreateYourEmployerAccountPage AddPAYEFromTaskListForOrgType(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+            createEmployerAccountPage.GoToAddPayeLink().SelectOptionLessThan3Million().AddPaye().ContinueToGGSignIn().SignInTo(0)
+            .SearchForAnOrganisation()
+            .SelectYourOrganisation()
+            .ContinueToSetAccountName().ContinueToConfirmationPage();            
+
         internal static SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) =>
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
 
@@ -41,9 +87,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal static TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().ReEnterTheSameAornDetailsAndContinue();
-
+     
         internal CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
-
+        
         internal static CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
             searchForYourOrganistionPage.SearchForAnOrganisation(org).SelectYourOrganisation(org);
 

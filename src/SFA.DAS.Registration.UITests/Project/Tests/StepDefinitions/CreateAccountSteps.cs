@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -31,6 +33,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private CreateAnAccountToManageApprenticeshipsPage _indexPage;
         private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
         private DoYouAcceptTheEmployerAgreementOnBehalfOfPage _doYouAcceptTheEmployerAgreementOnBehalfOfPage;
+        private StubAddYourUserDetailsPage _stubAddYourUserDetailsPage;
+        private ConfirmYourUserDetailsPage _confirmYourUserDetailsPage;
+        private CreateYourEmployerAccountPage _createYourEmployerAccountPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -42,9 +47,99 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
+        [StepArgumentTransformation(@"(can|cannot)")]
+        public static bool CanToBool(string value)
+        {
+            return value == "can";
+        }
+        
         [Given(@"a User Account is created")]
         [When(@"a User Account is created")]
         public void AUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
+
+        [Given(@"user logs into stub")]
+        public StubAddYourUserDetailsPage UserLogsIntoStub() => _stubAddYourUserDetailsPage =  _accountCreationStepsHelper.UserLogsIntoStub();
+
+        [Then(@"User is prompted to enter first and last name")]
+        public ConfirmYourUserDetailsPage UserEntersNameAndContinue() => _confirmYourUserDetailsPage = _accountCreationStepsHelper.UserEntersNameAndContinue(_stubAddYourUserDetailsPage);
+
+         [Then(@"user can amend name before submitting it")]
+        public ConfirmYourUserDetailsPage UserAmendsNameThenSubmits() => _confirmYourUserDetailsPage = _accountCreationStepsHelper.UserChangesUserDetails(_confirmYourUserDetailsPage);
+
+
+        [When(@"user adds name successfully to the account")]
+        public CreateYourEmployerAccountPage UserConfirmsNameAndAcknowledges() => _createYourEmployerAccountPage = _accountCreationStepsHelper.UserClicksContinueButtonToAcknowledge(_confirmYourUserDetailsPage);
+
+        [Then(@"user can change user details from the task list")]
+        public CreateYourEmployerAccountPage UserChangesUserDetailsFromTaskList() => _createYourEmployerAccountPage = _accountCreationStepsHelper.UserChangesDetailsFromTaskList(_createYourEmployerAccountPage);
+
+        [When(@"user (.*) add PAYE details")]
+        public CreateYourEmployerAccountPage UserCanAddPAYEFromTaskList(bool canAddPAYE) 
+        {
+            if (!canAddPAYE)
+            {
+                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickAddPAYEScheme(_createYourEmployerAccountPage);
+            }
+            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+        }
+
+        [When(@"user (.*) set account name")]
+        public CreateYourEmployerAccountPage UserCanSetAccountNameFromTaskList(bool canSetAccountName)
+        {
+            if (!canSetAccountName)
+            {
+                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickAccountName(_createYourEmployerAccountPage);
+            }
+            _accountCreationStepsHelper.AddPAYEFromTaskListForOrgType(_createYourEmployerAccountPage);
+            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+        }
+
+        [When(@"user (.*) accept the employer agreement")]
+        public CreateYourEmployerAccountPage UserCanAcceptEmployerAgreement(bool canAcceptAgreement)
+        {
+            if (!canAcceptAgreement)
+            {
+                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickAcceptEmployerAgreemen(_createYourEmployerAccountPage);
+            }
+            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+        }
+
+        [When(@"user (.*) add training provider")]
+        public CreateYourEmployerAccountPage UserCanAddTrainingProvider(bool canAddTrainingProvider)
+        {
+            if (!canAddTrainingProvider)
+            {
+                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
+            }
+            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+        }
+
+        [When(@"user (.*) grant training provider permissions")]
+        public CreateYourEmployerAccountPage UserCanGrantProviderPermissions(bool canAddPermissions)
+        {
+            if (!canAddPermissions)
+            {
+                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickTrainingProviderPermissions(_createYourEmployerAccountPage);
+            }
+            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+        }
+
+        [When(@"user logs out and log back in")]
+        public void WhenUserLogsOutAndLogsBackIn()
+        {
+            var loggedInAccountUser = _objectContext.GetLoginCredentials();
+            _createYourEmployerAccountPage.SignOut()
+                .CickContinueInYouveLoggedOutPage()
+                .GoToStubSignInPage()
+                .Login(loggedInAccountUser.Username, loggedInAccountUser.IdOrUserRef).Continue();
+        }
+
+        [Then(@"user can resume employer registration journey")]
+        public void UserCanResumeEmployerRegistrationJourney()
+        {
+            _createYourEmployerAccountPage.CheckIsPageCurrent();
+        }
+
 
         [When("the User initiates Account creation")]
         public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
