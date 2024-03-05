@@ -29,17 +29,16 @@ public abstract class BaseApiRestClient
 
     protected virtual void AddParameter() { }
 
+    public void CreateRestRequest(Method method, string resource, string payload, Dictionary<string, string> payloadreplacement)
+    {
+        AddRestRequest(method, resource);
+
+        AddPayload(payload, payloadreplacement);
+    }
+
     public void CreateRestRequest(Method method, string resource, string payload)
     {
-        restRequest.Method = method;
-
-        AddResource(resource);
-
-        foreach (var item in restRequest.Parameters.GetParameters(ParameterType.RequestBody)) restRequest.Parameters.RemoveParameter(item);
-
-        AddParameter();
-
-        AddAuthHeaders();
+        AddRestRequest(method, resource);
 
         AddPayload(payload);
     }
@@ -64,13 +63,45 @@ public abstract class BaseApiRestClient
         foreach (var item in dictionary) Addheader(item.Key, item.Value);
     }
 
+    private void AddRestRequest(Method method, string resource)
+    {
+        restRequest.Method = method;
+
+        AddResource(resource);
+
+        foreach (var item in restRequest.Parameters.GetParameters(ParameterType.RequestBody)) restRequest.Parameters.RemoveParameter(item);
+
+        AddParameter();
+
+        AddAuthHeaders();
+    }
+
     private void AddPayload(string payload)
     {
-        if (restRequest.Method == Method.Get || string.IsNullOrEmpty(payload)) return;
-        else
+        if (ShouldAddPayload(payload))
         {
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
             else restRequest.AddJsonBody(payload);
         }
     }
+
+    private void AddPayload(string payload, Dictionary<string, string> payloadreplacement)
+    {
+        if (ShouldAddPayload(payload)) restRequest.AddJsonBody(ReadAllText(payload, payloadreplacement));
+    }
+
+    private string ReadAllText(string payload, Dictionary<string, string> payloadreplacement)
+    {
+        objectContext.SetDebugInformation($"payload before Transformation: {JsonHelper.ReadAllText(payload)}");
+
+        foreach (var item in payloadreplacement) objectContext.SetDebugInformation($"payload replacement Key: '<{item.Key}>' value: '{item.Value}'");
+
+        string text = JsonHelper.ReadAllText(payload, payloadreplacement);
+
+        objectContext.SetDebugInformation($"payload after Transformation: {text}");
+
+        return text;
+    }
+
+    private bool ShouldAddPayload(string payload) => restRequest.Method != Method.Get && !string.IsNullOrEmpty(payload);
 }
