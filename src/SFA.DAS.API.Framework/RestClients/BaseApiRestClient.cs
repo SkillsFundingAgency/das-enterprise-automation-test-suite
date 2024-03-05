@@ -94,7 +94,7 @@ public abstract class BaseApiRestClient
     {
         objectContext.SetDebugInformation($"payload before Transformation: {JsonHelper.ReadAllText(payload)}");
 
-        foreach (var item in payloadreplacement) objectContext.SetDebugInformation($"payload replacement Key: '__{item.Key}__' value: '{item.Value}'");
+        foreach (var item in payloadreplacement) objectContext.SetDebugInformation($"payload replacement Key: '<{item.Key}>' value: '{item.Value}'");
 
         string text = JsonHelper.ReadAllText(payload, payloadreplacement);
 

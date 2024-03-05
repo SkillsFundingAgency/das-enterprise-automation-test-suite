@@ -18,7 +18,7 @@ namespace SFA.DAS.FrameworkHelpers
         {
             var x = ReadAllText(source);
 
-            foreach (var item in payloadreplacement) x = x.Replace($"__{item.Key}__", item.Value);
+            foreach (var item in payloadreplacement) x = x.Replace($"<{item.Key}>", item.Value);
 
             return x;
         }

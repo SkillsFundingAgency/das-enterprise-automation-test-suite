@@ -4,7 +4,7 @@
             "firstName": "Richard",
             "lastName": "Clark",
             "dateOfBirth": "1982-12-12",
-            "email": "__email__",
+            "email": "<email>",
             "postCode": "CA67BB",
             "telephone": "07789867768",
             "industry": "Carpentary | Baking",
