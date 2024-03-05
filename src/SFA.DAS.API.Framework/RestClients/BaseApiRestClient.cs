@@ -88,6 +88,17 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload, Dictionary<string, string> payloadreplacement)
     {
-        restRequest.AddJsonBody(JsonHelper.ReadAllText(payload, payloadreplacement));
+        restRequest.AddJsonBody(ReadAllText(payload, payloadreplacement));
+    }
+
+    private string ReadAllText(string payload, Dictionary<string, string> payloadreplacement)
+    {
+        objectContext.SetDebugInformation($"payload before Transformation: {payload}");
+
+        string text = JsonHelper.ReadAllText(payload, payloadreplacement);
+
+        objectContext.SetDebugInformation($"payload after Transformation: {text}");
+
+        return text;
     }
 }
