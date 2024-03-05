@@ -1,10 +1,10 @@
 {
     "listOfStudentData": [
         {
-            "firstName": "Mikel",
-            "lastName": "Best",
-            "dateOfBirth": "2084-05-29",
-            "email": "test@education.co.uk",
+            "firstName": "<fname>",
+            "lastName": "<lname>",
+            "dateOfBirth": "2084-<dobm>-<dobd>",
+            "email": "<email>",
             "postCode": "CT12 4PY",
             "telephone": "1231231231",
             "industry": "Engineering | Software",
