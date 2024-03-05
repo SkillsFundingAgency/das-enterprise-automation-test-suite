@@ -78,8 +78,7 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload)
     {
-        if (restRequest.Method == Method.Get || string.IsNullOrEmpty(payload)) return;
-        else
+        if (ShouldAddPayload(payload))
         {
             if (payload.EndsWith(".json")) restRequest.AddJsonBody(JsonHelper.ReadAllText(payload));
             else restRequest.AddJsonBody(payload);
@@ -88,7 +87,7 @@ public abstract class BaseApiRestClient
 
     private void AddPayload(string payload, Dictionary<string, string> payloadreplacement)
     {
-        restRequest.AddJsonBody(ReadAllText(payload, payloadreplacement));
+        if (ShouldAddPayload(payload)) restRequest.AddJsonBody(ReadAllText(payload, payloadreplacement));
     }
 
     private string ReadAllText(string payload, Dictionary<string, string> payloadreplacement)
@@ -101,4 +100,6 @@ public abstract class BaseApiRestClient
 
         return text;
     }
+
+    private bool ShouldAddPayload(string payload) => restRequest.Method != Method.Get && !string.IsNullOrEmpty(payload);
 }
