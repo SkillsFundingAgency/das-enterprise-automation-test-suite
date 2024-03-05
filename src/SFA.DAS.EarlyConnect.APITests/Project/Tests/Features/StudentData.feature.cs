@@ -78,6 +78,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             string[] @__tags = new string[] {
                     "api",
                     "earlyconapi",
+                    "earlyconnectstudent",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -90,7 +91,7 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify valid student data post returns 201 Created", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,10 +101,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -114,10 +115,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify valid student data post returns 201 Created: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
+        [NUnit.Framework.CategoryAttribute("earlyconnectstudent")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyValidStudentDataPostReturns201Created_POST()
         {
-#line 7
+#line 8
 this.VerifyValidStudentDataPostReturns201Created("POST", "/early-connect/student-data/add", "StudentData.json", "Created", ((string[])(null)));
 #line hidden
         }
@@ -127,6 +129,7 @@ this.VerifyValidStudentDataPostReturns201Created("POST", "/early-connect/student
             string[] @__tags = new string[] {
                     "api",
                     "earlyconapi",
+                    "earlyconnectstudent",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -139,7 +142,7 @@ this.VerifyValidStudentDataPostReturns201Created("POST", "/early-connect/student
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify invalid student data post returns 400 Bad request", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -149,10 +152,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 20
+#line 22
  testRunner.When(string.Format("the user sends {0} request to {1} with payload {2}", method, endpoint, payload), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 23
  testRunner.Then(string.Format("api {0} response is received", responseStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -163,10 +166,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Verify invalid student data post returns 400 Bad request: POST")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("earlyconapi")]
+        [NUnit.Framework.CategoryAttribute("earlyconnectstudent")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyInvalidStudentDataPostReturns400BadRequest_POST()
         {
-#line 19
+#line 21
 this.VerifyInvalidStudentDataPostReturns400BadRequest("POST", "/early-connect/student-data/add", "InvalidStudentData.json", "Bad Request", ((string[])(null)));
 #line hidden
         }
