@@ -2,9 +2,11 @@
 using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
@@ -52,6 +54,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             return value == "can";
         }
+
+        [StepArgumentTransformation(@"(does|doesn't)")]
+        public static bool DoesToBool(string value)
+        {
+            return value == "does";
+        }
         
         [Given(@"a User Account is created")]
         [When(@"a User Account is created")]
@@ -67,61 +75,106 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public ConfirmYourUserDetailsPage UserAmendsNameThenSubmits() => _confirmYourUserDetailsPage = _accountCreationStepsHelper.UserChangesUserDetails(_confirmYourUserDetailsPage);
 
 
-        [When(@"user adds name successfully to the account")]
+        [When(@"user adds name successfully to the account")] 
+        [Then(@"user adds name successfully to the account")]
         public CreateYourEmployerAccountPage UserConfirmsNameAndAcknowledges() => _createYourEmployerAccountPage = _accountCreationStepsHelper.UserClicksContinueButtonToAcknowledge(_confirmYourUserDetailsPage);
 
         [Then(@"user can change user details from the task list")]
         public CreateYourEmployerAccountPage UserChangesUserDetailsFromTaskList() => _createYourEmployerAccountPage = _accountCreationStepsHelper.UserChangesDetailsFromTaskList(_createYourEmployerAccountPage);
-
+ 
         [When(@"user (.*) add PAYE details")]
-        public CreateYourEmployerAccountPage UserCanAddPAYEFromTaskList(bool canAddPAYE) 
+        public CreateYourEmployerAccountPage UserCanAddPAYEFromTaskList(bool doesAdd) 
         {
-            if (!canAddPAYE)
+            if (doesAdd)
             {
-                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickAddPAYEScheme(_createYourEmployerAccountPage);
+                _createYourEmployerAccountPage = _accountCreationStepsHelper.AddPAYEFromTaskListForCloseTo3Million(_createYourEmployerAccountPage);
             }
-            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+
+            _createYourEmployerAccountPage = doesAdd
+                ? _accountCreationStepsHelper.UserCannotAmendPAYEScheme(_createYourEmployerAccountPage)
+                : _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+
+            
+            return _createYourEmployerAccountPage;
         }
 
-        [When(@"user (.*) set account name")]
-        public CreateYourEmployerAccountPage UserCanSetAccountNameFromTaskList(bool canSetAccountName)
+        [When(@"user (.*) set account name and (.*)")]
+        public CreateYourEmployerAccountPage UserCanSetAccountNameFromTaskList(bool canSetAccountName, bool doesSet)
         {
-            if (!canSetAccountName)
+            _createYourEmployerAccountPage = canSetAccountName 
+                ? _accountCreationStepsHelper.UserCanClickAddAccountName(_createYourEmployerAccountPage)
+                : _accountCreationStepsHelper.UserCannotClickAccountName(_createYourEmployerAccountPage);
+
+            if (canSetAccountName && doesSet)
             {
-                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickAccountName(_createYourEmployerAccountPage);
+                _createYourEmployerAccountPage = _accountCreationStepsHelper.ConfirmEmployerAccountName(_createYourEmployerAccountPage);
             }
-            _accountCreationStepsHelper.AddPAYEFromTaskListForOrgType(_createYourEmployerAccountPage);
-            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+            return _createYourEmployerAccountPage;
         }
 
-        [When(@"user (.*) accept the employer agreement")]
-        public CreateYourEmployerAccountPage UserCanAcceptEmployerAgreement(bool canAcceptAgreement)
+        [Then(@"user can update account name")]
+        public CreateYourEmployerAccountPage UserCanUpdateAccountName()
         {
-            if (!canAcceptAgreement)
-            {
-                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickAcceptEmployerAgreemen(_createYourEmployerAccountPage);
-            }
-            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+            _createYourEmployerAccountPage = _accountCreationStepsHelper.UpdateEmployerAccountName(_createYourEmployerAccountPage);
+            return _createYourEmployerAccountPage;
         }
 
-        [When(@"user (.*) add training provider")]
-        public CreateYourEmployerAccountPage UserCanAddTrainingProvider(bool canAddTrainingProvider)
+
+        [When(@"user acknowledges the employer agreement")]
+        public CreateYourEmployerAccountPage UserAcknowledgesEmployerAgreement()
         {
-            if (!canAddTrainingProvider)
-            {
-                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
-            }
-            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+            _createYourEmployerAccountPage = _accountCreationStepsHelper.UserAcknowledgesEmployerAgreement(_createYourEmployerAccountPage);
+            return _createYourEmployerAccountPage;
         }
 
-        [When(@"user (.*) grant training provider permissions")]
-        public CreateYourEmployerAccountPage UserCanGrantProviderPermissions(bool canAddPermissions)
+        [When(@"user (.*) accept the employer agreement and (.*)")]
+        public CreateYourEmployerAccountPage UserCanAcceptEmployerAgreement(bool canAcceptAgreement, bool doesAccept)
         {
-            if (!canAddPermissions)
+            _createYourEmployerAccountPage = canAcceptAgreement
+               ? _accountCreationStepsHelper.UserCanClickAcceptEmployerAgreement(_createYourEmployerAccountPage)
+               : _accountCreationStepsHelper.UserCannotClickAcceptEmployerAgreement(_createYourEmployerAccountPage);
+
+            if (canAcceptAgreement && doesAccept)
             {
-                return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCannotClickTrainingProviderPermissions(_createYourEmployerAccountPage);
+                return _createYourEmployerAccountPage = _accountCreationStepsHelper.AcceptEmployerAgreement(_createYourEmployerAccountPage);
             }
-            return _createYourEmployerAccountPage = _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
+            return _createYourEmployerAccountPage;
+        } 
+        
+        [Then(@"user accepts agreement having already acknowledged")]
+        public CreateYourEmployerAccountPage UserCanAcceptEmployerAgreement()
+        {
+            return _createYourEmployerAccountPage = _accountCreationStepsHelper
+                .AcceptEmployerAgreementWhenAlreadyAcknowledged(_createYourEmployerAccountPage);
+        }
+
+        [When(@"user (.*) add training provider and (.*)")]
+        public CreateYourEmployerAccountPage UserCanAddTrainingProvider(bool canAddTrainingProvider, bool doesAdd)
+        {
+            _createYourEmployerAccountPage = canAddTrainingProvider
+               ? _accountCreationStepsHelper.UserCanClickTrainingProvider(_createYourEmployerAccountPage)
+               : _accountCreationStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
+
+
+            if (canAddTrainingProvider && doesAdd)
+            {
+                _createYourEmployerAccountPage = _accountCreationStepsHelper.AddTrainingProvider(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>().Ukprn);
+            }
+            return _createYourEmployerAccountPage;
+        }
+
+        [When(@"user (.*) grant training provider permissions and (.*)")]
+        public HomePage UserCanGrantProviderPermissions(bool canAddPermissions, bool doesGrant)
+        {
+            _createYourEmployerAccountPage = canAddPermissions
+               ? _accountCreationStepsHelper.UserCanClickTrainingProviderPermissions(_createYourEmployerAccountPage)
+               : _accountCreationStepsHelper.UserCannotClickTrainingProviderPermissions(_createYourEmployerAccountPage);
+
+            if (canAddPermissions && doesGrant)
+            {
+                _homePage = _accountCreationStepsHelper.GrantTrainingProviderPermissions(_createYourEmployerAccountPage);
+            }
+            return _homePage;
         }
 
         [When(@"user logs out and log back in")]

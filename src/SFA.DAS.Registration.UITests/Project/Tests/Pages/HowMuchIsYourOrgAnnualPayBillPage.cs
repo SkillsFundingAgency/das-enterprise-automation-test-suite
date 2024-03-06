@@ -18,6 +18,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AddAPAYESchemePage(context);
         }
 
+        public AddPayeSchemeUsingGGDetailsPage SelectOptionCloseTo3Million()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Close to £3 million");
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new AddPayeSchemeUsingGGDetailsPage(context);
+        }
+
+
         public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
         {
             formCompletionHelper.Click(BackLink);

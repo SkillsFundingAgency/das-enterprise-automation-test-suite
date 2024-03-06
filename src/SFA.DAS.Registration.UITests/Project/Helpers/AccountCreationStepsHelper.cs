@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
@@ -35,49 +34,107 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal static StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
 
-        internal StubAddYourUserDetailsPage UserLogsIntoStub() 
+        internal StubAddYourUserDetailsPage UserLogsIntoStub()
         {
             return RegisterStubUserAccount(new CreateAnAccountToManageApprenticeshipsPage(context), null);
         }
 
-        internal ConfirmYourUserDetailsPage UserEntersNameAndContinue(StubAddYourUserDetailsPage stubUserDetailsPage) 
+        internal ConfirmYourUserDetailsPage UserEntersNameAndContinue(StubAddYourUserDetailsPage stubUserDetailsPage)
         {
             return stubUserDetailsPage.EnterNameAndContinue(_registrationDataHelper);
         }
-           
+
 
         internal ConfirmYourUserDetailsPage UserChangesUserDetails(ConfirmYourUserDetailsPage confirmDetailsPage) =>
            confirmDetailsPage.ClickChange().EnterNameAndContinue(_registrationDataHelper);
 
-        internal  CreateYourEmployerAccountPage UserClicksContinueButtonToAcknowledge(ConfirmYourUserDetailsPage confirmDetailsPage) =>
-          confirmDetailsPage.ConfirmNameAndContinue().ClickContinueButtonToAcknowledge(); 
+        internal CreateYourEmployerAccountPage UserClicksContinueButtonToAcknowledge(ConfirmYourUserDetailsPage confirmDetailsPage) =>
+          confirmDetailsPage.ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
 
-         internal  CreateYourEmployerAccountPage UserChangesDetailsFromTaskList(CreateYourEmployerAccountPage confirmDetailsPage) =>
-          confirmDetailsPage.GoToAddYouUserDetailsLink().EnterName().ConfirmNameAndContinue(true).ClickContinueButtonToAcknowledge();
+        internal CreateYourEmployerAccountPage UserChangesDetailsFromTaskList(CreateYourEmployerAccountPage confirmDetailsPage) =>
+         confirmDetailsPage.GoToAddYouUserDetailsLink().EnterName().ConfirmNameAndContinue(true).ClickContinueButtonToAcknowledge();
 
         internal CreateYourEmployerAccountPage UserCanClickAddAPAYEScheme(CreateYourEmployerAccountPage createEmployerAccountPage) =>
            createEmployerAccountPage.GoToAddPayeLink().GoBackToCreateYourEmployerAccountPage();
-        
-        internal CreateYourEmployerAccountPage UserCannotClickAddPAYEScheme(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.OrganisationAndPAYEItemText);
+
+        internal CreateYourEmployerAccountPage UserCannotAmendPAYEScheme(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+           createEmployerAccountPage.GoToAddPayeLinkWhenAlreadyAdded().GoBackToCreateYourEmployerAccountPage();
+
+        internal CreateYourEmployerAccountPage UserCanClickAddAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.GoToSetYourAccountNameLink().GoBackToCreateYourEmployerAccountPage();
 
         internal CreateYourEmployerAccountPage UserCannotClickAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.AccountNameItemText);
 
-        internal CreateYourEmployerAccountPage UserCannotClickAcceptEmployerAgreemen(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+        internal CreateYourEmployerAccountPage UserCannotClickAcceptEmployerAgreement(CreateYourEmployerAccountPage createEmployerAccountPage) =>
           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.EmployerAgreementItemText);
+
+        internal CreateYourEmployerAccountPage UserCanClickAcceptEmployerAgreement(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+         createEmployerAccountPage.GoToYourEmployerAgreementLink().GoBackToCreateYourEmployerAccountPage();
+       
+        internal CreateYourEmployerAccountPage UserAcknowledgesEmployerAgreement(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+         createEmployerAccountPage.GoToYourEmployerAgreementLink()
+            .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+            .DoNotSignAgreement();
 
         internal CreateYourEmployerAccountPage UserCannotClickTrainingProvider(CreateYourEmployerAccountPage createEmployerAccountPage) =>
           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.TrainingProviderItemText);
 
+        internal CreateYourEmployerAccountPage UserCanClickTrainingProvider(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+        createEmployerAccountPage.GoToTrainingProviderLink().GoBackToCreateYourEmployerAccountPage();
+
         internal CreateYourEmployerAccountPage UserCannotClickTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.TrainingProviderPermissionsItemText);
 
-        internal CreateYourEmployerAccountPage AddPAYEFromTaskListForOrgType(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-            createEmployerAccountPage.GoToAddPayeLink().SelectOptionLessThan3Million().AddPaye().ContinueToGGSignIn().SignInTo(0)
+        internal CreateYourEmployerAccountPage UserCanClickTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+        createEmployerAccountPage.GoToTrainingProviderPermissionsLink().GoBackToCreateYourEmployerAccountPage();      
+
+        internal CreateYourEmployerAccountPage AddPAYEFromTaskListForCloseTo3Million(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+         createEmployerAccountPage.GoToAddPayeLink()
+            .SelectOptionCloseTo3Million()
+            .AgreeAndContinue()
+            .SignInTo(0)
             .SearchForAnOrganisation()
             .SelectYourOrganisation()
-            .ContinueToSetAccountName().ContinueToConfirmationPage();            
+            .ClickYesThisIsMyOrg().ContinueToConfirmationPage();
+
+        internal CreateYourEmployerAccountPage ConfirmEmployerAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+           createEmployerAccountPage.GoToSetYourAccountNameLink().SelectoptionYes().ContinueToAcknowledge();
+        
+        internal CreateYourEmployerAccountPage UpdateEmployerAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+           createEmployerAccountPage.GoToSetYourAccountNameLink()
+            .SelectoptionNo(_registrationDataHelper.CompanyTypeOrg2)
+            .ContinueToAcknowledge(_registrationDataHelper.CompanyTypeOrg2)
+            .ContinueToCreateYourEmployerAccountPage();
+
+        internal CreateYourEmployerAccountPage AcceptEmployerAgreement(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.GoToYourEmployerAgreementLink()
+            .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+            .SignAgreement()
+            .SelectContinueToCreateYourEmployerAccount();
+
+        internal CreateYourEmployerAccountPage AcceptEmployerAgreementWhenAlreadyAcknowledged(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.GoToYourEmployerAgreementLink()
+            .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+            .SignAgreementHavingAlreadyAcknowledged()
+            .ClickOnViewYourAccountButtonToReturnToTaskList();
+
+        internal CreateYourEmployerAccountPage AddTrainingProvider(CreateYourEmployerAccountPage createEmployerAccountPage, string ukprn) =>
+         createEmployerAccountPage.GoToTrainingProviderLink()
+           .AddTrainingProviderNow()
+           .SelectAddATrainingProvider()
+           .SearchForATrainingProvider(ukprn)
+           .ConfirmTrainingProvider()
+           .SelectSaveAndComeBackLater()
+           .SelectContinueCreatingYourAccount();
+
+        internal HomePage GrantTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
+          createEmployerAccountPage.GoToTrainingProviderPermissionsLink()
+            .SelectSetPermissions(string.Empty)
+            .ClickAddApprentice(AddApprenticePermissions.Allow)
+            .ClickRecruitApprentice(RecruitApprenticePermissions.Allow)
+            .ConfirmAndGoToEmployerAccountCreatedPage()
+            .GoToHomePage();
 
         internal static SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) =>
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
@@ -87,9 +144,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal static TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().ReEnterTheSameAornDetailsAndContinue();
-     
+
         internal CreateAnAccountToManageApprenticeshipsPage SignOut() => _accountSignOutHelper.SignOut();
-        
+
         internal static CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
             searchForYourOrganistionPage.SearchForAnOrganisation(org).SelectYourOrganisation(org);
 
@@ -138,7 +195,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .ClickYesThisIsMyOrg()
                 .ContinueToConfirmationPage()
                 .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
+                .SelectoptionYes()
                 .ContinueToAcknowledge()
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage();

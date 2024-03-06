@@ -1,27 +1,22 @@
-﻿@donotexecuteinparallel
+﻿Feature: RE_TL_05
 
-Feature: RE_TL_01
-
-Create Account by completing one task at a time
-
+A short summary of the feature
 @regression
 @registration
 @addnonlevyfunds
-Scenario: RE_TL_01_Create Account by completing one task at a time
+
+Scenario: RE_TL_05_Add training provider permissions on task list
 	Given user logs into stub
 	Then User is prompted to enter first and last name
-	And user can amend name before submitting it
-	When user adds name successfully to the account
-	Then user can change user details from the task list
+	Then user adds name successfully to the account	
 	When user <DoesAddPAYE> add PAYE details
 	When user <CanSetAccountName> set account name and <DoesSetAccountName>
 	When user <CanSignEmployerAgreement> accept the employer agreement and <DoesSignEmployerAgreement>
 	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>
-	When user <CanGrantProviderPermissions> grant training provider permissions and <DoesGrantProviderPermissions>
 	When user logs out and log back in
 	Then user can resume employer registration journey
-
+	When user <CanGrantProviderPermissions> grant training provider permissions and <DoesGrantProviderPermissions>
 	
 Examples:
 	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | CanGrantProviderPermissions | DoesGrantProviderPermissions |
-	| doesn't     | cannot            | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
+	| does		  | can               | does	           | can                      | does					  | can					   | does	                 | can	                       | does						  |

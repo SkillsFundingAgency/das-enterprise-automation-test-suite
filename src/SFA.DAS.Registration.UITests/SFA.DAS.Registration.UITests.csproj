@@ -54,8 +54,4 @@
 	<ProjectReference Include="..\SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\TaskList\" />
-  </ItemGroup>
-
 </Project>

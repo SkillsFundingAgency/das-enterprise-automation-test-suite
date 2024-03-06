@@ -31,6 +31,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText("Add a PAYE scheme");
             return new HowMuchIsYourOrgAnnualPayBillPage(context);
+        } 
+        
+        public CannotAddPayeSchemePage GoToAddPayeLinkWhenAlreadyAdded()
+        {
+            formCompletionHelper.ClickLinkByText("Add a PAYE scheme");
+            return new CannotAddPayeSchemePage(context);
         }
 
         public SetYourEmployerAccountNamePage GoToSetYourAccountNameLink()

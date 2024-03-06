@@ -22,6 +22,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YouVeAcceptedYourEmployerAgreement(context);
         }
 
+        public YouHaveAcceptedTheEmployerAgreementPage SignAgreementHavingAlreadyAcknowledged()
+        {
+            Sign();
+            return new YouHaveAcceptedTheEmployerAgreementPage(context);
+        }
+
         public SetPermissionsForTrainingProviderPage ProviderLeadRegistrationSignAgreement()
         {
             Sign();
