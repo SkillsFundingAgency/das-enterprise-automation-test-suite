@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
@@ -9,8 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
         protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
-        protected static By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
-        protected static By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
         protected static By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
         protected static By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
         protected static By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
@@ -37,6 +34,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By PlannedEndDate => By.XPath("//th[text()='Planned training end date']/following-sibling::td");
         private static By DeliveryModel => By.XPath("//th[text()='Delivery model']/following-sibling::td");
 
+        private static By NotificationBannerHeader => By.CssSelector(".govuk-notification-banner__header");
+        private static By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
+        private static By NotificationInsetText => By.CssSelector(".govuk-inset-text");
+
         public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
         {
             bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
@@ -56,7 +57,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected void VerifyNotificationBannerContent(string expected) => VerifyNotification(NotificationBannerContent, expected);
 
-        private void VerifyNotification(By by, string expected) => VerifyElement(() => pageInteractionHelper.FindElements(by).ToList(), expected);
+        protected void VerifyNotificationInsetContent(string expected) => VerifyNotification(NotificationInsetText, expected);
+
+        private void VerifyNotification(By by, string expected) => VerifyElement(() => [.. pageInteractionHelper.FindElements(by)], expected);
 
         public ApprenticeOverviewPage ContinueToCMADOverviewPage()
         {
