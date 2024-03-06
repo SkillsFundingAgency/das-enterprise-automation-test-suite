@@ -137,9 +137,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.SupportTools.UITest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TransferMatching.APITests", "SFA.DAS.TransferMatching.APITests\SFA.DAS.TransferMatching.APITests.csproj", "{A685DED7-44AA-4903-890B-B3C13C6F6963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ApprenticeshipDetails.UITests", "SFA.DAS.ApprenticeshipDetails.UITests\SFA.DAS.ApprenticeshipDetails.UITests.csproj", "{7E8CEC64-0866-46CA-A107-D6AA757890EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeshipDetails.UITests", "SFA.DAS.ApprenticeshipDetails.UITests\SFA.DAS.ApprenticeshipDetails.UITests.csproj", "{7E8CEC64-0866-46CA-A107-D6AA757890EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MailosaurAPI.Service", "SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj", "{0084AA7E-8A86-4FC8-9925-983281E88F45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.EarlyConnectForms.UITests", "SFA.DAS.EarlyConnectForms.UITests\SFA.DAS.EarlyConnectForms.UITests.csproj", "{1229E7C3-832A-44F9-A834-DD231E514CD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -496,6 +498,12 @@ Global
 		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0084AA7E-8A86-4FC8-9925-983281E88F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1229E7C3-832A-44F9-A834-DD231E514CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1229E7C3-832A-44F9-A834-DD231E514CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1229E7C3-832A-44F9-A834-DD231E514CD0}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{1229E7C3-832A-44F9-A834-DD231E514CD0}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{1229E7C3-832A-44F9-A834-DD231E514CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1229E7C3-832A-44F9-A834-DD231E514CD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
