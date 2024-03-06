@@ -1,7 +1,4 @@
-﻿using DnsClient;
-using Dynamitey.Internal.Optimization;
-using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools;
+﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using TechTalk.SpecFlow;
 
