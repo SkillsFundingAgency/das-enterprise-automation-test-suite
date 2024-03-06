@@ -23,11 +23,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new EmployerAccountCreatedPage(context);
         }
+
         public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
         {
             formCompletionHelper.Click(BackLink);
             return new CreateYourEmployerAccountPage(context);
         }
-
     }
 }

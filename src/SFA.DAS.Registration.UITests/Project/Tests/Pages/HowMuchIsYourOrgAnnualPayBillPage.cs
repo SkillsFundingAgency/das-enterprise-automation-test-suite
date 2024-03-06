@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HowMuchIsYourOrgAnnualPayBillPage(ScenarioContext context) : base(context) => VerifyPage();
 
-
         public AddAPAYESchemePage SelectOptionLessThan3Million()
         {
             formCompletionHelper.SelectRadioOptionByText("Less than £3 million");
@@ -24,7 +23,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(ContinueButton);
             return new AddPayeSchemeUsingGGDetailsPage(context);
         }
-
 
         public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
         {

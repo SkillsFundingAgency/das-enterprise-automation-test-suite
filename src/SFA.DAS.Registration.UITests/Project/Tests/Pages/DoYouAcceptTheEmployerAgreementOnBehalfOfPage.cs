@@ -61,6 +61,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.Click(ContinueToYourAgreementButton);
             return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
         }
-
     }
 }

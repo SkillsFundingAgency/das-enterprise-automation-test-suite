@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YouVeSuccessfullyAddedUserDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle { get; }
-      
+
         public YouVeSuccessfullyAddedUserDetailsPage(ScenarioContext context, bool updated = false) : base(context)
         {
             PageTitle = updated ? "You have successfully changed user details" : "You have successfully added user details";

@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.ProviderLogin.Service.Project;
@@ -60,30 +59,29 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             return value == "does";
         }
-        
+
         [Given(@"a User Account is created")]
         [When(@"a User Account is created")]
         public void AUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount();
 
         [Given(@"user logs into stub")]
-        public StubAddYourUserDetailsPage UserLogsIntoStub() => _stubAddYourUserDetailsPage =  _accountCreationStepsHelper.UserLogsIntoStub();
+        public StubAddYourUserDetailsPage UserLogsIntoStub() => _stubAddYourUserDetailsPage = _accountCreationStepsHelper.UserLogsIntoStub();
 
         [Then(@"User is prompted to enter first and last name")]
         public ConfirmYourUserDetailsPage UserEntersNameAndContinue() => _confirmYourUserDetailsPage = _accountCreationStepsHelper.UserEntersNameAndContinue(_stubAddYourUserDetailsPage);
 
-         [Then(@"user can amend name before submitting it")]
+        [Then(@"user can amend name before submitting it")]
         public ConfirmYourUserDetailsPage UserAmendsNameThenSubmits() => _confirmYourUserDetailsPage = _accountCreationStepsHelper.UserChangesUserDetails(_confirmYourUserDetailsPage);
 
-
-        [When(@"user adds name successfully to the account")] 
+        [When(@"user adds name successfully to the account")]
         [Then(@"user adds name successfully to the account")]
         public CreateYourEmployerAccountPage UserConfirmsNameAndAcknowledges() => _createYourEmployerAccountPage = _accountCreationStepsHelper.UserClicksContinueButtonToAcknowledge(_confirmYourUserDetailsPage);
 
         [Then(@"user can change user details from the task list")]
         public CreateYourEmployerAccountPage UserChangesUserDetailsFromTaskList() => _createYourEmployerAccountPage = _accountCreationStepsHelper.UserChangesDetailsFromTaskList(_createYourEmployerAccountPage);
- 
+
         [When(@"user (.*) add PAYE details")]
-        public CreateYourEmployerAccountPage UserCanAddPAYEFromTaskList(bool doesAdd) 
+        public CreateYourEmployerAccountPage UserCanAddPAYEFromTaskList(bool doesAdd)
         {
             if (doesAdd)
             {
@@ -94,14 +92,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 ? _accountCreationStepsHelper.UserCannotAmendPAYEScheme(_createYourEmployerAccountPage)
                 : _accountCreationStepsHelper.UserCanClickAddAPAYEScheme(_createYourEmployerAccountPage);
 
-            
+
             return _createYourEmployerAccountPage;
         }
 
         [When(@"user (.*) set account name and (.*)")]
         public CreateYourEmployerAccountPage UserCanSetAccountNameFromTaskList(bool canSetAccountName, bool doesSet)
         {
-            _createYourEmployerAccountPage = canSetAccountName 
+            _createYourEmployerAccountPage = canSetAccountName
                 ? _accountCreationStepsHelper.UserCanClickAddAccountName(_createYourEmployerAccountPage)
                 : _accountCreationStepsHelper.UserCannotClickAccountName(_createYourEmployerAccountPage);
 
@@ -118,7 +116,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _createYourEmployerAccountPage = _accountCreationStepsHelper.UpdateEmployerAccountName(_createYourEmployerAccountPage);
             return _createYourEmployerAccountPage;
         }
-
 
         [When(@"user acknowledges the employer agreement")]
         public CreateYourEmployerAccountPage UserAcknowledgesEmployerAgreement()
@@ -139,8 +136,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 return _createYourEmployerAccountPage = _accountCreationStepsHelper.AcceptEmployerAgreement(_createYourEmployerAccountPage);
             }
             return _createYourEmployerAccountPage;
-        } 
-        
+        }
+
         [Then(@"user accepts agreement having already acknowledged")]
         public CreateYourEmployerAccountPage UserCanAcceptEmployerAgreement()
         {
@@ -193,7 +190,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _createYourEmployerAccountPage.CheckIsPageCurrent();
         }
 
-
         [When("the User initiates Account creation")]
         public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
 
@@ -236,7 +232,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
         public void AddOrganisationTypeDetails(OrgType orgType) => _doYouAcceptTheEmployerAgreementOnBehalfOfPage = AccountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
-
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -504,7 +499,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             OpenAccount(_objectContext.GetOrganisationName());
             OpenAccount(_objectContext.GetAdditionalOrganisationName(1));
         }
-
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
@@ -524,6 +518,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
 
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
-
     }
 }

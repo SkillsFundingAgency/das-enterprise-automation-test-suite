@@ -33,7 +33,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal static StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
-
         internal StubAddYourUserDetailsPage UserLogsIntoStub()
         {
             return RegisterStubUserAccount(new CreateAnAccountToManageApprenticeshipsPage(context), null);
@@ -43,7 +42,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             return stubUserDetailsPage.EnterNameAndContinue(_registrationDataHelper);
         }
-
 
         internal ConfirmYourUserDetailsPage UserChangesUserDetails(ConfirmYourUserDetailsPage confirmDetailsPage) =>
            confirmDetailsPage.ClickChange().EnterNameAndContinue(_registrationDataHelper);
@@ -71,7 +69,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal CreateYourEmployerAccountPage UserCanClickAcceptEmployerAgreement(CreateYourEmployerAccountPage createEmployerAccountPage) =>
          createEmployerAccountPage.GoToYourEmployerAgreementLink().GoBackToCreateYourEmployerAccountPage();
-       
+
         internal CreateYourEmployerAccountPage UserAcknowledgesEmployerAgreement(CreateYourEmployerAccountPage createEmployerAccountPage) =>
          createEmployerAccountPage.GoToYourEmployerAgreementLink()
             .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
@@ -87,7 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
           createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.TrainingProviderPermissionsItemText);
 
         internal CreateYourEmployerAccountPage UserCanClickTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-        createEmployerAccountPage.GoToTrainingProviderPermissionsLink().GoBackToCreateYourEmployerAccountPage();      
+        createEmployerAccountPage.GoToTrainingProviderPermissionsLink().GoBackToCreateYourEmployerAccountPage();
 
         internal CreateYourEmployerAccountPage AddPAYEFromTaskListForCloseTo3Million(CreateYourEmployerAccountPage createEmployerAccountPage) =>
          createEmployerAccountPage.GoToAddPayeLink()
@@ -100,7 +98,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal CreateYourEmployerAccountPage ConfirmEmployerAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
            createEmployerAccountPage.GoToSetYourAccountNameLink().SelectoptionYes().ContinueToAcknowledge();
-        
+
         internal CreateYourEmployerAccountPage UpdateEmployerAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
            createEmployerAccountPage.GoToSetYourAccountNameLink()
             .SelectoptionNo(_registrationDataHelper.CompanyTypeOrg2)
@@ -187,7 +185,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .GoToTrainingProviderLink()
             .AddTrainingProviderLater()
             .SelectGoToYourEmployerAccountHomepage();
-
 
         internal static DoYouAcceptTheEmployerAgreementOnBehalfOfPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
         {

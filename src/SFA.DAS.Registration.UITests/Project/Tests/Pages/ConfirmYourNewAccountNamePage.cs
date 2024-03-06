@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -20,8 +15,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new YouAccountNameHasBeenChangeToPage(context, newAccountName);
         }
-
-
     }
 }
-

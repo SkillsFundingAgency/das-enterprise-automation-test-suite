@@ -9,7 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("#accept");
         protected static By NewNameTextBox => By.Id("NewName");
 
-
         public SetYourEmployerAccountNamePage(ScenarioContext context) : base(context) => VerifyPage();
 
         public YourAccountNameHasBeenChangedPage SelectoptionYes()
@@ -17,8 +16,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.SelectRadioOptionByText("Yes, I want to use my organisation name as my employer account name");
             Continue();
             return new YourAccountNameHasBeenChangedPage(context);
-        } 
-        
+        }
+
         public ConfirmYourNewAccountNamePage SelectoptionNo(string newAccountName)
         {
             formCompletionHelper.SelectRadioOptionByText("No, I want to change my employer account name");

@@ -23,45 +23,45 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ChangeYourUserDetailsPage GoToAddYouUserDetailsLink()
         {
-            formCompletionHelper.ClickLinkByText("Add your user details");
+            formCompletionHelper.ClickLinkByText(UserDetailsItemText);
             return new ChangeYourUserDetailsPage(context);
         }
 
         public HowMuchIsYourOrgAnnualPayBillPage GoToAddPayeLink()
         {
-            formCompletionHelper.ClickLinkByText("Add a PAYE scheme");
+            formCompletionHelper.ClickLinkByText(OrganisationAndPAYEItemText);
             return new HowMuchIsYourOrgAnnualPayBillPage(context);
-        } 
-        
+        }
+
         public CannotAddPayeSchemePage GoToAddPayeLinkWhenAlreadyAdded()
         {
-            formCompletionHelper.ClickLinkByText("Add a PAYE scheme");
+            formCompletionHelper.ClickLinkByText(OrganisationAndPAYEItemText);
             return new CannotAddPayeSchemePage(context);
         }
 
         public SetYourEmployerAccountNamePage GoToSetYourAccountNameLink()
         {
-            formCompletionHelper.ClickLinkByText("Set your account name");
+            formCompletionHelper.ClickLinkByText(AccountNameItemText);
             return new SetYourEmployerAccountNamePage(context);
         }
 
         public AboutYourAgreementPage GoToYourEmployerAgreementLink()
         {
-            formCompletionHelper.ClickLinkByText("Your employer agreement");
+            formCompletionHelper.ClickLinkByText(EmployerAgreementItemText);
             return new AboutYourAgreementPage(context);
         }
 
         public AddATrainingProviderPage GoToTrainingProviderLink()
         {
-            formCompletionHelper.ClickLinkByText("Training provider");
+            formCompletionHelper.ClickLinkByText(TrainingProviderItemText);
             return new AddATrainingProviderPage(context);
         }
 
         public YourTrainingProvidersPage GoToTrainingProviderPermissionsLink()
         {
-            formCompletionHelper.ClickLinkByText("Training provider permissions");
+            formCompletionHelper.ClickLinkByText(TrainingProviderPermissionsItemText);
             return new YourTrainingProvidersPage(context);
-        }      
+        }
 
         public CreateYourEmployerAccountPage VerifyStepCannotBeStartedYet(string listItemText)
         {
@@ -82,7 +82,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 var result = IsPageCurrent;
 
                 return !result.Item1 ? throw new Exception(
-                    MessageHelper.GetExceptionMessage("IsPageCurrent", "Create your employer account", result.Item2))
+                    MessageHelper.GetExceptionMessage("IsPageCurrent", PageTitle, result.Item2))
                 : true;
 
             }, null);

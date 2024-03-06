@@ -6,7 +6,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class YourTrainingProvidersPage(ScenarioContext context) : RegistrationBasePage(context)
     {
         protected override string PageTitle => "Your training providers";
-
         private static By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
         private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
         private static By ChangePermissionsLink => By.PartialLinkText("Change permissions");
@@ -16,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(AddANewTrainingProviderButton);
             return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(context);
         }
+
         public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
         {
             if (string.IsNullOrEmpty(orgName))
