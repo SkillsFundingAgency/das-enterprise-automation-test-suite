@@ -2,11 +2,11 @@
 {
     internal class HomePageHelper
     {
-        internal static string DashboardInCompleteStatus => "INCOMPLETE";
+        internal static string DashboardInCompleteStatus => "Incomplete";
 
-        internal static string DashboardUnConfimredStatusForCoC => "UNCONFIRMED";
+        internal static string DashboardUnConfimredStatusForCoC => "Unconfirmed";
 
-        internal static string DashboardStoppedStatus => "STOPPED";
+        internal static string DashboardStoppedStatus => "Stopped";
 
         internal static string UnConfirmedCmadSectionTitle => "Confirm my apprenticeship details";
 

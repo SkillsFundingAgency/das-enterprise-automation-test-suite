@@ -17,25 +17,25 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the employer reserves funding from the dynamic home page")]
         public void GivenTheUserReservesFundingFromTheDynamicHomePage() => new ManageFundingEmployerStepsHelper(context).CreateReservationViaDynamicHomePageTriageJourney();
 
-        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(Draft|Closed|Pending review|Live|Rejected)'")]
+        [Then(@$"the vacancy details is displayed on the Dynamic home page with Status '({RecruitmentDynamicHomePage.DraftStatus}|{RecruitmentDynamicHomePage.ClosedStatus}|{RecruitmentDynamicHomePage.PendingReviewStatus}|{RecruitmentDynamicHomePage.LiveStatus}|{RecruitmentDynamicHomePage.RejectedStatus})'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
             switch (status)
             {
-                case "Draft":
-                case "Rejected":
+                case RecruitmentDynamicHomePage.DraftStatus:
+                case RecruitmentDynamicHomePage.RejectedStatus:
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyTitleAndStatus(status);
                     break;
 
-                case "Closed":
+                case RecruitmentDynamicHomePage.ClosedStatus:
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmClosedVacancyDetails(status);
                     break;
 
-                case "Pending review":
+                case RecruitmentDynamicHomePage.PendingReviewStatus:
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyDetails(status, context.Get<RAAV2DataHelper>().VacancyClosing);
                     break;
 
-                case "Live":
+                case RecruitmentDynamicHomePage.LiveStatus:
                     _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmLiveVacancyDetails(status);
                     break;
             }
