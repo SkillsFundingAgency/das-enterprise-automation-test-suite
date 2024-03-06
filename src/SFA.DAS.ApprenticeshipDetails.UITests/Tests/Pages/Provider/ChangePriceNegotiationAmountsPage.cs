@@ -4,7 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
+namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 {
     public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
@@ -126,7 +126,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
 
             var totalPrice = pageInteractionHelper.GetText(TotalPrice);
 
-            Assert.AreEqual(4000, int.Parse(totalPrice));
+            Assert.AreEqual("£4000", totalPrice);
         }
     }
 }
