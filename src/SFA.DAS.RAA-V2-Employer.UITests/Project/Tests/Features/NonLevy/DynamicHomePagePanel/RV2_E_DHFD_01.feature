@@ -10,5 +10,5 @@ Scenario: RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage j
 	And the employer reserves funding from the dynamic home page
 	And the employer continue to add advert in the Recruitment 
 	When the Employer creates first Draft advert
-	Then the vacancy details is displayed on the Dynamic home page with Status 'DRAFT'
+	Then the vacancy details is displayed on the Dynamic home page with Status 'Draft'
 	And Employer can continue creating an advert
