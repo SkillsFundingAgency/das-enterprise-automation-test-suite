@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
@@ -92,6 +92,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
+        [Then(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
         [When(@"Provider successfully creates a Change of Price request")]

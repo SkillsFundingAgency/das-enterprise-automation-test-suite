@@ -110,6 +110,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
         }
 
+        [Then(@"Employer searches for learner on Manage your apprentices page")]
+        public void EmployerSearchesLearnerOnManageYourApprenticesPage()
+        {
+            _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
+        }
+
         [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenEmployerCannotMakeChangesToFullyApprovedLearner(string action, int learnerNumber)
         {
