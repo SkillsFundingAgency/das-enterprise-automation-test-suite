@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         private readonly FormCompletionHelper _formCompletionHelper = context.Get<FormCompletionHelper>();
         #endregion
 
-        private static By SearchInput => By.CssSelector("#search-input");
+        private static By SearchInput => By.CssSelector("input#search-input");
 
         private static By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public ProviderVacancySearchResultPage SearchProviderVacancy()
         {
-            SearchEmployerProviderPermissionVacancy();
+            SearchVacancy();
             return new ProviderVacancySearchResultPage(context);
         }
 
@@ -50,18 +50,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public EmployerVacancySearchResultPage SearchEmployerVacancy()
         {
-            SearchEmployerProviderPermissionVacancy();
-            return new EmployerVacancySearchResultPage(context);
-        }
-        public EmployerVacancySearchResultPage SearchEmployerVacancyByVacancyReference()
-        {
             SearchVacancy();
             return new EmployerVacancySearchResultPage(context);
         }
 
-        internal void SearchEmployerProviderPermissionVacancy() => SearchVacancy();
-
-        private void SearchVacancy()
+        internal void SearchVacancy()
         {
             var vacRef = _objectContext.GetVacancyReference();
             _formCompletionHelper.EnterText(SearchInput, vacRef);
