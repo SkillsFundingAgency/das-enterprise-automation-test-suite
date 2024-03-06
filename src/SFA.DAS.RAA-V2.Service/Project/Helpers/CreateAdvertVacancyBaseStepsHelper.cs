@@ -5,11 +5,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 {
     public abstract class CreateAdvertVacancyBaseStepsHelper
     {
-        protected static string NotStarted => "NOT STARTED";
+        protected static string NotStarted => "Not started";
 
-        protected static string Completed => "COMPLETED";
+        protected static string Completed => "Completed";
 
-        protected static string InProgress => "IN PROGRESS";
+        protected static string InProgress => "In progress";
 
         public bool optionalFields;
 

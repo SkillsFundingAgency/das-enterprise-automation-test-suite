@@ -10,11 +10,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class RecruitmentDynamicHomePage(ScenarioContext context, bool navigate) : HomePage(context, navigate)
     {
-
         #region Helpers and Context
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
         private readonly RAAV2DataHelper _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         #endregion
+
+        internal const string DraftStatus = "Draft";
+        internal const string ClosedStatus = "Closed";
+        internal const string PendingReviewStatus = "Pending review";
+        internal const string LiveStatus = "Live";
+        internal const string RejectedStatus = "Rejected";
 
         private static By AddApprenticeDetails => By.LinkText("Add apprentice details");
         private static By TRows => By.CssSelector("tr");
@@ -73,7 +78,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private RecruitmentDynamicHomePage ConfirmClosedDateAndApplicationsLink(DateTime closingDate, string status)
         {
             pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate.ToString("dd MMMM yyyy"), closingDate.ToString("dd MMM yyyy"));
-            if (status != "PENDING REVIEW")
+            if (status != PendingReviewStatus)
             {
                 pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
             }
