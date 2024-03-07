@@ -45,7 +45,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as Reject")]
         public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsReject() => GatewayEndtoEndStepsHelpers.ConfirmGatewayOutcomeAsReject(_gwApplicationOverviewPage);
 
-        [Then(@"the Gateway Applications Outcome tab is updated with (PASS|FAIL|REJECT|WITHDRAWN|REJECT|REMOVED) outcome for this Application")]
+        [Then(@"the Gateway Applications Outcome tab is updated with (Pass|Fail|Withdrawn|Reject|Removed) outcome for this Application")]
         public void ThenTheGatewayApplicationsOutcomeTabIsUpdatedWithPassOutcomeForThisApplication(string expectedStatus) => new GatewayLandingPage(context).VerifyOutcomeStatus(expectedStatus);
 
         [Then(@"Verifiy the application is not transitioned to PMO and Assessor")]
