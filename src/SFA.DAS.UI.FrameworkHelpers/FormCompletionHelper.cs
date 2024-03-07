@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 
 public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectContext, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : WebElementInteractionHelper(webDriver)
 {
+    public void PerformSeleniumActions(Func<IWebDriver, Actions> func) => func(webDriver).Perform();
+
     public void RetryClickOnException(Func<IWebElement> element) => retryHelper.RetryClickOnException(element);
 
     public void ClickElement(Func<IWebElement> element, Action retryAction = null) => retryHelper.RetryClickOnWebDriverException(element, retryAction);

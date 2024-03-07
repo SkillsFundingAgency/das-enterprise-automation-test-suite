@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -53,8 +55,20 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             pageInteractionHelper.InvokeAction(() =>
             {
                 formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchIcon));
-                formCompletionHelper.EnterText(SearchInput, ticketId);
-                formCompletionHelper.SendKeys(SearchInput, keystoke() + Keys.Enter);
+
+                formCompletionHelper.PerformSeleniumActions((x) =>
+                new Actions(x)
+                .Click(pageInteractionHelper.FindElement(SearchInput))
+                .SendKeys(ticketId)
+                .Pause(TimeSpan.FromSeconds(2))
+                .SendKeys(keystoke())
+                .Pause(TimeSpan.FromSeconds(2))
+                .SendKeys(Keys.Enter));
+
+                //formCompletionHelper.EnterText(SearchInput, ticketId);
+                //formCompletionHelper.SendKeys(SearchInput, keystoke());
+                //formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchInput));
+                //formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
             });
 
             return new TicketPage(context);
