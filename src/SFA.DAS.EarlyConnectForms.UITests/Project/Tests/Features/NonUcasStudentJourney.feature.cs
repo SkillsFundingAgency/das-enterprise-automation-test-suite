@@ -35,7 +35,8 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "NonUcasStudentJourney", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "NonUcasStudentJourney", "As a user I want to be able to fill online form for student interest in appretish" +
+                    "ip \r\nso that my data will be available for futher progress ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,14 +76,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey")]
-        [NUnit.Framework.CategoryAttribute("ec-v2")]
+        [NUnit.Framework.CategoryAttribute("ec-v1")]
         [NUnit.Framework.CategoryAttribute("earlyconnect-ui")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.TestCaseAttribute("E37000051", null)]
         public void VerifyNonUcasStudentJourney(string lepCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ec-v2",
+                    "ec-v1",
                     "earlyconnect-ui",
                     "regression"};
             if ((exampleTags != null))
