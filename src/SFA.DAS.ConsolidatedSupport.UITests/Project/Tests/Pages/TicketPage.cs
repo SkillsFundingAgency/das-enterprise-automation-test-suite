@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -47,12 +48,13 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public TicketPage(ScenarioContext context) : base(context, false)
         {
-            MultipleVerifyPage(
-            [
-                () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
-                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
-                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)
-            ]);
+            pageInteractionHelper.InvokeAction(() => 
+            {
+                MultipleVerifyPage([
+                    () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
+                    () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
+                    () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)]);
+            });
         }
 
         public void VerifyTicketStatus(string expectedstatus) => VerifyElement(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());
