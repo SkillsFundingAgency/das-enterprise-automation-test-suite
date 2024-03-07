@@ -39,11 +39,22 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public TicketPage SearchTicket()
         {
+            string ticketId = objectContext.GetTicketId();
+
+            string keystoke()
+            {
+                string keys = string.Empty;
+
+                for (int i = 0; i < ticketId.Length; i++) keys += Keys.ArrowRight;
+
+                return keys;
+            }
+
             pageInteractionHelper.InvokeAction(() =>
             {
                 formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchIcon));
-                formCompletionHelper.EnterText(SearchInput, objectContext.GetTicketId());
-                formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
+                formCompletionHelper.EnterText(SearchInput, ticketId);
+                formCompletionHelper.SendKeys(SearchInput, keystoke() + Keys.Enter);
             });
 
             return new TicketPage(context);
