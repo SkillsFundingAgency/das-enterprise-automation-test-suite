@@ -53,7 +53,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         {
             _homePage = new HomePage(_context, true);
 
-            _ticketpage = _homePage.SearchTicket();
+            _ticketpage = SearchTicket();
 
             _ticketpage.VerifyTicketStatus(status);
         }
@@ -66,10 +66,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
         private void VerifySubmittedComments(string comments)
         {
-            _ticketpage = _homePage.SearchTicket();
+            _ticketpage = SearchTicket();
 
             _ticketpage.VerifySubmittedComments(comments.Trim());
         }
+
+        private TicketPage SearchTicket() => _homePage.SearchTicket();
 
         private void SubmitAs(string status)
         {
