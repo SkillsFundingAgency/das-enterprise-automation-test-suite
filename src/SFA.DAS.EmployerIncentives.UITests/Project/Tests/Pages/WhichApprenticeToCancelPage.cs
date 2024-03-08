@@ -15,10 +15,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             var apprentices = pageInteractionHelper.FindElements(CancelApprenticeshipSelector);
 
-            foreach (var apprentice in apprentices)
-            {
-                formCompletionHelper.ClickElement(apprentice);
-            }
+            foreach (var apprentice in apprentices) formCompletionHelper.ClickElement(apprentice);
 
             Continue();
 

@@ -13,6 +13,16 @@ namespace SFA.DAS.FrameworkHelpers
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             };
         }
+
+        public static string ReadAllText(string source, Dictionary<string, string> payloadreplacement)
+        {
+            var x = ReadAllText(source);
+
+            foreach (var item in payloadreplacement) x = x.Replace($"<{item.Key}>", item.Value);
+
+            return x;
+        }
+
         public static string ReadAllText(string source)
         {
             string jsonBody = System.IO.File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}\\Project\\Tests\\Payload\\{source}");
