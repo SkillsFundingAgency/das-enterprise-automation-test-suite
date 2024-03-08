@@ -30,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By PriceChangeRejectedBanner => By.Id("price-change-rejected-banner");
         private static By PriceChangeApprovedBanner => By.Id("price-change-approved-banner");
         private static By ViewPriceChangeRequestBannerLink => By.Id("linkViewPendingPriceBanner");
+        private static By PendingPriceChangeTag => By.XPath("//strong[text()='Pending']");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
 
 
@@ -152,6 +153,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangePendingBanner), "Price Change Pending banner not displayed");
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ViewPriceChangeRequestBannerLink), "View Price Change Request link not displayed inside banner");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PendingPriceChangeTag), "Pending tag for Change of Price request is missing ");
             return this;
         }
 

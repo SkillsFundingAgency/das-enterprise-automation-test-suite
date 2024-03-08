@@ -21,7 +21,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         private static By RejectReasonInputField => By.Id("rejectReason");
         protected static By SendButton => By.Id("buttonSubmitForm");
 
-        public EmployerChangeOfPriceViewChangeRequestPage ValidateRequestedValues(decimal totalPrice, DateTime effectiveFromDate, string reason)
+        public EmployerChangeOfPriceViewChangeRequestPage ValidateRequestValues(decimal totalPrice, DateTime effectiveFromDate, string reason)
         {
             Assert.Multiple(() =>
             {

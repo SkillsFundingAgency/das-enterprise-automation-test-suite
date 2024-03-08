@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using Polly;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
@@ -114,6 +116,26 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void EmployerSearchesLearnerOnManageYourApprenticesPage()
         {
             _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
+        }
+
+        [Then(@"Employer is able to view the pending Change of Price request")]
+        public void ThenEmployerIsAbleToViewThePendingChangeOfPriceRequest()
+        {
+            _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+        }
+
+        [Then(@"Employer can view the details of the Change of Price request")]
+        public void ThenEmployerCanViewTheDetailsOfTheChangeOfPriceRequest()
+        {
+            _apprenticeDetailsPage.ClickReviewPriceChangeLink();
+        }
+
+        [Then(@"Employer is able to successfully reject the Change of Price request")]
+        public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
+        {
+            new EmployerChangeOfPriceViewChangeRequestPage(_context)
+                .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title)
+                .ValidatePriceChangeRejectedBannerDisplayed();
         }
 
         [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]
