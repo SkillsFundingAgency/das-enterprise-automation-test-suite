@@ -112,6 +112,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
         }
 
+        [Then(@"Employer can review the Change of Price request and approve it")]
+        public void ThenEmployerCanReviewTheChangeOfPriceRequestAndApproveIt()
+        {
+            EmployerSearchesLearnerOnManageYourApprenticesPage();
+            EmployerCanViewTheDetailsOfTheChangeOfPriceRequest();
+
+            new EmployerChangeOfPriceViewChangeRequestPage(_context)
+                .SelectApproveChangesRadioButtonAndSend()
+                .ValidatePriceChangeApprovedBannerDisplayed();
+        }
+
+
         [Then(@"Employer searches for learner on Manage your apprentices page")]
         public void EmployerSearchesLearnerOnManageYourApprenticesPage()
         {
@@ -119,13 +131,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to view the pending Change of Price request")]
-        public void ThenEmployerIsAbleToViewThePendingChangeOfPriceRequest()
+        public void EmployerIsAbleToViewThePendingChangeOfPriceRequest()
         {
             _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
         }
 
         [Then(@"Employer can view the details of the Change of Price request")]
-        public void ThenEmployerCanViewTheDetailsOfTheChangeOfPriceRequest()
+        public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest()
         {
             _apprenticeDetailsPage.ClickReviewPriceChangeLink();
         }
