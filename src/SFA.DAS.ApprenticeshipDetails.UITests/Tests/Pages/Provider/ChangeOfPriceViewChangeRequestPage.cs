@@ -5,7 +5,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
+namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 {
     public class ChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ChangePriceNegotiationAmountsPage(context)
     {
