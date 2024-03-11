@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using Polly;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
@@ -108,6 +110,44 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(learnerNumber);
 
             _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
+        }
+
+        [Then(@"Employer can review the Change of Price request and approve it")]
+        public void ThenEmployerCanReviewTheChangeOfPriceRequestAndApproveIt()
+        {
+            EmployerSearchesLearnerOnManageYourApprenticesPage();
+            EmployerCanViewTheDetailsOfTheChangeOfPriceRequest();
+
+            new EmployerChangeOfPriceViewChangeRequestPage(_context)
+                .SelectApproveChangesRadioButtonAndSend()
+                .ValidatePriceChangeApprovedBannerDisplayed();
+        }
+
+
+        [Then(@"Employer searches for learner on Manage your apprentices page")]
+        public void EmployerSearchesLearnerOnManageYourApprenticesPage()
+        {
+            _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
+        }
+
+        [Then(@"Employer is able to view the pending Change of Price request")]
+        public void EmployerIsAbleToViewThePendingChangeOfPriceRequest()
+        {
+            _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+        }
+
+        [Then(@"Employer can view the details of the Change of Price request")]
+        public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest()
+        {
+            _apprenticeDetailsPage.ClickReviewPriceChangeLink();
+        }
+
+        [Then(@"Employer is able to successfully reject the Change of Price request")]
+        public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
+        {
+            new EmployerChangeOfPriceViewChangeRequestPage(_context)
+                .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title)
+                .ValidatePriceChangeRejectedBannerDisplayed();
         }
 
         [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]

@@ -86,7 +86,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickYesThisIsMyOrg()
                 .ContinueToConfirmationPage()
                 .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
+                .SelectoptionYes()
                 .ContinueToAcknowledge();
         }
 

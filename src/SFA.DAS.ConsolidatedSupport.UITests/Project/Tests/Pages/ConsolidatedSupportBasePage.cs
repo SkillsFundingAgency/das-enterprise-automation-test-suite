@@ -20,7 +20,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected void ClickOrganisationsButton() => formCompletionHelper.ClickButtonByText(MainNavigationButton, "Organisations");
 
-        protected void NavigateTo(string url) => tabHelper.GoToUrl($"{UrlConfig.ConsolidatedSupport_WebBaseUrl}/users/{objectContext.GetUserId()}/{url}");
+        protected void NavigateTo(string url) => GoToUrl($"users/{objectContext.GetUserId()}/{url}");
+
+        protected void NavigateTo() => GoToUrl($"tickets/{objectContext.GetTicketId()}");
 
         protected void CloseAllTickets()
         {
@@ -29,5 +31,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 foreach (var element in pageInteractionHelper.FindElements(CloseButton).ToList()) element.Click();
             });
         }
+
+        private void GoToUrl(string relativeUrl) => tabHelper.GoToUrl($"{UrlConfig.ConsolidatedSupport_WebBaseUrl}/{relativeUrl}");
     }
 }

@@ -114,11 +114,11 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Removes the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.And("the Gateway Applications Outcome tab is updated with REMOVED outcome for this App" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Removed outcome for this App" +
                         "lication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("verify that the admin can send the application outcome as REMOVED to the applican" +
+ testRunner.And("verify that the admin can send the application outcome as Removed to the applican" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
@@ -173,11 +173,11 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Removes the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 31
- testRunner.And("the Gateway Applications Outcome tab is updated with REMOVED outcome for this App" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Removed outcome for this App" +
                         "lication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
- testRunner.And("verify that the admin can send the application outcome as REMOVED to the applican" +
+ testRunner.And("verify that the admin can send the application outcome as Removed to the applican" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
@@ -238,11 +238,11 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Removes the Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 50
- testRunner.And("the Gateway Applications Outcome tab is updated with REMOVED outcome for this App" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Removed outcome for this App" +
                         "lication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 51
- testRunner.And("verify that the admin can send the application outcome as REMOVED to the applican" +
+ testRunner.And("verify that the admin can send the application outcome as Removed to the applican" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -293,7 +293,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 66
- testRunner.And("the Gateway Applications Outcome tab is updated with PASS outcome for this Applic" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Pass outcome for this Applic" +
                         "ation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 67
@@ -303,11 +303,11 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin Removes the Application where outcome has been made", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 69
- testRunner.And("the Gateway Applications Outcome tab is updated with REMOVED outcome for this App" +
+ testRunner.And("the Gateway Applications Outcome tab is updated with Removed outcome for this App" +
                         "lication", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 70
- testRunner.And("verify that the admin can send the application outcome as REMOVED to the applican" +
+ testRunner.And("verify that the admin can send the application outcome as Removed to the applican" +
                         "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

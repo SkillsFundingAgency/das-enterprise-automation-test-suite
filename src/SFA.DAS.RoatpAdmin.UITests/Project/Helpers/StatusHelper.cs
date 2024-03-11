@@ -2,14 +2,14 @@
 {
     public static class StatusHelper
     {
-        internal static string StatusPass => "PASS";
+        internal static string StatusPass => "Pass";
 
-        internal static string NotRequired => "NOT REQUIRED";
+        internal static string NotRequired => "Not required";
 
-        internal static string StatusInProgress => "IN PROGRESS";
+        internal static string StatusInProgress => "In progress";
 
-        internal static string StatusFail => "FAIL";
+        internal static string StatusFail => "Fail";
 
-        internal static string StatusClarification => "CLARIFICATION";
+        internal static string StatusClarification => "Clarification";
     }
 }
