@@ -4,7 +4,7 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 
 public class JavaScriptHelper(IWebDriver webDriver, IFrameHelper iframeHelper)
 {
-    public static bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");
+    public static bool IsDocumentReady(IWebDriver driver) => driver != null && ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");
 
     public void SetTextUsingJavaScript(By locator, string text)
     {
@@ -27,6 +27,7 @@ public class JavaScriptHelper(IWebDriver webDriver, IFrameHelper iframeHelper)
     public void ScrollToTheBottom()
     {
         var jse = (IJavaScriptExecutor)webDriver;
+
         jse.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
     }
 }

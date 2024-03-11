@@ -7,11 +7,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Hire a new apprentice payment applications";
 
-        private static By Links => By.CssSelector("#main-content a");
+        private static By CancelAnApplicationSelector => By.CssSelector("a[href*='cancel-application']");
 
         public WhichApprenticeToCancelPage CancelAnApplication()
         {
-            formCompletionHelper.ClickLinkByText(Links, "Cancel an application");
+            formCompletionHelper.Click(CancelAnApplicationSelector);
 
             return new WhichApprenticeToCancelPage(context);
         }

@@ -4,7 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
+namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 {
     public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
@@ -15,6 +15,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
         private static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
 
         private static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
+        private static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
 
         private static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
 
@@ -117,6 +118,15 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages
                 Assert.AreEqual(pageInteractionHelper.GetText(EndPointAssessmentPriceMustBeAWholeNumberErrorMessage), EndPointAssessmentPriceMustBeAWholeNumberErrorText);
             });
         }
-    }
 
+        public void ValidateApprenticeshipTotalPrice()
+        {
+            formCompletionHelper.EnterText(TrainingPrice, 3000);
+            formCompletionHelper.EnterText(EndpointAssessmentPrice, 1000);
+
+            var totalPrice = pageInteractionHelper.GetText(TotalPrice);
+
+            Assert.AreEqual("£4000", totalPrice);
+        }
+    }
 }

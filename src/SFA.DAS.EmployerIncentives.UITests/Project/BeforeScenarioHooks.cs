@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF;
 using SFA.DAS.FrameworkHelpers;
@@ -28,7 +29,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 42)]
-        public void SetUpHelpers() => context.Set(new EISqlHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()));
+        public void SetUpHelpers()
+        {
+            var objectcontext = context.Get<ObjectContext>();
+
+            var dbConfig = context.Get<DbConfig>();
+
+            context.Set(new EISqlHelper(objectcontext, dbConfig));
+
+            context.Set(new CommitmentsSqlDataHelper(objectcontext, dbConfig));
+        }
 
         [BeforeScenario(Order = 44)]
         public void ResetPeriodEndInProgress() => context.Get<EISqlHelper>().ResetPeriodEndInProgress();

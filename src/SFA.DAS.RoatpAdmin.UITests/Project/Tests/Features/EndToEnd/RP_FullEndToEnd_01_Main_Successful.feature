@@ -11,6 +11,6 @@ Scenario: RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_As
 	And the Asssesssors assess the application and marks the application as Ready for Moderation
 	Then the Moderation user assess the application and marks outcomes as Pass
 	And the PASS status overall application is marked as Successful
-	Then Verify the application is transitioned to Oversight Outcome tab with SUCCESSFUL status
+	Then Verify the application is transitioned to Oversight Outcome tab with Successful status
 	And verify the provider is added to the register with status of Onboarding
 	And verify the Application successful page is displayed 
