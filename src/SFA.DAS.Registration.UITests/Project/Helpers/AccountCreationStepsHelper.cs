@@ -33,6 +33,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         internal static StubAddYourUserDetailsPage RegisterUserAccount(StubSignInEmployerPage stubSignInPage, string email) => stubSignInPage.Register(email).ContinueToStubAddYourUserDetailsPage();
 
+        internal StubAddYourUserDetailsPage UserLogsIntoStub() => RegisterStubUserAccount(new CreateAnAccountToManageApprenticeshipsPage(context), null);
+
+      
         internal static SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType) =>
             homepage.GoToYourOrganisationsAndAgreementsPage().ClickAddNewOrganisationButton().SearchForAnOrganisation(orgType);
 
@@ -85,14 +88,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .AddTrainingProviderLater()
             .SelectGoToYourEmployerAccountHomepage();
 
-
         internal static DoYouAcceptTheEmployerAgreementOnBehalfOfPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
         {
             return checkYourDetailsPage
                 .ClickYesThisIsMyOrg()
                 .ContinueToConfirmationPage()
                 .GoToSetYourAccountNameLink()
-                .SelectoptionNo()
+                .SelectoptionYes()
                 .ContinueToAcknowledge()
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage();

@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -37,8 +36,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private static By TicketDropdownSelect => By.CssSelector("[data-garden-id='dropdowns.select']");
 
         private static By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
-
-        private static By TicketFormsInput => By.CssSelector("[data-garden-id='forms.input']");
 
         private static By TicketDropdownItem => By.CssSelector("li");
 

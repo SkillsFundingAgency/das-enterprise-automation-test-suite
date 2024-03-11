@@ -28,6 +28,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(context);
         }
 
+        public CreateYourEmployerAccountPage ClickOnViewYourAccountButtonToReturnToTaskList()
+        {
+            formCompletionHelper.Click(ContinueButton);
+            return new CreateYourEmployerAccountPage(context);
+        }
+
         public YourOrganisationsAndAgreementsPage ClickOnReviewAndAcceptYourOtherAgreementsLink()
         {
             formCompletionHelper.Click(ReviewAndAcceptYourOtherAgreementsLink);
