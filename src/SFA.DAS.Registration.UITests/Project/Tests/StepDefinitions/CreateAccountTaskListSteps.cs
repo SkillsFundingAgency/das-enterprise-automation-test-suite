@@ -25,6 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
+            _accountCreationTaskListStepsHelper = new AccountCreationTaskListStepsHelper(context);
         }
 
         [StepArgumentTransformation(@"(can|cannot)")]
