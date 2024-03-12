@@ -26,12 +26,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By FlashMsgBox => PanelTitle;
         private static By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
         private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
+        private static By ChangePriceLink => By.Id("linkChangeApprenticeshipPrice");
         private static By PriceChangePendingBanner => By.Id("price-change-pending-banner");
         private static By PriceChangeRejectedBanner => By.Id("price-change-rejected-banner");
         private static By PriceChangeApprovedBanner => By.Id("price-change-approved-banner");
         private static By ViewPriceChangeRequestBannerLink => By.Id("linkViewPendingPriceBanner");
         private static By PendingPriceChangeTag => By.XPath("//strong[text()='Pending']");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
+        private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
+        private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
+        private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price change requested\")]");
+        private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
+
 
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
@@ -173,5 +179,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void ClickReviewPriceChangeLink() => formCompletionHelper.ClickElement(ReviewPriceChangeLink);
 
+        public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
+
+        public void ValidateChangeOfPriceRequestRaisedSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfPriceRequestSentBanner), "Change of Price Request Sent banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to training provider"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View change request link is not displayed");
+            }
+            );
+        }
     }
 }
