@@ -1,12 +1,16 @@
 ﻿using Polly;
 using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
+using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -25,6 +29,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly FlexiPaymentProviderSteps _flexiPaymentProviderSteps;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
         private readonly ReadApprenticeDataHelper readApprenticeDataHelper;
+        private ApprenticeDataHelper _apprenticeDataHelper;
+        private decimal newTotalPrice;
 
         public FlexiPaymentsSteps(ScenarioContext context)
         {
@@ -36,6 +42,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _existingAccountSteps = new ExistingAccountSteps(_context);
             _flexiPaymentProviderSteps = new FlexiPaymentProviderSteps(_context);
             readApprenticeDataHelper = new ReadApprenticeDataHelper(context);
+            _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
         }
 
@@ -123,6 +130,27 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidatePriceChangeApprovedBannerDisplayed();
         }
 
+        [Given(@"Employer searches for the learner on Manage your apprentice page")]
+        public void EmployerSearchesForTheLearnerOnManageYourApprenticePage()
+        {
+            EmployerSearchesLearnerOnManageYourApprenticesPage();
+        }
+
+        [When(@"Employer proceeds to create a Change of Price request for flexi payments pilot learner")]
+        public void EmployerProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
+        {
+            _apprenticeDetailsPage.ClickChangePriceLink();
+        }
+
+        [When(@"Employer successfully creates a Change of Price request")]
+        public void EmployerSuccessfullyCreatesAChangeOfPriceRequest()
+        {
+            newTotalPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingCost) - 500;
+
+            new EmployerChangeTheTotalPricePage(_context).EnterValidChangeOfPriceDetails(newTotalPrice.ToString(), DateTime.Today, _context.ScenarioInfo.Title)
+                .ClickSendButton()
+                .ValidateChangeOfPriceRequestRaisedSuccessfully();
+        }
 
         [Then(@"Employer searches for learner on Manage your apprentices page")]
         public void EmployerSearchesLearnerOnManageYourApprenticesPage()
