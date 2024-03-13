@@ -13,6 +13,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         protected override string PageTitle => "Review changes";
 
         private static By TotalPriceRequestedValue => By.Id("TotalPrice");
+        private static By PendingProviderReviewTag => By.XPath("//strong[text()='Pending provider review']");
         private static By TotalPriceCurrentValue => By.XPath("//*[@id='TotalPrice']/preceding-sibling::*[1]");
         private static By EffectiveFromDateValue => By.Id("EffectiveFromDate");
         private static By ReasonForChangeValue => By.Id("ReasonForChange");
@@ -20,6 +21,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         private static By RejectChangesRadioOption => By.Id("option-no");
         private static By RejectReasonInputField => By.Id("rejectReason");
         protected static By SendButton => By.Id("buttonSubmitForm");
+        private static By CancelRequestOptionYes => By.Id("option-yes");
 
         public EmployerChangeOfPriceViewChangeRequestPage ValidateRequestValues(decimal totalPrice, DateTime effectiveFromDate, string reason)
         {
@@ -46,5 +48,19 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
             formCompletionHelper.Click(SendButton);
             return new ApprenticeDetailsPage(context);
         }
+
+        public EmployerChangeOfPriceViewChangeRequestPage VerifyPendingProviderReviewTagIsDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PendingProviderReviewTag), "Pending Provider Review tag not displayed");
+            return this;
+        }
+
+        public ApprenticeDetailsPage SelectCancelTheRequestRadioButtonAndContinue()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(CancelRequestOptionYes);
+            formCompletionHelper.Click(ContinueButton);
+            return new ApprenticeDetailsPage(context);
+        }
     }
 }
+

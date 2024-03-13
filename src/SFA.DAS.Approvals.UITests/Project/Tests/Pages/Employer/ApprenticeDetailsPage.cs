@@ -36,7 +36,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
         private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price change requested\")]");
-        private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
+        private static By ViewPriceChangeLink => By.Id("linkViewPendingPrice");
+        private static By PriceChangeCancelledBanner => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success");
+        private static By PriceChangeCancelBannerMessage => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success h3");
 
 
 
@@ -188,9 +190,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfPriceRequestSentBanner), "Change of Price Request Sent banner not displayed");
                 Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to training provider"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
-                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View change request link is not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangeLink), "View change request link is not displayed");
             }
             );
+        }
+
+        public void ClickViewChangeRequestLink() => formCompletionHelper.Click(ViewPriceChangeLink);
+
+        public void ValidateChangeOfPriceRequestCancelledSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangeCancelledBanner), "Price Change Cancelled banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo("Your request to change the price has been cancelled"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
+            }
+           );
         }
     }
 }
