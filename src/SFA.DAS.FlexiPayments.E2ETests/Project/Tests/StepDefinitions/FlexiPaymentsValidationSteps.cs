@@ -116,7 +116,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfPriceRequestData(GetApprenticeULN(1));
 
-            var totalPrice = _apprenticeDataHelper.TrainingCost;
+            var totalPrice = Decimal.Parse(_apprenticeDataHelper.TrainingCost) - 500;
 
             var expectedDate = DateTime.Now.ToString("yyyy-MM-dd");
             DateTime actualDate = DateTime.ParseExact(dbData.EffectiveFromDate, "dd/MM/yyyy HH:mm:ss", null);

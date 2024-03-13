@@ -42,7 +42,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _existingAccountSteps = new ExistingAccountSteps(_context);
             _flexiPaymentProviderSteps = new FlexiPaymentProviderSteps(_context);
             readApprenticeDataHelper = new ReadApprenticeDataHelper(context);
-            _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
         }
 
@@ -145,6 +144,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"Employer successfully creates a Change of Price request")]
         public void EmployerSuccessfullyCreatesAChangeOfPriceRequest()
         {
+            _apprenticeDataHelper = _context.GetValue<ApprenticeDataHelper>();
+
             newTotalPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingCost) - 500;
 
             new EmployerChangeTheTotalPricePage(_context).EnterValidChangeOfPriceDetails(newTotalPrice.ToString(), DateTime.Today, _context.ScenarioInfo.Title)
