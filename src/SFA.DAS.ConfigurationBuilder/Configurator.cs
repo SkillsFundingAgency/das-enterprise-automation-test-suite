@@ -79,8 +79,7 @@ namespace SFA.DAS.ConfigurationBuilder
         }
 
         private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
-                .AddJsonFile("appsettings.Environment.json", true)
-                .AddEnvironmentVariables()
+                .AddJsonFile("appsettings.Environment.json")
                 .Build();
 
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
