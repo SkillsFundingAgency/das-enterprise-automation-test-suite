@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
@@ -78,9 +79,7 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder;
         }
 
-        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
-                .AddJsonFile("appsettings.Environment.json")
-                .Build();
+        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}").Build();
 
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
@@ -96,5 +95,7 @@ namespace SFA.DAS.ConfigurationBuilder
         public static string GetDeploymentRequestedFor() => GetHostingConfigSection("RELEASE_DEPLOYMENT_REQUESTEDFOR");
 
         private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
+
+        private static string GetSettingsFilePath(string fileName) => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\{fileName}");
     }
 }

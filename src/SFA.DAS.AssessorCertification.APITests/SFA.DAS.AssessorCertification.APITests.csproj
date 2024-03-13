@@ -27,7 +27,7 @@
 	
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	  <None Update="Project\Tests\Payload\CreateCertificate.json">
