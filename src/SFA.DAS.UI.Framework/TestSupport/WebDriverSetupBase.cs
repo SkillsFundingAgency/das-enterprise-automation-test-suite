@@ -44,7 +44,9 @@ public abstract partial class WebDriverSetupBase(ScenarioContext context)
 
     private string FindLocalDriverServiceLocation(string executableName)
     {
-        string[] file = Directory.GetFiles(ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers"), executableName);
+        string replacedPath = ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers");
+
+        string[] file = Directory.GetFiles(replacedPath, executableName);
 
         return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
     }
@@ -61,6 +63,6 @@ public abstract partial class WebDriverSetupBase(ScenarioContext context)
         };
     }
 
-    [GeneratedRegex("SFA.DAS.[A-Za-z]*.[A-Z0-9a-z]*Tests")]
+    [GeneratedRegex(@"SFA\.DAS\..*\.(UI|E2E)Tests")]
     private static partial Regex ProjectNameRegex();
 }
