@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
 {
     public class EmployerChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ChangePriceNegotiationAmountsPage(context)
     {
-        protected override string PageTitle => "Review changes";
+        protected override string PageTitle => "View change request";
 
         private static By TotalPriceRequestedValue => By.Id("TotalPrice");
         private static By PendingProviderReviewTag => By.XPath("//strong[text()='Pending provider review']");
