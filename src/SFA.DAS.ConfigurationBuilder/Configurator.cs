@@ -25,8 +25,8 @@ namespace SFA.DAS.ConfigurationBuilder
 
         static Configurator()
         {
-            _hostingConfig = InitializeHostingConfig();
             IsAzureExecution = TestsExecutionInAzure();
+            _hostingConfig = InitializeHostingConfig();
             ChromeWebDriver = GetHostingConfigSection("CHROMEWEBDRIVER");
             GeckoWebDriver = GetHostingConfigSection("GECKOWEBDRIVER");
             EdgeWebDriver = GetHostingConfigSection("EDGEWEBDRIVER");
@@ -79,14 +79,19 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder;
         }
 
-        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}").Build();
+        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}", IsAzureExecution).Build();
 
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
-        private static bool TestsExecutionInAzure() => !string.IsNullOrEmpty(GetAgentMachineName());
+        private static bool TestsExecutionInAzure()
+        {
+            var agentConfig = ConfigurationBuilder().AddEnvironmentVariables().Build();
 
-        private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
+            var isAzureExecution = agentConfig.GetSection("AGENT_MACHINENAME")?.Value;
+
+            return !string.IsNullOrEmpty(isAzureExecution);
+        }
 
         private static string GetEnvironmentName() => IsAzureExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
 
