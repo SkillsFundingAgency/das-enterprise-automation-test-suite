@@ -1,12 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer

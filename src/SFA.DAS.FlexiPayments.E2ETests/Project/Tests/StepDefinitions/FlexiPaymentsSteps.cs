@@ -128,7 +128,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             EmployerSearchesLearnerOnManageYourApprenticesPage();
             EmployerCanViewTheDetailsOfTheChangeOfPriceRequest();
 
-            new EmployerChangeOfPriceViewChangeRequestPage(_context)
+            new EmployerChangeOfPriceReviewChangesPage(_context)
                 .SelectApproveChangesRadioButtonAndSend()
                 .ValidatePriceChangeApprovedBannerDisplayed();
         }
@@ -253,7 +253,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to successfully reject the Change of Price request")]
         public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
         {
-            new EmployerChangeOfPriceViewChangeRequestPage(_context)
+            new EmployerChangeOfPriceReviewChangesPage(_context)
                 .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title)
                 .ValidatePriceChangeRejectedBannerDisplayed();
         }

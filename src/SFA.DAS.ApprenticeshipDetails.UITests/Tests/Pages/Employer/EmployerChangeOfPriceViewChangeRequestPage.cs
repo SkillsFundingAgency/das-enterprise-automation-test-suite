@@ -1,25 +1,21 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
 {
-    public class EmployerChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ChangePriceNegotiationAmountsPage(context)
+    public class EmployerChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "View change request";
 
-        private static By TotalPriceRequestedValue => By.Id("TotalPrice");
+        public static By TotalPriceRequestedValue => By.Id("TotalPrice");
         private static By PendingProviderReviewTag => By.XPath("//strong[text()='Pending provider review']");
         private static By TotalPriceCurrentValue => By.XPath("//*[@id='TotalPrice']/preceding-sibling::*[1]");
-        private static By EffectiveFromDateValue => By.Id("EffectiveFromDate");
-        private static By ReasonForChangeValue => By.Id("ReasonForChange");
-        private static By ApproveChangesRadioOption => By.Id("option-yes");
-        private static By RejectChangesRadioOption => By.Id("option-no");
-        private static By RejectReasonInputField => By.Id("rejectReason");
+        public static By EffectiveFromDateValue => By.Id("EffectiveFromDate");
+        public static By ReasonForChangeValue => By.Id("ReasonForChange");
         protected static By SendButton => By.Id("buttonSubmitForm");
         private static By CancelRequestOptionYes => By.Id("option-yes");
 
@@ -32,21 +28,6 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
                 Assert.AreEqual(reason, pageInteractionHelper.GetText(ReasonForChangeValue), "Requested reason mismatch");
             });
             return this;
-        }
-
-        public ApprenticeDetailsPage SelectApproveChangesRadioButtonAndSend()
-        {
-            formCompletionHelper.SelectRadioOptionByLocator(ApproveChangesRadioOption);
-            formCompletionHelper.Click(SendButton);
-            return new ApprenticeDetailsPage(context);
-        }
-
-        public ApprenticeDetailsPage SelectRejectChangesRadioButtonAndSend(string reason)
-        {
-            formCompletionHelper.SelectRadioOptionByLocator(RejectChangesRadioOption);
-            formCompletionHelper.EnterText(RejectReasonInputField, reason);
-            formCompletionHelper.Click(SendButton);
-            return new ApprenticeDetailsPage(context);
         }
 
         public EmployerChangeOfPriceViewChangeRequestPage VerifyPendingProviderReviewTagIsDisplayed()
