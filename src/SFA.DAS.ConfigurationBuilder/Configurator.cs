@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -79,19 +80,21 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder;
         }
 
-        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}", IsAzureExecution).Build();
+        private static IConfigurationRoot InitializeHostingConfig()
+        {
+            var builder = ConfigurationBuilder();
+
+            if (IsAzureExecution) builder.AddEnvironmentVariables();
+
+            else builder.AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}");
+
+            return builder.Build();
+        }
 
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
-        private static bool TestsExecutionInAzure()
-        {
-            var agentConfig = ConfigurationBuilder().AddEnvironmentVariables().Build();
-
-            var isAzureExecution = agentConfig.GetSection("AGENT_MACHINENAME")?.Value;
-
-            return !string.IsNullOrEmpty(isAzureExecution);
-        }
+        private static bool TestsExecutionInAzure() => !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_MACHINENAME"));
 
         private static string GetEnvironmentName() => IsAzureExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
 
