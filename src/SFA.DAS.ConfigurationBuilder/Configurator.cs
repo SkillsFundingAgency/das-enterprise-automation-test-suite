@@ -10,8 +10,6 @@ namespace SFA.DAS.ConfigurationBuilder
     {
         private static readonly IConfigurationRoot _config;
 
-        private static readonly IConfigurationRoot _hostingConfig;
-
         public static readonly bool IsAzureExecution;
 
         internal static readonly string EnvironmentName;
@@ -27,12 +25,18 @@ namespace SFA.DAS.ConfigurationBuilder
         static Configurator()
         {
             IsAzureExecution = TestsExecutionInAzure();
-            _hostingConfig = InitializeHostingConfig();
-            ChromeWebDriver = GetHostingConfigSection("CHROMEWEBDRIVER");
-            GeckoWebDriver = GetHostingConfigSection("GECKOWEBDRIVER");
-            EdgeWebDriver = GetHostingConfigSection("EDGEWEBDRIVER");
-            EnvironmentName = GetEnvironmentName();
-            ProjectName = GetProjectName();
+
+            if (IsAzureExecution) 
+            {
+                ChromeWebDriver = Environment.GetEnvironmentVariable("CHROMEWEBDRIVER");
+                GeckoWebDriver = Environment.GetEnvironmentVariable("GECKOWEBDRIVER");
+                EdgeWebDriver = Environment.GetEnvironmentVariable("EDGEWEBDRIVER");
+                EnvironmentName = Environment.GetEnvironmentVariable("ResourceEnvironmentName");
+            }
+            else
+            {
+                (EnvironmentName, ProjectName) = GetLocalHostingConfig();
+            }
             _config = InitializeConfig();
         }
 
@@ -80,15 +84,15 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder;
         }
 
-        private static IConfigurationRoot InitializeHostingConfig()
+        private static (string environmentName, string ProjectName) GetLocalHostingConfig()
         {
-            var builder = ConfigurationBuilder();
+            var builder = ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}").Build();
 
-            if (IsAzureExecution) builder.AddEnvironmentVariables();
+            var e = builder.GetSection("local_EnvironmentName").Value;
 
-            else builder.AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}");
+            var p = builder.GetSection("ProjectName").Value;
 
-            return builder.Build();
+            return (e, p);
         }
 
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
@@ -96,13 +100,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static bool TestsExecutionInAzure() => !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_MACHINENAME"));
 
-        private static string GetEnvironmentName() => IsAzureExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
-
-        private static string GetProjectName() => GetHostingConfigSection("ProjectName");
-
-        public static string GetDeploymentRequestedFor() => GetHostingConfigSection("RELEASE_DEPLOYMENT_REQUESTEDFOR");
-
-        private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
+        public static string GetDeploymentRequestedFor() => Environment.GetEnvironmentVariable("RELEASE_DEPLOYMENT_REQUESTEDFOR");
 
         private static string GetSettingsFilePath(string fileName) => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\{fileName}");
     }
