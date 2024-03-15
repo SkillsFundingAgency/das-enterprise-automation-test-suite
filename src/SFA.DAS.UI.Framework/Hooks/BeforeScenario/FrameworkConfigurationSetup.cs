@@ -36,8 +36,8 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
             TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
             BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
             IsVstsExecution = IsVstsExecution,
-            CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
-            CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot,
+            CanCaptureUrl = IsVstsExecution && IsCurrrentUserAnAdmin(captureUrlAdmin),
+            CanTakeFullScreenShot = canTakeFullScreenShot || IsCurrrentUserAnAdmin(fullscreenshotAdmin),
             IsAccessibilityTesting = isAccessibilityTesting
         };
 
