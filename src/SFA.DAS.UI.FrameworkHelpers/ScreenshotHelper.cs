@@ -22,7 +22,7 @@ public class ScreenshotHelper
 
     private static void TakeFullPageScreenShot(IWebDriver webDriver, string imageName, string screenshotPath, bool throwException)
     {
-        var html2canvasJs = File.ReadAllText($"{Path.Combine(FileHelper.GetAssemblyDirectory(), "html2canvas.js")}");
+        var html2canvasJs = File.ReadAllText($"{Path.Combine(FileHelper.GetAzurePath(), "html2canvas.js")}");
         var generateScreenshotJS = @"function genScreenshot () { var canvasImgContentDecoded; html2canvas(document.body).then(function(canvas) { window.canvasImgContentDecoded = canvas.toDataURL(""image/png""); }); } genScreenshot();";
 
         try

@@ -62,11 +62,12 @@ steps:
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
 - task: CopyFiles@2
-  displayName: 'Copy sql files to: $(build.artifactstagingdirectory)/tests/sqlscripts'
+  displayName: 'Copy plain files to: $(build.artifactstagingdirectory)/tests/files'
   inputs:
     Contents: |     
      src/**/*.sql
-    TargetFolder: '$(build.artifactstagingdirectory)/tests/sqlscripts'
+     src/**/html2canvas.js
+    TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
     flattenFolders: true
     OverWrite: true
 
