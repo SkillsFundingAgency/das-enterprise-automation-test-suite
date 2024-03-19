@@ -1,35 +1,57 @@
-﻿using System.IO;
+﻿using NUnit.Framework;
+using System.IO;
 using System.Reflection;
 
 namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
-        public static string GetLocalProjectRootFilePath() => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\");
+        public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
 
-        public static string GetSql(string fileName) => GetFile(fileName, ".sql");
+        public static string GetJs(string fileName) => GetPath(fileName, ".js");
 
-        private static string GetFile(string fileName, string extension)
+        public static string GetSql(string fileName)
         {
-            string sqlScriptFile = GetPath($"{fileName}{extension}");
+            string sqlScriptFile = GetPath(fileName, ".sql");
 
-            string sqlScript = System.IO.File.ReadAllText(sqlScriptFile);
+            string sqlScript = File.ReadAllText(sqlScriptFile);
+
             sqlScript = sqlScript.Replace("\r\n", " ").Replace("\t", " ");
+
             return sqlScript;
         }
 
-        public static string GetPath(string fileNamewithext)
+        internal static string GetPath(string fileName, string extension)
         {
-            var path = TestPlatformFinder.IsAzureExecution? $"{GetAzureSrcPath()}\\files" : GetLocalSrcPath();
+            bool isAzureExecution = TestPlatformFinder.IsAzureExecution;
 
-            return Directory.GetFiles(path, fileNamewithext).First();
+            var path = isAzureExecution ? $"{GetAzureSrcPath()}\\files" : GetLocalSrcPath();
+
+            string[] files = Directory.GetFiles(path, $"{fileName}{extension}", new EnumerationOptions { RecurseSubdirectories = !isAzureExecution });
+
+            return files.First();
         }
 
         private static string GetAzureSrcPath() => GetSrcPath(AppDomain.CurrentDomain.BaseDirectory);
 
         private static string GetLocalSrcPath() => GetSrcPath(GetLocalProjectRootFilePath());
 
-        private static string GetSrcPath(string projectPath) => Path.Combine(projectPath, @$"..\");  
+        private static string GetSrcPath(string projectPath) => Path.GetFullPath(Path.Combine(projectPath, @$"..\"));
 
     }
+
+    [TestFixture]
+    [Category("Unittests")]
+    public class FileHelperUnitTest
+    {
+        [TestCase("GetAgreementId", ".sql")]
+        [TestCase("html2canvas", ".js")]
+        public void FindLocalFile(string filename, string extension)
+        {
+            var pathWithFileName = FileHelper.GetPath(filename, extension);
+
+            Assert.That(pathWithFileName, Is.Not.Null, $"file name {filename} not found");
+        }
+    }
 }
+
