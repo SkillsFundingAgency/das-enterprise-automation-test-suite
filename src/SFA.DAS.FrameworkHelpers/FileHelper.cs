@@ -1,24 +1,35 @@
-﻿namespace SFA.DAS.FrameworkHelpers
+﻿using System.IO;
+using System.Reflection;
+
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
-        public static string GetSql(string source) => GetFile(source, ".sql");
+        public static string GetLocalProjectRootFilePath() => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\");
 
-        private static string GetFile(string source, string extension)
+        public static string GetSql(string fileName) => GetFile(fileName, ".sql");
+
+        private static string GetFile(string fileName, string extension)
         {
-            string sqlScriptFile = $"{GetAzurePath()}\\Project\\Helpers\\SqlScripts\\{source}{extension}";
+            string sqlScriptFile = GetPath($"{fileName}{extension}");
 
             string sqlScript = System.IO.File.ReadAllText(sqlScriptFile);
             sqlScript = sqlScript.Replace("\r\n", " ").Replace("\t", " ");
             return sqlScript;
         }
 
-        public static string GetPath() => TestPlatformFinder.IsAzureExecution ? GetAzurePath() : GetLocalPath();
+        public static string GetPath(string fileNamewithext)
+        {
+            var path = TestPlatformFinder.IsAzureExecution? $"{GetAzureSrcPath()}\\files" : GetLocalSrcPath();
 
-        public static string GetAzurePath() => $"{AppDomain.CurrentDomain.BaseDirectory}\\files";
+            return Directory.GetFiles(path, fileNamewithext).First();
+        }
 
-        public static string GetLocalPath() => AppDomain.CurrentDomain.BaseDirectory;
+        private static string GetAzureSrcPath() => GetSrcPath(AppDomain.CurrentDomain.BaseDirectory);
 
+        private static string GetLocalSrcPath() => GetSrcPath(GetLocalProjectRootFilePath());
+
+        private static string GetSrcPath(string projectPath) => Path.Combine(projectPath, @$"..\");  
 
     }
 }

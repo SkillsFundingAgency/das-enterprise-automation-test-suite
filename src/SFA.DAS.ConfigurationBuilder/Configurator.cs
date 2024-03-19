@@ -88,7 +88,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static (string environmentName, string ProjectName) GetLocalHostingConfig()
         {
-            var builder = ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}").Build();
+            var builder = ConfigurationBuilder().AddJsonFile($"{GetLocalSettingsFilePath("appsettings.Environment.json")}").Build();
 
             var e = builder.GetSection("local_EnvironmentName").Value;
 
@@ -102,6 +102,6 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public static string GetDeploymentRequestedFor() => Environment.GetEnvironmentVariable("RELEASE_DEPLOYMENT_REQUESTEDFOR");
 
-        private static string GetSettingsFilePath(string fileName) => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\{fileName}");
+        private static string GetLocalSettingsFilePath(string fileName) => Path.Combine(FileHelper.GetLocalProjectRootFilePath(), fileName);
     }
 }
