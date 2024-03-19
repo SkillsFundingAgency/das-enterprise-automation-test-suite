@@ -13,6 +13,6 @@ Scenario: FLP_CoC_02 Provider Initiated Change Of Price Request
     And Provider searches for the learner on Manage your apprentice page
 	When Provider proceeds to create a Change of Price request for flexi payments pilot learner
 	And Provider successfully creates a Change of Price request
-	And initial Change of Price request details are saved in the PriceHistory table
+	And Provider initiated Change of Price request details are saved in the PriceHistory table
 	Then Employer can review the Change of Price request and approve it
 	And the approved Change of Price request is saved in the PriceHistory table
