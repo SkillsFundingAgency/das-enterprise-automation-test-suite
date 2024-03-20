@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Reflection;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
+
     public static class Configurator
     {
         private static readonly IConfigurationRoot _config;
@@ -24,7 +26,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         static Configurator()
         {
-            IsAzureExecution = TestsExecutionInAzure();
+            IsAzureExecution = TestPlatformFinder.IsAzureExecution;
 
             if (IsAzureExecution) 
             {
@@ -86,7 +88,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static (string environmentName, string ProjectName) GetLocalHostingConfig()
         {
-            var builder = ConfigurationBuilder().AddJsonFile($"{GetSettingsFilePath("appsettings.Environment.json")}").Build();
+            var builder = ConfigurationBuilder().AddJsonFile($"{GetLocalSettingsFilePath("appsettings.Environment.json")}").Build();
 
             var e = builder.GetSection("local_EnvironmentName").Value;
 
@@ -98,10 +100,8 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
-        private static bool TestsExecutionInAzure() => !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_MACHINENAME"));
-
         public static string GetDeploymentRequestedFor() => Environment.GetEnvironmentVariable("RELEASE_DEPLOYMENT_REQUESTEDFOR");
 
-        private static string GetSettingsFilePath(string fileName) => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\{fileName}");
+        private static string GetLocalSettingsFilePath(string fileName) => Path.Combine(FileHelper.GetLocalProjectRootFilePath(), fileName);
     }
 }
