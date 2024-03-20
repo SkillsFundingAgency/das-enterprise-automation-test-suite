@@ -22,7 +22,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         private static By TotalPriceValidationErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTotalPrice']");
         private static By CurrentTotalPrice => By.CssSelector("div.govuk-inset-text");
         private static string ChangeTotalPriceErrorText => "You must change the total price";
-        private static string EnterAReasonErrorText => "You must enter a reason for requesting a price change. This will help the employer when they review your request.";
+        private static string EnterAReasonErrorText => "You must enter a reason for requesting a price change. This will help the training provider when they review your request.";
         private static string EnterADateErrorText => "Enter a date in the correct format";
         private static string TotalPriceMustBeAWholeNumberErrorText => "The total price must be a whole number between 1 - 100,000";
         private static string TotalPriceMustNotBrGreaterThanErrorText => "The total price must not be greater than 100,000";
