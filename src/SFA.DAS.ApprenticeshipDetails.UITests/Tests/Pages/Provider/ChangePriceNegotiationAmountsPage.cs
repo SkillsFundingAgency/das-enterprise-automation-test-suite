@@ -15,15 +15,15 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
         private static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
 
         private static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
-        private static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
+        public static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
 
-        private static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
+        public static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
 
-        private static By EffectiveFromDate_Month => By.Id("EffectiveFromDate_Month");
+        public static By EffectiveFromDate_Month => By.Id("EffectiveFromDate_Month");
 
-        private static By EffectiveFromDate_Year => By.Id("EffectiveFromDate_Year");
+        public static By EffectiveFromDate_Year => By.Id("EffectiveFromDate_Year");
 
-        private static By ReasonPriceChange => By.Id("ReasonForChangeOfPrice");
+        public static By ReasonPriceChange => By.Id("ReasonForChangeOfPrice");
 
         private static By ChangeTrainingAndOrEpaPriceErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTrainingPrice']");
         private static By EffectiveFromDateErrorMessage => By.CssSelector("div[role='alert'] li a[href='#EffectiveFromDate']");

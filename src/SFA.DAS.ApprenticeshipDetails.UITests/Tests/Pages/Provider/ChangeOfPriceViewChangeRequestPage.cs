@@ -11,14 +11,14 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
     {
         protected override string PageTitle => "View change request";
         private static By PendingEmployerReviewTag => By.XPath("//strong[text()='Pending employer review']");
-        private static By TrainingPriceRequestedValue => By.Id("Trainingprice");
-        private static By TrainingPriceCurrentValue => By.XPath("//*[@id='Trainingprice']/preceding-sibling::*[1]");
-        private static By EndPointAssessmentPriceRequestedValue => By.Id("EndPointAssessmentPrice");
-        private static By EndPointAssessmentPriceCurrentValue => By.XPath("//*[@id='EndPointAssessmentPrice']/preceding-sibling::*[1]");
-        private static By TotalPriceRequestedValue => By.Id("TotalPrice");
-        private static By TotalPriceCurrentValue => By.XPath("//*[@id='TotalPrice']/preceding-sibling::*[1]");
-        private static By EffectiveFromDateValue => By.Id("EffectiveFromDate");
-        private static By ReasonForChangeValue => By.Id("ReasonForChange");
+        private static By TrainingPriceRequestedValue => By.Id("Trainingprice-NewValue");
+        private static By TrainingPriceCurrentValue => By.Id("Trainingprice-OriginalValue");
+        private static By EndPointAssessmentPriceRequestedValue => By.Id("EndPointAssessmentPrice-NewValue");
+        private static By EndPointAssessmentPriceCurrentValue => By.Id("EndPointAssessmentPrice-OriginalValue");
+        public static By TotalPriceRequestedValue => By.Id("TotalPrice-NewValue");
+        private static By TotalPriceCurrentValue => By.Id("TotalPrice-OriginalValue");
+        public static By EffectiveFromDateValue => By.Id("EffectiveFromDate");
+        public static By ReasonForChangeValue => By.Id("ReasonForChange");
         private static By CancelRequestOptionYes => By.Id("option-yes");
         private static By CancelRequestOptionNo => By.Id("option-no");
 
