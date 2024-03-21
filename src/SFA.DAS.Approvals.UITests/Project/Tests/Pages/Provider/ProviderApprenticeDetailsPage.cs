@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
         private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
-        private static By ReviewPriceChangeRequestedBannerLink => By.CssSelector("a[href='#PendingPriceChangeDetails']");
+        private static By ReviewPriceChangeRequestedBannerLink => By.Id("linkBannerViewPendingPrice");
         private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";

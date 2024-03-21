@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using Polly;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
 using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -86,8 +88,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Provider can review the Change of Price request and approve it")]
         public void ThenProviderCanReviewTheChangeOfPriceRequestAndApproveIt()
         {
-            ProviderSearchesLearnerOnManageYourApprenticesPage();
+            var newTotalPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingCost) - 500;
+            var trainingPrice = (newTotalPrice * 80)/100;
+            var epa = newTotalPrice - trainingPrice;
             
+            ProviderSearchesLearnerOnManageYourApprenticesPage();
+            ProviderIsAbleToViewThePendingChangeOfPriceRequest();
+            ProviderCanViewTheDetailsOfTheChangeOfPriceRequest();
+
+            new ChangeOfPriceReviewChangeRequestPage(context)
+                .SelectApproveChangesRadioButtonAndSend()
+                .EnterTrainingAndEndpointAssessmentPrices(trainingPrice.ToString(),epa.ToString())
+                .ValidatePriceChangeApprovedBannerDisplayed();
         }
 
         [Then(@"Provider (can|cannot) make changes to fully approved learner (.*)")]
@@ -115,13 +127,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Provider is able to view the pending Change of Price request")]
-        public void ThenProviderIsAbleToViewThePendingChangeOfPriceRequest()
+        public void ProviderIsAbleToViewThePendingChangeOfPriceRequest()
         {
             _providerApprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
         }
 
         [Then(@"Provider can view the details of the Change of Price request")]
-        public void ThenProviderCanViewTheDetailsOfTheChangeOfPriceRequest()
+        public void ProviderCanViewTheDetailsOfTheChangeOfPriceRequest()
         {
             _providerApprenticeDetailsPage.ClickReviewPriceChangeLink();
         }

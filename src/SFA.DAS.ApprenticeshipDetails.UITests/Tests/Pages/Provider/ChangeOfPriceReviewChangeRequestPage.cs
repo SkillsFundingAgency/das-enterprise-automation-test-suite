@@ -24,11 +24,11 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             return this;
         }
 
-        public ApprenticeDetailsPage SelectApproveChangesRadioButtonAndSend()
+        public ConfirmNewTrainingAndEndpointAssessmentPricePage SelectApproveChangesRadioButtonAndSend()
         {
             formCompletionHelper.SelectRadioOptionByLocator(ApproveChangesRadioOption);
             formCompletionHelper.Click(ContinueButton);
-            return new ApprenticeDetailsPage(context);
+            return new ConfirmNewTrainingAndEndpointAssessmentPricePage(context);
         }
 
         public ApprenticeDetailsPage SelectRejectChangesRadioButtonAndSend(string reason)

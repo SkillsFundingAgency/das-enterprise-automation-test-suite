@@ -9,12 +9,9 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
     public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Change the training price and/or the end-point assessment price";
-
         protected override By ContinueButton => By.Id("buttonSubmitForm");
-
-        private static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
-
-        private static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
+        public static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
+        public static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
         public static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
 
         public static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
