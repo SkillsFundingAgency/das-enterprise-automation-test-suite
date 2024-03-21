@@ -76,12 +76,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider searches for the learner on Manage your apprentice page")]
+        [Then(@"Provider searches for the learner on Manage your apprentice page")]
         public void ProviderSearchesLearnerOnManageYourApprenticesPage()
         {
             _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails();
         }
 
+        [Then(@"Provider can review the Change of Price request and approve it")]
+        public void ThenProviderCanReviewTheChangeOfPriceRequestAndApproveIt()
+        {
+            ProviderSearchesLearnerOnManageYourApprenticesPage();
+            
+        }
 
         [Then(@"Provider (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenProviderIsUnableToMakeAnyChangesToFullyApprovedLearner(string action, int learnerNumber)
@@ -105,6 +112,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title)
                 .ClickSendButton()
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
+        }
+
+        [Then(@"Provider is able to view the pending Change of Price request")]
+        public void ThenProviderIsAbleToViewThePendingChangeOfPriceRequest()
+        {
+            _providerApprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+        }
+
+        [Then(@"Provider can view the details of the Change of Price request")]
+        public void ThenProviderCanViewTheDetailsOfTheChangeOfPriceRequest()
+        {
+            _providerApprenticeDetailsPage.ClickReviewPriceChangeLink();
         }
 
         [Then(@"Provider is able to view details of change of price request")]

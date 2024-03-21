@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V120.Browser;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using System;
 using TechTalk.SpecFlow;
 
@@ -19,8 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By Name => By.Id("apprentice-name");
         private static By DateOfBirth => By.Id("apprentice-dob");
         private static By Reference => By.Id("apprentice-reference");
-        private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        
+        private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");    
         private static By ViewChangesLink => By.LinkText("View changes");
         private static By ViewDetailsLink => By.LinkText("View details");
         private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
@@ -34,6 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
         private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
+        private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
+        private static By ReviewPriceChangeRequestedBannerLink => By.CssSelector("a[href='#PendingPriceChangeDetails']");
+        private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
+        private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -168,5 +173,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
            );
         }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangePendingBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangePendingBanner), "Price Change Pending banner not displayed");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeRequestedBannerLink), "Review Price Change Requested link not displayed inside banner");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeRequestedTag), "Change Requested tag for Change of Price request is missing");
+            return this;
+        }
+
+        public void ClickReviewPriceChangeLink() => formCompletionHelper.ClickElement(ReviewPriceChangeLink);
     }
 }

@@ -130,6 +130,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Employer initiated Change of Price request details are saved in the PriceHistory " +
                         "table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 17
+ testRunner.Then("Provider can review the Change of Price request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

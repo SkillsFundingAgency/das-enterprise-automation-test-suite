@@ -21,3 +21,10 @@ Scenario: FLP_UI_Validations_03 Change Of Price Employer Initiated Journey
     And Employer successfully creates a Change of Price request
 	And Employer is able to view details of change of price request
 	And Employer can successfully cancel the change of price request
+	# create another request below that provider can view and reject
+	And Employer proceeds to create a Change of Price request for flexi payments pilot learner
+	And Employer successfully creates a Change of Price request
+	And Provider searches for the learner on Manage your apprentice page
+	And Provider is able to view the pending Change of Price request
+	And Provider can view the details of the Change of Price request 
+	#And Employer is able to successfully reject the Change of Price request
