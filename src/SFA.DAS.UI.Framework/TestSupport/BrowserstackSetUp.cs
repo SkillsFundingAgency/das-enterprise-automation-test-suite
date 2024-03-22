@@ -7,6 +7,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
@@ -46,6 +47,8 @@ public static class BrowserStackSetup
         capabilities.BrowserVersion = options.BrowserVersion;
         capabilities.AcceptInsecureCertificates = true;
         capabilities.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
+
+        options.Build = RegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
 
         capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
 
