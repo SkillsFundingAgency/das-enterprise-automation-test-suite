@@ -36,6 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
         private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
+        private static By PriceChangeApprovedBanner => By.Id("change-of-price-approved-banner");
         private static By ReviewPriceChangeRequestedBannerLink => By.Id("linkBannerViewPendingPrice");
         private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
@@ -176,9 +177,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApprenticeDetailsPage ValidatePriceChangePendingBannerDisplayed()
         {
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangePendingBanner), "Price Change Pending banner not displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeRequestedBannerLink), "Review Price Change Requested link not displayed inside banner");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeRequestedTag), "Change Requested tag for Change of Price request is missing");
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangePendingBanner), "Price Change Pending banner not displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeRequestedBannerLink), "Review Price Change Requested link not displayed inside banner");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeRequestedTag), "Change Requested tag for Change of Price request is missing");
+            }
+            );
+            return this;
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangeApprovedBannerDisplayed()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeApprovedBanner), "Price Change Approved banner not displayed");
+                Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was approved");
+            }
+            );
             return this;
         }
 
