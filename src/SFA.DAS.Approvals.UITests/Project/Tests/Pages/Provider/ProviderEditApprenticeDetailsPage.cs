@@ -51,8 +51,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderApproveApprenticeDetailsPage EnterUlnAndSave(bool IsRplPageShown)
         {
-            EnterUln();
-
             if (isFlexiPaymentPilotLearner)
             {
                 AddActualStartDateDay(apprenticeCourseDataHelper.CourseStartDate);
@@ -60,6 +58,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 AddTrainingPrice(apprenticeDataHelper.TrainingPrice);
                 AddEndpointAssessmentPrice(apprenticeDataHelper.EndpointAssessmentPrice);
             }
+
+            EnterUln();
 
             formCompletionHelper.ClickElement(SaveButton);
 
