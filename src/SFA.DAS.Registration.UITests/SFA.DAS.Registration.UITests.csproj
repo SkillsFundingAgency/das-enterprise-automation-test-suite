@@ -32,9 +32,6 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="appsettings.Project.BrowserStack.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Project\Helpers\PowerShellScripts\CreateUser.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
