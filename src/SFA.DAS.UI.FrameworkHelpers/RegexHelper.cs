@@ -89,6 +89,9 @@ public partial class RegexHelper
 
     public static string TrimAnySpace(string value) => string.IsNullOrEmpty(value) ? string.Empty : MyRegex19().Replace(value, string.Empty);
 
+    [GeneratedRegex(@"SFA\.DAS\..*\.(UI|E2E)Tests")]
+    public static partial Regex ProjectNameRegex();
+
     [GeneratedRegex(@"\s+")]
     private static partial Regex MyRegex1();
 
