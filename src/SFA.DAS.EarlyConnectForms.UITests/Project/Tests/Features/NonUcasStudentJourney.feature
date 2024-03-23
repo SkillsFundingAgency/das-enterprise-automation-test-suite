@@ -11,3 +11,10 @@ Scenario Outline: Verify Non Ucas Student journey
 	Examples: 
 	  | lepCode   |
 	  | E37000051 |
+
+Scenario Outline: Verify Ucas Student journey
+	Given I am on the landing page for a region 
+
+	Examples: 
+	  | lepCode   |
+	  | E37000051 |

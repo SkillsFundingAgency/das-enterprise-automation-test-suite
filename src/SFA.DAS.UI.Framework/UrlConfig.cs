@@ -42,6 +42,5 @@ public static class UrlConfig
     public static string Apprentice_ResetPasswordUrl(string clientId, string requestId) => $"https://login.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/NewPassword/{clientId}/{requestId}";
     public static string Apprentice_BaseUrl => $"https://confirm.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
     public static string TransferMacthingApplyUrl(string pledgeId) => $"https://transfers.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/opportunities/{pledgeId}";
-
-    public static string EarlyConnect_BaseUrl(string lepsCode) => $"https://{EnvironmentConfig.EnvironmentName}-earlyconnect.apprenticeships.education.gov.uk/{lepsCode}";
+    public static string EarlyConnect_BaseUrl() => $"https://{EnvironmentConfig.EnvironmentName}-earlyconnect.apprenticeships.education.gov.uk/";
 }
