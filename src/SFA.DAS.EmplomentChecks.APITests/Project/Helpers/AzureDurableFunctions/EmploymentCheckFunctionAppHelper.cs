@@ -7,19 +7,12 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.EmploymentChecks.APITests.Project.Helpers.AzureDurableFunctions;
 
-public abstract class EmploymentCheckFunctionAppHelper
+public abstract class EmploymentCheckFunctionAppHelper(EmploymentCheckProcessConfig config)
 {
     protected OrchestratorStartResponse OrchestratorStartResponse;
-    protected HttpClient HttpClient;
-    protected string BaseUrl;
-    protected string AuthenticationCode;
-
-    protected EmploymentCheckFunctionAppHelper(EmploymentCheckProcessConfig config)
-    {
-        BaseUrl = config.EC_FunctionsBaseUrl;
-        AuthenticationCode = config.EC_FunctionsAuthenticationCode;
-        HttpClient = new HttpClient();
-    }
+    protected HttpClient HttpClient = new();
+    protected string BaseUrl = config.EC_FunctionsBaseUrl;
+    protected string AuthenticationCode = config.EC_FunctionsAuthenticationCode;
 
     protected async Task StartOrchestrator(string path, bool ignoreFailure = false)
     {

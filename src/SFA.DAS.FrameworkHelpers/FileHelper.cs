@@ -16,7 +16,7 @@ namespace SFA.DAS.FrameworkHelpers
 
             var path = TestPlatformFinder.IsAzureExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
 
-            string[] files = Directory.GetFiles(path, fileNamewithPath);
+            string[] files = Directory.Exists(path) ? Directory.GetFiles(path, fileNamewithPath) : [];
 
             return files.Length != 0 ? files.First() : fileNamewithPath;
         }
