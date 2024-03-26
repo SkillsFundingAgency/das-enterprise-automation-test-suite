@@ -50,7 +50,7 @@
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Project\Helpers\SQL\DeleteEmploymentChecks.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

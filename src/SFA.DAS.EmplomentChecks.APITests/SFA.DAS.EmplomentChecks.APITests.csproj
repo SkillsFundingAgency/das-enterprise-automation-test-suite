@@ -34,7 +34,7 @@
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Project\Tests\Payload\EC_API_103.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -43,7 +43,7 @@
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Project\Helpers\SqlScripts\HasWithdrawals.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
