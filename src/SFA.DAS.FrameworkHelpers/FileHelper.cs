@@ -12,13 +12,13 @@ namespace SFA.DAS.FrameworkHelpers
 
         public static string GetProjectConfigJson(string fileName)
         {
-            var fileNamewithPath = $"appsettings.{fileName}.json";
+            var fullFileName = $"appsettings.{fileName}.json";
 
             var path = TestPlatformFinder.IsAzureExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
 
-            string[] files = Directory.Exists(path) ? Directory.GetFiles(path, fileNamewithPath) : [];
+            string[] files = Directory.Exists(path) ? Directory.GetFiles(path, fullFileName) : [];
 
-            return files.Length != 0 ? files.First() : fileNamewithPath;
+            return files.Length != 0 ? files.First() : fullFileName;
         }
 
         public static string GetJs(string fileName) => GetPath(fileName, ".js");
