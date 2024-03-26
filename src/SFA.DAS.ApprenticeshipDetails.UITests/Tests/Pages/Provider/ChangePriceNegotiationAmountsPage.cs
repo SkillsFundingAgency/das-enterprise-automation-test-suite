@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 {
-    public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ChangePriceNegotiationAmountsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Change the training price and/or the end-point assessment price";
         protected override By ContinueButton => By.Id("buttonSubmitForm");
@@ -45,7 +45,9 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 
         private static string EnterDateBeforePlannedEndDateErrorText => "The date entered must be before the planned end date";
 
-        public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason)
+        public ChangePriceNegotiationAmountsPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+
+        public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason, bool isAutoApprove = false)
         {
             formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
             formCompletionHelper.EnterText(EndpointAssessmentPrice, epaPrice);
@@ -55,7 +57,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             formCompletionHelper.EnterText(ReasonPriceChange, reason);
 
             formCompletionHelper.Click(ContinueButton);
-            return new ChangeOfPriceCheckYourChangesPage(context);
+            return new ChangeOfPriceCheckYourChangesPage(context, isAutoApprove);
         }
 
         public ChangePriceNegotiationAmountsPage ClickContinueButtonWithValidationErrors()

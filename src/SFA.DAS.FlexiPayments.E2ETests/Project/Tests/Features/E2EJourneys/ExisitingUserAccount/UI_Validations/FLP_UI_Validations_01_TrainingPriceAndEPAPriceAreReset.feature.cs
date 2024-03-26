@@ -105,14 +105,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
                             "agreed_price"});
-                table26.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/01",
@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "12",
                             "15000"});
 #line 14
- testRunner.And("Pilot Provider adds apprentices to the cohort witht the following details", ((string)(null)), table26, "And ");
+ testRunner.And("Pilot Provider adds apprentices to the cohort witht the following details", ((string)(null)), table27, "And ");
 #line hidden
 #line 17
  testRunner.And("pilot provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

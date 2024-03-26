@@ -114,16 +114,32 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
-        [When(@"Provider successfully creates a Change of Price request")]
-        [Then(@"Provider successfully creates a Change of Price request")]
-        public void ProviderSuccessfullyCreatesAChangeOfPriceRequest()
+        [When(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
+        [Then(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
+        public void ProviderCreatesAChangeOfPriceRequestWhereTrainingPriceIsIncreasedBy(int priceIncrease)
         {
-            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + 500;
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + priceIncrease;
+
+            context.Set(newTrainingPrice, "newTrainingPrice");
 
             new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
                 (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title)
                 .ClickSendButton()
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
+        }
+
+
+        [When(@"Provider creates a Change of Price request where Training Price for the apprenticeship is reduced by (.*)")]
+        public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceForTheApprenticeshipIsReducedBy(int priceReduction)
+        {
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) - priceReduction;
+
+            context.Set(newTrainingPrice, "newTrainingPrice");
+
+            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
+                (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title, true)
+                .ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
+                .ClickSendButton();
         }
 
         [Then(@"Provider is able to view the pending Change of Price request")]
