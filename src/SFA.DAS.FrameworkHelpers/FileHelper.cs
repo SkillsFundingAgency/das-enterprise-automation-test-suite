@@ -8,7 +8,18 @@ namespace SFA.DAS.FrameworkHelpers
     {
         public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
 
-        public static string GetConfigJson(string fileName) => GetPath($"appsettings.{fileName}", ".json");
+        public static string GetSingleConfigJson(string fileName) => GetPath($"appsettings.{fileName}", ".json");
+
+        public static string GetProjectConfigJson(string fileName)
+        {
+            var fileNamewithPath = $"appsettings.{fileName}.json";
+
+            var path = TestPlatformFinder.IsAzureExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
+
+            string[] files = Directory.GetFiles(path, fileNamewithPath);
+
+            return files.Length != 0 ? files.First() : fileNamewithPath;
+        }
 
         public static string GetJs(string fileName) => GetPath(fileName, ".js");
 
@@ -32,6 +43,15 @@ namespace SFA.DAS.FrameworkHelpers
             string[] files = Directory.GetFiles(path, $"{fileName}{extension}", new EnumerationOptions { RecurseSubdirectories = !isAzureExecution });
 
             return files.First();
+        }
+
+        private static string GetAzureProjectConfigFilePath()
+        {
+            var projectName = ProjectNameRegexHelper.ProjectNameRegex().Match(AppDomain.CurrentDomain.BaseDirectory).Value;
+
+            var azureSrcPath = $"{GetAzureSrcPath()}\\src\\{projectName}";
+
+            return azureSrcPath;
         }
 
         private static string GetAzureSrcPath() => GetSrcPath(AppDomain.CurrentDomain.BaseDirectory);

@@ -39,6 +39,7 @@ namespace SFA.DAS.ConfigurationBuilder
             {
                 (EnvironmentName, ProjectName) = GetLocalHostingConfig();
             }
+
             _config = InitializeConfig();
         }
 
@@ -60,7 +61,7 @@ namespace SFA.DAS.ConfigurationBuilder
                     "BrowserStack",
                     "ApiFramework"
                 ])
-                .AddOptionalJsonFiles(
+                .AddProjectJsonFiles(
                 [
                     "Project"
                 ]);
@@ -83,7 +84,7 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             foreach (var file in files)
             {
-                var path = FileHelper.GetConfigJson(file);
+                var path = FileHelper.GetSingleConfigJson(file);
 
                 builder.AddJsonFile(path, false);
             }
@@ -91,10 +92,12 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder;
         }
 
-        private static IConfigurationBuilder AddOptionalJsonFiles(this IConfigurationBuilder builder, List<string> paths)
+        private static IConfigurationBuilder AddProjectJsonFiles(this IConfigurationBuilder builder, List<string> files)
         {
-            foreach (var path in paths)
+            foreach (var file in files)
             {
+                var path = FileHelper.GetProjectConfigJson(file);
+
                 builder.AddJsonFile(path, true);
             }
 

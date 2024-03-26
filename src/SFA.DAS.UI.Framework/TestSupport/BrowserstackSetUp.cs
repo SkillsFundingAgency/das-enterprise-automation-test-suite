@@ -4,6 +4,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ public static class BrowserStackSetup
         capabilities.AcceptInsecureCertificates = true;
         capabilities.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
 
-        options.Build = RegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
+        options.Build = ProjectNameRegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
 
         capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
 

@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -44,7 +43,7 @@ public partial class WebDriverSetupBase(ScenarioContext context)
 
     private string FindLocalDriverServiceLocation(string executableName)
     {
-        string replacedPath = RegexHelper.ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers");
+        string replacedPath = ProjectNameRegexHelper.ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers");
 
         string[] file = Directory.GetFiles(replacedPath, executableName);
 
