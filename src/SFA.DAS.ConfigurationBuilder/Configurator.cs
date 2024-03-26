@@ -49,19 +49,20 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationRoot InitializeConfig()
         {
             var builder = ConfigurationBuilder()
+                .AddMandatoryJsonFiles(
+                [
+                    "Config",
+                    "AdminConfig",
+                    "ProviderConfig",
+                    "TimeOutConfig",
+                    "TestExecution",
+                    "NServiceBusConfig",
+                    "BrowserStack",
+                    "ApiFramework"
+                ])
                 .AddOptionalJsonFiles(
                 [
-                    "appsettings.Config.json",
-                    "appsettings.TimeOutConfig.json",
-                    "appsettings.NServiceBusConfig.json",
-                    "appsettings.BrowserStack.json",
-                    "appsettings.MailosaurApi.json",
-                    "appsettings.ApiFramework.json",
-                    "appsettings.AdminConfig.json",
-                    "appsettings.ProviderConfig.json",
-                    "appsettings.Project.json",
-                    $"appsettings.{EnvironmentName}.json",
-                    "appsettings.TestExecution.json"
+                    "Project"
                 ]);
 
             if (!IsAzureExecution)
@@ -78,9 +79,24 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder.Build();
         }
 
+        private static IConfigurationBuilder AddMandatoryJsonFiles(this IConfigurationBuilder builder, List<string> files)
+        {
+            foreach (var file in files)
+            {
+                var path = FileHelper.GetConfigJson(file);
+
+                builder.AddJsonFile(path, false);
+            }
+
+            return builder;
+        }
+
         private static IConfigurationBuilder AddOptionalJsonFiles(this IConfigurationBuilder builder, List<string> paths)
         {
-            foreach (var path in paths) builder.AddJsonFile(path, true);
+            foreach (var path in paths)
+            {
+                builder.AddJsonFile(path, true);
+            }
 
             return builder;
         }

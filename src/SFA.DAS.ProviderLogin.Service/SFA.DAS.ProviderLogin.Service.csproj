@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <None Update="appsettings.ProviderConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

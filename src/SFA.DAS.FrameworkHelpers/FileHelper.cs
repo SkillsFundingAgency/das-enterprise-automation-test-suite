@@ -8,6 +8,8 @@ namespace SFA.DAS.FrameworkHelpers
     {
         public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
 
+        public static string GetConfigJson(string fileName) => GetPath($"appsettings.{fileName}", ".json");
+
         public static string GetJs(string fileName) => GetPath(fileName, ".js");
 
         public static string GetSql(string fileName)
