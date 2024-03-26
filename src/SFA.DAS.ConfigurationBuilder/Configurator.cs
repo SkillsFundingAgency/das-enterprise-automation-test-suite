@@ -60,7 +60,6 @@ namespace SFA.DAS.ConfigurationBuilder
                     "appsettings.AdminConfig.json",
                     "appsettings.ProviderConfig.json",
                     "appsettings.Project.json",
-                    "appsettings.Project.BrowserStack.json",
                     $"appsettings.{EnvironmentName}.json",
                     "appsettings.TestExecution.json"
                 ]);
