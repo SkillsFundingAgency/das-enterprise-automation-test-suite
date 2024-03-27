@@ -202,6 +202,67 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("FLP_CoC_02_3 Provider Initiated Change Of Price Request - Auto-Approve - Total Pr" +
+            "ice remains the same")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
+        [NUnit.Framework.CategoryAttribute("flexi-payments")]
+        public void FLP_CoC_02_3ProviderInitiatedChangeOfPriceRequest_Auto_Approve_TotalPriceRemainsTheSame()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "flexi-manage-coc",
+                    "flexi-payments"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_02_3 Provider Initiated Change Of Price Request - Auto-Approve - Total Pr" +
+                    "ice remains the same", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 35
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN_Key",
+                            "training_code",
+                            "date_of_birth",
+                            "start_date_str",
+                            "duration_in_months",
+                            "agreed_price",
+                            "pilot_status"});
+                table5.AddRow(new string[] {
+                            "1",
+                            "154",
+                            "2004/06/20",
+                            "StartPreviousMonth",
+                            "12",
+                            "18000",
+                            "true"});
+#line 36
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table5, "Given ");
+#line hidden
+#line 39
+    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 40
+ testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
+                        "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 41
+ testRunner.And("Provider creates a Change of Price request where Total price remains the same", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+ testRunner.Then("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

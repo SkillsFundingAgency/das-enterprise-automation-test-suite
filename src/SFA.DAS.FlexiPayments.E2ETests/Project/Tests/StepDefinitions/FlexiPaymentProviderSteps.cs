@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using Polly;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
 using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -27,6 +25,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
         private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
         private decimal newTrainingPrice;
+        private decimal newEndpointAssessmentPrice;
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -120,7 +119,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + priceIncrease;
 
-            context.Set(newTrainingPrice, "newTrainingPrice");
+            context.Set(newTrainingPrice, "NewTrainingPrice");
 
             new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
                 (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title)
@@ -134,13 +133,31 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) - priceReduction;
 
-            context.Set(newTrainingPrice, "newTrainingPrice");
+            context.Set(newTrainingPrice, "NewTrainingPrice");
 
             new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
                 (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title, true)
                 .ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
-                .ClickSendButton();
+                .ClickSendButton()
+                .ValidatePriceChangeAutoApprovedBannerDisplayed();
         }
+
+        [When(@"Provider creates a Change of Price request where Total price remains the same")]
+        public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceRemainsTheSame()
+        {
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) - 500;
+            newEndpointAssessmentPrice = Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice) + 500;
+
+            context.Set(newTrainingPrice, "NewTrainingPrice");
+            context.Set(newEndpointAssessmentPrice, "NewEndpointAssessmentPrice");
+
+            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
+                (newTrainingPrice.ToString(), newEndpointAssessmentPrice.ToString(), DateTime.Today, context.ScenarioInfo.Title, true)
+                .ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
+                .ClickSendButton()
+                .ValidatePriceChangeAutoApprovedBannerDisplayed();
+        }
+
 
         [Then(@"Provider is able to view the pending Change of Price request")]
         public void ProviderIsAbleToViewThePendingChangeOfPriceRequest()

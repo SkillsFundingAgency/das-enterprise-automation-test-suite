@@ -37,6 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
         private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
         private static By PriceChangeApprovedBanner => By.Id("change-of-price-approved-banner");
+        private static By PriceChangeAutoApprovedBanner => By.Id("change-of-price-auto-approved-banner");
         private static By ReviewPriceChangeRequestedBannerLink => By.Id("linkBannerViewPendingPrice");
         private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
@@ -195,6 +196,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was approved");
             }
             );
+            return this;
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangeAutoApprovedBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeAutoApprovedBanner), "Price Change Auto Approved banner not displayed");
             return this;
         }
 
