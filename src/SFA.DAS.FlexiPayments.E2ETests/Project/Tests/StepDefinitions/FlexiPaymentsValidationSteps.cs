@@ -93,7 +93,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfPriceRequestData(GetApprenticeULN(1));
 
-            var newTrainingPrice = context.Get<Decimal>("newTrainingPrice");
+            var newTrainingPrice = context.Get<Decimal>("NewTrainingPrice");
 
             var newTotalPrice = newTrainingPrice + Decimal.Parse(_apprenticeDataHelper.EndpointAssessmentPrice);
 
