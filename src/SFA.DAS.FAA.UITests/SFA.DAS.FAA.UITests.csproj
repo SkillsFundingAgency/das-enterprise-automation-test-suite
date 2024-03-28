@@ -9,7 +9,7 @@
   
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Compile>
   </ItemGroup>
