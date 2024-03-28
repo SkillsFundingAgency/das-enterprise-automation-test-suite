@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>SFA.DAS.PayeCreation.Tests</RootNamespace>
+    <RootNamespace>SFA.DAS.PayeCreation.DataPreparationTests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +36,7 @@
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
