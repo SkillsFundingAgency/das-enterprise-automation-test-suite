@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using Polly;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
 using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -171,8 +173,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _providerApprenticeDetailsPage.ClickReviewPriceChangeLink();
         }
 
+        [Then(@"Provider is able to successfully reject the Change of Price request")]
+        public void ProviderIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
+        {
+            new ChangeOfPriceReviewChangeRequestPage(context)
+                .SelectRejectChangesRadioButtonAndSend(context.ScenarioInfo.Title)
+                .ValidatePriceChangeRejectedBannerDisplayed();
+        }
+
+
         [Then(@"Provider is able to view details of change of price request")]
-        public void ThenProviderIsAbleToViewDetailsOfChangeOfPriceRequest()
+        public void ProviderIsAbleToViewDetailsOfChangeOfPriceRequest()
         {
             _providerApprenticeDetailsPage.ClickViewPriceChangesRequestedLink();
 
