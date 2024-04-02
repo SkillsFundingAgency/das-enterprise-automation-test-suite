@@ -181,7 +181,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidatePriceChangeRejectedBannerDisplayed();
         }
 
-
         [Then(@"Provider is able to view details of change of price request")]
         public void ProviderIsAbleToViewDetailsOfChangeOfPriceRequest()
         {
