@@ -6,27 +6,23 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 {
-    public class ChangePriceNegotiationAmountsPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ChangePriceNegotiationAmountsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Change the training price and/or the end-point assessment price";
-
         protected override By ContinueButton => By.Id("buttonSubmitForm");
+        public static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
+        public static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
+        public static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
 
-        private static By TrainingPrice => By.Id("ApprenticeshipTrainingPrice");
+        public static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
 
-        private static By EndpointAssessmentPrice => By.Id("ApprenticeshipEndPointAssessmentPrice");
-        private static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
+        public static By EffectiveFromDate_Month => By.Id("EffectiveFromDate_Month");
 
-        private static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
+        public static By EffectiveFromDate_Year => By.Id("EffectiveFromDate_Year");
 
-        private static By EffectiveFromDate_Month => By.Id("EffectiveFromDate_Month");
+        public static By ReasonPriceChange => By.Id("ReasonForChangeOfPrice");
 
-        private static By EffectiveFromDate_Year => By.Id("EffectiveFromDate_Year");
-
-        private static By ReasonPriceChange => By.Id("ReasonForChangeOfPrice");
-
-        private static By ChangeTrainingAndOrEpaPriceErrorMessage => By.CssSelector("div[role='alert'] li a[href='#']");
-
+        private static By ChangeTrainingAndOrEpaPriceErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTrainingPrice']");
         private static By EffectiveFromDateErrorMessage => By.CssSelector("div[role='alert'] li a[href='#EffectiveFromDate']");
 
         private static By EnterAReasonErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ReasonForChangeOfPrice']");
@@ -49,7 +45,9 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 
         private static string EnterDateBeforePlannedEndDateErrorText => "The date entered must be before the planned end date";
 
-        public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason)
+        public ChangePriceNegotiationAmountsPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+
+        public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason, bool isAutoApprove = false)
         {
             formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
             formCompletionHelper.EnterText(EndpointAssessmentPrice, epaPrice);
@@ -59,7 +57,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             formCompletionHelper.EnterText(ReasonPriceChange, reason);
 
             formCompletionHelper.Click(ContinueButton);
-            return new ChangeOfPriceCheckYourChangesPage(context);
+            return new ChangeOfPriceCheckYourChangesPage(context, isAutoApprove);
         }
 
         public ChangePriceNegotiationAmountsPage ClickContinueButtonWithValidationErrors()

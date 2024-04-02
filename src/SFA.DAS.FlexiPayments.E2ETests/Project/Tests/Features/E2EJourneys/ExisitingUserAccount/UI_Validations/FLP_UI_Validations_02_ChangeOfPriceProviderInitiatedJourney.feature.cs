@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table27.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "15000",
                             "true"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table27, "Given ");
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table29, "Given ");
 #line hidden
 #line 13
     testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -144,7 +144,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("validate Effective From Date cannot be after Training End Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
-    testRunner.And("Provider successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
+                        "00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
  testRunner.And("Provider is able to view details of change of price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -157,7 +158,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
- testRunner.And("Provider successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
+                        "00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
  testRunner.And("Employer searches for learner on Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

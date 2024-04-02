@@ -140,6 +140,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [When(@"Employer proceeds to create a Change of Price request for flexi payments pilot learner")]
+        [Then(@"Employer proceeds to create a Change of Price request for flexi payments pilot learner")]
         public void EmployerProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()
         {
             _apprenticeDetailsPage.ClickChangePriceLink();

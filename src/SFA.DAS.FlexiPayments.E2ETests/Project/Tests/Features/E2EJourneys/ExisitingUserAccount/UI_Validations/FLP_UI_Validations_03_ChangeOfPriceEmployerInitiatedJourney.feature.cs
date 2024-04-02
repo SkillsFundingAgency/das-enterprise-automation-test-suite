@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table28.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "15000",
                             "true"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table28, "Given ");
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table30, "Given ");
 #line hidden
 #line 13
     testRunner.And("Employer searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -152,6 +152,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 23
  testRunner.And("Employer can successfully cancel the change of price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.And("Employer proceeds to create a Change of Price request for flexi payments pilot le" +
+                        "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 26
+ testRunner.And("Employer successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+ testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 28
+ testRunner.And("Provider is able to view the pending Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 29
+ testRunner.And("Provider can view the details of the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
