@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V120.Browser;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using System;
 using TechTalk.SpecFlow;
 
@@ -21,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By Name => By.Id("apprentice-name");
         private static By DateOfBirth => By.Id("apprentice-dob");
         private static By Reference => By.Id("apprentice-reference");
-        private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");    
+        private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
         private static By ViewChangesLink => By.LinkText("View changes");
         private static By ViewDetailsLink => By.LinkText("View details");
         private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
@@ -161,7 +159,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to employer"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View price changes you've requested link is not displayed");
-            }   
+            }
             );
         }
 
