@@ -78,13 +78,13 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public static string FixedWageYearlyAmount => "11000";
 
-        public static string NationalMinimumWage => "£10,982.40 to £21,673.60";
+        public static string NationalMinimumWage => "£13,312 to £23,795.20 a year";
 
-        public static string NationalMinimumWageForApprentices => "£10,982.40";
+        public static string NationalMinimumWageForApprentices => "£13,312 a year";
 
         public static string SetAsCompetitive => "Competitive";
 
-        public static string FixedWageForApprentices => "£11,000";
+        public static string FixedWageForApprentices => "£14,000";
 
         public DateTime EditedVacancyClosing { get; }
 
