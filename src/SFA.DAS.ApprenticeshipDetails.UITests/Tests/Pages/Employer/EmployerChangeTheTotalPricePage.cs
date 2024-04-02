@@ -1,28 +1,24 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
 {
-    public class EmployerChangeTheTotalPricePage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class EmployerChangeTheTotalPricePage(ScenarioContext context) : ChangePriceNegotiationAmountsPage(context)
     {
         protected override string PageTitle => "Change the total price";
         private static By PriceHintText => By.Id("apprenticeship-price-hint");
-        private static By TotalPrice => By.Id("ApprenticeshipTotalPrice");
-        private static By EffectiveFromDate_Day => By.Id("EffectiveFromDate_Day");
-        private static By EffectiveFromDate_Month => By.Id("EffectiveFromDate_Month");
-        private static By EffectiveFromDate_Year => By.Id("EffectiveFromDate_Year");
-        private static By ReasonPriceChange => By.Id("ReasonForChangeOfPrice");
-        protected override By ContinueButton => By.Id("buttonSubmitForm");
+
         private static By ChangeTotalPriceErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTotalPrice']");
         private static By EffectiveFromDateErrorMessage => By.CssSelector("div[role='alert'] li a[href='#EffectiveFromDate']");
         private static By EnterAReasonErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ReasonForChangeOfPrice']");
         private static By TotalPriceValidationErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipTotalPrice']");
         private static By CurrentTotalPrice => By.CssSelector("div.govuk-inset-text");
         private static string ChangeTotalPriceErrorText => "You must change the total price";
-        private static string EnterAReasonErrorText => "You must enter a reason for requesting a price change. This will help the employer when they review your request.";
+        private static string EnterAReasonErrorText => "You must enter a reason for requesting a price change. This will help the training provider when they review your request.";
         private static string EnterADateErrorText => "Enter a date in the correct format";
         private static string TotalPriceMustBeAWholeNumberErrorText => "The total price must be a whole number between 1 - 100,000";
         private static string TotalPriceMustNotBrGreaterThanErrorText => "The total price must not be greater than 100,000";
@@ -41,13 +37,13 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
             return new EmployerChangeOfPriceCheckYourChangesPage(context);
         }
 
-        public EmployerChangeTheTotalPricePage ClickContinueButtonWithValidationErrors()
+        public new EmployerChangeTheTotalPricePage ClickContinueButtonWithValidationErrors()
         {
             formCompletionHelper.Click(ContinueButton);
             return this;
         }
 
-        public void ConfirmValidationErrorMessagesDisplayed()
+        public new void ConfirmValidationErrorMessagesDisplayed()
         {
             Assert.Multiple(() =>
             {
@@ -72,28 +68,6 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         {
             string expectedText = $"The current total price is £{totalPrice}.";
             Assert.AreEqual(pageInteractionHelper.GetText(CurrentTotalPrice), expectedText);
-        }
-
-        public void ValidateEnterADateThatIsAfterTrainingStartDateErrorMessage(DateTime date)
-        {
-            formCompletionHelper.EnterText(EffectiveFromDate_Day, date.Day);
-            formCompletionHelper.EnterText(EffectiveFromDate_Month, date.Month);
-            formCompletionHelper.EnterText(EffectiveFromDate_Year, date.Year);
-
-            ClickContinueButtonWithValidationErrors();
-
-            Assert.AreEqual(pageInteractionHelper.GetText(EffectiveFromDateErrorMessage), EnterDateAfterTrainingStartDateErrorText);
-        }
-
-        public void ValidateEnterADateThatIsBeforePlannedEndDateErrorMessage(DateTime date)
-        {
-            formCompletionHelper.EnterText(EffectiveFromDate_Day, date.Day);
-            formCompletionHelper.EnterText(EffectiveFromDate_Month, date.Month);
-            formCompletionHelper.EnterText(EffectiveFromDate_Year, date.Year);
-
-            ClickContinueButtonWithValidationErrors();
-
-            Assert.AreEqual(pageInteractionHelper.GetText(EffectiveFromDateErrorMessage), EnterDateBeforePlannedEndDateErrorText);
         }
     }
 }

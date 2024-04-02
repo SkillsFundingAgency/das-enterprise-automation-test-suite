@@ -97,7 +97,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "15000",
                             "true"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table4, "Given ");
+ testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table6, "Given ");
 #line hidden
 #line 13
     testRunner.And("Employer searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -129,6 +129,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 16
  testRunner.And("Employer initiated Change of Price request details are saved in the PriceHistory " +
                         "table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.Then("Provider can review the Change of Price request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 18
+ testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

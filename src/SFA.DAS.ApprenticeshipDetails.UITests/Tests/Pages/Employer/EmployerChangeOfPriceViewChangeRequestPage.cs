@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using System;
@@ -7,15 +8,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
 {
-    public class EmployerChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class EmployerChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ChangeOfPriceViewChangeRequestPage(context)
     {
         protected override string PageTitle => "View change request";
-
-        public static By TotalPriceRequestedValue => By.Id("TotalPrice");
         private static By PendingProviderReviewTag => By.XPath("//strong[text()='Pending provider review']");
         private static By TotalPriceCurrentValue => By.XPath("//*[@id='TotalPrice']/preceding-sibling::*[1]");
-        public static By EffectiveFromDateValue => By.Id("EffectiveFromDate");
-        public static By ReasonForChangeValue => By.Id("ReasonForChange");
         protected static By SendButton => By.Id("buttonSubmitForm");
         private static By CancelRequestOptionYes => By.Id("option-yes");
 
@@ -36,7 +33,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
             return this;
         }
 
-        public ApprenticeDetailsPage SelectCancelTheRequestRadioButtonAndContinue()
+        public new ApprenticeDetailsPage SelectCancelTheRequestRadioButtonAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByLocator(CancelRequestOptionYes);
             formCompletionHelper.Click(ContinueButton);
