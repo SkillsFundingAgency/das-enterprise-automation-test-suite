@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using Polly;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
 using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
