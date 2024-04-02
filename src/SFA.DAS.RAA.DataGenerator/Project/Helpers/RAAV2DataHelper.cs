@@ -76,7 +76,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public static string WeeklyHours => "40";
 
-        public static string FixedWageYearlyAmount => "11000";
+        public static string FixedWageYearlyAmount => "14000";
 
         public static string NationalMinimumWage => "£13,312 to £23,795.20 a year";
 
