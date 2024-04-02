@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA.DataGenerator",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ConfigurationBuilder", "SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj", "{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.Tests", "SFA.DAS.PayeCreation.Tests\SFA.DAS.PayeCreation.Tests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.DataPreparationTests", "SFA.DAS.PayeCreation.DataPreparationTests\SFA.DAS.PayeCreation.DataPreparationTests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2-Provider.UITests", "SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj", "{F00AD033-7D2F-4E30-AC8E-C25FA577D465}"
 EndProject

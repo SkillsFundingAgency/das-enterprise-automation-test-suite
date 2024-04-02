@@ -67,8 +67,25 @@ steps:
     Contents: |     
      src/**/*.sql
      src/**/html2canvas.js
+     src/**/appsettings.Config.json
+     src/**/appsettings.AdminConfig.json
+     src/**/appsettings.ProviderConfig.json
+     src/**/appsettings.TimeOutConfig.json
+     src/**/appsettings.TestExecution.json
+     src/**/appsettings.NServiceBusConfig.json
+     src/**/appsettings.BrowserStack.json
+     src/**/appsettings.ApiFramework.json
     TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
     flattenFolders: true
+    OverWrite: true
+
+- task: CopyFiles@2
+  displayName: 'Copy project json files to: $(build.artifactstagingdirectory)/tests/'
+  inputs:
+    Contents: |     
+     src/**/appsettings.Project.json
+    TargetFolder: '$(build.artifactstagingdirectory)/tests/'
+    flattenFolders: false
     OverWrite: true
 
 - task: CopyFiles@2

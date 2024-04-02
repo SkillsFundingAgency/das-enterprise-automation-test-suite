@@ -9,8 +9,9 @@
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	</Compile>
   </ItemGroup>
 
 	<ItemGroup>
@@ -38,7 +39,7 @@
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</None>
 		<None Update="appsettings.Project.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
 		<None Update="specflow.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>

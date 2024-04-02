@@ -39,6 +39,7 @@ namespace SFA.DAS.ConfigurationBuilder
             {
                 (EnvironmentName, ProjectName) = GetLocalHostingConfig();
             }
+
             _config = InitializeConfig();
         }
 
@@ -49,19 +50,20 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationRoot InitializeConfig()
         {
             var builder = ConfigurationBuilder()
-                .AddOptionalJsonFiles(
+                .AddMandatoryJsonFiles(
                 [
-                    "appsettings.Config.json",
-                    "appsettings.TimeOutConfig.json",
-                    "appsettings.NServiceBusConfig.json",
-                    "appsettings.BrowserStack.json",
-                    "appsettings.MailosaurApi.json",
-                    "appsettings.ApiFramework.json",
-                    "appsettings.AdminConfig.json",
-                    "appsettings.ProviderConfig.json",
-                    "appsettings.Project.json",
-                    $"appsettings.{EnvironmentName}.json",
-                    "appsettings.TestExecution.json"
+                    "Config",
+                    "AdminConfig",
+                    "ProviderConfig",
+                    "TimeOutConfig",
+                    "TestExecution",
+                    "NServiceBusConfig",
+                    "BrowserStack",
+                    "ApiFramework"
+                ])
+                .AddProjectJsonFiles(
+                [
+                    "Project"
                 ]);
 
             if (!IsAzureExecution)
@@ -78,9 +80,26 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder.Build();
         }
 
-        private static IConfigurationBuilder AddOptionalJsonFiles(this IConfigurationBuilder builder, List<string> paths)
+        private static IConfigurationBuilder AddMandatoryJsonFiles(this IConfigurationBuilder builder, List<string> files)
         {
-            foreach (var path in paths) builder.AddJsonFile(path, true);
+            foreach (var file in files)
+            {
+                var path = FileHelper.GetSingleConfigJson(file);
+
+                builder.AddJsonFile(path, false);
+            }
+
+            return builder;
+        }
+
+        private static IConfigurationBuilder AddProjectJsonFiles(this IConfigurationBuilder builder, List<string> files)
+        {
+            foreach (var file in files)
+            {
+                var path = FileHelper.GetProjectConfigJson(file);
+
+                builder.AddJsonFile(path, true);
+            }
 
             return builder;
         }
