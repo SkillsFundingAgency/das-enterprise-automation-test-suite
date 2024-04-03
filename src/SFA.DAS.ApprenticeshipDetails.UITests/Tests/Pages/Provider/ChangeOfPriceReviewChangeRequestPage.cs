@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -31,12 +31,12 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             return new ConfirmNewTrainingAndEndpointAssessmentPricePage(context);
         }
 
-        public ApprenticeDetailsPage SelectRejectChangesRadioButtonAndSend(string reason)
+        public ProviderApprenticeDetailsPage SelectRejectChangesRadioButtonAndSend(string reason)
         {
             formCompletionHelper.SelectRadioOptionByLocator(RejectChangesRadioOption);
             formCompletionHelper.EnterText(RejectReasonInputField, reason);
             formCompletionHelper.Click(ContinueButton);
-            return new ApprenticeDetailsPage(context);
+            return new ProviderApprenticeDetailsPage(context);
         }
 
     }

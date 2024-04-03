@@ -35,6 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
         private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
         private static By PriceChangeApprovedBanner => By.Id("change-of-price-approved-banner");
+        private static By PriceChangeRejectedBanner => By.Id("change-of-price-rejected-banner");
         private static By PriceChangeAutoApprovedBanner => By.Id("change-of-price-auto-approved-banner");
         private static By ReviewPriceChangeRequestedBannerLink => By.Id("linkBannerViewPendingPrice");
         private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
@@ -183,6 +184,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeRequestedTag), "Change Requested tag for Change of Price request is missing");
             }
             );
+            return this;
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangeRejectedBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeRejectedBanner), "Price Change Rejected banner not displayed");
+            Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was rejected");
             return this;
         }
 

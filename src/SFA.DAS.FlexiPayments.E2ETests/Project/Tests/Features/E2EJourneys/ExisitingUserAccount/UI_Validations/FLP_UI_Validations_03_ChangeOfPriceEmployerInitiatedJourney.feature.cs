@@ -169,6 +169,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 29
  testRunner.And("Provider can view the details of the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 30
+ testRunner.And("Provider is able to successfully reject the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
