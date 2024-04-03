@@ -84,7 +84,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public static string SetAsCompetitive => "Competitive";
 
-        public static string FixedWageForApprentices => "£14,000";
+        public static string FixedWageForApprentices => "£14,000 a year";
 
         public DateTime EditedVacancyClosing { get; }
 
