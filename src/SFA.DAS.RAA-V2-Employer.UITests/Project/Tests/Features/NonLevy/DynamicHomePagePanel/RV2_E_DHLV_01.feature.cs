@@ -123,7 +123,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logs into Employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 16
- testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'LIVE\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
  testRunner.And("Employer can go to Manage vacancy page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer can close the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
- testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'CLOSED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'Closed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
  testRunner.And("Employer can go to Manage vacancy page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

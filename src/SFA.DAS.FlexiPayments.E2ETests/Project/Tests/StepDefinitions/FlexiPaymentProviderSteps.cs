@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
@@ -25,6 +25,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
         private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
         private decimal newTrainingPrice;
+        private decimal newEndpointAssessmentPrice;
 
         [Given(@"provider logs in to review the cohort")]
         [When(@"provider logs in to review the cohort")]
@@ -76,12 +77,29 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider searches for the learner on Manage your apprentice page")]
+        [Then(@"Provider searches for the learner on Manage your apprentice page")]
         public void ProviderSearchesLearnerOnManageYourApprenticesPage()
         {
             _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails();
         }
 
+        [Then(@"Provider can review the Change of Price request and approve it")]
+        public void ThenProviderCanReviewTheChangeOfPriceRequestAndApproveIt()
+        {
+            var newTotalPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingCost) - 500;
+            var trainingPrice = (newTotalPrice * 80)/100;
+            var epa = newTotalPrice - trainingPrice;
+            
+            ProviderSearchesLearnerOnManageYourApprenticesPage();
+            ProviderIsAbleToViewThePendingChangeOfPriceRequest();
+            ProviderCanViewTheDetailsOfTheChangeOfPriceRequest();
+
+            new ChangeOfPriceReviewChangeRequestPage(context)
+                .SelectApproveChangesRadioButtonAndSend()
+                .EnterTrainingAndEndpointAssessmentPrices(trainingPrice.ToString(),epa.ToString())
+                .ValidatePriceChangeApprovedBannerDisplayed();
+        }
 
         [Then(@"Provider (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenProviderIsUnableToMakeAnyChangesToFullyApprovedLearner(string action, int learnerNumber)
@@ -92,13 +110,16 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
+        [Then(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
-        [When(@"Provider successfully creates a Change of Price request")]
-        [Then(@"Provider successfully creates a Change of Price request")]
-        public void ProviderSuccessfullyCreatesAChangeOfPriceRequest()
+        [When(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
+        [Then(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
+        public void ProviderCreatesAChangeOfPriceRequestWhereTrainingPriceIsIncreasedBy(int priceIncrease)
         {
-            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + 500;
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) + priceIncrease;
+
+            context.Set(newTrainingPrice, "NewTrainingPrice");
 
             new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
                 (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title)
@@ -106,8 +127,60 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
+
+        [When(@"Provider creates a Change of Price request where Training Price for the apprenticeship is reduced by (.*)")]
+        public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceForTheApprenticeshipIsReducedBy(int priceReduction)
+        {
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) - priceReduction;
+
+            context.Set(newTrainingPrice, "NewTrainingPrice");
+
+            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
+                (newTrainingPrice.ToString(), _apprenticeDataHelper.EndpointAssessmentPrice, DateTime.Today, context.ScenarioInfo.Title, true)
+                .ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
+                .ClickSendButton()
+                .ValidatePriceChangeAutoApprovedBannerDisplayed();
+        }
+
+        [When(@"Provider creates a Change of Price request where Total price remains the same")]
+        public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceRemainsTheSame()
+        {
+            newTrainingPrice = Convert.ToDecimal(_apprenticeDataHelper.TrainingPrice) - 500;
+            newEndpointAssessmentPrice = Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice) + 500;
+
+            context.Set(newTrainingPrice, "NewTrainingPrice");
+            context.Set(newEndpointAssessmentPrice, "NewEndpointAssessmentPrice");
+
+            new ChangePriceNegotiationAmountsPage(context).EnterValidChangeOfPriceDetails
+                (newTrainingPrice.ToString(), newEndpointAssessmentPrice.ToString(), DateTime.Today, context.ScenarioInfo.Title, true)
+                .ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
+                .ClickSendButton()
+                .ValidatePriceChangeAutoApprovedBannerDisplayed();
+        }
+
+
+        [Then(@"Provider is able to view the pending Change of Price request")]
+        public void ProviderIsAbleToViewThePendingChangeOfPriceRequest()
+        {
+            _providerApprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+        }
+
+        [Then(@"Provider can view the details of the Change of Price request")]
+        public void ProviderCanViewTheDetailsOfTheChangeOfPriceRequest()
+        {
+            _providerApprenticeDetailsPage.ClickReviewPriceChangeLink();
+        }
+
+        [Then(@"Provider is able to successfully reject the Change of Price request")]
+        public void ProviderIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
+        {
+            new ChangeOfPriceReviewChangeRequestPage(context)
+                .SelectRejectChangesRadioButtonAndSend(context.ScenarioInfo.Title)
+                .ValidatePriceChangeRejectedBannerDisplayed();
+        }
+
         [Then(@"Provider is able to view details of change of price request")]
-        public void ThenProviderIsAbleToViewDetailsOfChangeOfPriceRequest()
+        public void ProviderIsAbleToViewDetailsOfChangeOfPriceRequest()
         {
             _providerApprenticeDetailsPage.ClickViewPriceChangesRequestedLink();
 
@@ -139,10 +212,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"validate Training Price and EPA price must be between (.*) and (.*)")]
         public void ValidateTrainingPriceAndEPAPriceMustBeBetweenValues(int min, int max)
         {
-            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(min-1);
+            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(min - 1);
 
-            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(max+1);
+            _changePriceNegotiationAmountPage.ValidateOuterBoundaryValuesErrorsForTrainingAndEPAPrices(max + 1);
         }
+
+        [Then(@"a dynamic Total price field is displayed with the sum of Training price and End-point assessment price")]
+        public void DynamicTotalPriceFieldIsDisplayedWithTheSumOfTrainingPriceAndEnd_PointAssessmentPrice()
+        {
+            _changePriceNegotiationAmountPage.ValidateApprenticeshipTotalPrice();
+        }
+
 
         [Then(@"validate Effective From Date cannot be before Training Start Date")]
         public void ValidateEffectiveFromDateCannotBeBeforeTrainingStartDate()

@@ -19,6 +19,7 @@
   <ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Compile>
    </ItemGroup>
    <ItemGroup>
@@ -27,7 +28,7 @@
 	
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	  <None Update="Project\Tests\Payload\CreateCertificate.json">

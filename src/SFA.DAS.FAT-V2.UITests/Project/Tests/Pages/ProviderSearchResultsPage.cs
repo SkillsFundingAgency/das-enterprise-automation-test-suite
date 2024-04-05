@@ -2,7 +2,7 @@
 
 public class ProviderShortListedResultPage(ScenarioContext context) : ProviderSearchResultsPage(context)
 {
-    protected override string PageTitle => "SHORTLISTED";
+    protected override string PageTitle => "Shortlisted";
 
     protected override By PageHeader => By.CssSelector(".govuk-tag.app-provider-shortlist-tag");
 }

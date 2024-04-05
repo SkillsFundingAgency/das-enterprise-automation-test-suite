@@ -1,0 +1,16 @@
+{
+    "listOfStudentData": [
+        {
+            "firstName": "<fname>",
+            "lastName": "<lname>",
+            "dateOfBirth": "<doby>-<dobm>-<dobd>",
+            "email": "<email>",
+            "postCode": "CA67BB",
+            "telephone": "07789867768",
+            "industry": "Carpentary | Baking",
+            "schoolName": "Christ Church",
+            "dateOfInterest": "2023-11-10T18:23:48.493",
+            "logId": 5
+        }
+    ]
+}

@@ -1,19 +1,79 @@
-﻿namespace SFA.DAS.FrameworkHelpers
+﻿using NUnit.Framework;
+using System.IO;
+using System.Reflection;
+
+namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
-        public static string GetSql(string source) => GetFile(source, ".sql");
+        public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
 
-        private static string GetFile(string source, string extension)
+        public static string GetSingleConfigJson(string fileName) => GetPath($"appsettings.{fileName}", ".json");
+
+        public static string GetProjectConfigJson(string fileName)
         {
-            string sqlScriptFile = $"{GetAssemblyDirectory()}\\Project\\Helpers\\SqlScripts\\{source}{extension}";
+            var fullFileName = $"appsettings.{fileName}.json";
 
-            string sqlScript = System.IO.File.ReadAllText(sqlScriptFile);
+            var path = TestPlatformFinder.IsAzureExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
+
+            string[] files = Directory.Exists(path) ? Directory.GetFiles(path, fullFileName) : [];
+
+            return files.Length != 0 ? files.First() : fullFileName;
+        }
+
+        public static string GetJs(string fileName) => GetPath(fileName, ".js");
+
+        public static string GetSql(string fileName)
+        {
+            string sqlScriptFile = GetPath(fileName, ".sql");
+
+            string sqlScript = File.ReadAllText(sqlScriptFile);
+
             sqlScript = sqlScript.Replace("\r\n", " ").Replace("\t", " ");
+
             return sqlScript;
         }
 
-        public static string GetAssemblyDirectory() => AppDomain.CurrentDomain.BaseDirectory;
+        internal static string GetPath(string fileName, string extension)
+        {
+            bool isAzureExecution = TestPlatformFinder.IsAzureExecution;
+
+            var path = isAzureExecution ? $"{GetAzureSrcPath()}\\files" : GetLocalSrcPath();
+
+            string[] files = Directory.GetFiles(path, $"{fileName}{extension}", new EnumerationOptions { RecurseSubdirectories = !isAzureExecution });
+
+            return files.First();
+        }
+
+        private static string GetAzureProjectConfigFilePath()
+        {
+            var projectName = ProjectNameRegexHelper.ProjectNameRegex().Match(AppDomain.CurrentDomain.BaseDirectory).Value;
+
+            var azureSrcPath = $"{GetAzureSrcPath()}\\src\\{projectName}";
+
+            return azureSrcPath;
+        }
+
+        private static string GetAzureSrcPath() => GetSrcPath(AppDomain.CurrentDomain.BaseDirectory);
+
+        private static string GetLocalSrcPath() => GetSrcPath(GetLocalProjectRootFilePath());
+
+        private static string GetSrcPath(string projectPath) => Path.GetFullPath(Path.Combine(projectPath, @$"..\"));
 
     }
+
+    [TestFixture]
+    [Category("Unittests")]
+    public class FileHelperUnitTest
+    {
+        [TestCase("GetAgreementId", ".sql")]
+        [TestCase("html2canvas", ".js")]
+        public void FindLocalFile(string filename, string extension)
+        {
+            var pathWithFileName = FileHelper.GetPath(filename, extension);
+
+            Assert.That(pathWithFileName, Is.Not.Null, $"file name {filename} not found");
+        }
+    }
 }
+

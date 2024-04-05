@@ -8,3 +8,9 @@ public static partial class GeneratedRegexHelper
     public static partial Regex UrlEscapeRegex();
 
 }
+
+public partial class ProjectNameRegexHelper
+{
+    [GeneratedRegex(@"SFA\.DAS\..*\.(DataPreparation|ServiceBusIntegration|PaymentProcess|API|UI|E2E)Tests")]
+    public static partial Regex ProjectNameRegex();
+}

@@ -32,6 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
         private DoYouAcceptTheEmployerAgreementOnBehalfOfPage _doYouAcceptTheEmployerAgreementOnBehalfOfPage;
 
+
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
@@ -88,7 +89,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
         public void AddOrganisationTypeDetails(OrgType orgType) => _doYouAcceptTheEmployerAgreementOnBehalfOfPage = AccountCreationStepsHelper.GoToSignAgreementPage(_searchForYourOrganisationPage.SearchForAnOrganisation(orgType).SelectYourOrganisation(orgType));
-
 
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
@@ -356,7 +356,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             OpenAccount(_objectContext.GetOrganisationName());
             OpenAccount(_objectContext.GetAdditionalOrganisationName(1));
         }
-
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
@@ -376,6 +375,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
 
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
-
     }
 }

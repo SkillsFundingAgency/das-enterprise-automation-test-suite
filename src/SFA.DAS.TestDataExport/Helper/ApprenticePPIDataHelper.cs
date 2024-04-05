@@ -2,7 +2,7 @@
 
 public class ApprenticePPIDataHelper
 {
-    public ApprenticePPIDataHelper(string[] tags, MailosaurUser user) : this(tags, GetCmadPPIData(IsApprenticeCommitments(tags), IsAslistedemployer(tags)), user)
+    public ApprenticePPIDataHelper(string[] tags, MailosaurUser user) : this(tags, GetPPIData(tags), user)
     {
 
     }
@@ -60,16 +60,27 @@ public class ApprenticePPIDataHelper
 
     public DateTime ApprenticeDob => new(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
 
-    private static (string nameprefix, DateTime dateOfBirth) GetCmadPPIData(bool isApprenticeCommitments, bool isAslistedemployer)
+    private static (string nameprefix, DateTime dateOfBirth) GetPPIData(string[] tags)
     {
-        string namePrefix = isApprenticeCommitments && isAslistedemployer ? $"CMAD_LE_" : isApprenticeCommitments ? $"CMAD_" : string.Empty;
-
         DateTime dob = new(RandomDataGenerator.GenerateRandomDobYear(), RandomDataGenerator.GenerateRandomMonth(), RandomDataGenerator.GenerateRandomDateOfMonth());
 
-        return (namePrefix, dob);
+        return (GetNamePrefixPPIData(tags), dob);
+    }
+
+    private static string GetNamePrefixPPIData(string[] tags) 
+    {
+        if (IsApprenticeCommitments(tags)) return $"CMAD_";
+
+        if (IsApprenticeCommitments(tags) && IsAslistedemployer(tags)) return $"CMAD_LE_";
+
+        if (IsEarlyConnectStudent(tags)) return $"EC_";
+
+        return string.Empty;
     }
 
     private static bool IsApprenticeCommitments(string[] tags) => tags.Contains("apprenticecommitments");
+
+    private static bool IsEarlyConnectStudent(string[] tags) => tags.Contains("earlyconnectstudent");
 
     private static bool IsAslistedemployer(string[] tags) => tags.IsAsListedEmployer();
 
