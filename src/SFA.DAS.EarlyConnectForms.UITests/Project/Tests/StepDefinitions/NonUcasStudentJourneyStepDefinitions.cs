@@ -1,4 +1,3 @@
-using Polly;
 using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
 using SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
@@ -23,6 +22,12 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToEarlyConnectHomePage();
             _stepsHelper.GoToEarlyConnectAdvisorPage();
             _stepsHelper.GoToEarlyConnectEmailPage();
+        }
+
+        [Given(@"I enter valid details")]
+        public void GivenIEnterValidDetails()
+        {
+            _stepsHelper.GoToCheckEmailCodePage();
 
         }
     }

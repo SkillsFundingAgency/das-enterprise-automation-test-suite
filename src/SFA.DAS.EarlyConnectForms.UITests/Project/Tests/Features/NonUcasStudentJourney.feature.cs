@@ -121,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("lepCode", lepCode);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Ucas Student journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 15
-   this.ScenarioInitialize(scenarioInfo);
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -132,6 +132,9 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 16
  testRunner.Given("I am on the landing page for a region", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 17
+ testRunner.And("I enter valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

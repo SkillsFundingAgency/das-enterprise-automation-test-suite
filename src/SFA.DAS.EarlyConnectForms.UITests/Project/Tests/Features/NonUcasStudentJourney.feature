@@ -13,7 +13,8 @@ Scenario Outline: Verify Non Ucas Student journey
 	  | E37000051 |
 
 Scenario Outline: Verify Ucas Student journey
-	Given I am on the landing page for a region 
+	Given I am on the landing page for a region
+	And I enter valid details
 
 	Examples: 
 	  | lepCode   |
