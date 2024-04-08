@@ -8,12 +8,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
     public class NonUcasStudentJourneyStepDefinitions(ScenarioContext context)
     {
         private readonly EarlyConnectStepsHelper _stepsHelper = new(context);
-        private GetApprenticeshipAdviserPage _getApprenticeshipAdviserPage;
 
         [Given(@"I am on the landing page for a region '([^']*)'")]
         public void GivenIAmOnTheLandingPageForARegion(string lepCode)
         {
-           // getApprenticeshipAdviserPage.ClickGetAnAdviserButton();
+           
         }
 
         [Given(@"I am on the landing page for a region")]
@@ -28,7 +27,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         public void GivenIEnterValidDetails()
         {
             _stepsHelper.GoToCheckEmailCodePage();
-
+            _stepsHelper.GoToCheckEmailCodePage1();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "What is your email address?";
         private static By EmailAddressField => By.CssSelector("#email");
-        protected override By ContinueButton => By.CssSelector("#fiu-app-menu-link-3");
+        protected override By ContinueButton => By.CssSelector("button[type='submit']");
         public EmailAddressPage EnterNewEmailAddress()
         {
             formCompletionHelper.EnterText(EmailAddressField, earlyConnectDataHelper.Email);

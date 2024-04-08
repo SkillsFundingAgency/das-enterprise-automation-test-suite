@@ -7,11 +7,9 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
     public class EarlyConnectVerifyLinks(ScenarioContext context, bool verifypage = true) : EarlyConnectBasePage(context, verifypage)
     {
         private static By Links => By.CssSelector("a");
-        private static By VideoLinks => By.CssSelector("a[data-module='videoPlayer']");
         protected override string PageTitle => "";
         public void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
-        public void VerifyVideoLinks() => VerifyLinks(VideoLinks, "data-videourl", (x) => x?.GetAttribute("id"));
-
+     
         public void VerifyLinks(By locator, string attributeName, Func<IWebElement, string> func)
         {
             var internalLinks = pageInteractionHelper.FindElements(locator);

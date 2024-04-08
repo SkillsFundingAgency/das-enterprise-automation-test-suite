@@ -24,5 +24,10 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new EmailAddressPage(context).EnterNewEmailAddress();
         }
+        public EmailAuthCodePage GoToCheckEmailCodePage1()
+        {
+            return new EmailAuthCodePage(context).EnterValidAuthCode();
+        }
+
     }
 }
