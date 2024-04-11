@@ -3,7 +3,6 @@ using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
@@ -28,7 +27,7 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             IsAzureExecution = TestPlatformFinder.IsAzureExecution;
 
-            if (IsAzureExecution) 
+            if (IsAzureExecution)
             {
                 ChromeWebDriver = Environment.GetEnvironmentVariable("CHROMEWEBDRIVER");
                 GeckoWebDriver = Environment.GetEnvironmentVariable("GECKOWEBDRIVER");
