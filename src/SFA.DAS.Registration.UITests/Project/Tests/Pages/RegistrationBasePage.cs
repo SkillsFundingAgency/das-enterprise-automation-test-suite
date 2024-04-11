@@ -5,17 +5,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public abstract class RegistrationBasePage : VerifyBasePage
+    public abstract class RegistrationBasePage(ScenarioContext context) : VerifyBasePage(context)
     {
         #region Helpers and Context
-        protected readonly RegistrationDataHelper registrationDataHelper;
+        protected readonly RegistrationDataHelper registrationDataHelper = context.Get<RegistrationDataHelper>();
         #endregion
 
         #region Locators
-        private static By SignOutLink => By.LinkText("Sign out");
-        #endregion
 
-        protected RegistrationBasePage(ScenarioContext context) : base(context) => registrationDataHelper = context.Get<RegistrationDataHelper>();
+        private static By SignOutLink => By.LinkText("Sign out");
+
+        #endregion
 
         public HomePage GoToHomePage() => new(context, true);
 
