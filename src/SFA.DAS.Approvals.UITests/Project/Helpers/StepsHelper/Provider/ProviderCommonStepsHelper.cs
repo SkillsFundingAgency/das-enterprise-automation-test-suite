@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
@@ -20,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         }
 
         public ProviderConfirmEmployerPage ChooseALevyEmployer() => GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer();
+        public SelectStandardPage ChooseANonLevyEmployer() => GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer().ConfirmEmployer();
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderConfig login, bool newTab)
         {

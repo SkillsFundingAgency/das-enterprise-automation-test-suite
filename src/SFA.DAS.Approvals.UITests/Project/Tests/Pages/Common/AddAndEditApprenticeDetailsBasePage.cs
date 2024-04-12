@@ -49,6 +49,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             ]);
         }
 
+        protected void EnterTrainingCost(string cost)
+        {
+            formCompletionHelper.EnterText(TrainingCost, cost);
+        }
+
         protected void EnterTrainingCostAndEmpReference(bool isFlexiPaymentPilotLearner = false)
         {
             if (!isFlexiPaymentPilotLearner) formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingCost);
@@ -98,6 +103,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+        }   
+        
+        protected void EnterApprenticeName(string firstName, string lastName)
+        {
+            formCompletionHelper.EnterText(FirstNameField, firstName);
+            formCompletionHelper.EnterText(LastNameField, lastName);
         }
 
         protected void EnterApprenticeEmail() => EnterApprenticeEmail(apprenticeDataHelper.ApprenticeEmail);
@@ -118,6 +129,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
+        } 
+        
+        protected void EnterDob(int day, int month, int year)
+        {
+            formCompletionHelper.EnterText(DateOfBirthDay, day);
+            formCompletionHelper.EnterText(DateOfBirthMonth, month);
+            formCompletionHelper.EnterText(DateOfBirthYear, year);
         }
 
         public void VerifyOverlappingTrainingDetailsError(bool displayStartDateError, bool displayEndDateError)
