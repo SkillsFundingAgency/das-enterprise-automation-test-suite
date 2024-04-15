@@ -8,6 +8,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
+public class MailosaurDeviceHelper(string apiToken)
+{
+    public string GetCode(string deviceId)
+    {
+        var mailosaur = new MailosaurClient(apiToken);
+
+        return "";
+    }
+}
+
 public class MailosaurApiHelper(ScenarioContext context)
 {
     private readonly FrameworkList<MailosaurApiConfig> mailosaurApiUsers = context.Get<FrameworkList<MailosaurApiConfig>>();

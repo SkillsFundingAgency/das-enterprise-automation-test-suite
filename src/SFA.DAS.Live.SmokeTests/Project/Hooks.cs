@@ -7,5 +7,7 @@ public class Hooks(ScenarioContext context)
     public void Navigate()
     {
         context.Get<TabHelper>().GoToUrl(UrlConfig.Live_Employer_BaseUrl);
+
+        context.Get<ObjectContext>().SetOrganisationName(context.Get<LiveEasUser>().OrganisationName);
     }
 }

@@ -1,5 +1,11 @@
+global using OpenQA.Selenium;
+global using SFA.DAS.ConfigurationBuilder;
+global using SFA.DAS.FrameworkHelpers;
+global using SFA.DAS.Live.SmokeTests.Project.Helpers;
+global using SFA.DAS.Login.Service.Project.Helpers;
+global using SFA.DAS.Registration.UITests.Project;
+global using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 global using SFA.DAS.UI.Framework;
+global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using TechTalk.SpecFlow;
-global using SFA.DAS.UI.Framework.TestSupport;
-global using OpenQA.Selenium;
