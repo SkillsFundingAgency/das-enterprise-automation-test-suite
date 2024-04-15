@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.ExistingUserAccount
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_Pro_07_ProviderAddsApprenticeValidationRules")]
-    public partial class AP_Pro_07_ProviderAddsApprenticeValidationRulesFeature
+    [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules")]
+    public partial class AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRulesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_Pro_07_ProviderAddsApprenticeValidationRules.feature"
+#line 1 "AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AP_Pro_07_ProviderAddsApprenticeValidationRules", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExistingUserAccount", "AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Pro_07_Provider Adds Apprentice Validation Rules")]
+        [NUnit.Framework.DescriptionAttribute("AP_E2E_EUA_06_Employer Adds Apprentice Details Validation Rules")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
-        public void AP_Pro_07_ProviderAddsApprenticeValidationRules()
+        [NUnit.Framework.CategoryAttribute("e2escenarios")]
+        public void AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
-                    "provideraddapprentice"};
+                    "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_07_Provider Adds Apprentice Validation Rules", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_EUA_06_Employer Adds Apprentice Details Validation Rules", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,9 +97,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("Provider selects a NonLevy Employer and Standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+#line 8
+ testRunner.When("Employer adds a new cohort and goes to Add Apprentice Details Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Category",
                             "ULN",
                             "LastName",
@@ -110,29 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "EndDate",
                             "TotalPrice",
                             "ErrorMessage"});
-                table5.AddRow(new string[] {
-                            "ULN < 10",
-                            "171649120",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "You must enter a 10-digit unique learner number"});
-                table5.AddRow(new string[] {
-                            "ULN-9999999999",
-                            "9999999999",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "valid",
-                            "You must enter a valid unique learner number"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "EmailAddress",
                             "valid",
                             "valid",
@@ -143,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Please enter a valid email address"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "DateOfBirth < 15",
                             "valid",
                             "valid",
@@ -154,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "The apprentice must be at least 15 years old at the start of their training"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "DateOfBirth > 115",
                             "valid",
                             "valid",
@@ -165,7 +146,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "The apprentice must be younger than 115 years old at the start of their training"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "StartDate",
                             "valid",
                             "valid",
@@ -176,7 +157,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "The start date must not be earlier than May 2017"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "EndDate",
                             "valid",
                             "valid",
@@ -187,7 +168,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2021-02-01",
                             "valid",
                             "The end date must not be on or before the start date"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "TotalPriceWithPence",
                             "valid",
                             "valid",
@@ -199,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "19.23",
                             "The value \'19.23\' is not valid for Total agreed apprenticeship price (excluding V" +
                                 "AT)."});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "TotalPrice > 100k",
                             "valid",
                             "valid",
@@ -210,7 +191,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "200000",
                             "The total cost must be £100,000 or less"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "FirstNameEmpty",
                             "valid",
                             "valid",
@@ -221,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "First name must be entered"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "LastNameEmpty",
                             "valid",
                             "",
@@ -232,7 +213,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "Last name must be entered"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "FirstName > 100",
                             "valid",
                             "valid",
@@ -244,7 +225,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "You must enter a first name that\'s no longer than 100 characters"});
-                table5.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "LastName > 100",
                             "valid",
                             "LastNameLastNameLastNameFamily NameLastNameLastNameLastNameLastName LastNameLastN" +
@@ -256,8 +237,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "valid",
                             "valid",
                             "You must enter a last name that\'s no longer than 100 characters"});
-#line 8
- testRunner.Then("Provider can an apprentice details from table below", ((string)(null)), table5, "Then ");
+#line 9
+ testRunner.Then("Employer can an apprentice details from table below", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

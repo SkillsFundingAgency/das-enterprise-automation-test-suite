@@ -1,14 +1,13 @@
-﻿Feature: AP_Pro_07_ProviderAddsApprenticeValidationRules
+﻿Feature: AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules
 
 @approvals
 @regression
-@provideraddapprentice
-Scenario:AP_Pro_07_Provider Adds Apprentice Validation Rules
-	Given Provider selects a NonLevy Employer and Standard
-	Then Provider can an apprentice details from table below
+@e2escenarios
+Scenario:AP_E2E_EUA_06_Employer Adds Apprentice Details Validation Rules
+	Given Employer navigates to Apprentices home page
+	When Employer adds a new cohort and goes to Add Apprentice Details Page
+	Then Employer can an apprentice details from table below
  | Category					| ULN		| LastName 	 | FirstName  | DateOfBirth | EmailAddress	| StartDate   | EndDate		| TotalPrice | ErrorMessage |
- | ULN < 10				    | 171649120 | valid      | valid      | valid       | valid			| valid		  | valid		| valid      | You must enter a 10-digit unique learner number |
- | ULN-9999999999			| 9999999999| valid      | valid      | valid       | valid			| valid		  | valid		| valid      | You must enter a valid unique learner number |
  | EmailAddress 			| valid		| valid      | valid      | valid       | X@Y			| valid		  | valid		| valid      | Please enter a valid email address | 
  | DateOfBirth < 15 		| valid		| valid      | valid      | 2021-05-09  | valid			| valid		  | valid		| valid      | The apprentice must be at least 15 years old at the start of their training |  
  | DateOfBirth > 115		| valid		| valid      | valid      | 1904-05-01  | valid			| valid		  | valid		| valid      | The apprentice must be younger than 115 years old at the start of their training |

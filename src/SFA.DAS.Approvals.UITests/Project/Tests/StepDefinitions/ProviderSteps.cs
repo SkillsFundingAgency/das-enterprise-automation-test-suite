@@ -168,7 +168,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider can no longer approve the draft cohort")]
         public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerCommonStepsHelper.ViewCurrentCohortDetails().ValidateProviderCannotApproveCohort();
 
-        [Then(@"Provider add an apprentice uses details from below for individual apprentices")]
+        [Then(@"Provider can an apprentice details from table below")]
         public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateIndividualApprentices(Table table)
         {
             var apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();

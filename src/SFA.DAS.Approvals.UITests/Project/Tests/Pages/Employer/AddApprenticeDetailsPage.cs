@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -9,6 +11,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By DeliveryModelLabel => By.Id("delivery-model-label");
+        protected static By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
+        protected static By ErrorSummaryTitle => By.Id("error-summary-title");
 
         private static By DeliveryModelType => By.Id("delivery-model-value");
 
@@ -61,6 +65,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
 
         public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
+
+        internal AddApprenticeDetailsPage SubmitInvalidDetailsAndCheckValidation(MappedApprenticeDetails apprenticeDetails)
+        {
+            EnterApprenticeName(apprenticeDetails.FirstName, apprenticeDetails.LastName);
+            EnterApprenticeEmail(apprenticeDetails.EmailAddress);
+
+            EnterDob(apprenticeDetails.DateOfBirth.Day, apprenticeDetails.DateOfBirth.Month, apprenticeDetails.DateOfBirth.Year);
+
+            EnterStartDate(apprenticeDetails.StartDate);
+            EnterEndDate(apprenticeDetails.EndDate);
+            EnterTrainingCost(apprenticeDetails.TotalPrice);
+
+            SaveAndContinue();
+
+            return new AddApprenticeDetailsPage(context);
+        }
+
+        internal AddApprenticeDetailsPage ValidateExpectedError(MappedApprenticeDetails apprenticeDetails)
+        {
+            VerifyPage(ErrorSummaryTitle, "There is a problem");
+            VerifyPage(ErrorSummaryText, apprenticeDetails.ErrorMessage);
+
+            return new AddApprenticeDetailsPage(context);
+        }
 
         private void DeliveryModelAssertions(string delModelType)
         {
