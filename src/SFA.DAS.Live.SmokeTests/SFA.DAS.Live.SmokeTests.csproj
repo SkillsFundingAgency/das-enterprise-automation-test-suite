@@ -42,6 +42,9 @@
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
+		<None Update="appsettings.Project.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>
