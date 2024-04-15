@@ -11,6 +11,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
+        [Then(@"Provider can make the application shared")]
+        public void ThenProviderCanMakeTheApplicationShared() => _providerStepsHelper.ApplicantShared();
+
         [Then(@"Provider can make the application unsuccessful")]
         public void ThenProviderCanMakeTheApplicationUnsuccessful() => _providerStepsHelper.ApplicantUnsucessful();
 
