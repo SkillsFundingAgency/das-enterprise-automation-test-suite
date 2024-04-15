@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -87,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Employer adds a new cohort and goes to Add Apprentice Details Page")]
-        public void EmployerAddsSingleApprenticesToNewCohort() => _addApprenticeDetailsPage = _employerStepsHelper.EmployerGoToAdddApprenticeDetailsFromHomePage();
+        public void EmployerAddsSingleApprenticeToNewCohort() => _addApprenticeDetailsPage = _employerStepsHelper.EmployerGoToAdddApprenticeDetailsFromHomePage();
 
         [Then(@"Employer can an apprentice details from table below")]
         public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateIndividualApprentices(Table table)
@@ -129,8 +128,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             MappedApprenticeDetails mappedApprenticeRecord = new(apprenticeRecord);
 
-             _addApprenticeDetailsPage.SubmitInvalidDetailsAndCheckValidation(mappedApprenticeRecord)
-                .ValidateExpectedError(mappedApprenticeRecord);
+            _addApprenticeDetailsPage.SubmitInvalidDetailsAndCheckValidation(mappedApprenticeRecord)
+               .ValidateExpectedError(mappedApprenticeRecord);
 
         }
 

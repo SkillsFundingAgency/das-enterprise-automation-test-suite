@@ -25,9 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterUln(apprenticeDetails.ULN);
             EnterApprenticeName(apprenticeDetails.FirstName, apprenticeDetails.LastName);
             EnterApprenticeEmail(apprenticeDetails.EmailAddress);
-
             EnterDob(apprenticeDetails.DateOfBirth.Day, apprenticeDetails.DateOfBirth.Month, apprenticeDetails.DateOfBirth.Year);
-
             EnterStartDate(apprenticeDetails.StartDate);
             EnterEndDate(apprenticeDetails.EndDate);
             EnterTrainingCost(apprenticeDetails.TotalPrice);
