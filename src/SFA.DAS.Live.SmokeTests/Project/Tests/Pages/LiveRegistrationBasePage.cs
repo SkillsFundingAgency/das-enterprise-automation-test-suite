@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.Live.SmokeTests.Project.Tests.Pages;
+﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+
+namespace SFA.DAS.Live.SmokeTests.Project.Tests.Pages;
 
 public abstract class LiveRegistrationBasePage : VerifyBasePage
 {
@@ -52,7 +54,7 @@ public class EnterYourEmailPage(ScenarioContext context) : LiveRegistrationBaseP
 
     public EnterYourPasswordPage EnterUsername()
     {
-        formCompletionHelper.EnterText(EmailField, liveEasUser.Username);
+        formCompletionHelper.EnterPpi(EmailField, liveEasUser.Username);
 
         Continue();
 
@@ -72,7 +74,7 @@ public class EnterYourPasswordPage(ScenarioContext context) : LiveRegistrationBa
 
     public EnterYourSecurityCodePage EnterPassword()
     {
-        formCompletionHelper.EnterText(PasswordField, liveEasUser.Password);
+        formCompletionHelper.EnterPpi(PasswordField, liveEasUser.Password);
 
         Continue();
 
@@ -93,9 +95,13 @@ public class EnterYourSecurityCodePage(ScenarioContext context) : LiveRegistrati
 
     public HomePage EnterCode()
     {
-        var code = liveEasUser.Password;
+        var deviceConfig = context.Get<MailasourDeviceConfig>();
 
-        formCompletionHelper.EnterText(CodeField, code);
+        var helper = new MailosaurDeviceHelper(deviceConfig.AccountApiToken);
+
+        var code = helper.GetCode(deviceConfig.LiveEasUserDeviceId);
+
+        formCompletionHelper.EnterPpi(CodeField, code);
 
         Continue();
 
