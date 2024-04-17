@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             VerifyPage();
         }
-        protected override string PageTitle => $"{rAAV2DataHelper.CandidateFullName}'s application {_status} with employer.";
+        protected override string PageTitle => $"{rAAV2DataHelper.CandidateFullName}'s application {_status} with employer";
         protected override string AccessibilityPageTitle => "Candidate application made page";
 
         public class ProviderApplicationSharePage(ScenarioContext context) : ProviderShareApplicationNotificationBasePage(context, "shared")
