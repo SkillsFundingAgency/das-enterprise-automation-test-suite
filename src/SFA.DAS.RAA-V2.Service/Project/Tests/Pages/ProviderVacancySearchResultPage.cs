@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override string PageTitle => "Your vacancies";
 
         private static By Applicant => By.CssSelector("tbody tr:nth-child(1) td:nth-child(1)");
-
+        private static By ShareMultipleApplicationsWithEmployerLink => By.CssSelector("#main-content > div:nth-child(7) > p:nth-child(1) > a");
         public ManageApplicantPage NavigateToManageApplicant()
         {
             GoToVacancyManagePage();
@@ -24,6 +24,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(linkTest);
 
             return new ViewVacancyPage(context);
+        }
+        public ManageShareApplicationsPage NavigateToManageApplicants()
+        {
+            GoToVacancyManagePage();
+            formCompletionHelper.Click(ShareMultipleApplicationsWithEmployerLink);
+            return new ManageShareApplicationsPage(context);
         }
     }
 }

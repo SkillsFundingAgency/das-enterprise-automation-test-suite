@@ -13,6 +13,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public static void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantSucessful().ConfirmSuccessful();
+        public static void MultiShareApplicants(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+           => providerVacancySearchResultPage.NavigateToManageApplicants().ProviderShareApplicantWithEmployer().ConfirmSharing(); //.ConfirmSharing();  
         public static void ApplicantShared(ProviderVacancySearchResultPage providerVacancySearchResultPage)
            => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderShareApplicantWithEmployer().ConfirmSharing();
 

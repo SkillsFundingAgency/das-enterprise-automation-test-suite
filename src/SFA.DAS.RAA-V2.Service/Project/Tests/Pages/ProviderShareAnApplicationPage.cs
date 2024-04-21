@@ -6,7 +6,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class ProviderDoYouWantToShareAnApplicationBasePage : Raav2BasePage
     {
-  
         protected override string PageTitle => "Share an application";
         private static By ConfirmButton => By.CssSelector("#share-applications-confirm");
         private readonly string _status;
