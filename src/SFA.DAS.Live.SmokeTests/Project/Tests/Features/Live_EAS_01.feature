@@ -4,8 +4,8 @@
 @livesmoketest
 Scenario: Live_EAS_01 Login for Existing Levy Account and Navigation
 	Given the Employer logins using existing Levy Account
-	#Then the standard header should be displayed
-	#And the help widget can be accessed
+	Then the standard header should be displayed
+	And the help widget can be accessed
 	Then Apprentices link should direct user to Apprentices page
 	And Your apprenticeship adverts link should direct user to Create an advert page
 	And Your training providers link should direct user to Your training providers page

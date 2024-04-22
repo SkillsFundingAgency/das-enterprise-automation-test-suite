@@ -22,12 +22,6 @@ public class Steps(ScenarioContext context)
         _homePage.VerifyHeaders();
     }
 
-    [Then(@"Employer is able to navigate to all the link under Settings")]
-    public void EmployerIsAbleToNavigateToAllTheLinkUnderSettings()
-    {
-        _homePage.VerifyHelpLauncher();
-    }
-
     [Then(@"the help widget can be accessed")]
     public void TheHelpWidgetCanBeAccessed()
     {
