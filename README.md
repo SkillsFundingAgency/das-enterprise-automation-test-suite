@@ -5,9 +5,11 @@
 This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core 8.0) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Visual Studio (2022 with V17.8.3 or higher including **Azure sdk** package). Please check and upgrade your IDE if this is not the case.
-2. Download appropriate 'Dot Net Core 8.0.0' or [latest 8.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/8.0") version matching Visual Studio version (If its not automatically installed as part of VS2022 installation / upgrade). And make sure the sysytem has only one instance of Dotnet core.<br />NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
-3. Browsers (Chrome, Firefox, Edge)
+1. Download and install 'Visual Studio 2022'  (V17.9.3 or higher including **Azure sdk** package). Please update visual studio if necessary.
+2. Download and install 'Dot Net Core 8.0.0' or [latest 8.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) version matching Visual Studio version (If its not automatically installed as part of VS2022 installation / upgrade). And make sure the system has only one instance of Dotnet core.<br />
+3. Download and install 'Specflow Extension for Visual Studio' [latest version v2022.1.93 (.NET 8 support)](https://github.com/SpecFlowOSS/SpecFlow.VS/releases)
+4. Download and install 'Browsers. (Chrome, Firefox, Edge) and update it if necessary
+5. Clone the repository under ```c:\das-enterprise-automation-test-suite```. Please create the folder if necessary.
 
 ## Set Up (UI):
 All other dependencies (ex: Selenium, drivers etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.<br /><br />

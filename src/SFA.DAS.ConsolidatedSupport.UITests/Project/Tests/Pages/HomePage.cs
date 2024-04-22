@@ -9,10 +9,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         protected override string PageTitle { get; }
 
-        private static By SearchIcon => By.CssSelector("[data-test-id='header-toolbar-search-button'] svg");
-
-        private static By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
-
         private static By BrandingHeader => By.CssSelector("#branding_header");
 
         private static By Indicators => By.CssSelector(".indicators");
@@ -39,12 +35,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public TicketPage SearchTicket()
         {
-            pageInteractionHelper.InvokeAction(() =>
-            {
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchIcon));
-                formCompletionHelper.EnterText(SearchInput, objectContext.GetTicketId());
-                formCompletionHelper.SendKeys(SearchInput, Keys.Enter);
-            });
+            NavigateTo();
 
             return new TicketPage(context);
         }

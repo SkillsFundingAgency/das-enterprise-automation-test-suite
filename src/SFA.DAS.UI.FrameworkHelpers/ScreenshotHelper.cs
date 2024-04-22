@@ -9,19 +9,21 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 
 public class ScreenshotHelper
 {
-    public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage, bool throwException)
+    public static string TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool isFullpage, bool throwException)
     {
-        string screenshotPath, imageName;
-
-        (screenshotPath, imageName) = GetScreenShotDetails(screenshotsDirectory, scenarioTitle);
+        (string screenshotPath, string imageName) = new WindowsFileHelper().GetFileDetails(screenshotsDirectory, $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace());
 
         if (isFullpage) TakeFullPageScreenShot(webDriver, imageName, screenshotPath, throwException);
+
         else TakeNormalScreenShot(webDriver, imageName, screenshotPath, throwException);
+
+        return imageName;
     }
 
     private static void TakeFullPageScreenShot(IWebDriver webDriver, string imageName, string screenshotPath, bool throwException)
     {
-        var html2canvasJs = File.ReadAllText($"{Path.Combine(FileHelper.GetAssemblyDirectory(), "html2canvas.js")}");
+        var html2canvasJs = File.ReadAllText(FileHelper.GetJs("html2canvas"));
+
         var generateScreenshotJS = @"function genScreenshot () { var canvasImgContentDecoded; html2canvas(document.body).then(function(canvas) { window.canvasImgContentDecoded = canvas.toDataURL(""image/png""); }); } genScreenshot();";
 
         try
@@ -70,14 +72,5 @@ public class ScreenshotHelper
     }
 
     private static void AddTestAttachment(string screenshotPath, string imageName) => TestContext.AddTestAttachment(screenshotPath, imageName);
-
-    private static (string screenshotPath, string imageName) GetScreenShotDetails(string screenshotsDirectory, string scenarioTitle)
-    {
-        var imageName = $"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png".RemoveSpace();
-
-        (string screenshotPath, string fileName) = new WindowsFileHelper().GetFileDetails(screenshotsDirectory, imageName);
-
-        return (screenshotPath, fileName);
-    }
 
 }

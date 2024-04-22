@@ -49,6 +49,10 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
     {
        return networkHubPage.AccessProfileSettings().AccessYourAmbassadorProfile();
     }
+    protected static LeavingTheNetworkPage AccessLeavingNetwork(NetworkHubPage networkHubPage)
+    {
+        return networkHubPage.AccessProfileSettings().AccessLeaveTheNetwork();
+    }
 
     protected static void UpdateAmbassadorProfile(YourAmbassadorProfilePage yourAmbassadorProfilePage)
     {

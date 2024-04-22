@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Polly;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
@@ -15,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderBulkUploadCsvFilePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
+        protected override By PageHeader => By.CssSelector(".govuk-label--xl");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
         private static By ChooseFileButton => By.Id("attachment");
         private static By UploadFileButton => By.Id("submit-upload-apprentices");
@@ -161,7 +163,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private BulkUploadApprenticeDetails SetApprenticeDetails(int courseCode, string cohortRef)
         {
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper([""]), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            var datahelper = GetApprenticeDataHelper();
 
             string agreementId;
 
@@ -202,7 +204,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private BulkUploadApprenticeDetails SetApprenticeDetailsForLegalEntity(int courseCode, string cohortRef, string email, string name)
         {
-            var datahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper([""]), objectContext, context.Get<CommitmentsSqlDataHelper>());
+            var datahelper = GetApprenticeDataHelper();
 
             string agreementId;
             var sqlHelper = context.Get<AccountsDbSqlHelper>();
@@ -237,5 +239,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 EmailAddress = datahelper.ApprenticeEmail
             };
         }
+
+        private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper([""], context.Get<MailosaurUser>()), objectContext, context.Get<CommitmentsSqlDataHelper>());
     }
 }

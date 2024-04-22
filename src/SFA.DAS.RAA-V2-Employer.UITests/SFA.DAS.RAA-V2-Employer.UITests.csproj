@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>SFA.DAS.RAA_V2_Employer.UITests</RootNamespace>
-	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Compile>
   </ItemGroup>
 
@@ -18,7 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
@@ -26,26 +27,23 @@
   <ItemGroup>
 	<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
-        <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+    <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 	<ProjectReference Include="..\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.RAA-V2-QA.UITests\SFA.DAS.RAA-V2-QA.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
 	<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
-        <ProjectReference Include="..\SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj" />
+    <ProjectReference Include="..\SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj" />
 	<ProjectReference Include="..\SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.Environment.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </None>
-    <None Update="appsettings.Project.BrowserStack.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="appsettings.Project.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

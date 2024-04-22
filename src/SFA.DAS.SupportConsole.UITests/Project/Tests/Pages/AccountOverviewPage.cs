@@ -13,10 +13,10 @@ public class AccountOverviewPage : SupportConsoleBasePage
 
     public AccountOverviewPage(ScenarioContext context) : base(context)
     {
-        RefreshPage(); //Doing this to refresh the page as the Header dissappears at times - known issue
+        RefreshAccountOverviewPage(); //Doing this to refresh the page as the Header dissappears at times - known issue
 
         MultipleVerifyPage([
-            () => VerifyPage(pageInteractionHelper.RefreshPage),
+            () => VerifyPage(RefreshPage),
             () => VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails)
         ]);
     }
@@ -33,5 +33,5 @@ public class AccountOverviewPage : SupportConsoleBasePage
         return new(context);
     }
 
-    private void RefreshPage() => formCompletionHelper.Click(OrganisationsMenuLink);
+    private void RefreshAccountOverviewPage() => formCompletionHelper.Click(OrganisationsMenuLink);
 }

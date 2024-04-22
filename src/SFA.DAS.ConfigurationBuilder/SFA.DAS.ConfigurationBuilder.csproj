@@ -23,8 +23,8 @@
 	</ItemGroup>
   
   <ItemGroup>
-    <None Update="appsettings.DbConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Update="appsettings.Config.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

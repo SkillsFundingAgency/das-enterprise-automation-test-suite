@@ -21,7 +21,9 @@ namespace SFA.DAS.FAA.UITests.Project
             var pageInteractionHelper = context.Get<PageInteractionHelper>();
 
             context.Set(new VacancyTitleDatahelper(isCloneVacancy));
-            context.Set(new FAADataHelper());
+
+            context.Set(new FAADataHelper(context.Get<MailosaurUser>()));
+
             context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));
         }
 

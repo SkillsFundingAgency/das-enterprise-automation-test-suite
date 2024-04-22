@@ -3,6 +3,7 @@ using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.TestDataExport.Helper;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -11,16 +12,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
     [Binding]
     public class AfterScenarioHooks(ScenarioContext context)
     {
-        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
-
         [AfterScenario(Order = 44)]
         public void AddIncentiveApplication()
         {
-            if (context.ScenarioInfo.Tags.Contains("addincentiveapplication"))
-            {
-                var accountId = _objectContext.GetDBAccountId();
+            if (!context.ScenarioInfo.Tags.Contains("addincentiveapplication")) return;
 
-                var orgName = _objectContext.GetOrganisationName();
+            context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => 
+            {
+                var objectContext = context.Get<ObjectContext>();
+
+                var accountId = objectContext.GetDBAccountId();
+
+                var orgName = objectContext.GetOrganisationName();
 
                 var accountLegalEntityId = context.Get<RegistrationSqlDataHelper>().GetAccountLegalEntityId(accountId, orgName);
 
@@ -30,7 +33,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                 {
                     AccountId = accountId,
                     AccountLegalEntityId = accountLegalEntityId,
-                    SubmittedByEmail = _objectContext.GetRegisteredEmail(),
+                    SubmittedByEmail = objectContext.GetRegisteredEmail(),
                     SubmittedByName = orgName,
                     ApprenticeshipId = apprenticeshipid,
                     Dob = dob,
@@ -43,7 +46,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
                 };
 
                 context.Get<EISqlHelper>().AddIncentiveApplication(data);
-            }
+            });
         }
     }
 }

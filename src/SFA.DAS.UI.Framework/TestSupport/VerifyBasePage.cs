@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport.AnalyzeHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -35,6 +36,8 @@ public abstract class VerifyBasePage : InterimBasePage
         if (CanCaptureUrl()) objectContext.SetAuthUrl(GetUrl());
     }
 
+    protected void RefreshPage() => pageInteractionHelper.RefreshPage();
+
     protected bool IsAccessibilityTesting() => frameworkConfig.IsAccessibilityTesting;
 
     protected bool MultipleVerifyPage(List<Func<bool>> testDelegate)
@@ -67,7 +70,7 @@ public abstract class VerifyBasePage : InterimBasePage
         return result.Item1 ? result.Item1 : throw new Exception(MessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
     }, null));
 
-    protected bool VerifyPageAfterRefresh(By locator, string text) => VerifyPage(() => VerifyElement(locator, text, pageInteractionHelper.RefreshPage));
+    protected bool VerifyPageAfterRefresh(By locator, string text) => VerifyPage(() => VerifyElement(locator, text, RefreshPage));
 
     protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
@@ -137,7 +140,9 @@ public abstract class VerifyBasePage : InterimBasePage
         {
             string counter = _screenShotTitleGenerator.GetTitle();
 
-            ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), objectContext.GetDirectory(), $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
+            var fileName = ScreenshotHelper.TakeScreenShot(context.GetWebDriver(), objectContext.GetDirectory(), $"{counter}{(CaptureUrl ? string.Empty : $"_{PageTitle}_{counter}_AuthStep")}", CanTakeFullScreenShot(), false);
+
+            objectContext.SetDebugInformation($"Ref to screenshot - {fileName}");
         }
     }
 }

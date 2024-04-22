@@ -7,7 +7,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class ApprenticeHomePageNegativeMatch : ApprenticeCommitmentsBasePage
     {
         protected override string PageTitle => $"Check your details";
-        private static By InsetText => By.CssSelector(".govuk-inset-text");
         private static By FirstName => By.XPath("(//td[@class='govuk-table__cell'])[1]");
         private static By LastName => By.XPath("(//td[@class='govuk-table__cell'])[2]");
         private static By DOB => By.XPath("(//td[@class='govuk-table__cell'])[3]");
@@ -32,7 +31,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private void AssertNotificationBanner()
         {
             VerifyNotificationBannerHeader("There seems to be a problem, we cannot find your apprenticeship.");
-            VerifyNotificationBannerContent("Check your name and date of birth details. If they are incorrect, please update your details.");
+            VerifyNotificationBannerContent("Check your name and date of birth. If these are incorrect, please update your details.");
         }
 
         private void VerifyPageContent()
@@ -40,7 +39,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             pageInteractionHelper.VerifyText(FirstName, objectContext.GetFirstName());
             pageInteractionHelper.VerifyText(LastName, objectContext.GetLastName());
             pageInteractionHelper.VerifyText(DOB, objectContext.GetDateOfBirth().ToString("d MMM yyyy"));
-            pageInteractionHelper.VerifyText(InsetText, "Contact your employer or training provider if your details are correct and we cannot find your apprenticeship.");
+            VerifyNotificationInsetContent("If your details are correct and we cannot find your apprenticeship, contact your employer or training provider. You can still join the Apprenticeship Ambassador Network.");
         }
     }
 }

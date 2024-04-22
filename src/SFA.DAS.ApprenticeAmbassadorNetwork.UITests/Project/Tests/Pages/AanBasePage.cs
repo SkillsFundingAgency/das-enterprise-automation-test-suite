@@ -10,7 +10,7 @@ public abstract class AanBasePage : VerifyBasePage
 
     protected static By EventTag => By.CssSelector(".govuk-tag.app-tag");
 
-    protected static string DateFormat => Configurator.IsVstsExecution ? "MM-dd-yyyy" : "dd-MM-yyyy";
+    protected static string DateFormat => Configurator.IsAzureExecution ? "MM-dd-yyyy" : "dd-MM-yyyy";
 
     public AanBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {

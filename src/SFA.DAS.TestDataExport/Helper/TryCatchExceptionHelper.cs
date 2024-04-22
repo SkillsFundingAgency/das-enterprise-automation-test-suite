@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.TestDataExport.Helper;
+﻿using System.Threading.Tasks;
+
+namespace SFA.DAS.TestDataExport.Helper;
 
 public class TryCatchExceptionHelper(ObjectContext objectContext)
 {
@@ -10,7 +12,21 @@ public class TryCatchExceptionHelper(ObjectContext objectContext)
         }
         catch (Exception ex)
         {
-            objectContext.SetAfterScenarioException(ex);
+            SetAfterScenarioException(ex);
         }
     }
+
+    public async void AfterScenarioException(Task task)
+    {
+        try
+        {
+            await task;
+        }
+        catch (Exception ex)
+        {
+            SetAfterScenarioException(ex);
+        }
+    }
+
+    private void SetAfterScenarioException(Exception ex) => objectContext.SetAfterScenarioException(ex);
 }

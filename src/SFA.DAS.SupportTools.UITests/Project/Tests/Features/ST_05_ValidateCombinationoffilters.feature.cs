@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Status",
                             "TotalRecords"});
                 table5.AddRow(new string[] {
-                            "ESFA LTD",
+                            "SCIENCE RESEARCH LIMITED",
                             "EDUC8 TRAINING (ENGLAND) LIMITED",
                             "",
                             "",

@@ -2,12 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
 
-public abstract partial class WebDriverSetupBase(ScenarioContext context)
+public partial class WebDriverSetupBase(ScenarioContext context)
 {
     protected readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -44,7 +43,9 @@ public abstract partial class WebDriverSetupBase(ScenarioContext context)
 
     private string FindLocalDriverServiceLocation(string executableName)
     {
-        string[] file = Directory.GetFiles(ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers"), executableName);
+        string replacedPath = ProjectNameRegexHelper.ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers");
+
+        string[] file = Directory.GetFiles(replacedPath, executableName);
 
         return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
     }
@@ -61,6 +62,4 @@ public abstract partial class WebDriverSetupBase(ScenarioContext context)
         };
     }
 
-    [GeneratedRegex("SFA.DAS.[A-Za-z]*.[A-Z0-9a-z]*Tests")]
-    private static partial Regex ProjectNameRegex();
 }

@@ -2,19 +2,19 @@
 
 public class ApprenticePPIDataHelper
 {
-    public ApprenticePPIDataHelper(string[] tags) : this(tags, GetCmadPPIData(IsApprenticeCommitments(tags), IsAslistedemployer(tags)))
+    public ApprenticePPIDataHelper(string[] tags, MailosaurUser user) : this(tags, GetPPIData(tags), user)
     {
 
     }
 
-    public ApprenticePPIDataHelper(string[] tags, DateTime dateOfBirth) : this(tags, ("FLP_", dateOfBirth))
+    public ApprenticePPIDataHelper(string[] tags, DateTime dateOfBirth, MailosaurUser user) : this(tags, ("FLP_", dateOfBirth), user)
     {
 
     }
 
-    private ApprenticePPIDataHelper(string[] tags, (string nameprefix, DateTime dateOfBirth) value) => ApprenticeEmail = CreatePPIData(tags, value);
+    private ApprenticePPIDataHelper(string[] tags, (string nameprefix, DateTime dateOfBirth) value, MailosaurUser user) => ApprenticeEmail = CreatePPIData(tags, value, user);
 
-    private string CreatePPIData(string[] tags, (string nameprefix, DateTime dateOfBirth) value)
+    private string CreatePPIData(string[] tags, (string nameprefix, DateTime dateOfBirth) value, MailosaurUser user)
     {
         var datetime = DateTime.UtcNow;
 
@@ -26,8 +26,8 @@ public class ApprenticePPIDataHelper
         var firstName = randomPersonNameHelper.FirstName;
         var lastName = randomPersonNameHelper.LastName;
 
-        ApprenticeFirstname = $"{value.nameprefix}F_{firstName}_{seconds}";
-        ApprenticeLastname = $"{value.nameprefix}L_{lastName}_{nseconds}";
+        ApprenticeFirstname = $"{value.nameprefix}{firstName}_{seconds}";
+        ApprenticeLastname = $"{lastName}_{nseconds}";
 
         DateOfBirthDay = value.dateOfBirth.Day;
         DateOfBirthMonth = value.dateOfBirth.Month;
@@ -35,9 +35,13 @@ public class ApprenticePPIDataHelper
 
         string emailPrefix = IsPerfTest(tags) ? "PerfTest_" : string.Empty;
 
-        string emaildomain = IsPerfTest(tags) ? "email.com" : (IsApprenticeCommitments(tags) || IsFlexiPayments(tags)) ? "mailinator.com" : "email.com";
+        string _emailDomain = IsPerfTest(tags) ? "email.com" : user.DomainName;
 
-        return $"{emailPrefix}{ApprenticeFirstname}_{ApprenticeLastname}@{emaildomain}";
+        var email = $"{emailPrefix}{ApprenticeFirstname}_{ApprenticeLastname}@{_emailDomain}";
+
+        if (email.Contains(user.DomainName)) user.AddToEmailList(email);
+
+        return email;
     }
 
     public string ApprenticeEmail { get; private set; }
@@ -56,17 +60,29 @@ public class ApprenticePPIDataHelper
 
     public DateTime ApprenticeDob => new(DateOfBirthYear, DateOfBirthMonth, DateOfBirthDay);
 
-    private static (string nameprefix, DateTime dateOfBirth) GetCmadPPIData(bool isApprenticeCommitments, bool isAslistedemployer)
+    private static (string nameprefix, DateTime dateOfBirth) GetPPIData(string[] tags)
     {
-        string namePrefix = isApprenticeCommitments && isAslistedemployer ? $"CMAD_LE_" : isApprenticeCommitments ? $"CMAD_" : string.Empty;
-
         DateTime dob = new(RandomDataGenerator.GenerateRandomDobYear(), RandomDataGenerator.GenerateRandomMonth(), RandomDataGenerator.GenerateRandomDateOfMonth());
 
-        return (namePrefix, dob);
+        return (GetNamePrefixPPIData(tags), dob);
+    }
+
+    private static string GetNamePrefixPPIData(string[] tags) 
+    {
+        if (IsApprenticeCommitments(tags)) return $"CMAD_";
+
+        if (IsApprenticeCommitments(tags) && IsAslistedemployer(tags)) return $"CMAD_LE_";
+
+        if (IsEarlyConnectStudent(tags)) return $"EC_";
+
+        return string.Empty;
     }
 
     private static bool IsApprenticeCommitments(string[] tags) => tags.Contains("apprenticecommitments");
+
+    private static bool IsEarlyConnectStudent(string[] tags) => tags.Contains("earlyconnectstudent");
+
     private static bool IsAslistedemployer(string[] tags) => tags.IsAsListedEmployer();
-    private static bool IsFlexiPayments(string[] tags) => tags.Contains("flexi-payments");
+
     private static bool IsPerfTest(string[] tags) => tags.Contains("perftest");
 }

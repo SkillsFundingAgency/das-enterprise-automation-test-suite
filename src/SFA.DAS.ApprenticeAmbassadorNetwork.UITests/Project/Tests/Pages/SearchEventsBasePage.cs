@@ -5,7 +5,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
     public abstract class SearchEventsBasePage(ScenarioContext context) : AanBasePage(context)
     {
         private static string Published => "Published";
+        private static string New => "New";
         private static string Cancelled => "Cancelled";
+        private static string Active => "Active";
         private static string TrainingEvent => "Training event";
         private static string InPerson => "In person";
         private static string Online => "Online";
@@ -43,8 +45,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         }
 
         protected void FilterEventByEventStatus_Published() => ApplyFilter(Published);
+        protected void FilterAmbassadorByStatus_New() => ApplyFilter(New);
 
         protected void FilterEventByEventStatus_Cancelled() => ApplyFilter(Cancelled);
+        protected void FilterEventByAmbassadorStatus_Active() => ApplyFilter(Active);
 
         protected void FilterEventByEventType_TrainingEvent() => ApplyFilter(TrainingEvent);
 
@@ -66,6 +70,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         protected void VerifyEventStatus_Published_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Published));
         protected void VerifyEventStatus_Cancelled_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Cancelled));
+        protected void VerifyAMbassadorStatus_Published_New() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(New));
+        protected void VerifyAMbassadorStatus_Published_Active() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Active));
 
         protected void VerifyEventType_TrainingEvent_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(TrainingEvent));
 

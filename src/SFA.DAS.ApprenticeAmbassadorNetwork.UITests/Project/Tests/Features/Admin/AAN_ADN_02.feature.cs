@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AAN_ADN_02 Super Admin successfully logs in")]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_02 Super Admin successfully cancel or remove the ambassador")]
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanadmin")]
         [NUnit.Framework.CategoryAttribute("aanadn01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void AAN_ADN_02SuperAdminSuccessfullyLogsIn()
+        public void AAN_ADN_02SuperAdminSuccessfullyCancelOrRemoveTheAmbassador()
         {
             string[] tagsOfScenario = new string[] {
                     "aan",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Features.Adm
                     "aanadn01",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_02 Super Admin successfully logs in", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_02 Super Admin successfully cancel or remove the ambassador", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,6 +100,9 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 8
  testRunner.Given("a super admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("user should be able to cancel or remove the ambassador", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

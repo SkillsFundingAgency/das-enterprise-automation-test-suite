@@ -22,7 +22,9 @@ public class ScreenshotTeardown(ScenarioContext context)
             var webDriver = context.GetWebDriver();
             var directory = _objectContext.GetDirectory();
 
-            ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true, true);
+            var fileName = ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true, true);
+
+            _objectContext.SetDebugInformation($"Ref to screenshot - {fileName}");
         });
     }
 }

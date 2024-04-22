@@ -77,13 +77,13 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Features.Employ
         [NUnit.Framework.DescriptionAttribute("AED_E_01_EmployerShareInterestWithNoNumberOfApprentices")]
         [NUnit.Framework.CategoryAttribute("aggregatedemployerdemand")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("testinator")]
+        [NUnit.Framework.CategoryAttribute("mailosaur")]
         public void AED_E_01_EmployerShareInterestWithNoNumberOfApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "aggregatedemployerdemand",
                     "regression",
-                    "testinator"};
+                    "mailosaur"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AED_E_01_EmployerShareInterestWithNoNumberOfApprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6

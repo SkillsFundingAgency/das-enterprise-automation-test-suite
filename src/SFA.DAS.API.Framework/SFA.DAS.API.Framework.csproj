@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 	  <None Update="appsettings.ApiFramework.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 

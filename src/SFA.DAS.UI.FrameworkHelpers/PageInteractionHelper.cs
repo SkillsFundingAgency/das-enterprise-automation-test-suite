@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Documents.Spatial;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using System;
@@ -64,8 +63,8 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
             if (actual.Any(x => x.Contains(expected)))
             {
-                SetDebugInformation(MessageHelper.OutputMessage("Verified page", [expected], actual)); 
-                
+                SetDebugInformation(MessageHelper.OutputMessage("Verified page", [expected], actual));
+
                 return true;
             }
 
@@ -83,7 +82,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         {
             var actual = GetTexts(element, retryAction);
 
-            if (expected.Any(e => actual.Any(a => { if (a.Contains(e)) { actualPage = a; } return a.Contains(e); })))  
+            if (expected.Any(e => actual.Any(a => { if (a.Contains(e)) { actualPage = a; } return a.Contains(e); })))
             {
                 SetDebugInformation(MessageHelper.OutputMessage("Verified page", expected, [actualPage]));
 
@@ -158,8 +157,8 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
     {
         if (actual.Contains(expected))
         {
-            SetDebugInformation(MessageHelper.OutputMessage("Verified text", [expected], [actual])); 
-            
+            SetDebugInformation(MessageHelper.OutputMessage("Verified text", [expected], [actual]));
+
             return true;
         }
 

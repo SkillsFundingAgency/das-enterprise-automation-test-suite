@@ -2,7 +2,7 @@
 
 @aggregatedemployerdemand
 @regression
-@testinator
+@mailosaur
 Scenario: AED_P_02_provider show interest In employer demand and submit location details
 	Given the employer has shared interest
 	And the provider has provided their contact details

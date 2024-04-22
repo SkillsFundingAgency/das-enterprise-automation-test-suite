@@ -20,13 +20,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DateOfBirth => By.Id("apprentice-dob");
         private static By Reference => By.Id("apprentice-reference");
         private static By ChangeOfPartyBanner => By.Id("change-of-party-status-text");
-        private static By ViewChanges => By.Id("change-employer-link");
         private static By ViewChangesLink => By.LinkText("View changes");
         private static By ViewDetailsLink => By.LinkText("View details");
         private static By TriageLinkRestartLink => By.LinkText("View course mismatch");
         private static By TriageLinkUpdateLink => By.LinkText("View price mismatch");
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
-        private static By SimplifiedPatmentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
+        private static By ChangePriceLink => By.Id("linkChangePrice");
+        private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
+        private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
+        private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price changes you've requested\")]");
+        private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
+        private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
+        private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
+        private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
+        private static By PriceChangeApprovedBanner => By.Id("change-of-price-approved-banner");
+        private static By PriceChangeRejectedBanner => By.Id("change-of-price-rejected-banner");
+        private static By PriceChangeAutoApprovedBanner => By.Id("change-of-price-auto-approved-banner");
+        private static By ReviewPriceChangeRequestedBannerLink => By.Id("linkBannerViewPendingPrice");
+        private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
+        private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -90,12 +103,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
         }
 
-        public ProviderViewChangesPage ClickViewChangesLink()
-        {
-            formCompletionHelper.Click(ViewChanges);
-            return new ProviderViewChangesPage(context);
-        }
-
         public ProviderViewChangesPage ClickViewChanges()
         {
             formCompletionHelper.ClickElement(ViewChangesLink);
@@ -137,8 +144,73 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ValidateFlexiPaymentDataLockMessageDisplayed(bool isDisplayed)
         {
-            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPatmentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
-            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPatmentsPilotNotificationMessage));
+            if (isDisplayed) Assert.That(pageInteractionHelper.GetText(SimplifiedPaymentsPilotNotificationMessage), Is.EqualTo(SimplifiedPaymentsPilotText), "Incorrect Pilot DLock message displayed");
+            else Assert.That(!pageInteractionHelper.IsElementDisplayed(SimplifiedPaymentsPilotNotificationMessage));
         }
+
+        public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
+
+        public void ClickViewPriceChangesRequestedLink() => formCompletionHelper.Click(ViewPriceChangesLink);
+
+        public void ValidateChangeOfPriceRequestRaisedSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfPriceRequestSentBanner), "Change of Price Request Sent banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to employer"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View price changes you've requested link is not displayed");
+            }
+            );
+        }
+
+        public void ValidateChangeOfPriceRequestCancelledSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangeCancelledBanner), "Price Change Cancelled banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo("Your request to change the price has been cancelled"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
+            }
+           );
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangePendingBannerDisplayed()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangePendingBanner), "Price Change Pending banner not displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeRequestedBannerLink), "Review Price Change Requested link not displayed inside banner");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeRequestedTag), "Change Requested tag for Change of Price request is missing");
+            }
+            );
+            return this;
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangeRejectedBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeRejectedBanner), "Price Change Rejected banner not displayed");
+            Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was rejected");
+            return this;
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangeApprovedBannerDisplayed()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeApprovedBanner), "Price Change Approved banner not displayed");
+                Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was approved");
+            }
+            );
+            return this;
+        }
+
+        public ProviderApprenticeDetailsPage ValidatePriceChangeAutoApprovedBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeAutoApprovedBanner), "Price Change Auto Approved banner not displayed");
+            return this;
+        }
+
+        public void ClickReviewPriceChangeLink() => formCompletionHelper.ClickElement(ReviewPriceChangeLink);
     }
 }

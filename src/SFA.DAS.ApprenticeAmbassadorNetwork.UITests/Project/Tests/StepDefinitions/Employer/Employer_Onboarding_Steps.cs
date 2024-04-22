@@ -80,4 +80,15 @@ public class Employer_Onboarding_Steps(ScenarioContext context) : Employer_BaseS
 
         _ = new Employer_NetworkHubPage(context);
     }
+    [Then(@"the users can reinstate their membership within fourteen days of leaving the network")]
+    public void ThenTheUsersCanReinstateTheirMembershipWithinFourteenDaysOfLeavingTheNetwork()
+    {
+        applicationSubmitted_EmployerPage.ContinueToAmbassadorHub()
+            .AccessProfileSettings()
+            .AccessLeaveTheNetwork()
+             .CompleteFeedbackAboutLeavingAndContinue()
+             .ConfirmAndLeave()
+             .AccessRestoreMember()
+             .RestoreMember();
+    }
 }

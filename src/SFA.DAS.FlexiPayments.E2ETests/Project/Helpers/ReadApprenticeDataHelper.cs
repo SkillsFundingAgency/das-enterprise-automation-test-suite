@@ -9,7 +9,6 @@ using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 {
-
     public class ReadApprenticeDataHelper(ScenarioContext context)
     {
         internal List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> ReadApprenticeData(Table table)
@@ -29,7 +28,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 
             var inputData = data.CreateInstance<FlexiPaymentsInputDataModel>();
 
-            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(context.ScenarioInfo.Tags, inputData.DateOfBirth), objectContext, context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice, inputData.TrainingPrice, inputData.EndpointAssessmentPrice);
+            var apprenticeDatahelper = new ApprenticeDataHelper(new ApprenticePPIDataHelper(context.ScenarioInfo.Tags, inputData.DateOfBirth, context.Get<MailosaurUser>()), objectContext, context.Get<CommitmentsSqlDataHelper>(), inputData.AgreedPrice, inputData.TrainingPrice, inputData.EndpointAssessmentPrice);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), inputData.StartDate, inputData.DurationInMonths, inputData.TrainingCode);
 

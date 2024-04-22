@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
@@ -8,7 +7,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(context)
 {
     private SearchNetworkEventsPage searchNetworkEventsPage;
-    private YourAmbassadorProfilePage yourAmbassadorProfilePage;
 
     private EventsHubPage eventsHubPage;
 

@@ -12,7 +12,8 @@
     { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.Registration.UITests" },
     { "assembly": "SFA.DAS.ProviderLogin.Service" },
-    { "assembly": "SFA.DAS.Approvals.UITests" }
+    { "assembly": "SFA.DAS.Approvals.UITests" },
+    { "assembly": "SFA.DAS.MailosaurAPI.Service" }
   ],
   "generator": {
     "allowRowTests": false,

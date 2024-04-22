@@ -37,22 +37,29 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private static By TicketDropdownInput(string id) => By.CssSelector($"input[id='{id}']");
 
-        private static By TicketFormsInput => By.CssSelector("[data-garden-id='forms.input']");
-
         private static By TicketDropdownItem => By.CssSelector("li");
 
         private static By TicketPublicReply => By.CssSelector("[data-test-id='standalone-ckeditor-public-reply-tab-test-id']");
 
         private static By TicketInternalNote => By.CssSelector("[data-test-id='standalone-ckeditor-internal-note-tab-test-id']");
 
+        private static string Footer => "[data-garden-id='chrome.footer']";
+
+        private static By MacroMenu => By.CssSelector($"{Footer} [data-garden-id='dropdowns.menu'] li");
+
+        private static By MacroLabel => By.CssSelector($"{Footer} [data-garden-id='forms.input_label'] ");
+
+        private static By MacroInput(string id) => By.CssSelector($"{Footer} input[data-garden-id='dropdowns.input'][id='{id}']");
+
         public TicketPage(ScenarioContext context) : base(context, false)
         {
-            MultipleVerifyPage(
-            [
-                () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
-                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
-                () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)
-            ]);
+            pageInteractionHelper.InvokeAction(() =>
+            {
+                MultipleVerifyPage([
+                    () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
+                    () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
+                    () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)]);
+            });
         }
 
         public void VerifyTicketStatus(string expectedstatus) => VerifyElement(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());
@@ -60,6 +67,20 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         public void VerifyDraftComments(string comments) => VerifyElement(() => CommentEditor(), comments, null);
 
         public void VerifySubmittedComments(string comments) => VerifyElement(() => pageInteractionHelper.FindElements(CommentsSections), comments);
+
+        public void SelectMacroOptions(string answer)
+        {
+            var label = pageInteractionHelper.FindElement(MacroLabel);
+
+            var forvalue = label.GetAttribute("for");
+
+            formCompletionHelper.SendKeys(MacroInput(forvalue), answer);
+
+            pageInteractionHelper.InvokeAction(() =>
+            {
+                pageInteractionHelper.FindElements(MacroMenu).First(x => x.Text.ContainsCompareCaseInsensitive(answer)).Click();
+            });
+        }
 
         public void SelectOptions(string question, string answer)
         {
@@ -95,27 +116,22 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
             for (int i = 0; i < 20; i++)
             {
-                var element = pageInteractionHelper.FindElements(TicketDropdownLabel).First(x => x.Text.ContainsCompareCaseInsensitive("Service Now Incident Number"));
+                SearchTicket();
 
-                element.Click();
+                incidentNumber = pageInteractionHelper.InvokeAction(() =>
+                {
+                    var label = pageInteractionHelper.FindElements(TicketDropdownLabel).First(x => x.Text.ContainsCompareCaseInsensitive("Service Now Incident Number"));
 
-                var parentElement = element.FindElement(FindParent);
+                    var forvalue = label.GetAttribute("for");
 
-                var inputElement = parentElement.FindElement(TicketFormsInput);
+                    var inputElement = pageInteractionHelper.FindElement(TicketDropdownInput(forvalue));
 
-                incidentNumber = inputElement.GetAttribute("value");
+                    return inputElement.GetAttribute("value");
+                }, RefreshPage);
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }
 
-                SubmitComments(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsWaitingForIncNum);
-
                 Thread.Sleep(5000);
-
-                CloseAllTickets();
-
-                NavigateToHomePage();
-
-                SearchTicket();
             }
 
             return incidentNumber;
@@ -131,15 +147,18 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             SelectOptions("Contact Reason", "Data Lock");
             SelectOptions("Issue Type", "Query");
-            SelectOptions("Apply macro", "Escalate to Tier 3");
+
+            SelectMacroOptions("Escalate to Tier 3");
 
             VerifyDraftComments("Resolver group to assign to");
 
             SelectOptions("Service Offering", "AS Payments");
             SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
 
-            return SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsOnHoldComments, "status-badge-hold", "Submit as On-hold");
+            return SubmitAsOnHold(ConsolidateSupportDataHelper.SubmitAsOnHoldComments);
         }
+
+        private (HomePage, string) SubmitAsOnHold(string comments) => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, comments, "status-badge-hold", "Submit as On-hold");
 
         public (HomePage, string) SubmitAsSolved() => SubmitStatus(ConsolidateSupportDataHelper.InternalNote, ConsolidateSupportDataHelper.SubmitAsSolvedComments, "status-badge-solved", "Submit as Solved");
 

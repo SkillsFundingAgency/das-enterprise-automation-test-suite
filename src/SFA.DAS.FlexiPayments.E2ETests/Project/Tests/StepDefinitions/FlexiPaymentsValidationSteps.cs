@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers;
@@ -17,6 +19,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper = context.Get<CommitmentsSqlDataHelper>();
         private readonly EarningsSqlDbHelper _earningsSqlDbHelper = context.Get<EarningsSqlDbHelper>();
         private readonly ApprenticeshipsSqlDbHelper _apprenticeshipsSqlDbHelper = context.Get<ApprenticeshipsSqlDbHelper>();
+        private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
         [Then(@"validate the following data is created in the commitments database")]
         public void ValidateTheFollowingDataIsCreatedInTheCommitmentsDatabase(Table table)
@@ -84,6 +87,60 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 });
             }
         }
+
+        [When(@"Provider initiated Change of Price request details are saved in the PriceHistory table")]
+        public void ProviderInitiatedChangeOfPriceRequestDetailsAreSavedInThePriceHistoryTable()
+        {
+            var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfPriceRequestData(GetApprenticeULN(1));
+
+            var newTrainingPrice = context.Get<Decimal>("NewTrainingPrice");
+
+            var newTotalPrice = newTrainingPrice + Decimal.Parse(_apprenticeDataHelper.EndpointAssessmentPrice);
+
+            var expectedDate = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime actualDate = DateTime.ParseExact(dbData.EffectiveFromDate, "dd/MM/yyyy HH:mm:ss", null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(Decimal.Parse(dbData.TrainingPrice), Is.EqualTo(newTrainingPrice), "Incorrect Training price found");
+                Assert.That(Decimal.Parse(dbData.AssessmentPrice), Is.EqualTo(Decimal.Parse(_apprenticeDataHelper.EndpointAssessmentPrice)),"Incorrect End-point Assessment price found");
+                Assert.That(Decimal.Parse(dbData.TotalPrice), Is.EqualTo(newTotalPrice), "Incorrect Total Price found");
+                Assert.That(actualDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedDate), "Incorrect Effective From Date found");
+                Assert.That(dbData.reason, Is.EqualTo(context.ScenarioInfo.Title), "Incorrect reason found");
+                Assert.That(dbData.status, Is.EqualTo("Created"), "Incorrect Change of Price record status found");
+            });
+        }
+
+        [When(@"Employer initiated Change of Price request details are saved in the PriceHistory table")]
+        public void EmployerInitiatedChangeOfPriceRequestDetailsAreSavedInThePriceHistoryTable()
+        {
+            var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfPriceRequestData(GetApprenticeULN(1));
+
+            var totalPrice = Decimal.Parse(_apprenticeDataHelper.TrainingCost) - 500;
+
+            var expectedDate = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime actualDate = DateTime.ParseExact(dbData.EffectiveFromDate, "dd/MM/yyyy HH:mm:ss", null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(dbData.TrainingPrice, Is.EqualTo(String.Empty), "Incorrect Training price found");
+                Assert.That(dbData.AssessmentPrice,Is.EqualTo(String.Empty), "Incorrect End-point Assessment price found");
+                Assert.That(Decimal.Parse(dbData.TotalPrice), Is.EqualTo(totalPrice), "Incorrect Total Price found");
+                Assert.That(actualDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedDate), "Incorrect Effective From Date found");
+                Assert.That(dbData.reason, Is.EqualTo(context.ScenarioInfo.Title), "Incorrect reason found");
+                Assert.That(dbData.status, Is.EqualTo("Created"), "Incorrect Change of Price record status found");
+            });
+        }
+
+
+        [Then(@"the approved Change of Price request is saved in the PriceHistory table")]
+        public void ThenTheApprovedChangeOfPriceRequestIsSavedInThePriceHistoryTable()
+        {
+            var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfPriceRequestData(GetApprenticeULN(1));
+
+            Assert.That(dbData.status, Is.EqualTo("Approved"), "Incorrect Change of Price record status found");
+        }
+
 
         [Then(@"validate earnings are not generated for the learners")]
         public void ValidateEarningsAreNotGeneratedForTheLearners(Table table)

@@ -216,7 +216,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails();
 
-            apprenticeDetailsPage.VerifyApprenticeshipStatus("LIVE");
+            apprenticeDetailsPage.VerifyApprenticeshipStatus("Live");
 
             Assert.IsTrue(apprenticeDetailsPage.IsChangeOfProviderLinkDisplayed());
         }
@@ -246,13 +246,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private static void ValidateBannerWithLinkToNonEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "You have made a change of employer request. It’s now with the new employer for review.";
-            string actualText = providerApprenticeDetailsPage.GetCoPBanner();
-
-            Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
+            ValidateBanner(providerApprenticeDetailsPage, "You have made a change of employer request. It’s now with the new employer for review.");
 
             var EditBoxOnApprenticeDetailsPage = providerApprenticeDetailsPage
-                                                    .ClickViewChangesLink()
+                                                    .ClickViewChanges()
                                                     .ClickOnReviewNewDetailsLink()
                                                     .SelectViewApprentice()
                                                     .GetAllEditBoxes();
@@ -262,19 +259,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private static void ValidateBannerWithLinkToEditableCohort(ProviderApprenticeDetailsPage providerApprenticeDetailsPage)
         {
-            string expectedText = "The new employer has reviewed the change of employer request. You need to review the new details.";
-            string actualText = providerApprenticeDetailsPage.GetCoPBanner();
-
-            Assert.AreEqual(expectedText, actualText, "Text in the change of party banner");
+            ValidateBanner(providerApprenticeDetailsPage, "The new employer has reviewed the change of employer request. You need to review the new details.");
 
             var EditBoxOnApprenticeDetailsPage = providerApprenticeDetailsPage
-                                                    .ClickViewChangesLink()
+                                                    .ClickViewChanges()
                                                     .ClickOnReviewNewDetailsToUpdateLink()
                                                     .SelectEditApprentice()
                                                     .GetAllEditBoxes();
 
             Assert.IsTrue(EditBoxOnApprenticeDetailsPage.Count > 3, "validate that cohort is editable on View apprentice details page");
         }
+
+        private static void ValidateBanner(ProviderApprenticeDetailsPage page, string expectedText) => Assert.AreEqual(expectedText, page.GetCoPBanner(), "Text in the change of party banner");
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => _providerCommonStepsHelper
                                 .GoToProviderHomePage()

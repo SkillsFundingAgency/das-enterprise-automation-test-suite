@@ -33,6 +33,8 @@ public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlD
          $" BEGIN " +
          $"DECLARE @MemberId VARCHAR(36);" +
          $"SELECT @MemberId = Id from Member where email = '{email}'" +
+         $"DELETE FROM Audit WHERE ActionedBy = @MemberId;" +
+         $"DELETE FROM MemberLeavingReason WHERE MemberId = @MemberId;" +
          $"DELETE FROM EventGuest where CalendarEventId in (Select CalendarEventId from Apprentice WHERE MemberId = @MemberId);" +
          $"DELETE FROM Apprentice WHERE MemberId = @MemberId;" +
          $"DELETE FROM MemberProfile WHERE MemberId = @MemberId;" +
@@ -47,6 +49,8 @@ public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlD
      $" BEGIN " +
      $"DECLARE @MemberId VARCHAR(36);" +
      $"SELECT @MemberId = Id from Member where email = '{email}'" +
+     $"DELETE FROM Audit WHERE ActionedBy = @MemberId;" +
+     $"DELETE FROM MemberLeavingReason WHERE MemberId = @MemberId;" +
      $"DELETE FROM EventGuest where CalendarEventId in (Select CalendarEventId from Apprentice WHERE MemberId = @MemberId);" +
      $"DELETE FROM Employer WHERE MemberId = @MemberId;" +
      $"DELETE FROM MemberProfile WHERE MemberId = @MemberId;" +

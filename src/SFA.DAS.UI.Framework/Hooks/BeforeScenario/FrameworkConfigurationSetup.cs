@@ -28,7 +28,7 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
 
         _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
 
-        bool IsVstsExecution = Configurator.IsVstsExecution;
+        bool IsVstsExecution = Configurator.IsAzureExecution;
 
         var frameworkConfig = new FrameworkConfig
         {
@@ -36,8 +36,8 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
             TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
             BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
             IsVstsExecution = IsVstsExecution,
-            CanCaptureUrl = IsCurrrentUserAnAdmin(captureUrlAdmin) && IsVstsExecution,
-            CanTakeFullScreenShot = IsCurrrentUserAnAdmin(fullscreenshotAdmin) || canTakeFullScreenShot,
+            CanCaptureUrl = IsVstsExecution && IsCurrrentUserAnAdmin(captureUrlAdmin),
+            CanTakeFullScreenShot = canTakeFullScreenShot || IsCurrrentUserAnAdmin(fullscreenshotAdmin),
             IsAccessibilityTesting = isAccessibilityTesting
         };
 

@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <None Update="appsettings.AdminConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

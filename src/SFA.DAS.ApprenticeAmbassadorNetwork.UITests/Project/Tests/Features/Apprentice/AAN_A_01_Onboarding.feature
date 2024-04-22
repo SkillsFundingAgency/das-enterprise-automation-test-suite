@@ -43,3 +43,14 @@ Scenario:AAN_A_01D User completes onboarding process and lands on the AAN Hub pa
 	When the user provides all the required details for the onboarding journey
     Then the Apprentice onboarding process should be successfully completed
     Then the user can sign back in to the AAN Apprentice platform
+
+@aan
+@aanonboarding
+@aanaprentice
+@aanapprenticeonboardingreset
+@regression
+Scenario:AAN_A_01E Remove restore membership
+    Given an apprentice logs into the AAN portal
+	When the user provides all the required details for the onboarding journey
+    Then the Apprentice onboarding process should be successfully completed
+    And the users can reinstate their membership within fourteen days of leaving the network

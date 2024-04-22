@@ -19,7 +19,7 @@ public class DfeProviderConfigurationSetup(ScenarioContext context)
 
         var dfeProviderList = configSection.GetConfigSection<List<DfeProviderUsers>>(DfeProvidersConfig);
 
-        if (Configurator.IsVstsExecution)
+        if (Configurator.IsAzureExecution)
         {
             var dfeProviderList1 = configSection.GetConfigSection<string>(DfeProvidersConfig);
 

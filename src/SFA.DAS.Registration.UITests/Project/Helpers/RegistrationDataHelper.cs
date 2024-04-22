@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -14,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             LastName = randomPersonNameHelper.LastName;
 
             RandomEmail = emailaddress;
-            AnotherRandomEmail = RandomDataGenerator.GenerateRandomEmail(emailaddress);
+            AnotherRandomEmail = GenerateRandomEmail(emailaddress);
             AornNumber = aornDataHelper.AornNumber;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
@@ -54,5 +55,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private CharityTypeOrg CharityTypeOrg2 { get; }
         private static string RandomAlphaNumericString(int length) => RandomDataGenerator.GenerateRandomAlphanumericString(length);
         private static string RandomNumericString(int length) => RandomDataGenerator.GenerateRandomNumber(length);
+
+        private static string GenerateRandomEmail(string email) { var emailsplit = email.Split("@"); return $"{emailsplit[0]}_{DateTime.Now.ToNanoSeconds()}@{emailsplit[1]}"; }
     }
 }

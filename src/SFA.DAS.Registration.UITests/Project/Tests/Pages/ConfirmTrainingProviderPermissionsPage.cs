@@ -30,5 +30,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new YouVeSuccessfullySetProviderPermissionsPage(context);
         }
+
+        public EmployerAccountCreatedPage ConfirmAndGoToEmployerAccountCreatedPage()
+        {
+            var SelectConfirmButton = By.XPath("//*[@id=\"main-content\"]/div/div/form/div/button");
+
+            javaScriptHelper.ClickElement(SelectConfirmButton);
+            Continue();
+            return new EmployerAccountCreatedPage(context);
+        }
     }
 }

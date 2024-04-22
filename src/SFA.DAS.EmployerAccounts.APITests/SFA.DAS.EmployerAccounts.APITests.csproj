@@ -10,6 +10,7 @@
 	<ItemGroup>
 	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	</Compile>
 	</ItemGroup>
 
@@ -18,7 +19,7 @@
 	</ItemGroup>	
 	
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageReference Include="SFA.DAS.HashingService" Version="1.0.183" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
@@ -27,11 +28,11 @@
 
 	<ItemGroup>
 		<None Update="appsettings.Environment.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</None>
 		<None Update="appsettings.Project.json">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -2,7 +2,7 @@
 
 @aggregatedemployerdemand
 @regression
-@testinator
+@mailosaur
 Scenario: AED_P_04_ProviderDoesNotEnterOrEnterInvalidContactDetails
 	Given the employer has shared interest
 	Then An error is thrown if provider does not enter or enter invalid contact details

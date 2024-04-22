@@ -10,13 +10,13 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
     {
         protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingTransfersFunc();
 
-        public void AssertApprenticeChangeToReviewTaskLink(int numberOfTasks) => AssertTaskCount("ApprenticeChangeToReview", numberOfTasks);
+        public void AssertApprenticeChangeToReviewTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.ApprenticeChangeToReview, numberOfTasks);
 
-        public void AssertCohortRequestReadyForApprovalTaskLink(int numberOfTasks) => AssertTaskCount("CohortRequestReadyForApproval", numberOfTasks);
+        public void AssertCohortRequestReadyForApprovalTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.CohortReadyForApproval, numberOfTasks);
 
-        public void AssertReviewConnectionRequestTaskLink(int numberOfTasks) => AssertTaskCount("ReviewConnectionRequest", numberOfTasks);
+        public void AssertReviewConnectionRequestTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.ReviewConnectionRequest, numberOfTasks);
 
-        public void AssertTransferRequestReceivedTaskLink(int numberOfTasks) => AssertTaskCount("TransferRequestReceived", numberOfTasks);
+        public void AssertTransferRequestReceivedTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.TransferRequestReceived, numberOfTasks);
 
         private void AssertTaskCount(string taskType, int numberOfTasks)
         {

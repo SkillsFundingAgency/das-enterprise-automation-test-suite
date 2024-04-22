@@ -1,16 +1,18 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SFA.DAS.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
+
     public static class Configurator
     {
         private static readonly IConfigurationRoot _config;
 
-        private static readonly IConfigurationRoot _hostingConfig;
-
-        public static readonly bool IsVstsExecution;
+        public static readonly bool IsAzureExecution;
 
         internal static readonly string EnvironmentName;
 
@@ -24,13 +26,20 @@ namespace SFA.DAS.ConfigurationBuilder
 
         static Configurator()
         {
-            _hostingConfig = InitializeHostingConfig();
-            IsVstsExecution = TestsExecutionInVsts();
-            ChromeWebDriver = GetHostingConfigSection("CHROMEWEBDRIVER");
-            GeckoWebDriver = GetHostingConfigSection("GECKOWEBDRIVER");
-            EdgeWebDriver = GetHostingConfigSection("EDGEWEBDRIVER");
-            EnvironmentName = GetEnvironmentName();
-            ProjectName = GetProjectName();
+            IsAzureExecution = TestPlatformFinder.IsAzureExecution;
+
+            if (IsAzureExecution) 
+            {
+                ChromeWebDriver = Environment.GetEnvironmentVariable("CHROMEWEBDRIVER");
+                GeckoWebDriver = Environment.GetEnvironmentVariable("GECKOWEBDRIVER");
+                EdgeWebDriver = Environment.GetEnvironmentVariable("EDGEWEBDRIVER");
+                EnvironmentName = Environment.GetEnvironmentVariable("ResourceEnvironmentName");
+            }
+            else
+            {
+                (EnvironmentName, ProjectName) = GetLocalHostingConfig();
+            }
+
             _config = InitializeConfig();
         }
 
@@ -41,23 +50,23 @@ namespace SFA.DAS.ConfigurationBuilder
         private static IConfigurationRoot InitializeConfig()
         {
             var builder = ConfigurationBuilder()
-                .AddOptionalJsonFiles(
+                .AddMandatoryJsonFiles(
                 [
-                    "appsettings.DbConfig.json",
-                    "appsettings.TimeOutConfig.json",
-                    "appsettings.NServiceBusConfig.json",
-                    "appsettings.BrowserStack.json",
-                    "appsettings.Mailinator.json",
-                    "appsettings.ApiFramework.json",
-                    "appsettings.AdminConfig.json",
-                    "appsettings.ProviderConfig.json",
-                    "appsettings.Project.json",
-                    "appsettings.Project.BrowserStack.json",
-                    $"appsettings.{EnvironmentName}.json",
-                    "appsettings.TestExecution.json"
+                    "Config",
+                    "AdminConfig",
+                    "ProviderConfig",
+                    "TimeOutConfig",
+                    "TestExecution",
+                    "NServiceBusConfig",
+                    "BrowserStack",
+                    "ApiFramework"
+                ])
+                .AddProjectJsonFiles(
+                [
+                    "Project"
                 ]);
 
-            if (!IsVstsExecution)
+            if (!IsAzureExecution)
             {
                 builder
                     .AddUserSecrets("BrowserStackSecrets")
@@ -71,31 +80,46 @@ namespace SFA.DAS.ConfigurationBuilder
             return builder.Build();
         }
 
-        private static IConfigurationBuilder AddOptionalJsonFiles(this IConfigurationBuilder builder, List<string> paths)
+        private static IConfigurationBuilder AddMandatoryJsonFiles(this IConfigurationBuilder builder, List<string> files)
         {
-            foreach (var path in paths) builder.AddJsonFile(path, true);
+            foreach (var file in files)
+            {
+                var path = FileHelper.GetSingleConfigJson(file);
+
+                builder.AddJsonFile(path, false);
+            }
 
             return builder;
         }
 
-        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
-                .AddJsonFile("appsettings.Environment.json", true)
-                .AddEnvironmentVariables()
-                .Build();
+        private static IConfigurationBuilder AddProjectJsonFiles(this IConfigurationBuilder builder, List<string> files)
+        {
+            foreach (var file in files)
+            {
+                var path = FileHelper.GetProjectConfigJson(file);
+
+                builder.AddJsonFile(path, true);
+            }
+
+            return builder;
+        }
+
+        private static (string environmentName, string ProjectName) GetLocalHostingConfig()
+        {
+            var builder = ConfigurationBuilder().AddJsonFile($"{GetLocalSettingsFilePath("appsettings.Environment.json")}").Build();
+
+            var e = builder.GetSection("local_EnvironmentName").Value;
+
+            var p = builder.GetSection("ProjectName").Value;
+
+            return (e, p);
+        }
 
         private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
-        private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
+        public static string GetDeploymentRequestedFor() => Environment.GetEnvironmentVariable("RELEASE_DEPLOYMENT_REQUESTEDFOR");
 
-        private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
-
-        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("ResourceEnvironmentName") : GetHostingConfigSection("local_EnvironmentName");
-
-        private static string GetProjectName() => GetHostingConfigSection("ProjectName");
-
-        public static string GetDeploymentRequestedFor() => GetHostingConfigSection("RELEASE_DEPLOYMENT_REQUESTEDFOR");
-
-        private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
+        private static string GetLocalSettingsFilePath(string fileName) => Path.Combine(FileHelper.GetLocalProjectRootFilePath(), fileName);
     }
 }
