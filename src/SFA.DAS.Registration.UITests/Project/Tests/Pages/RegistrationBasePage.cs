@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -8,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public abstract class RegistrationBasePage(ScenarioContext context) : VerifyBasePage(context)
     {
         #region Helpers and Context
-        protected readonly RegistrationDataHelper registrationDataHelper = context.Get<RegistrationDataHelper>();
+        protected readonly RegistrationDataHelper registrationDataHelper = context.GetValue<RegistrationDataHelper>();
         #endregion
 
         #region Locators

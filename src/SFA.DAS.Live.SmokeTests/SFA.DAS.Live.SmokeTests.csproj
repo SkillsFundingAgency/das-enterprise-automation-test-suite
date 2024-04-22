@@ -31,7 +31,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.TransferMatching.UITests\SFA.DAS.TransferMatching.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.RAA-V2-Employer.UITests\SFA.DAS.RAA-V2-Employer.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />

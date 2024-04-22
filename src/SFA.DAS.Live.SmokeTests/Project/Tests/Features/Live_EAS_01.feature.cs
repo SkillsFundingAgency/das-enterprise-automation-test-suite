@@ -74,18 +74,16 @@ namespace SFA.DAS.Live.SmokeTests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Live_EAS_01 Login for Existing Levy Account and Navigation to Saved favourites, H" +
-            "elp and all Settings pages")]
+        [NUnit.Framework.DescriptionAttribute("Live_EAS_01 Login for Existing Levy Account and Navigation")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("livesmoketest")]
-        public void Live_EAS_01LoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
+        public void Live_EAS_01LoginForExistingLevyAccountAndNavigation()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "livesmoketest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Live_EAS_01 Login for Existing Levy Account and Navigation to Saved favourites, H" +
-                    "elp and all Settings pages", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Live_EAS_01 Login for Existing Levy Account and Navigation", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,11 +97,34 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
- testRunner.Then("Employer is able to navigate to all the link under Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.Then("Apprentices link should direct user to Apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 8
- testRunner.And("Employer is able to navigate to Help Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And("Your apprenticeship adverts link should direct user to Create an advert page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("Your training providers link should direct user to Your training providers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("Find apprenticeship training link should direct user to Apprenticeship training c" +
+                        "ourses page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.And("Your finances link should direct user to Finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("Your transfers link should direct user to Manage transfers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("Your organisations and agreements link should direct user to Your organisations a" +
+                        "nd agreements page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And("Your team link should direct user to Your team page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.And("PAYE schemes link should direct user to PAYE schemes page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

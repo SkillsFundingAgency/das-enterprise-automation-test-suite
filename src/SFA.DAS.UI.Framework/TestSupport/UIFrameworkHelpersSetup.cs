@@ -22,6 +22,7 @@ public class UIFrameworkHelpersSetup(ScenarioContext context)
         var scenarioInfo = context.ScenarioInfo;
 
         var iFrameHelper = new IFrameHelper(webDriver);
+
         context.Replace(iFrameHelper);
 
         context.Replace(new JavaScriptHelper(webDriver, iFrameHelper));
