@@ -8,9 +8,7 @@ public class EnterYourPasswordPage(ScenarioContext context) : LiveSignBasePage(c
 
     public EnterYourSecurityCodePage EnterPassword()
     {
-        formCompletionHelper.EnterPpi(PasswordField, liveEasUser.Password);
-
-        Continue();
+        EnterPpiAndContinue(PasswordField, liveEasUser.Password);
 
         return new(context);
     }

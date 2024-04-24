@@ -16,9 +16,7 @@ public class EnterYourSecurityCodePage(ScenarioContext context) : LiveSignBasePa
 
         var code = helper.GetCode(deviceConfig.LiveEasUserDeviceId);
 
-        formCompletionHelper.EnterPpi(CodeField, code);
-
-        Continue();
+        EnterPpiAndContinue(CodeField, code);
 
         return new(context);
     }

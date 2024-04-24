@@ -4,14 +4,11 @@ public class EnterYourEmailPage(ScenarioContext context) : LiveSignBasePage(cont
 {
     protected override string PageTitle => "Enter your email address to sign in to your GOV.UK One Login";
 
-
     private static By EmailField => By.CssSelector("#email");
 
     public EnterYourPasswordPage EnterUsername()
     {
-        formCompletionHelper.EnterPpi(EmailField, liveEasUser.Username);
-
-        Continue();
+        EnterPpiAndContinue(EmailField, liveEasUser.Username);
 
         return new(context);
     }
