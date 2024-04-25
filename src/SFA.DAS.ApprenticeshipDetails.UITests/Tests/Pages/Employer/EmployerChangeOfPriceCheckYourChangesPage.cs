@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
 {
-    public class EmployerChangeOfPriceCheckYourChangesPage(ScenarioContext context) : ChangePriceNegotiationAmountsPage(context)
+    public class EmployerChangeOfPriceCheckYourChangesPage(ScenarioContext context) : EmployerChangeTheTotalPricePage(context)
     {
         protected override string PageTitle => "Check your changes before sending to the training provider";
         private static By SendButton => By.Id("buttonSubmitChangeOfPrice");

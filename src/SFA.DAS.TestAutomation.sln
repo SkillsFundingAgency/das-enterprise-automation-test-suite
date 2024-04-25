@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA.DataGenerator",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ConfigurationBuilder", "SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj", "{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.Tests", "SFA.DAS.PayeCreation.Tests\SFA.DAS.PayeCreation.Tests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.DataPreparationTests", "SFA.DAS.PayeCreation.DataPreparationTests\SFA.DAS.PayeCreation.DataPreparationTests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2-Provider.UITests", "SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj", "{F00AD033-7D2F-4E30-AC8E-C25FA577D465}"
 EndProject
@@ -142,6 +142,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MailosaurAPI.Service", "SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj", "{0084AA7E-8A86-4FC8-9925-983281E88F45}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnect.APITests", "SFA.DAS.EarlyConnect.APITests\SFA.DAS.EarlyConnect.APITests.csproj", "{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmokeTest", "SmokeTest", "{E6EFFBAD-598C-40B1-87C8-C9350158A15F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Live.SmokeTests", "SFA.DAS.Live.SmokeTests\SFA.DAS.Live.SmokeTests.csproj", "{6FFE7153-443E-46CB-8297-96DD97F60163}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -504,6 +508,12 @@ Global
 		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FFE7153-443E-46CB-8297-96DD97F60163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FFE7153-443E-46CB-8297-96DD97F60163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FFE7153-443E-46CB-8297-96DD97F60163}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FFE7153-443E-46CB-8297-96DD97F60163}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{6FFE7153-443E-46CB-8297-96DD97F60163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FFE7153-443E-46CB-8297-96DD97F60163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -537,6 +547,7 @@ Global
 		{A685DED7-44AA-4903-890B-B3C13C6F6963} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 		{0084AA7E-8A86-4FC8-9925-983281E88F45} = {47528102-1EF0-4800-9DA4-B0BA5199E006}
 		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
+		{6FFE7153-443E-46CB-8297-96DD97F60163} = {E6EFFBAD-598C-40B1-87C8-C9350158A15F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7E7F47-C08F-4B67-BB6A-FFCED573D7BF}

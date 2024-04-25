@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -37,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project
             var mailosaurEmaildomain = mailosaurUser.DomainName;
 
             var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "asperfautomation.com" :
-                tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "asautomation.com" : mailosaurEmaildomain;
+                tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "mailinator.com" : mailosaurEmaildomain;
 
             var aornDataHelper = new AornDataHelper();
 
