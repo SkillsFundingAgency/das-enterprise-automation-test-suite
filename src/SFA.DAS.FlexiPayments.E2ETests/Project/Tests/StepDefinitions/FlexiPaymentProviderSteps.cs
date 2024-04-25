@@ -21,6 +21,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
         private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
         private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
+        private ChangeTrainingStartDatePage _changeTrainingStartDatePage;
         private ChangeOfPriceViewChangeRequestPage _viewChangeRequestPage;
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
         private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
@@ -113,6 +114,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
+        [When(@"Provider proceeds to create a Change of Start Date request for flexi payments pilot learner")]
+        public void ProviderProceedsToCreateAChangeOfStartDateRequestForFlexiPaymentsPilotLearner() => _providerApprenticeDetailsPage.ClickChangeStartDateLink();
+
+
         [When(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
         [Then(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
         public void ProviderCreatesAChangeOfPriceRequestWhereTrainingPriceIsIncreasedBy(int priceIncrease)
@@ -203,11 +208,24 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _changePriceNegotiationAmountPage = new ChangePriceNegotiationAmountsPage(context).ClickContinueButtonWithValidationErrors();
         }
 
-        [Then(@"all default validation errors are displayed to the Provider")]
-        public void ThenValidationErrorsAreDisplayedToTheProvider()
+        [When(@"Provider submits change of start date form without changing input fields")]
+        public void ProviderSubmitsChangeOfStartDateFormWithoutChangingInputFields()
+        {
+            _changeTrainingStartDatePage = new ChangeTrainingStartDatePage(context).ClickContinueButtonWithValidationErrors();
+        }
+
+        [Then(@"all default change of price validation errors are displayed to the Provider")]
+        public void AllDefaultChangeOfPriceValidationErrorsAreDisplayedToTheProvider()
         {
             _changePriceNegotiationAmountPage.ConfirmValidationErrorMessagesDisplayed();
         }
+
+        [Then(@"all default change of start date validation errors are displayed to the Provider")]
+        public void AllDefaultChangeOfStartDateValidationErrorsAreDisplayedToTheProvider()
+        {
+            _changeTrainingStartDatePage.ConfirmDefaultValidationErrorMessagesDisplayed();
+        }
+
 
         [Then(@"validate Training Price and EPA price must be between (.*) and (.*)")]
         public void ValidateTrainingPriceAndEPAPriceMustBeBetweenValues(int min, int max)

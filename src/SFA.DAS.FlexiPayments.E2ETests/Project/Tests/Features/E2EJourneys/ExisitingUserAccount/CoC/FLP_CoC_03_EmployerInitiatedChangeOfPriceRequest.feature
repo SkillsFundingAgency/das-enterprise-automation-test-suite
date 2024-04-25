@@ -7,7 +7,7 @@ for a learner opted in the pilot.
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_03 Employer Initiated Change Of Price Request
-	Given fully approved apprentices with the below data
+	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 15000        | true         |
     And Employer searches for the learner on Manage your apprentice page

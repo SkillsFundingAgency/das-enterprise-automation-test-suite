@@ -27,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
         private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private static By ChangePriceLink => By.Id("linkChangePrice");
+        private static By ChangeStartDateLink => By.Id("linkChangeStartDate");
         private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
         private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price changes you've requested\")]");
@@ -149,6 +150,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
+
+        public void ClickChangeStartDateLink() => formCompletionHelper.Click(ChangeStartDateLink);
 
         public void ClickViewPriceChangesRequestedLink() => formCompletionHelper.Click(ViewPriceChangesLink);
 

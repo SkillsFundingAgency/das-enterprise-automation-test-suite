@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.CoC
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.UI_Validations
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,23 +20,24 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_CoC_03_EmployerInitiatedChangeOfPriceRequest")]
-    public partial class FLP_CoC_03_EmployerInitiatedChangeOfPriceRequestFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_04_ChangeOfStartDateJourney")]
+    public partial class FLP_UI_Validations_04_ChangeOfStartDateJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_CoC_03_EmployerInitiatedChangeOfPriceRequest.feature"
+#line 1 "FLP_UI_Validations_04_ChangeOfStartDateJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/CoC", "FLP_CoC_03_EmployerInitiatedChangeOfPriceRequest", "The purpose of this test is to successfully raise a Change of Price request initi" +
-                    "ated by Employer\r\nfor a learner opted in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_04_ChangeOfStartDateJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
+                    " errors) for \r\nChange of Start Date initiated by Training Provider. The employer" +
+                    " used in this test will be a non-levy employer.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,18 +76,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_CoC_03 Employer Initiated Change Of Price Request")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_04 Change Of Start Date Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_CoC_03EmployerInitiatedChangeOfPriceRequest()
+        public void FLP_UI_Validations_04ChangeOfStartDateJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_03 Employer Initiated Change Of Price Request", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_Validations_04 Change Of Start Date Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -105,37 +106,30 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table6.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "1",
-                            "154",
-                            "2004/06/20",
+                            "91",
+                            "2000/11/20",
                             "StartPreviousMonth",
-                            "12",
-                            "15000",
+                            "24",
+                            "18000",
                             "true"});
 #line 10
- testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
-                        " data", ((string)(null)), table6, "Given ");
+ testRunner.Given("NonLevy Employer and Pilot provider have a fully approved apprentices with the be" +
+                        "low data", ((string)(null)), table27, "Given ");
 #line hidden
 #line 13
-    testRunner.And("Employer searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.When("Employer proceeds to create a Change of Price request for flexi payments pilot le" +
-                        "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Provider proceeds to create a Change of Start Date request for flexi payments pil" +
+                        "ot learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.And("Employer successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider submits change of start date form without changing input fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("Employer initiated Change of Price request details are saved in the PriceHistory " +
-                        "table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
- testRunner.Then("Provider can review the Change of Price request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 18
- testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("all default change of start date validation errors are displayed to the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -1,12 +1,9 @@
-﻿using Polly;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
+﻿using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
@@ -49,28 +46,27 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         }
 
-        [Given(@"fully approved apprentices with the below data")]
-        public void GivenFullyApprovedApprenticesWithTheBelowData(Table table)
+        [Given(@"(Levy|NonLevy) Employer and Pilot provider have a fully approved apprentices with the below data")]
+        public void FullyApprovedApprenticesWithTheBelowData(string employerType, Table table)
         {
-            _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount("Levy");
+            _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount(employerType);
 
-            _employerStepsHelper.EmployerAddApprentice(readApprenticeDataHelper.ReadApprenticeData(table));
+            if (employerType == "Levy")
+                _employerStepsHelper.EmployerAddApprentice(readApprenticeDataHelper.ReadApprenticeData(table));
+            else
+                EmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(table);
 
             _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
 
             _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
 
-            int i = 1;
+            var inputData = table.Rows[0].CreateInstance<FlexiPaymentsInputDataModel>();
 
-            foreach (var row in table.Rows)
-            {
-                var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
-
-                ProviderAddsUln(inputData.PilotStatus, i++);
-            }
+            ProviderAddsUln(inputData.PilotStatus, 1);
 
             _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
         }
+
 
         [Given(@"the Employer has an approved (Pilot|NonPilot) apprentice")]
         public void EmployerHasFullyApprovedPilotApprentice(string pilotStatus)
@@ -112,7 +108,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
-        public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(readApprenticeDataHelper.ReadApprenticeData(table), false);
+        public void EmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(readApprenticeDataHelper.ReadApprenticeData(table), false);
 
         [When(@"Employer searches learner (.*) on Manage your apprentices page")]
         public void WhenEmployerSearchesLearnerOnManageYourApprenticesPage(int learnerNumber)
