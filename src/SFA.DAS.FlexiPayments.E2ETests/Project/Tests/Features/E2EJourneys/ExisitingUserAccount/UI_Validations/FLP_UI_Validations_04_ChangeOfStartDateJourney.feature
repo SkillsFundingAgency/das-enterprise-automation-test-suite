@@ -14,3 +14,4 @@ Scenario: FLP_UI_Validations_04 Change Of Start Date Journey
 	When Provider proceeds to create a Change of Start Date request for flexi payments pilot learner
 	And Provider submits change of start date form without changing input fields
 	Then all default change of start date validation errors are displayed to the Provider
+	And Provider successfully creates a Change of Start Date request

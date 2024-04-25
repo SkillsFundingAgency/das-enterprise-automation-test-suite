@@ -131,6 +131,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 16
  testRunner.Then("all default change of start date validation errors are displayed to the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 17
+ testRunner.And("Provider successfully creates a Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

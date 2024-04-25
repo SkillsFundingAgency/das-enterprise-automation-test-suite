@@ -132,6 +132,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
+        [Then(@"Provider successfully creates a Change of Start Date request")]
+        public void ThenProviderSuccessfullyCreatesAChangeOfStartDateRequest()
+        {
+            new ChangeTrainingStartDatePage(context).EnterValidChangeOfPriceDetails(DateTime.Today.Date, context.ScenarioInfo.Title)
+                .ValidateChangeOfStartDateRequestRaisedSuccessfully();
+        }
+
+
 
         [When(@"Provider creates a Change of Price request where Training Price for the apprenticeship is reduced by (.*)")]
         public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceForTheApprenticeshipIsReducedBy(int priceReduction)

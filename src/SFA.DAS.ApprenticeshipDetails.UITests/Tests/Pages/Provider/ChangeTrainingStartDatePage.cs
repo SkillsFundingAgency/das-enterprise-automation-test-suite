@@ -14,7 +14,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
         private static By SendButton => By.Id("buttonSubmitChangeOfStartDate");
         private static By ApprenticeshipStartDateHintText => By.Id("apprenticeship-startdate-hint");
         private static By StartDate_Day => By.Id("startdate-day");
-        private static By StartDate_Month => By.Id("startdate_Month");
+        private static By StartDate_Month => By.Id("startdate-month");
         private static By StartDate_Year => By.Id("startdate-year");
         private static By ReasonInputFields => By.Id("ReasonForChangeOfStartDate");
         private static By ChangeActualTrainingStartDateErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipActualStartDate']");

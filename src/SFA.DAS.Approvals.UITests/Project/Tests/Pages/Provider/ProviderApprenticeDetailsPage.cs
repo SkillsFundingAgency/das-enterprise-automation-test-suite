@@ -29,7 +29,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ChangePriceLink => By.Id("linkChangePrice");
         private static By ChangeStartDateLink => By.Id("linkChangeStartDate");
         private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
+        private static By ChangeOfStartDateRequestSentBanner => By.Id("change-of-startdate-request-sent-banner");
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
+        private static By ChangeOfStartDateRequestSentBannerMessage => By.CssSelector("#change-of-startdate-request-sent-banner h3");
+        private static By ViewDateChangeYouHaveRequestLinkBanner => By.Id("linkViewPendingStartDateBanner");
+        private static By ViewPendingStartDateLink => By.Id("linkViewPendingStartDate");
+        private static By ChangeOfStartDatePendingRequestTag => By.CssSelector("#pendingStartDateChangeSection strong.govuk-tag.govuk-tag--yellow");
         private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price changes you've requested\")]");
         private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
         private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
@@ -163,6 +168,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.That(pageInteractionHelper.GetText(ChangeOfPriceRequestSentBannerMessage), Is.EqualTo("Request to change the price sent to employer"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangesRequestedHeading), "Price changes you've requested heading not displayed");
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPriceChangesLink), "View price changes you've requested link is not displayed");
+            }
+            );
+        }
+
+        public void ValidateChangeOfStartDateRequestRaisedSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateRequestSentBanner), "Change of Start Date Request Sent banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(ChangeOfStartDateRequestSentBannerMessage), Is.EqualTo("Request to change the training date sent to employer"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewDateChangeYouHaveRequestLinkBanner), "Request to change the training date sent to employer heading not displayed in the banner");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request banner for Change of Start Date not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateLink), "View request link for Change of Start Date not displayed");
             }
             );
         }
