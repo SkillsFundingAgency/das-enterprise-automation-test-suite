@@ -15,3 +15,6 @@ Scenario: FLP_UI_Validations_04 Change Of Start Date Journey
 	And Provider submits change of start date form without changing input fields
 	Then all default change of start date validation errors are displayed to the Provider
 	And Provider successfully creates a Change of Start Date request
+	And Employer searches for learner on Manage your apprentices page
+	And Employer is able to view the pending Change of Start Date request
+	And Employer can view the details of the Change of Start Date request 

@@ -134,6 +134,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.And("Provider successfully creates a Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 18
+ testRunner.And("Employer searches for learner on Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+ testRunner.And("Employer is able to view the pending Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
+ testRunner.And("Employer can view the details of the Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

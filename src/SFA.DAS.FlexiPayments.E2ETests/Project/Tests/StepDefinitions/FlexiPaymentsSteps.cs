@@ -230,22 +230,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer searches for learner on Manage your apprentices page")]
-        public void EmployerSearchesLearnerOnManageYourApprenticesPage()
-        {
-            _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
-        }
+        public void EmployerSearchesLearnerOnManageYourApprenticesPage() => _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
 
         [Then(@"Employer is able to view the pending Change of Price request")]
-        public void EmployerIsAbleToViewThePendingChangeOfPriceRequest()
-        {
-            _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
-        }
+        public void EmployerIsAbleToViewThePendingChangeOfPriceRequest() => _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+
+        [Then(@"Employer is able to view the pending Change of Start Date request")]
+        public void EmployerIsAbleToViewThePendingChangeOfStartDateRequest() => _apprenticeDetailsPage.ValidateStartDateChangePendingBannerDisplayed();
 
         [Then(@"Employer can view the details of the Change of Price request")]
-        public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest()
-        {
-            _apprenticeDetailsPage.ClickReviewPriceChangeLink();
-        }
+        public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest() => _apprenticeDetailsPage.ClickReviewPriceChangeLink();
+
+        [Then(@"Employer can view the details of the Change of Start Date request")]
+        public void ThenEmployerCanViewTheDetailsOfTheChangeOfStartDateRequest() => _apprenticeDetailsPage.ClickReviewStartDateChangeLink();    
 
         [Then(@"Employer is able to successfully reject the Change of Price request")]
         public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
