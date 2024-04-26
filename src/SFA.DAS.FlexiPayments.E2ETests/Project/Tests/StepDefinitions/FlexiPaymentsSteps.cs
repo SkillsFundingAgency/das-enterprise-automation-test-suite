@@ -124,7 +124,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             EmployerSearchesLearnerOnManageYourApprenticesPage();
             EmployerCanViewTheDetailsOfTheChangeOfPriceRequest();
 
-            new EmployerChangeOfPriceReviewChangesPage(_context)
+            new EmployerReviewChangesPage(_context)
                 .SelectApproveChangesRadioButtonAndSend()
                 .ValidatePriceChangeApprovedBannerDisplayed();
         }
@@ -242,12 +242,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest() => _apprenticeDetailsPage.ClickReviewPriceChangeLink();
 
         [Then(@"Employer can view the details of the Change of Start Date request")]
-        public void ThenEmployerCanViewTheDetailsOfTheChangeOfStartDateRequest() => _apprenticeDetailsPage.ClickReviewStartDateChangeLink();    
+        public void ThenEmployerCanViewTheDetailsOfTheChangeOfStartDateRequest()
+        {
+            _apprenticeDetailsPage.ClickReviewStartDateChangeLink();
+
+            new EmployerReviewChangesPage(_context).ValidateChangeOfStartDateRequestedValues(DateTime.Now, _context.ScenarioInfo.Title);
+        }
 
         [Then(@"Employer is able to successfully reject the Change of Price request")]
         public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
         {
-            new EmployerChangeOfPriceReviewChangesPage(_context)
+            new EmployerReviewChangesPage(_context)
                 .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title)
                 .ValidatePriceChangeRejectedBannerDisplayed();
         }
