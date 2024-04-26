@@ -2,7 +2,6 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
 
 [Binding]
@@ -17,13 +16,14 @@ public class UnsupportedWebDriverVersionSetup(ScenarioContext context) : WebDriv
 
         if (!_browser.IsCloudExecution() && frameworkConfig.IsVstsExecution)
         {
-            if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(true); RestartWebDriver(); }
+            if (IsUnsupportedChromeDriverVersion()) { DAS.FrameworkHelpers.FileHelper.GetAzureSrcFilesPath(); RestartWebDriver(); }
             else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
             else if (IsUnsupportedEdgeDriverVersion()) { SetEdgeDriverLocation(true); RestartWebDriver(); }
         }
     }
-
-    private static bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && false; //objectContext.GetChromedriverVersion().StartsWith("100.0"); A temp fix whenever we have chromedriver issue.
+    
+    //A temp fix whenever we have chromedriver issue. We had the same issue when chrome driver version was 100.0
+    private bool IsUnsupportedChromeDriverVersion() => _browser.IsChrome() && objectContext.GetChromedriverVersion().StartsWith("124.0.6367.60"); 
 
     private static bool IsUnsupportedFirefoxDriverVersion() => _browser.IsFirefox() && false;
 

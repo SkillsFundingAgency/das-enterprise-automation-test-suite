@@ -75,6 +75,7 @@ steps:
      src/**/appsettings.NServiceBusConfig.json
      src/**/appsettings.BrowserStack.json
      src/**/appsettings.ApiFramework.json
+     src/chromedriver.exe
     TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
     flattenFolders: true
     OverWrite: true
