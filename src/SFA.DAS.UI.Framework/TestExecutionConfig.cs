@@ -11,4 +11,6 @@ public class TestExecutionConfig
     public string CanTakeFullScreenShot { get; set; }
 
     public string IsAccessibilityTesting { get; init; }
+
+    public string IsAdoDriverVersionCompatible { get; init; }
 }

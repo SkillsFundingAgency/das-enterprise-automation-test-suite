@@ -28,6 +28,8 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
 
         _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
 
+        _ = bool.TryParse(testExecutionConfig.IsAdoDriverVersionCompatible, out bool isAdoDriverVersionCompatible);
+
         bool IsVstsExecution = Configurator.IsAzureExecution;
 
         var frameworkConfig = new FrameworkConfig
@@ -38,7 +40,8 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
             IsVstsExecution = IsVstsExecution,
             CanCaptureUrl = IsVstsExecution && IsCurrrentUserAnAdmin(captureUrlAdmin),
             CanTakeFullScreenShot = canTakeFullScreenShot || IsCurrrentUserAnAdmin(fullscreenshotAdmin),
-            IsAccessibilityTesting = isAccessibilityTesting
+            IsAccessibilityTesting = isAccessibilityTesting,
+            IsAdoDriverVersionCompatible = isAdoDriverVersionCompatible
         };
 
         context.Set(frameworkConfig);

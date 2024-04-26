@@ -19,5 +19,7 @@ public class FrameworkConfig
 
     internal bool IsAccessibilityTesting { get; set; }
 
+    internal bool IsAdoDriverVersionCompatible { get; set; }
+
     public static string SampleFileName => "Sample.pdf";
 }
