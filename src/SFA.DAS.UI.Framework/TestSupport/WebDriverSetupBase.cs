@@ -31,9 +31,11 @@ public partial class WebDriverSetupBase(ScenarioContext context)
         SetEdgeDriverLocation(isLocal);
     }
 
+    protected void SetChromeDriverLocation(string path) => objectContext.SetChromeDriverLocation(path);
+
     protected void SetFireFoxDriverLocation(bool isLocal) => objectContext.SetFireFoxDriverLocation(GetDriverLocation(isLocal, FirefoxDriverServiceName));
 
-    protected void SetChromeDriverLocation(bool isLocal) => objectContext.SetChromeDriverLocation(GetDriverLocation(isLocal, ChromeDriverServiceName));
+    protected void SetChromeDriverLocation(bool isLocal) => SetChromeDriverLocation(GetDriverLocation(isLocal, ChromeDriverServiceName));
 
     protected void SetEdgeDriverLocation(bool isLocal) => objectContext.SetEdgeDriverLocation(GetDriverLocation(isLocal, EdgeDriverServiceName));
 

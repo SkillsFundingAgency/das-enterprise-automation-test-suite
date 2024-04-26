@@ -16,7 +16,7 @@ public class UnsupportedWebDriverVersionSetup(ScenarioContext context) : WebDriv
 
         if (!_browser.IsCloudExecution() && frameworkConfig.IsVstsExecution)
         {
-            if (IsUnsupportedChromeDriverVersion()) { DAS.FrameworkHelpers.FileHelper.GetAzureSrcFilesPath(); RestartWebDriver(); }
+            if (IsUnsupportedChromeDriverVersion()) { SetChromeDriverLocation(DAS.FrameworkHelpers.FileHelper.GetAzureSrcFilesPath()); RestartWebDriver(); }
             else if (IsUnsupportedFirefoxDriverVersion()) { SetFireFoxDriverLocation(true); RestartWebDriver(); }
             else if (IsUnsupportedEdgeDriverVersion()) { SetEdgeDriverLocation(true); RestartWebDriver(); }
         }
