@@ -48,8 +48,6 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
 
         _objectContext.SetBrowser(testExecutionConfig.Browser);
 
-        context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
-
         if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
     }
 
