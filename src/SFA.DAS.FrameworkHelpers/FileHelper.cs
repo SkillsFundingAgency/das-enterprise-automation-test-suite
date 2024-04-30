@@ -16,7 +16,7 @@ namespace SFA.DAS.FrameworkHelpers
         {
             var fullFileName = $"appsettings.{fileName}.json";
 
-            var path = TestPlatformFinder.IsAzureExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
+            var path = TestPlatformFinder.IsAdoExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
 
             string[] files = Directory.Exists(path) ? Directory.GetFiles(path, fullFileName) : [];
 
@@ -38,7 +38,7 @@ namespace SFA.DAS.FrameworkHelpers
 
         internal static string GetPath(string fileName, string extension)
         {
-            bool isAzureExecution = TestPlatformFinder.IsAzureExecution;
+            bool isAzureExecution = TestPlatformFinder.IsAdoExecution;
 
             var path = isAzureExecution ? GetAzureSrcFilesPath() : GetLocalSrcPath();
 

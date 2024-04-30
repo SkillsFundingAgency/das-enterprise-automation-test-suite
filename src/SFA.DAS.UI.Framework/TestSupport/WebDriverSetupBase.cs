@@ -28,7 +28,7 @@ public partial class WebDriverSetupBase(ScenarioContext context)
     {
         string chromeDriverLocation , geckoDriverLocation, edgeDriverLocation;
 
-        if (frameworkConfig.IsVstsExecution)
+        if (frameworkConfig.IsAdoExecution)
         {
             (chromeDriverLocation, geckoDriverLocation, edgeDriverLocation) = Configurator.GetDriverLocation();
 

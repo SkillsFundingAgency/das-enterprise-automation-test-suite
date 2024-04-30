@@ -11,7 +11,7 @@ public class FrameworkConfig
 
     public BrowserStackSetting BrowserStackSetting { get; internal set; }
 
-    internal bool IsVstsExecution { get; set; }
+    internal bool IsAdoExecution { get; set; }
 
     internal bool CanCaptureUrl { get; set; }
 
