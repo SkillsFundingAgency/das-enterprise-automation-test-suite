@@ -110,7 +110,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question));
         }
 
-        private void NavigateTo() { if (PageType == PageTypeEnum.User) NavigateToUser(); else NavigateToOrganisation(); }
+        private new void NavigateTo() { if (PageType == PageTypeEnum.User) NavigateToUser(); else NavigateToOrganisation(); }
 
         private new HomePage CloseAllTickets()
         {

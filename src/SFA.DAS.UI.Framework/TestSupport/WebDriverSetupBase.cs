@@ -1,4 +1,6 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,44 +24,44 @@ public partial class WebDriverSetupBase(ScenarioContext context)
     private const string FirefoxDriverServiceName = "geckodriver.exe";
     private const string EdgeDriverServiceName = "msedgedriver.exe";
 
-    protected void SetDriverLocation(bool isLocal)
+    protected void SetDriverLocation()
     {
-        SetFireFoxDriverLocation(isLocal);
+        string chromeDriverLocation , geckoDriverLocation, edgeDriverLocation;
 
-        SetChromeDriverLocation(isLocal);
+        if (frameworkConfig.IsAdoExecution)
+        {
+            (chromeDriverLocation, geckoDriverLocation, edgeDriverLocation) = Configurator.GetDriverLocation();
 
-        SetEdgeDriverLocation(isLocal);
+            if (!frameworkConfig.IsAdoDriverVersionCompatible)
+            {
+                var adoLocalPath = FileHelper.GetAzureSrcFilesPath();
+
+                (chromeDriverLocation, geckoDriverLocation, edgeDriverLocation) = (adoLocalPath, adoLocalPath, adoLocalPath);
+            }
+        }
+        else
+        {
+            (chromeDriverLocation, geckoDriverLocation, edgeDriverLocation) = FindLocalDriverServiceLocation();
+        }
+
+        objectContext.SetChromeDriverLocation(chromeDriverLocation);
+
+        objectContext.SetFireFoxDriverLocation(geckoDriverLocation);
+
+        objectContext.SetEdgeDriverLocation(edgeDriverLocation);
     }
 
-    protected void SetFireFoxDriverLocation(bool isLocal) => objectContext.SetFireFoxDriverLocation(GetDriverLocation(isLocal, FirefoxDriverServiceName));
-
-    protected void SetChromeDriverLocation(bool isLocal) => objectContext.SetChromeDriverLocation(GetDriverLocation(isLocal, ChromeDriverServiceName));
-
-    protected void SetEdgeDriverLocation(bool isLocal) => objectContext.SetEdgeDriverLocation(GetDriverLocation(isLocal, EdgeDriverServiceName));
-
-    private string GetDriverLocation(bool isLocal, string executableName) => isLocal ? FindLocalDriverServiceLocation(executableName) : FindDriverServiceLocation(executableName);
-
-    private string FindDriverServiceLocation(string executableName) => frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
-
-    private string FindLocalDriverServiceLocation(string executableName)
+    private (string chromeWebDriver, string geckoWebDriver, string edgeWebDriver) FindLocalDriverServiceLocation()
     {
         string replacedPath = ProjectNameRegexHelper.ProjectNameRegex().Replace(DriverPath, "SFA.DAS.UI.FrameworkHelpers");
 
+        return (FindLocalDriverServiceLocation(replacedPath, ChromeDriverServiceName), FindLocalDriverServiceLocation(replacedPath, FirefoxDriverServiceName), FindLocalDriverServiceLocation(replacedPath, EdgeDriverServiceName));
+    }
+
+    private string FindLocalDriverServiceLocation(string replacedPath, string executableName)
+    {
         string[] file = Directory.GetFiles(replacedPath, executableName);
 
         return file.Length != 0 ? Directory.GetParent(file.Last()).FullName : DriverPath;
     }
-
-    private string FindVstsDriverServiceLocation(string executableName)
-    {
-        var (chromeWebDriver, geckoWebDriver, edgeWebDriver) = context.Get<DriverLocationConfig>().DriverLocation;
-
-        return true switch
-        {
-            bool _ when executableName == FirefoxDriverServiceName => geckoWebDriver,
-            bool _ when executableName == EdgeDriverServiceName => edgeWebDriver,
-            _ => chromeWebDriver,
-        };
-    }
-
 }
