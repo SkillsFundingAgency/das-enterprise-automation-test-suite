@@ -60,13 +60,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
 
-            var inputData = table.Rows[0].CreateInstance<FlexiPaymentsInputDataModel>();
+            sbyte i = 1;
 
-            ProviderAddsUln(inputData.PilotStatus, 1);
-
+            foreach (var row in table.Rows)
+            {
+                var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
+                ProviderAddsUln(inputData.PilotStatus, i++);
+            }
             _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
         }
-
 
         [Given(@"the Employer has an approved (Pilot|NonPilot) apprentice")]
         public void EmployerHasFullyApprovedPilotApprentice(string pilotStatus)
