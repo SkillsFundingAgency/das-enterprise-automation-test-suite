@@ -2,10 +2,10 @@
 
 public static class TestPlatformFinder
 {
-    public static readonly bool IsAzureExecution;
+    public static readonly bool IsAdoExecution;
 
     static TestPlatformFinder()
     {
-        IsAzureExecution = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_MACHINENAME"));
+        IsAdoExecution = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_MACHINENAME"));
     }
 }

@@ -13,7 +13,7 @@ public class MultiConfigurationSetupHelper(ScenarioContext context)
 
         var list = configSection.GetConfigSection<List<T>>(key);
 
-        if (Configurator.IsAzureExecution)
+        if (Configurator.IsAdoExecution)
         {
             var azureList = configSection.GetConfigSection<string>(key);
 
