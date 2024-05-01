@@ -136,7 +136,7 @@ public abstract class VerifyBasePage : InterimBasePage
 
     private void TakeScreenShot()
     {
-        if (frameworkConfig.IsVstsExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
+        if (frameworkConfig.IsAdoExecution && !tags.Contains("donottakescreenshot") && _takescreenshot && !frameworkConfig.IsAccessibilityTesting)
         {
             string counter = _screenShotTitleGenerator.GetTitle();
 

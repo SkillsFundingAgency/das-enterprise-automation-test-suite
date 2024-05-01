@@ -91,10 +91,6 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
 
     private ChromeDriver ChromeDriver(List<string> arguments)
     {
-        arguments.Add("no-sandbox");
-
-        arguments.Add("ignore-certificate-errors");
-
         var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
 
         AddChromeCapabilities(webdriver);
