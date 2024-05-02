@@ -20,8 +20,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney.Shar
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_03")]
-    public partial class RV2_P_E2E_03Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_S01")]
+    public partial class RV2_P_E2E_S01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney.Shar
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourney/SharedApplication", "RV2_P_E2E_03", "As a provider want to be be able to select single applicant and share with employ" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourney/SharedApplication", "RV2_P_E2E_S01", "As a provider want to be be able to select single applicant and share with employ" +
                     "er", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -75,14 +75,14 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney.Shar
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_03 - Create vacancy with registered name, Approve, Apply and share sing" +
-            "le Application")]
+        [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_S01 - Create vacancy with registered name, Approve, Apply and share sin" +
+            "gle Application")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("v2_e2e")]
         [NUnit.Framework.CategoryAttribute("v2p_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_P_E2E_03_CreateVacancyWithRegisteredNameApproveApplyAndShareSingleApplication()
+        public void RV2_P_E2E_S01_CreateVacancyWithRegisteredNameApproveApplyAndShareSingleApplication()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
@@ -91,8 +91,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney.Shar
                     "v2p_e2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_E2E_03 - Create vacancy with registered name, Approve, Apply and share sing" +
-                    "le Application", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_E2E_S01 - Create vacancy with registered name, Approve, Apply and share sin" +
+                    "gle Application", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
