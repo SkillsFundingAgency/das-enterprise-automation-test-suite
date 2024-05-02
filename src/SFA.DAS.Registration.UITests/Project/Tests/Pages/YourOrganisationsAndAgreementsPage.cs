@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using System.Linq;
@@ -9,8 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : InterimYourOrganisationsAndAgreementsPage(context, navigate)
     {
-
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper = context.GetValue<RegistrationSqlDataHelper>();
 
         #region Locators
         private static By TransferStatus => By.CssSelector("p.govuk-body");

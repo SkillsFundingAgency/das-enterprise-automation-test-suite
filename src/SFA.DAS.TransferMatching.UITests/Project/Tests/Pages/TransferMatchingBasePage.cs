@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
-            tMDataHelper = context.Get<TMDataHelper>();
-            datahelper = context.Get<ApprenticeDataHelper>();
+            tMDataHelper = context.GetValue<TMDataHelper>();
+            datahelper = context.GetValue<ApprenticeDataHelper>();
             if (verifyPage) VerifyPage();
         }
 

@@ -3,7 +3,6 @@ using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
@@ -12,7 +11,7 @@ namespace SFA.DAS.ConfigurationBuilder
     {
         private static readonly IConfigurationRoot _config;
 
-        public static readonly bool IsAzureExecution;
+        public static readonly bool IsAdoExecution;
 
         internal static readonly string EnvironmentName;
 
@@ -26,9 +25,9 @@ namespace SFA.DAS.ConfigurationBuilder
 
         static Configurator()
         {
-            IsAzureExecution = TestPlatformFinder.IsAzureExecution;
+            IsAdoExecution = TestPlatformFinder.IsAdoExecution;
 
-            if (IsAzureExecution) 
+            if (IsAdoExecution)
             {
                 ChromeWebDriver = Environment.GetEnvironmentVariable("CHROMEWEBDRIVER");
                 GeckoWebDriver = Environment.GetEnvironmentVariable("GECKOWEBDRIVER");
@@ -66,7 +65,7 @@ namespace SFA.DAS.ConfigurationBuilder
                     "Project"
                 ]);
 
-            if (!IsAzureExecution)
+            if (!IsAdoExecution)
             {
                 builder
                     .AddUserSecrets("BrowserStackSecrets")

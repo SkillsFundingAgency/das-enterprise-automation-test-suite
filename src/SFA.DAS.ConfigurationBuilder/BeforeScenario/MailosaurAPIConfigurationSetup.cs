@@ -14,7 +14,7 @@ public class MailosaurAPIConfigurationSetup(ScenarioContext context)
     {
         var mailosaurApiConfigs = new MultiConfigurationSetupHelper(context).SetMultiConfiguration<MailosaurApiConfig>(MailosaurApiConfig);
 
-        var mailosaurApiConfig = Configurator.IsAzureExecution ? mailosaurApiConfigs.Single(x => x.ServerName == "azure") : mailosaurApiConfigs.Single(x => x.ServerName == "local");
+        var mailosaurApiConfig = Configurator.IsAdoExecution ? mailosaurApiConfigs.Single(x => x.ServerName == "azure") : mailosaurApiConfigs.Single(x => x.ServerName == "local");
 
         context.Set(new MailosaurUser(mailosaurApiConfig.ServerName, mailosaurApiConfig.ServerId, mailosaurApiConfig.ApiToken));
     }

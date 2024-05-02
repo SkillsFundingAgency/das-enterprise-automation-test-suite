@@ -22,7 +22,7 @@ public class ApiFrameworkConfigurationSetup(ScenarioContext context)
 
         var inner_ApiFrameworkConfig = new Inner_ApiFrameworkConfig(_configSection.GetConfigSection<Inner_ApiAuthTokenConfig>())
         {
-            IsVstsExecution = Configurator.IsAzureExecution,
+            IsVstsExecution = Configurator.IsAdoExecution,
         };
 
         inner_ApiFrameworkConfig.config.ApprenticeAccountsAppServiceName += _appServiceResourceSuffix;

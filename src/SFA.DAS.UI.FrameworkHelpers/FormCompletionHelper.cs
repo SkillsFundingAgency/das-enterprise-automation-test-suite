@@ -27,11 +27,18 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
     public void EnterText(IWebElement element, string text)
     {
-        element.Clear();
-
-        element.SendKeys(text);
+        SendKeys(element, text);
 
         SetDebugInformation($"Entered '{text}'");
+    }
+
+    public void EnterPpi(By locator, string text)
+    {
+        webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+
+        SendKeys(webDriver.FindElement(locator), text);
+
+        SetDebugInformation($"Entered '{text.Mask()}'");
     }
 
     public void EnterText(By locator, string text)
@@ -133,4 +140,12 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
     public void ClickButtonByText(By locator, string text) => ClickElementByText(locator, text);
 
     public void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
+
+    private static void SendKeys(IWebElement element, string text)
+    {
+        element.Clear();
+
+        element.SendKeys(text);
+    }
+
 }

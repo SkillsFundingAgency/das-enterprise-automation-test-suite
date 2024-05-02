@@ -11,6 +11,6 @@ public static partial class GeneratedRegexHelper
 
 public partial class ProjectNameRegexHelper
 {
-    [GeneratedRegex(@"SFA\.DAS\..*\.(DataPreparation|ServiceBusIntegration|PaymentProcess|API|UI|E2E)Tests")]
+    [GeneratedRegex(@"SFA\.DAS\..*\.(DataPreparation|ServiceBusIntegration|PaymentProcess|API|UI|E2E|Smoke)Tests")]
     public static partial Regex ProjectNameRegex();
 }
