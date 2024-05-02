@@ -19,6 +19,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         internal void ApplicantUnsucessful() => StepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReference());
         internal void MutipleApplicantsUnsucessful() => StepsHelper.MultiApplicantsUnsucessful(SearchVacancyByVacancyReference());
 
+        internal void InterviewWithEmployer() => StepsHelper.InterviewApplicant(SearchVacancyByVacancyReference());
         internal void VerifyWageType(string wageType) => StepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
         private ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage().SearchVacancyByVacancyReference();

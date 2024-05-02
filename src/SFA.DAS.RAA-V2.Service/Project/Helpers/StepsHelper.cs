@@ -10,7 +10,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public static void VerifyWageType(ProviderVacancySearchResultPage providerVacancySearchResultPage, string wageType)
             => providerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
-
+        public static void InterviewApplicant(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+            => providerVacancySearchResultPage.NavigateToManageApplicant().MarkApplicantInterviewWithEmployer();     
         public static void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantSucessful().ConfirmSuccessful();
         public static void MultiShareApplicants(ProviderVacancySearchResultPage providerVacancySearchResultPage)
