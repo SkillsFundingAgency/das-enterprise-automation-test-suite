@@ -7,7 +7,7 @@ for learners opted in the pilot. They should be able to make changes to aproved 
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_01 Employer and Provider cannot edit an approved pilot learner but can edit a non-pilot user
-	Given fully approved apprentices with the below data
+	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price | pilot_status |
 		| 1       | 154           | 2004/06/20    | 2023/08/01     | 12                 | 15000        | true         |
 		| 2       | 91            | 2004/06/27    | 2022/09/01     | 12                 | 18000        | false        |
