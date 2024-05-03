@@ -114,7 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "14500",
                             "true"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table3, "Given ");
+ testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
+                        " data", ((string)(null)), table3, "Given ");
 #line hidden
 #line 13
     testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -183,7 +184,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "15000",
                             "true"});
 #line 24
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table4, "Given ");
+ testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
+                        " data", ((string)(null)), table4, "Given ");
 #line hidden
 #line 27
     testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -245,7 +247,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "18000",
                             "true"});
 #line 36
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table5, "Given ");
+ testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
+                        " data", ((string)(null)), table5, "Given ");
 #line hidden
 #line 39
     testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
