@@ -8,7 +8,7 @@ public class EnterYourSecurityCodePage(ScenarioContext context) : LiveSignBasePa
 
     private static By CodeField => By.CssSelector("#code");
 
-    public LiveHomePage EnterCode()
+    public void EnterCode()
     {
         var deviceConfig = context.Get<MailasourDeviceConfig>();
 
@@ -17,7 +17,5 @@ public class EnterYourSecurityCodePage(ScenarioContext context) : LiveSignBasePa
         var code = helper.GetCode(deviceConfig.LiveEasUserDeviceId);
 
         EnterPpiAndContinue(CodeField, code);
-
-        return new(context);
     }
 }
