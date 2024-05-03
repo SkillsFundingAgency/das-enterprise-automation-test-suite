@@ -19,7 +19,7 @@ public class DfeProviderConfigurationSetup(ScenarioContext context)
 
         var dfeProviderList = configSection.GetConfigSection<List<DfeProviderUsers>>(DfeProvidersConfig);
 
-        if (Configurator.IsAzureExecution)
+        if (Configurator.IsAdoExecution)
         {
             var dfeProviderList1 = configSection.GetConfigSection<string>(DfeProvidersConfig);
 

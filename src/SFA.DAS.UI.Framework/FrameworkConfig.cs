@@ -11,13 +11,15 @@ public class FrameworkConfig
 
     public BrowserStackSetting BrowserStackSetting { get; internal set; }
 
-    internal bool IsVstsExecution { get; set; }
+    internal bool IsAdoExecution { get; set; }
 
     internal bool CanCaptureUrl { get; set; }
 
     internal bool CanTakeFullScreenShot { get; set; }
 
     internal bool IsAccessibilityTesting { get; set; }
+
+    internal bool IsAdoDriverVersionCompatible { get; set; }
 
     public static string SampleFileName => "Sample.pdf";
 }
