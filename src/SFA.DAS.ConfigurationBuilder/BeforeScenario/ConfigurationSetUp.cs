@@ -1,35 +1,41 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using SFA.DAS.FrameworkHelpers;
+using System.IO;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 {
     [Binding]
-    public class ConfigurationSetup
+    public class ConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        private readonly IConfigurationRoot _configurationRoot;
-
-        private readonly ConfigSection _configSection;
-
-        public ConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configurationRoot = Configurator.GetConfig();
-            _configSection = new ConfigSection(_configurationRoot);
-        }
-
         [BeforeScenario(Order = 0)]
         public void SetUpConfiguration()
         {
-            _context.Set(_configSection);
+            CopySpecflowJsonFile();
 
-            var dbConfig = _configSection.GetConfigSection<DbConfig>();
+            var configSection = new ConfigSection(Configurator.GetConfig());
 
-            if (!Configurator.IsAdoExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>(), _context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
+            context.Set(configSection);
 
-            _context.Set(dbConfig);
+            var dbConfig = configSection.GetConfigSection<DbConfig>();
+
+            if (!Configurator.IsAdoExecution) dbConfig = new LocalHostDbConfig(configSection.GetConfigSection<DbDevConfig>(), context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
+
+            context.Set(dbConfig);
+        }
+
+        private static void CopySpecflowJsonFile()
+        {
+            if(!TestPlatformFinder.IsAdoExecution)
+            {
+                string fileName = "specflow.json";
+
+                var file = FileHelper.GetLocalSettingsFilePath(fileName);
+
+                var outputPath = FileHelper.GetLocalExecutingAssemblyPath();
+
+                File.Copy(file, Path.Combine(outputPath, fileName), true);
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +9,7 @@ namespace SFA.DAS.UI.Framework.TestSupport;
 
 public partial class WebDriverSetupBase(ScenarioContext context)
 {
-    protected readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+    protected readonly string DriverPath = FileHelper.GetLocalExecutingAssemblyPath();
 
     protected readonly ScenarioContext context = context;
 
@@ -26,7 +25,7 @@ public partial class WebDriverSetupBase(ScenarioContext context)
 
     protected void SetDriverLocation()
     {
-        string chromeDriverLocation , geckoDriverLocation, edgeDriverLocation;
+        string chromeDriverLocation, geckoDriverLocation, edgeDriverLocation;
 
         if (frameworkConfig.IsAdoExecution)
         {
