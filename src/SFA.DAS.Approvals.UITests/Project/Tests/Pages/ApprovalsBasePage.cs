@@ -28,12 +28,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            registrationDataHelper = context.Get<RegistrationDataHelper>();
+            registrationDataHelper = context.GetValue<RegistrationDataHelper>();
             providerConfig = context.GetProviderConfig<ProviderConfig>();
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
             portableFlexiJobProviderConfig = context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>();
-            loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            loginCredentialsHelper = context.GetValue<LoginCredentialsHelper>();
             publicSectorReportingDataHelper = context.GetValue<PublicSectorReportingDataHelper>();
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
             editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();

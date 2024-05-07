@@ -12,7 +12,9 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
 
     private static By WebWidgetTitle => By.CssSelector("h1[id='widgetHeaderTitle']");
 
-    public void VerifyHeaders() => VerifyElement(HeaderSelector);
+    private static By FindApprenticeshipTrainingLink => By.LinkText("Find apprenticeship training");
+
+    public LiveHomePage VerifyHeaders() { VerifyElement(HeaderSelector); return this; }
 
     public void AccessHelpLauncher()
     {
@@ -27,5 +29,12 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
             VerifyPage(WebWidgetTitle, "Apprenticeship Service Support");
         },
         WebWidgetIframe);
+    }
+
+    public FindApprenticeshipTrainingSearchPage GoToFatHomePage()
+    {
+        tabHelper.OpenInNewTab(() => formCompletionHelper.Click(FindApprenticeshipTrainingLink));
+
+        return new FindApprenticeshipTrainingSearchPage(context);
     }
 }

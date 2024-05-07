@@ -1,43 +1,32 @@
 ﻿namespace SFA.DAS.Live.SmokeTests.Project.Tests.Steps;
 
 [Binding]
-public class Steps(ScenarioContext context)
+public class HomePageNavigationSteps(ScenarioContext context)
 {
-    private LiveHomePage _homePage;
-
-    [Given(@"the Employer logins using existing Levy Account")]
-    public void TheEmployerLoginsUsingExistingLevyAccount()
-    {
-        _homePage = new SignInToYourApprenticeshipServiceAccountPage(context)
-            .SignInToYourApprenticeshipServiceAccount()
-            .SignInToGovUkLogin()
-            .EnterUsername()
-            .EnterPassword()
-            .EnterCode();
-    }
+    private LiveHomePage _liveHomePage;
 
     [Then(@"the standard header should be displayed")]
     public void ThenTheStandardHeaderShouldBeDisplayed()
     {
-        _homePage.VerifyHeaders();
+        _liveHomePage = new LiveHomePage(context).VerifyHeaders();
     }
 
     [Then(@"the help widget can be accessed")]
     public void TheHelpWidgetCanBeAccessed()
     {
-        _homePage.AccessHelpLauncher();
+        _liveHomePage.AccessHelpLauncher();
     }
 
     [Then(@"Apprentices link should direct user to Apprentices page")]
     public void ApprenticesLinkShouldDirectUserToApprenticesPage()
     {
-        new ApprenticesHomePage(context).GoToHomePage();
+       new ApprenticesHomePage(context).GoToHomePage();
     }
 
     [Then(@"Your apprenticeship adverts link should direct user to Create an advert page")]
     public void YourApprenticeshipAdvertsLinkShouldDirectUserToCreateAnAdvertPage()
     {
-        _ = new YourApprenticeshipAdvertsHomePage(context, true, false).GoToHomePage();
+       new YourApprenticeshipAdvertsHomePage(context, true, false).GoToHomePage();
     }
 
     [Then(@"Your training providers link should direct user to Your training providers page")]
@@ -46,16 +35,10 @@ public class Steps(ScenarioContext context)
         new YourTrainingProvidersLinkHomePage(context).OpenProviderPermissions().GoToHomePage();
     }
 
-    [Then(@"Find apprenticeship training link should direct user to Apprenticeship training courses page")]
-    public void FindApprenticeshipTrainingLinkShouldDirectUserToApprenticeshipTrainingCoursesPage()
-    {
-
-    }
-
     [Then(@"Your finances link should direct user to Finance page")]
     public void YourFinancesLinkShouldDirectUserToFinancePage()
     {
-        new HomePageFinancesSection_YourFinance(context).NavigateToFinancePage().GoToHomePage();
+       new HomePageFinancesSection_YourFinance(context).NavigateToFinancePage().GoToHomePage();
     }
 
     [Then(@"Your transfers link should direct user to Manage transfers page")]
@@ -81,6 +64,10 @@ public class Steps(ScenarioContext context)
     {
         new PAYESchemesPage(context, true).GoToHomePage();
     }
+
+    [Then(@"Find apprenticeship training link should direct user to Apprenticeship training courses page")]
+    public void FindApprenticeshipTrainingLinkShouldDirectUserToApprenticeshipTrainingCoursesPage()
+    {
+        new LiveHomePage(context).GoToFatHomePage();
+    }
 }
-
-
