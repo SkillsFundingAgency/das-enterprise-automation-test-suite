@@ -20,6 +20,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void ApplicantUnsucessful() => StepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
+        public void ApplicantShared() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
         internal void ApplicantSucessful() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
 
         internal void VerifyWageType(string wageType) => StepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
