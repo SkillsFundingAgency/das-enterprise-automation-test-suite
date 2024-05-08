@@ -44,16 +44,16 @@
     </None>
   </ItemGroup>
 
-	<Target Name="CopySpecflowConfigFile" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
-		<Message Text="Executing specflow.json task" Importance="High" />
+	<Target Name="CopySpecflowConfigFile" AfterTargets="Build" Condition=" $(Configuration) == Debug ">
+		<Message Text="Executing specflow.json copy task in $(Configuration) mode" Importance="High" />
 
 		<Copy
-		  SourceFiles="specflow.json"
+		  SourceFiles="$(TargetDir)..\..\..\specflow.json"
 		  DestinationFolder="$(TargetDir)"
 		  OverwriteReadOnlyFiles = "true"
 		  SkipUnchangedFiles ="false"/>
 
-		<Message Text="Copied specflow.json to $(TargetDir)" Importance="High" />
+		<Message Text="Copied specflow.json from '$(TargetDir)..\..\..\' to '$(TargetDir)'" Importance="High" />
 	</Target>
 
 </Project>
