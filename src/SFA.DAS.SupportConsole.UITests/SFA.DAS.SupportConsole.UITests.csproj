@@ -40,8 +40,20 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+	<Target Name="CopySpecflowConfigFile" AfterTargets="Build">
+		<Message Text="Executing specflow.json task" Importance="High" />
+
+		<Copy
+		  SourceFiles="specflow.json"
+		  DestinationFolder="$(TargetDir)"
+		  OverwriteReadOnlyFiles = "true"
+		  SkipUnchangedFiles ="false"/>
+
+		<Message Text="Copied specflow.json to $(TargetDir)" Importance="High" />
+	</Target>
 
 </Project>

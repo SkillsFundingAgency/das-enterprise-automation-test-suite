@@ -1,6 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
@@ -11,8 +9,6 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
         [BeforeScenario(Order = 0)]
         public void SetUpConfiguration()
         {
-            CopySpecflowJsonFile();
-
             var configSection = new ConfigSection(Configurator.GetConfig());
 
             context.Set(configSection);
@@ -22,20 +18,6 @@ namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
             if (!Configurator.IsAdoExecution) dbConfig = new LocalHostDbConfig(configSection.GetConfigSection<DbDevConfig>(), context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
 
             context.Set(dbConfig);
-        }
-
-        private static void CopySpecflowJsonFile()
-        {
-            if(!TestPlatformFinder.IsAdoExecution)
-            {
-                string fileName = "specflow.json";
-
-                var file = FileHelper.GetLocalSettingsFilePath(fileName);
-
-                var outputPath = FileHelper.GetLocalExecutingAssemblyPath();
-
-                File.Copy(file, Path.Combine(outputPath, fileName), true);
-            }
         }
     }
 }
