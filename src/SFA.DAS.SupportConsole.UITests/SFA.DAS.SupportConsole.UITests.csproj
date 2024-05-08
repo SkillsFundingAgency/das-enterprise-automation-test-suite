@@ -44,7 +44,7 @@
     </None>
   </ItemGroup>
 
-	<Target Name="CopySpecflowConfigFile" AfterTargets="Build">
+	<Target Name="CopySpecflowConfigFile" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
 		<Message Text="Executing specflow.json task" Importance="High" />
 
 		<Copy
