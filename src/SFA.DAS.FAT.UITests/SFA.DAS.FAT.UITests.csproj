@@ -4,15 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>SFA.DAS.FAT.UITests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
-	<RunSettingsFilePath>$(MSBuildProjectDirectory)\SFA.DAS.FAT.UITests.runsettings</RunSettingsFilePath> 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
 	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
@@ -46,7 +39,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

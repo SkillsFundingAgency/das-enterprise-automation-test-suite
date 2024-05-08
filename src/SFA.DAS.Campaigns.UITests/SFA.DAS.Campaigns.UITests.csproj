@@ -13,12 +13,6 @@
 	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Compile>
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
@@ -40,6 +34,9 @@
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+    <None Update="specflow.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
