@@ -1,4 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Linq;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.FrameworkHelpers;
@@ -33,6 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DownloadAllDataLink => By.PartialLinkText("Download all data");
         private static By NextPageLink => By.PartialLinkText("Next");
         private static By SimplifiedPaymentsPilotFilter => By.Id("selectedPilotStatus");
+        private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
 
         private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper;
 
@@ -64,6 +68,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickElement(ClearSearchAndFilters);
 
             return this;
+        }
+
+        public ProviderManageYourApprenticesPage Filter(string dropDownSelector, string filterText)
+        {
+            formCompletionHelper.SelectFromDropDownByText(By.Id(dropDownSelector), filterText);
+
+            formCompletionHelper.ClickElement(ApplyFilter);
+
+            return this;
+        }
+
+        internal ProviderManageYourApprenticesPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
+        {
+            formCompletionHelper.ClickElement(DownloadFilteredDataLink);
+            return new ProviderManageYourApprenticesPage(context);
+        }
+
+        public void DoesDownloadFileExistAndValidateRowCount()
+        {
+
+            var downloadedFileName = FileHelper.GetDownloadedFileName("Manageyourapprentices", "csv");
+            Assert.IsNotEmpty(downloadedFileName);
+
+            var filteredApprenticesOnPage = tableRowHelper.GetTableRows();
+            filteredApprenticesOnPage = filteredApprenticesOnPage.Where(row =>
+            {
+                if (DateTime.TryParse(row["Planned end date"], out DateTime plannedEndDate))
+                {
+                    return plannedEndDate >= DateTime.Now.AddYears(-1);
+                }
+                return false;
+            }).ToList();
+
+            Assert.IsTrue(FrameworkHelpers.FileHelper.CountCsvFileRows(downloadedFileName) - 2 == filteredApprenticesOnPage.Count);
         }
 
         public bool DownloadAllDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);

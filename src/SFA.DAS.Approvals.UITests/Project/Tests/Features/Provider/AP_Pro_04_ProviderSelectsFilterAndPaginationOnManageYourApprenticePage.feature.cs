@@ -105,6 +105,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the provider is presented with first page with no filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 10
+ testRunner.And("Provider is able to download the results in a csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("Provider can confirm number of rows in Apprentices csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

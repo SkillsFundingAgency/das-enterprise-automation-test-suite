@@ -104,6 +104,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("the employer is presented with first page with filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 12
+ testRunner.And("Employer is able to download the results in a csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.And("Employer can confirm number of rows in Apprentices csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
