@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
+using NUnit.Framework;
 
 namespace SFA.DAS.FrameworkHelpers
 {
@@ -62,6 +62,38 @@ namespace SFA.DAS.FrameworkHelpers
 
         private static string GetSrcPath(string projectPath) => Path.GetFullPath(Path.Combine(projectPath, @$"..\"));
 
+        public static string GetDownloadedFileName(string pageName, string format)
+        {
+            string downloadedFileName = string.Empty;
+            string filename = $"{pageName}_{DateTime.Now:yyyyMMdd}*.{format}";
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Downloads");
+
+            string[] filePaths = Directory.GetFiles(path, filename);
+
+            downloadedFileName = filePaths.OrderByDescending(filePath =>
+            {
+                var fileInfo = new FileInfo(filePath);
+                return fileInfo.LastWriteTime;
+            }).First();
+
+            return downloadedFileName;
+        }
+
+        public static int CountCsvFileRows(string fullPath)
+        {
+            int rowCount = 0;
+
+            if (File.Exists(fullPath))
+            {
+                using StreamReader reader = new(fullPath);
+                while (reader.ReadLine() != null)
+                {
+                    rowCount++;
+                }
+            }
+
+            return rowCount;
+        }
     }
 
     [TestFixture]
