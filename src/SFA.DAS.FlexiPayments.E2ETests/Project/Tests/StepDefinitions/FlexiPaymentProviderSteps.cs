@@ -22,7 +22,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
         private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
         private ChangeTrainingStartDatePage _changeTrainingStartDatePage;
-        private ChangeOfPriceViewChangeRequestPage _viewChangeRequestPage;
+        private ChangeOfPriceViewChangeRequestPage _viewPriceChangeRequestPage;
+        private ViewChangeOfStartDate _viewChangeOfStartDateRequestPage;
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
         private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
         private decimal newTrainingPrice;
@@ -199,14 +200,24 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             var totalPrice = newTrainingPrice + Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice);
 
-            _viewChangeRequestPage = new ChangeOfPriceViewChangeRequestPage(context).VerifyPendingEmployerReviewTagIsDisplayed()
+            _viewPriceChangeRequestPage = new ChangeOfPriceViewChangeRequestPage(context).VerifyPendingEmployerReviewTagIsDisplayed()
                 .ValidateRequestedValues(newTrainingPrice, Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice), totalPrice, DateTime.Now, context.ScenarioInfo.Title);          
         }
+
+        [Then(@"Provider is able to view details of change of Start Date request")]
+        public void ThenProviderIsAbleToViewDetailsOfChangeOfStartDateRequest()
+        {
+            _providerApprenticeDetailsPage.ClickViewPendingStartDateLink();
+
+            _viewChangeOfStartDateRequestPage = new ViewChangeOfStartDate(context).VerifyPendingEmployerReviewTagIsDisplayed()
+                .ValidateRequestedValues(DateTime.Today.Date, context.ScenarioInfo.Title);
+        }
+
 
         [Then(@"Provider can successfully cancel the change of price request")]
         public void ThenProviderCanSuccessfullyCancelTheChangeOfPriceRequest()
         {
-            _viewChangeRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
+            _viewPriceChangeRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
                 .ValidateChangeOfPriceRequestCancelledSuccessfully();
         }
 
