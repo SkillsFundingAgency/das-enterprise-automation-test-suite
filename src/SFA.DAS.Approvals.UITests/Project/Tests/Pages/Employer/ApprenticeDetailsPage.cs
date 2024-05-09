@@ -28,6 +28,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
         private static By ChangePriceLink => By.Id("linkChangeApprenticeshipPrice");
         private static By PriceChangePendingBanner => By.Id("price-change-pending-banner");
+        private static By StartDateChangePendingBanner => By.Id("start-date-change-pending-banner");
+        private static By ViewPendingStartDateChangeLinkBanner => By.Id("linkViewPendingStartDateBanner");
+        private static By ChangeOfStartDatePendingRequestTag => By.CssSelector("#change-of-start-date strong");
+        private static By ChangeOfStartDateReviewRequestLink => By.CssSelector("#change-of-start-date a");
         private static By PriceChangeRejectedBanner => By.Id("price-change-rejected-banner");
         private static By PriceChangeApprovedBanner => By.Id("price-change-approved-banner");
         private static By ViewPriceChangeRequestBannerLink => By.Id("linkViewPendingPriceBanner");
@@ -165,6 +169,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
+        public ApprenticeDetailsPage ValidateStartDateChangePendingBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(StartDateChangePendingBanner), "Start Date Change Pending banner not displayed");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateChangeLinkBanner), "View request link not displayed inside Change of Start Date banner");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request tag for Change of Start Date is missing ");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateReviewRequestLink), "Review request link for Change of Start Date is missing ");
+            return this;
+        }
+
         public ApprenticeDetailsPage ValidatePriceChangeRejectedBannerDisplayed()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeRejectedBanner), "Price Change Rejected banner not displayed");
@@ -180,6 +193,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         public void ClickReviewPriceChangeLink() => formCompletionHelper.ClickElement(ReviewPriceChangeLink);
+        public void ClickReviewStartDateChangeLink() => formCompletionHelper.ClickElement(ChangeOfStartDateReviewRequestLink);
 
         public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
 

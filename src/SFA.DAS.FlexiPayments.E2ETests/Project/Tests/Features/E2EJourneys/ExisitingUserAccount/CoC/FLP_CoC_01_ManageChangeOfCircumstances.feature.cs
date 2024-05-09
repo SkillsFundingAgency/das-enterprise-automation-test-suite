@@ -124,7 +124,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "18000",
                             "false"});
 #line 10
- testRunner.Given("fully approved apprentices with the below data", ((string)(null)), table2, "Given ");
+ testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
+                        " data", ((string)(null)), table2, "Given ");
 #line hidden
 #line 14
  testRunner.When("Provider can search learner 1 using Simplified Payments Pilot filter set to yes o" +

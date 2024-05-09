@@ -9,7 +9,7 @@ public class WebDriverSetup(ScenarioContext context) : WebDriverSetupBase(contex
     [BeforeScenario(Order = 3)]
     public void SetupWebDriver()
     {
-        SetDriverLocation(false);
+        SetDriverLocation();
 
         webDriverSetupHelper.SetupWebDriver();
     }

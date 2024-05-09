@@ -77,6 +77,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         }
 
         public ApproveApprenticeDetailsPage EmployerAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(listOfApprentice);
+        
+        public AddApprenticeDetailsPage EmployerGoToAdddApprenticeDetailsFromHomePage() => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard();
 
         public ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices) => AddApprentices(numberOfApprentices);
 

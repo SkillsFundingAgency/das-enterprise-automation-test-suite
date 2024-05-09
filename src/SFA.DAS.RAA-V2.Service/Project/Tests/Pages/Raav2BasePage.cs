@@ -23,6 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private static By CancelLink => By.LinkText("Cancel");
 
+        protected static By MultipleCandidateFeedback => By.CssSelector("#provider-multiple-candidate-feedback");
         protected static By CandidateFeedback => By.CssSelector("#CandidateFeedback");
 
         public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context)

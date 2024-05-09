@@ -11,13 +11,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        protected override By PageHeader => By.CssSelector(".content__body h1");
-
         #region Locators
-        private static By UserIdInput => By.Id("userId");
-        private static By PasswordInput => By.Id("password");
-        private static By SignInButton => By.CssSelector("input.button");
-        private static By ErrorMessageText => By.Id("errors");
+        private static By UserIdInput => By.Id("UserId");
+        private static By PasswordInput => By.Id("Password");
+        private static By SignInButton => By.XPath("//button[contains(text(),'Continue')]");
+        private static By ErrorMessageText => By.XPath("(//ul[@class='govuk-list govuk-error-summary__list']/li)[1]");
         #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context) => VerifyPage();
