@@ -136,11 +136,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Provider successfully creates a Change of Start Date request")]
         public void ThenProviderSuccessfullyCreatesAChangeOfStartDateRequest()
         {
-            new ChangeTrainingStartDatePage(context).EnterValidChangeOfPriceDetails(DateTime.Today.Date, context.ScenarioInfo.Title)
+            new ChangeTrainingStartDatePage(context).EnterValidChangeOfStartDateDetails(DateTime.Today.Date, context.ScenarioInfo.Title)
+                .ClickSendButton()
                 .ValidateChangeOfStartDateRequestRaisedSuccessfully();
         }
-
-
 
         [When(@"Provider creates a Change of Price request where Training Price for the apprenticeship is reduced by (.*)")]
         public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceForTheApprenticeshipIsReducedBy(int priceReduction)
@@ -245,6 +244,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _changeTrainingStartDatePage.ConfirmDefaultValidationErrorMessagesDisplayed();
         }
 
+        [Then(@"validate Actual training start date cannot be before the Earliest start date for the standard")]
+        public void ThenValidateActualTrainingStartDateCannotBeBeforeTheEarliestStartDateForTheStandard()
+        {
+            _changeTrainingStartDatePage.ValidateStandardVersionStartDateErrorMessage(new DateTime(2015,1,1));
+        }
 
         [Then(@"validate Training Price and EPA price must be between (.*) and (.*)")]
         public void ValidateTrainingPriceAndEPAPriceMustBeBetweenValues(int min, int max)
