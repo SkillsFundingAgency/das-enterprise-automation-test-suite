@@ -6,7 +6,6 @@ using System.IO;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
-
     public static class Configurator
     {
         private static readonly IConfigurationRoot _config;
@@ -105,7 +104,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static (string environmentName, string ProjectName) GetLocalHostingConfig()
         {
-            var builder = ConfigurationBuilder().AddJsonFile($"{GetLocalSettingsFilePath("appsettings.Environment.json")}").Build();
+            var builder = ConfigurationBuilder().AddJsonFile($"{FileHelper.GetLocalSettingsFilePath("appsettings.Environment.json")}").Build();
 
             var e = builder.GetSection("local_EnvironmentName").Value;
 
@@ -118,7 +117,5 @@ namespace SFA.DAS.ConfigurationBuilder
                 .SetBasePath(Directory.GetCurrentDirectory());
 
         public static string GetDeploymentRequestedFor() => Environment.GetEnvironmentVariable("RELEASE_DEPLOYMENT_REQUESTEDFOR");
-
-        private static string GetLocalSettingsFilePath(string fileName) => Path.Combine(FileHelper.GetLocalProjectRootFilePath(), fileName);
     }
 }

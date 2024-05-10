@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public static class AvailableCourses
     {
         internal static List<CourseDetails> GetAvailableCourses()
-            => new() { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician, FoodTechnologist };
+            => new() { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician, FoodIndustryTechnologist };
 
         private static CourseDetails SoftwareTester => new()
         {
@@ -28,9 +28,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             Course = ("154", "Software development technician", new DateTime(2022, 05, 16), 18, 15000)
         };
 
-        private static CourseDetails FoodTechnologist => new()
+        private static CourseDetails FoodIndustryTechnologist => new()
         {
-            Course = ("131", "Food Technologist", new DateTime(2016, 08, 25), 24, 18000)
+            Course = ("131", "Food industry technologist", new DateTime(2024, 05, 01), 24, 18000)
         };
     }
 }
