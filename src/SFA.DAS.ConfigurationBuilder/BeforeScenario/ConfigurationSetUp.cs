@@ -1,35 +1,23 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Linq;
+﻿using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 {
     [Binding]
-    public class ConfigurationSetup
+    public class ConfigurationSetup(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-
-        private readonly IConfigurationRoot _configurationRoot;
-
-        private readonly ConfigSection _configSection;
-
-        public ConfigurationSetup(ScenarioContext context)
-        {
-            _context = context;
-            _configurationRoot = Configurator.GetConfig();
-            _configSection = new ConfigSection(_configurationRoot);
-        }
-
         [BeforeScenario(Order = 0)]
         public void SetUpConfiguration()
         {
-            _context.Set(_configSection);
+            var configSection = new ConfigSection(Configurator.GetConfig());
 
-            var dbConfig = _configSection.GetConfigSection<DbConfig>();
+            context.Set(configSection);
 
-            if (!Configurator.IsAdoExecution) dbConfig = new LocalHostDbConfig(_configSection.GetConfigSection<DbDevConfig>(), _context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
+            var dbConfig = configSection.GetConfigSection<DbConfig>();
 
-            _context.Set(dbConfig);
+            if (!Configurator.IsAdoExecution) dbConfig = new LocalHostDbConfig(configSection.GetConfigSection<DbDevConfig>(), context.ScenarioInfo.Tags.Contains("usesqllogin")).GetLocalHostDbConfig();
+
+            context.Set(dbConfig);
         }
     }
 }
