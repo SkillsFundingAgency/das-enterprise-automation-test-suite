@@ -1,9 +1,10 @@
-﻿Feature: AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage
+﻿Feature: AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv
 
 @approvals
 @regression
 @provideraddapprentice
-Scenario: AP_Pro_04 Provider Selects Filter And Pagination
+@setdownloadsdirectory
+Scenario: AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv
 	Given A Provider has navigated to Manage your apprentice page
 	When the provider filters by 'Live'
 	Then the provider is presented with first page with no filters applied

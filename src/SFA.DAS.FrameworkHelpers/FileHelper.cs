@@ -6,6 +6,8 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
+        public static string GetDownloadsDirectoryPath() => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Downloads");
+
         public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
 
         public static string GetAzureSrcFilesPath() => $"{GetAzureSrcPath()}\\files";
@@ -66,7 +68,7 @@ namespace SFA.DAS.FrameworkHelpers
         {
             string downloadedFileName = string.Empty;
             string filename = $"{pageName}_{DateTime.Now:yyyyMMdd}*.{format}";
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Downloads");
+            string path = GetDownloadsDirectoryPath();
 
             string[] filePaths = Directory.GetFiles(path, filename);
 

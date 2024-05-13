@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.EmployerManageApprentices
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage")]
-    public partial class AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePageFeature
+    [NUnit.Framework.DescriptionAttribute("AP_MA_01_Employer searches for apprentices")]
+    public partial class AP_MA_01_EmployerSearchesForApprenticesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage.feature"
+#line 1 "AP_MA_01_Employersearchesforapprentices.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/EmployerManageApprentices", "AP_MA_01_Employer searches for apprentices", "\tIn order to find apprentices that i wish to see\r\n\tAs an employer\r\n\tI need to be " +
+                    "able to search for apprentices", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +75,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Pro_04 Provider Selects Filter And Pagination")]
+        [NUnit.Framework.DescriptionAttribute("AP_MA_01_Employer searches for apprentices")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
-        public void AP_Pro_04ProviderSelectsFilterAndPagination()
+        [NUnit.Framework.CategoryAttribute("setdownloadsdirectory")]
+        public void AP_MA_01_EmployerSearchesForApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
-                    "provideraddapprentice"};
+                    "setdownloadsdirectory"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_04 Provider Selects Filter And Pagination", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MA_01_Employer searches for apprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,20 +97,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("A Provider has navigated to Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 8
- testRunner.When("the provider filters by \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
- testRunner.Then("the provider is presented with first page with no filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 10
- testRunner.And("Provider is able to download the results in a csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("An employer has navigated to Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.And("Provider can confirm number of rows in Apprentices csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the employer filters by \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("the employer is presented with first page with filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And("Employer is able to download the results in a csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("Employer can confirm number of rows in Apprentices csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

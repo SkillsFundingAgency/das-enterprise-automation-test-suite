@@ -1,11 +1,9 @@
-﻿Feature: AP_MA_01_Employer searches for apprentices
-	In order to find apprentices that i wish to see
-	As an employer
-	I need to be able to search for apprentices
+﻿Feature: AP_MA_01_EmployerFilterAndDownloadApprenticeInCsv
 
 @approvals
 @regression
-Scenario: AP_MA_01_Employer searches for apprentices
+@setdownloadsdirectory
+Scenario: AP_MA_01_EmployerFilterAndDownloadApprenticeInCsv
 	Given An employer has navigated to Manage your apprentice page
 	When the employer filters by 'Live'
 	Then the employer is presented with first page with filters applied
