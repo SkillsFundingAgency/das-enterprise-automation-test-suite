@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
@@ -111,6 +110,23 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             });
         }
 
+        [When(@"Change of Start Date request details are saved in the PriceHistory table")]
+        public void ChangeOfStartDateRequestDetailsAreSavedInThePriceHistoryTable()
+        {
+            var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfStartDateRequestData(GetApprenticeULN(1));
+
+            var expectedDate = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime actualDate = DateTime.ParseExact(dbData.ActualStartDate, "dd/MM/yyyy HH:mm:ss", null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actualDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedDate), "Incorrect Actual Start Date found");
+                Assert.That(dbData.Reason, Is.EqualTo(context.ScenarioInfo.Title), "Incorrect reason found");
+                Assert.That(dbData.RequestStatus, Is.EqualTo("Created"), "Incorrect Change of Price record status found");
+            });
+        }
+
+
         [When(@"Employer initiated Change of Price request details are saved in the PriceHistory table")]
         public void EmployerInitiatedChangeOfPriceRequestDetailsAreSavedInThePriceHistoryTable()
         {
@@ -141,6 +157,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             Assert.That(dbData.status, Is.EqualTo("Approved"), "Incorrect Change of Price record status found");
         }
 
+        [Then(@"the approved Change of Start Date request is saved in the PriceHistory table")]
+        public void ThenTheApprovedChangeOfStartDateRequestIsSavedInThePriceHistoryTable()
+        {
+            var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfStartDateRequestData(GetApprenticeULN(1));
+
+            Assert.That(dbData.RequestStatus, Is.EqualTo("Approved"), "Incorrect Change of Start Date record status found");
+        }
 
         [Then(@"validate earnings are not generated for the learners")]
         public void ValidateEarningsAreNotGeneratedForTheLearners(Table table)

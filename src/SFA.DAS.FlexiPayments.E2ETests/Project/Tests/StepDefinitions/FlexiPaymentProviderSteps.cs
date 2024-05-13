@@ -133,6 +133,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
+        [When(@"Provider successfully creates a Change of Start Date request")]
         [Then(@"Provider successfully creates a Change of Start Date request")]
         public void ThenProviderSuccessfullyCreatesAChangeOfStartDateRequest()
         {

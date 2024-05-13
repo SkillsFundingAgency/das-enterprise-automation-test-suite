@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
@@ -31,6 +30,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             var data = GetData(query);
 
             return (data[0], data[1], data[2], data[3], data[4], data[5]);
+        }
+
+        public (string ActualStartDate, string Reason, string RequestStatus) GetChangeOfStartDateRequestData (string uln)
+        {
+            string query = $"SELECT top (1) st.ActualStartDate, st.Reason, st.RequestStatus " +
+                $" FROM [dbo].[StartDateChange] st " +
+                $" JOIN [dbo].[Apprenticeship] apprn ON st.ApprenticeshipKey = apprn.[Key] " +
+                $" WHERE Uln = '{uln}' order by CreatedDate desc";
+
+            waitForResults = true;
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2]);
         }
     }
 }

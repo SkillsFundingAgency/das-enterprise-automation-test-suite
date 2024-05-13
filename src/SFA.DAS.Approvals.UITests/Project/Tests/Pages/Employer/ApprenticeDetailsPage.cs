@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Azure.Core;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
@@ -34,6 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ChangeOfStartDateReviewRequestLink => By.CssSelector("#change-of-start-date a");
         private static By PriceChangeRejectedBanner => By.Id("price-change-rejected-banner");
         private static By PriceChangeApprovedBanner => By.Id("price-change-approved-banner");
+        private static By ChangeOfStartDateApprovedBanner => By.Id("change-approved-banner");
         private static By ViewPriceChangeRequestBannerLink => By.Id("linkViewPendingPriceBanner");
         private static By PendingPriceChangeTag => By.XPath("//strong[text()='Pending']");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
@@ -189,6 +191,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeApprovedBanner), "Price Change Approved banner not displayed");
             Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was approved");
+            return this;
+        }
+
+        public ApprenticeDetailsPage ValidateChangeOfStartDateApprovedBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateApprovedBanner), "Change of Start Date Approved banner not displayed");
+            Assert.False(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateReviewRequestLink), "Change of Start date review link still displayed after the request was approved");
             return this;
         }
 
