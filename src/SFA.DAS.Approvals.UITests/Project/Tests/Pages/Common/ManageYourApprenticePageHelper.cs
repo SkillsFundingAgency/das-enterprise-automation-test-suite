@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,9 +63,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             SetDebugInformation($"Downloaded file name is : '{downloadedFileName}'");
 
+            TestContext.AddTestAttachment(downloadedFileName);
+
             var filteredApprenticesOnPage = tableRowHelper.GetTableRows();
 
-            SetDebugInformation($"'{filteredApprenticesOnPage.Count}'apprentice found on the page before filter");
+            SetDebugInformation($"'{filteredApprenticesOnPage.Count}'apprentices found on the page before filter");
 
             filteredApprenticesOnPage = filteredApprenticesOnPage.Where(row =>
             {
@@ -75,15 +78,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 return false;
             }).ToList();
 
-            SetDebugInformation($"'{filteredApprenticesOnPage.Count}'apprentice found on the page after filter");
+            SetDebugInformation($"'{filteredApprenticesOnPage.Count}'apprentices found on the page after filter");
 
             int csvCount = FileHelper.CountCsvFileRows(downloadedFileName);
 
-            SetDebugInformation($"'{csvCount}'apprentice found on the csv");
+            int apprenticeCountinCsv = csvCount - 2;
 
-            Assert.IsTrue(csvCount - 2 == filteredApprenticesOnPage.Count, $"Downloaded '{downloadedFileName}' csv count mismatch");
+            SetDebugInformation($"'{csvCount}'rows found in the csv");
+
+            SetDebugInformation($"'{apprenticeCountinCsv}'apprentices found in the csv");
+
+            Assert.That(filteredApprenticesOnPage.Count, Is.EqualTo(apprenticeCountinCsv), $"Downloaded '{downloadedFileName}' csv count mismatch");
         }
-
 
         private FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
