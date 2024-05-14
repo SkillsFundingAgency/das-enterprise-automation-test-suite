@@ -264,12 +264,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to successfully reject the Change of Price request")]
-        public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
+        public void EmployerRejectsChangeOfPriceRequest()
         {
             new EmployerReviewChangesPage(_context)
-                .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title)
+                .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title + " - Reject")
                 .ValidatePriceChangeRejectedBannerDisplayed();
         }
+
+        [Then(@"Employer is able to successfully reject the Change of Start Date request")]
+        public void EmployerRejectsChangeOfStartDateRequest()
+        {
+            _employerReviewChangesPage.SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title + " - Reject")
+                .ValidateChangeOfStartDateRejectedBannerDisplayed();
+        }
+
 
         [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenEmployerCannotMakeChangesToFullyApprovedLearner(string action, int learnerNumber)

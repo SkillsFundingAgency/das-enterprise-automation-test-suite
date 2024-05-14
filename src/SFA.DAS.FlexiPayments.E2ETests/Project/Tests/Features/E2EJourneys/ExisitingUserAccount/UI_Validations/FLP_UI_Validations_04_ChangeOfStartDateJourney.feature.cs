@@ -150,6 +150,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 22
  testRunner.And("Employer can view the details of the Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 23
+ testRunner.And("Employer is able to successfully reject the Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

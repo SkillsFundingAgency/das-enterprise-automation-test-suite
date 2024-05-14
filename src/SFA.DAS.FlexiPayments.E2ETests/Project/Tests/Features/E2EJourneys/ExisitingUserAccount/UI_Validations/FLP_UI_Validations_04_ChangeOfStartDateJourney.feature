@@ -19,4 +19,5 @@ Scenario: FLP_UI_Validations_04 Change Of Start Date Journey
 	And Provider is able to view details of change of Start Date request
 	And Employer searches for learner on Manage your apprentices page
 	And Employer is able to view the pending Change of Start Date request
-	And Employer can view the details of the Change of Start Date request 
+	And Employer can view the details of the Change of Start Date request
+	And Employer is able to successfully reject the Change of Start Date request

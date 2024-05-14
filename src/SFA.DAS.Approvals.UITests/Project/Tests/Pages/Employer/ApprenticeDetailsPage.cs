@@ -36,6 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By PriceChangeRejectedBanner => By.Id("price-change-rejected-banner");
         private static By PriceChangeApprovedBanner => By.Id("price-change-approved-banner");
         private static By ChangeOfStartDateApprovedBanner => By.Id("change-approved-banner");
+        private static By ChangeOfStartDateRejectedBanner => By.Id("startdate-change-rejected-banner");
         private static By ViewPriceChangeRequestBannerLink => By.Id("linkViewPendingPriceBanner");
         private static By PendingPriceChangeTag => By.XPath("//strong[text()='Pending']");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
@@ -171,15 +172,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public ApprenticeDetailsPage ValidateStartDateChangePendingBannerDisplayed()
-        {
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(StartDateChangePendingBanner), "Start Date Change Pending banner not displayed");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateChangeLinkBanner), "View request link not displayed inside Change of Start Date banner");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request tag for Change of Start Date is missing ");
-            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateReviewRequestLink), "Review request link for Change of Start Date is missing ");
-            return this;
-        }
-
         public ApprenticeDetailsPage ValidatePriceChangeRejectedBannerDisplayed()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeRejectedBanner), "Price Change Rejected banner not displayed");
@@ -191,6 +183,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(PriceChangeApprovedBanner), "Price Change Approved banner not displayed");
             Assert.False(pageInteractionHelper.IsElementDisplayed(ReviewPriceChangeLink), "Review price change link still displayed after the request was approved");
+            return this;
+        }
+
+        public ApprenticeDetailsPage ValidateStartDateChangePendingBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(StartDateChangePendingBanner), "Start Date Change Pending banner not displayed");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateChangeLinkBanner), "View request link not displayed inside Change of Start Date banner");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request tag for Change of Start Date is missing ");
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateReviewRequestLink), "Review request link for Change of Start Date is missing ");
+            return this;
+        }
+
+        public ApprenticeDetailsPage ValidateChangeOfStartDateRejectedBannerDisplayed()
+        {
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateRejectedBanner), "Change of Start Date Rejected banner not displayed");
+            Assert.False(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateReviewRequestLink), "Change of Start date review link still displayed after the request was approved");
             return this;
         }
 
