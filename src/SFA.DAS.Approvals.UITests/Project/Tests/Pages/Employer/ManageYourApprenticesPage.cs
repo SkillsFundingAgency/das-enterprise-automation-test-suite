@@ -15,8 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By ApplyFilter => By.CssSelector("#main-content .govuk-button");
 
-        private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
-
         private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper = new(context);
 
         public ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
@@ -55,33 +53,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ManageYourApprenticesPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
         {
-            formCompletionHelper.ClickElement(DownloadFilteredDataLink);
+            manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
+
             return new ManageYourApprenticesPage(context);
         }
 
-        public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
+        public bool DownloadFilteredDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadFilteredDataLinkIsDisplayed();
 
         private bool DoesApprenticeExists(string name) => manageYourApprenticePageHelper.DoesApprenticeExists(name);
 
-        public void DoesDownloadFileExistAndValidateRowCount()
-        {
-
-            var downloadedFileName = FrameworkHelpers.FileHelper.GetDownloadedFileName("Manageyourapprentices", "csv");
-            Assert.IsNotEmpty(downloadedFileName);
-
-            var filteredApprenticesOnPage = tableRowHelper.GetTableRows();
-            filteredApprenticesOnPage = filteredApprenticesOnPage.Where(row =>
-            {
-                if (DateTime.TryParse(row["Planned end date"], out DateTime plannedEndDate))
-                {
-                    return plannedEndDate >= DateTime.Now.AddYears(-1);
-                }
-                return false;
-            }).ToList();
-
-            Assert.IsTrue(FrameworkHelpers.FileHelper.CountCsvFileRows(downloadedFileName) - 2 == filteredApprenticesOnPage.Count);
-        }
-
+        public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount();
     }
 }
 

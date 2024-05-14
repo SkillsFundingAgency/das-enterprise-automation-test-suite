@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -12,11 +14,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private static By SearchButton => By.CssSelector(".das-search-form__button");
 
+        private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
+
         protected override string PageTitle => "";
 
         internal static By ViewApprenticeFullName(string linkText) => By.PartialLinkText(linkText);
 
-        public bool DoesApprenticeExists(string name)
+        internal bool DoesApprenticeExists(string name)
         {
             List<IWebElement> apprentices = [];
 
@@ -36,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return apprentices.Count > 0;
         }
 
-        public void SelectViewLiveApprenticeDetails(string name)
+        internal void SelectViewLiveApprenticeDetails(string name)
         {
             DoesApprenticeExists(name);
 
@@ -44,6 +48,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
             formCompletionHelper.ClickElement(detailsLinks);
         }
+
+
+        internal void ClickOnDownloadFilteredDataCSVAndWaitForDownload() => formCompletionHelper.ClickElement(DownloadFilteredDataLink);
+
+        internal bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
+
+        internal void DoesDownloadFileExistAndValidateRowCount()
+        {
+            var downloadedFileName = FileHelper.GetDownloadedFileName("Manageyourapprentices", "csv");
+
+            Assert.IsNotEmpty(downloadedFileName);
+
+            SetDebugInformation($"Downloaded file name is : '{downloadedFileName}'");
+
+            var filteredApprenticesOnPage = tableRowHelper.GetTableRows();
+
+            SetDebugInformation($"'{filteredApprenticesOnPage.Count}'apprentice found on the page before filter");
+
+            filteredApprenticesOnPage = filteredApprenticesOnPage.Where(row =>
+            {
+                if (DateTime.TryParse(row["Planned end date"], out DateTime plannedEndDate))
+                {
+                    return plannedEndDate >= DateTime.Now.AddYears(-1);
+                }
+                return false;
+            }).ToList();
+
+            SetDebugInformation($"'{filteredApprenticesOnPage.Count}'apprentice found on the page after filter");
+
+            int csvCount = FileHelper.CountCsvFileRows(downloadedFileName);
+
+            SetDebugInformation($"'{csvCount}'apprentice found on the csv");
+
+            Assert.IsTrue(csvCount - 2 == filteredApprenticesOnPage.Count, $"Downloaded '{downloadedFileName}' csv count mismatch");
+        }
+
 
         private FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
