@@ -83,7 +83,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount();
 
-        public bool DownloadAllDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadFilteredDataLinkIsDisplayed();
+        public bool DownloadAllDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadAllDataLinkIsDisplayed();
 
         public bool IsPaymentsPilotLearnerDisplayed(SimplifiedPaymentsPilot status)
         {

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By SearchButton => By.CssSelector(".das-search-form__button");
 
         private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
+
+        private static By DownloadAllDataLink => By.PartialLinkText("Download all data");
 
         protected override string PageTitle => "";
 
@@ -52,6 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
 
         internal void ClickOnDownloadFilteredDataCSVAndWaitForDownload() => formCompletionHelper.ClickElement(DownloadFilteredDataLink);
+
+        internal bool DownloadAllDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
 
         internal bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
 
