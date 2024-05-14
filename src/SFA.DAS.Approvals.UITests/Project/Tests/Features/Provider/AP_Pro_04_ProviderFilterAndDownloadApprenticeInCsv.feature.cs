@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage")]
-    public partial class AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePageFeature
+    [NUnit.Framework.DescriptionAttribute("AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv")]
+    public partial class AP_Pro_04ProviderFilterAndDownloadApprenticeInCsvFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage.feature"
+#line 1 "AP_Pro_04_ProviderFilterAndDownloadApprenticeInCsv.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Provider", "AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Pro_04 Provider Selects Filter And Pagination")]
+        [NUnit.Framework.DescriptionAttribute("AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
         [NUnit.Framework.CategoryAttribute("setdownloadsdirectory")]
-        public void AP_Pro_04ProviderSelectsFilterAndPagination()
+        public void AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
                     "provideraddapprentice",
                     "setdownloadsdirectory"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_04 Provider Selects Filter And Pagination", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_04ProviderFilterAndDownloadApprenticeInCsv", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
