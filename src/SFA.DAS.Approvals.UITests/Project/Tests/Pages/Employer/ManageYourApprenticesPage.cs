@@ -10,11 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private static By SelectFilterDropdown => By.Id("selectedStatus");
-
         private static By ApplyFilter => By.CssSelector("#main-content .govuk-button");
-
-        private static By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
 
         private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper = new(context);
 
@@ -34,9 +30,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void VerifyApprenticeExists() => DoesApprenticeExists(editedApprenticeDataHelper.ApprenticeEditedFullName);
 
-        public ManageYourApprenticesPage Filter(string filterText)
+        public ManageYourApprenticesPage Filter(string dropDownSelector, string filterText)
         {
-            formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+            formCompletionHelper.SelectFromDropDownByText(By.Id(dropDownSelector), filterText);
 
             formCompletionHelper.ClickElement(ApplyFilter);
 
@@ -52,10 +48,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(context);
         }
 
-        public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
+        internal ManageYourApprenticesPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
+        {
+            manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
+
+            return new ManageYourApprenticesPage(context);
+        }
+
+        public bool DownloadFilteredDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadFilteredDataLinkIsDisplayed();
 
         private bool DoesApprenticeExists(string name) => manageYourApprenticePageHelper.DoesApprenticeExists(name);
 
+        public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount();
     }
 }
 
