@@ -65,6 +65,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RoatpAdmin.UITests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E0426D3-BE06-45D9-AE74-262AE19F53A0}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		Parellel.runsettings = Parellel.runsettings
 	EndProjectSection
 EndProject
@@ -145,7 +146,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnect.APITes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmokeTest", "SmokeTest", "{E6EFFBAD-598C-40B1-87C8-C9350158A15F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Live.SmokeTests", "SFA.DAS.Live.SmokeTests\SFA.DAS.Live.SmokeTests.csproj", "{6FFE7153-443E-46CB-8297-96DD97F60163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Live.SmokeTests", "SFA.DAS.Live.SmokeTests\SFA.DAS.Live.SmokeTests.csproj", "{6FFE7153-443E-46CB-8297-96DD97F60163}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

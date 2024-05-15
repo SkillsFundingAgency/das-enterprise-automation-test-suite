@@ -13,11 +13,6 @@
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Compile>
 	</ItemGroup>
-	<ItemGroup>
-		<Content Include="..\specflow.json" Link="specflow.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
@@ -28,7 +23,7 @@
 	  <PackageReference Include="RestEase" Version="1.6.4" />
 	  <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
-  </ItemGroup>
+    </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
@@ -44,6 +39,9 @@
 	  </None>
 	  <None Update="appsettings.Project.json">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Update="specflow.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 

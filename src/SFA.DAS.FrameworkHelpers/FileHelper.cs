@@ -8,7 +8,11 @@ namespace SFA.DAS.FrameworkHelpers
     {
         public static string GetDownloadsDirectoryPath() => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Downloads");
 
-        public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
+        public static string GetLocalExecutingAssemblyPath() => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        public static string GetLocalSettingsFilePath(string fileName) => Path.Combine(GetLocalProjectRootFilePath(), fileName);
+
+        public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(GetLocalExecutingAssemblyPath(), @$"..\..\..\"));
 
         public static string GetAzureSrcFilesPath() => $"{GetAzureSrcPath()}\\files";
 
