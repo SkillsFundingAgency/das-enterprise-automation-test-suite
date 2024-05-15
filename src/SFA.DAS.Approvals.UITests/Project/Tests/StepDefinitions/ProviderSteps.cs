@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -8,8 +10,8 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -145,6 +147,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Provider creates a new cohort")]
         public void GivenProviderCreatesANewCohort() => _providerCommonStepsHelper.GoToProviderHomePage().GotoSelectJourneyPage().SelectAddManually();
 
+        [Given(@"Provider selects a NonLevy Employer and Standard")]
+        public void GivenProviderChooseANonLevyEmployer()
+        {
+            _providerCommonStepsHelper.ChooseANonLevyEmployer().ProviderSelectsAStandard();
+        }
+
         [Then(@"the provider validates flexi-job content and approves cohort")]
         [Then(@"the provider validates Flexi-job content, adds Uln and approves the cohorts")]
         public void ThenTheProviderValidatesFlexi_JobContentAndApprovesCohort() => _providerApproveStepsHelper.ValidateFlexiJobContentAndApproveCohort();
@@ -160,5 +168,51 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider can no longer approve the draft cohort")]
         public void ThenTheProviderCanNoLongerApproveTheDraftCohort() => _providerCommonStepsHelper.ViewCurrentCohortDetails().ValidateProviderCannotApproveCohort();
 
+        [Then(@"Provider can an apprentice details from table below")]
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateIndividualApprentices(Table table)
+        {
+            var apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
+
+            var datahelper = context.Get<ApprenticeDataHelper>();
+
+            var apprenticeRecords = table.CreateSet<ApprenticeDetails>();
+
+            foreach (var record in apprenticeRecords)
+            {
+                ValidateApprenticeDetailsRule(apprenticeCourseDataHelper, datahelper, record);
+            }
+        }
+
+        public void ValidateApprenticeDetailsRule(ApprenticeCourseDataHelper apprenticeCourseDataHelper, ApprenticeDataHelper dataHelper, ApprenticeDetails apprenticeRecord)
+        {
+            var randomApprentice = new ApprenticeDetails
+            {
+                ULN = RandomDataGenerator.GenerateRandomUln(),
+                FirstName = dataHelper.ApprenticeFirstname,
+                LastName = dataHelper.ApprenticeLastname,
+                EmailAddress = dataHelper.ApprenticeEmail,
+                DateOfBirth = dataHelper.ApprenticeDob.ToString("yyyy-MM-dd"),
+                StartDate = apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
+                EndDate = apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM-dd"),
+                TotalPrice = dataHelper.TrainingCost
+            };
+
+            static bool IsValid(string x) => x == "valid";
+
+            if (IsValid(apprenticeRecord.ULN)) apprenticeRecord.ULN = randomApprentice.ULN;
+            if (IsValid(apprenticeRecord.FirstName)) apprenticeRecord.FirstName = randomApprentice.FirstName;
+            if (IsValid(apprenticeRecord.LastName)) apprenticeRecord.LastName = randomApprentice.LastName;
+            if (IsValid(apprenticeRecord.DateOfBirth)) apprenticeRecord.DateOfBirth = randomApprentice.DateOfBirth;
+            if (IsValid(apprenticeRecord.EmailAddress)) apprenticeRecord.EmailAddress = randomApprentice.EmailAddress;
+            if (IsValid(apprenticeRecord.StartDate)) apprenticeRecord.StartDate = randomApprentice.StartDate;
+            if (IsValid(apprenticeRecord.EndDate)) apprenticeRecord.EndDate = randomApprentice.EndDate;
+            if (IsValid(apprenticeRecord.TotalPrice)) apprenticeRecord.TotalPrice = randomApprentice.TotalPrice;
+
+            MappedApprenticeDetails mappedApprenticeRecord = new(apprenticeRecord);
+
+            new ProviderAddApprenticeDetailsPage(context).SubmitInvalidDetailsAndCheckValidation(mappedApprenticeRecord)
+                .ValidateExpectedError(mappedApprenticeRecord);
+
+        }
     }
 }

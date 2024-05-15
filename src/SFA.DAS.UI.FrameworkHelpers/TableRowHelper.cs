@@ -1,13 +1,39 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
 public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper)
 {
+    public IList<Dictionary<string, string>> GetTableRows(string tableSelector = "table", string tableRowSelector = "tbody tr", int tablePosition = 0)
+    {
+        var table = pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).ElementAtOrDefault(tablePosition);
+        var rows = table?.FindElements(By.CssSelector(tableRowSelector));
+
+        List<Dictionary<string, string>> tableData = [];
+
+        foreach (var row in rows)
+        {
+            var rowData = new Dictionary<string, string>();
+            var cells = row.FindElements(By.CssSelector("td"));
+
+            foreach (var cell in cells)
+            {
+                var columnName = cell.GetAttribute("data-label");
+                var cellValue = cell.Text.Trim();
+                rowData.Add(columnName, cellValue);
+            }
+
+            tableData.Add(rowData);
+        }
+
+        return tableData;
+    }
+
+
     public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr", int tableposition = 0)
     {
         var table = pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).Where(x => x.Enabled && x.Displayed).ElementAtOrDefault(tableposition);

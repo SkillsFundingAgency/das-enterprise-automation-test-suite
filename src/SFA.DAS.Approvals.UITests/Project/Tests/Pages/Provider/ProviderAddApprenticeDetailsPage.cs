@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -11,11 +12,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
+        protected static By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
+        protected static By ErrorSummaryTitle => By.Id("error-summary-title");
         private static By AddButton => By.XPath("//button[contains(text(),'Add')]");
         private static By DeliveryModelLabel => By.Id("delivery-model-label");
         private static By DeliveryModelType => By.Id("delivery-model-value");
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
         private static By Uln => By.Id("Uln");
+
+        internal ProviderAddApprenticeDetailsPage SubmitInvalidDetailsAndCheckValidation(MappedApprenticeDetails apprenticeDetails)
+        {
+            EnterUln(apprenticeDetails.ULN);
+            EnterApprenticeName(apprenticeDetails.FirstName, apprenticeDetails.LastName);
+            EnterApprenticeEmail(apprenticeDetails.EmailAddress);
+            EnterDob(apprenticeDetails.DateOfBirth.Day, apprenticeDetails.DateOfBirth.Month, apprenticeDetails.DateOfBirth.Year);
+            EnterStartDate(apprenticeDetails.StartDate);
+            EnterEndDate(apprenticeDetails.EndDate);
+            EnterTrainingCost(apprenticeDetails.TotalPrice);
+
+            formCompletionHelper.ClickElement(AddButton);
+
+            return new ProviderAddApprenticeDetailsPage(context);
+        }
+
+        internal ProviderAddApprenticeDetailsPage ValidateExpectedError(MappedApprenticeDetails apprenticeDetails)
+        {
+            VerifyPage(ErrorSummaryTitle, "There is a problem");
+            VerifyPage(ErrorSummaryText, apprenticeDetails.ErrorMessage);
+
+            return new ProviderAddApprenticeDetailsPage(context);
+        }
 
         internal ProviderApproveApprenticeDetailsPage SubmitValidApprenticeDetails()
         {

@@ -1,8 +1,10 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -22,6 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
         private ViewApprenticeDetailsPage _viewApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
 
         [StepArgumentTransformation(@"(does ?.*)")]
         public bool DoesToBool(string value) => value == "does";
@@ -80,6 +83,54 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetCohortReference(cohortReference);
 
             _apprenticeRequestsPage = _approveApprenticeDetailsPage.SaveAndExit();
+        }
+
+        [When(@"Employer adds a new cohort and goes to Add Apprentice Details Page")]
+        public void EmployerAddsSingleApprenticeToNewCohort() => _addApprenticeDetailsPage = _employerStepsHelper.EmployerGoToAdddApprenticeDetailsFromHomePage();
+
+        [Then(@"Employer can an apprentice details from table below")]
+        public void WhenProviderAddAnApprenticeUsesDetailsFromBelowToCreateIndividualApprentices(Table table)
+        {
+            var apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
+
+            var datahelper = context.Get<ApprenticeDataHelper>();
+
+            var apprenticeRecords = table.CreateSet<ApprenticeDetails>();
+
+            foreach (var record in apprenticeRecords)
+            {
+                ValidateApprenticeDetailsRule(apprenticeCourseDataHelper, datahelper, record);
+            }
+        }
+
+        public void ValidateApprenticeDetailsRule(ApprenticeCourseDataHelper apprenticeCourseDataHelper, ApprenticeDataHelper dataHelper, ApprenticeDetails apprenticeRecord)
+        {
+            var randomApprentice = new ApprenticeDetails
+            {
+                FirstName = dataHelper.ApprenticeFirstname,
+                LastName = dataHelper.ApprenticeLastname,
+                EmailAddress = dataHelper.ApprenticeEmail,
+                DateOfBirth = dataHelper.ApprenticeDob.ToString("yyyy-MM-dd"),
+                StartDate = apprenticeCourseDataHelper.CourseStartDate.ToString("yyyy-MM-dd"),
+                EndDate = apprenticeCourseDataHelper.CourseEndDate.ToString("yyyy-MM-dd"),
+                TotalPrice = dataHelper.TrainingCost
+            };
+
+            static bool IsValid(string x) => x == "valid";
+
+            if (IsValid(apprenticeRecord.FirstName)) apprenticeRecord.FirstName = randomApprentice.FirstName;
+            if (IsValid(apprenticeRecord.LastName)) apprenticeRecord.LastName = randomApprentice.LastName;
+            if (IsValid(apprenticeRecord.DateOfBirth)) apprenticeRecord.DateOfBirth = randomApprentice.DateOfBirth;
+            if (IsValid(apprenticeRecord.EmailAddress)) apprenticeRecord.EmailAddress = randomApprentice.EmailAddress;
+            if (IsValid(apprenticeRecord.StartDate)) apprenticeRecord.StartDate = randomApprentice.StartDate;
+            if (IsValid(apprenticeRecord.EndDate)) apprenticeRecord.EndDate = randomApprentice.EndDate;
+            if (IsValid(apprenticeRecord.TotalPrice)) apprenticeRecord.TotalPrice = randomApprentice.TotalPrice;
+
+            MappedApprenticeDetails mappedApprenticeRecord = new(apprenticeRecord);
+
+            _addApprenticeDetailsPage.SubmitInvalidDetailsAndCheckValidation(mappedApprenticeRecord)
+               .ValidateExpectedError(mappedApprenticeRecord);
+
         }
 
         [Given(@"the Employer approves the cohort")]

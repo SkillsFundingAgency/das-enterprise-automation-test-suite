@@ -1,11 +1,13 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Chromium;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport;
@@ -82,7 +84,11 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
 
     private EdgeDriver EdgeDriver()
     {
-        var webdriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation());
+        var edgeOptions = new EdgeOptions();
+
+        AddDownloadsDirectory(edgeOptions);
+
+        var webdriver = new EdgeDriver(_objectContext.GetEdgeDriverLocation(), edgeOptions);
 
         AddEdgeCapabilities(webdriver);
 
@@ -91,10 +97,6 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
 
     private ChromeDriver ChromeDriver(List<string> arguments)
     {
-        arguments.Add("no-sandbox");
-
-        arguments.Add("ignore-certificate-errors");
-
         var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
 
         AddChromeCapabilities(webdriver);
@@ -102,12 +104,26 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
         return webdriver;
     }
 
-    private static ChromeOptions AddArguments(List<string> arguments)
+    private ChromeOptions AddArguments(List<string> arguments)
     {
         var chromeOptions = new ChromeOptions();
-        arguments.ForEach((x) => chromeOptions.AddArgument(x));
+
+        arguments.ForEach(chromeOptions.AddArgument);
+
+        AddDownloadsDirectory(chromeOptions);
+
         chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
+
         chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
+
         return chromeOptions;
+    }
+
+    private void AddDownloadsDirectory(ChromiumOptions chromiumOptions)
+    {
+        if (tags.Contains("setdownloadsdirectory"))
+        {
+            chromiumOptions.AddUserProfilePreference("download.default_directory", FileHelper.GetDownloadsDirectoryPath());
+        }
     }
 }

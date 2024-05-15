@@ -1,12 +1,20 @@
-﻿using NUnit.Framework;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
+using NUnit.Framework;
 
 namespace SFA.DAS.FrameworkHelpers
 {
     public static class FileHelper
     {
-        public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @$"..\..\..\"));
+        public static string GetDownloadsDirectoryPath() => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Downloads");
+
+        public static string GetLocalExecutingAssemblyPath() => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        public static string GetLocalSettingsFilePath(string fileName) => Path.Combine(GetLocalProjectRootFilePath(), fileName);
+
+        public static string GetLocalProjectRootFilePath() => Path.GetFullPath(Path.Combine(GetLocalExecutingAssemblyPath(), @$"..\..\..\"));
+
+        public static string GetAzureSrcFilesPath() => $"{GetAzureSrcPath()}\\files";
 
         public static string GetSingleConfigJson(string fileName) => GetPath($"appsettings.{fileName}", ".json");
 
@@ -14,7 +22,7 @@ namespace SFA.DAS.FrameworkHelpers
         {
             var fullFileName = $"appsettings.{fileName}.json";
 
-            var path = TestPlatformFinder.IsAzureExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
+            var path = TestPlatformFinder.IsAdoExecution ? GetAzureProjectConfigFilePath() : GetLocalProjectRootFilePath();
 
             string[] files = Directory.Exists(path) ? Directory.GetFiles(path, fullFileName) : [];
 
@@ -36,9 +44,9 @@ namespace SFA.DAS.FrameworkHelpers
 
         internal static string GetPath(string fileName, string extension)
         {
-            bool isAzureExecution = TestPlatformFinder.IsAzureExecution;
+            bool isAzureExecution = TestPlatformFinder.IsAdoExecution;
 
-            var path = isAzureExecution ? $"{GetAzureSrcPath()}\\files" : GetLocalSrcPath();
+            var path = isAzureExecution ? GetAzureSrcFilesPath() : GetLocalSrcPath();
 
             string[] files = Directory.GetFiles(path, $"{fileName}{extension}", new EnumerationOptions { RecurseSubdirectories = !isAzureExecution });
 
@@ -60,6 +68,38 @@ namespace SFA.DAS.FrameworkHelpers
 
         private static string GetSrcPath(string projectPath) => Path.GetFullPath(Path.Combine(projectPath, @$"..\"));
 
+        public static string GetDownloadedFileName(string pageName, string format)
+        {
+            string downloadedFileName = string.Empty;
+            string filename = $"{pageName}_{DateTime.Now:yyyyMMdd}*.{format}";
+            string path = GetDownloadsDirectoryPath();
+
+            string[] filePaths = Directory.GetFiles(path, filename);
+
+            downloadedFileName = filePaths.OrderByDescending(filePath =>
+            {
+                var fileInfo = new FileInfo(filePath);
+                return fileInfo.LastWriteTime;
+            }).First();
+
+            return downloadedFileName;
+        }
+
+        public static int CountCsvFileRows(string fullPath)
+        {
+            int rowCount = 0;
+
+            if (File.Exists(fullPath))
+            {
+                using StreamReader reader = new(fullPath);
+                while (reader.ReadLine() != null)
+                {
+                    rowCount++;
+                }
+            }
+
+            return rowCount;
+        }
     }
 
     [TestFixture]

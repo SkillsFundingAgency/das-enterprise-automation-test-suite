@@ -28,24 +28,25 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
 
         _ = bool.TryParse(testExecutionConfig.IsAccessibilityTesting, out bool isAccessibilityTesting);
 
-        bool IsVstsExecution = Configurator.IsAzureExecution;
+        _ = bool.TryParse(testExecutionConfig.IsAdoDriverVersionCompatible, out bool isAdoDriverVersionCompatible);
+
+        bool IsAdoExecution = Configurator.IsAdoExecution;
 
         var frameworkConfig = new FrameworkConfig
         {
             NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
             TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
             BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-            IsVstsExecution = IsVstsExecution,
-            CanCaptureUrl = IsVstsExecution && IsCurrrentUserAnAdmin(captureUrlAdmin),
+            IsAdoExecution = IsAdoExecution,
+            CanCaptureUrl = IsAdoExecution && IsCurrrentUserAnAdmin(captureUrlAdmin),
             CanTakeFullScreenShot = canTakeFullScreenShot || IsCurrrentUserAnAdmin(fullscreenshotAdmin),
-            IsAccessibilityTesting = isAccessibilityTesting
+            IsAccessibilityTesting = isAccessibilityTesting,
+            IsAdoDriverVersionCompatible = isAdoDriverVersionCompatible
         };
 
         context.Set(frameworkConfig);
 
         _objectContext.SetBrowser(testExecutionConfig.Browser);
-
-        context.Set(new DriverLocationConfig { DriverLocation = Configurator.GetDriverLocation() });
 
         if (frameworkConfig.CanCaptureUrl) _objectContext.InitAuthUrl();
     }

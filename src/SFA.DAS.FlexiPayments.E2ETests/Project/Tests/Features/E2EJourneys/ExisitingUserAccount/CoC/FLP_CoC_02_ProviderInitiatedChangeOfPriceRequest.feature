@@ -7,7 +7,7 @@ for a learner opted in the pilot.
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price Increased
-	Given fully approved apprentices with the below data
+	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 14500        | true         |
     And Provider searches for the learner on Manage your apprentice page
@@ -21,7 +21,7 @@ Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price 
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_02_2 Provider Initiated Change Of Price Request - Auto-Approve - Total Price Decreased
-	Given fully approved apprentices with the below data
+	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 15000        | true         |
     And Provider searches for the learner on Manage your apprentice page
@@ -33,7 +33,7 @@ Scenario: FLP_CoC_02_2 Provider Initiated Change Of Price Request - Auto-Approve
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_02_3 Provider Initiated Change Of Price Request - Auto-Approve - Total Price remains the same
-	Given fully approved apprentices with the below data
+	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 18000        | true         |
     And Provider searches for the learner on Manage your apprentice page
