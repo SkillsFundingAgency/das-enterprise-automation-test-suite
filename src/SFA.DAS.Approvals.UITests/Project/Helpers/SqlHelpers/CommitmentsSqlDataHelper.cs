@@ -215,9 +215,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
         }
 
-        public (string isPilot, string trainingPrice, string endpointAssessmentPrice, string fromDate, string toDate, string cost) GetFlexiPaymentsCommitmentData(string uln)
+        public (string ActualStartDate, string EndDate, string isPilot, string trainingPrice, string endpointAssessmentPrice, string fromDate, string toDate, string cost) GetFlexiPaymentsCommitmentData(string uln)
         {
-            var query = $"SELECT app.IsOnFlexiPaymentPilot, app.TrainingPrice, app.EndPointAssessmentPrice, pr.FromDate, pr.ToDate, pr.Cost " +
+            var query = $"SELECT app.StartDate, app.ActualStartDate, app.EndDate, app.IsOnFlexiPaymentPilot, app.TrainingPrice, app.EndPointAssessmentPrice, pr.FromDate, pr.ToDate, pr.Cost " +
                 $"FROM [dbo].[Apprenticeship] app " +
                 $"JOIN [dbo].[PriceHistory] pr on app.Id = pr.ApprenticeshipId " +
                 $"WHERE ULN = '{uln}'";
@@ -226,12 +226,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             var data = GetData(query);
 
-            return (data[0], data[1], data[2], data[3], data[4], data[5]);
+            return (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
         }
 
         private new string GetDataAsObject(string queryToExecute) => Convert.ToString(base.GetDataAsObject(queryToExecute)).Trim();
 
-        internal string GetCohortReferenceForDraftApprenitceship(string previousApprenticeshipCohortReference)
+        internal string GetCohortReferenceForDraftApprenticeship(string previousApprenticeshipCohortReference)
         {
             var query = @$"SELECT TOP(1) CAD.Reference
                            FROM[dbo].[OverlappingTrainingDateRequest] OLTD

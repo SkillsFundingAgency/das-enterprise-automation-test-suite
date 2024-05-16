@@ -7,6 +7,7 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
+using System.Xml.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -29,19 +30,37 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
                 int ulnKey = inputCommitmentData.ULNKey;
 
-                var (isPilot, trainingPrice, endpointAssessmentPrice, fromDate, toDate, cost) = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(GetApprenticeULN(ulnKey));
+                var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(GetApprenticeULN(ulnKey));
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(Boolean.Parse(isPilot), Is.EqualTo(inputCommitmentData.IsPilot), ErrorMessage("Incorrect Pilot status found in commitments db", ulnKey));
-                    Assert.That(trainingPrice, Is.EqualTo(inputCommitmentData.TrainingPrice), ErrorMessage("Incorrect Training Price found in commitments db", ulnKey));
-                    Assert.That(endpointAssessmentPrice, Is.EqualTo(inputCommitmentData.EndpointAssessmentPrice), ErrorMessage("Incorrect Endpoint Assessment Price found in commitments db", ulnKey));
-                    Assert.That(DataHelpers.TryParseDate(fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), ErrorMessage("Incorrect PriceEpisode From Date found in commitments db", ulnKey));
-                    Assert.That(DataHelpers.TryParseDate(toDate), Is.EqualTo(inputCommitmentData.PriceEpisodeToDate), ErrorMessage("Incorrect PriceEpisode To Date found in commitments db", ulnKey));
-                    Assert.That(double.Parse(cost), Is.EqualTo(inputCommitmentData.PriceEpisodeCost), ErrorMessage("Incorrect PriceEpisode Cost found in commitments db", ulnKey));
+                    Assert.That(Boolean.Parse(commitmentDbData.isPilot), Is.EqualTo(inputCommitmentData.IsPilot), ErrorMessage("Incorrect Pilot status found in commitments db", ulnKey));
+                    Assert.That(commitmentDbData.trainingPrice, Is.EqualTo(inputCommitmentData.TrainingPrice), ErrorMessage("Incorrect Training Price found in commitments db", ulnKey));
+                    Assert.That(commitmentDbData.endpointAssessmentPrice, Is.EqualTo(inputCommitmentData.EndpointAssessmentPrice), ErrorMessage("Incorrect Endpoint Assessment Price found in commitments db", ulnKey));
+                    Assert.That(DataHelpers.TryParseDate(commitmentDbData.fromDate), Is.EqualTo(inputCommitmentData.PriceEpisodeFromDate), ErrorMessage("Incorrect PriceEpisode From Date found in commitments db", ulnKey));
+                    Assert.That(DataHelpers.TryParseDate(commitmentDbData.toDate), Is.EqualTo(inputCommitmentData.PriceEpisodeToDate), ErrorMessage("Incorrect PriceEpisode To Date found in commitments db", ulnKey));
+                    Assert.That(double.Parse(commitmentDbData.cost), Is.EqualTo(inputCommitmentData.PriceEpisodeCost), ErrorMessage("Incorrect PriceEpisode Cost found in commitments db", ulnKey));
                 });
             }
         }
+
+        [Then(@"validate the new training dates have been updated in the Apprenticeship table of Commitment db")]
+        public void ValidateNewTrainingDatesHaveBeenUpdatedInTheApprenticeshipTableOfCommitmentDb()
+        {
+            var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(GetApprenticeULN(1));
+
+            var expectedActualStartDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+            DateTime dbActualStartDate = DateTime.ParseExact(commitmentDbData.ActualStartDate, "dd/MM/yyyy HH:mm:ss", null);
+            DateTime dbFromDate = DateTime.ParseExact(commitmentDbData.fromDate, "dd/MM/yyyy HH:mm:ss", null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(dbActualStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate), "Incorrect Actual Start Date found in Apprenticeship table, Commitment db");
+                Assert.That(dbFromDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate), "Incorrect From Date found in PriceHistory table, Commitment db");
+            });
+        }
+
 
         [Then(@"validate the following data is created in the earnings database")]
         public void ValidateTheFollowingDataIsCreatedInTheEarningsDatabase(Table table)
@@ -110,8 +129,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             });
         }
 
-        [When(@"Change of Start Date request details are saved in the PriceHistory table")]
-        public void ChangeOfStartDateRequestDetailsAreSavedInThePriceHistoryTable()
+        [When(@"Change of Start Date request details are saved in the StartDateChange table")]
+        public void ChangeOfStartDateRequestDetailsAreSavedInTheStartDateChangeTable()
         {
             var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfStartDateRequestData(GetApprenticeULN(1));
 
@@ -157,13 +176,25 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             Assert.That(dbData.status, Is.EqualTo("Approved"), "Incorrect Change of Price record status found");
         }
 
-        [Then(@"the approved Change of Start Date request is saved in the PriceHistory table")]
-        public void ThenTheApprovedChangeOfStartDateRequestIsSavedInThePriceHistoryTable()
+        [Then(@"the approved Change of Start Date request is saved in the StartDateChange table of Apprenticeship db")]
+        public void ThenTheApprovedChangeOfStartDateRequestIsSavedInTheStartDateChangeTable()
         {
             var dbData = _apprenticeshipsSqlDbHelper.GetChangeOfStartDateRequestData(GetApprenticeULN(1));
 
             Assert.That(dbData.RequestStatus, Is.EqualTo("Approved"), "Incorrect Change of Start Date record status found");
         }
+
+        [Then(@"validate the new training dates have been updated in the Apprenticeship table of Apprenticeship db")]
+        public void ThenValidateTheNewTrainingDatesHaveBeenUpdatedInTheApprenticeshipTable()
+        {
+            var trainingDates = _apprenticeshipsSqlDbHelper.GetApprenticeshipTrainingDates(GetApprenticeULN(1));
+
+            var expectedStartDate = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime actualStartDate = DateTime.ParseExact(trainingDates.ActualStartDate, "dd/MM/yyyy HH:mm:ss", null);
+
+            Assert.That(actualStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedStartDate), "Incorrect Actual Start Date found in Apprenticeship table, Apprenticeships db");
+        }
+
 
         [Then(@"validate earnings are not generated for the learners")]
         public void ValidateEarningsAreNotGeneratedForTheLearners(Table table)

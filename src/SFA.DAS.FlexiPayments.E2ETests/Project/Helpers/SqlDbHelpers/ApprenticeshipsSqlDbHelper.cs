@@ -45,5 +45,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 
             return (data[0], data[1], data[2]);
         }
+
+        public (string ActualStartDate, string PlannedEndDate) GetApprenticeshipTrainingDates (string uln)
+        {
+            string query = $"select ActualStartDate, PlannedEndDate " +
+                $" from [dbo].[Apprenticeship] " +
+                $" where Uln = '{uln}'";
+
+            waitForResults = true;
+
+            var data = GetData(query);
+
+            return (data[0], data[1]);
+        }
     }
 }
