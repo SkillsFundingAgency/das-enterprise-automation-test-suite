@@ -29,6 +29,7 @@
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 		<ProjectReference Include="..\SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj" />
+		<ProjectReference Include="..\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -41,5 +42,9 @@
 	  <None Update="specflow.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Project\Pages\" />
 	</ItemGroup>
 </Project>
