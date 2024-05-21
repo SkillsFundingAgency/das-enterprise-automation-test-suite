@@ -32,7 +32,6 @@
         public string ApprenticeshipsDbConnectionString { get; set; }
         public string RofjaaDbConnectionString { get; set; }
         public string AANDbConnectionString { get; set; }
-
         public string CanAccDbConnectionString { get; set; }
     }
 }
