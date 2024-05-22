@@ -1,10 +1,4 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.FAA.UITests.Project
+﻿namespace SFA.DAS.FAA.UITests.Project
 {
     [Binding]
     public class Hooks(ScenarioContext context)

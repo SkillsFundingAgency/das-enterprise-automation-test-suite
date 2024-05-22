@@ -1,9 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Project.Helpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.EPAO.UITests.Project;
+﻿namespace SFA.DAS.EPAO.UITests.Project;
 
 [Binding]
 public class FAAV2ConfigurationSetup(ScenarioContext context)
