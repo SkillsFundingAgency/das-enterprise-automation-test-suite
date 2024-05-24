@@ -18,12 +18,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"an applicant is on the Find an Apprenticeship Page")]
         public void WhenAnApplicantIsOnTheFindAnApprenticeshipPage() => _apprenticeSearchPage = _faaStepsHelper.FindAnApprenticeship();
 
-        [When(@"the apprenticeship can be found based on '(.*)','(.*)'")]
-        [Then(@"the apprenticeship can be found based on '(.*)','(.*)'")]
-        public void ThenTheApprenticeshipCanBeFoundBasedOn(string locationPostCode, string searchCriteriaOrDistance) =>
-            _apprenticeSearchPage = _apprenticeSearchPage.SearchForAVacancy(locationPostCode, searchCriteriaOrDistance, "All levels", "Yes")
-            .CheckVacancyIsDisplayedBasedOnSearchCriteria(locationPostCode, searchCriteriaOrDistance).ClickOnSearchAgainLink();
-
         [When(@"the candidate search for Nationwide Vacancies '(.*)','(.*)'")]
         public void WhenTheCandidateSearchForNationwideVacancies(string postCode, string distance)
         {
