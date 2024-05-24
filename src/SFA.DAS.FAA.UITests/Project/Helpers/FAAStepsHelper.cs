@@ -34,10 +34,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
-            if (_objectContext.IsFAARestart())
-                _helper.RestartWebDriver(_faaBaseUrl, _applicationName);
-            else
-                _tabHelper.OpenInNewTab(_faaBaseUrl);
+            _tabHelper.OpenInNewTab(_faaBaseUrl);
 
             var (username, password, _, _) = _objectContext.GetFAALogin();
 
