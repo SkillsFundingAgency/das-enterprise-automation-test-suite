@@ -49,15 +49,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             var commitmentDbData = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(GetApprenticeULN(1));
 
-            var expectedActualStartDate = DateTime.Now.ToString("yyyy-MM-dd");
+            var expectedActualStartDate = DateTime.Now;
 
+            DateTime dbStartDate = DateTime.ParseExact(commitmentDbData.StartDate, "dd/MM/yyyy HH:mm:ss", null);
             DateTime dbActualStartDate = DateTime.ParseExact(commitmentDbData.ActualStartDate, "dd/MM/yyyy HH:mm:ss", null);
             DateTime dbFromDate = DateTime.ParseExact(commitmentDbData.fromDate, "dd/MM/yyyy HH:mm:ss", null);
 
             Assert.Multiple(() =>
             {
-                Assert.That(dbActualStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate), "Incorrect Actual Start Date found in Apprenticeship table, Commitment db");
-                Assert.That(dbFromDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate), "Incorrect From Date found in PriceHistory table, Commitment db");
+                //Assert.That(dbStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(new DateTime(expectedActualStartDate.Year, expectedActualStartDate.Month, 1).ToString("yyyy-MM-dd")), "Incorrect Start Date found in Apprenticeship table, Commitment db");
+                Assert.That(dbActualStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate.ToString("yyyy-MM-dd")), "Incorrect Actual Start Date found in Apprenticeship table, Commitment db");
+                Assert.That(dbFromDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate.ToString("yyyy-MM-dd")), "Incorrect From Date found in PriceHistory table, Commitment db");
             });
         }
 
