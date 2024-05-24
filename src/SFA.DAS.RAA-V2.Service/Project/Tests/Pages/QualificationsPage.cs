@@ -1,28 +1,21 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class QualificationsPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        protected override string PageTitle => "What qualifications would you like the applicant to have?";
+        protected override string PageTitle => "Qualifications";
 
-        private static By QualificationType => By.Name("QualificationType");
+        protected override By ContinueButton => By.CssSelector(".govuk-button");
 
-        private static By Subject => By.CssSelector("#Subject");
-
-        private static By Grade => By.CssSelector("#Grade");
-
-        public ConfirmQualificationsPage EnterQualifications()
+        public AddAQualificationPage SelectYesToAddQualification()
         {
-            formCompletionHelper.SelectFromDropDownByText(QualificationType, "A Level or equivalent");
-            formCompletionHelper.EnterText(Subject, rAAV2DataHelper.DesiredQualificationsSubject);
-            formCompletionHelper.EnterText(Grade, RAA.DataGenerator.RAAV2DataHelper.DesiredQualificationsGrade);
-            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
             Continue();
-            return new ConfirmQualificationsPage(context);
+            return new AddAQualificationPage(context);
         }
-
     }
 }

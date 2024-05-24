@@ -71,6 +71,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             createAdvertPage
             .Skills()
             .SelectSkillAndGoToQualificationsPage()
+            .SelectYesToAddQualification()
             .EnterQualifications()
             .ConfirmQualificationsAndGoToFutureProspectsPage()
             .EnterFutureProspect()
