@@ -27,7 +27,13 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
 
     public void OpenNewTab() => webDriver.SwitchTo().NewWindow(WindowType.Tab);
 
-    public void OpenInNewTab(string url) { OpenNewTab(); GoToUrl(url); }
+    public void OpenInNewTab(string url, bool closePreviousTab=true) 
+    { 
+        OpenNewTab(); 
+        GoToUrl(url); 
+        if (closePreviousTab) ClosePreviousTab(); 
+    
+    }
 
     public void GoToUrl(string url)
     {
@@ -41,6 +47,19 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
     public void SwitchToFirstTab() => webDriver = webDriver.SwitchTo().Window(webDriver.WindowHandles.First());
 
     private ReadOnlyCollection<string> ExistingTabs() => webDriver.WindowHandles;
+
+    private void ClosePreviousTab()
+    {
+        var tabs = ExistingTabs();
+
+        while (tabs.Count > 1)
+        {
+            webDriver.SwitchTo().Window(tabs[0]);
+            webDriver.Close();
+            webDriver.SwitchTo().Window(tabs[1]);
+        }
+        
+    }
 
     private static string GetUrl(string uriString, string relativeUri) => UriHelper.GetAbsoluteUri(uriString, relativeUri);
 }
