@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator.Project.Config;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -19,6 +20,8 @@ namespace SFA.DAS.RAA_V2.Service.Project
             var fAAConfig = context.GetFAAConfig<FAAConfig>();
 
             context.Set(new RAAV2DataHelper(fAAConfig, vacancyTitleDatahelper));
+
+            context.Get<ObjectContext>().SetApprenticeshipVacancyType();
 
             var dbConfig = context.Get<DbConfig>();
 
