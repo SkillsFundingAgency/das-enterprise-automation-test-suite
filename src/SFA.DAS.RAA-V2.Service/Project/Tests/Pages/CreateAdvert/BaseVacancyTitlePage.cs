@@ -20,12 +20,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             return new ApprenticeshipTrainingPage(context);
         }
 
-        public TraineeshipSectorPage EnterTraineeshipVacancyTitle()
-        {
-            ChangeVacancyTitle();
-            return new TraineeshipSectorPage(context);
-        }
-
         public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstAdvert()
         {
             ChangeVacancyTitle();
