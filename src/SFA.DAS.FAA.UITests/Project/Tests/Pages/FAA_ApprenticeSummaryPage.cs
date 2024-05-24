@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(context)
+    public class FAA_ApprenticeSummaryPage : FAABasePage
     {
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
@@ -15,11 +16,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private static By ViewApplicationLink => By.Id("view-application-link");
 
+        private static By EmployerName => By.Id("vacancy-subtitle-employer-name");
+
+        private static By EmployerNameInAboutTheEmployerSection => By.Id("vacancy-employer-name");
+
         private static By ClosingDate => By.Id("vacancy-closing-date");
 
         private static By StartDate => By.Id("vacancy-start-date");
 
         private static By VacancyWage => By.Id("vacancy-wage");
+
+        public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
+        {
+            VerifyEmployerDetails();
+        }
 
         public FAA_YourApplicationPage View()
         {
@@ -59,6 +69,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.VerifyText(ApplyButton, "Apply for apprenticeship");
             return this;
+        }
+
+        private void VerifyEmployerDetails()
+        {
+            var empName = objectContext.GetEmployerNameAsShownInTheAdvert();
+            VerifyElement(EmployerName, empName);
+            VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }
     }
 }
