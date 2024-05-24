@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 
 namespace SFA.DAS.FAAV2.UITests.Project.Pages;
 
@@ -23,7 +23,7 @@ public abstract class FAABasePage : VerifyBasePage
         var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"vacancies/VAC{vacancyRef}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
-    }
+}
 }
 
 public class FAASignedOutLandingpage(ScenarioContext context) : FAALandingPage(context)
@@ -133,7 +133,7 @@ public partial class FAA_ApplicationPage : FAABasePage
     private static string EducationHistory => "Education history";
     private static string EducationHistory_1 => "School, college and university qualifications";
     private static string EducationHistory_2 => "Training courses";
-    
+
     private static string WorkHistory => "Work history";
     private static string WorkHistory_1 => "Jobs";
     private static string WorkHistory_2 => "Volunteering and work experience";

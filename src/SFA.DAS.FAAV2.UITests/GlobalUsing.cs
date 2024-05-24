@@ -13,3 +13,4 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.FAAV2.UITests.Project.Pages;
 global using SFA.DAS.RAA.DataGenerator.Project;
 global using SFA.DAS.UI.Framework;
+global using System;
