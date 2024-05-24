@@ -5,12 +5,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class DescriptionPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        protected override string PageTitle => IsTraineeship ? "What training will you give the trainee" : (isRaaV2Employer ? "Tasks and training details" : "Tasks and training details");
+        protected override string PageTitle => "How the apprentice will train";
 
         private static By IframeBody => By.CssSelector(".mce-content-body ");
         private static By OutcomeDescription => By.Id("OutcomeDescription_ifr");
         private static By TrainingDescription => By.Id("TrainingDescription_ifr");
-        private static By VacancyDescription => By.Id("VacancyDescription_ifr");
+        private static By VacancyDescription => By.Id("AdditionalTrainingDescription_ifr");
 
         public PreviewYourAdvertOrVacancyPage EnterDescription()
         {

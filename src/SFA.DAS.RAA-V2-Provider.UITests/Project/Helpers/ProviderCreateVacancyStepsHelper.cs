@@ -99,7 +99,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .EnterTrainingTitle()
                 .ConfirmTrainingAndContinueToSummaryPage()
                 .EnterShortDescription()
-                .EnterTasksAndTrainingDetails();
+                .EnterShortDescriptionOfWhatApprenticeWillDo()
+                .EnterAllDescription();
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()

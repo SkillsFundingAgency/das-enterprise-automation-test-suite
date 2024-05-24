@@ -171,6 +171,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             .SelectTrainingProvider()
             .ConfirmProviderAndContinueToSummaryPage()
             .EnterShortDescription()
+            .EnterShortDescriptionOfWhatApprenticeWillDo()
             .EnterAllDescription();
 
         protected virtual YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => rAAV2EmployerLoginHelper.GoToRecruitmentHomePage();

@@ -12,12 +12,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
-        public DescriptionPage EnterShortDescription()
+        public WhatWillTheApprenticeDoAtWorkPage EnterShortDescription()
         {
             formCompletionHelper.EnterText(ShortDescSelector, RAA.DataGenerator.RAAV2DataHelper.RandomAlphabeticString(60));
             Continue();
-            return new DescriptionPage(context);
+            return new WhatWillTheApprenticeDoAtWorkPage(context);
         }
+
+        
 
     }
 }
