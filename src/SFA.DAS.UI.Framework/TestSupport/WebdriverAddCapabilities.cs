@@ -11,6 +11,8 @@ public abstract class WebdriverAddCapabilities(ScenarioContext context)
 
     protected readonly ScenarioContext context = context;
 
+    protected string[] tags = context.ScenarioInfo.Tags;
+
     protected void AddChromeCapabilities(IWebDriver webDriver)
     {
         var cap = AddBrowserCapabilities(webDriver);

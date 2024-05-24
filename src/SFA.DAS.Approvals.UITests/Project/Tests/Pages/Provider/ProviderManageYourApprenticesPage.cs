@@ -30,7 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By SelectFilterDropdown => By.Id("selectedStatus");
         private static By ApplyFilter => By.XPath("//button[contains(text(),'Apply filters')]");
         private static By ClearSearchAndFilters => By.PartialLinkText("Clear search");
-        private static By DownloadAllDataLink => By.PartialLinkText("Download all data");
         private static By NextPageLink => By.PartialLinkText("Next");
         private static By SimplifiedPaymentsPilotFilter => By.Id("selectedPilotStatus");
 
@@ -66,7 +65,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public bool DownloadAllDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
+        public ProviderManageYourApprenticesPage Filter(string dropDownSelector, string filterText)
+        {
+            formCompletionHelper.SelectFromDropDownByText(By.Id(dropDownSelector), filterText);
+
+            formCompletionHelper.ClickElement(ApplyFilter);
+
+            return this;
+        }
+
+        internal ProviderManageYourApprenticesPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
+        {
+            manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
+
+            return new ProviderManageYourApprenticesPage(context);
+        }
+
+        public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount();
+
+        public bool DownloadAllDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadAllDataLinkIsDisplayed();
 
         public bool IsPaymentsPilotLearnerDisplayed(SimplifiedPaymentsPilot status)
         {
