@@ -145,6 +145,25 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #endregion
 
+    #region FAAUser
+
+    public abstract class FAAPortalUser : GovSignUser
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string MobilePhone { get; set; }
+    }
+
+    public class FAAApplyUser : FAAPortalUser
+    {
+
+    }
+
+
+    #endregion
+
     #endregion
 
 }

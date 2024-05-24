@@ -33,33 +33,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             if (disabilityConfident == "Yes")
                 formCompletionHelper.SelectCheckbox(DisabilityConfidentCheckBox);
 
-            switch (searchCriteriaOrDistanceDropDownValue)
-            {
-                case "Job title":
-                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, vacancyTitleDataHelper.VacancyTitle, "Keywords=" + vacancyTitleDataHelper.VacancyTitle);
-                    break;
+            string urlDistance = "0";
 
-                case "Employer":
-                    var empName = objectContext.GetEmployerName();
-                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, empName, "SearchField=Employer");
-                    break;
+            formCompletionHelper.SelectFromDropDownByText(Distance, searchCriteriaOrDistanceDropDownValue);
 
-                case "Description":
-                    var empDesc = objectContext.GetVacancyShortDescription();
-                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, empDesc, "SearchField=Description");
-                    break;
+            SearchByKeyword(string.Empty, string.Empty, "WithinDistance=" + urlDistance);
 
-                default:
-                    string urlDistance = "0";
-                    if (searchCriteriaOrDistanceDropDownValue != "England")
-                    {
-                        int index = searchCriteriaOrDistanceDropDownValue.LastIndexOf("miles");
-                        urlDistance = searchCriteriaOrDistanceDropDownValue[..index].TrimEnd();
-                    }
-                    formCompletionHelper.SelectFromDropDownByText(Distance, searchCriteriaOrDistanceDropDownValue);
-                    SearchByKeyword(string.Empty, string.Empty, "WithinDistance=" + urlDistance);
-                    break;
-            }
 
             return new FAA_ApprenticeSearchResultsPage(context);
         }
@@ -92,18 +71,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             var vacancyRef = objectContext.GetVacancyReference();
 
-            if (objectContext.IsRAAV1())
-            {
-                formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
-                formCompletionHelper.EnterText(KeyWord, vacancyRef);
-
-                base.SearchByReferenceNumber();
-            }
-            else
-            {
-                var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeship/{vacancyRef}");
-                tabHelper.GoToUrl(uri.AbsoluteUri);
-            }
+            var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeship/{vacancyRef}");
+            
+            tabHelper.GoToUrl(uri.AbsoluteUri);
         }
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
