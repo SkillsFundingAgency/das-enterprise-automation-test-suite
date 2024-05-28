@@ -1,8 +1,8 @@
 ﻿namespace SFA.DAS.FrameworkHelpers;
 
-public abstract class SqlDbHelper : SqlDbBaseHelper
+public abstract class SqlDbHelper(ObjectContext objectContext, string connectionString) : SqlDbBaseHelper(objectContext, connectionString)
 {
-    protected SqlDbHelper(ObjectContext objectContext, string connectionString) : base(objectContext, connectionString) { }
+    protected static string Func(List<string> x) => x.IsNoDataFound() ? string.Empty : x.FirstOrDefault();
 
     #region ExecuteSqlCommand
 

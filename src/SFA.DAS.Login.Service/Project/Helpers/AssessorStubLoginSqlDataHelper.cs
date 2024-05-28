@@ -9,16 +9,30 @@ public class AssessorStubLoginSqlDataHelper(ObjectContext objectContext, DbConfi
 {
     internal List<(string signInId, string displayName)> GetSignInIds(List<string> emails)
     {
-        static string func(List<string> x) => x.IsNoDataFound() ? string.Empty : x.FirstOrDefault();
-
         var query = emails.Select(GetSqlQuery).ToList();
 
         var accountdetails = new List<(string, string)>();
 
-        foreach (var data in GetListOfMultipleData(query)) accountdetails.Add((func(data.ListOfArrayToList(0)), func(data.ListOfArrayToList(1))));
+        foreach (var data in GetListOfMultipleData(query)) accountdetails.Add((Func(data.ListOfArrayToList(0)), Func(data.ListOfArrayToList(1))));
 
         return accountdetails;
     }
 
     private static string GetSqlQuery(string email) => $"select SignInId, DisplayName from dbo.Contacts where email = '{email}'";
+}
+
+public class CandidateAccountStubLoginSqlDataHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.CanAccDbConnectionString)
+{
+    internal List<(string signInId, string firstName, string lastName, string mobilePhone)> GetSignInIds(List<string> emails)
+    {
+        var query = emails.Select(GetSqlQuery).ToList();
+
+        var accountdetails = new List<(string, string, string, string)>();
+
+        foreach (var data in GetListOfMultipleData(query)) accountdetails.Add((Func(data.ListOfArrayToList(0)), Func(data.ListOfArrayToList(1)), Func(data.ListOfArrayToList(2)), Func(data.ListOfArrayToList(3))));
+
+        return accountdetails;
+    }
+
+    private static string GetSqlQuery(string email) => $"select GovUkIdentifier, FirstName, LastName, PhoneNumber from dbo.Candidate where email = '{email}'";
 }
