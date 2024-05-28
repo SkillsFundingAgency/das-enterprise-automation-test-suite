@@ -57,6 +57,8 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
             webDriver.SwitchTo().Window(tabs[0]);
             webDriver.Close();
             webDriver.SwitchTo().Window(tabs[1]);
+
+            tabs = ExistingTabs();
         }
         
     }
