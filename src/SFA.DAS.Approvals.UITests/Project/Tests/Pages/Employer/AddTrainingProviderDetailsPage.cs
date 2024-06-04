@@ -8,8 +8,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Enter your training provider's name or reference number (UKPRN)"; 
 
         protected override bool TakeFullScreenShot => false;
+        private static By UKProviderReferenceNumberText => By.Id("Ukprn");
 
-        protected override By ContinueButton => By.Id("continue-button");
+        private static By FirstOption => By.CssSelector("#Ukprn__option--0");
+
+        protected override By ContinueButton => By.Id("Ukprn-button");
 
         private static By UkprnField => By.CssSelector(".govuk-input");
 
@@ -22,14 +25,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmTrainingProviderPage EnterUkprnForPortableFlexiJobPilotProvider()
         {
-            formCompletionHelper.EnterText(UkprnField, portableFlexiJobProviderConfig.Ukprn);
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, portableFlexiJobProviderConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
             return new ConfirmTrainingProviderPage(context);
         }
 
         private AddTrainingProviderDetailsPage EnterUkprn()
         {
-            formCompletionHelper.EnterText(UkprnField, providerConfig.Ukprn);
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             return this;
         }
     }
