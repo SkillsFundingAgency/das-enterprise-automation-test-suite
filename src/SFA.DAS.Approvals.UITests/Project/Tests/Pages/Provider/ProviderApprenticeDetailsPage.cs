@@ -160,6 +160,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ClickViewPriceChangesRequestedLink() => formCompletionHelper.Click(ViewPriceChangesLink);
 
+        public void ClickViewPendingStartDateLink() => formCompletionHelper.Click(ViewPendingStartDateLink);
+
         public void ValidateChangeOfPriceRequestRaisedSuccessfully()
         {
             Assert.Multiple(() =>

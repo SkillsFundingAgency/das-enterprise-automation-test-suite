@@ -16,6 +16,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return DateTime.TryParse(text, out DateTime date) ? date : null;
         }
 
+        public static DateTime? ParseExact(string text)
+        {
+            return DateTime.ParseExact(text, "dd/MM/yyyy HH:mm:ss", null);
+        }
+
         public static DateTime CalculatePlannedEndDate(DateTime date, string months, FundingPlatform funding)
         {
             var numberOfMonths = Convert.ToInt32(new String(months.Where(Char.IsDigit).ToArray()));

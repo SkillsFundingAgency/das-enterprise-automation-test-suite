@@ -16,10 +16,10 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
         private static By StartDate_Day => By.Id("startdate-day");
         private static By StartDate_Month => By.Id("startdate-month");
         private static By StartDate_Year => By.Id("startdate-year");
-        private static By ReasonInputFields => By.Id("ReasonForChangeOfStartDate");
-        private static By ChangeActualTrainingStartDateErrorMessage => By.CssSelector("div[role='alert'] li a[href='#ApprenticeshipActualStartDate']");
-        private static string ChangeActualTrainingStartDateErrorText => "You must change the actual training start date";
-
+        private static By ReasonInputFields => By.CssSelector("textarea[Id='ReasonForChangeOfStartDate']");
+        private static By ChangeActualTrainingStartDateErrorMessage => By.XPath("//a[contains(text(),'You must change the actual training start date')]");
+        private static By EnterAReasonErrorMessage => By.XPath("//a[contains(text(),'You must enter a reason for requesting a change of start date')]");
+        private static By CourseAvailableToApprenticesWithStartDateAfterDateErrorMessage => By.XPath("//a[contains(text(),'This training course is only available')]");
 
         public ChangeTrainingStartDatePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             Assert.AreEqual(expectedValue, displayedValue);
             return this;
         }
-        public ProviderApprenticeDetailsPage EnterValidChangeOfPriceDetails(DateTime newTrainingStartDate, string reason)
+        public CheckYourChangesBeforeSendingToEmployerPage EnterValidChangeOfStartDateDetails(DateTime newTrainingStartDate, string reason)
         {
             formCompletionHelper.EnterText(StartDate_Day, newTrainingStartDate.Day);
             formCompletionHelper.EnterText(StartDate_Month, newTrainingStartDate.Month);
@@ -39,10 +39,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             formCompletionHelper.EnterText(ReasonInputFields, reason);
             formCompletionHelper.Click(ContinueButton);
 
-            // on the next page, click "Now send to the employer for approvals"
-            formCompletionHelper.Click(SendButton);
-
-            return new ProviderApprenticeDetailsPage(context);
+            return new CheckYourChangesBeforeSendingToEmployerPage(context);
         }
 
         public ChangeTrainingStartDatePage ClickContinueButtonWithValidationErrors()
@@ -55,9 +52,24 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
         {
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(pageInteractionHelper.GetText(ChangeActualTrainingStartDateErrorMessage), ChangeActualTrainingStartDateErrorText);
-                // more validations to be added here
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(ChangeActualTrainingStartDateErrorMessage), 
+                    "Change Actual Training Start Date error message not displayed");
+                Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EnterAReasonErrorMessage), 
+                    "You Must enter a reason error message not displayed");
+
             });
+        }
+        public ChangeTrainingStartDatePage ValidateStandardVersionStartDateErrorMessage(DateTime newTrainingStartDate)
+        {
+            formCompletionHelper.EnterText(StartDate_Day, newTrainingStartDate.Day);
+            formCompletionHelper.EnterText(StartDate_Month, newTrainingStartDate.Month);
+            formCompletionHelper.EnterText(StartDate_Year, newTrainingStartDate.Year);
+            formCompletionHelper.Click(ContinueButton);
+
+            Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CourseAvailableToApprenticesWithStartDateAfterDateErrorMessage),
+                "Training Course Available to Apprentices With Start Date After error message not displayed");
+
+            return this;
         }
 
     }
