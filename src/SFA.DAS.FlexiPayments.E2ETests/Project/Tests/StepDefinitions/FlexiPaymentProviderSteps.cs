@@ -138,6 +138,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ThenProviderSuccessfullyCreatesAChangeOfStartDateRequest()
         {
             new ChangeTrainingStartDatePage(context).EnterValidChangeOfStartDateDetails(DateTime.Today.Date, context.ScenarioInfo.Title)
+                .SelectUseSuggestedPlannedEndDateAndContinue()
                 .ClickSendButton()
                 .ValidateChangeOfStartDateRequestRaisedSuccessfully();
         }

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -31,7 +30,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             Assert.AreEqual(expectedValue, displayedValue);
             return this;
         }
-        public CheckYourChangesBeforeSendingToEmployerPage EnterValidChangeOfStartDateDetails(DateTime newTrainingStartDate, string reason)
+        public ConfirmPlannedTrainingEndDatePage EnterValidChangeOfStartDateDetails(DateTime newTrainingStartDate, string reason)
         {
             formCompletionHelper.EnterText(StartDate_Day, newTrainingStartDate.Day);
             formCompletionHelper.EnterText(StartDate_Month, newTrainingStartDate.Month);
@@ -39,7 +38,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             formCompletionHelper.EnterText(ReasonInputFields, reason);
             formCompletionHelper.Click(ContinueButton);
 
-            return new CheckYourChangesBeforeSendingToEmployerPage(context);
+            return new ConfirmPlannedTrainingEndDatePage(context);
         }
 
         public ChangeTrainingStartDatePage ClickContinueButtonWithValidationErrors()
