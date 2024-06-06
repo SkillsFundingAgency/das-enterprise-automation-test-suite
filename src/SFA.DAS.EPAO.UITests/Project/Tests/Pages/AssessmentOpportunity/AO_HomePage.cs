@@ -11,7 +11,7 @@ public class AO_HomePage : EPAO_BasePage
     private static By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
     private static By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
     private static By InteriorDesignerStandardLink => By.LinkText("Interior designer");
-    private static By TunnelEngineer => By.LinkText("Tunnel engineer");
+    private static By TunnelEngineer => By.LinkText("Wind turbine technician");
     #endregion
 
     public AO_HomePage(ScenarioContext context) : base(context)
