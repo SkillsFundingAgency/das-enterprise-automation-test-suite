@@ -116,6 +116,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
         [When(@"Provider proceeds to create a Change of Start Date request for flexi payments pilot learner")]
+        [Then(@"Provider proceeds to create a Change of Start Date request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfStartDateRequestForFlexiPaymentsPilotLearner() => _providerApprenticeDetailsPage.ClickChangeStartDateLink();
 
 
@@ -213,6 +214,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _viewChangeOfStartDateRequestPage = new ViewChangeOfStartDate(context).VerifyPendingEmployerReviewTagIsDisplayed()
                 .ValidateRequestedValues(DateTime.Today.Date, context.ScenarioInfo.Title);
         }
+
+        [Then(@"Provider can successfully cancel the change of Start Date request")]
+        public void ThenProviderCanSuccessfullyCancelTheChangeOfStartDateRequest()
+        {
+            _viewChangeOfStartDateRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
+                .ValidateChangeOfStartDateRequestCancelledSuccessfully();
+        }
+
 
 
         [Then(@"Provider can successfully cancel the change of price request")]
