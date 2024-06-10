@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourney")]
-    public partial class FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_03_ChangeOfPriceEmployerInitiatedJourney")]
+    public partial class FLP_UI_03_ChangeOfPriceEmployerInitiatedJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourney.feature"
+#line 1 "FLP_UI_03_ChangeOfPriceEmployerInitiatedJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_03_ChangeOfPriceEmployerInitiatedJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
                     " errors) for Employer while \r\nraise a Change of Price request for a learner opte" +
                     "d in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
@@ -76,18 +76,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_03 Change Of Price Employer Initiated Journey")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_03 Change Of Price Employer Initiated Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_Validations_03ChangeOfPriceEmployerInitiatedJourney()
+        public void FLP_UI_03ChangeOfPriceEmployerInitiatedJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_Validations_03 Change Of Price Employer Initiated Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_03 Change Of Price Employer Initiated Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

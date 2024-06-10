@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset")]
-    public partial class FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_01_TrainingPriceAndEPAPriceAreReset")]
+    public partial class FLP_UI_01_TrainingPriceAndEPAPriceAreResetFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset.feature"
+#line 1 "FLP_UI_01_TrainingPriceAndEPAPriceAreReset.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset", @"The purpose of this test is to perform UI validations in the below workflow:
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_01_TrainingPriceAndEPAPriceAreReset", @"The purpose of this test is to perform UI validations in the below workflow:
 - Training Provider adds a learner's details and send them to the employer 
 - Employer reviews the details and suggests a different Total price; sends back the details to TP for approval
 - When TP review the details, Total price suggested by Employer is displayed but Training Price and EPA price are reset 
@@ -78,20 +78,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("[FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewT" +
-            "otalPRice")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice()
+        public void FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "e2escenarios",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewT" +
-                    "otalPRice", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

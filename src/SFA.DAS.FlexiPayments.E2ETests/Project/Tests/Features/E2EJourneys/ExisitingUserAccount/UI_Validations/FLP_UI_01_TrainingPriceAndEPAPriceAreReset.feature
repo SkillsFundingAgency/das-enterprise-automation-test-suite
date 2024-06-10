@@ -1,4 +1,4 @@
-﻿Feature: FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreReset
+﻿Feature: FLP_UI_01_TrainingPriceAndEPAPriceAreReset
 
 The purpose of this test is to perform UI validations in the below workflow:
 - Training Provider adds a learner's details and send them to the employer 
@@ -9,7 +9,7 @@ The purpose of this test is to perform UI validations in the below workflow:
 @regression
 @e2escenarios
 @flexi-payments
-Scenario: [FLP_UI_Validations_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice
+Scenario: FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice
 	Given the Employer logins using existing Levy Account
 	And Pilot Provider adds apprentices to the cohort witht the following details
 		| ULN_Key | training_code | date_of_birth | start_date_str | duration_in_months | agreed_price |

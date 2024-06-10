@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
 using TechTalk.SpecFlow;
 
@@ -46,6 +47,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ViewPriceChangeLink => By.Id("linkViewPendingPrice");
         private static By PriceChangeCancelledBanner => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success h3");
+        private static By ProviderPaymentStatusRow => By.XPath("//td[@id='provider-payments-status']/preceding-sibling::th");
+        private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
 
 
 
@@ -237,6 +240,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
             }
            );
+        }
+
+        public ApprenticeDetailsPage ValidateProviderPaymentStatus(string status)
+        {
+            Assert.AreEqual("Provider payments status", pageInteractionHelper.GetText(ProviderPaymentStatusRow), "Provider Payment status label not displayed");
+            Assert.AreEqual(status, pageInteractionHelper.GetText(ProviderPaymentStatusValue), "Incorrect Provider payment status found!");
+
+            return this;
         }
     }
 }

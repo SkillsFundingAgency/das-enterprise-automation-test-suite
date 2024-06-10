@@ -79,12 +79,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider searches for the learner on Manage your apprentice page")]
+        [When(@"Provider searches for the learner on Manage your apprentice page")]
         [Then(@"Provider searches for the learner on Manage your apprentice page")]
         public void ProviderSearchesLearnerOnManageYourApprenticesPage()
         {
             _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails();
         }
+
+        [Then(@"display a Provider payments status row with (Active|Inactive) status to Provider")]
+        public void DisplayAProviderPaymentsStatusRowWithStatus(string providerPaymentStatus)
+        {
+            _providerApprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
+        }
+
 
         [Then(@"Provider can review the Change of Price request and approve it")]
         public void ThenProviderCanReviewTheChangeOfPriceRequestAndApproveIt()
