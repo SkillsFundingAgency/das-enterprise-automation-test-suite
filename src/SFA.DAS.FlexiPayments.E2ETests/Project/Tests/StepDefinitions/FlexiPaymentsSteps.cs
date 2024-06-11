@@ -293,5 +293,14 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
         }
+
+        [Then(@"employer is able to successfully freeze provider payments")]
+        public void EmployerSuccessfullyFreezesProviderPayments()
+        {
+            _apprenticeDetailsPage.ClickChangeProviderPaymentStatusLink();
+
+            _apprenticeDetailsPage = new EmployerFreezeProviderPaymentsPage(_context).FreezeFuturePayments();
+        }
+
     }
 }

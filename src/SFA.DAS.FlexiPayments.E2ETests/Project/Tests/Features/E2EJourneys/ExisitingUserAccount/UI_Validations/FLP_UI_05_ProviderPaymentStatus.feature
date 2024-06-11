@@ -13,3 +13,5 @@ Scenario: FLP_UI_05 Provider payment status journey
 	Then display a Provider payments status row with Active status to Provider
 	And Employer searches for learner on Manage your apprentices page
 	And display a Provider payments status row with Active status to Employer
+	And employer is able to successfully freeze provider payments
+	And display a Provider payments status row with Inactive status to Employer

@@ -49,8 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By PriceChangeCancelBannerMessage => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success h3");
         private static By ProviderPaymentStatusRow => By.XPath("//td[@id='provider-payments-status']/preceding-sibling::th");
         private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
-
-
+        private static By ChangeProviderPaymentStatusLink => By.Id("linkChangePaymentStatus");
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
@@ -249,5 +248,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             return this;
         }
+
+        public void ClickChangeProviderPaymentStatusLink() => formCompletionHelper.Click(ChangeProviderPaymentStatusLink);
     }
 }
