@@ -38,7 +38,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price changes you've requested\")]");
         private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
         private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
+        private static By StartDateChangeCancelledBanner => By.Id("startdate-change-cancelled-banner");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
+        private static By StartDateChangeCancelBannerMessage => By.CssSelector("#startdate-change-cancelled-banner h3");
         private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
         private static By PriceChangeApprovedBanner => By.Id("change-of-price-approved-banner");
         private static By PriceChangeRejectedBanner => By.Id("change-of-price-rejected-banner");
@@ -194,6 +196,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangeCancelledBanner), "Price Change Cancelled banner not displayed");
                 Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo("Your request to change the price has been cancelled"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
+            }
+           );
+        }
+
+        public void ValidateChangeOfStartDateRequestCancelledSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(StartDateChangeCancelledBanner), "Start Date Change Cancelled banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(StartDateChangeCancelBannerMessage), Is.EqualTo("Your request to change the start date has been cancelled"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeStartDateLink), "Start Date change link not displayed");
             }
            );
         }
