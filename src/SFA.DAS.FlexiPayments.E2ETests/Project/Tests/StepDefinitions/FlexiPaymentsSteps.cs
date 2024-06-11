@@ -302,5 +302,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage = new EmployerFreezeProviderPaymentsPage(_context).FreezeFuturePayments();
         }
 
+        [Then(@"employer is able to successfully unfreeze provider payments")]
+        public void EmployerSuccessfullyUnfreezeProviderPayments()
+        {
+            _apprenticeDetailsPage.ClickChangeProviderPaymentStatusLink();
+
+            _apprenticeDetailsPage = new EmployerUnfreezeProviderPaymentsPage(_context).UnfreezeFuturePayments();
+        }
     }
 }

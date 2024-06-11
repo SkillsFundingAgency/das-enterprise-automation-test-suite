@@ -15,3 +15,5 @@ Scenario: FLP_UI_05 Provider payment status journey
 	And display a Provider payments status row with Active status to Employer
 	And employer is able to successfully freeze provider payments
 	And display a Provider payments status row with Inactive status to Employer
+	And employer is able to successfully unfreeze provider payments
+	And display a Provider payments status row with Active status to Employer
