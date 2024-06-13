@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 {
-    public class ChangeOfPriceCheckYourChangesPage : ChangePriceNegotiationAmountsPage
+    public class CheckYourChangesBeforeSendingToEmployerPage : ChangePriceNegotiationAmountsPage
     {
         #region Helpers and Context
 
@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
         #endregion Helpers and Context
 
         protected override string PageTitle => _pageTitle;
-        private static By SendButton => By.Id("buttonSubmitChangeOfPrice");
+        private static By SendButton => By.XPath("//button[contains(text(),'Send')]");
         private static By EmployerDoesNotNeedToApproveHeading => By.XPath("//h2[contains(text(),'The employer does not need to approve this change as the price has not increased')]");
         private static By GoBackToEditChangesLink => By.Id("linkGoBackToEdit");
         private static By ChangeTrainingPriceLink => By.Id("linkTrainingprice");
@@ -23,7 +23,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
         private static By ChangeEffectiveFromDateLink => By.Id("linkEffectiveFromDate");
         private static By ChangeReasonForChangeLink => By.Id("linkReasonForChange");
 
-        public ChangeOfPriceCheckYourChangesPage(ScenarioContext context, bool isAutoApprove = false): base(context, false)
+        public CheckYourChangesBeforeSendingToEmployerPage(ScenarioContext context, bool isAutoApprove = false): base(context, false)
         {
 
             void SetPageTitle() => _pageTitle = isAutoApprove ? "Check your price changes" : "Check your changes before sending to the employer";
@@ -39,7 +39,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             return new ProviderApprenticeDetailsPage(context);
         }
 
-        public ChangeOfPriceCheckYourChangesPage ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
+        public CheckYourChangesBeforeSendingToEmployerPage ValidateEmployerDoesNotNeedToApproveRequestHeadingDisplayed()
         {
             Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(EmployerDoesNotNeedToApproveHeading));
             return this;
