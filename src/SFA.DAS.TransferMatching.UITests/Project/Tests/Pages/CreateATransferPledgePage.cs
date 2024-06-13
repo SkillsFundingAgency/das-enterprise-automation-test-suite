@@ -59,7 +59,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public Pledge100PercentMatchPage GoToPledge100PercentMatchPage()
         {
-            formCompletionHelper.ClickLinkByText("Approve or delay");
+            formCompletionHelper.ClickLinkByText("Review or approve immediately");
             return new Pledge100PercentMatchPage(context);
         }
 

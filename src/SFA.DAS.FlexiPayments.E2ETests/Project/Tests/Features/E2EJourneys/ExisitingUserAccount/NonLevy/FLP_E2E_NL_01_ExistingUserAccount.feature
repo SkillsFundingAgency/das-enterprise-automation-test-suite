@@ -1,6 +1,7 @@
 ﻿Feature: FLP_E2E_NL_01_ExistingUserAccount
 
 @regression
+@selectstandardwithmultipleoptions
 @e2escenarios
 @flexi-payments
 Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provider who opts first learner in the pilot and second out of the pilot

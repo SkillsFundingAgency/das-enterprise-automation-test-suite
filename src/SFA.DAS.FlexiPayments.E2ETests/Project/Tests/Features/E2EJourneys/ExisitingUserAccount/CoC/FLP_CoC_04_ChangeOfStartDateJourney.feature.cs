@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.UI_Validations
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.CoC
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,24 +20,23 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_04_ChangeOfStartDateJourney")]
-    public partial class FLP_UI_Validations_04_ChangeOfStartDateJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_CoC_04_ChangeOfStartDateJourney")]
+    public partial class FLP_CoC_04_ChangeOfStartDateJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_UI_Validations_04_ChangeOfStartDateJourney.feature"
+#line 1 "FLP_CoC_04_ChangeOfStartDateJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_04_ChangeOfStartDateJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
-                    " errors) for \r\nChange of Start Date initiated by Training Provider. The employer" +
-                    " used in this test will be a non-levy employer.", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/CoC", "FLP_CoC_04_ChangeOfStartDateJourney", "The purpose of the below testa is to successfully raise a Change of Start Date re" +
+                    "quest initiated by a training provider \r\nfor a learner opted in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,18 +75,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_04 Change Of Start Date Journey")]
+        [NUnit.Framework.DescriptionAttribute("FLP_CoC_04 Change Of Start Date Journey - Happy Path")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_Validations_04ChangeOfStartDateJourney()
+        public void FLP_CoC_04ChangeOfStartDateJourney_HappyPath()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_Validations_04 Change Of Start Date Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_04 Change Of Start Date Journey - Happy Path", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,7 +97,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,62 +105,45 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table28.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "1",
-                            "91",
-                            "2000/11/20",
+                            "154",
+                            "2004/06/20",
                             "StartPreviousMonth",
-                            "24",
+                            "12",
                             "18000",
                             "true"});
 #line 10
- testRunner.Given("NonLevy Employer and Pilot provider have a fully approved apprentices with the be" +
-                        "low data", ((string)(null)), table28, "Given ");
+ testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
+                        " data", ((string)(null)), table7, "Given ");
 #line hidden
 #line 13
- testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.When("Provider proceeds to create a Change of Start Date request for flexi payments pil" +
                         "ot learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.And("Provider submits change of start date form without changing input fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider successfully creates a Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.Then("all default change of start date validation errors are displayed to the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Change of Start Date request details are saved in the StartDateChange table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("validate Actual training start date cannot be before the Earliest start date for " +
-                        "the standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Employer can review the Change of Start Date request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
- testRunner.And("Provider successfully creates a Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the approved Change of Start Date request is saved in the StartDateChange table o" +
+                        "f Apprenticeship db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
- testRunner.And("Provider is able to view details of change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate the new training dates have been updated in the Apprenticeship table of " +
+                        "Apprenticeship db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
- testRunner.And("Provider can successfully cancel the change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 21
- testRunner.And("Provider proceeds to create a Change of Start Date request for flexi payments pil" +
-                        "ot learner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
- testRunner.And("Provider successfully creates a Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
- testRunner.And("Employer searches for learner on Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 24
- testRunner.And("Employer is able to view the pending Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
- testRunner.And("Employer can view the details of the Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 26
- testRunner.And("Employer is able to successfully reject the Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate the new training dates have been updated in the Apprenticeship table of " +
+                        "Commitment db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
