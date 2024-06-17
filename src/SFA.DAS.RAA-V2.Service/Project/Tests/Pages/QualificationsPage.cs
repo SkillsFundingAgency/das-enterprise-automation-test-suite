@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
@@ -9,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Qualifications";
 
-        protected override By ContinueButton => By.CssSelector(".govuk-button");
+        protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
         public AddAQualificationPage SelectYesToAddQualification()
         {

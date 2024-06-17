@@ -119,7 +119,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             return createAdvertPage;
         }
 
+        //private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
+        //    _isMultiOrg ? advertTitlePage.EnterAdvertTitleMultiOrg().SelectOrganisationMultiOrg() : advertTitlePage.EnterVacancyTitle();
+
         private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
-            _isMultiOrg ? advertTitlePage.EnterAdvertTitleMultiOrg().SelectOrganisationMultiOrg() : advertTitlePage.EnterVacancyTitle();
+             advertTitlePage.EnterVacancyTitle();
     }
 }

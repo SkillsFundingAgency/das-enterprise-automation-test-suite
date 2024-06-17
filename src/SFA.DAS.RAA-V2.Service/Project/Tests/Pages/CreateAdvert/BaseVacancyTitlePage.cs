@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private void ChangeVacancyTitle()
         {
-            var title = IsTraineeship ? rAAV2DataHelper.TraineeshipVacancyTitle : rAAV2DataHelper.VacancyTitle;
+            var title = rAAV2DataHelper.VacancyTitle;
             formCompletionHelper.EnterText(Title, title);
             Continue();
         }
