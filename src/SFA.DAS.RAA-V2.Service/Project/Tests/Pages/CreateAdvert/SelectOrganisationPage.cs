@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 {
     public class SelectOrganisationPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "Which organisation do you want to create a vacancy for?";
+        protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "What training course will the apprentice take?";
 
         public WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation()
         {
@@ -19,13 +19,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
             return new ApprenticeshipTrainingPage(context);
-        }
-
-        public TraineeshipSectorPage SelectOrganisationMultiOrgTraineeship()
-        {
-            formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
-            Continue();
-            return new TraineeshipSectorPage(context);
         }
     }
 }

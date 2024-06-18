@@ -6,18 +6,17 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class SummaryOfTheApprenticeshipPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        protected override string PageTitle => IsTraineeship ? "Summary of the traineeship" : "Summary of the apprenticeship";
+        protected override string PageTitle => "Summary of the apprenticeship";
 
         private static By ShortDescSelector => By.CssSelector("textarea#ShortDescription");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
-        public DescriptionPage EnterShortDescription()
+        public WhatWillTheApprenticeDoAtWorkPage EnterShortDescription()
         {
             formCompletionHelper.EnterText(ShortDescSelector, RAA.DataGenerator.RAAV2DataHelper.RandomAlphabeticString(60));
             Continue();
-            return new DescriptionPage(context);
+            return new WhatWillTheApprenticeDoAtWorkPage(context);
         }
-
     }
 }

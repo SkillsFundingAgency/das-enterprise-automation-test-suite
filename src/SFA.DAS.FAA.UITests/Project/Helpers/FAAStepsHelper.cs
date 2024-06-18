@@ -27,8 +27,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public FAA_ApprenticeSearchPage FindAnApprenticeship() => GoToFAAHomePage().FindAnApprenticeship();
 
-        public FAA_TraineeshipSearchPage FindATraineeship() => GoToFAAHomePage().FindATraineeship();
-
         public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
             _tabHelper.OpenInNewTab(_faaBaseUrl);
@@ -115,13 +113,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.EnterTrainingCourse(trainingCourse);
                 applicationFormPage.EnterQualificationdetails(qualificationdetails);
                 applicationFormPage.AnswerAdditionalQuestions();
-                applicationFormPage.SubmitTraineeshipApplication();
             }
-        }
-
-        public void ApplyForTraineeship()
-        {
-            ApplyForAVacancy(string.Empty, string.Empty, string.Empty, false);
         }
 
         public void CheckNationWideVacancies()
@@ -147,10 +139,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
-            if (_objectContext.IsApprenticeshipVacancyType())
                 return FindAnApprenticeship().SearchByReferenceNumber();
-            else
-                return FindATraineeship().SearchByReferenceNumber();
         }
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
